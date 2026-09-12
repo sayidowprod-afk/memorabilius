@@ -252,14 +252,150 @@ function signedArea(pts: Pt[]): number {
   return a / 2
 }
 
-// Raffine les 4 coins (en pixels image d'origine) + garde-fou global : si le
-// raffinement déforme trop le quadrilatère (aire trop différente -- ex.
-// plusieurs coins tirés vers un même bord bruité), on rejette tout le
-// raffinement et on garde les points bruts plutôt que de risquer un contour
-// moins bon que l'original. Exporté pour /dev-model-test (comparaison
-// visuelle brut vs raffiné avant décision de déploiement en prod).
+// 12/09 (v2) : le raffinement isotrope ci-dessus (refineCornerSubpixel) se
+// fait parfois piéger par une structure interne à la carte proche du coin
+// (cadre de photo, tableau de stats au dos...) au lieu du vrai bord externe
+// -- constaté sur une vraie photo de carte dans /dev-model-test, cf.
+// discussion "limite mieux sur l'actuel". Approche plus robuste : au lieu de
+// chercher un "coin" dans une fenêtre isotrope, on détecte les DEUX bords
+// (segments de droite) qui forment le coin séparément -- en échantillonnant
+// plusieurs points le long de chaque bord (loin du coin lui-même, là où les
+// graphismes internes interfèrent moins), on cherche à chaque point la
+// transition de contraste perpendiculaire au bord (le vrai bord carte/fond
+// est la ligne DOMINANTE et cohérente sur toute sa longueur, contrairement à
+// un graphisme interne ponctuel) -- puis on ajuste une droite (moindres
+// carrés) à travers ces points, pour chaque bord, et le coin raffiné est
+// l'intersection des deux droites. Beaucoup moins sensible au bruit local
+// qu'une recherche isotrope au voisinage immediat du coin.
+const EDGE_SAMPLE_FRACTIONS = [0.15, 0.3, 0.45, 0.6, 0.75, 0.9]
+const EDGE_PERP_SEARCH_PX = 18
+const EDGE_MIN_GRAD = 12
+
+function sampleGray(gray: Float32Array, w: number, h: number, x: number, y: number): number {
+  const xi = Math.min(w - 1, Math.max(0, Math.round(x)))
+  const yi = Math.min(h - 1, Math.max(0, Math.round(y)))
+  return gray[yi * w + xi]
+}
+
+// Localise le bord le long d'un profil perpendiculaire à la direction du
+// bord attendu, centré sur basePt -- renvoie le point de transition de
+// contraste le plus net (avec interpolation subpixel par ajustement
+// parabolique du pic de gradient), ou null si rien d'assez net.
+function findEdgeCrossing(
+  gray: Float32Array, w: number, h: number,
+  basePt: Pt, perp: Pt,
+): Pt | null {
+  let bestT = 0, bestMag = EDGE_MIN_GRAD
+  const mags: number[] = []
+  for (let t = -EDGE_PERP_SEARCH_PX; t <= EDGE_PERP_SEARCH_PX; t++) {
+    const x = basePt.x + perp.x * t, y = basePt.y + perp.y * t
+    const g1 = sampleGray(gray, w, h, x - perp.x, y - perp.y)
+    const g2 = sampleGray(gray, w, h, x + perp.x, y + perp.y)
+    const mag = Math.abs(g2 - g1)
+    mags.push(mag)
+    if (mag > bestMag) { bestMag = mag; bestT = t }
+  }
+  if (bestMag <= EDGE_MIN_GRAD) return null
+  // Interpolation parabolique subpixel autour du pic (bestT).
+  const idx = bestT + EDGE_PERP_SEARCH_PX
+  let dt = 0
+  if (idx > 0 && idx < mags.length - 1) {
+    const gm1 = mags[idx - 1], g0 = mags[idx], gp1 = mags[idx + 1]
+    const denom = gm1 - 2 * g0 + gp1
+    if (Math.abs(denom) > 1e-6) dt = 0.5 * (gm1 - gp1) / denom
+  }
+  const tFinal = bestT + dt
+  return { x: basePt.x + perp.x * tFinal, y: basePt.y + perp.y * tFinal }
+}
+
+// Ajuste une droite (moindres carrés totaux / PCA) à un nuage de points.
+function fitLine(points: Pt[]): { point: Pt; dir: Pt } | null {
+  if (points.length < 3) return null
+  const mx = points.reduce((s, p) => s + p.x, 0) / points.length
+  const my = points.reduce((s, p) => s + p.y, 0) / points.length
+  let sxx = 0, sxy = 0, syy = 0
+  for (const p of points) {
+    const dx = p.x - mx, dy = p.y - my
+    sxx += dx * dx; sxy += dx * dy; syy += dy * dy
+  }
+  const angle = 0.5 * Math.atan2(2 * sxy, sxx - syy)
+  return { point: { x: mx, y: my }, dir: { x: Math.cos(angle), y: Math.sin(angle) } }
+}
+
+function intersectLines(a: { point: Pt; dir: Pt }, b: { point: Pt; dir: Pt }): Pt | null {
+  const det = -a.dir.x * b.dir.y + b.dir.x * a.dir.y
+  if (Math.abs(det) < 1e-6) return null // droites quasi paralleles
+  const dx = b.point.x - a.point.x, dy = b.point.y - a.point.y
+  const t = (dx * -b.dir.y - -b.dir.x * dy) / det
+  return { x: a.point.x + t * a.dir.x, y: a.point.y + t * a.dir.y }
+}
+
+// Detecte la droite d'un bord de carte en echantillonnant plusieurs points
+// entre le coin et le coin voisin (en evitant les 2 extremites, ou le bruit
+// est concentre), chacun affine perpendiculairement a la direction nominale
+// du bord.
+function detectEdgeLine(
+  gray: Float32Array, w: number, h: number,
+  corner: Pt, neighbor: Pt,
+): { point: Pt; dir: Pt } | null {
+  const dx = neighbor.x - corner.x, dy = neighbor.y - corner.y
+  const len = Math.hypot(dx, dy)
+  if (len < 1) return null
+  const dir = { x: dx / len, y: dy / len }
+  const perp = { x: -dir.y, y: dir.x }
+  const points: Pt[] = []
+  for (const frac of EDGE_SAMPLE_FRACTIONS) {
+    const basePt = { x: corner.x + dir.x * len * frac, y: corner.y + dir.y * len * frac }
+    const found = findEdgeCrossing(gray, w, h, basePt, perp)
+    if (found) points.push(found)
+  }
+  return fitLine(points)
+}
+
+// Raffine les 4 coins par intersection de bords (voir plus haut) -- pour
+// chaque coin, detecte les 2 droites de bord adjacentes et prend leur
+// intersection. Retombe sur le raffinement isotrope (refineCornerSubpixel)
+// si une droite n'a pas pu etre etablie (pas assez de bord net detecte),
+// puis sur le point YOLO brut en dernier recours. + garde-fou global : si le
+// resultat deforme trop le quadrilatere (aire trop differente), on rejette
+// tout le raffinement. Exporte pour /dev-model-test (comparaison visuelle
+// avant toute decision de deploiement en prod).
 export function refineCorners(img: HTMLImageElement, corners: Pt[], scale: number): Pt[] {
-  const refined = corners.map(c => refineCornerSubpixel(img, c, scale))
+  const margin = Math.round(Math.min(60, Math.max(20, 12 / scale)))
+  const xs = corners.map(p => p.x), ys = corners.map(p => p.y)
+  const left = Math.max(0, Math.floor(Math.min(...xs) - margin))
+  const top = Math.max(0, Math.floor(Math.min(...ys) - margin))
+  const right = Math.min(img.naturalWidth, Math.ceil(Math.max(...xs) + margin))
+  const bottom = Math.min(img.naturalHeight, Math.ceil(Math.max(...ys) + margin))
+  const w = right - left, h = bottom - top
+
+  let gray: Float32Array | null = null
+  if (w > 0 && h > 0) {
+    const canvas = document.createElement('canvas')
+    canvas.width = w; canvas.height = h
+    const ctx = canvas.getContext('2d', { willReadFrequently: true })!
+    ctx.imageSmoothingEnabled = false
+    ctx.drawImage(img, left, top, w, h, 0, 0, w, h)
+    const { data } = ctx.getImageData(0, 0, w, h)
+    canvas.width = 0
+    gray = sobelGray(data, w, h)
+  }
+
+  const local = corners.map(p => ({ x: p.x - left, y: p.y - top }))
+  const refined = corners.map((corner, i) => {
+    if (!gray) return refineCornerSubpixel(img, corner, scale)
+    const next = local[(i + 1) % 4], prev = local[(i + 3) % 4]
+    const lineA = detectEdgeLine(gray, w, h, local[i], next)
+    const lineB = detectEdgeLine(gray, w, h, local[i], prev)
+    if (lineA && lineB) {
+      const inter = intersectLines(lineA, lineB)
+      if (inter && Number.isFinite(inter.x) && Number.isFinite(inter.y)) {
+        return { x: inter.x + left, y: inter.y + top }
+      }
+    }
+    return refineCornerSubpixel(img, corner, scale)
+  })
+
   const origArea = Math.abs(signedArea(corners))
   const refinedArea = Math.abs(signedArea(refined))
   const areaRatio = origArea > 0 ? refinedArea / origArea : 1
