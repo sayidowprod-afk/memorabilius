@@ -919,11 +919,15 @@ export async function detectCornersYOLO(
     canvas.width = 0  // libère la mémoire GPU
 
     if (!combined) return null
-    // Raffinement sub-pixel (voir refineCorners plus haut) volontairement PAS
-    // appliqué ici -- ce chemin est celui du scan en prod (CardScanner). Le
-    // raffinement n'est branché que sur /dev-model-test pour l'instant, le
-    // temps de le valider visuellement avant d'envisager de l'activer ici.
-    return combined.corners.map(p => ({ x: (p.x - padX) / scale, y: (p.y - padY) / scale }))
+    // 13/09 : raffinement v5 (bord physique partage + seuil relatif + repli
+    // texture/multi-canal + polissage final + garde-fou ratio d'aspect --
+    // voir refineCornersV5 plus haut) valide sur /dev-model-test (meilleure
+    // version testee : v2 -> v3 -> v4 -> v5, chacune corrigeant un defaut
+    // concret remonte en testant de vraies photos) et active ici sur le
+    // scan en prod (CardScanner). Cout mesure negligeable (~10-30ms
+    // ajoutes aux ~500-1000ms d'inference ONNX).
+    const corners = combined.corners.map(p => ({ x: (p.x - padX) / scale, y: (p.y - padY) / scale }))
+    return refineCornersV5(img, corners, scale)
   } catch (e) {
     console.warn('[YOLO corners]', e)
     return null
