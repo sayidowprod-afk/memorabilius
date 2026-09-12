@@ -267,9 +267,26 @@ function signedArea(pts: Pt[]): number {
 // carrés) à travers ces points, pour chaque bord, et le coin raffiné est
 // l'intersection des deux droites. Beaucoup moins sensible au bruit local
 // qu'une recherche isotrope au voisinage immediat du coin.
-const EDGE_SAMPLE_FRACTIONS = [0.15, 0.3, 0.45, 0.6, 0.75, 0.9]
+// 12/09 (v2.1) : sur une vraie photo (fond en mousse/tapis texture), le coin
+// raffine restait decale malgre le rejet d'aberrants -- cause identifiee :
+// on echantillonne loin du coin (15%-90% du bord) pour eviter le bruit
+// pres du coin, MAIS le coin final vient de l'INTERSECTION extrapolee des
+// 2 droites -- une petite erreur d'angle sur la droite ajustee (ex: quelques
+// points qui accrochent une texture de fond repetitive plutot que le vrai
+// bord) est amplifiee d'autant plus que l'extrapolation jusqu'au coin est
+// longue. Deux corrections : (1) ajoute des points d'echantillonnage plus
+// pres du coin (5%/8%/12%) pour reduire la distance d'extrapolation --
+// toujours combines avec les points eloignes dans le MEME ajustement de
+// droite (le rejet d'aberrants existant protege contre un point proche
+// isole qui accrocherait un graphisme interne) ; (2) garde-fou d'angle :
+// si la droite ajustee s'ecarte de plus de 12 deg de la direction brute
+// coin->voisin (le bord ne peut pas avoir tourne autant), on la rejette --
+// une texture de fond parallele mais decalee produirait un ecart d'angle
+// notable, contrairement au vrai bord qui reste quasi colineaire au brut.
+const EDGE_SAMPLE_FRACTIONS = [0.05, 0.08, 0.12, 0.2, 0.35, 0.5, 0.65, 0.8, 0.92]
 const EDGE_PERP_SEARCH_PX = 18
 const EDGE_MIN_GRAD = 20
+const EDGE_MAX_ANGLE_DEVIATION_DEG = 12
 
 function sampleGray(gray: Float32Array, w: number, h: number, x: number, y: number): number {
   const xi = Math.min(w - 1, Math.max(0, Math.round(x)))
@@ -347,10 +364,20 @@ function intersectLines(a: { point: Pt; dir: Pt }, b: { point: Pt; dir: Pt }): P
   return { x: a.point.x + t * a.dir.x, y: a.point.y + t * a.dir.y }
 }
 
+// Ecart angulaire (en degres, 0-90) entre 2 directions -- independant du
+// sens (une droite n'a pas d'orientation "avant/arriere").
+function angleDeviationDeg(dirA: Pt, dirB: Pt): number {
+  const dot = Math.abs(dirA.x * dirB.x + dirA.y * dirB.y)
+  return Math.acos(Math.min(1, Math.max(-1, dot))) * (180 / Math.PI)
+}
+
 // Detecte la droite d'un bord de carte en echantillonnant plusieurs points
 // entre le coin et le coin voisin (en evitant les 2 extremites, ou le bruit
 // est concentre), chacun affine perpendiculairement a la direction nominale
-// du bord.
+// du bord. Rejette la droite trouvee si son angle s'ecarte trop de la
+// direction brute coin->voisin (cf. commentaire EDGE_MAX_ANGLE_DEVIATION_DEG)
+// -- un vrai bord de carte ne peut pas avoir tourne autant par rapport a la
+// detection YOLO brute.
 function detectEdgeLine(
   gray: Float32Array, w: number, h: number,
   corner: Pt, neighbor: Pt,
@@ -366,7 +393,10 @@ function detectEdgeLine(
     const found = findEdgeCrossing(gray, w, h, basePt, perp)
     if (found) points.push(found)
   }
-  return fitLine(points)
+  const line = fitLine(points)
+  if (!line) return null
+  if (angleDeviationDeg(line.dir, dir) > EDGE_MAX_ANGLE_DEVIATION_DEG) return null
+  return line
 }
 
 // Raffine les 4 coins par intersection de bords (voir plus haut) -- pour
@@ -512,7 +542,10 @@ function detectEdgeLineV3(
     const found = findEdgeCrossingV3(data, gray, w, h, basePt, perp)
     if (found) points.push(found)
   }
-  return fitLine(points)
+  const line = fitLine(points)
+  if (!line) return null
+  if (angleDeviationDeg(line.dir, dir) > EDGE_MAX_ANGLE_DEVIATION_DEG) return null
+  return line
 }
 
 // Variante v3 de refineCorners (voir commentaire ci-dessus) -- meme structure
