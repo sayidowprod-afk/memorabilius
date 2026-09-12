@@ -1,11 +1,12 @@
 'use client'
 import { useRef, useState } from 'react'
+import { refineCorners } from '@/lib/cornerDetectorYolo'
 
 const IMGSZ = 640
 const ORT_CDN = 'https://cdn.jsdelivr.net/npm/onnxruntime-web@1.27.0/dist/'
 
 type Pt = { x: number; y: number }
-type RunResult = { corners: Pt[] | null; conf: number; ms: number }
+type RunResult = { corners: Pt[] | null; rawCorners: Pt[] | null; conf: number; ms: number }
 
 const MODELS = [
   { key: 'prod', label: 'Prod (actuel)', url: '/models/corners.onnx', color: '#e74c3c' },
@@ -60,31 +61,43 @@ async function runModel(ort: typeof import('onnxruntime-web'), modelUrl: string,
     const conf = raw[4 * N + i]
     if (conf > bestConf) { bestConf = conf; bestIdx = i }
   }
-  const ms = performance.now() - t0
-  if (bestIdx < 0) return { corners: null, conf: 0, ms }
-  const corners: Pt[] = []
+  if (bestIdx < 0) { const ms = performance.now() - t0; return { corners: null, rawCorners: null, conf: 0, ms } }
+  const rawCorners: Pt[] = []
   for (let k = 0; k < 4; k++) {
     const kx = raw[(5 + k * 3) * N + bestIdx]
     const ky = raw[(5 + k * 3 + 1) * N + bestIdx]
-    corners.push({ x: (kx - padX) / scale, y: (ky - padY) / scale })
+    rawCorners.push({ x: (kx - padX) / scale, y: (ky - padY) / scale })
   }
-  return { corners, conf: bestConf, ms }
+  const corners = refineCorners(img, rawCorners, scale)
+  const ms = performance.now() - t0
+  return { corners, rawCorners, conf: bestConf, ms }
 }
 
-function draw(canvas: HTMLCanvasElement, img: HTMLImageElement, corners: Pt[] | null, color: string) {
-  canvas.width = img.naturalWidth
-  canvas.height = img.naturalHeight
-  const ctx = canvas.getContext('2d')!
-  ctx.drawImage(img, 0, 0)
-  if (!corners) return
+function drawQuad(ctx: CanvasRenderingContext2D, corners: Pt[], color: string, lineWidth: number, dashed: boolean) {
+  ctx.setLineDash(dashed ? [10, 8] : [])
   ctx.strokeStyle = color
-  ctx.lineWidth = Math.max(3, img.naturalWidth / 200)
+  ctx.lineWidth = lineWidth
   ctx.beginPath()
   corners.forEach((p, i) => (i === 0 ? ctx.moveTo(p.x, p.y) : ctx.lineTo(p.x, p.y)))
   ctx.closePath()
   ctx.stroke()
+  ctx.setLineDash([])
+}
+
+// Brut YOLO en rouge pointillé + raffiné sub-pixel (voir cornerDetectorYolo.ts)
+// en couleur du modèle, plein -- pour juger visuellement si le raffinement
+// corrige bien vers le vrai bord avant de l'activer sur le scanner en prod.
+function draw(canvas: HTMLCanvasElement, img: HTMLImageElement, res: RunResult, color: string) {
+  canvas.width = img.naturalWidth
+  canvas.height = img.naturalHeight
+  const ctx = canvas.getContext('2d')!
+  ctx.drawImage(img, 0, 0)
+  if (!res.corners) return
+  const lw = Math.max(3, img.naturalWidth / 300)
+  if (res.rawCorners) drawQuad(ctx, res.rawCorners, '#2222ff', lw, true)
+  drawQuad(ctx, res.corners, color, lw, false)
   ctx.fillStyle = color
-  corners.forEach(p => {
+  res.corners.forEach(p => {
     ctx.beginPath()
     ctx.arc(p.x, p.y, Math.max(6, img.naturalWidth / 100), 0, Math.PI * 2)
     ctx.fill()
@@ -118,7 +131,7 @@ export default function DevModelTest() {
         const res = await runModel(ort, m.url, img)
         setResults(prev => ({ ...prev, [m.key]: res }))
         const canvas = canvasRefs.current[m.key]
-        if (canvas) draw(canvas, img, res.corners, m.color)
+        if (canvas) draw(canvas, img, res, m.color)
       }
 
       URL.revokeObjectURL(url)
@@ -132,8 +145,11 @@ export default function DevModelTest() {
   return (
     <div style={{ maxWidth: 900, margin: '0 auto', padding: '20px 14px 60px', fontFamily: 'Inter, sans-serif' }}>
       <h1 style={{ fontSize: 18, fontWeight: 900, marginBottom: 4 }}>🔬 Comparatif détection de coins</h1>
-      <p style={{ fontSize: 13, color: '#888', marginBottom: 16 }}>
+      <p style={{ fontSize: 13, color: '#888', marginBottom: 4 }}>
         Prod actuelle vs le nouveau meilleur checkpoint (INT8 dynamique)
+      </p>
+      <p style={{ fontSize: 12, color: '#888', marginBottom: 16 }}>
+        Bleu pointillé = point brut du modèle · couleur pleine = après raffinement sub-pixel (test, pas encore en prod)
       </p>
 
       <input

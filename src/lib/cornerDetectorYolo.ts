@@ -135,6 +135,137 @@ async function runInference(
   return { corners, conf: bestConf }
 }
 
+// 12/09 : raffinement sub-pixel en post-traitement, cf. discussion "le tracé
+// n'est jamais parfait" -- YOLO reste une approximation apprise (toujours un
+// petit biais résiduel même bien entraîné), donc on ancre chaque coin sur le
+// vrai contraste de pixels de l'image d'origine plutôt que de compter
+// uniquement sur le réseau. Équivalent de cv2.cornerSubPix : dans une fenêtre
+// autour du coin YOLO, chaque pixel de bord "vote" pour la position du coin
+// via son gradient (le coin doit se trouver sur la droite perpendiculaire au
+// gradient passant par ce pixel), on résout au sens des moindres carrés,
+// pondéré par une gaussienne recentrée sur l'estimation courante à chaque
+// itération (comme cv2.cornerSubPix) -- sans ce recentrage, la première
+// résolution est définitive et rien ne "cherche" activement le bord réel.
+//
+// Mesuré sur une vraie image d'entraînement (1200×1600) : l'écart entre le
+// point YOLO et le vrai bord peut atteindre ~25px en résolution originale,
+// car le réseau raisonne sur un canvas 640×640 -- une erreur de quelques
+// pixels à cette échelle se retrouve multipliée par (résolution originale /
+// 640) une fois reprojetée. La fenêtre de recherche doit donc s'adapter à ce
+// facteur d'échelle (scale = 640 / plus grand côté), pas rester fixe.
+const REFINE_ITERATIONS = 6
+// Bornes de la fenêtre de recherche (rayon en pixels image d'origine) : assez
+// grande pour couvrir l'erreur de reprojection typique (~8px en espace
+// réseau / scale), plafonnée pour rester rapide sur les photos très haute
+// résolution (fenêtre carrée -> coût en rayon²).
+const REFINE_RADIUS_MIN = 20
+const REFINE_RADIUS_MAX = 60
+const REFINE_NETWORK_ERROR_BUDGET_PX = 12
+
+function sobelGray(data: Uint8ClampedArray, w: number, h: number): Float32Array {
+  const gray = new Float32Array(w * h)
+  for (let i = 0; i < w * h; i++) {
+    const o = i * 4
+    gray[i] = 0.299 * data[o] + 0.587 * data[o + 1] + 0.114 * data[o + 2]
+  }
+  return gray
+}
+
+function refineCornerSubpixel(img: HTMLImageElement, corner: Pt, scale: number): Pt {
+  const r = Math.round(
+    Math.min(REFINE_RADIUS_MAX, Math.max(REFINE_RADIUS_MIN, REFINE_NETWORK_ERROR_BUDGET_PX / scale))
+  )
+  const left = Math.round(corner.x - r)
+  const top  = Math.round(corner.y - r)
+  const size = r * 2 + 1
+  // Trop près du bord de l'image = pas assez de marge pour une fenêtre fiable.
+  if (left < 0 || top < 0 || left + size > img.naturalWidth || top + size > img.naturalHeight) {
+    return corner
+  }
+
+  const canvas = document.createElement('canvas')
+  canvas.width = size; canvas.height = size
+  const ctx = canvas.getContext('2d', { willReadFrequently: true })!
+  ctx.imageSmoothingEnabled = false
+  ctx.drawImage(img, left, top, size, size, 0, 0, size, size)
+  const { data } = ctx.getImageData(0, 0, size, size)
+  canvas.width = 0
+  const gray = sobelGray(data, size, size)
+
+  // Précalcule gradients + magnitude une seule fois (indépendants de
+  // l'itération) -- seule la pondération gaussienne, recentrée à chaque
+  // itération sur l'estimation courante, change.
+  const gxArr = new Float32Array(size * size)
+  const gyArr = new Float32Array(size * size)
+  for (let y = 1; y < size - 1; y++) {
+    for (let x = 1; x < size - 1; x++) {
+      const i = y * size + x
+      gxArr[i] = gray[i + 1] - gray[i - 1]
+      gyArr[i] = gray[i + size] - gray[i - size]
+    }
+  }
+
+  let px = corner.x - left, py = corner.y - top // position courante, coords fenêtre
+  const sigma0 = r * 0.9
+  for (let iter = 0; iter < REFINE_ITERATIONS; iter++) {
+    const sigma = Math.max(4, sigma0 * (1 - iter / REFINE_ITERATIONS)) // fenêtre effective qui se resserre
+    const twoSigma2 = 2 * sigma * sigma
+    let sxx = 0, sxy = 0, syy = 0, sbx = 0, sby = 0
+    for (let y = 1; y < size - 1; y++) {
+      for (let x = 1; x < size - 1; x++) {
+        const i = y * size + x
+        const gx = gxArr[i], gy = gyArr[i]
+        const mag2 = gx * gx + gy * gy
+        if (mag2 < 25) continue // zone plate (gradient trop faible) -- pas un bord
+        const dx = x - px, dy = y - py
+        const w = Math.exp(-(dx * dx + dy * dy) / twoSigma2)
+        if (w < 0.02) continue
+        sxx += w * gx * gx; sxy += w * gx * gy; syy += w * gy * gy
+        sbx += w * (gx * gx * x + gx * gy * y)
+        sby += w * (gx * gy * x + gy * gy * y)
+      }
+    }
+    const det = sxx * syy - sxy * sxy
+    if (Math.abs(det) < 1e-6) break // pas assez de structure directionnelle -> abandon
+    const nx = (syy * sbx - sxy * sby) / det
+    const ny = (sxx * sby - sxy * sbx) / det
+    if (!Number.isFinite(nx) || !Number.isFinite(ny)) break
+    px = nx; py = ny
+  }
+
+  const refined = { x: left + px, y: top + py }
+  // Garde-fou : le point raffiné doit rester DANS la fenêtre de recherche --
+  // sinon la résolution a divergé (pas de structure cohérente) et on garde
+  // le point YOLO brut plutôt qu'un résultat aberrant.
+  if (!Number.isFinite(refined.x) || !Number.isFinite(refined.y) || px < 0 || py < 0 || px > size - 1 || py > size - 1) {
+    return corner
+  }
+  return refined
+}
+
+function signedArea(pts: Pt[]): number {
+  let a = 0
+  for (let i = 0; i < pts.length; i++) {
+    const p1 = pts[i], p2 = pts[(i + 1) % pts.length]
+    a += p1.x * p2.y - p2.x * p1.y
+  }
+  return a / 2
+}
+
+// Raffine les 4 coins (en pixels image d'origine) + garde-fou global : si le
+// raffinement déforme trop le quadrilatère (aire trop différente -- ex.
+// plusieurs coins tirés vers un même bord bruité), on rejette tout le
+// raffinement et on garde les points bruts plutôt que de risquer un contour
+// moins bon que l'original. Exporté pour /dev-model-test (comparaison
+// visuelle brut vs raffiné avant décision de déploiement en prod).
+export function refineCorners(img: HTMLImageElement, corners: Pt[], scale: number): Pt[] {
+  const refined = corners.map(c => refineCornerSubpixel(img, c, scale))
+  const origArea = Math.abs(signedArea(corners))
+  const refinedArea = Math.abs(signedArea(refined))
+  const areaRatio = origArea > 0 ? refinedArea / origArea : 1
+  return (areaRatio > 0.85 && areaRatio < 1.15) ? refined : corners
+}
+
 // En dessous de ce seuil de confiance (ou si aucune détection), une seconde
 // passe est tentée sur l'image mirorée horizontalement et moyennée avec la
 // première -- classique "test-time augmentation" par flip, connu pour
@@ -192,6 +323,10 @@ export async function detectCornersYOLO(
     canvas.width = 0  // libère la mémoire GPU
 
     if (!combined) return null
+    // Raffinement sub-pixel (voir refineCorners plus haut) volontairement PAS
+    // appliqué ici -- ce chemin est celui du scan en prod (CardScanner). Le
+    // raffinement n'est branché que sur /dev-model-test pour l'instant, le
+    // temps de le valider visuellement avant d'envisager de l'activer ici.
     return combined.corners.map(p => ({ x: (p.x - padX) / scale, y: (p.y - padY) / scale }))
   } catch (e) {
     console.warn('[YOLO corners]', e)
