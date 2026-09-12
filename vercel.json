@@ -44,15 +44,236 @@
   "headers": [
     {
       "source": "/fonts/(.*)",
-      "headers": [{ "key": "Cache-Control", "value": "public, max-age=31536000, immutable" }]
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=31536000, immutable"
+        }
+      ]
     },
     {
       "source": "/_next/static/(.*)",
-      "headers": [{ "key": "Cache-Control", "value": "public, max-age=31536000, immutable" }]
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=31536000, immutable"
+        }
+      ]
     },
     {
       "source": "/(.*).(ico|png|jpg|jpeg|svg|webp)",
-      "headers": [{ "key": "Cache-Control", "value": "public, max-age=86400, stale-while-revalidate=604800" }]
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=86400, stale-while-revalidate=604800"
+        }
+      ]
     }
-  ]
+  ],
+  "functions": {
+    "src/app/api/admin/geo-locations/route.ts": {
+      "memory": 512
+    },
+    "src/app/api/admin/geo/route.ts": {
+      "memory": 512
+    },
+    "src/app/api/admin/guide-preview-token/route.ts": {
+      "memory": 512
+    },
+    "src/app/api/admin/guide-translation-cover/route.ts": {
+      "memory": 512
+    },
+    "src/app/api/admin/history/route.ts": {
+      "memory": 512
+    },
+    "src/app/api/admin/recalc-stats/route.ts": {
+      "memory": 512
+    },
+    "src/app/api/admin/recent-users/route.ts": {
+      "memory": 512
+    },
+    "src/app/api/admin/reports/route.ts": {
+      "memory": 512
+    },
+    "src/app/api/admin/send-beta-invite/route.ts": {
+      "memory": 512
+    },
+    "src/app/api/admin/send-reengagement/route.ts": {
+      "memory": 512
+    },
+    "src/app/api/admin/stats/route.ts": {
+      "memory": 512
+    },
+    "src/app/api/admin/users-geo/route.ts": {
+      "memory": 512
+    },
+    "src/app/api/app-version/route.ts": {
+      "memory": 512
+    },
+    "src/app/api/auth/login-attempt/route.ts": {
+      "memory": 512
+    },
+    "src/app/api/auth/login-history/route.ts": {
+      "memory": 512
+    },
+    "src/app/api/card-added/route.ts": {
+      "memory": 512
+    },
+    "src/app/api/challenge-complete/route.ts": {
+      "memory": 512
+    },
+    "src/app/api/comment-notify/route.ts": {
+      "memory": 512
+    },
+    "src/app/api/contest/tick/route.ts": {
+      "memory": 512
+    },
+    "src/app/api/cron/backup-db/route.ts": {
+      "memory": 512
+    },
+    "src/app/api/cron/backup-full/route.ts": {
+      "memory": 512
+    },
+    "src/app/api/cron/backup/route.ts": {
+      "memory": 512
+    },
+    "src/app/api/cron/monthly-badge/route.ts": {
+      "memory": 512
+    },
+    "src/app/api/cron/popularity-digest/route.ts": {
+      "memory": 512
+    },
+    "src/app/api/cron/sports-birthday/route.ts": {
+      "memory": 512
+    },
+    "src/app/api/cron/streak-warning/route.ts": {
+      "memory": 512
+    },
+    "src/app/api/cron/winback/route.ts": {
+      "memory": 512
+    },
+    "src/app/api/cron/wrap-mensuel/route.ts": {
+      "memory": 512
+    },
+    "src/app/api/csv-shortlink/route.ts": {
+      "memory": 512
+    },
+    "src/app/api/csv-stats/route.ts": {
+      "memory": 512
+    },
+    "src/app/api/delete-account/route.ts": {
+      "memory": 512
+    },
+    "src/app/api/ebay-completed/route.ts": {
+      "memory": 512
+    },
+    "src/app/api/ebay-deletion/route.ts": {
+      "memory": 512
+    },
+    "src/app/api/ebay-image-search/route.ts": {
+      "memory": 512
+    },
+    "src/app/api/ebay-rate-limit/route.ts": {
+      "memory": 512
+    },
+    "src/app/api/ebay-sold/route.ts": {
+      "memory": 512
+    },
+    "src/app/api/export-data/route.ts": {
+      "memory": 512
+    },
+    "src/app/api/fcm-subscribe/route.ts": {
+      "memory": 512
+    },
+    "src/app/api/feedback/route.ts": {
+      "memory": 512
+    },
+    "src/app/api/galerie/[userId]/route.ts": {
+      "memory": 512
+    },
+    "src/app/api/kofi-webhook/route.ts": {
+      "memory": 512
+    },
+    "src/app/api/like-notify/route.ts": {
+      "memory": 512
+    },
+    "src/app/api/message-notify/route.ts": {
+      "memory": 512
+    },
+    "src/app/api/player-checklist/route.ts": {
+      "memory": 512
+    },
+    "src/app/api/proxy-image/route.ts": {
+      "memory": 512
+    },
+    "src/app/api/push-subscribe/route.ts": {
+      "memory": 512
+    },
+    "src/app/api/push-test/route.ts": {
+      "memory": 512
+    },
+    "src/app/api/random-binder/route.ts": {
+      "memory": 512
+    },
+    "src/app/api/recalc-user/route.ts": {
+      "memory": 512
+    },
+    "src/app/api/recalcul-stats/route.ts": {
+      "memory": 512
+    },
+    "src/app/api/recherche/route.ts": {
+      "memory": 512
+    },
+    "src/app/api/report/route.ts": {
+      "memory": 512
+    },
+    "src/app/api/same-card/route.ts": {
+      "memory": 512
+    },
+    "src/app/api/set-sync/route.ts": {
+      "memory": 512
+    },
+    "src/app/api/setlist-images/route.ts": {
+      "memory": 512
+    },
+    "src/app/api/site-stats/route.ts": {
+      "memory": 512
+    },
+    "src/app/api/status/route.ts": {
+      "memory": 512
+    },
+    "src/app/api/team-accept/route.ts": {
+      "memory": 512
+    },
+    "src/app/api/team-join/route.ts": {
+      "memory": 512
+    },
+    "src/app/api/track-view/route.ts": {
+      "memory": 512
+    },
+    "src/app/api/trades/[id]/route.ts": {
+      "memory": 512
+    },
+    "src/app/api/trades/route.ts": {
+      "memory": 512
+    },
+    "src/app/api/translate-guide/route.ts": {
+      "memory": 512
+    },
+    "src/app/api/update-stats/route.ts": {
+      "memory": 512
+    },
+    "src/app/api/verify-turnstile/route.ts": {
+      "memory": 512
+    },
+    "src/app/api/wishlist-notify/route.ts": {
+      "memory": 512
+    },
+    "src/app/api/wrap-archive/route.ts": {
+      "memory": 512
+    },
+    "src/app/api/wrap-preview/route.ts": {
+      "memory": 512
+    }
+  }
 }
