@@ -102,10 +102,12 @@ const VARIANTS = [
   { key: 'v3', label: 'Nouvelle version test (v3 -- multi-canal couleur + repli texture)', color: '#ff8c00' },
 ] as const
 
+type VariantInfo = { conf: number; ms: number }
+
 export default function DevModelTest() {
   const [busy, setBusy] = useState(false)
-  const [info, setInfo] = useState<{ conf: number; ms: number } | null>(null)
   const [corners, setCorners] = useState<Partial<Record<typeof VARIANTS[number]['key'], Pt[] | null>>>({})
+  const [info, setInfo] = useState<Partial<Record<typeof VARIANTS[number]['key'], VariantInfo>>>({})
   const [error, setError] = useState('')
   const canvasRefs = useRef<Record<string, HTMLCanvasElement | null>>({})
 
@@ -113,7 +115,7 @@ export default function DevModelTest() {
     setBusy(true)
     setError('')
     setCorners({})
-    setInfo(null)
+    setInfo({})
     try {
       const url = URL.createObjectURL(file)
       const img = new Image()
@@ -127,15 +129,26 @@ export default function DevModelTest() {
       ort.env.wasm.wasmPaths = ORT_CDN
       ort.env.wasm.numThreads = 1
 
-      const { rawCorners, conf, ms } = await detect(ort, img)
-      setInfo({ conf, ms })
+      const scale = Math.min(IMGSZ / img.naturalWidth, IMGSZ / img.naturalHeight)
+      const t0 = performance.now()
+      const { rawCorners, conf } = await detect(ort, img)
+      const detectMs = performance.now() - t0
 
-      const variants = {
-        actuel: rawCorners,
-        v2: rawCorners ? refineCorners(img, rawCorners, Math.min(IMGSZ / img.naturalWidth, IMGSZ / img.naturalHeight)) : null,
-        v3: rawCorners ? refineCornersV3(img, rawCorners, Math.min(IMGSZ / img.naturalWidth, IMGSZ / img.naturalHeight)) : null,
-      }
+      const t1 = performance.now()
+      const v2Corners = rawCorners ? refineCorners(img, rawCorners, scale) : null
+      const v2Ms = detectMs + (performance.now() - t1)
+
+      const t2 = performance.now()
+      const v3Corners = rawCorners ? refineCornersV3(img, rawCorners, scale) : null
+      const v3Ms = detectMs + (performance.now() - t2)
+
+      const variants = { actuel: rawCorners, v2: v2Corners, v3: v3Corners }
       setCorners(variants)
+      setInfo({
+        actuel: { conf, ms: detectMs },
+        v2: { conf, ms: v2Ms },
+        v3: { conf, ms: v3Ms },
+      })
 
       for (const v of VARIANTS) {
         const canvas = canvasRefs.current[v.key]
@@ -174,15 +187,17 @@ export default function DevModelTest() {
 
       {busy && <p>⏳ Analyse en cours…</p>}
       {error && <p style={{ color: '#e74c3c' }}>{error}</p>}
-      {info && <p style={{ fontSize: 12, color: '#888' }}>conf {info.conf.toFixed(3)} — {info.ms.toFixed(0)}ms (détection, avant post-traitement)</p>}
 
       <div style={{ display: 'grid', gridTemplateColumns: '1fr', gap: 20, marginTop: 12 }}>
         {VARIANTS.map(v => {
           const c = corners[v.key]
+          const vi = info[v.key]
           return (
             <div key={v.key}>
               <h3 style={{ fontSize: 14, fontWeight: 800, color: v.color }}>
-                {v.label}{corners[v.key] !== undefined && !c ? ' — aucune détection' : ''}
+                {v.label}
+                {vi && ` — conf ${vi.conf.toFixed(3)} — ${vi.ms.toFixed(0)}ms`}
+                {corners[v.key] !== undefined && !c ? ' — aucune détection' : ''}
               </h3>
               <canvas ref={el => { canvasRefs.current[v.key] = el }} style={{ width: '100%', maxWidth: '100%', borderRadius: 8, background: '#eee' }} />
             </div>
