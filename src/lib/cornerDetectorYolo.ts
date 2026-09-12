@@ -759,6 +759,109 @@ export function refineCornersV4(img: HTMLImageElement, corners: Pt[], scale: num
   return (areaRatio > 0.85 && areaRatio < 1.15) ? refined : corners
 }
 
+// 12/09 (v5) : 2 ameliorations en plus de v4 --
+// 1) polissage final a tres petite echelle : l'intersection de droites (v2-
+//    v4) suppose un coin parfaitement anguleux, mais beaucoup de cartes ont
+//    un coin legerement arrondi a la decoupe -- un petit ajustement isotrope
+//    dans une fenetre TRES petite (quelques px, pas une recherche large)
+//    autour du resultat peut rattraper ce biais residuel sans risquer de
+//    derailler vers un autre bord (la fenetre est trop petite pour ca).
+// 2) garde-fou ratio d'aspect : une carte standard fait environ 2.5x3.5
+//    (ratio largeur/hauteur ~0.714), quelle que soit sa rotation dans
+//    l'image (calcule a partir des cotes du quadrilatere, pas de l'image).
+//    Si le resultat final s'ecarte trop de ce ratio, c'est probablement une
+//    erreur de raffinement -- on retombe sur le resultat v4 (avant
+//    polissage) plutot que de publier un contour visiblement incoherent.
+const POLISH_RADIUS = 6
+const POLISH_MIN_GRAD2 = 20 * 20
+const CARD_ASPECT_RATIO = 2.5 / 3.5
+const CARD_ASPECT_TOLERANCE = 0.35 // +/-35% relatif -- tolere la perspective/rotation
+
+function polishCornerTight(img: HTMLImageElement, corner: Pt): Pt {
+  const r = POLISH_RADIUS
+  const left = Math.round(corner.x - r), top = Math.round(corner.y - r)
+  const size = r * 2 + 1
+  if (left < 0 || top < 0 || left + size > img.naturalWidth || top + size > img.naturalHeight) return corner
+
+  const canvas = document.createElement('canvas')
+  canvas.width = size; canvas.height = size
+  const ctx = canvas.getContext('2d', { willReadFrequently: true })!
+  ctx.imageSmoothingEnabled = false
+  ctx.drawImage(img, left, top, size, size, 0, 0, size, size)
+  const { data } = ctx.getImageData(0, 0, size, size)
+  canvas.width = 0
+  const gray = sobelGray(data, size, size)
+
+  const gxArr = new Float32Array(size * size)
+  const gyArr = new Float32Array(size * size)
+  for (let y = 1; y < size - 1; y++) {
+    for (let x = 1; x < size - 1; x++) {
+      const i = y * size + x
+      gxArr[i] = gray[i + 1] - gray[i - 1]
+      gyArr[i] = gray[i + size] - gray[i - size]
+    }
+  }
+
+  let px = corner.x - left, py = corner.y - top
+  const sigma = r * 0.8
+  const twoSigma2 = 2 * sigma * sigma
+  for (let iter = 0; iter < 3; iter++) {
+    let sxx = 0, sxy = 0, syy = 0, sbx = 0, sby = 0
+    for (let y = 1; y < size - 1; y++) {
+      for (let x = 1; x < size - 1; x++) {
+        const i = y * size + x
+        const gx = gxArr[i], gy = gyArr[i]
+        const mag2 = gx * gx + gy * gy
+        if (mag2 < POLISH_MIN_GRAD2) continue
+        const dx = x - px, dy = y - py
+        const w = Math.exp(-(dx * dx + dy * dy) / twoSigma2)
+        if (w < 0.05) continue
+        sxx += w * gx * gx; sxy += w * gx * gy; syy += w * gy * gy
+        sbx += w * (gx * gx * x + gx * gy * y)
+        sby += w * (gx * gy * x + gy * gy * y)
+      }
+    }
+    const det = sxx * syy - sxy * sxy
+    if (Math.abs(det) < 1e-6) break
+    const nx = (syy * sbx - sxy * sby) / det
+    const ny = (sxx * sby - sxy * sbx) / det
+    if (!Number.isFinite(nx) || !Number.isFinite(ny)) break
+    px = nx; py = ny
+  }
+
+  if (!Number.isFinite(px) || !Number.isFinite(py) || px < 0 || py < 0 || px > size - 1 || py > size - 1) return corner
+  return { x: left + px, y: top + py }
+}
+
+// Ratio largeur/hauteur du quadrilatere, a partir de la longueur moyenne de
+// ses 2 paires de cotes opposes (independant de la rotation dans l'image).
+function quadAspectRatio(corners: Pt[]): number {
+  const d = (a: Pt, b: Pt) => Math.hypot(b.x - a.x, b.y - a.y)
+  const width = (d(corners[0], corners[1]) + d(corners[3], corners[2])) / 2
+  const height = (d(corners[0], corners[3]) + d(corners[1], corners[2])) / 2
+  return height > 0 ? width / height : 0
+}
+
+function aspectRatioPlausible(corners: Pt[]): boolean {
+  const ratio = quadAspectRatio(corners)
+  if (ratio <= 0) return false
+  const lo = CARD_ASPECT_RATIO * (1 - CARD_ASPECT_TOLERANCE)
+  const hi = CARD_ASPECT_RATIO * (1 + CARD_ASPECT_TOLERANCE)
+  // Tolere aussi l'orientation inverse (carte "couchee" dans le quadrilatere
+  // detecte) -- compare au ratio et a son inverse.
+  return (ratio >= lo && ratio <= hi) || (1 / ratio >= lo && 1 / ratio <= hi)
+}
+
+// Variante v5 : v4 + polissage isotrope a tres petite echelle sur le
+// resultat final + garde-fou de ratio d'aspect (carte standard). Exportee
+// uniquement pour /dev-model-test, jamais utilisee par detectCornersYOLO /
+// le scan en prod.
+export function refineCornersV5(img: HTMLImageElement, corners: Pt[], scale: number): Pt[] {
+  const v4 = refineCornersV4(img, corners, scale)
+  const polished = v4.map(c => polishCornerTight(img, c))
+  return aspectRatioPlausible(polished) ? polished : v4
+}
+
 // En dessous de ce seuil de confiance (ou si aucune détection), une seconde
 // passe est tentée sur l'image mirorée horizontalement et moyennée avec la
 // première -- classique "test-time augmentation" par flip, connu pour
