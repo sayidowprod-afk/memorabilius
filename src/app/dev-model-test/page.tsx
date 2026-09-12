@@ -148,8 +148,15 @@ export default function DevModelTest() {
       <p style={{ fontSize: 13, color: '#888', marginBottom: 4 }}>
         Prod actuelle vs le nouveau meilleur checkpoint (INT8 dynamique)
       </p>
-      <p style={{ fontSize: 12, color: '#888', marginBottom: 16 }}>
+      <p style={{ fontSize: 12, color: '#888', marginBottom: 4 }}>
         Bleu pointillé = point brut du modèle · couleur pleine = après raffinement sub-pixel (test, pas encore en prod)
+      </p>
+      {/* Identifiant de build (SHA du commit deploye, cf. next.config.js) --
+          permet de verifier qu'on teste bien la derniere version pushee et
+          pas un bundle precedent (page/onglet reste ouvert entre deux
+          deploiements). */}
+      <p style={{ fontSize: 11, color: '#bbb', marginBottom: 16, fontFamily: 'monospace' }}>
+        build: {process.env.NEXT_PUBLIC_APP_VERSION}
       </p>
 
       <input

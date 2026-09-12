@@ -269,7 +269,7 @@ function signedArea(pts: Pt[]): number {
 // qu'une recherche isotrope au voisinage immediat du coin.
 const EDGE_SAMPLE_FRACTIONS = [0.15, 0.3, 0.45, 0.6, 0.75, 0.9]
 const EDGE_PERP_SEARCH_PX = 18
-const EDGE_MIN_GRAD = 12
+const EDGE_MIN_GRAD = 20
 
 function sampleGray(gray: Float32Array, w: number, h: number, x: number, y: number): number {
   const xi = Math.min(w - 1, Math.max(0, Math.round(x)))
@@ -308,9 +308,7 @@ function findEdgeCrossing(
   return { x: basePt.x + perp.x * tFinal, y: basePt.y + perp.y * tFinal }
 }
 
-// Ajuste une droite (moindres carrés totaux / PCA) à un nuage de points.
-function fitLine(points: Pt[]): { point: Pt; dir: Pt } | null {
-  if (points.length < 3) return null
+function fitLineRaw(points: Pt[]): { point: Pt; dir: Pt } {
   const mx = points.reduce((s, p) => s + p.x, 0) / points.length
   const my = points.reduce((s, p) => s + p.y, 0) / points.length
   let sxx = 0, sxy = 0, syy = 0
@@ -320,6 +318,25 @@ function fitLine(points: Pt[]): { point: Pt; dir: Pt } | null {
   }
   const angle = 0.5 * Math.atan2(2 * sxy, sxx - syy)
   return { point: { x: mx, y: my }, dir: { x: Math.cos(angle), y: Math.sin(angle) } }
+}
+
+// Ajuste une droite (moindres carrés totaux / PCA) à un nuage de points, en
+// rejetant les points aberrants (ex: un point de texture de fond bruyant qui
+// n'est pas sur le vrai bord de la carte) : un premier ajustement grossier
+// sert à mesurer l'écart de chaque point à la droite, puis on réajuste en
+// ignorant ceux dont l'écart dépasse nettement la médiane -- un seul point
+// aberrant ne peut alors plus fausser toute la droite (et donc le coin).
+function fitLine(points: Pt[]): { point: Pt; dir: Pt } | null {
+  if (points.length < 3) return null
+  const rough = fitLineRaw(points)
+  const perp = { x: -rough.dir.y, y: rough.dir.x }
+  const residuals = points.map(p => Math.abs((p.x - rough.point.x) * perp.x + (p.y - rough.point.y) * perp.y))
+  const sorted = [...residuals].sort((a, b) => a - b)
+  const median = sorted[Math.floor(sorted.length / 2)]
+  const maxResidual = Math.max(3, median * 3)
+  const inliers = points.filter((_, i) => residuals[i] <= maxResidual)
+  if (inliers.length < 3) return null
+  return fitLineRaw(inliers)
 }
 
 function intersectLines(a: { point: Pt; dir: Pt }, b: { point: Pt; dir: Pt }): Pt | null {
