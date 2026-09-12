@@ -212,9 +212,6 @@
     "src/app/api/push-test/route.ts": {
       "memory": 512
     },
-    "src/app/api/random-binder/route.ts": {
-      "memory": 512
-    },
     "src/app/api/recalc-user/route.ts": {
       "memory": 512
     },
