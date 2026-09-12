@@ -419,6 +419,151 @@ export function refineCorners(img: HTMLImageElement, corners: Pt[], scale: numbe
   return (areaRatio > 0.85 && areaRatio < 1.15) ? refined : corners
 }
 
+// 12/09 (v3) : deux limites concretes de la v1/v2 remontees par l'utilisateur --
+// 1) fond quasi identique a la carte en LUMINANCE (blanc sur blanc) : un ecart
+//    de teinte peut exister sur un seul canal couleur (R/G/B) sans etre visible
+//    en niveaux de gris -- v3 cherche le plus fort ecart PAR CANAL, pas
+//    seulement sur le gris.
+// 2) toploader : il y a alors 2 bords proches et souvent le bord du toploader
+//    (reflet plastique net) est PLUS contraste que le vrai bord de la carte --
+//    v2 prend le plus fort contraste, ce qui peut sauter sur le mauvais bord.
+//    v3 prend a la place le premier bord assez net EN PARTANT DU CENTRE (le
+//    point YOLO est presume deja proche du bon bord), pas le plus fort.
+// + repli texture : si aucun canal ne depasse le seuil de contraste (vrai
+// blanc-sur-blanc), on compare la variance locale de part et d'autre --
+// une carte imprimee a presque toujours un grain/texture legerement
+// different du fond, meme a couleur moyenne identique.
+const EDGE_MIN_GRAD_V3 = 14 // legerement plus bas que v2 (20) car on cherche par canal, plus sensible
+const TEXTURE_MIN_DIFF = 15
+
+function sampleChannel(data: Uint8ClampedArray, w: number, h: number, channel: number, x: number, y: number): number {
+  const xi = Math.min(w - 1, Math.max(0, Math.round(x)))
+  const yi = Math.min(h - 1, Math.max(0, Math.round(y)))
+  return data[(yi * w + xi) * 4 + channel]
+}
+
+function findEdgeCrossingV3(
+  data: Uint8ClampedArray, gray: Float32Array, w: number, h: number,
+  basePt: Pt, perp: Pt,
+): Pt | null {
+  const scores: number[] = []
+  for (let t = -EDGE_PERP_SEARCH_PX; t <= EDGE_PERP_SEARCH_PX; t++) {
+    const x = basePt.x + perp.x * t, y = basePt.y + perp.y * t
+    const x1 = x - perp.x, y1 = y - perp.y, x2 = x + perp.x, y2 = y + perp.y
+    let best = Math.abs(sampleGray(gray, w, h, x2, y2) - sampleGray(gray, w, h, x1, y1))
+    for (let c = 0; c < 3; c++) {
+      const d = Math.abs(sampleChannel(data, w, h, c, x2, y2) - sampleChannel(data, w, h, c, x1, y1))
+      if (d > best) best = d
+    }
+    scores.push(best)
+  }
+  // Croisement le plus proche du centre (idx central) qui depasse le seuil --
+  // pas le plus fort -- pour eviter de sauter sur un bord voisin plus
+  // contraste (ex: bord du toploader) que le vrai bord de la carte.
+  let chosenIdx = -1
+  for (let d = 0; d < scores.length; d++) {
+    const idxUp = EDGE_PERP_SEARCH_PX + d, idxDown = EDGE_PERP_SEARCH_PX - d
+    if (idxDown >= 0 && scores[idxDown] > EDGE_MIN_GRAD_V3) { chosenIdx = idxDown; break }
+    if (idxUp < scores.length && scores[idxUp] > EDGE_MIN_GRAD_V3) { chosenIdx = idxUp; break }
+  }
+  if (chosenIdx < 0) {
+    // Repli texture : compare la variance locale de part et d'autre de
+    // chaque position, cherche a nouveau le plus proche du centre.
+    const R = 4
+    for (let d = 0; d < scores.length; d++) {
+      for (const idx of [EDGE_PERP_SEARCH_PX - d, EDGE_PERP_SEARCH_PX + d]) {
+        if (idx < 0 || idx >= scores.length) continue
+        const t = idx - EDGE_PERP_SEARCH_PX
+        const x = basePt.x + perp.x * t, y = basePt.y + perp.y * t
+        const before: number[] = [], after: number[] = []
+        for (let k = 1; k <= R; k++) {
+          before.push(sampleGray(gray, w, h, basePt.x + perp.x * (t - k), basePt.y + perp.y * (t - k)))
+          after.push(sampleGray(gray, w, h, basePt.x + perp.x * (t + k), basePt.y + perp.y * (t + k)))
+        }
+        const variance = (arr: number[]) => { const m = arr.reduce((s, v) => s + v, 0) / arr.length; return arr.reduce((s, v) => s + (v - m) * (v - m), 0) / arr.length }
+        if (Math.abs(variance(before) - variance(after)) > TEXTURE_MIN_DIFF) { chosenIdx = idx; break }
+      }
+      if (chosenIdx >= 0) break
+    }
+  }
+  if (chosenIdx < 0) return null
+  let dt = 0
+  if (chosenIdx > 0 && chosenIdx < scores.length - 1) {
+    const gm1 = scores[chosenIdx - 1], g0 = scores[chosenIdx], gp1 = scores[chosenIdx + 1]
+    const denom = gm1 - 2 * g0 + gp1
+    if (Math.abs(denom) > 1e-6) dt = 0.5 * (gm1 - gp1) / denom
+  }
+  const tFinal = (chosenIdx - EDGE_PERP_SEARCH_PX) + dt
+  return { x: basePt.x + perp.x * tFinal, y: basePt.y + perp.y * tFinal }
+}
+
+function detectEdgeLineV3(
+  data: Uint8ClampedArray, gray: Float32Array, w: number, h: number,
+  corner: Pt, neighbor: Pt,
+): { point: Pt; dir: Pt } | null {
+  const dx = neighbor.x - corner.x, dy = neighbor.y - corner.y
+  const len = Math.hypot(dx, dy)
+  if (len < 1) return null
+  const dir = { x: dx / len, y: dy / len }
+  const perp = { x: -dir.y, y: dir.x }
+  const points: Pt[] = []
+  for (const frac of EDGE_SAMPLE_FRACTIONS) {
+    const basePt = { x: corner.x + dir.x * len * frac, y: corner.y + dir.y * len * frac }
+    const found = findEdgeCrossingV3(data, gray, w, h, basePt, perp)
+    if (found) points.push(found)
+  }
+  return fitLine(points)
+}
+
+// Variante v3 de refineCorners (voir commentaire ci-dessus) -- meme structure
+// (intersection de 2 droites de bord par coin, repli isotrope puis brut,
+// garde-fou d'aire globale), mais detection de bord multi-canal + repli
+// texture + preference du croisement le plus proche plutot que le plus fort.
+// Exportee uniquement pour /dev-model-test (3e colonne de comparaison),
+// jamais utilisee par detectCornersYOLO / le scan en prod.
+export function refineCornersV3(img: HTMLImageElement, corners: Pt[], scale: number): Pt[] {
+  const margin = Math.round(Math.min(60, Math.max(20, 12 / scale)))
+  const xs = corners.map(p => p.x), ys = corners.map(p => p.y)
+  const left = Math.max(0, Math.floor(Math.min(...xs) - margin))
+  const top = Math.max(0, Math.floor(Math.min(...ys) - margin))
+  const right = Math.min(img.naturalWidth, Math.ceil(Math.max(...xs) + margin))
+  const bottom = Math.min(img.naturalHeight, Math.ceil(Math.max(...ys) + margin))
+  const w = right - left, h = bottom - top
+
+  let gray: Float32Array | null = null
+  let data: Uint8ClampedArray | null = null
+  if (w > 0 && h > 0) {
+    const canvas = document.createElement('canvas')
+    canvas.width = w; canvas.height = h
+    const ctx = canvas.getContext('2d', { willReadFrequently: true })!
+    ctx.imageSmoothingEnabled = false
+    ctx.drawImage(img, left, top, w, h, 0, 0, w, h)
+    data = ctx.getImageData(0, 0, w, h).data
+    canvas.width = 0
+    gray = sobelGray(data, w, h)
+  }
+
+  const local = corners.map(p => ({ x: p.x - left, y: p.y - top }))
+  const refined = corners.map((corner, i) => {
+    if (!gray || !data) return refineCornerSubpixel(img, corner, scale)
+    const next = local[(i + 1) % 4], prev = local[(i + 3) % 4]
+    const lineA = detectEdgeLineV3(data, gray, w, h, local[i], next)
+    const lineB = detectEdgeLineV3(data, gray, w, h, local[i], prev)
+    if (lineA && lineB) {
+      const inter = intersectLines(lineA, lineB)
+      if (inter && Number.isFinite(inter.x) && Number.isFinite(inter.y)) {
+        return { x: inter.x + left, y: inter.y + top }
+      }
+    }
+    return refineCornerSubpixel(img, corner, scale)
+  })
+
+  const origArea = Math.abs(signedArea(corners))
+  const refinedArea = Math.abs(signedArea(refined))
+  const areaRatio = origArea > 0 ? refinedArea / origArea : 1
+  return (areaRatio > 0.85 && areaRatio < 1.15) ? refined : corners
+}
+
 // En dessous de ce seuil de confiance (ou si aucune détection), une seconde
 // passe est tentée sur l'image mirorée horizontalement et moyennée avec la
 // première -- classique "test-time augmentation" par flip, connu pour

@@ -1,12 +1,12 @@
 'use client'
 import { useRef, useState } from 'react'
-import { refineCorners } from '@/lib/cornerDetectorYolo'
+import { refineCorners, refineCornersV3 } from '@/lib/cornerDetectorYolo'
 
 const IMGSZ = 640
 const ORT_CDN = 'https://cdn.jsdelivr.net/npm/onnxruntime-web@1.27.0/dist/'
 
 type Pt = { x: number; y: number }
-type RunResult = { corners: Pt[] | null; rawCorners: Pt[] | null; conf: number; ms: number }
+type RunResult = { corners: Pt[] | null; cornersV3: Pt[] | null; rawCorners: Pt[] | null; conf: number; ms: number }
 
 const MODELS = [
   { key: 'prod', label: 'Prod (actuel)', url: '/models/corners.onnx', color: '#e74c3c' },
@@ -61,7 +61,7 @@ async function runModel(ort: typeof import('onnxruntime-web'), modelUrl: string,
     const conf = raw[4 * N + i]
     if (conf > bestConf) { bestConf = conf; bestIdx = i }
   }
-  if (bestIdx < 0) { const ms = performance.now() - t0; return { corners: null, rawCorners: null, conf: 0, ms } }
+  if (bestIdx < 0) { const ms = performance.now() - t0; return { corners: null, cornersV3: null, rawCorners: null, conf: 0, ms } }
   const rawCorners: Pt[] = []
   for (let k = 0; k < 4; k++) {
     const kx = raw[(5 + k * 3) * N + bestIdx]
@@ -69,8 +69,9 @@ async function runModel(ort: typeof import('onnxruntime-web'), modelUrl: string,
     rawCorners.push({ x: (kx - padX) / scale, y: (ky - padY) / scale })
   }
   const corners = refineCorners(img, rawCorners, scale)
+  const cornersV3 = refineCornersV3(img, rawCorners, scale)
   const ms = performance.now() - t0
-  return { corners, rawCorners, conf: bestConf, ms }
+  return { corners, cornersV3, rawCorners, conf: bestConf, ms }
 }
 
 function drawQuad(ctx: CanvasRenderingContext2D, corners: Pt[], color: string, lineWidth: number, dashed: boolean) {
@@ -84,9 +85,11 @@ function drawQuad(ctx: CanvasRenderingContext2D, corners: Pt[], color: string, l
   ctx.setLineDash([])
 }
 
-// Brut YOLO en rouge pointillé + raffiné sub-pixel (voir cornerDetectorYolo.ts)
-// en couleur du modèle, plein -- pour juger visuellement si le raffinement
-// corrige bien vers le vrai bord avant de l'activer sur le scanner en prod.
+// Brut YOLO en bleu pointillé + raffinement "actuel" (v2, intersection de
+// bords) en couleur du modèle, plein + nouvelle version test (v3, multi-canal
+// couleur + repli texture + croisement le plus proche -- voir
+// cornerDetectorYolo.ts) en orange pointillé fin -- pour juger visuellement
+// laquelle des deux corrige le mieux avant toute décision de déploiement.
 function draw(canvas: HTMLCanvasElement, img: HTMLImageElement, res: RunResult, color: string) {
   canvas.width = img.naturalWidth
   canvas.height = img.naturalHeight
@@ -96,6 +99,7 @@ function draw(canvas: HTMLCanvasElement, img: HTMLImageElement, res: RunResult, 
   const lw = Math.max(3, img.naturalWidth / 300)
   if (res.rawCorners) drawQuad(ctx, res.rawCorners, '#2222ff', lw, true)
   drawQuad(ctx, res.corners, color, lw, false)
+  if (res.cornersV3) drawQuad(ctx, res.cornersV3, '#ff8c00', Math.max(2, lw * 0.7), true)
   ctx.fillStyle = color
   res.corners.forEach(p => {
     ctx.beginPath()
@@ -149,7 +153,7 @@ export default function DevModelTest() {
         Prod actuelle vs le nouveau meilleur checkpoint (INT8 dynamique)
       </p>
       <p style={{ fontSize: 12, color: '#888', marginBottom: 4 }}>
-        Bleu pointillé = point brut du modèle · couleur pleine = après raffinement sub-pixel (test, pas encore en prod)
+        Bleu pointillé = point brut du modèle · couleur pleine = raffinement actuel (v2, intersection de bords) · orange pointillé fin = nouvelle version test (v3, multi-canal couleur + repli texture) — aucun des deux pas encore en prod
       </p>
       {/* Identifiant de build (SHA du commit deploye, cf. next.config.js) --
           permet de verifier qu'on teste bien la derniere version pushee et
