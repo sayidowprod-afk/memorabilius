@@ -1,6 +1,6 @@
 'use client'
 import { useRef, useState } from 'react'
-import { refineCorners, refineCornersV3 } from '@/lib/cornerDetectorYolo'
+import { refineCornersV3, refineCornersV4 } from '@/lib/cornerDetectorYolo'
 
 const IMGSZ = 640
 const ORT_CDN = 'https://cdn.jsdelivr.net/npm/onnxruntime-web@1.27.0/dist/'
@@ -92,14 +92,16 @@ function draw(canvas: HTMLCanvasElement, img: HTMLImageElement, corners: Pt[] | 
 // 3 variantes affichees separement (une carte par variante, pas superposees)
 // -- une seule inference YOLO, 3 post-traitements differents sur les MEMES
 // coins bruts : "actuel" (brut, sans raffinement -- ce qui est reellement en
-// prod sur le scanner aujourd'hui), "test actuel" (v2, deploye sur cette page
-// depuis peu) et "nouvelle version test" (v3, multi-canal couleur + repli
-// texture, cf. discussion fond blanc/toploader). Aucune des 2 versions de
-// raffinement n'est branchee sur le scan en prod (CardScanner).
+// prod sur le scanner aujourd'hui), "test actuel" (v3, juge meilleur que v2
+// lors du dernier essai -- multi-canal couleur + repli texture) et
+// "nouvelle version test" (v4 : v3 + bord physique detecte une seule fois
+// partage par ses 2 coins + seuil relatif pour le croisement le plus proche).
+// Aucune des versions de raffinement n'est branchee sur le scan en prod
+// (CardScanner).
 const VARIANTS = [
   { key: 'actuel', label: 'Actuel (brut, sans raffinement -- ce qui tourne en prod aujourd\'hui)', color: '#2222ff' },
-  { key: 'v2', label: 'Test actuel (v2 -- intersection de bords)', color: '#e74c3c' },
-  { key: 'v3', label: 'Nouvelle version test (v3 -- multi-canal couleur + repli texture)', color: '#ff8c00' },
+  { key: 'v3', label: 'Test actuel (v3 -- multi-canal couleur + repli texture)', color: '#e74c3c' },
+  { key: 'v4', label: 'Nouvelle version test (v4 -- bord partage + seuil relatif)', color: '#ff8c00' },
 ] as const
 
 type VariantInfo = { conf: number; ms: number }
@@ -135,19 +137,19 @@ export default function DevModelTest() {
       const detectMs = performance.now() - t0
 
       const t1 = performance.now()
-      const v2Corners = rawCorners ? refineCorners(img, rawCorners, scale) : null
-      const v2Ms = detectMs + (performance.now() - t1)
+      const v3Corners = rawCorners ? refineCornersV3(img, rawCorners, scale) : null
+      const v3Ms = detectMs + (performance.now() - t1)
 
       const t2 = performance.now()
-      const v3Corners = rawCorners ? refineCornersV3(img, rawCorners, scale) : null
-      const v3Ms = detectMs + (performance.now() - t2)
+      const v4Corners = rawCorners ? refineCornersV4(img, rawCorners, scale) : null
+      const v4Ms = detectMs + (performance.now() - t2)
 
-      const variants = { actuel: rawCorners, v2: v2Corners, v3: v3Corners }
+      const variants = { actuel: rawCorners, v3: v3Corners, v4: v4Corners }
       setCorners(variants)
       setInfo({
         actuel: { conf, ms: detectMs },
-        v2: { conf, ms: v2Ms },
         v3: { conf, ms: v3Ms },
+        v4: { conf, ms: v4Ms },
       })
 
       for (const v of VARIANTS) {
@@ -167,7 +169,7 @@ export default function DevModelTest() {
     <div style={{ maxWidth: 900, margin: '0 auto', padding: '20px 14px 60px', fontFamily: 'Inter, sans-serif' }}>
       <h1 style={{ fontSize: 18, fontWeight: 900, marginBottom: 4 }}>🔬 Comparatif détection de coins</h1>
       <p style={{ fontSize: 13, color: '#888', marginBottom: 4 }}>
-        3 sections : brut (ce qui tourne en prod aujourd'hui), raffinement v2 (déjà testé), et nouvelle version v3
+        3 sections : brut (ce qui tourne en prod aujourd'hui), v3 (test actuel), et nouvelle version v4
       </p>
       {/* Identifiant de build (SHA du commit deploye, cf. next.config.js) --
           permet de verifier qu'on teste bien la derniere version pushee et

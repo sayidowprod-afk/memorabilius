@@ -597,6 +597,168 @@ export function refineCornersV3(img: HTMLImageElement, corners: Pt[], scale: num
   return (areaRatio > 0.85 && areaRatio < 1.15) ? refined : corners
 }
 
+// 12/09 (v4) : 2 ameliorations structurelles au dessus de v3 --
+// 1) bord PARTAGE : jusqu'ici chaque coin detectait ses 2 bords adjacents
+//    independamment (le bord entre coin A et coin B etait donc calcule
+//    DEUX FOIS -- une fois depuis A avec plus de points pres de A, une fois
+//    depuis B avec plus de points pres de B -- 2 ajustements potentiellement
+//    legerement differents pour la MEME droite physique). v4 detecte
+//    chaque bord physique UNE SEULE FOIS, avec un echantillonnage dense pres
+//    des 2 coins qui le bornent (pas juste un seul), puis les 2 coins d'un
+//    meme bord utilisent exactement la meme droite -- plus de donnees par
+//    droite, plus de coherence entre coins voisins.
+// 2) seuil RELATIF pour le croisement "le plus proche" : v3 prend le premier
+//    croisement qui depasse un seuil absolu, en partant du centre -- mais un
+//    reflet ou pli faible juste a cote du vrai bord (plus net mais un peu
+//    plus loin) pouvait alors se faire ignorer au profit d'un signal faible
+//    mais plus proche. v4 ne considere "le plus proche" que parmi les
+//    croisements dont le score atteint au moins 65% du meilleur score
+//    trouve sur tout le profil -- equilibre robustesse (evite le bord du
+//    toploader) et fiabilite (evite un faux positif faible).
+const EDGE_SAMPLE_FRACTIONS_V4 = [0.05, 0.08, 0.12, 0.2, 0.35, 0.5, 0.65, 0.8, 0.88, 0.92, 0.95]
+const EDGE_NEAREST_RELATIVE_THRESHOLD = 0.65
+
+function findEdgeCrossingV4(
+  data: Uint8ClampedArray, gray: Float32Array, w: number, h: number,
+  basePt: Pt, perp: Pt,
+): Pt | null {
+  const scores: number[] = []
+  let maxScore = 0
+  for (let t = -EDGE_PERP_SEARCH_PX; t <= EDGE_PERP_SEARCH_PX; t++) {
+    const x = basePt.x + perp.x * t, y = basePt.y + perp.y * t
+    const x1 = x - perp.x, y1 = y - perp.y, x2 = x + perp.x, y2 = y + perp.y
+    let best = Math.abs(sampleGray(gray, w, h, x2, y2) - sampleGray(gray, w, h, x1, y1))
+    for (let c = 0; c < 3; c++) {
+      const d = Math.abs(sampleChannel(data, w, h, c, x2, y2) - sampleChannel(data, w, h, c, x1, y1))
+      if (d > best) best = d
+    }
+    scores.push(best)
+    if (best > maxScore) maxScore = best
+  }
+  // Le plus proche du centre, mais seulement parmi les croisements dont le
+  // score atteint une fraction du meilleur score du profil -- pas n'importe
+  // quel depassement du seuil absolu (cf. commentaire plus haut).
+  const threshold = Math.max(EDGE_MIN_GRAD_V3, maxScore * EDGE_NEAREST_RELATIVE_THRESHOLD)
+  let chosenIdx = -1
+  if (maxScore > EDGE_MIN_GRAD_V3) {
+    for (let d = 0; d < scores.length; d++) {
+      const idxUp = EDGE_PERP_SEARCH_PX + d, idxDown = EDGE_PERP_SEARCH_PX - d
+      if (idxDown >= 0 && scores[idxDown] >= threshold) { chosenIdx = idxDown; break }
+      if (idxUp < scores.length && scores[idxUp] >= threshold) { chosenIdx = idxUp; break }
+    }
+  }
+  if (chosenIdx < 0) {
+    // Repli texture (identique a v3) : compare la variance locale de part
+    // et d'autre, avec le meme principe de seuil relatif.
+    const R = 4
+    const variance = (arr: number[]) => { const m = arr.reduce((s, v) => s + v, 0) / arr.length; return arr.reduce((s, v) => s + (v - m) * (v - m), 0) / arr.length }
+    const texScores: number[] = []
+    let maxTex = 0
+    for (let t = -EDGE_PERP_SEARCH_PX; t <= EDGE_PERP_SEARCH_PX; t++) {
+      const before: number[] = [], after: number[] = []
+      for (let k = 1; k <= R; k++) {
+        before.push(sampleGray(gray, w, h, basePt.x + perp.x * (t - k), basePt.y + perp.y * (t - k)))
+        after.push(sampleGray(gray, w, h, basePt.x + perp.x * (t + k), basePt.y + perp.y * (t + k)))
+      }
+      const d = Math.abs(variance(before) - variance(after))
+      texScores.push(d)
+      if (d > maxTex) maxTex = d
+    }
+    if (maxTex > TEXTURE_MIN_DIFF) {
+      const texThreshold = Math.max(TEXTURE_MIN_DIFF, maxTex * EDGE_NEAREST_RELATIVE_THRESHOLD)
+      for (let d = 0; d < texScores.length; d++) {
+        const idxUp = EDGE_PERP_SEARCH_PX + d, idxDown = EDGE_PERP_SEARCH_PX - d
+        if (idxDown >= 0 && texScores[idxDown] >= texThreshold) { chosenIdx = idxDown; break }
+        if (idxUp < texScores.length && texScores[idxUp] >= texThreshold) { chosenIdx = idxUp; break }
+      }
+    }
+  }
+  if (chosenIdx < 0) return null
+  let dt = 0
+  if (chosenIdx > 0 && chosenIdx < scores.length - 1) {
+    const gm1 = scores[chosenIdx - 1], g0 = scores[chosenIdx], gp1 = scores[chosenIdx + 1]
+    const denom = gm1 - 2 * g0 + gp1
+    if (Math.abs(denom) > 1e-6) dt = 0.5 * (gm1 - gp1) / denom
+  }
+  const tFinal = (chosenIdx - EDGE_PERP_SEARCH_PX) + dt
+  return { x: basePt.x + perp.x * tFinal, y: basePt.y + perp.y * tFinal }
+}
+
+// Detecte un bord PHYSIQUE (partage par ses 2 coins bornants) une seule
+// fois, avec un echantillonnage dense pres des 2 extremites (voir
+// EDGE_SAMPLE_FRACTIONS_V4).
+function detectPhysicalEdgeV4(
+  data: Uint8ClampedArray, gray: Float32Array, w: number, h: number,
+  p0: Pt, p1: Pt,
+): { point: Pt; dir: Pt } | null {
+  const dx = p1.x - p0.x, dy = p1.y - p0.y
+  const len = Math.hypot(dx, dy)
+  if (len < 1) return null
+  const dir = { x: dx / len, y: dy / len }
+  const perp = { x: -dir.y, y: dir.x }
+  const points: Pt[] = []
+  for (const frac of EDGE_SAMPLE_FRACTIONS_V4) {
+    const basePt = { x: p0.x + dir.x * len * frac, y: p0.y + dir.y * len * frac }
+    const found = findEdgeCrossingV4(data, gray, w, h, basePt, perp)
+    if (found) points.push(found)
+  }
+  const line = fitLine(points)
+  if (!line) return null
+  if (angleDeviationDeg(line.dir, dir) > EDGE_MAX_ANGLE_DEVIATION_DEG) return null
+  return line
+}
+
+// Variante v4 (voir commentaire ci-dessus) : detecte les 4 bords physiques
+// une seule fois chacun (partages par leurs 2 coins), puis intersecte les 2
+// bords adjacents de chaque coin. Repli isotrope puis brut par coin, meme
+// garde-fou d'aire globale que v2/v3. Exportee uniquement pour
+// /dev-model-test, jamais utilisee par detectCornersYOLO / le scan en prod.
+export function refineCornersV4(img: HTMLImageElement, corners: Pt[], scale: number): Pt[] {
+  const margin = Math.round(Math.min(60, Math.max(20, 12 / scale)))
+  const xs = corners.map(p => p.x), ys = corners.map(p => p.y)
+  const left = Math.max(0, Math.floor(Math.min(...xs) - margin))
+  const top = Math.max(0, Math.floor(Math.min(...ys) - margin))
+  const right = Math.min(img.naturalWidth, Math.ceil(Math.max(...xs) + margin))
+  const bottom = Math.min(img.naturalHeight, Math.ceil(Math.max(...ys) + margin))
+  const w = right - left, h = bottom - top
+
+  let gray: Float32Array | null = null
+  let data: Uint8ClampedArray | null = null
+  if (w > 0 && h > 0) {
+    const canvas = document.createElement('canvas')
+    canvas.width = w; canvas.height = h
+    const ctx = canvas.getContext('2d', { willReadFrequently: true })!
+    ctx.imageSmoothingEnabled = false
+    ctx.drawImage(img, left, top, w, h, 0, 0, w, h)
+    data = ctx.getImageData(0, 0, w, h).data
+    canvas.width = 0
+    gray = sobelGray(data, w, h)
+  }
+
+  const local = corners.map(p => ({ x: p.x - left, y: p.y - top }))
+  let edges: ({ point: Pt; dir: Pt } | null)[] = [null, null, null, null]
+  if (gray && data) {
+    edges = [0, 1, 2, 3].map(i => detectPhysicalEdgeV4(data!, gray!, w, h, local[i], local[(i + 1) % 4]))
+  }
+
+  const refined = corners.map((corner, i) => {
+    const lineEndingHere = edges[(i + 3) % 4]   // bord (i-1 -> i)
+    const lineStartingHere = edges[i]           // bord (i -> i+1)
+    if (lineEndingHere && lineStartingHere) {
+      const inter = intersectLines(lineEndingHere, lineStartingHere)
+      if (inter && Number.isFinite(inter.x) && Number.isFinite(inter.y)) {
+        return { x: inter.x + left, y: inter.y + top }
+      }
+    }
+    return refineCornerSubpixel(img, corner, scale)
+  })
+
+  const origArea = Math.abs(signedArea(corners))
+  const refinedArea = Math.abs(signedArea(refined))
+  const areaRatio = origArea > 0 ? refinedArea / origArea : 1
+  return (areaRatio > 0.85 && areaRatio < 1.15) ? refined : corners
+}
+
 // En dessous de ce seuil de confiance (ou si aucune détection), une seconde
 // passe est tentée sur l'image mirorée horizontalement et moyennée avec la
 // première -- classique "test-time augmentation" par flip, connu pour
