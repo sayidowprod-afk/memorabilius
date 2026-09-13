@@ -1,18 +1,16 @@
 'use client'
-import { useRef, useState, useEffect } from 'react'
-import { useRouter } from 'next/navigation'
-import { supabase } from '@/lib/supabase'
+import { useRef, useState } from 'react'
 import { refineCornersV5 } from '@/lib/cornerDetectorYolo'
 
-// Page de test prive (voir gate ALLOWED_EMAIL plus bas) pour experimenter une
-// estimation de condition (centrage + etat des coins) a partir du detecteur
-// de coins deja en prod. Volontairement PAS un grade chiffre façon PSA -- les
-// sous-scores sont affiches separement, voir la discussion produit associee :
-// une photo de telephone sans eclairage controle ne justifie pas une precision
-// numerique unique. Warp par interpolation bilineaire du quadrilatere (pas une
-// vraie homographie projective) -- approximation suffisante pour une photo
-// prise a peu pres de face, mais a garder en tete si le resultat semble deforme.
-const ALLOWED_EMAIL = 'kikibajkiki@gmail.com'
+// Page de test pour experimenter une estimation de condition (centrage +
+// etat des coins) a partir du detecteur de coins deja en prod. Pas de gate
+// de connexion -- l'URL non listee suffit, personne ne la connait. Volontairement
+// PAS un grade chiffre façon PSA -- les sous-scores sont affiches separement,
+// voir la discussion produit associee : une photo de telephone sans eclairage
+// controle ne justifie pas une precision numerique unique. Warp par
+// interpolation bilineaire du quadrilatere (pas une vraie homographie
+// projective) -- approximation suffisante pour une photo prise a peu pres de
+// face, mais a garder en tete si le resultat semble deforme.
 
 const IMGSZ = 640
 const ORT_CDN = 'https://cdn.jsdelivr.net/npm/onnxruntime-web@1.27.0/dist/'
@@ -191,20 +189,10 @@ type Result = {
 }
 
 export default function DevGradeTest() {
-  const router = useRouter()
-  const [allowed, setAllowed] = useState<boolean | null>(null)
   const [busy, setBusy] = useState(false)
   const [error, setError] = useState('')
   const [result, setResult] = useState<Result | null>(null)
   const canvasRef = useRef<HTMLCanvasElement | null>(null)
-
-  useEffect(() => {
-    supabase.auth.getSession().then(({ data: { session } }) => {
-      if (session?.user?.email === ALLOWED_EMAIL) { setAllowed(true); return }
-      setAllowed(false)
-      router.replace('/')
-    })
-  }, [router])
 
   const onFile = async (file: File) => {
     setBusy(true)
@@ -270,8 +258,6 @@ export default function DevGradeTest() {
     }
   }
 
-  if (allowed === null) return null
-  if (!allowed) return null
 
   const cornerNames = ['Haut-gauche', 'Haut-droite', 'Bas-droite', 'Bas-gauche']
 
