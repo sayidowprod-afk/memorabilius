@@ -28,6 +28,12 @@ const MODEL_URL = '/models/corners.onnx'
 const WARP_W = 500
 const WARP_H = 700
 
+// Loupe tactile (meme principe que CardScanner.tsx, l'ecran de recadrage de
+// l'ajout de carte) : au doigt, le point qu'on essaie de positionner est
+// cache sous le doigt lui-meme -- impossible de viser precisement sans ca.
+const MAG_SIZE = 130
+const MAG_OFFSET_Y = 90
+
 type Pt = { x: number; y: number }
 // Bordure exprimee en FRACTION (0..1) du cote correspondant du quadrilatere,
 // pas en pixels -- permet de reprojeter les lignes sur la photo d'origine
@@ -222,30 +228,86 @@ function percentsFromBorders(f: BorderFrac): Percents {
   }
 }
 
-// Variance du Laplacien dans un petit patch autour du coin -- mesure de nettete
-// classique (plus la variance est haute, plus le coin est net/contraste ;
-// un coin use/arrondi/blanchi a un profil plus flou -> variance plus basse).
-function cornerSharpness(img: HTMLImageElement, pt: Pt, patch = 28): number {
+// ── Etat des coins : detection par ecart de couleur a la propre bordure du
+// coin, pas par texture locale de l'image ──────────────────────────────────
+// L'ancienne version mesurait la variance du Laplacien (une mesure de
+// "texture/detail local") : un coin intact pose sur un fond de photo charge
+// (foule, motif holo...) ressortait comme "use" simplement parce que le fond
+// est riche en details -- rien a voir avec l'etat reel du coin (signale par
+// l'usage reel). Ce que regarde vraiment un grader, c'est le BLANCHIMENT :
+// le carton blanc expose quand la couche imprimee s'ecaille. On compare donc
+// la couleur exactement a la pointe du coin a celle mesuree a mi-largeur de
+// SA PROPRE bordure adjacente (deja detectee/ajustee a la main juste a cote,
+// voir borderSegments) -- la reference s'adapte automatiquement a la couleur
+// de bordure de CETTE carte (blanche, coloree...) au lieu d'un seuil global.
+// Un coin intact garde la meme couleur jusqu'a la pointe, quel que soit le
+// fond de la photo derriere le bord physique de la carte.
+const CORNER_NEIGHBORS: Record<number, { u: number; v: number; uFracKey: keyof BorderFrac; vFracKey: keyof BorderFrac }> = {
+  0: { u: 1, v: 3, uFracKey: 'left', vFracKey: 'top' },     // TL : vers TR (u), vers BL (v)
+  1: { u: 0, v: 2, uFracKey: 'right', vFracKey: 'top' },    // TR : vers TL (u), vers BR (v)
+  2: { u: 3, v: 1, uFracKey: 'right', vFracKey: 'bottom' }, // BR : vers BL (u), vers TR (v)
+  3: { u: 2, v: 0, uFracKey: 'left', vFracKey: 'bottom' },  // BL : vers BR (u), vers TL (v)
+}
+
+function avgColor(img: HTMLImageElement, pt: Pt, size: number): { r: number; g: number; b: number } {
+  const s = Math.max(2, Math.round(size))
   const canvas = document.createElement('canvas')
-  canvas.width = patch
-  canvas.height = patch
+  canvas.width = s
+  canvas.height = s
   const ctx = canvas.getContext('2d')!
-  ctx.drawImage(img, pt.x - patch / 2, pt.y - patch / 2, patch, patch, 0, 0, patch, patch)
-  const { data } = ctx.getImageData(0, 0, patch, patch)
-  const gray = new Float32Array(patch * patch)
-  for (let i = 0; i < patch * patch; i++) {
-    gray[i] = 0.299 * data[i * 4] + 0.587 * data[i * 4 + 1] + 0.114 * data[i * 4 + 2]
-  }
-  let sum = 0, sumSq = 0, n = 0
-  for (let y = 1; y < patch - 1; y++) {
-    for (let x = 1; x < patch - 1; x++) {
-      const idx = y * patch + x
-      const lap = gray[idx - 1] + gray[idx + 1] + gray[idx - patch] + gray[idx + patch] - 4 * gray[idx]
-      sum += lap; sumSq += lap * lap; n++
-    }
-  }
-  const mean = sum / n
-  return sumSq / n - mean * mean
+  ctx.drawImage(img, pt.x - s / 2, pt.y - s / 2, s, s, 0, 0, s, s)
+  const { data } = ctx.getImageData(0, 0, s, s)
+  let r = 0, g = 0, b = 0, n = 0
+  for (let i = 0; i < data.length; i += 4) { r += data[i]; g += data[i + 1]; b += data[i + 2]; n++ }
+  return { r: r / n, g: g / n, b: b / n }
+}
+
+// Score de dommage 0 (intact) -> 1 (tres endommage), combinant : saut de
+// clarte (le blanchiment eclaircit), chute de saturation (le blanc/gris
+// expose est plus terne qu'une bordure coloree), et distance de couleur
+// generale -- ponderes, plafonnes a 1 chacun avant ponderation.
+function cornerDamage(img: HTMLImageElement, pts: Pt[], i: number, frac: BorderFrac): number {
+  const corner = pts[i]
+  const nb = CORNER_NEIGHBORS[i]
+  const uNeighbor = pts[nb.u], vNeighbor = pts[nb.v]
+  const uLen = Math.hypot(uNeighbor.x - corner.x, uNeighbor.y - corner.y) || 1
+  const vLen = Math.hypot(vNeighbor.x - corner.x, vNeighbor.y - corner.y) || 1
+  const uDir = { x: (uNeighbor.x - corner.x) / uLen, y: (uNeighbor.y - corner.y) / uLen }
+  const vDir = { x: (vNeighbor.x - corner.x) / vLen, y: (vNeighbor.y - corner.y) / vLen }
+  const uBorderPx = frac[nb.uFracKey] * uLen
+  const vBorderPx = frac[nb.vFracKey] * vLen
+  const minPx = Math.max(3, uLen * 0.006)
+
+  // Reference : a mi-largeur de la bordure adjacente -- solidement dans la
+  // couleur de bordure, loin de l'effet du coin lui-meme.
+  const refU = Math.max(uBorderPx * 0.5, minPx * 2)
+  const refV = Math.max(vBorderPx * 0.5, minPx * 2)
+  // Pointe : tres pres du coin reel, juste assez pour eviter d'echantillonner
+  // le fond hors-carte si la detection est a peine imprecise.
+  const tipU = Math.max(uBorderPx * 0.12, minPx)
+  const tipV = Math.max(vBorderPx * 0.12, minPx)
+
+  const refPt = { x: corner.x + uDir.x * refU + vDir.x * refV, y: corner.y + uDir.y * refU + vDir.y * refV }
+  const tipPt = { x: corner.x + uDir.x * tipU + vDir.x * tipV, y: corner.y + uDir.y * tipU + vDir.y * tipV }
+
+  const sampleSize = Math.max(6, Math.min(refU, refV) * 0.6)
+  const ref = avgColor(img, refPt, sampleSize)
+  const tip = avgColor(img, tipPt, Math.max(5, sampleSize * 0.65))
+
+  const refLum = 0.299 * ref.r + 0.587 * ref.g + 0.114 * ref.b
+  const tipLum = 0.299 * tip.r + 0.587 * tip.g + 0.114 * tip.b
+  const refChroma = Math.max(ref.r, ref.g, ref.b) - Math.min(ref.r, ref.g, ref.b)
+  const tipChroma = Math.max(tip.r, tip.g, tip.b) - Math.min(tip.r, tip.g, tip.b)
+
+  const lightnessJump = Math.max(0, tipLum - refLum)
+  const chromaDrop = Math.max(0, refChroma - tipChroma)
+  const colorDist = Math.hypot(tip.r - ref.r, tip.g - ref.g, tip.b - ref.b)
+
+  return Math.min(1,
+    Math.min(1, lightnessJump / 55) * 0.5 +
+    Math.min(1, chromaDrop / 60) * 0.3 +
+    Math.min(1, colorDist / 130) * 0.2
+  )
 }
 
 // Crop carre autour d'un coin, extrait directement de la photo source en
@@ -265,9 +327,9 @@ function cropCornerImage(img: HTMLImageElement, pt: Pt, size: number): string {
   return canvas.toDataURL('image/png')
 }
 
-function sharpnessLabel(v: number): { text: string; color: string } {
-  if (v > 900) return { text: 'Net', color: '#16a34a' }
-  if (v > 400) return { text: 'Usure légère', color: '#d97706' }
+function damageLabel(d: number): { text: string; color: string } {
+  if (d < 0.15) return { text: 'Net', color: '#16a34a' }
+  if (d < 0.4) return { text: 'Usure légère', color: '#d97706' }
   return { text: 'Usure visible', color: '#dc2626' }
 }
 
@@ -283,13 +345,10 @@ function centeringSubscore(pct: [number, number]): number {
   return 1
 }
 
-// Sous-note 1-10 a partir du score de nettete brut (variance du Laplacien) --
-// memes seuils que sharpnessLabel, juste plus granulaires pour une note.
-function cornerSubscore(v: number): number {
-  const steps = [30, 80, 150, 250, 400, 600, 900, 1500, 2500]
-  const scores = [1, 2, 3, 4, 5, 6, 7, 8, 9]
-  for (let i = 0; i < steps.length; i++) if (v <= steps[i]) return scores[i]
-  return 10
+// Sous-note 1-10 a partir du score de dommage (0 intact -> 1 tres endommage) --
+// simple relation lineaire inverse, coherente avec les seuils de damageLabel.
+function cornerSubscore(d: number): number {
+  return Math.max(1, Math.min(10, Math.round((1 - d) * 9 + 1)))
 }
 
 // Note globale indicative (1-10) : le point faible domine (comme une vraie
@@ -369,8 +428,12 @@ export default function DevGradeTest() {
   const [cornerScores, setCornerScores] = useState<number[] | null>(null)
   const [cornerCrops, setCornerCrops] = useState<string[] | null>(null)
   const [cameraModal, setCameraModal] = useState(false)
+  // Position ECRAN (client) du doigt/curseur pendant un drag -- pilote le
+  // placement de la bulle flottante de la loupe. null = loupe masquee.
+  const [touchPoint, setTouchPoint] = useState<Pt | null>(null)
 
   const canvasRef = useRef<HTMLCanvasElement | null>(null)
+  const magnifierCanvasRef = useRef<HTMLCanvasElement | null>(null)
   const galleryRef = useRef<HTMLInputElement | null>(null)
   const imgRef = useRef<HTMLImageElement | null>(null)
   // Sources de verite pendant un drag -- eviter de dependre du state React
@@ -380,6 +443,33 @@ export default function DevGradeTest() {
   const fracRef = useRef<BorderFrac | null>(null)
   const dragCornerIdxRef = useRef<number | null>(null)
   const dragBorderSideRef = useRef<keyof BorderFrac | null>(null)
+
+  // Redessine la loupe -- meme source (photo originale) que le crop de coin,
+  // recadrage agrandi centre sur le point actuellement glisse. pt en
+  // coordonnees image (memes que posFromEvent), color = teinte du reticule
+  // (orange pour un coin, vert/bleu pour une ligne de bordure).
+  const drawMagnifier = (pt: Pt, color: string) => {
+    const img = imgRef.current, magCanvas = magnifierCanvasRef.current
+    if (!img || !magCanvas) return
+    const srcSize = Math.max(50, img.naturalWidth / 16)
+    const mctx = magCanvas.getContext('2d')!
+    mctx.clearRect(0, 0, MAG_SIZE, MAG_SIZE)
+    mctx.save()
+    mctx.beginPath(); mctx.arc(MAG_SIZE / 2, MAG_SIZE / 2, MAG_SIZE / 2 - 3, 0, Math.PI * 2); mctx.clip()
+    mctx.imageSmoothingEnabled = true
+    mctx.imageSmoothingQuality = 'high'
+    mctx.drawImage(img, pt.x - srcSize / 2, pt.y - srcSize / 2, srcSize, srcSize, 0, 0, MAG_SIZE, MAG_SIZE)
+    mctx.restore()
+    mctx.strokeStyle = color
+    mctx.lineWidth = 1.5
+    mctx.beginPath()
+    mctx.moveTo(MAG_SIZE / 2, MAG_SIZE / 2 - 9); mctx.lineTo(MAG_SIZE / 2, MAG_SIZE / 2 + 9)
+    mctx.moveTo(MAG_SIZE / 2 - 9, MAG_SIZE / 2); mctx.lineTo(MAG_SIZE / 2 + 9, MAG_SIZE / 2)
+    mctx.stroke()
+    mctx.beginPath()
+    mctx.arc(MAG_SIZE / 2, MAG_SIZE / 2, MAG_SIZE / 2 - 3, 0, Math.PI * 2)
+    mctx.strokeStyle = 'rgba(255,255,255,0.9)'; mctx.lineWidth = 3; mctx.stroke()
+  }
 
   const redrawOverlay = (pts: Pt[], frac: BorderFrac) => {
     const img = imgRef.current, c = canvasRef.current
@@ -453,7 +543,7 @@ export default function DevGradeTest() {
     fracRef.current = frac
     redrawOverlay(pts, frac)
     setPercents(percentsFromBorders(frac))
-    setCornerScores(pts.map(p => cornerSharpness(img, p)))
+    setCornerScores(pts.map((_, i) => cornerDamage(img, pts, i, frac)))
     // Champ de vision du crop proportionnel a la resolution de la photo --
     // meme logique que le rayon des poignees, pour rester coherent visuellement
     // quelle que soit la taille de l'image source.
@@ -547,6 +637,8 @@ export default function DevGradeTest() {
     if (nearestCornerDist <= cornerHitRadius) {
       dragCornerIdxRef.current = nearestCorner
       e.currentTarget.setPointerCapture(e.pointerId)
+      setTouchPoint({ x: e.clientX, y: e.clientY })
+      drawMagnifier(pos, '#ff8c00')
       return
     }
 
@@ -560,6 +652,8 @@ export default function DevGradeTest() {
     if (bestSide) {
       dragBorderSideRef.current = bestSide
       e.currentTarget.setPointerCapture(e.pointerId)
+      setTouchPoint({ x: e.clientX, y: e.clientY })
+      drawMagnifier(pos, bestSide === 'left' || bestSide === 'right' ? '#00c878' : '#1e78ff')
     }
   }
 
@@ -572,6 +666,8 @@ export default function DevGradeTest() {
       const next = pts.map((p, i) => (i === dragCornerIdxRef.current ? pos : p))
       cornersRef.current = next
       redrawOverlay(next, frac)
+      setTouchPoint({ x: e.clientX, y: e.clientY })
+      drawMagnifier(pos, '#ff8c00')
       return
     }
 
@@ -586,6 +682,8 @@ export default function DevGradeTest() {
       fracRef.current = nextFrac
       redrawOverlay(pts, nextFrac)
       setPercents(percentsFromBorders(nextFrac))
+      setTouchPoint({ x: e.clientX, y: e.clientY })
+      drawMagnifier(pos, side === 'left' || side === 'right' ? '#00c878' : '#1e78ff')
     }
   }
 
@@ -593,6 +691,7 @@ export default function DevGradeTest() {
     const wasCorner = dragCornerIdxRef.current !== null
     dragCornerIdxRef.current = null
     dragBorderSideRef.current = null
+    setTouchPoint(null)
     // Un coin deplace change la geometrie du warp -- on refait une detection
     // fraiche de la bordure (les reglages manuels de bordure precedents sont
     // perdus, mais un ajustement de coin se fait normalement avant, pas apres).
@@ -756,6 +855,18 @@ export default function DevGradeTest() {
           </p>
         </div>
 
+        {touchPoint && typeof window !== 'undefined' && (
+          <div style={{
+            position: 'fixed', zIndex: 999, pointerEvents: 'none',
+            left: Math.max(8, Math.min(window.innerWidth - MAG_SIZE - 8, touchPoint.x - MAG_SIZE / 2)),
+            top: touchPoint.y - MAG_OFFSET_Y - MAG_SIZE,
+            width: MAG_SIZE, height: MAG_SIZE, borderRadius: '50%',
+            boxShadow: '0 6px 20px rgba(0,0,0,0.5)',
+          }}>
+            <canvas ref={magnifierCanvasRef} width={MAG_SIZE} height={MAG_SIZE} style={{ width: MAG_SIZE, height: MAG_SIZE, borderRadius: '50%' }} />
+          </div>
+        )}
+
         {percents && cornerScores && grade !== null && (
           <div style={{ display: 'grid', gap: 14 }}>
             {preCropWarning && (
@@ -791,14 +902,15 @@ export default function DevGradeTest() {
 
             <div style={{ background: cardBg, borderRadius: 16, border: `1px solid ${border}`, padding: 16 }}>
               <div style={{ fontSize: 11, fontWeight: 700, color: muted, textTransform: 'uppercase', letterSpacing: 0.6, marginBottom: 4 }}>
-                Netteté des coins
+                État des coins
               </div>
               <p style={{ fontSize: 11, color: muted, marginTop: 0, marginBottom: 12 }}>
-                Zoom extrait de la photo en pleine résolution — juge par toi-même si le verdict semble juste.
+                Comparé à la couleur de la bordure de la carte juste à côté (pas au fond de la photo) — zoom en
+                pleine résolution pour juger par toi-même si le verdict semble juste.
               </p>
               <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 10 }}>
                 {cornerScores.map((s, i) => {
-                  const { text: label, color } = sharpnessLabel(s)
+                  const { text: label, color } = damageLabel(s)
                   return (
                     <div key={i} style={{ padding: 10, background: dark ? '#111' : '#f8f9fb', border: `1px solid ${border}`, borderRadius: 10 }}>
                       {cornerCrops && (
