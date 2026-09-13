@@ -87,22 +87,26 @@ function MessagesContent() {
 
   // Brouillon par conversation : un message long tape puis perdu (changement
   // de conversation, fermeture accidentelle) est frustrant a retaper.
+  // La cle inclut l'id de l'utilisateur courant (pas juste l'autre personne)
+  // -- sinon, sur un appareil/navigateur partage, le brouillon d'un compte
+  // reapparaissait pre-rempli pour un autre compte qui ouvrirait la meme
+  // conversation (meme id de contact).
   useEffect(() => {
-    if (!activeConv) return
+    if (!activeConv || !userId) return
     if (newMsg) return // ne pas ecraser un prefill deja en cours (ex: partage de carte)
     try {
-      const draft = localStorage.getItem(`msg_draft_${activeConv}`)
+      const draft = localStorage.getItem(`msg_draft_${userId}_${activeConv}`)
       if (draft) setNewMsg(draft)
     } catch {}
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [activeConv])
+  }, [activeConv, userId])
   useEffect(() => {
-    if (!activeConv) return
+    if (!activeConv || !userId) return
     try {
-      if (newMsg) localStorage.setItem(`msg_draft_${activeConv}`, newMsg)
-      else localStorage.removeItem(`msg_draft_${activeConv}`)
+      if (newMsg) localStorage.setItem(`msg_draft_${userId}_${activeConv}`, newMsg)
+      else localStorage.removeItem(`msg_draft_${userId}_${activeConv}`)
     } catch {}
-  }, [activeConv, newMsg])
+  }, [activeConv, userId, newMsg])
   const [profiles, setProfiles] = useState<Record<string, any>>({})
   const [tradesMap, setTradesMap] = useState<Record<number, any>>({})
   const [tradeOffersMap, setTradeOffersMap] = useState<Record<string, any>>({})
@@ -153,6 +157,8 @@ function MessagesContent() {
   const bubbleThemBg = dark ? '#262626' : '#efefef'
   const bubbleThemText = dark ? '#fff' : '#121212'
 
+  const [blockedIds, setBlockedIds] = useState<Set<string>>(new Set())
+
   useEffect(() => {
     supabase.auth.getSession().then(async ({ data: { session } }) => {
       if (!session) { router.replace('/connexion'); return }
@@ -164,9 +170,27 @@ function MessagesContent() {
         const { data: tr } = await supabase.from('trade_offers').select('*').eq('id', tradeParam).single()
         if (tr) setContextTrade(tr)
       }
+      const { data: blocked } = await supabase.from('blocked_users').select('blocked_id').eq('blocker_id', data.user.id)
+      setBlockedIds(new Set((blocked || []).map(b => b.blocked_id)))
       setLoading(false)
     })
   }, [])
+
+  const toggleBlock = async (otherId: string) => {
+    if (!userId) return
+    const isBlocked = blockedIds.has(otherId)
+    if (!confirm(isBlocked
+      ? 'Débloquer cet utilisateur ? Il pourra de nouveau t\'envoyer des messages.'
+      : 'Bloquer cet utilisateur ? Il ne pourra plus t\'envoyer de messages.'
+    )) return
+    if (isBlocked) {
+      await supabase.from('blocked_users').delete().eq('blocker_id', userId).eq('blocked_id', otherId)
+      setBlockedIds(prev => { const s = new Set(prev); s.delete(otherId); return s })
+    } else {
+      await supabase.from('blocked_users').insert({ blocker_id: userId, blocked_id: otherId })
+      setBlockedIds(prev => new Set(prev).add(otherId))
+    }
+  }
 
   useEffect(() => {
     if (!userId) return
@@ -349,27 +373,40 @@ function MessagesContent() {
     }
   }
 
+  // Protege contre le double-envoi (double-tap/double-clic avant que
+  // setNewMsg('') n'ait pu s'appliquer, notamment sur mobile).
+  const sendingRef = useRef(false)
+
   const sendMessage = async (contentOverride?: string) => {
     const content = (contentOverride ?? newMsg).trim()
-    if (!content || !userId || !activeConv) return
-    const { error } = await supabase.from('messages').insert({
+    if (!content || !userId || !activeConv || sendingRef.current) return
+    sendingRef.current = true
+    const { data: inserted, error } = await supabase.from('messages').insert({
       from_user_id: userId,
       to_user_id: activeConv,
       contenu: content,
       trade_id: tradeIdForMsg,
-    })
-    if (error) { toast.error('Erreur envoi : ' + error.message); return }
+    }).select('id').single()
+    sendingRef.current = false
+    if (error) {
+      // RLS rejette l'insert si le destinataire nous a bloques (voir migration
+      // 20260913_blocked_users.sql) -- message clair plutot que l'erreur
+      // Postgres brute "new row violates row-level security policy".
+      if (error.code === '42501') toast.error('Ce message n\'a pas pu être envoyé')
+      else toast.error('Erreur envoi : ' + error.message)
+      return
+    }
     setNewMsg('')
     loadMessages(userId, activeConv)
     loadConversations(userId)
     // Push notification au destinataire
     const { data: { session } } = await supabase.auth.getSession()
-    if (session?.access_token) {
+    if (session?.access_token && inserted) {
       const senderName = profiles[userId]?.display_name || 'Quelqu\'un'
       fetch('/api/message-notify', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${session.access_token}` },
-        body: JSON.stringify({ toUserId: activeConv, senderName }),
+        body: JSON.stringify({ toUserId: activeConv, senderName, messageId: inserted.id }),
       }).catch(() => {})
     }
   }
@@ -618,10 +655,25 @@ function MessagesContent() {
                     {contextTrade && <p style={{ fontSize: 11, color: '#003DA6', margin: 0 }}>Re: {contextTrade.titre}</p>}
                   </div>
                 </div>
-                <div style={{ marginLeft: 'auto' }}>
+                <div style={{ marginLeft: 'auto', display: 'flex', alignItems: 'center', gap: 6 }}>
+                  <button
+                    onClick={() => toggleBlock(activeConv)}
+                    title={blockedIds.has(activeConv) ? 'Débloquer' : 'Bloquer cet utilisateur'}
+                    style={{
+                      display: 'flex', alignItems: 'center', justifyContent: 'center', width: 30, height: 30, borderRadius: '50%',
+                      background: blockedIds.has(activeConv) ? '#e74c3c' : (dark ? '#2a2a2a' : '#f0f0f0'),
+                      color: blockedIds.has(activeConv) ? 'white' : (dark ? '#aaa' : '#666'),
+                      border: 'none', cursor: 'pointer', fontSize: 14,
+                    }}
+                  >🚫</button>
                   <ReportButton reportedUserId={activeConv} context={`Conversation avec ${profiles[activeConv]?.display_name || activeConv}`} compact />
                 </div>
               </div>
+              {blockedIds.has(activeConv) && (
+                <div style={{ padding: '8px 16px', background: dark ? '#3a1a1a' : '#fdecea', color: dark ? '#ff8a80' : '#b71c1c', fontSize: 12, fontWeight: 700, textAlign: 'center' }}>
+                  🚫 Tu as bloqué cet utilisateur — il ne peut plus t'envoyer de messages
+                </div>
+              )}
 
               {/* Messages -- data-no-ptr : cette liste scrolle dans son propre conteneur,
                   pas la fenetre (window.scrollY reste a 0), donc PullToRefresh
@@ -892,7 +944,8 @@ function MessagesContent() {
                     value={newMsg}
                     onChange={e => { setNewMsg(e.target.value); notifyTyping() }}
                     onKeyDown={e => e.key === 'Enter' && !e.shiftKey && sendMessage()}
-                    placeholder={t('messages_placeholder')}
+                    placeholder={activeConv && blockedIds.has(activeConv) ? 'Utilisateur bloqué' : t('messages_placeholder')}
+                    disabled={!!activeConv && blockedIds.has(activeConv)}
                     style={{
                       flex: 1, background: 'transparent', color: dark ? '#fff' : '#121212',
                       border: 'none', outline: 'none', fontSize: 14, padding: '6px 2px',
@@ -900,13 +953,13 @@ function MessagesContent() {
                   />
                 </div>
                 {newMsg.trim() ? (
-                  <button onClick={() => sendMessage()} style={{
+                  <button onClick={() => sendMessage()} disabled={!!activeConv && blockedIds.has(activeConv)} style={{
                     background: '#003DA6', color: 'white', border: 'none', flexShrink: 0,
                     width: 40, height: 40, borderRadius: '50%', fontSize: 16, cursor: 'pointer',
                     display: 'flex', alignItems: 'center', justifyContent: 'center',
                   }}>➤</button>
                 ) : (
-                  <button onClick={() => sendMessage('❤️')} title="Envoyer un cœur" style={{
+                  <button onClick={() => sendMessage('❤️')} disabled={!!activeConv && blockedIds.has(activeConv)} title="Envoyer un cœur" style={{
                     background: 'none', border: 'none', flexShrink: 0,
                     width: 40, height: 40, borderRadius: '50%', fontSize: 22, cursor: 'pointer',
                     display: 'flex', alignItems: 'center', justifyContent: 'center',

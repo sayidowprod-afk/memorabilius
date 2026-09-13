@@ -53,8 +53,14 @@ export async function POST(req: NextRequest) {
   const { data: previousAttempt } = await supabase.from('team_candidatures')
     .select('created_at').eq('team_id', teamId).eq('user_id', user.id).neq('statut', 'en_attente')
     .order('created_at', { ascending: false }).limit(1).maybeSingle()
-  if (previousAttempt && Date.now() - new Date(previousAttempt.created_at).getTime() < REAPPLY_COOLDOWN_MS) {
-    return NextResponse.json({ error: 'Veuillez patienter avant de repostuler' }, { status: 429 })
+  if (previousAttempt) {
+    const elapsed = Date.now() - new Date(previousAttempt.created_at).getTime()
+    if (elapsed < REAPPLY_COOLDOWN_MS) {
+      // Precise la duree restante -- sans ca, un candidat refuse ne savait pas
+      // s'il devait attendre 2h ou 20h de plus, et retentait par frustration.
+      const remainingHours = Math.ceil((REAPPLY_COOLDOWN_MS - elapsed) / (60 * 60 * 1000))
+      return NextResponse.json({ error: `Veuillez patienter encore environ ${remainingHours}h avant de repostuler` }, { status: 429 })
+    }
   }
 
   await supabase.from('team_candidatures').delete().eq('team_id', teamId).eq('user_id', user.id).neq('statut', 'en_attente')

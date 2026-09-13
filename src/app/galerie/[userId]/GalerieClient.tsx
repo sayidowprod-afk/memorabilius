@@ -3356,7 +3356,7 @@ export default function GalerieClient({ userId, initialCardUrl, initialCards, in
                               fetch('/api/like-notify', {
                                 method: 'POST',
                                 headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${session.access_token}` },
-                                body: JSON.stringify({ toUserId: userId, likerName, lien }),
+                                body: JSON.stringify({ toUserId: userId, likerName, lien, cardKey: d.f }),
                               }).catch(() => {})
                             }
                           }
@@ -3534,7 +3534,7 @@ export default function GalerieClient({ userId, initialCardUrl, initialCards, in
                 // Voir commentaire plus haut dans ce fichier -- insert deplace cote serveur.
                 const { data: { session } } = await supabase.auth.getSession()
                 if (session?.access_token) {
-                  fetch('/api/like-notify', { method: 'POST', headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${session.access_token}` }, body: JSON.stringify({ toUserId: userId, likerName, lien }) }).catch(() => {})
+                  fetch('/api/like-notify', { method: 'POST', headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${session.access_token}` }, body: JSON.stringify({ toUserId: userId, likerName, lien, cardKey: popup.f }) }).catch(() => {})
                 }
               }
             }

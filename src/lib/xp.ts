@@ -112,3 +112,16 @@ export async function awardLikeXPIfUnderCap(supabase: SupabaseClient, userId: st
   if ((count ?? 0) >= 20) return
   await awardXP(supabase, userId, 'like_received', XP_AWARDS.LIKE_RECEIVED)
 }
+
+// Plafonne l'XP de trades à 5 échanges complétés/jour (50 XP) -- meme
+// principe que les likes : sans plafond, deux comptes complices pouvaient
+// créer puis accepter des offres à répétition pour engranger de l'XP sans
+// limite (audit communautaire du 13/09).
+export async function awardTradeXPIfUnderCap(supabase: SupabaseClient, userId: string) {
+  const startOfDay = new Date(); startOfDay.setHours(0, 0, 0, 0)
+  const { count } = await supabase.from('xp_events')
+    .select('id', { count: 'exact', head: true })
+    .eq('user_id', userId).eq('type', 'trade_completed').gte('created_at', startOfDay.toISOString())
+  if ((count ?? 0) >= 5) return
+  await awardXP(supabase, userId, 'trade_completed', XP_AWARDS.TRADE_COMPLETED)
+}

@@ -30,6 +30,12 @@ function AnnuaireContent() {
   const teamIdFromUrl = searchParams.get('team_id') || ''
 
   const [collectors, setCollectors] = useState<Collector[]>([])
+  // Membres de la team filtrée (null = pas de filtre actif) -- distinct de
+  // `collectors` (toujours la liste complète) pour ne jamais la muter, sinon
+  // retirer le filtre ne pouvait plus jamais restaurer la liste complete
+  // (cf. bug : applyTeamFilter faisait auparavant collectors.filter(...) sur
+  // lui-meme, retirer le filtre ne remettait rien).
+  const [teamMemberIds, setTeamMemberIds] = useState<Set<string> | null>(null)
   const [loading, setLoading] = useState(true)
   const [isMobile, setIsMobile] = useState(false)
 
@@ -106,10 +112,11 @@ function AnnuaireContent() {
     loadData()
   }, [])
 
-  // Appliquer le filtre team quand les données changent
+  // Appliquer le filtre team quand il change (pas besoin de dependre de
+  // `collectors`, qui reste toujours la liste complete -- voir plus bas).
   useEffect(() => {
     applyTeamFilter(teamFilter)
-  }, [collectors, teamFilter])
+  }, [teamFilter])
 
   const loadData = async () => {
     const { data: profiles } = await supabase
@@ -143,17 +150,12 @@ function AnnuaireContent() {
   }
 
   const applyTeamFilter = async (tid: string) => {
-    if (!tid) {
-      // pas besoin de setCollectors ici car loadData le fait déjà
-      return
-    }
+    if (!tid) { setTeamMemberIds(null); return }
     const { data: members } = await supabase
       .from('team_members')
       .select('user_id')
       .eq('team_id', parseInt(tid))
-    if (!members) { setCollectors([]); return }
-    const ids = members.map((m: any) => m.user_id)
-    setCollectors(prev => prev.filter(c => ids.includes(c.id)))
+    setTeamMemberIds(new Set((members || []).map((m: any) => m.user_id)))
   }
 
   const updateUrlParams = (patch: Record<string, string>) => {
@@ -188,7 +190,8 @@ function AnnuaireContent() {
 
   const sorted = [...collectors].filter(c =>
     (!debouncedSearch || (c.display_name || '').toLowerCase().includes(debouncedSearch.toLowerCase())) &&
-    (!nbaFilter || (c.favorite_teams || []).includes(nbaFilter))
+    (!nbaFilter || (c.favorite_teams || []).includes(nbaFilter)) &&
+    (!teamMemberIds || teamMemberIds.has(c.id))
   ).sort((a, b) => {
     if (sortKey === 'display_name') return sortAsc ? (a.display_name || '').localeCompare(b.display_name || '') : (b.display_name || '').localeCompare(a.display_name || '')
     const av = (a.stats?.[sortKey] || 0) as number

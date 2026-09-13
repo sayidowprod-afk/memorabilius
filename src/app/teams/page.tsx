@@ -83,9 +83,21 @@ export default function Teams() {
     setLoading(true)
     const { data } = await supabase.from('teams').insert({ name: newTeamName.trim(), created_by: userId }).select().single()
     if (data) {
-      await supabase.from('team_members').insert({ team_id: data.id, user_id: userId })
-      setUserTeamIds(prev => new Set([...prev, data.id]))
-      router.push(`/teams/${data.id}`)
+      const { error: memberErr } = await supabase.from('team_members').insert({ team_id: data.id, user_id: userId })
+      if (memberErr) {
+        // Sans cette verification, un echec ici laissait une team creee
+        // (created_by pointe vers l'utilisateur, donc isChef=true) mais sans
+        // aucune ligne team_members pour son fondateur (isMember=false) --
+        // etat incoherent impossible a corriger depuis l'UI. On annule la
+        // creation plutot que de laisser ce fondateur "fantome".
+        await supabase.from('teams').delete().eq('id', data.id)
+        toast.error(t('teams_create_error'))
+      } else {
+        setUserTeamIds(prev => new Set([...prev, data.id]))
+        router.push(`/teams/${data.id}`)
+      }
+    } else {
+      toast.error(t('teams_create_error'))
     }
     setNewTeamName('')
     setShowCreate(false)

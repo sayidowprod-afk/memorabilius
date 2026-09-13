@@ -305,14 +305,14 @@ export default function GalerieComments({ galerieUserId, accent, isOwner, cardKe
     return `/galerie/${galerieUserId}?tab=comments`
   }
 
-  const sendCommentPush = async (targetUserId: string, msg: string, lien: string) => {
+  const sendCommentPush = async (targetUserId: string, msg: string, lien: string, commentId: string) => {
     try {
       const { data: { session } } = await supabase.auth.getSession()
       if (!session) return
       fetch('/api/comment-notify', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${session.access_token}` },
-        body: JSON.stringify({ targetUserId, message: msg, lien }),
+        body: JSON.stringify({ targetUserId, message: msg, lien, commentId }),
       }).catch(() => {})
     } catch {}
   }
@@ -330,14 +330,14 @@ export default function GalerieComments({ galerieUserId, accent, isOwner, cardKe
     }
     // Notifier le propriétaire (pas si c'est lui qui commente)
     const target = notifyUserId ?? galerieUserId
-    if (currentUserId !== target) {
+    if (currentUserId !== target && inserted) {
       const name = await getMyName()
       const what = binderId ? 'votre classeur' : cardKey ? 'votre carte' : 'votre galerie'
       const msg = `${name} a commenté ${what} : "${message.trim().slice(0, 60)}${message.length > 60 ? '…' : ''}"`
       const lien = commentLink()
       // L'insert dans "notifications" se fait desormais cote serveur (voir
       // comment-notify), seul endroit capable de verifier les preferences.
-      sendCommentPush(target, msg, lien)
+      sendCommentPush(target, msg, lien, inserted.id)
     }
     setMessage('')
     setSending(false)
@@ -374,12 +374,12 @@ export default function GalerieComments({ galerieUserId, accent, isOwner, cardKe
     }
     // Notifier l'auteur du commentaire parent (pas si c'est soi-même)
     const parentComment = comments.find(c => c.id === parentId) || comments.flatMap(c => c.replies).find(c => c.id === parentId)
-    if (parentComment && parentComment.author_id !== currentUserId) {
+    if (parentComment && parentComment.author_id !== currentUserId && inserted) {
       const name = await getMyName()
       const notifMsg = `${name} a répondu à votre commentaire : "${msg.slice(0, 60)}${msg.length > 60 ? '…' : ''}"`
       const lien = commentLink()
       // Voir commentaire plus haut dans ce fichier -- insert deplace cote serveur.
-      sendCommentPush(parentComment.author_id, notifMsg, lien)
+      sendCommentPush(parentComment.author_id, notifMsg, lien, inserted.id)
     }
     load()
   }

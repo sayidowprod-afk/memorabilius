@@ -14,6 +14,7 @@ import CardTagBadges from '@/components/CardTagBadges'
 import TradeTypeBadge from '@/components/TradeTypeBadge'
 import ScrollToTopButton from '@/components/ScrollToTopButton'
 import { TRADE_STATUS_COLOR } from '@/lib/tradeStatus'
+import { toast } from '@/lib/toast'
 
 // ── Image zoom (forum annonces) ───────────────────────────────────────────────
 function ImageZoom({ src, alt }: { src: string; alt: string }) {
@@ -249,17 +250,31 @@ export default function Trades() {
     setLoadingOffers(false)
   }
 
+  const OFFER_CONFIRM_KEY = { accept: 'trades_offer_accept_confirm', refuse: 'trades_offer_refuse_confirm', cancel: 'trades_offer_cancel_confirm' } as const
+
   const actOnOffer = async (tradeId: string, action: 'accept' | 'refuse' | 'cancel') => {
+    if (!confirm(t(OFFER_CONFIRM_KEY[action]))) return
     setActing(tradeId + action)
     const { data: { session } } = await supabase.auth.getSession()
-    if (!session) return
-    await fetch(`/api/trades/${tradeId}`, {
-      method: 'PATCH',
-      headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${session.access_token}` },
-      body: JSON.stringify({ action }),
-    })
-    await loadTradeOffers()
-    setActing(null)
+    if (!session) { setActing(null); return }
+    try {
+      const res = await fetch(`/api/trades/${tradeId}`, {
+        method: 'PATCH',
+        headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${session.access_token}` },
+        body: JSON.stringify({ action }),
+      })
+      if (!res.ok) {
+        const json = await res.json().catch(() => ({}))
+        toast.error(json.error || t('trades_offer_action_error'))
+        return
+      }
+    } catch {
+      toast.error(t('trades_offer_action_error'))
+      return
+    } finally {
+      await loadTradeOffers()
+      setActing(null)
+    }
   }
 
   const closeTrade = async (id: number) => {
@@ -279,7 +294,7 @@ export default function Trades() {
   const filteredForum = trades.filter(t => {
     if (showFavoritesOnly && !favorites.has(favKey(t))) return false
     if (filter !== 'tous' && t.type !== filter) return false
-    if (search && !t.titre.toLowerCase().includes(search.toLowerCase()) && !t.joueur?.toLowerCase().includes(search.toLowerCase())) return false
+    if (search && !t.titre?.toLowerCase().includes(search.toLowerCase()) && !t.joueur?.toLowerCase().includes(search.toLowerCase())) return false
     if (fEquipe && !t.equipe?.toLowerCase().includes(fEquipe.toLowerCase())) return false
     if (fSport && t.sport !== fSport) return false
     if (fTags.rc && !t.rc) return false

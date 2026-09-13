@@ -15,12 +15,16 @@ export async function POST(req: NextRequest) {
   const { data: { user } } = await supabaseAdmin.auth.getUser(token)
   if (!user) return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
 
-  const { toUserId, lien } = await req.json()
-  if (!toUserId) return NextResponse.json({ error: 'Missing toUserId' }, { status: 400 })
+  const { toUserId, lien, cardKey } = await req.json()
+  if (!toUserId || !cardKey) return NextResponse.json({ error: 'Missing toUserId/cardKey' }, { status: 400 })
 
-  const since = new Date(Date.now() - 30_000).toISOString()
+  // Verification + marquage atomiques (voir message-notify pour le
+  // raisonnement) -- lie precisement le push a CE like, sur CETTE carte,
+  // au lieu d'accepter n'importe quel like recent du meme utilisateur.
   const { data: recentLike } = await supabaseAdmin.from('card_likes')
-    .select('card_key').eq('liker_user_id', user.id).eq('gallery_user_id', toUserId).gte('created_at', since).limit(1).maybeSingle()
+    .update({ notified_push_at: new Date().toISOString() })
+    .eq('liker_user_id', user.id).eq('gallery_user_id', toUserId).eq('card_key', cardKey).is('notified_push_at', null)
+    .select('card_key').maybeSingle()
   if (!recentLike) return NextResponse.json({ error: 'No recent like found' }, { status: 403 })
 
   await awardLikeXPIfUnderCap(supabaseAdmin, toUserId)

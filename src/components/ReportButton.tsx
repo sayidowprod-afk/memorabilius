@@ -32,13 +32,16 @@ export default function ReportButton({ reportedUserId, context, compact }: Props
         headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${session.access_token}` },
         body: JSON.stringify({ reportedUserId, context, reason, message: message.trim() || undefined }),
       })
-      if (!r.ok) throw new Error()
+      if (!r.ok) {
+        const json = await r.json().catch(() => ({}))
+        throw new Error(json.error || undefined)
+      }
       toast.success(t('report_sent'))
       setOpen(false)
       setMessage('')
       setReason('spam')
-    } catch {
-      toast.error(t('report_error'))
+    } catch (e: any) {
+      toast.error(e?.message || t('report_error'))
     } finally {
       setSending(false)
     }

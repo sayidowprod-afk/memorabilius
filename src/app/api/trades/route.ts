@@ -15,7 +15,11 @@ const cardInputSchema = z.object({
 
 const tradePostSchema = z.object({
   receiverId: z.string().uuid(),
-  offeredCards: z.array(cardInputSchema).max(50),
+  // min(1) sur les deux cotes : une offre sans carte offerte n'est pas un
+  // echange, et permettait de faire passer une "offre" gratuite du systeme
+  // d'XP (verse a l'acceptation, cf. api/trades/[id]/route.ts) sans rien
+  // donner en retour.
+  offeredCards: z.array(cardInputSchema).min(1).max(50),
   requestedCards: z.array(cardInputSchema).min(1).max(50),
   message: z.string().max(1000).optional(),
 })
@@ -150,6 +154,35 @@ async function postHandler(req: NextRequest) {
       .from('cartes_manuelles').select('id').in('id', manualRequestedIds).eq('user_id', receiverId)
     if ((receiverCards?.length || 0) !== manualRequestedIds.length)
       return NextResponse.json({ error: 'Cartes introuvables dans la collection du destinataire' }, { status: 403 })
+  }
+
+  // Anti-doublon : bloque une offre identique (memes cartes offertes +
+  // demandees) deja en attente vers le meme destinataire -- evite le spam
+  // de doublons (clic multiple, retry reseau, ou envoi volontaire en boucle).
+  const { data: pendingOffers } = await supabaseAdmin
+    .from('trade_offers')
+    .select('id')
+    .eq('sender_id', user.id)
+    .eq('receiver_id', receiverId)
+    .eq('status', 'pending')
+  if (pendingOffers?.length) {
+    const pendingIds = pendingOffers.map(o => o.id)
+    const { data: existingCards } = await supabaseAdmin
+      .from('trade_offer_cards')
+      .select('trade_id, card_id, owner_id')
+      .in('trade_id', pendingIds)
+    const newOfferedIds = new Set(offeredCards.map(c => c.id))
+    const newRequestedIds = new Set(requestedCards.map(c => c.id))
+    const isDuplicate = pendingIds.some(tid => {
+      const cards = (existingCards || []).filter(c => c.trade_id === tid)
+      const offered = new Set(cards.filter(c => c.owner_id === user.id).map(c => c.card_id))
+      const requested = new Set(cards.filter(c => c.owner_id === receiverId).map(c => c.card_id))
+      return offered.size === newOfferedIds.size && requested.size === newRequestedIds.size
+        && [...offered].every(id => newOfferedIds.has(id))
+        && [...requested].every(id => newRequestedIds.has(id))
+    })
+    if (isDuplicate)
+      return NextResponse.json({ error: 'Une offre identique est déjà en attente pour ce destinataire' }, { status: 409 })
   }
 
   const { data: trade, error: tradeErr } = await supabaseAdmin

@@ -32,7 +32,7 @@ function NumTag({ num }: { num: string }) {
 export default function Recherche() {
   const searchParams = useSearchParams()
   const router = useRouter()
-  const { t, lang } = useLang()
+  const { t } = useLang()
   const { dark } = useTheme()
 
   const [query, setQuery] = useState(searchParams.get('q') || '')
@@ -576,7 +576,7 @@ export default function Recherche() {
                         />
                         {card.disponible_vente && (
                           <div style={{ position: 'absolute', top: 6, right: 6, background: '#2e7d32', color: 'white', fontSize: 9, fontWeight: 900, padding: '2px 6px', borderRadius: 4 }}>
-                            🏷️ {lang === 'fr' ? 'Trade' : 'Trade'}
+                            🏷️ {t('gallery_for_sale_label')}
                           </div>
                         )}
                         {card.collectorId === myId && (

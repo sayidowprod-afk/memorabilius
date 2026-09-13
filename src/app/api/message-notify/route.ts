@@ -20,13 +20,17 @@ export async function POST(req: NextRequest) {
   const { data: { user } } = await supabaseAdmin.auth.getUser(token)
   if (!user) return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
 
-  const { toUserId } = await req.json()
-  if (!toUserId) return NextResponse.json({ error: 'Missing toUserId' }, { status: 400 })
+  const { toUserId, messageId } = await req.json()
+  if (!toUserId || !messageId) return NextResponse.json({ error: 'Missing toUserId/messageId' }, { status: 400 })
 
-  const since = new Date(Date.now() - 30_000).toISOString()
+  // Verification + marquage atomiques : le message doit exister, appartenir
+  // a l'appelant, viser bien toUserId, et ne pas avoir deja ete notifie --
+  // sans ce marquage, rejouer cet appel plusieurs fois (retry, script)
+  // spammait autant de push identiques a partir d'un seul message reel.
   const { data: recentMsg } = await supabaseAdmin.from('messages')
-    .select('id, contenu').eq('from_user_id', user.id).eq('to_user_id', toUserId).gte('created_at', since)
-    .order('created_at', { ascending: false }).limit(1).maybeSingle()
+    .update({ notified_push_at: new Date().toISOString() })
+    .eq('id', messageId).eq('from_user_id', user.id).eq('to_user_id', toUserId).is('notified_push_at', null)
+    .select('id, contenu').maybeSingle()
   if (!recentMsg) return NextResponse.json({ error: 'No recent message found' }, { status: 403 })
 
   const [{ data: profile }, { data: recipientProfile }] = await Promise.all([

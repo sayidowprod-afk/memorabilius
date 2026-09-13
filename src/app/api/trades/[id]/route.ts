@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { createClient } from '@supabase/supabase-js'
 import { sendPushToUser } from '@/lib/pushNotify'
-import { awardXP, XP_AWARDS } from '@/lib/xp'
+import { awardTradeXPIfUnderCap } from '@/lib/xp'
 import { tradeResponsePush, someoneNameFallback, normalizePushLang } from '@/lib/pushTranslations'
 
 const supabaseAdmin = createClient(
@@ -32,6 +32,30 @@ export async function PATCH(req: NextRequest, context: { params: Promise<{ id: s
   if ((action === 'accept' || action === 'refuse') && trade.receiver_id !== user.id)
     return NextResponse.json({ error: 'Seul le destinataire peut accepter/refuser' }, { status: 403 })
 
+  // Re-verifie a l'acceptation que les cartes manuelles offertes/demandees
+  // existent toujours chez leur proprietaire attendu -- entre la creation de
+  // l'offre et son acceptation, une carte a pu etre supprimee ou deplacee
+  // (ex: deja donnee dans un autre echange). Sans ce controle, l'offre
+  // pouvait etre acceptee (XP versee, notif envoyee) pour une carte qui
+  // n'existe plus.
+  if (action === 'accept') {
+    const { data: cards } = await supabaseAdmin
+      .from('trade_offer_cards')
+      .select('card_id, is_manuelle, owner_id')
+      .eq('trade_id', trade.id)
+      .eq('is_manuelle', true)
+    if (cards?.length) {
+      const byOwner = new Map<string, string[]>()
+      for (const c of cards) byOwner.set(c.owner_id, [...(byOwner.get(c.owner_id) || []), c.card_id])
+      for (const [ownerId, cardIds] of byOwner) {
+        const { data: stillOwned } = await supabaseAdmin
+          .from('cartes_manuelles').select('id').in('id', cardIds).eq('user_id', ownerId)
+        if ((stillOwned?.length || 0) !== cardIds.length)
+          return NextResponse.json({ error: 'Une des cartes de cet échange n\'est plus disponible' }, { status: 409 })
+      }
+    }
+  }
+
   // .eq('status', 'pending') rend le check-then-update atomique : sans ça, deux
   // requêtes concurrentes (double-tap, retry réseau sur mobile, ou un accept et
   // un cancel arrivant en même temps) pouvaient toutes les deux relire
@@ -49,8 +73,8 @@ export async function PATCH(req: NextRequest, context: { params: Promise<{ id: s
   if (!updated || updated.length === 0) return NextResponse.json({ error: 'Échange déjà traité' }, { status: 409 })
 
   if (action === 'accept') {
-    await awardXP(supabaseAdmin, trade.sender_id, 'trade_completed', XP_AWARDS.TRADE_COMPLETED)
-    await awardXP(supabaseAdmin, trade.receiver_id, 'trade_completed', XP_AWARDS.TRADE_COMPLETED)
+    await awardTradeXPIfUnderCap(supabaseAdmin, trade.sender_id)
+    await awardTradeXPIfUnderCap(supabaseAdmin, trade.receiver_id)
   }
 
   const notifyUserId = action === 'cancel' ? trade.receiver_id : trade.sender_id

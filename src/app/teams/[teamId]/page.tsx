@@ -34,6 +34,11 @@ export default function TeamPage({ params }: { params: Promise<{ teamId: string 
   const [currentUser, setCurrentUser] = useState<string | null>(null)
   const [isMember, setIsMember] = useState(false)
   const [isChef, setIsChef] = useState(false)
+  // Distinct de isChef (fondateur OU admin) : seul le fondateur peut editer
+  // la team cote base (policy RLS "Modifier sa team" -> auth.uid()=created_by
+  // uniquement) -- le lien "Modifier" ne doit etre visible qu'a lui, sinon un
+  // admin non-fondateur voit un lien qui echoue silencieusement.
+  const [isFounder, setIsFounder] = useState(false)
   const [hasCandidature, setHasCandidature] = useState(false)
   const [activeTab, setActiveTab] = useState<'feed' | 'membres' | 'galerie' | 'chat' | 'candidatures'>('feed')
   const [loading, setLoading] = useState(true)
@@ -111,6 +116,7 @@ export default function TeamPage({ params }: { params: Promise<{ teamId: string 
     const isFounder = user?.id === teamData.created_by
     const isAdmin = m?.some((x: any) => x.user_id === user?.id && (x.role === 'admin' || x.role === 'chef')) || false
     setIsChef(isFounder || isAdmin)
+    setIsFounder(isFounder)
 
     loadMembersStats(m || [])
     loadPosts(user?.id || null)
@@ -580,7 +586,7 @@ export default function TeamPage({ params }: { params: Promise<{ teamId: string 
           <div className="team-header-text" style={{ flex: 1, minWidth: 200 }}>
             <div style={{ display: 'flex', alignItems: 'center', gap: 10, flexWrap: 'wrap' }}>
               <h1 style={{ fontWeight: 900, fontSize: 24, margin: 0 }}>{team.name}</h1>
-              {isChef && <Link href={`/teams/${teamId}/editer`} style={{ background: 'var(--bg3, #f0f0f0)', color: 'var(--text2, #444)', padding: '4px 12px', borderRadius: 6, fontWeight: 700, fontSize: 12, textDecoration: 'none' }}>{t('teams_modify')}</Link>}
+              {isFounder && <Link href={`/teams/${teamId}/editer`} style={{ background: 'var(--bg3, #f0f0f0)', color: 'var(--text2, #444)', padding: '4px 12px', borderRadius: 6, fontWeight: 700, fontSize: 12, textDecoration: 'none' }}>{t('teams_modify')}</Link>}
             </div>
             {team.description && <p style={{ color: 'var(--text2, #666)', fontSize: 14, margin: '4px 0 0', wordBreak: 'break-word' }}>{team.description}</p>}
             <p style={{ color: 'var(--text3, #999)', fontSize: 12, margin: '4px 0 0' }}>{members.length} membre{members.length > 1 ? 's' : ''}</p>

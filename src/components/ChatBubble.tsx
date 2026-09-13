@@ -171,7 +171,7 @@ export default function ChatBubble() {
     loadMessages(id)
   }
 
-  const notifyRecipient = async () => {
+  const notifyRecipient = async (messageId: string) => {
     if (!userId || !activeConv) return
     const { data: { session } } = await supabase.auth.getSession()
     if (session?.access_token) {
@@ -179,7 +179,7 @@ export default function ChatBubble() {
       fetch('/api/message-notify', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${session.access_token}` },
-        body: JSON.stringify({ toUserId: activeConv, senderName }),
+        body: JSON.stringify({ toUserId: activeConv, senderName, messageId }),
       }).catch(() => {})
     }
   }
@@ -188,10 +188,10 @@ export default function ChatBubble() {
     if (!newMsg.trim() || !userId || !activeConv) return
     const content = newMsg.trim()
     setNewMsg('')
-    await supabase.from('messages').insert({ from_user_id: userId, to_user_id: activeConv, contenu: content })
+    const { data: inserted } = await supabase.from('messages').insert({ from_user_id: userId, to_user_id: activeConv, contenu: content }).select('id').single()
     loadMessages(activeConv)
     loadConversations(userId)
-    notifyRecipient()
+    if (inserted) notifyRecipient(inserted.id)
   }
 
   // Réduit l'image (max 1400px, JPEG 0.82) avant l'upload pour limiter le poids
@@ -217,6 +217,7 @@ export default function ChatBubble() {
     if (!files.length || !userId || !activeConv) return
     setUploadingImg(true)
     try {
+      let lastInsertedId: string | null = null
       for (const file of files) {
         const blob = await downscaleImage(file)
         const path = `chat/${userId}/${Date.now()}-${Math.random().toString(36).slice(2)}.jpg`
@@ -224,11 +225,12 @@ export default function ChatBubble() {
         const { error } = await supabase.storage.from('avatars').upload(path, up, { upsert: true })
         if (error) { toast.error(t('chat_error_send_image') + error.message); continue }
         const { data } = supabase.storage.from('avatars').getPublicUrl(path)
-        await supabase.from('messages').insert({ from_user_id: userId, to_user_id: activeConv, contenu: IMG_PREFIX + data.publicUrl })
+        const { data: inserted } = await supabase.from('messages').insert({ from_user_id: userId, to_user_id: activeConv, contenu: IMG_PREFIX + data.publicUrl }).select('id').single()
+        if (inserted) lastInsertedId = inserted.id
       }
       loadMessages(activeConv)
       loadConversations(userId)
-      notifyRecipient()
+      if (lastInsertedId) notifyRecipient(lastInsertedId)
     } catch {
       toast.error(t('chat_error_image_unreadable'))
     } finally {

@@ -14,20 +14,23 @@ export async function POST(req: NextRequest) {
   const { data: { user } } = await supabaseAdmin.auth.getUser(token)
   if (!user) return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
 
-  const { targetUserId, lien, message } = await req.json()
-  if (!targetUserId) return NextResponse.json({ ok: false })
+  const { targetUserId, lien, message, commentId } = await req.json()
+  if (!targetUserId || !commentId) return NextResponse.json({ ok: false })
   if (targetUserId === user.id) return NextResponse.json({ ok: true })
 
-  // Valider qu'un commentaire récent existe bien (anti-spam). Colonne
-  // "content" n'existe pas sur cette table (c'est "message", voir
-  // GalerieComments.tsx) -- corrige, le corps du push etait toujours vide.
-  const since = new Date(Date.now() - 30_000).toISOString()
+  // Verification + marquage atomiques (voir message-notify) : le commentaire
+  // doit exister, appartenir a l'appelant, et ne pas avoir deja notifie --
+  // avant, on acceptait n'importe quel commentaire recent du meme auteur,
+  // meme sur une galerie totalement differente, ET sans marquage, un rejeu de
+  // l'appel spammait autant de push identiques. Pas de contrainte sur
+  // galerie_user_id ici : targetUserId peut legitimement etre l'auteur d'un
+  // commentaire PARENT (reponse a un commentaire), pas le proprietaire de la
+  // galerie -- voir handleReply dans GalerieComments.tsx.
   const { data: recentComment } = await supabaseAdmin
     .from('galerie_comments')
+    .update({ notified_push_at: new Date().toISOString() })
+    .eq('id', commentId).eq('author_id', user.id).is('notified_push_at', null)
     .select('id, message')
-    .eq('author_id', user.id)
-    .gte('created_at', since)
-    .limit(1)
     .maybeSingle()
   if (!recentComment) return NextResponse.json({ error: 'No recent comment found' }, { status: 403 })
 

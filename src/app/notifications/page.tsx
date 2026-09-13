@@ -5,9 +5,9 @@ import { useRouter } from 'next/navigation'
 import { supabase } from '@/lib/supabase'
 import { useLang, localeFor } from '@/lib/LangContext'
 import { useTheme } from '@/lib/ThemeContext'
-import { subscribePush } from '@/components/PWAInstall'
 import SkeletonBlock from '@/components/SkeletonBlock'
 import EmptyState from '@/components/EmptyState'
+import PushNotificationSettings from '@/components/PushNotificationSettings'
 
 export default function Notifications() {
   const router = useRouter()
@@ -15,50 +15,6 @@ export default function Notifications() {
   const { dark } = useTheme()
   const [notifs, setNotifs] = useState<any[]>([])
   const [loading, setLoading] = useState(true)
-  const [pushPerm, setPushPerm] = useState<NotificationPermission | null>(null)
-  const [pushLoading, setPushLoading] = useState(false)
-  const [testResult, setTestResult] = useState<{ ok?: boolean; error?: string } | null>(null)
-  const [testLoading, setTestLoading] = useState(false)
-
-  useEffect(() => {
-    if ('Notification' in window) setPushPerm(Notification.permission)
-  }, [])
-
-  const handleEnablePush = async () => {
-    setPushLoading(true)
-    try {
-      // PWAInstall (qui enregistre normalement le SW) n'est monté que sur
-      // l'accueil — on force l'enregistrement ici sinon subscribePush() reste
-      // bloqué sur navigator.serviceWorker.ready si le SW n'existe pas encore
-      await navigator.serviceWorker.register('/sw.js')
-      const perm = await Notification.requestPermission()
-      setPushPerm(perm)
-      if (perm === 'granted') await subscribePush(true)
-    } finally {
-      setPushLoading(false)
-    }
-  }
-
-  const handleDisablePush = async () => {
-    setPushLoading(true)
-    try {
-      await navigator.serviceWorker.register('/sw.js')
-      const sw = await navigator.serviceWorker.ready
-      const sub = await sw.pushManager.getSubscription()
-      if (sub) {
-        const { data: { session } } = await supabase.auth.getSession()
-        await fetch('/api/push-subscribe', {
-          method: 'DELETE',
-          headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${session?.access_token}` },
-          body: JSON.stringify({ endpoint: sub.endpoint }),
-        })
-        await sub.unsubscribe()
-        setPushPerm(Notification.permission)
-      }
-    } finally {
-      setPushLoading(false)
-    }
-  }
 
   useEffect(() => {
     supabase.auth.getSession().then(async ({ data: { session } }) => {
@@ -125,56 +81,7 @@ export default function Notifications() {
     <div style={{ maxWidth: 700, margin: '40px auto', fontFamily: 'Inter, sans-serif', padding: '0 16px', boxSizing: 'border-box' }}>
       <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: 24, flexWrap: 'wrap', gap: 12 }}>
         <h1 style={{ fontWeight: 900, fontSize: 28, margin: 0 }}>{t('notif_title')}</h1>
-        {'Notification' in window && pushPerm === 'denied' && (
-          <span style={{ fontSize: 12, color: '#e74c3c', fontWeight: 700 }}>🔕 Notifications bloquées dans le navigateur</span>
-        )}
-        {'Notification' in window && pushPerm !== 'granted' && pushPerm !== 'denied' && pushPerm !== null && (
-          <button onClick={handleEnablePush} disabled={pushLoading}
-            style={{ display: 'flex', alignItems: 'center', gap: 8, padding: '9px 16px', background: '#003DA6', color: 'white', border: 'none', borderRadius: 10, fontWeight: 700, fontSize: 13, cursor: 'pointer' }}
-          >
-            {pushLoading ? '...' : '🔔 Activer les notifications push'}
-          </button>
-        )}
-        {pushPerm === 'granted' && (
-          <div style={{ display: 'flex', alignItems: 'center', gap: 10, flexWrap: 'wrap' }}>
-            <span style={{ fontSize: 12, color: '#2ecc71', fontWeight: 700 }}>🔔 Notifications activées</span>
-            <button
-              onClick={async () => {
-                setTestLoading(true)
-                setTestResult(null)
-                try {
-                  const { data: { session } } = await supabase.auth.getSession()
-                  const res = await fetch('/api/push-test', {
-                    method: 'POST',
-                    headers: { Authorization: `Bearer ${session?.access_token}` },
-                  })
-                  const json = await res.json()
-                  setTestResult(res.ok ? { ok: true } : { error: json.error || 'Erreur inconnue' })
-                } catch (e: any) {
-                  setTestResult({ error: e?.message || 'Erreur réseau' })
-                } finally {
-                  setTestLoading(false)
-                }
-              }}
-              disabled={testLoading}
-              style={{ padding: '6px 12px', background: '#003DA6', color: 'white', border: 'none', borderRadius: 8, fontWeight: 700, fontSize: 12, cursor: 'pointer' }}
-            >
-              {testLoading ? '...' : '🧪 Tester'}
-            </button>
-            <button onClick={handleDisablePush} disabled={pushLoading} style={{ padding: '6px 12px', background: 'var(--bg3, #f0f0f0)', color: 'var(--text2, #333)', border: 'none', borderRadius: 8, fontWeight: 700, fontSize: 12, cursor: 'pointer' }}>
-              {pushLoading ? '...' : 'Désactiver'}
-            </button>
-          </div>
-        )}
-        {testResult && (
-          <div style={{
-            fontSize: 12, fontWeight: 700, padding: '6px 12px', borderRadius: 8,
-            background: testResult.ok ? '#e8f5e9' : '#fdecea',
-            color: testResult.ok ? '#1b5e20' : '#b71c1c',
-          }}>
-            {testResult.ok ? '✓ Notification envoyée — vérifie ton téléphone !' : `✗ ${testResult.error}`}
-          </div>
-        )}
+        <PushNotificationSettings dark={dark} />
       </div>
 
       {notifs.length === 0 ? (

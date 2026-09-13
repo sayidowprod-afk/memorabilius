@@ -29,6 +29,26 @@ export async function POST(req: NextRequest) {
   if (!parsed.success) return NextResponse.json({ error: 'Invalid payload' }, { status: 400 })
   const { reportedUserId, context, reason, message } = parsed.data
 
+  // Anti-spam : aucune limite avant (audit du 13/09) -- un signalement declenche
+  // un insert + un email a chaque appel, sans throttling. Plafonne a 10/h par
+  // utilisateur (evite le flood generique) et 1/24h par cible signalee (evite
+  // le harcelement d'un meme utilisateur a coups de signalements repetes).
+  const hourAgo = new Date(Date.now() - 60 * 60 * 1000).toISOString()
+  const { count: hourlyCount } = await supabaseAdmin.from('reports')
+    .select('id', { count: 'exact', head: true })
+    .eq('reporter_id', user.id).gte('created_at', hourAgo)
+  if ((hourlyCount ?? 0) >= 10)
+    return NextResponse.json({ error: 'Trop de signalements récents, réessaie plus tard' }, { status: 429 })
+
+  if (reportedUserId) {
+    const dayAgo = new Date(Date.now() - 24 * 60 * 60 * 1000).toISOString()
+    const { count: dupCount } = await supabaseAdmin.from('reports')
+      .select('id', { count: 'exact', head: true })
+      .eq('reporter_id', user.id).eq('reported_user_id', reportedUserId).gte('created_at', dayAgo)
+    if ((dupCount ?? 0) > 0)
+      return NextResponse.json({ error: 'Tu as déjà signalé cet utilisateur récemment' }, { status: 429 })
+  }
+
   const { error } = await supabaseAdmin.from('reports').insert({
     reporter_id: user.id, reported_user_id: reportedUserId || null, context: context || null, reason, message: message || null,
   })
