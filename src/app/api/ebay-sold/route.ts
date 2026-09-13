@@ -301,7 +301,13 @@ export async function GET(req: NextRequest) {
         // Année 4 chiffres (2020 de "2020-21")
         const yearM = directQ.match(/\b((?:19|20)\d{2})\b/)
         // Marque du set (Donruss, Topps, etc.)
-        const brand = words.find(w => BRANDS.has(w.toLowerCase()))
+        // "Panini"/"Topps" sont des editeurs qui publient des dizaines de gammes
+        // totalement differentes (Select, Revolution, Prizm, Donruss...) --
+        // presque toujours le mot juste apres l'annee dans un titre, ils sont
+        // choisis en premier par .find() avant la vraie gamme plus specifique
+        // qui suit, rendant le filtre bien trop large (n'importe quel produit
+        // Panini du joueur passe, pas seulement la gamme de la carte selectionnee).
+        const brand = words.find(w => BRANDS.has(w.toLowerCase()) && w.toLowerCase() !== 'panini' && w.toLowerCase() !== 'topps')
         return [...nameWords, ...(yearM ? [yearM[1]] : []), ...(brand ? [brand] : [])]
       })()
     : [name]
