@@ -10,7 +10,10 @@ import { refineCornersV5 } from '@/lib/cornerDetectorYolo'
 // controle ne justifie pas une precision numerique unique. Warp par
 // interpolation bilineaire du quadrilatere (pas une vraie homographie
 // projective) -- approximation suffisante pour une photo prise a peu pres de
-// face, mais a garder en tete si le resultat semble deforme.
+// face, mais a garder en tete si le resultat semble deforme. Coins deplacables
+// a la souris (voir onPointer*) pour corriger une detection ratee sans
+// recharger, et les reperes de bordure detectee sont dessines sur l'image
+// redressee pour voir a quoi le centrage se fie.
 
 const IMGSZ = 640
 const ORT_CDN = 'https://cdn.jsdelivr.net/npm/onnxruntime-web@1.27.0/dist/'
@@ -147,6 +150,24 @@ function detectBorderWidth(canvas: HTMLCanvasElement, side: 'left' | 'right' | '
   return bestIdx
 }
 
+// Dessine sur l'image redressee les positions exactes retenues par
+// detectBorderWidth -- pour voir a quoi le centrage se fie au lieu de
+// devoir faire confiance a un pourcentage sans preuve visuelle.
+function drawBorderGuides(canvas: HTMLCanvasElement, left: number, right: number, top: number, bottom: number) {
+  const ctx = canvas.getContext('2d')!
+  const W = canvas.width, H = canvas.height
+  ctx.save()
+  ctx.lineWidth = 2
+  ctx.setLineDash([7, 5])
+  ctx.strokeStyle = 'rgba(0, 200, 120, 0.95)'
+  ctx.beginPath(); ctx.moveTo(left, 0); ctx.lineTo(left, H); ctx.stroke()
+  ctx.beginPath(); ctx.moveTo(W - right, 0); ctx.lineTo(W - right, H); ctx.stroke()
+  ctx.strokeStyle = 'rgba(30, 120, 255, 0.95)'
+  ctx.beginPath(); ctx.moveTo(0, top); ctx.lineTo(W, top); ctx.stroke()
+  ctx.beginPath(); ctx.moveTo(0, H - bottom); ctx.lineTo(W, H - bottom); ctx.stroke()
+  ctx.restore()
+}
+
 // Variance du Laplacien dans un petit patch autour du coin -- mesure de nettete
 // classique (plus la variance est haute, plus le coin est net/contraste ;
 // un coin use/arrondi/blanchi a un profil plus flou -> variance plus basse).
@@ -179,16 +200,6 @@ function sharpnessLabel(v: number): { text: string; color: string } {
   return { text: 'Usure visible', color: '#dc2626' }
 }
 
-type Result = {
-  corners: Pt[]
-  conf: number
-  leftRightPct: [number, number]
-  topBottomPct: [number, number]
-  cornerScores: number[]  // TL, TR, BR, BL
-  warpUrl: string
-  looksPreCropped: boolean
-}
-
 // Le detecteur est concu pour des photos avec un peu de marge/fond autour de
 // la carte (comme le vrai scanner) -- sur une image deja recadree pile sur la
 // carte, il n'y a plus de vrai bord physique carte->fond a trouver, et le
@@ -205,17 +216,77 @@ function looksPreCropped(imgW: number, imgH: number): boolean {
   return Math.abs(ratio - CARD_RATIO) < 0.04
 }
 
+type BorderResult = {
+  leftRightPct: [number, number]
+  topBottomPct: [number, number]
+  cornerScores: number[]  // TL, TR, BR, BL
+  warpUrl: string
+}
+
+const cornerNames = ['Haut-gauche', 'Haut-droite', 'Bas-droite', 'Bas-gauche']
+
 export default function DevGradeTest() {
   const [busy, setBusy] = useState(false)
   const [error, setError] = useState('')
-  const [result, setResult] = useState<Result | null>(null)
   const [preCropped, setPreCropped] = useState(false)
+  const [conf, setConf] = useState(0)
+  const [hasCorners, setHasCorners] = useState(false)
+  const [preCropWarning, setPreCropWarning] = useState(false)
+  const [borderResult, setBorderResult] = useState<BorderResult | null>(null)
   const canvasRef = useRef<HTMLCanvasElement | null>(null)
+  const imgRef = useRef<HTMLImageElement | null>(null)
+  // Source de verite pendant le drag -- eviter de dependre du state React
+  // (qui peut retarder d'une frame par rapport aux evenements pointer) pour
+  // que le trace suive la souris sans a-coups.
+  const cornersRef = useRef<Pt[] | null>(null)
+  const dragIdxRef = useRef<number | null>(null)
+
+  const redrawOverlay = (pts: Pt[]) => {
+    const img = imgRef.current, c = canvasRef.current
+    if (!img || !c) return
+    const ctx = c.getContext('2d')!
+    ctx.clearRect(0, 0, c.width, c.height)
+    ctx.drawImage(img, 0, 0)
+    const lw = Math.max(3, img.naturalWidth / 300)
+    ctx.strokeStyle = '#ff8c00'
+    ctx.lineWidth = lw
+    ctx.beginPath()
+    pts.forEach((p, i) => (i === 0 ? ctx.moveTo(p.x, p.y) : ctx.lineTo(p.x, p.y)))
+    ctx.closePath()
+    ctx.stroke()
+    ctx.fillStyle = '#ff8c00'
+    pts.forEach(p => {
+      ctx.beginPath()
+      ctx.arc(p.x, p.y, Math.max(9, img.naturalWidth / 70), 0, Math.PI * 2)
+      ctx.fill()
+    })
+  }
+
+  const recompute = (pts: Pt[]) => {
+    const img = imgRef.current
+    if (!img) return
+    const warp = warpQuadToRect(img, pts, 500, 700)
+    const left = detectBorderWidth(warp, 'left')
+    const right = detectBorderWidth(warp, 'right')
+    const top = detectBorderWidth(warp, 'top')
+    const bottom = detectBorderWidth(warp, 'bottom')
+    drawBorderGuides(warp, left, right, top, bottom)
+    const lrTotal = left + right || 1
+    const tbTotal = top + bottom || 1
+    const cornerScores = pts.map(p => cornerSharpness(img, p))
+    setBorderResult({
+      leftRightPct: [Math.round((left / lrTotal) * 100), Math.round((right / lrTotal) * 100)],
+      topBottomPct: [Math.round((top / tbTotal) * 100), Math.round((bottom / tbTotal) * 100)],
+      cornerScores,
+      warpUrl: warp.toDataURL('image/jpeg', 0.9),
+    })
+  }
 
   const onFile = async (file: File) => {
     setBusy(true)
     setError('')
-    setResult(null)
+    setBorderResult(null)
+    setHasCorners(false)
     try {
       const url = URL.createObjectURL(file)
       const img = new Image()
@@ -224,13 +295,14 @@ export default function DevGradeTest() {
         img.onerror = () => reject(new Error('image invalide'))
         img.src = url
       })
+      imgRef.current = img
 
-      let corners: Pt[]
-      let conf = 1
+      let pts: Pt[]
+      let c = 1
       if (preCropped) {
         // Carte deja rognee pile sur ses bords -- pas de detection a faire,
         // la carte EST l'image entiere.
-        corners = [
+        pts = [
           { x: 0, y: 0 },
           { x: img.naturalWidth, y: 0 },
           { x: img.naturalWidth, y: img.naturalHeight },
@@ -244,44 +316,20 @@ export default function DevGradeTest() {
         const scale = Math.min(IMGSZ / img.naturalWidth, IMGSZ / img.naturalHeight)
         const { corners: rawCorners, conf: rawConf } = await detectRawCorners(ort, img)
         if (!rawCorners) throw new Error('Aucune carte détectée')
-        corners = refineCornersV5(img, rawCorners, scale)
-        conf = rawConf
+        pts = refineCornersV5(img, rawCorners, scale)
+        c = rawConf
       }
 
       if (canvasRef.current) {
-        const c = canvasRef.current
-        c.width = img.naturalWidth
-        c.height = img.naturalHeight
-        const ctx = c.getContext('2d')!
-        ctx.drawImage(img, 0, 0)
-        const lw = Math.max(3, img.naturalWidth / 300)
-        ctx.strokeStyle = '#ff8c00'
-        ctx.lineWidth = lw
-        ctx.beginPath()
-        corners.forEach((p, i) => (i === 0 ? ctx.moveTo(p.x, p.y) : ctx.lineTo(p.x, p.y)))
-        ctx.closePath()
-        ctx.stroke()
+        canvasRef.current.width = img.naturalWidth
+        canvasRef.current.height = img.naturalHeight
       }
-
-      const warp = warpQuadToRect(img, corners, 500, 700)
-      const left = detectBorderWidth(warp, 'left')
-      const right = detectBorderWidth(warp, 'right')
-      const top = detectBorderWidth(warp, 'top')
-      const bottom = detectBorderWidth(warp, 'bottom')
-      const lrTotal = left + right || 1
-      const tbTotal = top + bottom || 1
-
-      const cornerScores = corners.map(p => cornerSharpness(img, p))
-
-      setResult({
-        corners,
-        conf,
-        leftRightPct: [Math.round((left / lrTotal) * 100), Math.round((right / lrTotal) * 100)],
-        topBottomPct: [Math.round((top / tbTotal) * 100), Math.round((bottom / tbTotal) * 100)],
-        cornerScores,
-        warpUrl: warp.toDataURL('image/jpeg', 0.9),
-        looksPreCropped: !preCropped && looksPreCropped(img.naturalWidth, img.naturalHeight),
-      })
+      cornersRef.current = pts
+      setConf(c)
+      setHasCorners(true)
+      setPreCropWarning(!preCropped && looksPreCropped(img.naturalWidth, img.naturalHeight))
+      redrawOverlay(pts)
+      recompute(pts)
 
       URL.revokeObjectURL(url)
     } catch (e: any) {
@@ -291,8 +339,47 @@ export default function DevGradeTest() {
     }
   }
 
+  const canvasPosFromEvent = (e: React.PointerEvent<HTMLCanvasElement>): Pt => {
+    const c = canvasRef.current!
+    const rect = c.getBoundingClientRect()
+    return {
+      x: (e.clientX - rect.left) * (c.width / rect.width),
+      y: (e.clientY - rect.top) * (c.height / rect.height),
+    }
+  }
 
-  const cornerNames = ['Haut-gauche', 'Haut-droite', 'Bas-droite', 'Bas-gauche']
+  const onPointerDown = (e: React.PointerEvent<HTMLCanvasElement>) => {
+    const pts = cornersRef.current
+    const img = imgRef.current
+    if (!pts || !img) return
+    const pos = canvasPosFromEvent(e)
+    const hitRadius = Math.max(24, img.naturalWidth / 30)
+    let nearest = -1, nearestDist = Infinity
+    pts.forEach((p, i) => {
+      const d = Math.hypot(p.x - pos.x, p.y - pos.y)
+      if (d < nearestDist) { nearestDist = d; nearest = i }
+    })
+    if (nearestDist <= hitRadius) {
+      dragIdxRef.current = nearest
+      e.currentTarget.setPointerCapture(e.pointerId)
+    }
+  }
+
+  const onPointerMove = (e: React.PointerEvent<HTMLCanvasElement>) => {
+    const idx = dragIdxRef.current
+    const pts = cornersRef.current
+    if (idx === null || !pts) return
+    const pos = canvasPosFromEvent(e)
+    const next = pts.map((p, i) => (i === idx ? pos : p))
+    cornersRef.current = next
+    redrawOverlay(next)
+  }
+
+  const onPointerUp = () => {
+    if (dragIdxRef.current === null) return
+    dragIdxRef.current = null
+    if (cornersRef.current) recompute(cornersRef.current)
+  }
 
   return (
     <div style={{ maxWidth: 900, margin: '0 auto', padding: '20px 14px 60px', fontFamily: 'Inter, sans-serif' }}>
@@ -322,33 +409,43 @@ export default function DevGradeTest() {
       {busy && <p>⏳ Analyse en cours…</p>}
       {error && <p style={{ color: '#e74c3c' }}>{error}</p>}
 
-      <canvas ref={canvasRef} style={{ width: '100%', maxWidth: 500, borderRadius: 8, background: '#eee', display: result ? 'block' : 'none' }} />
+      {hasCorners && (
+        <p style={{ fontSize: 12, color: '#888', marginBottom: 6 }}>
+          Glisse les points orange pour corriger un coin mal détecté — le recalcul se fait au relâchement.
+        </p>
+      )}
+      <canvas
+        ref={canvasRef}
+        onPointerDown={onPointerDown}
+        onPointerMove={onPointerMove}
+        onPointerUp={onPointerUp}
+        style={{ width: '100%', maxWidth: 500, borderRadius: 8, background: '#eee', display: hasCorners ? 'block' : 'none', touchAction: 'none', cursor: 'grab' }}
+      />
 
-      {result && (
+      {borderResult && (
         <div style={{ marginTop: 20, display: 'grid', gap: 20 }}>
-          {result.looksPreCropped && (
+          {preCropWarning && (
             <div style={{ fontSize: 13, color: '#9a6a00', background: '#fff8e6', border: '1px solid #f0dfa8', borderRadius: 8, padding: '10px 12px' }}>
               ⚠️ Cette photo semble déjà recadrée pile sur la carte (ratio proche de 2.5:3.5, pas de marge/fond visible).
               Le détecteur est conçu pour repérer le bord physique carte→fond ; sans fond, il peut se rabattre sur un
-              contraste interne (logo, bordure imprimée) et donner un contour trop petit — les résultats ci-dessous sont
-              probablement faux. Réessaie avec une photo qui garde un peu de fond autour de la carte, ou coche
-              "Carte déjà rognée" ci-dessus si c'est le cas.
+              contraste interne (logo, bordure imprimée) et donner un contour trop petit — corrige les coins à la main
+              ci-dessus, ou coche "Carte déjà rognée" et relance.
             </div>
           )}
           <div>
-            <h3 style={{ fontSize: 14, fontWeight: 800 }}>Détection — conf {result.conf.toFixed(3)}</h3>
+            <h3 style={{ fontSize: 14, fontWeight: 800 }}>Détection — conf {conf.toFixed(3)}</h3>
           </div>
 
           <div>
             <h3 style={{ fontSize: 14, fontWeight: 800, marginBottom: 8 }}>Centrage (approximatif)</h3>
-            <p style={{ fontSize: 13 }}>Gauche / Droite : <strong>{result.leftRightPct[0]} / {result.leftRightPct[1]}</strong></p>
-            <p style={{ fontSize: 13 }}>Haut / Bas : <strong>{result.topBottomPct[0]} / {result.topBottomPct[1]}</strong></p>
+            <p style={{ fontSize: 13 }}>Gauche / Droite : <strong>{borderResult.leftRightPct[0]} / {borderResult.leftRightPct[1]}</strong></p>
+            <p style={{ fontSize: 13 }}>Haut / Bas : <strong>{borderResult.topBottomPct[0]} / {borderResult.topBottomPct[1]}</strong></p>
           </div>
 
           <div>
             <h3 style={{ fontSize: 14, fontWeight: 800, marginBottom: 8 }}>Netteté des coins (heuristique, non calibrée)</h3>
             <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 8 }}>
-              {result.cornerScores.map((s, i) => {
+              {borderResult.cornerScores.map((s, i) => {
                 const { text, color } = sharpnessLabel(s)
                 return (
                   <div key={i} style={{ padding: '8px 10px', border: '1px solid #eee', borderRadius: 8 }}>
@@ -362,9 +459,12 @@ export default function DevGradeTest() {
           </div>
 
           <div>
-            <h3 style={{ fontSize: 14, fontWeight: 800, marginBottom: 8 }}>Carte redressée (utilisée pour le centrage)</h3>
+            <h3 style={{ fontSize: 14, fontWeight: 800, marginBottom: 8 }}>
+              Carte redressée — repères de bordure détectée
+              <span style={{ fontWeight: 400, color: '#888', fontSize: 12 }}> (vert = gauche/droite, bleu = haut/bas)</span>
+            </h3>
             {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img src={result.warpUrl} alt="carte redressée" style={{ width: '100%', maxWidth: 300, borderRadius: 8, border: '1px solid #eee' }} />
+            <img src={borderResult.warpUrl} alt="carte redressée avec repères de bordure" style={{ width: '100%', maxWidth: 300, borderRadius: 8, border: '1px solid #eee' }} />
           </div>
         </div>
       )}
