@@ -7,13 +7,18 @@ import { refineCornersV5 } from '@/lib/cornerDetectorYolo'
 // de connexion -- l'URL non listee suffit, personne ne la connait. Volontairement
 // PAS un grade chiffre façon PSA -- les sous-scores sont affiches separement,
 // voir la discussion produit associee : une photo de telephone sans eclairage
-// controle ne justifie pas une precision numerique unique. Warp par
-// interpolation bilineaire du quadrilatere (pas une vraie homographie
-// projective) -- approximation suffisante pour une photo prise a peu pres de
-// face, mais a garder en tete si le resultat semble deforme. Coins ET lignes
-// de bordure deplacables a la souris -- utile sur les cartes "full bleed"
-// (quasi pas de bordure imprimee, ex Panini Optic) ou detectBorderWidth n'a
-// rien de fiable a accrocher et se rabat sur un contraste au hasard dans la photo.
+// controle ne justifie pas une precision numerique unique.
+//
+// Coins ET lignes de bordure deplacables SUR LA MEME PHOTO (pas de deuxieme
+// image "redressee" separee) : la bordure est detectee via un warp bilineaire
+// interne (voir warpQuadToRect/detectBorderWidth), mais affichee en reprojetant
+// les 2 lignes trouvees dans l'espace de la photo d'origine -- une ligne "u
+// constant" dans l'image redressee est un segment droit entre le point
+// correspondant sur l'arete haute et celui sur l'arete basse du quadrilatere
+// (et vice-versa pour "v constant"), c'est une propriete du warp bilineaire.
+// Glisser une ligne convertit sa position en (u,v) approximatifs via
+// inverseBilinearUV -- une seule passe, pas iteratif, suffisant pour un
+// quadrilatere proche d'un rectangle (photo prise a peu pres de face).
 
 const IMGSZ = 640
 const ORT_CDN = 'https://cdn.jsdelivr.net/npm/onnxruntime-web@1.27.0/dist/'
@@ -22,7 +27,10 @@ const WARP_W = 500
 const WARP_H = 700
 
 type Pt = { x: number; y: number }
-type Borders = { left: number; right: number; top: number; bottom: number }
+// Bordure exprimee en FRACTION (0..1) du cote correspondant du quadrilatere,
+// pas en pixels -- permet de reprojeter les lignes sur la photo d'origine
+// quels que soient sa taille et l'angle du quadrilatere.
+type BorderFrac = { left: number; right: number; top: number; bottom: number }
 type Percents = { leftRightPct: [number, number]; topBottomPct: [number, number] }
 
 function letterbox(img: HTMLImageElement) {
@@ -80,7 +88,9 @@ async function detectRawCorners(ort: typeof import('onnxruntime-web'), img: HTML
 
 // Interpolation bilineaire du quadrilatere [TL,TR,BR,BL] vers un rectangle
 // outW x outH -- approximation (pas une vraie homographie projective) mais
-// largement suffisante pour une photo prise a peu pres de face.
+// largement suffisante pour une photo prise a peu pres de face. Sert
+// uniquement au calcul interne (detectBorderWidth a besoin d'une image
+// redressee) -- plus jamais affiche directement, voir borderSegments.
 function warpQuadToRect(img: HTMLImageElement, quad: Pt[], outW: number, outH: number): HTMLCanvasElement {
   const [TL, TR, BR, BL] = quad
   const src = document.createElement('canvas')
@@ -116,10 +126,11 @@ function warpQuadToRect(img: HTMLImageElement, quad: Pt[], outW: number, outH: n
   return out
 }
 
-// Largeur de bordure (px) sur un des 4 cotes du canvas redresse : moyenne la
-// luminance sur une bande perpendiculaire a chaque position en avançant depuis
-// le bord, et repere le plus gros saut de luminance (transition bordure -> zone imprimee).
-// Simple point de depart -- reglable a la main ensuite (voir bordersRef/drag).
+// Largeur de bordure (px, dans l'espace redresse WARP_W x WARP_H) sur un des
+// 4 cotes : moyenne la luminance sur une bande perpendiculaire a chaque
+// position en avançant depuis le bord, et repere le plus gros saut de
+// luminance (transition bordure -> zone imprimee). Point de depart seulement
+// -- ajustable a la main ensuite (voir borderSegments/drag).
 function detectBorderWidth(canvas: HTMLCanvasElement, side: 'left' | 'right' | 'top' | 'bottom'): number {
   const ctx = canvas.getContext('2d')!
   const W = canvas.width, H = canvas.height
@@ -155,28 +166,57 @@ function detectBorderWidth(canvas: HTMLCanvasElement, side: 'left' | 'right' | '
   return bestIdx
 }
 
-// Dessine les reperes de bordure courants (verts = gauche/droite, bleus =
-// haut/bas) sur le canvas d'affichage -- appele a chaque frame de drag, donc
-// doit rester tres bon marche (pas de getImageData ici).
-function drawBorderGuides(ctx: CanvasRenderingContext2D, W: number, H: number, b: Borders) {
-  ctx.save()
-  ctx.lineWidth = 3
-  ctx.setLineDash([7, 5])
-  ctx.strokeStyle = 'rgba(0, 200, 120, 0.95)'
-  ctx.beginPath(); ctx.moveTo(b.left, 0); ctx.lineTo(b.left, H); ctx.stroke()
-  ctx.beginPath(); ctx.moveTo(W - b.right, 0); ctx.lineTo(W - b.right, H); ctx.stroke()
-  ctx.strokeStyle = 'rgba(30, 120, 255, 0.95)'
-  ctx.beginPath(); ctx.moveTo(0, b.top); ctx.lineTo(W, b.top); ctx.stroke()
-  ctx.beginPath(); ctx.moveTo(0, H - b.bottom); ctx.lineTo(W, H - b.bottom); ctx.stroke()
-  ctx.restore()
+// ── Geometrie du quadrilatere [TL,TR,BR,BL] ─────────────────────────────
+function topEdgePt(q: Pt[], u: number): Pt { const [TL, TR] = q; return { x: TL.x + u * (TR.x - TL.x), y: TL.y + u * (TR.y - TL.y) } }
+function bottomEdgePt(q: Pt[], u: number): Pt { const [, , BR, BL] = q; return { x: BL.x + u * (BR.x - BL.x), y: BL.y + u * (BR.y - BL.y) } }
+function leftEdgePt(q: Pt[], v: number): Pt { const [TL, , , BL] = q; return { x: TL.x + v * (BL.x - TL.x), y: TL.y + v * (BL.y - TL.y) } }
+function rightEdgePt(q: Pt[], v: number): Pt { const [, TR, BR] = q; return { x: TR.x + v * (BR.x - TR.x), y: TR.y + v * (BR.y - TR.y) } }
+
+// Segments (dans l'espace de la photo d'origine) representant chacune des 4
+// lignes de bordure -- une ligne "u constant" du warp est un segment droit
+// entre le point correspondant sur l'arete haute et celui sur l'arete basse
+// (propriete du warp bilineaire), et inversement pour "v constant".
+function borderSegments(q: Pt[], f: BorderFrac) {
+  return {
+    left: [topEdgePt(q, f.left), bottomEdgePt(q, f.left)] as [Pt, Pt],
+    right: [topEdgePt(q, 1 - f.right), bottomEdgePt(q, 1 - f.right)] as [Pt, Pt],
+    top: [leftEdgePt(q, f.top), rightEdgePt(q, f.top)] as [Pt, Pt],
+    bottom: [leftEdgePt(q, 1 - f.bottom), rightEdgePt(q, 1 - f.bottom)] as [Pt, Pt],
+  }
 }
 
-function percentsFromBorders(b: Borders): Percents {
-  const lrTotal = b.left + b.right || 1
-  const tbTotal = b.top + b.bottom || 1
+// Approximation inverse du warp bilineaire : retrouve (u,v) pour un point de
+// la photo d'origine. Une seule passe (pas iteratif) -- estime v via les
+// aretes gauche/droite, puis u via les points gauche/droite interpoles a ce
+// v. Suffisant pour un quadrilatere proche d'un rectangle.
+function inverseBilinearUV(q: Pt[], pos: Pt): { u: number; v: number } {
+  const [TL, TR, BR, BL] = q
+  const leftLen2 = (BL.x - TL.x) ** 2 + (BL.y - TL.y) ** 2 || 1
+  const rightLen2 = (BR.x - TR.x) ** 2 + (BR.y - TR.y) ** 2 || 1
+  const vLeft = ((pos.x - TL.x) * (BL.x - TL.x) + (pos.y - TL.y) * (BL.y - TL.y)) / leftLen2
+  const vRight = ((pos.x - TR.x) * (BR.x - TR.x) + (pos.y - TR.y) * (BR.y - TR.y)) / rightLen2
+  const v = Math.max(0, Math.min(1, (vLeft + vRight) / 2))
+  const leftPt = leftEdgePt(q, v)
+  const rightPt = rightEdgePt(q, v)
+  const uLen2 = (rightPt.x - leftPt.x) ** 2 + (rightPt.y - leftPt.y) ** 2 || 1
+  const u = ((pos.x - leftPt.x) * (rightPt.x - leftPt.x) + (pos.y - leftPt.y) * (rightPt.y - leftPt.y)) / uLen2
+  return { u: Math.max(0, Math.min(1, u)), v }
+}
+
+function distToSegment(p: Pt, [a, b]: [Pt, Pt]): number {
+  const dx = b.x - a.x, dy = b.y - a.y
+  const len2 = dx * dx + dy * dy || 1
+  let t = ((p.x - a.x) * dx + (p.y - a.y) * dy) / len2
+  t = Math.max(0, Math.min(1, t))
+  return Math.hypot(p.x - (a.x + t * dx), p.y - (a.y + t * dy))
+}
+
+function percentsFromBorders(f: BorderFrac): Percents {
+  const lrTotal = f.left + f.right || 1
+  const tbTotal = f.top + f.bottom || 1
   return {
-    leftRightPct: [Math.round((b.left / lrTotal) * 100), Math.round((b.right / lrTotal) * 100)],
-    topBottomPct: [Math.round((b.top / tbTotal) * 100), Math.round((b.bottom / tbTotal) * 100)],
+    leftRightPct: [Math.round((f.left / lrTotal) * 100), Math.round((f.right / lrTotal) * 100)],
+    topBottomPct: [Math.round((f.top / tbTotal) * 100), Math.round((f.bottom / tbTotal) * 100)],
   }
 }
 
@@ -241,26 +281,33 @@ export default function DevGradeTest() {
   const [cornerScores, setCornerScores] = useState<number[] | null>(null)
 
   const canvasRef = useRef<HTMLCanvasElement | null>(null)
-  const warpCanvasRef = useRef<HTMLCanvasElement | null>(null)
   const imgRef = useRef<HTMLImageElement | null>(null)
-  const warpBitmapRef = useRef<HTMLCanvasElement | null>(null)
   // Sources de verite pendant un drag -- eviter de dependre du state React
   // (qui peut retarder d'une frame par rapport aux evenements pointer) pour
   // que le trace suive la souris sans a-coups.
   const cornersRef = useRef<Pt[] | null>(null)
-  const bordersRef = useRef<Borders | null>(null)
+  const fracRef = useRef<BorderFrac | null>(null)
   const dragCornerIdxRef = useRef<number | null>(null)
-  const dragBorderSideRef = useRef<keyof Borders | null>(null)
+  const dragBorderSideRef = useRef<keyof BorderFrac | null>(null)
 
-  const redrawOverlay = (pts: Pt[]) => {
+  const redrawOverlay = (pts: Pt[], frac: BorderFrac) => {
     const img = imgRef.current, c = canvasRef.current
     if (!img || !c) return
     const ctx = c.getContext('2d')!
     ctx.clearRect(0, 0, c.width, c.height)
     ctx.drawImage(img, 0, 0)
+
     const lw = Math.max(3, img.naturalWidth / 300)
-    ctx.strokeStyle = '#ff8c00'
+    const segs = borderSegments(pts, frac)
     ctx.lineWidth = lw
+    ctx.setLineDash([Math.max(10, img.naturalWidth / 150), Math.max(7, img.naturalWidth / 220)])
+    ctx.strokeStyle = 'rgba(0, 200, 120, 0.95)'
+    ;[segs.left, segs.right].forEach(([a, b]) => { ctx.beginPath(); ctx.moveTo(a.x, a.y); ctx.lineTo(b.x, b.y); ctx.stroke() })
+    ctx.strokeStyle = 'rgba(30, 120, 255, 0.95)'
+    ;[segs.top, segs.bottom].forEach(([a, b]) => { ctx.beginPath(); ctx.moveTo(a.x, a.y); ctx.lineTo(b.x, b.y); ctx.stroke() })
+    ctx.setLineDash([])
+
+    ctx.strokeStyle = '#ff8c00'
     ctx.beginPath()
     pts.forEach((p, i) => (i === 0 ? ctx.moveTo(p.x, p.y) : ctx.lineTo(p.x, p.y)))
     ctx.closePath()
@@ -273,32 +320,19 @@ export default function DevGradeTest() {
     })
   }
 
-  const redrawWarp = () => {
-    const bmp = warpBitmapRef.current, c = warpCanvasRef.current, b = bordersRef.current
-    if (!bmp || !c || !b) return
-    const ctx = c.getContext('2d')!
-    ctx.clearRect(0, 0, c.width, c.height)
-    ctx.drawImage(bmp, 0, 0)
-    drawBorderGuides(ctx, c.width, c.height, b)
-    setPercents(percentsFromBorders(b))
-  }
-
   const recompute = (pts: Pt[]) => {
     const img = imgRef.current
     if (!img) return
     const warp = warpQuadToRect(img, pts, WARP_W, WARP_H)
-    warpBitmapRef.current = warp
-    bordersRef.current = {
-      left: detectBorderWidth(warp, 'left'),
-      right: detectBorderWidth(warp, 'right'),
-      top: detectBorderWidth(warp, 'top'),
-      bottom: detectBorderWidth(warp, 'bottom'),
+    const frac: BorderFrac = {
+      left: detectBorderWidth(warp, 'left') / WARP_W,
+      right: detectBorderWidth(warp, 'right') / WARP_W,
+      top: detectBorderWidth(warp, 'top') / WARP_H,
+      bottom: detectBorderWidth(warp, 'bottom') / WARP_H,
     }
-    if (warpCanvasRef.current) {
-      warpCanvasRef.current.width = WARP_W
-      warpCanvasRef.current.height = WARP_H
-    }
-    redrawWarp()
+    fracRef.current = frac
+    redrawOverlay(pts, frac)
+    setPercents(percentsFromBorders(frac))
     setCornerScores(pts.map(p => cornerSharpness(img, p)))
   }
 
@@ -349,7 +383,6 @@ export default function DevGradeTest() {
       setConf(c)
       setHasCorners(true)
       setPreCropWarning(!preCropped && looksPreCropped(img.naturalWidth, img.naturalHeight))
-      redrawOverlay(pts)
       recompute(pts)
 
       URL.revokeObjectURL(url)
@@ -369,76 +402,72 @@ export default function DevGradeTest() {
     }
   }
 
-  // ── Drag des 4 coins (canvas photo originale) ──────────────────────────
-  const onCornerPointerDown = (e: React.PointerEvent<HTMLCanvasElement>) => {
-    const pts = cornersRef.current
-    const img = imgRef.current
-    if (!pts || !img) return
+  // ── Drag combiné : coins (poignées oranges) ET lignes de bordure ────────
+  // (vert gauche/droite, bleu haut/bas), directement sur la photo d'origine.
+  const onPointerDown = (e: React.PointerEvent<HTMLCanvasElement>) => {
+    const pts = cornersRef.current, frac = fracRef.current, img = imgRef.current
+    if (!pts || !frac || !img) return
     const pos = posFromEvent(e)
-    const hitRadius = Math.max(24, img.naturalWidth / 30)
-    let nearest = -1, nearestDist = Infinity
+
+    const cornerHitRadius = Math.max(24, img.naturalWidth / 30)
+    let nearestCorner = -1, nearestCornerDist = Infinity
     pts.forEach((p, i) => {
       const d = Math.hypot(p.x - pos.x, p.y - pos.y)
-      if (d < nearestDist) { nearestDist = d; nearest = i }
+      if (d < nearestCornerDist) { nearestCornerDist = d; nearestCorner = i }
     })
-    if (nearestDist <= hitRadius) {
-      dragCornerIdxRef.current = nearest
+    if (nearestCornerDist <= cornerHitRadius) {
+      dragCornerIdxRef.current = nearestCorner
+      e.currentTarget.setPointerCapture(e.pointerId)
+      return
+    }
+
+    const segs = borderSegments(pts, frac)
+    const lineHitRadius = Math.max(18, img.naturalWidth / 60)
+    let bestSide: keyof BorderFrac | null = null, bestDist = lineHitRadius
+    ;(Object.keys(segs) as (keyof BorderFrac)[]).forEach(k => {
+      const d = distToSegment(pos, segs[k])
+      if (d < bestDist) { bestDist = d; bestSide = k }
+    })
+    if (bestSide) {
+      dragBorderSideRef.current = bestSide
       e.currentTarget.setPointerCapture(e.pointerId)
     }
-  }
-  const onCornerPointerMove = (e: React.PointerEvent<HTMLCanvasElement>) => {
-    const idx = dragCornerIdxRef.current
-    const pts = cornersRef.current
-    if (idx === null || !pts) return
-    const pos = posFromEvent(e)
-    const next = pts.map((p, i) => (i === idx ? pos : p))
-    cornersRef.current = next
-    redrawOverlay(next)
-  }
-  const onCornerPointerUp = () => {
-    if (dragCornerIdxRef.current === null) return
-    dragCornerIdxRef.current = null
-    if (cornersRef.current) recompute(cornersRef.current)
   }
 
-  // ── Drag des 4 lignes de bordure (canvas carte redressee) ──────────────
-  const onBorderPointerDown = (e: React.PointerEvent<HTMLCanvasElement>) => {
-    const b = bordersRef.current
-    const c = warpCanvasRef.current
-    if (!b || !c) return
+  const onPointerMove = (e: React.PointerEvent<HTMLCanvasElement>) => {
+    const pts = cornersRef.current, frac = fracRef.current
+    if (!pts || !frac) return
     const pos = posFromEvent(e)
-    const hitPx = 14
-    const dists: Record<keyof Borders, number> = {
-      left: Math.abs(pos.x - b.left),
-      right: Math.abs(pos.x - (c.width - b.right)),
-      top: Math.abs(pos.y - b.top),
-      bottom: Math.abs(pos.y - (c.height - b.bottom)),
+
+    if (dragCornerIdxRef.current !== null) {
+      const next = pts.map((p, i) => (i === dragCornerIdxRef.current ? pos : p))
+      cornersRef.current = next
+      redrawOverlay(next, frac)
+      return
     }
-    let best: keyof Borders | null = null, bestDist = hitPx
-    ;(Object.keys(dists) as (keyof Borders)[]).forEach(k => {
-      if (dists[k] < bestDist) { bestDist = dists[k]; best = k }
-    })
-    if (best) {
-      dragBorderSideRef.current = best
-      e.currentTarget.setPointerCapture(e.pointerId)
-    }
-  }
-  const onBorderPointerMove = (e: React.PointerEvent<HTMLCanvasElement>) => {
+
     const side = dragBorderSideRef.current
-    const b = bordersRef.current
-    const c = warpCanvasRef.current
-    if (!side || !b || !c) return
-    const pos = posFromEvent(e)
-    const next = { ...b }
-    if (side === 'left') next.left = Math.max(0, Math.min(pos.x, c.width))
-    else if (side === 'right') next.right = Math.max(0, Math.min(c.width - pos.x, c.width))
-    else if (side === 'top') next.top = Math.max(0, Math.min(pos.y, c.height))
-    else if (side === 'bottom') next.bottom = Math.max(0, Math.min(c.height - pos.y, c.height))
-    bordersRef.current = next
-    redrawWarp()
+    if (side) {
+      const { u, v } = inverseBilinearUV(pts, pos)
+      const nextFrac = { ...frac }
+      if (side === 'left') nextFrac.left = u
+      else if (side === 'right') nextFrac.right = 1 - u
+      else if (side === 'top') nextFrac.top = v
+      else if (side === 'bottom') nextFrac.bottom = 1 - v
+      fracRef.current = nextFrac
+      redrawOverlay(pts, nextFrac)
+      setPercents(percentsFromBorders(nextFrac))
+    }
   }
-  const onBorderPointerUp = () => {
+
+  const onPointerUp = () => {
+    const wasCorner = dragCornerIdxRef.current !== null
+    dragCornerIdxRef.current = null
     dragBorderSideRef.current = null
+    // Un coin deplace change la geometrie du warp -- on refait une detection
+    // fraiche de la bordure (les reglages manuels de bordure precedents sont
+    // perdus, mais un ajustement de coin se fait normalement avant, pas apres).
+    if (wasCorner && cornersRef.current) recompute(cornersRef.current)
   }
 
   return (
@@ -471,14 +500,15 @@ export default function DevGradeTest() {
 
       {hasCorners && (
         <p style={{ fontSize: 12, color: '#888', marginBottom: 6 }}>
-          Glisse les points orange pour corriger un coin mal détecté — le recalcul se fait au relâchement.
+          Glisse les points orange (coins) ou les lignes vertes/bleues (bordure) directement sur la photo —
+          la bordure se recalcule en direct, les coins au relâchement.
         </p>
       )}
       <canvas
         ref={canvasRef}
-        onPointerDown={onCornerPointerDown}
-        onPointerMove={onCornerPointerMove}
-        onPointerUp={onCornerPointerUp}
+        onPointerDown={onPointerDown}
+        onPointerMove={onPointerMove}
+        onPointerUp={onPointerUp}
         style={{ width: '100%', maxWidth: 500, borderRadius: 8, background: '#eee', display: hasCorners ? 'block' : 'none', touchAction: 'none', cursor: 'grab' }}
       />
 
@@ -488,8 +518,8 @@ export default function DevGradeTest() {
             <div style={{ fontSize: 13, color: '#9a6a00', background: '#fff8e6', border: '1px solid #f0dfa8', borderRadius: 8, padding: '10px 12px' }}>
               ⚠️ Cette photo semble déjà recadrée pile sur la carte (ratio proche de 2.5:3.5, pas de marge/fond visible).
               Le détecteur est conçu pour repérer le bord physique carte→fond ; sans fond, il peut se rabattre sur un
-              contraste interne (logo, bordure imprimée) et donner un contour trop petit — corrige les coins à la main
-              ci-dessus, ou coche "Carte déjà rognée" et relance.
+              contraste interne (logo, bordure imprimée) et donner un contour trop petit — corrige les coins ou les
+              lignes à la main ci-dessus, ou coche "Carte déjà rognée" et relance.
             </div>
           )}
           <div>
@@ -519,24 +549,6 @@ export default function DevGradeTest() {
               </div>
             </div>
           )}
-
-          <div>
-            <h3 style={{ fontSize: 14, fontWeight: 800, marginBottom: 4 }}>
-              Carte redressée — repères de bordure
-              <span style={{ fontWeight: 400, color: '#888', fontSize: 12 }}> (vert = gauche/droite, bleu = haut/bas)</span>
-            </h3>
-            <p style={{ fontSize: 12, color: '#888', marginBottom: 8 }}>
-              Glisse une ligne pour corriger la bordure repérée — utile sur les cartes sans grande bordure imprimée
-              (full bleed) où la détection automatique n'a rien de fiable à accrocher.
-            </p>
-            <canvas
-              ref={warpCanvasRef}
-              onPointerDown={onBorderPointerDown}
-              onPointerMove={onBorderPointerMove}
-              onPointerUp={onBorderPointerUp}
-              style={{ width: '100%', maxWidth: 300, borderRadius: 8, border: '1px solid #eee', touchAction: 'none', cursor: 'grab' }}
-            />
-          </div>
         </div>
       )}
     </div>
