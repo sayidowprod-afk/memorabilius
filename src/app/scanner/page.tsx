@@ -360,6 +360,14 @@ export default function ScannerPage() {
       {/* Header */}
       <div style={{ position: 'sticky', top: 'calc(60px + var(--safe-area-inset-top, env(safe-area-inset-top)))', zIndex: 10, background: dark ? '#0f0f0f' : '#fff', borderBottom: `1px solid ${border}`, padding: '10px 16px', display: 'flex', alignItems: 'center', height: 48 }}>
         <span style={{ fontWeight: 900, fontSize: 16, color: text }}>{t('scanner_header_title')}</span>
+        {/* Prix median reste visible en scrollant vers les ventes/annonces --
+            avant, une fois le panneau de prix passe hors ecran, le chiffre
+            principal disparaissait completement du champ de vision. */}
+        {phase === 'done' && ebay && ebay.median > 0 && (
+          <span style={{ marginLeft: 14, fontSize: 15, fontWeight: 900, color: blue, fontVariantNumeric: 'tabular-nums' }}>
+            {usd(ebay.median)}
+          </span>
+        )}
         {phase !== 'idle' && (
           <button onClick={reset} style={{ marginLeft: 'auto', fontSize: 12, color: muted, background: 'none', border: `1px solid ${border}`, borderRadius: 8, padding: '5px 12px', cursor: 'pointer', fontWeight: 700 }}>
             {t('scanner_new_card')}
@@ -641,13 +649,16 @@ export default function ScannerPage() {
                       </div>
                     </div>
                     <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 10 }}>
-                      <div style={{ background: dark ? '#0a1f12' : '#f0fdf4', borderRadius: 12, padding: '12px 14px', textAlign: 'center' }}>
+                      {/* Min/max etaient en vert/rouge -- le rouge evoque un probleme alors
+                          qu'un prix max eleve est une bonne nouvelle. Meme famille de teinte
+                          (bleu) pour les deux, distinguee seulement par l'intensite. */}
+                      <div style={{ background: dark ? '#0a1a2e' : '#f0f6ff', borderRadius: 12, padding: '12px 14px', textAlign: 'center' }}>
                         <div style={{ fontSize: 10, fontWeight: 700, color: muted, textTransform: 'uppercase', letterSpacing: 0.5, marginBottom: 4 }}>{t('scanner_min')}</div>
-                        <div style={{ fontWeight: 900, fontSize: 22, color: '#16a34a', fontVariantNumeric: 'tabular-nums' }}>{usd(ebay.min)}</div>
+                        <div style={{ fontWeight: 900, fontSize: 22, color: dark ? '#7db3ff' : '#3b82c4', fontVariantNumeric: 'tabular-nums' }}>{usd(ebay.min)}</div>
                       </div>
-                      <div style={{ background: dark ? '#1f0a0a' : '#fff5f5', borderRadius: 12, padding: '12px 14px', textAlign: 'center' }}>
+                      <div style={{ background: dark ? '#0d1a36' : '#eef3ff', borderRadius: 12, padding: '12px 14px', textAlign: 'center' }}>
                         <div style={{ fontSize: 10, fontWeight: 700, color: muted, textTransform: 'uppercase', letterSpacing: 0.5, marginBottom: 4 }}>{t('scanner_max')}</div>
-                        <div style={{ fontWeight: 900, fontSize: 22, color: '#dc2626', fontVariantNumeric: 'tabular-nums' }}>{usd(ebay.max)}</div>
+                        <div style={{ fontWeight: 900, fontSize: 22, color: blue, fontVariantNumeric: 'tabular-nums' }}>{usd(ebay.max)}</div>
                       </div>
                     </div>
                   </div>
