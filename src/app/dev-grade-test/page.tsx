@@ -562,6 +562,46 @@ export default function DevGradeTest() {
     onFile(new File([blob], 'photo.jpg', { type: 'image/jpeg' }))
   }
 
+  // Coche/decoche "carte deja rognee" APRES qu'une photo soit deja chargee --
+  // pas besoin de re-uploader : recalcule directement a partir de imgRef.
+  const applyPreCropped = async (checked: boolean) => {
+    setPreCropped(checked)
+    const img = imgRef.current
+    if (!img) return
+    setBusy(true)
+    setError('')
+    try {
+      let pts: Pt[]
+      let c: number
+      if (checked) {
+        pts = [
+          { x: 0, y: 0 },
+          { x: img.naturalWidth, y: 0 },
+          { x: img.naturalWidth, y: img.naturalHeight },
+          { x: 0, y: img.naturalHeight },
+        ]
+        c = 1
+      } else {
+        const ort = await import('onnxruntime-web')
+        ort.env.wasm.wasmPaths = ORT_CDN
+        ort.env.wasm.numThreads = 1
+        const scale = Math.min(IMGSZ / img.naturalWidth, IMGSZ / img.naturalHeight)
+        const { corners: rawCorners, conf: rawConf } = await detectRawCorners(ort, img)
+        if (!rawCorners) throw new Error('Aucune carte détectée')
+        pts = refineCornersV5(img, rawCorners, scale)
+        c = rawConf
+      }
+      cornersRef.current = pts
+      setConf(c)
+      setPreCropWarning(!checked && looksPreCropped(img.naturalWidth, img.naturalHeight))
+      recompute(pts)
+    } catch (e: any) {
+      setError(e?.message || String(e))
+    } finally {
+      setBusy(false)
+    }
+  }
+
   const grade = percents && cornerScores ? estimateGrade(percents.leftRightPct, percents.topBottomPct, cornerScores) : null
 
   return (
@@ -581,13 +621,16 @@ export default function DevGradeTest() {
           l'idée. Rien ici n'est un grade officiel.
         </div>
 
+        <label style={{ display: 'flex', alignItems: 'center', gap: 10, fontSize: 13, color: text, background: cardBg, border: `1px solid ${border}`, borderRadius: 12, padding: '12px 14px', marginBottom: 14, cursor: 'pointer' }}>
+          <input type="checkbox" checked={preCropped} onChange={e => applyPreCropped(e.target.checked)} style={{ width: 18, height: 18, flexShrink: 0 }} />
+          <span>
+            Carte déjà rognée <span style={{ color: muted }}>(pas de fond autour de la carte sur la photo)</span>
+            {hasCorners && <span style={{ color: muted }}> — coché après coup, recalcule tout de suite</span>}
+          </span>
+        </label>
+
         {!hasCorners && !busy && (
           <div style={{ paddingTop: 4 }}>
-            <label style={{ display: 'flex', alignItems: 'center', gap: 10, fontSize: 13, color: text, background: cardBg, border: `1px solid ${border}`, borderRadius: 12, padding: '12px 14px', marginBottom: 14, cursor: 'pointer' }}>
-              <input type="checkbox" checked={preCropped} onChange={e => setPreCropped(e.target.checked)} style={{ width: 18, height: 18, flexShrink: 0 }} />
-              <span>Carte déjà rognée <span style={{ color: muted }}>(pas de fond autour de la carte sur la photo)</span></span>
-            </label>
-
             <button onClick={() => setCameraModal(true)} style={{
               display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', gap: 8,
               width: '100%', minHeight: 180, background: blue, border: 'none',
@@ -627,31 +670,37 @@ export default function DevGradeTest() {
           </div>
         )}
 
-        {hasCorners && (
-          <div style={{ background: cardBg, borderRadius: 16, border: `1px solid ${border}`, padding: 12, marginBottom: 14 }}>
-            <div style={{ display: 'flex', gap: 14, fontSize: 11, color: muted, marginBottom: 10, flexWrap: 'wrap' }}>
-              <span style={{ display: 'flex', alignItems: 'center', gap: 5 }}>
-                <span style={{ width: 10, height: 10, borderRadius: '50%', background: '#ff8c00', display: 'inline-block' }} /> Coin
-              </span>
-              <span style={{ display: 'flex', alignItems: 'center', gap: 5 }}>
-                <span style={{ width: 14, height: 2, background: '#00c878', display: 'inline-block' }} /> Bordure G/D
-              </span>
-              <span style={{ display: 'flex', alignItems: 'center', gap: 5 }}>
-                <span style={{ width: 14, height: 2, background: '#1e78ff', display: 'inline-block' }} /> Bordure H/B
-              </span>
-            </div>
-            <canvas
-              ref={canvasRef}
-              onPointerDown={onPointerDown}
-              onPointerMove={onPointerMove}
-              onPointerUp={onPointerUp}
-              style={{ width: '100%', borderRadius: 10, background: border, touchAction: 'none', cursor: 'grab', display: 'block' }}
-            />
-            <p style={{ fontSize: 11, color: muted, marginTop: 8, textAlign: 'center' }}>
-              Glisse un point ou une ligne pour corriger — la bordure se recalcule en direct, les coins au relâchement.
-            </p>
+        {/* Toujours monte (jamais {hasCorners && ...}) -- recompute()/redrawOverlay()
+            dessinent dedans de facon imperative des la fin du chargement du fichier,
+            avant meme que React n'ait eu l'occasion de re-rendre suite a
+            setHasCorners(true). Un canvas conditionnellement rendu n'existe pas
+            encore dans le DOM a ce moment-la (canvasRef.current === null), et le
+            dessin est silencieusement perdu -- vu deux fois de suite, cette fois
+            en enveloppant le canvas dans une carte conditionnelle. Seule la
+            visibilite (display) doit dependre de hasCorners, jamais le montage. */}
+        <div style={{ background: cardBg, borderRadius: 16, border: `1px solid ${border}`, padding: 12, marginBottom: 14, display: hasCorners ? 'block' : 'none' }}>
+          <div style={{ display: 'flex', gap: 14, fontSize: 11, color: muted, marginBottom: 10, flexWrap: 'wrap' }}>
+            <span style={{ display: 'flex', alignItems: 'center', gap: 5 }}>
+              <span style={{ width: 10, height: 10, borderRadius: '50%', background: '#ff8c00', display: 'inline-block' }} /> Coin
+            </span>
+            <span style={{ display: 'flex', alignItems: 'center', gap: 5 }}>
+              <span style={{ width: 14, height: 2, background: '#00c878', display: 'inline-block' }} /> Bordure G/D
+            </span>
+            <span style={{ display: 'flex', alignItems: 'center', gap: 5 }}>
+              <span style={{ width: 14, height: 2, background: '#1e78ff', display: 'inline-block' }} /> Bordure H/B
+            </span>
           </div>
-        )}
+          <canvas
+            ref={canvasRef}
+            onPointerDown={onPointerDown}
+            onPointerMove={onPointerMove}
+            onPointerUp={onPointerUp}
+            style={{ width: '100%', borderRadius: 10, background: border, touchAction: 'none', cursor: 'grab', display: 'block' }}
+          />
+          <p style={{ fontSize: 11, color: muted, marginTop: 8, textAlign: 'center' }}>
+            Glisse un point ou une ligne pour corriger — la bordure se recalcule en direct, les coins au relâchement.
+          </p>
+        </div>
 
         {percents && cornerScores && grade !== null && (
           <div style={{ display: 'grid', gap: 14 }}>
