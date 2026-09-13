@@ -23,6 +23,7 @@ import PushInit from '@/components/PushInit'
 import OfflineBanner from '@/components/OfflineBanner'
 import LocalRemindersInit from '@/components/LocalRemindersInit'
 import ChunkErrorReload from '@/components/ChunkErrorReload'
+import HangWatchdog from '@/components/HangWatchdog'
 
 export const viewport: Viewport = {
   width: 'device-width',
@@ -97,11 +98,16 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       <body>
         {/* Lit le thème depuis localStorage AVANT le premier rendu React pour éviter le flash light→dark (CLS) */}
         <script dangerouslySetInnerHTML={{ __html: `try{if(localStorage.getItem('theme')==='dark'){document.documentElement.setAttribute('data-theme','dark')}}catch(e){}` }} />
+        {/* Filet de secours "page blanche/bloquée" (voir HangWatchdog.tsx) : tourne
+            avant même l'hydratation React, donc capte aussi un blocage qui empêche
+            React de démarrer du tout, pas seulement un hang après coup. */}
+        <script dangerouslySetInnerHTML={{ __html: `setTimeout(function(){try{if(!window.__memAppMounted){var k='hang-reload-at';var last=Number(sessionStorage.getItem(k)||0);if(Date.now()-last>30000){sessionStorage.setItem(k,String(Date.now()));location.reload()}}}catch(e){}},9000)` }} />
         <NativeProvider>
         <AuthProvider>
         <ThemeProvider>
           <LangProvider>
             <ChunkErrorReload />
+            <HangWatchdog />
             <NativeInit />
             <PushInit />
             <LocalRemindersInit />
