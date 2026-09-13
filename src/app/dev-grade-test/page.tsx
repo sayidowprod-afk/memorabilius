@@ -186,12 +186,30 @@ type Result = {
   topBottomPct: [number, number]
   cornerScores: number[]  // TL, TR, BR, BL
   warpUrl: string
+  looksPreCropped: boolean
+}
+
+// Le detecteur est concu pour des photos avec un peu de marge/fond autour de
+// la carte (comme le vrai scanner) -- sur une image deja recadree pile sur la
+// carte, il n'y a plus de vrai bord physique carte->fond a trouver, et le
+// raffinement se rabat sur le prochain contraste fort a l'INTERIEUR (logo,
+// bordure imprimee), donnant un contour trop petit sans que rien ne le
+// signale. Heuristique basee sur la photo elle-meme (pas sur la sortie du
+// detecteur, potentiellement deja fausse) : si le ratio largeur/hauteur de
+// l'image colle de pres au ratio standard d'une carte (2.5x3.5), il n'y a
+// probablement pas de marge -- une vraie photo de telephone a un fond visible
+// et un ratio different.
+const CARD_RATIO = 2.5 / 3.5
+function looksPreCropped(imgW: number, imgH: number): boolean {
+  const ratio = Math.min(imgW, imgH) / Math.max(imgW, imgH)
+  return Math.abs(ratio - CARD_RATIO) < 0.04
 }
 
 export default function DevGradeTest() {
   const [busy, setBusy] = useState(false)
   const [error, setError] = useState('')
   const [result, setResult] = useState<Result | null>(null)
+  const [preCropped, setPreCropped] = useState(false)
   const canvasRef = useRef<HTMLCanvasElement | null>(null)
 
   const onFile = async (file: File) => {
@@ -207,14 +225,28 @@ export default function DevGradeTest() {
         img.src = url
       })
 
-      const ort = await import('onnxruntime-web')
-      ort.env.wasm.wasmPaths = ORT_CDN
-      ort.env.wasm.numThreads = 1
+      let corners: Pt[]
+      let conf = 1
+      if (preCropped) {
+        // Carte deja rognee pile sur ses bords -- pas de detection a faire,
+        // la carte EST l'image entiere.
+        corners = [
+          { x: 0, y: 0 },
+          { x: img.naturalWidth, y: 0 },
+          { x: img.naturalWidth, y: img.naturalHeight },
+          { x: 0, y: img.naturalHeight },
+        ]
+      } else {
+        const ort = await import('onnxruntime-web')
+        ort.env.wasm.wasmPaths = ORT_CDN
+        ort.env.wasm.numThreads = 1
 
-      const scale = Math.min(IMGSZ / img.naturalWidth, IMGSZ / img.naturalHeight)
-      const { corners: rawCorners, conf } = await detectRawCorners(ort, img)
-      if (!rawCorners) throw new Error('Aucune carte détectée')
-      const corners = refineCornersV5(img, rawCorners, scale)
+        const scale = Math.min(IMGSZ / img.naturalWidth, IMGSZ / img.naturalHeight)
+        const { corners: rawCorners, conf: rawConf } = await detectRawCorners(ort, img)
+        if (!rawCorners) throw new Error('Aucune carte détectée')
+        corners = refineCornersV5(img, rawCorners, scale)
+        conf = rawConf
+      }
 
       if (canvasRef.current) {
         const c = canvasRef.current
@@ -248,6 +280,7 @@ export default function DevGradeTest() {
         topBottomPct: [Math.round((top / tbTotal) * 100), Math.round((bottom / tbTotal) * 100)],
         cornerScores,
         warpUrl: warp.toDataURL('image/jpeg', 0.9),
+        looksPreCropped: !preCropped && looksPreCropped(img.naturalWidth, img.naturalHeight),
       })
 
       URL.revokeObjectURL(url)
@@ -273,6 +306,11 @@ export default function DevGradeTest() {
         build: {process.env.NEXT_PUBLIC_APP_VERSION}
       </p>
 
+      <label style={{ display: 'flex', alignItems: 'center', gap: 6, fontSize: 13, marginBottom: 10 }}>
+        <input type="checkbox" checked={preCropped} onChange={e => setPreCropped(e.target.checked)} />
+        Carte déjà rognée (pas de fond autour) — saute la détection, utilise l'image entière comme carte
+      </label>
+
       <input
         type="file"
         accept="image/*"
@@ -288,6 +326,15 @@ export default function DevGradeTest() {
 
       {result && (
         <div style={{ marginTop: 20, display: 'grid', gap: 20 }}>
+          {result.looksPreCropped && (
+            <div style={{ fontSize: 13, color: '#9a6a00', background: '#fff8e6', border: '1px solid #f0dfa8', borderRadius: 8, padding: '10px 12px' }}>
+              ⚠️ Cette photo semble déjà recadrée pile sur la carte (ratio proche de 2.5:3.5, pas de marge/fond visible).
+              Le détecteur est conçu pour repérer le bord physique carte→fond ; sans fond, il peut se rabattre sur un
+              contraste interne (logo, bordure imprimée) et donner un contour trop petit — les résultats ci-dessous sont
+              probablement faux. Réessaie avec une photo qui garde un peu de fond autour de la carte, ou coche
+              "Carte déjà rognée" ci-dessus si c'est le cas.
+            </div>
+          )}
           <div>
             <h3 style={{ fontSize: 14, fontWeight: 800 }}>Détection — conf {result.conf.toFixed(3)}</h3>
           </div>
