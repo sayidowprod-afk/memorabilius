@@ -1,6 +1,8 @@
 'use client'
 import { useRef, useState } from 'react'
 import { refineCornersV5 } from '@/lib/cornerDetectorYolo'
+import { useTheme } from '@/lib/ThemeContext'
+import CameraCapture from '@/components/CameraCapture'
 
 // Page de test pour experimenter une estimation de condition (centrage +
 // etat des coins) a partir du detecteur de coins deja en prod. Pas de gate
@@ -252,6 +254,46 @@ function sharpnessLabel(v: number): { text: string; color: string } {
   return { text: 'Usure visible', color: '#dc2626' }
 }
 
+// Sous-note 1-10 a partir de l'ecart de centrage par rapport a 50/50 (comme
+// PSA/BGS raisonnent, mais seuils invente/non calibres -- voir avertissement
+// affiche a cote de la note). deviation = ecart max des 2 cotes par rapport
+// au centre parfait (50/50 -> 0, 60/40 -> 10, 100/0 -> 50).
+function centeringSubscore(pct: [number, number]): number {
+  const dev = Math.max(Math.abs(pct[0] - 50), Math.abs(pct[1] - 50))
+  const steps = [1, 5, 10, 15, 20, 25, 30, 35, 40, 45]
+  const scores = [10, 9.5, 9, 8, 7, 6, 5, 4, 3, 2]
+  for (let i = 0; i < steps.length; i++) if (dev <= steps[i]) return scores[i]
+  return 1
+}
+
+// Sous-note 1-10 a partir du score de nettete brut (variance du Laplacien) --
+// memes seuils que sharpnessLabel, juste plus granulaires pour une note.
+function cornerSubscore(v: number): number {
+  const steps = [30, 80, 150, 250, 400, 600, 900, 1500, 2500]
+  const scores = [1, 2, 3, 4, 5, 6, 7, 8, 9]
+  for (let i = 0; i < steps.length; i++) if (v <= steps[i]) return scores[i]
+  return 10
+}
+
+// Note globale indicative (1-10) : le point faible domine (comme une vraie
+// gradation, ou le pire defaut plombe la note), amorti par la moyenne pour
+// eviter qu'un seul coin flou n'ecrase tout. Ne prend PAS en compte la
+// surface ni les bords (non evalues ici) -- voir avertissement affiche.
+function estimateGrade(leftRightPct: [number, number], topBottomPct: [number, number], cornerScores: number[]): number {
+  const centSub = Math.min(centeringSubscore(leftRightPct), centeringSubscore(topBottomPct))
+  const cornerSub = cornerScores.reduce((a, b) => a + cornerSubscore(b), 0) / cornerScores.length
+  const worst = Math.min(centSub, cornerSub)
+  const avg = (centSub + cornerSub) / 2
+  return Math.round((worst * 0.6 + avg * 0.4) * 2) / 2
+}
+
+function gradeColor(grade: number): string {
+  if (grade >= 9) return '#16a34a'
+  if (grade >= 7) return '#65a30d'
+  if (grade >= 5) return '#d97706'
+  return '#dc2626'
+}
+
 // Le detecteur est concu pour des photos avec un peu de marge/fond autour de
 // la carte (comme le vrai scanner) -- sur une image deja recadree pile sur la
 // carte, il n'y a plus de vrai bord physique carte->fond a trouver, et le
@@ -270,7 +312,36 @@ function looksPreCropped(imgW: number, imgH: number): boolean {
 
 const cornerNames = ['Haut-gauche', 'Haut-droite', 'Bas-droite', 'Bas-gauche']
 
+function CenteringBar({ leftLabel, rightLabel, pct, blue, border, muted, text }: {
+  leftLabel: string; rightLabel: string; pct: [number, number]
+  blue: string; border: string; muted: string; text: string
+}) {
+  return (
+    <div>
+      <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: 12, marginBottom: 5 }}>
+        <span style={{ color: text, fontWeight: 700 }}>{leftLabel} <span style={{ color: muted, fontWeight: 400 }}>{pct[0]}%</span></span>
+        <span style={{ color: text, fontWeight: 700 }}>{rightLabel} <span style={{ color: muted, fontWeight: 400 }}>{pct[1]}%</span></span>
+      </div>
+      <div style={{ display: 'flex', height: 12, borderRadius: 7, overflow: 'hidden', background: border }}>
+        <div style={{ width: `${pct[0]}%`, background: blue }} />
+        <div style={{ width: `${pct[1]}%`, background: '#7db3ff' }} />
+      </div>
+    </div>
+  )
+}
+
 export default function DevGradeTest() {
+  const { dark } = useTheme()
+  const bg     = dark ? '#0a0a0a' : '#f0f2f7'
+  const cardBg = dark ? '#161616' : '#ffffff'
+  const text   = dark ? '#f0f0f0' : '#0d0d0d'
+  const muted  = dark ? '#666'    : '#888'
+  const border = dark ? '#252525' : '#e8eaed'
+  const blue   = '#0046D1'
+  const warnText = dark ? '#d9a441' : '#9a6a00'
+  const warnBg   = dark ? '#241c08' : '#fff8e6'
+  const warnBorder = dark ? '#4a3a10' : '#f0dfa8'
+
   const [busy, setBusy] = useState(false)
   const [error, setError] = useState('')
   const [preCropped, setPreCropped] = useState(false)
@@ -279,8 +350,10 @@ export default function DevGradeTest() {
   const [preCropWarning, setPreCropWarning] = useState(false)
   const [percents, setPercents] = useState<Percents | null>(null)
   const [cornerScores, setCornerScores] = useState<number[] | null>(null)
+  const [cameraModal, setCameraModal] = useState(false)
 
   const canvasRef = useRef<HTMLCanvasElement | null>(null)
+  const galleryRef = useRef<HTMLInputElement | null>(null)
   const imgRef = useRef<HTMLImageElement | null>(null)
   // Sources de verite pendant un drag -- eviter de dependre du state React
   // (qui peut retarder d'une frame par rapport aux evenements pointer) pour
@@ -315,7 +388,7 @@ export default function DevGradeTest() {
     ctx.fillStyle = '#ff8c00'
     pts.forEach(p => {
       ctx.beginPath()
-      ctx.arc(p.x, p.y, Math.max(9, img.naturalWidth / 70), 0, Math.PI * 2)
+      ctx.arc(p.x, p.y, Math.max(12, img.naturalWidth / 55), 0, Math.PI * 2)
       ctx.fill()
     })
   }
@@ -409,7 +482,10 @@ export default function DevGradeTest() {
     if (!pts || !frac || !img) return
     const pos = posFromEvent(e)
 
-    const cornerHitRadius = Math.max(24, img.naturalWidth / 30)
+    // Rayons genereux (surtout sur mobile ou le doigt masque la cible) --
+    // exprimes en pixels de la photo source, donc automatiquement plus
+    // "genereux visuellement" sur une photo de faible resolution.
+    const cornerHitRadius = Math.max(34, img.naturalWidth / 22)
     let nearestCorner = -1, nearestCornerDist = Infinity
     pts.forEach((p, i) => {
       const d = Math.hypot(p.x - pos.x, p.y - pos.y)
@@ -422,7 +498,7 @@ export default function DevGradeTest() {
     }
 
     const segs = borderSegments(pts, frac)
-    const lineHitRadius = Math.max(18, img.naturalWidth / 60)
+    const lineHitRadius = Math.max(26, img.naturalWidth / 42)
     let bestSide: keyof BorderFrac | null = null, bestDist = lineHitRadius
     ;(Object.keys(segs) as (keyof BorderFrac)[]).forEach(k => {
       const d = distToSegment(pos, segs[k])
@@ -470,87 +546,173 @@ export default function DevGradeTest() {
     if (wasCorner && cornersRef.current) recompute(cornersRef.current)
   }
 
+  const reset = () => {
+    setHasCorners(false)
+    setPercents(null)
+    setCornerScores(null)
+    setError('')
+    setPreCropWarning(false)
+    cornersRef.current = null
+    fracRef.current = null
+    imgRef.current = null
+  }
+
+  const handleCapture = (blob: Blob) => {
+    setCameraModal(false)
+    onFile(new File([blob], 'photo.jpg', { type: 'image/jpeg' }))
+  }
+
+  const grade = percents && cornerScores ? estimateGrade(percents.leftRightPct, percents.topBottomPct, cornerScores) : null
+
   return (
-    <div style={{ maxWidth: 900, margin: '0 auto', padding: '20px 14px 60px', fontFamily: 'Inter, sans-serif' }}>
-      <h1 style={{ fontSize: 18, fontWeight: 900, marginBottom: 4 }}>🧪 Test condition (centrage + coins)</h1>
-      <p style={{ fontSize: 13, color: '#888', marginBottom: 4 }}>
-        Page privée, expérimentale. Pas un grade officiel — indicateurs séparés seulement,
-        aucun score global. Warp par approximation bilinéaire (pas une vraie homographie),
-        seuils de netteté non calibrés à grande échelle.
-      </p>
-      <p style={{ fontSize: 11, color: '#bbb', marginBottom: 16, fontFamily: 'monospace' }}>
-        build: {process.env.NEXT_PUBLIC_APP_VERSION}
-      </p>
+    <div style={{ minHeight: '100vh', background: bg, fontFamily: 'Inter, system-ui, sans-serif' }}>
+      <div style={{ position: 'sticky', top: 'calc(60px + var(--safe-area-inset-top, env(safe-area-inset-top)))', zIndex: 10, background: dark ? '#0f0f0f' : '#fff', borderBottom: `1px solid ${border}`, padding: '10px 16px', display: 'flex', alignItems: 'center', height: 48 }}>
+        <span style={{ fontWeight: 900, fontSize: 16, color: text }}>🧪 Estimation de condition</span>
+        {hasCorners && (
+          <button onClick={reset} style={{ marginLeft: 'auto', fontSize: 12, color: muted, background: 'none', border: `1px solid ${border}`, borderRadius: 8, padding: '5px 12px', cursor: 'pointer', fontWeight: 700 }}>
+            Nouvelle photo
+          </button>
+        )}
+      </div>
 
-      <label style={{ display: 'flex', alignItems: 'center', gap: 6, fontSize: 13, marginBottom: 10 }}>
-        <input type="checkbox" checked={preCropped} onChange={e => setPreCropped(e.target.checked)} />
-        Carte déjà rognée (pas de fond autour) — saute la détection, utilise l'image entière comme carte
-      </label>
+      <div style={{ maxWidth: 500, margin: '0 auto', padding: '16px 12px 80px' }}>
+        <div style={{ fontSize: 12, color: warnText, background: warnBg, border: `1px solid ${warnBorder}`, borderRadius: 10, padding: '9px 12px', marginBottom: 16, lineHeight: 1.5 }}>
+          ⚠️ Fonctionnalité expérimentale, non liée aux vrais scans de cartes du site — sert uniquement à tester
+          l'idée. Rien ici n'est un grade officiel.
+        </div>
 
-      <input
-        type="file"
-        accept="image/*"
-        disabled={busy}
-        onChange={e => e.target.files?.[0] && onFile(e.target.files[0])}
-        style={{ marginBottom: 16 }}
-      />
+        {!hasCorners && !busy && (
+          <div style={{ paddingTop: 4 }}>
+            <label style={{ display: 'flex', alignItems: 'center', gap: 10, fontSize: 13, color: text, background: cardBg, border: `1px solid ${border}`, borderRadius: 12, padding: '12px 14px', marginBottom: 14, cursor: 'pointer' }}>
+              <input type="checkbox" checked={preCropped} onChange={e => setPreCropped(e.target.checked)} style={{ width: 18, height: 18, flexShrink: 0 }} />
+              <span>Carte déjà rognée <span style={{ color: muted }}>(pas de fond autour de la carte sur la photo)</span></span>
+            </label>
 
-      {busy && <p>⏳ Analyse en cours…</p>}
-      {error && <p style={{ color: '#e74c3c' }}>{error}</p>}
+            <button onClick={() => setCameraModal(true)} style={{
+              display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', gap: 8,
+              width: '100%', minHeight: 180, background: blue, border: 'none',
+              borderRadius: 20, cursor: 'pointer', color: '#fff', marginBottom: 12,
+            }}>
+              <span style={{ fontSize: 48, lineHeight: 1 }}>📷</span>
+              <span style={{ fontSize: 18, fontWeight: 900 }}>Prendre une photo</span>
+            </button>
+            <button onClick={() => galleryRef.current?.click()} style={{
+              width: '100%', padding: '13px 0', background: 'none', border: `2px solid ${border}`,
+              borderRadius: 14, cursor: 'pointer', color: muted, fontSize: 14, fontWeight: 700,
+            }}>
+              Importer depuis la galerie
+            </button>
+            <input
+              ref={galleryRef}
+              type="file"
+              accept="image/*"
+              style={{ display: 'none' }}
+              onChange={e => { const f = e.target.files?.[0]; if (f) onFile(f); e.target.value = '' }}
+            />
+          </div>
+        )}
 
-      {hasCorners && (
-        <p style={{ fontSize: 12, color: '#888', marginBottom: 6 }}>
-          Glisse les points orange (coins) ou les lignes vertes/bleues (bordure) directement sur la photo —
-          la bordure se recalcule en direct, les coins au relâchement.
-        </p>
-      )}
-      <canvas
-        ref={canvasRef}
-        onPointerDown={onPointerDown}
-        onPointerMove={onPointerMove}
-        onPointerUp={onPointerUp}
-        style={{ width: '100%', maxWidth: 500, borderRadius: 8, background: '#eee', display: hasCorners ? 'block' : 'none', touchAction: 'none', cursor: 'grab' }}
-      />
-
-      {percents && (
-        <div style={{ marginTop: 20, display: 'grid', gap: 20 }}>
-          {preCropWarning && (
-            <div style={{ fontSize: 13, color: '#9a6a00', background: '#fff8e6', border: '1px solid #f0dfa8', borderRadius: 8, padding: '10px 12px' }}>
-              ⚠️ Cette photo semble déjà recadrée pile sur la carte (ratio proche de 2.5:3.5, pas de marge/fond visible).
-              Le détecteur est conçu pour repérer le bord physique carte→fond ; sans fond, il peut se rabattre sur un
-              contraste interne (logo, bordure imprimée) et donner un contour trop petit — corrige les coins ou les
-              lignes à la main ci-dessus, ou coche "Carte déjà rognée" et relance.
+        {busy && (
+          <div style={{ textAlign: 'center', paddingTop: 40 }}>
+            <div style={{ fontSize: 15, fontWeight: 700, color: text, marginBottom: 12 }}>Analyse en cours…</div>
+            <div style={{ height: 4, background: border, borderRadius: 4, overflow: 'hidden', maxWidth: 200, margin: '0 auto' }}>
+              <div style={{ height: '100%', background: blue, borderRadius: 4, animation: 'slideIn 1.6s ease-in-out infinite', width: '50%' }} />
             </div>
-          )}
-          <div>
-            <h3 style={{ fontSize: 14, fontWeight: 800 }}>Détection — conf {conf.toFixed(3)}</h3>
           </div>
+        )}
 
-          <div>
-            <h3 style={{ fontSize: 14, fontWeight: 800, marginBottom: 8 }}>Centrage (approximatif)</h3>
-            <p style={{ fontSize: 13 }}>Gauche / Droite : <strong>{percents.leftRightPct[0]} / {percents.leftRightPct[1]}</strong></p>
-            <p style={{ fontSize: 13 }}>Haut / Bas : <strong>{percents.topBottomPct[0]} / {percents.topBottomPct[1]}</strong></p>
+        {error && (
+          <div style={{ fontSize: 13, color: '#dc2626', background: dark ? '#2a0f0f' : '#fdecec', border: '1px solid #f3c6c6', borderRadius: 10, padding: '10px 12px', marginBottom: 12 }}>
+            {error}
           </div>
+        )}
 
-          {cornerScores && (
-            <div>
-              <h3 style={{ fontSize: 14, fontWeight: 800, marginBottom: 8 }}>Netteté des coins (heuristique, non calibrée)</h3>
+        {hasCorners && (
+          <div style={{ background: cardBg, borderRadius: 16, border: `1px solid ${border}`, padding: 12, marginBottom: 14 }}>
+            <div style={{ display: 'flex', gap: 14, fontSize: 11, color: muted, marginBottom: 10, flexWrap: 'wrap' }}>
+              <span style={{ display: 'flex', alignItems: 'center', gap: 5 }}>
+                <span style={{ width: 10, height: 10, borderRadius: '50%', background: '#ff8c00', display: 'inline-block' }} /> Coin
+              </span>
+              <span style={{ display: 'flex', alignItems: 'center', gap: 5 }}>
+                <span style={{ width: 14, height: 2, background: '#00c878', display: 'inline-block' }} /> Bordure G/D
+              </span>
+              <span style={{ display: 'flex', alignItems: 'center', gap: 5 }}>
+                <span style={{ width: 14, height: 2, background: '#1e78ff', display: 'inline-block' }} /> Bordure H/B
+              </span>
+            </div>
+            <canvas
+              ref={canvasRef}
+              onPointerDown={onPointerDown}
+              onPointerMove={onPointerMove}
+              onPointerUp={onPointerUp}
+              style={{ width: '100%', borderRadius: 10, background: border, touchAction: 'none', cursor: 'grab', display: 'block' }}
+            />
+            <p style={{ fontSize: 11, color: muted, marginTop: 8, textAlign: 'center' }}>
+              Glisse un point ou une ligne pour corriger — la bordure se recalcule en direct, les coins au relâchement.
+            </p>
+          </div>
+        )}
+
+        {percents && cornerScores && grade !== null && (
+          <div style={{ display: 'grid', gap: 14 }}>
+            {preCropWarning && (
+              <div style={{ fontSize: 12, color: warnText, background: warnBg, border: `1px solid ${warnBorder}`, borderRadius: 10, padding: '9px 12px', lineHeight: 1.5 }}>
+                ⚠️ Cette photo semble déjà recadrée pile sur la carte, sans marge autour — la détection automatique
+                peut se tromper. Corrige les coins/lignes à la main ci-dessus, ou coche "Carte déjà rognée" et relance.
+              </div>
+            )}
+
+            <div style={{ background: cardBg, borderRadius: 16, border: `1px solid ${border}`, padding: '18px 16px', textAlign: 'center' }}>
+              <div style={{ fontSize: 11, fontWeight: 700, color: muted, textTransform: 'uppercase', letterSpacing: 0.7, marginBottom: 8 }}>
+                Note indicative
+              </div>
+              <div style={{ fontSize: 52, fontWeight: 900, color: gradeColor(grade), lineHeight: 1, letterSpacing: -2, fontVariantNumeric: 'tabular-nums' }}>
+                {grade.toFixed(1)}<span style={{ fontSize: 22, color: muted, fontWeight: 700 }}>/10</span>
+              </div>
+              <div style={{ fontSize: 11, color: warnText, background: warnBg, border: `1px solid ${warnBorder}`, borderRadius: 10, padding: '9px 12px', marginTop: 14, lineHeight: 1.5, textAlign: 'left' }}>
+                ⚠️ <strong>Ceci n'est ni un grade officiel ni une certification</strong> — aucune valeur légale ou
+                commerciale, non affilié à PSA/BGS/SGC ou tout autre service de gradation. Calculée uniquement à
+                partir du centrage et de la netteté des coins (seuils non calibrés) — la surface et les bords ne
+                sont pas du tout évalués. À titre indicatif seulement.
+              </div>
+            </div>
+
+            <div style={{ background: cardBg, borderRadius: 16, border: `1px solid ${border}`, padding: 16 }}>
+              <div style={{ fontSize: 11, fontWeight: 700, color: muted, textTransform: 'uppercase', letterSpacing: 0.6, marginBottom: 14 }}>
+                Centrage <span style={{ fontWeight: 400, textTransform: 'none' }}>· confiance détection {conf.toFixed(2)}</span>
+              </div>
+              <CenteringBar leftLabel="Gauche" rightLabel="Droite" pct={percents.leftRightPct} blue={blue} border={border} muted={muted} text={text} />
+              <div style={{ height: 16 }} />
+              <CenteringBar leftLabel="Haut" rightLabel="Bas" pct={percents.topBottomPct} blue={blue} border={border} muted={muted} text={text} />
+            </div>
+
+            <div style={{ background: cardBg, borderRadius: 16, border: `1px solid ${border}`, padding: 16 }}>
+              <div style={{ fontSize: 11, fontWeight: 700, color: muted, textTransform: 'uppercase', letterSpacing: 0.6, marginBottom: 12 }}>
+                Netteté des coins
+              </div>
               <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 8 }}>
                 {cornerScores.map((s, i) => {
-                  const { text, color } = sharpnessLabel(s)
+                  const { text: label, color } = sharpnessLabel(s)
                   return (
-                    <div key={i} style={{ padding: '8px 10px', border: '1px solid #eee', borderRadius: 8 }}>
-                      <div style={{ fontSize: 11, color: '#888' }}>{cornerNames[i]}</div>
-                      <div style={{ fontSize: 13, fontWeight: 800, color }}>{text}</div>
-                      <div style={{ fontSize: 11, color: '#aaa' }}>score brut: {s.toFixed(0)}</div>
+                    <div key={i} style={{ padding: '10px 12px', background: dark ? '#111' : '#f8f9fb', border: `1px solid ${border}`, borderRadius: 10 }}>
+                      <div style={{ fontSize: 10, color: muted, marginBottom: 3 }}>{cornerNames[i]}</div>
+                      <div style={{ fontSize: 13, fontWeight: 800, color }}>{label}</div>
                     </div>
                   )
                 })}
               </div>
             </div>
-          )}
-        </div>
+          </div>
+        )}
+      </div>
+
+      {cameraModal && (
+        <CameraCapture onCapture={handleCapture} onClose={() => setCameraModal(false)} />
       )}
+
+      <style>{`
+        @keyframes slideIn { 0% { transform: translateX(-150%); } 100% { transform: translateX(280%); } }
+      `}</style>
     </div>
   )
 }
