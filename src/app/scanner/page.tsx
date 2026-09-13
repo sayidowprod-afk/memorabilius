@@ -783,7 +783,7 @@ export default function ScannerPage() {
                           <div style={{ fontSize: 10, color: text, fontWeight: 600, overflow: 'hidden', display: '-webkit-box', WebkitLineClamp: 2, WebkitBoxOrient: 'vertical', lineHeight: 1.3, marginBottom: 3 }}>
                             {m.title}
                           </div>
-                          <div style={{ fontSize: 12, fontWeight: 900, color: blue }}>{usd(m.price)}</div>
+                          <div style={{ fontSize: 17, fontWeight: 900, color: blue, marginTop: 2, letterSpacing: -0.3 }}>{usd(m.price)}</div>
                         </div>
                       </button>
                     )
