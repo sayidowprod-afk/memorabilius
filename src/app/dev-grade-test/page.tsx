@@ -370,25 +370,54 @@ export default function DevGradeTest() {
     ctx.clearRect(0, 0, c.width, c.height)
     ctx.drawImage(img, 0, 0)
 
-    const lw = Math.max(3, img.naturalWidth / 300)
+    // Un fond de carte peut etre n'importe quelle couleur (holo, motifs...) --
+    // une ligne fine et unie s'y noie facilement (signale). Chaque trait est
+    // d'abord repasse en blanc semi-transparent, plus large, EN DESSOUS de la
+    // couleur ; ce "halo" garde la ligne lisible sur n'importe quel fond.
+    const lw = Math.max(5, img.naturalWidth / 180)
+    const haloLw = lw + 5
+    const dash = [Math.max(12, img.naturalWidth / 130), Math.max(8, img.naturalWidth / 190)]
+    const strokeHalo = (segs: [Pt, Pt][], color: string) => {
+      ctx.setLineDash([])
+      ctx.lineCap = 'round'
+      ctx.strokeStyle = 'rgba(255,255,255,0.85)'
+      ctx.lineWidth = haloLw
+      segs.forEach(([a, b]) => { ctx.beginPath(); ctx.moveTo(a.x, a.y); ctx.lineTo(b.x, b.y); ctx.stroke() })
+      ctx.setLineDash(dash)
+      ctx.strokeStyle = color
+      ctx.lineWidth = lw
+      segs.forEach(([a, b]) => { ctx.beginPath(); ctx.moveTo(a.x, a.y); ctx.lineTo(b.x, b.y); ctx.stroke() })
+    }
+
     const segs = borderSegments(pts, frac)
-    ctx.lineWidth = lw
-    ctx.setLineDash([Math.max(10, img.naturalWidth / 150), Math.max(7, img.naturalWidth / 220)])
-    ctx.strokeStyle = 'rgba(0, 200, 120, 0.95)'
-    ;[segs.left, segs.right].forEach(([a, b]) => { ctx.beginPath(); ctx.moveTo(a.x, a.y); ctx.lineTo(b.x, b.y); ctx.stroke() })
-    ctx.strokeStyle = 'rgba(30, 120, 255, 0.95)'
-    ;[segs.top, segs.bottom].forEach(([a, b]) => { ctx.beginPath(); ctx.moveTo(a.x, a.y); ctx.lineTo(b.x, b.y); ctx.stroke() })
+    strokeHalo([segs.left, segs.right], '#00c878')
+    strokeHalo([segs.top, segs.bottom], '#1e78ff')
     ctx.setLineDash([])
 
-    ctx.strokeStyle = '#ff8c00'
+    // Quadrilatere des coins -- meme traitement halo, plus une bague blanche
+    // autour de chaque poignee pour qu'elle reste visible meme sur un fond orange.
+    ctx.strokeStyle = 'rgba(255,255,255,0.85)'
+    ctx.lineWidth = haloLw
     ctx.beginPath()
     pts.forEach((p, i) => (i === 0 ? ctx.moveTo(p.x, p.y) : ctx.lineTo(p.x, p.y)))
     ctx.closePath()
     ctx.stroke()
-    ctx.fillStyle = '#ff8c00'
+    ctx.strokeStyle = '#ff8c00'
+    ctx.lineWidth = lw
+    ctx.beginPath()
+    pts.forEach((p, i) => (i === 0 ? ctx.moveTo(p.x, p.y) : ctx.lineTo(p.x, p.y)))
+    ctx.closePath()
+    ctx.stroke()
+
+    const handleR = Math.max(13, img.naturalWidth / 50)
     pts.forEach(p => {
       ctx.beginPath()
-      ctx.arc(p.x, p.y, Math.max(12, img.naturalWidth / 55), 0, Math.PI * 2)
+      ctx.arc(p.x, p.y, handleR + 3, 0, Math.PI * 2)
+      ctx.fillStyle = 'rgba(255,255,255,0.9)'
+      ctx.fill()
+      ctx.beginPath()
+      ctx.arc(p.x, p.y, handleR, 0, Math.PI * 2)
+      ctx.fillStyle = '#ff8c00'
       ctx.fill()
     })
   }
