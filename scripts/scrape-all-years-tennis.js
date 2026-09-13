@@ -24,6 +24,15 @@ const args = Object.fromEntries(
 const FROM    = args.from ? parseInt(args.from) : 2026
 const TO      = args.to   ? parseInt(args.to)   : 1960
 const DRY_RUN = !!args['dry-run']
+// --gaps : au lieu de ne traiter que les annees pas encore dans doneYears, retraite
+// TOUTES les annees de la plage -- mais scrapeSet() saute deja les sets presents
+// dans doneTcdbIds (voir plus bas), donc ca ne re-scrape reellement QUE les sets
+// qui avaient echoue silencieusement (l'annee entiere etait marquee 'done' meme
+// si certains sets dedans avaient rate -- cf. cp.doneYears.push(year) en fin de
+// boucle annee, inconditionnel). Fetch de la liste de sets par annee reste rapide
+// (une page), donc revisiter des annees deja faites coute peu meme si la plupart
+// des sets sont sautes.
+const GAPS = !!args.gaps
 const SLOT    = args.slot ? parseInt(args.slot) : 1
 
 const rand       = (min, max) => Math.floor(Math.random() * (max - min)) + min
@@ -69,6 +78,11 @@ async function solverrGet(url) {
     req.write(payload); req.end()
   })
 }
+// Retourne true si la page est réellement chargée (pas un challenge CF/captcha en
+// cours) — false si encore bloqué après ~5min. Avant, cette fonction ne retournait
+// jamais rien : un appelant continuait à parser une page de challenge CF comme si
+// de rien n'était, produisant silencieusement 0 carte à chaque fois que CF
+// bloquait une requête au milieu d'un run.
 async function waitCF(page, url) {
   const sol = await solverrGet(url)
   if (sol) {
@@ -78,18 +92,19 @@ async function waitCF(page, url) {
     await page.goto(url, { waitUntil: 'domcontentloaded', timeout: 30000 })
     const t = await page.title().catch(() => '')
     const tl = t.toLowerCase()
-    if (!tl.includes('instant') && !tl.includes('moment') && !tl.includes('attention') && !tl.includes('captcha')) return
+    if (!tl.includes('instant') && !tl.includes('moment') && !tl.includes('attention') && !tl.includes('captcha')) return true
     console.log(`  ⚠️  Encore bloqué — chargement HTML FlareSolverr (${sol.response?.length || 0} chars)`)
-    if (sol.response) { await page.setContent(sol.response, { waitUntil: 'domcontentloaded' }); return }
+    if (sol.response) { await page.setContent(sol.response, { waitUntil: 'domcontentloaded' }); return true }
   }
   await page.goto(url, { waitUntil: 'domcontentloaded', timeout: 30000 })
   for (let i = 0; i < 150; i++) {
     const t = await page.title().catch(() => '')
     const tl = t.toLowerCase()
-    if (!tl.includes('instant') && !tl.includes('moment') && !tl.includes('attention') && !tl.includes('captcha') && !tl.includes('verify') && !tl.includes('checking')) break
+    if (!tl.includes('instant') && !tl.includes('moment') && !tl.includes('attention') && !tl.includes('captcha') && !tl.includes('verify') && !tl.includes('checking')) return true
     if (i === 0) console.log('\n⚠️  CAPTCHA dans la fenêtre Chrome — résous-le manuellement (5 min max)...')
     await sleep(2000)
   }
+  return false
 }
 
 async function fetchSets(page, year) {
@@ -130,22 +145,27 @@ async function fetchSets(page, year) {
 }
 
 async function fetchTeams(page, sid) {
-  await waitCF(page, `${TCDB}/ViewTeams.cfm/sid/${sid}`)
-  await sleep(rand(300, 700))
-  return await page.evaluate(() => {
-    const results = []; const seen = new Set()
-    document.querySelectorAll('a[href*="/team/"]').forEach(a => {
-      const href = a.getAttribute('href') || ''; const m = href.match(/\/team\/(\d+)\/(.+)/)
-      if (!m || seen.has(m[1])) return; seen.add(m[1])
-      results.push({ teamId: m[1], teamName: decodeURIComponent(m[2].replace(/\+/g,' ')), teamSlug: m[2] })
+  for (let attempt = 1; attempt <= 2; attempt++) {
+    const ok = await waitCF(page, `${TCDB}/ViewTeams.cfm/sid/${sid}`)
+    await sleep(rand(300, 700))
+    if (ok) return await page.evaluate(() => {
+      const results = []; const seen = new Set()
+      document.querySelectorAll('a[href*="/team/"]').forEach(a => {
+        const href = a.getAttribute('href') || ''; const m = href.match(/\/team\/(\d+)\/(.+)/)
+        if (!m || seen.has(m[1])) return; seen.add(m[1])
+        results.push({ teamId: m[1], teamName: decodeURIComponent(m[2].replace(/\+/g,' ')), teamSlug: m[2] })
+      })
+      return results
     })
-    return results
-  })
+    if (attempt < 2) await sleep(rand(3000, 6000))
+  }
+  return []
 }
 
 async function fetchTeamCards(page, sid, teamId, teamSlug) {
-  await waitCF(page, `${TCDB}/ViewTeamsIns.cfm/sid/${sid}/team/${teamId}/${teamSlug}`)
+  const ok = await waitCF(page, `${TCDB}/ViewTeamsIns.cfm/sid/${sid}/team/${teamId}/${teamSlug}`)
   await sleep(rand(250, 600))
+  if (!ok) throw new Error('CF bloqué')
   return await page.evaluate(() => {
     const cards = []; let currentVariation = null; let inInserts = false
     const walker = document.createTreeWalker(document.body, NodeFilter.SHOW_ELEMENT, {
@@ -169,7 +189,7 @@ async function fetchTeamCards(page, sid, teamId, teamSlug) {
         let cardNum = null, playerName = null, team = null
         for (const td of tds) {
           const rawText = td.textContent?.trim() || ''; const linkText = td.querySelector('a')?.textContent?.trim() || null
-          const isCardCode = /^\d+[a-zA-Z]?$/.test(rawText) || /^[A-Z]{1,5}-[A-Z0-9]{2,6}$/.test(rawText) || /^NNO$/i.test(rawText)
+          const isCardCode = /^\d+[a-zA-Z]?$/.test(rawText) || /^[A-Z0-9]{1,6}-[A-Z0-9]{1,6}$/i.test(rawText) || /^NNO$/i.test(rawText)
           if (!cardNum && isCardCode && rawText.length <= 12) { cardNum = rawText; continue }
           const isName = linkText && linkText.length > 3 && /[a-zA-Z]{2}/.test(linkText) && !/^\d/.test(linkText) && linkText.includes(' ')
           if (!playerName && isName) { playerName = linkText; continue }
@@ -199,9 +219,13 @@ function slugFromHref(href) {
 // /Checklist.cfm/sid/{sid} donne la liste complète, sans pagination.
 async function fetchFullChecklist(page, sid, slug) {
   const url = slug ? `${TCDB}/Checklist.cfm/sid/${sid}/${slug}` : `${TCDB}/Checklist.cfm/sid/${sid}`
-  await waitCF(page, url)
-  await sleep(rand(300, 700))
-  return await parseCardsFromPage(page)
+  for (let attempt = 1; attempt <= 2; attempt++) {
+    const ok = await waitCF(page, url)
+    await sleep(rand(300, 700))
+    if (ok) return await parseCardsFromPage(page)
+    if (attempt < 2) await sleep(rand(3000, 6000))
+  }
+  return []
 }
 
 // Pour les sports sans équipes, les inserts/autos/parallèles ne sont PAS sur la page
@@ -211,8 +235,14 @@ async function fetchFullChecklist(page, sid, slug) {
 // prend directement tous les liens Checklist.cfm de la page (en excluant le lien
 // "Checklist" du menu "Set Links" qui pointe vers le set parent lui-même).
 async function fetchInsertSets(page, sid) {
-  await waitCF(page, `${TCDB}/Inserts.cfm/sid/${sid}`)
-  await sleep(rand(300, 700))
+  const url = `${TCDB}/Inserts.cfm/sid/${sid}`
+  let ok = false
+  for (let attempt = 1; attempt <= 2 && !ok; attempt++) {
+    ok = await waitCF(page, url)
+    await sleep(rand(300, 700))
+    if (!ok && attempt < 2) await sleep(rand(3000, 6000))
+  }
+  if (!ok) return []
   return await page.evaluate((parentSid) => {
     const seen = new Set(); const out = []
     document.querySelectorAll('a[href*="Checklist.cfm/sid/"]').forEach(a => {
@@ -251,7 +281,7 @@ async function parseCardsFromPage(page) {
         let cardNum = null, playerName = null, team = null
         for (const td of tds) {
           const rawText = td.textContent?.trim() || ''; const linkText = td.querySelector('a')?.textContent?.trim() || null
-          const isCardCode = /^\d+[a-zA-Z]?$/.test(rawText) || /^[A-Z]{1,5}-[A-Z0-9]{2,6}$/.test(rawText) || /^NNO$/i.test(rawText)
+          const isCardCode = /^\d+[a-zA-Z]?$/.test(rawText) || /^[A-Z0-9]{1,6}-[A-Z0-9]{1,6}$/i.test(rawText) || /^NNO$/i.test(rawText)
           if (!cardNum && isCardCode && rawText.length <= 12) { cardNum = rawText; continue }
           const isName = linkText && linkText.length > 3 && /[a-zA-Z]{2}/.test(linkText) && !/^\d/.test(linkText) && linkText.includes(' ')
           if (!playerName && isName) { playerName = linkText; continue }
@@ -269,35 +299,35 @@ async function parseCardsFromPage(page) {
 async function scrapeSet(page, set, cp) {
   if (cp.doneTcdbIds.includes(set.tcdb_id)) { console.log(`  ⏭️  déjà fait`); return null }
 
-  // Essai 1 : ViewTeams.cfm — même les sports "individuels" utilisent cette structure (athlètes = équipes)
+  // Étape 1 : la base — ViewTeams.cfm (athlètes = "équipes") si le set en a, sinon
+  // Checklist.cfm (liste complète, sans la troncature de ViewSet.cfm).
+  let baseCards = []
   const teams = await fetchTeams(page, set.tcdb_id)
   if (teams.length) {
     console.log(`  📂 ${teams.length} entrées`)
-    const allCards = []
     for (let ti = 0; ti < teams.length; ti++) {
       const { teamId, teamName, teamSlug } = teams[ti]
       process.stdout.write(`  [${ti+1}/${teams.length}] ${teamName}... `)
       let ok = false
       for (let attempt = 1; attempt <= 3; attempt++) {
-        try { const cards = await fetchTeamCards(page, set.tcdb_id, teamId, teamSlug || encodeURIComponent(teamName)); allCards.push(...cards); console.log(cards.length); ok = true; break }
+        try { const cards = await fetchTeamCards(page, set.tcdb_id, teamId, teamSlug || encodeURIComponent(teamName)); baseCards.push(...cards); console.log(cards.length); ok = true; break }
         catch (e) { if (attempt < 3) { process.stdout.write(`❌ retry... `); await sleep(rand(3000,6000)*attempt) } else console.log(`❌ abandon: ${e.message}`) }
       }
       if (ok) await delayTeam()
     }
-    if (allCards.length) {
-      const seen = new Set()
-      const unique = allCards.filter(c => { const k=`${c.card_number}|${c.player_name}|${c.variation||''}`; if(seen.has(k)) return false; seen.add(k); return true })
-      console.log(`  📊 ${unique.length} cartes uniques`)
-      return { set, unique, brand: null }
-    }
-    console.log(`  ℹ️  0 cartes via équipes — fallback checklist complet...`)
+    console.log(`  📊 ${baseCards.length} cartes via équipes`)
+  }
+  if (!baseCards.length) {
+    const slug = slugFromHref(set.href)
+    baseCards = await fetchFullChecklist(page, set.tcdb_id, slug)
+    console.log(`  📄 Checklist de base: ${baseCards.length} cartes`)
   }
 
-  // Essai 2 : Checklist.cfm (base complète, sans troncature) + Inserts.cfm (autos/parallèles,
-  // chacun son propre sid TCDB avec son propre Checklist.cfm)
-  const slug = slugFromHref(set.href)
-  const baseCards = await fetchFullChecklist(page, set.tcdb_id, slug)
-  console.log(`  📄 Checklist de base: ${baseCards.length} cartes`)
+  // Étape 2 (TOUJOURS exécutée, même si l'étape 1 a réussi via ViewTeams) : les
+  // inserts/autos/parallèles sont catalogués par TCDB comme des sets à part
+  // entière, chacun avec son propre sid et son propre Checklist.cfm, listés sur
+  // Inserts.cfm — les sauter dès que ViewTeams réussissait était le bug empêchant
+  // de récupérer le moindre insert/auto sur les sets ayant des pages d'équipes.
   const insertSets = await fetchInsertSets(page, set.tcdb_id)
   if (insertSets.length) console.log(`  🎯 ${insertSets.length} sets d'inserts/autos trouvés`)
   const insertCards = []
@@ -313,19 +343,20 @@ async function scrapeSet(page, set, cp) {
     }
     if (ok) await delayTeam()
   }
+
   if (baseCards.length || insertCards.length) {
     const seen = new Set()
     const unique = [...baseCards, ...insertCards].filter(c => { const k=`${c.card_number}|${c.player_name}|${c.variation||''}`; if(seen.has(k)) return false; seen.add(k); return true })
-    console.log(`  📊 ${unique.length} cartes uniques (base + inserts)`)
+    console.log(`  📊 ${unique.length} cartes uniques au total`)
     return { set, unique, brand: null }
   }
 
-  // Essai 3 : page directe du set (dernier recours — aperçu potentiellement tronqué)
+  // Dernier recours : page directe du set (aperçu potentiellement tronqué)
   if (set.href) {
     const setUrl = set.href.startsWith('http') ? set.href : `${TCDB}${set.href.startsWith('/') ? '' : '/'}${set.href}`
-    await waitCF(page, setUrl)
+    const ok = await waitCF(page, setUrl)
     await sleep(rand(500, 1000))
-    const directCards = await parseCardsFromPage(page)
+    const directCards = ok ? await parseCardsFromPage(page) : []
     if (directCards.length) {
       const seen = new Set()
       const unique = directCards.filter(c => { const k=`${c.card_number}|${c.player_name}|${c.variation||''}`; if(seen.has(k)) return false; seen.add(k); return true })
@@ -345,7 +376,7 @@ async function main() {
   const ASC = process.argv.includes('--asc')
   const years = []; for (let y = FROM; y >= TO; y--) years.push(y)
   if (ASC) years.reverse()
-  const remaining = years.filter(y => !cp.doneYears.includes(y))
+  const remaining = GAPS ? years : years.filter(y => !cp.doneYears.includes(y))
   console.log(`   ${remaining.length} années à scraper\n`)
   let browser = null; let totalSets = 0
   const openBrowser = async () => {

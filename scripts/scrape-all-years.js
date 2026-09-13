@@ -30,6 +30,15 @@ const args = Object.fromEntries(
 const FROM    = args.from  ? parseInt(args.from)  : 2025  // année TCDB (2025 = saison 2025-26)
 const TO      = args.to    ? parseInt(args.to)    : 1969
 const DRY_RUN = !!args['dry-run']
+// --gaps : au lieu de ne traiter que les annees pas encore dans doneYears, retraite
+// TOUTES les annees de la plage -- mais scrapeSet() saute deja les sets presents
+// dans doneTcdbIds (voir plus bas), donc ca ne re-scrape reellement QUE les sets
+// qui avaient echoue silencieusement (l'annee entiere etait marquee 'done' meme
+// si certains sets dedans avaient rate -- cf. cp.doneYears.push(year) en fin de
+// boucle annee, inconditionnel). Fetch de la liste de sets par annee reste rapide
+// (une page), donc revisiter des annees deja faites coute peu meme si la plupart
+// des sets sont sautes.
+const GAPS = !!args.gaps
 const SLOT    = args.slot ? parseInt(args.slot) : 1
 // Filtre optionnel sur un set précis (ex: "Hoops") — sans lui, tous les sets Major
 // Releases de la plage d'années sont traités comme avant. --force ignore le
@@ -315,7 +324,7 @@ async function main() {
 
   const years = []
   for (let y = FROM; y >= TO; y--) years.push(y)
-  const remaining = years.filter(y => !cp.doneYears.includes(y))
+  const remaining = GAPS ? years : years.filter(y => !cp.doneYears.includes(y))
   console.log(`   ${remaining.length} années à scraper\n`)
 
   let browser = null

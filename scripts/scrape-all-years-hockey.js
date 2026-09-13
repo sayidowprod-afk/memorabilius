@@ -28,6 +28,15 @@ const args = Object.fromEntries(
 const FROM    = args.from  ? parseInt(args.from)  : 2019
 const TO      = args.to    ? parseInt(args.to)    : 1997
 const DRY_RUN = !!args['dry-run']
+// --gaps : au lieu de ne traiter que les annees pas encore dans doneYears, retraite
+// TOUTES les annees de la plage -- mais scrapeSet() saute deja les sets presents
+// dans doneTcdbIds (voir plus bas), donc ca ne re-scrape reellement QUE les sets
+// qui avaient echoue silencieusement (l'annee entiere etait marquee 'done' meme
+// si certains sets dedans avaient rate -- cf. cp.doneYears.push(year) en fin de
+// boucle annee, inconditionnel). Fetch de la liste de sets par annee reste rapide
+// (une page), donc revisiter des annees deja faites coute peu meme si la plupart
+// des sets sont sautes.
+const GAPS = !!args.gaps
 const SLOT    = args.slot ? parseInt(args.slot) : 1
 
 const rand    = (min, max) => Math.floor(Math.random() * (max - min)) + min
@@ -281,7 +290,7 @@ async function main() {
   const ASC = process.argv.includes('--asc')
   const years = []; for (let y = FROM; y >= TO; y--) years.push(y)
   if (ASC) years.reverse()
-  const remaining = years.filter(y => !cp.doneYears.includes(y))
+  const remaining = GAPS ? years : years.filter(y => !cp.doneYears.includes(y))
   console.log(`   ${remaining.length} années à scraper\n`)
   let browser = null; let totalSets = 0
   const openBrowser = async () => {

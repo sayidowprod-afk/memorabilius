@@ -24,6 +24,15 @@ const args = Object.fromEntries(
 const FROM    = args.from ? parseInt(args.from) : 2026
 const TO      = args.to   ? parseInt(args.to)   : 1980
 const DRY_RUN = !!args['dry-run']
+// --gaps : au lieu de ne traiter que les annees pas encore dans doneYears, retraite
+// TOUTES les annees de la plage -- mais scrapeSet() saute deja les sets presents
+// dans doneTcdbIds (voir plus bas), donc ca ne re-scrape reellement QUE les sets
+// qui avaient echoue silencieusement (l'annee entiere etait marquee 'done' meme
+// si certains sets dedans avaient rate -- cf. cp.doneYears.push(year) en fin de
+// boucle annee, inconditionnel). Fetch de la liste de sets par annee reste rapide
+// (une page), donc revisiter des annees deja faites coute peu meme si la plupart
+// des sets sont sautes.
+const GAPS = !!args.gaps
 const SLOT    = args.slot ? parseInt(args.slot) : 1
 
 const rand       = (min, max) => Math.floor(Math.random() * (max - min)) + min
@@ -69,6 +78,11 @@ async function solverrGet(url) {
     req.write(payload); req.end()
   })
 }
+// Retourne true si la page est réellement chargée (pas un challenge CF/captcha en
+// cours) — false si encore bloqué après ~5min. Avant, cette fonction ne retournait
+// jamais rien : un appelant continuait à parser une page de challenge CF comme si
+// de rien n'était, produisant silencieusement 0 carte à chaque fois que CF
+// bloquait une requête au milieu d'un run.
 async function waitCF(page, url) {
   const sol = await solverrGet(url)
   if (sol) {
@@ -78,18 +92,19 @@ async function waitCF(page, url) {
     await page.goto(url, { waitUntil: 'domcontentloaded', timeout: 30000 })
     const t = await page.title().catch(() => '')
     const tl = t.toLowerCase()
-    if (!tl.includes('instant') && !tl.includes('moment') && !tl.includes('attention') && !tl.includes('captcha')) return
+    if (!tl.includes('instant') && !tl.includes('moment') && !tl.includes('attention') && !tl.includes('captcha')) return true
     console.log(`  ⚠️  Encore bloqué — chargement HTML FlareSolverr (${sol.response?.length || 0} chars)`)
-    if (sol.response) { await page.setContent(sol.response, { waitUntil: 'domcontentloaded' }); return }
+    if (sol.response) { await page.setContent(sol.response, { waitUntil: 'domcontentloaded' }); return true }
   }
   await page.goto(url, { waitUntil: 'domcontentloaded', timeout: 30000 })
   for (let i = 0; i < 150; i++) {
     const t = await page.title().catch(() => '')
     const tl = t.toLowerCase()
-    if (!tl.includes('instant') && !tl.includes('moment') && !tl.includes('attention') && !tl.includes('captcha') && !tl.includes('verify') && !tl.includes('checking')) break
+    if (!tl.includes('instant') && !tl.includes('moment') && !tl.includes('attention') && !tl.includes('captcha') && !tl.includes('verify') && !tl.includes('checking')) return true
     if (i === 0) console.log('\n⚠️  CAPTCHA dans la fenêtre Chrome — résous-le manuellement (5 min max)...')
     await sleep(2000)
   }
+  return false
 }
 
 async function fetchSets(page, year) {
@@ -169,7 +184,7 @@ async function fetchTeamCards(page, sid, teamId, teamSlug) {
         let cardNum = null, playerName = null, team = null
         for (const td of tds) {
           const rawText = td.textContent?.trim() || ''; const linkText = td.querySelector('a')?.textContent?.trim() || null
-          const isCardCode = /^\d+[a-zA-Z]?$/.test(rawText) || /^[A-Z]{1,5}-[A-Z0-9]{2,6}$/.test(rawText) || /^NNO$/i.test(rawText)
+          const isCardCode = /^\d+[a-zA-Z]?$/.test(rawText) || /^[A-Z0-9]{1,6}-[A-Z0-9]{1,6}$/i.test(rawText) || /^NNO$/i.test(rawText)
           if (!cardNum && isCardCode && rawText.length <= 12) { cardNum = rawText; continue }
           const isName = linkText && linkText.length > 3 && /[a-zA-Z]{2}/.test(linkText) && !/^\d/.test(linkText) && linkText.includes(' ')
           if (!playerName && isName) { playerName = linkText; continue }
@@ -251,7 +266,7 @@ async function parseCardsFromPage(page) {
         let cardNum = null, playerName = null, team = null
         for (const td of tds) {
           const rawText = td.textContent?.trim() || ''; const linkText = td.querySelector('a')?.textContent?.trim() || null
-          const isCardCode = /^\d+[a-zA-Z]?$/.test(rawText) || /^[A-Z]{1,5}-[A-Z0-9]{2,6}$/.test(rawText) || /^NNO$/i.test(rawText)
+          const isCardCode = /^\d+[a-zA-Z]?$/.test(rawText) || /^[A-Z0-9]{1,6}-[A-Z0-9]{1,6}$/i.test(rawText) || /^NNO$/i.test(rawText)
           if (!cardNum && isCardCode && rawText.length <= 12) { cardNum = rawText; continue }
           const isName = linkText && linkText.length > 3 && /[a-zA-Z]{2}/.test(linkText) && !/^\d/.test(linkText) && linkText.includes(' ')
           if (!playerName && isName) { playerName = linkText; continue }
@@ -345,7 +360,7 @@ async function main() {
   const ASC = process.argv.includes('--asc')
   const years = []; for (let y = FROM; y >= TO; y--) years.push(y)
   if (ASC) years.reverse()
-  const remaining = years.filter(y => !cp.doneYears.includes(y))
+  const remaining = GAPS ? years : years.filter(y => !cp.doneYears.includes(y))
   console.log(`   ${remaining.length} années à scraper\n`)
   let browser = null; let totalSets = 0
   const openBrowser = async () => {
