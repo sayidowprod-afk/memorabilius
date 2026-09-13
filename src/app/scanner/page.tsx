@@ -224,6 +224,56 @@ export default function ScannerPage() {
     setSelectedMatch(null); setErr(''); setSoldTab('sold')
   }
 
+  // Historique local des dernieres cartes scannees (localStorage, pas de
+  // table Supabase -- couvre le besoin "revoir ce que j'ai check tout a
+  // l'heure" sans construire un vrai systeme d'historique serveur). Cape a
+  // 10 entrees, la plus recente en tete.
+  const SCAN_HISTORY_KEY = 'scanner_recent_scans'
+  const SCAN_HISTORY_MAX = 10
+  type ScanHistoryItem = { nom: string; img: string | null; price: number; date: string }
+  const [scanHistory, setScanHistory] = useState<ScanHistoryItem[]>([])
+  const savedThisScanRef = useRef(false)
+
+  useEffect(() => {
+    try {
+      const raw = localStorage.getItem(SCAN_HISTORY_KEY)
+      if (raw) setScanHistory(JSON.parse(raw))
+    } catch {}
+  }, [])
+
+  useEffect(() => { savedThisScanRef.current = false }, [imgSrc])
+
+  // Miniature dediee a l'historique (pas l'URL blob de imgSrc, qui devient
+  // invalide des que la session/l'onglet se termine -- inutilisable pour du
+  // localStorage qui doit survivre au rechargement de la page).
+  const makeThumbnail = (b64: string, mime: string): Promise<string> => new Promise(resolve => {
+    const img = new Image()
+    img.onload = () => {
+      const w = 60, h = 84
+      const canvas = document.createElement('canvas')
+      canvas.width = w; canvas.height = h
+      canvas.getContext('2d')!.drawImage(img, 0, 0, w, h)
+      resolve(canvas.toDataURL('image/jpeg', 0.6))
+      canvas.width = 0
+    }
+    img.onerror = () => resolve('')
+    img.src = `data:${mime};base64,${b64}`
+  })
+
+  useEffect(() => {
+    if (phase !== 'done' || savedThisScanRef.current) return
+    const price = selectedMatch?.price || ebay?.median || 0
+    if (!price || !card?.nom || !rectoB64) return
+    savedThisScanRef.current = true
+    makeThumbnail(rectoB64, rectoMime).then(thumb => {
+      setScanHistory(prev => {
+        const next = [{ nom: card.nom, img: thumb || null, price, date: new Date().toISOString() }, ...prev].slice(0, SCAN_HISTORY_MAX)
+        try { localStorage.setItem(SCAN_HISTORY_KEY, JSON.stringify(next)) } catch {}
+        return next
+      })
+    })
+  }, [phase, card, ebay, selectedMatch, rectoB64, rectoMime])
+
   const loadSoldComps = useCallback(async (query: string, c?: CardInfo | null) => {
     setEbay(null)
     setPhase('loading-sold')
@@ -355,6 +405,26 @@ export default function ScannerPage() {
   const isSearching = phase === 'searching'
   const showResults = phase === 'results' || phase === 'loading-sold' || phase === 'done' || phase === 'error'
 
+  // Estimation rapide a partir des matches visuels eBay eux-memes (avant le
+  // fetch plus lent des ventes) -- filtre d'abord les prix trop eloignes de
+  // la mediane du groupe (meme logique anti-aberrant que cote serveur pour
+  // les ventes), sinon un seul match qui n'est pas la bonne carte fausse
+  // toute la fourchette affichee.
+  const quickEstimate = (() => {
+    if (!imgMatches || imgMatches.length < 2) return null
+    const prices = imgMatches.map(m => m.price).filter(p => p > 0).sort((a, b) => a - b)
+    if (prices.length < 2) return null
+    const mid = Math.floor(prices.length / 2)
+    const med = prices.length % 2 === 0 ? (prices[mid - 1] + prices[mid]) / 2 : prices[mid]
+    const filtered = prices.length >= 4 ? prices.filter(p => p >= med * 0.3 && p <= med * 3) : prices
+    if (filtered.length < 2) return null
+    const lo = Math.min(...filtered), hi = Math.max(...filtered)
+    // Peu de resultats ou fourchette tres large = a prendre avec recul --
+    // suggere activement une meilleure photo plutot que de laisser deviner.
+    const lowConfidence = filtered.length < 3 || hi > lo * 4
+    return { lo, hi, count: filtered.length, total: prices.length, lowConfidence }
+  })()
+
   return (
     <div style={{ minHeight: '100vh', background: bg, fontFamily: 'Inter, system-ui, sans-serif' }}>
       {/* Header */}
@@ -416,6 +486,26 @@ export default function ScannerPage() {
             </div>
 
             <input ref={galleryRef} type="file" accept="image/*"                        style={{ display: 'none' }} onChange={e => { const f = e.target.files?.[0]; if (f) handleRecto(f); e.target.value = '' }} />
+
+            {/* ── Historique local (localStorage, pas de backend) ── */}
+            {scanHistory.length > 0 && (
+              <div style={{ borderTop: `1px solid ${border}`, paddingTop: 16, marginTop: 20 }}>
+                <p style={{ fontSize: 12, fontWeight: 700, color: muted, textTransform: 'uppercase', letterSpacing: 0.5, marginBottom: 10 }}>
+                  {t('scanner_recent_scans')}
+                </p>
+                <div style={{ display: 'flex', gap: 10, overflowX: 'auto', paddingBottom: 4 }}>
+                  {scanHistory.map((h, i) => (
+                    <div key={i} style={{ flexShrink: 0, width: 72, textAlign: 'center' }}>
+                      {h.img
+                        ? <img src={h.img} alt="" style={{ width: 60, height: 84, objectFit: 'cover', borderRadius: 8, border: `1px solid ${border}`, marginBottom: 4 }} />
+                        : <div style={{ width: 60, height: 84, borderRadius: 8, background: border, marginBottom: 4 }} />
+                      }
+                      <div style={{ fontSize: 11, fontWeight: 800, color: blue }}>{usd(h.price)}</div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            )}
           </div>
         )}
 
@@ -583,20 +673,20 @@ export default function ScannerPage() {
                       avant meme le fetch des ventes -- volontairement discrete (petite,
                       muette, avec un "~") car ces correspondances visuelles ne sont pas
                       forcement exactement la meme carte/variante/etat. */}
-                  {imgMatches.length >= 2 && (() => {
-                    const prices = imgMatches.map(m => m.price).filter(p => p > 0)
-                    if (prices.length < 2) return null
-                    const lo = Math.min(...prices), hi = Math.max(...prices)
-                    return (
-                      <span style={{ fontSize: 10, color: muted, fontStyle: 'italic' }}>
-                        ~ {usd(lo)} – {usd(hi)}
-                      </span>
-                    )
-                  })()}
+                  {quickEstimate && (
+                    <span style={{ fontSize: 10, color: muted, fontStyle: 'italic' }}>
+                      ~ {usd(quickEstimate.lo)} – {usd(quickEstimate.hi)} ({t('scanner_estimate_on')} {quickEstimate.count})
+                    </span>
+                  )}
                 </div>
                 <div style={{ fontSize: 11, color: muted, marginBottom: 12 }}>
                   {t('scanner_tap_match_hint')}
                 </div>
+                {quickEstimate?.lowConfidence && (
+                  <div style={{ fontSize: 11, color: dark ? '#d9a441' : '#9a6a00', background: dark ? '#241c08' : '#fff8e6', border: `1px solid ${dark ? '#4a3a10' : '#f0dfa8'}`, borderRadius: 8, padding: '7px 10px', marginBottom: 12 }}>
+                    ⚠️ {t('scanner_low_confidence_hint')}
+                  </div>
+                )}
                 <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 8 }}>
                   {imgMatches.map(m => {
                     const selected = selectedMatch?.id === m.id
