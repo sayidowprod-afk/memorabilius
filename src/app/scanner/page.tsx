@@ -575,8 +575,24 @@ export default function ScannerPage() {
 
             {imgSearchDone && imgMatches && imgMatches.length > 0 && (
               <div style={{ background: cardBg, borderRadius: 16, border: `1px solid ${border}`, padding: 14, marginBottom: 14 }}>
-                <div style={{ fontSize: 12, fontWeight: 700, color: text, textTransform: 'uppercase', letterSpacing: 0.5, marginBottom: 3 }}>
-                  {t('scanner_visual_matches')}
+                <div style={{ display: 'flex', alignItems: 'baseline', justifyContent: 'space-between', flexWrap: 'wrap', gap: 6, marginBottom: 3 }}>
+                  <div style={{ fontSize: 12, fontWeight: 700, color: text, textTransform: 'uppercase', letterSpacing: 0.5 }}>
+                    {t('scanner_visual_matches')}
+                  </div>
+                  {/* Estimation immediate a partir des prix des matches eBay eux-memes,
+                      avant meme le fetch des ventes -- volontairement discrete (petite,
+                      muette, avec un "~") car ces correspondances visuelles ne sont pas
+                      forcement exactement la meme carte/variante/etat. */}
+                  {imgMatches.length >= 2 && (() => {
+                    const prices = imgMatches.map(m => m.price).filter(p => p > 0)
+                    if (prices.length < 2) return null
+                    const lo = Math.min(...prices), hi = Math.max(...prices)
+                    return (
+                      <span style={{ fontSize: 10, color: muted, fontStyle: 'italic' }}>
+                        ~ {usd(lo)} – {usd(hi)}
+                      </span>
+                    )
+                  })()}
                 </div>
                 <div style={{ fontSize: 11, color: muted, marginBottom: 12 }}>
                   {t('scanner_tap_match_hint')}
