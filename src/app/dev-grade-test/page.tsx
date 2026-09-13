@@ -10,16 +10,20 @@ import { refineCornersV5 } from '@/lib/cornerDetectorYolo'
 // controle ne justifie pas une precision numerique unique. Warp par
 // interpolation bilineaire du quadrilatere (pas une vraie homographie
 // projective) -- approximation suffisante pour une photo prise a peu pres de
-// face, mais a garder en tete si le resultat semble deforme. Coins deplacables
-// a la souris (voir onPointer*) pour corriger une detection ratee sans
-// recharger, et les reperes de bordure detectee sont dessines sur l'image
-// redressee pour voir a quoi le centrage se fie.
+// face, mais a garder en tete si le resultat semble deforme. Coins ET lignes
+// de bordure deplacables a la souris -- utile sur les cartes "full bleed"
+// (quasi pas de bordure imprimee, ex Panini Optic) ou detectBorderWidth n'a
+// rien de fiable a accrocher et se rabat sur un contraste au hasard dans la photo.
 
 const IMGSZ = 640
 const ORT_CDN = 'https://cdn.jsdelivr.net/npm/onnxruntime-web@1.27.0/dist/'
 const MODEL_URL = '/models/corners.onnx'
+const WARP_W = 500
+const WARP_H = 700
 
 type Pt = { x: number; y: number }
+type Borders = { left: number; right: number; top: number; bottom: number }
+type Percents = { leftRightPct: [number, number]; topBottomPct: [number, number] }
 
 function letterbox(img: HTMLImageElement) {
   const scale = Math.min(IMGSZ / img.naturalWidth, IMGSZ / img.naturalHeight)
@@ -115,6 +119,7 @@ function warpQuadToRect(img: HTMLImageElement, quad: Pt[], outW: number, outH: n
 // Largeur de bordure (px) sur un des 4 cotes du canvas redresse : moyenne la
 // luminance sur une bande perpendiculaire a chaque position en avançant depuis
 // le bord, et repere le plus gros saut de luminance (transition bordure -> zone imprimee).
+// Simple point de depart -- reglable a la main ensuite (voir bordersRef/drag).
 function detectBorderWidth(canvas: HTMLCanvasElement, side: 'left' | 'right' | 'top' | 'bottom'): number {
   const ctx = canvas.getContext('2d')!
   const W = canvas.width, H = canvas.height
@@ -150,22 +155,29 @@ function detectBorderWidth(canvas: HTMLCanvasElement, side: 'left' | 'right' | '
   return bestIdx
 }
 
-// Dessine sur l'image redressee les positions exactes retenues par
-// detectBorderWidth -- pour voir a quoi le centrage se fie au lieu de
-// devoir faire confiance a un pourcentage sans preuve visuelle.
-function drawBorderGuides(canvas: HTMLCanvasElement, left: number, right: number, top: number, bottom: number) {
-  const ctx = canvas.getContext('2d')!
-  const W = canvas.width, H = canvas.height
+// Dessine les reperes de bordure courants (verts = gauche/droite, bleus =
+// haut/bas) sur le canvas d'affichage -- appele a chaque frame de drag, donc
+// doit rester tres bon marche (pas de getImageData ici).
+function drawBorderGuides(ctx: CanvasRenderingContext2D, W: number, H: number, b: Borders) {
   ctx.save()
-  ctx.lineWidth = 2
+  ctx.lineWidth = 3
   ctx.setLineDash([7, 5])
   ctx.strokeStyle = 'rgba(0, 200, 120, 0.95)'
-  ctx.beginPath(); ctx.moveTo(left, 0); ctx.lineTo(left, H); ctx.stroke()
-  ctx.beginPath(); ctx.moveTo(W - right, 0); ctx.lineTo(W - right, H); ctx.stroke()
+  ctx.beginPath(); ctx.moveTo(b.left, 0); ctx.lineTo(b.left, H); ctx.stroke()
+  ctx.beginPath(); ctx.moveTo(W - b.right, 0); ctx.lineTo(W - b.right, H); ctx.stroke()
   ctx.strokeStyle = 'rgba(30, 120, 255, 0.95)'
-  ctx.beginPath(); ctx.moveTo(0, top); ctx.lineTo(W, top); ctx.stroke()
-  ctx.beginPath(); ctx.moveTo(0, H - bottom); ctx.lineTo(W, H - bottom); ctx.stroke()
+  ctx.beginPath(); ctx.moveTo(0, b.top); ctx.lineTo(W, b.top); ctx.stroke()
+  ctx.beginPath(); ctx.moveTo(0, H - b.bottom); ctx.lineTo(W, H - b.bottom); ctx.stroke()
   ctx.restore()
+}
+
+function percentsFromBorders(b: Borders): Percents {
+  const lrTotal = b.left + b.right || 1
+  const tbTotal = b.top + b.bottom || 1
+  return {
+    leftRightPct: [Math.round((b.left / lrTotal) * 100), Math.round((b.right / lrTotal) * 100)],
+    topBottomPct: [Math.round((b.top / tbTotal) * 100), Math.round((b.bottom / tbTotal) * 100)],
+  }
 }
 
 // Variance du Laplacien dans un petit patch autour du coin -- mesure de nettete
@@ -216,13 +228,6 @@ function looksPreCropped(imgW: number, imgH: number): boolean {
   return Math.abs(ratio - CARD_RATIO) < 0.04
 }
 
-type BorderResult = {
-  leftRightPct: [number, number]
-  topBottomPct: [number, number]
-  cornerScores: number[]  // TL, TR, BR, BL
-  warpUrl: string
-}
-
 const cornerNames = ['Haut-gauche', 'Haut-droite', 'Bas-droite', 'Bas-gauche']
 
 export default function DevGradeTest() {
@@ -232,14 +237,20 @@ export default function DevGradeTest() {
   const [conf, setConf] = useState(0)
   const [hasCorners, setHasCorners] = useState(false)
   const [preCropWarning, setPreCropWarning] = useState(false)
-  const [borderResult, setBorderResult] = useState<BorderResult | null>(null)
+  const [percents, setPercents] = useState<Percents | null>(null)
+  const [cornerScores, setCornerScores] = useState<number[] | null>(null)
+
   const canvasRef = useRef<HTMLCanvasElement | null>(null)
+  const warpCanvasRef = useRef<HTMLCanvasElement | null>(null)
   const imgRef = useRef<HTMLImageElement | null>(null)
-  // Source de verite pendant le drag -- eviter de dependre du state React
+  const warpBitmapRef = useRef<HTMLCanvasElement | null>(null)
+  // Sources de verite pendant un drag -- eviter de dependre du state React
   // (qui peut retarder d'une frame par rapport aux evenements pointer) pour
   // que le trace suive la souris sans a-coups.
   const cornersRef = useRef<Pt[] | null>(null)
-  const dragIdxRef = useRef<number | null>(null)
+  const bordersRef = useRef<Borders | null>(null)
+  const dragCornerIdxRef = useRef<number | null>(null)
+  const dragBorderSideRef = useRef<keyof Borders | null>(null)
 
   const redrawOverlay = (pts: Pt[]) => {
     const img = imgRef.current, c = canvasRef.current
@@ -262,30 +273,40 @@ export default function DevGradeTest() {
     })
   }
 
+  const redrawWarp = () => {
+    const bmp = warpBitmapRef.current, c = warpCanvasRef.current, b = bordersRef.current
+    if (!bmp || !c || !b) return
+    const ctx = c.getContext('2d')!
+    ctx.clearRect(0, 0, c.width, c.height)
+    ctx.drawImage(bmp, 0, 0)
+    drawBorderGuides(ctx, c.width, c.height, b)
+    setPercents(percentsFromBorders(b))
+  }
+
   const recompute = (pts: Pt[]) => {
     const img = imgRef.current
     if (!img) return
-    const warp = warpQuadToRect(img, pts, 500, 700)
-    const left = detectBorderWidth(warp, 'left')
-    const right = detectBorderWidth(warp, 'right')
-    const top = detectBorderWidth(warp, 'top')
-    const bottom = detectBorderWidth(warp, 'bottom')
-    drawBorderGuides(warp, left, right, top, bottom)
-    const lrTotal = left + right || 1
-    const tbTotal = top + bottom || 1
-    const cornerScores = pts.map(p => cornerSharpness(img, p))
-    setBorderResult({
-      leftRightPct: [Math.round((left / lrTotal) * 100), Math.round((right / lrTotal) * 100)],
-      topBottomPct: [Math.round((top / tbTotal) * 100), Math.round((bottom / tbTotal) * 100)],
-      cornerScores,
-      warpUrl: warp.toDataURL('image/jpeg', 0.9),
-    })
+    const warp = warpQuadToRect(img, pts, WARP_W, WARP_H)
+    warpBitmapRef.current = warp
+    bordersRef.current = {
+      left: detectBorderWidth(warp, 'left'),
+      right: detectBorderWidth(warp, 'right'),
+      top: detectBorderWidth(warp, 'top'),
+      bottom: detectBorderWidth(warp, 'bottom'),
+    }
+    if (warpCanvasRef.current) {
+      warpCanvasRef.current.width = WARP_W
+      warpCanvasRef.current.height = WARP_H
+    }
+    redrawWarp()
+    setCornerScores(pts.map(p => cornerSharpness(img, p)))
   }
 
   const onFile = async (file: File) => {
     setBusy(true)
     setError('')
-    setBorderResult(null)
+    setPercents(null)
+    setCornerScores(null)
     setHasCorners(false)
     try {
       const url = URL.createObjectURL(file)
@@ -339,8 +360,8 @@ export default function DevGradeTest() {
     }
   }
 
-  const canvasPosFromEvent = (e: React.PointerEvent<HTMLCanvasElement>): Pt => {
-    const c = canvasRef.current!
+  const posFromEvent = (e: React.PointerEvent<HTMLCanvasElement>): Pt => {
+    const c = e.currentTarget
     const rect = c.getBoundingClientRect()
     return {
       x: (e.clientX - rect.left) * (c.width / rect.width),
@@ -348,11 +369,12 @@ export default function DevGradeTest() {
     }
   }
 
-  const onPointerDown = (e: React.PointerEvent<HTMLCanvasElement>) => {
+  // ── Drag des 4 coins (canvas photo originale) ──────────────────────────
+  const onCornerPointerDown = (e: React.PointerEvent<HTMLCanvasElement>) => {
     const pts = cornersRef.current
     const img = imgRef.current
     if (!pts || !img) return
-    const pos = canvasPosFromEvent(e)
+    const pos = posFromEvent(e)
     const hitRadius = Math.max(24, img.naturalWidth / 30)
     let nearest = -1, nearestDist = Infinity
     pts.forEach((p, i) => {
@@ -360,25 +382,63 @@ export default function DevGradeTest() {
       if (d < nearestDist) { nearestDist = d; nearest = i }
     })
     if (nearestDist <= hitRadius) {
-      dragIdxRef.current = nearest
+      dragCornerIdxRef.current = nearest
       e.currentTarget.setPointerCapture(e.pointerId)
     }
   }
-
-  const onPointerMove = (e: React.PointerEvent<HTMLCanvasElement>) => {
-    const idx = dragIdxRef.current
+  const onCornerPointerMove = (e: React.PointerEvent<HTMLCanvasElement>) => {
+    const idx = dragCornerIdxRef.current
     const pts = cornersRef.current
     if (idx === null || !pts) return
-    const pos = canvasPosFromEvent(e)
+    const pos = posFromEvent(e)
     const next = pts.map((p, i) => (i === idx ? pos : p))
     cornersRef.current = next
     redrawOverlay(next)
   }
-
-  const onPointerUp = () => {
-    if (dragIdxRef.current === null) return
-    dragIdxRef.current = null
+  const onCornerPointerUp = () => {
+    if (dragCornerIdxRef.current === null) return
+    dragCornerIdxRef.current = null
     if (cornersRef.current) recompute(cornersRef.current)
+  }
+
+  // ── Drag des 4 lignes de bordure (canvas carte redressee) ──────────────
+  const onBorderPointerDown = (e: React.PointerEvent<HTMLCanvasElement>) => {
+    const b = bordersRef.current
+    const c = warpCanvasRef.current
+    if (!b || !c) return
+    const pos = posFromEvent(e)
+    const hitPx = 14
+    const dists: Record<keyof Borders, number> = {
+      left: Math.abs(pos.x - b.left),
+      right: Math.abs(pos.x - (c.width - b.right)),
+      top: Math.abs(pos.y - b.top),
+      bottom: Math.abs(pos.y - (c.height - b.bottom)),
+    }
+    let best: keyof Borders | null = null, bestDist = hitPx
+    ;(Object.keys(dists) as (keyof Borders)[]).forEach(k => {
+      if (dists[k] < bestDist) { bestDist = dists[k]; best = k }
+    })
+    if (best) {
+      dragBorderSideRef.current = best
+      e.currentTarget.setPointerCapture(e.pointerId)
+    }
+  }
+  const onBorderPointerMove = (e: React.PointerEvent<HTMLCanvasElement>) => {
+    const side = dragBorderSideRef.current
+    const b = bordersRef.current
+    const c = warpCanvasRef.current
+    if (!side || !b || !c) return
+    const pos = posFromEvent(e)
+    const next = { ...b }
+    if (side === 'left') next.left = Math.max(0, Math.min(pos.x, c.width))
+    else if (side === 'right') next.right = Math.max(0, Math.min(c.width - pos.x, c.width))
+    else if (side === 'top') next.top = Math.max(0, Math.min(pos.y, c.height))
+    else if (side === 'bottom') next.bottom = Math.max(0, Math.min(c.height - pos.y, c.height))
+    bordersRef.current = next
+    redrawWarp()
+  }
+  const onBorderPointerUp = () => {
+    dragBorderSideRef.current = null
   }
 
   return (
@@ -416,13 +476,13 @@ export default function DevGradeTest() {
       )}
       <canvas
         ref={canvasRef}
-        onPointerDown={onPointerDown}
-        onPointerMove={onPointerMove}
-        onPointerUp={onPointerUp}
+        onPointerDown={onCornerPointerDown}
+        onPointerMove={onCornerPointerMove}
+        onPointerUp={onCornerPointerUp}
         style={{ width: '100%', maxWidth: 500, borderRadius: 8, background: '#eee', display: hasCorners ? 'block' : 'none', touchAction: 'none', cursor: 'grab' }}
       />
 
-      {borderResult && (
+      {percents && (
         <div style={{ marginTop: 20, display: 'grid', gap: 20 }}>
           {preCropWarning && (
             <div style={{ fontSize: 13, color: '#9a6a00', background: '#fff8e6', border: '1px solid #f0dfa8', borderRadius: 8, padding: '10px 12px' }}>
@@ -438,33 +498,44 @@ export default function DevGradeTest() {
 
           <div>
             <h3 style={{ fontSize: 14, fontWeight: 800, marginBottom: 8 }}>Centrage (approximatif)</h3>
-            <p style={{ fontSize: 13 }}>Gauche / Droite : <strong>{borderResult.leftRightPct[0]} / {borderResult.leftRightPct[1]}</strong></p>
-            <p style={{ fontSize: 13 }}>Haut / Bas : <strong>{borderResult.topBottomPct[0]} / {borderResult.topBottomPct[1]}</strong></p>
+            <p style={{ fontSize: 13 }}>Gauche / Droite : <strong>{percents.leftRightPct[0]} / {percents.leftRightPct[1]}</strong></p>
+            <p style={{ fontSize: 13 }}>Haut / Bas : <strong>{percents.topBottomPct[0]} / {percents.topBottomPct[1]}</strong></p>
           </div>
 
-          <div>
-            <h3 style={{ fontSize: 14, fontWeight: 800, marginBottom: 8 }}>Netteté des coins (heuristique, non calibrée)</h3>
-            <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 8 }}>
-              {borderResult.cornerScores.map((s, i) => {
-                const { text, color } = sharpnessLabel(s)
-                return (
-                  <div key={i} style={{ padding: '8px 10px', border: '1px solid #eee', borderRadius: 8 }}>
-                    <div style={{ fontSize: 11, color: '#888' }}>{cornerNames[i]}</div>
-                    <div style={{ fontSize: 13, fontWeight: 800, color }}>{text}</div>
-                    <div style={{ fontSize: 11, color: '#aaa' }}>score brut: {s.toFixed(0)}</div>
-                  </div>
-                )
-              })}
+          {cornerScores && (
+            <div>
+              <h3 style={{ fontSize: 14, fontWeight: 800, marginBottom: 8 }}>Netteté des coins (heuristique, non calibrée)</h3>
+              <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 8 }}>
+                {cornerScores.map((s, i) => {
+                  const { text, color } = sharpnessLabel(s)
+                  return (
+                    <div key={i} style={{ padding: '8px 10px', border: '1px solid #eee', borderRadius: 8 }}>
+                      <div style={{ fontSize: 11, color: '#888' }}>{cornerNames[i]}</div>
+                      <div style={{ fontSize: 13, fontWeight: 800, color }}>{text}</div>
+                      <div style={{ fontSize: 11, color: '#aaa' }}>score brut: {s.toFixed(0)}</div>
+                    </div>
+                  )
+                })}
+              </div>
             </div>
-          </div>
+          )}
 
           <div>
-            <h3 style={{ fontSize: 14, fontWeight: 800, marginBottom: 8 }}>
-              Carte redressée — repères de bordure détectée
+            <h3 style={{ fontSize: 14, fontWeight: 800, marginBottom: 4 }}>
+              Carte redressée — repères de bordure
               <span style={{ fontWeight: 400, color: '#888', fontSize: 12 }}> (vert = gauche/droite, bleu = haut/bas)</span>
             </h3>
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img src={borderResult.warpUrl} alt="carte redressée avec repères de bordure" style={{ width: '100%', maxWidth: 300, borderRadius: 8, border: '1px solid #eee' }} />
+            <p style={{ fontSize: 12, color: '#888', marginBottom: 8 }}>
+              Glisse une ligne pour corriger la bordure repérée — utile sur les cartes sans grande bordure imprimée
+              (full bleed) où la détection automatique n'a rien de fiable à accrocher.
+            </p>
+            <canvas
+              ref={warpCanvasRef}
+              onPointerDown={onBorderPointerDown}
+              onPointerMove={onBorderPointerMove}
+              onPointerUp={onBorderPointerUp}
+              style={{ width: '100%', maxWidth: 300, borderRadius: 8, border: '1px solid #eee', touchAction: 'none', cursor: 'grab' }}
+            />
           </div>
         </div>
       )}
