@@ -67,6 +67,12 @@ let tokenCache: { value: string; exp: number } | null = null
 function titleMatchesCard(title: string, mustTerms: string[], isGraded: boolean): boolean {
   const t = normalize(title)
   if (!isGraded && GRADE_KEYWORDS.some(k => t.includes(k))) return false
+  // [].every(...) vaut toujours true en JS -- si l'extraction n'a trouve aucun
+  // terme distinctif (titre atypique), un mustTerms vide laissait passer
+  // n'importe quelle annonce sans filtre (deja vu : cartes de joueurs
+  // completement differents melangees dans les resultats). Sans terme fiable,
+  // mieux vaut ne rien retourner que des correspondances au hasard.
+  if (mustTerms.length === 0) return false
   return mustTerms.every(term => t.includes(normalize(term)))
 }
 
