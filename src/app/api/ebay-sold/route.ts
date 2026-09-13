@@ -67,12 +67,6 @@ let tokenCache: { value: string; exp: number } | null = null
 function titleMatchesCard(title: string, mustTerms: string[], isGraded: boolean): boolean {
   const t = normalize(title)
   if (!isGraded && GRADE_KEYWORDS.some(k => t.includes(k))) return false
-  // [].every(...) vaut toujours true en JS -- si l'extraction n'a trouve aucun
-  // terme distinctif (titre atypique), un mustTerms vide laissait passer
-  // n'importe quelle annonce sans filtre (deja vu : cartes de joueurs
-  // completement differents melangees dans les resultats). Sans terme fiable,
-  // mieux vaut ne rien retourner que des correspondances au hasard.
-  if (mustTerms.length === 0) return false
   return mustTerms.every(term => t.includes(normalize(term)))
 }
 
@@ -277,17 +271,14 @@ export async function GET(req: NextRequest) {
   const yearShort = year?.match(/^(\d{4})/)?.[1] || year
 
   const GENERIC = new Set(['panini', 'topps', 'upper', 'deck', 'donruss', 'fleer', 'nba', 'nfl', 'mlb', 'basketball', 'football', 'baseball', 'card', 'cards'])
-  // Mots de remplissage frequents dans les titres d'annonces eBay (condition,
-  // type de tirage, formulation vendeur...) -- sans ca, l'extraction du nom
-  // du joueur pour une recherche directQ (voir plus bas) prenait n'importe quel
-  // mot "valide" en premiere position du titre, qui n'est pas toujours le nom
-  // (ex: "...Complete Silver NBA ... Cliff Alexander" -> "Complete Silver" au
-  // lieu de "Cliff Alexander").
-  const LISTING_FILLER = new Set(['complete', 'silver', 'gold', 'pick', 'single', 'rookie', 'base', 'insert', 'parallel', 'checklist', 'near', 'mint', 'lot', 'set', 'series', 'edition', 'rated', 'style'])
   const BRANDS = new Set(['donruss', 'topps', 'panini', 'bowman', 'fleer', 'prizm', 'optic', 'select', 'chronicles', 'mosaic', 'illusions', 'hoops', 'score', 'contenders', 'certified', 'absolute', 'revolution', 'status', 'noir', 'eminence', 'immaculate', 'national', 'treasures', 'spectra', 'obsidian', 'kaboom', 'phoenix'])
   const setWords = set.split(/\s+/).filter(w => w.length > 2 && !GENERIC.has(w.toLowerCase()))
 
   const keywordParts = [name, yearShort, set, variant, printRun || '', rc ? 'RC' : '', auto ? 'AUTO' : '', patch ? 'PATCH' : ''].filter(Boolean)
+  const keywords = directQ || keywordParts.join(' ')
+
+  // Browse API gère bien les longues requêtes — on utilise le titre complet
+  const soldKeywords = directQ || keywords
 
   // mustTerms : filtre strict côté client après résultats Browse API
   // Pour directQ : joueur (2 mots) + année (4 chiffres) + marque du set
@@ -296,33 +287,15 @@ export async function GET(req: NextRequest) {
         const words = directQ.split(/\s+/)
         // Mots du nom joueur/insert : pas d'année, pas de #, pas générique, pas marque
         const nameWords = words
-          .filter(w => w.length > 3 && !GENERIC.has(w.toLowerCase()) && !BRANDS.has(w.toLowerCase()) && !LISTING_FILLER.has(w.toLowerCase()) && !/^\d/.test(w) && !/^#/.test(w))
+          .filter(w => w.length > 3 && !GENERIC.has(w.toLowerCase()) && !BRANDS.has(w.toLowerCase()) && !/^\d/.test(w) && !/^#/.test(w))
           .slice(0, 2)
         // Année 4 chiffres (2020 de "2020-21")
         const yearM = directQ.match(/\b((?:19|20)\d{2})\b/)
         // Marque du set (Donruss, Topps, etc.)
-        // "Panini"/"Topps" sont des editeurs qui publient des dizaines de gammes
-        // totalement differentes (Select, Revolution, Prizm, Donruss...) --
-        // presque toujours le mot juste apres l'annee dans un titre, ils sont
-        // choisis en premier par .find() avant la vraie gamme plus specifique
-        // qui suit, rendant le filtre bien trop large (n'importe quel produit
-        // Panini du joueur passe, pas seulement la gamme de la carte selectionnee).
-        const brand = words.find(w => BRANDS.has(w.toLowerCase()) && w.toLowerCase() !== 'panini' && w.toLowerCase() !== 'topps')
+        const brand = words.find(w => BRANDS.has(w.toLowerCase()))
         return [...nameWords, ...(yearM ? [yearM[1]] : []), ...(brand ? [brand] : [])]
       })()
     : [name]
-
-  // directQ (titre exact d'une annonce eBay cliquée dans le scanner) est trop
-  // specifique pour servir DIRECTEMENT de requete de recherche -- sa formulation
-  // (mots de remplissage du vendeur, "PICK SINGLE CARD", condition...) fait que
-  // la recherche texte eBay ne retrouve quasiment que cette annonce precise,
-  // alors que la recherche par image juste avant en montrait des dizaines de
-  // similaires. On cherche avec les termes essentiels deja extraits (mustTerms)
-  // et on garde le filtre strict sur ces memes termes pour la pertinence.
-  const keywords = directQ ? mustTerms.join(' ') : keywordParts.join(' ')
-
-  // Browse API gère bien les longues requêtes — on utilise le titre complet
-  const soldKeywords = keywords
   if (!directQ && yearShort) mustTerms.push(yearShort)
   if (!directQ && printRun) mustTerms.push(printRun.replace('/', ''))
   if (!directQ && auto) mustTerms.push('auto')
