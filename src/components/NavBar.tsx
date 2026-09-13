@@ -136,7 +136,7 @@ export default function Navbar() {
   // Indicateur de section active — soulignement anime (transition color) plutot
   // qu'un changement instantane, comme un onglet actif.
   const COMMUNAUTE_PATHS = ['/annuaire', '/teams', '/trades', '/evenements', '/activite']
-  const OUTILS_PATHS = ['/scanner', '/setlist', '/guides', '/recherche']
+  const OUTILS_PATHS = ['/scanner', '/gradation', '/setlist', '/guides', '/recherche']
   const communauteActive = COMMUNAUTE_PATHS.some(p => pathname.startsWith(p))
   const outilsActive = OUTILS_PATHS.some(p => pathname.startsWith(p))
   const tutoActive = pathname.startsWith('/tuto')
@@ -181,6 +181,7 @@ export default function Navbar() {
             {openDrop === 'outils' && (
               <div style={{ position: 'absolute', top: 56, left: 0, background: dropBg, border: `1px solid ${dropBorder}`, borderRadius: 12, padding: 6, boxShadow: '0 8px 24px rgba(0,0,0,0.12)', minWidth: 160, zIndex: 300 }}>
                 <Link href="/scanner" style={dropItemStyle} onClick={closeDrop}>📷 {t('nav_scanner')}</Link>
+                <Link href="/gradation" style={dropItemStyle} onClick={closeDrop}>🔍 {t('nav_gradation')}</Link>
                 <Link href="/setlist" style={dropItemStyle} onClick={closeDrop}>📋 {t('nav_setlist')}</Link>
                 <Link href="/guides" style={dropItemStyle} onClick={closeDrop}>📖 {t('nav_guides')}</Link>
                 <Link href="/recherche" style={dropItemStyle} onClick={closeDrop}>{t('nav_recherche')}</Link>
@@ -315,6 +316,7 @@ export default function Navbar() {
           {user && <Link href="/activite" style={ls} onClick={() => setMenuOpen(false)}>📰 {t('nav_activite')}</Link>}
           <div style={{ fontSize: 10, fontWeight: 800, textTransform: 'uppercase', color: '#999', letterSpacing: 1, padding: '16px 0 4px' }}>{t('nav_outils')}</div>
           <Link href="/scanner" style={ls} onClick={() => setMenuOpen(false)}>📷 {t('nav_scanner')}</Link>
+          <Link href="/gradation" style={ls} onClick={() => setMenuOpen(false)}>🔍 {t('nav_gradation')}</Link>
           <Link href="/setlist" style={ls} onClick={() => setMenuOpen(false)}>📋 {t('nav_setlist')}</Link>
           <Link href="/guides" style={ls} onClick={() => setMenuOpen(false)}>📖 {t('nav_guides')}</Link>
           <Link href="/recherche" style={ls} onClick={() => setMenuOpen(false)}>{t('nav_recherche')}</Link>
