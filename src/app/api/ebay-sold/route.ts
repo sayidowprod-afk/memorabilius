@@ -374,13 +374,24 @@ export async function GET(req: NextRequest) {
     const sold = soldResult.items
     const soldPrices = sold.map(i => i.price)
 
+    // Le Finding API "SoldItemsOnly" et Marketplace Insights sont restreints
+    // par eBay depuis 2023 (accès non accordé pour ce compte) et renvoient
+    // quasi toujours 0 -- plutôt que d'afficher un prix "vendu" vide comme si
+    // la recherche avait échoué, on retombe sur les annonces actives (fourchette
+    // demandée par les vendeurs) qui elles fonctionnent. priceSource permet au
+    // client de libeller correctement la source affichée.
+    const activePrices = active.map((i: { price: number }) => i.price)
+    const usingActiveFallback = soldPrices.length === 0 && activePrices.length > 0
+    const pricePool = soldPrices.length > 0 ? soldPrices : activePrices
+
     const payload = {
       active,
       sold,
       soldCount: sold.length,
-      median: median(soldPrices),
-      min: soldPrices.length ? Math.min(...soldPrices) : 0,
-      max: soldPrices.length ? Math.max(...soldPrices) : 0,
+      median: median(pricePool),
+      min: pricePool.length ? Math.min(...pricePool) : 0,
+      max: pricePool.length ? Math.max(...pricePool) : 0,
+      priceSource: soldPrices.length > 0 ? 'sold' : (usingActiveFallback ? 'active' : 'none'),
       items: active,
       count: active.length,
     }

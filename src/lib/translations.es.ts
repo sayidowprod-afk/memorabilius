@@ -1321,6 +1321,7 @@ export const es = {
   scanner_market_value: 'Valor de mercado',
   scanner_sold_count_suffix: 'ventas eBay US',
   scanner_median_sales: 'Mediana de ventas',
+  scanner_median_active: 'Mediana de anuncios en venta',
   scanner_min: 'Mín',
   scanner_max: 'Máx',
   scanner_no_recent_sales: 'Ninguna venta reciente encontrada.',

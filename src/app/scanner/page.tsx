@@ -19,6 +19,7 @@ interface SaleItem  { title: string; price: number; url: string; img: string; so
 interface EbayResult {
   active: SaleItem[]; sold: SaleItem[]
   median: number; min: number; max: number; soldCount: number
+  priceSource: 'sold' | 'active' | 'none'
 }
 
 function toBase64(file: File): Promise<{ b64: string; mime: string }> {
@@ -295,7 +296,9 @@ export default function ScannerPage() {
         min: d.min || 0,
         max: d.max || 0,
         soldCount: d.soldCount || 0,
+        priceSource: d.priceSource || 'none',
       })
+      if (!(d.sold?.length > 0)) setSoldTab('active')
     } catch { /* non-fatal */ }
     setPhase('done')
   }, [])
@@ -452,7 +455,7 @@ export default function ScannerPage() {
     y += 70
     ctx.font = '700 15px Inter, system-ui, sans-serif'
     ctx.fillStyle = '#3b6bde'
-    ctx.fillText(t('scanner_median_sales').toUpperCase(), W / 2, y)
+    ctx.fillText((ebay.priceSource === 'sold' ? t('scanner_median_sales') : t('scanner_median_active')).toUpperCase(), W / 2, y)
 
     y += 66
     ctx.font = '900 76px Inter, system-ui, sans-serif'
@@ -825,7 +828,7 @@ export default function ScannerPage() {
                   <div style={{ padding: '16px' }}>
                     <div style={{ textAlign: 'center', background: dark ? '#0d1a36' : '#eef3ff', borderRadius: 14, padding: '16px 12px', marginBottom: 12 }}>
                       <div style={{ fontSize: 11, fontWeight: 700, color: dark ? '#6ea0ff' : '#3b6bde', textTransform: 'uppercase', letterSpacing: 0.7, marginBottom: 6 }}>
-                        {t('scanner_median_sales')}
+                        {ebay.priceSource === 'sold' ? t('scanner_median_sales') : t('scanner_median_active')}
                       </div>
                       <div style={{ fontSize: 52, fontWeight: 900, color: blue, lineHeight: 1, letterSpacing: -2, fontVariantNumeric: 'tabular-nums' }}>
                         {usd(ebay.median)}
@@ -868,8 +871,17 @@ export default function ScannerPage() {
               </div>
             )}
 
-            {/* Tabs vendues / en vente */}
-            {phase === 'done' && ebay && (ebay.sold.length > 0 || ebay.active.length > 0) && (
+            {/* Tabs vendues / en vente -- l'onglet "vendues" n'a de sens que
+                si on a reellement des ventes (Marketplace Insights/Finding
+                API sont restreints par eBay et renvoient presque toujours
+                0) ; sinon on montre directement les annonces actives sans
+                un onglet vide qui a l'air casse. */}
+            {phase === 'done' && ebay && ebay.sold.length === 0 && ebay.active.length === 0 && (
+              <div style={{ background: cardBg, borderRadius: 16, border: `1px solid ${border}`, padding: '14px 16px', marginBottom: 14 }}>
+                <p style={{ color: muted, fontSize: 13, textAlign: 'center', margin: 0 }}>{t('gallery_no_results')}</p>
+              </div>
+            )}
+            {phase === 'done' && ebay && ebay.sold.length > 0 && (
               <div style={{ background: cardBg, borderRadius: 16, border: `1px solid ${border}`, overflow: 'hidden', marginBottom: 14 }}>
                 <div style={{ display: 'flex', borderBottom: `1px solid ${border}` }}>
                   {(['sold', 'active'] as const).map(key => (
@@ -889,6 +901,18 @@ export default function ScannerPage() {
                     ? <p style={{ color: muted, fontSize: 13, textAlign: 'center', padding: '14px 0', margin: 0 }}>{t('gallery_no_results')}</p>
                     : (soldTab === 'sold' ? ebay.sold : ebay.active).map((item, i) => <SaleRow key={i} item={item} />)
                   }
+                </div>
+              </div>
+            )}
+            {phase === 'done' && ebay && ebay.sold.length === 0 && ebay.active.length > 0 && (
+              <div style={{ background: cardBg, borderRadius: 16, border: `1px solid ${border}`, overflow: 'hidden', marginBottom: 14 }}>
+                <div style={{ padding: '13px 16px', borderBottom: `1px solid ${border}` }}>
+                  <span style={{ fontSize: 12, fontWeight: 700, color: muted, textTransform: 'uppercase', letterSpacing: 0.6 }}>
+                    {t('scanner_active_tab')} ({ebay.active.length})
+                  </span>
+                </div>
+                <div style={{ padding: 12, display: 'flex', flexDirection: 'column', gap: 7, maxHeight: 360, overflowY: 'auto' }}>
+                  {ebay.active.map((item, i) => <SaleRow key={i} item={item} />)}
                 </div>
               </div>
             )}
