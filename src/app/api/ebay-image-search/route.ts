@@ -1,7 +1,35 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { createClient } from '@supabase/supabase-js'
+import { createHash } from 'crypto'
 
 export const maxDuration = 20
+
+// Cache par hash d'image exacte -- deux scans de la meme photo (retry,
+// reload, deux users qui scannent la meme carte le meme jour via le meme
+// screenshot partage) reutilisent le resultat au lieu de repayer l'appel
+// image search eBay (le plus couteux du flux de scan).
+const RESP_CACHE = new Map<string, { data: object; exp: number }>()
+const RESP_TTL   = 4 * 60 * 60 * 1000
+function respCacheGet(k: string) {
+  const e = RESP_CACHE.get(k)
+  if (!e || Date.now() > e.exp) { RESP_CACHE.delete(k); return null }
+  return e.data
+}
+function respCacheSet(k: string, data: object) {
+  RESP_CACHE.set(k, { data, exp: Date.now() + RESP_TTL })
+}
+const SB_TTL_H = 24
+async function sbGet(k: string): Promise<object | null> {
+  try {
+    const { data } = await supabase.from('ebay_cache').select('data').eq('key', k).gt('expires_at', new Date().toISOString()).maybeSingle()
+    return (data as any)?.data ?? null
+  } catch { return null }
+}
+async function sbSet(k: string, data: object) {
+  try {
+    await supabase.from('ebay_cache').upsert({ key: k, data, expires_at: new Date(Date.now() + SB_TTL_H * 3600_000).toISOString() } as any, { onConflict: 'key' })
+  } catch { /* non-fatal */ }
+}
 
 // Rate limit: 30 req/min par utilisateur -- meme cadence que ebay-sold, qui
 // protege deja le quota eBay partage (5 000/jour) ; cette route en etait
@@ -60,6 +88,12 @@ export async function POST(req: NextRequest) {
     const { imageBase64 } = await req.json()
     if (!imageBase64) return NextResponse.json({ items: [] })
 
+    const cacheKey = `imgsearch:${createHash('sha256').update(imageBase64).digest('hex')}`
+    const memHit = respCacheGet(cacheKey)
+    if (memHit) return NextResponse.json(memHit)
+    const sbHit = await sbGet(cacheKey)
+    if (sbHit) { respCacheSet(cacheKey, sbHit); return NextResponse.json(sbHit) }
+
     const oauthToken = await getOAuthToken(appId, certId)
     if (!oauthToken) return NextResponse.json({ items: [] })
 
@@ -91,7 +125,12 @@ export async function POST(req: NextRequest) {
       }))
       .filter((i: any) => i.price > 0 && i.img)
 
-    return NextResponse.json({ items })
+    const payload = { items }
+    if (items.length > 0) {
+      respCacheSet(cacheKey, payload)
+      sbSet(cacheKey, payload)  // fire-and-forget
+    }
+    return NextResponse.json(payload)
   } catch {
     return NextResponse.json({ items: [] })
   }

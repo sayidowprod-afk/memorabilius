@@ -1315,6 +1315,7 @@ export const it = {
   scanner_estimate_on: 'su',
   scanner_low_confidence_hint: 'Risultati incerti — scatta una foto più nitida o aggiungi il retro',
   scanner_recent_scans: 'Scansionate di recente',
+  scanner_share: 'Condividi',
   scanner_no_visual_match: "Nessuna corrispondenza visiva eBay — risultati basati sull'identificazione IA.",
   scanner_card_selected: '✓ Carta selezionata',
   scanner_market_value: 'Valore di mercato',

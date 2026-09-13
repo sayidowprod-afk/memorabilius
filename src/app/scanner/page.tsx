@@ -402,6 +402,83 @@ export default function ScannerPage() {
     </a>
   )
 
+  // Genere une image recap (photo carte a bords nets + nom + prix) et la
+  // partage via l'API Web Share (mobile) ou la telecharge (desktop).
+  const shareResult = useCallback(async () => {
+    if (!imgSrc || !ebay?.median) return
+    const W = 800, H = 1050
+    const canvas = document.createElement('canvas')
+    canvas.width = W; canvas.height = H
+    const ctx = canvas.getContext('2d')
+    if (!ctx) return
+
+    ctx.fillStyle = '#f5f7fb'
+    ctx.fillRect(0, 0, W, H)
+    ctx.fillStyle = '#0046D1'
+    ctx.fillRect(0, 0, W, 64)
+    ctx.fillStyle = '#fff'
+    ctx.font = '900 26px Inter, system-ui, sans-serif'
+    ctx.textAlign = 'left'
+    ctx.textBaseline = 'middle'
+    ctx.fillText('Memorabilius', 28, 32)
+
+    const img = new Image()
+    await new Promise<void>(resolve => { img.onload = () => resolve(); img.onerror = () => resolve(); img.src = imgSrc })
+    // Coins de la carte toujours nets, jamais arrondis, meme dans un export.
+    const cardW = 340, cardH = 476
+    const cardX = (W - cardW) / 2, cardY = 96
+    if (img.complete && img.naturalWidth > 0) {
+      ctx.save()
+      ctx.shadowColor = 'rgba(0,0,0,0.25)'
+      ctx.shadowBlur = 30
+      ctx.shadowOffsetY = 12
+      ctx.drawImage(img, cardX, cardY, cardW, cardH)
+      ctx.restore()
+    }
+
+    let y = cardY + cardH + 56
+    ctx.textAlign = 'center'
+    ctx.fillStyle = '#0d0d0d'
+    ctx.font = '900 32px Inter, system-ui, sans-serif'
+    ctx.fillText(card?.nom || '', W / 2, y)
+
+    if (card?.annee || card?.marque || card?.collection) {
+      y += 34
+      ctx.font = '600 17px Inter, system-ui, sans-serif'
+      ctx.fillStyle = '#666'
+      ctx.fillText([card?.annee, card?.marque, card?.collection].filter(Boolean).join(' · '), W / 2, y)
+    }
+
+    y += 70
+    ctx.font = '700 15px Inter, system-ui, sans-serif'
+    ctx.fillStyle = '#3b6bde'
+    ctx.fillText(t('scanner_median_sales').toUpperCase(), W / 2, y)
+
+    y += 66
+    ctx.font = '900 76px Inter, system-ui, sans-serif'
+    ctx.fillStyle = '#0046D1'
+    ctx.fillText(usd(ebay.median), W / 2, y)
+
+    ctx.font = '600 14px Inter, system-ui, sans-serif'
+    ctx.fillStyle = '#999'
+    ctx.fillText(`memorabilius.fr · ${new Date().toLocaleDateString(localeFor(lang))}`, W / 2, H - 40)
+
+    canvas.toBlob(async blob => {
+      if (!blob) return
+      const file = new File([blob], 'memorabilius-scan.jpg', { type: 'image/jpeg' })
+      const shareText = `${card?.nom || ''} — ${usd(ebay.median)} · Memorabilius`
+      if (navigator.canShare?.({ files: [file] })) {
+        try { await navigator.share({ files: [file], title: 'Memorabilius', text: shareText }) } catch { /* annulé par l'utilisateur */ }
+      } else {
+        const url = URL.createObjectURL(blob)
+        const a = document.createElement('a')
+        a.href = url; a.download = 'memorabilius-scan.jpg'
+        document.body.appendChild(a); a.click(); a.remove()
+        setTimeout(() => URL.revokeObjectURL(url), 4000)
+      }
+    }, 'image/jpeg', 0.92)
+  }, [imgSrc, card, ebay, lang, t])
+
   const isSearching = phase === 'searching'
   const showResults = phase === 'results' || phase === 'loading-sold' || phase === 'done' || phase === 'error'
 
@@ -767,6 +844,14 @@ export default function ScannerPage() {
                         <div style={{ fontWeight: 900, fontSize: 22, color: blue, fontVariantNumeric: 'tabular-nums' }}>{usd(ebay.max)}</div>
                       </div>
                     </div>
+                    <button onClick={shareResult} style={{
+                      width: '100%', marginTop: 10, padding: '11px 0', background: 'none',
+                      border: `1.5px solid ${border}`, borderRadius: 12, cursor: 'pointer',
+                      color: text, fontSize: 13, fontWeight: 800,
+                      display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 7,
+                    }}>
+                      <span aria-hidden="true">📤</span> {t('scanner_share')}
+                    </button>
                   </div>
                 ) : phase === 'done' ? (
                   <p style={{ color: muted, fontSize: 13, textAlign: 'center', padding: '20px 16px', margin: 0 }}>
