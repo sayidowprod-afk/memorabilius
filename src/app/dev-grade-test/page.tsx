@@ -248,6 +248,23 @@ function cornerSharpness(img: HTMLImageElement, pt: Pt, patch = 28): number {
   return sumSq / n - mean * mean
 }
 
+// Crop carre autour d'un coin, extrait directement de la photo source en
+// PLEINE resolution native (1:1, aucun redimensionnement dans drawImage) --
+// le "zoom" vient uniquement de l'affichage a une taille CSS plus grande que
+// la taille native du crop, jamais d'un agrandissement de pixels deja
+// degrades. PNG (sans perte) plutot que JPEG pour ne pas ajouter d'artefacts
+// de compression sur une image dont le but est justement l'inspection visuelle.
+function cropCornerImage(img: HTMLImageElement, pt: Pt, size: number): string {
+  const canvas = document.createElement('canvas')
+  canvas.width = size
+  canvas.height = size
+  const ctx = canvas.getContext('2d')!
+  ctx.imageSmoothingEnabled = true
+  ctx.imageSmoothingQuality = 'high'
+  ctx.drawImage(img, pt.x - size / 2, pt.y - size / 2, size, size, 0, 0, size, size)
+  return canvas.toDataURL('image/png')
+}
+
 function sharpnessLabel(v: number): { text: string; color: string } {
   if (v > 900) return { text: 'Net', color: '#16a34a' }
   if (v > 400) return { text: 'Usure légère', color: '#d97706' }
@@ -350,6 +367,7 @@ export default function DevGradeTest() {
   const [preCropWarning, setPreCropWarning] = useState(false)
   const [percents, setPercents] = useState<Percents | null>(null)
   const [cornerScores, setCornerScores] = useState<number[] | null>(null)
+  const [cornerCrops, setCornerCrops] = useState<string[] | null>(null)
   const [cameraModal, setCameraModal] = useState(false)
 
   const canvasRef = useRef<HTMLCanvasElement | null>(null)
@@ -436,6 +454,11 @@ export default function DevGradeTest() {
     redrawOverlay(pts, frac)
     setPercents(percentsFromBorders(frac))
     setCornerScores(pts.map(p => cornerSharpness(img, p)))
+    // Champ de vision du crop proportionnel a la resolution de la photo --
+    // meme logique que le rayon des poignees, pour rester coherent visuellement
+    // quelle que soit la taille de l'image source.
+    const cropSize = Math.max(90, img.naturalWidth / 20)
+    setCornerCrops(pts.map(p => cropCornerImage(img, p, cropSize)))
   }
 
   const onFile = async (file: File) => {
@@ -443,6 +466,7 @@ export default function DevGradeTest() {
     setError('')
     setPercents(null)
     setCornerScores(null)
+    setCornerCrops(null)
     setHasCorners(false)
     try {
       const url = URL.createObjectURL(file)
@@ -579,6 +603,7 @@ export default function DevGradeTest() {
     setHasCorners(false)
     setPercents(null)
     setCornerScores(null)
+    setCornerCrops(null)
     setError('')
     setPreCropWarning(false)
     cornersRef.current = null
@@ -765,14 +790,25 @@ export default function DevGradeTest() {
             </div>
 
             <div style={{ background: cardBg, borderRadius: 16, border: `1px solid ${border}`, padding: 16 }}>
-              <div style={{ fontSize: 11, fontWeight: 700, color: muted, textTransform: 'uppercase', letterSpacing: 0.6, marginBottom: 12 }}>
+              <div style={{ fontSize: 11, fontWeight: 700, color: muted, textTransform: 'uppercase', letterSpacing: 0.6, marginBottom: 4 }}>
                 Netteté des coins
               </div>
-              <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 8 }}>
+              <p style={{ fontSize: 11, color: muted, marginTop: 0, marginBottom: 12 }}>
+                Zoom extrait de la photo en pleine résolution — juge par toi-même si le verdict semble juste.
+              </p>
+              <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 10 }}>
                 {cornerScores.map((s, i) => {
                   const { text: label, color } = sharpnessLabel(s)
                   return (
-                    <div key={i} style={{ padding: '10px 12px', background: dark ? '#111' : '#f8f9fb', border: `1px solid ${border}`, borderRadius: 10 }}>
+                    <div key={i} style={{ padding: 10, background: dark ? '#111' : '#f8f9fb', border: `1px solid ${border}`, borderRadius: 10 }}>
+                      {cornerCrops && (
+                        // eslint-disable-next-line @next/next/no-img-element
+                        <img
+                          src={cornerCrops[i]}
+                          alt={`Zoom ${cornerNames[i]}`}
+                          style={{ width: '100%', aspectRatio: '1', objectFit: 'cover', borderRadius: 8, marginBottom: 8, border: `1px solid ${border}`, background: border }}
+                        />
+                      )}
                       <div style={{ fontSize: 10, color: muted, marginBottom: 3 }}>{cornerNames[i]}</div>
                       <div style={{ fontSize: 13, fontWeight: 800, color }}>{label}</div>
                     </div>
