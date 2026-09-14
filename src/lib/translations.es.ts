@@ -14,6 +14,7 @@ export const es = {
   gradation_precropped_recompute_note: '— marcado después, recalcula de inmediato',
   gradation_take_photo: 'Tomar una foto',
   gradation_import_gallery: 'Importar desde la galería',
+  gradation_from_memorabilius: 'Elegir una carta de mi galería Memorabilius',
   gradation_analyzing: 'Analizando…',
   gradation_error_invalid_image: 'Imagen no válida',
   gradation_error_no_card_detected: 'No se detectó ninguna carta',

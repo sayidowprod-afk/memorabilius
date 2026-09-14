@@ -3,7 +3,9 @@ import { useRef, useState } from 'react'
 import { refineCornersV5 } from '@/lib/cornerDetectorYolo'
 import { useTheme } from '@/lib/ThemeContext'
 import { useLang } from '@/lib/LangContext'
+import { useAuth } from '@/lib/AuthContext'
 import CameraCapture from '@/components/CameraCapture'
+import CardPicker, { type PickableCard } from '@/components/CardPicker'
 
 // Estimation de condition (centrage + etat des coins) a partir du detecteur
 // de coins deja en prod. Volontairement PAS un grade chiffre officiel façon
@@ -410,6 +412,7 @@ function CenteringBar({ leftLabel, rightLabel, pct, blue, border, muted, text }:
 export default function EtatCartePage() {
   const { dark } = useTheme()
   const { t } = useLang()
+  const { user } = useAuth()
   const bg     = dark ? '#0a0a0a' : '#f0f2f7'
   const cardBg = dark ? '#161616' : '#ffffff'
   const text   = dark ? '#f0f0f0' : '#0d0d0d'
@@ -430,6 +433,7 @@ export default function EtatCartePage() {
   const [cornerScores, setCornerScores] = useState<number[] | null>(null)
   const [cornerCrops, setCornerCrops] = useState<string[] | null>(null)
   const [cameraModal, setCameraModal] = useState(false)
+  const [galleryPickerOpen, setGalleryPickerOpen] = useState(false)
   // Position ECRAN (client) du doigt/curseur pendant un drag -- pilote le
   // placement de la bulle flottante de la loupe. null = loupe masquee.
   const [touchPoint, setTouchPoint] = useState<Pt | null>(null)
@@ -607,6 +611,23 @@ export default function EtatCartePage() {
     } catch (e: any) {
       setError(e?.message || String(e))
     } finally {
+      setBusy(false)
+    }
+  }
+
+  const loadFromGallery = async (card: PickableCard) => {
+    setGalleryPickerOpen(false)
+    setBusy(true)
+    setError('')
+    try {
+      // Passe par le proxy same-origin -- un fetch direct vers le storage
+      // Supabase echoue en pratique (CORS), voir src/app/api/proxy-image.
+      const res = await fetch(`/api/proxy-image?url=${encodeURIComponent(card.img)}`)
+      if (!res.ok) throw new Error(t('gradation_error_invalid_image'))
+      const blob = await res.blob()
+      await onFile(new File([blob], 'carte.jpg', { type: blob.type || 'image/jpeg' }))
+    } catch (e: any) {
+      setError(e?.message || String(e))
       setBusy(false)
     }
   }
@@ -799,6 +820,14 @@ export default function EtatCartePage() {
             }}>
               {t('gradation_import_gallery')}
             </button>
+            {user && (
+              <button onClick={() => setGalleryPickerOpen(true)} style={{
+                width: '100%', padding: '13px 0', marginTop: 10, background: 'none', border: `2px solid ${border}`,
+                borderRadius: 14, cursor: 'pointer', color: muted, fontSize: 14, fontWeight: 700,
+              }}>
+                🗂️ {t('gradation_from_memorabilius')}
+              </button>
+            )}
             <input
               ref={galleryRef}
               type="file"
@@ -930,6 +959,10 @@ export default function EtatCartePage() {
 
       {cameraModal && (
         <CameraCapture onCapture={handleCapture} onClose={() => setCameraModal(false)} />
+      )}
+
+      {galleryPickerOpen && user && (
+        <CardPicker userId={user.id} onSelect={loadFromGallery} onClose={() => setGalleryPickerOpen(false)} />
       )}
 
       <style>{`
