@@ -1863,7 +1863,18 @@ export default function GalerieClient({ userId, initialCardUrl, initialCards, in
               >✎</span>
             )}
           </button>
-          {colorPickerTag === tag && colorPickerRect && createPortal(
+          {colorPickerTag === tag && colorPickerRect && (() => {
+            // Largeur/position calculees en JS avec clamp explicite -- plutot
+            // que de compter sur min()/calc() CSS (signale peu fiable sur
+            // certaines WebView Android) : chiffres numeriques purs, comme
+            // deja fait pour la loupe de l'outil de gradation.
+            const popupWidth = Math.min(220, window.innerWidth - 16)
+            const left = Math.max(8, Math.min(
+              window.innerWidth - popupWidth - 8,
+              colorPickerLeft ? colorPickerRect.left : colorPickerRect.right - popupWidth,
+            ))
+            const popupMaxHeight = Math.min(window.innerHeight * 0.7, window.innerHeight - 16)
+            return createPortal(
             <>
               {/* Overlay invisible pour fermer au clic exterieur */}
               <div onClick={() => setColorPickerTag(null)} style={{ position: 'fixed', inset: 0, zIndex: 99 }} />
@@ -1875,9 +1886,9 @@ export default function GalerieClient({ userId, initialCardUrl, initialCards, in
                   seule carte). fixed + coordonnees ecran + scroll interne. */}
               <div onClick={e => e.stopPropagation()} style={{
                 position: 'fixed',
+                left,
                 ...(colorPickerUp ? { bottom: window.innerHeight - colorPickerRect.top + 6 } : { top: colorPickerRect.bottom + 6 }),
-                ...(colorPickerLeft ? { left: colorPickerRect.left } : { right: window.innerWidth - colorPickerRect.right }),
-                background: dark ? '#1e1e1e' : 'white', borderRadius: 12, padding: 10, boxShadow: dark ? '0 8px 30px rgba(0,0,0,0.5)' : '0 8px 30px rgba(0,0,0,0.18)', border: dark ? '1px solid #333' : 'none', zIndex: 100000, width: 'min(220px, calc(100vw - 24px))', maxHeight: 'min(70vh, calc(100vh - 24px))', overflowY: 'auto',
+                background: dark ? '#1e1e1e' : 'white', borderRadius: 12, padding: 10, boxShadow: dark ? '0 8px 30px rgba(0,0,0,0.5)' : '0 8px 30px rgba(0,0,0,0.18)', border: dark ? '1px solid #333' : 'none', zIndex: 100000, width: popupWidth, maxWidth: popupWidth, maxHeight: popupMaxHeight, overflowY: 'auto', overflowX: 'hidden',
               }}>
               <input
                 value={renameValue}
@@ -1992,7 +2003,8 @@ export default function GalerieClient({ userId, initialCardUrl, initialCards, in
               </div>
             </>,
             document.body,
-          )}
+          )
+          })()}
         </div>
       </div>
     )
