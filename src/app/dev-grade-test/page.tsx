@@ -533,69 +533,6 @@ function damageColor(d: number): string {
   return '#dc2626'
 }
 
-// Sous-note 1-10 a partir de l'ecart de centrage par rapport a 50/50 (comme
-// PSA/BGS raisonnent, mais seuils invente/non calibres -- voir avertissement
-// affiche a cote de la note). deviation = ecart max des 2 cotes par rapport
-// au centre parfait (50/50 -> 0, 60/40 -> 10, 100/0 -> 50).
-function centeringSubscore(pct: [number, number]): number {
-  const dev = Math.max(Math.abs(pct[0] - 50), Math.abs(pct[1] - 50))
-  const steps = [1, 5, 10, 15, 20, 25, 30, 35, 40, 45]
-  const scores = [10, 9.5, 9, 8, 7, 6, 5, 4, 3, 2]
-  for (let i = 0; i < steps.length; i++) if (dev <= steps[i]) return scores[i]
-  return 1
-}
-
-// Sous-note 1-10 a partir d'un score de dommage generique (0 intact -> 1 tres
-// endommage) -- simple relation lineaire inverse, coherente avec les seuils
-// de damageKey. Reutilisee pour coins, bords et surface (meme echelle 0-1).
-function damageSubscore(d: number): number {
-  return Math.max(1, Math.min(10, Math.round((1 - d) * 9 + 1)))
-}
-
-// Note globale indicative (1-10) : le point faible domine (comme une vraie
-// gradation, ou le pire defaut plombe la note), amorti par la moyenne pour
-// eviter qu'un seul defaut isole n'ecrase tout. Combine centrage, coins,
-// bords ET surface (contrairement a la version prod qui n'evaluait que
-// centrage+coins) -- voir avertissement affiche pour les limites restantes.
-//
-// lrConfidence/tbConfidence (0-1, voir recompute()) : sur un design "plein
-// cadre" sans bordure imprimee, la largeur de bordure utilisee pour calculer
-// le centrage AFFICHE est parfois "empruntee" au cote oppose (ou une valeur
-// par defaut) faute de vraie transition a detecter -- fiable pour l'AFFICHAGE
-// (jamais de "non mesurable"), mais pas question de laisser ce chiffre
-// dominer la note comme s'il s'agissait d'une vraie mesure. On melange donc
-// le sous-score de centrage vers la moyenne des AUTRES sous-scores (coins/
-// bords/surface, eux mesurables independamment) en proportion de (1 -
-// confiance) : confiance 1 => vraie mesure prise telle quelle ; confiance 0
-// => contribution neutre (ni bonus de "centre parfait" illusoire, ni le
-// bruit d'avant qui plombait des PSA 9-10 -- cf calibration reelle sur 40
-// cartes). Une vraie asymetrie DETECTEE (confiance 1) continue de compter
-// a plein, y compris pour faire chuter la note si le defaut est reel.
-function estimateGrade(
-  leftRightPct: [number, number], topBottomPct: [number, number],
-  cornerScores: number[], borderScores: number[], surface: number,
-  lrConfidence: number, tbConfidence: number,
-): number {
-  const cornerSub = cornerScores.reduce((a, b) => a + damageSubscore(b), 0) / cornerScores.length
-  const borderSub = borderScores.reduce((a, b) => a + damageSubscore(b), 0) / borderScores.length
-  const surfaceSub = damageSubscore(surface)
-  const othersAvg = (cornerSub + borderSub + surfaceSub) / 3
-  const lrSub = lrConfidence * centeringSubscore(leftRightPct) + (1 - lrConfidence) * othersAvg
-  const tbSub = tbConfidence * centeringSubscore(topBottomPct) + (1 - tbConfidence) * othersAvg
-  const centSub = Math.min(lrSub, tbSub)
-  const subs = [centSub, cornerSub, borderSub, surfaceSub]
-  const worst = Math.min(...subs)
-  const avg = subs.reduce((a, b) => a + b, 0) / subs.length
-  return Math.round((worst * 0.6 + avg * 0.4) * 2) / 2
-}
-
-function gradeColor(grade: number): string {
-  if (grade >= 9) return '#16a34a'
-  if (grade >= 7) return '#65a30d'
-  if (grade >= 5) return '#d97706'
-  return '#dc2626'
-}
-
 // Le detecteur est concu pour des photos avec un peu de marge/fond autour de
 // la carte (comme le vrai scanner) -- sur une image deja recadree pile sur la
 // carte, il n'y a plus de vrai bord physique carte->fond a trouver, et le
@@ -656,6 +593,12 @@ export default function EtatCartePage() {
   const [centeringConfidence, setCenteringConfidence] = useState({ lr: 1, tb: 1 })
   const [cornerScores, setCornerScores] = useState<number[] | null>(null)
   const [cornerCrops, setCornerCrops] = useState<string[] | null>(null)
+  const [borderCrops, setBorderCrops] = useState<Record<keyof BorderFrac, string> | null>(null)
+  // Loupe libre : deplacer/toucher n'importe ou sur la photo pour zoomer a
+  // cet endroit (pas seulement pendant le glissement d'un coin/ligne) --
+  // loupeZoom = diviseur de la largeur source (plus petit = plus zoome).
+  const [freeLoupeOn, setFreeLoupeOn] = useState(false)
+  const [loupeZoom, setLoupeZoom] = useState(16)
   const [borderScores, setBorderScores] = useState<Record<keyof BorderFrac, number> | null>(null)
   const [surface, setSurface] = useState<number | null>(null)
   const [photoQuality, setPhotoQuality] = useState<PhotoQuality | null>(null)
@@ -684,7 +627,7 @@ export default function EtatCartePage() {
   const drawMagnifier = (pt: Pt, color: string) => {
     const img = imgRef.current, magCanvas = magnifierCanvasRef.current
     if (!img || !magCanvas) return
-    const srcSize = Math.max(50, img.naturalWidth / 16)
+    const srcSize = Math.max(20, img.naturalWidth / loupeZoom)
     const mctx = magCanvas.getContext('2d')!
     mctx.clearRect(0, 0, MAG_SIZE, MAG_SIZE)
     mctx.save()
@@ -717,16 +660,21 @@ export default function EtatCartePage() {
     // couleur ; ce "halo" garde la ligne lisible sur n'importe quel fond.
     const lw = Math.max(5, img.naturalWidth / 180)
     const haloLw = lw + 5
+    // Lignes de centrage nettement plus fines que le contour des coins --
+    // rester lisible mais ne pas masquer l'image sous-jacente, seul ce qui
+    // compte quand l'outil sert a inspecter visuellement plutot qu'a noter.
+    const centerLw = Math.max(1.5, img.naturalWidth / 500)
+    const centerHaloLw = centerLw + 2
     const dash = [Math.max(12, img.naturalWidth / 130), Math.max(8, img.naturalWidth / 190)]
     const strokeHalo = (segs: [Pt, Pt][], color: string) => {
       ctx.setLineDash([])
       ctx.lineCap = 'round'
       ctx.strokeStyle = 'rgba(255,255,255,0.85)'
-      ctx.lineWidth = haloLw
+      ctx.lineWidth = centerHaloLw
       segs.forEach(([a, b]) => { ctx.beginPath(); ctx.moveTo(a.x, a.y); ctx.lineTo(b.x, b.y); ctx.stroke() })
       ctx.setLineDash(dash)
       ctx.strokeStyle = color
-      ctx.lineWidth = lw
+      ctx.lineWidth = centerLw
       segs.forEach(([a, b]) => { ctx.beginPath(); ctx.moveTo(a.x, a.y); ctx.lineTo(b.x, b.y); ctx.stroke() })
     }
 
@@ -844,6 +792,17 @@ export default function EtatCartePage() {
     // quelle que soit la taille de l'image source.
     const cropSize = Math.max(90, img.naturalWidth / 20)
     setCornerCrops(pts.map(p => cropCornerImage(img, p, cropSize)))
+    // Zoom sur chaque bord -- crop centre sur le MILIEU de chaque segment de
+    // bordure (evite les coins, deja couverts a part) pour aider a juger
+    // visuellement les eclats plutot que de se fier a un seul verdict calcule.
+    const midOf = ([a, b]: [Pt, Pt]): Pt => ({ x: (a.x + b.x) / 2, y: (a.y + b.y) / 2 })
+    const bsegs = borderSegments(pts, frac)
+    setBorderCrops({
+      left: cropCornerImage(img, midOf(bsegs.left), cropSize),
+      right: cropCornerImage(img, midOf(bsegs.right), cropSize),
+      top: cropCornerImage(img, midOf(bsegs.top), cropSize),
+      bottom: cropCornerImage(img, midOf(bsegs.bottom), cropSize),
+    })
   }
 
   const onFile = async (file: File) => {
@@ -852,6 +811,7 @@ export default function EtatCartePage() {
     setPercents(null)
     setCornerScores(null)
     setCornerCrops(null)
+    setBorderCrops(null)
     setHasCorners(false)
     try {
       const url = URL.createObjectURL(file)
@@ -996,6 +956,20 @@ export default function EtatCartePage() {
       setPercents(percentsFromBorders(nextFrac))
       setTouchPoint({ x: e.clientX, y: e.clientY })
       drawMagnifier(pos, side === 'left' || side === 'right' ? '#00c878' : '#1e78ff')
+      return
+    }
+
+    // Loupe libre : hors de tout glissement de coin/ligne, suit simplement
+    // le pointeur pour inspecter n'importe quelle zone (surface incluse).
+    if (freeLoupeOn) {
+      setTouchPoint({ x: e.clientX, y: e.clientY })
+      drawMagnifier(pos, '#0046D1')
+    }
+  }
+
+  const onPointerLeave = () => {
+    if (freeLoupeOn && dragCornerIdxRef.current === null && dragBorderSideRef.current === null) {
+      setTouchPoint(null)
     }
   }
 
@@ -1015,6 +989,7 @@ export default function EtatCartePage() {
     setPercents(null)
     setCornerScores(null)
     setCornerCrops(null)
+    setBorderCrops(null)
     setBorderScores(null)
     setSurface(null)
     setPhotoQuality(null)
@@ -1071,9 +1046,6 @@ export default function EtatCartePage() {
     }
   }
 
-  const grade = percents && cornerScores && borderScores && surface !== null
-    ? estimateGrade(percents.leftRightPct, percents.topBottomPct, cornerScores, Object.values(borderScores), surface, centeringConfidence.lr, centeringConfidence.tb)
-    : null
   const borderSideNames: Record<keyof BorderFrac, string> = { left: 'Gauche', right: 'Droite', top: 'Haut', bottom: 'Bas' }
   const photoQualityIssues = photoQuality
     ? [
@@ -1182,11 +1154,40 @@ export default function EtatCartePage() {
             onPointerDown={onPointerDown}
             onPointerMove={onPointerMove}
             onPointerUp={onPointerUp}
-            style={{ width: '100%', borderRadius: 10, background: border, touchAction: 'none', cursor: 'grab', display: 'block' }}
+            onPointerLeave={onPointerLeave}
+            style={{ width: '100%', borderRadius: 10, background: border, touchAction: 'none', cursor: freeLoupeOn ? 'crosshair' : 'grab', display: 'block' }}
           />
           <p style={{ fontSize: 11, color: muted, marginTop: 8, textAlign: 'center' }}>
             {t('gradation_drag_hint')}
           </p>
+          <div style={{ display: 'flex', alignItems: 'center', gap: 10, marginTop: 12, paddingTop: 12, borderTop: `1px solid ${border}`, flexWrap: 'wrap' }}>
+            <button
+              onClick={() => setFreeLoupeOn(v => !v)}
+              style={{
+                display: 'flex', alignItems: 'center', gap: 6, fontSize: 12, fontWeight: 700,
+                color: freeLoupeOn ? '#fff' : text, background: freeLoupeOn ? blue : 'none',
+                border: `1px solid ${freeLoupeOn ? blue : border}`, borderRadius: 8, padding: '7px 12px', cursor: 'pointer',
+              }}
+            >
+              🔍 Loupe libre {freeLoupeOn ? 'activée' : ''}
+            </button>
+            {freeLoupeOn && (
+              <div style={{ display: 'flex', alignItems: 'center', gap: 8, flex: 1, minWidth: 160 }}>
+                <span style={{ fontSize: 11, color: muted }}>Zoom</span>
+                <input
+                  type="range" min={6} max={40} value={loupeZoom}
+                  onChange={e => setLoupeZoom(Number(e.target.value))}
+                  style={{ flex: 1 }}
+                />
+                <span style={{ fontSize: 11, color: muted, minWidth: 40, textAlign: 'right' }}>{loupeZoom <= 12 ? 'faible' : loupeZoom <= 25 ? 'moyen' : 'fort'}</span>
+              </div>
+            )}
+          </div>
+          {freeLoupeOn && (
+            <p style={{ fontSize: 11, color: muted, marginTop: 8, textAlign: 'center' }}>
+              Déplace le doigt/curseur sur la photo pour zoomer n'importe où — coins, bords, surface.
+            </p>
+          )}
         </div>
 
         {touchPoint && typeof window !== 'undefined' && (
@@ -1201,7 +1202,7 @@ export default function EtatCartePage() {
           </div>
         )}
 
-        {percents && cornerScores && grade !== null && (
+        {percents && cornerScores && (
           <div style={{ display: 'grid', gap: 14 }}>
             {preCropWarning && (
               <div style={{ fontSize: 12, color: warnText, background: warnBg, border: `1px solid ${warnBorder}`, borderRadius: 10, padding: '9px 12px', lineHeight: 1.5 }}>
@@ -1211,26 +1212,22 @@ export default function EtatCartePage() {
 
             {photoQualityIssues.length > 0 && (
               <div style={{ fontSize: 12, color: warnText, background: warnBg, border: `1px solid ${warnBorder}`, borderRadius: 10, padding: '9px 12px', lineHeight: 1.5 }}>
-                ⚠️ {photoQualityIssues.join(' · ')} — la note ci-dessous peut être peu fiable, reprends la photo si possible (lumière naturelle, carte bien nette et à plat).
+                ⚠️ {photoQualityIssues.join(' · ')} — reprends la photo si possible (lumière naturelle, carte bien nette et à plat).
               </div>
             )}
 
-            <div style={{ background: cardBg, borderRadius: 16, border: `1px solid ${border}`, padding: '18px 16px', textAlign: 'center' }}>
-              <div style={{ fontSize: 11, fontWeight: 700, color: muted, textTransform: 'uppercase', letterSpacing: 0.7, marginBottom: 8 }}>
-                {t('gradation_note_title')}
-              </div>
-              <div style={{ fontSize: 52, fontWeight: 900, color: gradeColor(grade), lineHeight: 1, letterSpacing: -2, fontVariantNumeric: 'tabular-nums' }}>
-                {grade.toFixed(1)}<span style={{ fontSize: 22, color: muted, fontWeight: 700 }}>/10</span>
-              </div>
-              <div style={{ fontSize: 11, color: warnText, background: warnBg, border: `1px solid ${warnBorder}`, borderRadius: 10, padding: '9px 12px', marginTop: 14, lineHeight: 1.5, textAlign: 'left' }}>
-                ⚠️ {t('gradation_disclaimer')}
-              </div>
+            <div style={{ fontSize: 12, color: warnText, background: warnBg, border: `1px solid ${warnBorder}`, borderRadius: 10, padding: '9px 12px', lineHeight: 1.5 }}>
+              ⚠️ Cet outil ne donne aucune note ni estimation de grade — uniquement des mesures et des zooms pour t'aider à inspecter la carte toi-même. Seul un service de gradation officiel (PSA/BGS/SGC...) peut établir un grade réel.
             </div>
 
             <div style={{ background: cardBg, borderRadius: 16, border: `1px solid ${border}`, padding: 16 }}>
-              <div style={{ fontSize: 11, fontWeight: 700, color: muted, textTransform: 'uppercase', letterSpacing: 0.6, marginBottom: 14 }}>
-                {t('gradation_centering_title')} <span style={{ fontWeight: 400, textTransform: 'none' }}>· {t('gradation_confidence')} {conf.toFixed(2)}</span>
+              <div style={{ fontSize: 11, fontWeight: 700, color: muted, textTransform: 'uppercase', letterSpacing: 0.6, marginBottom: 4 }}>
+                {t('gradation_centering_title')}
               </div>
+              <p style={{ fontSize: 11, color: muted, marginTop: 0, marginBottom: 14 }}>
+                Position de la bordure imprimée par rapport aux bords physiques de la carte.
+                {(centeringConfidence.lr < 0.5 || centeringConfidence.tb < 0.5) && ' Bordure fine détectée sur cette carte — mesure moins fiable, vérifie visuellement.'}
+              </p>
               <CenteringBar leftLabel={t('gradation_left')} rightLabel={t('gradation_right')} pct={percents.leftRightPct} blue={blue} border={border} muted={muted} text={text} />
               <div style={{ height: 16 }} />
               <CenteringBar leftLabel={t('gradation_top')} rightLabel={t('gradation_bottom')} pct={percents.topBottomPct} blue={blue} border={border} muted={muted} text={text} />
@@ -1277,7 +1274,15 @@ export default function EtatCartePage() {
                   {(Object.keys(borderScores) as (keyof BorderFrac)[]).map(side => {
                     const s = borderScores[side]
                     return (
-                      <div key={side} style={{ padding: '10px 12px', background: dark ? '#111' : '#f8f9fb', border: `1px solid ${border}`, borderRadius: 10 }}>
+                      <div key={side} style={{ padding: 10, background: dark ? '#111' : '#f8f9fb', border: `1px solid ${border}`, borderRadius: 10 }}>
+                        {borderCrops && (
+                          // eslint-disable-next-line @next/next/no-img-element
+                          <img
+                            src={borderCrops[side]}
+                            alt={`Zoom bord ${borderSideNames[side]}`}
+                            style={{ width: '100%', aspectRatio: '1', objectFit: 'cover', borderRadius: 8, marginBottom: 8, border: `1px solid ${border}`, background: border }}
+                          />
+                        )}
                         <div style={{ fontSize: 10, color: muted, marginBottom: 3 }}>{borderSideNames[side]}</div>
                         <div style={{ fontSize: 13, fontWeight: 800, color: damageColor(s) }}>{t(damageKey(s))}</div>
                       </div>
