@@ -141,7 +141,25 @@ function warpQuadToRect(img: HTMLImageElement, quad: Pt[], outW: number, outH: n
 // position en avançant depuis le bord, et repere le plus gros saut de
 // luminance (transition bordure -> zone imprimee). Point de depart seulement
 // -- ajustable a la main ensuite (voir borderSegments/drag).
-function detectBorderWidth(canvas: HTMLCanvasElement, side: 'left' | 'right' | 'top' | 'bottom'): number {
+//
+// Meme un design "plein cadre" (pas de bordure imprimee -- tres courant sur
+// les cartes NBA modernes type Prizm/Select/Donruss) a presque toujours un
+// leger surplus d'impression au-dela du trait de coupe prevu (le "bleed"
+// standard en imprimerie) : si la decoupe reelle n'est pas parfaitement
+// centree, ca laisse un fin liseret de carton nu ou un micro-decalage de
+// quelques pixels -- exactement ce qu'un grader humain regarde a la loupe sur
+// ce type de carte. Ce signal est REEL mais tres faible, noye dans le bruit
+// JPEG/capteur par un simple ecart 3-pixels comme avant. Deux ameliorations
+// pour le faire ressortir sans se contenter d'abandonner :
+// 1. Echantillonnage perpendiculaire beaucoup plus dense (quasi 1 ligne sur 1
+//    au lieu de 1/40) -- moyenne sur plus de points, le bruit s'annule mieux.
+// 2. Detecteur de "marche" par fenetres glissantes (moyenne avant vs moyenne
+//    apres) plutot qu'une difference ponctuelle entre 2 pixels voisins --
+//    beaucoup plus robuste a une fluctuation isolee, capte une vraie
+//    transition meme fine et progressive.
+const BORDER_CONFIDENCE_MIN_GRAD = 5
+const STEP_WINDOW = 4
+function detectBorderWidth(canvas: HTMLCanvasElement, side: 'left' | 'right' | 'top' | 'bottom'): { idx: number; confident: boolean } {
   const ctx = canvas.getContext('2d')!
   const W = canvas.width, H = canvas.height
   const { data } = ctx.getImageData(0, 0, W, H)
@@ -152,7 +170,7 @@ function detectBorderWidth(canvas: HTMLCanvasElement, side: 'left' | 'right' | '
   const isVertical = side === 'left' || side === 'right'
   const scanLen = isVertical ? W : H
   const perpLen = isVertical ? H : W
-  const step = Math.max(1, Math.floor(perpLen / 40))
+  const step = Math.max(1, Math.floor(perpLen / 250))
   const sampleAt = (pos: number) => {
     let sum = 0, cnt = 0
     for (let p = 0; p < perpLen; p += step) {
@@ -168,12 +186,28 @@ function detectBorderWidth(canvas: HTMLCanvasElement, side: 'left' | 'right' | '
     const pos = (side === 'left' || side === 'top') ? i : scanLen - 1 - i
     profile.push(sampleAt(pos))
   }
+  // Marche detectee entre la moyenne des STEP_WINDOW points avant i et celle
+  // des STEP_WINDOW points apres i -- une vraie transition (meme fine et
+  // progressive sur quelques pixels) ressort nettement mieux qu'avec un ecart
+  // ponctuel, qui peut tomber pile sur un pixel de bruit de chaque cote.
+  //
+  // On retient la PREMIERE marche qui depasse le seuil (pas la plus grosse
+  // de toute la zone scannee) : la bordure physique d'une carte est par
+  // definition le premier element imprime rencontre en partant du bord vers
+  // l'interieur. Prendre "le plus gros saut" laissait un gros bandeau texte
+  // interne (bien plus contraste qu'un fin filet de bordure, cf. bandeau nom/
+  // equipe en bas de nombreux designs Donruss/Panini) l'emporter a tort sur
+  // la vraie bordure -- confondant 2 elements differents entre les 2 cotes
+  // d'un meme axe et donnant un centrage incoherent bien que "confiant".
   let bestIdx = limit - 1, bestGrad = 0
-  for (let i = 2; i < profile.length - 1; i++) {
-    const grad = Math.abs(profile[i + 1] - profile[i - 1])
+  for (let i = STEP_WINDOW; i < profile.length - STEP_WINDOW; i++) {
+    let before = 0, after = 0
+    for (let k = 1; k <= STEP_WINDOW; k++) { before += profile[i - k]; after += profile[i + k - 1] }
+    const grad = Math.abs(after / STEP_WINDOW - before / STEP_WINDOW)
+    if (grad >= BORDER_CONFIDENCE_MIN_GRAD) { bestGrad = grad; bestIdx = i; break }
     if (grad > bestGrad) { bestGrad = grad; bestIdx = i }
   }
-  return bestIdx
+  return { idx: bestIdx, confident: bestGrad >= BORDER_CONFIDENCE_MIN_GRAD }
 }
 
 // ── Geometrie du quadrilatere [TL,TR,BR,BL] ─────────────────────────────
@@ -523,11 +557,32 @@ function damageSubscore(d: number): number {
 // eviter qu'un seul defaut isole n'ecrase tout. Combine centrage, coins,
 // bords ET surface (contrairement a la version prod qui n'evaluait que
 // centrage+coins) -- voir avertissement affiche pour les limites restantes.
-function estimateGrade(leftRightPct: [number, number], topBottomPct: [number, number], cornerScores: number[], borderScores: number[], surface: number): number {
-  const centSub = Math.min(centeringSubscore(leftRightPct), centeringSubscore(topBottomPct))
+//
+// lrConfidence/tbConfidence (0-1, voir recompute()) : sur un design "plein
+// cadre" sans bordure imprimee, la largeur de bordure utilisee pour calculer
+// le centrage AFFICHE est parfois "empruntee" au cote oppose (ou une valeur
+// par defaut) faute de vraie transition a detecter -- fiable pour l'AFFICHAGE
+// (jamais de "non mesurable"), mais pas question de laisser ce chiffre
+// dominer la note comme s'il s'agissait d'une vraie mesure. On melange donc
+// le sous-score de centrage vers la moyenne des AUTRES sous-scores (coins/
+// bords/surface, eux mesurables independamment) en proportion de (1 -
+// confiance) : confiance 1 => vraie mesure prise telle quelle ; confiance 0
+// => contribution neutre (ni bonus de "centre parfait" illusoire, ni le
+// bruit d'avant qui plombait des PSA 9-10 -- cf calibration reelle sur 40
+// cartes). Une vraie asymetrie DETECTEE (confiance 1) continue de compter
+// a plein, y compris pour faire chuter la note si le defaut est reel.
+function estimateGrade(
+  leftRightPct: [number, number], topBottomPct: [number, number],
+  cornerScores: number[], borderScores: number[], surface: number,
+  lrConfidence: number, tbConfidence: number,
+): number {
   const cornerSub = cornerScores.reduce((a, b) => a + damageSubscore(b), 0) / cornerScores.length
   const borderSub = borderScores.reduce((a, b) => a + damageSubscore(b), 0) / borderScores.length
   const surfaceSub = damageSubscore(surface)
+  const othersAvg = (cornerSub + borderSub + surfaceSub) / 3
+  const lrSub = lrConfidence * centeringSubscore(leftRightPct) + (1 - lrConfidence) * othersAvg
+  const tbSub = tbConfidence * centeringSubscore(topBottomPct) + (1 - tbConfidence) * othersAvg
+  const centSub = Math.min(lrSub, tbSub)
   const subs = [centSub, cornerSub, borderSub, surfaceSub]
   const worst = Math.min(...subs)
   const avg = subs.reduce((a, b) => a + b, 0) / subs.length
@@ -598,6 +653,7 @@ export default function EtatCartePage() {
   const [hasCorners, setHasCorners] = useState(false)
   const [preCropWarning, setPreCropWarning] = useState(false)
   const [percents, setPercents] = useState<Percents | null>(null)
+  const [centeringConfidence, setCenteringConfidence] = useState({ lr: 1, tb: 1 })
   const [cornerScores, setCornerScores] = useState<number[] | null>(null)
   const [cornerCrops, setCornerCrops] = useState<string[] | null>(null)
   const [borderScores, setBorderScores] = useState<Record<keyof BorderFrac, number> | null>(null)
@@ -711,15 +767,61 @@ export default function EtatCartePage() {
     const img = imgRef.current
     if (!img) return
     const warp = warpQuadToRect(img, pts, WARP_W, WARP_H)
+    const bLeft = detectBorderWidth(warp, 'left')
+    const bRight = detectBorderWidth(warp, 'right')
+    const bTop = detectBorderWidth(warp, 'top')
+    const bBottom = detectBorderWidth(warp, 'bottom')
+    // Sur un design "plein cadre" (pas de bordure imprimee -- tres courant
+    // sur les cartes NBA modernes type Prizm/Select/Donruss), detectBorderWidth
+    // n'a aucune vraie transition a trouver : le cote non confiant renvoie
+    // alors une fluctuation de bruit quelconque, DIFFERENTE et INDEPENDANTE de
+    // celle de son opposé -- d'ou des ratios delirants une fois normalises
+    // (ex 99/1, confirme sur calibration reelle). Plutot que d'afficher un
+    // ratio faux, un cote non confiant reprend la largeur de son OPPOSE
+    // confiant (une carte est censee etre symetrique par design) : le
+    // centrage retombe alors sur du 50/50 -- une hypothese par defaut bien
+    // plus sure que du bruit pur, sans jamais cacher la mesure. Si aucun des
+    // deux cotes n'est confiant, les deux se rabattent sur une meme petite
+    // largeur fixe (2% -- meme resultat : 50/50).
+    const DEFAULT_FRAC = 0.02
+    const mirror = (a: { idx: number; confident: boolean }, b: { idx: number; confident: boolean }, dim: number) => {
+      if (a.confident && b.confident) return [a.idx, b.idx]
+      if (a.confident) return [a.idx, a.idx]
+      if (b.confident) return [b.idx, b.idx]
+      const d = Math.round(dim * DEFAULT_FRAC)
+      return [d, d]
+    }
+    const [leftIdx, rightIdx] = mirror(bLeft, bRight, WARP_W)
+    const [topIdx, bottomIdx] = mirror(bTop, bBottom, WARP_H)
     const frac: BorderFrac = {
-      left: detectBorderWidth(warp, 'left') / WARP_W,
-      right: detectBorderWidth(warp, 'right') / WARP_W,
-      top: detectBorderWidth(warp, 'top') / WARP_H,
-      bottom: detectBorderWidth(warp, 'bottom') / WARP_H,
+      left: leftIdx / WARP_W,
+      right: rightIdx / WARP_W,
+      top: topIdx / WARP_H,
+      bottom: bottomIdx / WARP_H,
     }
     fracRef.current = frac
     redrawOverlay(pts, frac)
     setPercents(percentsFromBorders(frac))
+    // Confiance passee a estimateGrade (voir son commentaire) -- pas juste
+    // "a-t-on trouve une transition", mais "peut-on faire confiance au RATIO
+    // qui en resulte". Sur une bordure fine, quelques px d'erreur (recadrage
+    // manuel imprecis, distorsion du plastique du boitier, bruit JPEG)
+    // deviennent un ecart de pourcentage enorme une fois normalises -- alors
+    // que la meme erreur en px reste negligeable sur une large bordure
+    // vintage. C'est un effet d'amplification mathematique, independant de
+    // la qualite de la detection elle-meme (confirme sur calibration reelle :
+    // ameliorer seulement la detection du bord a EMPIRE la correlation avec
+    // les vraies notes PSA, precisement parce que le detecteur ameliore
+    // trouvait des bordures fines "en toute confiance"). On pondere donc
+    // aussi par la largeur ABSOLUE detectee : une bordure sous ~4% de la
+    // dimension ne peut pas justifier un ratio pris a la lettre, meme
+    // confiante sur la transition elle-meme.
+    const MIN_RELIABLE_BORDER_FRAC = 0.04
+    const widthConfidence = (px: number, dim: number) => Math.max(0, Math.min(1, (px / dim) / MIN_RELIABLE_BORDER_FRAC))
+    const sideConfidence = (b: { idx: number; confident: boolean }, dim: number) => b.confident ? widthConfidence(b.idx, dim) : 0
+    const lrConf = Math.min(sideConfidence(bLeft, WARP_W), sideConfidence(bRight, WARP_W))
+    const tbConf = Math.min(sideConfidence(bTop, WARP_H), sideConfidence(bBottom, WARP_H))
+    setCenteringConfidence({ lr: lrConf, tb: tbConf })
     const leftB = borderChipScore(img, pts, frac, 'left')
     const rightB = borderChipScore(img, pts, frac, 'right')
     const topB = borderChipScore(img, pts, frac, 'top')
@@ -916,6 +1018,7 @@ export default function EtatCartePage() {
     setBorderScores(null)
     setSurface(null)
     setPhotoQuality(null)
+    setCenteringConfidence({ lr: 1, tb: 1 })
     setError('')
     setPreCropWarning(false)
     cornersRef.current = null
@@ -969,7 +1072,7 @@ export default function EtatCartePage() {
   }
 
   const grade = percents && cornerScores && borderScores && surface !== null
-    ? estimateGrade(percents.leftRightPct, percents.topBottomPct, cornerScores, Object.values(borderScores), surface)
+    ? estimateGrade(percents.leftRightPct, percents.topBottomPct, cornerScores, Object.values(borderScores), surface, centeringConfidence.lr, centeringConfidence.tb)
     : null
   const borderSideNames: Record<keyof BorderFrac, string> = { left: 'Gauche', right: 'Droite', top: 'Haut', bottom: 'Bas' }
   const photoQualityIssues = photoQuality
