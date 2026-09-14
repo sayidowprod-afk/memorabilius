@@ -17,6 +17,7 @@ export const it = {
   gradation_from_memorabilius: 'Scegli una carta dalla mia galleria Memorabilius',
   gradation_analyzing: 'Analisi in corso…',
   gradation_error_invalid_image: 'Immagine non valida',
+  gradation_error_external_image: 'Questa carta proviene da una collezione esterna (importazione CSV) e non può essere analizzata qui — importa invece la foto dal tuo dispositivo.',
   gradation_error_no_card_detected: 'Nessuna carta rilevata',
   gradation_legend_corner: 'Angolo',
   gradation_legend_border_lr: 'Bordo S/D',

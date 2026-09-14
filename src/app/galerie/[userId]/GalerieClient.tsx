@@ -592,6 +592,7 @@ export default function GalerieClient({ userId, initialCardUrl, initialCards, in
   const [actionMenuRect, setActionMenuRect] = useState<{ top: number; bottom: number; right: number } | null>(null)
   const [colorPickerUp, setColorPickerUp] = useState(false)
   const [colorPickerLeft, setColorPickerLeft] = useState(false)
+  const [colorPickerRect, setColorPickerRect] = useState<DOMRect | null>(null)
   const loaderRef = useRef<HTMLDivElement>(null)
 
   const { user: authUser } = useAuth()
@@ -1849,7 +1850,7 @@ export default function GalerieClient({ userId, initialCardUrl, initialCards, in
             )}
             {isOwner && (
               <span
-                onClick={(e) => { e.stopPropagation(); const r = (e.currentTarget as HTMLElement).getBoundingClientRect(); setColorPickerUp(r.bottom > window.innerHeight * 0.55); setColorPickerLeft(r.left < window.innerWidth * 0.5); setColorPickerTag(colorPickerTag === tag ? null : tag); setRenameValue(tag); setDeleteTagConfirm(null) }}
+                onClick={(e) => { e.stopPropagation(); const r = (e.currentTarget as HTMLElement).getBoundingClientRect(); setColorPickerUp(r.bottom > window.innerHeight * 0.55); setColorPickerLeft(r.left < window.innerWidth * 0.5); setColorPickerRect(r); setColorPickerTag(colorPickerTag === tag ? null : tag); setRenameValue(tag); setDeleteTagConfirm(null) }}
                 title="Modifier cette collection"
                 style={{
                   width: 16, height: 16, borderRadius: '50%', flexShrink: 0,
@@ -1862,8 +1863,22 @@ export default function GalerieClient({ userId, initialCardUrl, initialCards, in
               >✎</span>
             )}
           </button>
-          {colorPickerTag === tag && (
-            <div onClick={e => e.stopPropagation()} style={{ position: 'absolute', ...(colorPickerUp ? { bottom: '110%' } : { top: '110%' }), ...(colorPickerLeft ? { left: 0 } : { right: 0 }), background: dark ? '#1e1e1e' : 'white', borderRadius: 12, padding: 10, boxShadow: dark ? '0 8px 30px rgba(0,0,0,0.5)' : '0 8px 30px rgba(0,0,0,0.18)', border: dark ? '1px solid #333' : 'none', zIndex: 100, width: 'min(220px, calc(100vw - 24px))' }}>
+          {colorPickerTag === tag && colorPickerRect && createPortal(
+            <>
+              {/* Overlay invisible pour fermer au clic exterieur */}
+              <div onClick={() => setColorPickerTag(null)} style={{ position: 'fixed', inset: 0, zIndex: 99 }} />
+              {/* Portale sur document.body : le conteneur des etiquettes a
+                  `overflowX: auto` (donc overflowY implicitement clippe par la
+                  spec CSS) -- une popup position:absolute a l'interieur etait
+                  recoupee des qu'elle depassait, notamment sur mobile quand la
+                  page elle-meme n'a pas assez de hauteur pour scroller (une
+                  seule carte). fixed + coordonnees ecran + scroll interne. */}
+              <div onClick={e => e.stopPropagation()} style={{
+                position: 'fixed',
+                ...(colorPickerUp ? { bottom: window.innerHeight - colorPickerRect.top + 6 } : { top: colorPickerRect.bottom + 6 }),
+                ...(colorPickerLeft ? { left: colorPickerRect.left } : { right: window.innerWidth - colorPickerRect.right }),
+                background: dark ? '#1e1e1e' : 'white', borderRadius: 12, padding: 10, boxShadow: dark ? '0 8px 30px rgba(0,0,0,0.5)' : '0 8px 30px rgba(0,0,0,0.18)', border: dark ? '1px solid #333' : 'none', zIndex: 100000, width: 'min(220px, calc(100vw - 24px))', maxHeight: 'min(70vh, calc(100vh - 24px))', overflowY: 'auto',
+              }}>
               <input
                 value={renameValue}
                 onChange={e => setRenameValue(e.target.value)}
@@ -1974,7 +1989,9 @@ export default function GalerieClient({ userId, initialCardUrl, initialCards, in
                   🗑 Supprimer cette collection
                 </button>
               )}
-            </div>
+              </div>
+            </>,
+            document.body,
           )}
         </div>
       </div>
