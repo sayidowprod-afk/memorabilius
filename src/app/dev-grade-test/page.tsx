@@ -264,7 +264,7 @@ function avgColor(img: HTMLImageElement, pt: Pt, size: number): { r: number; g: 
 // clarte (le blanchiment eclaircit), chute de saturation (le blanc/gris
 // expose est plus terne qu'une bordure coloree), et distance de couleur
 // generale -- ponderes, plafonnes a 1 chacun avant ponderation.
-function cornerDamage(img: HTMLImageElement, pts: Pt[], i: number, frac: BorderFrac): number {
+function cornerDamage(img: HTMLImageElement, pts: Pt[], i: number, frac: BorderFrac, stability: number): number {
   const corner = pts[i]
   const nb = CORNER_NEIGHBORS[i]
   const uNeighbor = pts[nb.u], vNeighbor = pts[nb.v]
@@ -301,11 +301,17 @@ function cornerDamage(img: HTMLImageElement, pts: Pt[], i: number, frac: BorderF
   const chromaDrop = Math.max(0, refChroma - tipChroma)
   const colorDist = Math.hypot(tip.r - ref.r, tip.g - ref.g, tip.b - ref.b)
 
-  return Math.min(1,
+  const raw = Math.min(1,
     Math.min(1, lightnessJump / 55) * 0.5 +
     Math.min(1, chromaDrop / 60) * 0.3 +
     Math.min(1, colorDist / 130) * 0.2
   )
+  // Attenue par la stabilite de couleur des bordures adjacentes (voir
+  // borderChipScore) -- sur une finition foil/prizm/motif, la bordure elle-meme
+  // n'a pas de couleur stable, donc "couleur a la pointe vs reference" est
+  // intrinsequement bruite pres de ce coin. On ne met pas a zero (un vrai coin
+  // abime reste visible meme sur une carte texturee) mais on reduit la confiance.
+  return raw * stability
 }
 
 // Crop carre autour d'un coin, extrait directement de la photo source en
@@ -406,17 +412,22 @@ function surfaceScore(gray: Float32Array, w: number, h: number): number {
   const median = sorted[Math.floor(sorted.length / 2)]
   const deviations = sorted.map(v => Math.abs(v - median)).sort((a, b) => a - b)
   const mad = Math.max(1, deviations[Math.floor(deviations.length / 2)])
-  const threshold = median + mad * 6
+  // Seuil plus large (9x MAD, etait 6x) -- une carte a finition foil/prizm a
+  // deja des patches irreguliers par design (reflets, degrade metallique), pas
+  // seulement quelques outliers ; il faut un ecart plus net pour compter comme
+  // anomalie potentielle plutot que comme variation normale du motif.
+  const threshold = median + mad * 9
   const anomalous = variances.filter(v => v > threshold).length
-  // Plafonne a 30% de patches anomaux -> score max, evite qu'une carte tres
-  // texturee par design (foil, motif) ne sature instantanement a 1.
-  return Math.min(1, anomalous / variances.length / 0.3)
+  // Plafonne a 45% de patches anomaux -> score max (etait 30%), meme logique :
+  // une carte texturee peut legitimement avoir beaucoup de patches "hors
+  // mediane" sans qu'aucun ne soit une vraie rayure.
+  return Math.min(1, anomalous / variances.length / 0.45)
 }
 
 // ── Etat des bords (hors coins) : meme principe de blanchiment que les coins,
 // mais echantillonne le long de chaque bordure plutot qu'a une seule pointe --
 // un eclat de bord n'est pas force d'etre pile dans un coin. ─────────────────
-function borderChipScore(img: HTMLImageElement, quad: Pt[], frac: BorderFrac, side: keyof BorderFrac): number {
+function borderChipScore(img: HTMLImageElement, quad: Pt[], frac: BorderFrac, side: keyof BorderFrac): { score: number; stability: number } {
   const segs = borderSegments(quad, frac)
   const [a, b] = segs[side]
   const isVertical = side === 'left' || side === 'right'
@@ -450,8 +461,15 @@ function borderChipScore(img: HTMLImageElement, quad: Pt[], frac: BorderFrac, si
   // Reference globale du bord = mediane des points de reference (robuste a
   // quelques points de ref mal places si le tracé n'est pas parfaitement droit).
   const medianOf = (vals: number[]) => { const s = [...vals].sort((x, y) => x - y); return s[Math.floor(s.length / 2)] }
-  const medRefLum = medianOf(refColors.map(c => 0.299 * c.r + 0.587 * c.g + 0.114 * c.b))
+  const refLums = refColors.map(c => 0.299 * c.r + 0.587 * c.g + 0.114 * c.b)
+  const medRefLum = medianOf(refLums)
   const medRefChroma = medianOf(refColors.map(c => Math.max(c.r, c.g, c.b) - Math.min(c.r, c.g, c.b)))
+  // Stabilite de la couleur de reference le long du bord -- une bordure unie
+  // (la plupart des cartes) a une MAD faible ; une finition foil/prizm/motif a
+  // une couleur qui change constamment meme sans aucun dommage. Sert a attenuer
+  // le score plutot que le mettre a zero (un vrai eclat reste visible dessus).
+  const refLumMAD = medianOf(refLums.map(l => Math.abs(l - medRefLum)))
+  const stability = Math.max(0.2, 1 - refLumMAD / 35)
 
   for (let i = 0; i < N; i++) {
     const tip = tipColors[i]
@@ -467,7 +485,7 @@ function borderChipScore(img: HTMLImageElement, quad: Pt[], frac: BorderFrac, si
   // le reste du bord qui est presque toujours intact.
   const topK = Math.max(1, Math.round(N * 0.2))
   const worstAvg = samples.slice(0, topK).reduce((a, b) => a + b, 0) / topK
-  return worstAvg
+  return { score: worstAvg * stability, stability }
 }
 
 function damageKey(d: number): 'gradation_net' | 'gradation_light_wear' | 'gradation_visible_wear' {
@@ -702,13 +720,19 @@ export default function EtatCartePage() {
     fracRef.current = frac
     redrawOverlay(pts, frac)
     setPercents(percentsFromBorders(frac))
-    setCornerScores(pts.map((_, i) => cornerDamage(img, pts, i, frac)))
-    setBorderScores({
-      left: borderChipScore(img, pts, frac, 'left'),
-      right: borderChipScore(img, pts, frac, 'right'),
-      top: borderChipScore(img, pts, frac, 'top'),
-      bottom: borderChipScore(img, pts, frac, 'bottom'),
-    })
+    const leftB = borderChipScore(img, pts, frac, 'left')
+    const rightB = borderChipScore(img, pts, frac, 'right')
+    const topB = borderChipScore(img, pts, frac, 'top')
+    const bottomB = borderChipScore(img, pts, frac, 'bottom')
+    setBorderScores({ left: leftB.score, right: rightB.score, top: topB.score, bottom: bottomB.score })
+    const stabilityBySide: Record<keyof BorderFrac, number> = {
+      left: leftB.stability, right: rightB.stability, top: topB.stability, bottom: bottomB.stability,
+    }
+    setCornerScores(pts.map((_, i) => {
+      const nb = CORNER_NEIGHBORS[i]
+      const st = (stabilityBySide[nb.uFracKey] + stabilityBySide[nb.vFracKey]) / 2
+      return cornerDamage(img, pts, i, frac, st)
+    }))
     // Meme warp que la detection de bordure -- aucun cout supplementaire.
     const { gray, w, h } = grayscaleOf(warp)
     setSurface(surfaceScore(gray, w, h))
@@ -1144,7 +1168,7 @@ export default function EtatCartePage() {
                   État des bords
                 </div>
                 <p style={{ fontSize: 11, color: muted, marginTop: 0, marginBottom: 12 }}>
-                  Éclats le long de chaque bord (hors coins, déjà couverts ci-dessus) — expérimental.
+                  Éclats le long de chaque bord (hors coins, déjà couverts ci-dessus) — expérimental, moins fiable sur les finitions foil/prizm (couleur de bordure non uniforme).
                 </p>
                 <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 10 }}>
                   {(Object.keys(borderScores) as (keyof BorderFrac)[]).map(side => {
