@@ -33,8 +33,8 @@ const WARP_H = 700
 // Loupe tactile (meme principe que CardScanner.tsx, l'ecran de recadrage de
 // l'ajout de carte) : au doigt, le point qu'on essaie de positionner est
 // cache sous le doigt lui-meme -- impossible de viser precisement sans ca.
-const MAG_SIZE = 130
-const MAG_OFFSET_Y = 90
+const MAG_SIZE = 200
+const MAG_OFFSET_Y = 110
 
 type Pt = { x: number; y: number }
 // Bordure exprimee en FRACTION (0..1) du cote correspondant du quadrilatere,
@@ -141,7 +141,25 @@ function warpQuadToRect(img: HTMLImageElement, quad: Pt[], outW: number, outH: n
 // position en avançant depuis le bord, et repere le plus gros saut de
 // luminance (transition bordure -> zone imprimee). Point de depart seulement
 // -- ajustable a la main ensuite (voir borderSegments/drag).
-function detectBorderWidth(canvas: HTMLCanvasElement, side: 'left' | 'right' | 'top' | 'bottom'): number {
+//
+// Meme un design "plein cadre" (pas de bordure imprimee -- tres courant sur
+// les cartes NBA modernes type Prizm/Select/Donruss) a presque toujours un
+// leger surplus d'impression au-dela du trait de coupe prevu (le "bleed"
+// standard en imprimerie) : si la decoupe reelle n'est pas parfaitement
+// centree, ca laisse un fin liseret de carton nu ou un micro-decalage de
+// quelques pixels -- exactement ce qu'un grader humain regarde a la loupe sur
+// ce type de carte. Ce signal est REEL mais tres faible, noye dans le bruit
+// JPEG/capteur par un simple ecart 3-pixels comme avant. Deux ameliorations
+// pour le faire ressortir sans se contenter d'abandonner :
+// 1. Echantillonnage perpendiculaire beaucoup plus dense (quasi 1 ligne sur 1
+//    au lieu de 1/40) -- moyenne sur plus de points, le bruit s'annule mieux.
+// 2. Detecteur de "marche" par fenetres glissantes (moyenne avant vs moyenne
+//    apres) plutot qu'une difference ponctuelle entre 2 pixels voisins --
+//    beaucoup plus robuste a une fluctuation isolee, capte une vraie
+//    transition meme fine et progressive.
+const BORDER_CONFIDENCE_MIN_GRAD = 5
+const STEP_WINDOW = 4
+function detectBorderWidth(canvas: HTMLCanvasElement, side: 'left' | 'right' | 'top' | 'bottom'): { idx: number; confident: boolean } {
   const ctx = canvas.getContext('2d')!
   const W = canvas.width, H = canvas.height
   const { data } = ctx.getImageData(0, 0, W, H)
@@ -152,7 +170,7 @@ function detectBorderWidth(canvas: HTMLCanvasElement, side: 'left' | 'right' | '
   const isVertical = side === 'left' || side === 'right'
   const scanLen = isVertical ? W : H
   const perpLen = isVertical ? H : W
-  const step = Math.max(1, Math.floor(perpLen / 40))
+  const step = Math.max(1, Math.floor(perpLen / 250))
   const sampleAt = (pos: number) => {
     let sum = 0, cnt = 0
     for (let p = 0; p < perpLen; p += step) {
@@ -168,12 +186,28 @@ function detectBorderWidth(canvas: HTMLCanvasElement, side: 'left' | 'right' | '
     const pos = (side === 'left' || side === 'top') ? i : scanLen - 1 - i
     profile.push(sampleAt(pos))
   }
+  // Marche detectee entre la moyenne des STEP_WINDOW points avant i et celle
+  // des STEP_WINDOW points apres i -- une vraie transition (meme fine et
+  // progressive sur quelques pixels) ressort nettement mieux qu'avec un ecart
+  // ponctuel, qui peut tomber pile sur un pixel de bruit de chaque cote.
+  //
+  // On retient la PREMIERE marche qui depasse le seuil (pas la plus grosse
+  // de toute la zone scannee) : la bordure physique d'une carte est par
+  // definition le premier element imprime rencontre en partant du bord vers
+  // l'interieur. Prendre "le plus gros saut" laissait un gros bandeau texte
+  // interne (bien plus contraste qu'un fin filet de bordure, cf. bandeau nom/
+  // equipe en bas de nombreux designs Donruss/Panini) l'emporter a tort sur
+  // la vraie bordure -- confondant 2 elements differents entre les 2 cotes
+  // d'un meme axe et donnant un centrage incoherent bien que "confiant".
   let bestIdx = limit - 1, bestGrad = 0
-  for (let i = 2; i < profile.length - 1; i++) {
-    const grad = Math.abs(profile[i + 1] - profile[i - 1])
+  for (let i = STEP_WINDOW; i < profile.length - STEP_WINDOW; i++) {
+    let before = 0, after = 0
+    for (let k = 1; k <= STEP_WINDOW; k++) { before += profile[i - k]; after += profile[i + k - 1] }
+    const grad = Math.abs(after / STEP_WINDOW - before / STEP_WINDOW)
+    if (grad >= BORDER_CONFIDENCE_MIN_GRAD) { bestGrad = grad; bestIdx = i; break }
     if (grad > bestGrad) { bestGrad = grad; bestIdx = i }
   }
-  return bestIdx
+  return { idx: bestIdx, confident: bestGrad >= BORDER_CONFIDENCE_MIN_GRAD }
 }
 
 // ── Geometrie du quadrilatere [TL,TR,BR,BL] ─────────────────────────────
@@ -264,7 +298,7 @@ function avgColor(img: HTMLImageElement, pt: Pt, size: number): { r: number; g: 
 // clarte (le blanchiment eclaircit), chute de saturation (le blanc/gris
 // expose est plus terne qu'une bordure coloree), et distance de couleur
 // generale -- ponderes, plafonnes a 1 chacun avant ponderation.
-function cornerDamage(img: HTMLImageElement, pts: Pt[], i: number, frac: BorderFrac): number {
+function cornerDamage(img: HTMLImageElement, pts: Pt[], i: number, frac: BorderFrac, stability: number): number {
   const corner = pts[i]
   const nb = CORNER_NEIGHBORS[i]
   const uNeighbor = pts[nb.u], vNeighbor = pts[nb.v]
@@ -301,11 +335,17 @@ function cornerDamage(img: HTMLImageElement, pts: Pt[], i: number, frac: BorderF
   const chromaDrop = Math.max(0, refChroma - tipChroma)
   const colorDist = Math.hypot(tip.r - ref.r, tip.g - ref.g, tip.b - ref.b)
 
-  return Math.min(1,
+  const raw = Math.min(1,
     Math.min(1, lightnessJump / 55) * 0.5 +
     Math.min(1, chromaDrop / 60) * 0.3 +
     Math.min(1, colorDist / 130) * 0.2
   )
+  // Attenue par la stabilite de couleur des bordures adjacentes (voir
+  // borderChipScore) -- sur une finition foil/prizm/motif, la bordure elle-meme
+  // n'a pas de couleur stable, donc "couleur a la pointe vs reference" est
+  // intrinsequement bruite pres de ce coin. On ne met pas a zero (un vrai coin
+  // abime reste visible meme sur une carte texturee) mais on reduit la confiance.
+  return raw * stability
 }
 
 // Crop carre autour d'un coin, extrait directement de la photo source en
@@ -325,6 +365,163 @@ function cropCornerImage(img: HTMLImageElement, pt: Pt, size: number): string {
   return canvas.toDataURL('image/png')
 }
 
+// ── Qualite de la photo : flou + eclairage ──────────────────────────────────
+// Calcule sur le warp deja produit par recompute() (WARP_W x WARP_H fixe) --
+// aucun cout supplementaire de warp, et normalise automatiquement l'echelle
+// entre photos de resolutions tres differentes.
+function grayscaleOf(canvas: HTMLCanvasElement): { gray: Float32Array; w: number; h: number } {
+  const ctx = canvas.getContext('2d')!
+  const w = canvas.width, h = canvas.height
+  const { data } = ctx.getImageData(0, 0, w, h)
+  const gray = new Float32Array(w * h)
+  for (let i = 0, p = 0; i < data.length; i += 4, p++) {
+    gray[p] = 0.299 * data[i] + 0.587 * data[i + 1] + 0.114 * data[i + 2]
+  }
+  return { gray, w, h }
+}
+
+// Variance du Laplacien -- mesure standard de nettete (une image floue a
+// des transitions douces, donc un Laplacien de faible amplitude partout).
+// Sous-echantillonne (pas de 2px) pour rester rapide sur WARP_W x WARP_H.
+function laplacianVariance(gray: Float32Array, w: number, h: number): number {
+  let sum = 0, sumSq = 0, n = 0
+  for (let y = 2; y < h - 2; y += 2) {
+    for (let x = 2; x < w - 2; x += 2) {
+      const i = y * w + x
+      const lap = 4 * gray[i] - gray[i - 1] - gray[i + 1] - gray[i - w] - gray[i + w]
+      sum += lap; sumSq += lap * lap; n++
+    }
+  }
+  const mean = sum / n
+  return sumSq / n - mean * mean
+}
+
+type PhotoQuality = { blurry: boolean; tooDark: boolean; tooBright: boolean; lowContrast: boolean }
+
+// Seuils empiriques (non calibres sur un vrai dataset, comme le reste des
+// heuristiques de cette page) -- volontairement prudents : on prefere rater
+// un avertissement plutot que spammer un faux positif sur une bonne photo.
+function assessPhotoQuality(gray: Float32Array, w: number, h: number): PhotoQuality {
+  const lapVar = laplacianVariance(gray, w, h)
+  let sum = 0
+  for (let i = 0; i < gray.length; i++) sum += gray[i]
+  const mean = sum / gray.length
+  let sumSq = 0
+  for (let i = 0; i < gray.length; i++) sumSq += (gray[i] - mean) ** 2
+  const stdDev = Math.sqrt(sumSq / gray.length)
+  return {
+    blurry: lapVar < 120,
+    tooDark: mean < 45,
+    tooBright: mean > 225,
+    lowContrast: stdDev < 20,
+  }
+}
+
+// ── Etat de la surface : anomalies de texture locale (rayures/eclats) ──────
+// Le visuel imprime d'une carte a deja beaucoup de texture normale (photo,
+// degrade, texte) -- une variance locale brute serait noyee de faux positifs.
+// On compare donc chaque patch a la MEDIANE des patches de la carte (mesure
+// robuste, peu sensible aux quelques patches deja tres texturés par le design)
+// plutot qu'a un seuil absolu : seuls les patches nettement hors-norme PAR
+// RAPPORT AU RESTE DE CETTE CARTE precise comptent comme anomalie potentielle.
+function surfaceScore(gray: Float32Array, w: number, h: number): number {
+  const marginX = Math.round(w * 0.1), marginY = Math.round(h * 0.1)
+  const patch = 22
+  const variances: number[] = []
+  for (let y = marginY; y + patch < h - marginY; y += patch) {
+    for (let x = marginX; x + patch < w - marginX; x += patch) {
+      let sum = 0, sumSq = 0, n = 0
+      for (let py = y; py < y + patch; py++) {
+        for (let px = x; px < x + patch; px++) {
+          const v = gray[py * w + px]
+          sum += v; sumSq += v * v; n++
+        }
+      }
+      const mean = sum / n
+      variances.push(sumSq / n - mean * mean)
+    }
+  }
+  if (variances.length < 4) return 0
+  const sorted = [...variances].sort((a, b) => a - b)
+  const median = sorted[Math.floor(sorted.length / 2)]
+  const deviations = sorted.map(v => Math.abs(v - median)).sort((a, b) => a - b)
+  const mad = Math.max(1, deviations[Math.floor(deviations.length / 2)])
+  // Seuil plus large (9x MAD, etait 6x) -- une carte a finition foil/prizm a
+  // deja des patches irreguliers par design (reflets, degrade metallique), pas
+  // seulement quelques outliers ; il faut un ecart plus net pour compter comme
+  // anomalie potentielle plutot que comme variation normale du motif.
+  const threshold = median + mad * 9
+  const anomalous = variances.filter(v => v > threshold).length
+  // Plafonne a 45% de patches anomaux -> score max (etait 30%), meme logique :
+  // une carte texturee peut legitimement avoir beaucoup de patches "hors
+  // mediane" sans qu'aucun ne soit une vraie rayure.
+  return Math.min(1, anomalous / variances.length / 0.45)
+}
+
+// ── Etat des bords (hors coins) : meme principe de blanchiment que les coins,
+// mais echantillonne le long de chaque bordure plutot qu'a une seule pointe --
+// un eclat de bord n'est pas force d'etre pile dans un coin. ─────────────────
+function borderChipScore(img: HTMLImageElement, quad: Pt[], frac: BorderFrac, side: keyof BorderFrac): { score: number; stability: number } {
+  const segs = borderSegments(quad, frac)
+  const [a, b] = segs[side]
+  const isVertical = side === 'left' || side === 'right'
+  const borderFracVal = frac[side]
+  const sideLen = Math.hypot(b.x - a.x, b.y - a.y)
+  const perpLen = isVertical
+    ? Math.hypot(quad[3].x - quad[0].x, quad[3].y - quad[0].y)
+    : Math.hypot(quad[1].x - quad[0].x, quad[1].y - quad[0].y)
+  const borderPx = Math.max(3, borderFracVal * perpLen)
+  const dx = (b.x - a.x) / sideLen, dy = (b.y - a.y) / sideLen
+  // Normale pointant vers l'EXTERIEUR de la carte (vers le bord physique) --
+  // pour left/top c'est -perp, pour right/bottom c'est +perp du sens du trait.
+  const nx = -dy, ny = dx
+  const outward = (side === 'left' || side === 'top') ? -1 : 1
+
+  const N = 30
+  const refDepth = borderPx * 0.55
+  const tipDepth = borderPx * 0.15
+  const samples: number[] = []
+  const refColors: { r: number; g: number; b: number }[] = []
+  const tipColors: { r: number; g: number; b: number }[] = []
+  // Ignore les 12% aux deux extremites (deja couverts par la detection de coin).
+  for (let i = 0; i < N; i++) {
+    const tFrac = 0.12 + (i / (N - 1)) * 0.76
+    const px = a.x + dx * sideLen * tFrac, py = a.y + dy * sideLen * tFrac
+    const refPt = { x: px + nx * outward * refDepth, y: py + ny * outward * refDepth }
+    const tipPt = { x: px + nx * outward * tipDepth, y: py + ny * outward * tipDepth }
+    refColors.push(avgColor(img, refPt, Math.max(5, borderPx * 0.3)))
+    tipColors.push(avgColor(img, tipPt, Math.max(4, borderPx * 0.2)))
+  }
+  // Reference globale du bord = mediane des points de reference (robuste a
+  // quelques points de ref mal places si le tracé n'est pas parfaitement droit).
+  const medianOf = (vals: number[]) => { const s = [...vals].sort((x, y) => x - y); return s[Math.floor(s.length / 2)] }
+  const refLums = refColors.map(c => 0.299 * c.r + 0.587 * c.g + 0.114 * c.b)
+  const medRefLum = medianOf(refLums)
+  const medRefChroma = medianOf(refColors.map(c => Math.max(c.r, c.g, c.b) - Math.min(c.r, c.g, c.b)))
+  // Stabilite de la couleur de reference le long du bord -- une bordure unie
+  // (la plupart des cartes) a une MAD faible ; une finition foil/prizm/motif a
+  // une couleur qui change constamment meme sans aucun dommage. Sert a attenuer
+  // le score plutot que le mettre a zero (un vrai eclat reste visible dessus).
+  const refLumMAD = medianOf(refLums.map(l => Math.abs(l - medRefLum)))
+  const stability = Math.max(0.2, 1 - refLumMAD / 35)
+
+  for (let i = 0; i < N; i++) {
+    const tip = tipColors[i]
+    const tipLum = 0.299 * tip.r + 0.587 * tip.g + 0.114 * tip.b
+    const tipChroma = Math.max(tip.r, tip.g, tip.b) - Math.min(tip.r, tip.g, tip.b)
+    const lightnessJump = Math.max(0, tipLum - medRefLum)
+    const chromaDrop = Math.max(0, medRefChroma - tipChroma)
+    samples.push(Math.min(1, lightnessJump / 55) * 0.6 + Math.min(1, chromaDrop / 60) * 0.4)
+  }
+  samples.sort((x, y) => y - x)
+  // Un vrai eclat est localise -- la moyenne des pires 20% des points
+  // represente "y a-t-il un(des) defaut(s) visible(s)" sans etre noyee par
+  // le reste du bord qui est presque toujours intact.
+  const topK = Math.max(1, Math.round(N * 0.2))
+  const worstAvg = samples.slice(0, topK).reduce((a, b) => a + b, 0) / topK
+  return { score: worstAvg * stability, stability }
+}
+
 function damageKey(d: number): 'gradation_net' | 'gradation_light_wear' | 'gradation_visible_wear' {
   if (d < 0.15) return 'gradation_net'
   if (d < 0.4) return 'gradation_light_wear'
@@ -333,43 +530,6 @@ function damageKey(d: number): 'gradation_net' | 'gradation_light_wear' | 'grada
 function damageColor(d: number): string {
   if (d < 0.15) return '#16a34a'
   if (d < 0.4) return '#d97706'
-  return '#dc2626'
-}
-
-// Sous-note 1-10 a partir de l'ecart de centrage par rapport a 50/50 (comme
-// PSA/BGS raisonnent, mais seuils invente/non calibres -- voir avertissement
-// affiche a cote de la note). deviation = ecart max des 2 cotes par rapport
-// au centre parfait (50/50 -> 0, 60/40 -> 10, 100/0 -> 50).
-function centeringSubscore(pct: [number, number]): number {
-  const dev = Math.max(Math.abs(pct[0] - 50), Math.abs(pct[1] - 50))
-  const steps = [1, 5, 10, 15, 20, 25, 30, 35, 40, 45]
-  const scores = [10, 9.5, 9, 8, 7, 6, 5, 4, 3, 2]
-  for (let i = 0; i < steps.length; i++) if (dev <= steps[i]) return scores[i]
-  return 1
-}
-
-// Sous-note 1-10 a partir du score de dommage (0 intact -> 1 tres endommage) --
-// simple relation lineaire inverse, coherente avec les seuils de damageLabel.
-function cornerSubscore(d: number): number {
-  return Math.max(1, Math.min(10, Math.round((1 - d) * 9 + 1)))
-}
-
-// Note globale indicative (1-10) : le point faible domine (comme une vraie
-// gradation, ou le pire defaut plombe la note), amorti par la moyenne pour
-// eviter qu'un seul coin flou n'ecrase tout. Ne prend PAS en compte la
-// surface ni les bords (non evalues ici) -- voir avertissement affiche.
-function estimateGrade(leftRightPct: [number, number], topBottomPct: [number, number], cornerScores: number[]): number {
-  const centSub = Math.min(centeringSubscore(leftRightPct), centeringSubscore(topBottomPct))
-  const cornerSub = cornerScores.reduce((a, b) => a + cornerSubscore(b), 0) / cornerScores.length
-  const worst = Math.min(centSub, cornerSub)
-  const avg = (centSub + cornerSub) / 2
-  return Math.round((worst * 0.6 + avg * 0.4) * 2) / 2
-}
-
-function gradeColor(grade: number): string {
-  if (grade >= 9) return '#16a34a'
-  if (grade >= 7) return '#65a30d'
-  if (grade >= 5) return '#d97706'
   return '#dc2626'
 }
 
@@ -430,8 +590,18 @@ export default function EtatCartePage() {
   const [hasCorners, setHasCorners] = useState(false)
   const [preCropWarning, setPreCropWarning] = useState(false)
   const [percents, setPercents] = useState<Percents | null>(null)
+  const [centeringConfidence, setCenteringConfidence] = useState({ lr: 1, tb: 1 })
   const [cornerScores, setCornerScores] = useState<number[] | null>(null)
   const [cornerCrops, setCornerCrops] = useState<string[] | null>(null)
+  const [borderCrops, setBorderCrops] = useState<Record<keyof BorderFrac, string> | null>(null)
+  // Loupe libre : deplacer/toucher n'importe ou sur la photo pour zoomer a
+  // cet endroit (pas seulement pendant le glissement d'un coin/ligne) --
+  // loupeZoom = diviseur de la largeur source (plus petit = plus zoome).
+  const [freeLoupeOn, setFreeLoupeOn] = useState(false)
+  const [loupeZoom, setLoupeZoom] = useState(16)
+  const [borderScores, setBorderScores] = useState<Record<keyof BorderFrac, number> | null>(null)
+  const [surface, setSurface] = useState<number | null>(null)
+  const [photoQuality, setPhotoQuality] = useState<PhotoQuality | null>(null)
   const [cameraModal, setCameraModal] = useState(false)
   const [galleryPickerOpen, setGalleryPickerOpen] = useState(false)
   // Position ECRAN (client) du doigt/curseur pendant un drag -- pilote le
@@ -457,7 +627,7 @@ export default function EtatCartePage() {
   const drawMagnifier = (pt: Pt, color: string) => {
     const img = imgRef.current, magCanvas = magnifierCanvasRef.current
     if (!img || !magCanvas) return
-    const srcSize = Math.max(50, img.naturalWidth / 16)
+    const srcSize = Math.max(20, img.naturalWidth / loupeZoom)
     const mctx = magCanvas.getContext('2d')!
     mctx.clearRect(0, 0, MAG_SIZE, MAG_SIZE)
     mctx.save()
@@ -490,16 +660,21 @@ export default function EtatCartePage() {
     // couleur ; ce "halo" garde la ligne lisible sur n'importe quel fond.
     const lw = Math.max(5, img.naturalWidth / 180)
     const haloLw = lw + 5
+    // Lignes de centrage nettement plus fines que le contour des coins --
+    // rester lisible mais ne pas masquer l'image sous-jacente, seul ce qui
+    // compte quand l'outil sert a inspecter visuellement plutot qu'a noter.
+    const centerLw = Math.max(1.5, img.naturalWidth / 500)
+    const centerHaloLw = centerLw + 2
     const dash = [Math.max(12, img.naturalWidth / 130), Math.max(8, img.naturalWidth / 190)]
     const strokeHalo = (segs: [Pt, Pt][], color: string) => {
       ctx.setLineDash([])
       ctx.lineCap = 'round'
       ctx.strokeStyle = 'rgba(255,255,255,0.85)'
-      ctx.lineWidth = haloLw
+      ctx.lineWidth = centerHaloLw
       segs.forEach(([a, b]) => { ctx.beginPath(); ctx.moveTo(a.x, a.y); ctx.lineTo(b.x, b.y); ctx.stroke() })
       ctx.setLineDash(dash)
       ctx.strokeStyle = color
-      ctx.lineWidth = lw
+      ctx.lineWidth = centerLw
       segs.forEach(([a, b]) => { ctx.beginPath(); ctx.moveTo(a.x, a.y); ctx.lineTo(b.x, b.y); ctx.stroke() })
     }
 
@@ -540,21 +715,94 @@ export default function EtatCartePage() {
     const img = imgRef.current
     if (!img) return
     const warp = warpQuadToRect(img, pts, WARP_W, WARP_H)
+    const bLeft = detectBorderWidth(warp, 'left')
+    const bRight = detectBorderWidth(warp, 'right')
+    const bTop = detectBorderWidth(warp, 'top')
+    const bBottom = detectBorderWidth(warp, 'bottom')
+    // Sur un design "plein cadre" (pas de bordure imprimee -- tres courant
+    // sur les cartes NBA modernes type Prizm/Select/Donruss), detectBorderWidth
+    // n'a aucune vraie transition a trouver : le cote non confiant renvoie
+    // alors une fluctuation de bruit quelconque, DIFFERENTE et INDEPENDANTE de
+    // celle de son opposé -- d'ou des ratios delirants une fois normalises
+    // (ex 99/1, confirme sur calibration reelle). Plutot que d'afficher un
+    // ratio faux, un cote non confiant reprend la largeur de son OPPOSE
+    // confiant (une carte est censee etre symetrique par design) : le
+    // centrage retombe alors sur du 50/50 -- une hypothese par defaut bien
+    // plus sure que du bruit pur, sans jamais cacher la mesure. Si aucun des
+    // deux cotes n'est confiant, les deux se rabattent sur une meme petite
+    // largeur fixe (2% -- meme resultat : 50/50).
+    const DEFAULT_FRAC = 0.02
+    const mirror = (a: { idx: number; confident: boolean }, b: { idx: number; confident: boolean }, dim: number) => {
+      if (a.confident && b.confident) return [a.idx, b.idx]
+      if (a.confident) return [a.idx, a.idx]
+      if (b.confident) return [b.idx, b.idx]
+      const d = Math.round(dim * DEFAULT_FRAC)
+      return [d, d]
+    }
+    const [leftIdx, rightIdx] = mirror(bLeft, bRight, WARP_W)
+    const [topIdx, bottomIdx] = mirror(bTop, bBottom, WARP_H)
     const frac: BorderFrac = {
-      left: detectBorderWidth(warp, 'left') / WARP_W,
-      right: detectBorderWidth(warp, 'right') / WARP_W,
-      top: detectBorderWidth(warp, 'top') / WARP_H,
-      bottom: detectBorderWidth(warp, 'bottom') / WARP_H,
+      left: leftIdx / WARP_W,
+      right: rightIdx / WARP_W,
+      top: topIdx / WARP_H,
+      bottom: bottomIdx / WARP_H,
     }
     fracRef.current = frac
     redrawOverlay(pts, frac)
     setPercents(percentsFromBorders(frac))
-    setCornerScores(pts.map((_, i) => cornerDamage(img, pts, i, frac)))
+    // Confiance passee a estimateGrade (voir son commentaire) -- pas juste
+    // "a-t-on trouve une transition", mais "peut-on faire confiance au RATIO
+    // qui en resulte". Sur une bordure fine, quelques px d'erreur (recadrage
+    // manuel imprecis, distorsion du plastique du boitier, bruit JPEG)
+    // deviennent un ecart de pourcentage enorme une fois normalises -- alors
+    // que la meme erreur en px reste negligeable sur une large bordure
+    // vintage. C'est un effet d'amplification mathematique, independant de
+    // la qualite de la detection elle-meme (confirme sur calibration reelle :
+    // ameliorer seulement la detection du bord a EMPIRE la correlation avec
+    // les vraies notes PSA, precisement parce que le detecteur ameliore
+    // trouvait des bordures fines "en toute confiance"). On pondere donc
+    // aussi par la largeur ABSOLUE detectee : une bordure sous ~4% de la
+    // dimension ne peut pas justifier un ratio pris a la lettre, meme
+    // confiante sur la transition elle-meme.
+    const MIN_RELIABLE_BORDER_FRAC = 0.04
+    const widthConfidence = (px: number, dim: number) => Math.max(0, Math.min(1, (px / dim) / MIN_RELIABLE_BORDER_FRAC))
+    const sideConfidence = (b: { idx: number; confident: boolean }, dim: number) => b.confident ? widthConfidence(b.idx, dim) : 0
+    const lrConf = Math.min(sideConfidence(bLeft, WARP_W), sideConfidence(bRight, WARP_W))
+    const tbConf = Math.min(sideConfidence(bTop, WARP_H), sideConfidence(bBottom, WARP_H))
+    setCenteringConfidence({ lr: lrConf, tb: tbConf })
+    const leftB = borderChipScore(img, pts, frac, 'left')
+    const rightB = borderChipScore(img, pts, frac, 'right')
+    const topB = borderChipScore(img, pts, frac, 'top')
+    const bottomB = borderChipScore(img, pts, frac, 'bottom')
+    setBorderScores({ left: leftB.score, right: rightB.score, top: topB.score, bottom: bottomB.score })
+    const stabilityBySide: Record<keyof BorderFrac, number> = {
+      left: leftB.stability, right: rightB.stability, top: topB.stability, bottom: bottomB.stability,
+    }
+    setCornerScores(pts.map((_, i) => {
+      const nb = CORNER_NEIGHBORS[i]
+      const st = (stabilityBySide[nb.uFracKey] + stabilityBySide[nb.vFracKey]) / 2
+      return cornerDamage(img, pts, i, frac, st)
+    }))
+    // Meme warp que la detection de bordure -- aucun cout supplementaire.
+    const { gray, w, h } = grayscaleOf(warp)
+    setSurface(surfaceScore(gray, w, h))
+    setPhotoQuality(assessPhotoQuality(gray, w, h))
     // Champ de vision du crop proportionnel a la resolution de la photo --
     // meme logique que le rayon des poignees, pour rester coherent visuellement
     // quelle que soit la taille de l'image source.
     const cropSize = Math.max(90, img.naturalWidth / 20)
     setCornerCrops(pts.map(p => cropCornerImage(img, p, cropSize)))
+    // Zoom sur chaque bord -- crop centre sur le MILIEU de chaque segment de
+    // bordure (evite les coins, deja couverts a part) pour aider a juger
+    // visuellement les eclats plutot que de se fier a un seul verdict calcule.
+    const midOf = ([a, b]: [Pt, Pt]): Pt => ({ x: (a.x + b.x) / 2, y: (a.y + b.y) / 2 })
+    const bsegs = borderSegments(pts, frac)
+    setBorderCrops({
+      left: cropCornerImage(img, midOf(bsegs.left), cropSize),
+      right: cropCornerImage(img, midOf(bsegs.right), cropSize),
+      top: cropCornerImage(img, midOf(bsegs.top), cropSize),
+      bottom: cropCornerImage(img, midOf(bsegs.bottom), cropSize),
+    })
   }
 
   const onFile = async (file: File) => {
@@ -563,6 +811,7 @@ export default function EtatCartePage() {
     setPercents(null)
     setCornerScores(null)
     setCornerCrops(null)
+    setBorderCrops(null)
     setHasCorners(false)
     try {
       const url = URL.createObjectURL(file)
@@ -707,6 +956,20 @@ export default function EtatCartePage() {
       setPercents(percentsFromBorders(nextFrac))
       setTouchPoint({ x: e.clientX, y: e.clientY })
       drawMagnifier(pos, side === 'left' || side === 'right' ? '#00c878' : '#1e78ff')
+      return
+    }
+
+    // Loupe libre : hors de tout glissement de coin/ligne, suit simplement
+    // le pointeur pour inspecter n'importe quelle zone (surface incluse).
+    if (freeLoupeOn) {
+      setTouchPoint({ x: e.clientX, y: e.clientY })
+      drawMagnifier(pos, '#0046D1')
+    }
+  }
+
+  const onPointerLeave = () => {
+    if (freeLoupeOn && dragCornerIdxRef.current === null && dragBorderSideRef.current === null) {
+      setTouchPoint(null)
     }
   }
 
@@ -726,6 +989,11 @@ export default function EtatCartePage() {
     setPercents(null)
     setCornerScores(null)
     setCornerCrops(null)
+    setBorderCrops(null)
+    setBorderScores(null)
+    setSurface(null)
+    setPhotoQuality(null)
+    setCenteringConfidence({ lr: 1, tb: 1 })
     setError('')
     setPreCropWarning(false)
     cornersRef.current = null
@@ -778,7 +1046,17 @@ export default function EtatCartePage() {
     }
   }
 
-  const grade = percents && cornerScores ? estimateGrade(percents.leftRightPct, percents.topBottomPct, cornerScores) : null
+  const borderSideNames: Record<keyof BorderFrac, string> = {
+    left: t('gradation_left'), right: t('gradation_right'), top: t('gradation_top'), bottom: t('gradation_bottom'),
+  }
+  const photoQualityIssues = photoQuality
+    ? [
+        photoQuality.blurry && t('gradation_quality_blurry'),
+        photoQuality.tooDark && t('gradation_quality_dark'),
+        photoQuality.tooBright && t('gradation_quality_bright'),
+        photoQuality.lowContrast && t('gradation_quality_low_contrast'),
+      ].filter(Boolean) as string[]
+    : []
 
   return (
     <div style={{ minHeight: '100vh', background: bg, fontFamily: 'Inter, system-ui, sans-serif' }}>
@@ -877,18 +1155,53 @@ export default function EtatCartePage() {
             onPointerDown={onPointerDown}
             onPointerMove={onPointerMove}
             onPointerUp={onPointerUp}
-            style={{ width: '100%', borderRadius: 10, background: border, touchAction: 'none', cursor: 'grab', display: 'block' }}
+            onPointerLeave={onPointerLeave}
+            style={{ width: '100%', borderRadius: 10, background: border, touchAction: 'none', cursor: freeLoupeOn ? 'crosshair' : 'grab', display: 'block' }}
           />
           <p style={{ fontSize: 11, color: muted, marginTop: 8, textAlign: 'center' }}>
             {t('gradation_drag_hint')}
           </p>
+          <div style={{ display: 'flex', alignItems: 'center', gap: 10, marginTop: 12, paddingTop: 12, borderTop: `1px solid ${border}`, flexWrap: 'wrap' }}>
+            <button
+              onClick={() => setFreeLoupeOn(v => !v)}
+              style={{
+                display: 'flex', alignItems: 'center', gap: 6, fontSize: 12, fontWeight: 700,
+                color: freeLoupeOn ? '#fff' : text, background: freeLoupeOn ? blue : 'none',
+                border: `1px solid ${freeLoupeOn ? blue : border}`, borderRadius: 8, padding: '7px 12px', cursor: 'pointer',
+              }}
+            >
+              🔍 {t('gradation_free_loupe')} {freeLoupeOn ? t('gradation_free_loupe_active') : ''}
+            </button>
+            {freeLoupeOn && (
+              <div style={{ display: 'flex', alignItems: 'center', gap: 8, flex: 1, minWidth: 160 }}>
+                <span style={{ fontSize: 11, color: muted }}>{t('gradation_zoom_label')}</span>
+                <input
+                  type="range" min={6} max={40} value={loupeZoom}
+                  onChange={e => setLoupeZoom(Number(e.target.value))}
+                  style={{ flex: 1 }}
+                />
+                <span style={{ fontSize: 11, color: muted, minWidth: 40, textAlign: 'right' }}>
+                  {loupeZoom <= 12 ? t('gradation_zoom_low') : loupeZoom <= 25 ? t('gradation_zoom_medium') : t('gradation_zoom_high')}
+                </span>
+              </div>
+            )}
+          </div>
+          {freeLoupeOn && (
+            <p style={{ fontSize: 11, color: muted, marginTop: 8, textAlign: 'center' }}>
+              {t('gradation_free_loupe_hint')}
+            </p>
+          )}
         </div>
 
         {touchPoint && typeof window !== 'undefined' && (
           <div style={{
             position: 'fixed', zIndex: 999, pointerEvents: 'none',
             left: Math.max(8, Math.min(window.innerWidth - MAG_SIZE - 8, touchPoint.x - MAG_SIZE / 2)),
-            top: touchPoint.y - MAG_OFFSET_Y - MAG_SIZE,
+            // Bascule sous le point touche si la loupe (plus grande qu'avant)
+            // deborderait en haut de l'ecran (doigt pres du haut sur mobile).
+            top: touchPoint.y - MAG_OFFSET_Y - MAG_SIZE >= 8
+              ? touchPoint.y - MAG_OFFSET_Y - MAG_SIZE
+              : touchPoint.y + MAG_OFFSET_Y - 40,
             width: MAG_SIZE, height: MAG_SIZE, borderRadius: '50%',
             boxShadow: '0 6px 20px rgba(0,0,0,0.5)',
           }}>
@@ -896,7 +1209,7 @@ export default function EtatCartePage() {
           </div>
         )}
 
-        {percents && cornerScores && grade !== null && (
+        {percents && cornerScores && (
           <div style={{ display: 'grid', gap: 14 }}>
             {preCropWarning && (
               <div style={{ fontSize: 12, color: warnText, background: warnBg, border: `1px solid ${warnBorder}`, borderRadius: 10, padding: '9px 12px', lineHeight: 1.5 }}>
@@ -904,22 +1217,24 @@ export default function EtatCartePage() {
               </div>
             )}
 
-            <div style={{ background: cardBg, borderRadius: 16, border: `1px solid ${border}`, padding: '18px 16px', textAlign: 'center' }}>
-              <div style={{ fontSize: 11, fontWeight: 700, color: muted, textTransform: 'uppercase', letterSpacing: 0.7, marginBottom: 8 }}>
-                {t('gradation_note_title')}
+            {photoQualityIssues.length > 0 && (
+              <div style={{ fontSize: 12, color: warnText, background: warnBg, border: `1px solid ${warnBorder}`, borderRadius: 10, padding: '9px 12px', lineHeight: 1.5 }}>
+                ⚠️ {photoQualityIssues.join(' · ')} — {t('gradation_quality_retake')}
               </div>
-              <div style={{ fontSize: 52, fontWeight: 900, color: gradeColor(grade), lineHeight: 1, letterSpacing: -2, fontVariantNumeric: 'tabular-nums' }}>
-                {grade.toFixed(1)}<span style={{ fontSize: 22, color: muted, fontWeight: 700 }}>/10</span>
-              </div>
-              <div style={{ fontSize: 11, color: warnText, background: warnBg, border: `1px solid ${warnBorder}`, borderRadius: 10, padding: '9px 12px', marginTop: 14, lineHeight: 1.5, textAlign: 'left' }}>
-                ⚠️ {t('gradation_disclaimer')}
-              </div>
+            )}
+
+            <div style={{ fontSize: 12, color: warnText, background: warnBg, border: `1px solid ${warnBorder}`, borderRadius: 10, padding: '9px 12px', lineHeight: 1.5 }}>
+              ⚠️ {t('gradation_no_grade_disclaimer')}
             </div>
 
             <div style={{ background: cardBg, borderRadius: 16, border: `1px solid ${border}`, padding: 16 }}>
-              <div style={{ fontSize: 11, fontWeight: 700, color: muted, textTransform: 'uppercase', letterSpacing: 0.6, marginBottom: 14 }}>
-                {t('gradation_centering_title')} <span style={{ fontWeight: 400, textTransform: 'none' }}>· {t('gradation_confidence')} {conf.toFixed(2)}</span>
+              <div style={{ fontSize: 11, fontWeight: 700, color: muted, textTransform: 'uppercase', letterSpacing: 0.6, marginBottom: 4 }}>
+                {t('gradation_centering_title')}
               </div>
+              <p style={{ fontSize: 11, color: muted, marginTop: 0, marginBottom: 14 }}>
+                {t('gradation_centering_desc')}
+                {(centeringConfidence.lr < 0.5 || centeringConfidence.tb < 0.5) && ' ' + t('gradation_centering_low_confidence')}
+              </p>
               <CenteringBar leftLabel={t('gradation_left')} rightLabel={t('gradation_right')} pct={percents.leftRightPct} blue={blue} border={border} muted={muted} text={text} />
               <div style={{ height: 16 }} />
               <CenteringBar leftLabel={t('gradation_top')} rightLabel={t('gradation_bottom')} pct={percents.topBottomPct} blue={blue} border={border} muted={muted} text={text} />
@@ -953,6 +1268,50 @@ export default function EtatCartePage() {
                 })}
               </div>
             </div>
+
+            {borderScores && (
+              <div style={{ background: cardBg, borderRadius: 16, border: `1px solid ${border}`, padding: 16 }}>
+                <div style={{ fontSize: 11, fontWeight: 700, color: muted, textTransform: 'uppercase', letterSpacing: 0.6, marginBottom: 4 }}>
+                  {t('gradation_borders_title')}
+                </div>
+                <p style={{ fontSize: 11, color: muted, marginTop: 0, marginBottom: 12 }}>
+                  {t('gradation_borders_subtitle')}
+                </p>
+                <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 10 }}>
+                  {(Object.keys(borderScores) as (keyof BorderFrac)[]).map(side => {
+                    const s = borderScores[side]
+                    return (
+                      <div key={side} style={{ padding: 10, background: dark ? '#111' : '#f8f9fb', border: `1px solid ${border}`, borderRadius: 10 }}>
+                        {borderCrops && (
+                          // eslint-disable-next-line @next/next/no-img-element
+                          <img
+                            src={borderCrops[side]}
+                            alt={`${t('gradation_border_zoom_alt')} ${borderSideNames[side]}`}
+                            style={{ width: '100%', aspectRatio: '1', objectFit: 'cover', borderRadius: 8, marginBottom: 8, border: `1px solid ${border}`, background: border }}
+                          />
+                        )}
+                        <div style={{ fontSize: 10, color: muted, marginBottom: 3 }}>{borderSideNames[side]}</div>
+                        <div style={{ fontSize: 13, fontWeight: 800, color: damageColor(s) }}>{t(damageKey(s))}</div>
+                      </div>
+                    )
+                  })}
+                </div>
+              </div>
+            )}
+
+            {surface !== null && (
+              <div style={{ background: cardBg, borderRadius: 16, border: `1px solid ${border}`, padding: 16 }}>
+                <div style={{ fontSize: 11, fontWeight: 700, color: muted, textTransform: 'uppercase', letterSpacing: 0.6, marginBottom: 4 }}>
+                  {t('gradation_surface_title')}
+                </div>
+                <p style={{ fontSize: 11, color: muted, marginTop: 0, marginBottom: 12 }}>
+                  {t('gradation_surface_subtitle')}
+                </p>
+                <div style={{ padding: '10px 12px', background: dark ? '#111' : '#f8f9fb', border: `1px solid ${border}`, borderRadius: 10, display: 'inline-block' }}>
+                  <div style={{ fontSize: 13, fontWeight: 800, color: damageColor(surface) }}>{t(damageKey(surface))}</div>
+                </div>
+              </div>
+            )}
           </div>
         )}
       </div>
