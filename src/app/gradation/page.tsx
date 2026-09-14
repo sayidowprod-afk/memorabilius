@@ -869,16 +869,10 @@ export default function EtatCartePage() {
     setBusy(true)
     setError('')
     try {
-      // Passe par le proxy same-origin -- un fetch direct vers le storage
-      // Supabase echoue en pratique (CORS), voir src/app/api/proxy-image. Le
-      // proxy n'accepte QUE nos propres images (jamais d'URL arbitraire, pour
-      // eviter tout risque de securite) -- une carte importee depuis un CSV
-      // externe (fonctionnalite existante pour certaines collections) a une
-      // image hebergee ailleurs et ne peut donc pas passer par ce chemin.
-      const supabaseStoragePrefix = `${process.env.NEXT_PUBLIC_SUPABASE_URL}/storage/v1/object/public/avatars/cartes/`
-      if (!card.img.startsWith(supabaseStoragePrefix)) {
-        throw new Error(t('gradation_error_external_image'))
-      }
+      // Passe par le proxy same-origin -- un fetch direct vers une image
+      // externe (CSV) ou le storage Supabase echoue en pratique (CORS), voir
+      // src/app/api/proxy-image (qui valide aussi la securite cote serveur :
+      // IP privee/interne refusee, type de contenu, taille).
       const res = await fetch(`/api/proxy-image?url=${encodeURIComponent(card.img)}`)
       if (!res.ok) throw new Error(t('gradation_error_invalid_image'))
       const blob = await res.blob()
