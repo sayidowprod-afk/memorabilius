@@ -29,6 +29,19 @@
 # appel LocalNotifications.schedule()/requestPermissions(), qui tue le
 # HandlerThread "CapacitorPlugins" pour le reste de la session (plus aucun
 # plugin ne repond ensuite : biometrie, notifs, telechargements...).
-# Confirme en comparant le crash logcat du build Play Store avec
-# app/build/outputs/mapping/release/mapping.txt de ce meme build.
 -keepattributes RuntimeVisibleAnnotations,RuntimeVisibleParameterAnnotations,AnnotationDefault
+
+# INSUFFISANT A LUI SEUL (confirme par logcat + mapping.txt sur le build
+# 1.1.5 : le crash ci-dessus persistait identique malgre la regle precedente).
+# mapping.txt montrait "com.getcapacitor.annotation.CapacitorPlugin -> u1.b"
+# -- la CLASSE de l'annotation elle-meme etait renommee par R8, alors que
+# -keep @CapacitorPlugin class * ne protege que les classes qui LA PORTENT,
+# pas l'annotation elle-meme. C'est un piege R8 connu : Class.getAnnotation(
+# CapacitorPlugin.class) peut echouer/retourner null quand le type de
+# l'annotation est renomme, meme avec ses attributs (RuntimeVisibleAnnotations)
+# conserves. Il faut explicitement garder la classe de l'annotation.
+-keep @interface com.getcapacitor.annotation.CapacitorPlugin
+-keep @interface com.getcapacitor.annotation.Permission
+-keep @interface com.getcapacitor.annotation.PermissionCallback
+-keep @interface com.getcapacitor.annotation.ActivityCallback
+-keep @interface com.getcapacitor.PluginMethod
