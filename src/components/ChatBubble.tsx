@@ -53,6 +53,7 @@ export default function ChatBubble() {
   const [uploadingImg, setUploadingImg] = useState(false)
   const [expandedOffer, setExpandedOffer] = useState<any | null>(null)
   const bottomRef = useRef<HTMLDivElement>(null)
+  const chatScrollRef = useRef<HTMLDivElement>(null)
   const fileRef = useRef<HTMLInputElement>(null)
   const openRef = useRef(false)
   const activeConvRef = useRef<string | null>(null)
@@ -95,7 +96,21 @@ export default function ChatBubble() {
     return () => { supabase.removeChannel(channel) }
   }, [userId, onMessagesPage])
 
-  useEffect(() => { bottomRef.current?.scrollIntoView({ behavior: 'smooth' }) }, [messages])
+  useEffect(() => {
+    bottomRef.current?.scrollIntoView({ behavior: 'smooth' })
+    // Les photos de messages n'ont pas de taille reservee avant chargement
+    // (voir <img> de la bulle photo, maxWidth seul) -- le scroll ci-dessus
+    // s'execute donc souvent avant qu'elles finissent de charger. On recolle
+    // en bas a chaque agrandissement du conteneur pendant une courte fenetre.
+    const container = chatScrollRef.current
+    if (!container) return
+    const observer = new ResizeObserver(() => {
+      bottomRef.current?.scrollIntoView({ behavior: 'auto' })
+    })
+    observer.observe(container)
+    const timeout = setTimeout(() => observer.disconnect(), 1500)
+    return () => { observer.disconnect(); clearTimeout(timeout) }
+  }, [messages])
 
   const loadUnread = async (uid: string) => {
     const { count } = await supabase.from('messages').select('*', { count: 'exact', head: true }).eq('to_user_id', uid).eq('lu', false)
@@ -310,7 +325,7 @@ export default function ChatBubble() {
                   <span style={{ fontWeight: 800, fontSize: 13, color: textMain, overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>{profiles[activeConv]?.display_name}</span>
                 </Link>
               </div>
-              <div style={{ flex: 1, overflowY: 'auto', padding: 12, display: 'flex', flexDirection: 'column', gap: 8 }}>
+              <div ref={chatScrollRef} style={{ flex: 1, overflowY: 'auto', padding: 12, display: 'flex', flexDirection: 'column', gap: 8 }}>
                 {messages.map(msg => {
                   const isMe = msg.from_user_id === userId
 
