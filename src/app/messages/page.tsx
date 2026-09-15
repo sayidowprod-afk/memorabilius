@@ -121,6 +121,7 @@ function MessagesContent() {
   const [expandedOffer, setExpandedOffer] = useState<any | null>(null)
   const [otherTyping, setOtherTyping] = useState(false)
   const bottomRef = useRef<HTMLDivElement>(null)
+  const chatScrollRef = useRef<HTMLDivElement>(null)
   const fileInputRef = useRef<HTMLInputElement>(null)
   const activeConvRef = useRef<string | null>(null)
   const pressTimer = useRef<ReturnType<typeof setTimeout> | null>(null)
@@ -268,6 +269,22 @@ function MessagesContent() {
     if (key === lastMsgKeyRef.current) return
     lastMsgKeyRef.current = key
     bottomRef.current?.scrollIntoView({ behavior: 'smooth' })
+
+    // Les photos des messages n'ont pas de taille reservee avant chargement
+    // (voir <img> de la bulle photo) -- le scroll ci-dessus s'execute donc
+    // souvent avant qu'elles finissent de charger, et la position "bas"
+    // calculee a ce moment-la ne l'est plus une fois l'image en place. On
+    // recolle en bas a chaque agrandissement du conteneur pendant une courte
+    // fenetre apres l'ouverture/le nouveau message, sans jamais interferer
+    // avec un scroll manuel de l'utilisateur au-dela de cette fenetre.
+    const container = chatScrollRef.current
+    if (!container) return
+    const observer = new ResizeObserver(() => {
+      bottomRef.current?.scrollIntoView({ behavior: 'auto' })
+    })
+    observer.observe(container)
+    const timeout = setTimeout(() => observer.disconnect(), 1500)
+    return () => { observer.disconnect(); clearTimeout(timeout) }
   }, [messages, activeConv])
 
   // Chat bord à bord façon Insta sur l'app native : on retire le padding du
@@ -679,7 +696,7 @@ function MessagesContent() {
                   pas la fenetre (window.scrollY reste a 0), donc PullToRefresh
                   confondait systematiquement "remonter dans l'historique" avec un
                   tirer-pour-rafraichir et rechargeait l'app en plein milieu. */}
-              <div data-no-ptr="true" style={{ flex: 1, minHeight: 0, overflowY: 'auto', padding: 20, display: 'flex', flexDirection: 'column', gap: 12 }}>
+              <div ref={chatScrollRef} data-no-ptr="true" style={{ flex: 1, minHeight: 0, overflowY: 'auto', padding: 20, display: 'flex', flexDirection: 'column', gap: 12 }}>
                 {messages.map((msg, msgIdx) => {
                   const isMe = msg.from_user_id === userId
                   const linkedTrade = msg.trade_id ? tradesMap[msg.trade_id] : null
