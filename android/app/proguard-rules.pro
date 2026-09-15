@@ -19,3 +19,16 @@
 # Crashlytics restent lisibles une fois le code minifié.
 -keepattributes SourceFile,LineNumberTable
 -renamesourcefileattribute SourceFile
+
+# Garder la classe @CapacitorPlugin (regle ci-dessus) ne suffit pas a garder
+# les metadonnees de l'annotation elle-meme : sans -keepattributes pour les
+# annotations, R8 peut les depouiller meme sur une classe conservee. Bridge.
+# getPermissionStates() lit @CapacitorPlugin(permissions=...) par reflexion
+# (PluginHandle.getPluginAnnotation()) -- sans cet attribut, l'annotation
+# revient null au runtime et ca plante en NullPointerException des le premier
+# appel LocalNotifications.schedule()/requestPermissions(), qui tue le
+# HandlerThread "CapacitorPlugins" pour le reste de la session (plus aucun
+# plugin ne repond ensuite : biometrie, notifs, telechargements...).
+# Confirme en comparant le crash logcat du build Play Store avec
+# app/build/outputs/mapping/release/mapping.txt de ce meme build.
+-keepattributes RuntimeVisibleAnnotations,RuntimeVisibleParameterAnnotations,AnnotationDefault
