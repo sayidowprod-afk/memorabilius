@@ -292,9 +292,9 @@ export default function CardVideoExport({ card, accent: accentProp, onClose, own
         // flou pour un effet diffus/glow, plus grain et vignette. Toute la
         // composition (fond + logo) est legerement pivotee -- pas juste le
         // logo -- pour casser l'aspect parfaitement droit. Peint sur un canvas
-        // surdimensionne (1.35x) puis pivote/recadre pour ne jamais laisser de
+        // surdimensionne (1.5x) puis pivote/recadre pour ne jamais laisser de
         // coin vide malgre la rotation.
-        const OVER = 1.35
+        const OVER = 1.5
         const ow = Math.ceil(W * OVER), oh = Math.ceil(H * OVER)
         const over = document.createElement('canvas')
         over.width = ow; over.height = oh
@@ -303,18 +303,21 @@ export default function CardVideoExport({ card, accent: accentProp, onClose, own
         octxOver.fillStyle = teamTheme.color
         octxOver.fillRect(0, 0, ow, oh)
 
+        // Angle net mais raisonnable (-6 a 6 degres) -- au-dela le canvas
+        // surdimensionne laisserait des coins vides, et l'effet cesse d'etre
+        // lisible ("mal rotationne").
+        const seed = logoTiltDeg(teamTheme.key) / 11 // -1..1
+        const compositionAngle = seed * 6
+
         if (activeTeamLogo && activeTeamLogo.naturalWidth > 0) {
-          // Logo VRAIMENT demesure (3.5x la largeur du cadre final) + offset
-          // deterministe par equipe : plus de la moitie du logo deborde hors
-          // cadre, on n'en voit qu'un fragment en gros plan, jamais le logo
-          // entier ni centre. Flou leger seulement (glow des contours, pas un
-          // maquillage qui noie tout) -- pas de voile couleur par-dessus, les
-          // vraies couleurs du logo doivent rester lisibles.
-          const seed = logoTiltDeg(teamTheme.key)
-          const logoW = W * 3.5
+          // Logo agrandi (2x la largeur du cadre) + offset par equipe : on en
+          // voit un fragment large mais toujours reconnaissable, pas juste
+          // une tache de couleur abstraite. Flou leger seulement (glow des
+          // contours) -- pas de voile couleur par-dessus.
+          const logoW = W * 2
           const logoH = logoW * (activeTeamLogo.naturalHeight / activeTeamLogo.naturalWidth)
-          const offsetX = ow / 2 + seed * W * 0.09
-          const offsetY = oh / 2 + seed * H * 0.06
+          const offsetX = ow / 2 + seed * W * 0.35
+          const offsetY = oh / 2 + seed * H * 0.2
           octxOver.save()
           octxOver.filter = `blur(${Math.round(W * 0.006)}px)`
           octxOver.globalAlpha = 0.95
@@ -329,12 +332,10 @@ export default function CardVideoExport({ card, accent: accentProp, onClose, own
         vignette.addColorStop(1, 'rgba(0,0,0,0.55)')
         octxOver.fillStyle = vignette; octxOver.fillRect(0, 0, ow, oh)
 
-        // Rotation de l'ensemble (fond + logo), pas juste le logo -- angle
-        // net et visible par equipe (~ -7 a 7 degres, pas juste un degre ou
-        // deux qui passe inapercu).
+        // Rotation de l'ensemble (fond + logo), pas juste le logo.
         octx.save()
         octx.translate(W / 2, H / 2)
-        octx.rotate((logoTiltDeg(teamTheme.key) / 1.5) * Math.PI / 180)
+        octx.rotate(compositionAngle * Math.PI / 180)
         octx.drawImage(over, -ow / 2, -oh / 2)
         octx.restore()
 
@@ -423,6 +424,10 @@ export default function CardVideoExport({ card, accent: accentProp, onClose, own
     // proportionnelles au panneau, puis le panneau est agrandi si le contenu
     // reel depasse ce gabarit.
     const infoHT = Math.min(1, Math.max(0, (1.5 - aspect0) / 0.5))
+    // Marge basse -- le panneau flotte, ne touche pas le bord. Agrandie sur le
+    // thème équipe pour laisser la place au logo Memorabilius en bas centré,
+    // sous le panneau plutôt qu'en haut à gauche (voir plus bas et plus haut).
+    const PB = H * (teamTheme ? 0.075 : 0.022) + safeBottomExtra
     const measureContentH = (guessPanelH: number) => {
       let h = guessPanelH * 0.10 // topPad, meme formule que ty de depart plus bas
       if (card.rc || card.auto || card.num || card.patch) {
@@ -435,8 +440,8 @@ export default function CardVideoExport({ card, accent: accentProp, onClose, own
       if (meta2) h += Math.round(W * 0.021) * 1.4
       return h + guessPanelH * 0.10 // bottomPad, marge de securite symetrique
     }
-    const guessPanelH = Math.round(H * (0.19 + 0.08 * infoHT)) - (H * 0.022)
-    const INFO_H = Math.round(Math.max(H * (0.19 + 0.08 * infoHT), measureContentH(guessPanelH) + H * 0.022))
+    const guessPanelH = Math.round(H * (0.19 + 0.08 * infoHT)) - PB
+    const INFO_H = Math.round(Math.max(H * (0.19 + 0.08 * infoHT), measureContentH(guessPanelH) + PB))
     const CARD_ZONE_H = H - INFO_H
     const CARD_MAX_W  = W * 0.82
     const CARD_MAX_H  = CARD_ZONE_H * 0.88
@@ -574,10 +579,6 @@ export default function CardVideoExport({ card, accent: accentProp, onClose, own
     // identique à chaque frame (dégradés, shadowBlur des badges, plusieurs
     // fillText avec changement de police) en pure perte.
     const PM = W * 0.045          // marge horizontale du panneau
-    // Marge basse -- le panneau flotte, ne touche pas le bord. Agrandie sur le
-    // thème équipe pour laisser la place au logo Memorabilius en bas centré
-    // (voir plus haut), sous le panneau plutôt qu'en haut à gauche.
-    const PB = H * (teamTheme ? 0.075 : 0.022) + safeBottomExtra
     const panelW = W - PM * 2
     const panelRadius = Math.round(W * 0.055)
     const panelTop = H - INFO_H

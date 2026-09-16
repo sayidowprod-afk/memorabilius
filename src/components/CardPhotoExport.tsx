@@ -194,7 +194,7 @@ export default function CardPhotoExport({ card, accent: accentProp, onClose, own
       // gros plan, flouté, grain, vignette marquée, composition entière
       // légèrement pivotée -- peint sur un canvas surdimensionné puis
       // pivoté/recadré pour ne jamais laisser de coin vide.
-      const OVER = 1.35
+      const OVER = 1.5
       const ow = Math.ceil(w * OVER), oh = Math.ceil(h * OVER)
       const over = document.createElement('canvas')
       over.width = ow; over.height = oh
@@ -203,16 +203,21 @@ export default function CardPhotoExport({ card, accent: accentProp, onClose, own
       octxOver.fillStyle = teamTheme.color
       octxOver.fillRect(0, 0, ow, oh)
 
+      // Angle net mais raisonnable (-6 a 6 degres) -- au-dela le canvas
+      // surdimensionne laisserait des coins vides.
+      const seed = logoTiltDeg(teamTheme.key) / 11 // -1..1
+      const compositionAngle = seed * 6
+
       if (activeTeamLogo && activeTeamLogo.naturalWidth > 0) {
-        // Logo VRAIMENT demesure (3.5x la largeur du cadre) + offset par
-        // equipe : plus de la moitie deborde hors cadre. Flou leger seulement
-        // (glow des contours), pas de voile couleur par-dessus -- les vraies
-        // couleurs du logo doivent rester lisibles.
-        const seed = logoTiltDeg(teamTheme.key)
-        const logoW = w * 3.5
+        // Logo agrandi (2x la largeur du cadre) + offset par equipe : un
+        // fragment large mais toujours reconnaissable, pas une tache de
+        // couleur abstraite. Flou leger seulement (glow des contours), pas
+        // de voile couleur par-dessus -- les vraies couleurs du logo restent
+        // lisibles.
+        const logoW = w * 2
         const logoH = logoW * (activeTeamLogo.naturalHeight / activeTeamLogo.naturalWidth)
-        const offsetX = ow / 2 + seed * w * 0.09
-        const offsetY = oh / 2 + seed * h * 0.06
+        const offsetX = ow / 2 + seed * w * 0.35
+        const offsetY = oh / 2 + seed * h * 0.2
         octxOver.save()
         octxOver.filter = `blur(${Math.round(w * 0.006)}px)`
         octxOver.globalAlpha = 0.95
@@ -225,10 +230,10 @@ export default function CardPhotoExport({ card, accent: accentProp, onClose, own
       vignette.addColorStop(1, 'rgba(0,0,0,0.55)')
       octxOver.fillStyle = vignette; octxOver.fillRect(0, 0, ow, oh)
 
-      // Rotation de l'ensemble (fond + logo), angle net et visible par equipe.
+      // Rotation de l'ensemble (fond + logo).
       ctx.save()
       ctx.translate(w / 2, h / 2)
-      ctx.rotate((logoTiltDeg(teamTheme.key) / 1.5) * Math.PI / 180)
+      ctx.rotate(compositionAngle * Math.PI / 180)
       ctx.drawImage(over, -ow / 2, -oh / 2)
       ctx.restore()
 
@@ -281,6 +286,10 @@ export default function CardPhotoExport({ card, accent: accentProp, onClose, own
     // aspect ratio ne suffisait plus dès que tous les champs optionnels sont
     // présents en même temps, coupant le bas du texte.
     const infoHT = Math.min(1, Math.max(0, (1.5 - aspect) / 0.5))
+    // Marge basse agrandie sur le thème équipe (logo Memorabilius en bas
+    // centré, voir plus bas) -- calculée ici pour que la hauteur du panneau
+    // en tienne compte, pas seulement plus bas au moment de le dessiner.
+    const PB = h * (teamTheme ? 0.075 : 0.022)
     const measureContentH = (guessPanelH: number) => {
       let ch = guessPanelH * 0.10
       if (card.rc || card.auto || card.num || card.patch || (card.g && card.g !== 'Raw')) {
@@ -293,8 +302,8 @@ export default function CardPhotoExport({ card, accent: accentProp, onClose, own
       if (meta2c) ch += Math.round(w * 0.021) * 1.4
       return ch + guessPanelH * 0.10
     }
-    const guessPanelH = Math.round(h * (0.19 + 0.08 * infoHT)) - (h * 0.022)
-    const INFO_H = Math.round(Math.max(h * (0.19 + 0.08 * infoHT), measureContentH(guessPanelH) + h * 0.022))
+    const guessPanelH = Math.round(h * (0.19 + 0.08 * infoHT)) - PB
+    const INFO_H = Math.round(Math.max(h * (0.19 + 0.08 * infoHT), measureContentH(guessPanelH) + PB))
     const CARD_ZONE_H = h - INFO_H
     const CARD_MAX_W  = w * 0.82
     const CARD_MAX_H  = CARD_ZONE_H * 0.88
@@ -342,9 +351,6 @@ export default function CardPhotoExport({ card, accent: accentProp, onClose, own
     // même traitement que la vidéo (au lieu de la bande plaquée aux bords de
     // l'ancienne version).
     const PM = w * 0.045
-    // Marge basse agrandie sur le thème équipe pour laisser la place au logo
-    // Memorabilius en bas centré (voir plus bas), sous le panneau.
-    const PB = h * (teamTheme ? 0.075 : 0.022)
     const panelW = w - PM * 2
     const panelRadius = Math.round(w * 0.055)
     const panelTop = h - INFO_H
