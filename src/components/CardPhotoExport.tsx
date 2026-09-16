@@ -5,7 +5,7 @@ import { useLang } from '@/lib/LangContext'
 import { saveOrShareFile } from '@/lib/saveOrShare'
 import { toast } from '@/lib/toast'
 import { supabase } from '@/lib/supabase'
-import { getTeamById, teamLogoUrl, SPORT_LABELS, type Sport } from '@/lib/sportsTeams'
+import { SPORTS_TEAMS, teamLogoUrl, SPORT_LABELS, type Sport } from '@/lib/sportsTeams'
 
 interface Card {
   f: string; b?: string; n: string; t: string; y: string
@@ -90,28 +90,28 @@ export default function CardPhotoExport({ card, accent: accentProp, onClose, own
   const pickTeamTheme = (th: TeamTheme) => { setTeamThemeState(th); setAccent(th.color) }
 
   useEffect(() => {
+    // Toutes les equipes sportives connues (pas seulement les favorites du
+    // proprietaire) -- disponible tout de suite, sans ownerId.
+    const sportThemes: TeamTheme[] = []
+    for (const team of SPORTS_TEAMS) {
+      const logo = teamLogoUrl(team)
+      if (!logo) continue
+      sportThemes.push({ key: `sport:${team.id}`, label: team.name, color: team.color, logoUrl: `/api/proxy-image?url=${encodeURIComponent(logo)}`, group: team.sport })
+    }
+    setTeamThemes(sportThemes)
+
     if (!ownerId) return
     let cancelled = false
     ;(async () => {
-      const [{ data: profile }, { data: memberships }] = await Promise.all([
-        supabase.from('profiles').select('favorite_teams').eq('id', ownerId).single(),
-        supabase.from('team_members').select('teams(id, name, avatar_url)').eq('user_id', ownerId),
-      ])
+      const { data: memberships } = await supabase.from('team_members').select('teams(id, name, avatar_url)').eq('user_id', ownerId)
       if (cancelled) return
       const themes: TeamTheme[] = []
-      for (const id of (profile?.favorite_teams || []) as string[]) {
-        const team = getTeamById(id)
-        if (!team) continue
-        const logo = teamLogoUrl(team)
-        if (!logo) continue
-        themes.push({ key: `sport:${team.id}`, label: team.name, color: team.color, logoUrl: `/api/proxy-image?url=${encodeURIComponent(logo)}`, group: team.sport })
-      }
       for (const row of (memberships || []) as any[]) {
         const tm = row.teams
         if (!tm?.avatar_url) continue
         themes.push({ key: `custom:${tm.id}`, label: tm.name, color: CUSTOM_TEAM_COLOR, logoUrl: `/api/proxy-image?url=${encodeURIComponent(tm.avatar_url)}`, group: 'custom' })
       }
-      setTeamThemes(themes)
+      setTeamThemes(prev => [...prev, ...themes])
     })()
     return () => { cancelled = true }
   }, [ownerId])
@@ -204,19 +204,20 @@ export default function CardPhotoExport({ card, accent: accentProp, onClose, own
       octxOver.fillRect(0, 0, ow, oh)
 
       if (activeTeamLogo && activeTeamLogo.naturalWidth > 0) {
+        // Logo VRAIMENT demesure (3.5x la largeur du cadre) + offset par
+        // equipe : plus de la moitie deborde hors cadre. Flou leger seulement
+        // (glow des contours), pas de voile couleur par-dessus -- les vraies
+        // couleurs du logo doivent rester lisibles.
         const seed = logoTiltDeg(teamTheme.key)
-        const logoW = w * 2.6
+        const logoW = w * 3.5
         const logoH = logoW * (activeTeamLogo.naturalHeight / activeTeamLogo.naturalWidth)
-        const offsetX = ow / 2 + seed * w * 0.045
-        const offsetY = oh / 2 + seed * h * 0.03
+        const offsetX = ow / 2 + seed * w * 0.09
+        const offsetY = oh / 2 + seed * h * 0.06
         octxOver.save()
-        octxOver.filter = `blur(${Math.round(w * 0.018)}px)`
-        octxOver.globalAlpha = 0.85
+        octxOver.filter = `blur(${Math.round(w * 0.006)}px)`
+        octxOver.globalAlpha = 0.95
         octxOver.drawImage(activeTeamLogo, offsetX - logoW / 2, offsetY - logoH / 2, logoW, logoH)
         octxOver.restore()
-
-        octxOver.fillStyle = `${teamTheme.color}55`
-        octxOver.fillRect(0, 0, ow, oh)
       }
 
       const vignette = octxOver.createRadialGradient(ow / 2, oh * 0.42, ow * 0.25, ow / 2, oh * 0.42, ow * 0.75)
@@ -224,9 +225,10 @@ export default function CardPhotoExport({ card, accent: accentProp, onClose, own
       vignette.addColorStop(1, 'rgba(0,0,0,0.55)')
       octxOver.fillStyle = vignette; octxOver.fillRect(0, 0, ow, oh)
 
+      // Rotation de l'ensemble (fond + logo), angle net et visible par equipe.
       ctx.save()
       ctx.translate(w / 2, h / 2)
-      ctx.rotate((logoTiltDeg(teamTheme.key) / 3) * Math.PI / 180)
+      ctx.rotate((logoTiltDeg(teamTheme.key) / 1.5) * Math.PI / 180)
       ctx.drawImage(over, -ow / 2, -oh / 2)
       ctx.restore()
 
@@ -256,8 +258,11 @@ export default function CardPhotoExport({ card, accent: accentProp, onClose, own
       paintGrain(isDark ? 10 : 14)
     }
 
-    // ── Logo Memorabilius (watermark permanent, haut-gauche) ──
-    if (logoImg && logoImg.naturalWidth > 0) {
+    // ── Logo Memorabilius ── haut-gauche par défaut, bas centré sous le
+    // panneau sur le thème équipe (voir plus bas, après le panneau infos).
+    if (teamTheme) {
+      // dessiné plus bas, en bas centré
+    } else if (logoImg && logoImg.naturalWidth > 0) {
       const logoW = w * 0.24
       const logoH = logoW * (logoImg.naturalHeight / logoImg.naturalWidth)
       ctx.globalAlpha = isDark ? 0.62 : 0.75
@@ -337,26 +342,35 @@ export default function CardPhotoExport({ card, accent: accentProp, onClose, own
     // même traitement que la vidéo (au lieu de la bande plaquée aux bords de
     // l'ancienne version).
     const PM = w * 0.045
-    const PB = h * 0.022
+    // Marge basse agrandie sur le thème équipe pour laisser la place au logo
+    // Memorabilius en bas centré (voir plus bas), sous le panneau.
+    const PB = h * (teamTheme ? 0.075 : 0.022)
     const panelW = w - PM * 2
     const panelRadius = Math.round(w * 0.055)
     const panelTop = h - INFO_H
     const panelH = (h - PB) - panelTop
 
     ctx.save()
-    ctx.shadowColor = isDark ? 'rgba(0,0,0,0.4)' : 'rgba(60,50,30,0.18)'
-    ctx.shadowBlur = w * 0.028
-    ctx.shadowOffsetY = h * 0.006
-    ctx.beginPath(); ctx.roundRect(PM, panelTop, panelW, panelH, panelRadius)
-    ctx.fillStyle = infoBg
-    ctx.fill()
+    if (teamTheme) {
+      // Lueur couleur équipe tout autour du panneau, comme la référence.
+      ctx.shadowColor = teamTheme.color
+      ctx.shadowBlur = w * 0.05
+      ctx.shadowOffsetX = 0; ctx.shadowOffsetY = 0
+      ctx.beginPath(); ctx.roundRect(PM, panelTop, panelW, panelH, panelRadius)
+      ctx.fillStyle = infoBg
+      ctx.fill(); ctx.fill()
+    } else {
+      ctx.shadowColor = isDark ? 'rgba(0,0,0,0.4)' : 'rgba(60,50,30,0.18)'
+      ctx.shadowBlur = w * 0.028
+      ctx.shadowOffsetY = h * 0.006
+      ctx.beginPath(); ctx.roundRect(PM, panelTop, panelW, panelH, panelRadius)
+      ctx.fillStyle = infoBg
+      ctx.fill()
+    }
     ctx.restore()
 
     ctx.save()
     ctx.beginPath(); ctx.roundRect(PM, panelTop, panelW, panelH, panelRadius); ctx.clip()
-    // Fin liseré accent en haut du panneau -- discret.
-    ctx.fillStyle = `rgba(${ar},${ag},${ab},${isDark ? 0.55 : 0.4})`
-    ctx.fillRect(PM, panelTop, panelW, Math.max(2, w * 0.0035))
 
     ctx.textAlign = 'center'; ctx.textBaseline = 'top'
     const tx = w / 2
@@ -441,6 +455,15 @@ export default function CardPhotoExport({ card, accent: accentProp, onClose, own
     }
 
     ctx.restore() // fin du clip panneau
+
+    // ── Logo Memorabilius, bas centré (thème équipe uniquement) ──
+    if (teamTheme && logoImg && logoImg.naturalWidth > 0) {
+      const bLogoW = w * 0.20
+      const bLogoH = bLogoW * (logoImg.naturalHeight / logoImg.naturalWidth)
+      ctx.globalAlpha = 0.85
+      ctx.drawImage(logoImg, w / 2 - bLogoW / 2, h - PB + (PB - bLogoH) / 2 - bLogoH * 0.1, bLogoW, bLogoH)
+      ctx.globalAlpha = 1
+    }
   }
 
   useEffect(() => { draw() }, [pfmt, theme, side, accent, teamTheme, teamLogoImg]) // eslint-disable-line react-hooks/exhaustive-deps

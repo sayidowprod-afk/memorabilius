@@ -6,7 +6,7 @@ import { useLang } from '@/lib/LangContext'
 import { saveOrShareFile } from '@/lib/saveOrShare'
 import { toast } from '@/lib/toast'
 import { supabase } from '@/lib/supabase'
-import { getTeamById, teamLogoUrl, SPORT_LABELS, type Sport } from '@/lib/sportsTeams'
+import { SPORTS_TEAMS, teamLogoUrl, SPORT_LABELS, type Sport } from '@/lib/sportsTeams'
 
 // Couleur par defaut pour les equipes "custom" de l'app (Fedération de la
 // Carte, etc.) -- ces teams n'ont pas de couleur en base, contrairement aux
@@ -126,28 +126,31 @@ export default function CardVideoExport({ card, accent: accentProp, onClose, own
   const pickTeamTheme = (th: TeamTheme) => { setTeamThemeState(th); setAccent(th.color) }
 
   useEffect(() => {
+    // Toutes les equipes sportives connues (pas seulement les favorites du
+    // proprietaire de la carte -- demande explicite : n'importe quelle
+    // equipe doit pouvoir etre choisie, la selection n'a pas a refleter le
+    // profil). Disponible immediatement, pas besoin d'ownerId pour cette
+    // partie -- seules les equipes app (custom) restent scopees a l'owner.
+    const sportThemes: TeamTheme[] = []
+    for (const team of SPORTS_TEAMS) {
+      const logo = teamLogoUrl(team)
+      if (!logo) continue
+      sportThemes.push({ key: `sport:${team.id}`, label: team.name, color: team.color, logoUrl: `/api/proxy-image?url=${encodeURIComponent(logo)}`, group: team.sport })
+    }
+    setTeamThemes(sportThemes)
+
     if (!ownerId) return
     let cancelled = false
     ;(async () => {
-      const [{ data: profile }, { data: memberships }] = await Promise.all([
-        supabase.from('profiles').select('favorite_teams').eq('id', ownerId).single(),
-        supabase.from('team_members').select('teams(id, name, avatar_url)').eq('user_id', ownerId),
-      ])
+      const { data: memberships } = await supabase.from('team_members').select('teams(id, name, avatar_url)').eq('user_id', ownerId)
       if (cancelled) return
-      const themes: TeamTheme[] = []
-      for (const id of (profile?.favorite_teams || []) as string[]) {
-        const team = getTeamById(id)
-        if (!team) continue
-        const logo = teamLogoUrl(team)
-        if (!logo) continue
-        themes.push({ key: `sport:${team.id}`, label: team.name, color: team.color, logoUrl: `/api/proxy-image?url=${encodeURIComponent(logo)}`, group: team.sport })
-      }
+      const customThemes: TeamTheme[] = []
       for (const row of (memberships || []) as any[]) {
         const tm = row.teams
         if (!tm?.avatar_url) continue
-        themes.push({ key: `custom:${tm.id}`, label: tm.name, color: CUSTOM_TEAM_COLOR, logoUrl: `/api/proxy-image?url=${encodeURIComponent(tm.avatar_url)}`, group: 'custom' })
+        customThemes.push({ key: `custom:${tm.id}`, label: tm.name, color: CUSTOM_TEAM_COLOR, logoUrl: `/api/proxy-image?url=${encodeURIComponent(tm.avatar_url)}`, group: 'custom' })
       }
-      setTeamThemes(themes)
+      setTeamThemes(prev => [...prev, ...customThemes])
     })()
     return () => { cancelled = true }
   }, [ownerId])
@@ -301,24 +304,22 @@ export default function CardVideoExport({ card, accent: accentProp, onClose, own
         octxOver.fillRect(0, 0, ow, oh)
 
         if (activeTeamLogo && activeTeamLogo.naturalWidth > 0) {
-          // Logo demesure (jusqu'a 2.6x la largeur du cadre final) + offset
-          // deterministe par equipe, pour qu'on n'en voie qu'un fragment en
-          // gros plan plutot que le logo entier et centre.
+          // Logo VRAIMENT demesure (3.5x la largeur du cadre final) + offset
+          // deterministe par equipe : plus de la moitie du logo deborde hors
+          // cadre, on n'en voit qu'un fragment en gros plan, jamais le logo
+          // entier ni centre. Flou leger seulement (glow des contours, pas un
+          // maquillage qui noie tout) -- pas de voile couleur par-dessus, les
+          // vraies couleurs du logo doivent rester lisibles.
           const seed = logoTiltDeg(teamTheme.key)
-          const logoW = W * 2.6
+          const logoW = W * 3.5
           const logoH = logoW * (activeTeamLogo.naturalHeight / activeTeamLogo.naturalWidth)
-          const offsetX = ow / 2 + seed * W * 0.045
-          const offsetY = oh / 2 + seed * H * 0.03
+          const offsetX = ow / 2 + seed * W * 0.09
+          const offsetY = oh / 2 + seed * H * 0.06
           octxOver.save()
-          octxOver.filter = `blur(${Math.round(W * 0.018)}px)`
-          octxOver.globalAlpha = 0.85
+          octxOver.filter = `blur(${Math.round(W * 0.006)}px)`
+          octxOver.globalAlpha = 0.95
           octxOver.drawImage(activeTeamLogo, offsetX - logoW / 2, offsetY - logoH / 2, logoW, logoH)
           octxOver.restore()
-
-          // Voile couleur equipe par-dessus, pour unifier logo + fond en une
-          // seule teinte cohérente plutôt que deux éléments juxtaposés.
-          octxOver.fillStyle = `${teamTheme.color}55`
-          octxOver.fillRect(0, 0, ow, oh)
         }
 
         // Vignette assombrie aux bords -- plus marquee que le fond par defaut,
@@ -329,10 +330,11 @@ export default function CardVideoExport({ card, accent: accentProp, onClose, own
         octxOver.fillStyle = vignette; octxOver.fillRect(0, 0, ow, oh)
 
         // Rotation de l'ensemble (fond + logo), pas juste le logo -- angle
-        // fixe et discret par equipe (~ -4 a 4 degres).
+        // net et visible par equipe (~ -7 a 7 degres, pas juste un degre ou
+        // deux qui passe inapercu).
         octx.save()
         octx.translate(W / 2, H / 2)
-        octx.rotate((logoTiltDeg(teamTheme.key) / 3) * Math.PI / 180)
+        octx.rotate((logoTiltDeg(teamTheme.key) / 1.5) * Math.PI / 180)
         octx.drawImage(over, -ow / 2, -oh / 2)
         octx.restore()
 
@@ -384,13 +386,15 @@ export default function CardVideoExport({ card, accent: accentProp, onClose, own
     const safeTopExtra    = isReelish ? H * 0.035 : 0
     const safeBottomExtra = isReelish ? H * 0.045 : 0
 
-    // ── Logo Memorabilius (watermark) ── en haut du cadre, léger souffle
-    // (échelle) au même rythme que le zoom/rebond de la carte pour donner un
-    // peu de vie au lieu d'un logo totalement figé pendant 6 secondes. Dessiné
-    // hors du fond mis en cache (qui ne change pas frame à frame) pour pouvoir
-    // varier son échelle à chaque image.
+    // ── Logo Memorabilius (watermark) ── en haut du cadre par défaut, léger
+    // souffle (échelle) au même rythme que le zoom/rebond de la carte. Sur le
+    // thème équipe, déplacé en bas centré sous le panneau infos (voir plus
+    // bas dans cette fonction) -- comme sur la référence -- donc pas dessiné
+    // ici dans ce cas.
     const logoPulse = 1 + 0.035 * Math.sin(p * Math.PI * 2)
-    if (logoImg && logoImg.naturalWidth > 0) {
+    if (teamTheme) {
+      // dessiné plus bas, en bas centré
+    } else if (logoImg && logoImg.naturalWidth > 0) {
       const logoW = W * 0.24 * logoPulse
       const logoH = logoW * (logoImg.naturalHeight / logoImg.naturalWidth)
       const lx = W * 0.055, ly = H * 0.032 + safeTopExtra
@@ -570,7 +574,10 @@ export default function CardVideoExport({ card, accent: accentProp, onClose, own
     // identique à chaque frame (dégradés, shadowBlur des badges, plusieurs
     // fillText avec changement de police) en pure perte.
     const PM = W * 0.045          // marge horizontale du panneau
-    const PB = H * 0.022 + safeBottomExtra // marge basse -- le panneau flotte, ne touche pas le bord
+    // Marge basse -- le panneau flotte, ne touche pas le bord. Agrandie sur le
+    // thème équipe pour laisser la place au logo Memorabilius en bas centré
+    // (voir plus haut), sous le panneau plutôt qu'en haut à gauche.
+    const PB = H * (teamTheme ? 0.075 : 0.022) + safeBottomExtra
     const panelW = W - PM * 2
     const panelRadius = Math.round(W * 0.055)
     const panelTop = H - INFO_H
@@ -585,11 +592,6 @@ export default function CardVideoExport({ card, accent: accentProp, onClose, own
       ictx.beginPath(); ictx.roundRect(0, 0, panelW, panelH, panelRadius); ictx.clip()
       ictx.fillStyle = infoBg
       ictx.fillRect(0, 0, panelW, panelH)
-      // Fin liseré accent en haut du panneau -- discret, pas de pulsation (plus
-      // sobre qu'une ligne animée pleine largeur qui ne collait plus au concept
-      // de carte flottante).
-      ictx.fillStyle = `rgba(${ar},${ag},${ab},${isDark ? 0.55 : 0.4})`
-      ictx.fillRect(0, 0, panelW, Math.max(2, W * 0.0035))
 
       ictx.textAlign = 'center'; ictx.textBaseline = 'top'
       const tx = panelW / 2
@@ -692,12 +694,33 @@ export default function CardVideoExport({ card, accent: accentProp, onClose, own
     // qui ne bouge plus une fois son entrée terminée.
     ctx.save()
     ctx.globalAlpha = panelIntroAlpha
-    ctx.shadowColor = isDark ? 'rgba(0,0,0,0.4)' : 'rgba(60,50,30,0.18)'
-    ctx.shadowBlur = W * 0.028
-    ctx.shadowOffsetY = H * 0.006
     const panelY = panelTop + (1 - panelIntroAlpha) * H * 0.02
-    ctx.drawImage(infoCache.current.canvas, PM, panelY)
+    if (teamTheme) {
+      // Lueur couleur equipe tout autour du panneau (comme la reference),
+      // plutot que le liseré fin en haut de l'ancienne version.
+      ctx.shadowColor = teamTheme.color
+      ctx.shadowBlur = W * 0.05
+      ctx.shadowOffsetX = 0; ctx.shadowOffsetY = 0
+      ctx.drawImage(infoCache.current.canvas, PM, panelY)
+      ctx.drawImage(infoCache.current.canvas, PM, panelY)
+    } else {
+      ctx.shadowColor = isDark ? 'rgba(0,0,0,0.4)' : 'rgba(60,50,30,0.18)'
+      ctx.shadowBlur = W * 0.028
+      ctx.shadowOffsetY = H * 0.006
+      ctx.drawImage(infoCache.current.canvas, PM, panelY)
+    }
     ctx.restore()
+
+    // ── Logo Memorabilius, bas centré (thème équipe uniquement) ── comme sur
+    // la référence : petit, sous le panneau, pas en haut à gauche.
+    if (teamTheme && logoImg && logoImg.naturalWidth > 0) {
+      const bLogoW = W * 0.20
+      const bLogoH = bLogoW * (logoImg.naturalHeight / logoImg.naturalWidth)
+      ctx.save()
+      ctx.globalAlpha = panelIntroAlpha * 0.85
+      ctx.drawImage(logoImg, W / 2 - bLogoW / 2, H - PB + (PB - bLogoH) / 2 - bLogoH * 0.1, bLogoW, bLogoH)
+      ctx.restore()
+    }
 
     // ── Écran de fin ── simple fondu du logo + accroche, superposés au fond
     // déjà en place, une fois carte et panneau estompés. Les versions
