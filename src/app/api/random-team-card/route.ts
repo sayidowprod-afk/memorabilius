@@ -8,7 +8,7 @@ const supabase = createClient(
 
 // Utilise par le bouton "Carte aleatoire" de teams/[teamId]/page.tsx ET par
 // le bouton flottant "re-randomiser" de GalerieClient.tsx (visible seulement
-// quand on arrive via ce meme flux, voir ?random=1&team= dans l'URL) -- une
+// quand on arrive via ce meme flux, voir ?random=1&rerollTeam= dans l'URL) -- une
 // seule source de verite pour ne pas dupliquer la logique de tirage.
 export async function GET(req: NextRequest) {
   const teamId = req.nextUrl.searchParams.get('teamId')

@@ -603,8 +603,14 @@ export default function GalerieClient({ userId, initialCardUrl, initialCards, in
   const cardParam = searchParams.get('card')
   // Bouton flottant "re-randomiser" : visible seulement si on arrive ici via
   // le bouton "Carte aleatoire" d'une page d'equipe (voir teams/[teamId]/page.tsx),
-  // jamais pour un lien de carte partage classique.
-  const randomTeamId = searchParams.get('random') === '1' ? searchParams.get('team') : null
+  // jamais pour un lien de carte partage classique. `rerollTeam` (pas `team`,
+  // deja pris par le filtre "equipe" de la galerie plus bas -- une collision
+  // de nom faisait passer l'id d'equipe pour une recherche par equipe,
+  // filtrant toute la galerie a vide) capture dans un state fige au montage :
+  // l'effet de synchronisation URL <-> filtres plus bas reecrit entierement
+  // la query string des le chargement et effacerait ce param s'il restait lu
+  // depuis l'URL en continu.
+  const [randomTeamId] = useState(() => searchParams.get('random') === '1' ? searchParams.get('rerollTeam') : null)
   const [rerolling, setRerolling] = useState(false)
   const rerollRandomTeamCard = async () => {
     if (!randomTeamId || rerolling) return
@@ -613,7 +619,7 @@ export default function GalerieClient({ userId, initialCardUrl, initialCards, in
       const res = await fetch(`/api/random-team-card?teamId=${randomTeamId}`)
       if (!res.ok) return
       const { userId: nextUserId, imageUrl } = await res.json()
-      router.push(`/galerie/${nextUserId}?card=${encodeURIComponent(imageUrl)}&random=1&team=${randomTeamId}`)
+      router.push(`/galerie/${nextUserId}?card=${encodeURIComponent(imageUrl)}&random=1&rerollTeam=${randomTeamId}`)
     } finally {
       setRerolling(false)
     }
