@@ -21,11 +21,16 @@ export default function AdminDemoPage() {
         headers: { Authorization: `Bearer ${session.access_token}` },
       })
       const json = await res.json()
-      if (!res.ok || !json.link) throw new Error(json.error || 'Echec de generation du lien demo')
-      // Navigation complete (pas de fetch) : le lien magique contient un hash
-      // que Supabase doit traiter au chargement de la page pour etablir la
-      // session demo sur cet appareil.
-      window.location.href = json.link
+      if (!res.ok || !json.tokenHash) throw new Error(json.error || 'Echec de generation du token demo')
+      // verifyOtp() etablit directement la session cote client -- pas de
+      // redirection par lien magique (voir commentaire de la route API :
+      // incompatible avec flowType: 'pkce').
+      const { error: verifyErr } = await supabase.auth.verifyOtp({
+        token_hash: json.tokenHash,
+        type: 'magiclink',
+      })
+      if (verifyErr) throw verifyErr
+      window.location.href = '/profil'
     } catch (e: any) {
       setError(e.message || String(e))
       setLoading(false)
