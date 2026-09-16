@@ -244,6 +244,7 @@ export const it = {
   gallery_collection: 'Collezione',
   gallery_year: 'Anno',
   gallery_privacy: 'Gestisci le carte',
+  gallery_reroll_random_card: 'Un\'altra carta casuale',
   gallery_done: '✓ Termina',
   gallery_message: '💬 Invia un messaggio',
   gallery_follow: 'Segui',

@@ -91,17 +91,13 @@ export default function TeamPage({ params }: { params: Promise<{ teamId: string 
     if (randomCardLoading || !members.length) return
     setRandomCardLoading(true)
     try {
-      const memberIds = members.map((m: any) => m.user_id)
-      const [{ data: cards }, { data: privees }] = await Promise.all([
-        supabase.from('cartes_manuelles').select('image_recto, user_id')
-          .in('user_id', memberIds).not('image_recto', 'is', null).limit(2000),
-        supabase.from('cartes_privees').select('user_id, card_key').in('user_id', memberIds),
-      ])
-      const privateSet = new Set((privees || []).map((p: any) => `${p.user_id}::${p.card_key}`))
-      const eligible = (cards || []).filter((c: any) => !privateSet.has(`${c.user_id}::${c.image_recto}`))
-      if (!eligible.length) { toast.error(t('teams_no_random_card')); return }
-      const pick = eligible[Math.floor(Math.random() * eligible.length)]
-      router.push(`/galerie/${pick.user_id}?card=${encodeURIComponent(pick.image_recto)}`)
+      const res = await fetch(`/api/random-team-card?teamId=${teamId}`)
+      if (!res.ok) { toast.error(t('teams_no_random_card')); return }
+      const { userId, imageUrl } = await res.json()
+      // random=1 + team= : signale a GalerieClient qu'on vient de ce flux,
+      // pour afficher le bouton flottant "re-randomiser" (voir la meme
+      // route /api/random-team-card reutilisee la-bas).
+      router.push(`/galerie/${userId}?card=${encodeURIComponent(imageUrl)}&random=1&team=${teamId}`)
     } finally {
       setRandomCardLoading(false)
     }

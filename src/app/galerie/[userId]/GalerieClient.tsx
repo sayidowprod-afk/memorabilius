@@ -601,6 +601,23 @@ export default function GalerieClient({ userId, initialCardUrl, initialCards, in
   const { dark } = useTheme()
   const isNative = useIsNative()
   const cardParam = searchParams.get('card')
+  // Bouton flottant "re-randomiser" : visible seulement si on arrive ici via
+  // le bouton "Carte aleatoire" d'une page d'equipe (voir teams/[teamId]/page.tsx),
+  // jamais pour un lien de carte partage classique.
+  const randomTeamId = searchParams.get('random') === '1' ? searchParams.get('team') : null
+  const [rerolling, setRerolling] = useState(false)
+  const rerollRandomTeamCard = async () => {
+    if (!randomTeamId || rerolling) return
+    setRerolling(true)
+    try {
+      const res = await fetch(`/api/random-team-card?teamId=${randomTeamId}`)
+      if (!res.ok) return
+      const { userId: nextUserId, imageUrl } = await res.json()
+      router.push(`/galerie/${nextUserId}?card=${encodeURIComponent(imageUrl)}&random=1&team=${randomTeamId}`)
+    } finally {
+      setRerolling(false)
+    }
+  }
 
   useEffect(() => { setMounted(true) }, [])
 
@@ -3469,6 +3486,18 @@ export default function GalerieClient({ userId, initialCardUrl, initialCards, in
           isOwner={isOwner}
           emptyLabel="Soyez le premier à commenter cette carte"
         />
+      )}
+
+      {popup && randomTeamId && (
+        <button onClick={rerollRandomTeamCard} disabled={rerolling} title={t('gallery_reroll_random_card')} style={{
+          position: 'fixed', bottom: 24, right: 24, zIndex: 1000001,
+          width: 56, height: 56, borderRadius: '50%', border: 'none',
+          background: accent, color: 'white', fontSize: 24,
+          cursor: rerolling ? 'wait' : 'pointer', boxShadow: '0 4px 20px rgba(0,0,0,0.35)',
+          display: 'flex', alignItems: 'center', justifyContent: 'center',
+        }}>
+          {rerolling ? '⏳' : '🎲'}
+        </button>
       )}
 
       {popup && (
