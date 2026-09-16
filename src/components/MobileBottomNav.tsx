@@ -232,7 +232,10 @@ export default function MobileBottomNav() {
         {isAdmin && <Link href="/guides" style={dropItemStyle} onClick={() => setSheet(null)}>📖 {t('nav_guides')}</Link>}
         <Link href="/recherche" style={dropItemStyle} onClick={() => setSheet(null)}>{t('nav_recherche')}</Link>
         {isAdmin && (
-          <Link href="/admin/stats" style={{ ...dropItemStyle, color: '#003DA6' }} onClick={() => setSheet(null)}>📊 {t('nav_admin_stats')}</Link>
+          <>
+            <Link href="/admin/stats" style={{ ...dropItemStyle, color: '#003DA6' }} onClick={() => setSheet(null)}>📊 {t('nav_admin_stats')}</Link>
+            <Link href="/admin/demo" style={{ ...dropItemStyle, color: '#003DA6' }} onClick={() => setSheet(null)}>🎪 {t('nav_admin_demo')}</Link>
+          </>
         )}
 
         {user && (

@@ -116,6 +116,7 @@ export const it = {
   editor_link_prompt: 'URL del link:',
   nav_admin_stats: 'Statistiche admin',
   nav_admin_reports: 'Segnalazioni',
+  nav_admin_demo: 'Demo fiera',
   nav_my_account: 'Il mio account',
   nav_annuaire: 'Elenco',
   nav_teams: 'Teams',

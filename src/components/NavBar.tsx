@@ -190,6 +190,7 @@ export default function Navbar() {
                     <div style={{ margin: '4px 8px', borderTop: `1px solid ${dropBorder}` }} />
                     <Link href="/admin/stats" style={{ ...dropItemStyle, color: '#003DA6' }} onClick={closeDrop}>📊 {t('nav_admin_stats')}</Link>
                     <Link href="/admin/reports" style={{ ...dropItemStyle, color: '#003DA6' }} onClick={closeDrop}>🚩 {t('nav_admin_reports')}</Link>
+                    <Link href="/admin/demo" style={{ ...dropItemStyle, color: '#003DA6' }} onClick={closeDrop}>🎪 {t('nav_admin_demo')}</Link>
                   </>
                 )}
               </div>
@@ -325,6 +326,7 @@ export default function Navbar() {
             <>
               <Link href="/admin/stats" style={{ ...ls, color: '#003DA6', fontWeight: 700 }} onClick={() => setMenuOpen(false)}>📊 {t('nav_admin_stats')}</Link>
               <Link href="/admin/reports" style={{ ...ls, color: '#003DA6', fontWeight: 700 }} onClick={() => setMenuOpen(false)}>🚩 {t('nav_admin_reports')}</Link>
+              <Link href="/admin/demo" style={{ ...ls, color: '#003DA6', fontWeight: 700 }} onClick={() => setMenuOpen(false)}>🎪 {t('nav_admin_demo')}</Link>
             </>
           )}
           {user ? (
