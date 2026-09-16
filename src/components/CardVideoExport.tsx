@@ -285,15 +285,15 @@ export default function CardVideoExport({ card, accent: accentProp, onClose, own
       }
 
       if (teamTheme) {
-        // ── Thème équipe ── façon affiche/textile grand format (reference
-        // fournie par l'utilisateur) : le VRAI logo de l'equipe (ses couleurs
-        // d'origine, pas de recolorisation) demesurement agrandi et recadre en
-        // gros plan (on n'en voit qu'un fragment, pas le logo entier centre),
-        // flou pour un effet diffus/glow, plus grain et vignette. Toute la
-        // composition (fond + logo) est legerement pivotee -- pas juste le
-        // logo -- pour casser l'aspect parfaitement droit. Peint sur un canvas
-        // surdimensionne (1.5x) puis pivote/recadre pour ne jamais laisser de
-        // coin vide malgre la rotation.
+        // ── Thème équipe ── (reference exacte fournie : logo COMPLET et
+        // RECONNAISSABLE, pas un fragment flouté a l'extreme -- l'ancienne
+        // version zoomait beaucoup trop et floutait tout au point de rendre
+        // le logo illisible) : fond couleur equipe, logo entier cale vers le
+        // haut du cadre avec une vraie LUEUR coloree sur ses contours (pas un
+        // flou applique a toute l'image), grain, vignette legere. Toute la
+        // composition (fond + logo) est legerement pivotee. Peint sur un
+        // canvas surdimensionne (1.5x) puis pivote/recadre pour ne jamais
+        // laisser de coin vide.
         const OVER = 1.5
         const ow = Math.ceil(W * OVER), oh = Math.ceil(H * OVER)
         const over = document.createElement('canvas')
@@ -303,34 +303,41 @@ export default function CardVideoExport({ card, accent: accentProp, onClose, own
         octxOver.fillStyle = teamTheme.color
         octxOver.fillRect(0, 0, ow, oh)
 
-        // Angle net mais raisonnable (-6 a 6 degres) -- au-dela le canvas
-        // surdimensionne laisserait des coins vides, et l'effet cesse d'etre
-        // lisible ("mal rotationne").
-        const seed = logoTiltDeg(teamTheme.key) / 11 // -1..1
-        const compositionAngle = seed * 6
+        // Angle toujours net (jamais proche de 0) : le hash brut pouvait
+        // tomber pres de 0 pour certaines equipes ("Federation de la Carte"
+        // donnait -0.4deg, invisible) -- signe + magnitude minimum garantie.
+        const rawSeed = logoTiltDeg(teamTheme.key) / 11 // -1..1
+        const seed = rawSeed === 0 ? 1 : rawSeed
+        const compositionAngle = Math.sign(seed) * (3 + Math.abs(seed) * 4) // 3..7 deg
 
         if (activeTeamLogo && activeTeamLogo.naturalWidth > 0) {
-          // Dimensionne par la HAUTEUR (pas la largeur) pour garantir un
-          // debord bord-a-bord en haut ET en bas quel que soit le ratio du
-          // logo source (certains sont larges, d'autres presque carres) --
-          // sinon la couleur de fond unie perçait au-dessus/en-dessous sur
-          // les logos les plus larges. Cale vers le HAUT du cadre (reference :
-          // "vers la partie haute de l'ecran"), pas centre verticalement.
-          const logoH = oh * 1.45
+          // Logo ENTIER et reconnaissable (pas un fragment recadre a
+          // l'extreme) : dimensionne pour occuper une bonne partie du cadre
+          // sans deborder demesurement. Cale vers le haut (reference).
+          const logoH = oh * 0.62
           const logoW = logoH * (activeTeamLogo.naturalWidth / activeTeamLogo.naturalHeight)
-          const offsetX = ow / 2 + seed * W * 0.45
+          const offsetX = ow / 2
           const offsetY = oh * 0.32
+
+          // Vraie lueur coloree sur les contours (shadow, pas un blur global
+          // qui rendait tout illisible) : dessine plusieurs fois avec un
+          // shadowBlur croissant pour un halo progressif, puis une derniere
+          // fois net par-dessus.
+          const glowColor = isDark ? '#ffffff' : teamTheme.color
           octxOver.save()
-          octxOver.filter = `blur(${Math.round(W * 0.006)}px)`
-          octxOver.globalAlpha = 0.95
+          octxOver.shadowColor = glowColor
+          octxOver.shadowBlur = W * 0.05
+          octxOver.globalAlpha = 0.9
+          octxOver.drawImage(activeTeamLogo, offsetX - logoW / 2, offsetY - logoH / 2, logoW, logoH)
+          octxOver.drawImage(activeTeamLogo, offsetX - logoW / 2, offsetY - logoH / 2, logoW, logoH)
+          octxOver.restore()
+          octxOver.save()
+          octxOver.globalAlpha = 0.97
           octxOver.drawImage(activeTeamLogo, offsetX - logoW / 2, offsetY - logoH / 2, logoW, logoH)
           octxOver.restore()
         }
 
-        // Vignette allegee -- la version precedente (0.55) etouffait le peu
-        // de fond visible dans les fines marges autour de la carte (la carte
-        // occupe l'essentiel du cadre, contrairement a la reference qui n'a
-        // pas de carte du tout). Doit rester visible/lisible la ou on la voit.
+        // Vignette legere seulement.
         const vignette = octxOver.createRadialGradient(ow / 2, oh * 0.42, ow * 0.3, ow / 2, oh * 0.42, ow * 0.8)
         vignette.addColorStop(0, 'rgba(0,0,0,0)')
         vignette.addColorStop(1, 'rgba(0,0,0,0.28)')
