@@ -1873,7 +1873,21 @@ export default function GalerieClient({ userId, initialCardUrl, initialCards, in
             )}
             {isOwner && (
               <span
-                onClick={(e) => { e.stopPropagation(); const r = (e.currentTarget as HTMLElement).getBoundingClientRect(); setColorPickerUp(r.bottom > window.innerHeight * 0.55); setColorPickerLeft(r.left < window.innerWidth * 0.5); setColorPickerRect(r); setColorPickerTag(colorPickerTag === tag ? null : tag); setRenameValue(tag); setDeleteTagConfirm(null) }}
+                onClick={(e) => {
+                  e.stopPropagation()
+                  const r = (e.currentTarget as HTMLElement).getBoundingClientRect()
+                  // Ouvre du cote (haut/bas) qui a le plus de place reelle, plutot qu'un
+                  // seuil fixe sur la position de l'ancre -- sur une page courte (peu/pas
+                  // de cartes, rien a scroller en dessous), l'ancien seuil choisissait
+                  // quand meme "vers le bas" et le panneau (haut avec tous les themes
+                  // equipe) depassait le bas de la fenetre sans moyen de l'atteindre.
+                  setColorPickerUp((window.innerHeight - r.bottom) < r.top)
+                  setColorPickerLeft(r.left < window.innerWidth * 0.5)
+                  setColorPickerRect(r)
+                  setColorPickerTag(colorPickerTag === tag ? null : tag)
+                  setRenameValue(tag)
+                  setDeleteTagConfirm(null)
+                }}
                 title="Modifier cette collection"
                 style={{
                   width: 16, height: 16, borderRadius: '50%', flexShrink: 0,
@@ -1896,7 +1910,11 @@ export default function GalerieClient({ userId, initialCardUrl, initialCards, in
               window.innerWidth - popupWidth - 8,
               colorPickerLeft ? colorPickerRect.left : colorPickerRect.right - popupWidth,
             ))
-            const popupMaxHeight = Math.min(window.innerHeight * 0.7, window.innerHeight - 16)
+            // Bornee par l'espace reellement disponible du cote choisi (haut ou bas de
+            // l'ancre), pas par une fraction fixe de la fenetre -- sinon sur une page
+            // courte le panneau pouvait deborder sous le bord de la fenetre sans aucun
+            // moyen (scroll page ou interne) de revoir/atteindre le bas du panneau.
+            const popupMaxHeight = Math.max(160, (colorPickerUp ? colorPickerRect.top : window.innerHeight - colorPickerRect.bottom) - 20)
             return createPortal(
             <>
               {/* Overlay invisible pour fermer au clic exterieur */}
