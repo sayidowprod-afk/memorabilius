@@ -192,7 +192,7 @@ export default function CardPhotoExport({ card, accent: accentProp, onClose, own
       over.width = ow; over.height = oh
       const octxOver = over.getContext('2d')!
 
-      octxOver.fillStyle = teamTheme.color
+      octxOver.fillStyle = accent
       octxOver.fillRect(0, 0, ow, oh)
 
       // Angle fixe et toujours net (12deg), meme sens pour toutes les
@@ -211,7 +211,7 @@ export default function CardPhotoExport({ card, accent: accentProp, onClose, own
 
         // Flou diaphragme (glow diffus, comme la reference) + vraie lueur
         // coloree sur les contours.
-        const glowColor = isDark ? '#ffffff' : teamTheme.color
+        const glowColor = isDark ? '#ffffff' : accent
         octxOver.save()
         octxOver.shadowColor = glowColor
         octxOver.shadowBlur = w * 0.06
@@ -358,7 +358,7 @@ export default function CardPhotoExport({ card, accent: accentProp, onClose, own
     ctx.save()
     if (teamTheme) {
       // Lueur couleur équipe tout autour du panneau, comme la référence.
-      ctx.shadowColor = teamTheme.color
+      ctx.shadowColor = accent
       ctx.shadowBlur = w * 0.05
       ctx.shadowOffsetX = 0; ctx.shadowOffsetY = 0
       ctx.beginPath(); ctx.roundRect(PM, panelTop, panelW, panelH, panelRadius)
@@ -566,17 +566,17 @@ export default function CardPhotoExport({ card, accent: accentProp, onClose, own
             <p style={groupLabel}>{t('video_accent')}</p>
             <div style={{ display: 'flex', gap: 9, alignItems: 'center', flexWrap: 'wrap' }}>
               {ACCENT_PRESETS.map(c => (
-                <button key={c} onClick={() => pickColor(c)} aria-label={c} title={c} style={{
+                <button key={c} onClick={() => setAccent(c)} aria-label={c} title={c} style={{
                   width: 24, height: 24, borderRadius: '50%', background: c, border: 'none', cursor: 'pointer', padding: 0,
-                  boxShadow: !teamTheme && accent.toLowerCase() === c.toLowerCase() ? `0 0 0 2px rgba(26,26,38,0.9), 0 0 0 4px ${c}` : 'none',
+                  boxShadow: accent.toLowerCase() === c.toLowerCase() ? `0 0 0 2px rgba(26,26,38,0.9), 0 0 0 4px ${c}` : 'none',
                 }} />
               ))}
               <label title={t('video_accent_custom')} style={{
                 width: 24, height: 24, borderRadius: '50%', position: 'relative', cursor: 'pointer', display: 'block',
                 background: 'conic-gradient(from 0deg, #ff0000, #ffff00, #00ff00, #00ffff, #0000ff, #ff00ff, #ff0000)',
-                boxShadow: !teamTheme && !ACCENT_PRESETS.some(c => c.toLowerCase() === accent.toLowerCase()) ? '0 0 0 2px rgba(26,26,38,0.9), 0 0 0 4px #fff' : 'none',
+                boxShadow: !ACCENT_PRESETS.some(c => c.toLowerCase() === accent.toLowerCase()) ? '0 0 0 2px rgba(26,26,38,0.9), 0 0 0 4px #fff' : 'none',
               }}>
-                <input type="color" value={accent} onChange={e => pickColor(e.target.value)}
+                <input type="color" value={accent} onChange={e => setAccent(e.target.value)}
                   style={{ position: 'absolute', inset: 0, opacity: 0, cursor: 'pointer', border: 'none', padding: 0, width: '100%', height: '100%' }} />
               </label>
             </div>

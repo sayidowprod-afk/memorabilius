@@ -291,7 +291,7 @@ export default function CardVideoExport({ card, accent: accentProp, onClose, own
         over.width = ow; over.height = oh
         const octxOver = over.getContext('2d')!
 
-        octxOver.fillStyle = teamTheme.color
+        octxOver.fillStyle = accent
         octxOver.fillRect(0, 0, ow, oh)
 
         // Angle fixe et toujours net (12deg), meme sens pour toutes les
@@ -314,7 +314,7 @@ export default function CardVideoExport({ card, accent: accentProp, onClose, own
 
           // Flou diaphragme (glow diffus, comme la reference) + vraie lueur
           // coloree sur les contours.
-          const glowColor = isDark ? '#ffffff' : teamTheme.color
+          const glowColor = isDark ? '#ffffff' : accent
           octxOver.save()
           octxOver.shadowColor = glowColor
           octxOver.shadowBlur = W * 0.06
@@ -459,8 +459,8 @@ export default function CardVideoExport({ card, accent: accentProp, onClose, own
     let rot: number
     if (p < 0.32)      rot = 0
     else if (p < 0.48) rot = Math.PI * easeInOut(seg(p, 0.32, 0.48))
-    else if (p < 0.78) rot = Math.PI
-    else if (p < 0.92) rot = Math.PI + Math.PI * easeInOut(seg(p, 0.78, 0.92))
+    else if (p < 0.70) rot = Math.PI
+    else if (p < 0.84) rot = Math.PI + Math.PI * easeInOut(seg(p, 0.70, 0.84))
     else               rot = 0
 
     const scaleX   = Math.cos(rot)
@@ -497,8 +497,8 @@ export default function CardVideoExport({ card, accent: accentProp, onClose, own
     // pop de logo + CTA text superposés dessus. Maintenant carte et panneau
     // s'estompent progressivement et laissent place à un écran dédié (logo +
     // accroche), au lieu de rester figés à l'écran jusqu'à la coupe.
-    const endFadeOut = holdT > 0 ? easeInOut(Math.min(1, Math.max(0, (holdT - 0.3) / 0.55))) : 0
-    const endFadeIn  = holdT > 0 ? easeInOut(Math.min(1, Math.max(0, (holdT - 0.4) / 0.5))) : 0
+    const endFadeOut = holdT > 0 ? easeInOut(Math.min(1, Math.max(0, (holdT - 0.45) / 0.4))) : 0
+    const endFadeIn  = holdT > 0 ? easeInOut(Math.min(1, Math.max(0, (holdT - 0.55) / 0.35))) : 0
 
     if (cardW > 2) {
       ctx.globalAlpha = introAlpha * (1 - endFadeOut)
@@ -698,7 +698,7 @@ export default function CardVideoExport({ card, accent: accentProp, onClose, own
     if (teamTheme) {
       // Lueur couleur equipe tout autour du panneau (comme la reference),
       // plutot que le liseré fin en haut de l'ancienne version.
-      ctx.shadowColor = teamTheme.color
+      ctx.shadowColor = accent
       ctx.shadowBlur = W * 0.05
       ctx.shadowOffsetX = 0; ctx.shadowOffsetY = 0
       ctx.drawImage(infoCache.current.canvas, PM, panelY)
@@ -960,17 +960,17 @@ export default function CardVideoExport({ card, accent: accentProp, onClose, own
               <p style={groupLabel}>{t('video_accent')}</p>
               <div style={{ display: 'flex', gap: 9, alignItems: 'center', flexWrap: 'wrap' }}>
                 {ACCENT_PRESETS.map(c => (
-                  <button key={c} onClick={() => pickColor(c)} aria-label={c} title={c} style={{
+                  <button key={c} onClick={() => setAccent(c)} aria-label={c} title={c} style={{
                     width: 24, height: 24, borderRadius: '50%', background: c, border: 'none', cursor: 'pointer', padding: 0,
-                    boxShadow: !teamTheme && accent.toLowerCase() === c.toLowerCase() ? `0 0 0 2px rgba(26,26,38,0.9), 0 0 0 4px ${c}` : 'none',
+                    boxShadow: accent.toLowerCase() === c.toLowerCase() ? `0 0 0 2px rgba(26,26,38,0.9), 0 0 0 4px ${c}` : 'none',
                   }} />
                 ))}
                 <label title={t('video_accent_custom')} style={{
                   width: 24, height: 24, borderRadius: '50%', position: 'relative', cursor: 'pointer', display: 'block',
                   background: 'conic-gradient(from 0deg, #ff0000, #ffff00, #00ff00, #00ffff, #0000ff, #ff00ff, #ff0000)',
-                  boxShadow: !teamTheme && !ACCENT_PRESETS.some(c => c.toLowerCase() === accent.toLowerCase()) ? '0 0 0 2px rgba(26,26,38,0.9), 0 0 0 4px #fff' : 'none',
+                  boxShadow: !ACCENT_PRESETS.some(c => c.toLowerCase() === accent.toLowerCase()) ? '0 0 0 2px rgba(26,26,38,0.9), 0 0 0 4px #fff' : 'none',
                 }}>
-                  <input type="color" value={accent} onChange={e => pickColor(e.target.value)}
+                  <input type="color" value={accent} onChange={e => setAccent(e.target.value)}
                     style={{ position: 'absolute', inset: 0, opacity: 0, cursor: 'pointer', border: 'none', padding: 0, width: '100%', height: '100%' }} />
                 </label>
               </div>
