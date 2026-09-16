@@ -23,15 +23,6 @@ interface Props { card: Card; accent: string; onClose: () => void; ownerId?: str
 
 interface TeamTheme { key: string; label: string; color: string; logoUrl: string; group: Sport | 'custom' }
 
-// Rotation legere et deterministe du logo en fond (memes valeurs a chaque
-// rendu pour une meme equipe, pas un vrai random qui ferait "clignoter"
-// l'angle d'une frame a l'autre) -- entre -11 et 11 degres.
-function logoTiltDeg(key: string): number {
-  let h = 0
-  for (let i = 0; i < key.length; i++) h = (h * 31 + key.charCodeAt(i)) | 0
-  return ((Math.abs(h) % 220) - 110) / 10
-}
-
 const IS_MOBILE = typeof window !== 'undefined' && window.innerWidth < 768
 const VIDEO_FORMATS = {
   default: { w: 900,  h: 1300, label: 'Défaut',  ratio: '9:13' },
@@ -303,25 +294,23 @@ export default function CardVideoExport({ card, accent: accentProp, onClose, own
         octxOver.fillStyle = teamTheme.color
         octxOver.fillRect(0, 0, ow, oh)
 
-        // Angle toujours net (jamais proche de 0 -- le hash brut pouvait y
-        // tomber pour certaines equipes) et plus marque (8-14deg). Signe
-        // inverse par rapport a la version precedente (signale comme "pas
-        // dans le bon sens").
-        const rawSeed = logoTiltDeg(teamTheme.key) / 11 // -1..1
-        const seed = rawSeed === 0 ? 1 : rawSeed
-        const compositionAngle = -Math.sign(seed) * (8 + Math.abs(seed) * 6) // 8..14 deg
-
-        // Base de dimensionnement independante du format (portrait/carre/reel
-        // ont des ratios tres differents) -- le plus petit cote du canvas
-        // surdimensionne, pour un logo proportionne pareil partout.
-        const minSide = Math.min(ow, oh)
+        // Angle fixe et toujours net (12deg), meme sens pour toutes les
+        // equipes -- un choix de direction coherent plutot qu'un hash qui
+        // pouvait retomber preseque a 0 ou changer de sens de façon
+        // imprevisible d'une equipe a l'autre.
+        const compositionAngle = 12
 
         if (activeTeamLogo && activeTeamLogo.naturalWidth > 0) {
-          // Logo ENTIER et reconnaissable, cale plus bas (signale trop haut).
-          const logoH = minSide * 0.72
-          const logoW = logoH * (activeTeamLogo.naturalWidth / activeTeamLogo.naturalHeight)
+          // Dimensionne le logo pour COUVRIR ENTIEREMENT le canvas
+          // surdimensionne (comme background-size:cover en CSS), quel que
+          // soit son ratio propre ou celui du format (Portrait/Carre/Reel) --
+          // remplace les fractions fixes precedentes qui donnaient un
+          // resultat different et casse selon le format.
+          const coverScale = Math.max(ow / activeTeamLogo.naturalWidth, oh / activeTeamLogo.naturalHeight) * 1.05
+          const logoW = activeTeamLogo.naturalWidth * coverScale
+          const logoH = activeTeamLogo.naturalHeight * coverScale
           const offsetX = ow / 2
-          const offsetY = oh * 0.55
+          const offsetY = oh * 0.45
 
           // Flou diaphragme (glow diffus, comme la reference) + vraie lueur
           // coloree sur les contours.
@@ -329,7 +318,7 @@ export default function CardVideoExport({ card, accent: accentProp, onClose, own
           octxOver.save()
           octxOver.shadowColor = glowColor
           octxOver.shadowBlur = W * 0.06
-          octxOver.filter = `blur(${Math.round(W * 0.01)}px)`
+          octxOver.filter = `blur(${Math.round(W * 0.02)}px)`
           octxOver.globalAlpha = 0.95
           octxOver.drawImage(activeTeamLogo, offsetX - logoW / 2, offsetY - logoH / 2, logoW, logoH)
           octxOver.drawImage(activeTeamLogo, offsetX - logoW / 2, offsetY - logoH / 2, logoW, logoH)

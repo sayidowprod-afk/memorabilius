@@ -21,14 +21,6 @@ interface TeamTheme { key: string; label: string; color: string; logoUrl: string
 // equipes sportives officielles (sportsTeams.ts).
 const CUSTOM_TEAM_COLOR = '#003DA6'
 
-// Rotation legere et deterministe du logo en fond -- memes valeurs a chaque
-// rendu pour une meme equipe. Entre -11 et 11 degres.
-function logoTiltDeg(key: string): number {
-  let h = 0
-  for (let i = 0; i < key.length; i++) h = (h * 31 + key.charCodeAt(i)) | 0
-  return ((Math.abs(h) % 220) - 110) / 10
-}
-
 // Résolution haute qualité pour l'impression / le partage grand format --
 // une photo statique n'a pas le budget temps-réel de la vidéo (33ms/frame),
 // donc on peut se permettre une résolution nettement plus élevée.
@@ -203,23 +195,19 @@ export default function CardPhotoExport({ card, accent: accentProp, onClose, own
       octxOver.fillStyle = teamTheme.color
       octxOver.fillRect(0, 0, ow, oh)
 
-      // Angle toujours net (jamais proche de 0) et plus marque (8-14deg).
-      // Signe inverse par rapport a la version precedente ("pas dans le bon
-      // sens").
-      const rawSeed = logoTiltDeg(teamTheme.key) / 11 // -1..1
-      const seed = rawSeed === 0 ? 1 : rawSeed
-      const compositionAngle = -Math.sign(seed) * (8 + Math.abs(seed) * 6) // 8..14 deg
-
-      // Base de dimensionnement independante du format (portrait/carre/story
-      // ont des ratios tres differents).
-      const minSide = Math.min(ow, oh)
+      // Angle fixe et toujours net (12deg), meme sens pour toutes les
+      // equipes.
+      const compositionAngle = 12
 
       if (activeTeamLogo && activeTeamLogo.naturalWidth > 0) {
-        // Logo ENTIER et reconnaissable, cale plus bas (signale trop haut).
-        const logoH = minSide * 0.72
-        const logoW = logoH * (activeTeamLogo.naturalWidth / activeTeamLogo.naturalHeight)
+        // Dimensionne le logo pour COUVRIR ENTIEREMENT le canvas
+        // surdimensionne (comme background-size:cover), quel que soit son
+        // ratio propre ou celui du format.
+        const coverScale = Math.max(ow / activeTeamLogo.naturalWidth, oh / activeTeamLogo.naturalHeight) * 1.05
+        const logoW = activeTeamLogo.naturalWidth * coverScale
+        const logoH = activeTeamLogo.naturalHeight * coverScale
         const offsetX = ow / 2
-        const offsetY = oh * 0.55
+        const offsetY = oh * 0.45
 
         // Flou diaphragme (glow diffus, comme la reference) + vraie lueur
         // coloree sur les contours.
@@ -227,7 +215,7 @@ export default function CardPhotoExport({ card, accent: accentProp, onClose, own
         octxOver.save()
         octxOver.shadowColor = glowColor
         octxOver.shadowBlur = w * 0.06
-        octxOver.filter = `blur(${Math.round(w * 0.01)}px)`
+        octxOver.filter = `blur(${Math.round(w * 0.02)}px)`
         octxOver.globalAlpha = 0.95
         octxOver.drawImage(activeTeamLogo, offsetX - logoW / 2, offsetY - logoH / 2, logoW, logoH)
         octxOver.drawImage(activeTeamLogo, offsetX - logoW / 2, offsetY - logoH / 2, logoW, logoH)
