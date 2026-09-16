@@ -1256,6 +1256,8 @@ export const it = {
   video_theme: 'Tema',
   video_accent: 'Colore',
   video_team_theme: 'Tema squadra',
+  video_team_theme_none: 'Nessuno',
+  video_team_theme_custom: 'Le mie squadre Memorabilius',
   video_accent_custom: 'Colore personalizzato',
   video_cta: 'Crea la tua collezione →',
   video_dark: 'Scuro',

@@ -6,7 +6,7 @@ import { useLang } from '@/lib/LangContext'
 import { saveOrShareFile } from '@/lib/saveOrShare'
 import { toast } from '@/lib/toast'
 import { supabase } from '@/lib/supabase'
-import { getTeamById, teamLogoUrl } from '@/lib/sportsTeams'
+import { getTeamById, teamLogoUrl, SPORT_LABELS, type Sport } from '@/lib/sportsTeams'
 
 // Couleur par defaut pour les equipes "custom" de l'app (Fedération de la
 // Carte, etc.) -- ces teams n'ont pas de couleur en base, contrairement aux
@@ -21,7 +21,16 @@ interface Card {
 }
 interface Props { card: Card; accent: string; onClose: () => void; ownerId?: string }
 
-interface TeamTheme { key: string; label: string; color: string; logoUrl: string }
+interface TeamTheme { key: string; label: string; color: string; logoUrl: string; group: Sport | 'custom' }
+
+// Rotation legere et deterministe du logo en fond (memes valeurs a chaque
+// rendu pour une meme equipe, pas un vrai random qui ferait "clignoter"
+// l'angle d'une frame a l'autre) -- entre -11 et 11 degres.
+function logoTiltDeg(key: string): number {
+  let h = 0
+  for (let i = 0; i < key.length; i++) h = (h * 31 + key.charCodeAt(i)) | 0
+  return ((Math.abs(h) % 220) - 110) / 10
+}
 
 const IS_MOBILE = typeof window !== 'undefined' && window.innerWidth < 768
 const VIDEO_FORMATS = {
@@ -131,12 +140,12 @@ export default function CardVideoExport({ card, accent: accentProp, onClose, own
         if (!team) continue
         const logo = teamLogoUrl(team)
         if (!logo) continue
-        themes.push({ key: `sport:${team.id}`, label: team.name, color: team.color, logoUrl: `/api/proxy-image?url=${encodeURIComponent(logo)}` })
+        themes.push({ key: `sport:${team.id}`, label: team.name, color: team.color, logoUrl: `/api/proxy-image?url=${encodeURIComponent(logo)}`, group: team.sport })
       }
       for (const row of (memberships || []) as any[]) {
         const tm = row.teams
         if (!tm?.avatar_url) continue
-        themes.push({ key: `custom:${tm.id}`, label: tm.name, color: CUSTOM_TEAM_COLOR, logoUrl: `/api/proxy-image?url=${encodeURIComponent(tm.avatar_url)}` })
+        themes.push({ key: `custom:${tm.id}`, label: tm.name, color: CUSTOM_TEAM_COLOR, logoUrl: `/api/proxy-image?url=${encodeURIComponent(tm.avatar_url)}`, group: 'custom' })
       }
       setTeamThemes(themes)
     })()
@@ -288,19 +297,24 @@ export default function CardVideoExport({ card, accent: accentProp, onClose, own
 
         if (activeTeamLogo && activeTeamLogo.naturalWidth > 0) {
           const cx = W / 2, cy = H * 0.42
-          const aura = octx.createRadialGradient(cx, cy, 0, cx, cy, W * 0.62)
+          const aura = octx.createRadialGradient(cx, cy, 0, cx, cy, W * 0.75)
           aura.addColorStop(0, 'rgba(255,255,255,0.30)')
           aura.addColorStop(0.55, 'rgba(255,255,255,0.08)')
           aura.addColorStop(1, 'rgba(255,255,255,0)')
           octx.fillStyle = aura; octx.fillRect(0, 0, W, H)
 
-          const logoW = W * 0.62
+          // Logo immense, deborde volontairement du cadre, legerement incline
+          // (angle fixe par equipe, pas parfaitement droit) -- effet poster/
+          // affiche plutot qu'un petit filigrane discret.
+          const logoW = W * 1.15
           const logoH = logoW * (activeTeamLogo.naturalHeight / activeTeamLogo.naturalWidth)
           octx.save()
-          octx.globalAlpha = 0.9
-          octx.shadowColor = 'rgba(0,0,0,0.35)'
-          octx.shadowBlur = W * 0.03
-          octx.drawImage(activeTeamLogo, cx - logoW / 2, cy - logoH / 2, logoW, logoH)
+          octx.globalAlpha = 0.92
+          octx.shadowColor = 'rgba(0,0,0,0.4)'
+          octx.shadowBlur = W * 0.035
+          octx.translate(cx, cy)
+          octx.rotate(logoTiltDeg(teamTheme.key) * Math.PI / 180)
+          octx.drawImage(activeTeamLogo, -logoW / 2, -logoH / 2, logoW, logoH)
           octx.restore()
         }
 
@@ -931,19 +945,32 @@ export default function CardVideoExport({ card, accent: accentProp, onClose, own
             {teamThemes.length > 0 && (
               <div>
                 <p style={groupLabel}>{t('video_team_theme')}</p>
-                {/* Scroll horizontal (pas de wrap) : liste d'equipes potentiellement
-                    longue, doit rester utilisable sans deborder sur mobile. */}
-                <div style={{ display: 'flex', gap: 10, alignItems: 'center', overflowX: 'auto', WebkitOverflowScrolling: 'touch', paddingBottom: 2 }}>
-                  {teamThemes.map(th => (
-                    <button key={th.key} onClick={() => pickTeamTheme(th)} title={th.label} style={{
-                      width: 32, height: 32, borderRadius: '50%', background: th.color, border: 'none', cursor: 'pointer', padding: 4,
-                      flexShrink: 0, display: 'flex', alignItems: 'center', justifyContent: 'center',
-                      boxShadow: teamTheme?.key === th.key ? `0 0 0 2px rgba(26,26,38,0.9), 0 0 0 4px ${th.color}` : 'none',
-                    }}>
-                      <img src={th.logoUrl} alt="" loading="lazy" style={{ width: '100%', height: '100%', objectFit: 'contain' }} />
-                    </button>
+                {/* Menu deroulant groupe par sport plutot qu'une rangee de pastilles :
+                    reste ergonomique meme avec beaucoup d'equipes favorites, et le
+                    picker natif (mobile inclus) sait deja gerer une longue liste. */}
+                <select
+                  value={teamTheme?.key ?? ''}
+                  onChange={e => {
+                    const th = teamThemes.find(x => x.key === e.target.value)
+                    if (th) pickTeamTheme(th); else pickColor(accent)
+                  }}
+                  style={{
+                    width: '100%', padding: '10px 12px', borderRadius: 10, fontSize: 13, fontWeight: 600,
+                    background: 'rgba(255,255,255,0.07)', color: '#fff', border: '1px solid rgba(255,255,255,0.14)',
+                  }}
+                >
+                  <option value="" style={{ color: '#000' }}>{t('video_team_theme_none')}</option>
+                  {(Object.entries(
+                    teamThemes.reduce((acc: Record<string, TeamTheme[]>, th) => {
+                      (acc[th.group] ||= []).push(th)
+                      return acc
+                    }, {})
+                  ) as [Sport | 'custom', TeamTheme[]][]).map(([group, list]) => (
+                    <optgroup key={group} label={group === 'custom' ? t('video_team_theme_custom') : SPORT_LABELS[group]} style={{ color: '#000' }}>
+                      {list.map(th => <option key={th.key} value={th.key} style={{ color: '#000' }}>{th.label}</option>)}
+                    </optgroup>
                   ))}
-                </div>
+                </select>
               </div>
             )}
           </div>
