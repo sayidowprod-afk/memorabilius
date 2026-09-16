@@ -1764,9 +1764,16 @@ export default function GalerieClient({ userId, initialCardUrl, initialCards, in
     return pa !== pb ? pa - pb : a.localeCompare(b)
   }
   const parentOf = (t: string) => tabSettings.get(t)?.parent || null
-  const isSub = (t: string) => { const p = parentOf(t); return !!p && collectionTags.includes(p) }
-  const principals = collectionTags.filter(t => !isSub(t)).sort(byPos)
-  const getChildren = (tag: string) => collectionTags.filter(t => parentOf(t) === tag).sort(byPos)
+  // Union avec tabSettings (collection_tab_settings), pas juste les tags presents sur
+  // des cartes : une collection videe de toutes ses cartes une a une (jamais supprimee
+  // via le bouton dedie) restait definie en base mais invisible ici -- tout en restant
+  // proposable dans le selecteur d'ajout de tag sur une carte (CollectionTagSelect, qui
+  // lit collection_tab_settings). Union pour que les deux endroits restent coherents :
+  // la collection reste visible (vide) et donc trouvable/supprimable depuis la galerie.
+  const allDefinedTags = [...new Set([...collectionTags, ...tabSettings.keys()])]
+  const isSub = (t: string) => { const p = parentOf(t); return !!p && allDefinedTags.includes(p) }
+  const principals = allDefinedTags.filter(t => !isSub(t)).sort(byPos)
+  const getChildren = (tag: string) => allDefinedTags.filter(t => parentOf(t) === tag).sort(byPos)
   const getDescendants = (tag: string): string[] => { const ch = getChildren(tag); return [...ch, ...ch.flatMap(c => getDescendants(c))] }
   const saveTabSetting = async (tag: string, patch: { color?: string; position?: number; parent?: string | null }) => {
     const cur = tabSettings.get(tag) || { color: accent, position: 0 }
@@ -1841,7 +1848,7 @@ export default function GalerieClient({ userId, initialCardUrl, initialCards, in
     const highlighted = isActive || isChildActive
     const isDragging = draggedTag === tag
     const forbidden = new Set([tag, ...getDescendants(tag)])
-    const candidates = collectionTags.filter(t => !forbidden.has(t))
+    const candidates = allDefinedTags.filter(t => !forbidden.has(t))
     return (
       <div key={tag}>
         <div style={{ position: 'relative', display: 'inline-flex', alignItems: 'center', gap: 3 }}>
@@ -2807,7 +2814,7 @@ export default function GalerieClient({ userId, initialCardUrl, initialCards, in
             )}
           </div>
           </>}
-          {collectionTags.length > 0 && (
+          {allDefinedTags.length > 0 && (
             <div style={{ marginTop: 8 }} onClick={() => colorPickerTag && setColorPickerTag(null)}>
               <label style={{ fontSize: 9, fontWeight: 800, textTransform: 'uppercase', color: '#888', display: 'block', marginBottom: 5 }}>
                 {t('gallery_my_collection')}
