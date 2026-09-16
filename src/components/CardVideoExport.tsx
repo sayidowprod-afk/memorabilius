@@ -282,54 +282,65 @@ export default function CardVideoExport({ card, accent: accentProp, onClose, own
       }
 
       if (teamTheme) {
-        // ── Thème équipe ── aplat couleur équipe (deux teintes très proches en
-        // dégradé vertical pour un peu de profondeur, pas totalement plat) +
-        // gros logo centré avec une aura lumineuse derrière (halo blanc doux,
-        // façon filtre photo) + vignette aux bords + grain -- volontairement
-        // plus impactant/brut que le fond épuré par défaut ci-dessous.
-        const tr = parseInt(teamTheme.color.slice(1, 3), 16)
-        const tg = parseInt(teamTheme.color.slice(3, 5), 16)
-        const tb = parseInt(teamTheme.color.slice(5, 7), 16)
-        const flatGrad = octx.createLinearGradient(0, 0, 0, H)
-        flatGrad.addColorStop(0, `rgb(${Math.min(255, tr + 18)},${Math.min(255, tg + 18)},${Math.min(255, tb + 18)})`)
-        flatGrad.addColorStop(1, `rgb(${Math.max(0, tr - 22)},${Math.max(0, tg - 22)},${Math.max(0, tb - 22)})`)
-        octx.fillStyle = flatGrad; octx.fillRect(0, 0, W, H)
+        // ── Thème équipe ── façon affiche/textile grand format (reference
+        // fournie par l'utilisateur) : le VRAI logo de l'equipe (ses couleurs
+        // d'origine, pas de recolorisation) demesurement agrandi et recadre en
+        // gros plan (on n'en voit qu'un fragment, pas le logo entier centre),
+        // flou pour un effet diffus/glow, plus grain et vignette. Toute la
+        // composition (fond + logo) est legerement pivotee -- pas juste le
+        // logo -- pour casser l'aspect parfaitement droit. Peint sur un canvas
+        // surdimensionne (1.35x) puis pivote/recadre pour ne jamais laisser de
+        // coin vide malgre la rotation.
+        const OVER = 1.35
+        const ow = Math.ceil(W * OVER), oh = Math.ceil(H * OVER)
+        const over = document.createElement('canvas')
+        over.width = ow; over.height = oh
+        const octxOver = over.getContext('2d')!
+
+        octxOver.fillStyle = teamTheme.color
+        octxOver.fillRect(0, 0, ow, oh)
 
         if (activeTeamLogo && activeTeamLogo.naturalWidth > 0) {
-          const cx = W / 2, cy = H * 0.42
-          const aura = octx.createRadialGradient(cx, cy, 0, cx, cy, W * 0.75)
-          aura.addColorStop(0, 'rgba(255,255,255,0.30)')
-          aura.addColorStop(0.55, 'rgba(255,255,255,0.08)')
-          aura.addColorStop(1, 'rgba(255,255,255,0)')
-          octx.fillStyle = aura; octx.fillRect(0, 0, W, H)
-
-          // Logo immense, deborde volontairement du cadre, legerement incline
-          // (angle fixe par equipe, pas parfaitement droit) -- effet poster/
-          // affiche plutot qu'un petit filigrane discret.
-          const logoW = W * 1.15
+          // Logo demesure (jusqu'a 2.6x la largeur du cadre final) + offset
+          // deterministe par equipe, pour qu'on n'en voie qu'un fragment en
+          // gros plan plutot que le logo entier et centre.
+          const seed = logoTiltDeg(teamTheme.key)
+          const logoW = W * 2.6
           const logoH = logoW * (activeTeamLogo.naturalHeight / activeTeamLogo.naturalWidth)
-          octx.save()
-          octx.globalAlpha = 0.92
-          octx.shadowColor = 'rgba(0,0,0,0.4)'
-          octx.shadowBlur = W * 0.035
-          octx.translate(cx, cy)
-          octx.rotate(logoTiltDeg(teamTheme.key) * Math.PI / 180)
-          octx.drawImage(activeTeamLogo, -logoW / 2, -logoH / 2, logoW, logoH)
-          octx.restore()
+          const offsetX = ow / 2 + seed * W * 0.045
+          const offsetY = oh / 2 + seed * H * 0.03
+          octxOver.save()
+          octxOver.filter = `blur(${Math.round(W * 0.018)}px)`
+          octxOver.globalAlpha = 0.85
+          octxOver.drawImage(activeTeamLogo, offsetX - logoW / 2, offsetY - logoH / 2, logoW, logoH)
+          octxOver.restore()
+
+          // Voile couleur equipe par-dessus, pour unifier logo + fond en une
+          // seule teinte cohérente plutôt que deux éléments juxtaposés.
+          octxOver.fillStyle = `${teamTheme.color}55`
+          octxOver.fillRect(0, 0, ow, oh)
         }
 
-        // Vignette : assombrit légèrement les bords pour un effet "aura" type
-        // filtre camera, sans toucher le centre où logo/carte se détachent.
-        const vignette = octx.createRadialGradient(W / 2, H * 0.42, W * 0.35, W / 2, H * 0.42, W * 0.95)
+        // Vignette assombrie aux bords -- plus marquee que le fond par defaut,
+        // pour matcher l'aspect "poster sombre" de la reference.
+        const vignette = octxOver.createRadialGradient(ow / 2, oh * 0.42, ow * 0.25, ow / 2, oh * 0.42, ow * 0.75)
         vignette.addColorStop(0, 'rgba(0,0,0,0)')
-        vignette.addColorStop(1, 'rgba(0,0,0,0.28)')
-        octx.fillStyle = vignette; octx.fillRect(0, 0, W, H)
+        vignette.addColorStop(1, 'rgba(0,0,0,0.55)')
+        octxOver.fillStyle = vignette; octxOver.fillRect(0, 0, ow, oh)
 
-        paintGrain(16)
+        // Rotation de l'ensemble (fond + logo), pas juste le logo -- angle
+        // fixe et discret par equipe (~ -4 a 4 degres).
+        octx.save()
+        octx.translate(W / 2, H / 2)
+        octx.rotate((logoTiltDeg(teamTheme.key) / 3) * Math.PI / 180)
+        octx.drawImage(over, -ow / 2, -oh / 2)
+        octx.restore()
+
+        paintGrain(20)
 
         // Transition douce vers la zone infos, même intention que le fond par défaut.
         const bgGrad = octx.createLinearGradient(0, 0, 0, H)
-        bgGrad.addColorStop(0, 'rgba(0,0,0,0)'); bgGrad.addColorStop(1, 'rgba(0,0,0,0.35)')
+        bgGrad.addColorStop(0, 'rgba(0,0,0,0)'); bgGrad.addColorStop(1, 'rgba(0,0,0,0.4)')
         octx.fillStyle = bgGrad; octx.fillRect(0, 0, W, H)
       } else {
         octx.fillStyle = bgBase; octx.fillRect(0, 0, W, H)

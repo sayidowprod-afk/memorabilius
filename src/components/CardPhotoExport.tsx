@@ -189,48 +189,51 @@ export default function CardPhotoExport({ card, accent: accentProp, onClose, own
     const aspect = h / w
 
     if (teamTheme) {
-      // ── Thème équipe ── même traitement que CardVideoExport.tsx : aplat
-      // couleur équipe (léger dégradé vertical) + gros logo centré avec aura
-      // lumineuse + vignette + grain.
-      const tr = parseInt(teamTheme.color.slice(1, 3), 16)
-      const tg = parseInt(teamTheme.color.slice(3, 5), 16)
-      const tb = parseInt(teamTheme.color.slice(5, 7), 16)
-      const flatGrad = ctx.createLinearGradient(0, 0, 0, h)
-      flatGrad.addColorStop(0, `rgb(${Math.min(255, tr + 18)},${Math.min(255, tg + 18)},${Math.min(255, tb + 18)})`)
-      flatGrad.addColorStop(1, `rgb(${Math.max(0, tr - 22)},${Math.max(0, tg - 22)},${Math.max(0, tb - 22)})`)
-      ctx.fillStyle = flatGrad; ctx.fillRect(0, 0, w, h)
+      // ── Thème équipe ── même traitement que CardVideoExport.tsx (voir ses
+      // commentaires) : vrai logo d'équipe démesurément agrandi et recadré en
+      // gros plan, flouté, grain, vignette marquée, composition entière
+      // légèrement pivotée -- peint sur un canvas surdimensionné puis
+      // pivoté/recadré pour ne jamais laisser de coin vide.
+      const OVER = 1.35
+      const ow = Math.ceil(w * OVER), oh = Math.ceil(h * OVER)
+      const over = document.createElement('canvas')
+      over.width = ow; over.height = oh
+      const octxOver = over.getContext('2d')!
+
+      octxOver.fillStyle = teamTheme.color
+      octxOver.fillRect(0, 0, ow, oh)
 
       if (activeTeamLogo && activeTeamLogo.naturalWidth > 0) {
-        const cx = w / 2, cy = h * 0.42
-        const aura = ctx.createRadialGradient(cx, cy, 0, cx, cy, w * 0.75)
-        aura.addColorStop(0, 'rgba(255,255,255,0.30)')
-        aura.addColorStop(0.55, 'rgba(255,255,255,0.08)')
-        aura.addColorStop(1, 'rgba(255,255,255,0)')
-        ctx.fillStyle = aura; ctx.fillRect(0, 0, w, h)
-
-        // Logo immense, deborde volontairement du cadre, legerement incline
-        // (angle fixe par equipe) -- effet poster plutot qu'un filigrane discret.
-        const logoW = w * 1.15
+        const seed = logoTiltDeg(teamTheme.key)
+        const logoW = w * 2.6
         const logoH = logoW * (activeTeamLogo.naturalHeight / activeTeamLogo.naturalWidth)
-        ctx.save()
-        ctx.globalAlpha = 0.92
-        ctx.shadowColor = 'rgba(0,0,0,0.4)'
-        ctx.shadowBlur = w * 0.035
-        ctx.translate(cx, cy)
-        ctx.rotate(logoTiltDeg(teamTheme!.key) * Math.PI / 180)
-        ctx.drawImage(activeTeamLogo, -logoW / 2, -logoH / 2, logoW, logoH)
-        ctx.restore()
+        const offsetX = ow / 2 + seed * w * 0.045
+        const offsetY = oh / 2 + seed * h * 0.03
+        octxOver.save()
+        octxOver.filter = `blur(${Math.round(w * 0.018)}px)`
+        octxOver.globalAlpha = 0.85
+        octxOver.drawImage(activeTeamLogo, offsetX - logoW / 2, offsetY - logoH / 2, logoW, logoH)
+        octxOver.restore()
+
+        octxOver.fillStyle = `${teamTheme.color}55`
+        octxOver.fillRect(0, 0, ow, oh)
       }
 
-      const vignette = ctx.createRadialGradient(w / 2, h * 0.42, w * 0.35, w / 2, h * 0.42, w * 0.95)
+      const vignette = octxOver.createRadialGradient(ow / 2, oh * 0.42, ow * 0.25, ow / 2, oh * 0.42, ow * 0.75)
       vignette.addColorStop(0, 'rgba(0,0,0,0)')
-      vignette.addColorStop(1, 'rgba(0,0,0,0.28)')
-      ctx.fillStyle = vignette; ctx.fillRect(0, 0, w, h)
+      vignette.addColorStop(1, 'rgba(0,0,0,0.55)')
+      octxOver.fillStyle = vignette; octxOver.fillRect(0, 0, ow, oh)
 
-      paintGrain(16)
+      ctx.save()
+      ctx.translate(w / 2, h / 2)
+      ctx.rotate((logoTiltDeg(teamTheme.key) / 3) * Math.PI / 180)
+      ctx.drawImage(over, -ow / 2, -oh / 2)
+      ctx.restore()
+
+      paintGrain(20)
 
       const bgGrad = ctx.createLinearGradient(0, 0, 0, h)
-      bgGrad.addColorStop(0, 'rgba(0,0,0,0)'); bgGrad.addColorStop(1, 'rgba(0,0,0,0.35)')
+      bgGrad.addColorStop(0, 'rgba(0,0,0,0)'); bgGrad.addColorStop(1, 'rgba(0,0,0,0.4)')
       ctx.fillStyle = bgGrad; ctx.fillRect(0, 0, w, h)
     } else {
       // ── Fond ── un seul halo doux couleur accent + grain subtil, comme la vidéo
