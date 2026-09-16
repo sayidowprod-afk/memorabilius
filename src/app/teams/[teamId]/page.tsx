@@ -65,6 +65,48 @@ export default function TeamPage({ params }: { params: Promise<{ teamId: string 
     })
   }
 
+  const [randomBinderLoading, setRandomBinderLoading] = useState(false)
+  const [randomCardLoading, setRandomCardLoading] = useState(false)
+
+  const randomTeamBinder = async () => {
+    if (randomBinderLoading || !members.length) return
+    setRandomBinderLoading(true)
+    try {
+      const memberIds = members.map((m: any) => m.user_id)
+      const { data } = await supabase
+        .from('binders')
+        .select('id, user_id')
+        .in('user_id', memberIds)
+        .neq('is_public', false)
+        .gte('page_count', 1)
+      if (!data?.length) { toast.error(t('teams_no_random_binder')); return }
+      const pick = data[Math.floor(Math.random() * data.length)]
+      router.push(`/galerie/${pick.user_id}?tab=library&binder=${pick.id}`)
+    } finally {
+      setRandomBinderLoading(false)
+    }
+  }
+
+  const randomTeamCard = async () => {
+    if (randomCardLoading || !members.length) return
+    setRandomCardLoading(true)
+    try {
+      const memberIds = members.map((m: any) => m.user_id)
+      const [{ data: cards }, { data: privees }] = await Promise.all([
+        supabase.from('cartes_manuelles').select('image_recto, user_id')
+          .in('user_id', memberIds).not('image_recto', 'is', null).limit(2000),
+        supabase.from('cartes_privees').select('user_id, card_key').in('user_id', memberIds),
+      ])
+      const privateSet = new Set((privees || []).map((p: any) => `${p.user_id}::${p.card_key}`))
+      const eligible = (cards || []).filter((c: any) => !privateSet.has(`${c.user_id}::${c.image_recto}`))
+      if (!eligible.length) { toast.error(t('teams_no_random_card')); return }
+      const pick = eligible[Math.floor(Math.random() * eligible.length)]
+      router.push(`/galerie/${pick.user_id}?card=${encodeURIComponent(pick.image_recto)}`)
+    } finally {
+      setRandomCardLoading(false)
+    }
+  }
+
   // Chat
   const [newMsg, setNewMsg] = useState('')
   const [showEmojiForMsg, setShowEmojiForMsg] = useState<number | null>(null)
@@ -600,6 +642,12 @@ export default function TeamPage({ params }: { params: Promise<{ teamId: string 
             ))}
           </div>
           <div style={{ display: 'flex', gap: 8, alignItems: 'center' }}>
+            <button onClick={randomTeamBinder} disabled={randomBinderLoading} style={{ background: 'var(--bg3, #f0f0f0)', color: 'var(--text2, #555)', border: 'none', borderRadius: 8, padding: '8px 14px', fontWeight: 700, cursor: randomBinderLoading ? 'wait' : 'pointer', fontSize: 13, display: 'inline-flex', alignItems: 'center', gap: 5 }}>
+              {randomBinderLoading ? '⏳' : '🎲'} {t('teams_random_binder')}
+            </button>
+            <button onClick={randomTeamCard} disabled={randomCardLoading} style={{ background: 'var(--bg3, #f0f0f0)', color: 'var(--text2, #555)', border: 'none', borderRadius: 8, padding: '8px 14px', fontWeight: 700, cursor: randomCardLoading ? 'wait' : 'pointer', fontSize: 13, display: 'inline-flex', alignItems: 'center', gap: 5 }}>
+              {randomCardLoading ? '⏳' : '🃏'} {t('teams_random_card')}
+            </button>
             <button onClick={shareTeam} style={{ background: copied ? '#e8f5e9' : 'var(--bg3, #f0f0f0)', color: copied ? '#2e7d32' : 'var(--text2, #555)', border: 'none', borderRadius: 8, padding: '8px 14px', fontWeight: 700, cursor: 'pointer', fontSize: 13, transition: 'all 0.2s', display: 'inline-flex', alignItems: 'center', gap: 5 }}>
               {copied ? <><span className="selection-check-pop">✓</span> {t('teams_copied')}</> : t('teams_share')}
             </button>

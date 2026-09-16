@@ -1394,6 +1394,10 @@ const translations = {
     teams_just_now: "à l'instant",
     teams_copied: '✓ Copié !',
     teams_share: '🔗 Partager',
+    teams_random_binder: 'Classeur aléatoire',
+    teams_random_card: 'Carte aléatoire',
+    teams_no_random_binder: "Aucun classeur public dans l'équipe.",
+    teams_no_random_card: "Aucune carte disponible dans l'équipe.",
     teams_no_cards_found: 'Aucune carte trouvée.',
 
     // Messages
@@ -2866,6 +2870,10 @@ const translations = {
     teams_just_now: 'just now',
     teams_copied: '✓ Copied!',
     teams_share: '🔗 Share',
+    teams_random_binder: 'Random binder',
+    teams_random_card: 'Random card',
+    teams_no_random_binder: 'No public binder in the team.',
+    teams_no_random_card: 'No card available in the team.',
     teams_no_cards_found: 'No cards found.',
 
     // Messages
@@ -4338,6 +4346,10 @@ const translations = {
     teams_just_now: 'gerade eben',
     teams_copied: '✓ Kopiert!',
     teams_share: '🔗 Teilen',
+    teams_random_binder: 'Zufälliger Ordner',
+    teams_random_card: 'Zufällige Karte',
+    teams_no_random_binder: 'Kein öffentlicher Ordner im Team.',
+    teams_no_random_card: 'Keine Karte im Team verfügbar.',
     teams_no_cards_found: 'Keine Karten gefunden.',
 
     // Nachrichten

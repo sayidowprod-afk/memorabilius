@@ -1342,6 +1342,10 @@ export const it = {
   teams_just_now: "proprio ora",
   teams_copied: '✓ Copiato!',
   teams_share: '🔗 Condividi',
+  teams_random_binder: 'Raccoglitore casuale',
+  teams_random_card: 'Carta casuale',
+  teams_no_random_binder: 'Nessun raccoglitore pubblico nella squadra.',
+  teams_no_random_card: 'Nessuna carta disponibile nella squadra.',
   teams_no_cards_found: 'Nessuna carta trovata.',
 
   // Messages

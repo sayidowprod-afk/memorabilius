@@ -1342,6 +1342,10 @@ export const es = {
   teams_just_now: "ahora mismo",
   teams_copied: '✓ ¡Copiado!',
   teams_share: '🔗 Compartir',
+  teams_random_binder: 'Álbum aleatorio',
+  teams_random_card: 'Carta aleatoria',
+  teams_no_random_binder: 'Ningún álbum público en el equipo.',
+  teams_no_random_card: 'Ninguna carta disponible en el equipo.',
   teams_no_cards_found: 'Ninguna carta encontrada.',
 
   // Messages
