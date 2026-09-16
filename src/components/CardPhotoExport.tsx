@@ -4,6 +4,8 @@ import { createPortal } from 'react-dom'
 import { useLang } from '@/lib/LangContext'
 import { saveOrShareFile } from '@/lib/saveOrShare'
 import { toast } from '@/lib/toast'
+import { supabase } from '@/lib/supabase'
+import { getTeamById, teamLogoUrl } from '@/lib/sportsTeams'
 
 interface Card {
   f: string; b?: string; n: string; t: string; y: string
@@ -11,7 +13,13 @@ interface Card {
   auto: boolean; rc: boolean; patch: boolean; g: string
   is_horizontal?: boolean
 }
-interface Props { card: Card; accent: string; onClose: () => void }
+interface Props { card: Card; accent: string; onClose: () => void; ownerId?: string }
+
+interface TeamTheme { key: string; label: string; color: string; logoUrl: string }
+// Couleur par defaut pour les equipes "custom" de l'app (Federation de la
+// Carte, etc.) -- ces teams n'ont pas de couleur en base, contrairement aux
+// equipes sportives officielles (sportsTeams.ts).
+const CUSTOM_TEAM_COLOR = '#003DA6'
 
 // Résolution haute qualité pour l'impression / le partage grand format --
 // une photo statique n'a pas le budget temps-réel de la vidéo (33ms/frame),
@@ -49,7 +57,7 @@ const loadImage = (src: string): Promise<HTMLImageElement> =>
     img.src = bustedSrc
   })
 
-export default function CardPhotoExport({ card, accent: accentProp, onClose }: Props) {
+export default function CardPhotoExport({ card, accent: accentProp, onClose, ownerId }: Props) {
   const canvasRef = useRef<HTMLCanvasElement>(null)
   const [theme, setTheme] = useState<'dark' | 'light'>('dark')
   const [pfmt, setPfmt] = useState<PhotoFormat>('portrait')
@@ -63,6 +71,52 @@ export default function CardPhotoExport({ card, accent: accentProp, onClose }: P
   const hasVerso = !!card.b && card.b !== card.f
   const logoImgs = useRef<{ dark?: HTMLImageElement; light?: HTMLImageElement }>({})
   const imgCache = useRef<{ f?: HTMLImageElement; b?: HTMLImageElement }>({})
+
+  // Themes "equipe" (fond couleur pleine + logo) -- meme mecanisme que
+  // CardVideoExport.tsx : equipes sportives favorites du proprietaire de la
+  // carte + equipes app (ex. Federation de la Carte) dont il est membre.
+  const [teamThemes, setTeamThemes] = useState<TeamTheme[]>([])
+  const [teamTheme, setTeamThemeState] = useState<TeamTheme | null>(null)
+  const [teamLogoImg, setTeamLogoImg] = useState<{ key: string; img: HTMLImageElement } | null>(null)
+  const pickColor = (c: string) => { setTeamThemeState(null); setAccent(c) }
+  const pickTeamTheme = (th: TeamTheme) => { setTeamThemeState(th); setAccent(th.color) }
+
+  useEffect(() => {
+    if (!ownerId) return
+    let cancelled = false
+    ;(async () => {
+      const [{ data: profile }, { data: memberships }] = await Promise.all([
+        supabase.from('profiles').select('favorite_teams').eq('id', ownerId).single(),
+        supabase.from('team_members').select('teams(id, name, avatar_url)').eq('user_id', ownerId),
+      ])
+      if (cancelled) return
+      const themes: TeamTheme[] = []
+      for (const id of (profile?.favorite_teams || []) as string[]) {
+        const team = getTeamById(id)
+        if (!team) continue
+        const logo = teamLogoUrl(team)
+        if (!logo) continue
+        themes.push({ key: `sport:${team.id}`, label: team.name, color: team.color, logoUrl: `/api/proxy-image?url=${encodeURIComponent(logo)}` })
+      }
+      for (const row of (memberships || []) as any[]) {
+        const tm = row.teams
+        if (!tm?.avatar_url) continue
+        themes.push({ key: `custom:${tm.id}`, label: tm.name, color: CUSTOM_TEAM_COLOR, logoUrl: `/api/proxy-image?url=${encodeURIComponent(tm.avatar_url)}` })
+      }
+      setTeamThemes(themes)
+    })()
+    return () => { cancelled = true }
+  }, [ownerId])
+
+  useEffect(() => {
+    if (!teamTheme || teamLogoImg?.key === teamTheme.key) return
+    let cancelled = false
+    const img = new Image()
+    img.crossOrigin = 'anonymous'
+    img.onload = () => { if (!cancelled) setTeamLogoImg({ key: teamTheme.key, img }) }
+    img.src = teamTheme.logoUrl
+    return () => { cancelled = true }
+  }, [teamTheme, teamLogoImg])
 
   useEffect(() => {
     Promise.all([loadImage('/memorabilius-logo-white.png'), loadImage('/memorabilius-logo.png')]).then(([dark, light]) => {
@@ -107,37 +161,85 @@ export default function CardPhotoExport({ card, accent: accentProp, onClose }: P
     const textMain = isDark ? '#ffffff' : '#111111'
 
     const logoImg = isDark ? logoImgs.current.dark : logoImgs.current.light
+    const activeTeamLogo = teamTheme && teamLogoImg?.key === teamTheme.key ? teamLogoImg.img : null
 
-    // ── Fond ── un seul halo doux couleur accent + grain subtil, comme la vidéo
-    // (au lieu des deux halos concurrents + vignette de l'ancienne version).
-    ctx.fillStyle = bgBase; ctx.fillRect(0, 0, w, h)
+    const paintGrain = (alpha: number) => {
+      const noise = document.createElement('canvas')
+      noise.width = 96; noise.height = 96
+      const nctx = noise.getContext('2d')!
+      const imgData = nctx.createImageData(96, 96)
+      for (let i = 0; i < imgData.data.length; i += 4) {
+        const v = Math.random() * 255
+        imgData.data[i] = v; imgData.data[i + 1] = v; imgData.data[i + 2] = v
+        imgData.data[i + 3] = alpha
+      }
+      nctx.putImageData(imgData, 0, 0)
+      const grainPattern = ctx.createPattern(noise, 'repeat')
+      if (grainPattern) { ctx.fillStyle = grainPattern; ctx.fillRect(0, 0, w, h) }
+    }
 
     const aspect = h / w
-    const haloT = Math.min(1, Math.max(0, (aspect - 1) / 0.6))
-    const haloX = w * (0.62 + 0.20 * haloT)
-    const haloY = h * (0.10 - 0.04 * haloT)
-    const halo = ctx.createRadialGradient(haloX, haloY, 0, haloX, haloY, w * 1.3)
-    halo.addColorStop(0, `rgba(${ar},${ag},${ab},${isDark ? 0.26 : 0.13})`)
-    halo.addColorStop(0.5, `rgba(${ar},${ag},${ab},${isDark ? 0.06 : 0.04})`)
-    halo.addColorStop(1, 'rgba(0,0,0,0)')
-    ctx.fillStyle = halo; ctx.fillRect(0, 0, w, h)
 
-    const bgGrad = ctx.createLinearGradient(0, 0, 0, h)
-    bgGrad.addColorStop(0, 'rgba(0,0,0,0)'); bgGrad.addColorStop(1, bgBot + '80')
-    ctx.fillStyle = bgGrad; ctx.fillRect(0, 0, w, h)
+    if (teamTheme) {
+      // ── Thème équipe ── même traitement que CardVideoExport.tsx : aplat
+      // couleur équipe (léger dégradé vertical) + gros logo centré avec aura
+      // lumineuse + vignette + grain.
+      const tr = parseInt(teamTheme.color.slice(1, 3), 16)
+      const tg = parseInt(teamTheme.color.slice(3, 5), 16)
+      const tb = parseInt(teamTheme.color.slice(5, 7), 16)
+      const flatGrad = ctx.createLinearGradient(0, 0, 0, h)
+      flatGrad.addColorStop(0, `rgb(${Math.min(255, tr + 18)},${Math.min(255, tg + 18)},${Math.min(255, tb + 18)})`)
+      flatGrad.addColorStop(1, `rgb(${Math.max(0, tr - 22)},${Math.max(0, tg - 22)},${Math.max(0, tb - 22)})`)
+      ctx.fillStyle = flatGrad; ctx.fillRect(0, 0, w, h)
 
-    const noise = document.createElement('canvas')
-    noise.width = 96; noise.height = 96
-    const nctx = noise.getContext('2d')!
-    const imgData = nctx.createImageData(96, 96)
-    for (let i = 0; i < imgData.data.length; i += 4) {
-      const v = Math.random() * 255
-      imgData.data[i] = v; imgData.data[i + 1] = v; imgData.data[i + 2] = v
-      imgData.data[i + 3] = isDark ? 10 : 14
+      if (activeTeamLogo && activeTeamLogo.naturalWidth > 0) {
+        const cx = w / 2, cy = h * 0.42
+        const aura = ctx.createRadialGradient(cx, cy, 0, cx, cy, w * 0.62)
+        aura.addColorStop(0, 'rgba(255,255,255,0.30)')
+        aura.addColorStop(0.55, 'rgba(255,255,255,0.08)')
+        aura.addColorStop(1, 'rgba(255,255,255,0)')
+        ctx.fillStyle = aura; ctx.fillRect(0, 0, w, h)
+
+        const logoW = w * 0.62
+        const logoH = logoW * (activeTeamLogo.naturalHeight / activeTeamLogo.naturalWidth)
+        ctx.save()
+        ctx.globalAlpha = 0.9
+        ctx.shadowColor = 'rgba(0,0,0,0.35)'
+        ctx.shadowBlur = w * 0.03
+        ctx.drawImage(activeTeamLogo, cx - logoW / 2, cy - logoH / 2, logoW, logoH)
+        ctx.restore()
+      }
+
+      const vignette = ctx.createRadialGradient(w / 2, h * 0.42, w * 0.35, w / 2, h * 0.42, w * 0.95)
+      vignette.addColorStop(0, 'rgba(0,0,0,0)')
+      vignette.addColorStop(1, 'rgba(0,0,0,0.28)')
+      ctx.fillStyle = vignette; ctx.fillRect(0, 0, w, h)
+
+      paintGrain(16)
+
+      const bgGrad = ctx.createLinearGradient(0, 0, 0, h)
+      bgGrad.addColorStop(0, 'rgba(0,0,0,0)'); bgGrad.addColorStop(1, 'rgba(0,0,0,0.35)')
+      ctx.fillStyle = bgGrad; ctx.fillRect(0, 0, w, h)
+    } else {
+      // ── Fond ── un seul halo doux couleur accent + grain subtil, comme la vidéo
+      // (au lieu des deux halos concurrents + vignette de l'ancienne version).
+      ctx.fillStyle = bgBase; ctx.fillRect(0, 0, w, h)
+
+      const haloT = Math.min(1, Math.max(0, (aspect - 1) / 0.6))
+      const haloX = w * (0.62 + 0.20 * haloT)
+      const haloY = h * (0.10 - 0.04 * haloT)
+      const halo = ctx.createRadialGradient(haloX, haloY, 0, haloX, haloY, w * 1.3)
+      halo.addColorStop(0, `rgba(${ar},${ag},${ab},${isDark ? 0.26 : 0.13})`)
+      halo.addColorStop(0.5, `rgba(${ar},${ag},${ab},${isDark ? 0.06 : 0.04})`)
+      halo.addColorStop(1, 'rgba(0,0,0,0)')
+      ctx.fillStyle = halo; ctx.fillRect(0, 0, w, h)
+
+      const bgGrad = ctx.createLinearGradient(0, 0, 0, h)
+      bgGrad.addColorStop(0, 'rgba(0,0,0,0)'); bgGrad.addColorStop(1, bgBot + '80')
+      ctx.fillStyle = bgGrad; ctx.fillRect(0, 0, w, h)
+
+      paintGrain(isDark ? 10 : 14)
     }
-    nctx.putImageData(imgData, 0, 0)
-    const grainPattern = ctx.createPattern(noise, 'repeat')
-    if (grainPattern) { ctx.fillStyle = grainPattern; ctx.fillRect(0, 0, w, h) }
 
     // ── Logo Memorabilius (watermark permanent, haut-gauche) ──
     if (logoImg && logoImg.naturalWidth > 0) {
@@ -154,12 +256,25 @@ export default function CardPhotoExport({ card, accent: accentProp, onClose }: P
     }
 
     // ── Layout ────────────────────────────────────────────────────────────────
-    // Hauteur du panneau infos adaptée au format -- signalé : le texte du bas
-    // (année/marque/collection) coupé sur les formats moins hauts (Carré
-    // surtout). Même correctif que la vidéo : élargi jusqu'à 0.27 sur les
-    // formats les plus carrés, revient à 0.19 sur les formats hauts (Story).
+    // Hauteur du panneau infos calculée depuis le VRAI contenu de cette carte
+    // (même correctif que CardVideoExport.tsx) -- l'ancienne heuristique par
+    // aspect ratio ne suffisait plus dès que tous les champs optionnels sont
+    // présents en même temps, coupant le bas du texte.
     const infoHT = Math.min(1, Math.max(0, (1.5 - aspect) / 0.5))
-    const INFO_H      = Math.round(h * (0.19 + 0.08 * infoHT))
+    const measureContentH = (guessPanelH: number) => {
+      let ch = guessPanelH * 0.10
+      if (card.rc || card.auto || card.num || card.patch || (card.g && card.g !== 'Raw')) {
+        ch += Math.round(w * 0.040) + Math.round(guessPanelH * 0.07)
+      }
+      if (card.t) ch += Math.round(w * 0.020) * 1.6
+      ch += Math.round(w * 0.052) * 1.15
+      if (card.v) ch += Math.round(w * 0.028) * 1.3
+      const meta2c = [card.y, [card.br, card.s].filter(Boolean).join(' ')].filter(Boolean).join(' · ')
+      if (meta2c) ch += Math.round(w * 0.021) * 1.4
+      return ch + guessPanelH * 0.10
+    }
+    const guessPanelH = Math.round(h * (0.19 + 0.08 * infoHT)) - (h * 0.022)
+    const INFO_H = Math.round(Math.max(h * (0.19 + 0.08 * infoHT), measureContentH(guessPanelH) + h * 0.022))
     const CARD_ZONE_H = h - INFO_H
     const CARD_MAX_W  = w * 0.82
     const CARD_MAX_H  = CARD_ZONE_H * 0.88
@@ -313,7 +428,7 @@ export default function CardPhotoExport({ card, accent: accentProp, onClose }: P
     ctx.restore() // fin du clip panneau
   }
 
-  useEffect(() => { draw() }, [pfmt, theme, side, accent]) // eslint-disable-line react-hooks/exhaustive-deps
+  useEffect(() => { draw() }, [pfmt, theme, side, accent, teamTheme, teamLogoImg]) // eslint-disable-line react-hooks/exhaustive-deps
 
   const download = async () => {
     const canvas = canvasRef.current
@@ -408,21 +523,38 @@ export default function CardPhotoExport({ card, accent: accentProp, onClose }: P
             <p style={groupLabel}>{t('video_accent')}</p>
             <div style={{ display: 'flex', gap: 9, alignItems: 'center', flexWrap: 'wrap' }}>
               {ACCENT_PRESETS.map(c => (
-                <button key={c} onClick={() => setAccent(c)} aria-label={c} title={c} style={{
+                <button key={c} onClick={() => pickColor(c)} aria-label={c} title={c} style={{
                   width: 24, height: 24, borderRadius: '50%', background: c, border: 'none', cursor: 'pointer', padding: 0,
-                  boxShadow: accent.toLowerCase() === c.toLowerCase() ? `0 0 0 2px rgba(26,26,38,0.9), 0 0 0 4px ${c}` : 'none',
+                  boxShadow: !teamTheme && accent.toLowerCase() === c.toLowerCase() ? `0 0 0 2px rgba(26,26,38,0.9), 0 0 0 4px ${c}` : 'none',
                 }} />
               ))}
               <label title={t('video_accent_custom')} style={{
                 width: 24, height: 24, borderRadius: '50%', position: 'relative', cursor: 'pointer', display: 'block',
                 background: 'conic-gradient(from 0deg, #ff0000, #ffff00, #00ff00, #00ffff, #0000ff, #ff00ff, #ff0000)',
-                boxShadow: !ACCENT_PRESETS.some(c => c.toLowerCase() === accent.toLowerCase()) ? '0 0 0 2px rgba(26,26,38,0.9), 0 0 0 4px #fff' : 'none',
+                boxShadow: !teamTheme && !ACCENT_PRESETS.some(c => c.toLowerCase() === accent.toLowerCase()) ? '0 0 0 2px rgba(26,26,38,0.9), 0 0 0 4px #fff' : 'none',
               }}>
-                <input type="color" value={accent} onChange={e => setAccent(e.target.value)}
+                <input type="color" value={accent} onChange={e => pickColor(e.target.value)}
                   style={{ position: 'absolute', inset: 0, opacity: 0, cursor: 'pointer', border: 'none', padding: 0, width: '100%', height: '100%' }} />
               </label>
             </div>
           </div>
+
+          {teamThemes.length > 0 && (
+            <div>
+              <p style={groupLabel}>{t('video_team_theme')}</p>
+              <div style={{ display: 'flex', gap: 10, alignItems: 'center', overflowX: 'auto', WebkitOverflowScrolling: 'touch', paddingBottom: 2 }}>
+                {teamThemes.map(th => (
+                  <button key={th.key} onClick={() => pickTeamTheme(th)} title={th.label} style={{
+                    width: 32, height: 32, borderRadius: '50%', background: th.color, border: 'none', cursor: 'pointer', padding: 4,
+                    flexShrink: 0, display: 'flex', alignItems: 'center', justifyContent: 'center',
+                    boxShadow: teamTheme?.key === th.key ? `0 0 0 2px rgba(26,26,38,0.9), 0 0 0 4px ${th.color}` : 'none',
+                  }}>
+                    <img src={th.logoUrl} alt="" loading="lazy" style={{ width: '100%', height: '100%', objectFit: 'contain' }} />
+                  </button>
+                ))}
+              </div>
+            </div>
+          )}
         </div>
 
         <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>

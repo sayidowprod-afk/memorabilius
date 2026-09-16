@@ -1255,6 +1255,7 @@ export const es = {
   video_export_title: 'Exportar en vídeo',
   video_theme: 'Tema',
   video_accent: 'Color',
+  video_team_theme: 'Tema de equipo',
   video_accent_custom: 'Color personalizado',
   video_cta: 'Crea tu colección →',
   video_dark: 'Oscuro',
