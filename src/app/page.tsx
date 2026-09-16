@@ -33,9 +33,12 @@ async function fetchPepites(): Promise<Card[]> {
   // Scope profiles to only the user_ids present in the 200 cards — évite de charger tous les profils
   const userIds = [...new Set(manuelles.map(m => m.user_id))]
   const { data: profiles } = await supabase
-    .from('profiles').select('id, display_name').in('id', userIds)
+    .from('profiles').select('id, display_name, is_demo').in('id', userIds)
 
-  const profileMap = new Map((profiles || []).map(p => [p.id, p.display_name]))
+  // Le compte demo (salons, voir /admin/demo) ne doit jamais apparaitre dans
+  // les pepites -- en le retirant du profileMap, ses cartes echouent le
+  // `!profileMap.get(m.user_id)` du filtre juste en dessous et disparaissent.
+  const profileMap = new Map((profiles || []).filter(p => !p.is_demo).map(p => [p.id, p.display_name]))
 
   // Dédupliquer par image et ne garder que les cartes avec un profil connu
   const seen = new Set<string>()
@@ -72,6 +75,7 @@ async function fetchFeaturedGalleries(): Promise<FeaturedGallery[]> {
     .not('display_name', 'is', null)
     .neq('display_name', '')
     .gt('stats_total', 0)
+    .eq('is_demo', false)
     .order('stats_total', { ascending: false })
     .limit(3)
 
@@ -133,10 +137,10 @@ async function fetchPodium() {
   try {
     const { data } = await supabase
       .from('monthly_additions')
-      .select('user_id, count, profiles(display_name, avatar_url)')
+      .select('user_id, count, profiles(display_name, avatar_url, is_demo)')
       .eq('month', month)
     for (const row of (data || []) as any[]) {
-      if (!row.profiles?.display_name) continue
+      if (!row.profiles?.display_name || row.profiles.is_demo) continue
       counts.set(row.user_id, { displayName: row.profiles.display_name, avatarUrl: row.profiles.avatar_url || null, count: row.count })
     }
   } catch {}
@@ -197,7 +201,7 @@ export default async function Home() {
     podiumWeek,
     featuredGalleries,
   ] = await Promise.all([
-    supabase.from('profiles').select('*', { count: 'exact', head: true }),
+    supabase.from('profiles').select('*', { count: 'exact', head: true }).eq('is_demo', false),
     supabase.rpc('get_total_cards'),
     supabase.from('binders').select('*', { count: 'exact', head: true }).neq('is_public', false).gte('page_count', 1),
     supabase.from('cartes_manuelles').select('*', { count: 'exact', head: true }).eq('disponible_vente', true),
