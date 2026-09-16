@@ -49,20 +49,17 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   // setState, mais ne bloquent plus le premier affichage.
   const [state, setState] = useState<AuthState>(() => {
     const session = readPersistedSession()
-    console.log(`[authdiag] init t=${Date.now()} persisted=${!!session} loading=${!session}`)
     return { session, user: session?.user ?? null, loading: !session }
   })
   const router = useRouter()
 
   useEffect(() => {
     let settled = false
-    const t0 = Date.now()
 
     // onAuthStateChange fires INITIAL_SESSION immediately with the session from
     // localStorage — this warms the Supabase in-memory cache before any child
     // component calls getSession(), preventing the race condition that requires F5.
     const { data: { subscription } } = supabase.auth.onAuthStateChange((_event, session) => {
-      console.log(`[authdiag] onAuthStateChange event=${_event} dt=${Date.now() - t0}ms hasSession=${!!session}`)
       settled = true
       setState({ session, user: session?.user ?? null, loading: false })
       setCrashlyticsUserId(session?.user?.id ?? null)
@@ -103,7 +100,6 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     ])
 
     const timeoutId = setTimeout(async () => {
-      console.log(`[authdiag] fallback fired dt=${Date.now() - t0}ms settled=${settled}`)
       if (settled) return
 
       // Hors-ligne (cold start sans reseau notamment, signale comme "comme
@@ -115,30 +111,26 @@ export function AuthProvider({ children }: { children: ReactNode }) {
       try {
         const { Network } = await import('@capacitor/network')
         const status = await Network.getStatus()
-        console.log(`[authdiag] network status connected=${status.connected} dt=${Date.now() - t0}ms`)
         if (!status.connected) {
           await new Promise(r => setTimeout(r, 4000))
           if (settled) return
         }
-      } catch (e) { console.log(`[authdiag] network check threw dt=${Date.now() - t0}ms ${e}`) }
+      } catch {}
       if (settled) return
 
       let session: Session | null = null
       try {
         session = (await getSessionWithTimeout(3000)).data.session
-        console.log(`[authdiag] getSession try1 dt=${Date.now() - t0}ms hasSession=${!!session}`)
         if (!session) {
           // Repli prématuré possible -- un seul nouvel essai après un court délai
           // avant d'accepter definitivement l'etat deconnecte.
           await new Promise(r => setTimeout(r, 400))
           if (settled) return
           session = (await getSessionWithTimeout(3000)).data.session
-          console.log(`[authdiag] getSession try2 dt=${Date.now() - t0}ms hasSession=${!!session}`)
         }
-      } catch (e) { console.log(`[authdiag] getSession threw dt=${Date.now() - t0}ms ${e}`) }
+      } catch {}
       if (settled) return
       settled = true
-      console.log(`[authdiag] fallback settled dt=${Date.now() - t0}ms hasSession=${!!session}`)
       setState({ session, user: session?.user ?? null, loading: false })
       setCrashlyticsUserId(session?.user?.id ?? null)
       // Délai initial raccourci (1200ms, avant 2500ms) : ne change rien au cas
