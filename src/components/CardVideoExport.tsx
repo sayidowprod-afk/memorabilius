@@ -310,14 +310,16 @@ export default function CardVideoExport({ card, accent: accentProp, onClose, own
         const compositionAngle = seed * 6
 
         if (activeTeamLogo && activeTeamLogo.naturalWidth > 0) {
-          // Logo agrandi (2x la largeur du cadre) + offset par equipe : on en
-          // voit un fragment large mais toujours reconnaissable, pas juste
-          // une tache de couleur abstraite. Flou leger seulement (glow des
-          // contours) -- pas de voile couleur par-dessus.
-          const logoW = W * 2
-          const logoH = logoW * (activeTeamLogo.naturalHeight / activeTeamLogo.naturalWidth)
-          const offsetX = ow / 2 + seed * W * 0.35
-          const offsetY = oh / 2 + seed * H * 0.2
+          // Dimensionne par la HAUTEUR (pas la largeur) pour garantir un
+          // debord bord-a-bord en haut ET en bas quel que soit le ratio du
+          // logo source (certains sont larges, d'autres presque carres) --
+          // sinon la couleur de fond unie perçait au-dessus/en-dessous sur
+          // les logos les plus larges. Cale vers le HAUT du cadre (reference :
+          // "vers la partie haute de l'ecran"), pas centre verticalement.
+          const logoH = oh * 1.45
+          const logoW = logoH * (activeTeamLogo.naturalWidth / activeTeamLogo.naturalHeight)
+          const offsetX = ow / 2 + seed * W * 0.45
+          const offsetY = oh * 0.32
           octxOver.save()
           octxOver.filter = `blur(${Math.round(W * 0.006)}px)`
           octxOver.globalAlpha = 0.95

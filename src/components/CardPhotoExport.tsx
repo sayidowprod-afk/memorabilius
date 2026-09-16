@@ -209,15 +209,13 @@ export default function CardPhotoExport({ card, accent: accentProp, onClose, own
       const compositionAngle = seed * 6
 
       if (activeTeamLogo && activeTeamLogo.naturalWidth > 0) {
-        // Logo agrandi (2x la largeur du cadre) + offset par equipe : un
-        // fragment large mais toujours reconnaissable, pas une tache de
-        // couleur abstraite. Flou leger seulement (glow des contours), pas
-        // de voile couleur par-dessus -- les vraies couleurs du logo restent
-        // lisibles.
-        const logoW = w * 2
-        const logoH = logoW * (activeTeamLogo.naturalHeight / activeTeamLogo.naturalWidth)
-        const offsetX = ow / 2 + seed * w * 0.35
-        const offsetY = oh / 2 + seed * h * 0.2
+        // Dimensionne par la HAUTEUR (pas la largeur) pour garantir un
+        // debord bord-a-bord en haut ET en bas quel que soit le ratio du
+        // logo source. Cale vers le HAUT du cadre (reference), pas centre.
+        const logoH = oh * 1.45
+        const logoW = logoH * (activeTeamLogo.naturalWidth / activeTeamLogo.naturalHeight)
+        const offsetX = ow / 2 + seed * w * 0.45
+        const offsetY = oh * 0.32
         octxOver.save()
         octxOver.filter = `blur(${Math.round(w * 0.006)}px)`
         octxOver.globalAlpha = 0.95
