@@ -276,16 +276,30 @@ export default function CardVideoExport({ card, accent: accentProp, onClose }: P
     }
 
     // ── Layout ────────────────────────────────────────────────────────────────
-    // Hauteur du panneau infos adaptée au format -- signalé : le texte du bas
-    // (année/marque/collection) coupé sur les formats moins hauts (Carré
-    // surtout). La hauteur du panneau était une fraction fixe de H, alors que
-    // le contenu (badges + équipe + nom + variation + meta) a une hauteur
-    // dépendante de W -- sur un format proche du carré, H*0.19 ne suffisait
-    // plus à contenir tout ce texte. Élargi jusqu'à 0.27 sur les formats les
-    // plus carrés, revient à 0.19 sur les formats hauts (Reel/Story) où la
-    // marge était déjà suffisante.
+    // Hauteur du panneau infos calculée depuis le VRAI contenu de cette carte,
+    // pas depuis une fraction fixe du format -- l'ancienne heuristique par
+    // aspect ratio (0.19 a 0.27 * H) ne suffisait plus des que tous les champs
+    // optionnels sont presents en meme temps (equipe + nom + variation + annee/
+    // marque/collection sur une carte avec badges), le bas du texte se
+    // retrouvait coupe par le clip arrondi du panneau. Mesure en 2 passes :
+    // un premier gabarit (meme formule qu'avant) sert a estimer les marges
+    // proportionnelles au panneau, puis le panneau est agrandi si le contenu
+    // reel depasse ce gabarit.
     const infoHT = Math.min(1, Math.max(0, (1.5 - aspect0) / 0.5))
-    const INFO_H     = Math.round(H * (0.19 + 0.08 * infoHT))
+    const measureContentH = (guessPanelH: number) => {
+      let h = guessPanelH * 0.10 // topPad, meme formule que ty de depart plus bas
+      if (card.rc || card.auto || card.num || card.patch) {
+        h += Math.round(W * 0.040) + Math.round(guessPanelH * 0.07)
+      }
+      if (card.t) h += Math.round(W * 0.020) * 1.6
+      h += Math.round(W * 0.052) * 1.15
+      if (card.v) h += Math.round(W * 0.028) * 1.3
+      const meta2 = [card.y, [card.br, card.s].filter(Boolean).join(' ')].filter(Boolean).join(' · ')
+      if (meta2) h += Math.round(W * 0.021) * 1.4
+      return h + guessPanelH * 0.10 // bottomPad, marge de securite symetrique
+    }
+    const guessPanelH = Math.round(H * (0.19 + 0.08 * infoHT)) - (H * 0.022)
+    const INFO_H = Math.round(Math.max(H * (0.19 + 0.08 * infoHT), measureContentH(guessPanelH) + H * 0.022))
     const CARD_ZONE_H = H - INFO_H
     const CARD_MAX_W  = W * 0.82
     const CARD_MAX_H  = CARD_ZONE_H * 0.88
@@ -540,34 +554,16 @@ export default function CardVideoExport({ card, accent: accentProp, onClose }: P
     const panelIntroT = Math.min(1, Math.max(0, (p - 0.03) / 0.08))
     const panelIntroAlpha = easeInOut(panelIntroT) * (1 - endFadeOut)
 
-    // ── Petit "settle" du panneau à la fin de chaque demi-tour de la carte ──
-    // le panneau restait totalement immobile pendant que la carte se retourne
-    // juste au-dessus ; un très léger rebond (squash vertical amorti) au moment
-    // précis où la carte termine sa rotation (p≈0.48 : face → dos, p≈0.92 :
-    // dos → face) renforce la sensation physique du flip sans toucher au reste
-    // du panneau (image mise en cache, inchangée).
-    let bounce = 0
-    for (const fp of [0.48, 0.92]) {
-      const d = p - fp
-      if (d >= 0 && d < 0.12) {
-        const lt = d / 0.12
-        bounce += Math.sin(lt * Math.PI * 2.2) * (1 - lt) * 0.05
-      }
-    }
-
+    // Le rebond du panneau au moment du flip (squash vertical amorti) a été
+    // retiré -- signalé comme pas agréable visuellement, revenu à un panneau
+    // qui ne bouge plus une fois son entrée terminée.
     ctx.save()
     ctx.globalAlpha = panelIntroAlpha
     ctx.shadowColor = isDark ? 'rgba(0,0,0,0.4)' : 'rgba(60,50,30,0.18)'
     ctx.shadowBlur = W * 0.028
     ctx.shadowOffsetY = H * 0.006
     const panelY = panelTop + (1 - panelIntroAlpha) * H * 0.02
-    if (Math.abs(bounce) > 0.001) {
-      ctx.translate(PM + panelW / 2, panelY + panelH)
-      ctx.scale(1, 1 - bounce)
-      ctx.drawImage(infoCache.current.canvas, -panelW / 2, -panelH)
-    } else {
-      ctx.drawImage(infoCache.current.canvas, PM, panelY)
-    }
+    ctx.drawImage(infoCache.current.canvas, PM, panelY)
     ctx.restore()
 
     // ── Écran de fin ── simple fondu du logo + accroche, superposés au fond
