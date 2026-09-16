@@ -5,6 +5,13 @@ import { Capacitor } from '@capacitor/core'
 import { useLang } from '@/lib/LangContext'
 import { saveOrShareFile } from '@/lib/saveOrShare'
 import { toast } from '@/lib/toast'
+import { supabase } from '@/lib/supabase'
+import { getTeamById, teamLogoUrl } from '@/lib/sportsTeams'
+
+// Couleur par defaut pour les equipes "custom" de l'app (Fedération de la
+// Carte, etc.) -- ces teams n'ont pas de couleur en base, contrairement aux
+// equipes sportives officielles (sportsTeams.ts).
+const CUSTOM_TEAM_COLOR = '#003DA6'
 
 interface Card {
   f: string; b: string; n: string; t: string; y: string
@@ -12,7 +19,9 @@ interface Card {
   auto: boolean; rc: boolean; patch: boolean; g: string
   is_horizontal?: boolean
 }
-interface Props { card: Card; accent: string; onClose: () => void }
+interface Props { card: Card; accent: string; onClose: () => void; ownerId?: string }
+
+interface TeamTheme { key: string; label: string; color: string; logoUrl: string }
 
 const IS_MOBILE = typeof window !== 'undefined' && window.innerWidth < 768
 const VIDEO_FORMATS = {
@@ -72,7 +81,7 @@ function truncate(ctx: CanvasRenderingContext2D, text: string, maxW: number): st
   return t + '…'
 }
 
-export default function CardVideoExport({ card, accent: accentProp, onClose }: Props) {
+export default function CardVideoExport({ card, accent: accentProp, onClose, ownerId }: Props) {
   const canvasRef = useRef<HTMLCanvasElement>(null)
   const [recording, setRecording] = useState(false)
   const [progress, setProgress] = useState(0)
@@ -96,6 +105,53 @@ export default function CardVideoExport({ card, accent: accentProp, onClose }: P
   // auquel cas on repart de ce dernier choix.
   const [accent, setAccentState] = useState(() => loadCardAccent(card.f) ?? accentProp)
   const setAccent = (color: string) => { setAccentState(color); saveCardAccent(card.f, color) }
+
+  // Themes "equipe" (fond couleur pleine + logo, voir drawFrame) : equipes
+  // sportives favorites du proprietaire de la carte + equipes app (ex.
+  // Federation de la Carte) dont il est membre. Charges une seule fois --
+  // ownerId ne change jamais pour un export donne.
+  const [teamThemes, setTeamThemes] = useState<TeamTheme[]>([])
+  const [teamTheme, setTeamThemeState] = useState<TeamTheme | null>(null)
+  const [teamLogoImg, setTeamLogoImg] = useState<{ key: string; img: HTMLImageElement } | null>(null)
+  const pickColor = (c: string) => { setTeamThemeState(null); setAccent(c) }
+  const pickTeamTheme = (th: TeamTheme) => { setTeamThemeState(th); setAccent(th.color) }
+
+  useEffect(() => {
+    if (!ownerId) return
+    let cancelled = false
+    ;(async () => {
+      const [{ data: profile }, { data: memberships }] = await Promise.all([
+        supabase.from('profiles').select('favorite_teams').eq('id', ownerId).single(),
+        supabase.from('team_members').select('teams(id, name, avatar_url)').eq('user_id', ownerId),
+      ])
+      if (cancelled) return
+      const themes: TeamTheme[] = []
+      for (const id of (profile?.favorite_teams || []) as string[]) {
+        const team = getTeamById(id)
+        if (!team) continue
+        const logo = teamLogoUrl(team)
+        if (!logo) continue
+        themes.push({ key: `sport:${team.id}`, label: team.name, color: team.color, logoUrl: `/api/proxy-image?url=${encodeURIComponent(logo)}` })
+      }
+      for (const row of (memberships || []) as any[]) {
+        const tm = row.teams
+        if (!tm?.avatar_url) continue
+        themes.push({ key: `custom:${tm.id}`, label: tm.name, color: CUSTOM_TEAM_COLOR, logoUrl: `/api/proxy-image?url=${encodeURIComponent(tm.avatar_url)}` })
+      }
+      setTeamThemes(themes)
+    })()
+    return () => { cancelled = true }
+  }, [ownerId])
+
+  useEffect(() => {
+    if (!teamTheme || teamLogoImg?.key === teamTheme.key) return
+    let cancelled = false
+    const img = new Image()
+    img.crossOrigin = 'anonymous'
+    img.onload = () => { if (!cancelled) setTeamLogoImg({ key: teamTheme.key, img }) }
+    img.src = teamTheme.logoUrl
+    return () => { cancelled = true }
+  }, [teamTheme, teamLogoImg])
   const { t, lang } = useLang()
   const fmtLabel = (key: VideoFormat) =>
     key === 'default' ? t('video_format_default') : key === 'square' ? t('video_format_square') : VIDEO_FORMATS[key].label
@@ -163,7 +219,7 @@ export default function CardVideoExport({ card, accent: accentProp, onClose }: P
     }
     return () => { cancelled = true }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [vfmt, theme, recording, accent])
+  }, [vfmt, theme, recording, accent, teamTheme, teamLogoImg])
 
   const loadImage = (src: string): Promise<HTMLImageElement> =>
     new Promise(resolve => {
@@ -190,51 +246,103 @@ export default function CardVideoExport({ card, accent: accentProp, onClose }: P
     const logoImg = isDark ? logoImgs.current.dark : logoImgs.current.light
 
     // ── Fond statique mis en cache ────────────────────────────────────────────
-    const bgKey = `${W}x${H}-${isDark}-${accent}`
+    const activeTeamLogo = teamTheme && teamLogoImg?.key === teamTheme.key ? teamLogoImg.img : null
+    const bgKey = `${W}x${H}-${isDark}-${accent}-${teamTheme?.key ?? 'none'}-${!!activeTeamLogo}`
     if (!bgCache.current || bgCache.current.key !== bgKey) {
       const oc = document.createElement('canvas')
       oc.width = W; oc.height = H
       const octx = oc.getContext('2d')!
 
-      octx.fillStyle = bgBase; octx.fillRect(0, 0, W, H)
-
-      // Un seul halo doux, couleur accent -- fond épuré façon page produit, au
-      // lieu de deux halos de teintes concurrentes + vignette qui chargeaient
-      // visuellement la composition. Position adaptée au format : un halo calé
-      // dans le coin haut-droit (pensé pour les formats hauts 9:13/9:16) cadrait
-      // mal le carré 1:1, beaucoup moins haut -- se rapproche du centre-haut
-      // quand le cadre s'aplatit.
-      const aspect = H / W
-      const haloT = Math.min(1, Math.max(0, (aspect - 1) / 0.6)) // 0 = carré, 1 = format haut
-      const haloX = W * (0.62 + 0.20 * haloT)
-      const haloY = H * (0.10 - 0.04 * haloT)
-      const halo = octx.createRadialGradient(haloX, haloY, 0, haloX, haloY, W * 1.3)
-      halo.addColorStop(0, `rgba(${ar},${ag},${ab},${isDark ? 0.26 : 0.13})`)
-      halo.addColorStop(0.5, `rgba(${ar},${ag},${ab},${isDark ? 0.06 : 0.04})`)
-      halo.addColorStop(1, 'rgba(0,0,0,0)')
-      octx.fillStyle = halo; octx.fillRect(0, 0, W, H)
-
-      // Dégradé vertical vers le bas -- transition douce vers la zone infos
-      const bgGrad = octx.createLinearGradient(0, 0, 0, H)
-      bgGrad.addColorStop(0, 'rgba(0,0,0,0)'); bgGrad.addColorStop(1, bgBot + '80')
-      octx.fillStyle = bgGrad; octx.fillRect(0, 0, W, H)
-
-      // Grain subtil -- un dégradé plat pouvait faire "généré numériquement",
+      // Grain subtil -- un dégradé/aplat plat pouvait faire "généré numériquement",
       // un léger bruit (quelques % d'opacité, imperceptible individuellement)
       // donne un rendu plus proche d'un print premium. Tuile 96×96 générée une
       // fois puis répétée -- coût négligeable vu que tout ceci est déjà en cache.
-      const noise = document.createElement('canvas')
-      noise.width = 96; noise.height = 96
-      const nctx = noise.getContext('2d')!
-      const imgData = nctx.createImageData(96, 96)
-      for (let i = 0; i < imgData.data.length; i += 4) {
-        const v = Math.random() * 255
-        imgData.data[i] = v; imgData.data[i + 1] = v; imgData.data[i + 2] = v
-        imgData.data[i + 3] = isDark ? 10 : 14
+      const paintGrain = (alpha: number) => {
+        const noise = document.createElement('canvas')
+        noise.width = 96; noise.height = 96
+        const nctx = noise.getContext('2d')!
+        const imgData = nctx.createImageData(96, 96)
+        for (let i = 0; i < imgData.data.length; i += 4) {
+          const v = Math.random() * 255
+          imgData.data[i] = v; imgData.data[i + 1] = v; imgData.data[i + 2] = v
+          imgData.data[i + 3] = alpha
+        }
+        nctx.putImageData(imgData, 0, 0)
+        const grainPattern = octx.createPattern(noise, 'repeat')
+        if (grainPattern) { octx.fillStyle = grainPattern; octx.fillRect(0, 0, W, H) }
       }
-      nctx.putImageData(imgData, 0, 0)
-      const grainPattern = octx.createPattern(noise, 'repeat')
-      if (grainPattern) { octx.fillStyle = grainPattern; octx.fillRect(0, 0, W, H) }
+
+      if (teamTheme) {
+        // ── Thème équipe ── aplat couleur équipe (deux teintes très proches en
+        // dégradé vertical pour un peu de profondeur, pas totalement plat) +
+        // gros logo centré avec une aura lumineuse derrière (halo blanc doux,
+        // façon filtre photo) + vignette aux bords + grain -- volontairement
+        // plus impactant/brut que le fond épuré par défaut ci-dessous.
+        const tr = parseInt(teamTheme.color.slice(1, 3), 16)
+        const tg = parseInt(teamTheme.color.slice(3, 5), 16)
+        const tb = parseInt(teamTheme.color.slice(5, 7), 16)
+        const flatGrad = octx.createLinearGradient(0, 0, 0, H)
+        flatGrad.addColorStop(0, `rgb(${Math.min(255, tr + 18)},${Math.min(255, tg + 18)},${Math.min(255, tb + 18)})`)
+        flatGrad.addColorStop(1, `rgb(${Math.max(0, tr - 22)},${Math.max(0, tg - 22)},${Math.max(0, tb - 22)})`)
+        octx.fillStyle = flatGrad; octx.fillRect(0, 0, W, H)
+
+        if (activeTeamLogo && activeTeamLogo.naturalWidth > 0) {
+          const cx = W / 2, cy = H * 0.42
+          const aura = octx.createRadialGradient(cx, cy, 0, cx, cy, W * 0.62)
+          aura.addColorStop(0, 'rgba(255,255,255,0.30)')
+          aura.addColorStop(0.55, 'rgba(255,255,255,0.08)')
+          aura.addColorStop(1, 'rgba(255,255,255,0)')
+          octx.fillStyle = aura; octx.fillRect(0, 0, W, H)
+
+          const logoW = W * 0.62
+          const logoH = logoW * (activeTeamLogo.naturalHeight / activeTeamLogo.naturalWidth)
+          octx.save()
+          octx.globalAlpha = 0.9
+          octx.shadowColor = 'rgba(0,0,0,0.35)'
+          octx.shadowBlur = W * 0.03
+          octx.drawImage(activeTeamLogo, cx - logoW / 2, cy - logoH / 2, logoW, logoH)
+          octx.restore()
+        }
+
+        // Vignette : assombrit légèrement les bords pour un effet "aura" type
+        // filtre camera, sans toucher le centre où logo/carte se détachent.
+        const vignette = octx.createRadialGradient(W / 2, H * 0.42, W * 0.35, W / 2, H * 0.42, W * 0.95)
+        vignette.addColorStop(0, 'rgba(0,0,0,0)')
+        vignette.addColorStop(1, 'rgba(0,0,0,0.28)')
+        octx.fillStyle = vignette; octx.fillRect(0, 0, W, H)
+
+        paintGrain(16)
+
+        // Transition douce vers la zone infos, même intention que le fond par défaut.
+        const bgGrad = octx.createLinearGradient(0, 0, 0, H)
+        bgGrad.addColorStop(0, 'rgba(0,0,0,0)'); bgGrad.addColorStop(1, 'rgba(0,0,0,0.35)')
+        octx.fillStyle = bgGrad; octx.fillRect(0, 0, W, H)
+      } else {
+        octx.fillStyle = bgBase; octx.fillRect(0, 0, W, H)
+
+        // Un seul halo doux, couleur accent -- fond épuré façon page produit, au
+        // lieu de deux halos de teintes concurrentes + vignette qui chargeaient
+        // visuellement la composition. Position adaptée au format : un halo calé
+        // dans le coin haut-droit (pensé pour les formats hauts 9:13/9:16) cadrait
+        // mal le carré 1:1, beaucoup moins haut -- se rapproche du centre-haut
+        // quand le cadre s'aplatit.
+        const aspect = H / W
+        const haloT = Math.min(1, Math.max(0, (aspect - 1) / 0.6)) // 0 = carré, 1 = format haut
+        const haloX = W * (0.62 + 0.20 * haloT)
+        const haloY = H * (0.10 - 0.04 * haloT)
+        const halo = octx.createRadialGradient(haloX, haloY, 0, haloX, haloY, W * 1.3)
+        halo.addColorStop(0, `rgba(${ar},${ag},${ab},${isDark ? 0.26 : 0.13})`)
+        halo.addColorStop(0.5, `rgba(${ar},${ag},${ab},${isDark ? 0.06 : 0.04})`)
+        halo.addColorStop(1, 'rgba(0,0,0,0)')
+        octx.fillStyle = halo; octx.fillRect(0, 0, W, H)
+
+        // Dégradé vertical vers le bas -- transition douce vers la zone infos
+        const bgGrad = octx.createLinearGradient(0, 0, 0, H)
+        bgGrad.addColorStop(0, 'rgba(0,0,0,0)'); bgGrad.addColorStop(1, bgBot + '80')
+        octx.fillStyle = bgGrad; octx.fillRect(0, 0, W, H)
+
+        paintGrain(isDark ? 10 : 14)
+      }
 
       bgCache.current = { key: bgKey, canvas: oc }
     }
@@ -804,21 +912,40 @@ export default function CardVideoExport({ card, accent: accentProp, onClose }: P
               <p style={groupLabel}>{t('video_accent')}</p>
               <div style={{ display: 'flex', gap: 9, alignItems: 'center', flexWrap: 'wrap' }}>
                 {ACCENT_PRESETS.map(c => (
-                  <button key={c} onClick={() => setAccent(c)} aria-label={c} title={c} style={{
+                  <button key={c} onClick={() => pickColor(c)} aria-label={c} title={c} style={{
                     width: 24, height: 24, borderRadius: '50%', background: c, border: 'none', cursor: 'pointer', padding: 0,
-                    boxShadow: accent.toLowerCase() === c.toLowerCase() ? `0 0 0 2px rgba(26,26,38,0.9), 0 0 0 4px ${c}` : 'none',
+                    boxShadow: !teamTheme && accent.toLowerCase() === c.toLowerCase() ? `0 0 0 2px rgba(26,26,38,0.9), 0 0 0 4px ${c}` : 'none',
                   }} />
                 ))}
                 <label title={t('video_accent_custom')} style={{
                   width: 24, height: 24, borderRadius: '50%', position: 'relative', cursor: 'pointer', display: 'block',
                   background: 'conic-gradient(from 0deg, #ff0000, #ffff00, #00ff00, #00ffff, #0000ff, #ff00ff, #ff0000)',
-                  boxShadow: !ACCENT_PRESETS.some(c => c.toLowerCase() === accent.toLowerCase()) ? '0 0 0 2px rgba(26,26,38,0.9), 0 0 0 4px #fff' : 'none',
+                  boxShadow: !teamTheme && !ACCENT_PRESETS.some(c => c.toLowerCase() === accent.toLowerCase()) ? '0 0 0 2px rgba(26,26,38,0.9), 0 0 0 4px #fff' : 'none',
                 }}>
-                  <input type="color" value={accent} onChange={e => setAccent(e.target.value)}
+                  <input type="color" value={accent} onChange={e => pickColor(e.target.value)}
                     style={{ position: 'absolute', inset: 0, opacity: 0, cursor: 'pointer', border: 'none', padding: 0, width: '100%', height: '100%' }} />
                 </label>
               </div>
             </div>
+
+            {teamThemes.length > 0 && (
+              <div>
+                <p style={groupLabel}>{t('video_team_theme')}</p>
+                {/* Scroll horizontal (pas de wrap) : liste d'equipes potentiellement
+                    longue, doit rester utilisable sans deborder sur mobile. */}
+                <div style={{ display: 'flex', gap: 10, alignItems: 'center', overflowX: 'auto', WebkitOverflowScrolling: 'touch', paddingBottom: 2 }}>
+                  {teamThemes.map(th => (
+                    <button key={th.key} onClick={() => pickTeamTheme(th)} title={th.label} style={{
+                      width: 32, height: 32, borderRadius: '50%', background: th.color, border: 'none', cursor: 'pointer', padding: 4,
+                      flexShrink: 0, display: 'flex', alignItems: 'center', justifyContent: 'center',
+                      boxShadow: teamTheme?.key === th.key ? `0 0 0 2px rgba(26,26,38,0.9), 0 0 0 4px ${th.color}` : 'none',
+                    }}>
+                      <img src={th.logoUrl} alt="" loading="lazy" style={{ width: '100%', height: '100%', objectFit: 'contain' }} />
+                    </button>
+                  ))}
+                </div>
+              </div>
+            )}
           </div>
         )}
 

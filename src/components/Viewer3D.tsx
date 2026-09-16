@@ -2005,8 +2005,8 @@ export default function Viewer3D({ popup, accent, onClose, onNext, onPrev, getTa
             />
           )}
 
-          {showVideo && <CardVideoExport card={popup} accent={accent} onClose={() => setShowVideo(false)} />}
-          {showPhoto && <CardPhotoExport card={popup} accent={accent} onClose={() => setShowPhoto(false)} />}
+          {showVideo && <CardVideoExport card={popup} accent={accent} onClose={() => setShowVideo(false)} ownerId={userId} />}
+          {showPhoto && <CardPhotoExport card={popup} accent={accent} onClose={() => setShowPhoto(false)} ownerId={userId} />}
         </div>
       </div>
     </div>,
