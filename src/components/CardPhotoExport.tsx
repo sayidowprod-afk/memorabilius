@@ -203,31 +203,33 @@ export default function CardPhotoExport({ card, accent: accentProp, onClose, own
       octxOver.fillStyle = teamTheme.color
       octxOver.fillRect(0, 0, ow, oh)
 
-      // Angle toujours net (jamais proche de 0) : le hash brut pouvait
-      // tomber pres de 0 pour certaines equipes -- signe + magnitude minimum.
+      // Angle toujours net (jamais proche de 0) et plus marque (8-14deg).
+      // Signe inverse par rapport a la version precedente ("pas dans le bon
+      // sens").
       const rawSeed = logoTiltDeg(teamTheme.key) / 11 // -1..1
       const seed = rawSeed === 0 ? 1 : rawSeed
-      const compositionAngle = Math.sign(seed) * (3 + Math.abs(seed) * 4) // 3..7 deg
+      const compositionAngle = -Math.sign(seed) * (8 + Math.abs(seed) * 6) // 8..14 deg
+
+      // Base de dimensionnement independante du format (portrait/carre/story
+      // ont des ratios tres differents).
+      const minSide = Math.min(ow, oh)
 
       if (activeTeamLogo && activeTeamLogo.naturalWidth > 0) {
-        // Logo ENTIER et reconnaissable (pas un fragment recadre a
-        // l'extreme). Cale vers le haut du cadre (reference).
-        const logoH = oh * 0.62
+        // Logo ENTIER et reconnaissable, cale plus bas (signale trop haut).
+        const logoH = minSide * 0.72
         const logoW = logoH * (activeTeamLogo.naturalWidth / activeTeamLogo.naturalHeight)
         const offsetX = ow / 2
-        const offsetY = oh * 0.32
+        const offsetY = oh * 0.55
 
-        // Vraie lueur coloree sur les contours (shadow, pas un blur global).
+        // Flou diaphragme (glow diffus, comme la reference) + vraie lueur
+        // coloree sur les contours.
         const glowColor = isDark ? '#ffffff' : teamTheme.color
         octxOver.save()
         octxOver.shadowColor = glowColor
-        octxOver.shadowBlur = w * 0.05
-        octxOver.globalAlpha = 0.9
+        octxOver.shadowBlur = w * 0.06
+        octxOver.filter = `blur(${Math.round(w * 0.01)}px)`
+        octxOver.globalAlpha = 0.95
         octxOver.drawImage(activeTeamLogo, offsetX - logoW / 2, offsetY - logoH / 2, logoW, logoH)
-        octxOver.drawImage(activeTeamLogo, offsetX - logoW / 2, offsetY - logoH / 2, logoW, logoH)
-        octxOver.restore()
-        octxOver.save()
-        octxOver.globalAlpha = 0.97
         octxOver.drawImage(activeTeamLogo, offsetX - logoW / 2, offsetY - logoH / 2, logoW, logoH)
         octxOver.restore()
       }
