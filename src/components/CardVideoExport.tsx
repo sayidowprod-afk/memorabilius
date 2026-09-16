@@ -428,7 +428,7 @@ export default function CardVideoExport({ card, accent: accentProp, onClose, own
     // sous le panneau plutôt qu'en haut à gauche (voir plus bas et plus haut).
     const PB = H * (teamTheme ? 0.075 : 0.022) + safeBottomExtra
     const measureContentH = (guessPanelH: number) => {
-      let h = guessPanelH * 0.10 // topPad, meme formule que ty de depart plus bas
+      let h = guessPanelH * 0.14 // topPad, meme formule que ty de depart plus bas
       if (card.rc || card.auto || card.num || card.patch) {
         h += Math.round(W * 0.040) + Math.round(guessPanelH * 0.07)
       }
@@ -437,10 +437,10 @@ export default function CardVideoExport({ card, accent: accentProp, onClose, own
       if (card.v) h += Math.round(W * 0.028) * 1.3
       const meta2 = [card.y, [card.br, card.s].filter(Boolean).join(' ')].filter(Boolean).join(' · ')
       if (meta2) h += Math.round(W * 0.021) * 1.4
-      return h + guessPanelH * 0.10 // bottomPad, marge de securite symetrique
+      return h + guessPanelH * 0.14 // bottomPad, marge de securite symetrique
     }
-    const guessPanelH = Math.round(H * (0.19 + 0.08 * infoHT)) - PB
-    const INFO_H = Math.round(Math.max(H * (0.19 + 0.08 * infoHT), measureContentH(guessPanelH) + PB))
+    const guessPanelH = Math.round(H * (0.24 + 0.09 * infoHT)) - PB
+    const INFO_H = Math.round(Math.max(H * (0.24 + 0.09 * infoHT), measureContentH(guessPanelH) + PB))
     const CARD_ZONE_H = H - INFO_H
     const CARD_MAX_W  = W * 0.82
     const CARD_MAX_H  = CARD_ZONE_H * 0.88
@@ -595,7 +595,7 @@ export default function CardVideoExport({ card, accent: accentProp, onClose, own
 
       ictx.textAlign = 'center'; ictx.textBaseline = 'top'
       const tx = panelW / 2
-      let ty = panelH * 0.10
+      let ty = panelH * 0.14
 
       // ── Badges ─────────────────────────────────────────────────────────────
       // Style plus sobre : fond translucide neutre + texte/pastille colorés,

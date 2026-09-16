@@ -290,7 +290,7 @@ export default function CardPhotoExport({ card, accent: accentProp, onClose, own
     // en tienne compte, pas seulement plus bas au moment de le dessiner.
     const PB = h * (teamTheme ? 0.075 : 0.022)
     const measureContentH = (guessPanelH: number) => {
-      let ch = guessPanelH * 0.10
+      let ch = guessPanelH * 0.14
       if (card.rc || card.auto || card.num || card.patch || (card.g && card.g !== 'Raw')) {
         ch += Math.round(w * 0.040) + Math.round(guessPanelH * 0.07)
       }
@@ -299,10 +299,10 @@ export default function CardPhotoExport({ card, accent: accentProp, onClose, own
       if (card.v) ch += Math.round(w * 0.028) * 1.3
       const meta2c = [card.y, [card.br, card.s].filter(Boolean).join(' ')].filter(Boolean).join(' · ')
       if (meta2c) ch += Math.round(w * 0.021) * 1.4
-      return ch + guessPanelH * 0.10
+      return ch + guessPanelH * 0.14
     }
-    const guessPanelH = Math.round(h * (0.19 + 0.08 * infoHT)) - PB
-    const INFO_H = Math.round(Math.max(h * (0.19 + 0.08 * infoHT), measureContentH(guessPanelH) + PB))
+    const guessPanelH = Math.round(h * (0.24 + 0.09 * infoHT)) - PB
+    const INFO_H = Math.round(Math.max(h * (0.24 + 0.09 * infoHT), measureContentH(guessPanelH) + PB))
     const CARD_ZONE_H = h - INFO_H
     const CARD_MAX_W  = w * 0.82
     const CARD_MAX_H  = CARD_ZONE_H * 0.88
@@ -379,7 +379,7 @@ export default function CardPhotoExport({ card, accent: accentProp, onClose, own
 
     ctx.textAlign = 'center'; ctx.textBaseline = 'top'
     const tx = w / 2
-    let ty = panelTop + panelH * 0.10
+    let ty = panelTop + panelH * 0.14
 
     // ── Badges ── style sobre : fond translucide neutre + texte/pastille
     // colorés, pas de dégradé saturé avec lueur.
