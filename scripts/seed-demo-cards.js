@@ -124,6 +124,22 @@ async function main() {
     console.log(`Insere ${Math.min(i + BATCH, rows.length)}/${rows.length}`)
   }
 
+  // stats_total/rc/auto/patch/num ne se recalculent normalement que via le
+  // cron nocturne (/api/recalcul-stats) -- sans ca "Ma galerie" affiche 0
+  // cartes juste apres le seed, malgre les 500 lignes bien presentes.
+  const stats = {
+    total: rows.length,
+    rc: rows.filter(c => c.rc).length,
+    auto: rows.filter(c => c.auto).length,
+    patch: rows.filter(c => c.patch).length,
+    num: rows.filter(c => c.num && String(c.num).trim() !== '').length,
+  }
+  await admin.from('profiles').update({
+    stats_total: stats.total, stats_rc: stats.rc, stats_auto: stats.auto,
+    stats_patch: stats.patch, stats_num: stats.num, stats_updated_at: new Date().toISOString(),
+  }).eq('id', demoId)
+  console.log('Stats profil mises a jour:', stats)
+
   console.log('Termine.')
 }
 
