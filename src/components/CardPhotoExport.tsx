@@ -223,9 +223,11 @@ export default function CardPhotoExport({ card, accent: accentProp, onClose, own
         octxOver.restore()
       }
 
-      const vignette = octxOver.createRadialGradient(ow / 2, oh * 0.42, ow * 0.25, ow / 2, oh * 0.42, ow * 0.75)
+      // Vignette allegee -- la version precedente (0.55) etouffait le peu de
+      // fond visible dans les fines marges autour de la carte.
+      const vignette = octxOver.createRadialGradient(ow / 2, oh * 0.42, ow * 0.3, ow / 2, oh * 0.42, ow * 0.8)
       vignette.addColorStop(0, 'rgba(0,0,0,0)')
-      vignette.addColorStop(1, 'rgba(0,0,0,0.55)')
+      vignette.addColorStop(1, 'rgba(0,0,0,0.28)')
       octxOver.fillStyle = vignette; octxOver.fillRect(0, 0, ow, oh)
 
       // Rotation de l'ensemble (fond + logo).
@@ -235,10 +237,10 @@ export default function CardPhotoExport({ card, accent: accentProp, onClose, own
       ctx.drawImage(over, -ow / 2, -oh / 2)
       ctx.restore()
 
-      paintGrain(20)
+      paintGrain(14)
 
       const bgGrad = ctx.createLinearGradient(0, 0, 0, h)
-      bgGrad.addColorStop(0, 'rgba(0,0,0,0)'); bgGrad.addColorStop(1, 'rgba(0,0,0,0.4)')
+      bgGrad.addColorStop(0, 'rgba(0,0,0,0)'); bgGrad.addColorStop(1, 'rgba(0,0,0,0.22)')
       ctx.fillStyle = bgGrad; ctx.fillRect(0, 0, w, h)
     } else {
       // ── Fond ── un seul halo doux couleur accent + grain subtil, comme la vidéo

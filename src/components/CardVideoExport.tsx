@@ -327,11 +327,13 @@ export default function CardVideoExport({ card, accent: accentProp, onClose, own
           octxOver.restore()
         }
 
-        // Vignette assombrie aux bords -- plus marquee que le fond par defaut,
-        // pour matcher l'aspect "poster sombre" de la reference.
-        const vignette = octxOver.createRadialGradient(ow / 2, oh * 0.42, ow * 0.25, ow / 2, oh * 0.42, ow * 0.75)
+        // Vignette allegee -- la version precedente (0.55) etouffait le peu
+        // de fond visible dans les fines marges autour de la carte (la carte
+        // occupe l'essentiel du cadre, contrairement a la reference qui n'a
+        // pas de carte du tout). Doit rester visible/lisible la ou on la voit.
+        const vignette = octxOver.createRadialGradient(ow / 2, oh * 0.42, ow * 0.3, ow / 2, oh * 0.42, ow * 0.8)
         vignette.addColorStop(0, 'rgba(0,0,0,0)')
-        vignette.addColorStop(1, 'rgba(0,0,0,0.55)')
+        vignette.addColorStop(1, 'rgba(0,0,0,0.28)')
         octxOver.fillStyle = vignette; octxOver.fillRect(0, 0, ow, oh)
 
         // Rotation de l'ensemble (fond + logo), pas juste le logo.
@@ -341,11 +343,11 @@ export default function CardVideoExport({ card, accent: accentProp, onClose, own
         octx.drawImage(over, -ow / 2, -oh / 2)
         octx.restore()
 
-        paintGrain(20)
+        paintGrain(14)
 
         // Transition douce vers la zone infos, même intention que le fond par défaut.
         const bgGrad = octx.createLinearGradient(0, 0, 0, H)
-        bgGrad.addColorStop(0, 'rgba(0,0,0,0)'); bgGrad.addColorStop(1, 'rgba(0,0,0,0.4)')
+        bgGrad.addColorStop(0, 'rgba(0,0,0,0)'); bgGrad.addColorStop(1, 'rgba(0,0,0,0.22)')
         octx.fillStyle = bgGrad; octx.fillRect(0, 0, W, H)
       } else {
         octx.fillStyle = bgBase; octx.fillRect(0, 0, W, H)
