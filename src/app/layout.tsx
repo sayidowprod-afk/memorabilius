@@ -23,6 +23,7 @@ import PushInit from '@/components/PushInit'
 import OfflineBanner from '@/components/OfflineBanner'
 import LocalRemindersInit from '@/components/LocalRemindersInit'
 import ChunkErrorReload from '@/components/ChunkErrorReload'
+import DemoAttractMode from '@/components/DemoAttractMode'
 import HangWatchdog from '@/components/HangWatchdog'
 
 export const viewport: Viewport = {
@@ -124,6 +125,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             <OnboardingTooltip />
             <WebOnly><InstallBanner /></WebOnly>
             <MobileBottomNav />
+            <DemoAttractMode />
           </LangProvider>
         </ThemeProvider>
         </AuthProvider>
