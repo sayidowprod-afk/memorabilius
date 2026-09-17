@@ -1,5 +1,6 @@
 'use client'
 import { useEffect, useRef, useState } from 'react'
+import Link from 'next/link'
 import { supabase } from '@/lib/supabase'
 import { loadUprightImage } from '@/lib/uprightImage'
 
@@ -8,7 +9,11 @@ interface QuizCard {
   crop_x: number; crop_y: number; crop_w: number; crop_h: number; rotation_deg: number
   rc: boolean; patch: boolean; num: string | null; annee: string | null
   marque: string | null; collection: string | null; owner_name: string | null
+  tier: string | null
 }
+
+const TIERS = ['S', 'A', 'B', 'C', 'D'] as const
+const TIER_COLORS: Record<string, string> = { S: '#e74c3c', A: '#e67e22', B: '#f1c40f', C: '#2ecc71', D: '#3498db' }
 
 const shuffle = <T,>(arr: T[]): T[] => {
   const a = [...arr]
@@ -33,10 +38,12 @@ export default function AutographQuizPresenterPage() {
   const [uprightFullSrc, setUprightFullSrc] = useState<string | null>(null)
   const [qcmMode, setQcmMode] = useState(false)
   const [choices, setChoices] = useState<string[]>([])
+  const [token, setToken] = useState<string | null>(null)
 
   useEffect(() => {
     supabase.auth.getSession().then(async ({ data: { session } }) => {
       if (!session) { setError('Connecte-toi avec ton compte admin.'); setLoading(false); return }
+      setToken(session.access_token)
       try {
         const res = await fetch('/api/admin/autograph-quiz', { headers: { Authorization: `Bearer ${session.access_token}` } })
         if (res.status === 403) { setError('Accès réservé aux admins.'); setLoading(false); return }
@@ -88,6 +95,23 @@ export default function AutographQuizPresenterPage() {
     setChoices(shuffle([current.player_name, ...wrongs]))
   }, [current?.id, cards])
 
+  // Classement tier-list en direct, une fois le joueur devine et la carte
+  // revelee -- maj optimiste locale + persistee en base (PATCH).
+  const setTier = async (tier: string) => {
+    if (!current || !token) return
+    const newTier = current.tier === tier ? null : tier // reclic = desassigne
+    setCards(prev => prev.map(c => c.id === current.id ? { ...c, tier: newTier } : c))
+    try {
+      await fetch('/api/admin/autograph-quiz', {
+        method: 'PATCH',
+        headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${token}` },
+        body: JSON.stringify({ id: current.id, tier: newTier }),
+      })
+    } catch (e) {
+      console.error('[autograph-quiz] tier save failed', e)
+    }
+  }
+
   const next = () => { setRevealed(false); setIdx(i => (i + 1) % Math.max(1, cards.length)) }
   const prev = () => { setRevealed(false); setIdx(i => (i - 1 + cards.length) % Math.max(1, cards.length)) }
   const reshuffle = () => { setRevealed(false); setIdx(0); setCards(prev => shuffle(prev)) }
@@ -137,6 +161,22 @@ export default function AutographQuizPresenterPage() {
                 <div style={{ color: '#fff', fontSize: 20, fontWeight: 900 }}>{current.owner_name}</div>
               </div>
             )}
+
+            <div style={{ marginTop: 10 }}>
+              <div style={{ color: 'rgba(255,255,255,0.4)', fontSize: 11, fontWeight: 800, textTransform: 'uppercase', letterSpacing: 0.5, marginBottom: 6 }}>
+                Classer dans la tier list
+              </div>
+              <div style={{ display: 'flex', gap: 6 }}>
+                {TIERS.map(t => (
+                  <button key={t} onClick={() => setTier(t)} style={{
+                    width: 42, height: 42, borderRadius: 10, fontWeight: 900, fontSize: 17, cursor: 'pointer',
+                    background: current.tier === t ? TIER_COLORS[t] : 'rgba(255,255,255,0.08)',
+                    color: current.tier === t ? '#111' : 'white',
+                    border: current.tier === t ? `2px solid ${TIER_COLORS[t]}` : '2px solid rgba(255,255,255,0.14)',
+                  }}>{t}</button>
+                ))}
+              </div>
+            </div>
           </div>
         </div>
       )}
@@ -166,7 +206,12 @@ export default function AutographQuizPresenterPage() {
         </button>
         <button onClick={next} style={btnStyle}>Suivant →</button>
       </div>
-      <button onClick={reshuffle} style={{ ...btnStyle, opacity: 0.6, fontSize: 12 }}>🔀 Remélanger</button>
+      <div style={{ display: 'flex', gap: 10 }}>
+        <button onClick={reshuffle} style={{ ...btnStyle, opacity: 0.6, fontSize: 12 }}>🔀 Remélanger</button>
+        <Link href="/admin/autograph-quiz/tierlist" style={{ ...btnStyle, opacity: 0.6, fontSize: 12, textDecoration: 'none', display: 'inline-block' }}>
+          🏆 Voir la tier list
+        </Link>
+      </div>
     </div>
   )
 }

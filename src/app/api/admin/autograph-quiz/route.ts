@@ -50,6 +50,25 @@ export async function POST(req: NextRequest) {
   return NextResponse.json({ card: data })
 }
 
+const VALID_TIERS = ['S', 'A', 'B', 'C', 'D']
+
+// Classement tier-list en direct pendant l'emission, une fois le joueur
+// devine (voir presenter/page.tsx) -- tier null = pas encore classee.
+export async function PATCH(req: NextRequest) {
+  const adminUser = await requireAdmin(admin, req.headers.get('authorization'))
+  if (!adminUser) return NextResponse.json({ error: 'Forbidden' }, { status: 403 })
+
+  const { id, tier } = await req.json()
+  if (!id) return NextResponse.json({ error: 'id manquant' }, { status: 400 })
+  if (tier !== null && !VALID_TIERS.includes(tier)) {
+    return NextResponse.json({ error: 'tier invalide' }, { status: 400 })
+  }
+
+  const { data, error } = await admin.from('autograph_quiz_cards').update({ tier }).eq('id', id).select().single()
+  if (error) return NextResponse.json({ error: error.message }, { status: 500 })
+  return NextResponse.json({ card: data })
+}
+
 export async function DELETE(req: NextRequest) {
   const adminUser = await requireAdmin(admin, req.headers.get('authorization'))
   if (!adminUser) return NextResponse.json({ error: 'Forbidden' }, { status: 403 })
