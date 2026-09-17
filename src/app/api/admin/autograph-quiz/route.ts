@@ -21,10 +21,11 @@ export async function POST(req: NextRequest) {
   if (!adminUser) return NextResponse.json({ error: 'Forbidden' }, { status: 403 })
 
   const body = await req.json()
-  const { sourceCardId, playerName, team, imageRecto, cropX, cropY, cropW, cropH, isHorizontal } = body
+  const { sourceCardId, playerName, team, imageRecto, cropX, cropY, cropW, cropH, rotationDeg } = body
   if (!playerName || !imageRecto || [cropX, cropY, cropW, cropH].some(v => typeof v !== 'number')) {
     return NextResponse.json({ error: 'champs manquants' }, { status: 400 })
   }
+  const rot = typeof rotationDeg === 'number' ? ((rotationDeg % 360) + 360) % 360 : 0
 
   const { count } = await admin.from('autograph_quiz_cards').select('*', { count: 'exact', head: true })
 
@@ -34,7 +35,8 @@ export async function POST(req: NextRequest) {
     team: team || null,
     image_recto: imageRecto,
     crop_x: cropX, crop_y: cropY, crop_w: cropW, crop_h: cropH,
-    is_horizontal: !!isHorizontal,
+    rotation_deg: rot,
+    is_horizontal: rot === 90 || rot === 270,
     approved: true,
     position: count ?? 0,
   }).select().single()

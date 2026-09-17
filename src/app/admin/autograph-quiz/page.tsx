@@ -7,7 +7,7 @@ import { loadUprightImage } from '@/lib/uprightImage'
 interface Candidate { id: string; nom: string; equipe: string | null; image: string; isHorizontal: boolean }
 interface QuizCard {
   id: string; player_name: string; team: string | null; image_recto: string
-  crop_x: number; crop_y: number; crop_w: number; crop_h: number; is_horizontal: boolean
+  crop_x: number; crop_y: number; crop_w: number; crop_h: number; rotation_deg: number
 }
 interface Box { x: number; y: number; w: number; h: number }
 
@@ -29,7 +29,7 @@ export default function AutographQuizAdminPage() {
   const [saving, setSaving] = useState(false)
   const [loading, setLoading] = useState(true)
   const [uprightSrc, setUprightSrc] = useState<string | null>(null)
-  const [orientationOverride, setOrientationOverride] = useState<boolean | null>(null)
+  const [rotationOverride, setRotationOverride] = useState<number | null>(null)
   const imgWrapRef = useRef<HTMLDivElement>(null)
   const dragRef = useRef<{ startX: number; startY: number } | null>(null)
 
@@ -59,26 +59,28 @@ export default function AutographQuizAdminPage() {
 
   const current = candidates[idx]
   // Certaines cartes ont is_horizontal mal renseigne en base (erreur de saisie
-  // sur CETTE carte precise -- pas un bug de rotation) : override local pour
-  // corriger a la main sans toucher aux donnees source, reinitialise a chaque
-  // nouveau candidat.
-  const effectiveHorizontal = orientationOverride ?? current?.isHorizontal ?? false
+  // sur CETTE carte precise, ou orientation qui a besoin de 180/270 plutot que
+  // juste 0/90) : override local en degres pour corriger a la main sans
+  // toucher aux donnees source, reinitialise a chaque nouveau candidat. Bouton
+  // "Pivoter" cycle +90 a chaque clic (0 -> 90 -> 180 -> 270 -> 0...).
+  const baseRotation = current?.isHorizontal ? 90 : 0
+  const effectiveRotation = rotationOverride ?? baseRotation
 
   useEffect(() => {
     setBox(DEFAULT_BOX)
     setUprightSrc(null)
-    setOrientationOverride(null)
+    setRotationOverride(null)
   }, [current?.id])
 
   useEffect(() => {
     setUprightSrc(null)
     if (!current) return
     let cancelled = false
-    loadUprightImage(current.image, effectiveHorizontal)
+    loadUprightImage(current.image, effectiveRotation)
       .then(canvas => { if (!cancelled) setUprightSrc(canvas.toDataURL('image/jpeg', 0.92)) })
       .catch(e => { console.error('[autograph-quiz] upright load failed', e); if (!cancelled) setUprightSrc(current.image) })
     return () => { cancelled = true }
-  }, [current?.id, effectiveHorizontal])
+  }, [current?.id, effectiveRotation])
 
   const detectSignature = async () => {
     if (!current || !token) return
@@ -87,7 +89,7 @@ export default function AutographQuizAdminPage() {
       const res = await fetch('/api/admin/detect-autograph', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${token}` },
-        body: JSON.stringify({ imageUrl: current.image, rotate: effectiveHorizontal }),
+        body: JSON.stringify({ imageUrl: current.image, rotationDeg: effectiveRotation }),
       })
       const json = await res.json()
       if (res.ok && json.confidence > 0.15) {
@@ -129,7 +131,7 @@ export default function AutographQuizAdminPage() {
         body: JSON.stringify({
           sourceCardId: current.id, playerName: current.nom, team: current.equipe,
           imageRecto: current.image, cropX: box.x, cropY: box.y, cropW: box.w, cropH: box.h,
-          isHorizontal: effectiveHorizontal,
+          rotationDeg: effectiveRotation,
         }),
       })
       const json = await res.json()
@@ -174,7 +176,7 @@ export default function AutographQuizAdminPage() {
       let done = 0
       for (const c of approved) {
         try {
-          const canvas = await loadUprightImage(c.image_recto, c.is_horizontal)
+          const canvas = await loadUprightImage(c.image_recto, c.rotation_deg)
           const blob: Blob | null = await new Promise(res => canvas.toBlob(res, 'image/jpeg', 0.92))
           if (blob) zip.file(`${toSlug(c.player_name)}.jpg`, blob)
         } catch (e) {
@@ -226,8 +228,8 @@ export default function AutographQuizAdminPage() {
               <p style={{ fontWeight: 800, fontSize: 16, margin: '0 0 4px' }}>{current.nom}</p>
               <p style={{ color: '#888', fontSize: 13, margin: '0 0 14px' }}>{current.equipe}</p>
             </div>
-            <button onClick={() => setOrientationOverride(v => !(v ?? current.isHorizontal))} className="btn-main" style={{ fontSize: 12, padding: '6px 12px' }}>
-              🔄 Pivoter
+            <button onClick={() => setRotationOverride((effectiveRotation + 90) % 360)} className="btn-main" style={{ fontSize: 12, padding: '6px 12px' }}>
+              🔄 Pivoter ({effectiveRotation}°)
             </button>
           </div>
 
@@ -277,11 +279,8 @@ export default function AutographQuizAdminPage() {
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(90px, 1fr))', gap: 10, marginTop: 10 }}>
             {approved.map(c => (
               <div key={c.id} style={{ position: 'relative' }}>
-                <div style={{ aspectRatio: '2.5/3.5', overflow: 'hidden', position: 'relative', borderRadius: 8 }}>
-                  <img src={c.image_recto} alt={c.player_name} style={c.is_horizontal
-                    ? { position: 'absolute', width: '140%', height: '71.43%', left: '-20%', top: '14.286%', transform: 'rotate(90deg)', objectFit: 'cover' }
-                    : { position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover' }
-                  } />
+                <div style={{ aspectRatio: '2.5/3.5', overflow: 'hidden', position: 'relative', borderRadius: 8, background: '#eee' }}>
+                  <UprightThumb src={c.image_recto} rotationDeg={c.rotation_deg} alt={c.player_name} />
                   <button onClick={() => removeApproved(c.id)} style={{
                     position: 'absolute', top: 4, right: 4, width: 20, height: 20, borderRadius: '50%',
                     background: 'rgba(0,0,0,0.6)', color: 'white', border: 'none', fontSize: 12, cursor: 'pointer', zIndex: 1,
@@ -295,4 +294,17 @@ export default function AutographQuizAdminPage() {
       )}
     </div>
   )
+}
+
+function UprightThumb({ src, rotationDeg, alt }: { src: string; rotationDeg: number; alt: string }) {
+  const [dataUrl, setDataUrl] = useState<string | null>(null)
+  useEffect(() => {
+    let cancelled = false
+    loadUprightImage(src, rotationDeg)
+      .then(canvas => { if (!cancelled) setDataUrl(canvas.toDataURL('image/jpeg', 0.85)) })
+      .catch(() => { if (!cancelled) setDataUrl(src) })
+    return () => { cancelled = true }
+  }, [src, rotationDeg])
+  if (!dataUrl) return null
+  return <img src={dataUrl} alt={alt} style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover' }} />
 }

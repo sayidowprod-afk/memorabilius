@@ -25,13 +25,14 @@ Encode as fractions of the full image: x/y = top-left corner, w/h = width/height
 One short sentence: where exactly is the ink (e.g. "diagonal blue ink signature across the lower-left jersey patch"). Then JSON (no markdown):
 {"x":0.15,"y":0.62,"w":0.55,"h":0.18,"confidence":0.9}`
 
-async function compressImage(buf: Buffer, rotate: boolean): Promise<string> {
+async function compressImage(buf: Buffer, rotationDeg: number): Promise<string> {
+  // Doit correspondre exactement a la rotation choisie cote admin (0/90/180/270,
+  // voir loadUprightImage/rotationDeg) : sans ca, Gemini voit une image dans une
+  // orientation differente et ses coordonnees de boite ne correspondent plus au
+  // cadrage affiche/enregistre cote admin.
+  const deg = ((rotationDeg % 360) + 360) % 360
   let pipeline = sharp(buf)
-  // Cartes "horizontales" stockees en orientation brute (portrait, tournee) --
-  // meme convention que l'affichage (GalerieClient.tsx, rotate(90deg)) : sans
-  // ca, Gemini voit une image de travers et ses coordonnees de boite ne
-  // correspondent plus au cadrage upright affiche/enregistre cote admin.
-  if (rotate) pipeline = pipeline.rotate(90)
+  if (deg !== 0) pipeline = pipeline.rotate(deg)
   const out = await pipeline.resize(1100, 1100, { fit: 'inside', withoutEnlargement: true }).jpeg({ quality: 90 }).toBuffer()
   return out.toString('base64')
 }
@@ -59,13 +60,13 @@ export async function POST(req: NextRequest) {
   if (!apiKey) return NextResponse.json({ error: 'GEMINI_API_KEY manquante' }, { status: 500 })
 
   try {
-    const { imageUrl, rotate } = await req.json()
+    const { imageUrl, rotationDeg } = await req.json()
     if (!imageUrl) return NextResponse.json({ error: 'imageUrl manquante' }, { status: 400 })
 
     const imgRes = await fetch(imageUrl, { signal: AbortSignal.timeout(15000) })
     if (!imgRes.ok) return NextResponse.json({ error: 'image inaccessible' }, { status: 400 })
     const buf = Buffer.from(await imgRes.arrayBuffer())
-    const imageBase64 = await compressImage(buf, !!rotate)
+    const imageBase64 = await compressImage(buf, typeof rotationDeg === 'number' ? rotationDeg : 0)
 
     const res = await fetch(`${GEMINI_URL}?key=${apiKey}`, {
       method: 'POST',

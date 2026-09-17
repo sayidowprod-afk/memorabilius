@@ -5,7 +5,7 @@ import { loadUprightImage } from '@/lib/uprightImage'
 
 interface QuizCard {
   id: string; player_name: string; team: string | null; image_recto: string
-  crop_x: number; crop_y: number; crop_w: number; crop_h: number; is_horizontal: boolean
+  crop_x: number; crop_y: number; crop_w: number; crop_h: number; rotation_deg: number
 }
 
 const shuffle = <T,>(arr: T[]): T[] => {
@@ -59,7 +59,7 @@ export default function AutographQuizPresenterPage() {
     // Passe d'abord par une image "upright" (voir uprightImage.ts) -- les cartes
     // horizontales sont stockees en orientation brute (portrait, tournee), sinon
     // la signature (et la carte revelee) s'affichaient de travers.
-    loadUprightImage(current.image_recto, current.is_horizontal).then(upright => {
+    loadUprightImage(current.image_recto, current.rotation_deg).then(upright => {
       if (cancelled) return
       setUprightFullSrc(upright.toDataURL('image/jpeg', 0.92))
       const sx = current.crop_x * upright.width
