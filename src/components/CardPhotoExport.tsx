@@ -521,6 +521,7 @@ export default function CardPhotoExport({ card, accent: accentProp, onClose, own
         background: 'rgba(26,26,38,0.82)', backdropFilter: 'blur(28px) saturate(180%)', WebkitBackdropFilter: 'blur(28px) saturate(180%)',
         borderRadius: 28, padding: '26px 22px', maxWidth: 400, width: '100%', textAlign: 'center',
         border: '1px solid rgba(255,255,255,0.1)', boxShadow: '0 24px 64px rgba(0,0,0,0.5)',
+        maxHeight: '100%', overflowY: 'auto',
       }}>
 
         <h2 style={{ color: '#fff', fontWeight: 700, fontSize: 17, margin: '0 0 3px', letterSpacing: -0.2 }}>
