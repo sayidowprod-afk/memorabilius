@@ -21,7 +21,10 @@ export async function POST(req: NextRequest) {
   if (!adminUser) return NextResponse.json({ error: 'Forbidden' }, { status: 403 })
 
   const body = await req.json()
-  const { sourceCardId, playerName, team, imageRecto, cropX, cropY, cropW, cropH, rotationDeg } = body
+  const {
+    sourceCardId, playerName, team, imageRecto, cropX, cropY, cropW, cropH, rotationDeg,
+    rc, patch, num, annee, marque, collection, ownerName,
+  } = body
   if (!playerName || !imageRecto || [cropX, cropY, cropW, cropH].some(v => typeof v !== 'number')) {
     return NextResponse.json({ error: 'champs manquants' }, { status: 400 })
   }
@@ -37,6 +40,8 @@ export async function POST(req: NextRequest) {
     crop_x: cropX, crop_y: cropY, crop_w: cropW, crop_h: cropH,
     rotation_deg: rot,
     is_horizontal: rot === 90 || rot === 270,
+    rc: !!rc, patch: !!patch, num: num || null, annee: annee || null, marque: marque || null,
+    collection: collection || null, owner_name: ownerName || null,
     approved: true,
     position: count ?? 0,
   }).select().single()

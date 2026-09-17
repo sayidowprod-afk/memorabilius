@@ -4,8 +4,12 @@ import Link from 'next/link'
 import { supabase } from '@/lib/supabase'
 import { loadUprightImage } from '@/lib/uprightImage'
 
-interface Candidate { id: string; nom: string; equipe: string | null; image: string; isHorizontal: boolean }
-interface Alternate { id: string; equipe: string | null; image: string; isHorizontal: boolean }
+interface CardDetails {
+  rc: boolean; patch: boolean; num: string | null; annee: string | null
+  marque: string | null; collection: string | null; ownerName: string | null
+}
+interface Candidate extends CardDetails { id: string; nom: string; equipe: string | null; image: string; isHorizontal: boolean }
+interface Alternate extends CardDetails { id: string; equipe: string | null; image: string; isHorizontal: boolean }
 interface QuizCard {
   id: string; player_name: string; team: string | null; image_recto: string
   crop_x: number; crop_y: number; crop_w: number; crop_h: number; rotation_deg: number
@@ -67,7 +71,7 @@ export default function AutographQuizAdminPage() {
   // cadree, ou a un is_horizontal errone en base).
   const active: Alternate | null =
     altIdx >= 0 && altList ? altList[altIdx]
-    : current ? { id: current.id, equipe: current.equipe, image: current.image, isHorizontal: current.isHorizontal }
+    : current ? { ...current }
     : null
   // Override local en degres pour corriger l'orientation a la main sans
   // toucher aux donnees source, reinitialise a chaque nouvelle image. Bouton
@@ -113,7 +117,7 @@ export default function AutographQuizAdminPage() {
         list = (json.alternates || []) as Alternate[]
         // La carte initiale (current) fait toujours partie du cycle, en premier.
         if (!list.some(a => a.id === current.id)) {
-          list = [{ id: current.id, equipe: current.equipe, image: current.image, isHorizontal: current.isHorizontal }, ...list]
+          list = [{ ...current }, ...list]
         }
         setAltList(list)
       }
@@ -156,6 +160,8 @@ export default function AutographQuizAdminPage() {
           sourceCardId: active.id, playerName: current.nom, team: active.equipe,
           imageRecto: active.image, cropX: box.x, cropY: box.y, cropW: box.w, cropH: box.h,
           rotationDeg: effectiveRotation,
+          rc: active.rc, patch: active.patch, num: active.num, annee: active.annee,
+          marque: active.marque, collection: active.collection, ownerName: active.ownerName,
         }),
       })
       const json = await res.json()

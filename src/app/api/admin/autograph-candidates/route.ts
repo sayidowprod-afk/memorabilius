@@ -20,7 +20,7 @@ export async function GET(req: NextRequest) {
 
   const { data, error } = await admin
     .from('cartes_manuelles')
-    .select('id, nom, equipe, image_recto, is_horizontal')
+    .select('id, nom, equipe, image_recto, is_horizontal, user_id, rc, patch, num, annee, marque, collection')
     .eq('auto', true)
     .not('nom', 'is', null)
     .not('image_recto', 'is', null)
@@ -32,14 +32,27 @@ export async function GET(req: NextRequest) {
   // image_recto uniquement, jamais image_recto_hd -- ce dernier peut provenir
   // d'un bucket/CDN different sans en-tetes CORS, ce qui faisait echouer
   // silencieusement le chargement canvas (rotation/crop) cote outil admin.
-  const byPlayer = new Map<string, { id: string; nom: string; equipe: string | null; image: string; isHorizontal: boolean }>()
+  const byPlayer = new Map<string, typeof data[number]>()
   for (const c of data || []) {
     if (!c.nom || !isBasketballTeam(c.equipe)) continue
     const key = c.nom.trim().toLowerCase()
     if (byPlayer.has(key)) continue
-    byPlayer.set(key, { id: c.id, nom: c.nom.trim(), equipe: c.equipe, image: c.image_recto, isHorizontal: !!c.is_horizontal })
+    byPlayer.set(key, c)
   }
 
-  const candidates = [...byPlayer.values()].sort((a, b) => a.nom.localeCompare(b.nom))
+  const picked = [...byPlayer.values()]
+  const ownerIds = [...new Set(picked.map(c => c.user_id).filter(Boolean))]
+  const { data: profiles } = ownerIds.length
+    ? await admin.from('profiles').select('id, display_name').in('id', ownerIds)
+    : { data: [] as { id: string; display_name: string | null }[] }
+  const ownerNames = new Map((profiles || []).map(p => [p.id, p.display_name]))
+
+  const candidates = picked
+    .map(c => ({
+      id: c.id, nom: c.nom!.trim(), equipe: c.equipe, image: c.image_recto, isHorizontal: !!c.is_horizontal,
+      rc: !!c.rc, patch: !!c.patch, num: c.num, annee: c.annee, marque: c.marque, collection: c.collection,
+      ownerName: ownerNames.get(c.user_id) || null,
+    }))
+    .sort((a, b) => a.nom.localeCompare(b.nom))
   return NextResponse.json({ candidates, total: candidates.length })
 }

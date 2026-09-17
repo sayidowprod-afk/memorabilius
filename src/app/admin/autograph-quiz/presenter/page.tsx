@@ -6,6 +6,8 @@ import { loadUprightImage } from '@/lib/uprightImage'
 interface QuizCard {
   id: string; player_name: string; team: string | null; image_recto: string
   crop_x: number; crop_y: number; crop_w: number; crop_h: number; rotation_deg: number
+  rc: boolean; patch: boolean; num: string | null; annee: string | null
+  marque: string | null; collection: string | null; owner_name: string | null
 }
 
 const shuffle = <T,>(arr: T[]): T[] => {
@@ -96,6 +98,7 @@ export default function AutographQuizPresenterPage() {
 
   return (
     <div style={{ position: 'fixed', inset: 0, zIndex: 999999, background: '#0a0e1a', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', padding: 24, gap: 20 }}>
+      <img src="/memorabilius-logo.png" alt="Memorabilius" style={{ position: 'absolute', top: 16, left: '50%', transform: 'translateX(-50%)', height: 26, width: 'auto' }} />
       <p style={{ color: 'rgba(255,255,255,0.4)', fontSize: 13, fontWeight: 700, position: 'absolute', top: 16, left: 20 }}>
         {idx + 1} / {cards.length}
       </p>
@@ -106,11 +109,34 @@ export default function AutographQuizPresenterPage() {
       {!revealed ? (
         <canvas ref={canvasRef} style={{ maxWidth: '92vw', maxHeight: '58vh', width: 'auto', height: 'auto', borderRadius: 16, boxShadow: '0 20px 60px rgba(0,0,0,0.6)' }} />
       ) : (
-        <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 14 }}>
-          <img src={uprightFullSrc || current.image_recto} alt={current.player_name} style={{ maxWidth: '70vw', maxHeight: '48vh', width: 'auto', borderRadius: 16, boxShadow: '0 20px 60px rgba(0,0,0,0.6)' }} />
-          <div style={{ textAlign: 'center' }}>
-            <p style={{ color: 'white', fontSize: 36, fontWeight: 900, margin: 0 }}>{current.player_name}</p>
-            {current.team && <p style={{ color: 'rgba(255,255,255,0.5)', fontSize: 16, fontWeight: 700, margin: '4px 0 0' }}>{current.team}</p>}
+        <div style={{ display: 'flex', alignItems: 'center', gap: 32, flexWrap: 'wrap', justifyContent: 'center', maxWidth: '92vw' }}>
+          <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 14 }}>
+            <img src={uprightFullSrc || current.image_recto} alt={current.player_name} style={{ maxWidth: '52vw', maxHeight: '48vh', width: 'auto', borderRadius: 16, boxShadow: '0 20px 60px rgba(0,0,0,0.6)' }} />
+            <div style={{ textAlign: 'center' }}>
+              <p style={{ color: 'white', fontSize: 36, fontWeight: 900, margin: 0 }}>{current.player_name}</p>
+              {current.team && <p style={{ color: 'rgba(255,255,255,0.5)', fontSize: 16, fontWeight: 700, margin: '4px 0 0' }}>{current.team}</p>}
+            </div>
+          </div>
+
+          <div style={{ display: 'flex', flexDirection: 'column', gap: 10, minWidth: 220 }}>
+            {(current.rc || current.patch || current.num) && (
+              <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap' }}>
+                {current.rc && <span style={badgeStyle('#e67e22')}>★ RC</span>}
+                {current.patch && <span style={badgeStyle('#1565c0')}>PATCH</span>}
+                {current.num && <span style={badgeStyle('#7b1fa2')}>{current.num}</span>}
+              </div>
+            )}
+            {(current.annee || current.marque || current.collection) && (
+              <div style={{ color: 'rgba(255,255,255,0.75)', fontSize: 15, fontWeight: 700, lineHeight: 1.5 }}>
+                {[current.annee, current.marque, current.collection].filter(Boolean).join(' · ')}
+              </div>
+            )}
+            {current.owner_name && (
+              <div style={{ marginTop: 6 }}>
+                <div style={{ color: 'rgba(255,255,255,0.4)', fontSize: 11, fontWeight: 800, textTransform: 'uppercase', letterSpacing: 0.5 }}>Carte de</div>
+                <div style={{ color: '#fff', fontSize: 20, fontWeight: 900 }}>{current.owner_name}</div>
+              </div>
+            )}
           </div>
         </div>
       )}
@@ -149,3 +175,8 @@ const btnStyle: React.CSSProperties = {
   padding: '12px 22px', borderRadius: 12, border: 'none', background: 'rgba(255,255,255,0.1)',
   color: 'white', fontWeight: 800, fontSize: 15, cursor: 'pointer',
 }
+
+const badgeStyle = (bg: string): React.CSSProperties => ({
+  padding: '4px 10px', borderRadius: 99, background: bg, color: 'white',
+  fontSize: 12, fontWeight: 900, letterSpacing: 0.3,
+})
