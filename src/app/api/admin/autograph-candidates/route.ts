@@ -20,7 +20,7 @@ export async function GET(req: NextRequest) {
 
   const { data, error } = await admin
     .from('cartes_manuelles')
-    .select('id, nom, equipe, image_recto, image_recto_hd, is_horizontal')
+    .select('id, nom, equipe, image_recto, is_horizontal')
     .eq('auto', true)
     .not('nom', 'is', null)
     .not('image_recto', 'is', null)
@@ -29,12 +29,15 @@ export async function GET(req: NextRequest) {
 
   if (error) return NextResponse.json({ error: error.message }, { status: 500 })
 
+  // image_recto uniquement, jamais image_recto_hd -- ce dernier peut provenir
+  // d'un bucket/CDN different sans en-tetes CORS, ce qui faisait echouer
+  // silencieusement le chargement canvas (rotation/crop) cote outil admin.
   const byPlayer = new Map<string, { id: string; nom: string; equipe: string | null; image: string; isHorizontal: boolean }>()
   for (const c of data || []) {
     if (!c.nom || !isBasketballTeam(c.equipe)) continue
     const key = c.nom.trim().toLowerCase()
     if (byPlayer.has(key)) continue
-    byPlayer.set(key, { id: c.id, nom: c.nom.trim(), equipe: c.equipe, image: c.image_recto_hd || c.image_recto, isHorizontal: !!c.is_horizontal })
+    byPlayer.set(key, { id: c.id, nom: c.nom.trim(), equipe: c.equipe, image: c.image_recto, isHorizontal: !!c.is_horizontal })
   }
 
   const candidates = [...byPlayer.values()].sort((a, b) => a.nom.localeCompare(b.nom))

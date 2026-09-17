@@ -84,7 +84,7 @@ export default function AutographQuizPresenterPage() {
   if (cards.length === 0) return <div style={{ padding: 40, textAlign: 'center' }}>Aucune carte validée. Va d'abord sur /admin/autograph-quiz.</div>
 
   return (
-    <div style={{ position: 'fixed', inset: 0, background: '#0a0e1a', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', padding: 24, gap: 20 }}>
+    <div style={{ position: 'fixed', inset: 0, zIndex: 999999, background: '#0a0e1a', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', padding: 24, gap: 20 }}>
       <p style={{ color: 'rgba(255,255,255,0.4)', fontSize: 13, fontWeight: 700, position: 'absolute', top: 16, left: 20 }}>
         {idx + 1} / {cards.length}
       </p>

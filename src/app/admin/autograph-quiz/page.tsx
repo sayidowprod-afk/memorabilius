@@ -65,7 +65,7 @@ export default function AutographQuizAdminPage() {
     let cancelled = false
     loadUprightImage(current.image, current.isHorizontal)
       .then(canvas => { if (!cancelled) setUprightSrc(canvas.toDataURL('image/jpeg', 0.92)) })
-      .catch(() => { if (!cancelled) setUprightSrc(current.image) })
+      .catch(e => { console.error('[autograph-quiz] upright load failed', e); if (!cancelled) setUprightSrc(current.image) })
     return () => { cancelled = true }
   }, [idx])
 
@@ -145,6 +145,49 @@ export default function AutographQuizAdminPage() {
     setApproved(prev => prev.filter(c => c.id !== id))
   }
 
+  const [zipping, setZipping] = useState(false)
+  const [zipProgress, setZipProgress] = useState(0)
+
+  // Dossier d'images (1 par joueur, redressees si carte horizontale) pour la
+  // tier-list -- reutilise les memes cartes que le quiz, pas une nouvelle
+  // selection.
+  const downloadZip = async () => {
+    if (approved.length === 0) return
+    setZipping(true)
+    setZipProgress(0)
+    try {
+      const { default: JSZip } = await import('jszip')
+      const zip = new JSZip()
+      const toSlug = (s: string) => (s || 'joueur').replace(/[^a-z0-9]/gi, '_').slice(0, 60)
+
+      let done = 0
+      for (const c of approved) {
+        try {
+          const canvas = await loadUprightImage(c.image_recto, c.is_horizontal)
+          const blob: Blob | null = await new Promise(res => canvas.toBlob(res, 'image/jpeg', 0.92))
+          if (blob) zip.file(`${toSlug(c.player_name)}.jpg`, blob)
+        } catch (e) {
+          console.error('[autograph-quiz] zip: skipped', c.player_name, e)
+        }
+        done++
+        setZipProgress(Math.round((done / approved.length) * 100))
+      }
+
+      const blob = await zip.generateAsync({ type: 'blob', compression: 'DEFLATE', compressionOptions: { level: 3 } })
+      const url = URL.createObjectURL(blob)
+      const a = document.createElement('a')
+      a.href = url
+      a.download = 'autographes_tierlist.zip'
+      document.body.appendChild(a)
+      a.click()
+      a.remove()
+      setTimeout(() => URL.revokeObjectURL(url), 4000)
+    } finally {
+      setZipping(false)
+      setZipProgress(0)
+    }
+  }
+
   if (loading) return <div style={{ padding: 40, textAlign: 'center' }}>Chargement...</div>
   if (authError) return <div style={{ padding: 40, textAlign: 'center', color: '#e74c3c' }}>{authError}</div>
 
@@ -207,7 +250,12 @@ export default function AutographQuizAdminPage() {
 
       {approved.length > 0 && (
         <div style={{ marginTop: 32 }}>
-          <h2 style={{ fontSize: 14, fontWeight: 800, color: '#888', textTransform: 'uppercase' }}>Validées</h2>
+          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+            <h2 style={{ fontSize: 14, fontWeight: 800, color: '#888', textTransform: 'uppercase', margin: 0 }}>Validées</h2>
+            <button onClick={downloadZip} disabled={zipping} className="btn-main" style={{ fontSize: 12, padding: '6px 14px' }}>
+              {zipping ? `Préparation... ${zipProgress}%` : `📦 Dossier ZIP (${approved.length})`}
+            </button>
+          </div>
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(90px, 1fr))', gap: 10, marginTop: 10 }}>
             {approved.map(c => (
               <div key={c.id} style={{ position: 'relative' }}>
