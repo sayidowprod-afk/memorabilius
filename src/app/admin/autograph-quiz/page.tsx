@@ -67,7 +67,7 @@ export default function AutographQuizAdminPage() {
       .then(canvas => { if (!cancelled) setUprightSrc(canvas.toDataURL('image/jpeg', 0.92)) })
       .catch(e => { console.error('[autograph-quiz] upright load failed', e); if (!cancelled) setUprightSrc(current.image) })
     return () => { cancelled = true }
-  }, [idx])
+  }, [current?.id])
 
   const detectSignature = async () => {
     if (!current || !token) return
