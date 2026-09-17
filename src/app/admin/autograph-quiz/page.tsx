@@ -5,6 +5,7 @@ import { supabase } from '@/lib/supabase'
 import { loadUprightImage } from '@/lib/uprightImage'
 
 interface Candidate { id: string; nom: string; equipe: string | null; image: string; isHorizontal: boolean }
+interface Alternate { id: string; equipe: string | null; image: string; isHorizontal: boolean }
 interface QuizCard {
   id: string; player_name: string; team: string | null; image_recto: string
   crop_x: number; crop_y: number; crop_w: number; crop_h: number; rotation_deg: number
@@ -25,11 +26,13 @@ export default function AutographQuizAdminPage() {
   const [approved, setApproved] = useState<QuizCard[]>([])
   const [idx, setIdx] = useState(0)
   const [box, setBox] = useState<Box>(DEFAULT_BOX)
-  const [detecting, setDetecting] = useState(false)
   const [saving, setSaving] = useState(false)
   const [loading, setLoading] = useState(true)
   const [uprightSrc, setUprightSrc] = useState<string | null>(null)
   const [rotationOverride, setRotationOverride] = useState<number | null>(null)
+  const [altList, setAltList] = useState<Alternate[] | null>(null)
+  const [altIdx, setAltIdx] = useState(-1)
+  const [loadingAlt, setLoadingAlt] = useState(false)
   const imgWrapRef = useRef<HTMLDivElement>(null)
   const dragRef = useRef<{ startX: number; startY: number } | null>(null)
 
@@ -58,49 +61,70 @@ export default function AutographQuizAdminPage() {
   }, [])
 
   const current = candidates[idx]
-  // Certaines cartes ont is_horizontal mal renseigne en base (erreur de saisie
-  // sur CETTE carte precise, ou orientation qui a besoin de 180/270 plutot que
-  // juste 0/90) : override local en degres pour corriger a la main sans
-  // toucher aux donnees source, reinitialise a chaque nouveau candidat. Bouton
+  // Carte active affichee : celle proposee par /autograph-candidates, ou une
+  // alternative choisie via "Autre carte" (doublon du meme joueur chez un
+  // autre utilisateur -- utile quand la photo par defaut est floue, mal
+  // cadree, ou a un is_horizontal errone en base).
+  const active: Alternate | null =
+    altIdx >= 0 && altList ? altList[altIdx]
+    : current ? { id: current.id, equipe: current.equipe, image: current.image, isHorizontal: current.isHorizontal }
+    : null
+  // Override local en degres pour corriger l'orientation a la main sans
+  // toucher aux donnees source, reinitialise a chaque nouvelle image. Bouton
   // "Pivoter" cycle +90 a chaque clic (0 -> 90 -> 180 -> 270 -> 0...).
-  const baseRotation = current?.isHorizontal ? 90 : 0
+  const baseRotation = active?.isHorizontal ? 90 : 0
   const effectiveRotation = rotationOverride ?? baseRotation
 
   useEffect(() => {
     setBox(DEFAULT_BOX)
     setUprightSrc(null)
     setRotationOverride(null)
+    setAltList(null)
+    setAltIdx(-1)
   }, [current?.id])
 
   useEffect(() => {
-    setUprightSrc(null)
-    if (!current) return
-    let cancelled = false
-    loadUprightImage(current.image, effectiveRotation)
-      .then(canvas => { if (!cancelled) setUprightSrc(canvas.toDataURL('image/jpeg', 0.92)) })
-      .catch(e => { console.error('[autograph-quiz] upright load failed', e); if (!cancelled) setUprightSrc(current.image) })
-    return () => { cancelled = true }
-  }, [current?.id, effectiveRotation])
+    setBox(DEFAULT_BOX)
+    setRotationOverride(null)
+  }, [altIdx])
 
-  const detectSignature = async () => {
+  useEffect(() => {
+    setUprightSrc(null)
+    if (!active) return
+    let cancelled = false
+    loadUprightImage(active.image, effectiveRotation)
+      .then(canvas => { if (!cancelled) setUprightSrc(canvas.toDataURL('image/jpeg', 0.92)) })
+      .catch(e => { console.error('[autograph-quiz] upright load failed', e); if (!cancelled) setUprightSrc(active.image) })
+    return () => { cancelled = true }
+  }, [active?.id, effectiveRotation])
+
+  // Pioche une autre carte AUTO du meme joueur (doublon chez un autre
+  // utilisateur) -- charge la liste une seule fois puis cycle dedans.
+  const findAnotherCard = async () => {
     if (!current || !token) return
-    setDetecting(true)
+    setLoadingAlt(true)
     try {
-      const res = await fetch('/api/admin/detect-autograph', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${token}` },
-        body: JSON.stringify({ imageUrl: current.image, rotationDeg: effectiveRotation }),
-      })
-      const json = await res.json()
-      if (res.ok && json.confidence > 0.15) {
-        setBox({ x: json.x, y: json.y, w: json.w, h: json.h })
-      } else {
-        alert('Signature non détectée avec confiance, ajuste le cadre à la main.')
+      let list = altList
+      if (!list) {
+        const res = await fetch(`/api/admin/autograph-alternates?name=${encodeURIComponent(current.nom)}`, {
+          headers: { Authorization: `Bearer ${token}` },
+        })
+        const json = await res.json()
+        list = (json.alternates || []) as Alternate[]
+        // La carte initiale (current) fait toujours partie du cycle, en premier.
+        if (!list.some(a => a.id === current.id)) {
+          list = [{ id: current.id, equipe: current.equipe, image: current.image, isHorizontal: current.isHorizontal }, ...list]
+        }
+        setAltList(list)
       }
+      if (list.length <= 1) { alert('Aucune autre carte trouvée pour ce joueur.'); return }
+      const curId = altIdx >= 0 ? list[altIdx].id : current.id
+      const curPos = list.findIndex(a => a.id === curId)
+      setAltIdx((curPos + 1) % list.length)
     } catch (e: any) {
-      alert('Erreur détection : ' + (e.message || e))
+      alert('Erreur : ' + (e.message || e))
     } finally {
-      setDetecting(false)
+      setLoadingAlt(false)
     }
   }
 
@@ -122,15 +146,15 @@ export default function AutographQuizAdminPage() {
   const onMouseUp = () => { dragRef.current = null }
 
   const validate = async () => {
-    if (!current || !token || box.w < 0.02 || box.h < 0.02) { alert('Dessine une zone de signature avant de valider.'); return }
+    if (!current || !active || !token || box.w < 0.02 || box.h < 0.02) { alert('Dessine une zone de signature avant de valider.'); return }
     setSaving(true)
     try {
       const res = await fetch('/api/admin/autograph-quiz', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${token}` },
         body: JSON.stringify({
-          sourceCardId: current.id, playerName: current.nom, team: current.equipe,
-          imageRecto: current.image, cropX: box.x, cropY: box.y, cropW: box.w, cropH: box.h,
+          sourceCardId: active.id, playerName: current.nom, team: active.equipe,
+          imageRecto: active.image, cropX: box.x, cropY: box.y, cropW: box.w, cropH: box.h,
           rotationDeg: effectiveRotation,
         }),
       })
@@ -226,7 +250,7 @@ export default function AutographQuizAdminPage() {
           <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start' }}>
             <div>
               <p style={{ fontWeight: 800, fontSize: 16, margin: '0 0 4px' }}>{current.nom}</p>
-              <p style={{ color: '#888', fontSize: 13, margin: '0 0 14px' }}>{current.equipe}</p>
+              <p style={{ color: '#888', fontSize: 13, margin: '0 0 14px' }}>{active?.equipe}</p>
             </div>
             <button onClick={() => setRotationOverride((effectiveRotation + 90) % 360)} className="btn-main" style={{ fontSize: 12, padding: '6px 12px' }}>
               🔄 Pivoter ({effectiveRotation}°)
@@ -257,8 +281,8 @@ export default function AutographQuizAdminPage() {
           </p>
 
           <div style={{ display: 'flex', gap: 8, marginTop: 18, flexWrap: 'wrap' }}>
-            <button onClick={detectSignature} disabled={detecting} className="btn-main" style={{ flex: 1, minWidth: 140 }}>
-              {detecting ? 'Détection...' : '✨ Détecter (IA)'}
+            <button onClick={findAnotherCard} disabled={loadingAlt} className="btn-main" style={{ flex: 1, minWidth: 140 }}>
+              {loadingAlt ? 'Recherche...' : '🔀 Autre carte'}
             </button>
             <button onClick={skip} className="btn-main" style={{ flex: 1, minWidth: 100 }}>Passer</button>
             <button onClick={validate} disabled={saving} className="btn-main btn-primary" style={{ flex: 1, minWidth: 140 }}>
