@@ -1,6 +1,6 @@
 'use client'
 import Link from 'next/link'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 
 interface PodiumEntry {
   userId: string
@@ -53,15 +53,31 @@ type Tab = 'day' | 'week' | 'month'
 
 export default function PodiumSection({ month, week, day }: Props) {
   const [tab, setTab] = useState<Tab>('day')
+  // Calcule les libelles cote client uniquement (apres montage), jamais pendant le
+  // rendu initial -- cette section est SSR/ISR (revalidate 5min), donc `new Date()`
+  // au rendu server pouvait differer de l'heure reelle du visiteur au moment de
+  // l'hydratation (cache ISR ou fallback du Service Worker servant un HTML plus
+  // vieux) : le texte ne correspondait plus a ce que React re-calculait cote client,
+  // provoquant une erreur d'hydratation NON rattrapee (React #418) qui plantait la
+  // page entiere -- observe en prod (console) comme un chargement bloque
+  // indefiniment. Meme contenu (vide) au 1er rendu server ET client, rempli ensuite.
+  const [labels, setLabels] = useState<{ day: string; week: string; month: string } | null>(null)
+
+  useEffect(() => {
+    const now = new Date()
+    const monthLabel = now.toLocaleDateString('fr-FR', { month: 'long', year: 'numeric' })
+    const dayLabel = now.toLocaleDateString('fr-FR', { weekday: 'long', day: 'numeric', month: 'long' })
+    const dowDiff = now.getDay() === 0 ? 6 : now.getDay() - 1
+    const monday = new Date(now.getFullYear(), now.getMonth(), now.getDate() - dowDiff)
+    const weekLabel = `lun. ${monday.toLocaleDateString('fr-FR', { day: 'numeric', month: 'short' })} — auj.`
+    setLabels({ day: dayLabel, week: weekLabel, month: monthLabel })
+  }, [])
 
   if (month.length === 0 && week.length === 0 && day.length === 0) return null
 
-  const now = new Date()
-  const monthLabel = now.toLocaleDateString('fr-FR', { month: 'long', year: 'numeric' })
-  const dayLabel = now.toLocaleDateString('fr-FR', { weekday: 'long', day: 'numeric', month: 'long' })
-  const dowDiff = now.getDay() === 0 ? 6 : now.getDay() - 1
-  const monday = new Date(now.getFullYear(), now.getMonth(), now.getDate() - dowDiff)
-  const weekLabel = `lun. ${monday.toLocaleDateString('fr-FR', { day: 'numeric', month: 'short' })} — auj.`
+  const monthLabel = labels?.month ?? ''
+  const dayLabel = labels?.day ?? ''
+  const weekLabel = labels?.week ?? ''
 
   const tabs: { key: Tab; label: string; subtitle: string; entries: PodiumEntry[] }[] = [
     { key: 'day',   label: "Aujourd'hui",    subtitle: dayLabel,   entries: day },
