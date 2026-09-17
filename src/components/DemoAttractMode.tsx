@@ -83,25 +83,32 @@ export default function DemoAttractMode() {
   if (!isDemo || !active) return null
 
   return (
-    <div onClick={dismiss} onTouchStart={dismiss} style={{
+    // justifyContent: 'space-between' plutot que 'center' -- sur un ecran large et
+    // COURT (tablette/TV en paysage), empiler logo + carrousel + pastilles + accroche
+    // au centre avec une marge fixe debordait en haut ET en bas (logo et "Touchez
+    // l'ecran" tous les deux coupes hors ecran, signale sur tablette du salon).
+    // space-between colle le logo en haut et l'accroche tactile en bas -- toujours
+    // visibles, seul le carrousel de cartes (au milieu, moins essentiel) absorbe
+    // le manque de hauteur. Tailles en vh/clamp pour la meme raison.
+    <div onClick={dismiss} onTouchStart={dismiss} className="demo-attract-root" style={{
       position: 'fixed', inset: 0, zIndex: 999999, background: '#0a0e1a',
-      display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center',
-      cursor: 'pointer', overflow: 'hidden',
+      display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'space-between',
+      cursor: 'pointer', overflow: 'hidden', padding: '3vh 0',
     }}>
-      <img src="/memorabilius-logo.png" alt="Memorabilius" style={{ width: 'min(420px, 60vw)', height: 'auto', marginBottom: 32 }} />
+      <img src="/memorabilius-logo.png" alt="Memorabilius" className="demo-attract-logo" style={{ width: 'min(420px, 60vw)', maxHeight: '14vh', height: 'auto', objectFit: 'contain', flexShrink: 0 }} />
       <div style={{
         display: 'flex', gap: 16, animation: `demoAttractScroll ${scrollSecs}s linear infinite`,
-        willChange: 'transform',
+        willChange: 'transform', flexShrink: 1, minHeight: 0,
       }}>
         {[...cards, ...cards].map((c, i) => (
-          <img key={i} src={c.url} alt="" loading="lazy" style={
+          <img key={i} src={c.url} alt="" loading="lazy" className="demo-attract-card" style={
             c.horizontal
-              ? { width: 224, height: 160, objectFit: 'cover', borderRadius: 12, boxShadow: '0 8px 30px rgba(0,0,0,0.5)', flexShrink: 0 }
-              : { width: 160, height: 224, objectFit: 'cover', borderRadius: 12, boxShadow: '0 8px 30px rgba(0,0,0,0.5)', flexShrink: 0 }
+              ? { width: 'auto', height: '26vh', aspectRatio: '224 / 160', objectFit: 'cover', borderRadius: 12, boxShadow: '0 8px 30px rgba(0,0,0,0.5)', flexShrink: 0 }
+              : { width: 'auto', height: '26vh', aspectRatio: '160 / 224', objectFit: 'cover', borderRadius: 12, boxShadow: '0 8px 30px rgba(0,0,0,0.5)', flexShrink: 0 }
           } />
         ))}
       </div>
-      <div style={{ display: 'flex', gap: 10, marginTop: 28, flexWrap: 'wrap', justifyContent: 'center', maxWidth: '90vw' }}>
+      <div className="demo-attract-pills" style={{ display: 'flex', gap: 10, flexWrap: 'wrap', justifyContent: 'center', maxWidth: '90vw', flexShrink: 0 }}>
         {FEATURE_PILLS.map(p => (
           <div key={p} style={{
             padding: '7px 16px', borderRadius: 99, background: 'rgba(255,255,255,0.08)',
@@ -111,16 +118,17 @@ export default function DemoAttractMode() {
         ))}
       </div>
       <div style={{
-        marginTop: 40, textAlign: 'center', animation: 'demoAttractPulse 1.8s ease-in-out infinite',
+        textAlign: 'center', animation: 'demoAttractPulse 1.8s ease-in-out infinite', flexShrink: 0,
       }}>
-        <div style={{ fontSize: 44, marginBottom: 12 }}>👆</div>
-        <div style={{ color: 'white', fontSize: 28, fontWeight: 900, letterSpacing: 0.5 }}>
+        <div style={{ fontSize: 44, marginBottom: 8 }}>👆</div>
+        <div style={{ color: 'white', fontSize: 28, fontWeight: 900, letterSpacing: 0.5, padding: '0 16px' }}>
           Touchez l&apos;écran pour découvrir Memorabilius
         </div>
       </div>
       <style>{`
         @keyframes demoAttractScroll { from { transform: translateX(0); } to { transform: translateX(-50%); } }
         @keyframes demoAttractPulse { 0%, 100% { opacity: 1; transform: scale(1); } 50% { opacity: 0.6; transform: scale(0.97); } }
+        @media (max-height: 500px) { .demo-attract-pills { display: none !important; } }
       `}</style>
     </div>
   )
