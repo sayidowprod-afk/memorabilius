@@ -29,7 +29,15 @@ const shuffle = <T,>(arr: T[]): T[] => {
 // seule affichée en grand (dessinée sur canvas depuis la zone de crop
 // définie dans /admin/autograph-quiz), un clic révèle la carte complète.
 export default function AutographQuizPresenterPage() {
+  // allCards : tout ce qui est valide (sert de reserve pour les mauvaises
+  // reponses du QCM et pour le compteur "deja classees"). cards : la file
+  // active affichee -- par defaut seulement les pas-encore-classees, pour
+  // pouvoir fermer et reprendre plus tard exactement la ou on en etait (le
+  // tier est deja sauvegarde en base des le clic S/A/B/C/D, donc une carte
+  // classee lors d'une session precedente n'est simplement plus reproposee).
+  const [allCards, setAllCards] = useState<QuizCard[]>([])
   const [cards, setCards] = useState<QuizCard[]>([])
+  const [reviewMode, setReviewMode] = useState(false)
   const [idx, setIdx] = useState(0)
   const [revealed, setRevealed] = useState(false)
   const [loading, setLoading] = useState(true)
@@ -38,17 +46,17 @@ export default function AutographQuizPresenterPage() {
   const [uprightFullSrc, setUprightFullSrc] = useState<string | null>(null)
   const [qcmMode, setQcmMode] = useState(false)
   const [choices, setChoices] = useState<string[]>([])
-  const [token, setToken] = useState<string | null>(null)
 
   useEffect(() => {
     supabase.auth.getSession().then(async ({ data: { session } }) => {
       if (!session) { setError('Connecte-toi avec ton compte admin.'); setLoading(false); return }
-      setToken(session.access_token)
       try {
         const res = await fetch('/api/admin/autograph-quiz', { headers: { Authorization: `Bearer ${session.access_token}` } })
         if (res.status === 403) { setError('Accès réservé aux admins.'); setLoading(false); return }
         const json = await res.json()
-        setCards(shuffle((json.cards || []).filter((c: QuizCard) => c.crop_w > 0 && c.crop_h > 0)))
+        const valid = (json.cards || []).filter((c: QuizCard) => c.crop_w > 0 && c.crop_h > 0)
+        setAllCards(valid)
+        setCards(shuffle(valid.filter((c: QuizCard) => !c.tier)))
       } catch (e: any) {
         setError(e.message || String(e))
       } finally {
@@ -90,21 +98,33 @@ export default function AutographQuizPresenterPage() {
   // validees, melanges. Recalcule a chaque nouvelle carte affichee.
   useEffect(() => {
     if (!current) return
-    const others = cards.filter(c => c.id !== current.id).map(c => c.player_name)
+    const others = allCards.filter(c => c.id !== current.id).map(c => c.player_name)
     const wrongs = shuffle(others).slice(0, 3)
     setChoices(shuffle([current.player_name, ...wrongs]))
-  }, [current?.id, cards])
+  }, [current?.id, allCards])
 
   // Classement tier-list en direct, une fois le joueur devine et la carte
   // revelee -- maj optimiste locale + persistee en base (PATCH).
+  // Token capture une seule fois au chargement expire au bout d'1h -- sur une
+  // emission en direct laissee ouverte longtemps, le classement echouait en
+  // 403 passe ce delai. Token frais (rafraichi si besoin) a chaque clic.
   const setTier = async (tier: string) => {
-    if (!current || !token) return
+    if (!current) return
+    const tok = (await supabase.auth.getSession()).data.session?.access_token
+    if (!tok) { console.error('[autograph-quiz] session expirée'); return }
     const newTier = current.tier === tier ? null : tier // reclic = desassigne
-    setCards(prev => prev.map(c => c.id === current.id ? { ...c, tier: newTier } : c))
+    setAllCards(prev => prev.map(c => c.id === current.id ? { ...c, tier: newTier } : c))
+    setCards(prev => {
+      const updated = prev.map(c => c.id === current.id ? { ...c, tier: newTier } : c)
+      // Hors mode revision : une carte classee sort tout de suite de la file --
+      // en fermant l'onglet ici (tier deja sauvegarde en base) et en revenant
+      // plus tard, elle ne sera de toute facon plus reproposee au rechargement.
+      return reviewMode ? updated : updated.filter(c => c.id !== current.id || newTier === null)
+    })
     try {
       await fetch('/api/admin/autograph-quiz', {
         method: 'PATCH',
-        headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${token}` },
+        headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${tok}` },
         body: JSON.stringify({ id: current.id, tier: newTier }),
       })
     } catch (e) {
@@ -115,20 +135,49 @@ export default function AutographQuizPresenterPage() {
   const next = () => { setRevealed(false); setIdx(i => (i + 1) % Math.max(1, cards.length)) }
   const prev = () => { setRevealed(false); setIdx(i => (i - 1 + cards.length) % Math.max(1, cards.length)) }
   const reshuffle = () => { setRevealed(false); setIdx(0); setCards(prev => shuffle(prev)) }
+  const toggleReview = () => {
+    setRevealed(false); setIdx(0)
+    const next = !reviewMode
+    setReviewMode(next)
+    setCards(shuffle(next ? allCards : allCards.filter(c => !c.tier)))
+  }
 
   if (loading) return <div style={{ padding: 40, textAlign: 'center', color: 'white', background: '#0a0e1a', minHeight: '100vh' }}>Chargement...</div>
   if (error) return <div style={{ padding: 40, textAlign: 'center', color: '#e74c3c' }}>{error}</div>
-  if (cards.length === 0) return <div style={{ padding: 40, textAlign: 'center' }}>Aucune carte validée. Va d'abord sur /admin/autograph-quiz.</div>
+  if (allCards.length === 0) return <div style={{ padding: 40, textAlign: 'center' }}>Aucune carte validée. Va d'abord sur /admin/autograph-quiz.</div>
+  if (cards.length === 0) {
+    return (
+      <div style={{ position: 'fixed', inset: 0, zIndex: 999999, background: '#0a0e1a', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', gap: 16, color: 'white' }}>
+        <p style={{ fontSize: 20, fontWeight: 800 }}>🎉 Toutes les cartes ont été classées</p>
+        <div style={{ display: 'flex', gap: 10 }}>
+          <button onClick={toggleReview} style={btnStyle}>🔁 Revoir toutes les cartes</button>
+          <Link href="/admin/autograph-quiz/tierlist" style={{ ...btnStyle, textDecoration: 'none', display: 'inline-block' }}>🏆 Voir la tier list</Link>
+        </div>
+      </div>
+    )
+  }
 
   return (
     <div style={{ position: 'fixed', inset: 0, zIndex: 999999, background: '#0a0e1a', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', padding: 24, gap: 20 }}>
       <img src="/memorabilius-logo.png" alt="Memorabilius" style={{ position: 'absolute', top: 16, left: '50%', transform: 'translateX(-50%)', height: 26, width: 'auto' }} />
-      <p style={{ color: 'rgba(255,255,255,0.4)', fontSize: 13, fontWeight: 700, position: 'absolute', top: 16, left: 20 }}>
-        {idx + 1} / {cards.length}
-      </p>
-      <button onClick={() => setQcmMode(v => !v)} style={{ ...btnStyle, position: 'absolute', top: 12, right: 20, fontSize: 12, padding: '8px 14px' }}>
-        {qcmMode ? '📝 Mode QCM' : '🗽 Mode libre'}
-      </button>
+      <div style={{ position: 'absolute', top: 16, left: 20 }}>
+        <p style={{ color: 'rgba(255,255,255,0.4)', fontSize: 13, fontWeight: 700, margin: 0 }}>
+          {idx + 1} / {cards.length}{reviewMode ? ' (revision)' : ''}
+        </p>
+        {!reviewMode && allCards.length > cards.length && (
+          <p style={{ color: 'rgba(255,255,255,0.3)', fontSize: 11, fontWeight: 600, margin: '2px 0 0' }}>
+            {allCards.length - cards.length} déjà classée(s)
+          </p>
+        )}
+      </div>
+      <div style={{ position: 'absolute', top: 12, right: 20, display: 'flex', gap: 8 }}>
+        <button onClick={toggleReview} style={{ ...btnStyle, fontSize: 12, padding: '8px 14px' }}>
+          {reviewMode ? '↩️ Reprendre' : '🔁 Revoir tout'}
+        </button>
+        <button onClick={() => setQcmMode(v => !v)} style={{ ...btnStyle, fontSize: 12, padding: '8px 14px' }}>
+          {qcmMode ? '📝 Mode QCM' : '🗽 Mode libre'}
+        </button>
+      </div>
 
       {!revealed ? (
         <canvas ref={canvasRef} style={{ maxWidth: '92vw', maxHeight: '58vh', width: 'auto', height: 'auto', borderRadius: 16, boxShadow: '0 20px 60px rgba(0,0,0,0.6)' }} />

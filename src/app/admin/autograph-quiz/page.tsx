@@ -25,7 +25,6 @@ const DEFAULT_BOX: Box = { x: 0.2, y: 0.55, w: 0.5, h: 0.2 }
 // l'émission.
 export default function AutographQuizAdminPage() {
   const [authError, setAuthError] = useState('')
-  const [token, setToken] = useState<string | null>(null)
   const [candidates, setCandidates] = useState<Candidate[]>([])
   const [approved, setApproved] = useState<QuizCard[]>([])
   const [idx, setIdx] = useState(0)
@@ -43,7 +42,6 @@ export default function AutographQuizAdminPage() {
   useEffect(() => {
     supabase.auth.getSession().then(async ({ data: { session } }) => {
       if (!session) { setAuthError('Connecte-toi avec ton compte admin.'); setLoading(false); return }
-      setToken(session.access_token)
       try {
         const [candRes, quizRes] = await Promise.all([
           fetch('/api/admin/autograph-candidates', { headers: { Authorization: `Bearer ${session.access_token}` } }),
@@ -102,16 +100,24 @@ export default function AutographQuizAdminPage() {
     return () => { cancelled = true }
   }, [active?.id, effectiveRotation])
 
+  // Le token capture une seule fois au chargement expire au bout d'1h -- sur
+  // cette page laissee ouverte longtemps (session live), les actions
+  // echouaient en 403 "Forbidden" passe ce delai. Recupere un token frais (et
+  // rafraichi si besoin, autoRefreshToken est actif) juste avant chaque appel.
+  const freshToken = async () => (await supabase.auth.getSession()).data.session?.access_token ?? null
+
   // Pioche une autre carte AUTO du meme joueur (doublon chez un autre
   // utilisateur) -- charge la liste une seule fois puis cycle dedans.
   const findAnotherCard = async () => {
-    if (!current || !token) return
+    if (!current) return
     setLoadingAlt(true)
     try {
+      const tok = await freshToken()
+      if (!tok) { alert('Session expirée, recharge la page.'); return }
       let list = altList
       if (!list) {
         const res = await fetch(`/api/admin/autograph-alternates?name=${encodeURIComponent(current.nom)}`, {
-          headers: { Authorization: `Bearer ${token}` },
+          headers: { Authorization: `Bearer ${tok}` },
         })
         const json = await res.json()
         list = (json.alternates || []) as Alternate[]
@@ -150,12 +156,14 @@ export default function AutographQuizAdminPage() {
   const onMouseUp = () => { dragRef.current = null }
 
   const validate = async () => {
-    if (!current || !active || !token || box.w < 0.02 || box.h < 0.02) { alert('Dessine une zone de signature avant de valider.'); return }
+    if (!current || !active || box.w < 0.02 || box.h < 0.02) { alert('Dessine une zone de signature avant de valider.'); return }
     setSaving(true)
     try {
+      const tok = await freshToken()
+      if (!tok) { alert('Session expirée, recharge la page.'); return }
       const res = await fetch('/api/admin/autograph-quiz', {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${token}` },
+        headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${tok}` },
         body: JSON.stringify({
           sourceCardId: active.id, playerName: current.nom, team: active.equipe,
           imageRecto: active.image, cropX: box.x, cropY: box.y, cropW: box.w, cropH: box.h,
@@ -178,11 +186,12 @@ export default function AutographQuizAdminPage() {
   const skip = () => setCandidates(prev => prev.filter((_, i) => i !== idx))
 
   const removeApproved = async (id: string) => {
-    if (!token) return
     if (!confirm('Retirer cette carte du quiz ?')) return
+    const tok = await freshToken()
+    if (!tok) { alert('Session expirée, recharge la page.'); return }
     await fetch('/api/admin/autograph-quiz', {
       method: 'DELETE',
-      headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${token}` },
+      headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${tok}` },
       body: JSON.stringify({ id }),
     })
     setApproved(prev => prev.filter(c => c.id !== id))
