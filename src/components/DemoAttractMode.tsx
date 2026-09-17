@@ -8,6 +8,7 @@ const IDLE_MS = 45_000
 // Evenements consideres comme une interaction -- couvre souris (web) et
 // tactile (tablette), sans se limiter a un seul type qui manquerait l'autre.
 const ACTIVITY_EVENTS = ['pointerdown', 'touchstart', 'keydown', 'wheel'] as const
+const FEATURE_PILLS = ['📸 Scan IA en 1 photo', '🃏 Galerie illimitée', '🏆 Classements', '🎥 Export vidéo & photo', '📔 Classeurs personnalisés', '💬 Communauté']
 
 // Ecran "attract mode" façon demo en boutique (telephones exposes) : sur la
 // tablette du salon (compte demo uniquement), un carrousel plein ecran
@@ -19,7 +20,7 @@ export default function DemoAttractMode() {
   const router = useRouter()
   const [isDemo, setIsDemo] = useState(false)
   const [active, setActive] = useState(false)
-  const [cards, setCards] = useState<string[]>([])
+  const [cards, setCards] = useState<{ url: string; horizontal: boolean }[]>([])
   const idleTimer = useRef<ReturnType<typeof setTimeout> | null>(null)
 
   useEffect(() => {
@@ -47,17 +48,32 @@ export default function DemoAttractMode() {
 
   useEffect(() => {
     if (!active || !user) return
-    supabase.from('cartes_manuelles').select('image_recto')
-      .eq('user_id', user.id).not('image_recto', 'is', null).limit(60)
+    // Bassin large (300) puise au hasard puis trie -- pas de tri aleatoire cote
+    // Supabase, donc melange en JS. Cartes avec auto/patch/num (plus impressionnantes
+    // pour un salon) passees en priorite, le reste ne complete que si besoin, pour
+    // arriver a 100 cartes minimum plutot que les 24 d'avant (carrousel trop court).
+    supabase.from('cartes_manuelles').select('image_recto, is_horizontal, auto, patch, num')
+      .eq('user_id', user.id).not('image_recto', 'is', null).limit(300)
       .then(({ data }) => {
-        const urls = (data || []).map(c => c.image_recto as string)
-        for (let i = urls.length - 1; i > 0; i--) {
+        const items = (data || []).map(c => ({
+          url: c.image_recto as string, horizontal: !!c.is_horizontal,
+          notable: !!c.auto || !!c.patch || !!(c.num && String(c.num).trim()),
+        }))
+        for (let i = items.length - 1; i > 0; i--) {
           const j = Math.floor(Math.random() * (i + 1))
-          ;[urls[i], urls[j]] = [urls[j], urls[i]]
+          ;[items[i], items[j]] = [items[j], items[i]]
         }
-        setCards(urls.slice(0, 24))
+        const notable = items.filter(c => c.notable)
+        const rest = items.filter(c => !c.notable)
+        setCards([...notable, ...rest].slice(0, 100))
       })
   }, [active, user?.id])
+
+  // Duree fixe (40s) faisait defiler TOUTES les cartes en 40s quel que soit leur nombre
+  // (translateX(-50%) est relatif a la largeur du conteneur, pas a un nombre de cartes) --
+  // avec 24 cartes ca ne laissait qu'1,6s par carte, illisible ("ca flash"). Duree
+  // proportionnelle au nombre de cartes pour garder un defilement lisible.
+  const scrollSecs = Math.max(40, cards.length * 3.5)
 
   const dismiss = () => {
     setActive(false)
@@ -72,19 +88,30 @@ export default function DemoAttractMode() {
       display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center',
       cursor: 'pointer', overflow: 'hidden',
     }}>
+      <img src="/memorabilius-logo.png" alt="Memorabilius" style={{ width: 'min(420px, 60vw)', height: 'auto', marginBottom: 32 }} />
       <div style={{
-        display: 'flex', gap: 16, animation: 'demoAttractScroll 40s linear infinite',
+        display: 'flex', gap: 16, animation: `demoAttractScroll ${scrollSecs}s linear infinite`,
         willChange: 'transform',
       }}>
-        {[...cards, ...cards].map((url, i) => (
-          <img key={i} src={url} alt="" loading="lazy" style={{
-            width: 160, height: 224, objectFit: 'cover', borderRadius: 12,
-            boxShadow: '0 8px 30px rgba(0,0,0,0.5)', flexShrink: 0,
-          }} />
+        {[...cards, ...cards].map((c, i) => (
+          <img key={i} src={c.url} alt="" loading="lazy" style={
+            c.horizontal
+              ? { width: 224, height: 160, objectFit: 'cover', borderRadius: 12, boxShadow: '0 8px 30px rgba(0,0,0,0.5)', flexShrink: 0 }
+              : { width: 160, height: 224, objectFit: 'cover', borderRadius: 12, boxShadow: '0 8px 30px rgba(0,0,0,0.5)', flexShrink: 0 }
+          } />
+        ))}
+      </div>
+      <div style={{ display: 'flex', gap: 10, marginTop: 28, flexWrap: 'wrap', justifyContent: 'center', maxWidth: '90vw' }}>
+        {FEATURE_PILLS.map(p => (
+          <div key={p} style={{
+            padding: '7px 16px', borderRadius: 99, background: 'rgba(255,255,255,0.08)',
+            border: '1px solid rgba(255,255,255,0.16)', color: 'rgba(255,255,255,0.85)',
+            fontSize: 14, fontWeight: 700, whiteSpace: 'nowrap',
+          }}>{p}</div>
         ))}
       </div>
       <div style={{
-        marginTop: 48, textAlign: 'center', animation: 'demoAttractPulse 1.8s ease-in-out infinite',
+        marginTop: 40, textAlign: 'center', animation: 'demoAttractPulse 1.8s ease-in-out infinite',
       }}>
         <div style={{ fontSize: 44, marginBottom: 12 }}>👆</div>
         <div style={{ color: 'white', fontSize: 28, fontWeight: 900, letterSpacing: 0.5 }}>
