@@ -10,19 +10,29 @@ const admin = createClient(
 
 const GEMINI_URL = 'https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash-001:generateContent'
 
-const PROMPT = `You are looking at a photo of a sports trading card that has a hand-signed autograph on it (ink pen signature, not printed text).
+const PROMPT = `You are a precise computer vision system looking at an upright photo of a basketball trading card with a hand-signed autograph (ink/paint pen strokes on the card or on a jersey swatch/sticker patch attached to it).
 
-Find the bounding box of ONLY the handwritten signature itself (the ink pen strokes), not the whole card, not a printed "AUTOGRAPH" label, not a certification sticker/hologram.
+TASK: find the TIGHT bounding box around ONLY the handwritten ink strokes of the signature. Not the whole card. Not the player photo. Not a printed "AUTOGRAPH"/"CERTIFIED" label or hologram sticker text. Not the jersey swatch itself if the signature is written elsewhere.
 
-Encode as fractions of the full image: x/y = top-left corner, w/h = width/height. 0.000=left/top edge, 1.000=right/bottom edge. Add a small margin (~4% of card) around the ink so the crop doesn't clip strokes.
+RULES:
+- The box must hug the ink closely on all 4 sides, then add a small margin of about 6% of the box's own width/height (not of the whole card) so strokes aren't clipped.
+- Signature is usually a single continuous scrawl of curved/looping lines, often diagonal, in blue/black/silver/gold ink -- distinct from printed text (which is uniform font, straight baseline) and from photo content.
+- If there are several separate signatures, pick the largest/most legible one.
+- If genuinely no handwritten ink signature is visible anywhere, return confidence 0 and a box of zeros.
 
-If there are multiple signatures, pick the largest/clearest one. If no handwritten signature is visible, return confidence 0.
+Encode as fractions of the full image: x/y = top-left corner, w/h = width/height. 0.000=left/top edge, 1.000=right/bottom edge.
 
-One short sentence describing what you see, then JSON (no markdown):
+One short sentence: where exactly is the ink (e.g. "diagonal blue ink signature across the lower-left jersey patch"). Then JSON (no markdown):
 {"x":0.15,"y":0.62,"w":0.55,"h":0.18,"confidence":0.9}`
 
-async function compressImage(buf: Buffer): Promise<string> {
-  const out = await sharp(buf).resize(900, 900, { fit: 'inside', withoutEnlargement: true }).jpeg({ quality: 88 }).toBuffer()
+async function compressImage(buf: Buffer, rotate: boolean): Promise<string> {
+  let pipeline = sharp(buf)
+  // Cartes "horizontales" stockees en orientation brute (portrait, tournee) --
+  // meme convention que l'affichage (GalerieClient.tsx, rotate(90deg)) : sans
+  // ca, Gemini voit une image de travers et ses coordonnees de boite ne
+  // correspondent plus au cadrage upright affiche/enregistre cote admin.
+  if (rotate) pipeline = pipeline.rotate(90)
+  const out = await pipeline.resize(1100, 1100, { fit: 'inside', withoutEnlargement: true }).jpeg({ quality: 90 }).toBuffer()
   return out.toString('base64')
 }
 
@@ -49,13 +59,13 @@ export async function POST(req: NextRequest) {
   if (!apiKey) return NextResponse.json({ error: 'GEMINI_API_KEY manquante' }, { status: 500 })
 
   try {
-    const { imageUrl } = await req.json()
+    const { imageUrl, rotate } = await req.json()
     if (!imageUrl) return NextResponse.json({ error: 'imageUrl manquante' }, { status: 400 })
 
     const imgRes = await fetch(imageUrl, { signal: AbortSignal.timeout(15000) })
     if (!imgRes.ok) return NextResponse.json({ error: 'image inaccessible' }, { status: 400 })
     const buf = Buffer.from(await imgRes.arrayBuffer())
-    const imageBase64 = await compressImage(buf)
+    const imageBase64 = await compressImage(buf, !!rotate)
 
     const res = await fetch(`${GEMINI_URL}?key=${apiKey}`, {
       method: 'POST',

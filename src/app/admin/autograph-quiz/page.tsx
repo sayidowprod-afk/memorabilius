@@ -2,11 +2,12 @@
 import { useEffect, useRef, useState } from 'react'
 import Link from 'next/link'
 import { supabase } from '@/lib/supabase'
+import { loadUprightImage } from '@/lib/uprightImage'
 
-interface Candidate { id: string; nom: string; equipe: string | null; image: string }
+interface Candidate { id: string; nom: string; equipe: string | null; image: string; isHorizontal: boolean }
 interface QuizCard {
   id: string; player_name: string; team: string | null; image_recto: string
-  crop_x: number; crop_y: number; crop_w: number; crop_h: number
+  crop_x: number; crop_y: number; crop_w: number; crop_h: number; is_horizontal: boolean
 }
 interface Box { x: number; y: number; w: number; h: number }
 
@@ -27,6 +28,7 @@ export default function AutographQuizAdminPage() {
   const [detecting, setDetecting] = useState(false)
   const [saving, setSaving] = useState(false)
   const [loading, setLoading] = useState(true)
+  const [uprightSrc, setUprightSrc] = useState<string | null>(null)
   const imgWrapRef = useRef<HTMLDivElement>(null)
   const dragRef = useRef<{ startX: number; startY: number } | null>(null)
 
@@ -56,7 +58,16 @@ export default function AutographQuizAdminPage() {
 
   const current = candidates[idx]
 
-  useEffect(() => { setBox(DEFAULT_BOX) }, [idx])
+  useEffect(() => {
+    setBox(DEFAULT_BOX)
+    setUprightSrc(null)
+    if (!current) return
+    let cancelled = false
+    loadUprightImage(current.image, current.isHorizontal)
+      .then(canvas => { if (!cancelled) setUprightSrc(canvas.toDataURL('image/jpeg', 0.92)) })
+      .catch(() => { if (!cancelled) setUprightSrc(current.image) })
+    return () => { cancelled = true }
+  }, [idx])
 
   const detectSignature = async () => {
     if (!current || !token) return
@@ -65,7 +76,7 @@ export default function AutographQuizAdminPage() {
       const res = await fetch('/api/admin/detect-autograph', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${token}` },
-        body: JSON.stringify({ imageUrl: current.image }),
+        body: JSON.stringify({ imageUrl: current.image, rotate: current.isHorizontal }),
       })
       const json = await res.json()
       if (res.ok && json.confidence > 0.15) {
@@ -107,6 +118,7 @@ export default function AutographQuizAdminPage() {
         body: JSON.stringify({
           sourceCardId: current.id, playerName: current.nom, team: current.equipe,
           imageRecto: current.image, cropX: box.x, cropY: box.y, cropW: box.w, cropH: box.h,
+          isHorizontal: current.isHorizontal,
         }),
       })
       const json = await res.json()
@@ -166,7 +178,11 @@ export default function AutographQuizAdminPage() {
             onMouseLeave={onMouseUp}
             style={{ position: 'relative', width: '100%', maxWidth: 400, margin: '0 auto', cursor: 'crosshair', userSelect: 'none' }}
           >
-            <img src={current.image} alt={current.nom} draggable={false} style={{ width: '100%', display: 'block', borderRadius: 8 }} />
+            {uprightSrc ? (
+              <img src={uprightSrc} alt={current.nom} draggable={false} style={{ width: '100%', display: 'block', borderRadius: 8 }} />
+            ) : (
+              <div style={{ aspectRatio: '2.5/3.5', background: '#eee', borderRadius: 8 }} />
+            )}
             <div style={{
               position: 'absolute', left: `${box.x * 100}%`, top: `${box.y * 100}%`,
               width: `${box.w * 100}%`, height: `${box.h * 100}%`,
@@ -195,12 +211,17 @@ export default function AutographQuizAdminPage() {
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(90px, 1fr))', gap: 10, marginTop: 10 }}>
             {approved.map(c => (
               <div key={c.id} style={{ position: 'relative' }}>
-                <img src={c.image_recto} alt={c.player_name} style={{ width: '100%', aspectRatio: '2.5/3.5', objectFit: 'cover', borderRadius: 8 }} />
+                <div style={{ aspectRatio: '2.5/3.5', overflow: 'hidden', position: 'relative', borderRadius: 8 }}>
+                  <img src={c.image_recto} alt={c.player_name} style={c.is_horizontal
+                    ? { position: 'absolute', width: '140%', height: '71.43%', left: '-20%', top: '14.286%', transform: 'rotate(90deg)', objectFit: 'cover' }
+                    : { position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover' }
+                  } />
+                  <button onClick={() => removeApproved(c.id)} style={{
+                    position: 'absolute', top: 4, right: 4, width: 20, height: 20, borderRadius: '50%',
+                    background: 'rgba(0,0,0,0.6)', color: 'white', border: 'none', fontSize: 12, cursor: 'pointer', zIndex: 1,
+                  }}>✕</button>
+                </div>
                 <p style={{ fontSize: 10, fontWeight: 700, margin: '4px 0 0', textAlign: 'center' }}>{c.player_name}</p>
-                <button onClick={() => removeApproved(c.id)} style={{
-                  position: 'absolute', top: 4, right: 4, width: 20, height: 20, borderRadius: '50%',
-                  background: 'rgba(0,0,0,0.6)', color: 'white', border: 'none', fontSize: 12, cursor: 'pointer',
-                }}>✕</button>
               </div>
             ))}
           </div>

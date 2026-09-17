@@ -21,7 +21,7 @@ export async function POST(req: NextRequest) {
   if (!adminUser) return NextResponse.json({ error: 'Forbidden' }, { status: 403 })
 
   const body = await req.json()
-  const { sourceCardId, playerName, team, imageRecto, cropX, cropY, cropW, cropH } = body
+  const { sourceCardId, playerName, team, imageRecto, cropX, cropY, cropW, cropH, isHorizontal } = body
   if (!playerName || !imageRecto || [cropX, cropY, cropW, cropH].some(v => typeof v !== 'number')) {
     return NextResponse.json({ error: 'champs manquants' }, { status: 400 })
   }
@@ -34,6 +34,7 @@ export async function POST(req: NextRequest) {
     team: team || null,
     image_recto: imageRecto,
     crop_x: cropX, crop_y: cropY, crop_w: cropW, crop_h: cropH,
+    is_horizontal: !!isHorizontal,
     approved: true,
     position: count ?? 0,
   }).select().single()

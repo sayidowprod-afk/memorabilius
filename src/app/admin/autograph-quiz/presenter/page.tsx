@@ -1,10 +1,11 @@
 'use client'
 import { useEffect, useRef, useState } from 'react'
 import { supabase } from '@/lib/supabase'
+import { loadUprightImage } from '@/lib/uprightImage'
 
 interface QuizCard {
   id: string; player_name: string; team: string | null; image_recto: string
-  crop_x: number; crop_y: number; crop_w: number; crop_h: number
+  crop_x: number; crop_y: number; crop_w: number; crop_h: number; is_horizontal: boolean
 }
 
 const shuffle = <T,>(arr: T[]): T[] => {
@@ -27,6 +28,7 @@ export default function AutographQuizPresenterPage() {
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState('')
   const canvasRef = useRef<HTMLCanvasElement>(null)
+  const [uprightFullSrc, setUprightFullSrc] = useState<string | null>(null)
 
   useEffect(() => {
     supabase.auth.getSession().then(async ({ data: { session } }) => {
@@ -48,26 +50,29 @@ export default function AutographQuizPresenterPage() {
 
   useEffect(() => {
     if (!current || !canvasRef.current) return
+    let cancelled = false
+    setUprightFullSrc(null)
     const canvas = canvasRef.current
     const ctx = canvas.getContext('2d')!
-    const img = new Image()
-    img.crossOrigin = 'anonymous'
-    img.onload = () => {
-      const sx = current.crop_x * img.naturalWidth
-      const sy = current.crop_y * img.naturalHeight
-      const sw = current.crop_w * img.naturalWidth
-      const sh = current.crop_h * img.naturalHeight
-      // Canvas dimensionne pour matcher le ratio du crop (pas de deformation),
-      // largeur fixe genereuse -- affiche en 'contain' via CSS ensuite.
+    // Passe d'abord par une image "upright" (voir uprightImage.ts) -- les cartes
+    // horizontales sont stockees en orientation brute (portrait, tournee), sinon
+    // la signature (et la carte revelee) s'affichaient de travers.
+    loadUprightImage(current.image_recto, current.is_horizontal).then(upright => {
+      if (cancelled) return
+      setUprightFullSrc(upright.toDataURL('image/jpeg', 0.92))
+      const sx = current.crop_x * upright.width
+      const sy = current.crop_y * upright.height
+      const sw = current.crop_w * upright.width
+      const sh = current.crop_h * upright.height
       const outW = 1400
       const outH = Math.round(outW * (sh / sw))
       canvas.width = outW
       canvas.height = outH
       ctx.fillStyle = '#111'
       ctx.fillRect(0, 0, outW, outH)
-      ctx.drawImage(img, sx, sy, sw, sh, 0, 0, outW, outH)
-    }
-    img.src = current.image_recto
+      ctx.drawImage(upright, sx, sy, sw, sh, 0, 0, outW, outH)
+    })
+    return () => { cancelled = true }
   }, [current])
 
   const next = () => { setRevealed(false); setIdx(i => (i + 1) % Math.max(1, cards.length)) }
@@ -88,7 +93,7 @@ export default function AutographQuizPresenterPage() {
         <canvas ref={canvasRef} style={{ maxWidth: '92vw', maxHeight: '62vh', width: 'auto', height: 'auto', borderRadius: 16, boxShadow: '0 20px 60px rgba(0,0,0,0.6)' }} />
       ) : (
         <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 14 }}>
-          <img src={current.image_recto} alt={current.player_name} style={{ maxWidth: '70vw', maxHeight: '55vh', width: 'auto', borderRadius: 16, boxShadow: '0 20px 60px rgba(0,0,0,0.6)' }} />
+          <img src={uprightFullSrc || current.image_recto} alt={current.player_name} style={{ maxWidth: '70vw', maxHeight: '55vh', width: 'auto', borderRadius: 16, boxShadow: '0 20px 60px rgba(0,0,0,0.6)' }} />
           <div style={{ textAlign: 'center' }}>
             <p style={{ color: 'white', fontSize: 36, fontWeight: 900, margin: 0 }}>{current.player_name}</p>
             {current.team && <p style={{ color: 'rgba(255,255,255,0.5)', fontSize: 16, fontWeight: 700, margin: '4px 0 0' }}>{current.team}</p>}
