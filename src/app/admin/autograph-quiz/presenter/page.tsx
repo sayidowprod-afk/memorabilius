@@ -29,6 +29,8 @@ export default function AutographQuizPresenterPage() {
   const [error, setError] = useState('')
   const canvasRef = useRef<HTMLCanvasElement>(null)
   const [uprightFullSrc, setUprightFullSrc] = useState<string | null>(null)
+  const [qcmMode, setQcmMode] = useState(false)
+  const [choices, setChoices] = useState<string[]>([])
 
   useEffect(() => {
     supabase.auth.getSession().then(async ({ data: { session } }) => {
@@ -75,6 +77,15 @@ export default function AutographQuizPresenterPage() {
     return () => { cancelled = true }
   }, [current])
 
+  // 4 choix (mode QCM) : le bon nom + 3 autres pioches parmi les autres cartes
+  // validees, melanges. Recalcule a chaque nouvelle carte affichee.
+  useEffect(() => {
+    if (!current) return
+    const others = cards.filter(c => c.id !== current.id).map(c => c.player_name)
+    const wrongs = shuffle(others).slice(0, 3)
+    setChoices(shuffle([current.player_name, ...wrongs]))
+  }, [current?.id, cards])
+
   const next = () => { setRevealed(false); setIdx(i => (i + 1) % Math.max(1, cards.length)) }
   const prev = () => { setRevealed(false); setIdx(i => (i - 1 + cards.length) % Math.max(1, cards.length)) }
   const reshuffle = () => { setRevealed(false); setIdx(0); setCards(prev => shuffle(prev)) }
@@ -88,16 +99,37 @@ export default function AutographQuizPresenterPage() {
       <p style={{ color: 'rgba(255,255,255,0.4)', fontSize: 13, fontWeight: 700, position: 'absolute', top: 16, left: 20 }}>
         {idx + 1} / {cards.length}
       </p>
+      <button onClick={() => setQcmMode(v => !v)} style={{ ...btnStyle, position: 'absolute', top: 12, right: 20, fontSize: 12, padding: '8px 14px' }}>
+        {qcmMode ? '📝 Mode QCM' : '🗽 Mode libre'}
+      </button>
 
       {!revealed ? (
-        <canvas ref={canvasRef} style={{ maxWidth: '92vw', maxHeight: '62vh', width: 'auto', height: 'auto', borderRadius: 16, boxShadow: '0 20px 60px rgba(0,0,0,0.6)' }} />
+        <canvas ref={canvasRef} style={{ maxWidth: '92vw', maxHeight: '58vh', width: 'auto', height: 'auto', borderRadius: 16, boxShadow: '0 20px 60px rgba(0,0,0,0.6)' }} />
       ) : (
         <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 14 }}>
-          <img src={uprightFullSrc || current.image_recto} alt={current.player_name} style={{ maxWidth: '70vw', maxHeight: '55vh', width: 'auto', borderRadius: 16, boxShadow: '0 20px 60px rgba(0,0,0,0.6)' }} />
+          <img src={uprightFullSrc || current.image_recto} alt={current.player_name} style={{ maxWidth: '70vw', maxHeight: '48vh', width: 'auto', borderRadius: 16, boxShadow: '0 20px 60px rgba(0,0,0,0.6)' }} />
           <div style={{ textAlign: 'center' }}>
             <p style={{ color: 'white', fontSize: 36, fontWeight: 900, margin: 0 }}>{current.player_name}</p>
             {current.team && <p style={{ color: 'rgba(255,255,255,0.5)', fontSize: 16, fontWeight: 700, margin: '4px 0 0' }}>{current.team}</p>}
           </div>
+        </div>
+      )}
+
+      {qcmMode && (
+        <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 10, width: '100%', maxWidth: 640 }}>
+          {choices.map(name => {
+            const isCorrect = name === current.player_name
+            return (
+              <div key={name} style={{
+                padding: '12px 18px', borderRadius: 12, fontWeight: 800, fontSize: 17, textAlign: 'center',
+                background: revealed && isCorrect ? '#1a7a3a' : 'rgba(255,255,255,0.08)',
+                border: revealed && isCorrect ? '2px solid #2ecc71' : '2px solid rgba(255,255,255,0.12)',
+                color: 'white', transition: 'all 0.2s',
+              }}>
+                {name}
+              </div>
+            )
+          })}
         </div>
       )}
 

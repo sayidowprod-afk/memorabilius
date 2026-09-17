@@ -29,6 +29,7 @@ export default function AutographQuizAdminPage() {
   const [saving, setSaving] = useState(false)
   const [loading, setLoading] = useState(true)
   const [uprightSrc, setUprightSrc] = useState<string | null>(null)
+  const [orientationOverride, setOrientationOverride] = useState<boolean | null>(null)
   const imgWrapRef = useRef<HTMLDivElement>(null)
   const dragRef = useRef<{ startX: number; startY: number } | null>(null)
 
@@ -57,17 +58,27 @@ export default function AutographQuizAdminPage() {
   }, [])
 
   const current = candidates[idx]
+  // Certaines cartes ont is_horizontal mal renseigne en base (erreur de saisie
+  // sur CETTE carte precise -- pas un bug de rotation) : override local pour
+  // corriger a la main sans toucher aux donnees source, reinitialise a chaque
+  // nouveau candidat.
+  const effectiveHorizontal = orientationOverride ?? current?.isHorizontal ?? false
 
   useEffect(() => {
     setBox(DEFAULT_BOX)
     setUprightSrc(null)
+    setOrientationOverride(null)
+  }, [current?.id])
+
+  useEffect(() => {
+    setUprightSrc(null)
     if (!current) return
     let cancelled = false
-    loadUprightImage(current.image, current.isHorizontal)
+    loadUprightImage(current.image, effectiveHorizontal)
       .then(canvas => { if (!cancelled) setUprightSrc(canvas.toDataURL('image/jpeg', 0.92)) })
       .catch(e => { console.error('[autograph-quiz] upright load failed', e); if (!cancelled) setUprightSrc(current.image) })
     return () => { cancelled = true }
-  }, [current?.id])
+  }, [current?.id, effectiveHorizontal])
 
   const detectSignature = async () => {
     if (!current || !token) return
@@ -76,7 +87,7 @@ export default function AutographQuizAdminPage() {
       const res = await fetch('/api/admin/detect-autograph', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${token}` },
-        body: JSON.stringify({ imageUrl: current.image, rotate: current.isHorizontal }),
+        body: JSON.stringify({ imageUrl: current.image, rotate: effectiveHorizontal }),
       })
       const json = await res.json()
       if (res.ok && json.confidence > 0.15) {
@@ -118,7 +129,7 @@ export default function AutographQuizAdminPage() {
         body: JSON.stringify({
           sourceCardId: current.id, playerName: current.nom, team: current.equipe,
           imageRecto: current.image, cropX: box.x, cropY: box.y, cropW: box.w, cropH: box.h,
-          isHorizontal: current.isHorizontal,
+          isHorizontal: effectiveHorizontal,
         }),
       })
       const json = await res.json()
@@ -210,8 +221,15 @@ export default function AutographQuizAdminPage() {
         </p>
       ) : (
         <div style={{ background: 'var(--card-bg, #fff)', border: '1px solid #eee', borderRadius: 16, padding: 20 }}>
-          <p style={{ fontWeight: 800, fontSize: 16, margin: '0 0 4px' }}>{current.nom}</p>
-          <p style={{ color: '#888', fontSize: 13, margin: '0 0 14px' }}>{current.equipe}</p>
+          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start' }}>
+            <div>
+              <p style={{ fontWeight: 800, fontSize: 16, margin: '0 0 4px' }}>{current.nom}</p>
+              <p style={{ color: '#888', fontSize: 13, margin: '0 0 14px' }}>{current.equipe}</p>
+            </div>
+            <button onClick={() => setOrientationOverride(v => !(v ?? current.isHorizontal))} className="btn-main" style={{ fontSize: 12, padding: '6px 12px' }}>
+              🔄 Pivoter
+            </button>
+          </div>
 
           <div
             ref={imgWrapRef}
