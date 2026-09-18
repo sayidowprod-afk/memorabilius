@@ -160,6 +160,20 @@ function ImageUploader({ side, label, preview, uploading, aspect, lang, onClear,
   lang: string; onClear: () => void; onFileChange: (e: React.ChangeEvent<HTMLInputElement>, side: 'recto' | 'verso' | 'il' | 'ir') => void; onCameraClick: (side: 'recto' | 'verso' | 'il' | 'ir') => void
 }) {
   const { t } = useLang()
+  // Juste apres l'upload, l'URL Supabase Storage peut ne pas encore etre
+  // propagee sur le CDN -- le <img> echoue alors une fois et affichait
+  // l'icone cassee pour toujours (rien ne reessayait). On reessaie
+  // automatiquement avec un backoff, en invalidant le cache via un
+  // parametre, jusqu'a ce que l'image charge.
+  const [retry, setRetry] = useState(0)
+  const [loadFailed, setLoadFailed] = useState(false)
+  useEffect(() => { setRetry(0); setLoadFailed(false) }, [preview])
+  const MAX_RETRIES = 6
+  const handleImgError = () => {
+    if (retry >= MAX_RETRIES) { setLoadFailed(true); return }
+    setTimeout(() => setRetry(r => r + 1), Math.min(800 * (retry + 1), 4000))
+  }
+  const src = preview ? (retry > 0 ? `${preview}${preview.includes('?') ? '&' : '?'}retry=${retry}` : preview) : null
   return (
     <div>
       <label style={{ fontSize: 12, fontWeight: 700, textTransform: 'uppercase', color: '#888', display: 'block', marginBottom: 8 }}>{label}</label>
@@ -167,8 +181,13 @@ function ImageUploader({ side, label, preview, uploading, aspect, lang, onClear,
         style={{ border: '2px dashed #ddd', borderRadius: 12, overflow: 'hidden', aspectRatio: aspect || '2.5/3.5', position: 'relative', cursor: 'pointer', background: '#fafafa', display: 'flex', alignItems: 'center', justifyContent: 'center' }}
         onClick={() => document.getElementById(`upload-${side}`)?.click()}
       >
-        {preview ? (
-          <img src={preview} style={{ width: '100%', height: '100%', objectFit: 'cover' }} alt={label} />
+        {src && !loadFailed ? (
+          <img src={src} style={{ width: '100%', height: '100%', objectFit: 'cover' }} alt={label} onError={handleImgError} />
+        ) : src && loadFailed ? (
+          <div style={{ textAlign: 'center', color: '#e74c3c', padding: 10 }}>
+            <div style={{ fontSize: 32, marginBottom: 6 }}>⚠️</div>
+            <p style={{ fontSize: 12, fontWeight: 600, margin: 0 }}>{t('addcard_click_add')}</p>
+          </div>
         ) : (
           <div style={{ textAlign: 'center', color: '#bbb', padding: 10 }}>
             <div style={{ fontSize: 32, marginBottom: 6 }}>📷</div>
@@ -770,6 +789,11 @@ export default function AjouterCarte({ params }: { params: Promise<{ userId: str
     setBinderPrompt(null); setShowBinderPicker(false)
     setDesignation(''); setDesignationDone(false); setShowDesignation(false)
     setScanError(null); setWaitingForVerso(false); rectoBase64Ref.current = null; ebayHintsRef.current = []; ebayHintsGenRef.current++; geminiPrediction.current = null; scannerCornersRef.current = {}
+    // Sans ce clear, un champ corrige a la main sur une carte precedente
+    // (ex: "équipe") restait marque "touché" pour toujours -> le résultat
+    // Gemini de TOUTES les cartes suivantes de la session était ignoré pour
+    // ce champ, qui restait vide (voir kept.has(...) plus bas).
+    touchedFieldsRef.current.clear()
     // "Ajouter une autre carte" repart du formulaire vide, mais la page restait
     // scrollée là où l'utilisateur avait fini (confirmation d'ajout, en bas) — le
     // formulaire ré-affiché en haut n'était pas visible sans scroller manuellement.
