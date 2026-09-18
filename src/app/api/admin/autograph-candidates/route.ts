@@ -18,16 +18,26 @@ export async function GET(req: NextRequest) {
   const adminUser = await requireAdmin(admin, req.headers.get('authorization'))
   if (!adminUser) return NextResponse.json({ error: 'Forbidden' }, { status: 403 })
 
-  const { data, error } = await admin
-    .from('cartes_manuelles')
-    .select('id, nom, equipe, image_recto, is_horizontal, user_id, rc, patch, num, annee, marque, collection')
-    .eq('auto', true)
-    .not('nom', 'is', null)
-    .not('image_recto', 'is', null)
-    .order('created_at', { ascending: false })
-    .limit(5000)
-
-  if (error) return NextResponse.json({ error: error.message }, { status: 500 })
+  // Pagine par blocs de 1000 (limite par defaut de PostgREST) -- un simple
+  // .limit(5000) plafonnait silencieusement a 5000 lignes triees par date la
+  // plus recente, alors que la base en a plus (6139 au moment du signalement) :
+  // les cartes auto les plus anciennes n'etaient jamais considerees comme
+  // candidates, donc des joueurs dont c'etait la seule carte auto manquaient
+  // completement a l'appel.
+  const data: any[] = []
+  for (let from = 0; ; from += 1000) {
+    const { data: page, error } = await admin
+      .from('cartes_manuelles')
+      .select('id, nom, equipe, image_recto, is_horizontal, user_id, rc, patch, num, annee, marque, collection')
+      .eq('auto', true)
+      .not('nom', 'is', null)
+      .not('image_recto', 'is', null)
+      .order('created_at', { ascending: false })
+      .range(from, from + 999)
+    if (error) return NextResponse.json({ error: error.message }, { status: 500 })
+    data.push(...(page || []))
+    if (!page || page.length < 1000) break
+  }
 
   // image_recto uniquement, jamais image_recto_hd -- ce dernier peut provenir
   // d'un bucket/CDN different sans en-tetes CORS, ce qui faisait echouer
