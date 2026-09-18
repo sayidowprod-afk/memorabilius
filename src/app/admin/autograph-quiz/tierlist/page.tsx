@@ -171,7 +171,16 @@ const TierCard = memo(function TierCard({ card, dim, onDragStart }: { card: Quiz
       onDragStart={e => { setDragging(true); onDragStart(e) }}
       onDragEnd={() => setDragging(false)}
       title={card.player_name}
-      style={{ width: 82, cursor: 'grab', opacity: dragging ? 0.3 : dim ? 0.55 : 1 }}
+      style={{
+        width: 82, cursor: 'grab', opacity: dragging ? 0.3 : dim ? 0.55 : 1,
+        // Lazy-render : avec 1000+ cartes, le navigateur calculait quand meme
+        // le layout/style de toutes les cartes hors-ecran a chaque frame de
+        // drag. content-visibility saute ce travail tant que la carte n'est
+        // pas proche du viewport (contain-intrinsic-size reserve sa place
+        // pour eviter un scrollbar qui saute).
+        contentVisibility: 'auto',
+        containIntrinsicSize: '82px 130px',
+      }}
     >
       <div style={{ width: 82, aspectRatio: '2.5/3.5', overflow: 'hidden', position: 'relative', borderRadius: 8, background: '#1a1a1a', boxShadow: '0 6px 16px rgba(0,0,0,0.45)' }}>
         <img src={card.image_recto} alt={card.player_name} loading="lazy" draggable={false} style={horiz

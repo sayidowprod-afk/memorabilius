@@ -11,8 +11,21 @@ export async function GET(req: NextRequest) {
   const adminUser = await requireAdmin(admin, req.headers.get('authorization'))
   if (!adminUser) return NextResponse.json({ error: 'Forbidden' }, { status: 403 })
 
-  const { data, error } = await admin.from('autograph_quiz_cards').select('*').order('position', { ascending: true })
-  if (error) return NextResponse.json({ error: error.message }, { status: 500 })
+  // Pagine par blocs de 1000 -- meme piege que autograph-candidates : un
+  // simple .select('*') est plafonne silencieusement a 1000 lignes par
+  // PostgREST, ce qui coupait la tier list des lors qu'il y avait plus de
+  // 1000 cartes validees.
+  const data: any[] = []
+  for (let from = 0; ; from += 1000) {
+    const { data: page, error } = await admin
+      .from('autograph_quiz_cards')
+      .select('*')
+      .order('position', { ascending: true })
+      .range(from, from + 999)
+    if (error) return NextResponse.json({ error: error.message }, { status: 500 })
+    data.push(...(page || []))
+    if (!page || page.length < 1000) break
+  }
   return NextResponse.json({ cards: data })
 }
 
