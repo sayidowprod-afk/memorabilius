@@ -35,6 +35,11 @@ export default function QuizOverlayBigPage({ params }: { params: Promise<{ code:
   const maxTally = Math.max(1, ...tally)
   const showSpeedFeed = session.status === 'question'
   const bottomEmpty = showSpeedFeed ? speedFeed.length === 0 : leaderboard.length === 0
+  // Avant la toute premiere question (jamais de round lance, personne au
+  // classement) -- affiche le QR en grand plutot que le petit badge permanent
+  // en coin, pour inciter les gens a rejoindre pendant qu'on attend de
+  // demarrer.
+  const beforeFirstQuestion = !hasRound && leaderboard.length === 0
 
   return (
     <div style={{ minHeight: '100dvh', background: 'transparent', padding: 18, fontFamily: 'system-ui, sans-serif', color: 'white' }}>
@@ -46,9 +51,11 @@ export default function QuizOverlayBigPage({ params }: { params: Promise<{ code:
         display: 'flex', flexDirection: 'column', padding: '32px 44px',
       }}>
         <ConfettiBurst active={justRevealed} />
-        <div style={{ position: 'absolute', bottom: 20, right: 24, zIndex: 3 }}>
-          <JoinQrBadge code={session.code} />
-        </div>
+        {!beforeFirstQuestion && (
+          <div style={{ position: 'absolute', bottom: 20, right: 24, zIndex: 3 }}>
+            <JoinQrBadge code={session.code} />
+          </div>
+        )}
         {/* Filigrane logo en fond, tres discret -- donne un peu de vie a l'ecran meme en lobby */}
         <img src={FDLC_LOGO_URL} alt="" style={{
           position: 'absolute', right: '-6%', top: '-6%', width: '46%', height: 'auto',
@@ -79,7 +86,12 @@ export default function QuizOverlayBigPage({ params }: { params: Promise<{ code:
         <div style={{ flex: 1, minHeight: 0, display: 'flex', gap: 40, position: 'relative' }}>
           <div style={{ flex: '1.35 1 0%', minWidth: 0, display: 'flex', flexDirection: 'column', justifyContent: 'center', gap: 28, overflowY: 'auto' }}>
             <div style={{ flexShrink: 0, textAlign: 'center' }}>
-              {!hasRound ? (
+              {beforeFirstQuestion ? (
+                <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 24 }}>
+                  <div className={fdlcFont.className} style={{ fontSize: 26 }}>Le quiz va bientôt commencer...</div>
+                  <JoinQrBadge code={session.code} size={200} hero />
+                </div>
+              ) : !hasRound ? (
                 <div style={{ fontSize: 30, fontWeight: 800, color: 'rgba(255,255,255,0.5)' }}>
                   <WaveText text="En attente de la prochaine question..." />
                 </div>

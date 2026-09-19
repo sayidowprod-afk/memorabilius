@@ -40,6 +40,7 @@ export default function QuizOverlayPage({ params }: { params: Promise<{ code: st
   const revealed = session.status === 'reveal'
   const maxTally = Math.max(1, ...tally)
   const showSpeedFeed = session.status === 'question'
+  const beforeFirstQuestion = !hasRound && leaderboard.length === 0
 
   return (
     <div style={{
@@ -47,9 +48,11 @@ export default function QuizOverlayPage({ params }: { params: Promise<{ code: st
       display: 'flex', justifyContent: 'flex-end', alignItems: 'stretch', padding: '36px',
     }}>
       <QuizAnimStyles />
-      <div style={{ position: 'absolute', bottom: 20, right: 24, zIndex: 3 }}>
-        <JoinQrBadge code={session.code} size={58} />
-      </div>
+      {!beforeFirstQuestion && (
+        <div style={{ position: 'absolute', bottom: 20, right: 24, zIndex: 3 }}>
+          <JoinQrBadge code={session.code} size={58} />
+        </div>
+      )}
       <div style={{
         width: 'min(46vw, 620px)', minHeight: 0, maxHeight: 'calc(100dvh - 72px)',
         display: 'flex', flexDirection: 'column', gap: 16,
@@ -72,7 +75,12 @@ export default function QuizOverlayPage({ params }: { params: Promise<{ code: st
             )}
           </div>
 
-          {!hasRound ? (
+          {beforeFirstQuestion ? (
+            <div style={{ padding: '10px 0', display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 16 }}>
+              <div className={fdlcFont.className} style={{ fontSize: 18, textAlign: 'center' }}>Le quiz va bientôt commencer...</div>
+              <JoinQrBadge code={session.code} size={150} hero />
+            </div>
+          ) : !hasRound ? (
             <div style={{ fontSize: 16, fontWeight: 700, color: 'rgba(255,255,255,0.5)', textAlign: 'center', padding: '20px 0' }}>
               <WaveText text="En attente de la prochaine question..." />
             </div>
