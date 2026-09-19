@@ -2,11 +2,13 @@
 import { use, useEffect, useRef, useState } from 'react'
 import { fdlcFont } from '@/lib/fdlcFont'
 import { FDLC_LOGO_URL, FDLC_NAVY, FDLC_NAVY_DEEP, FDLC_RED, FDLC_CHOICE_COLORS } from '@/lib/fdlcBranding'
+import SignatureCrop from '@/components/SignatureCrop'
 
+interface PromptImage { url: string; cropX: number; cropY: number; cropW: number; cropH: number; rotationDeg: number }
 interface SessionState {
   code: string; title: string; status: 'lobby' | 'question' | 'reveal' | 'ended'
   roundType: string | null; roundKey: string | null
-  question: string | null; choices: string[] | null; correctIndex: number | null
+  question: string | null; promptImage: PromptImage | null; choices: string[] | null; correctIndex: number | null
   roundStartedAt: string | null; roundDurationSeconds: number | null
 }
 interface Poll {
@@ -78,18 +80,33 @@ export default function QuizJoinPage({ params }: { params: Promise<{ code: strin
   const remaining = useCountdown(poll?.session.roundStartedAt ?? null, poll?.session.roundDurationSeconds ?? null)
   const timeUp = remaining === 0
 
+  const [answerError, setAnswerError] = useState('')
+
   const submitAnswer = async (choiceIndex: number) => {
     if (!poll?.session.roundKey || submitting || timeUp) return
     setSubmitting(true)
+    setAnswerError('')
     try {
-      await fetch('/api/live-quiz/answer', {
+      const res = await fetch('/api/live-quiz/answer', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ code, participantId: participantIdRef.current, pseudo, choiceIndex }),
       })
+      // Le vote affichait "enregistré" même quand la requête échouait (ex:
+      // migration pas encore appliquée côté DB, 500) -- l'écran spectateur
+      // montrait un vote pris en compte alors que quiz_answers restait vide
+      // côté serveur, l'animateur voyait 0 vote sans que personne comprenne
+      // pourquoi. Ne marquer comme répondu qu'après un succès confirmé.
+      if (!res.ok) {
+        const json = await res.json().catch(() => ({}))
+        setAnswerError(json.error || 'Échec de l\'envoi, réessaie.')
+        return
+      }
       const next = { ...myAnswers, [poll.session.roundKey]: choiceIndex }
       setMyAnswers(next)
       localStorage.setItem(`quiz_my_answers_${code}`, JSON.stringify(next))
+    } catch {
+      setAnswerError('Échec de l\'envoi, réessaie.')
     } finally {
       setSubmitting(false)
     }
@@ -171,7 +188,16 @@ export default function QuizJoinPage({ params }: { params: Promise<{ code: strin
           }}>⏱ {remaining}s</p>
         )}
       </div>
-      <p className={fdlcFont.className} style={{ fontSize: 20, textAlign: 'center', marginBottom: 22, lineHeight: 1.35 }}>{session.question}</p>
+      {session.roundType === 'autograph' && session.promptImage ? (
+        <div style={{ width: '100%', maxWidth: 320, margin: '0 auto 22px' }}>
+          <p style={{ fontSize: 13, fontWeight: 800, color: 'rgba(255,255,255,0.5)', textAlign: 'center', marginBottom: 10, textTransform: 'uppercase', letterSpacing: 1 }}>
+            ✍️ Quelle est cette signature ?
+          </p>
+          <SignatureCrop {...session.promptImage} style={{ boxShadow: '0 12px 30px rgba(0,0,0,0.5)' }} />
+        </div>
+      ) : (
+        <p className={fdlcFont.className} style={{ fontSize: 20, textAlign: 'center', marginBottom: 22, lineHeight: 1.35 }}>{session.question}</p>
+      )}
 
       <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 10, width: '100%' }}>
         {(session.choices || []).map((choice, i) => {
@@ -207,6 +233,9 @@ export default function QuizJoinPage({ params }: { params: Promise<{ code: strin
 
       {myChoice !== undefined && !revealed && (
         <p style={{ marginTop: 18, fontSize: 13, fontWeight: 700, color: 'rgba(255,255,255,0.55)' }}>Vote enregistré, en attente des autres...</p>
+      )}
+      {answerError && myChoice === undefined && (
+        <p style={{ marginTop: 18, fontSize: 13, fontWeight: 700, color: FDLC_RED }}>{answerError}</p>
       )}
       {revealed && myPoints !== null && (
         <p className={fdlcFont.className} style={{ marginTop: 18, fontSize: 20, color: myPoints > 0 ? '#2ecc71' : 'rgba(255,255,255,0.5)' }}>

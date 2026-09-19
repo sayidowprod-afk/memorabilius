@@ -7,24 +7,45 @@ const admin = createClient(
   process.env.SUPABASE_SERVICE_ROLE_KEY!
 )
 
+function validateChoices(choices: unknown, correctIndex: unknown): choices is string[] {
+  return Array.isArray(choices) && choices.length >= 2 && typeof correctIndex === 'number' && correctIndex >= 0 && correctIndex < choices.length
+}
+
 export async function POST(req: NextRequest) {
   const adminUser = await requireAdmin(admin, req.headers.get('authorization'))
   if (!adminUser) return NextResponse.json({ error: 'Forbidden' }, { status: 403 })
 
-  const { sessionId, question, choices, correctIndex, durationSeconds } = await req.json()
-  if (!sessionId || !question || !Array.isArray(choices) || choices.length < 2 || typeof correctIndex !== 'number') {
-    return NextResponse.json({ error: 'champs manquants' }, { status: 400 })
+  const { sessionId, question, choices, correctIndex } = await req.json()
+  if (!sessionId || !question || !validateChoices(choices, correctIndex)) {
+    return NextResponse.json({ error: 'champs manquants ou invalides' }, { status: 400 })
   }
-  if (correctIndex < 0 || correctIndex >= choices.length) {
-    return NextResponse.json({ error: 'correctIndex invalide' }, { status: 400 })
-  }
-  const duration = typeof durationSeconds === 'number' && durationSeconds > 0 ? Math.round(durationSeconds) : null
 
   const { count } = await admin.from('quiz_questions').select('*', { count: 'exact', head: true }).eq('session_id', sessionId)
 
   const { data, error } = await admin.from('quiz_questions').insert({
-    session_id: sessionId, question, choices, correct_index: correctIndex, position: count ?? 0, duration_seconds: duration,
+    session_id: sessionId, question, choices, correct_index: correctIndex, position: count ?? 0,
   }).select().single()
+  if (error) return NextResponse.json({ error: error.message }, { status: 500 })
+  return NextResponse.json({ question: data })
+}
+
+// Le minuteur n'est plus fixé à la création -- l'animateur le choisit au
+// moment de lancer la manche (voir /api/admin/live-quiz, action start_round),
+// pour pouvoir varier la durée d'une diffusion à l'autre sans dupliquer la
+// question. duration_seconds reste en base pour compat mais n'est plus écrit
+// ici.
+export async function PATCH(req: NextRequest) {
+  const adminUser = await requireAdmin(admin, req.headers.get('authorization'))
+  if (!adminUser) return NextResponse.json({ error: 'Forbidden' }, { status: 403 })
+
+  const { id, question, choices, correctIndex } = await req.json()
+  if (!id || !question || !validateChoices(choices, correctIndex)) {
+    return NextResponse.json({ error: 'champs manquants ou invalides' }, { status: 400 })
+  }
+
+  const { data, error } = await admin.from('quiz_questions').update({
+    question, choices, correct_index: correctIndex,
+  }).eq('id', id).select().single()
   if (error) return NextResponse.json({ error: error.message }, { status: 500 })
   return NextResponse.json({ question: data })
 }

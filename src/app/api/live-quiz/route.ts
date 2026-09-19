@@ -54,6 +54,14 @@ export async function GET(req: NextRequest) {
   }
   const leaderboard = [...scores.values()].sort((a, b) => b.score - a.score).slice(0, 10)
 
+  // Les 10 premiers a avoir repondu sur la manche en cours (pseudo + rang de
+  // vitesse) -- pas de is_correct/points ici, juste "qui a repondu vite", pour
+  // l'overlay pendant que la question est encore en cours (aucune info
+  // sensible : ne revele ni la bonne reponse ni le choix de chacun).
+  const speedFeed = roundKey
+    ? (answerRows || []).filter(r => r.round_key === roundKey).slice(0, 10).map(r => r.pseudo)
+    : []
+
   // Points de CE spectateur pour la manche en cours, révélés seulement une
   // fois status='reveal' (même règle que round_correct_index) -- lui permet
   // d'afficher "+750 pts" sans exposer qui que ce soit d'autre.
@@ -71,6 +79,7 @@ export async function GET(req: NextRequest) {
       roundType: session.round_type,
       roundKey,
       question: session.round_question,
+      promptImage: session.round_prompt_image,
       choices: session.round_choices,
       correctIndex: revealed ? session.round_correct_index : null,
       roundStartedAt: session.round_started_at,
@@ -80,5 +89,6 @@ export async function GET(req: NextRequest) {
     totalAnswers,
     leaderboard,
     myPoints,
+    speedFeed,
   })
 }
