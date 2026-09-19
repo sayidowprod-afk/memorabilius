@@ -1,10 +1,5 @@
 import type { Metadata, Viewport } from 'next'
 import './globals.css'
-import Navbar from '@/components/NavBar'
-import Footer from '@/components/Footer'
-import ChatBubble from '@/components/ChatBubble'
-import Toaster from '@/components/Toaster'
-import OnboardingTooltip from '@/components/OnboardingTooltip'
 import { ThemeProvider } from '@/lib/ThemeContext'
 import { LangProvider } from '@/lib/LangContext'
 import { AuthProvider } from '@/lib/AuthContext'
@@ -12,19 +7,14 @@ import { NativeProvider } from '@/lib/useIsNative'
 import { Analytics } from '@vercel/analytics/react'
 import { SpeedInsights } from '@vercel/speed-insights/next'
 import TrackView from '@/components/TrackView'
-import InstallBanner from '@/components/InstallBanner'
-import WebOnly from '@/components/WebOnly'
-import MobileTopBar from '@/components/MobileTopBar'
-import MobileBottomNav from '@/components/MobileBottomNav'
 import NativeInit from '@/components/NativeInit'
-import PageTransition from '@/components/PageTransition'
 import PullToRefresh from '@/components/PullToRefresh'
 import PushInit from '@/components/PushInit'
 import OfflineBanner from '@/components/OfflineBanner'
 import LocalRemindersInit from '@/components/LocalRemindersInit'
 import ChunkErrorReload from '@/components/ChunkErrorReload'
-import DemoAttractMode from '@/components/DemoAttractMode'
 import HangWatchdog from '@/components/HangWatchdog'
+import SiteShell from '@/components/SiteShell'
 
 export const viewport: Viewport = {
   width: 'device-width',
@@ -114,18 +104,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             <LocalRemindersInit />
             <OfflineBanner />
             <PullToRefresh />
-            <WebOnly><Navbar /></WebOnly>
-            <MobileTopBar />
-            <main style={{ maxWidth: 1400, margin: '0 auto', padding: '20px 16px' }}>
-              <PageTransition>{children}</PageTransition>
-            </main>
-            <WebOnly><Footer /></WebOnly>
-            <ChatBubble />
-            <Toaster />
-            <OnboardingTooltip />
-            <WebOnly><InstallBanner /></WebOnly>
-            <MobileBottomNav />
-            <DemoAttractMode />
+            <SiteShell>{children}</SiteShell>
           </LangProvider>
         </ThemeProvider>
         </AuthProvider>
