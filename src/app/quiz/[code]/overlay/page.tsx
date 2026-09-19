@@ -1,61 +1,24 @@
 'use client'
-import { use, useEffect, useState } from 'react'
+import { use } from 'react'
 import { fdlcFont } from '@/lib/fdlcFont'
 import { FDLC_LOGO_URL, FDLC_NAVY_DEEP, FDLC_CHOICE_COLORS } from '@/lib/fdlcBranding'
 import SignatureCrop from '@/components/SignatureCrop'
+import { useLiveQuizPoll } from '@/lib/useLiveQuizPoll'
 
-interface PromptImage { url: string; cropX: number; cropY: number; cropW: number; cropH: number; rotationDeg: number }
-interface SessionState {
-  code: string; title: string; status: 'lobby' | 'question' | 'reveal' | 'ended'
-  roundType: string | null
-  question: string | null; promptImage: PromptImage | null; choices: string[] | null; correctIndex: number | null
-  roundStartedAt: string | null; roundDurationSeconds: number | null
-}
-interface Poll {
-  session: SessionState; tally: number[]; totalAnswers: number
-  leaderboard: { pseudo: string; score: number }[]
-  speedFeed: string[]
-}
-
-// Panneau vertical pensé pour occuper une bonne moitié de l'écran, ajouté
-// comme Browser Source dans OBS/Streamlabs (fond transparent, aucune
-// interaction) à côté d'une webcam/caméra. Haut : la question (ou la
-// signature pour une manche "quiz autographes"), les choix ne se révèlent
-// QUE quand l'animateur clique "Révéler" (voir /api/live-quiz, qui filtre
-// déjà round_correct_index côté serveur -- rien de sensible n'atterrit ici
-// avant). Bas : pendant la question, un classement en direct de qui a
-// répondu le plus vite (sans révéler qui a juste) ; sinon, le classement
-// cumulé avec points.
+// Panneau vertical COMPACT (~demi-écran, docké à droite, fond transparent) --
+// pensé pour être ajouté comme Browser Source à côté d'une webcam sans
+// couvrir toute la scène. Voir /quiz/[code]/overlay/big pour la variante
+// grand format, opaque, pensée pour occuper un large bandeau/fond dédié.
+// Haut : la question (ou la signature pour une manche "quiz autographes"),
+// les choix ne se révèlent QUE quand l'animateur clique "Révéler" (voir
+// /api/live-quiz, qui filtre déjà round_correct_index côté serveur -- rien
+// de sensible n'atterrit ici avant). Bas : pendant la question, un
+// classement en direct de qui a répondu le plus vite (sans révéler qui a
+// juste) ; sinon, le classement cumulé avec points.
 export default function QuizOverlayPage({ params }: { params: Promise<{ code: string }> }) {
   const { code: rawCode } = use(params)
   const code = rawCode.toUpperCase()
-  const [poll, setPoll] = useState<Poll | null>(null)
-  const [remaining, setRemaining] = useState<number | null>(null)
-
-  useEffect(() => {
-    let cancelled = false
-    const tick = async () => {
-      try {
-        const res = await fetch(`/api/live-quiz?code=${code}`)
-        if (!res.ok) return
-        const json = await res.json()
-        if (!cancelled) setPoll(json)
-      } catch {}
-    }
-    tick()
-    const id = setInterval(tick, 1200)
-    return () => { cancelled = true; clearInterval(id) }
-  }, [code])
-
-  useEffect(() => {
-    const s = poll?.session
-    if (!s?.roundStartedAt || !s?.roundDurationSeconds) { setRemaining(null); return }
-    const end = new Date(s.roundStartedAt).getTime() + s.roundDurationSeconds * 1000
-    const t = () => setRemaining(Math.max(0, Math.ceil((end - Date.now()) / 1000)))
-    t()
-    const id = setInterval(t, 250)
-    return () => clearInterval(id)
-  }, [poll?.session.roundStartedAt, poll?.session.roundDurationSeconds])
+  const { poll, remaining } = useLiveQuizPoll(code)
 
   // Le fond transparent est garanti par le layout serveur du segment
   // (src/app/quiz/layout.tsx), présent dès le premier HTML -- plus besoin de

@@ -242,8 +242,12 @@ export default function LiveQuizAdminPage() {
               <p style={{ fontSize: 12, color: '#888', wordBreak: 'break-all' }}>{SITE_URL}/quiz/{session.code}</p>
               <p style={{ fontSize: 13, fontWeight: 700, marginTop: 10 }}>👥 {participantCount} vote{participantCount > 1 ? 's' : ''} sur cette manche</p>
               <div style={{ marginTop: 14, padding: 10, borderRadius: 10, background: '#f4f6fb', textAlign: 'left' }}>
-                <div style={{ fontSize: 11, fontWeight: 800, color: '#888', textTransform: 'uppercase', marginBottom: 4 }}>Lien overlay OBS/Streamlabs</div>
+                <div style={{ fontSize: 11, fontWeight: 800, color: '#888', textTransform: 'uppercase', marginBottom: 4 }}>Overlay compact (transparent, coin d'écran)</div>
                 <code style={{ fontSize: 11, wordBreak: 'break-all' }}>{SITE_URL}/quiz/{session.code}/overlay</code>
+              </div>
+              <div style={{ marginTop: 8, padding: 10, borderRadius: 10, background: '#f4f6fb', textAlign: 'left' }}>
+                <div style={{ fontSize: 11, fontWeight: 800, color: '#888', textTransform: 'uppercase', marginBottom: 4 }}>Overlay grand format (opaque, zone dédiée)</div>
+                <code style={{ fontSize: 11, wordBreak: 'break-all' }}>{SITE_URL}/quiz/{session.code}/overlay/big</code>
               </div>
             </div>
 
