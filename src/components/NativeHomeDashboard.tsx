@@ -133,6 +133,21 @@ export default function NativeHomeDashboard({ siteStats }: { siteStats: SiteStat
       try {
         const challenge = currentChallenge()
         const timeout = new Promise<never>((_, reject) => setTimeout(() => reject(new Error('timeout')), 4000))
+        // Diagnostic temporaire (signalement "timeout" recurrent malgre des
+        // requetes individuellement rapides cote serveur) : chaque requete
+        // logue sa propre duree des qu'elle repond, meme si l'ensemble finit
+        // par timeout -- pour voir dans la console laquelle ne repond jamais,
+        // au lieu de deviner. A retirer une fois la cause confirmee.
+        const timed = <T,>(label: string, p: PromiseLike<T>) => {
+          const t0 = performance.now()
+          return Promise.resolve(p).then(r => {
+            console.debug(`[dashboard] ${label}: ${Math.round(performance.now() - t0)}ms`)
+            return r
+          }, e => {
+            console.debug(`[dashboard] ${label}: FAILED after ${Math.round(performance.now() - t0)}ms`, e)
+            throw e
+          })
+        }
         // stats_total/rc/patch/num/auto viennent tous de profiles (recalculés chaque
         // nuit par /api/recalcul-stats, CSV inclus) — `auto` faisait avant l'objet
         // d'une requête live séparée sur cartes_manuelles uniquement, ratant les
@@ -140,12 +155,12 @@ export default function NativeHomeDashboard({ siteStats }: { siteStats: SiteStat
         // requête réseau de plus qui contribue au cold start).
         const [{ data: profile }, { data: lastCards }, { data: badgeRows }, { data: streakRows }, { data: weekCards }, { data: xpTotal }] = await Promise.race([
           Promise.all([
-            supabase.from('profiles').select('display_name, avatar_url, stats_total, stats_auto').eq('id', user.id).abortSignal(abort.signal).single(),
-            supabase.from('cartes_manuelles').select('image_recto, nom').eq('user_id', user.id).not('image_recto', 'is', null).order('created_at', { ascending: false }).abortSignal(abort.signal).limit(1),
-            supabase.rpc('get_user_badge_data', { p_user_id: user.id }).abortSignal(abort.signal),
-            supabase.rpc('bump_streak', { p_user_id: user.id }).abortSignal(abort.signal),
-            supabase.from('cartes_manuelles').select('rc, auto, patch, num').eq('user_id', user.id).gte('created_at', startOfWeekISO()).abortSignal(abort.signal),
-            supabase.rpc('get_user_xp_total', { p_user_id: user.id }).abortSignal(abort.signal),
+            timed('profile', supabase.from('profiles').select('display_name, avatar_url, stats_total, stats_auto').eq('id', user.id).abortSignal(abort.signal).single()),
+            timed('lastCard', supabase.from('cartes_manuelles').select('image_recto, nom').eq('user_id', user.id).not('image_recto', 'is', null).order('created_at', { ascending: false }).abortSignal(abort.signal).limit(1)),
+            timed('badgeData', supabase.rpc('get_user_badge_data', { p_user_id: user.id }).abortSignal(abort.signal)),
+            timed('bumpStreak', supabase.rpc('bump_streak', { p_user_id: user.id }).abortSignal(abort.signal)),
+            timed('weekCards', supabase.from('cartes_manuelles').select('rc, auto, patch, num').eq('user_id', user.id).gte('created_at', startOfWeekISO()).abortSignal(abort.signal)),
+            timed('xpTotal', supabase.rpc('get_user_xp_total', { p_user_id: user.id }).abortSignal(abort.signal)),
           ]),
           timeout,
         ])
