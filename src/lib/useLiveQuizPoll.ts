@@ -1,5 +1,5 @@
 'use client'
-import { useEffect, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 
 export interface PromptImage { url: string; cropX: number; cropY: number; cropW: number; cropH: number; rotationDeg: number }
 export interface QuizSessionState {
@@ -46,5 +46,35 @@ export function useLiveQuizPoll(code: string) {
     return () => clearInterval(id)
   }, [poll?.session.roundStartedAt, poll?.session.roundDurationSeconds])
 
-  return { poll, remaining }
+  // Signaux "ça vient de changer" pour animer l'overlay (rebond du compteur
+  // de votes, confettis à la révélation) sans que chaque page ne doive
+  // recomparer elle-même l'état précédent -- juste des booléens qui
+  // s'allument brièvement puis se réinitialisent.
+  const [voteBump, setVoteBump] = useState(false)
+  const prevTotalRef = useRef(0)
+  useEffect(() => {
+    const total = poll?.totalAnswers ?? 0
+    if (total > prevTotalRef.current) {
+      setVoteBump(true)
+      const t = setTimeout(() => setVoteBump(false), 420)
+      prevTotalRef.current = total
+      return () => clearTimeout(t)
+    }
+    prevTotalRef.current = total
+  }, [poll?.totalAnswers])
+
+  const [justRevealed, setJustRevealed] = useState(false)
+  const prevStatusRef = useRef<string | undefined>(undefined)
+  useEffect(() => {
+    const status = poll?.session.status
+    if (status === 'reveal' && prevStatusRef.current && prevStatusRef.current !== 'reveal') {
+      setJustRevealed(true)
+      const t = setTimeout(() => setJustRevealed(false), 1600)
+      prevStatusRef.current = status
+      return () => clearTimeout(t)
+    }
+    prevStatusRef.current = status
+  }, [poll?.session.status])
+
+  return { poll, remaining, voteBump, justRevealed }
 }

@@ -4,6 +4,8 @@ import { fdlcFont } from '@/lib/fdlcFont'
 import { FDLC_LOGO_URL, FDLC_NAVY, FDLC_NAVY_DEEP, FDLC_RED, FDLC_CHOICE_COLORS } from '@/lib/fdlcBranding'
 import SignatureCrop from '@/components/SignatureCrop'
 import { useLiveQuizPoll } from '@/lib/useLiveQuizPoll'
+import ConfettiBurst from '@/components/ConfettiBurst'
+import QuizAnimStyles from '@/components/QuizAnimStyles'
 
 // Variante GRAND FORMAT de l'overlay -- pensée pour occuper toute une zone
 // dédiée de la scène (ex: le grand bandeau bleu d'un habillage existant),
@@ -19,7 +21,7 @@ import { useLiveQuizPoll } from '@/lib/useLiveQuizPoll'
 export default function QuizOverlayBigPage({ params }: { params: Promise<{ code: string }> }) {
   const { code: rawCode } = use(params)
   const code = rawCode.toUpperCase()
-  const { poll, remaining } = useLiveQuizPoll(code)
+  const { poll, remaining, voteBump, justRevealed } = useLiveQuizPoll(code)
 
   if (!poll) {
     return <div style={{ minHeight: '100dvh', background: FDLC_NAVY_DEEP }} />
@@ -34,28 +36,30 @@ export default function QuizOverlayBigPage({ params }: { params: Promise<{ code:
 
   return (
     <div style={{ minHeight: '100dvh', background: 'transparent', padding: 18, fontFamily: 'system-ui, sans-serif', color: 'white' }}>
+      <QuizAnimStyles />
       <div style={{
         position: 'relative', overflow: 'hidden', height: 'calc(100dvh - 36px)',
         background: `radial-gradient(circle at 50% -20%, ${FDLC_NAVY} 0%, ${FDLC_NAVY_DEEP} 60%)`,
         border: `4px solid ${FDLC_RED}`, borderRadius: 32, boxShadow: '0 20px 60px rgba(0,0,0,0.5)',
         display: 'flex', flexDirection: 'column', padding: '32px 44px',
       }}>
+        <ConfettiBurst active={justRevealed} />
         {/* Filigrane logo en fond, tres discret -- donne un peu de vie a l'ecran meme en lobby */}
         <img src={FDLC_LOGO_URL} alt="" style={{
           position: 'absolute', right: '-6%', top: '-6%', width: '46%', height: 'auto',
           opacity: 0.06, transform: 'rotate(-8deg)', pointerEvents: 'none',
         }} />
 
-        <div style={{ display: 'flex', alignItems: 'center', gap: 14, marginBottom: 24, flexShrink: 0, position: 'relative' }}>
-          <img src={FDLC_LOGO_URL} alt="" style={{ height: 44, width: 44, borderRadius: 10, boxShadow: '0 8px 24px rgba(0,0,0,0.4)' }} />
-          <div>
-            <div className={fdlcFont.className} style={{ fontSize: 20, lineHeight: 1.1 }}>{session.title}</div>
-            <div style={{ fontSize: 12, fontWeight: 700, color: 'rgba(255,255,255,0.45)', textTransform: 'uppercase', letterSpacing: 1.5 }}>Fédération de la Carte</div>
+        <div style={{ display: 'flex', alignItems: 'center', gap: 16, marginBottom: 28, flexShrink: 0, position: 'relative' }}>
+          <img src={FDLC_LOGO_URL} alt="" style={{ height: 52, width: 52, borderRadius: 12, boxShadow: '0 8px 24px rgba(0,0,0,0.4)', flexShrink: 0 }} />
+          <div style={{ minWidth: 0 }}>
+            <div className={fdlcFont.className} style={{ fontSize: 24, lineHeight: 1.1 }}>{session.title}</div>
+            <div style={{ fontSize: 13, fontWeight: 700, color: 'rgba(255,255,255,0.45)', textTransform: 'uppercase', letterSpacing: 1.5 }}>Fédération de la Carte</div>
           </div>
           {remaining !== null && session.status === 'question' && (
-            <div style={{
-              marginLeft: 'auto', fontSize: 20, fontWeight: 900, padding: '7px 20px', borderRadius: 999,
-              background: remaining <= 5 ? FDLC_RED : 'rgba(255,255,255,0.1)', boxShadow: '0 8px 24px rgba(0,0,0,0.35)',
+            <div className={remaining <= 5 ? 'quiz-anim-pulse' : undefined} style={{
+              marginLeft: 'auto', flexShrink: 0, fontSize: 28, fontWeight: 900, padding: '10px 26px', borderRadius: 999,
+              background: remaining <= 5 ? FDLC_RED : 'rgba(255,255,255,0.14)', boxShadow: '0 8px 24px rgba(0,0,0,0.4)',
             }}>⏱ {remaining}s</div>
           )}
         </div>
@@ -75,47 +79,61 @@ export default function QuizOverlayBigPage({ params }: { params: Promise<{ code:
                 </div>
               </div>
             ) : (
-              <div className={fdlcFont.className} style={{ fontSize: 38, lineHeight: 1.25, maxWidth: 900, margin: '0 auto' }}>{session.question}</div>
+              <div className={fdlcFont.className} style={{ fontSize: 46, lineHeight: 1.2, maxWidth: 920, margin: '0 auto' }}>{session.question}</div>
             )}
           </div>
 
-          {hasRound && revealed && (
-            <div style={{ flexShrink: 0, display: 'flex', flexDirection: 'column', gap: 14, maxWidth: 820, width: '100%', margin: '0 auto' }}>
+          {/* Propositions visibles dès le début de la question (pas seulement
+              à la révélation) -- seuls la mise en avant du bon choix, la
+              barre de vote et le % restent reserves a la revelation. */}
+          {hasRound && (
+            <div style={{ flexShrink: 0, display: 'flex', flexDirection: 'column', gap: 16, maxWidth: 860, width: '100%', margin: '0 auto' }}>
               {(session.choices || []).map((choice, i) => {
                 const count = tally[i] ?? 0
                 const pct = totalAnswers > 0 ? Math.round((count / totalAnswers) * 100) : 0
-                const isCorrect = session.correctIndex === i
+                const isCorrect = revealed && session.correctIndex === i
                 return (
-                  <div key={i} style={{ display: 'flex', alignItems: 'center', gap: 16 }}>
+                  <div key={i} className="quiz-anim-pop" style={{ display: 'flex', alignItems: 'center', gap: 18, animationDelay: `${i * 70}ms` }}>
                     <div style={{
-                      width: 38, height: 38, borderRadius: 10, background: FDLC_CHOICE_COLORS[i], flexShrink: 0,
-                      display: 'flex', alignItems: 'center', justifyContent: 'center', fontWeight: 900, fontSize: 17,
+                      width: 44, height: 44, borderRadius: 12, background: FDLC_CHOICE_COLORS[i], flexShrink: 0,
+                      display: 'flex', alignItems: 'center', justifyContent: 'center', fontWeight: 900, fontSize: 20,
                       boxShadow: isCorrect ? '0 0 0 4px #2ecc71' : 'none',
                     }}>{i + 1}</div>
-                    <div style={{ flex: 1, position: 'relative', height: 50, borderRadius: 14, background: 'rgba(255,255,255,0.07)', overflow: 'hidden' }}>
-                      <div style={{
-                        position: 'absolute', inset: 0, width: `${Math.max(5, (count / maxTally) * 100)}%`,
-                        background: isCorrect ? 'linear-gradient(90deg, #1e9e57, #2ecc71)' : 'rgba(255,255,255,0.18)',
-                        transition: 'width 0.6s ease',
-                      }} />
-                      <div style={{ position: 'relative', height: '100%', display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '0 20px' }}>
-                        <span style={{ fontSize: 19, fontWeight: 800 }}>{choice}</span>
-                        <span style={{ fontSize: 16, fontWeight: 900, color: 'rgba(255,255,255,0.7)' }}>{pct}%</span>
+                    <div style={{ flex: 1, position: 'relative', height: 58, borderRadius: 16, background: 'rgba(255,255,255,0.08)', overflow: 'hidden', border: `1px solid ${FDLC_RED}2e` }}>
+                      {revealed && (
+                        <div style={{
+                          position: 'absolute', inset: 0, width: `${Math.max(5, (count / maxTally) * 100)}%`,
+                          background: isCorrect ? 'linear-gradient(90deg, #1e9e57, #2ecc71)' : 'rgba(255,255,255,0.18)',
+                          transition: 'width 0.6s ease',
+                        }} />
+                      )}
+                      <div style={{ position: 'relative', height: '100%', display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '0 22px' }}>
+                        <span style={{ fontSize: 22, fontWeight: 800 }}>{choice}</span>
+                        {revealed && <span style={{ fontSize: 18, fontWeight: 900, color: 'rgba(255,255,255,0.7)' }}>{pct}%</span>}
                       </div>
                     </div>
                   </div>
                 )
               })}
-              <div style={{ fontSize: 13, fontWeight: 700, color: 'rgba(255,255,255,0.45)', textAlign: 'center' }}>
-                {totalAnswers} vote{totalAnswers > 1 ? 's' : ''}
-              </div>
+              {revealed && (
+                <div className={voteBump ? 'quiz-anim-bump' : undefined} style={{ fontSize: 14, fontWeight: 700, color: 'rgba(255,255,255,0.45)', textAlign: 'center', display: 'inline-block', width: '100%' }}>
+                  {totalAnswers} vote{totalAnswers > 1 ? 's' : ''}
+                </div>
+              )}
             </div>
           )}
 
           {/* Vitesse en direct pendant la question, classement sinon -- grille pour remplir l'espace */}
           <div style={{ flexShrink: 0, width: '100%' }}>
-            <div style={{ fontSize: 15, fontWeight: 800, color: 'rgba(255,255,255,0.55)', textTransform: 'uppercase', letterSpacing: 2, marginBottom: 14, textAlign: 'center' }}>
-              {showSpeedFeed ? '⚡ Les plus rapides' : '🏆 Classement'}
+            <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 8, marginBottom: 14 }}>
+              <div style={{ fontSize: 15, fontWeight: 800, color: 'rgba(255,255,255,0.55)', textTransform: 'uppercase', letterSpacing: 2 }}>
+                {showSpeedFeed ? '⚡ Les plus rapides' : '🏆 Classement'}
+              </div>
+              {showSpeedFeed && (
+                <span className={voteBump ? 'quiz-anim-bump' : undefined} style={{ fontSize: 15, fontWeight: 900, color: '#2ecc71', display: 'inline-block' }}>
+                  {totalAnswers}
+                </span>
+              )}
             </div>
             {bottomEmpty ? (
               <div style={{ fontSize: 15, fontWeight: 700, color: 'rgba(255,255,255,0.35)', textAlign: 'center' }}>
@@ -125,7 +143,7 @@ export default function QuizOverlayBigPage({ params }: { params: Promise<{ code:
               <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '12px 28px', maxWidth: 780, margin: '0 auto', width: '100%' }}>
                 {showSpeedFeed
                   ? speedFeed.map((pseudo, i) => (
-                      <BigRow key={i} rank={i + 1}>
+                      <BigRow key={i} rank={i + 1} pop>
                         <span style={{ flex: 1, fontSize: 18, fontWeight: 800 }}>{pseudo}</span>
                       </BigRow>
                     ))
@@ -145,9 +163,9 @@ export default function QuizOverlayBigPage({ params }: { params: Promise<{ code:
   )
 }
 
-function BigRow({ rank, gold, children }: { rank: number; gold?: boolean; children: React.ReactNode }) {
+function BigRow({ rank, gold, pop, children }: { rank: number; gold?: boolean; pop?: boolean; children: React.ReactNode }) {
   return (
-    <div style={{
+    <div className={pop ? 'quiz-anim-row-in' : undefined} style={{
       display: 'flex', alignItems: 'center', gap: 12, padding: '12px 18px', borderRadius: 14,
       background: 'rgba(255,255,255,0.06)', border: gold ? `1px solid #e8b400` : `1px solid ${FDLC_RED}33`,
     }}>
