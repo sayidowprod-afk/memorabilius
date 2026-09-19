@@ -14,6 +14,7 @@ const admin = createClient(
 // réponse) dans le payload websocket, que le composant l'affiche ou non.
 export async function GET(req: NextRequest) {
   const code = req.nextUrl.searchParams.get('code')?.trim().toUpperCase()
+  const participantId = req.nextUrl.searchParams.get('participantId')
   if (!code) return NextResponse.json({ error: 'code manquant' }, { status: 400 })
 
   const { data: session, error } = await admin.from('quiz_sessions').select('*').eq('code', code).maybeSingle()
@@ -39,7 +40,7 @@ export async function GET(req: NextRequest) {
   // laisser deviner qui a déjà la bonne réponse avant l'animateur.
   const { data: answerRows } = await admin
     .from('quiz_answers')
-    .select('participant_id, pseudo, is_correct, round_key, answered_at')
+    .select('participant_id, pseudo, points, round_key, answered_at')
     .eq('session_id', session.id)
     .order('answered_at', { ascending: true })
 
@@ -48,10 +49,19 @@ export async function GET(req: NextRequest) {
     if (!revealed && r.round_key === roundKey) continue
     const entry = scores.get(r.participant_id) || { pseudo: r.pseudo, score: 0 }
     entry.pseudo = r.pseudo // dernier pseudo connu
-    if (r.is_correct) entry.score++
+    entry.score += r.points ?? 0
     scores.set(r.participant_id, entry)
   }
   const leaderboard = [...scores.values()].sort((a, b) => b.score - a.score).slice(0, 10)
+
+  // Points de CE spectateur pour la manche en cours, révélés seulement une
+  // fois status='reveal' (même règle que round_correct_index) -- lui permet
+  // d'afficher "+750 pts" sans exposer qui que ce soit d'autre.
+  let myPoints: number | null = null
+  if (revealed && roundKey && participantId) {
+    const mine = (answerRows || []).find(r => r.round_key === roundKey && r.participant_id === participantId)
+    myPoints = mine?.points ?? 0
+  }
 
   return NextResponse.json({
     session: {
@@ -69,5 +79,6 @@ export async function GET(req: NextRequest) {
     tally,
     totalAnswers,
     leaderboard,
+    myPoints,
   })
 }

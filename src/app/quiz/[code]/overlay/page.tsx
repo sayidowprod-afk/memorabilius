@@ -139,7 +139,7 @@ export default function QuizOverlayPage({ params }: { params: Promise<{ code: st
               <div key={i} style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
                 <span style={{ width: 18, fontSize: 14, fontWeight: 900, color: i === 0 ? '#e8b400' : 'rgba(255,255,255,0.5)' }}>{i + 1}</span>
                 <span style={{ flex: 1, fontSize: 15, fontWeight: 800 }}>{e.pseudo}</span>
-                <span style={{ fontSize: 15, fontWeight: 900, color: '#2ecc71' }}>{e.score}</span>
+                <span style={{ fontSize: 15, fontWeight: 900, color: '#2ecc71' }}>{e.score} pts</span>
               </div>
             ))}
           </div>

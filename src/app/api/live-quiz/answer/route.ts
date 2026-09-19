@@ -40,6 +40,17 @@ export async function POST(req: NextRequest) {
 
   const isCorrect = choiceIndex === session.round_correct_index
 
+  // Points = bonne réponse + rapidité, comme Kahoot : 500 pts de base pour une
+  // bonne réponse, jusqu'à 500 pts de bonus selon la vitesse. Sans minuteur
+  // fixé sur la question (round_duration_seconds), on retombe sur une fenêtre
+  // par défaut de 30s pour que la rapidité compte quand même un peu -- passé
+  // ce délai le bonus est nul mais les 500 de base restent acquis.
+  const DEFAULT_WINDOW_MS = 30000
+  const responseMs = session.round_started_at ? Date.now() - new Date(session.round_started_at).getTime() : 0
+  const windowMs = (session.round_duration_seconds ? session.round_duration_seconds * 1000 : DEFAULT_WINDOW_MS)
+  const speedRatio = Math.max(0, Math.min(1, 1 - responseMs / windowMs))
+  const points = isCorrect ? Math.round(500 + 500 * speedRatio) : 0
+
   const { error } = await admin.from('quiz_answers').upsert({
     session_id: session.id,
     round_key: session.round_key,
@@ -47,6 +58,8 @@ export async function POST(req: NextRequest) {
     pseudo: String(pseudo).slice(0, 40),
     choice_index: choiceIndex,
     is_correct: isCorrect,
+    response_ms: responseMs,
+    points,
   }, { onConflict: 'round_key,participant_id' })
   if (error) return NextResponse.json({ error: error.message }, { status: 500 })
 

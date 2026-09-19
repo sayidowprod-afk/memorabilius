@@ -12,6 +12,7 @@ interface SessionState {
 interface Poll {
   session: SessionState; tally: number[]; totalAnswers: number
   leaderboard: { pseudo: string; score: number }[]
+  myPoints: number | null
 }
 
 function getParticipantId(): string {
@@ -63,7 +64,7 @@ export default function QuizJoinPage({ params }: { params: Promise<{ code: strin
     let cancelled = false
     const tick = async () => {
       try {
-        const res = await fetch(`/api/live-quiz?code=${code}`)
+        const res = await fetch(`/api/live-quiz?code=${code}&participantId=${encodeURIComponent(participantIdRef.current)}`)
         if (res.status === 404) { if (!cancelled) setNotFound(true); return }
         const json = await res.json()
         if (!cancelled) setPoll(json)
@@ -131,7 +132,7 @@ export default function QuizJoinPage({ params }: { params: Promise<{ code: strin
 
   if (!poll) return <Centered><Spinner /></Centered>
 
-  const { session, tally, totalAnswers, leaderboard } = poll
+  const { session, tally, totalAnswers, leaderboard, myPoints } = poll
 
   if (session.status === 'lobby') {
     return (
@@ -207,6 +208,11 @@ export default function QuizJoinPage({ params }: { params: Promise<{ code: strin
       {myChoice !== undefined && !revealed && (
         <p style={{ marginTop: 18, fontSize: 13, fontWeight: 700, color: 'rgba(255,255,255,0.55)' }}>Vote enregistré, en attente des autres...</p>
       )}
+      {revealed && myPoints !== null && (
+        <p className={fdlcFont.className} style={{ marginTop: 18, fontSize: 20, color: myPoints > 0 ? '#2ecc71' : 'rgba(255,255,255,0.5)' }}>
+          {myPoints > 0 ? `+${myPoints} pts` : '0 pt'}
+        </p>
+      )}
       {timeUp && myChoice === undefined && !revealed && (
         <p style={{ marginTop: 18, fontSize: 13, fontWeight: 700, color: FDLC_RED }}>Temps écoulé.</p>
       )}
@@ -237,7 +243,7 @@ function Leaderboard({ leaderboard, pseudo }: { leaderboard: { pseudo: string; s
           }}>
             <span style={{ width: 20, fontSize: 13, fontWeight: 900, color: 'rgba(255,255,255,0.55)' }}>{i + 1}</span>
             <span style={{ flex: 1, fontSize: 14, fontWeight: 800 }}>{e.pseudo}</span>
-            <span style={{ fontSize: 14, fontWeight: 900, color: '#2ecc71' }}>{e.score}</span>
+            <span style={{ fontSize: 14, fontWeight: 900, color: '#2ecc71' }}>{e.score} pts</span>
           </div>
         ))}
       </div>
