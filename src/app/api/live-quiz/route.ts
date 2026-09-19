@@ -21,7 +21,14 @@ export async function GET(req: NextRequest) {
   if (error) return NextResponse.json({ error: error.message }, { status: 500 })
   if (!session) return NextResponse.json({ error: 'session introuvable' }, { status: 404 })
 
-  const revealed = session.status === 'reveal'
+  // La manche est "réglée" (sûre à montrer) dès qu'elle n'est plus activement
+  // en train d'être votée -- pas seulement à status==='reveal' pile. Piège
+  // trouvé en testant : passer directement de 'reveal' à 'ended' (terminer
+  // la session sans repasser par "Retour lobby") laisse round_key/round_
+  // correct_index intacts en base ; se baser sur status==='reveal' strict
+  // recachait alors la dernière manche pourtant déjà révélée -- le
+  // classement final perdait ses points, la bonne réponse redisparaissait.
+  const settled = session.status !== 'question'
   const roundKey = session.round_key as string | null
 
   let tally: number[] = []
@@ -46,7 +53,7 @@ export async function GET(req: NextRequest) {
 
   const scores = new Map<string, { pseudo: string; score: number }>()
   for (const r of answerRows || []) {
-    if (!revealed && r.round_key === roundKey) continue
+    if (!settled && r.round_key === roundKey) continue
     const entry = scores.get(r.participant_id) || { pseudo: r.pseudo, score: 0 }
     entry.pseudo = r.pseudo // dernier pseudo connu
     entry.score += r.points ?? 0
@@ -63,10 +70,10 @@ export async function GET(req: NextRequest) {
     : []
 
   // Points de CE spectateur pour la manche en cours, révélés seulement une
-  // fois status='reveal' (même règle que round_correct_index) -- lui permet
+  // fois la manche réglée (même règle que round_correct_index) -- lui permet
   // d'afficher "+750 pts" sans exposer qui que ce soit d'autre.
   let myPoints: number | null = null
-  if (revealed && roundKey && participantId) {
+  if (settled && roundKey && participantId) {
     const mine = (answerRows || []).find(r => r.round_key === roundKey && r.participant_id === participantId)
     myPoints = mine?.points ?? 0
   }
@@ -81,7 +88,7 @@ export async function GET(req: NextRequest) {
       question: session.round_question,
       promptImage: session.round_prompt_image,
       choices: session.round_choices,
-      correctIndex: revealed ? session.round_correct_index : null,
+      correctIndex: settled ? session.round_correct_index : null,
       roundStartedAt: session.round_started_at,
       roundDurationSeconds: session.round_duration_seconds,
     },

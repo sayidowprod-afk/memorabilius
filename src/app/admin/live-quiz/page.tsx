@@ -9,6 +9,7 @@ interface Session {
   status: 'lobby' | 'question' | 'reveal' | 'ended'
   round_type: string | null; round_key: string | null
   round_question: string | null; round_choices: string[] | null; round_correct_index: number | null
+  round_started_at: string | null; round_duration_seconds: number | null
 }
 interface Question {
   id: string; question: string; choices: string[]; correct_index: number; used: boolean
@@ -35,6 +36,8 @@ export default function LiveQuizAdminPage() {
   const [participantCount, setParticipantCount] = useState(0)
   const [tally, setTally] = useState<number[]>([])
   const [totalAnswers, setTotalAnswers] = useState(0)
+  const [leaderboard, setLeaderboard] = useState<{ pseudo: string; score: number }[]>([])
+  const [remaining, setRemaining] = useState<number | null>(null)
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState('')
   const [newTitle, setNewTitle] = useState('')
@@ -85,7 +88,7 @@ export default function LiveQuizAdminPage() {
   }, [activeId])
 
   useEffect(() => {
-    if (!session?.round_key) { setTally([]); setTotalAnswers(0); return }
+    if (!session?.code) { setTally([]); setTotalAnswers(0); setLeaderboard([]); return }
     let cancelled = false
     const tick = async () => {
       const res = await fetch(`/api/live-quiz?code=${session.code}`)
@@ -93,11 +96,23 @@ export default function LiveQuizAdminPage() {
       const json = await res.json()
       setTally(json.tally || [])
       setTotalAnswers(json.totalAnswers || 0)
+      setLeaderboard(json.leaderboard || [])
     }
     tick()
     const id = setInterval(tick, 2000)
     return () => { cancelled = true; clearInterval(id) }
-  }, [session?.round_key, session?.code])
+  }, [session?.round_key, session?.code, session?.status])
+
+  // Minuteur en direct (comme l'overlay) -- pour que l'animateur voie le
+  // decompte sans devoir garder un second ecran ouvert.
+  useEffect(() => {
+    if (!session?.round_started_at || !session?.round_duration_seconds) { setRemaining(null); return }
+    const end = new Date(session.round_started_at).getTime() + session.round_duration_seconds * 1000
+    const tick = () => setRemaining(Math.max(0, Math.ceil((end - Date.now()) / 1000)))
+    tick()
+    const id = setInterval(tick, 250)
+    return () => clearInterval(id)
+  }, [session?.round_started_at, session?.round_duration_seconds])
 
   useEffect(() => {
     if (!session) { setQrDataUrl(''); return }
@@ -253,7 +268,15 @@ export default function LiveQuizAdminPage() {
 
             <div style={{ minWidth: 0 }}>
               <div style={{ padding: 14, borderRadius: 12, background: '#f4f6fb', marginBottom: 18 }}>
-                <div style={{ fontWeight: 800, marginBottom: 6 }}>État : {session.status}</div>
+                <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: 6 }}>
+                  <div style={{ fontWeight: 800 }}>État : {session.status}</div>
+                  {remaining !== null && session.status === 'question' && (
+                    <div style={{
+                      fontSize: 14, fontWeight: 900, padding: '3px 12px', borderRadius: 20,
+                      background: remaining <= 5 ? FDLC_RED : '#dde3f0', color: remaining <= 5 ? 'white' : '#333',
+                    }}>⏱ {remaining}s</div>
+                  )}
+                </div>
                 {(session.round_question || session.round_type === 'autograph') && (
                   <div>
                     <div style={{ fontWeight: 700, marginBottom: 8 }}>{session.round_question || '✍️ Signature (quiz autographes)'}</div>
@@ -276,6 +299,21 @@ export default function LiveQuizAdminPage() {
                   )}
                 </div>
               </div>
+
+              {leaderboard.length > 0 && (
+                <div style={{ padding: 14, borderRadius: 12, background: '#f4f6fb', marginBottom: 18 }}>
+                  <div style={{ fontWeight: 800, marginBottom: 10 }}>🏆 Classement</div>
+                  <div style={{ display: 'flex', flexDirection: 'column', gap: 6 }}>
+                    {leaderboard.map((e, i) => (
+                      <div key={i} style={{ display: 'flex', alignItems: 'center', gap: 10, fontSize: 13 }}>
+                        <span style={{ width: 18, fontWeight: 900, color: i === 0 ? '#e8b400' : '#888' }}>{i + 1}</span>
+                        <span style={{ flex: 1, fontWeight: 700 }}>{e.pseudo}</span>
+                        <span style={{ fontWeight: 900, color: '#2ecc71' }}>{e.score} pts</span>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              )}
 
               <h3 style={{ fontWeight: 800, marginBottom: 10 }}>Banque de questions</h3>
               <div style={{ display: 'flex', flexDirection: 'column', gap: 8, marginBottom: 18 }}>

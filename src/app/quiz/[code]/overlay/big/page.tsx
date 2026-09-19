@@ -6,6 +6,7 @@ import SignatureCrop from '@/components/SignatureCrop'
 import { useLiveQuizPoll } from '@/lib/useLiveQuizPoll'
 import ConfettiBurst from '@/components/ConfettiBurst'
 import QuizAnimStyles from '@/components/QuizAnimStyles'
+import WaveText from '@/components/WaveText'
 
 // Variante GRAND FORMAT de l'overlay -- pensée pour occuper toute une zone
 // dédiée de la scène (ex: le grand bandeau bleu d'un habillage existant),
@@ -68,8 +69,8 @@ export default function QuizOverlayBigPage({ params }: { params: Promise<{ code:
         <div style={{ flex: 1, minHeight: 0, display: 'flex', flexDirection: 'column', justifyContent: 'center', gap: 26, position: 'relative' }}>
           <div style={{ flexShrink: 0, textAlign: 'center' }}>
             {!hasRound ? (
-              <div style={{ fontSize: 26, fontWeight: 800, color: 'rgba(255,255,255,0.4)' }}>
-                En attente de la prochaine question...
+              <div style={{ fontSize: 26, fontWeight: 800, color: 'rgba(255,255,255,0.5)' }}>
+                <WaveText text="En attente de la prochaine question..." />
               </div>
             ) : session.roundType === 'autograph' && session.promptImage ? (
               <div>

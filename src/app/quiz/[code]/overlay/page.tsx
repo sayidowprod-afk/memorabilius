@@ -6,6 +6,7 @@ import SignatureCrop from '@/components/SignatureCrop'
 import { useLiveQuizPoll } from '@/lib/useLiveQuizPoll'
 import ConfettiBurst from '@/components/ConfettiBurst'
 import QuizAnimStyles from '@/components/QuizAnimStyles'
+import WaveText from '@/components/WaveText'
 
 // Panneau vertical COMPACT (~demi-écran, docké à droite, fond transparent) --
 // pensé pour être ajouté comme Browser Source à côté d'une webcam sans
@@ -68,8 +69,8 @@ export default function QuizOverlayPage({ params }: { params: Promise<{ code: st
           </div>
 
           {!hasRound ? (
-            <div style={{ fontSize: 16, fontWeight: 700, color: 'rgba(255,255,255,0.45)', textAlign: 'center', padding: '20px 0' }}>
-              En attente de la prochaine question...
+            <div style={{ fontSize: 16, fontWeight: 700, color: 'rgba(255,255,255,0.5)', textAlign: 'center', padding: '20px 0' }}>
+              <WaveText text="En attente de la prochaine question..." />
             </div>
           ) : session.roundType === 'autograph' && session.promptImage ? (
             <div>
