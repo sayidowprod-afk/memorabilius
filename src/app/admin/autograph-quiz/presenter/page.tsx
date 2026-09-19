@@ -15,6 +15,25 @@ interface QuizCard {
 const TIERS = ['S', 'A', 'B', 'C', 'D'] as const
 const TIER_COLORS: Record<string, string> = { S: '#e74c3c', A: '#e67e22', B: '#f1c40f', C: '#2ecc71', D: '#3498db' }
 
+function TierButton({ tier, active, onClick }: { tier: string; active: boolean; onClick: () => void }) {
+  const [hover, setHover] = useState(false)
+  const lit = active || hover
+  return (
+    <button
+      onClick={onClick}
+      onMouseEnter={() => setHover(true)}
+      onMouseLeave={() => setHover(false)}
+      style={{
+        width: 42, height: 42, borderRadius: 10, fontWeight: 900, fontSize: 17, cursor: 'pointer',
+        background: lit ? TIER_COLORS[tier] : 'rgba(255,255,255,0.08)',
+        color: lit ? '#111' : 'white',
+        border: `2px solid ${lit ? TIER_COLORS[tier] : 'rgba(255,255,255,0.14)'}`,
+        transition: 'background 0.12s, border-color 0.12s, color 0.12s',
+      }}
+    >{tier}</button>
+  )
+}
+
 const shuffle = <T,>(arr: T[]): T[] => {
   const a = [...arr]
   for (let i = a.length - 1; i > 0; i--) {
@@ -217,12 +236,7 @@ export default function AutographQuizPresenterPage() {
               </div>
               <div style={{ display: 'flex', gap: 6 }}>
                 {TIERS.map(t => (
-                  <button key={t} onClick={() => setTier(t)} style={{
-                    width: 42, height: 42, borderRadius: 10, fontWeight: 900, fontSize: 17, cursor: 'pointer',
-                    background: current.tier === t ? TIER_COLORS[t] : 'rgba(255,255,255,0.08)',
-                    color: current.tier === t ? '#111' : 'white',
-                    border: current.tier === t ? `2px solid ${TIER_COLORS[t]}` : '2px solid rgba(255,255,255,0.14)',
-                  }}>{t}</button>
+                  <TierButton key={t} tier={t} active={current.tier === t} onClick={() => setTier(t)} />
                 ))}
               </div>
             </div>
