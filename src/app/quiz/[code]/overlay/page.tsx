@@ -3,7 +3,7 @@ import { use } from 'react'
 import { fdlcFont } from '@/lib/fdlcFont'
 import { FDLC_LOGO_URL, FDLC_NAVY_DEEP, FDLC_CHOICE_COLORS } from '@/lib/fdlcBranding'
 import SignatureCrop from '@/components/SignatureCrop'
-import { useLiveQuizPoll } from '@/lib/useLiveQuizPoll'
+import { useLiveQuizPoll, formatResponseMs } from '@/lib/useLiveQuizPoll'
 import ConfettiBurst from '@/components/ConfettiBurst'
 import QuizAnimStyles from '@/components/QuizAnimStyles'
 import WaveText from '@/components/WaveText'
@@ -140,9 +140,10 @@ export default function QuizOverlayPage({ params }: { params: Promise<{ code: st
             {showSpeedFeed ? (
               speedFeed.length === 0 ? (
                 <EmptyRow>En attente des premières réponses...</EmptyRow>
-              ) : speedFeed.map((pseudo, i) => (
+              ) : speedFeed.map((s, i) => (
                 <Row key={i} rank={i + 1} pop>
-                  <span style={{ flex: 1, fontSize: 15, fontWeight: 800 }}>{pseudo}</span>
+                  <span style={{ flex: 1, fontSize: 15, fontWeight: 800 }}>{s.pseudo}</span>
+                  <span style={{ fontSize: 12.5, fontWeight: 800, color: 'rgba(255,255,255,0.45)' }}>{formatResponseMs(s.ms)}</span>
                 </Row>
               ))
             ) : (

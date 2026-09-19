@@ -11,7 +11,7 @@ export interface QuizSessionState {
 export interface QuizPoll {
   session: QuizSessionState; tally: number[]; totalAnswers: number
   leaderboard: { pseudo: string; score: number }[]
-  speedFeed: string[]
+  speedFeed: { pseudo: string; ms: number | null }[]
 }
 
 // Partagé entre les deux variantes de l'overlay (compact et grand format,
@@ -77,4 +77,11 @@ export function useLiveQuizPoll(code: string) {
   }, [poll?.session.status])
 
   return { poll, remaining, voteBump, justRevealed }
+}
+
+// "1.2s" -- pour le fil "plus rapides" (temps de reponse depuis le
+// lancement de la manche, stocke en base au moment du vote).
+export function formatResponseMs(ms: number | null): string {
+  if (ms == null) return ''
+  return `${(ms / 1000).toFixed(1)}s`
 }

@@ -47,7 +47,7 @@ export async function GET(req: NextRequest) {
   // laisser deviner qui a déjà la bonne réponse avant l'animateur.
   const { data: answerRows } = await admin
     .from('quiz_answers')
-    .select('participant_id, pseudo, points, round_key, answered_at')
+    .select('participant_id, pseudo, points, round_key, answered_at, response_ms')
     .eq('session_id', session.id)
     .order('answered_at', { ascending: true })
 
@@ -61,12 +61,13 @@ export async function GET(req: NextRequest) {
   }
   const leaderboard = [...scores.values()].sort((a, b) => b.score - a.score).slice(0, 10)
 
-  // Les 10 premiers a avoir repondu sur la manche en cours (pseudo + rang de
-  // vitesse) -- pas de is_correct/points ici, juste "qui a repondu vite", pour
-  // l'overlay pendant que la question est encore en cours (aucune info
-  // sensible : ne revele ni la bonne reponse ni le choix de chacun).
+  // Les 10 premiers a avoir repondu sur la manche en cours (pseudo + temps de
+  // reponse) -- pas de is_correct/points ici, juste "qui a repondu vite et en
+  // combien de temps", pour l'overlay pendant que la question est encore en
+  // cours (aucune info sensible : ne revele ni la bonne reponse ni le choix
+  // de chacun).
   const speedFeed = roundKey
-    ? (answerRows || []).filter(r => r.round_key === roundKey).slice(0, 10).map(r => r.pseudo)
+    ? (answerRows || []).filter(r => r.round_key === roundKey).slice(0, 10).map(r => ({ pseudo: r.pseudo, ms: r.response_ms }))
     : []
 
   // Points de CE spectateur pour la manche en cours, révélés seulement une

@@ -3,7 +3,7 @@ import { use } from 'react'
 import { fdlcFont } from '@/lib/fdlcFont'
 import { FDLC_LOGO_URL, FDLC_NAVY, FDLC_NAVY_DEEP, FDLC_RED, FDLC_CHOICE_COLORS } from '@/lib/fdlcBranding'
 import SignatureCrop from '@/components/SignatureCrop'
-import { useLiveQuizPoll } from '@/lib/useLiveQuizPoll'
+import { useLiveQuizPoll, formatResponseMs } from '@/lib/useLiveQuizPoll'
 import ConfettiBurst from '@/components/ConfettiBurst'
 import QuizAnimStyles from '@/components/QuizAnimStyles'
 import WaveText from '@/components/WaveText'
@@ -65,98 +65,103 @@ export default function QuizOverlayBigPage({ params }: { params: Promise<{ code:
           )}
         </div>
 
-        {/* Corps : remplit tout le reste du cadre. justifyContent:'center'
-            provoquait un chevauchement avec l'en-tete quand il y avait
-            beaucoup de contenu (question + 4 choix + minuteur + fil "plus
-            rapides" bien rempli) -- le centrage poussait alors le contenu
-            vers le HAUT, par-dessus le logo/titre. Ancre en haut + defilement
-            interne si ca deborde, jamais de chevauchement. */}
-        <div style={{ flex: 1, minHeight: 0, display: 'flex', flexDirection: 'column', justifyContent: 'flex-start', gap: 26, position: 'relative', overflowY: 'auto' }}>
-          <div style={{ flexShrink: 0, textAlign: 'center' }}>
-            {!hasRound ? (
-              <div style={{ fontSize: 26, fontWeight: 800, color: 'rgba(255,255,255,0.5)' }}>
-                <WaveText text="En attente de la prochaine question..." />
-              </div>
-            ) : session.roundType === 'autograph' && session.promptImage ? (
-              <div>
-                <div className={fdlcFont.className} style={{ fontSize: 28, marginBottom: 16 }}>✍️ Quelle est cette signature ?</div>
-                <div style={{ maxWidth: 300, margin: '0 auto' }}>
-                  <SignatureCrop {...session.promptImage} style={{ boxShadow: '0 20px 50px rgba(0,0,0,0.55)' }} />
+        {/* Corps : question/choix a gauche, classement/vitesse a droite --
+            avant, tout etait empile dans une seule colonne (question + 4
+            choix + minuteur + fil "plus rapides" bien rempli), ce qui
+            forcait des tailles de police reduites pour que ca tienne, et
+            provoquait meme un chevauchement avec l'en-tete quand ca
+            debordait. Deux colonnes cote a cote : chacune a moins de choses
+            a caser en hauteur, donc peut se permettre du plus grand. */}
+        <div style={{ flex: 1, minHeight: 0, display: 'flex', gap: 40, position: 'relative' }}>
+          <div style={{ flex: '1.35 1 0%', minWidth: 0, display: 'flex', flexDirection: 'column', justifyContent: 'center', gap: 28, overflowY: 'auto' }}>
+            <div style={{ flexShrink: 0, textAlign: 'center' }}>
+              {!hasRound ? (
+                <div style={{ fontSize: 30, fontWeight: 800, color: 'rgba(255,255,255,0.5)' }}>
+                  <WaveText text="En attente de la prochaine question..." />
                 </div>
+              ) : session.roundType === 'autograph' && session.promptImage ? (
+                <div>
+                  <div className={fdlcFont.className} style={{ fontSize: 30, marginBottom: 18 }}>✍️ Quelle est cette signature ?</div>
+                  <div style={{ maxWidth: 340, margin: '0 auto' }}>
+                    <SignatureCrop {...session.promptImage} style={{ boxShadow: '0 20px 50px rgba(0,0,0,0.55)' }} />
+                  </div>
+                </div>
+              ) : (
+                <div className={fdlcFont.className} style={{ fontSize: 52, lineHeight: 1.18 }}>{session.question}</div>
+              )}
+            </div>
+
+            {/* Propositions visibles dès le début de la question (pas
+                seulement à la révélation) -- seuls la mise en avant du bon
+                choix, la barre de vote et le % restent reserves a la
+                revelation. */}
+            {hasRound && (
+              <div style={{ flexShrink: 0, display: 'flex', flexDirection: 'column', gap: 18, width: '100%' }}>
+                {(session.choices || []).map((choice, i) => {
+                  const count = tally[i] ?? 0
+                  const pct = totalAnswers > 0 ? Math.round((count / totalAnswers) * 100) : 0
+                  const isCorrect = revealed && session.correctIndex === i
+                  return (
+                    <div key={i} className="quiz-anim-pop" style={{ display: 'flex', alignItems: 'center', gap: 18, animationDelay: `${i * 70}ms` }}>
+                      <div style={{
+                        width: 50, height: 50, borderRadius: 14, background: FDLC_CHOICE_COLORS[i], flexShrink: 0,
+                        display: 'flex', alignItems: 'center', justifyContent: 'center', fontWeight: 900, fontSize: 22,
+                        boxShadow: isCorrect ? '0 0 0 4px #2ecc71' : 'none',
+                      }}>{i + 1}</div>
+                      <div style={{ flex: 1, minWidth: 0, position: 'relative', height: 64, borderRadius: 16, background: 'rgba(255,255,255,0.08)', overflow: 'hidden', border: `1px solid ${FDLC_RED}2e` }}>
+                        {revealed && (
+                          <div style={{
+                            position: 'absolute', inset: 0, width: `${Math.max(5, (count / maxTally) * 100)}%`,
+                            background: isCorrect ? 'linear-gradient(90deg, #1e9e57, #2ecc71)' : 'rgba(255,255,255,0.18)',
+                            transition: 'width 0.6s ease',
+                          }} />
+                        )}
+                        <div style={{ position: 'relative', height: '100%', display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '0 24px' }}>
+                          <span style={{ fontSize: 24, fontWeight: 800 }}>{choice}</span>
+                          {revealed && <span style={{ fontSize: 19, fontWeight: 900, color: 'rgba(255,255,255,0.7)' }}>{pct}%</span>}
+                        </div>
+                      </div>
+                    </div>
+                  )
+                })}
+                {revealed && (
+                  <div className={voteBump ? 'quiz-anim-bump' : undefined} style={{ fontSize: 14, fontWeight: 700, color: 'rgba(255,255,255,0.45)', textAlign: 'center', display: 'inline-block', width: '100%' }}>
+                    {totalAnswers} vote{totalAnswers > 1 ? 's' : ''}
+                  </div>
+                )}
               </div>
-            ) : (
-              <div className={fdlcFont.className} style={{ fontSize: 46, lineHeight: 1.2, maxWidth: 920, margin: '0 auto' }}>{session.question}</div>
             )}
           </div>
 
-          {/* Propositions visibles dès le début de la question (pas seulement
-              à la révélation) -- seuls la mise en avant du bon choix, la
-              barre de vote et le % restent reserves a la revelation. */}
-          {hasRound && (
-            <div style={{ flexShrink: 0, display: 'flex', flexDirection: 'column', gap: 16, maxWidth: 860, width: '100%', margin: '0 auto' }}>
-              {(session.choices || []).map((choice, i) => {
-                const count = tally[i] ?? 0
-                const pct = totalAnswers > 0 ? Math.round((count / totalAnswers) * 100) : 0
-                const isCorrect = revealed && session.correctIndex === i
-                return (
-                  <div key={i} className="quiz-anim-pop" style={{ display: 'flex', alignItems: 'center', gap: 18, animationDelay: `${i * 70}ms` }}>
-                    <div style={{
-                      width: 44, height: 44, borderRadius: 12, background: FDLC_CHOICE_COLORS[i], flexShrink: 0,
-                      display: 'flex', alignItems: 'center', justifyContent: 'center', fontWeight: 900, fontSize: 20,
-                      boxShadow: isCorrect ? '0 0 0 4px #2ecc71' : 'none',
-                    }}>{i + 1}</div>
-                    <div style={{ flex: 1, position: 'relative', height: 58, borderRadius: 16, background: 'rgba(255,255,255,0.08)', overflow: 'hidden', border: `1px solid ${FDLC_RED}2e` }}>
-                      {revealed && (
-                        <div style={{
-                          position: 'absolute', inset: 0, width: `${Math.max(5, (count / maxTally) * 100)}%`,
-                          background: isCorrect ? 'linear-gradient(90deg, #1e9e57, #2ecc71)' : 'rgba(255,255,255,0.18)',
-                          transition: 'width 0.6s ease',
-                        }} />
-                      )}
-                      <div style={{ position: 'relative', height: '100%', display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '0 22px' }}>
-                        <span style={{ fontSize: 22, fontWeight: 800 }}>{choice}</span>
-                        {revealed && <span style={{ fontSize: 18, fontWeight: 900, color: 'rgba(255,255,255,0.7)' }}>{pct}%</span>}
-                      </div>
-                    </div>
-                  </div>
-                )
-              })}
-              {revealed && (
-                <div className={voteBump ? 'quiz-anim-bump' : undefined} style={{ fontSize: 14, fontWeight: 700, color: 'rgba(255,255,255,0.45)', textAlign: 'center', display: 'inline-block', width: '100%' }}>
-                  {totalAnswers} vote{totalAnswers > 1 ? 's' : ''}
-                </div>
-              )}
-            </div>
-          )}
-
-          {/* Vitesse en direct pendant la question, classement sinon -- grille pour remplir l'espace */}
-          <div style={{ flexShrink: 0, width: '100%' }}>
-            <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 8, marginBottom: 14 }}>
-              <div style={{ fontSize: 15, fontWeight: 800, color: 'rgba(255,255,255,0.55)', textTransform: 'uppercase', letterSpacing: 2 }}>
+          {/* Vitesse en direct pendant la question, classement sinon -- colonne pleine hauteur */}
+          <div style={{ flex: '1 1 0%', minWidth: 0, display: 'flex', flexDirection: 'column', borderLeft: `2px solid ${FDLC_RED}44`, paddingLeft: 36 }}>
+            <div style={{ display: 'flex', alignItems: 'center', gap: 10, marginBottom: 18, flexShrink: 0 }}>
+              <div style={{ fontSize: 17, fontWeight: 800, color: 'rgba(255,255,255,0.55)', textTransform: 'uppercase', letterSpacing: 2 }}>
                 {showSpeedFeed ? '⚡ Les plus rapides' : '🏆 Classement'}
               </div>
               {showSpeedFeed && (
-                <span className={voteBump ? 'quiz-anim-bump' : undefined} style={{ fontSize: 15, fontWeight: 900, color: '#2ecc71', display: 'inline-block' }}>
+                <span className={voteBump ? 'quiz-anim-bump' : undefined} style={{ fontSize: 17, fontWeight: 900, color: '#2ecc71', display: 'inline-block' }}>
                   {totalAnswers}
                 </span>
               )}
             </div>
             {bottomEmpty ? (
-              <div style={{ fontSize: 15, fontWeight: 700, color: 'rgba(255,255,255,0.35)', textAlign: 'center' }}>
+              <div style={{ fontSize: 16, fontWeight: 700, color: 'rgba(255,255,255,0.35)' }}>
                 {showSpeedFeed ? 'En attente des premières réponses...' : "Personne n'a encore marqué de points."}
               </div>
             ) : (
-              <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '12px 28px', maxWidth: 780, margin: '0 auto', width: '100%' }}>
+              <div style={{ display: 'flex', flexDirection: 'column', gap: 12, overflowY: 'auto', minHeight: 0 }}>
                 {showSpeedFeed
-                  ? speedFeed.map((pseudo, i) => (
+                  ? speedFeed.map((s, i) => (
                       <BigRow key={i} rank={i + 1} pop>
-                        <span style={{ flex: 1, fontSize: 18, fontWeight: 800 }}>{pseudo}</span>
+                        <span style={{ flex: 1, fontSize: 20, fontWeight: 800 }}>{s.pseudo}</span>
+                        <span style={{ fontSize: 15, fontWeight: 800, color: 'rgba(255,255,255,0.45)' }}>{formatResponseMs(s.ms)}</span>
                       </BigRow>
                     ))
                   : leaderboard.map((e, i) => (
                       <BigRow key={i} rank={i + 1} gold={i === 0}>
-                        <span style={{ flex: 1, fontSize: 18, fontWeight: 800 }}>{e.pseudo}</span>
-                        <span style={{ fontSize: 18, fontWeight: 900, color: '#2ecc71' }}>{e.score} pts</span>
+                        <span style={{ flex: 1, fontSize: 20, fontWeight: 800 }}>{e.pseudo}</span>
+                        <span style={{ fontSize: 20, fontWeight: 900, color: '#2ecc71' }}>{e.score} pts</span>
                       </BigRow>
                     ))
                 }
