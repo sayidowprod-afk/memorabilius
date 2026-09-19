@@ -65,8 +65,13 @@ export default function QuizOverlayBigPage({ params }: { params: Promise<{ code:
           )}
         </div>
 
-        {/* Corps : remplit tout le reste du cadre, centre son contenu verticalement */}
-        <div style={{ flex: 1, minHeight: 0, display: 'flex', flexDirection: 'column', justifyContent: 'center', gap: 26, position: 'relative' }}>
+        {/* Corps : remplit tout le reste du cadre. justifyContent:'center'
+            provoquait un chevauchement avec l'en-tete quand il y avait
+            beaucoup de contenu (question + 4 choix + minuteur + fil "plus
+            rapides" bien rempli) -- le centrage poussait alors le contenu
+            vers le HAUT, par-dessus le logo/titre. Ancre en haut + defilement
+            interne si ca deborde, jamais de chevauchement. */}
+        <div style={{ flex: 1, minHeight: 0, display: 'flex', flexDirection: 'column', justifyContent: 'flex-start', gap: 26, position: 'relative', overflowY: 'auto' }}>
           <div style={{ flexShrink: 0, textAlign: 'center' }}>
             {!hasRound ? (
               <div style={{ fontSize: 26, fontWeight: 800, color: 'rgba(255,255,255,0.5)' }}>
