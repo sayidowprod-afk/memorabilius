@@ -117,7 +117,19 @@ export default function NativeHomeDashboard({ siteStats }: { siteStats: SiteStat
     // c'est une requête toute neuve, pas parce qu'elle a besoin de longtemps pour
     // aboutir — un cycle d'auto-retry trop long (8s x4 + backoff, ~40s) fait juste
     // paraître la page cassée plus longtemps qu'un simple F5, pour le même résultat.
+    let currentAbort: AbortController | null = null
     const load = async (attempt: number) => {
+      // Le timeout ci-dessous abandonne juste l'ATTENTE côté JS -- sans abort
+      // explicite, les requetes de la tentative precedente continuaient de
+      // tourner en arriere-plan (Supabase/le navigateur ne les annule pas
+      // tout seul). Sur une connexion lente/limitee, chaque nouvelle tentative
+      // s'ajoutait donc aux precedentes encore en vol au lieu de repartir
+      // propre, saturant le nombre de requetes simultanees par domaine que le
+      // navigateur autorise -- chaque tentative devenait alors plus lente que
+      // la precedente jusqu'a l'echec garanti au bout des 5 essais (~40s).
+      currentAbort?.abort()
+      const abort = new AbortController()
+      currentAbort = abort
       try {
         const challenge = currentChallenge()
         const timeout = new Promise<never>((_, reject) => setTimeout(() => reject(new Error('timeout')), 4000))
@@ -128,12 +140,12 @@ export default function NativeHomeDashboard({ siteStats }: { siteStats: SiteStat
         // requête réseau de plus qui contribue au cold start).
         const [{ data: profile }, { data: lastCards }, { data: badgeRows }, { data: streakRows }, { data: weekCards }, { data: xpTotal }] = await Promise.race([
           Promise.all([
-            supabase.from('profiles').select('display_name, avatar_url, stats_total, stats_auto').eq('id', user.id).single(),
-            supabase.from('cartes_manuelles').select('image_recto, nom').eq('user_id', user.id).not('image_recto', 'is', null).order('created_at', { ascending: false }).limit(1),
-            supabase.rpc('get_user_badge_data', { p_user_id: user.id }),
-            supabase.rpc('bump_streak', { p_user_id: user.id }),
-            supabase.from('cartes_manuelles').select('rc, auto, patch, num').eq('user_id', user.id).gte('created_at', startOfWeekISO()),
-            supabase.rpc('get_user_xp_total', { p_user_id: user.id }),
+            supabase.from('profiles').select('display_name, avatar_url, stats_total, stats_auto').eq('id', user.id).abortSignal(abort.signal).single(),
+            supabase.from('cartes_manuelles').select('image_recto, nom').eq('user_id', user.id).not('image_recto', 'is', null).order('created_at', { ascending: false }).abortSignal(abort.signal).limit(1),
+            supabase.rpc('get_user_badge_data', { p_user_id: user.id }).abortSignal(abort.signal),
+            supabase.rpc('bump_streak', { p_user_id: user.id }).abortSignal(abort.signal),
+            supabase.from('cartes_manuelles').select('rc, auto, patch, num').eq('user_id', user.id).gte('created_at', startOfWeekISO()).abortSignal(abort.signal),
+            supabase.rpc('get_user_xp_total', { p_user_id: user.id }).abortSignal(abort.signal),
           ]),
           timeout,
         ])
@@ -176,7 +188,7 @@ export default function NativeHomeDashboard({ siteStats }: { siteStats: SiteStat
       }
     }
     load(1)
-    return () => { cancelled = true }
+    return () => { cancelled = true; currentAbort?.abort() }
   }, [user?.id, retryKey])
 
   // Verse la récompense XP du défi hebdomadaire dès qu'il est complété. La
