@@ -1,10 +1,13 @@
 'use client'
 import { use, useEffect, useRef, useState } from 'react'
+import { fdlcFont } from '@/lib/fdlcFont'
+import { FDLC_LOGO_URL, FDLC_NAVY, FDLC_NAVY_DEEP, FDLC_RED, FDLC_CHOICE_COLORS } from '@/lib/fdlcBranding'
 
 interface SessionState {
   code: string; title: string; status: 'lobby' | 'question' | 'reveal' | 'ended'
   roundType: string | null; roundKey: string | null
   question: string | null; choices: string[] | null; correctIndex: number | null
+  roundStartedAt: string | null; roundDurationSeconds: number | null
 }
 interface Poll {
   session: SessionState; tally: number[]; totalAnswers: number
@@ -20,7 +23,18 @@ function getParticipantId(): string {
   return id
 }
 
-const COLORS = ['#e74c3c', '#3498db', '#f1c40f', '#2ecc71']
+function useCountdown(startedAt: string | null, durationSeconds: number | null): number | null {
+  const [remaining, setRemaining] = useState<number | null>(null)
+  useEffect(() => {
+    if (!startedAt || !durationSeconds) { setRemaining(null); return }
+    const end = new Date(startedAt).getTime() + durationSeconds * 1000
+    const tick = () => setRemaining(Math.max(0, Math.ceil((end - Date.now()) / 1000)))
+    tick()
+    const id = setInterval(tick, 250)
+    return () => clearInterval(id)
+  }, [startedAt, durationSeconds])
+  return remaining
+}
 
 export default function QuizJoinPage({ params }: { params: Promise<{ code: string }> }) {
   const { code: rawCode } = use(params)
@@ -60,8 +74,11 @@ export default function QuizJoinPage({ params }: { params: Promise<{ code: strin
     return () => { cancelled = true; clearInterval(id) }
   }, [joined, code])
 
+  const remaining = useCountdown(poll?.session.roundStartedAt ?? null, poll?.session.roundDurationSeconds ?? null)
+  const timeUp = remaining === 0
+
   const submitAnswer = async (choiceIndex: number) => {
-    if (!poll?.session.roundKey || submitting) return
+    if (!poll?.session.roundKey || submitting || timeUp) return
     setSubmitting(true)
     try {
       await fetch('/api/live-quiz/answer', {
@@ -91,8 +108,8 @@ export default function QuizJoinPage({ params }: { params: Promise<{ code: strin
   if (!joined) {
     return (
       <Centered>
-        <img src="/memorabilius-logo.png" alt="" style={{ height: 34, marginBottom: 28 }} />
-        <p style={{ fontSize: 13, fontWeight: 700, color: 'rgba(255,255,255,0.5)', textTransform: 'uppercase', letterSpacing: 1, marginBottom: 10 }}>
+        <Logo />
+        <p style={{ fontSize: 13, fontWeight: 700, color: 'rgba(255,255,255,0.55)', textTransform: 'uppercase', letterSpacing: 1, marginBottom: 10 }}>
           Rejoindre le quiz {code}
         </p>
         <input
@@ -102,11 +119,11 @@ export default function QuizJoinPage({ params }: { params: Promise<{ code: strin
           placeholder="Ton pseudo"
           maxLength={20}
           autoFocus
-          style={{ width: '100%', maxWidth: 280, padding: '14px 16px', borderRadius: 12, border: '1px solid rgba(255,255,255,0.15)', background: 'rgba(255,255,255,0.06)', color: 'white', fontSize: 16, fontWeight: 700, textAlign: 'center', marginBottom: 14 }}
+          style={{ width: '100%', maxWidth: 280, padding: '14px 16px', borderRadius: 12, border: '1px solid rgba(255,255,255,0.18)', background: 'rgba(255,255,255,0.06)', color: 'white', fontSize: 16, fontWeight: 700, textAlign: 'center', marginBottom: 14 }}
         />
         <button onClick={doJoin} disabled={!pseudo.trim()} style={{
           width: '100%', maxWidth: 280, padding: '14px 16px', borderRadius: 12, border: 'none',
-          background: pseudo.trim() ? '#003DA6' : 'rgba(255,255,255,0.1)', color: 'white', fontSize: 16, fontWeight: 900, cursor: 'pointer',
+          background: pseudo.trim() ? FDLC_RED : 'rgba(255,255,255,0.1)', color: 'white', fontSize: 16, fontWeight: 900, cursor: 'pointer',
         }}>Rejoindre →</button>
       </Centered>
     )
@@ -119,9 +136,9 @@ export default function QuizJoinPage({ params }: { params: Promise<{ code: strin
   if (session.status === 'lobby') {
     return (
       <Centered>
-        <img src="/memorabilius-logo.png" alt="" style={{ height: 30, marginBottom: 22 }} />
-        <p style={{ fontSize: 20, fontWeight: 900, marginBottom: 8 }}>{session.title}</p>
-        <p style={{ fontSize: 14, color: 'rgba(255,255,255,0.5)', fontWeight: 700 }}>Salut {pseudo} 👋 La prochaine question arrive bientôt...</p>
+        <Logo small />
+        <p className={fdlcFont.className} style={{ fontSize: 19, marginBottom: 8, textAlign: 'center' }}>{session.title}</p>
+        <p style={{ fontSize: 14, color: 'rgba(255,255,255,0.55)', fontWeight: 700, textAlign: 'center' }}>Salut {pseudo} 👋 La prochaine question arrive bientôt...</p>
         <Spinner />
       </Centered>
     )
@@ -130,7 +147,7 @@ export default function QuizJoinPage({ params }: { params: Promise<{ code: strin
   if (session.status === 'ended') {
     return (
       <Centered>
-        <p style={{ fontSize: 22, fontWeight: 900, marginBottom: 20 }}>🏁 Merci d'avoir joué !</p>
+        <p className={fdlcFont.className} style={{ fontSize: 20, marginBottom: 20 }}>🏁 Merci d'avoir joué !</p>
         <Leaderboard leaderboard={leaderboard} pseudo={pseudo} />
       </Centered>
     )
@@ -138,13 +155,22 @@ export default function QuizJoinPage({ params }: { params: Promise<{ code: strin
 
   const myChoice = session.roundKey ? myAnswers[session.roundKey] : undefined
   const revealed = session.status === 'reveal'
+  const locked = myChoice !== undefined || revealed || timeUp
 
   return (
     <Centered wide>
-      <p style={{ fontSize: 12, fontWeight: 800, color: 'rgba(255,255,255,0.4)', textTransform: 'uppercase', letterSpacing: 1, marginBottom: 10 }}>
-        {pseudo} · {code}
-      </p>
-      <p style={{ fontSize: 22, fontWeight: 900, textAlign: 'center', marginBottom: 22, lineHeight: 1.3 }}>{session.question}</p>
+      <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', width: '100%', marginBottom: 14 }}>
+        <p style={{ fontSize: 12, fontWeight: 800, color: 'rgba(255,255,255,0.45)', textTransform: 'uppercase', letterSpacing: 1 }}>
+          {pseudo} · {code}
+        </p>
+        {remaining !== null && !revealed && (
+          <p style={{
+            fontSize: 13, fontWeight: 900, padding: '3px 10px', borderRadius: 20,
+            background: remaining <= 5 ? FDLC_RED : 'rgba(255,255,255,0.1)', color: 'white',
+          }}>⏱ {remaining}s</p>
+        )}
+      </div>
+      <p className={fdlcFont.className} style={{ fontSize: 20, textAlign: 'center', marginBottom: 22, lineHeight: 1.35 }}>{session.question}</p>
 
       <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 10, width: '100%' }}>
         {(session.choices || []).map((choice, i) => {
@@ -155,12 +181,12 @@ export default function QuizJoinPage({ params }: { params: Promise<{ code: strin
           return (
             <button
               key={i}
-              disabled={myChoice !== undefined || revealed}
+              disabled={locked}
               onClick={() => submitAnswer(i)}
               style={{
                 position: 'relative', overflow: 'hidden', padding: '16px 14px', borderRadius: 14, textAlign: 'left',
-                border: `2px solid ${isCorrect ? '#2ecc71' : isWrongMine ? '#e74c3c' : isMine ? COLORS[i] : 'rgba(255,255,255,0.14)'}`,
-                background: 'rgba(255,255,255,0.05)', color: 'white', fontSize: 15, fontWeight: 800, cursor: myChoice === undefined && !revealed ? 'pointer' : 'default',
+                border: `2px solid ${isCorrect ? '#2ecc71' : isWrongMine ? FDLC_RED : isMine ? FDLC_CHOICE_COLORS[i] : 'rgba(255,255,255,0.16)'}`,
+                background: 'rgba(255,255,255,0.05)', color: 'white', fontSize: 15, fontWeight: 800, cursor: !locked ? 'pointer' : 'default',
                 minHeight: 64,
               }}
             >
@@ -168,18 +194,21 @@ export default function QuizJoinPage({ params }: { params: Promise<{ code: strin
                 <div style={{ position: 'absolute', inset: 0, width: `${pct}%`, background: isCorrect ? 'rgba(46,204,113,0.22)' : 'rgba(255,255,255,0.06)', transition: 'width 0.4s' }} />
               )}
               <span style={{ position: 'relative', display: 'flex', alignItems: 'center', gap: 8 }}>
-                <span style={{ width: 22, height: 22, borderRadius: 6, background: COLORS[i], flexShrink: 0, display: 'inline-block' }} />
+                <span style={{ width: 22, height: 22, borderRadius: 6, background: FDLC_CHOICE_COLORS[i], flexShrink: 0, display: 'inline-block' }} />
                 {choice}
                 {isMine && <span style={{ marginLeft: 'auto' }}>{revealed ? (isCorrect ? '✅' : '❌') : '☑️'}</span>}
               </span>
-              {revealed && <span style={{ position: 'relative', display: 'block', fontSize: 11, fontWeight: 700, color: 'rgba(255,255,255,0.5)', marginTop: 4 }}>{pct}%</span>}
+              {revealed && <span style={{ position: 'relative', display: 'block', fontSize: 11, fontWeight: 700, color: 'rgba(255,255,255,0.55)', marginTop: 4 }}>{pct}%</span>}
             </button>
           )
         })}
       </div>
 
       {myChoice !== undefined && !revealed && (
-        <p style={{ marginTop: 18, fontSize: 13, fontWeight: 700, color: 'rgba(255,255,255,0.5)' }}>Vote enregistré, en attente des autres...</p>
+        <p style={{ marginTop: 18, fontSize: 13, fontWeight: 700, color: 'rgba(255,255,255,0.55)' }}>Vote enregistré, en attente des autres...</p>
+      )}
+      {timeUp && myChoice === undefined && !revealed && (
+        <p style={{ marginTop: 18, fontSize: 13, fontWeight: 700, color: FDLC_RED }}>Temps écoulé.</p>
       )}
 
       {revealed && (
@@ -191,18 +220,22 @@ export default function QuizJoinPage({ params }: { params: Promise<{ code: strin
   )
 }
 
+function Logo({ small }: { small?: boolean }) {
+  return <img src={FDLC_LOGO_URL} alt="Fédération de la Carte" style={{ height: small ? 46 : 64, width: 'auto', marginBottom: small ? 16 : 28, borderRadius: 10 }} />
+}
+
 function Leaderboard({ leaderboard, pseudo }: { leaderboard: { pseudo: string; score: number }[]; pseudo: string }) {
   if (leaderboard.length === 0) return null
   return (
     <div style={{ width: '100%' }}>
-      <p style={{ fontSize: 12, fontWeight: 800, color: 'rgba(255,255,255,0.4)', textTransform: 'uppercase', letterSpacing: 1, marginBottom: 10, textAlign: 'center' }}>🏆 Classement</p>
+      <p style={{ fontSize: 12, fontWeight: 800, color: 'rgba(255,255,255,0.45)', textTransform: 'uppercase', letterSpacing: 1, marginBottom: 10, textAlign: 'center' }}>🏆 Classement</p>
       <div style={{ display: 'flex', flexDirection: 'column', gap: 6 }}>
         {leaderboard.map((e, i) => (
           <div key={i} style={{
             display: 'flex', alignItems: 'center', gap: 10, padding: '8px 12px', borderRadius: 10,
-            background: e.pseudo === pseudo ? 'rgba(0,61,166,0.35)' : 'rgba(255,255,255,0.05)',
+            background: e.pseudo === pseudo ? `${FDLC_RED}59` : 'rgba(255,255,255,0.05)',
           }}>
-            <span style={{ width: 20, fontSize: 13, fontWeight: 900, color: 'rgba(255,255,255,0.5)' }}>{i + 1}</span>
+            <span style={{ width: 20, fontSize: 13, fontWeight: 900, color: 'rgba(255,255,255,0.55)' }}>{i + 1}</span>
             <span style={{ flex: 1, fontSize: 14, fontWeight: 800 }}>{e.pseudo}</span>
             <span style={{ fontSize: 14, fontWeight: 900, color: '#2ecc71' }}>{e.score}</span>
           </div>
@@ -214,7 +247,7 @@ function Leaderboard({ leaderboard, pseudo }: { leaderboard: { pseudo: string; s
 
 function Spinner() {
   return (
-    <div style={{ marginTop: 20, width: 28, height: 28, borderRadius: '50%', border: '3px solid rgba(255,255,255,0.15)', borderTopColor: '#003DA6', animation: 'quizSpin 0.8s linear infinite' }}>
+    <div style={{ marginTop: 20, width: 28, height: 28, borderRadius: '50%', border: '3px solid rgba(255,255,255,0.15)', borderTopColor: FDLC_RED, animation: 'quizSpin 0.8s linear infinite' }}>
       <style>{`@keyframes quizSpin { to { transform: rotate(360deg) } }`}</style>
     </div>
   )
@@ -222,8 +255,12 @@ function Spinner() {
 
 function Centered({ children, wide }: { children: React.ReactNode; wide?: boolean }) {
   return (
-    <div style={{ minHeight: '100vh', background: '#04091a', color: 'white', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', padding: '24px 20px', fontFamily: 'system-ui, sans-serif' }}>
-      <div style={{ width: '100%', maxWidth: wide ? 420 : 360, display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+    <div style={{
+      minHeight: '100dvh', background: `radial-gradient(circle at 50% -10%, ${FDLC_NAVY} 0%, ${FDLC_NAVY_DEEP} 65%)`,
+      color: 'white', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center',
+      padding: '24px 16px', fontFamily: 'system-ui, sans-serif',
+    }}>
+      <div style={{ width: '100%', maxWidth: wide ? 440 : 360, display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
         {children}
       </div>
     </div>

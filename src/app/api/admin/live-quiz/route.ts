@@ -83,6 +83,7 @@ export async function PATCH(req: NextRequest) {
       round_question: question.question,
       round_choices: question.choices,
       round_correct_index: question.correct_index,
+      round_duration_seconds: question.duration_seconds ?? null,
       round_started_at: new Date().toISOString(),
     }).eq('id', sessionId).select().single()
     if (error) return NextResponse.json({ error: error.message }, { status: 500 })
@@ -99,7 +100,7 @@ export async function PATCH(req: NextRequest) {
   if (action === 'end_round') {
     const { data, error } = await admin.from('quiz_sessions').update({
       status: 'lobby', round_type: null, round_key: null, round_question: null,
-      round_choices: null, round_correct_index: null, round_started_at: null,
+      round_choices: null, round_correct_index: null, round_started_at: null, round_duration_seconds: null,
     }).eq('id', sessionId).select().single()
     if (error) return NextResponse.json({ error: error.message }, { status: 500 })
     return NextResponse.json({ session: data })

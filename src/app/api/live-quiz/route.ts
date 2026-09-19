@@ -63,6 +63,8 @@ export async function GET(req: NextRequest) {
       question: session.round_question,
       choices: session.round_choices,
       correctIndex: revealed ? session.round_correct_index : null,
+      roundStartedAt: session.round_started_at,
+      roundDurationSeconds: session.round_duration_seconds,
     },
     tally,
     totalAnswers,

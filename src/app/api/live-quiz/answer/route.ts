@@ -22,6 +22,17 @@ export async function POST(req: NextRequest) {
   if (session.status !== 'question' || !session.round_key) {
     return NextResponse.json({ error: 'aucune question en cours' }, { status: 409 })
   }
+  // Le minuteur est optionnel (voir migration 20260919b) -- l'animateur garde
+  // toujours le contrôle manuel du démarrage/de la révélation, ceci ferme
+  // juste le vote plus tôt côté serveur si une durée a été fixée pour cette
+  // question (le client se ferme déjà visuellement à 0, mais un vote posté
+  // juste après ne doit pas compter).
+  if (session.round_duration_seconds && session.round_started_at) {
+    const elapsed = (Date.now() - new Date(session.round_started_at).getTime()) / 1000
+    if (elapsed > session.round_duration_seconds) {
+      return NextResponse.json({ error: 'temps écoulé' }, { status: 409 })
+    }
+  }
   const choices = session.round_choices as any[]
   if (choiceIndex < 0 || choiceIndex >= (choices?.length ?? 0)) {
     return NextResponse.json({ error: 'choix invalide' }, { status: 400 })
