@@ -7,6 +7,7 @@ import { useLiveQuizPoll, formatResponseMs } from '@/lib/useLiveQuizPoll'
 import ConfettiBurst from '@/components/ConfettiBurst'
 import QuizAnimStyles from '@/components/QuizAnimStyles'
 import WaveText from '@/components/WaveText'
+import JoinQrBadge from '@/components/JoinQrBadge'
 
 // Panneau vertical COMPACT (~demi-écran, docké à droite, fond transparent) --
 // pensé pour être ajouté comme Browser Source à côté d'une webcam sans
@@ -42,10 +43,13 @@ export default function QuizOverlayPage({ params }: { params: Promise<{ code: st
 
   return (
     <div style={{
-      minHeight: '100dvh', background: 'transparent', fontFamily: 'system-ui, sans-serif', color: 'white',
+      minHeight: '100dvh', position: 'relative', background: 'transparent', fontFamily: 'system-ui, sans-serif', color: 'white',
       display: 'flex', justifyContent: 'flex-end', alignItems: 'stretch', padding: '36px',
     }}>
       <QuizAnimStyles />
+      <div style={{ position: 'absolute', bottom: 20, right: 24, zIndex: 3 }}>
+        <JoinQrBadge code={session.code} size={58} />
+      </div>
       <div style={{
         width: 'min(46vw, 620px)', minHeight: 0, maxHeight: 'calc(100dvh - 72px)',
         display: 'flex', flexDirection: 'column', gap: 16,

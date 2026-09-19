@@ -7,6 +7,7 @@ import { useLiveQuizPoll, formatResponseMs } from '@/lib/useLiveQuizPoll'
 import ConfettiBurst from '@/components/ConfettiBurst'
 import QuizAnimStyles from '@/components/QuizAnimStyles'
 import WaveText from '@/components/WaveText'
+import JoinQrBadge from '@/components/JoinQrBadge'
 
 // Variante GRAND FORMAT de l'overlay -- pensée pour occuper toute une zone
 // dédiée de la scène (ex: le grand bandeau bleu d'un habillage existant),
@@ -45,6 +46,9 @@ export default function QuizOverlayBigPage({ params }: { params: Promise<{ code:
         display: 'flex', flexDirection: 'column', padding: '32px 44px',
       }}>
         <ConfettiBurst active={justRevealed} />
+        <div style={{ position: 'absolute', bottom: 20, right: 24, zIndex: 3 }}>
+          <JoinQrBadge code={session.code} />
+        </div>
         {/* Filigrane logo en fond, tres discret -- donne un peu de vie a l'ecran meme en lobby */}
         <img src={FDLC_LOGO_URL} alt="" style={{
           position: 'absolute', right: '-6%', top: '-6%', width: '46%', height: 'auto',
