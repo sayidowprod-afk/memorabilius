@@ -47,14 +47,36 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   // onAuthStateChange/getSession continuent de tourner ensuite en arriere-plan
   // pour corriger l'etat (token expire, deconnexion ailleurs, etc.) via
   // setState, mais ne bloquent plus le premier affichage.
-  const [state, setState] = useState<AuthState>(() => {
-    const session = readPersistedSession()
-    return { session, user: session?.user ?? null, loading: !session }
-  })
+  // ATTENTION : ne JAMAIS lire readPersistedSession() de façon synchrone dans
+  // l'initialiseur de useState ci-dessous (ça a déjà été tenté). Le rendu
+  // serveur produit toujours { loading: true, user: null } (pas de
+  // localStorage côté serveur) ; si l'initialiseur du useState lit une
+  // session persistée de façon synchrone, le TOUT PREMIER rendu client
+  // (avant même le premier effet, donc pendant l'hydratation) obtient déjà
+  // { loading: false, user: ... } pour un utilisateur déjà connecté (le cas
+  // courant) -- des composants entiers différents (ex: NativeHomeGate qui
+  // bascule hero vs dashboard) sont alors rendus côté serveur et côté client
+  // dès la première passe. Contrairement à un simple texte différent, changer
+  // le TYPE de composant fait planter l'hydratation React (erreur #418) au
+  // lieu d'être juste récupéré/loggé -- observé en prod comme une page
+  // bloquée en chargement indéfiniment, F5 obligatoire. Lire la session doit
+  // donc rester dans un useEffect (après l'hydratation) -- voir plus bas.
+  const [state, setState] = useState<AuthState>({ session: null, user: null, loading: true })
   const router = useRouter()
 
   useEffect(() => {
     let settled = false
+
+    // Lue ici (après le montage, donc après l'hydratation) plutôt que dans
+    // l'initialiseur de useState -- voir le commentaire ci-dessus. Reste
+    // quasi instantané visuellement : cet effet tourne juste après le
+    // premier rendu, avant même onAuthStateChange dans le cas courant.
+    const persisted = readPersistedSession()
+    if (persisted) {
+      settled = true
+      setState({ session: persisted, user: persisted.user, loading: false })
+      setCrashlyticsUserId(persisted.user?.id ?? null)
+    }
 
     // onAuthStateChange fires INITIAL_SESSION immediately with the session from
     // localStorage — this warms the Supabase in-memory cache before any child
