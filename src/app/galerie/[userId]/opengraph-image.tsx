@@ -2,6 +2,7 @@ import { ImageResponse } from 'next/og'
 import { createClient } from '@supabase/supabase-js'
 import sharp from 'sharp'
 import { isAllowedCsvUrl, fetchCsvCapped } from '@/lib/csvParse'
+import { resolveProfileBySlugParam } from '@/lib/resolveProfileSlug'
 
 export const runtime = 'nodejs'
 export const alt = 'Galerie Memorabilius'
@@ -74,7 +75,16 @@ function buildTiles(urls: string[]): Tile[] {
 }
 
 export default async function OGImage({ params }: { params: Promise<{ userId: string }> }) {
-  const { userId } = await params
+  const { userId: rawUserId } = await params
+  // Le paramètre de route est un UUID, un pseudo court, ou un slug complet
+  // avec suffixe (voir src/lib/resolveProfileSlug.ts) -- jamais résolu ici
+  // avant, cette image tombait donc systématiquement sur les valeurs par
+  // défaut ("Collector" + vignette placeholder) pour tout lien partagé en
+  // slug (le cas courant désormais), .eq('id', ...) ne matchant jamais une
+  // chaîne qui n'est pas l'UUID brut. Même résolution que la page elle-même
+  // (page.tsx, resolveUserId).
+  const profileMatch = await resolveProfileBySlugParam(supabase, rawUserId)
+  const userId = profileMatch?.id || rawUserId
 
   const [{ data: profile }, { data: cards }, { data: privateRows }] = await Promise.all([
     supabase.from('profiles').select('display_name, avatar_url, couleur_bordure, lien_csv').eq('id', userId).single(),
