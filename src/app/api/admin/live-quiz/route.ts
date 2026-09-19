@@ -103,7 +103,14 @@ export async function PATCH(req: NextRequest) {
       const { data, error } = await admin.from('quiz_sessions').update({
         status: 'question',
         round_type: 'autograph',
-        round_key: card.id,
+        // Un id FRAIS a chaque lancement (pas card.id tel quel) -- relancer
+        // la meme carte deux fois avec le meme round_key faisait croire aux
+        // navigateurs des spectateurs (qui retiennent "deja repondu pour ce
+        // round_key" en localStorage) qu'ils avaient deja vote, meme si leur
+        // tentative precedente avait echoue cote serveur : plus aucune
+        // requete n'etait alors envoyee, symptome observe comme "toujours 0
+        // vote" malgre un vote reellement tente.
+        round_key: `${card.id}:${Date.now()}`,
         round_question: null,
         round_prompt_image: {
           url: card.image_recto, cropX: card.crop_x, cropY: card.crop_y, cropW: card.crop_w, cropH: card.crop_h, rotationDeg: card.rotation_deg,
@@ -124,7 +131,9 @@ export async function PATCH(req: NextRequest) {
     const { data, error } = await admin.from('quiz_sessions').update({
       status: 'question',
       round_type: 'qcm',
-      round_key: question.id,
+      // Id frais a chaque lancement -- voir le commentaire equivalent sur la
+      // branche "autograph" juste au-dessus.
+      round_key: `${question.id}:${Date.now()}`,
       round_question: question.question,
       round_prompt_image: null,
       round_choices: question.choices,
