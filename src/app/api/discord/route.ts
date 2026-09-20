@@ -799,7 +799,16 @@ async function cmdCarte(options: any[]) {
 async function sendCarteGifFollowup(applicationId: string, token: string, d: CardData) {
   const editUrl = `https://discord.com/api/v10/webhooks/${applicationId}/${token}/messages/@original`
   try {
-    const gifBuffer = await renderCardSpinGif(d.img, d.imgBack)
+    // Filet de securite au-dessus de renderCardSpinGif : meme corrigee pour
+    // le cas connu (fetch d'image sans timeout, voir discordCardGif.ts), rien
+    // d'autre ici n'empeche un futur hang d'y avoir le meme effet -- laisser
+    // "Memorabilius Bot reflechit..." bloque pour toujours, sans JAMAIS de
+    // message d'erreur (la fonction serverless finit par etre tuee a
+    // maxDuration=120s sans que le catch ci-dessous ait pu s'executer).
+    const gifBuffer = await Promise.race([
+      renderCardSpinGif(d.img, d.imgBack),
+      new Promise<never>((_, reject) => setTimeout(() => reject(new Error('Génération du GIF trop longue (timeout)')), 30000)),
+    ])
     const form = new FormData()
     form.append('payload_json', JSON.stringify({ embeds: [cardEmbed(d, 'attachment://carte.gif')] }))
     form.append('files[0]', new Blob([new Uint8Array(gifBuffer)], { type: 'image/gif' }), 'carte.gif')

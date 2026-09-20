@@ -14,8 +14,14 @@ const H = Math.round(W * 3.5 / 2.5) // ratio carte a collectionner standard
 const FRAMES = 60
 const DELAY_MS = 65  // ~3,9s par rotation complete -- meme nombre de frames (fluidite inchangee), juste chaque frame affichee plus longtemps
 
+// Sans timeout ici, un hebergeur d'image lent/mort (frequent avec les cartes
+// CSV, dont les images viennent de domaines tiers non controles) bloquait ce
+// fetch indefiniment -- comme renderCardSpinGif tourne en arriere-plan
+// (waitUntil, voir route.ts) sans aucun filet au-dessus, la reponse differee
+// Discord n'arrivait jamais : "Memorabilius Bot reflechit..." restait
+// affiche pour toujours au lieu d'un message d'erreur.
 async function fetchImage(url: string): Promise<Image> {
-  const res = await fetch(url)
+  const res = await fetch(url, { signal: AbortSignal.timeout(8000) })
   if (!res.ok) throw new Error(`Image injoignable (${res.status})`)
   const buf = Buffer.from(await res.arrayBuffer())
   return loadImage(buf)
