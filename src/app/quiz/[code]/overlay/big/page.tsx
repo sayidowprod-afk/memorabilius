@@ -65,14 +65,20 @@ export default function QuizOverlayBigPage({ params }: { params: Promise<{ code:
             <JoinQrBadge code={session.code} />
           </div>
         )}
-        {/* Filigrane logo en fond, tres discret -- donne un peu de vie a l'ecran meme en lobby */}
-        <img src={FDLC_LOGO_URL} alt="" style={{
-          position: 'absolute', right: '-6%', top: '-6%', width: '46%', height: 'auto',
-          opacity: 0.06, transform: 'rotate(-8deg)', pointerEvents: 'none',
-        }} />
-
+        {/* Le grand filigrane tourne dans le coin a ete retire -- juge
+            "pas aime" par l'animateur (le logo est un rectangle
+            "carte", pas un badge rond : le faire pivoter en grand
+            donnait un bloc diagonal qui semblait plaque au hasard).
+            Le logo n'apparait plus qu'a un seul endroit, net, dans une
+            pastille ronde -- traitement plus "badge officiel" que
+            "vignette carree", jamais deforme/pivote. */}
         <div style={{ display: 'flex', alignItems: 'center', gap: 16, marginBottom: 28, flexShrink: 0, position: 'relative' }}>
-          <img src={FDLC_LOGO_URL} alt="" style={{ height: 52, width: 52, borderRadius: 12, boxShadow: '0 8px 24px rgba(0,0,0,0.4)', flexShrink: 0 }} />
+          <div style={{
+            width: 58, height: 58, borderRadius: '50%', flexShrink: 0, overflow: 'hidden',
+            border: `2px solid ${FDLC_RED}`, boxShadow: '0 8px 20px rgba(0,0,0,0.45)', background: FDLC_NAVY_DEEP,
+          }}>
+            <img src={FDLC_LOGO_URL} alt="" style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: '50% 30%' }} />
+          </div>
           <div style={{ minWidth: 0 }}>
             <div className={fdlcFont.className} style={{ fontSize: 24, lineHeight: 1.1 }}>{session.title}</div>
             <div style={{ fontSize: 13, fontWeight: 700, color: 'rgba(255,255,255,0.45)', textTransform: 'uppercase', letterSpacing: 1.5 }}>Fédération de la Carte</div>

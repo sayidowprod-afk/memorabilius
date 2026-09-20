@@ -62,7 +62,12 @@ export default function QuizOverlayPage({ params }: { params: Promise<{ code: st
           <ConfettiBurst active={justRevealed} />
           <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: 12 }}>
             <div style={{ display: 'flex', alignItems: 'center', gap: 10, minWidth: 0 }}>
-              <img src={FDLC_LOGO_URL} alt="" style={{ height: 26, width: 26, borderRadius: 6, flexShrink: 0 }} />
+              <div style={{
+                width: 28, height: 28, borderRadius: '50%', flexShrink: 0, overflow: 'hidden',
+                border: `1.5px solid ${FDLC_RED}`,
+              }}>
+                <img src={FDLC_LOGO_URL} alt="" style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: '50% 30%' }} />
+              </div>
               <div style={{ fontSize: 12.5, fontWeight: 800, color: 'rgba(255,255,255,0.5)', textTransform: 'uppercase', letterSpacing: 1.5, overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
                 {session.title}
               </div>
