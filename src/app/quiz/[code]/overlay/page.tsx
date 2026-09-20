@@ -58,8 +58,15 @@ export default function QuizOverlayPage({ params }: { params: Promise<{ code: st
         display: 'flex', flexDirection: 'column', gap: 16,
       }}>
         {/* Question / signature + choix (revele seulement a status='reveal') */}
-        <Card style={{ position: 'relative' }}>
+        <Card style={{ position: 'relative', overflow: 'hidden' }}>
           <ConfettiBurst active={justRevealed} />
+          {/* Filigrane centre, jamais pivote (voir overlay/big/page.tsx pour
+              le raisonnement -- le premier essai pivote/colle dans un coin
+              faisait "bloc plaque au hasard"). */}
+          <img src={FDLC_LOGO_URL} alt="" style={{
+            position: 'absolute', left: '50%', top: '50%', transform: 'translate(-50%, -50%)',
+            height: '160%', width: 'auto', opacity: 0.05, pointerEvents: 'none', filter: 'grayscale(1)',
+          }} />
           <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: 12 }}>
             <div style={{ display: 'flex', alignItems: 'center', gap: 10, minWidth: 0 }}>
               <div style={{

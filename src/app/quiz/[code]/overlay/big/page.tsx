@@ -65,13 +65,15 @@ export default function QuizOverlayBigPage({ params }: { params: Promise<{ code:
             <JoinQrBadge code={session.code} />
           </div>
         )}
-        {/* Le grand filigrane tourne dans le coin a ete retire -- juge
-            "pas aime" par l'animateur (le logo est un rectangle
-            "carte", pas un badge rond : le faire pivoter en grand
-            donnait un bloc diagonal qui semblait plaque au hasard).
-            Le logo n'apparait plus qu'a un seul endroit, net, dans une
-            pastille ronde -- traitement plus "badge officiel" que
-            "vignette carree", jamais deforme/pivote. */}
+        {/* Filigrane repense : le premier essai (grand, pivote, colle dans
+            un coin) faisait "bloc plaque au hasard" -- le logo est un
+            rectangle "carte", pas une texture qui se pretait a une
+            rotation. Centre, jamais pivote, tres attenue : se lit comme un
+            motif de fond assume plutot qu'un element mal degrossi. */}
+        <img src={FDLC_LOGO_URL} alt="" style={{
+          position: 'absolute', left: '50%', top: '50%', transform: 'translate(-50%, -50%)',
+          height: '92%', width: 'auto', opacity: 0.05, pointerEvents: 'none', filter: 'grayscale(1)',
+        }} />
         <div style={{ display: 'flex', alignItems: 'center', gap: 16, marginBottom: 28, flexShrink: 0, position: 'relative' }}>
           <div style={{
             width: 58, height: 58, borderRadius: '50%', flexShrink: 0, overflow: 'hidden',
