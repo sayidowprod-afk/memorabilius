@@ -6,6 +6,7 @@ import { supabase } from '@/lib/supabase'
 import { useTheme } from '@/lib/ThemeContext'
 import { useLang, localeFor } from '@/lib/LangContext'
 import CameraCapture from '@/components/CameraCapture'
+import { fireConfetti } from '@/components/Confetti'
 import { NAV_TOTAL_HEIGHT_CSS } from '@/lib/nativeLayout'
 
 declare const BarcodeDetector: any
@@ -45,6 +46,7 @@ export default function ScannerPage() {
   const qrAnimRef  = useRef<number | null>(null)
   const qrStreamRef = useRef<MediaStream | null>(null)
   const heroRef    = useRef<HTMLDivElement>(null)
+  const confettiFiredRef = useRef<string | null>(null)
 
   const [cameraModal,   setCameraModal]   = useState<'recto' | null>(null)
   const [phase,         setPhase]         = useState<Phase>('idle')
@@ -391,6 +393,16 @@ export default function ScannerPage() {
   const primaryLoading = phase === 'loading-sold'
   const primaryPrice = primaryIsListing ? selectedMatch!.price : (ebay?.median || 0)
 
+  // Petite salve de confettis au premier affichage d'un prix pour CETTE
+  // selection precise (cle sur selectedMatch.id, jamais deux fois pour la
+  // meme) -- le "moment" recompense de l'outil, purement visuel.
+  useEffect(() => {
+    if (selectedMatch && !primaryLoading && primaryPrice > 0 && confettiFiredRef.current !== selectedMatch.id) {
+      confettiFiredRef.current = selectedMatch.id
+      fireConfetti()
+    }
+  }, [selectedMatch, primaryLoading, primaryPrice])
+
   // Genere une image recap (photo carte a bords nets + nom + prix) et la
   // partage via l'API Web Share (mobile) ou la telecharge (desktop).
   const shareResult = useCallback(async () => {
@@ -661,12 +673,12 @@ export default function ScannerPage() {
                 recomprendre ce qu'on regardait). Le prix de l'annonce
                 cliquee est deja connu (voir pickMatch) -- affiche
                 immediatement, jamais de "0 ventes" trompeur. */}
-            <div ref={heroRef} className="scan-result-land" style={{ background: cardBg, borderRadius: 18, border: `1px solid ${border}`, borderLeft: `4px solid ${blue}`, padding: 14, marginBottom: 16, overflow: 'hidden', boxShadow: dark ? 'none' : '0 2px 10px rgba(0,0,0,0.04)' }}>
-              <div style={{ display: 'flex', gap: 12, alignItems: 'flex-start' }}>
+            <div ref={heroRef} className="scan-result-land" style={{ background: cardBg, borderRadius: 20, border: `1px solid ${border}`, marginBottom: 16, overflow: 'hidden', boxShadow: dark ? 'none' : '0 4px 16px rgba(0,0,0,0.06)' }}>
+              <div style={{ display: 'flex', gap: 14, alignItems: 'flex-start', padding: 14 }}>
                 {imgSrc && (
-                  <img src={imgSrc} alt="recto" style={{ flexShrink: 0, width: 92, height: 129, objectFit: 'cover', borderRadius: 11, border: `2px solid ${border}`, boxShadow: dark ? 'none' : '0 6px 18px rgba(0,0,0,0.10)' }} />
+                  <img src={imgSrc} alt="recto" style={{ flexShrink: 0, width: 96, height: 134, objectFit: 'cover', borderRadius: 12, border: `2px solid ${border}`, boxShadow: dark ? 'none' : '0 8px 20px rgba(0,0,0,0.12)' }} />
                 )}
-                <div style={{ flex: 1, minWidth: 0, paddingTop: 2 }}>
+                <div style={{ flex: 1, minWidth: 0, paddingTop: 4 }}>
                   {!selectedMatch && (
                     <div style={{ fontSize: 14, color: muted, lineHeight: 1.5 }}>👆 {t('scanner_tap_match_hint')}</div>
                   )}
@@ -693,28 +705,34 @@ export default function ScannerPage() {
               </div>
 
               {selectedMatch && primaryLoading && (
-                <div style={{ height: 84, marginTop: 14, background: border, borderRadius: 16, animation: 'pulse 1.4s ease-in-out infinite' }} />
+                <div style={{ height: 96, margin: '0 14px 14px', background: border, borderRadius: 16, animation: 'pulse 1.4s ease-in-out infinite' }} />
               )}
+              {/* Bandeau prix plein-bleed (pas juste un encart inset) -- le
+                  "moment" visuel de la page, pense comme une etiquette de
+                  prix plutot qu'une ligne de texte de plus dans une carte
+                  blanche. Confettis au premier affichage (voir useEffect). */}
               {selectedMatch && !primaryLoading && primaryPrice > 0 && (
                 <div key={selectedMatch.id} className="scan-price-reveal" style={{
-                  marginTop: 14, textAlign: 'center', borderRadius: 16, padding: '16px 12px',
-                  background: dark ? 'linear-gradient(135deg, #0d1a36, #0a1228)' : 'linear-gradient(135deg, #eef3ff, #e4edff)',
+                  textAlign: 'center', padding: '22px 12px 20px',
+                  background: 'linear-gradient(135deg, #0046D1, #0033a0)',
+                  position: 'relative', overflow: 'hidden',
                 }}>
-                  <div style={{ fontSize: 11, fontWeight: 800, color: dark ? '#6ea0ff' : '#3b6bde', textTransform: 'uppercase', letterSpacing: 0.7, marginBottom: 4 }}>
-                    {primaryIsListing ? t('scanner_this_listing_price') : (ebay?.priceSource === 'sold' ? t('scanner_median_sales') : t('scanner_median_active'))}
+                  <div style={{ position: 'absolute', inset: 0, background: 'radial-gradient(circle at 30% 0%, rgba(255,255,255,0.12), transparent 60%)', pointerEvents: 'none' }} />
+                  <div style={{ fontSize: 11, fontWeight: 800, color: 'rgba(255,255,255,0.8)', textTransform: 'uppercase', letterSpacing: 0.8, marginBottom: 6 }}>
+                    🏷️ {primaryIsListing ? t('scanner_this_listing_price') : (ebay?.priceSource === 'sold' ? t('scanner_median_sales') : t('scanner_median_active'))}
                   </div>
-                  <div style={{ fontSize: 44, fontWeight: 900, color: blue, lineHeight: 1.05, letterSpacing: -1.5, fontVariantNumeric: 'tabular-nums' }}>
+                  <div style={{ fontSize: 56, fontWeight: 900, color: '#fff', lineHeight: 1, letterSpacing: -2, fontVariantNumeric: 'tabular-nums', textShadow: '0 2px 12px rgba(0,0,0,0.15)' }}>
                     {usd(primaryPrice)}
                   </div>
                 </div>
               )}
               {selectedMatch && !primaryLoading && primaryPrice === 0 && (
-                <p style={{ color: muted, fontSize: 12, margin: '14px 0 0', lineHeight: 1.5, textAlign: 'center' }}>{t('scanner_no_manual_results')}</p>
+                <p style={{ color: muted, fontSize: 12, margin: 0, padding: '0 14px 14px', lineHeight: 1.5, textAlign: 'center' }}>{t('scanner_no_manual_results')}</p>
               )}
 
               {selectedMatch && !primaryLoading && primaryPrice > 0 && (
                 <button onClick={shareResult} style={{
-                  width: '100%', marginTop: 10, padding: '10px 0', background: 'none',
+                  width: 'calc(100% - 28px)', margin: '12px 14px 0', padding: '10px 0', background: 'none',
                   border: `1.5px solid ${border}`, borderRadius: 12, cursor: 'pointer',
                   color: text, fontSize: 13, fontWeight: 800,
                   display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 7,
@@ -728,7 +746,7 @@ export default function ScannerPage() {
                   quand on a reellement quelque chose a montrer (jamais de
                   section vide/"0 ventes"). */}
               {selectedMatch && ebay && (ebay.sold.length > 0 || ebay.active.length > 0) && (
-                <div style={{ marginTop: 14, paddingTop: 14, borderTop: `1px solid ${border}` }}>
+                <div style={{ margin: '14px 14px 14px', paddingTop: 14, borderTop: `1px solid ${border}` }}>
                   <div style={{ fontSize: 11, fontWeight: 800, color: muted, textTransform: 'uppercase', letterSpacing: 0.6, marginBottom: 10 }}>
                     {t('scanner_view_market_range')}
                   </div>
@@ -922,9 +940,23 @@ export default function ScannerPage() {
               {usd(primaryPrice)}
             </div>
           </div>
-          <span style={{ fontSize: 12, fontWeight: 700, color: 'rgba(255,255,255,0.85)', flexShrink: 0, display: 'flex', alignItems: 'center', gap: 4 }}>
-            {t('scanner_view_market_range')} <span aria-hidden="true">↑</span>
-          </span>
+          {/* Fourchette min/max directement dans la barre (demande
+              explicite) -- des qu'elle est prete ; sinon repli sur un simple
+              raccourci vers le panneau du haut le temps qu'elle charge. */}
+          {ebay && ebay.median > 0 ? (
+            <div style={{ flexShrink: 0, textAlign: 'right' }}>
+              <div style={{ fontSize: 9, fontWeight: 800, color: 'rgba(255,255,255,0.75)', textTransform: 'uppercase', letterSpacing: 0.5 }}>
+                {t('scanner_min')}–{t('scanner_max')}
+              </div>
+              <div style={{ fontSize: 13, fontWeight: 800, color: '#fff', fontVariantNumeric: 'tabular-nums' }}>
+                {usd(ebay.min)} – {usd(ebay.max)}
+              </div>
+            </div>
+          ) : (
+            <span style={{ fontSize: 12, fontWeight: 700, color: 'rgba(255,255,255,0.85)', flexShrink: 0, display: 'flex', alignItems: 'center', gap: 4 }}>
+              {t('scanner_view_market_range')} <span aria-hidden="true">↑</span>
+            </span>
+          )}
         </button>
       )}
 
