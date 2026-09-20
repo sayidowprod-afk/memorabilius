@@ -26,33 +26,6 @@ function toBase64(file: File): Promise<{ b64: string; mime: string }> {
   })
 }
 
-// Recadre l'image sur la carte détectée (crop bounding box des 4 coins)
-function cropWithCorners(b64: string, corners: Record<string, {x:number,y:number}>): Promise<string> {
-  return new Promise(res => {
-    const img = new Image()
-    img.onload = () => {
-      const W = img.naturalWidth, H = img.naturalHeight
-      const xs = Object.values(corners).map(c => c.x * W)
-      const ys = Object.values(corners).map(c => c.y * H)
-      const PAD = 12
-      const x0 = Math.max(0,  Math.min(...xs) - PAD)
-      const y0 = Math.max(0,  Math.min(...ys) - PAD)
-      const x1 = Math.min(W,  Math.max(...xs) + PAD)
-      const y1 = Math.min(H,  Math.max(...ys) + PAD)
-      const cw = x1 - x0, ch = y1 - y0
-      const canvas = document.createElement('canvas')
-      canvas.width = cw; canvas.height = ch
-      canvas.getContext('2d')!.drawImage(img, x0, y0, cw, ch, 0, 0, cw, ch)
-      canvas.toBlob(blob => {
-        const reader = new FileReader()
-        reader.onload = () => res((reader.result as string).split(',')[1])
-        reader.readAsDataURL(blob!)
-      }, 'image/jpeg', 0.93)
-    }
-    img.src = `data:image/jpeg;base64,${b64}`
-  })
-}
-
 function fmtDate(d: string, locale: string) {
   try { return new Date(d).toLocaleDateString(locale, { day: '2-digit', month: 'short' }) } catch { return '' }
 }
@@ -216,7 +189,7 @@ export default function ScannerPage() {
     setPhase('idle'); setImgSrc(null)
     setRectoB64(null); setImgMatches(null); setImgSearchDone(false)
     setEbay(null)
-    setSelectedMatch(null); setErr(''); setSoldTab('sold')
+    setSelectedMatch(null); setErr(''); setSoldTab('sold'); setManualQuery('')
   }
 
   // Historique local des dernieres cartes scannees (localStorage, pas de
@@ -296,6 +269,20 @@ export default function ScannerPage() {
     loadSoldComps(match.title)
   }, [loadSoldComps])
 
+  // Recherche manuelle -- filet de secours quand la recherche image eBay ne
+  // trouve rien (carte trop récente/rare pour avoir des annonces avec photo
+  // similaire) : sans identification IA sur cette page, c'est la seule autre
+  // façon d'obtenir un prix. Un match "synthétique" (pas de vraie image/id
+  // eBay) réutilise tout le code existant qui lit selectedMatch.title
+  // (check collection, historique, partage) sans branche séparée.
+  const [manualQuery, setManualQuery] = useState('')
+  const searchManually = useCallback((query: string) => {
+    const q = query.trim()
+    if (!q) return
+    setSelectedMatch({ id: 'manual', title: q, price: 0, img: '', url: '' })
+    loadSoldComps(q)
+  }, [loadSoldComps])
+
   const doScan = useCallback(async (b64: string) => {
     setImgMatches(null); setImgSearchDone(false)
     setEbay(null)
@@ -329,6 +316,45 @@ export default function ScannerPage() {
     setRectoB64(b64)
     setRectoMime(mime)
     doScan(b64)
+  }
+
+  const ManualSearchForm = ({ collapsedLabel }: { collapsedLabel?: string }) => {
+    const [open, setOpen] = useState(!collapsedLabel)
+    if (!open) {
+      return (
+        <button type="button" onClick={() => setOpen(true)} style={{
+          width: '100%', padding: '9px 0', background: 'none', border: 'none',
+          color: muted, fontSize: 12, fontWeight: 700, cursor: 'pointer', textAlign: 'center', marginBottom: 14,
+        }}>
+          {collapsedLabel} <span aria-hidden="true">→</span>
+        </button>
+      )
+    }
+    return (
+      <div style={{ background: cardBg, borderRadius: 16, border: `1px solid ${border}`, padding: 14, marginBottom: 14 }}>
+        <div style={{ fontSize: 12, fontWeight: 700, color: muted, textTransform: 'uppercase', letterSpacing: 0.6, marginBottom: 10 }}>
+          {t('scanner_manual_search')}
+        </div>
+        <form onSubmit={e => { e.preventDefault(); searchManually(manualQuery) }} style={{ display: 'flex', gap: 8 }}>
+          <input
+            value={manualQuery}
+            onChange={e => setManualQuery(e.target.value)}
+            placeholder={t('scanner_manual_search_placeholder')}
+            style={{
+              flex: 1, padding: '10px 12px', borderRadius: 10, border: `1px solid ${border}`,
+              background: dark ? '#111' : '#f8f9fb', color: text, fontSize: 13,
+            }}
+          />
+          <button type="submit" disabled={!manualQuery.trim()} style={{
+            padding: '0 16px', background: manualQuery.trim() ? blue : border, border: 'none',
+            borderRadius: 10, color: '#fff', fontWeight: 800, fontSize: 13,
+            cursor: manualQuery.trim() ? 'pointer' : 'default',
+          }}>
+            {t('scanner_search')}
+          </button>
+        </form>
+      </div>
+    )
   }
 
   const SaleRow = ({ item }: { item: SaleItem }) => (
@@ -436,7 +462,23 @@ export default function ScannerPage() {
     // Peu de resultats ou fourchette tres large = a prendre avec recul --
     // suggere activement une meilleure photo plutot que de laisser deviner.
     const lowConfidence = filtered.length < 3 || hi > lo * 4
-    return { lo, hi, count: filtered.length, total: prices.length, lowConfidence }
+    return { lo, hi, med, count: filtered.length, total: prices.length, lowConfidence }
+  })()
+
+  // Correspondance dont le prix est le plus proche de la mediane du groupe --
+  // heuristique simple pour suggerer la carte la plus probable sans avoir a
+  // toutes les comparer soi-meme (utile vu qu'il n'y a plus d'identification
+  // IA sur cette page pour trancher).
+  const bestMatchId = (() => {
+    if (!quickEstimate || !imgMatches) return null
+    let best: ImageMatch | null = null
+    let bestDelta = Infinity
+    for (const m of imgMatches) {
+      if (m.price <= 0) continue
+      const delta = Math.abs(m.price - quickEstimate.med)
+      if (delta < bestDelta) { bestDelta = delta; best = m }
+    }
+    return best?.id ?? null
   })()
 
   return (
@@ -675,15 +717,26 @@ export default function ScannerPage() {
                 <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 8 }}>
                   {imgMatches.map(m => {
                     const selected = selectedMatch?.id === m.id
+                    const isBest = !selected && m.id === bestMatchId && imgMatches.length > 2
                     return (
-                      <button key={m.id} onClick={() => pickMatch(m)}
+                      <button key={m.id} onClick={() => pickMatch(m)} aria-label={m.title}
                         style={{
+                          position: 'relative',
                           background: selected ? (dark ? '#001a5c' : '#e8f0ff') : (dark ? '#111' : '#f8f9fb'),
-                          border: `2px solid ${selected ? blue : border}`,
+                          border: `2px solid ${selected ? blue : isBest ? '#d97706' : border}`,
                           borderRadius: 10, cursor: 'pointer', padding: 0, overflow: 'hidden', textAlign: 'left',
                           transition: 'border-color 0.15s',
                         }}>
-                        <img src={m.img} alt="" style={{ width: '100%', aspectRatio: '1', objectFit: 'contain', display: 'block', background: dark ? '#0a0a0a' : '#f0f0f0' }} />
+                        {isBest && (
+                          <span style={{
+                            position: 'absolute', top: 5, left: 5, zIndex: 1,
+                            background: '#d97706', color: '#fff', fontSize: 9, fontWeight: 800,
+                            borderRadius: 5, padding: '2px 5px', letterSpacing: 0.3,
+                          }}>
+                            ★ {t('scanner_best_match')}
+                          </span>
+                        )}
+                        <img src={m.img} alt={m.title} style={{ width: '100%', aspectRatio: '1', objectFit: 'contain', display: 'block', background: dark ? '#0a0a0a' : '#f0f0f0' }} />
                         <div style={{ padding: '6px 7px' }}>
                           <div style={{ fontSize: 10, color: text, fontWeight: 600, overflow: 'hidden', display: '-webkit-box', WebkitLineClamp: 2, WebkitBoxOrient: 'vertical', lineHeight: 1.3, marginBottom: 3 }}>
                             {m.title}
@@ -699,10 +752,18 @@ export default function ScannerPage() {
 
             {imgSearchDone && imgMatches && imgMatches.length === 0 && (
               <div style={{ background: cardBg, borderRadius: 16, border: `1px solid ${border}`, padding: '14px 16px', marginBottom: 14 }}>
-                <div style={{ fontSize: 12, color: muted }}>
+                <div style={{ fontSize: 12, color: muted, marginBottom: 10 }}>
                   {t('scanner_no_visual_match')}
                 </div>
+                <ManualSearchForm />
               </div>
+            )}
+
+            {/* "Pas la bonne carte" -- repli recherche manuelle meme quand des
+                correspondances visuelles existent mais qu'aucune n'est juste
+                (carte proche visuellement mais pas la bonne variante/annee). */}
+            {imgSearchDone && imgMatches && imgMatches.length > 0 && !selectedMatch && (
+              <ManualSearchForm collapsedLabel={t('scanner_wrong_card_hint')} />
             )}
 
             {/* ── PRIX VENDUS ── */}
@@ -722,7 +783,9 @@ export default function ScannerPage() {
 
                 {selectedMatch && (
                   <div style={{ padding: '10px 16px', borderBottom: `1px solid ${border}`, background: dark ? '#0a1228' : '#f0f4ff', display: 'flex', gap: 10, alignItems: 'center' }}>
-                    <img src={selectedMatch.img} alt="" style={{ width: 32, height: 32, objectFit: 'contain', borderRadius: 5, flexShrink: 0 }} />
+                    {selectedMatch.img && (
+                      <img src={selectedMatch.img} alt="" style={{ width: 32, height: 32, objectFit: 'contain', borderRadius: 5, flexShrink: 0 }} />
+                    )}
                     <div style={{ flex: 1, minWidth: 0, fontSize: 11, color: text, fontWeight: 600, overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
                       {selectedMatch.title}
                     </div>
@@ -773,52 +836,53 @@ export default function ScannerPage() {
                     </div>
                   </div>
                 )}
-              </div>
-            )}
 
-            {/* Tabs vendues / en vente -- l'onglet "vendues" n'a de sens que
-                si on a reellement des ventes (Marketplace Insights/Finding
-                API sont restreints par eBay et renvoient presque toujours
-                0) ; sinon on montre directement les annonces actives sans
-                un onglet vide qui a l'air casse. */}
-            {phase === 'done' && ebay && ebay.sold.length === 0 && ebay.active.length === 0 && (
-              <div style={{ background: cardBg, borderRadius: 16, border: `1px solid ${border}`, padding: '14px 16px', marginBottom: 14 }}>
-                <p style={{ color: muted, fontSize: 13, textAlign: 'center', margin: 0 }}>{t('gallery_no_results')}</p>
-              </div>
-            )}
-            {phase === 'done' && ebay && ebay.sold.length > 0 && (
-              <div style={{ background: cardBg, borderRadius: 16, border: `1px solid ${border}`, overflow: 'hidden', marginBottom: 14 }}>
-                <div style={{ display: 'flex', borderBottom: `1px solid ${border}` }}>
-                  {(['sold', 'active'] as const).map(key => (
-                    <button key={key} onClick={() => setSoldTab(key)} style={{
-                      flex: 1, padding: '12px 0', border: 'none', background: 'none', cursor: 'pointer',
-                      fontSize: 13, fontWeight: soldTab === key ? 800 : 500,
-                      color: soldTab === key ? blue : muted,
-                      borderBottom: soldTab === key ? `2px solid ${blue}` : '2px solid transparent',
-                      marginBottom: -1,
-                    }}>
-                      {key === 'sold' ? `${t('scanner_sold_tab')} (${ebay.sold.length})` : `${t('scanner_active_tab')} (${ebay.active.length})`}
-                    </button>
-                  ))}
-                </div>
-                <div style={{ padding: 12, display: 'flex', flexDirection: 'column', gap: 7, maxHeight: 360, overflowY: 'auto' }}>
-                  {(soldTab === 'sold' ? ebay.sold : ebay.active).length === 0
-                    ? <p style={{ color: muted, fontSize: 13, textAlign: 'center', padding: '14px 0', margin: 0 }}>{t('gallery_no_results')}</p>
-                    : (soldTab === 'sold' ? ebay.sold : ebay.active).map((item, i) => <SaleRow key={i} item={item} />)
-                  }
-                </div>
-              </div>
-            )}
-            {phase === 'done' && ebay && ebay.sold.length === 0 && ebay.active.length > 0 && (
-              <div style={{ background: cardBg, borderRadius: 16, border: `1px solid ${border}`, overflow: 'hidden', marginBottom: 14 }}>
-                <div style={{ padding: '13px 16px', borderBottom: `1px solid ${border}` }}>
-                  <span style={{ fontSize: 12, fontWeight: 700, color: muted, textTransform: 'uppercase', letterSpacing: 0.6 }}>
-                    {t('scanner_active_tab')} ({ebay.active.length})
-                  </span>
-                </div>
-                <div style={{ padding: 12, display: 'flex', flexDirection: 'column', gap: 7, maxHeight: 360, overflowY: 'auto' }}>
-                  {ebay.active.map((item, i) => <SaleRow key={i} item={item} />)}
-                </div>
+                {/* Liste vendues/en vente -- dans la MEME carte que le prix
+                    median plutot qu'empilee dans une carte separee, pour
+                    eviter la repetition visuelle de deux blocs bordes qui
+                    parlent du meme sujet (le marche de cette carte). L'onglet
+                    "vendues" n'a de sens que si on a reellement des ventes
+                    (Marketplace Insights/Finding API sont restreints par eBay
+                    et renvoient presque toujours 0) ; sinon on montre
+                    directement les annonces actives sans onglet vide. */}
+                {phase === 'done' && ebay && ebay.sold.length === 0 && ebay.active.length === 0 && (
+                  <p style={{ color: muted, fontSize: 13, textAlign: 'center', padding: '16px', margin: 0, borderTop: `1px solid ${border}` }}>{t('gallery_no_results')}</p>
+                )}
+                {phase === 'done' && ebay && ebay.sold.length > 0 && (
+                  <div style={{ borderTop: `1px solid ${border}` }}>
+                    <div style={{ display: 'flex', borderBottom: `1px solid ${border}` }}>
+                      {(['sold', 'active'] as const).map(key => (
+                        <button key={key} onClick={() => setSoldTab(key)} style={{
+                          flex: 1, padding: '12px 0', border: 'none', background: 'none', cursor: 'pointer',
+                          fontSize: 13, fontWeight: soldTab === key ? 800 : 500,
+                          color: soldTab === key ? blue : muted,
+                          borderBottom: soldTab === key ? `2px solid ${blue}` : '2px solid transparent',
+                          marginBottom: -1,
+                        }}>
+                          {key === 'sold' ? `${t('scanner_sold_tab')} (${ebay.sold.length})` : `${t('scanner_active_tab')} (${ebay.active.length})`}
+                        </button>
+                      ))}
+                    </div>
+                    <div style={{ padding: 12, display: 'flex', flexDirection: 'column', gap: 7, maxHeight: 360, overflowY: 'auto' }}>
+                      {(soldTab === 'sold' ? ebay.sold : ebay.active).length === 0
+                        ? <p style={{ color: muted, fontSize: 13, textAlign: 'center', padding: '14px 0', margin: 0 }}>{t('gallery_no_results')}</p>
+                        : (soldTab === 'sold' ? ebay.sold : ebay.active).map((item, i) => <SaleRow key={i} item={item} />)
+                      }
+                    </div>
+                  </div>
+                )}
+                {phase === 'done' && ebay && ebay.sold.length === 0 && ebay.active.length > 0 && (
+                  <div style={{ borderTop: `1px solid ${border}` }}>
+                    <div style={{ padding: '13px 16px', borderBottom: `1px solid ${border}` }}>
+                      <span style={{ fontSize: 12, fontWeight: 700, color: muted, textTransform: 'uppercase', letterSpacing: 0.6 }}>
+                        {t('scanner_active_tab')} ({ebay.active.length})
+                      </span>
+                    </div>
+                    <div style={{ padding: 12, display: 'flex', flexDirection: 'column', gap: 7, maxHeight: 360, overflowY: 'auto' }}>
+                      {ebay.active.map((item, i) => <SaleRow key={i} item={item} />)}
+                    </div>
+                  </div>
+                )}
               </div>
             )}
 
