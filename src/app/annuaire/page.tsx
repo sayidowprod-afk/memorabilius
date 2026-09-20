@@ -3,6 +3,7 @@ import { useEffect, useState, useRef, Suspense } from 'react'
 import { useSearchParams, useRouter } from 'next/navigation'
 import Link from 'next/link'
 import { supabase } from '@/lib/supabase'
+import { withTimeout } from '@/lib/withTimeout'
 import { useLang } from '@/lib/LangContext'
 import { useTheme } from '@/lib/ThemeContext'
 import { useDebouncedValue } from '@/lib/useDebouncedValue'
@@ -119,35 +120,45 @@ function AnnuaireContent() {
   }, [teamFilter])
 
   const loadData = async () => {
-    const { data: profiles } = await supabase
-      .from('profiles')
-      .select('id, display_name, avatar_url, lien_csv, stats_total, stats_rc, stats_auto, stats_num, stats_patch, stats_updated_at, favorite_teams, is_donor')
-      .not('display_name', 'is', null)
-      .neq('display_name', '')
-      .eq('is_demo', false)
-      .order('stats_total', { ascending: false, nullsFirst: false })
-      .limit(2000)
+    // try/finally : un rejet (reseau, RLS...) ne doit jamais laisser la page
+    // bloquee sur son etat "loading" pour toujours -- voir HangWatchdog.tsx
+    // pour le contexte general de ce type de bug (page/section restee
+    // chargee indefiniment sans aucune erreur visible en console).
+    try {
+      const { data: profiles } = await withTimeout(
+        supabase
+          .from('profiles')
+          .select('id, display_name, avatar_url, lien_csv, stats_total, stats_rc, stats_auto, stats_num, stats_patch, stats_updated_at, favorite_teams, is_donor')
+          .not('display_name', 'is', null)
+          .neq('display_name', '')
+          .eq('is_demo', false)
+          .order('stats_total', { ascending: false, nullsFirst: false })
+          .limit(2000),
+        8000, { data: null } as any
+      )
 
-    if (!profiles) { setLoading(false); return }
+      if (!profiles) return
 
-    // Utiliser les stats en cache directement
-    setCollectors(profiles.map(p => ({
-      ...p,
-      favorite_teams: Array.isArray(p.favorite_teams) ? p.favorite_teams : [],
-      stats: {
-        total: p.stats_total || 0,
-        rc: p.stats_rc || 0,
-        auto: p.stats_auto || 0,
-        num: p.stats_num || 0,
-        patch: p.stats_patch || 0,
-      }
-    })))
-    setLoading(false)
-    // Les stats affichees sont en cache (profiles.stats_total etc.) -- tenues a jour
-    // par le cron nightly /api/recalcul-stats, qui priorise desormais les profils les
-    // plus perimes. Pas de recalcul cote client ici : `recalc-user` exige d'etre
-    // authentifie en tant que le profil concerne, donc ca echouait silencieusement
-    // pour toute personne autre que soi-meme en parcourant l'annuaire.
+      // Utiliser les stats en cache directement
+      setCollectors(profiles.map((p: any) => ({
+        ...p,
+        favorite_teams: Array.isArray(p.favorite_teams) ? p.favorite_teams : [],
+        stats: {
+          total: p.stats_total || 0,
+          rc: p.stats_rc || 0,
+          auto: p.stats_auto || 0,
+          num: p.stats_num || 0,
+          patch: p.stats_patch || 0,
+        }
+      })))
+      // Les stats affichees sont en cache (profiles.stats_total etc.) -- tenues a jour
+      // par le cron nightly /api/recalcul-stats, qui priorise desormais les profils les
+      // plus perimes. Pas de recalcul cote client ici : `recalc-user` exige d'etre
+      // authentifie en tant que le profil concerne, donc ca echouait silencieusement
+      // pour toute personne autre que soi-meme en parcourant l'annuaire.
+    } finally {
+      setLoading(false)
+    }
   }
 
   const applyTeamFilter = async (tid: string) => {

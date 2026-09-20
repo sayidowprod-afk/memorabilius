@@ -3,6 +3,7 @@ import { useEffect, useState } from 'react'
 import Link from 'next/link'
 import { useRouter } from 'next/navigation'
 import { supabase } from '@/lib/supabase'
+import { withTimeout } from '@/lib/withTimeout'
 import { useLang, localeFor } from '@/lib/LangContext'
 import { useTheme } from '@/lib/ThemeContext'
 import SkeletonBlock from '@/components/SkeletonBlock'
@@ -17,20 +18,29 @@ export default function Notifications() {
   const [loading, setLoading] = useState(true)
 
   useEffect(() => {
-    supabase.auth.getSession().then(async ({ data: { session } }) => {
-      if (!session) { router.replace('/connexion'); return }
-      const data = { user: session.user }
-      const { data: n } = await supabase
-        .from('notifications')
-        .select('*')
-        .eq('user_id', data.user.id)
-        .order('created_at', { ascending: false })
-        .limit(50)
-      setNotifs(n || [])
-      // Tout marquer comme lu
-      await supabase.from('notifications').update({ lu: true }).eq('user_id', data.user.id).eq('lu', false)
-      setLoading(false)
-    })
+    // try/finally + withTimeout : voir withTimeout.ts -- evite que la page se
+    // bloque sur son skeleton pour toujours en cas de rejet ou de requete qui
+    // ne resout jamais.
+    (async () => {
+      try {
+        await withTimeout((async () => {
+          const { data: { session } } = await supabase.auth.getSession()
+          if (!session) { router.replace('/connexion'); return }
+          const data = { user: session.user }
+          const { data: n } = await supabase
+            .from('notifications')
+            .select('*')
+            .eq('user_id', data.user.id)
+            .order('created_at', { ascending: false })
+            .limit(50)
+          setNotifs(n || [])
+          // Tout marquer comme lu
+          await supabase.from('notifications').update({ lu: true }).eq('user_id', data.user.id).eq('lu', false)
+        })(), 8000, undefined)
+      } finally {
+        setLoading(false)
+      }
+    })()
   }, [])
 
   const getIcon = (type: string) => {

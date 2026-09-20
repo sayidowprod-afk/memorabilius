@@ -2,6 +2,7 @@
 import { useEffect, useState } from 'react'
 import { useRouter } from 'next/navigation'
 import { supabase } from '@/lib/supabase'
+import { withTimeout } from '@/lib/withTimeout'
 import { useLang } from '@/lib/LangContext'
 import { useTheme } from '@/lib/ThemeContext'
 
@@ -26,13 +27,23 @@ export default function WishlistPage() {
   const { dark } = useTheme()
 
   useEffect(() => {
-    supabase.auth.getSession().then(({ data: { session } }) => {
-      if (!session) { router.replace('/connexion'); return }
-      const data = { user: session.user }
-      setUserId(data.user.id)
-      supabase.from('wishlist').select('*').eq('user_id', data.user.id).order('created_at', { ascending: false })
-        .then(({ data: d }) => { setItems(d || []); setLoading(false) })
-    })
+    // try/finally + withTimeout : ni un rejet ni une requete qui ne resout
+    // jamais (cold start reseau...) ne doivent laisser la page bloquee sur
+    // son skeleton pour toujours -- voir withTimeout.ts.
+    (async () => {
+      try {
+        const { data: { session } } = await withTimeout(supabase.auth.getSession(), 8000, { data: { session: null } } as any)
+        if (!session) { router.replace('/connexion'); return }
+        setUserId(session.user.id)
+        const { data: d } = await withTimeout(
+          supabase.from('wishlist').select('*').eq('user_id', session.user.id).order('created_at', { ascending: false }),
+          8000, { data: null } as any
+        )
+        setItems(d || [])
+      } finally {
+        setLoading(false)
+      }
+    })()
   }, [])
 
   const save = async () => {

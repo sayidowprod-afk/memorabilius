@@ -5,6 +5,7 @@ import { createPortal } from 'react-dom'
 import Link from 'next/link'
 import { useRouter, useSearchParams } from 'next/navigation'
 import { supabase } from '@/lib/supabase'
+import { withTimeout } from '@/lib/withTimeout'
 import { useLang, localeFor } from '@/lib/LangContext'
 import { useTheme } from '@/lib/ThemeContext'
 import LinkifiedText from '@/components/LinkifiedText'
@@ -161,20 +162,30 @@ function MessagesContent() {
   const [blockedIds, setBlockedIds] = useState<Set<string>>(new Set())
 
   useEffect(() => {
-    supabase.auth.getSession().then(async ({ data: { session } }) => {
-      if (!session) { router.replace('/connexion'); return }
-      const data = { user: session.user }
-      setUserId(data.user.id)
-      await loadConversations(data.user.id)
-      if (toParam) loadMessages(data.user.id, toParam)
-      if (tradeParam) {
-        const { data: tr } = await supabase.from('trade_offers').select('*').eq('id', tradeParam).single()
-        if (tr) setContextTrade(tr)
+    // try/finally + withTimeout autour de TOUT le chargement initial : un
+    // rejet ou une requete qui ne resout jamais (n'importe laquelle des
+    // etapes ci-dessous) ne doit jamais laisser la page Messages bloquee sur
+    // son skeleton pour toujours -- voir withTimeout.ts.
+    (async () => {
+      try {
+        await withTimeout((async () => {
+          const { data: { session } } = await supabase.auth.getSession()
+          if (!session) { router.replace('/connexion'); return }
+          const data = { user: session.user }
+          setUserId(data.user.id)
+          await loadConversations(data.user.id)
+          if (toParam) loadMessages(data.user.id, toParam)
+          if (tradeParam) {
+            const { data: tr } = await supabase.from('trade_offers').select('*').eq('id', tradeParam).single()
+            if (tr) setContextTrade(tr)
+          }
+          const { data: blocked } = await supabase.from('blocked_users').select('blocked_id').eq('blocker_id', data.user.id)
+          setBlockedIds(new Set((blocked || []).map(b => b.blocked_id)))
+        })(), 8000, undefined)
+      } finally {
+        setLoading(false)
       }
-      const { data: blocked } = await supabase.from('blocked_users').select('blocked_id').eq('blocker_id', data.user.id)
-      setBlockedIds(new Set((blocked || []).map(b => b.blocked_id)))
-      setLoading(false)
-    })
+    })()
   }, [])
 
   const toggleBlock = async (otherId: string) => {

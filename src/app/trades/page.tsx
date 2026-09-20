@@ -4,6 +4,7 @@ import { createPortal } from 'react-dom'
 import Link from 'next/link'
 import { useRouter, useSearchParams } from 'next/navigation'
 import { supabase } from '@/lib/supabase'
+import { withTimeout } from '@/lib/withTimeout'
 import { useLang, localeFor } from '@/lib/LangContext'
 import { useTheme } from '@/lib/ThemeContext'
 import { inferSportFromTeamName } from '@/lib/sportsTeams'
@@ -104,12 +105,15 @@ export default function Trades() {
   const [acting, setActing] = useState<string | null>(null)
 
   useEffect(() => {
-    supabase.auth.getSession().then(({ data: { session } }) => {
-      if (!session) { router.replace('/connexion'); return }
+    // withTimeout : voir withTimeout.ts -- une session qui ne resout jamais
+    // ne doit pas laisser le forum bloque sur son skeleton pour toujours.
+    withTimeout(supabase.auth.getSession(), 8000, { data: { session: null } } as any).then(({ data: { session } }) => {
+      if (!session) { router.replace('/connexion'); setLoadingForum(false); return }
       setUserId(session.user.id)
       loadForum()
-      supabase.from('trade_favorites').select('item_type, item_id').eq('user_id', session.user.id)
-        .then(({ data }) => setFavorites(new Set((data || []).map(f => `${f.item_type}:${f.item_id}`))))
+      Promise.resolve(supabase.from('trade_favorites').select('item_type, item_id').eq('user_id', session.user.id))
+        .then(({ data }) => setFavorites(new Set((data || []).map((f: any) => `${f.item_type}:${f.item_id}`))))
+        .catch(() => {})
     })
   }, [])
 
@@ -177,30 +181,39 @@ export default function Trades() {
   })
 
   const loadForum = async () => {
-    const [{ data: tradeData }, { data: carteData }] = await Promise.all([
-      supabase
-        .from('trades')
-        .select('*, profiles(id, display_name, avatar_url, instagram, twitter, discord)')
-        .eq('statut', 'actif')
-        .order('created_at', { ascending: false })
-        .range(0, FORUM_PAGE_SIZE - 1),
-      supabase
-        .from('cartes_manuelles')
-        .select('*, profiles(id, display_name, avatar_url, instagram, twitter, discord)')
-        .eq('disponible_vente', true)
-        .order('created_at', { ascending: false })
-        .range(0, FORUM_PAGE_SIZE - 1),
-    ])
+    // try/finally + withTimeout : voir withTimeout.ts -- evite que le forum
+    // reste bloque sur son skeleton pour toujours en cas de rejet ou de
+    // requete qui ne resout jamais.
+    try {
+      const [{ data: tradeData }, { data: carteData }] = await withTimeout(
+        Promise.all([
+          supabase
+            .from('trades')
+            .select('*, profiles(id, display_name, avatar_url, instagram, twitter, discord)')
+            .eq('statut', 'actif')
+            .order('created_at', { ascending: false })
+            .range(0, FORUM_PAGE_SIZE - 1),
+          supabase
+            .from('cartes_manuelles')
+            .select('*, profiles(id, display_name, avatar_url, instagram, twitter, discord)')
+            .eq('disponible_vente', true)
+            .order('created_at', { ascending: false })
+            .range(0, FORUM_PAGE_SIZE - 1),
+        ]),
+        8000, [{ data: null }, { data: null }] as any
+      )
 
-    const merged = [...(tradeData || []), ...(carteData || []).map(mapCarteToOffer)]
-      .sort((a, b) => new Date(b.created_at).getTime() - new Date(a.created_at).getTime())
+      const merged = [...(tradeData || []), ...(carteData || []).map(mapCarteToOffer)]
+        .sort((a, b) => new Date(b.created_at).getTime() - new Date(a.created_at).getTime())
 
-    setTrades(merged)
-    setTradesOffset(tradeData?.length || 0)
-    setVentesOffset(carteData?.length || 0)
-    setTradesDone((tradeData?.length || 0) < FORUM_PAGE_SIZE)
-    setVentesDone((carteData?.length || 0) < FORUM_PAGE_SIZE)
-    setLoadingForum(false)
+      setTrades(merged)
+      setTradesOffset(tradeData?.length || 0)
+      setVentesOffset(carteData?.length || 0)
+      setTradesDone((tradeData?.length || 0) < FORUM_PAGE_SIZE)
+      setVentesDone((carteData?.length || 0) < FORUM_PAGE_SIZE)
+    } finally {
+      setLoadingForum(false)
+    }
   }
 
   const loadMoreForum = async () => {

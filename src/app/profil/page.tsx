@@ -5,6 +5,7 @@ import { useEffect, useState, useRef } from 'react'
 import { useRouter } from 'next/navigation'
 import Link from 'next/link'
 import { supabase } from '@/lib/supabase'
+import { withTimeout } from '@/lib/withTimeout'
 import { useLang } from '@/lib/LangContext'
 import { useTheme } from '@/lib/ThemeContext'
 import TeamPicker from '@/components/TeamPicker'
@@ -50,31 +51,44 @@ export default function Profil() {
   const initialSnapshotRef = useRef<string | null>(null)
 
   useEffect(() => {
-    supabase.auth.getSession().then(async ({ data: { session } }) => {
-      if (!session) { router.replace('/connexion'); return }
-      const uid = session.user.id
-      setUserId(uid)
-      // Mettre à jour last_seen
-      await supabase.from('profiles').update({ last_seen: new Date().toISOString() }).eq('id', uid)
-      const { data: p } = await supabase.from('profiles').select('id,display_name,bio,lien_csv,couleur_bordure,instagram,twitter,discord,favorite_teams,wrap_opt_out,avatar_url').eq('id', uid).single()
-      if (p) {
-        setForm({ display_name: p.display_name || '', bio: p.bio || '', lien_csv: p.lien_csv || '', couleur_bordure: p.couleur_bordure || '#003DA6', instagram: p.instagram || '', twitter: p.twitter || '', discord: p.discord || '' })
-        setFavoriteTeams(Array.isArray(p.favorite_teams) ? p.favorite_teams : [])
-        setWrapOptOut(!!p.wrap_opt_out)
-        setCsvLinked(!!p.lien_csv)
-        setAvatarUrl(p.avatar_url || null)
-        initialSnapshotRef.current = JSON.stringify({
-          display_name: p.display_name || '', bio: p.bio || '', lien_csv: p.lien_csv || '',
-          couleur_bordure: p.couleur_bordure || '#003DA6', instagram: p.instagram || '', twitter: p.twitter || '', discord: p.discord || '',
-          favoriteTeams: Array.isArray(p.favorite_teams) ? p.favorite_teams : [], wrapOptOut: !!p.wrap_opt_out,
-        })
+    // try/finally + withTimeout : voir withTimeout.ts -- evite que la page se
+    // bloque sur son skeleton pour toujours en cas de rejet ou de requete qui
+    // ne resout jamais.
+    (async () => {
+      let uid: string | null = null
+      try {
+        await withTimeout((async () => {
+          const { data: { session } } = await supabase.auth.getSession()
+          if (!session) { router.replace('/connexion'); return }
+          uid = session.user.id
+          setUserId(uid)
+          // Mettre à jour last_seen
+          await supabase.from('profiles').update({ last_seen: new Date().toISOString() }).eq('id', uid)
+          const { data: p } = await supabase.from('profiles').select('id,display_name,bio,lien_csv,couleur_bordure,instagram,twitter,discord,favorite_teams,wrap_opt_out,avatar_url').eq('id', uid).single()
+          if (p) {
+            setForm({ display_name: p.display_name || '', bio: p.bio || '', lien_csv: p.lien_csv || '', couleur_bordure: p.couleur_bordure || '#003DA6', instagram: p.instagram || '', twitter: p.twitter || '', discord: p.discord || '' })
+            setFavoriteTeams(Array.isArray(p.favorite_teams) ? p.favorite_teams : [])
+            setWrapOptOut(!!p.wrap_opt_out)
+            setCsvLinked(!!p.lien_csv)
+            setAvatarUrl(p.avatar_url || null)
+            initialSnapshotRef.current = JSON.stringify({
+              display_name: p.display_name || '', bio: p.bio || '', lien_csv: p.lien_csv || '',
+              couleur_bordure: p.couleur_bordure || '#003DA6', instagram: p.instagram || '', twitter: p.twitter || '', discord: p.discord || '',
+              favoriteTeams: Array.isArray(p.favorite_teams) ? p.favorite_teams : [], wrapOptOut: !!p.wrap_opt_out,
+            })
+          }
+          const { data: identData } = await supabase.auth.getUserIdentities()
+          setLinkedProviders((identData?.identities ?? []).map(i => i.provider))
+        })(), 8000, undefined)
+      } finally {
+        setLoading(false)
       }
-      const { data: identData } = await supabase.auth.getUserIdentities()
-      setLinkedProviders((identData?.identities ?? []).map(i => i.provider))
-      setLoading(false)
-      const { data: xp } = await supabase.rpc('get_user_xp_total', { p_user_id: uid })
-      setAvatarRingPct(levelFromXP(xp ?? 0).pct)
-    })
+      if (!uid) return
+      try {
+        const { data: xp } = await supabase.rpc('get_user_xp_total', { p_user_id: uid })
+        setAvatarRingPct(levelFromXP(xp ?? 0).pct)
+      } catch {}
+    })()
   }, [])
 
   // Avertit avant de fermer/recharger l'onglet si des changements n'ont pas

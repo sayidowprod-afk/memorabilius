@@ -4,6 +4,7 @@ import { useEffect, useState, useRef, use, useCallback } from 'react'
 import Link from 'next/link'
 import { useRouter, useSearchParams } from 'next/navigation'
 import { supabase } from '@/lib/supabase'
+import { withTimeout } from '@/lib/withTimeout'
 import { useLang, localeFor } from '@/lib/LangContext'
 import { useTheme } from '@/lib/ThemeContext'
 import LinkifiedText from '@/components/LinkifiedText'
@@ -138,48 +139,55 @@ export default function TeamPage({ params }: { params: Promise<{ teamId: string 
   useEffect(() => { messagesEndRef.current?.scrollIntoView({ behavior: 'auto' }) }, [messages, activeTab])
 
   const init = async () => {
-    const { data: { user } } = await supabase.auth.getUser()
-    setCurrentUser(user?.id || null)
+    // try/finally + withTimeout : voir withTimeout.ts -- evite que la page se
+    // bloque sur son skeleton pour toujours en cas de rejet ou de requete qui
+    // ne resout jamais.
+    try {
+      await withTimeout((async () => {
+        const { data: { user } } = await supabase.auth.getUser()
+        setCurrentUser(user?.id || null)
 
-    const { data: teamData } = await supabase.from('teams').select('*').eq('id', parseInt(teamId)).single()
-    if (!teamData) { router.push('/teams'); return }
-    setTeam(teamData)
+        const { data: teamData } = await supabase.from('teams').select('*').eq('id', parseInt(teamId)).single()
+        if (!teamData) { router.push('/teams'); return }
+        setTeam(teamData)
 
-    const { data: m } = await supabase.from('team_members')
-      .select('*, profiles(id, display_name, avatar_url, lien_csv, couleur_bordure, is_donor, last_seen)')
-      .eq('team_id', parseInt(teamId))
-    setMembers(m || [])
+        const { data: m } = await supabase.from('team_members')
+          .select('*, profiles(id, display_name, avatar_url, lien_csv, couleur_bordure, is_donor, last_seen)')
+          .eq('team_id', parseInt(teamId))
+        setMembers(m || [])
 
-    const isMem = m?.some((x: any) => x.user_id === user?.id) || false
-    setIsMember(isMem)
-    const isFounder = user?.id === teamData.created_by
-    const isAdmin = m?.some((x: any) => x.user_id === user?.id && (x.role === 'admin' || x.role === 'chef')) || false
-    setIsChef(isFounder || isAdmin)
-    setIsFounder(isFounder)
+        const isMem = m?.some((x: any) => x.user_id === user?.id) || false
+        setIsMember(isMem)
+        const isFounder = user?.id === teamData.created_by
+        const isAdmin = m?.some((x: any) => x.user_id === user?.id && (x.role === 'admin' || x.role === 'chef')) || false
+        setIsChef(isFounder || isAdmin)
+        setIsFounder(isFounder)
 
-    loadMembersStats(m || [])
-    loadPosts(user?.id || null)
-    loadGalerie(m || [])
+        loadMembersStats(m || [])
+        loadPosts(user?.id || null)
+        loadGalerie(m || [])
 
-    if (isMem) {
-      loadMessages(user?.id || null)
-      if (user) loadMyCards(user.id)
+        if (isMem) {
+          loadMessages(user?.id || null)
+          if (user) loadMyCards(user.id)
+        }
+
+        if (isFounder || isAdmin) {
+          const { data: cands } = await supabase.from('team_candidatures')
+            .select('*, profiles(id, display_name, avatar_url, lien_csv)')
+            .eq('team_id', parseInt(teamId)).eq('statut', 'en_attente')
+          setCandidatures(cands || [])
+        }
+
+        if (user) {
+          const { data: cand } = await supabase.from('team_candidatures')
+            .select('id').eq('team_id', parseInt(teamId)).eq('user_id', user.id).single()
+          setHasCandidature(!!cand)
+        }
+      })(), 8000, undefined)
+    } finally {
+      setLoading(false)
     }
-
-    if (isFounder || isAdmin) {
-      const { data: cands } = await supabase.from('team_candidatures')
-        .select('*, profiles(id, display_name, avatar_url, lien_csv)')
-        .eq('team_id', parseInt(teamId)).eq('statut', 'en_attente')
-      setCandidatures(cands || [])
-    }
-
-    if (user) {
-      const { data: cand } = await supabase.from('team_candidatures')
-        .select('id').eq('team_id', parseInt(teamId)).eq('user_id', user.id).single()
-      setHasCandidature(!!cand)
-    }
-
-    setLoading(false)
   }
 
   const loadMessages = async (uid: string | null) => {
