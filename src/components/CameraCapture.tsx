@@ -24,7 +24,20 @@ interface Props {
 // galerie : le pipeline de detection des coins (CardScanner.tsx) a deja ce
 // chemin (YOLO d'abord, JS pur en repli -- OpenCV est skip sans frameRect),
 // donc aucune modification du pipeline IA n'etait necessaire ni souhaitee ici.
-const IS_NATIVE = Capacitor.isNativePlatform()
+//
+// ATTENTION : l'app native charge le SITE EN DIRECT (server.url dans
+// capacitor.config.ts) -- ce fichier JS est donc deploye INSTANTANEMENT sur
+// TOUS les telephones des qu'on push, meme ceux qui ont encore l'ancien
+// binaire APK/AAB (le plugin natif @capacitor/camera, lui, doit passer par
+// la review Play Store -- ca peut prendre des heures/jours). Appeler
+// Camera.getPhoto() aveuglement des que isNativePlatform() est vrai cassait
+// donc la camera pour TOUT LE MONDE entre le push web et la publication du
+// nouveau build (le pont natif n'a pas ce plugin tant que le binaire n'est
+// pas mis a jour). isPluginAvailable() verifie que le plugin est REELEMENT
+// enregistre cote natif avant de l'utiliser -- repli automatique sur
+// getUserMedia si absent (ancien binaire), bascule automatique sur le natif
+// une fois l'utilisateur mis a jour, sans aucune coordination a faire.
+const IS_NATIVE = Capacitor.isNativePlatform() && Capacitor.isPluginAvailable('Camera')
 
 export default function CameraCapture({ onCapture, onClose, ratio }: Props) {
   // Vue camera censee etre immersive (position:fixed zIndex 9999) -- la nav
