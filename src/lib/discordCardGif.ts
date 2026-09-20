@@ -14,14 +14,26 @@ const H = Math.round(W * 3.5 / 2.5) // ratio carte a collectionner standard
 const FRAMES = 60
 const DELAY_MS = 65  // ~3,9s par rotation complete -- meme nombre de frames (fluidite inchangee), juste chaque frame affichee plus longtemps
 
-// Sans timeout ici, un hebergeur d'image lent/mort (frequent avec les cartes
-// CSV, dont les images viennent de domaines tiers non controles) bloquait ce
-// fetch indefiniment -- comme renderCardSpinGif tourne en arriere-plan
-// (waitUntil, voir route.ts) sans aucun filet au-dessus, la reponse differee
-// Discord n'arrivait jamais : "Memorabilius Bot reflechit..." restait
-// affiche pour toujours au lieu d'un message d'erreur.
+// Cause reelle trouvee (pas juste "parfois lent") : les hebergeurs d'images
+// des cartes CSV (i.ibb.co notamment) ralentissent tres fortement les
+// requetes sans en-tetes de navigateur realistes -- verifie directement :
+// la MEME image met 14,7s a repondre avec un fetch() nu (aucun header
+// custom, ce que faisait ce code), contre 0,4s avec un User-Agent/Accept
+// de navigateur. Sur une manche avec recto+verso, ca suffit a depasser le
+// budget de la fonction serverless (maxDuration=120s dans route.ts), qui
+// se fait alors tuer EN PLEIN MILIEU du fetch -- aucun message d'erreur ne
+// peut partir a ce moment-la, donc "Memorabilius Bot reflechit..." restait
+// affiche pour toujours cote Discord. Le timeout ci-dessous reste en filet
+// de secours, mais la vraie correction est d'envoyer des en-tetes qui
+// passent pour un navigateur.
 async function fetchImage(url: string): Promise<Image> {
-  const res = await fetch(url, { signal: AbortSignal.timeout(8000) })
+  const res = await fetch(url, {
+    signal: AbortSignal.timeout(8000),
+    headers: {
+      'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36',
+      'Accept': 'image/avif,image/webp,image/apng,image/*,*/*;q=0.8',
+    },
+  })
   if (!res.ok) throw new Error(`Image injoignable (${res.status})`)
   const buf = Buffer.from(await res.arrayBuffer())
   return loadImage(buf)
