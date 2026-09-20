@@ -39,6 +39,30 @@ interface Props {
 // une fois l'utilisateur mis a jour, sans aucune coordination a faire.
 const IS_NATIVE = Capacitor.isNativePlatform() && Capacitor.isPluginAvailable('Camera')
 
+// Une vraie photo capteur (natif ou ImageCapture.takePhoto()) peut faire
+// plusieurs dizaines de Mo -- une fois encodee en base64 pour l'envoi a
+// l'identification (/api/scan-card), ca depasse largement la limite de
+// taille de requete de la plateforme et l'appel echoue silencieusement
+// (identification impossible, sans erreur visible). On recompresse donc
+// systematiquement la photo avant de la remonter -- le gain qualite vient
+// surtout de la vraie prise de vue capteur (net, HDR, sans compression
+// video) plutot que de la resolution brute, donc 2600px de cote suffit
+// largement et reste tres au-dessus des 1920x1080 d'avant.
+const MAX_DIM = 2600
+async function shrinkForUpload(blob: Blob, quality = 0.9): Promise<{ blob: Blob; scale: number }> {
+  const bmp = await createImageBitmap(blob)
+  const scale = Math.min(1, MAX_DIM / Math.max(bmp.width, bmp.height))
+  const w = Math.round(bmp.width * scale)
+  const h = Math.round(bmp.height * scale)
+  const canvas = document.createElement('canvas')
+  canvas.width = w
+  canvas.height = h
+  canvas.getContext('2d')!.drawImage(bmp, 0, 0, w, h)
+  bmp.close?.()
+  const shrunk = await new Promise<Blob | null>(resolve => canvas.toBlob(resolve, 'image/jpeg', quality))
+  return { blob: shrunk || blob, scale }
+}
+
 export default function CameraCapture({ onCapture, onClose, ratio }: Props) {
   // Vue camera censee etre immersive (position:fixed zIndex 9999) -- la nav
   // globale (zIndex 99999) restait affichee par-dessus et recouvrait le
@@ -69,7 +93,8 @@ export default function CameraCapture({ onCapture, onClose, ratio }: Props) {
         correctOrientation: true,
       })
       if (!photo.webPath) throw new Error('Photo vide')
-      const blob = await fetch(photo.webPath).then(r => r.blob())
+      const raw = await fetch(photo.webPath).then(r => r.blob())
+      const { blob } = await shrinkForUpload(raw)
       // Pas de frameRect en natif -- voir commentaire au-dessus de IS_NATIVE.
       onCapture(blob)
       onClose()
@@ -228,13 +253,16 @@ export default function CameraCapture({ onCapture, onClose, ratio }: Props) {
     let blob: Blob | null = null
     if (imageCaptureRef.current) {
       try {
-        blob = await imageCaptureRef.current.takePhoto()
-        if (blob) {
-          const bmp = await createImageBitmap(blob)
-          const scale = bmp.width / vw
-          frameRect = { x: frameRect.x * scale, y: frameRect.y * scale, w: frameRect.w * scale, h: frameRect.h * scale }
-          bmp.close?.()
-        }
+        const photoBlob = await imageCaptureRef.current.takePhoto()
+        const bmp = await createImageBitmap(photoBlob)
+        const scale = bmp.width / vw
+        frameRect = { x: frameRect.x * scale, y: frameRect.y * scale, w: frameRect.w * scale, h: frameRect.h * scale }
+        bmp.close?.()
+        // Vraie photo capteur -- peut depasser largement 1920x1080, voir
+        // shrinkForUpload plus haut (sinon /api/scan-card echoue en silence).
+        const shrunk = await shrinkForUpload(photoBlob)
+        blob = shrunk.blob
+        frameRect = { x: frameRect.x * shrunk.scale, y: frameRect.y * shrunk.scale, w: frameRect.w * shrunk.scale, h: frameRect.h * shrunk.scale }
       } catch { blob = null }
     }
 
