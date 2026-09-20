@@ -28,6 +28,30 @@ function toBase64(file: File): Promise<{ b64: string; mime: string }> {
   })
 }
 
+// Une vraie photo capteur (camera native/ImageCapture, voir CameraCapture.tsx)
+// peut faire plusieurs dizaines de Mo -- en base64 pour l'envoi a
+// /api/ebay-image-search, ca depasse la limite de taille de requete de la
+// plateforme et l'appel echoue en silence. Applique UNIQUEMENT a cette copie
+// reseau (jamais a imgSrc, qui reste la photo d'origine pour l'affichage/
+// partage) -- CameraCapture.tsx lui-meme ne recompresse plus rien, precisement
+// pour ne pas degrader la qualite des photos de carte stockees en galerie
+// (chemin different, qui a sa propre gestion HD/Viewer3D).
+async function shrinkForNetwork(b64: string, mime: string, maxDim = 2000, quality = 0.85): Promise<string> {
+  const img = new Image()
+  await new Promise<void>((resolve, reject) => {
+    img.onload = () => resolve()
+    img.onerror = reject
+    img.src = `data:${mime};base64,${b64}`
+  })
+  const scale = Math.min(1, maxDim / Math.max(img.naturalWidth, img.naturalHeight))
+  if (scale === 1) return b64
+  const canvas = document.createElement('canvas')
+  canvas.width = Math.round(img.naturalWidth * scale)
+  canvas.height = Math.round(img.naturalHeight * scale)
+  canvas.getContext('2d')!.drawImage(img, 0, 0, canvas.width, canvas.height)
+  return canvas.toDataURL('image/jpeg', quality).split(',')[1]
+}
+
 function fmtDate(d: string, locale: string) {
   try { return new Date(d).toLocaleDateString(locale, { day: '2-digit', month: 'short' }) } catch { return '' }
 }
@@ -298,7 +322,7 @@ export default function ScannerPage() {
     loadSoldComps(q, true)
   }, [loadSoldComps])
 
-  const doScan = useCallback(async (b64: string) => {
+  const doScan = useCallback(async (b64: string, mime: string) => {
     setImgMatches(null); setImgSearchDone(false)
     setEbay(null)
     setSelectedMatch(null); setErr(''); setPhase('searching')
@@ -307,11 +331,14 @@ export default function ScannerPage() {
     if (!session) { setErr('Connectez-vous pour scanner.'); setPhase('error'); return }
 
     // Recherche image eBay -- seule source d'identification de ce scanner
-    // (voir commentaire sur imgMatches plus haut).
+    // (voir commentaire sur imgMatches plus haut). Reduite juste pour cet
+    // envoi reseau (voir shrinkForNetwork) -- imgSrc, lui, garde la photo
+    // d'origine pour l'affichage/le partage.
+    const networkB64 = await shrinkForNetwork(b64, mime).catch(() => b64)
     await fetch('/api/ebay-image-search', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${session.access_token}` },
-      body: JSON.stringify({ imageBase64: b64 }),
+      body: JSON.stringify({ imageBase64: networkB64 }),
     }).then(r => r.json()).then(d => {
       const matches: ImageMatch[] = d.items || []
       setImgMatches(matches)
@@ -330,7 +357,7 @@ export default function ScannerPage() {
     const { b64, mime } = await toBase64(file)
     setRectoB64(b64)
     setRectoMime(mime)
-    doScan(b64)
+    doScan(b64, mime)
   }
 
   const ManualSearchForm = ({ collapsedLabel }: { collapsedLabel?: string }) => {
