@@ -484,9 +484,13 @@ export default function ScannerPage() {
     const filtered = prices.length >= 4 ? prices.filter(p => p >= med * 0.3 && p <= med * 3) : prices
     if (filtered.length < 2) return null
     const lo = Math.min(...filtered), hi = Math.max(...filtered)
-    // Peu de resultats ou fourchette tres large = a prendre avec recul --
-    // suggere activement une meilleure photo plutot que de laisser deviner.
-    const lowConfidence = filtered.length < 3 || hi > lo * 4
+    // Peu de resultats = a prendre avec recul. Le seuil de fourchette
+    // "trop large" etait a 4x -- beaucoup trop agressif : une carte avec
+    // plusieurs parallèles (base, holo, /175...) a normalement un ecart de
+    // prix de 5-10x entre versions SANS que ca signale un mauvais matching,
+    // juste des variantes differentes. Releve a 10x pour ne plus crier au
+    // loup sur ce cas courant et legitime.
+    const lowConfidence = filtered.length < 3 || hi > lo * 10
     return { lo, hi, med, count: filtered.length, total: prices.length, lowConfidence }
   })()
 
@@ -663,57 +667,60 @@ export default function ScannerPage() {
                 recomprendre ce qu'on regardait). Le prix de l'annonce
                 cliquee est deja connu (voir pickMatch) -- affiche
                 immediatement, jamais de "0 ventes" trompeur. */}
-            <div className="scan-result-land" style={{ background: cardBg, borderRadius: 16, border: `1px solid ${border}`, padding: 14, marginBottom: 14 }}>
+            <div className="scan-result-land" style={{ background: cardBg, borderRadius: 18, border: `1px solid ${border}`, padding: 14, marginBottom: 14, overflow: 'hidden' }}>
               <div style={{ display: 'flex', gap: 12, alignItems: 'flex-start' }}>
                 {imgSrc && (
-                  <img src={imgSrc} alt="recto" style={{ flexShrink: 0, width: 88, height: 123, objectFit: 'cover', borderRadius: 10, border: `2px solid ${border}`, boxShadow: dark ? 'none' : '0 4px 14px rgba(0,0,0,0.08)' }} />
+                  <img src={imgSrc} alt="recto" style={{ flexShrink: 0, width: 92, height: 129, objectFit: 'cover', borderRadius: 11, border: `2px solid ${border}`, boxShadow: dark ? 'none' : '0 6px 18px rgba(0,0,0,0.10)' }} />
                 )}
-                <div style={{ flex: 1, minWidth: 0 }}>
+                <div style={{ flex: 1, minWidth: 0, paddingTop: 2 }}>
                   {!selectedMatch && (
-                    <div style={{ fontSize: 13, color: muted, paddingTop: 4 }}>{t('scanner_tap_match_hint')}</div>
+                    <div style={{ fontSize: 14, color: muted, lineHeight: 1.5 }}>👆 {t('scanner_tap_match_hint')}</div>
                   )}
                   {selectedMatch && (
-                    <div style={{ fontWeight: 700, fontSize: 13, color: text, lineHeight: 1.3, marginBottom: 8 }}>{selectedMatch.title}</div>
+                    <div style={{ fontWeight: 800, fontSize: 14, color: text, lineHeight: 1.35 }}>{selectedMatch.title}</div>
                   )}
-                  {selectedMatch && primaryLoading && (
-                    <div style={{ height: 46, background: border, borderRadius: 10, animation: 'pulse 1.4s ease-in-out infinite' }} />
-                  )}
-                  {selectedMatch && !primaryLoading && primaryPrice > 0 && (
-                    <div key={selectedMatch.id} className="scan-price-reveal">
-                      <div style={{ fontSize: 10, fontWeight: 700, color: dark ? '#6ea0ff' : '#3b6bde', textTransform: 'uppercase', letterSpacing: 0.6, marginBottom: 2 }}>
-                        {primaryIsListing ? t('scanner_this_listing_price') : (ebay?.priceSource === 'sold' ? t('scanner_median_sales') : t('scanner_median_active'))}
-                      </div>
-                      <div style={{ fontSize: 34, fontWeight: 900, color: blue, lineHeight: 1.1, letterSpacing: -1, fontVariantNumeric: 'tabular-nums' }}>
-                        {usd(primaryPrice)}
-                      </div>
-                    </div>
-                  )}
-                  {selectedMatch && !primaryLoading && primaryPrice === 0 && (
-                    <p style={{ color: muted, fontSize: 12, margin: 0, lineHeight: 1.5 }}>{t('scanner_no_manual_results')}</p>
-                  )}
+                  {collectionLoaded && selectedMatch && (() => {
+                    const n = (s: string) => (s || '').toLowerCase().trim()
+                    const title = n(selectedMatch.title)
+                    const count = ownedCards.filter(c => {
+                      const words = n(c.nom).split(/\s+/).filter(w => w.length > 2)
+                      const playerOk = words.length > 0 && words.every(w => title.includes(w))
+                      const yearOk = !n(c.annee) || title.includes(n(c.annee))
+                      const collOk = !n(c.collection) || title.includes(n(c.collection))
+                      const varNorm = n(c.variation).replace(/^base$/i, '')
+                      const varOk = !varNorm || title.includes(varNorm)
+                      return playerOk && yearOk && collOk && varOk
+                    }).length
+                    return count > 0
+                      ? <div style={{ marginTop: 6, fontSize: 11, fontWeight: 700, color: '#16a34a' }}>✓ {count} exemplaire{count > 1 ? 's' : ''} identique{count > 1 ? 's' : ''} dans ta collection</div>
+                      : <div style={{ marginTop: 6, fontSize: 11, color: muted }}>Pas dans ta collection</div>
+                  })()}
                 </div>
               </div>
 
-              {collectionLoaded && selectedMatch && (() => {
-                const n = (s: string) => (s || '').toLowerCase().trim()
-                const title = n(selectedMatch.title)
-                const count = ownedCards.filter(c => {
-                  const words = n(c.nom).split(/\s+/).filter(w => w.length > 2)
-                  const playerOk = words.length > 0 && words.every(w => title.includes(w))
-                  const yearOk = !n(c.annee) || title.includes(n(c.annee))
-                  const collOk = !n(c.collection) || title.includes(n(c.collection))
-                  const varNorm = n(c.variation).replace(/^base$/i, '')
-                  const varOk = !varNorm || title.includes(varNorm)
-                  return playerOk && yearOk && collOk && varOk
-                }).length
-                return count > 0
-                  ? <div style={{ marginTop: 10, fontSize: 11, fontWeight: 700, color: '#16a34a' }}>✓ {count} exemplaire{count > 1 ? 's' : ''} identique{count > 1 ? 's' : ''} dans ta collection</div>
-                  : <div style={{ marginTop: 10, fontSize: 11, color: muted }}>Pas dans ta collection</div>
-              })()}
+              {selectedMatch && primaryLoading && (
+                <div style={{ height: 84, marginTop: 14, background: border, borderRadius: 16, animation: 'pulse 1.4s ease-in-out infinite' }} />
+              )}
+              {selectedMatch && !primaryLoading && primaryPrice > 0 && (
+                <div key={selectedMatch.id} className="scan-price-reveal" style={{
+                  marginTop: 14, textAlign: 'center', borderRadius: 16, padding: '16px 12px',
+                  background: dark ? 'linear-gradient(135deg, #0d1a36, #0a1228)' : 'linear-gradient(135deg, #eef3ff, #e4edff)',
+                }}>
+                  <div style={{ fontSize: 11, fontWeight: 800, color: dark ? '#6ea0ff' : '#3b6bde', textTransform: 'uppercase', letterSpacing: 0.7, marginBottom: 4 }}>
+                    {primaryIsListing ? t('scanner_this_listing_price') : (ebay?.priceSource === 'sold' ? t('scanner_median_sales') : t('scanner_median_active'))}
+                  </div>
+                  <div style={{ fontSize: 44, fontWeight: 900, color: blue, lineHeight: 1.05, letterSpacing: -1.5, fontVariantNumeric: 'tabular-nums' }}>
+                    {usd(primaryPrice)}
+                  </div>
+                </div>
+              )}
+              {selectedMatch && !primaryLoading && primaryPrice === 0 && (
+                <p style={{ color: muted, fontSize: 12, margin: '14px 0 0', lineHeight: 1.5, textAlign: 'center' }}>{t('scanner_no_manual_results')}</p>
+              )}
 
               {selectedMatch && !primaryLoading && primaryPrice > 0 && (
                 <button onClick={shareResult} style={{
-                  width: '100%', marginTop: 12, padding: '10px 0', background: 'none',
+                  width: '100%', marginTop: 10, padding: '10px 0', background: 'none',
                   border: `1.5px solid ${border}`, borderRadius: 12, cursor: 'pointer',
                   color: text, fontSize: 13, fontWeight: 800,
                   display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 7,
@@ -809,9 +816,11 @@ export default function ScannerPage() {
                     </span>
                   )}
                 </div>
-                <div style={{ fontSize: 11, color: muted, marginBottom: 12 }}>
-                  {t('scanner_tap_match_hint')}
-                </div>
+                {!selectedMatch && (
+                  <div style={{ fontSize: 11, color: muted, marginBottom: 12 }}>
+                    {t('scanner_tap_match_hint')}
+                  </div>
+                )}
                 {quickEstimate?.lowConfidence && (
                   <div style={{ fontSize: 11, color: dark ? '#d9a441' : '#9a6a00', background: dark ? '#241c08' : '#fff8e6', border: `1px solid ${dark ? '#4a3a10' : '#f0dfa8'}`, borderRadius: 8, padding: '7px 10px', marginBottom: 12 }}>
                     ⚠️ {t('scanner_low_confidence_hint')}
@@ -827,24 +836,26 @@ export default function ScannerPage() {
                           position: 'relative',
                           background: selected ? (dark ? '#001a5c' : '#e8f0ff') : (dark ? '#111' : '#f8f9fb'),
                           border: `2px solid ${selected ? blue : isBest ? '#d97706' : border}`,
-                          borderRadius: 10, cursor: 'pointer', padding: 0, overflow: 'hidden', textAlign: 'left',
-                          transition: 'border-color 0.15s',
+                          borderRadius: 12, cursor: 'pointer', padding: 0, overflow: 'hidden', textAlign: 'left',
+                          transition: 'border-color 0.15s, transform 0.15s',
+                          transform: selected ? 'scale(1.02)' : 'scale(1)',
                         }}>
                         {isBest && (
                           <span style={{
-                            position: 'absolute', top: 5, left: 5, zIndex: 1,
+                            position: 'absolute', top: 6, left: 6, zIndex: 1,
                             background: '#d97706', color: '#fff', fontSize: 9, fontWeight: 800,
-                            borderRadius: 5, padding: '2px 5px', letterSpacing: 0.3,
+                            borderRadius: 6, padding: '3px 6px', letterSpacing: 0.3,
+                            boxShadow: '0 2px 6px rgba(0,0,0,0.25)',
                           }}>
                             ★ {t('scanner_best_match')}
                           </span>
                         )}
                         <img src={m.img} alt={m.title} style={{ width: '100%', aspectRatio: '1', objectFit: 'contain', display: 'block', background: dark ? '#0a0a0a' : '#f0f0f0' }} />
-                        <div style={{ padding: '6px 7px' }}>
-                          <div style={{ fontSize: 10, color: text, fontWeight: 600, overflow: 'hidden', display: '-webkit-box', WebkitLineClamp: 2, WebkitBoxOrient: 'vertical', lineHeight: 1.3, marginBottom: 3 }}>
+                        <div style={{ padding: '7px 8px' }}>
+                          <div style={{ fontSize: 10.5, color: text, fontWeight: 600, overflow: 'hidden', display: '-webkit-box', WebkitLineClamp: 2, WebkitBoxOrient: 'vertical', lineHeight: 1.3, marginBottom: 4 }}>
                             {m.title}
                           </div>
-                          <div style={{ fontSize: 17, fontWeight: 900, color: blue, marginTop: 2, letterSpacing: -0.3 }}>{usd(m.price)}</div>
+                          <div style={{ fontSize: 18, fontWeight: 900, color: blue, letterSpacing: -0.3 }}>{usd(m.price)}</div>
                         </div>
                       </button>
                     )
