@@ -132,7 +132,18 @@ export function AuthProvider({ children }: { children: ReactNode }) {
       // pure, pas de reseau) plutot que de risquer ce faux "deconnecte".
       try {
         const { Network } = await import('@capacitor/network')
-        const status = await Network.getStatus()
+        // Ce plugin natif peut lui-meme ne jamais resoudre sur certains
+        // appareils/cold starts (constate : aucune erreur en console cote
+        // utilisateur malgre le blocage persistant) -- hypothese la plus
+        // probable du "F5 obligatoire au demarrage" signale depuis des mois :
+        // ce filet de secours, cense debloquer l'app apres un delai, restait
+        // lui-meme bloque en attendant indefiniment cet appel. Course contre
+        // un timeout : si le plugin ne repond pas vite, on suppose "connecte"
+        // et on continue plutot que de risquer de bloquer le filet entier.
+        const status = await Promise.race([
+          Network.getStatus(),
+          new Promise<{ connected: boolean }>(resolve => setTimeout(() => resolve({ connected: true }), 1500)),
+        ])
         if (!status.connected) {
           await new Promise(r => setTimeout(r, 4000))
           if (settled) return
