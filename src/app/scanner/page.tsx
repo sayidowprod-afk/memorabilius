@@ -9,11 +9,6 @@ import CameraCapture from '@/components/CameraCapture'
 
 declare const BarcodeDetector: any
 
-interface CardInfo {
-  nom: string; equipe: string; annee: string; marque: string
-  collection: string; variation: string; num: string; card_number: string
-  grade: string; rc: boolean; auto: boolean; patch: boolean
-}
 interface ImageMatch { id: string; title: string; price: number; img: string; url: string }
 interface SaleItem  { title: string; price: number; url: string; img: string; soldDate?: string }
 interface EbayResult {
@@ -76,18 +71,18 @@ export default function ScannerPage() {
   const qrAnimRef  = useRef<number | null>(null)
   const qrStreamRef = useRef<MediaStream | null>(null)
 
-  const [cameraModal,   setCameraModal]   = useState<'recto' | 'verso' | null>(null)
+  const [cameraModal,   setCameraModal]   = useState<'recto' | null>(null)
   const [phase,         setPhase]         = useState<Phase>('idle')
   const [imgSrc,        setImgSrc]        = useState<string | null>(null)
-  const [versoSrc,      setVersoSrc]      = useState<string | null>(null)
   const [rectoB64,      setRectoB64]      = useState<string | null>(null)
   const [rectoMime,     setRectoMime]     = useState('image/jpeg')
-  // Image search (eBay visual)
+  // Image search (eBay visual) -- scanner de prix = recherche image eBay
+  // pure, pas d'identification IA (voir historique : ajoutee le 18/07 puis
+  // retiree le 20/09 suite a une identification fausse du modele maison sur
+  // une carte trop recente pour son dataset d'entrainement -- ce scanner
+  // n'a jamais eu besoin de cette identification pour son usage prix).
   const [imgMatches,    setImgMatches]    = useState<ImageMatch[] | null>(null)
   const [imgSearchDone, setImgSearchDone] = useState(false)
-  // Gemini fallback
-  const [card,          setCard]          = useState<CardInfo | null>(null)
-  const [geminiDone,    setGeminiDone]    = useState(false)
   // Sold comps
   const [ebay,          setEbay]          = useState<EbayResult | null>(null)
   const [selectedMatch, setSelectedMatch] = useState<ImageMatch | null>(null)
@@ -200,7 +195,7 @@ export default function ScannerPage() {
 
   useEffect(() => () => stopQrScan(), [stopQrScan])
 
-  // Ctrl+V : colle le recto si aucune photo encore prise, sinon le verso.
+  // Ctrl+V : colle le recto.
   useEffect(() => {
     const onPaste = (e: ClipboardEvent) => {
       if (qrMode) return
@@ -212,16 +207,15 @@ export default function ScannerPage() {
       if (!file) return
       e.preventDefault()
       if (!imgSrc) handleRecto(file)
-      else if (!versoSrc && (phase === 'results' || phase === 'done')) handleVerso(file)
     }
     window.addEventListener('paste', onPaste)
     return () => window.removeEventListener('paste', onPaste)
-  }, [qrMode, imgSrc, versoSrc, phase])
+  }, [qrMode, imgSrc])
 
   const reset = () => {
-    setPhase('idle'); setImgSrc(null); setVersoSrc(null)
+    setPhase('idle'); setImgSrc(null)
     setRectoB64(null); setImgMatches(null); setImgSearchDone(false)
-    setCard(null); setGeminiDone(false); setEbay(null)
+    setEbay(null)
     setSelectedMatch(null); setErr(''); setSoldTab('sold')
   }
 
@@ -264,29 +258,23 @@ export default function ScannerPage() {
   useEffect(() => {
     if (phase !== 'done' || savedThisScanRef.current) return
     const price = selectedMatch?.price || ebay?.median || 0
-    if (!price || !card?.nom || !rectoB64) return
+    const nom = selectedMatch?.title || ''
+    if (!price || !nom || !rectoB64) return
     savedThisScanRef.current = true
     makeThumbnail(rectoB64, rectoMime).then(thumb => {
       setScanHistory(prev => {
-        const next = [{ nom: card.nom, img: thumb || null, price, date: new Date().toISOString() }, ...prev].slice(0, SCAN_HISTORY_MAX)
+        const next = [{ nom, img: thumb || null, price, date: new Date().toISOString() }, ...prev].slice(0, SCAN_HISTORY_MAX)
         try { localStorage.setItem(SCAN_HISTORY_KEY, JSON.stringify(next)) } catch {}
         return next
       })
     })
-  }, [phase, card, ebay, selectedMatch, rectoB64, rectoMime])
+  }, [phase, ebay, selectedMatch, rectoB64, rectoMime])
 
-  const loadSoldComps = useCallback(async (query: string, c?: CardInfo | null) => {
+  const loadSoldComps = useCallback(async (query: string) => {
     setEbay(null)
     setPhase('loading-sold')
     try {
-      const params = query
-        ? new URLSearchParams({ q: query })
-        : new URLSearchParams({
-            name: c?.nom || '', set: c?.collection || '', year: c?.annee || '',
-            num: c?.num || '', variant: c?.variation || '',
-            rc: String(c?.rc || false), auto: String(c?.auto || false),
-            patch: String(c?.patch || false), grade: c?.grade || '',
-          })
+      const params = new URLSearchParams({ q: query })
       const r = await fetch(`/api/ebay-sold?${params}`)
       const d = await r.json()
       setEbay({
@@ -303,35 +291,22 @@ export default function ScannerPage() {
     setPhase('done')
   }, [])
 
-  const pickMatch = useCallback(async (match: ImageMatch) => {
+  const pickMatch = useCallback((match: ImageMatch) => {
     setSelectedMatch(match)
-    loadSoldComps(match.title, null)
+    loadSoldComps(match.title)
+  }, [loadSoldComps])
 
-    // Re-identifier la carte avec le titre eBay sélectionné comme contexte fort
-    const { data: { session } } = await supabase.auth.getSession()
-    if (!session || !rectoB64) return
-    setGeminiDone(false)
-    fetch('/api/scan-card', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${session.access_token}` },
-      body: JSON.stringify({ imageBase64: rectoB64, mimeType: rectoMime, ebayHints: [match.title] }),
-    }).then(r => r.json()).then(d => {
-      if (!d.error) setCard(d)
-      setGeminiDone(true)
-    }).catch(() => setGeminiDone(true))
-  }, [loadSoldComps, rectoB64, rectoMime])
-
-  const doScan = useCallback(async (b64: string, mime: string, versoB64?: string) => {
+  const doScan = useCallback(async (b64: string) => {
     setImgMatches(null); setImgSearchDone(false)
-    setCard(null); setGeminiDone(false); setEbay(null)
+    setEbay(null)
     setSelectedMatch(null); setErr(''); setPhase('searching')
 
     const { data: { session } } = await supabase.auth.getSession()
     if (!session) { setErr('Connectez-vous pour scanner.'); setPhase('error'); return }
 
-    // Phase 1 : eBay image search + détection coins en parallèle
-    // L'image eBay utilise la photo brute (meilleur matching visuel avec le fond inclus)
-    const imageSearchPromise = fetch('/api/ebay-image-search', {
+    // Recherche image eBay -- seule source d'identification de ce scanner
+    // (voir commentaire sur imgMatches plus haut).
+    await fetch('/api/ebay-image-search', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${session.access_token}` },
       body: JSON.stringify({ imageBase64: b64 }),
@@ -346,52 +321,15 @@ export default function ScannerPage() {
       setPhase('results')
       return [] as ImageMatch[]
     })
-
-    const matches = await imageSearchPromise
-
-    // Gemini tourne toujours pour identifier la carte (infos + check collection)
-    const identified = await fetch('/api/scan-card', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${session.access_token}` },
-      body: JSON.stringify({
-        imageBase64: b64,
-        imageBase64Verso: versoB64,
-        mimeType: mime,
-        ...(matches.length > 0 && { ebayHints: matches.slice(0, 5).map(m => m.title) }),
-      }),
-    }).then(r => r.json()).then(d => {
-      if (d.error) { setGeminiDone(true); return null }
-      setCard(d)
-      setGeminiDone(true)
-      return d as CardInfo
-    }).catch(() => {
-      setGeminiDone(true)
-      return null
-    })
-
-    // Prix vendus auto-chargés uniquement si eBay n'a rien trouvé
-    if (identified && matches.length === 0) loadSoldComps('', identified)
-  }, [loadSoldComps])
+  }, [])
 
   const handleRecto = async (file: File) => {
     setImgSrc(URL.createObjectURL(file))
-    setVersoSrc(null)
     const { b64, mime } = await toBase64(file)
     setRectoB64(b64)
     setRectoMime(mime)
-    doScan(b64, mime)
+    doScan(b64)
   }
-
-  const handleVerso = async (file: File) => {
-    if (!rectoB64) return
-    setVersoSrc(URL.createObjectURL(file))
-    const { b64 } = await toBase64(file)
-    doScan(rectoB64, rectoMime, b64)
-  }
-
-  const Chip = ({ label, bg: cbg }: { label: string; bg: string }) => (
-    <span style={{ background: cbg, color: '#fff', fontSize: 10, fontWeight: 800, borderRadius: 5, padding: '2px 7px', letterSpacing: 0.4, whiteSpace: 'nowrap' }}>{label}</span>
-  )
 
   const SaleRow = ({ item }: { item: SaleItem }) => (
     <a href={item.url} target="_blank" rel="noopener noreferrer"
@@ -439,18 +377,14 @@ export default function ScannerPage() {
       ctx.restore()
     }
 
+    const title = selectedMatch?.title || ''
+    const shortTitle = title.length > 55 ? title.slice(0, 52) + '…' : title
+
     let y = cardY + cardH + 56
     ctx.textAlign = 'center'
     ctx.fillStyle = '#0d0d0d'
-    ctx.font = '900 32px Inter, system-ui, sans-serif'
-    ctx.fillText(card?.nom || '', W / 2, y)
-
-    if (card?.annee || card?.marque || card?.collection) {
-      y += 34
-      ctx.font = '600 17px Inter, system-ui, sans-serif'
-      ctx.fillStyle = '#666'
-      ctx.fillText([card?.annee, card?.marque, card?.collection].filter(Boolean).join(' · '), W / 2, y)
-    }
+    ctx.font = '900 24px Inter, system-ui, sans-serif'
+    ctx.fillText(shortTitle, W / 2, y)
 
     y += 70
     ctx.font = '700 15px Inter, system-ui, sans-serif'
@@ -469,7 +403,7 @@ export default function ScannerPage() {
     canvas.toBlob(async blob => {
       if (!blob) return
       const file = new File([blob], 'memorabilius-scan.jpg', { type: 'image/jpeg' })
-      const shareText = `${card?.nom || ''} — ${usd(ebay.median)} · Memorabilius`
+      const shareText = `${selectedMatch?.title || ''} — ${usd(ebay.median)} · Memorabilius`
       if (navigator.canShare?.({ files: [file] })) {
         try { await navigator.share({ files: [file], title: 'Memorabilius', text: shareText }) } catch { /* annulé par l'utilisateur */ }
       } else {
@@ -480,7 +414,7 @@ export default function ScannerPage() {
         setTimeout(() => URL.revokeObjectURL(url), 4000)
       }
     }, 'image/jpeg', 0.92)
-  }, [imgSrc, card, ebay, lang, t])
+  }, [imgSrc, selectedMatch, ebay, lang, t])
 
   const isSearching = phase === 'searching'
   const showResults = phase === 'results' || phase === 'loading-sold' || phase === 'done' || phase === 'error'
@@ -656,70 +590,41 @@ export default function ScannerPage() {
         {/* ── RESULTS ── */}
         {showResults && (
           <>
-            {/* Photo miniature + info Gemini */}
+            {/* Photo miniature + check collection (sur le match eBay choisi) */}
             <div className="scan-result-land" style={{ background: cardBg, borderRadius: 16, border: `1px solid ${border}`, padding: 14, marginBottom: 14 }}>
               <div style={{ display: 'flex', gap: 12, alignItems: 'flex-start' }}>
                 <div style={{ flexShrink: 0, position: 'relative', width: 80 }}>
                   {imgSrc && (
                     <img src={imgSrc} alt="recto" style={{ width: 80, height: 112, objectFit: 'cover', borderRadius: 9, border: `2px solid ${border}` }} />
                   )}
-                  {versoSrc && (
-                    <img src={versoSrc} alt="verso" style={{ width: 50, height: 70, objectFit: 'cover', borderRadius: 6, border: `2px solid ${blue}`, position: 'absolute', bottom: -8, right: -12, boxShadow: '0 3px 10px rgba(0,0,0,0.35)' }} />
-                  )}
                 </div>
                 <div style={{ flex: 1, minWidth: 0 }}>
-                  {!geminiDone && imgSearchDone && (
-                    <div style={{ fontSize: 12, color: muted, animation: 'pulse 1.4s ease-in-out infinite' }}>Identification IA…</div>
+                  {!selectedMatch && (
+                    <div style={{ fontSize: 12, color: muted }}>{t('scanner_tap_match_hint')}</div>
                   )}
-                  {geminiDone && !card && (
-                    <div style={{ fontSize: 12, color: muted }}>Identification impossible</div>
-                  )}
-                  {card && (
-                    <>
-                      <div style={{ display: 'flex', gap: 4, flexWrap: 'wrap', marginBottom: 6 }}>
-                        {card.rc    && <Chip label="RC"    bg="#d97706" />}
-                        {card.auto  && <Chip label="AUTO"  bg="#16a34a" />}
-                        {card.patch && <Chip label="PATCH" bg="#1d4ed8" />}
-                        {card.num   && <Chip label={card.num} bg="#7c3aed" />}
-                        {card.grade && card.grade !== 'Raw' && <Chip label={card.grade} bg="#b91c1c" />}
-                      </div>
-                      <div style={{ fontWeight: 900, fontSize: 16, color: text, lineHeight: 1.2, marginBottom: 2 }}>{card.nom || '—'}</div>
-                      {card.equipe && <div style={{ color: muted, fontSize: 12, marginBottom: 2 }}>{card.equipe}</div>}
-                      <div style={{ color: muted, fontSize: 11, lineHeight: 1.5 }}>
-                        {[card.annee, card.marque, card.collection].filter(Boolean).join(' · ')}
-                        {card.variation && <><br /><em>{card.variation}</em></>}
-                      </div>
-                      {collectionLoaded && selectedMatch && (() => {
-                        const n = (s: string) => (s || '').toLowerCase().trim()
-                        const title = n(selectedMatch.title)
-                        const count = ownedCards.filter(c => {
-                          const words = n(c.nom).split(/\s+/).filter(w => w.length > 2)
-                          const playerOk = words.length > 0 && words.every(w => title.includes(w))
-                          const yearOk = !n(c.annee) || title.includes(n(c.annee))
-                          const collOk = !n(c.collection) || title.includes(n(c.collection))
-                          const varNorm = n(c.variation).replace(/^base$/i, '')
-                          const varOk = !varNorm || title.includes(varNorm)
-                          return playerOk && yearOk && collOk && varOk
-                        }).length
-                        return count > 0
-                          ? <div style={{ marginTop: 5, fontSize: 11, fontWeight: 700, color: '#16a34a' }}>✓ {count} exemplaire{count > 1 ? 's' : ''} identique{count > 1 ? 's' : ''} dans ta collection</div>
-                          : <div style={{ marginTop: 5, fontSize: 11, color: muted }}>Pas dans ta collection</div>
-                      })()}
-                    </>
-                  )}
+                  {collectionLoaded && selectedMatch && (() => {
+                    const n = (s: string) => (s || '').toLowerCase().trim()
+                    const title = n(selectedMatch.title)
+                    const count = ownedCards.filter(c => {
+                      const words = n(c.nom).split(/\s+/).filter(w => w.length > 2)
+                      const playerOk = words.length > 0 && words.every(w => title.includes(w))
+                      const yearOk = !n(c.annee) || title.includes(n(c.annee))
+                      const collOk = !n(c.collection) || title.includes(n(c.collection))
+                      const varNorm = n(c.variation).replace(/^base$/i, '')
+                      const varOk = !varNorm || title.includes(varNorm)
+                      return playerOk && yearOk && collOk && varOk
+                    }).length
+                    return (
+                      <>
+                        <div style={{ fontWeight: 700, fontSize: 13, color: text, lineHeight: 1.3, marginBottom: 4 }}>{selectedMatch.title}</div>
+                        {count > 0
+                          ? <div style={{ fontSize: 11, fontWeight: 700, color: '#16a34a' }}>✓ {count} exemplaire{count > 1 ? 's' : ''} identique{count > 1 ? 's' : ''} dans ta collection</div>
+                          : <div style={{ fontSize: 11, color: muted }}>Pas dans ta collection</div>}
+                      </>
+                    )
+                  })()}
                 </div>
               </div>
-
-              {/* Bouton vers recherche texte Gemini si l'IA a identifié mais user n'a pas choisi */}
-              {card && geminiDone && !selectedMatch && imgMatches && imgMatches.length > 0 && phase !== 'loading-sold' && phase !== 'done' && (
-                <button type="button" onClick={() => loadSoldComps('', card)} aria-label={t('scanner_use_ai_aria')} style={{
-                  marginTop: 12, width: '100%', padding: '9px 0', background: 'none',
-                  border: `1px solid ${border}`, borderRadius: 10, cursor: 'pointer',
-                  color: muted, fontSize: 12, fontWeight: 700,
-                }}>
-                  {t('scanner_use_ai_instead')} <span aria-hidden="true">→</span>
-                </button>
-              )}
             </div>
 
             {/* ── GRILLE IMAGE SEARCH EBAY ── */}
@@ -917,18 +822,9 @@ export default function ScannerPage() {
               </div>
             )}
 
-            {/* Verso + nouvelle carte */}
+            {/* Nouvelle carte */}
             {(phase === 'results' || phase === 'done') && (
               <div style={{ display: 'flex', flexDirection: 'column', gap: 10 }}>
-                {!versoSrc && (
-                  <button onClick={() => setCameraModal('verso')} style={{
-                    width: '100%', padding: '12px 0', background: 'none',
-                    border: `2px dashed ${border}`, borderRadius: 14, cursor: 'pointer',
-                    color: muted, fontSize: 13, fontWeight: 700,
-                  }}>
-                    {t('scanner_add_verso')}
-                  </button>
-                )}
                 <button onClick={reset} style={{
                   width: '100%', padding: '16px 0', background: blue, border: 'none',
                   borderRadius: 14, color: '#fff', fontWeight: 900, fontSize: 17, cursor: 'pointer',
@@ -955,7 +851,7 @@ export default function ScannerPage() {
           onCapture={blob => {
             setCameraModal(null)
             const file = new File([blob], 'photo.jpg', { type: 'image/jpeg' })
-            if (cameraModal === 'recto') handleRecto(file); else handleVerso(file)
+            handleRecto(file)
           }}
           onClose={() => setCameraModal(null)}
         />
