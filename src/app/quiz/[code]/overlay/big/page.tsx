@@ -46,7 +46,16 @@ export default function QuizOverlayBigPage({ params }: { params: Promise<{ code:
       <QuizAnimStyles />
       <div style={{
         position: 'relative', overflow: 'hidden', height: 'calc(100dvh - 36px)',
-        background: `radial-gradient(circle at 50% -20%, ${FDLC_NAVY} 0%, ${FDLC_NAVY_DEEP} 60%)`,
+        // Fond a plusieurs couches (juge "un peu plus beau" que l'aplat
+        // uni d'origine) : lueurs rouge/bleu diagonales (couleurs du
+        // blason) + fines rayures en biais tres discretes pour un effet
+        // "maillot" sans nuire a la lisibilite du texte par-dessus.
+        background: `
+          radial-gradient(circle at 90% 6%, ${FDLC_RED}26, transparent 42%),
+          radial-gradient(circle at 6% 96%, #1d428a3d, transparent 48%),
+          repeating-linear-gradient(135deg, rgba(255,255,255,0.025) 0px, rgba(255,255,255,0.025) 2px, transparent 2px, transparent 14px),
+          radial-gradient(circle at 50% -20%, ${FDLC_NAVY} 0%, ${FDLC_NAVY_DEEP} 65%)
+        `,
         border: `4px solid ${FDLC_RED}`, borderRadius: 32, boxShadow: '0 20px 60px rgba(0,0,0,0.5)',
         display: 'flex', flexDirection: 'column', padding: '32px 44px',
       }}>
@@ -84,7 +93,11 @@ export default function QuizOverlayBigPage({ params }: { params: Promise<{ code:
             debordait. Deux colonnes cote a cote : chacune a moins de choses
             a caser en hauteur, donc peut se permettre du plus grand. */}
         <div style={{ flex: 1, minHeight: 0, display: 'flex', gap: 40, position: 'relative' }}>
-          <div style={{ flex: '1.35 1 0%', minWidth: 0, display: 'flex', flexDirection: 'column', justifyContent: 'center', gap: 28, overflowY: 'auto' }}>
+          {/* padding:'6px' -- overflowY:'auto' force aussi overflow-x a se
+              couper (regle CSS : un seul axe a "auto" fait passer l'autre en
+              "auto" aussi), ce qui rognait l'anneau vert du bon choix (son
+              box-shadow depasse de quelques px la boite du badge). */}
+          <div style={{ flex: '1.35 1 0%', minWidth: 0, display: 'flex', flexDirection: 'column', justifyContent: 'center', gap: 28, overflowY: 'auto', padding: '6px' }}>
             <div style={{ flexShrink: 0, textAlign: 'center' }}>
               {beforeFirstQuestion ? (
                 <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 24 }}>

@@ -195,6 +195,38 @@ export default function LiveQuizAdminPage() {
     loadSessions()
   }
 
+  // Duplique la banque de questions d'une session dans une nouvelle session
+  // (nouveau code, jamais jouee) -- pratique pour rejouer le meme quiz a une
+  // autre emission sans re-taper toutes les questions.
+  const duplicateSession = async (source: Session) => {
+    const tok = await freshToken()
+    if (!tok) return
+    const res = await fetch('/api/admin/live-quiz', {
+      method: 'POST', headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${tok}` },
+      body: JSON.stringify({ title: `${source.title} (copie)`, duplicateFromId: source.id }),
+    })
+    if (!res.ok) { alert('Erreur duplication'); return }
+    const json = await res.json()
+    await loadSessions()
+    setActiveId(json.session.id)
+  }
+
+  const [renaming, setRenaming] = useState(false)
+  const [renameValue, setRenameValue] = useState('')
+  const startRename = () => { if (!session) return; setRenameValue(session.title); setRenaming(true) }
+  const saveRename = async () => {
+    if (!activeId || !renameValue.trim()) return
+    const tok = await freshToken()
+    if (!tok) return
+    await fetch('/api/admin/live-quiz', {
+      method: 'PATCH', headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${tok}` },
+      body: JSON.stringify({ sessionId: activeId, action: 'rename', title: renameValue.trim() }),
+    })
+    setRenaming(false)
+    loadActive(activeId)
+    loadSessions()
+  }
+
   const startEdit = (q: Question) => {
     setEditingId(q.id)
     setForm({ text: q.question, choices: [...q.choices, '', '', '', ''].slice(0, 4), correct: q.correct_index })
@@ -287,11 +319,27 @@ export default function LiveQuizAdminPage() {
           </select>
         </div>
         {session && (
-          <button onClick={() => deleteSession(session.id, session.title)} title="Supprimer cette session"
-            style={{ ...btnStyle('transparent'), border: '1px solid rgba(255,255,255,0.25)', flexShrink: 0 }}>🗑️</button>
+          <>
+            <button onClick={startRename} title="Renommer cette session"
+              style={{ ...btnStyle('transparent'), border: '1px solid rgba(255,255,255,0.25)', flexShrink: 0 }}>✏️</button>
+            <button onClick={() => duplicateSession(session)} title="Dupliquer (nouvelle session, jamais jouée)"
+              style={{ ...btnStyle('transparent'), border: '1px solid rgba(255,255,255,0.25)', flexShrink: 0 }}>⧉</button>
+            <button onClick={() => deleteSession(session.id, session.title)} title="Supprimer cette session"
+              style={{ ...btnStyle('transparent'), border: '1px solid rgba(255,255,255,0.25)', flexShrink: 0 }}>🗑️</button>
+          </>
         )}
         <button onClick={() => setShowCreate(v => !v)} style={{ ...btnStyle(FDLC_RED), flexShrink: 0 }}>+ Nouvelle</button>
       </div>
+
+      {renaming && (
+        <div style={{ display: 'flex', gap: 6, marginBottom: 16 }}>
+          <input value={renameValue} onChange={e => setRenameValue(e.target.value)} placeholder="Nouveau titre"
+            autoFocus onKeyDown={e => e.key === 'Enter' && saveRename()}
+            style={{ flex: 1, padding: 10, borderRadius: 8, border: '1px solid #ddd' }} />
+          <button onClick={saveRename} style={btnStyle(FDLC_RED)}>Enregistrer</button>
+          <button onClick={() => setRenaming(false)} style={btnStyle('#888')}>Annuler</button>
+        </div>
+      )}
 
       {showCreate && (
         <div style={{ display: 'flex', gap: 6, marginBottom: 16 }}>

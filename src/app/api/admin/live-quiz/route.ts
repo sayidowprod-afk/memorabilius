@@ -54,7 +54,7 @@ export async function POST(req: NextRequest) {
   const adminUser = await requireAdmin(admin, req.headers.get('authorization'))
   if (!adminUser) return NextResponse.json({ error: 'Forbidden' }, { status: 403 })
 
-  const { title } = await req.json()
+  const { title, duplicateFromId } = await req.json()
 
   let code = ''
   for (let attempt = 0; attempt < 8; attempt++) {
@@ -68,17 +68,43 @@ export async function POST(req: NextRequest) {
     code, title: title || 'Quiz en direct', status: 'lobby', created_by: adminUser.id,
   }).select().single()
   if (error) return NextResponse.json({ error: error.message }, { status: 500 })
+
+  // Dupliquer une session : recopie sa banque de questions (fraiches, jamais
+  // jouees -- used:false) dans la nouvelle session. La session source n'est
+  // jamais modifiee, et rien d'autre (reponses, classement, code) n'est
+  // copie -- seulement de quoi repartir d'un quiz "pret a rejouer".
+  if (duplicateFromId) {
+    const { data: sourceQuestions } = await admin
+      .from('quiz_questions')
+      .select('question, choices, correct_index, position')
+      .eq('session_id', duplicateFromId)
+      .order('position', { ascending: true })
+    if (sourceQuestions && sourceQuestions.length > 0) {
+      await admin.from('quiz_questions').insert(
+        sourceQuestions.map(q => ({ ...q, session_id: data.id, used: false }))
+      )
+    }
+  }
+
   return NextResponse.json({ session: data })
 }
 
-const ACTIONS = ['start_round', 'reveal', 'end_round', 'end_session'] as const
+const ACTIONS = ['start_round', 'reveal', 'end_round', 'end_session', 'rename'] as const
 
 export async function PATCH(req: NextRequest) {
   const adminUser = await requireAdmin(admin, req.headers.get('authorization'))
   if (!adminUser) return NextResponse.json({ error: 'Forbidden' }, { status: 403 })
 
-  const { sessionId, action, questionId, cardId, durationSeconds } = await req.json()
+  const { sessionId, action, questionId, cardId, durationSeconds, title } = await req.json()
   if (!sessionId || !ACTIONS.includes(action)) return NextResponse.json({ error: 'champs invalides' }, { status: 400 })
+
+  if (action === 'rename') {
+    if (!title || !title.trim()) return NextResponse.json({ error: 'titre manquant' }, { status: 400 })
+    const { data, error } = await admin.from('quiz_sessions').update({ title: title.trim() }).eq('id', sessionId).select().single()
+    if (error) return NextResponse.json({ error: error.message }, { status: 500 })
+    return NextResponse.json({ session: data })
+  }
+
   // Choisi par l'animateur au moment de lancer (pas à la création de la
   // question/carte) -- voir /api/admin/live-quiz/questions, qui ne stocke
   // plus de durée : ça permet de relancer la même question avec un minuteur

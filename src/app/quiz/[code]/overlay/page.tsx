@@ -1,7 +1,7 @@
 'use client'
 import { use } from 'react'
 import { fdlcFont } from '@/lib/fdlcFont'
-import { FDLC_LOGO_URL, FDLC_NAVY_DEEP, FDLC_CHOICE_COLORS } from '@/lib/fdlcBranding'
+import { FDLC_LOGO_URL, FDLC_NAVY_DEEP, FDLC_CHOICE_COLORS, FDLC_RED } from '@/lib/fdlcBranding'
 import SignatureCrop from '@/components/SignatureCrop'
 import { useLiveQuizPoll, formatResponseMs } from '@/lib/useLiveQuizPoll'
 import ConfettiBurst from '@/components/ConfettiBurst'
@@ -178,7 +178,14 @@ export default function QuizOverlayPage({ params }: { params: Promise<{ code: st
 function Card({ children, style }: { children: React.ReactNode; style?: React.CSSProperties }) {
   return (
     <div style={{
-      background: `${FDLC_NAVY_DEEP}e6`, backdropFilter: 'blur(6px)', borderRadius: 20,
+      // Degrades superposes (lueur rouge en coin + fines rayures en biais)
+      // plutot que l'aplat uni d'origine, jugee un peu terne pour le stream.
+      background: `
+        radial-gradient(circle at 100% 0%, ${FDLC_RED}22, transparent 55%),
+        repeating-linear-gradient(135deg, rgba(255,255,255,0.02) 0px, rgba(255,255,255,0.02) 2px, transparent 2px, transparent 12px),
+        ${FDLC_NAVY_DEEP}e6
+      `,
+      backdropFilter: 'blur(6px)', borderRadius: 20,
       padding: '20px 24px', boxShadow: '0 12px 40px rgba(0,0,0,0.5)', border: '1px solid rgba(255,255,255,0.1)',
       ...style,
     }}>
