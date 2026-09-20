@@ -63,6 +63,17 @@ export default function QuizJoinPage({ params }: { params: Promise<{ code: strin
 
   useEffect(() => {
     if (!joined) return
+    // Enregistre "cette personne joue cette session" independamment de toute
+    // reponse -- pour que le selecteur "overlays individuels" du panel admin
+    // la propose meme avant la toute premiere question. Couvre aussi le
+    // retour d'un visiteur deja rejoint (pseudo memorise en localStorage) :
+    // il doit etre re-enregistre pour CETTE session s'il ne l'avait pas
+    // encore ete.
+    fetch('/api/live-quiz/join', {
+      method: 'POST', headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ code, participantId: participantIdRef.current, pseudo }),
+    }).catch(() => {})
+
     let cancelled = false
     const tick = async () => {
       try {

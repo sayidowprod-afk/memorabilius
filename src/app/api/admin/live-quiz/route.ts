@@ -34,21 +34,27 @@ export async function GET(req: NextRequest) {
 
   const id = req.nextUrl.searchParams.get('id')
   if (id) {
-    const [{ data: session, error }, { data: questions }, { data: answerRows }] = await Promise.all([
+    const [{ data: session, error }, { data: questions }, { data: joinRows }, { data: answerRows }] = await Promise.all([
       admin.from('quiz_sessions').select('*').eq('id', id).single(),
       admin.from('quiz_questions').select('*').eq('session_id', id).order('position', { ascending: true }),
-      // Pseudos distincts ayant deja repondu au moins une fois dans cette
-      // session -- pour le selecteur "overlay individuelle par personne"
-      // (voir /quiz/[code]/overlay/player/[pseudo]) : on ne peut proposer que
-      // des gens qui ont deja joue, joindre seul (sans repondre) n'ecrit
-      // rien en base.
+      // Pseudos ayant REJOINT (voir /api/live-quiz/join, appele des le clic
+      // "Rejoindre" cote spectateur) -- pour le selecteur "overlay
+      // individuelle par personne" (voir /quiz/[code]/overlay/player/
+      // [pseudo]), utilisable des l'arrivee sur le quiz, meme avant la
+      // toute premiere question.
+      admin.from('quiz_participants').select('pseudo, joined_at').eq('session_id', id).order('joined_at', { ascending: true }),
+      // Repli pour les sessions anterieures a quiz_participants (pas de
+      // ligne de jointure, mais des reponses existent deja).
       admin.from('quiz_answers').select('pseudo, answered_at').eq('session_id', id).order('answered_at', { ascending: true }),
     ])
     if (error) return NextResponse.json({ error: error.message }, { status: 404 })
     const { count: participantCount } = session.round_key
       ? await admin.from('quiz_answers').select('*', { count: 'exact', head: true }).eq('round_key', session.round_key)
       : { count: 0 }
-    const participants = [...new Set((answerRows || []).map(r => r.pseudo))]
+    const participants = [...new Set([
+      ...(joinRows || []).map(r => r.pseudo),
+      ...(answerRows || []).map(r => r.pseudo),
+    ])]
     return NextResponse.json({ session, questions, participantCount: participantCount ?? 0, participants })
   }
 
