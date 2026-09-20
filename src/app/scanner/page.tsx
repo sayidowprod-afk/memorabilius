@@ -60,6 +60,7 @@ export default function ScannerPage() {
   const [ebay,          setEbay]          = useState<EbayResult | null>(null)
   const [selectedMatch, setSelectedMatch] = useState<ImageMatch | null>(null)
   const [soldTab,       setSoldTab]       = useState<'sold' | 'active'>('sold')
+  const [showMarketRange, setShowMarketRange] = useState(false)
   const [err,           setErr]           = useState('')
   const [ownedCards, setOwnedCards] = useState<{ nom: string; annee: string; collection: string; variation: string }[]>([])
   const [collectionLoaded, setCollectionLoaded] = useState(false)
@@ -190,6 +191,7 @@ export default function ScannerPage() {
     setRectoB64(null); setImgMatches(null); setImgSearchDone(false)
     setEbay(null)
     setSelectedMatch(null); setErr(''); setSoldTab('sold'); setManualQuery('')
+    setShowMarketRange(false)
   }
 
   // Historique local des dernieres cartes scannees (localStorage, pas de
@@ -243,9 +245,17 @@ export default function ScannerPage() {
     })
   }, [phase, ebay, selectedMatch, rectoB64, rectoMime])
 
-  const loadSoldComps = useCallback(async (query: string) => {
+  // blocking=true : phase passe par 'loading-sold' (utilise quand on n'a
+  // AUCUN prix connu a l'avance -- recherche manuelle). blocking=false :
+  // charge la fourchette de marche en arriere-plan SANS bloquer l'affichage,
+  // utilise quand on vient de cliquer une correspondance dont le prix est
+  // deja connu (voir pickMatch) -- avant, cliquer relançait une recherche
+  // texte avec le titre exact de l'annonce (souvent bruite/bizarre cote
+  // eBay) qui echouait tres souvent, affichant "0 ventes" alors que le prix
+  // etait deja sous les yeux de l'utilisateur juste avant le clic.
+  const loadSoldComps = useCallback(async (query: string, blocking = true) => {
     setEbay(null)
-    setPhase('loading-sold')
+    if (blocking) setPhase('loading-sold')
     try {
       const params = new URLSearchParams({ q: query })
       const r = await fetch(`/api/ebay-sold?${params}`)
@@ -261,12 +271,16 @@ export default function ScannerPage() {
       })
       if (!(d.sold?.length > 0)) setSoldTab('active')
     } catch { /* non-fatal */ }
-    setPhase('done')
+    if (blocking) setPhase('done')
   }, [])
 
   const pickMatch = useCallback((match: ImageMatch) => {
     setSelectedMatch(match)
-    loadSoldComps(match.title)
+    setShowMarketRange(false)
+    // Le prix de CETTE annonce est deja connu (affiche dans sa vignette) --
+    // pas besoin d'attendre quoi que ce soit pour le montrer.
+    setPhase('done')
+    loadSoldComps(match.title, false)
   }, [loadSoldComps])
 
   // Recherche manuelle -- filet de secours quand la recherche image eBay ne
@@ -280,7 +294,8 @@ export default function ScannerPage() {
     const q = query.trim()
     if (!q) return
     setSelectedMatch({ id: 'manual', title: q, price: 0, img: '', url: '' })
-    loadSoldComps(q)
+    setShowMarketRange(false)
+    loadSoldComps(q, true)
   }, [loadSoldComps])
 
   const doScan = useCallback(async (b64: string) => {
@@ -369,10 +384,19 @@ export default function ScannerPage() {
     </a>
   )
 
+  // Prix "principal" affiche dans le panneau resultat : celui de l'annonce
+  // cliquee si on le connait deja (cas normal -- voir pickMatch), sinon la
+  // mediane de la recherche manuelle une fois chargee. primaryLoading ne
+  // concerne QUE la recherche manuelle (phase 'loading-sold') -- cliquer une
+  // correspondance ne passe jamais par un etat de chargement bloquant.
+  const primaryIsListing = !!(selectedMatch && selectedMatch.price > 0)
+  const primaryLoading = phase === 'loading-sold'
+  const primaryPrice = primaryIsListing ? selectedMatch!.price : (ebay?.median || 0)
+
   // Genere une image recap (photo carte a bords nets + nom + prix) et la
   // partage via l'API Web Share (mobile) ou la telecharge (desktop).
   const shareResult = useCallback(async () => {
-    if (!imgSrc || !ebay?.median) return
+    if (!imgSrc || !primaryPrice) return
     const W = 800, H = 1050
     const canvas = document.createElement('canvas')
     canvas.width = W; canvas.height = H
@@ -415,12 +439,13 @@ export default function ScannerPage() {
     y += 70
     ctx.font = '700 15px Inter, system-ui, sans-serif'
     ctx.fillStyle = '#3b6bde'
-    ctx.fillText((ebay.priceSource === 'sold' ? t('scanner_median_sales') : t('scanner_median_active')).toUpperCase(), W / 2, y)
+    const priceLabel = primaryIsListing ? t('scanner_this_listing_price') : (ebay?.priceSource === 'sold' ? t('scanner_median_sales') : t('scanner_median_active'))
+    ctx.fillText(priceLabel.toUpperCase(), W / 2, y)
 
     y += 66
     ctx.font = '900 76px Inter, system-ui, sans-serif'
     ctx.fillStyle = '#0046D1'
-    ctx.fillText(usd(ebay.median), W / 2, y)
+    ctx.fillText(usd(primaryPrice), W / 2, y)
 
     ctx.font = '600 14px Inter, system-ui, sans-serif'
     ctx.fillStyle = '#999'
@@ -429,7 +454,7 @@ export default function ScannerPage() {
     canvas.toBlob(async blob => {
       if (!blob) return
       const file = new File([blob], 'memorabilius-scan.jpg', { type: 'image/jpeg' })
-      const shareText = `${selectedMatch?.title || ''} — ${usd(ebay.median)} · Memorabilius`
+      const shareText = `${selectedMatch?.title || ''} — ${usd(primaryPrice)} · Memorabilius`
       if (navigator.canShare?.({ files: [file] })) {
         try { await navigator.share({ files: [file], title: 'Memorabilius', text: shareText }) } catch { /* annulé par l'utilisateur */ }
       } else {
@@ -440,7 +465,7 @@ export default function ScannerPage() {
         setTimeout(() => URL.revokeObjectURL(url), 4000)
       }
     }, 'image/jpeg', 0.92)
-  }, [imgSrc, selectedMatch, ebay, lang, t])
+  }, [imgSrc, selectedMatch, ebay, primaryPrice, primaryIsListing, lang, t])
 
   const isSearching = phase === 'searching'
   const showResults = phase === 'results' || phase === 'loading-sold' || phase === 'done' || phase === 'error'
@@ -489,9 +514,9 @@ export default function ScannerPage() {
         {/* Prix median reste visible en scrollant vers les ventes/annonces --
             avant, une fois le panneau de prix passe hors ecran, le chiffre
             principal disparaissait completement du champ de vision. */}
-        {phase === 'done' && ebay && ebay.median > 0 && (
+        {phase === 'done' && primaryPrice > 0 && (
           <span style={{ marginLeft: 14, fontSize: 15, fontWeight: 900, color: blue, fontVariantNumeric: 'tabular-nums' }}>
-            {usd(ebay.median)}
+            {usd(primaryPrice)}
           </span>
         )}
         {phase !== 'idle' && (
@@ -632,41 +657,119 @@ export default function ScannerPage() {
         {/* ── RESULTS ── */}
         {showResults && (
           <>
-            {/* Photo miniature + check collection (sur le match eBay choisi) */}
+            {/* Photo + resultat de la correspondance choisie -- panneau unique
+                (avant : carte photo+collection separee de la carte "prix
+                vendus" plus bas, redondant et forcait a scroller pour
+                recomprendre ce qu'on regardait). Le prix de l'annonce
+                cliquee est deja connu (voir pickMatch) -- affiche
+                immediatement, jamais de "0 ventes" trompeur. */}
             <div className="scan-result-land" style={{ background: cardBg, borderRadius: 16, border: `1px solid ${border}`, padding: 14, marginBottom: 14 }}>
               <div style={{ display: 'flex', gap: 12, alignItems: 'flex-start' }}>
-                <div style={{ flexShrink: 0, position: 'relative', width: 80 }}>
-                  {imgSrc && (
-                    <img src={imgSrc} alt="recto" style={{ width: 80, height: 112, objectFit: 'cover', borderRadius: 9, border: `2px solid ${border}` }} />
-                  )}
-                </div>
+                {imgSrc && (
+                  <img src={imgSrc} alt="recto" style={{ flexShrink: 0, width: 88, height: 123, objectFit: 'cover', borderRadius: 10, border: `2px solid ${border}`, boxShadow: dark ? 'none' : '0 4px 14px rgba(0,0,0,0.08)' }} />
+                )}
                 <div style={{ flex: 1, minWidth: 0 }}>
                   {!selectedMatch && (
-                    <div style={{ fontSize: 12, color: muted }}>{t('scanner_tap_match_hint')}</div>
+                    <div style={{ fontSize: 13, color: muted, paddingTop: 4 }}>{t('scanner_tap_match_hint')}</div>
                   )}
-                  {collectionLoaded && selectedMatch && (() => {
-                    const n = (s: string) => (s || '').toLowerCase().trim()
-                    const title = n(selectedMatch.title)
-                    const count = ownedCards.filter(c => {
-                      const words = n(c.nom).split(/\s+/).filter(w => w.length > 2)
-                      const playerOk = words.length > 0 && words.every(w => title.includes(w))
-                      const yearOk = !n(c.annee) || title.includes(n(c.annee))
-                      const collOk = !n(c.collection) || title.includes(n(c.collection))
-                      const varNorm = n(c.variation).replace(/^base$/i, '')
-                      const varOk = !varNorm || title.includes(varNorm)
-                      return playerOk && yearOk && collOk && varOk
-                    }).length
-                    return (
-                      <>
-                        <div style={{ fontWeight: 700, fontSize: 13, color: text, lineHeight: 1.3, marginBottom: 4 }}>{selectedMatch.title}</div>
-                        {count > 0
-                          ? <div style={{ fontSize: 11, fontWeight: 700, color: '#16a34a' }}>✓ {count} exemplaire{count > 1 ? 's' : ''} identique{count > 1 ? 's' : ''} dans ta collection</div>
-                          : <div style={{ fontSize: 11, color: muted }}>Pas dans ta collection</div>}
-                      </>
-                    )
-                  })()}
+                  {selectedMatch && (
+                    <div style={{ fontWeight: 700, fontSize: 13, color: text, lineHeight: 1.3, marginBottom: 8 }}>{selectedMatch.title}</div>
+                  )}
+                  {selectedMatch && primaryLoading && (
+                    <div style={{ height: 46, background: border, borderRadius: 10, animation: 'pulse 1.4s ease-in-out infinite' }} />
+                  )}
+                  {selectedMatch && !primaryLoading && primaryPrice > 0 && (
+                    <div key={selectedMatch.id} className="scan-price-reveal">
+                      <div style={{ fontSize: 10, fontWeight: 700, color: dark ? '#6ea0ff' : '#3b6bde', textTransform: 'uppercase', letterSpacing: 0.6, marginBottom: 2 }}>
+                        {primaryIsListing ? t('scanner_this_listing_price') : (ebay?.priceSource === 'sold' ? t('scanner_median_sales') : t('scanner_median_active'))}
+                      </div>
+                      <div style={{ fontSize: 34, fontWeight: 900, color: blue, lineHeight: 1.1, letterSpacing: -1, fontVariantNumeric: 'tabular-nums' }}>
+                        {usd(primaryPrice)}
+                      </div>
+                    </div>
+                  )}
+                  {selectedMatch && !primaryLoading && primaryPrice === 0 && (
+                    <p style={{ color: muted, fontSize: 12, margin: 0, lineHeight: 1.5 }}>{t('scanner_no_manual_results')}</p>
+                  )}
                 </div>
               </div>
+
+              {collectionLoaded && selectedMatch && (() => {
+                const n = (s: string) => (s || '').toLowerCase().trim()
+                const title = n(selectedMatch.title)
+                const count = ownedCards.filter(c => {
+                  const words = n(c.nom).split(/\s+/).filter(w => w.length > 2)
+                  const playerOk = words.length > 0 && words.every(w => title.includes(w))
+                  const yearOk = !n(c.annee) || title.includes(n(c.annee))
+                  const collOk = !n(c.collection) || title.includes(n(c.collection))
+                  const varNorm = n(c.variation).replace(/^base$/i, '')
+                  const varOk = !varNorm || title.includes(varNorm)
+                  return playerOk && yearOk && collOk && varOk
+                }).length
+                return count > 0
+                  ? <div style={{ marginTop: 10, fontSize: 11, fontWeight: 700, color: '#16a34a' }}>✓ {count} exemplaire{count > 1 ? 's' : ''} identique{count > 1 ? 's' : ''} dans ta collection</div>
+                  : <div style={{ marginTop: 10, fontSize: 11, color: muted }}>Pas dans ta collection</div>
+              })()}
+
+              {selectedMatch && !primaryLoading && primaryPrice > 0 && (
+                <button onClick={shareResult} style={{
+                  width: '100%', marginTop: 12, padding: '10px 0', background: 'none',
+                  border: `1.5px solid ${border}`, borderRadius: 12, cursor: 'pointer',
+                  color: text, fontSize: 13, fontWeight: 800,
+                  display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 7,
+                }}>
+                  <span aria-hidden="true">📤</span> {t('scanner_share')}
+                </button>
+              )}
+
+              {/* Fourchette de marche -- secondaire et repliee par defaut,
+                  affichee uniquement quand on a reellement quelque chose a
+                  montrer (jamais de section vide/"0 ventes"). */}
+              {selectedMatch && ebay && (ebay.sold.length > 0 || ebay.active.length > 0) && (
+                <div style={{ marginTop: 12, paddingTop: 12, borderTop: `1px solid ${border}` }}>
+                  {!showMarketRange ? (
+                    <button type="button" onClick={() => setShowMarketRange(true)} style={{
+                      width: '100%', padding: '8px 0', background: 'none', border: 'none',
+                      color: muted, fontSize: 12, fontWeight: 700, cursor: 'pointer', textAlign: 'center',
+                    }}>
+                      {t('scanner_view_market_range')} <span aria-hidden="true">→</span>
+                    </button>
+                  ) : (
+                    <>
+                      {ebay.median > 0 && (
+                        <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 10, marginBottom: 12 }}>
+                          <div style={{ background: dark ? '#0a1a2e' : '#f0f6ff', borderRadius: 12, padding: '10px 12px', textAlign: 'center' }}>
+                            <div style={{ fontSize: 10, fontWeight: 700, color: muted, textTransform: 'uppercase', letterSpacing: 0.5, marginBottom: 3 }}>{t('scanner_min')}</div>
+                            <div style={{ fontWeight: 900, fontSize: 18, color: dark ? '#7db3ff' : '#3b82c4', fontVariantNumeric: 'tabular-nums' }}>{usd(ebay.min)}</div>
+                          </div>
+                          <div style={{ background: dark ? '#0d1a36' : '#eef3ff', borderRadius: 12, padding: '10px 12px', textAlign: 'center' }}>
+                            <div style={{ fontSize: 10, fontWeight: 700, color: muted, textTransform: 'uppercase', letterSpacing: 0.5, marginBottom: 3 }}>{t('scanner_max')}</div>
+                            <div style={{ fontWeight: 900, fontSize: 18, color: blue, fontVariantNumeric: 'tabular-nums' }}>{usd(ebay.max)}</div>
+                          </div>
+                        </div>
+                      )}
+                      {ebay.sold.length > 0 && (
+                        <div style={{ display: 'flex', borderBottom: `1px solid ${border}`, marginBottom: 8 }}>
+                          {(['sold', 'active'] as const).map(key => (
+                            <button key={key} onClick={() => setSoldTab(key)} style={{
+                              flex: 1, padding: '8px 0', border: 'none', background: 'none', cursor: 'pointer',
+                              fontSize: 12, fontWeight: soldTab === key ? 800 : 500,
+                              color: soldTab === key ? blue : muted,
+                              borderBottom: soldTab === key ? `2px solid ${blue}` : '2px solid transparent',
+                              marginBottom: -1,
+                            }}>
+                              {key === 'sold' ? `${t('scanner_sold_tab')} (${ebay.sold.length})` : `${t('scanner_active_tab')} (${ebay.active.length})`}
+                            </button>
+                          ))}
+                        </div>
+                      )}
+                      <div style={{ display: 'flex', flexDirection: 'column', gap: 7, maxHeight: 300, overflowY: 'auto' }}>
+                        {(ebay.sold.length > 0 ? (soldTab === 'sold' ? ebay.sold : ebay.active) : ebay.active).map((item, i) => <SaleRow key={i} item={item} />)}
+                      </div>
+                    </>
+                  )}
+                </div>
+              )}
             </div>
 
             {/* ── GRILLE IMAGE SEARCH EBAY ── */}
@@ -766,126 +869,6 @@ export default function ScannerPage() {
               <ManualSearchForm collapsedLabel={t('scanner_wrong_card_hint')} />
             )}
 
-            {/* ── PRIX VENDUS ── */}
-            {(phase === 'loading-sold' || phase === 'done') && (
-              <div style={{ background: cardBg, borderRadius: 16, border: `1px solid ${border}`, marginBottom: 14, overflow: 'hidden' }}>
-                <div style={{ padding: '13px 16px', display: 'flex', justifyContent: 'space-between', alignItems: 'center', borderBottom: `1px solid ${border}` }}>
-                  <span style={{ fontSize: 12, fontWeight: 700, color: muted, textTransform: 'uppercase', letterSpacing: 0.6 }}>
-                    {selectedMatch ? t('scanner_card_selected') : t('scanner_market_value')}
-                  </span>
-                  {phase === 'done' && ebay && ebay.soldCount > 0 && (
-                    <span style={{ fontSize: 11, color: muted }}>{ebay.soldCount} {t('scanner_sold_count_suffix')}</span>
-                  )}
-                  {phase === 'loading-sold' && (
-                    <span style={{ fontSize: 11, color: muted, animation: 'pulse 1.4s ease-in-out infinite' }}>{t('scanner_loading')}</span>
-                  )}
-                </div>
-
-                {selectedMatch && (
-                  <div style={{ padding: '10px 16px', borderBottom: `1px solid ${border}`, background: dark ? '#0a1228' : '#f0f4ff', display: 'flex', gap: 10, alignItems: 'center' }}>
-                    {selectedMatch.img && (
-                      <img src={selectedMatch.img} alt="" style={{ width: 32, height: 32, objectFit: 'contain', borderRadius: 5, flexShrink: 0 }} />
-                    )}
-                    <div style={{ flex: 1, minWidth: 0, fontSize: 11, color: text, fontWeight: 600, overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
-                      {selectedMatch.title}
-                    </div>
-                  </div>
-                )}
-
-                {phase === 'done' && ebay && ebay.median > 0 ? (
-                  <div style={{ padding: '16px' }}>
-                    <div style={{ textAlign: 'center', background: dark ? '#0d1a36' : '#eef3ff', borderRadius: 14, padding: '16px 12px', marginBottom: 12 }}>
-                      <div style={{ fontSize: 11, fontWeight: 700, color: dark ? '#6ea0ff' : '#3b6bde', textTransform: 'uppercase', letterSpacing: 0.7, marginBottom: 6 }}>
-                        {ebay.priceSource === 'sold' ? t('scanner_median_sales') : t('scanner_median_active')}
-                      </div>
-                      <div style={{ fontSize: 52, fontWeight: 900, color: blue, lineHeight: 1, letterSpacing: -2, fontVariantNumeric: 'tabular-nums' }}>
-                        {usd(ebay.median)}
-                      </div>
-                    </div>
-                    <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 10 }}>
-                      {/* Min/max etaient en vert/rouge -- le rouge evoque un probleme alors
-                          qu'un prix max eleve est une bonne nouvelle. Meme famille de teinte
-                          (bleu) pour les deux, distinguee seulement par l'intensite. */}
-                      <div style={{ background: dark ? '#0a1a2e' : '#f0f6ff', borderRadius: 12, padding: '12px 14px', textAlign: 'center' }}>
-                        <div style={{ fontSize: 10, fontWeight: 700, color: muted, textTransform: 'uppercase', letterSpacing: 0.5, marginBottom: 4 }}>{t('scanner_min')}</div>
-                        <div style={{ fontWeight: 900, fontSize: 22, color: dark ? '#7db3ff' : '#3b82c4', fontVariantNumeric: 'tabular-nums' }}>{usd(ebay.min)}</div>
-                      </div>
-                      <div style={{ background: dark ? '#0d1a36' : '#eef3ff', borderRadius: 12, padding: '12px 14px', textAlign: 'center' }}>
-                        <div style={{ fontSize: 10, fontWeight: 700, color: muted, textTransform: 'uppercase', letterSpacing: 0.5, marginBottom: 4 }}>{t('scanner_max')}</div>
-                        <div style={{ fontWeight: 900, fontSize: 22, color: blue, fontVariantNumeric: 'tabular-nums' }}>{usd(ebay.max)}</div>
-                      </div>
-                    </div>
-                    <button onClick={shareResult} style={{
-                      width: '100%', marginTop: 10, padding: '11px 0', background: 'none',
-                      border: `1.5px solid ${border}`, borderRadius: 12, cursor: 'pointer',
-                      color: text, fontSize: 13, fontWeight: 800,
-                      display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 7,
-                    }}>
-                      <span aria-hidden="true">📤</span> {t('scanner_share')}
-                    </button>
-                  </div>
-                ) : phase === 'done' ? (
-                  <p style={{ color: muted, fontSize: 13, textAlign: 'center', padding: '20px 16px', margin: 0 }}>
-                    {t('scanner_no_recent_sales')}
-                  </p>
-                ) : (
-                  <div style={{ padding: 16 }}>
-                    <div style={{ height: 100, background: border, borderRadius: 14, marginBottom: 12, animation: 'pulse 1.4s ease-in-out infinite' }} />
-                    <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 10 }}>
-                      {[0, 1].map(i => <div key={i} style={{ height: 58, background: border, borderRadius: 12, animation: 'pulse 1.4s ease-in-out infinite' }} />)}
-                    </div>
-                  </div>
-                )}
-
-                {/* Liste vendues/en vente -- dans la MEME carte que le prix
-                    median plutot qu'empilee dans une carte separee, pour
-                    eviter la repetition visuelle de deux blocs bordes qui
-                    parlent du meme sujet (le marche de cette carte). L'onglet
-                    "vendues" n'a de sens que si on a reellement des ventes
-                    (Marketplace Insights/Finding API sont restreints par eBay
-                    et renvoient presque toujours 0) ; sinon on montre
-                    directement les annonces actives sans onglet vide. */}
-                {phase === 'done' && ebay && ebay.sold.length === 0 && ebay.active.length === 0 && (
-                  <p style={{ color: muted, fontSize: 13, textAlign: 'center', padding: '16px', margin: 0, borderTop: `1px solid ${border}` }}>{t('gallery_no_results')}</p>
-                )}
-                {phase === 'done' && ebay && ebay.sold.length > 0 && (
-                  <div style={{ borderTop: `1px solid ${border}` }}>
-                    <div style={{ display: 'flex', borderBottom: `1px solid ${border}` }}>
-                      {(['sold', 'active'] as const).map(key => (
-                        <button key={key} onClick={() => setSoldTab(key)} style={{
-                          flex: 1, padding: '12px 0', border: 'none', background: 'none', cursor: 'pointer',
-                          fontSize: 13, fontWeight: soldTab === key ? 800 : 500,
-                          color: soldTab === key ? blue : muted,
-                          borderBottom: soldTab === key ? `2px solid ${blue}` : '2px solid transparent',
-                          marginBottom: -1,
-                        }}>
-                          {key === 'sold' ? `${t('scanner_sold_tab')} (${ebay.sold.length})` : `${t('scanner_active_tab')} (${ebay.active.length})`}
-                        </button>
-                      ))}
-                    </div>
-                    <div style={{ padding: 12, display: 'flex', flexDirection: 'column', gap: 7, maxHeight: 360, overflowY: 'auto' }}>
-                      {(soldTab === 'sold' ? ebay.sold : ebay.active).length === 0
-                        ? <p style={{ color: muted, fontSize: 13, textAlign: 'center', padding: '14px 0', margin: 0 }}>{t('gallery_no_results')}</p>
-                        : (soldTab === 'sold' ? ebay.sold : ebay.active).map((item, i) => <SaleRow key={i} item={item} />)
-                      }
-                    </div>
-                  </div>
-                )}
-                {phase === 'done' && ebay && ebay.sold.length === 0 && ebay.active.length > 0 && (
-                  <div style={{ borderTop: `1px solid ${border}` }}>
-                    <div style={{ padding: '13px 16px', borderBottom: `1px solid ${border}` }}>
-                      <span style={{ fontSize: 12, fontWeight: 700, color: muted, textTransform: 'uppercase', letterSpacing: 0.6 }}>
-                        {t('scanner_active_tab')} ({ebay.active.length})
-                      </span>
-                    </div>
-                    <div style={{ padding: 12, display: 'flex', flexDirection: 'column', gap: 7, maxHeight: 360, overflowY: 'auto' }}>
-                      {ebay.active.map((item, i) => <SaleRow key={i} item={item} />)}
-                    </div>
-                  </div>
-                )}
-              </div>
-            )}
-
             {/* Nouvelle carte */}
             {(phase === 'results' || phase === 'done') && (
               <div style={{ display: 'flex', flexDirection: 'column', gap: 10 }}>
@@ -924,6 +907,9 @@ export default function ScannerPage() {
       <style>{`
         @keyframes pulse   { 0%, 100% { opacity: 1; } 50% { opacity: 0.4; } }
         @keyframes slideIn { 0% { transform: translateX(-150%); } 100% { transform: translateX(280%); } }
+        @keyframes priceReveal { 0% { opacity: 0; transform: translateY(4px) scale(0.97); } 100% { opacity: 1; transform: translateY(0) scale(1); } }
+        .scan-price-reveal { animation: priceReveal 0.3s cubic-bezier(0.34,1.56,0.64,1); }
+        @media (prefers-reduced-motion: reduce) { .scan-price-reveal { animation: none; } }
       `}</style>
     </div>
   )
