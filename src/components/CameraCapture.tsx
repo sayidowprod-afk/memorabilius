@@ -2,14 +2,29 @@
 import { useEffect, useRef, useState } from 'react'
 import { createPortal } from 'react-dom'
 import { Capacitor } from '@capacitor/core'
+import { Camera, CameraResultType, CameraSource } from '@capacitor/camera'
 
 interface FrameRect { x: number; y: number; w: number; h: number }
 
 interface Props {
-  onCapture: (blob: Blob, frameRect: FrameRect) => void
+  onCapture: (blob: Blob, frameRect?: FrameRect) => void
   onClose: () => void
   ratio?: number
 }
+
+// En natif (app Play Store), une preview WebView (getUserMedia) plafonne a
+// 1920x1080 ET capture une frame VIDEO (compression/bruit d'encodeur), tres
+// loin de ce que peut faire le capteur photo reel (12MP+, HDR multi-frame)
+// -- d'ou la difference de qualite flagrante avec l'appareil photo natif du
+// telephone. Le plugin @capacitor/camera ouvre directement l'appli appareil
+// photo native du telephone (vraie prise de vue, pas un flux video), pour la
+// meilleure qualite possible sur mobile. Pas de cadre de cadrage custom dans
+// ce cas (c'est l'UI native, pas la notre) -- le frameRect n'est donc jamais
+// fourni en sortie, exactement comme pour une photo importee depuis la
+// galerie : le pipeline de detection des coins (CardScanner.tsx) a deja ce
+// chemin (YOLO d'abord, JS pur en repli -- OpenCV est skip sans frameRect),
+// donc aucune modification du pipeline IA n'etait necessaire ni souhaitee ici.
+const IS_NATIVE = Capacitor.isNativePlatform()
 
 export default function CameraCapture({ onCapture, onClose, ratio }: Props) {
   // Vue camera censee etre immersive (position:fixed zIndex 9999) -- la nav
@@ -24,9 +39,34 @@ export default function CameraCapture({ onCapture, onClose, ratio }: Props) {
   const [ready, setReady] = useState(false)
   const [error, setError] = useState<string | null>(null)
   const streamRef = useRef<MediaStream | null>(null)
+  const imageCaptureRef = useRef<{ takePhoto: () => Promise<Blob> } | null>(null)
   const [torch, setTorch] = useState(false)
   const [torchCapable, setTorchCapable] = useState(false)   // useState → re-render quand détecté
   const [focusPt, setFocusPt] = useState<{ x: number; y: number } | null>(null)
+
+  const captureNative = async () => {
+    setError(null)
+    try {
+      const photo = await Camera.getPhoto({
+        resultType: CameraResultType.Uri,
+        source: CameraSource.Camera,
+        quality: 92,
+        allowEditing: false,
+        saveToGallery: false,
+        correctOrientation: true,
+      })
+      if (!photo.webPath) throw new Error('Photo vide')
+      const blob = await fetch(photo.webPath).then(r => r.blob())
+      // Pas de frameRect en natif -- voir commentaire au-dessus de IS_NATIVE.
+      onCapture(blob)
+      onClose()
+    } catch (err: unknown) {
+      const msg = ((err as any)?.message ?? '').toLowerCase()
+      if (msg.includes('cancel')) { onClose(); return }
+      if (msg.includes('denied') || msg.includes('permission')) setError('permission-denied')
+      else setError('Caméra inaccessible')
+    }
+  }
 
   const startCamera = () => {
     setError(null)
@@ -36,6 +76,15 @@ export default function CameraCapture({ onCapture, onClose, ratio }: Props) {
       const track = stream.getVideoTracks()[0]
       const caps = (track.getCapabilities?.() ?? {}) as any
       if (caps.torch) setTorchCapable(true)
+      // ImageCapture.takePhoto() demande une vraie photo au capteur (pas juste
+      // une frame du flux video affiche, plafonne a 1920x1080 plus haut) --
+      // bien supporte sur Chrome/Android (le cas PWA vise ici), absent sur
+      // Safari/iOS. Repli silencieux sur la capture video existante si
+      // indisponible ou si takePhoto() echoue -- voir capture().
+      try {
+        imageCaptureRef.current = typeof (window as any).ImageCapture === 'function'
+          ? new (window as any).ImageCapture(track) : null
+      } catch { imageCaptureRef.current = null }
       if (videoRef.current) {
         videoRef.current.srcObject = stream
         videoRef.current.onloadedmetadata = () => setReady(true)
@@ -64,6 +113,7 @@ export default function CameraCapture({ onCapture, onClose, ratio }: Props) {
   }
 
   useEffect(() => {
+    if (IS_NATIVE) { captureNative(); return }
     startCamera()
     return () => { streamRef.current?.getTracks().forEach(t => t.stop()) }
   }, [])
@@ -109,7 +159,7 @@ export default function CameraCapture({ onCapture, onClose, ratio }: Props) {
     } catch { /* non supporté sur cet appareil */ }
   }
 
-  const capture = () => {
+  const capture = async () => {
     const video = videoRef.current
     if (!video) return
 
@@ -150,24 +200,42 @@ export default function CameraCapture({ onCapture, onClose, ratio }: Props) {
     const fy = srcY + frameY * scaleY
     const fw = frameW * scaleX
     const fh = frameH * scaleY
-    const frameRect: FrameRect = {
+    let frameRect: FrameRect = {
       x: Math.max(0, fx - fw * PAD),
       y: Math.max(0, fy - fh * PAD),
       w: Math.min(vw, fw * (1 + PAD * 2)),
       h: Math.min(vh, fh * (1 + PAD * 2)),
     }
 
-    // Canvas à pleine résolution vidéo
-    const canvas = document.createElement('canvas')
-    canvas.width = vw
-    canvas.height = vh
-    canvas.getContext('2d')!.drawImage(video, 0, 0, vw, vh)
+    // ImageCapture.takePhoto() capture une vraie photo depuis le capteur
+    // (pas juste la frame video affichee, plafonnee a 1920x1080) -- doit
+    // etre appele AVANT d'arreter les pistes (a besoin d'une piste vivante).
+    // La photo peut avoir une resolution differente de vw/vh (le flux
+    // preview) -- on remet le frameRect a l'echelle en consequence.
+    let blob: Blob | null = null
+    if (imageCaptureRef.current) {
+      try {
+        blob = await imageCaptureRef.current.takePhoto()
+        if (blob) {
+          const bmp = await createImageBitmap(blob)
+          const scale = bmp.width / vw
+          frameRect = { x: frameRect.x * scale, y: frameRect.y * scale, w: frameRect.w * scale, h: frameRect.h * scale }
+          bmp.close?.()
+        }
+      } catch { blob = null }
+    }
+
+    if (!blob) {
+      // Repli : capture de la frame video affichee (comportement precedent).
+      const canvas = document.createElement('canvas')
+      canvas.width = vw
+      canvas.height = vh
+      canvas.getContext('2d')!.drawImage(video, 0, 0, vw, vh)
+      blob = await new Promise<Blob | null>(resolve => canvas.toBlob(resolve, 'image/jpeg', 0.92))
+    }
 
     streamRef.current?.getTracks().forEach(t => t.stop())
-
-    canvas.toBlob(blob => {
-      if (blob) onCapture(blob, frameRect)
-    }, 'image/jpeg', 0.92)
+    if (blob) onCapture(blob, frameRect)
   }
 
   const CARD_RATIO = ratio ?? (2.5 / 3.5)
@@ -222,9 +290,16 @@ export default function CameraCapture({ onCapture, onClose, ratio }: Props) {
             <p style={{ fontSize: 15, margin: 0, lineHeight: 1.5 }}>{error}</p>
           )}
           <div style={{ display: 'flex', gap: 10 }}>
-            <button onClick={startCamera} style={{ padding: '10px 24px', background: '#003DA6', color: 'white', border: 'none', borderRadius: 8, fontWeight: 700, cursor: 'pointer' }}>Réessayer</button>
+            <button onClick={IS_NATIVE ? captureNative : startCamera} style={{ padding: '10px 24px', background: '#003DA6', color: 'white', border: 'none', borderRadius: 8, fontWeight: 700, cursor: 'pointer' }}>Réessayer</button>
             <button onClick={onClose} style={{ padding: '10px 24px', background: 'rgba(255,255,255,0.15)', color: 'white', border: '1px solid rgba(255,255,255,0.3)', borderRadius: 8, fontWeight: 700, cursor: 'pointer' }}>Fermer</button>
           </div>
+        </div>
+      ) : IS_NATIVE ? (
+        // En natif, l'appli appareil photo du telephone s'ouvre par-dessus
+        // (captureNative, voir plus haut) -- pas de preview/bouton custom ici,
+        // juste un fond neutre pendant la (tres breve) transition.
+        <div style={{ flex: 1, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+          <p style={{ color: 'white', fontSize: 14 }}>Ouverture de l'appareil photo…</p>
         </div>
       ) : (
         <>
