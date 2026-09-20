@@ -2,7 +2,6 @@
 import { useEffect, useRef, useState } from 'react'
 import { createPortal } from 'react-dom'
 import { Capacitor } from '@capacitor/core'
-import { Camera, CameraResultType, CameraSource } from '@capacitor/camera'
 
 interface FrameRect { x: number; y: number; w: number; h: number }
 
@@ -12,33 +11,16 @@ interface Props {
   ratio?: number
 }
 
-// En natif (app Play Store), une preview WebView (getUserMedia) plafonne a
-// 1920x1080 ET capture une frame VIDEO (compression/bruit d'encodeur), tres
-// loin de ce que peut faire le capteur photo reel (12MP+, HDR multi-frame)
-// -- d'ou la difference de qualite flagrante avec l'appareil photo natif du
-// telephone. Le plugin @capacitor/camera ouvre directement l'appli appareil
-// photo native du telephone (vraie prise de vue, pas un flux video), pour la
-// meilleure qualite possible sur mobile. Pas de cadre de cadrage custom dans
-// ce cas (c'est l'UI native, pas la notre) -- le frameRect n'est donc jamais
-// fourni en sortie, exactement comme pour une photo importee depuis la
-// galerie : le pipeline de detection des coins (CardScanner.tsx) a deja ce
-// chemin (YOLO d'abord, JS pur en repli -- OpenCV est skip sans frameRect),
-// donc aucune modification du pipeline IA n'etait necessaire ni souhaitee ici.
-//
-// ATTENTION : l'app native charge le SITE EN DIRECT (server.url dans
-// capacitor.config.ts) -- ce fichier JS est donc deploye INSTANTANEMENT sur
-// TOUS les telephones des qu'on push, meme ceux qui ont encore l'ancien
-// binaire APK/AAB (le plugin natif @capacitor/camera, lui, doit passer par
-// la review Play Store -- ca peut prendre des heures/jours). Appeler
-// Camera.getPhoto() aveuglement des que isNativePlatform() est vrai cassait
-// donc la camera pour TOUT LE MONDE entre le push web et la publication du
-// nouveau build (le pont natif n'a pas ce plugin tant que le binaire n'est
-// pas mis a jour). isPluginAvailable() verifie que le plugin est REELEMENT
-// enregistre cote natif avant de l'utiliser -- repli automatique sur
-// getUserMedia si absent (ancien binaire), bascule automatique sur le natif
-// une fois l'utilisateur mis a jour, sans aucune coordination a faire.
-const IS_NATIVE = Capacitor.isNativePlatform() && Capacitor.isPluginAvailable('Camera')
-
+// Meme aperçu (getUserMedia) + cadre de cadrage sur TOUTES les plateformes,
+// natif inclus -- essaye d'abord ImageCapture.takePhoto() (vraie photo
+// capteur, pas juste une frame video plafonnee a 1920x1080), avec repli
+// silencieux sur la capture video si indisponible. Confirme : le WebView
+// Android (Chromium, meme moteur que Chrome desktop/mobile) supporte
+// ImageCapture depuis Chromium 59 (2017), largement couvert par les
+// appareils compatibles Capacitor -- donc pas besoin d'ouvrir l'appli
+// appareil photo native (testee brievement, @capacitor/camera) qui donnait
+// une bonne qualite mais perdait le cadre de cadrage custom (UI native,
+// pas la notre). Voir capture() plus bas pour le detail du flux ImageCapture.
 export default function CameraCapture({ onCapture, onClose, ratio }: Props) {
   // Vue camera censee etre immersive (position:fixed zIndex 9999) -- la nav
   // globale (zIndex 99999) restait affichee par-dessus et recouvrait le
@@ -56,35 +38,6 @@ export default function CameraCapture({ onCapture, onClose, ratio }: Props) {
   const [torch, setTorch] = useState(false)
   const [torchCapable, setTorchCapable] = useState(false)   // useState → re-render quand détecté
   const [focusPt, setFocusPt] = useState<{ x: number; y: number } | null>(null)
-
-  const captureNative = async () => {
-    setError(null)
-    try {
-      const photo = await Camera.getPhoto({
-        resultType: CameraResultType.Uri,
-        source: CameraSource.Camera,
-        quality: 92,
-        allowEditing: false,
-        saveToGallery: false,
-        correctOrientation: true,
-      })
-      if (!photo.webPath) throw new Error('Photo vide')
-      const blob = await fetch(photo.webPath).then(r => r.blob())
-      // Pleine resolution renvoyee telle quelle -- voir commentaire au-dessus
-      // de IS_NATIVE. Un cap ici degraderait aussi la photo finale stockee
-      // en galerie (image_recto/HD/Viewer3D), pas seulement ce qui part vers
-      // l'identification -- chaque appelant qui a besoin d'une version plus
-      // legere pour un appel reseau la derive lui-meme (voir scanner/page.tsx).
-      // Pas de frameRect en natif -- voir commentaire au-dessus de IS_NATIVE.
-      onCapture(blob)
-      onClose()
-    } catch (err: unknown) {
-      const msg = ((err as any)?.message ?? '').toLowerCase()
-      if (msg.includes('cancel')) { onClose(); return }
-      if (msg.includes('denied') || msg.includes('permission')) setError('permission-denied')
-      else setError('Caméra inaccessible')
-    }
-  }
 
   const startCamera = () => {
     setError(null)
@@ -131,7 +84,6 @@ export default function CameraCapture({ onCapture, onClose, ratio }: Props) {
   }
 
   useEffect(() => {
-    if (IS_NATIVE) { captureNative(); return }
     startCamera()
     return () => { streamRef.current?.getTracks().forEach(t => t.stop()) }
   }, [])
@@ -238,9 +190,10 @@ export default function CameraCapture({ onCapture, onClose, ratio }: Props) {
         const scale = bmp.width / vw
         frameRect = { x: frameRect.x * scale, y: frameRect.y * scale, w: frameRect.w * scale, h: frameRect.h * scale }
         bmp.close?.()
-        // Pleine resolution renvoyee telle quelle -- voir commentaire dans
-        // captureNative plus haut (un cap ici degraderait aussi l'image
-        // finale stockee en galerie, pas seulement ce qui part en reseau).
+        // Pleine resolution renvoyee telle quelle -- un cap ici degraderait
+        // aussi l'image finale stockee en galerie (image_recto/HD/Viewer3D),
+        // pas seulement ce qui part en reseau (voir scanner/page.tsx pour la
+        // seule copie reduite, faite localement juste pour son propre appel).
         blob = photoBlob
       } catch { blob = null }
     }
@@ -310,16 +263,9 @@ export default function CameraCapture({ onCapture, onClose, ratio }: Props) {
             <p style={{ fontSize: 15, margin: 0, lineHeight: 1.5 }}>{error}</p>
           )}
           <div style={{ display: 'flex', gap: 10 }}>
-            <button onClick={IS_NATIVE ? captureNative : startCamera} style={{ padding: '10px 24px', background: '#003DA6', color: 'white', border: 'none', borderRadius: 8, fontWeight: 700, cursor: 'pointer' }}>Réessayer</button>
+            <button onClick={startCamera} style={{ padding: '10px 24px', background: '#003DA6', color: 'white', border: 'none', borderRadius: 8, fontWeight: 700, cursor: 'pointer' }}>Réessayer</button>
             <button onClick={onClose} style={{ padding: '10px 24px', background: 'rgba(255,255,255,0.15)', color: 'white', border: '1px solid rgba(255,255,255,0.3)', borderRadius: 8, fontWeight: 700, cursor: 'pointer' }}>Fermer</button>
           </div>
-        </div>
-      ) : IS_NATIVE ? (
-        // En natif, l'appli appareil photo du telephone s'ouvre par-dessus
-        // (captureNative, voir plus haut) -- pas de preview/bouton custom ici,
-        // juste un fond neutre pendant la (tres breve) transition.
-        <div style={{ flex: 1, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-          <p style={{ color: 'white', fontSize: 14 }}>Ouverture de l'appareil photo…</p>
         </div>
       ) : (
         <>
