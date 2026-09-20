@@ -6,6 +6,7 @@ import { supabase } from '@/lib/supabase'
 import { useTheme } from '@/lib/ThemeContext'
 import { useLang, localeFor } from '@/lib/LangContext'
 import CameraCapture from '@/components/CameraCapture'
+import { NAV_TOTAL_HEIGHT_CSS } from '@/lib/nativeLayout'
 
 declare const BarcodeDetector: any
 
@@ -43,6 +44,7 @@ export default function ScannerPage() {
   const videoRef   = useRef<HTMLVideoElement>(null)
   const qrAnimRef  = useRef<number | null>(null)
   const qrStreamRef = useRef<MediaStream | null>(null)
+  const heroRef    = useRef<HTMLDivElement>(null)
 
   const [cameraModal,   setCameraModal]   = useState<'recto' | null>(null)
   const [phase,         setPhase]         = useState<Phase>('idle')
@@ -60,7 +62,6 @@ export default function ScannerPage() {
   const [ebay,          setEbay]          = useState<EbayResult | null>(null)
   const [selectedMatch, setSelectedMatch] = useState<ImageMatch | null>(null)
   const [soldTab,       setSoldTab]       = useState<'sold' | 'active'>('sold')
-  const [showMarketRange, setShowMarketRange] = useState(false)
   const [err,           setErr]           = useState('')
   const [ownedCards, setOwnedCards] = useState<{ nom: string; annee: string; collection: string; variation: string }[]>([])
   const [collectionLoaded, setCollectionLoaded] = useState(false)
@@ -191,7 +192,6 @@ export default function ScannerPage() {
     setRectoB64(null); setImgMatches(null); setImgSearchDone(false)
     setEbay(null)
     setSelectedMatch(null); setErr(''); setSoldTab('sold'); setManualQuery('')
-    setShowMarketRange(false)
   }
 
   // Historique local des dernieres cartes scannees (localStorage, pas de
@@ -276,7 +276,6 @@ export default function ScannerPage() {
 
   const pickMatch = useCallback((match: ImageMatch) => {
     setSelectedMatch(match)
-    setShowMarketRange(false)
     // Le prix de CETTE annonce est deja connu (affiche dans sa vignette) --
     // pas besoin d'attendre quoi que ce soit pour le montrer.
     setPhase('done')
@@ -294,7 +293,6 @@ export default function ScannerPage() {
     const q = query.trim()
     if (!q) return
     setSelectedMatch({ id: 'manual', title: q, price: 0, img: '', url: '' })
-    setShowMarketRange(false)
     loadSoldComps(q, true)
   }, [loadSoldComps])
 
@@ -515,14 +513,6 @@ export default function ScannerPage() {
       {/* Header */}
       <div style={{ position: 'sticky', top: 'calc(60px + var(--safe-area-inset-top, env(safe-area-inset-top)))', zIndex: 10, background: dark ? '#0f0f0f' : '#fff', borderBottom: `1px solid ${border}`, padding: '10px 16px', display: 'flex', alignItems: 'center', height: 48 }}>
         <span style={{ fontWeight: 900, fontSize: 16, color: text }}>{t('scanner_header_title')}</span>
-        {/* Prix median reste visible en scrollant vers les ventes/annonces --
-            avant, une fois le panneau de prix passe hors ecran, le chiffre
-            principal disparaissait completement du champ de vision. */}
-        {phase === 'done' && primaryPrice > 0 && (
-          <span style={{ marginLeft: 14, fontSize: 15, fontWeight: 900, color: blue, fontVariantNumeric: 'tabular-nums' }}>
-            {usd(primaryPrice)}
-          </span>
-        )}
         {phase !== 'idle' && (
           <button onClick={reset} style={{ marginLeft: 'auto', fontSize: 12, color: muted, background: 'none', border: `1px solid ${border}`, borderRadius: 8, padding: '5px 12px', cursor: 'pointer', fontWeight: 700 }}>
             {t('scanner_new_card')}
@@ -530,7 +520,11 @@ export default function ScannerPage() {
         )}
       </div>
 
-      <div style={{ maxWidth: 500, margin: '0 auto', padding: '16px 12px 80px' }}>
+      {/* Le prix vivait avant dans ce header du haut (disparaissait a l'ecran
+          des qu'on scrollait la grille de correspondances, doublon avec la
+          barre collante en bas ci-dessous) -- remplace par cette barre en
+          bas, toujours visible sans avoir a rescroller (demande explicite). */}
+      <div style={{ maxWidth: 500, margin: '0 auto', padding: `16px 12px ${selectedMatch && !primaryLoading && primaryPrice > 0 ? `calc(84px + ${NAV_TOTAL_HEIGHT_CSS})` : '80px'}` }}>
 
         {/* ── IDLE ── */}
         {phase === 'idle' && (
@@ -667,7 +661,7 @@ export default function ScannerPage() {
                 recomprendre ce qu'on regardait). Le prix de l'annonce
                 cliquee est deja connu (voir pickMatch) -- affiche
                 immediatement, jamais de "0 ventes" trompeur. */}
-            <div className="scan-result-land" style={{ background: cardBg, borderRadius: 18, border: `1px solid ${border}`, padding: 14, marginBottom: 14, overflow: 'hidden' }}>
+            <div ref={heroRef} className="scan-result-land" style={{ background: cardBg, borderRadius: 18, border: `1px solid ${border}`, borderLeft: `4px solid ${blue}`, padding: 14, marginBottom: 16, overflow: 'hidden', boxShadow: dark ? 'none' : '0 2px 10px rgba(0,0,0,0.04)' }}>
               <div style={{ display: 'flex', gap: 12, alignItems: 'flex-start' }}>
                 {imgSrc && (
                   <img src={imgSrc} alt="recto" style={{ flexShrink: 0, width: 92, height: 129, objectFit: 'cover', borderRadius: 11, border: `2px solid ${border}`, boxShadow: dark ? 'none' : '0 6px 18px rgba(0,0,0,0.10)' }} />
@@ -729,52 +723,45 @@ export default function ScannerPage() {
                 </button>
               )}
 
-              {/* Fourchette de marche -- secondaire et repliee par defaut,
-                  affichee uniquement quand on a reellement quelque chose a
-                  montrer (jamais de section vide/"0 ventes"). */}
+              {/* Fourchette de marche -- affichee directement des qu'elle est
+                  prete (plus de repli derriere un toggle), mais uniquement
+                  quand on a reellement quelque chose a montrer (jamais de
+                  section vide/"0 ventes"). */}
               {selectedMatch && ebay && (ebay.sold.length > 0 || ebay.active.length > 0) && (
-                <div style={{ marginTop: 12, paddingTop: 12, borderTop: `1px solid ${border}` }}>
-                  {!showMarketRange ? (
-                    <button type="button" onClick={() => setShowMarketRange(true)} style={{
-                      width: '100%', padding: '8px 0', background: 'none', border: 'none',
-                      color: muted, fontSize: 12, fontWeight: 700, cursor: 'pointer', textAlign: 'center',
-                    }}>
-                      {t('scanner_view_market_range')} <span aria-hidden="true">→</span>
-                    </button>
-                  ) : (
-                    <>
-                      {ebay.median > 0 && (
-                        <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 10, marginBottom: 12 }}>
-                          <div style={{ background: dark ? '#0a1a2e' : '#f0f6ff', borderRadius: 12, padding: '10px 12px', textAlign: 'center' }}>
-                            <div style={{ fontSize: 10, fontWeight: 700, color: muted, textTransform: 'uppercase', letterSpacing: 0.5, marginBottom: 3 }}>{t('scanner_min')}</div>
-                            <div style={{ fontWeight: 900, fontSize: 18, color: dark ? '#7db3ff' : '#3b82c4', fontVariantNumeric: 'tabular-nums' }}>{usd(ebay.min)}</div>
-                          </div>
-                          <div style={{ background: dark ? '#0d1a36' : '#eef3ff', borderRadius: 12, padding: '10px 12px', textAlign: 'center' }}>
-                            <div style={{ fontSize: 10, fontWeight: 700, color: muted, textTransform: 'uppercase', letterSpacing: 0.5, marginBottom: 3 }}>{t('scanner_max')}</div>
-                            <div style={{ fontWeight: 900, fontSize: 18, color: blue, fontVariantNumeric: 'tabular-nums' }}>{usd(ebay.max)}</div>
-                          </div>
-                        </div>
-                      )}
-                      {ebay.sold.length > 0 && (
-                        <div style={{ display: 'flex', borderBottom: `1px solid ${border}`, marginBottom: 8 }}>
-                          {(['sold', 'active'] as const).map(key => (
-                            <button key={key} onClick={() => setSoldTab(key)} style={{
-                              flex: 1, padding: '8px 0', border: 'none', background: 'none', cursor: 'pointer',
-                              fontSize: 12, fontWeight: soldTab === key ? 800 : 500,
-                              color: soldTab === key ? blue : muted,
-                              borderBottom: soldTab === key ? `2px solid ${blue}` : '2px solid transparent',
-                              marginBottom: -1,
-                            }}>
-                              {key === 'sold' ? `${t('scanner_sold_tab')} (${ebay.sold.length})` : `${t('scanner_active_tab')} (${ebay.active.length})`}
-                            </button>
-                          ))}
-                        </div>
-                      )}
-                      <div style={{ display: 'flex', flexDirection: 'column', gap: 7, maxHeight: 300, overflowY: 'auto' }}>
-                        {(ebay.sold.length > 0 ? (soldTab === 'sold' ? ebay.sold : ebay.active) : ebay.active).map((item, i) => <SaleRow key={i} item={item} />)}
+                <div style={{ marginTop: 14, paddingTop: 14, borderTop: `1px solid ${border}` }}>
+                  <div style={{ fontSize: 11, fontWeight: 800, color: muted, textTransform: 'uppercase', letterSpacing: 0.6, marginBottom: 10 }}>
+                    {t('scanner_view_market_range')}
+                  </div>
+                  {ebay.median > 0 && (
+                    <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 10, marginBottom: 12 }}>
+                      <div style={{ background: dark ? '#0a1a2e' : '#f0f6ff', borderRadius: 12, padding: '10px 12px', textAlign: 'center' }}>
+                        <div style={{ fontSize: 10, fontWeight: 700, color: muted, textTransform: 'uppercase', letterSpacing: 0.5, marginBottom: 3 }}>{t('scanner_min')}</div>
+                        <div style={{ fontWeight: 900, fontSize: 18, color: dark ? '#7db3ff' : '#3b82c4', fontVariantNumeric: 'tabular-nums' }}>{usd(ebay.min)}</div>
                       </div>
-                    </>
+                      <div style={{ background: dark ? '#0d1a36' : '#eef3ff', borderRadius: 12, padding: '10px 12px', textAlign: 'center' }}>
+                        <div style={{ fontSize: 10, fontWeight: 700, color: muted, textTransform: 'uppercase', letterSpacing: 0.5, marginBottom: 3 }}>{t('scanner_max')}</div>
+                        <div style={{ fontWeight: 900, fontSize: 18, color: blue, fontVariantNumeric: 'tabular-nums' }}>{usd(ebay.max)}</div>
+                      </div>
+                    </div>
                   )}
+                  {ebay.sold.length > 0 && (
+                    <div style={{ display: 'flex', borderBottom: `1px solid ${border}`, marginBottom: 8 }}>
+                      {(['sold', 'active'] as const).map(key => (
+                        <button key={key} onClick={() => setSoldTab(key)} style={{
+                          flex: 1, padding: '8px 0', border: 'none', background: 'none', cursor: 'pointer',
+                          fontSize: 12, fontWeight: soldTab === key ? 800 : 500,
+                          color: soldTab === key ? blue : muted,
+                          borderBottom: soldTab === key ? `2px solid ${blue}` : '2px solid transparent',
+                          marginBottom: -1,
+                        }}>
+                          {key === 'sold' ? `${t('scanner_sold_tab')} (${ebay.sold.length})` : `${t('scanner_active_tab')} (${ebay.active.length})`}
+                        </button>
+                      ))}
+                    </div>
+                  )}
+                  <div style={{ display: 'flex', flexDirection: 'column', gap: 7, maxHeight: 300, overflowY: 'auto' }}>
+                    {(ebay.sold.length > 0 ? (soldTab === 'sold' ? ebay.sold : ebay.active) : ebay.active).map((item, i) => <SaleRow key={i} item={item} />)}
+                  </div>
                 </div>
               )}
             </div>
@@ -903,6 +890,43 @@ export default function ScannerPage() {
           </>
         )}
       </div>
+
+      {/* Barre de prix collante en bas -- toujours visible des qu'un prix est
+          connu, sans avoir a rescroller vers le panneau du haut (demande
+          explicite). Positionnee au-dessus de la bottom nav mobile/native
+          (NAV_TOTAL_HEIGHT_CSS) pour ne jamais l'empieter. Le clic scroll
+          vers le panneau du haut, qui reste la seule source de detail
+          (fourchette, partage, check collection) -- pas de duplication de
+          logique ici, juste un raccourci visuel toujours a portee. */}
+      {selectedMatch && !primaryLoading && primaryPrice > 0 && (
+        <button
+          onClick={() => heroRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' })}
+          className="scan-price-reveal"
+          style={{
+            position: 'fixed', left: 0, right: 0, bottom: NAV_TOTAL_HEIGHT_CSS, zIndex: 20,
+            maxWidth: 500, margin: '0 auto', width: '100%',
+            display: 'flex', alignItems: 'center', gap: 12,
+            padding: '12px 16px', border: 'none', cursor: 'pointer', textAlign: 'left',
+            background: dark ? 'linear-gradient(135deg, #0d1a36, #0a1228)' : 'linear-gradient(135deg, #0046D1, #0038a8)',
+            boxShadow: '0 -4px 18px rgba(0,0,0,0.18)',
+          }}
+        >
+          {imgSrc && (
+            <img src={imgSrc} alt="" style={{ width: 34, height: 48, objectFit: 'cover', borderRadius: 6, flexShrink: 0, border: '1.5px solid rgba(255,255,255,0.3)' }} />
+          )}
+          <div style={{ flex: 1, minWidth: 0 }}>
+            <div style={{ fontSize: 9, fontWeight: 800, color: 'rgba(255,255,255,0.75)', textTransform: 'uppercase', letterSpacing: 0.6 }}>
+              {primaryIsListing ? t('scanner_this_listing_price') : (ebay?.priceSource === 'sold' ? t('scanner_median_sales') : t('scanner_median_active'))}
+            </div>
+            <div style={{ fontSize: 22, fontWeight: 900, color: '#fff', lineHeight: 1.1, fontVariantNumeric: 'tabular-nums' }}>
+              {usd(primaryPrice)}
+            </div>
+          </div>
+          <span style={{ fontSize: 12, fontWeight: 700, color: 'rgba(255,255,255,0.85)', flexShrink: 0, display: 'flex', alignItems: 'center', gap: 4 }}>
+            {t('scanner_view_market_range')} <span aria-hidden="true">↑</span>
+          </span>
+        </button>
+      )}
 
       {cameraModal && (
         <CameraCapture
