@@ -34,15 +34,22 @@ export async function GET(req: NextRequest) {
 
   const id = req.nextUrl.searchParams.get('id')
   if (id) {
-    const [{ data: session, error }, { data: questions }] = await Promise.all([
+    const [{ data: session, error }, { data: questions }, { data: answerRows }] = await Promise.all([
       admin.from('quiz_sessions').select('*').eq('id', id).single(),
       admin.from('quiz_questions').select('*').eq('session_id', id).order('position', { ascending: true }),
+      // Pseudos distincts ayant deja repondu au moins une fois dans cette
+      // session -- pour le selecteur "overlay individuelle par personne"
+      // (voir /quiz/[code]/overlay/player/[pseudo]) : on ne peut proposer que
+      // des gens qui ont deja joue, joindre seul (sans repondre) n'ecrit
+      // rien en base.
+      admin.from('quiz_answers').select('pseudo, answered_at').eq('session_id', id).order('answered_at', { ascending: true }),
     ])
     if (error) return NextResponse.json({ error: error.message }, { status: 404 })
     const { count: participantCount } = session.round_key
       ? await admin.from('quiz_answers').select('*', { count: 'exact', head: true }).eq('round_key', session.round_key)
       : { count: 0 }
-    return NextResponse.json({ session, questions, participantCount: participantCount ?? 0 })
+    const participants = [...new Set((answerRows || []).map(r => r.pseudo))]
+    return NextResponse.json({ session, questions, participantCount: participantCount ?? 0, participants })
   }
 
   const { data: sessions, error } = await admin.from('quiz_sessions').select('*').order('created_at', { ascending: false }).limit(30)

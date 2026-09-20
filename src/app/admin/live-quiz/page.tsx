@@ -50,6 +50,9 @@ export default function LiveQuizAdminPage() {
   const [session, setSession] = useState<Session | null>(null)
   const [questions, setQuestions] = useState<Question[]>([])
   const [participantCount, setParticipantCount] = useState(0)
+  const [participants, setParticipants] = useState<string[]>([])
+  const [showPlayerOverlays, setShowPlayerOverlays] = useState(false)
+  const [copiedPseudo, setCopiedPseudo] = useState<string | null>(null)
   const [tally, setTally] = useState<number[]>([])
   const [totalAnswers, setTotalAnswers] = useState(0)
   const [leaderboard, setLeaderboard] = useState<{ pseudo: string; score: number }[]>([])
@@ -98,6 +101,16 @@ export default function LiveQuizAdminPage() {
     setSession(json.session)
     setQuestions(json.questions || [])
     setParticipantCount(json.participantCount || 0)
+    setParticipants(json.participants || [])
+  }
+
+  const copyPlayerLink = (pseudo: string) => {
+    if (!session) return
+    const url = `${SITE_URL}/quiz/${session.code}/overlay/player/${encodeURIComponent(pseudo)}`
+    navigator.clipboard?.writeText(url).then(() => {
+      setCopiedPseudo(pseudo)
+      setTimeout(() => setCopiedPseudo(null), 1500)
+    }).catch(() => {})
   }
 
   useEffect(() => {
@@ -379,6 +392,35 @@ export default function LiveQuizAdminPage() {
               </div>
             )}
           </div>
+
+          {/* ── Overlays individuels : un lien par chroniqueur, a positionner
+              soi-meme dans Streamlabs (Browser Source separee) sous sa
+              propre camera. Ne propose que des pseudos ayant deja repondu
+              au moins une fois (rejoindre seul n'ecrit rien en base). ── */}
+          {participants.length > 0 && (
+            <div style={{ marginBottom: 16 }}>
+              <button onClick={() => setShowPlayerOverlays(v => !v)} style={linkBtnStyle}>
+                {showPlayerOverlays ? '▾' : '▸'} 🎥 Overlays individuels ({participants.length})
+              </button>
+              {showPlayerOverlays && (
+                <div style={{ marginTop: 10, padding: 14, borderRadius: 12, background: '#f4f6fb' }}>
+                  <p style={{ fontSize: 12, color: '#888', marginBottom: 10 }}>
+                    Un lien par personne -- ajoute-le comme Browser Source à part dans Streamlabs et positionne-le toi-même sous sa caméra.
+                  </p>
+                  <div style={{ display: 'flex', flexDirection: 'column', gap: 6 }}>
+                    {participants.map(p => (
+                      <div key={p} style={{ display: 'flex', alignItems: 'center', gap: 10, padding: '6px 10px', borderRadius: 8, background: 'white', border: '1px solid #eee' }}>
+                        <span style={{ flex: 1, fontWeight: 700, fontSize: 13, minWidth: 0, overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>{p}</span>
+                        <button onClick={() => copyPlayerLink(p)} style={btnStyle(copiedPseudo === p ? '#2ecc71' : FDLC_NAVY)}>
+                          {copiedPseudo === p ? '✓ Copié' : '🔗 Copier le lien'}
+                        </button>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              )}
+            </div>
+          )}
 
           {/* ── LE panneau de controle en direct : toujours en haut, toujours visible ── */}
           <div style={{
