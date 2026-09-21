@@ -32,7 +32,9 @@ async function cmdConcoursThemeSupprimer(options: any[]) {
 // Permet a un admin d'imposer directement le theme de la semaine (evenements
 // speciaux) au lieu d'attendre le vote automatique du lundi. Fonctionne aussi
 // bien avant que la semaine n'existe encore (avant lundi 8h) que pendant un
-// vote de theme deja en cours (auquel cas le vote est annule et remplace).
+// vote de theme deja en cours (auquel cas le vote est annule et remplace),
+// ou meme apres l'ouverture des participations (les participations deja
+// postees sous l'ancien theme sont alors effacees, voir plus bas).
 async function cmdConcoursThemeForcer(options: any[]) {
   const label = (options.find((o: any) => o.name === 'texte')?.value || '').trim()
   if (!label) return reply({ content: '❌ Précise le thème à imposer.', flags: 64 })
@@ -53,6 +55,18 @@ async function cmdConcoursThemeForcer(options: any[]) {
 
   await supabase.from('discord_contest_themes').update({ active: true, times_used: (theme.times_used || 0) + 1, last_used_at: new Date().toISOString() }).eq('id', theme.id)
 
+  // Un theme deja en cours (submission_open) peut etre remplace en route
+  // (ex: actualite qui rend l'ancien theme obsolete) -- les participations
+  // deja postees ne correspondent alors plus a rien, donc on les efface pour
+  // repartir propre plutot que de laisser des cartes "hors sujet" trainer
+  // jusqu'au vote.
+  let clearedCount = 0
+  if (week && week.status === 'submission_open' && week.winning_theme_id && week.winning_theme_id !== theme.id) {
+    const { count } = await supabase.from('discord_contest_entries').select('id', { count: 'exact', head: true }).eq('week_id', week.id)
+    clearedCount = count || 0
+    if (clearedCount > 0) await supabase.from('discord_contest_entries').delete().eq('week_id', week.id)
+  }
+
   if (week) {
     if (week.theme_vote_message_id) {
       await discordFetch(`/channels/${contestChannelId()}/messages/${week.theme_vote_message_id}`, { method: 'PATCH', body: JSON.stringify({ components: [] }) }).catch(() => {})
@@ -66,14 +80,19 @@ async function cmdConcoursThemeForcer(options: any[]) {
     method: 'POST',
     body: JSON.stringify({
       embeds: [{
-        title: '📌 Thème imposé pour cette semaine',
-        description: `**${theme.label}**\n\nPostez votre carte avec \`/concours-participer\` avant jeudi soir !`,
+        title: clearedCount > 0 ? '📌 Thème changé pour cette semaine' : '📌 Thème imposé pour cette semaine',
+        description: `**${theme.label}**\n\nPostez votre carte avec \`/concours-participer\` avant jeudi soir !`
+          + (clearedCount > 0 ? `\n\n⚠️ Les ${clearedCount} participation${clearedCount > 1 ? 's' : ''} deja postee${clearedCount > 1 ? 's' : ''} sous l'ancien theme ${clearedCount > 1 ? 'ont' : 'a'} ete effacee${clearedCount > 1 ? 's' : ''} -- repostez avec le nouveau theme !` : ''),
         color: 0xf39c12,
       }],
     }),
   })
 
-  return reply({ content: `✅ Thème forcé : **${theme.label}** — annoncé dans le salon, participations ouvertes.`, flags: 64 })
+  return reply({
+    content: `✅ Thème forcé : **${theme.label}** — annoncé dans le salon, participations ouvertes.`
+      + (clearedCount > 0 ? ` ${clearedCount} ancienne${clearedCount > 1 ? 's' : ''} participation${clearedCount > 1 ? 's' : ''} effacée${clearedCount > 1 ? 's' : ''}.` : ''),
+    flags: 64,
+  })
 }
 
 async function cmdConcoursThemes() {
@@ -721,7 +740,13 @@ async function findCardByLink(rawLink: string): Promise<CardData | null> {
 // Partagé par /carte, /carte-gif et /concours-participer -- même recherche
 // (lien direct, puis DB, puis CSV en repli), juste le format de reponse differe.
 async function findCardData(options: any[]): Promise<{ error: string } | { data: CardData }> {
-  const lien = (options.find((o: any) => o.name === 'lien')?.value || '') as string
+  const lienOpt = (options.find((o: any) => o.name === 'lien')?.value || '') as string
+  const nomOpt = (options.find((o: any) => o.name === 'nom')?.value || '') as string
+  // Discord oblige a choisir un parametre AVANT de taper -- signale comme
+  // fastidieux de devoir selectionner `lien` specifiquement juste pour coller
+  // une URL. On detecte donc aussi un lien colle dans `nom` (le premier
+  // parametre propose), pas seulement dans `lien`.
+  const lien = lienOpt || (/https?:\/\//.test(nomOpt) ? nomOpt : '')
   if (lien) {
     const byLink = await findCardByLink(lien)
     if (byLink) return { data: byLink }
@@ -729,7 +754,7 @@ async function findCardData(options: any[]): Promise<{ error: string } | { data:
     return { error: '❌ Impossible de retrouver une carte depuis ce lien.' }
   }
 
-  const input = (options.find((o: any) => o.name === 'nom')?.value || '') as string
+  const input = nomOpt
   const utilisateur = options.find((o: any) => o.name === 'utilisateur')?.value || ''
   if (!input) return { error: "❌ Précise le nom d'une carte ou un lien Memorabilius (`lien`)." }
 
