@@ -12,7 +12,7 @@ interface Sheet {
   stat_matches: string | null; stat_minutes: string | null
 }
 
-interface Category { key: keyof Sheet; label: string; unit?: string }
+interface Category { key: keyof Sheet; label: string }
 
 const CATEGORIES: Category[] = [
   { key: 'stat_points', label: 'Points' },
@@ -30,7 +30,9 @@ function parseStat(v: string | null): number | null {
   return m ? parseFloat(m[0]) : null
 }
 
-interface Leader { player: Sheet; value: number }
+interface Ranked { player: Sheet; value: number }
+
+const MEDALS = ['🥇', '🥈', '🥉']
 
 export default function TeamLeadersPage() {
   const { team: teamAbbr } = useParams<{ team: string }>()
@@ -57,17 +59,15 @@ export default function TeamLeadersPage() {
     return <div style={{ position: 'fixed', inset: 0, background: '#05070c', color: '#fff', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>Chargement...</div>
   }
 
-  const leaders: (Leader | null)[] = CATEGORIES.map(cat => {
-    let best: Leader | null = null
-    for (const s of sheets) {
-      const value = parseStat(s[cat.key] as string | null)
-      if (value === null) continue
-      if (!best || value > best.value) best = { player: s, value }
-    }
-    return best
+  const top3ByCategory: Ranked[][] = CATEGORIES.map(cat => {
+    const ranked = sheets
+      .map(s => ({ player: s, value: parseStat(s[cat.key] as string | null) }))
+      .filter((r): r is Ranked => r.value !== null)
+      .sort((a, b) => b.value - a.value)
+    return ranked.slice(0, 3)
   })
 
-  const anyData = leaders.some(Boolean)
+  const anyData = top3ByCategory.some(list => list.length > 0)
 
   return (
     <div style={{
@@ -84,7 +84,7 @@ export default function TeamLeadersPage() {
         display: 'flex', alignItems: 'center', justifyContent: 'center', textDecoration: 'none',
       }}>✕</Link>
 
-      <div style={{ maxWidth: 1000, margin: '0 auto', padding: '70px 40px' }}>
+      <div style={{ maxWidth: 1000, margin: '0 auto', padding: '70px 40px 90px' }}>
         <div style={{ display: 'flex', alignItems: 'center', gap: 16, marginBottom: 40 }}>
           <TeamBadge teamId={team.id} size={54} />
           <div>
@@ -98,30 +98,38 @@ export default function TeamLeadersPage() {
             Aucune statistique renseignée pour l'instant sur les fiches de cette équipe.
           </div>
         ) : (
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(260px, 1fr))', gap: 18 }}>
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: 20, alignItems: 'start' }}>
             {CATEGORIES.map((cat, i) => {
-              const leader = leaders[i]
-              if (!leader) return null
+              const top3 = top3ByCategory[i]
+              if (top3.length === 0) return null
               return (
                 <div key={cat.key} style={{
-                  display: 'flex', alignItems: 'center', gap: 16,
                   background: 'rgba(255,255,255,0.045)', border: '1px solid rgba(255,255,255,0.08)',
-                  borderRadius: 18, padding: '18px 20px', position: 'relative', overflow: 'hidden',
+                  borderRadius: 18, padding: '16px 18px', position: 'relative', overflow: 'hidden',
                 }}>
                   <div style={{ position: 'absolute', top: 0, left: 0, right: 0, height: 3, background: team.color }} />
-                  <div style={{
-                    width: 56, height: 78, borderRadius: 0, flexShrink: 0, overflow: 'hidden',
-                    background: 'rgba(255,255,255,0.06)', display: 'flex', alignItems: 'center', justifyContent: 'center',
-                  }}>
-                    {leader.player.card_image_recto
-                      ? <img src={leader.player.card_image_recto} alt="" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
-                      : <span style={{ fontSize: 20 }}>🏀</span>}
+                  <div style={{ fontSize: 13, fontWeight: 800, letterSpacing: 1.6, textTransform: 'uppercase', color: 'rgba(255,255,255,0.5)', marginBottom: 12 }}>{cat.label}</div>
+                  <div style={{ display: 'flex', flexDirection: 'column', gap: 10 }}>
+                    {top3.map((r, rank) => (
+                      <div key={r.player.id} style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
+                        <div style={{ fontSize: 18, width: 24, textAlign: 'center', flexShrink: 0 }}>{MEDALS[rank]}</div>
+                        <div style={{
+                          width: 36, height: 50, flexShrink: 0, overflow: 'hidden',
+                          background: 'rgba(255,255,255,0.06)', display: 'flex', alignItems: 'center', justifyContent: 'center',
+                        }}>
+                          {r.player.card_image_recto
+                            ? <img src={r.player.card_image_recto} alt="" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+                            : <span style={{ fontSize: 14 }}>🏀</span>}
+                        </div>
+                        <div style={{ flex: 1, minWidth: 0, fontSize: 14.5, fontWeight: 700, whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>
+                          {r.player.player_name}
+                        </div>
+                        <div style={{ fontSize: 18, fontWeight: 900, fontVariantNumeric: 'tabular-nums', flexShrink: 0 }}>
+                          {r.player[cat.key]}
+                        </div>
+                      </div>
+                    ))}
                   </div>
-                  <div style={{ flex: 1, minWidth: 0 }}>
-                    <div style={{ fontSize: 12, fontWeight: 800, letterSpacing: 1.6, textTransform: 'uppercase', color: 'rgba(255,255,255,0.45)', marginBottom: 4 }}>{cat.label}</div>
-                    <div style={{ fontSize: 17, fontWeight: 800, whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>{leader.player.player_name}</div>
-                  </div>
-                  <div style={{ fontSize: 30, fontWeight: 900, fontVariantNumeric: 'tabular-nums', flexShrink: 0 }}>{leader.player[cat.key]}</div>
                 </div>
               )
             })}
