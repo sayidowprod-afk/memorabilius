@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { createClient } from '@supabase/supabase-js'
 import { createPublicKey, verify as cryptoVerify } from 'crypto'
+import sharp from 'sharp'
 import { isAllowedCsvUrl } from '@/lib/csvParse'
 import { waitUntil } from '@vercel/functions'
 import { renderCardSpinGif } from '@/lib/discordCardGif'
@@ -187,6 +188,14 @@ async function postConcoursParticipationPublic(cardInfo: CardData | null, imageU
 // plusieurs jours apres la soumission. On retelecharge donc l'image tout de
 // suite et on la re-heberge sur notre propre storage (permanent), au lieu de
 // garder l'URL Discord ephemere telle quelle en base.
+//
+// Appele aussi pour les cartes trouvees via CSV/cartes_manuelles (pas
+// seulement les pieces jointes) -- signale : embeds Discord qui peinent a
+// s'afficher pour les cartes CSV. Cause identifiee : photos telephone
+// originales hebergees telles quelles (souvent 2-4 Mo), que le crawler
+// d'embed de Discord peine a recuperer a temps. On redimensionne donc
+// systematiquement au passage (sharp, cote large max 1600px, JPEG 85) --
+// gif exclu pour ne pas casser une eventuelle animation.
 let contestBucketReady = false
 async function persistContestImage(url: string, discordUserId: string): Promise<string> {
   try {
@@ -197,10 +206,23 @@ async function persistContestImage(url: string, discordUserId: string): Promise<
     const res = await fetch(url)
     if (!res.ok) return url
     const contentType = res.headers.get('content-type') || 'image/png'
-    const ext = contentType.includes('gif') ? 'gif' : contentType.includes('webp') ? 'webp' : contentType.includes('png') ? 'png' : 'jpg'
-    const buffer = Buffer.from(await res.arrayBuffer())
+    let buffer = Buffer.from(await res.arrayBuffer())
+    let finalContentType = contentType
+    let ext = contentType.includes('gif') ? 'gif' : contentType.includes('webp') ? 'webp' : contentType.includes('png') ? 'png' : 'jpg'
+
+    if (!contentType.includes('gif')) {
+      try {
+        buffer = Buffer.from(await sharp(buffer)
+          .resize(1600, 1600, { fit: 'inside', withoutEnlargement: true })
+          .jpeg({ quality: 85 })
+          .toBuffer())
+        finalContentType = 'image/jpeg'
+        ext = 'jpg'
+      } catch { /* image illisible par sharp (format exotique) -- on reheberge telle quelle */ }
+    }
+
     const fileName = `${discordUserId}-${Date.now()}.${ext}`
-    const { error } = await supabase.storage.from('discord-contest').upload(fileName, buffer, { contentType, upsert: true })
+    const { error } = await supabase.storage.from('discord-contest').upload(fileName, buffer, { contentType: finalContentType, upsert: true })
     if (error) return url
     const { data: pub } = supabase.storage.from('discord-contest').getPublicUrl(fileName)
     return pub.publicUrl
@@ -230,7 +252,11 @@ async function cmdConcoursParticiper(body: any) {
   if (!imageUrl && (options.find((o: any) => o.name === 'nom') || options.find((o: any) => o.name === 'lien'))) {
     const result = await findCardData(options)
     if ('error' in result) return reply({ content: result.error, flags: 64 })
-    imageUrl = result.data.img
+    // Idem que pour les pieces jointes : les photos CSV/galerie originales
+    // (souvent plusieurs Mo) font parfois echouer le rendu d'embed Discord --
+    // reheberge une version compressee pour l'embed statique, sans toucher
+    // cardInfo.img (garde la pleine resolution pour le GIF recto/verso).
+    imageUrl = await persistContestImage(result.data.img, discordUser.id)
     cardInfo = result.data
   }
   if (!imageUrl) return reply({ content: '❌ Joins une image, précise `nom` ou colle un `lien` Memorabilius (comme pour /carte).', flags: 64 })
