@@ -26,9 +26,9 @@ const DELAY_MS = 65  // ~3,9s par rotation complete -- meme nombre de frames (fl
 // affiche pour toujours cote Discord. Le timeout ci-dessous reste en filet
 // de secours, mais la vraie correction est d'envoyer des en-tetes qui
 // passent pour un navigateur.
-async function fetchImage(url: string): Promise<Image> {
+async function fetchImageOnce(url: string, timeoutMs: number): Promise<Image> {
   const res = await fetch(url, {
-    signal: AbortSignal.timeout(8000),
+    signal: AbortSignal.timeout(timeoutMs),
     headers: {
       'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36',
       'Accept': 'image/avif,image/webp,image/apng,image/*,*/*;q=0.8',
@@ -37,6 +37,22 @@ async function fetchImage(url: string): Promise<Image> {
   if (!res.ok) throw new Error(`Image injoignable (${res.status})`)
   const buf = Buffer.from(await res.arrayBuffer())
   return loadImage(buf)
+}
+
+// Meme avec les en-tetes navigateur, certains hebergeurs de cartes CSV
+// (i.ibb.co notamment, photos originales de plusieurs Mo) repondent parfois
+// en 5-7s -- constate en direct : deux fetch simultanes (recto+verso, via
+// Promise.all) peuvent alors se ralentir mutuellement et depasser les 8s,
+// le verso echoue silencieusement (.catch(() => null) plus bas) et le GIF
+// boucle uniquement sur le recto. Timeout allonge + un retry (meme principe
+// que fetchCsvCapped) absorbe ces lenteurs transitoires au lieu de perdre le
+// verso pour de bon.
+async function fetchImage(url: string): Promise<Image> {
+  try {
+    return await fetchImageOnce(url, 10000)
+  } catch {
+    return fetchImageOnce(url, 10000)
+  }
 }
 
 export async function renderCardSpinGif(frontUrl: string, backUrl: string | null): Promise<Buffer> {
