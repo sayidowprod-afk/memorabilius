@@ -129,6 +129,26 @@ export default function CameraCapture({ onCapture, onClose, ratio }: Props) {
     } catch { /* non supporté sur cet appareil */ }
   }
 
+  // Force un cycle de mise au point juste avant la prise de vue. Sans ça,
+  // ImageCapture.takePhoto() peut partir avant que le capteur ait vraiment
+  // convergé -- l'aperçu vidéo (autofocus continu, déjà "assez net" pour de
+  // l'affichage temps réel) donne l'illusion que c'est net, mais la photo
+  // capturée en pleine résolution peut rester légèrement floue. Signalé après
+  // avoir retiré le redimensionnement systématique des photos (qui masquait
+  // ce flou par lissage) : "toutes les photos rendent floues sur le site".
+  const ensureFocused = async () => {
+    const track = streamRef.current?.getVideoTracks()[0]
+    if (!track) return
+    try {
+      const caps = (track.getCapabilities?.() ?? {}) as any
+      const supportedModes: string[] = caps.focusMode ?? []
+      if (supportedModes.includes('single-shot')) {
+        await (track as any).applyConstraints({ advanced: [{ focusMode: 'single-shot' }] })
+        await new Promise(r => setTimeout(r, 350))
+      }
+    } catch { /* tant pis, on capture quand meme */ }
+  }
+
   const capture = async () => {
     const video = videoRef.current
     if (!video) return
@@ -176,6 +196,8 @@ export default function CameraCapture({ onCapture, onClose, ratio }: Props) {
       w: Math.min(vw, fw * (1 + PAD * 2)),
       h: Math.min(vh, fh * (1 + PAD * 2)),
     }
+
+    await ensureFocused()
 
     // ImageCapture.takePhoto() capture une vraie photo depuis le capteur
     // (pas juste la frame video affichee, plafonnee a 1920x1080) -- doit
