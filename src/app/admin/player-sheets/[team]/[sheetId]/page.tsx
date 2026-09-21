@@ -1,18 +1,12 @@
 'use client'
-import { useEffect, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import Link from 'next/link'
 import { useParams, useRouter } from 'next/navigation'
 import { supabase } from '@/lib/supabase'
 import { SPORTS_TEAMS, teamLogoUrl } from '@/lib/sportsTeams'
 import { useTheme } from '@/lib/ThemeContext'
 import Card3DInline from '@/components/Card3DInline'
-
-interface GalleryCard {
-  id: string; nom: string; annee: string | null; marque: string | null
-  image_recto: string; image_recto_hd: string | null
-  image_verso: string | null; image_verso_hd: string | null
-  is_horizontal: boolean | null
-}
+import type { CardSearchResult } from '@/app/api/admin/player-sheets-card-search/route'
 
 interface Sheet {
   id: string; player_name: string
@@ -20,9 +14,24 @@ interface Sheet {
   card_image_recto: string | null; card_image_recto_hd: string | null
   card_image_verso: string | null; card_image_verso_hd: string | null
   card_is_horizontal: boolean
-  stat_saison: string | null; stat_poste: string | null
+  stat_saison: string | null; stat_poste: string | null; stat_country: string | null; stat_age: string | null
+  stat_matches: string | null; stat_minutes: string | null
   stat_points: string | null; stat_rebonds: string | null; stat_passes: string | null; stat_autres: string | null
   notes: string | null
+}
+
+// Token capturé une fois expire au bout d'1h -- toujours en récupérer un
+// frais avant d'écrire (même piège que admin/live-quiz).
+async function freshToken(): Promise<string | null> {
+  return (await supabase.auth.getSession()).data.session?.access_token ?? null
+}
+
+// Code ISO 3166-1 alpha-2 -> emoji drapeau (paire de symboles indicateurs
+// régionaux), même technique que admin/stats.
+function countryFlag(code: string | null | undefined): string | null {
+  const c = (code || '').trim().toUpperCase()
+  if (c.length !== 2) return null
+  return [...c].map(ch => String.fromCodePoint(ch.charCodeAt(0) + 127397)).join('')
 }
 
 export default function PlayerSheetEditorPage() {
@@ -38,8 +47,9 @@ export default function PlayerSheetEditorPage() {
 
   const [pickerOpen, setPickerOpen] = useState(false)
   const [pickerQuery, setPickerQuery] = useState('')
-  const [pickerCards, setPickerCards] = useState<GalleryCard[]>([])
+  const [pickerResults, setPickerResults] = useState<CardSearchResult[]>([])
   const [pickerLoading, setPickerLoading] = useState(false)
+  const pickerTimer = useRef<ReturnType<typeof setTimeout> | null>(null)
 
   useEffect(() => {
     supabase.auth.getSession().then(async ({ data: { session } }) => {
@@ -64,33 +74,38 @@ export default function PlayerSheetEditorPage() {
     setSavedAt(Date.now())
   }
 
-  const openPicker = async () => {
-    setPickerOpen(true)
-    setPickerLoading(true)
-    const { data: { user } } = await supabase.auth.getUser()
-    const { data } = await supabase.from('cartes_manuelles')
-      .select('id, nom, annee, marque, image_recto, image_recto_hd, image_verso, image_verso_hd, is_horizontal')
-      .eq('user_id', user!.id).order('created_at', { ascending: false }).limit(200)
-    setPickerCards(data || [])
-    setPickerLoading(false)
-  }
+  const openPicker = () => { setPickerOpen(true); setPickerQuery(''); setPickerResults([]) }
 
-  const pickCard = (c: GalleryCard) => {
+  useEffect(() => {
+    if (!pickerOpen) return
+    if (pickerTimer.current) clearTimeout(pickerTimer.current)
+    const q = pickerQuery.trim()
+    if (q.length < 2) { setPickerResults([]); setPickerLoading(false); return }
+    setPickerLoading(true)
+    pickerTimer.current = setTimeout(async () => {
+      const tok = await freshToken()
+      if (!tok) { setPickerLoading(false); return }
+      const res = await fetch(`/api/admin/player-sheets-card-search?q=${encodeURIComponent(q)}`, {
+        headers: { Authorization: `Bearer ${tok}` },
+      })
+      const json = await res.json().catch(() => ({ results: [] }))
+      setPickerResults(json.results || [])
+      setPickerLoading(false)
+    }, 350)
+  }, [pickerQuery, pickerOpen])
+
+  const pickCard = (c: CardSearchResult) => {
     patch({
-      card_id: c.id,
+      card_id: c.manuelle_id,
       card_image_recto: c.image_recto, card_image_recto_hd: c.image_recto_hd || c.image_recto,
       card_image_verso: c.image_verso, card_image_verso_hd: c.image_verso_hd || c.image_verso,
-      card_is_horizontal: !!c.is_horizontal,
+      card_is_horizontal: c.is_horizontal,
     })
     setPickerOpen(false)
   }
 
   if (!ready || !sheet) return <div style={{ padding: 40, textAlign: 'center' }}>Chargement...</div>
   if (!team) return <div style={{ padding: 40, textAlign: 'center' }}>Équipe inconnue.</div>
-
-  const filteredCards = pickerQuery.trim()
-    ? pickerCards.filter(c => `${c.nom} ${c.annee} ${c.marque}`.toLowerCase().includes(pickerQuery.trim().toLowerCase()))
-    : pickerCards
 
   const inputStyle: React.CSSProperties = {
     width: '100%', padding: '9px 12px', borderRadius: 8, border: `1px solid ${dark ? '#333' : '#ddd'}`,
@@ -107,6 +122,7 @@ export default function PlayerSheetEditorPage() {
         padding: '14px 18px', borderRadius: 14, background: team.color, color: '#fff',
       }}>
         <img src={teamLogoUrl(team)} alt="" style={{ width: 36, height: 36, objectFit: 'contain' }} />
+        {countryFlag(sheet.stat_country) && <span style={{ fontSize: 22 }}>{countryFlag(sheet.stat_country)}</span>}
         <input
           value={sheet.player_name}
           onChange={e => patch({ player_name: e.target.value })}
@@ -115,6 +131,14 @@ export default function PlayerSheetEditorPage() {
             outline: 'none',
           }}
         />
+        {sheet.card_image_recto && (
+          <Link href={`/admin/player-sheets/${teamAbbr}/${sheetId}/presenter`} target="_blank" style={{
+            padding: '9px 16px', borderRadius: 10, border: '1px solid rgba(255,255,255,0.6)', background: 'transparent',
+            color: '#fff', fontWeight: 800, fontSize: 13.5, textDecoration: 'none', whiteSpace: 'nowrap',
+          }}>
+            🎬 Présentation
+          </Link>
+        )}
         <button onClick={save} disabled={saving} style={{
           padding: '9px 18px', borderRadius: 10, border: 'none', background: 'rgba(255,255,255,0.9)',
           color: team.color, fontWeight: 800, fontSize: 13.5, cursor: 'pointer',
@@ -153,8 +177,26 @@ export default function PlayerSheetEditorPage() {
         {/* Droite : stats + notes */}
         <div style={{ display: 'flex', flexDirection: 'column', gap: 14 }}>
           <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 12 }}>
-            <div><span style={labelStyle}>Saison</span><input style={inputStyle} value={sheet.stat_saison || ''} onChange={e => patch({ stat_saison: e.target.value })} placeholder="2025-26" /></div>
+            <div><span style={labelStyle}>Expérience</span><input style={inputStyle} value={sheet.stat_saison || ''} onChange={e => patch({ stat_saison: e.target.value })} placeholder="8e saison NBA" /></div>
             <div><span style={labelStyle}>Poste</span><input style={inputStyle} value={sheet.stat_poste || ''} onChange={e => patch({ stat_poste: e.target.value })} placeholder="Meneur" /></div>
+          </div>
+          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 12 }}>
+            <div>
+              <span style={labelStyle}>Pays</span>
+              <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
+                {countryFlag(sheet.stat_country) && <span style={{ fontSize: 20 }}>{countryFlag(sheet.stat_country)}</span>}
+                <input
+                  style={inputStyle} value={sheet.stat_country || ''} maxLength={2}
+                  onChange={e => patch({ stat_country: e.target.value.toUpperCase() })}
+                  placeholder="US, FR, CA..."
+                />
+              </div>
+            </div>
+            <div><span style={labelStyle}>Âge</span><input style={inputStyle} value={sheet.stat_age || ''} onChange={e => patch({ stat_age: e.target.value })} placeholder="27 ans" /></div>
+          </div>
+          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 12 }}>
+            <div><span style={labelStyle}>Matchs joués</span><input style={inputStyle} value={sheet.stat_matches || ''} onChange={e => patch({ stat_matches: e.target.value })} placeholder="62" /></div>
+            <div><span style={labelStyle}>Minutes / match</span><input style={inputStyle} value={sheet.stat_minutes || ''} onChange={e => patch({ stat_minutes: e.target.value })} placeholder="31.5" /></div>
           </div>
           <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', gap: 12 }}>
             <div><span style={labelStyle}>Points</span><input style={inputStyle} value={sheet.stat_points || ''} onChange={e => patch({ stat_points: e.target.value })} placeholder="24.3" /></div>
@@ -188,25 +230,28 @@ export default function PlayerSheetEditorPage() {
             </div>
             <input
               autoFocus value={pickerQuery} onChange={e => setPickerQuery(e.target.value)}
-              placeholder="Rechercher dans ta galerie..." style={{ ...inputStyle, marginBottom: 14 }}
+              placeholder="Rechercher dans toutes les cartes du site (2 lettres min.)..." style={{ ...inputStyle, marginBottom: 14 }}
             />
-            {pickerLoading ? (
-              <div style={{ textAlign: 'center', padding: 30, color: '#888' }}>Chargement...</div>
-            ) : filteredCards.length === 0 ? (
+            {pickerQuery.trim().length < 2 ? (
+              <div style={{ textAlign: 'center', padding: 30, color: '#888', fontSize: 13.5 }}>Tape un nom de joueur, d'équipe ou de marque...</div>
+            ) : pickerLoading ? (
+              <div style={{ textAlign: 'center', padding: 30, color: '#888' }}>Recherche...</div>
+            ) : pickerResults.length === 0 ? (
               <div style={{ textAlign: 'center', padding: 30, color: '#888' }}>Aucune carte trouvée.</div>
             ) : (
               <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(110px, 1fr))', gap: 10 }}>
-                {filteredCards.map(c => (
-                  <button key={c.id} onClick={() => pickCard(c)} style={{
+                {pickerResults.map(c => (
+                  <button key={c.key} onClick={() => pickCard(c)} style={{
                     padding: 0, border: 'none', background: 'transparent', cursor: 'pointer', textAlign: 'left',
                   }}>
                     <div style={{
                       aspectRatio: c.is_horizontal ? '5 / 3.5' : '2.5 / 3.5', borderRadius: 8, overflow: 'hidden',
-                      border: `1px solid ${dark ? '#333' : '#eee'}`, marginBottom: 4,
+                      border: `1px solid ${dark ? '#333' : '#eee'}`, marginBottom: 4, background: dark ? '#111' : '#f5f5f5',
                     }}>
                       <img src={c.image_recto} alt="" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
                     </div>
-                    <div style={{ fontSize: 11, fontWeight: 700, color: dark ? '#ddd' : '#333', lineHeight: 1.25 }}>{c.nom}</div>
+                    <div style={{ fontSize: 11, fontWeight: 700, color: dark ? '#ddd' : '#333', lineHeight: 1.25 }}>{c.label}</div>
+                    <div style={{ fontSize: 10, color: '#999', lineHeight: 1.25 }}>{c.sub}</div>
                   </button>
                 ))}
               </div>

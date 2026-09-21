@@ -8,7 +8,7 @@ import { useTheme } from '@/lib/ThemeContext'
 
 interface Sheet {
   id: string; player_name: string; card_image_recto: string | null
-  card_is_horizontal: boolean; updated_at: string
+  card_is_horizontal: boolean; updated_at: string; sort_order: number
 }
 
 export default function TeamPlayerSheetsPage() {
@@ -21,11 +21,13 @@ export default function TeamPlayerSheetsPage() {
   const [sheets, setSheets] = useState<Sheet[]>([])
   const [newName, setNewName] = useState('')
   const [creating, setCreating] = useState(false)
+  const [draggingId, setDraggingId] = useState<string | null>(null)
+  const [dragOverId, setDragOverId] = useState<string | null>(null)
 
   const load = async () => {
     const { data } = await supabase.from('player_sheets')
-      .select('id, player_name, card_image_recto, card_is_horizontal, updated_at')
-      .eq('team_abbr', teamAbbr).order('player_name', { ascending: true })
+      .select('id, player_name, card_image_recto, card_is_horizontal, updated_at, sort_order')
+      .eq('team_abbr', teamAbbr).order('sort_order', { ascending: true })
     setSheets(data || [])
   }
 
@@ -45,7 +47,7 @@ export default function TeamPlayerSheetsPage() {
     setCreating(true)
     const { data: { user } } = await supabase.auth.getUser()
     const { data, error } = await supabase.from('player_sheets').insert({
-      user_id: user!.id, team_abbr: teamAbbr, player_name: name,
+      user_id: user!.id, team_abbr: teamAbbr, player_name: name, sort_order: sheets.length,
     }).select('id').single()
     setCreating(false)
     if (error) { alert(error.message); return }
@@ -57,6 +59,30 @@ export default function TeamPlayerSheetsPage() {
     if (!confirm('Supprimer cette fiche ?')) return
     await supabase.from('player_sheets').delete().eq('id', id)
     load()
+  }
+
+  const onDragStart = (id: string) => { setDraggingId(id) }
+  const onDragOver = (e: React.DragEvent, id: string) => { e.preventDefault(); if (id !== dragOverId) setDragOverId(id) }
+  const onDragEnd = () => { setDraggingId(null); setDragOverId(null) }
+
+  const onDrop = async (targetId: string) => {
+    const fromId = draggingId
+    setDraggingId(null)
+    setDragOverId(null)
+    if (!fromId || fromId === targetId) return
+
+    const reordered = [...sheets]
+    const fromIdx = reordered.findIndex(s => s.id === fromId)
+    const toIdx = reordered.findIndex(s => s.id === targetId)
+    if (fromIdx === -1 || toIdx === -1) return
+    const [moved] = reordered.splice(fromIdx, 1)
+    reordered.splice(toIdx, 0, moved)
+    const withOrder = reordered.map((s, i) => ({ ...s, sort_order: i }))
+    setSheets(withOrder)
+
+    await Promise.all(withOrder.map((s, i) =>
+      supabase.from('player_sheets').update({ sort_order: i }).eq('id', s.id)
+    ))
   }
 
   if (!ready) return <div style={{ padding: 40, textAlign: 'center' }}>Chargement...</div>
@@ -73,7 +99,7 @@ export default function TeamPlayerSheetsPage() {
         <div style={{ fontWeight: 900, fontSize: 22 }}>{team.name}</div>
       </div>
 
-      <div style={{ display: 'flex', gap: 8, marginBottom: 22 }}>
+      <div style={{ display: 'flex', gap: 8, marginBottom: 14 }}>
         <input
           value={newName} onChange={e => setNewName(e.target.value)}
           onKeyDown={e => { if (e.key === 'Enter') createSheet() }}
@@ -93,30 +119,45 @@ export default function TeamPlayerSheetsPage() {
       {sheets.length === 0 ? (
         <div style={{ textAlign: 'center', padding: 40, color: '#888', fontSize: 14 }}>Aucune fiche pour cette équipe pour l'instant.</div>
       ) : (
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(160px, 1fr))', gap: 12 }}>
-          {sheets.map(s => (
-            <div key={s.id} style={{
-              position: 'relative', borderRadius: 14, overflow: 'hidden',
-              background: dark ? '#1a1a1a' : '#fff', border: `1px solid ${dark ? '#2a2a2a' : '#eee'}`,
-            }}>
-              <Link href={`/admin/player-sheets/${teamAbbr}/${s.id}`} style={{ display: 'block', textDecoration: 'none', color: 'inherit' }}>
-                <div style={{
-                  aspectRatio: s.card_is_horizontal ? '5 / 3.5' : '2.5 / 3.5', background: dark ? '#111' : '#f5f5f5',
-                  display: 'flex', alignItems: 'center', justifyContent: 'center',
-                }}>
-                  {s.card_image_recto
-                    ? <img src={s.card_image_recto} alt="" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
-                    : <span style={{ fontSize: 12, color: '#999' }}>Pas de carte</span>}
-                </div>
-                <div style={{ padding: '10px 12px', fontWeight: 800, fontSize: 13.5 }}>{s.player_name}</div>
-              </Link>
-              <button onClick={() => removeSheet(s.id)} title="Supprimer" style={{
-                position: 'absolute', top: 8, right: 8, width: 26, height: 26, borderRadius: '50%', border: 'none',
-                background: 'rgba(0,0,0,0.55)', color: '#fff', cursor: 'pointer', fontSize: 13, lineHeight: 1,
-              }}>✕</button>
-            </div>
-          ))}
-        </div>
+        <>
+          <div style={{ fontSize: 12, color: '#999', marginBottom: 10 }}>Glisse une fiche pour changer l'ordre.</div>
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(160px, 1fr))', gap: 12 }}>
+            {sheets.map(s => (
+              <div
+                key={s.id}
+                draggable
+                onDragStart={() => onDragStart(s.id)}
+                onDragOver={e => onDragOver(e, s.id)}
+                onDrop={() => onDrop(s.id)}
+                onDragEnd={onDragEnd}
+                style={{
+                  position: 'relative', borderRadius: 14, overflow: 'hidden', cursor: 'grab',
+                  background: dark ? '#1a1a1a' : '#fff',
+                  border: `1px solid ${dragOverId === s.id ? team.color : (dark ? '#2a2a2a' : '#eee')}`,
+                  opacity: draggingId === s.id ? 0.4 : 1,
+                  boxShadow: dragOverId === s.id ? `0 0 0 2px ${team.color}` : 'none',
+                  transition: 'box-shadow 0.12s, border-color 0.12s',
+                }}
+              >
+                <Link href={`/admin/player-sheets/${teamAbbr}/${s.id}`} style={{ display: 'block', textDecoration: 'none', color: 'inherit' }}>
+                  <div style={{
+                    aspectRatio: s.card_is_horizontal ? '5 / 3.5' : '2.5 / 3.5', background: dark ? '#111' : '#f5f5f5',
+                    display: 'flex', alignItems: 'center', justifyContent: 'center',
+                  }}>
+                    {s.card_image_recto
+                      ? <img src={s.card_image_recto} alt="" draggable={false} style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+                      : <span style={{ fontSize: 12, color: '#999' }}>Pas de carte</span>}
+                  </div>
+                  <div style={{ padding: '10px 12px', fontWeight: 800, fontSize: 13.5 }}>{s.player_name}</div>
+                </Link>
+                <button onClick={() => removeSheet(s.id)} title="Supprimer" style={{
+                  position: 'absolute', top: 8, right: 8, width: 26, height: 26, borderRadius: '50%', border: 'none',
+                  background: 'rgba(0,0,0,0.55)', color: '#fff', cursor: 'pointer', fontSize: 13, lineHeight: 1,
+                }}>✕</button>
+              </div>
+            ))}
+          </div>
+        </>
       )}
     </div>
   )
