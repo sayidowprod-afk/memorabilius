@@ -1,0 +1,103 @@
+'use client'
+import { useCallback, useRef, useState } from 'react'
+
+// Version allégée du drag-to-rotate de Viewer3D, pensée pour un rendu EN BLOC
+// (pas de portal/popup, pas de wishlist/echange/tags -- juste la carte qui
+// tourne) pour la fiche joueur en émission.
+export default function Card3DInline({ front, back, isHorizontal, accent }: {
+  front: string
+  back?: string
+  isHorizontal?: boolean
+  accent?: string
+}) {
+  const cardRef = useRef<HTMLDivElement>(null)
+  const rotX = useRef(0)
+  const rotY = useRef(0)
+  const isDragging = useRef(false)
+  const lastX = useRef(0)
+  const lastY = useRef(0)
+  const rafRef = useRef(0)
+  const [flipped, setFlipped] = useState(false)
+
+  const applyTransform = useCallback(() => {
+    if (cardRef.current) cardRef.current.style.transform = `rotateX(${rotX.current}deg) rotateY(${rotY.current}deg)`
+  }, [])
+
+  const reset = useCallback(() => { rotX.current = 0; rotY.current = 0; applyTransform() }, [applyTransform])
+
+  const onPointerDown = useCallback((e: React.PointerEvent) => {
+    e.preventDefault()
+    ;(e.target as Element).setPointerCapture?.(e.pointerId)
+    isDragging.current = true
+    lastX.current = e.clientX
+    lastY.current = e.clientY
+  }, [])
+
+  const onPointerMove = useCallback((e: React.PointerEvent) => {
+    if (!isDragging.current) return
+    e.preventDefault()
+    const dx = e.clientX - lastX.current
+    const dy = e.clientY - lastY.current
+    lastX.current = e.clientX
+    lastY.current = e.clientY
+    rotY.current += dx * 0.4
+    rotX.current -= dy * 0.4
+    cancelAnimationFrame(rafRef.current)
+    rafRef.current = requestAnimationFrame(applyTransform)
+  }, [applyTransform])
+
+  const onPointerUp = useCallback(() => { isDragging.current = false }, [])
+
+  const boxStyle: React.CSSProperties = isHorizontal
+    ? { width: 'min(85vw, 480px)', aspectRatio: '5 / 3.5' }
+    : { width: 'min(70vw, 340px)', aspectRatio: '2.5 / 3.5' }
+
+  return (
+    <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 14 }}>
+      <div
+        style={{ ...boxStyle, perspective: 1800, cursor: 'grab', touchAction: 'none' }}
+        onPointerDown={onPointerDown}
+        onPointerMove={onPointerMove}
+        onPointerUp={onPointerUp}
+        onPointerLeave={onPointerUp}
+        onDoubleClick={reset}
+      >
+        <div
+          ref={cardRef}
+          style={{
+            width: '100%', height: '100%', position: 'relative',
+            transformStyle: 'preserve-3d', transition: 'transform 0.1s linear',
+            borderRadius: 10, boxShadow: `0 16px 50px rgba(0,0,0,0.35), 0 0 0 2px ${accent || '#0046D1'}55`,
+          }}
+        >
+          <img src={front} alt="" draggable={false} style={{
+            position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover',
+            borderRadius: 10, backfaceVisibility: 'hidden', display: flipped ? 'none' : 'block',
+          }} />
+          {back && (
+            <img src={back} alt="" draggable={false} style={{
+              position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover',
+              borderRadius: 10, backfaceVisibility: 'hidden', display: flipped ? 'block' : 'none',
+            }} />
+          )}
+        </div>
+      </div>
+      <div style={{ display: 'flex', gap: 10 }}>
+        {back && (
+          <button onClick={() => setFlipped(f => !f)} style={{
+            padding: '8px 16px', borderRadius: 20, border: 'none', background: accent || '#0046D1',
+            color: '#fff', fontWeight: 700, fontSize: 13, cursor: 'pointer',
+          }}>
+            {flipped ? 'Voir le recto' : 'Voir le verso'}
+          </button>
+        )}
+        <button onClick={reset} style={{
+          padding: '8px 16px', borderRadius: 20, border: '1px solid #ccc', background: 'transparent',
+          color: 'inherit', fontWeight: 700, fontSize: 13, cursor: 'pointer',
+        }}>
+          Réinitialiser
+        </button>
+      </div>
+    </div>
+  )
+}

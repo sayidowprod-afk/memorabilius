@@ -31,6 +31,12 @@ const GROUPS: { title: string; links: AdminLink[] }[] = [
       { href: '/admin/live-quiz', icon: '🎙️', title: 'Quiz en direct', desc: 'Sessions QCM, QR code, overlay OBS/Streamlabs' },
     ],
   },
+  {
+    title: 'Revue d\'équipe (émission)',
+    links: [
+      { href: '/admin/player-sheets', icon: '🏀', title: 'Fiches joueurs', desc: 'Équipe NBA, carte 3D et stats par joueur' },
+    ],
+  },
 ]
 
 export default function AdminHubPage() {
