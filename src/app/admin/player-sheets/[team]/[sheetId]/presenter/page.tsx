@@ -6,12 +6,14 @@ import { supabase } from '@/lib/supabase'
 import { SPORTS_TEAMS } from '@/lib/sportsTeams'
 import Card3DInline from '@/components/Card3DInline'
 import TeamBadge from '@/components/TeamBadge'
+import type { CardMeta } from '@/app/api/admin/player-sheets-card-search/route'
 
 interface Sheet {
   player_name: string
   card_image_recto: string | null; card_image_recto_hd: string | null
   card_image_verso: string | null; card_image_verso_hd: string | null
   card_is_horizontal: boolean
+  card_meta: CardMeta | null
   stat_saison: string | null; stat_poste: string | null; stat_country: string | null; stat_age: string | null
   stat_matches: string | null; stat_minutes: string | null
   stat_points: string | null; stat_rebonds: string | null; stat_passes: string | null; stat_autres: string | null
@@ -113,6 +115,12 @@ export default function PlayerSheetPresenterPage() {
               />
             )}
           </div>
+          {sheet.card_meta && (sheet.card_meta.brand || sheet.card_meta.year || sheet.card_meta.number || sheet.card_meta.owner) && (
+            <div style={{ fontSize: 12.5, color: 'rgba(255,255,255,0.4)', marginTop: 10, textAlign: 'center' }}>
+              {[sheet.card_meta.brand, sheet.card_meta.year, sheet.card_meta.number ? `#${sheet.card_meta.number}` : null].filter(Boolean).join(' · ')}
+              {sheet.card_meta.owner && <span> · Collection de {sheet.card_meta.owner}</span>}
+            </div>
+          )}
         </div>
 
         <div style={{ maxWidth: 580, width: '100%', display: 'flex', flexDirection: 'column', gap: 28 }}>
@@ -124,7 +132,7 @@ export default function PlayerSheetPresenterPage() {
             <div style={{ display: 'flex', alignItems: 'center', gap: 16 }}>
               {flag && <img src={flag} alt="" style={{ width: 46, height: 34, objectFit: 'cover', borderRadius: 5, flexShrink: 0 }} />}
               <div style={{
-                fontSize: 'clamp(36px, 5.2vw, 58px)', fontWeight: 900, lineHeight: 1.03, letterSpacing: -1,
+                fontSize: 'clamp(36px, 5.2vw, 58px)', fontWeight: 900, lineHeight: 1.25, paddingBottom: 4, letterSpacing: -1,
                 background: `linear-gradient(135deg, #fff 40%, ${team.color})`,
                 WebkitBackgroundClip: 'text', backgroundClip: 'text', color: 'transparent',
               }}>

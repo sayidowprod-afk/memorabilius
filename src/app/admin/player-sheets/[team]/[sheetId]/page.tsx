@@ -7,7 +7,7 @@ import { SPORTS_TEAMS } from '@/lib/sportsTeams'
 import { useTheme } from '@/lib/ThemeContext'
 import Card3DInline from '@/components/Card3DInline'
 import TeamBadge from '@/components/TeamBadge'
-import type { CardSearchResult } from '@/app/api/admin/player-sheets-card-search/route'
+import type { CardSearchResult, CardMeta } from '@/app/api/admin/player-sheets-card-search/route'
 import { ALL_NBA_COUNTRIES, nbaCountryName } from '@/lib/nbaCountries'
 
 const POSTES = ['Meneur', 'Arrière', 'Ailier', 'Ailier Fort', 'Pivot']
@@ -18,6 +18,7 @@ interface Sheet {
   card_image_recto: string | null; card_image_recto_hd: string | null
   card_image_verso: string | null; card_image_verso_hd: string | null
   card_is_horizontal: boolean
+  card_meta: CardMeta | null
   stat_saison: string | null; stat_poste: string | null; stat_country: string | null; stat_age: string | null
   stat_matches: string | null; stat_minutes: string | null
   stat_points: string | null; stat_rebonds: string | null; stat_passes: string | null; stat_autres: string | null
@@ -141,6 +142,7 @@ export default function PlayerSheetEditorPage() {
         card_image_recto: url, card_image_recto_hd: url,
         card_image_verso: null, card_image_verso_hd: null,
         card_is_horizontal: isHorizontal,
+        card_meta: null,
       })
       setPickerOpen(false)
     } finally {
@@ -185,6 +187,7 @@ export default function PlayerSheetEditorPage() {
       card_image_recto: c.image_recto, card_image_recto_hd: c.image_recto_hd || c.image_recto,
       card_image_verso: c.image_verso, card_image_verso_hd: c.image_verso_hd || c.image_verso,
       card_is_horizontal: c.is_horizontal,
+      card_meta: c.meta,
     })
     setPickerOpen(false)
   }
@@ -236,12 +239,20 @@ export default function PlayerSheetEditorPage() {
         {/* Gauche : carte 3D */}
         <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 16, paddingTop: 10 }}>
           {sheet.card_image_recto ? (
-            <Card3DInline
-              front={sheet.card_image_recto_hd || sheet.card_image_recto}
-              back={sheet.card_image_verso_hd || sheet.card_image_verso || undefined}
-              isHorizontal={sheet.card_is_horizontal}
-              accent={team.color}
-            />
+            <>
+              <Card3DInline
+                front={sheet.card_image_recto_hd || sheet.card_image_recto}
+                back={sheet.card_image_verso_hd || sheet.card_image_verso || undefined}
+                isHorizontal={sheet.card_is_horizontal}
+                accent={team.color}
+              />
+              {sheet.card_meta && (sheet.card_meta.brand || sheet.card_meta.year || sheet.card_meta.number || sheet.card_meta.owner) && (
+                <div style={{ fontSize: 12, color: '#888', textAlign: 'center' }}>
+                  {[sheet.card_meta.brand, sheet.card_meta.year, sheet.card_meta.number ? `#${sheet.card_meta.number}` : null].filter(Boolean).join(' · ')}
+                  {sheet.card_meta.owner && <span> · Collection de {sheet.card_meta.owner}</span>}
+                </div>
+              )}
+            </>
           ) : (
             <div style={{
               width: 'min(70vw, 340px)', aspectRatio: '2.5 / 3.5', borderRadius: 10,

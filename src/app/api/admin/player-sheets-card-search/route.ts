@@ -13,6 +13,13 @@ const admin = createClient(
   process.env.SUPABASE_SERVICE_ROLE_KEY!
 )
 
+export interface CardMeta {
+  brand: string | null
+  year: string | null
+  number: string | null
+  owner: string | null
+}
+
 export interface CardSearchResult {
   source: 'manuelle' | 'set' | 'csv'
   key: string
@@ -24,6 +31,7 @@ export interface CardSearchResult {
   image_verso_hd: string | null
   is_horizontal: boolean
   manuelle_id: string | null
+  meta: CardMeta
 }
 
 export async function GET(req: NextRequest) {
@@ -37,7 +45,7 @@ export async function GET(req: NextRequest) {
 
   const [{ data: manuelles }, { data: setEntries }, { data: csvProfiles }] = await Promise.all([
     admin.from('cartes_manuelles')
-      .select('id, nom, equipe, annee, marque, image_recto, image_recto_hd, image_verso, image_verso_hd, is_horizontal, user_id')
+      .select('id, nom, equipe, annee, marque, num, image_recto, image_recto_hd, image_verso, image_verso_hd, is_horizontal, user_id')
       .or(`nom.ilike.%${safeQ}%,equipe.ilike.%${safeQ}%,marque.ilike.%${safeQ}%`)
       .limit(60),
     admin.from('card_set_entries')
@@ -63,6 +71,14 @@ export async function GET(req: NextRequest) {
     : { data: null }
   const privateSet = new Set((privees || []).map(p => `${p.user_id}::${p.card_key}`))
 
+  // Nom du collectionneur -- deja dispo pour les profils CSV, il faut le
+  // recuperer separement pour les proprietaires de cartes_manuelles.
+  const manuellesUserIds = [...new Set((manuelles || []).map(m => m.user_id))]
+  const { data: ownerProfiles } = manuellesUserIds.length > 0
+    ? await admin.from('profiles').select('id, display_name').in('id', manuellesUserIds)
+    : { data: null }
+  const ownerNameById = new Map((ownerProfiles || []).map(p => [p.id, p.display_name as string | null]))
+
   const results: CardSearchResult[] = []
 
   for (const m of manuelles || []) {
@@ -73,6 +89,7 @@ export async function GET(req: NextRequest) {
       image_recto: m.image_recto, image_recto_hd: m.image_recto_hd || null,
       image_verso: m.image_verso || null, image_verso_hd: m.image_verso_hd || null,
       is_horizontal: !!m.is_horizontal, manuelle_id: m.id,
+      meta: { brand: m.marque || null, year: m.annee || null, number: m.num || null, owner: ownerNameById.get(m.user_id) || null },
     })
   }
 
@@ -85,6 +102,7 @@ export async function GET(req: NextRequest) {
       image_recto: e.image_url, image_recto_hd: null,
       image_verso: null, image_verso_hd: null,
       is_horizontal: false, manuelle_id: null,
+      meta: { brand: set?.brand || null, year: set?.year ? String(set.year) : null, number: e.card_number || null, owner: null },
     })
   }
 
@@ -103,6 +121,7 @@ export async function GET(req: NextRequest) {
       image_recto: c.img, image_recto_hd: null,
       image_verso: c.back || null, image_verso_hd: null,
       is_horizontal: false, manuelle_id: null,
+      meta: { brand: c.brand || null, year: c.year || null, number: c.num || null, owner: c.display_name || null },
     })
   })
 
