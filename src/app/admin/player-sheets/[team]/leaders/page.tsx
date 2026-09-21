@@ -84,7 +84,8 @@ export default function TeamLeadersPage() {
         display: 'flex', alignItems: 'center', justifyContent: 'center', textDecoration: 'none',
       }}>✕</Link>
 
-      <div style={{ maxWidth: 1000, margin: '0 auto', padding: '70px 40px 90px' }}>
+      <div style={{ minHeight: '100%', display: 'flex', alignItems: 'center' }}>
+      <div style={{ maxWidth: 1000, width: '100%', margin: '0 auto', padding: '70px 40px 90px', boxSizing: 'border-box' }}>
         <div style={{ display: 'flex', alignItems: 'center', gap: 16, marginBottom: 40 }}>
           <TeamBadge teamId={team.id} size={54} />
           <div>
@@ -135,6 +136,7 @@ export default function TeamLeadersPage() {
             })}
           </div>
         )}
+      </div>
       </div>
     </div>
   )
