@@ -1,5 +1,6 @@
 'use client'
 import { useEffect, useState } from 'react'
+import Link from 'next/link'
 import { useParams, useRouter } from 'next/navigation'
 import { supabase } from '@/lib/supabase'
 import { SPORTS_TEAMS, teamLogoUrl } from '@/lib/sportsTeams'
@@ -22,11 +23,15 @@ function countryFlag(code: string | null | undefined): string | null {
   return [...c].map(ch => String.fromCodePoint(ch.charCodeAt(0) + 127397)).join('')
 }
 
-function StatBlock({ label, value }: { label: string; value: string }) {
+function StatCard({ label, value, accent }: { label: string; value: string; accent: string }) {
   return (
-    <div>
-      <div style={{ fontSize: 13, fontWeight: 700, letterSpacing: 1.5, textTransform: 'uppercase', color: 'rgba(255,255,255,0.5)', marginBottom: 4 }}>{label}</div>
-      <div style={{ fontSize: 40, fontWeight: 900, color: '#fff', lineHeight: 1 }}>{value}</div>
+    <div style={{
+      background: 'rgba(255,255,255,0.045)', border: '1px solid rgba(255,255,255,0.08)', borderRadius: 16,
+      padding: '18px 20px', position: 'relative', overflow: 'hidden',
+    }}>
+      <div style={{ position: 'absolute', top: 0, left: 0, right: 0, height: 3, background: accent }} />
+      <div style={{ fontSize: 12, fontWeight: 800, letterSpacing: 1.8, textTransform: 'uppercase', color: 'rgba(255,255,255,0.45)', marginBottom: 6 }}>{label}</div>
+      <div style={{ fontSize: 38, fontWeight: 900, color: '#fff', lineHeight: 1, fontVariantNumeric: 'tabular-nums' }}>{value}</div>
     </div>
   )
 }
@@ -52,7 +57,7 @@ export default function PlayerSheetPresenterPage() {
   }, [sheetId])
 
   if (!ready || !sheet || !team) {
-    return <div style={{ position: 'fixed', inset: 0, background: '#0a0e1a', color: '#fff', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>Chargement...</div>
+    return <div style={{ position: 'fixed', inset: 0, background: '#05070c', color: '#fff', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>Chargement...</div>
   }
 
   const flag = countryFlag(sheet.stat_country)
@@ -61,68 +66,96 @@ export default function PlayerSheetPresenterPage() {
     sheet.stat_rebonds && { label: 'Rebonds', value: sheet.stat_rebonds },
     sheet.stat_passes && { label: 'Passes', value: sheet.stat_passes },
     sheet.stat_matches && { label: 'Matchs', value: sheet.stat_matches },
-    sheet.stat_minutes && { label: 'Min/match', value: sheet.stat_minutes },
+    sheet.stat_minutes && { label: 'Min / match', value: sheet.stat_minutes },
   ].filter(Boolean) as { label: string; value: string }[]
 
   return (
     <div style={{
-      position: 'fixed', inset: 0, zIndex: 999999, background: `radial-gradient(circle at 15% 15%, ${team.color}33, #0a0e1a 55%)`,
-      color: '#fff', overflow: 'auto',
+      position: 'fixed', inset: 0, zIndex: 999999, overflow: 'auto', color: '#fff',
+      background: `
+        radial-gradient(1100px 700px at 12% -10%, ${team.color}3d, transparent 60%),
+        radial-gradient(900px 600px at 105% 110%, ${team.color}26, transparent 55%),
+        linear-gradient(160deg, #05070c 0%, #0a0d16 55%, #05070c 100%)
+      `,
     }}>
-      <button onClick={() => window.close()} style={{
-        position: 'fixed', top: 18, right: 22, width: 40, height: 40, borderRadius: '50%', border: 'none',
-        background: 'rgba(255,255,255,0.1)', color: '#fff', fontSize: 18, cursor: 'pointer', zIndex: 10,
-      }}>✕</button>
+      <Link href={`/admin/player-sheets/${teamAbbr}/${sheetId}`} style={{
+        position: 'fixed', top: 20, right: 24, width: 42, height: 42, borderRadius: '50%',
+        background: 'rgba(255,255,255,0.08)', border: '1px solid rgba(255,255,255,0.12)',
+        color: '#fff', fontSize: 18, cursor: 'pointer', zIndex: 10,
+        display: 'flex', alignItems: 'center', justifyContent: 'center', textDecoration: 'none',
+      }}>✕</Link>
 
       <div style={{
-        minHeight: '100%', display: 'flex', flexWrap: 'wrap', alignItems: 'center', justifyContent: 'center',
-        gap: 60, padding: '60px 40px',
+        minHeight: '100%', display: 'flex', flexWrap: 'wrap-reverse', alignItems: 'center', justifyContent: 'center',
+        gap: 72, padding: '70px 40px',
       }}>
-        <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 8 }}>
-          {sheet.card_image_recto && (
-            <Card3DInline
-              front={sheet.card_image_recto_hd || sheet.card_image_recto}
-              back={sheet.card_image_verso_hd || sheet.card_image_verso || undefined}
-              isHorizontal={sheet.card_is_horizontal}
-              accent={team.color}
-            />
-          )}
+        <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+          <div style={{ position: 'relative' }}>
+            <div style={{
+              position: 'absolute', left: '50%', bottom: -20, transform: 'translateX(-50%)',
+              width: '78%', height: 40, borderRadius: '50%',
+              background: `radial-gradient(ellipse, ${team.color}55, transparent 72%)`, filter: 'blur(6px)',
+            }} />
+            {sheet.card_image_recto && (
+              <Card3DInline
+                front={sheet.card_image_recto_hd || sheet.card_image_recto}
+                back={sheet.card_image_verso_hd || sheet.card_image_verso || undefined}
+                isHorizontal={sheet.card_is_horizontal}
+                accent={team.color}
+              />
+            )}
+          </div>
         </div>
 
-        <div style={{ maxWidth: 560, display: 'flex', flexDirection: 'column', gap: 26 }}>
-          <div style={{ display: 'flex', alignItems: 'center', gap: 16 }}>
-            <img src={teamLogoUrl(team)} alt="" style={{ width: 64, height: 64, objectFit: 'contain' }} />
-            <div>
-              <div style={{ fontSize: 13, fontWeight: 800, letterSpacing: 2, textTransform: 'uppercase', color: 'rgba(255,255,255,0.55)' }}>{team.name}</div>
-              <div style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
-                {flag && <span style={{ fontSize: 34 }}>{flag}</span>}
-                <div style={{ fontSize: 44, fontWeight: 900, lineHeight: 1.05 }}>{sheet.player_name}</div>
-              </div>
-              {(sheet.stat_poste || sheet.stat_age || sheet.stat_saison) && (
-                <div style={{ fontSize: 17, fontWeight: 700, color: 'rgba(255,255,255,0.7)', marginTop: 4 }}>
-                  {[sheet.stat_poste, sheet.stat_age, sheet.stat_saison].filter(Boolean).join(' · ')}
-                </div>
-              )}
+        <div style={{ maxWidth: 580, width: '100%', display: 'flex', flexDirection: 'column', gap: 28 }}>
+          <div>
+            <div style={{ display: 'flex', alignItems: 'center', gap: 10, marginBottom: 14 }}>
+              <img src={teamLogoUrl(team)} alt="" style={{ width: 30, height: 30, objectFit: 'contain' }} />
+              <div style={{ fontSize: 13, fontWeight: 800, letterSpacing: 3, textTransform: 'uppercase', color: 'rgba(255,255,255,0.5)' }}>{team.name}</div>
             </div>
+            <div style={{ display: 'flex', alignItems: 'center', gap: 16 }}>
+              {flag && <span style={{ fontSize: 40, lineHeight: 1 }}>{flag}</span>}
+              <div style={{
+                fontSize: 'clamp(36px, 5.2vw, 58px)', fontWeight: 900, lineHeight: 1.03, letterSpacing: -1,
+                background: `linear-gradient(135deg, #fff 40%, ${team.color})`,
+                WebkitBackgroundClip: 'text', backgroundClip: 'text', color: 'transparent',
+              }}>
+                {sheet.player_name}
+              </div>
+            </div>
+            {(sheet.stat_poste || sheet.stat_age || sheet.stat_saison) && (
+              <div style={{ display: 'flex', flexWrap: 'wrap', gap: 8, marginTop: 14 }}>
+                {[sheet.stat_poste, sheet.stat_age, sheet.stat_saison].filter(Boolean).map((v, i) => (
+                  <span key={i} style={{
+                    fontSize: 14, fontWeight: 800, color: 'rgba(255,255,255,0.85)',
+                    background: 'rgba(255,255,255,0.08)', border: '1px solid rgba(255,255,255,0.1)',
+                    borderRadius: 999, padding: '6px 14px',
+                  }}>{v}</span>
+                ))}
+              </div>
+            )}
           </div>
 
           {stats.length > 0 && (
-            <div style={{
-              display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(120px, 1fr))', gap: 24,
-              background: 'rgba(255,255,255,0.06)', borderRadius: 20, padding: '24px 28px',
-            }}>
-              {stats.map(s => <StatBlock key={s.label} {...s} />)}
+            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(130px, 1fr))', gap: 12 }}>
+              {stats.map(s => <StatCard key={s.label} {...s} accent={team.color} />)}
             </div>
           )}
 
           {sheet.stat_autres && (
-            <div style={{ fontSize: 20, fontWeight: 700, color: 'rgba(255,255,255,0.85)' }}>{sheet.stat_autres}</div>
+            <div style={{
+              fontSize: 18, fontWeight: 700, color: 'rgba(255,255,255,0.9)',
+              borderLeft: `3px solid ${team.color}`, paddingLeft: 16,
+            }}>
+              {sheet.stat_autres}
+            </div>
           )}
 
           {sheet.notes && (
             <div style={{
-              fontSize: 18, lineHeight: 1.5, color: 'rgba(255,255,255,0.85)',
-              background: 'rgba(255,255,255,0.06)', borderRadius: 16, padding: '18px 22px', whiteSpace: 'pre-wrap',
+              fontSize: 17, lineHeight: 1.55, color: 'rgba(255,255,255,0.8)', fontStyle: 'italic',
+              background: 'rgba(255,255,255,0.045)', border: '1px solid rgba(255,255,255,0.08)',
+              borderRadius: 16, padding: '20px 24px', whiteSpace: 'pre-wrap',
             }}>
               {sheet.notes}
             </div>

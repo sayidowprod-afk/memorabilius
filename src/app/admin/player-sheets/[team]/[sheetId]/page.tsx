@@ -165,7 +165,7 @@ export default function PlayerSheetEditorPage() {
           }}
         />
         {sheet.card_image_recto && (
-          <Link href={`/admin/player-sheets/${teamAbbr}/${sheetId}/presenter`} target="_blank" style={{
+          <Link href={`/admin/player-sheets/${teamAbbr}/${sheetId}/presenter`} style={{
             padding: '9px 16px', borderRadius: 10, border: '1px solid rgba(255,255,255,0.6)', background: 'transparent',
             color: '#fff', fontWeight: 800, fontSize: 13.5, textDecoration: 'none', whiteSpace: 'nowrap',
           }}>
