@@ -45,7 +45,10 @@ export async function GET(req: NextRequest) {
       .ilike('player_name', `%${safeQ}%`)
       .not('image_url', 'is', null)
       .limit(40),
-    admin.from('profiles').select('id, display_name, avatar_url, lien_csv, couleur_bordure').not('lien_csv', 'is', null).limit(200),
+    // lien_csv est '' (chaine vide) pour la grande majorite des profils, pas
+    // null -- .not('lien_csv','is',null) seul en laissait passer des centaines
+    // et noyait les quelques vrais liens sous la limite. neq('') les ecarte.
+    admin.from('profiles').select('id, display_name, avatar_url, lien_csv, couleur_bordure').not('lien_csv', 'is', null).neq('lien_csv', '').limit(200),
   ])
 
   // Respecte les cartes marquees privees par leur proprietaire (meme filtre
