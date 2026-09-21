@@ -303,7 +303,7 @@ async function cmdConcoursParticiper(body: any) {
     imageUrl = result.data.img
     cardInfo = result.data
   }
-  if (!imageUrl) return reply({ content: '❌ Joins une image, précise `nom` ou colle un `lien` Memorabilius (comme pour /carte).', flags: 64 })
+  if (!imageUrl) return reply({ content: '❌ Joins une image, ou précise `nom` avec un nom de carte OU un lien Memorabilius collé dedans.', flags: 64 })
 
   // Une seule participation par personne et par semaine (contrainte unique
   // week_id+discord_user_id) -- un second /concours-participer REMPLACE la
@@ -756,7 +756,7 @@ async function findCardData(options: any[]): Promise<{ error: string } | { data:
 
   const input = nomOpt
   const utilisateur = options.find((o: any) => o.name === 'utilisateur')?.value || ''
-  if (!input) return { error: "❌ Précise le nom d'une carte ou un lien Memorabilius (`lien`)." }
+  if (!input) return { error: "❌ Précise `nom` : un nom de carte, ou colle directement un lien Memorabilius." }
 
   const tk = parseTokens(input)
 

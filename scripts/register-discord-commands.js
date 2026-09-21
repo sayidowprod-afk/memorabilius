@@ -30,19 +30,13 @@ const commands = [
     options: [
       {
         name: 'nom',
-        description: 'Nom du joueur ou de la carte (ex: Wembanyama)',
+        description: 'Nom du joueur/carte, OU lien direct Memorabilius (memorabilius.fr/...)',
         type: 3,
         required: false,
       },
       {
         name: 'utilisateur',
         description: 'Filtrer par collectionneur (optionnel)',
-        type: 3,
-        required: false,
-      },
-      {
-        name: 'lien',
-        description: 'Lien direct vers une carte Memorabilius (memorabilius.fr/galerie/...)',
         type: 3,
         required: false,
       },
@@ -54,19 +48,13 @@ const commands = [
     options: [
       {
         name: 'nom',
-        description: 'Nom du joueur ou de la carte (ex: Wembanyama)',
+        description: 'Nom du joueur/carte, OU lien direct Memorabilius (memorabilius.fr/...)',
         type: 3,
         required: false,
       },
       {
         name: 'utilisateur',
         description: 'Filtrer par collectionneur (optionnel)',
-        type: 3,
-        required: false,
-      },
-      {
-        name: 'lien',
-        description: 'Lien direct vers une carte Memorabilius (memorabilius.fr/galerie/...)',
         type: 3,
         required: false,
       },
@@ -77,26 +65,20 @@ const commands = [
     description: 'Soumets une carte pour le concours de la semaine',
     options: [
       {
-        name: 'image',
-        description: 'Photo de ta carte (si tu ne joues pas via `nom`/`lien`)',
-        type: 11,
+        name: 'nom',
+        description: 'Nom d\'une carte de ta galerie, OU lien direct Memorabilius (memorabilius.fr/...)',
+        type: 3,
         required: false,
       },
       {
-        name: 'nom',
-        description: 'Nom d\'une carte de ta galerie Memorabilius (comme /carte)',
-        type: 3,
+        name: 'image',
+        description: 'Photo de ta carte (si tu ne joues pas via `nom`)',
+        type: 11,
         required: false,
       },
       {
         name: 'utilisateur',
         description: 'Ton nom de collectionneur (si tu utilises `nom`)',
-        type: 3,
-        required: false,
-      },
-      {
-        name: 'lien',
-        description: 'Lien direct vers une carte Memorabilius (memorabilius.fr/galerie/...)',
         type: 3,
         required: false,
       },
