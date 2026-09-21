@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { createClient } from '@supabase/supabase-js'
 import { requireAdmin } from '@/lib/adminAuth'
+import { fetchCsvCardsForProfiles } from '@/lib/csvCards'
 
 export const maxDuration = 20
 
@@ -13,7 +14,7 @@ const admin = createClient(
 )
 
 export interface CardSearchResult {
-  source: 'manuelle' | 'set'
+  source: 'manuelle' | 'set' | 'csv'
   key: string
   label: string
   sub: string
@@ -31,9 +32,10 @@ export async function GET(req: NextRequest) {
 
   const q = req.nextUrl.searchParams.get('q')?.trim()
   if (!q || q.length < 2) return NextResponse.json({ results: [] })
+  const ql = q.toLowerCase()
   const safeQ = q.replace(/%/g, '\\%').replace(/_/g, '\\_')
 
-  const [{ data: manuelles }, { data: setEntries }] = await Promise.all([
+  const [{ data: manuelles }, { data: setEntries }, { data: csvProfiles }] = await Promise.all([
     admin.from('cartes_manuelles')
       .select('id, nom, equipe, annee, marque, image_recto, image_recto_hd, image_verso, image_verso_hd, is_horizontal, user_id')
       .or(`nom.ilike.%${safeQ}%,equipe.ilike.%${safeQ}%,marque.ilike.%${safeQ}%`)
@@ -43,12 +45,16 @@ export async function GET(req: NextRequest) {
       .ilike('player_name', `%${safeQ}%`)
       .not('image_url', 'is', null)
       .limit(40),
+    admin.from('profiles').select('id, display_name, avatar_url, lien_csv, couleur_bordure').not('lien_csv', 'is', null).limit(200),
   ])
 
   // Respecte les cartes marquees privees par leur proprietaire (meme filtre
   // que /api/recherche) -- outil admin ou non, on n'expose pas une carte que
   // le collectionneur a explicitement masquee.
-  const userIds = [...new Set((manuelles || []).map(m => m.user_id))]
+  const userIds = [...new Set([
+    ...(manuelles || []).map(m => m.user_id),
+    ...(csvProfiles || []).map(p => p.id),
+  ])]
   const { data: privees } = userIds.length > 0
     ? await admin.from('cartes_privees').select('user_id, card_key').in('user_id', userIds)
     : { data: null }
@@ -78,6 +84,24 @@ export async function GET(req: NextRequest) {
       is_horizontal: false, manuelle_id: null,
     })
   }
+
+  // Cartes importées via CSV (Google Sheets) -- pas stockées en base, donc
+  // absentes de cartes_manuelles ; il faut les récupérer/parser à la volée
+  // par profil (module partagé avec CardPicker/equipe/joueur).
+  const csvCards = await fetchCsvCardsForProfiles(csvProfiles || [])
+  csvCards.forEach((c, idx) => {
+    if (!c.img) return
+    const match = c.name.toLowerCase().includes(ql) || c.team.toLowerCase().includes(ql)
+      || c.brand.toLowerCase().includes(ql) || c.variant.toLowerCase().includes(ql)
+    if (!match || privateSet.has(`${c.user_id}::${c.img}`)) return
+    results.push({
+      source: 'csv', key: `c:${c.user_id}:${idx}`,
+      label: c.name || 'Carte', sub: [c.brand, c.year, c.team].filter(Boolean).join(' · '),
+      image_recto: c.img, image_recto_hd: null,
+      image_verso: c.back || null, image_verso_hd: null,
+      is_horizontal: false, manuelle_id: null,
+    })
+  })
 
   return NextResponse.json({ results: results.slice(0, 80) })
 }
