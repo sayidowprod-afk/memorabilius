@@ -140,17 +140,31 @@ export default function TeamPlayerSheetsPage() {
                   transition: 'box-shadow 0.12s, border-color 0.12s',
                 }}
               >
-                <Link href={`/admin/player-sheets/${teamAbbr}/${s.id}`} style={{ display: 'block', textDecoration: 'none', color: 'inherit' }}>
-                  <div style={{
-                    aspectRatio: s.card_is_horizontal ? '5 / 3.5' : '2.5 / 3.5', background: dark ? '#111' : '#f5f5f5',
-                    display: 'flex', alignItems: 'center', justifyContent: 'center',
+                <div style={{
+                  aspectRatio: s.card_is_horizontal ? '5 / 3.5' : '2.5 / 3.5', background: dark ? '#111' : '#f5f5f5',
+                  display: 'flex', alignItems: 'center', justifyContent: 'center',
+                }}>
+                  {s.card_image_recto
+                    ? <img src={s.card_image_recto} alt="" draggable={false} style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+                    : <span style={{ fontSize: 12, color: '#999' }}>Pas de carte</span>}
+                </div>
+                <div style={{ padding: '10px 12px 4px', fontWeight: 800, fontSize: 13.5 }}>{s.player_name}</div>
+                <div style={{ display: 'flex', gap: 6, padding: '0 12px 12px' }}>
+                  {s.card_image_recto && (
+                    <Link href={`/admin/player-sheets/${teamAbbr}/${s.id}/presenter`} style={{
+                      flex: 1, textAlign: 'center', padding: '6px 0', borderRadius: 8, fontSize: 11.5, fontWeight: 800,
+                      background: team.color, color: '#fff', textDecoration: 'none',
+                    }}>
+                      🎬 Présentation
+                    </Link>
+                  )}
+                  <Link href={`/admin/player-sheets/${teamAbbr}/${s.id}`} style={{
+                    flex: 1, textAlign: 'center', padding: '6px 0', borderRadius: 8, fontSize: 11.5, fontWeight: 800,
+                    border: `1px solid ${dark ? '#333' : '#ddd'}`, color: 'inherit', textDecoration: 'none',
                   }}>
-                    {s.card_image_recto
-                      ? <img src={s.card_image_recto} alt="" draggable={false} style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
-                      : <span style={{ fontSize: 12, color: '#999' }}>Pas de carte</span>}
-                  </div>
-                  <div style={{ padding: '10px 12px', fontWeight: 800, fontSize: 13.5 }}>{s.player_name}</div>
-                </Link>
+                    ✏️ Modifier
+                  </Link>
+                </div>
                 <button onClick={() => removeSheet(s.id)} title="Supprimer" style={{
                   position: 'absolute', top: 8, right: 8, width: 26, height: 26, borderRadius: '50%', border: 'none',
                   background: 'rgba(0,0,0,0.55)', color: '#fff', cursor: 'pointer', fontSize: 13, lineHeight: 1,
