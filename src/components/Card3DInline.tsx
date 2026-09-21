@@ -4,6 +4,8 @@ import { useCallback, useEffect, useRef, useState } from 'react'
 // Version allégée du drag-to-rotate de Viewer3D, pensée pour un rendu EN BLOC
 // (pas de portal/popup, pas de wishlist/echange/tags -- juste la carte qui
 // tourne) pour la fiche joueur en émission.
+// Pas de coins arrondis sur la carte elle-meme (voir memoire projet) --
+// contrairement au reste de l'UI, une vraie carte a des bords nets.
 export default function Card3DInline({ front, back, isHorizontal, accent }: {
   front: string
   back?: string
@@ -92,6 +94,11 @@ export default function Card3DInline({ front, back, isHorizontal, accent }: {
     ? { width: 'min(85vw, 480px)', aspectRatio: '5 / 3.5' }
     : { width: 'min(70vw, 340px)', aspectRatio: '2.5 / 3.5' }
 
+  const faceStyle: React.CSSProperties = {
+    position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover',
+    backfaceVisibility: 'hidden', WebkitBackfaceVisibility: 'hidden',
+  }
+
   return (
     <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 14 }}>
       <div
@@ -107,19 +114,21 @@ export default function Card3DInline({ front, back, isHorizontal, accent }: {
           style={{
             width: '100%', height: '100%', position: 'relative',
             transformStyle: 'preserve-3d', transition: 'transform 0.1s linear',
-            borderRadius: 10, boxShadow: `0 16px 50px rgba(0,0,0,0.35), 0 0 0 2px ${accent || '#0046D1'}55`,
+            boxShadow: `0 16px 50px rgba(0,0,0,0.35), 0 0 0 2px ${accent || '#0046D1'}55`,
           }}
         >
-          <img src={front} alt="" draggable={false} style={{
-            position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover',
-            borderRadius: 10, backfaceVisibility: 'hidden', display: flipped ? 'none' : 'block',
-          }} />
-          {back && (
-            <img src={back} alt="" draggable={false} style={{
-              position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover',
-              borderRadius: 10, backfaceVisibility: 'hidden', display: flipped ? 'block' : 'none',
-            }} />
-          )}
+          {/* Vrai retournement 3D (rotateY 0/180) plutot qu'un simple
+              display:none/block -- chaque face porte sa propre orientation,
+              donc la face visible depend uniquement de son propre angle et
+              jamais d'un etat fragile a synchroniser. */}
+          <div style={{
+            position: 'absolute', inset: 0, width: '100%', height: '100%',
+            transformStyle: 'preserve-3d', transition: 'transform 0.5s',
+            transform: flipped ? 'rotateY(180deg)' : 'rotateY(0deg)',
+          }}>
+            <img src={front} alt="" draggable={false} style={faceStyle} />
+            {back && <img src={back} alt="" draggable={false} style={{ ...faceStyle, transform: 'rotateY(180deg)' }} />}
+          </div>
         </div>
       </div>
       <div style={{ display: 'flex', gap: 10 }}>

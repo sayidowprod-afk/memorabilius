@@ -132,7 +132,7 @@ export default function TeamPlayerSheetsPage() {
                 onDrop={() => onDrop(s.id)}
                 onDragEnd={onDragEnd}
                 style={{
-                  position: 'relative', borderRadius: 14, overflow: 'hidden', cursor: 'grab',
+                  position: 'relative', overflow: 'hidden', cursor: 'grab',
                   background: dark ? '#1a1a1a' : '#fff',
                   border: `1px solid ${dragOverId === s.id ? team.color : (dark ? '#2a2a2a' : '#eee')}`,
                   opacity: draggingId === s.id ? 0.4 : 1,

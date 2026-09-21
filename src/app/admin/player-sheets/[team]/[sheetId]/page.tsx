@@ -295,7 +295,7 @@ export default function PlayerSheetEditorPage() {
                     padding: 0, border: 'none', background: 'transparent', cursor: 'pointer', textAlign: 'left',
                   }}>
                     <div style={{
-                      aspectRatio: c.is_horizontal ? '5 / 3.5' : '2.5 / 3.5', borderRadius: 8, overflow: 'hidden',
+                      aspectRatio: c.is_horizontal ? '5 / 3.5' : '2.5 / 3.5', overflow: 'hidden',
                       border: `1px solid ${dark ? '#333' : '#eee'}`, marginBottom: 4, background: dark ? '#111' : '#f5f5f5',
                     }}>
                       <img src={c.image_recto} alt="" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
