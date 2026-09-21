@@ -102,3 +102,34 @@ export function nbaCountryName(code: string | null | undefined): string | null {
   if (!c) return null
   return ALL_NBA_COUNTRIES.find(x => x.code === c)?.name || null
 }
+
+// ESPN renvoie la citoyenneté en nom anglais ("Lithuania", "Ivory Coast"...)
+// -- table de correspondance vers nos codes ISO pour l'auto-remplissage.
+const ESPN_NAME_TO_CODE: Record<string, string> = {
+  'united states': 'US', 'usa': 'US', 'canada': 'CA', 'france': 'FR', 'australia': 'AU',
+  'serbia': 'RS', 'germany': 'DE', 'turkey': 'TR', 'turkiye': 'TR', 'lithuania': 'LT',
+  'spain': 'ES', 'croatia': 'HR', 'slovenia': 'SI', 'greece': 'GR', 'nigeria': 'NG',
+  'cameroon': 'CM', 'dominican republic': 'DO', 'argentina': 'AR', 'angola': 'AO',
+  'austria': 'AT', 'bahamas': 'BS', 'belgium': 'BE', 'bosnia and herzegovina': 'BA',
+  'brazil': 'BR', 'bulgaria': 'BG', 'cabo verde': 'CV', 'cape verde': 'CV', 'chad': 'TD',
+  'chile': 'CL', 'china': 'CN', 'colombia': 'CO', 'democratic republic of the congo': 'CD',
+  'dr congo': 'CD', 'congo': 'CG', 'ivory coast': 'CI', "cote d'ivoire": 'CI',
+  'czech republic': 'CZ', 'czechia': 'CZ', 'denmark': 'DK', 'egypt': 'EG', 'estonia': 'EE',
+  'finland': 'FI', 'gabon': 'GA', 'georgia': 'GE', 'ghana': 'GH', 'guinea': 'GN',
+  'haiti': 'HT', 'hungary': 'HU', 'iceland': 'IS', 'israel': 'IL', 'italy': 'IT',
+  'jamaica': 'JM', 'japan': 'JP', 'kenya': 'KE', 'latvia': 'LV', 'lebanon': 'LB',
+  'luxembourg': 'LU', 'north macedonia': 'MK', 'macedonia': 'MK', 'mali': 'ML',
+  'mexico': 'MX', 'montenegro': 'ME', 'morocco': 'MA', 'mozambique': 'MZ',
+  'netherlands': 'NL', 'new zealand': 'NZ', 'niger': 'NE', 'norway': 'NO', 'panama': 'PA',
+  'philippines': 'PH', 'poland': 'PL', 'portugal': 'PT', 'puerto rico': 'PR',
+  'romania': 'RO', 'russia': 'RU', 'rwanda': 'RW', 'senegal': 'SN', 'slovakia': 'SK',
+  'south africa': 'ZA', 'south korea': 'KR', 'south sudan': 'SS', 'sudan': 'SD',
+  'sweden': 'SE', 'switzerland': 'CH', 'tanzania': 'TZ', 'tunisia': 'TN', 'ukraine': 'UA',
+  'united kingdom': 'GB', 'great britain': 'GB', 'england': 'GB', 'uruguay': 'UY',
+  'venezuela': 'VE', 'virgin islands': 'VI', 'us virgin islands': 'VI', 'zambia': 'ZM',
+}
+
+export function espnCitizenshipToCode(citizenship: string | null | undefined): string | null {
+  if (!citizenship) return null
+  return ESPN_NAME_TO_CODE[citizenship.trim().toLowerCase()] || null
+}

@@ -55,6 +55,8 @@ export default function PlayerSheetEditorPage() {
   const [pickerResults, setPickerResults] = useState<CardSearchResult[]>([])
   const [pickerLoading, setPickerLoading] = useState(false)
   const [uploading, setUploading] = useState(false)
+  const [autofilling, setAutofilling] = useState(false)
+  const [autofillError, setAutofillError] = useState(false)
   const pickerTimer = useRef<ReturnType<typeof setTimeout> | null>(null)
   const fileInputRef = useRef<HTMLInputElement>(null)
 
@@ -146,6 +148,37 @@ export default function PlayerSheetEditorPage() {
     }
   }
 
+  const autofillFromEspn = async () => {
+    if (!sheet?.player_name.trim() || autofilling) return
+    setAutofilling(true)
+    setAutofillError(false)
+    try {
+      const tok = await freshToken()
+      if (!tok) return
+      const res = await fetch(`/api/admin/player-sheets-autofill?name=${encodeURIComponent(sheet.player_name.trim())}`, {
+        headers: { Authorization: `Bearer ${tok}` },
+      })
+      if (!res.ok) { setAutofillError(true); return }
+      const d = await res.json()
+      patch({
+        stat_age: d.age != null ? `${d.age} ans` : sheet.stat_age,
+        stat_poste: d.position || sheet.stat_poste,
+        stat_country: d.countryCode || sheet.stat_country,
+        stat_saison: d.experience || sheet.stat_saison,
+        stat_matches: d.gamesPlayed ?? sheet.stat_matches,
+        stat_minutes: d.minutes ?? sheet.stat_minutes,
+        stat_points: d.points ?? sheet.stat_points,
+        stat_rebonds: d.rebounds ?? sheet.stat_rebonds,
+        stat_passes: d.assists ?? sheet.stat_passes,
+      })
+      if (d.countryCode) setCountryText(nbaCountryName(d.countryCode) || d.countryCode)
+    } catch {
+      setAutofillError(true)
+    } finally {
+      setAutofilling(false)
+    }
+  }
+
   const pickCard = (c: CardSearchResult) => {
     patch({
       card_id: c.manuelle_id,
@@ -228,6 +261,18 @@ export default function PlayerSheetEditorPage() {
 
         {/* Droite : stats + notes */}
         <div style={{ display: 'flex', flexDirection: 'column', gap: 14 }}>
+          <div style={{ display: 'flex', alignItems: 'center', gap: 10, flexWrap: 'wrap' }}>
+            <button onClick={autofillFromEspn} disabled={!sheet.player_name.trim() || autofilling} style={{
+              padding: '8px 16px', borderRadius: 20, border: 'none', background: team.color, color: '#fff',
+              fontWeight: 800, fontSize: 13, cursor: 'pointer', opacity: autofilling ? 0.6 : 1,
+            }}>
+              {autofilling ? 'Recherche ESPN...' : '🪄 Auto-remplir depuis ESPN'}
+            </button>
+            {autofillError && <span style={{ fontSize: 12, color: '#e74c3c' }}>Joueur introuvable sur ESPN.</span>}
+          </div>
+          <div style={{ fontSize: 11, color: '#999', marginTop: -8 }}>
+            Stats de la saison en cours, âge, expérience et pays automatiques. Le poste n'est que Meneur/Ailier/Pivot chez ESPN (pas de distinction Arrière/Ailier Fort) -- vérifie-le.
+          </div>
           <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 12 }}>
             <div><span style={labelStyle}>Expérience</span><input style={inputStyle} value={sheet.stat_saison || ''} onChange={e => patch({ stat_saison: e.target.value })} placeholder="8e saison NBA" /></div>
             <div>

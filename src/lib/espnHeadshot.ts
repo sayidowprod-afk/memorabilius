@@ -1,3 +1,5 @@
+import { espnCitizenshipToCode } from '@/lib/nbaCountries'
+
 // ── NBA CDN (tous les joueurs, actifs + retraités) ────────────────────────────
 // stats.nba.com peut être bloqué en dev local mais fonctionne sur Vercel
 
@@ -482,5 +484,93 @@ export async function fetchEspnPlayerBio(name: string, sportHint?: string): Prom
   if (nbaAwardsData && nbaAwardsData.length > 0) honors = nbaAwardsData
 
   return { sport, birthDate, birthPlace, teams, position, height, weight, jersey, nationality, age, currentTeamId, currentTeamLogo, career, honors, jerseyHistory }
+}
+
+// ── Auto-remplissage fiche joueur (admin/player-sheets) ────────────────────
+// Age, poste, nationalite, experience + stats moyennes de la derniere saison
+// (regular season), en un minimum d'appels ESPN.
+
+const ESPN_POSITION_TO_POSTE: Record<string, string> = {
+  Guard: 'Meneur', Forward: 'Ailier', Center: 'Pivot',
+}
+
+export interface EspnPlayerAutofill {
+  age: number | null
+  // Devine large (Guard/Forward/Center) faute de granularite ESPN --
+  // ne distingue pas Meneur/Arriere ni Ailier/Ailier Fort, l'admin ajuste au besoin.
+  position: string | null
+  countryCode: string | null
+  experience: string | null
+  season: string | null
+  gamesPlayed: string | null
+  minutes: string | null
+  points: string | null
+  rebounds: string | null
+  assists: string | null
+}
+
+function frenchifyExperience(displayExperience: string): string {
+  const m = /^(\d+)/.exec(displayExperience)
+  if (!m) return displayExperience
+  const n = parseInt(m[1])
+  return `${n === 1 ? '1re' : `${n}e`} saison NBA`
+}
+
+export async function fetchEspnPlayerAutofill(name: string, sportHint = 'nba'): Promise<EspnPlayerAutofill | null> {
+  const found = await findEspnAthleteId(name, sportHint)
+  if (!found) return null
+  const { id, sport } = found
+  const league = LEAGUE_MAP[sport] || 'nba'
+  const espnSport = SPORT_MAP[sport] || 'basketball'
+
+  const [athleteData, statsData] = await Promise.all([
+    fetch(
+      `https://site.web.api.espn.com/apis/common/v3/sports/${espnSport}/${league}/athletes/${id}`,
+      { signal: AbortSignal.timeout(4000), next: { revalidate: 3600 } } as RequestInit
+    ).then(r => r.ok ? r.json() : null).catch(() => null),
+    fetch(
+      `https://site.web.api.espn.com/apis/common/v3/sports/${espnSport}/${league}/athletes/${id}/stats`,
+      { signal: AbortSignal.timeout(4000), next: { revalidate: 3600 } } as RequestInit
+    ).then(r => r.ok ? r.json() : null).catch(() => null),
+  ])
+
+  const athlete = athleteData?.athlete
+  if (!athlete) return null
+
+  const posName: string | undefined = athlete.position?.name
+  const experience: string | null = athlete.displayExperience ? frenchifyExperience(athlete.displayExperience) : null
+
+  let season: string | null = null
+  let gamesPlayed: string | null = null, minutes: string | null = null
+  let points: string | null = null, rebounds: string | null = null, assists: string | null = null
+  const avg = statsData?.categories?.find((c: any) => c.name === 'averages')
+  const last = avg?.statistics?.[avg.statistics.length - 1]
+  if (last?.stats && Array.isArray(avg.labels)) {
+    const idx = (label: string) => avg.labels.indexOf(label)
+    const at = (label: string) => { const i = idx(label); return i >= 0 ? last.stats[i] ?? null : null }
+    season = last.season?.displayName || null
+    gamesPlayed = at('GP')
+    minutes = at('MIN')
+    rebounds = at('REB')
+    assists = at('AST')
+    points = at('PTS')
+  }
+
+  // citizenship est parfois absent (ex: Victor Wembanyama) alors que
+  // displayBirthPlace ("Paris, France") est fiable -- on retombe sur le
+  // dernier segment du lieu de naissance dans ce cas.
+  const birthCountry: string | undefined = typeof athlete.displayBirthPlace === 'string'
+    ? athlete.displayBirthPlace.split(',').pop()?.trim()
+    : undefined
+  const countryCode = espnCitizenshipToCode(athlete.citizenship) ?? espnCitizenshipToCode(birthCountry)
+
+  return {
+    age: athlete.age ?? null,
+    position: posName ? (ESPN_POSITION_TO_POSTE[posName] || null) : null,
+    countryCode,
+    experience,
+    season,
+    gamesPlayed, minutes, points, rebounds, assists,
+  }
 }
  
