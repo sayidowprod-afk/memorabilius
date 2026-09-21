@@ -97,7 +97,13 @@ export default function TeamPlayerSheetsPage() {
         padding: '16px 18px', borderRadius: 16, background: team.color, color: '#fff',
       }}>
         <TeamBadge teamId={team.id} size={48} />
-        <div style={{ fontWeight: 900, fontSize: 22 }}>{team.name}</div>
+        <div style={{ fontWeight: 900, fontSize: 22, flex: 1 }}>{team.name}</div>
+        <Link href={`/admin/player-sheets/${teamAbbr}/leaders`} style={{
+          padding: '9px 16px', borderRadius: 10, border: '1px solid rgba(255,255,255,0.6)', background: 'transparent',
+          color: '#fff', fontWeight: 800, fontSize: 13.5, textDecoration: 'none', whiteSpace: 'nowrap',
+        }}>
+          🏆 Leaders
+        </Link>
       </div>
 
       <div style={{ display: 'flex', gap: 8, marginBottom: 14 }}>
