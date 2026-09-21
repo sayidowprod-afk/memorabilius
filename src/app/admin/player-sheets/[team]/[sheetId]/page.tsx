@@ -8,6 +8,9 @@ import { useTheme } from '@/lib/ThemeContext'
 import Card3DInline from '@/components/Card3DInline'
 import TeamBadge from '@/components/TeamBadge'
 import type { CardSearchResult } from '@/app/api/admin/player-sheets-card-search/route'
+import { ALL_NBA_COUNTRIES, nbaCountryName } from '@/lib/nbaCountries'
+
+const POSTES = ['Meneur', 'Arrière', 'Ailier', 'Ailier Fort', 'Pivot']
 
 interface Sheet {
   id: string; player_name: string
@@ -55,6 +58,11 @@ export default function PlayerSheetEditorPage() {
   const pickerTimer = useRef<ReturnType<typeof setTimeout> | null>(null)
   const fileInputRef = useRef<HTMLInputElement>(null)
 
+  // Texte affiché dans le champ pays (nom lisible) -- distinct du code ISO
+  // stocké en base (sheet.stat_country). Initialisé une fois la fiche
+  // chargée, en repartant du code deja enregistre si possible.
+  const [countryText, setCountryText] = useState('')
+
   useEffect(() => {
     supabase.auth.getSession().then(async ({ data: { session } }) => {
       if (!session) { router.replace('/connexion'); return }
@@ -63,9 +71,18 @@ export default function PlayerSheetEditorPage() {
       const { data } = await supabase.from('player_sheets').select('*').eq('id', sheetId).single()
       if (!data) { router.replace(`/admin/player-sheets/${teamAbbr}`); return }
       setSheet(data)
+      setCountryText(nbaCountryName(data.stat_country) || data.stat_country || '')
       setReady(true)
     })
   }, [sheetId])
+
+  const onCountryTextChange = (text: string) => {
+    setCountryText(text)
+    const t = text.trim().toLowerCase()
+    const match = ALL_NBA_COUNTRIES.find(c => c.name.toLowerCase() === t)
+    if (match) { patch({ stat_country: match.code }); return }
+    if (/^[a-z]{2}$/.test(t)) patch({ stat_country: t.toUpperCase() })
+  }
 
   const patch = (fields: Partial<Sheet>) => setSheet(s => s ? { ...s, ...fields } : s)
 
@@ -213,7 +230,13 @@ export default function PlayerSheetEditorPage() {
         <div style={{ display: 'flex', flexDirection: 'column', gap: 14 }}>
           <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 12 }}>
             <div><span style={labelStyle}>Expérience</span><input style={inputStyle} value={sheet.stat_saison || ''} onChange={e => patch({ stat_saison: e.target.value })} placeholder="8e saison NBA" /></div>
-            <div><span style={labelStyle}>Poste</span><input style={inputStyle} value={sheet.stat_poste || ''} onChange={e => patch({ stat_poste: e.target.value })} placeholder="Meneur" /></div>
+            <div>
+              <span style={labelStyle}>Poste</span>
+              <select style={inputStyle} value={sheet.stat_poste || ''} onChange={e => patch({ stat_poste: e.target.value })}>
+                <option value="">--</option>
+                {POSTES.map(p => <option key={p} value={p}>{p}</option>)}
+              </select>
+            </div>
           </div>
           <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 12 }}>
             <div>
@@ -221,10 +244,13 @@ export default function PlayerSheetEditorPage() {
               <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
                 {flagImgUrl(sheet.stat_country) && <img src={flagImgUrl(sheet.stat_country)!} alt="" style={{ width: 24, height: 18, objectFit: 'cover', borderRadius: 3, flexShrink: 0 }} />}
                 <input
-                  style={inputStyle} value={sheet.stat_country || ''} maxLength={2}
-                  onChange={e => patch({ stat_country: e.target.value.toUpperCase() })}
-                  placeholder="US, FR, CA..."
+                  style={inputStyle} value={countryText} list="nba-countries"
+                  onChange={e => onCountryTextChange(e.target.value)}
+                  placeholder="Rechercher un pays..."
                 />
+                <datalist id="nba-countries">
+                  {ALL_NBA_COUNTRIES.map(c => <option key={c.code} value={c.name} />)}
+                </datalist>
               </div>
             </div>
             <div><span style={labelStyle}>Âge</span><input style={inputStyle} value={sheet.stat_age || ''} onChange={e => patch({ stat_age: e.target.value })} placeholder="27 ans" /></div>
