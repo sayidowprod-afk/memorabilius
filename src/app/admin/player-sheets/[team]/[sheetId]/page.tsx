@@ -49,7 +49,9 @@ export default function PlayerSheetEditorPage() {
   const [pickerQuery, setPickerQuery] = useState('')
   const [pickerResults, setPickerResults] = useState<CardSearchResult[]>([])
   const [pickerLoading, setPickerLoading] = useState(false)
+  const [uploading, setUploading] = useState(false)
   const pickerTimer = useRef<ReturnType<typeof setTimeout> | null>(null)
+  const fileInputRef = useRef<HTMLInputElement>(null)
 
   useEffect(() => {
     supabase.auth.getSession().then(async ({ data: { session } }) => {
@@ -93,6 +95,37 @@ export default function PlayerSheetEditorPage() {
       setPickerLoading(false)
     }, 350)
   }, [pickerQuery, pickerOpen])
+
+  const uploadImage = async (file: File) => {
+    setUploading(true)
+    try {
+      const isHorizontal = await new Promise<boolean>(resolve => {
+        const url = URL.createObjectURL(file)
+        const img = new Image()
+        const timeout = setTimeout(() => { URL.revokeObjectURL(url); resolve(false) }, 5000)
+        img.onload = () => { clearTimeout(timeout); URL.revokeObjectURL(url); resolve(img.naturalWidth > img.naturalHeight) }
+        img.onerror = () => { clearTimeout(timeout); URL.revokeObjectURL(url); resolve(false) }
+        img.src = url
+      })
+
+      const { data: { user } } = await supabase.auth.getUser()
+      if (!user) return
+      const path = `cartes/${user.id}/playersheet_${Date.now()}.jpg`
+      const { error } = await supabase.storage.from('avatars').upload(path, file, { upsert: true, contentType: file.type || 'image/jpeg' })
+      if (error) { alert(error.message); return }
+      const url = supabase.storage.from('avatars').getPublicUrl(path).data.publicUrl
+
+      patch({
+        card_id: null,
+        card_image_recto: url, card_image_recto_hd: url,
+        card_image_verso: null, card_image_verso_hd: null,
+        card_is_horizontal: isHorizontal,
+      })
+      setPickerOpen(false)
+    } finally {
+      setUploading(false)
+    }
+  }
 
   const pickCard = (c: CardSearchResult) => {
     patch({
@@ -228,10 +261,25 @@ export default function PlayerSheetEditorPage() {
               <div style={{ fontWeight: 900, fontSize: 17 }}>Choisir une carte</div>
               <button onClick={() => setPickerOpen(false)} style={{ border: 'none', background: 'transparent', fontSize: 20, cursor: 'pointer', color: 'inherit' }}>✕</button>
             </div>
-            <input
-              autoFocus value={pickerQuery} onChange={e => setPickerQuery(e.target.value)}
-              placeholder="Rechercher dans toutes les cartes du site (2 lettres min.)..." style={{ ...inputStyle, marginBottom: 14 }}
-            />
+            <div style={{ display: 'flex', gap: 8, marginBottom: 14 }}>
+              <input
+                autoFocus value={pickerQuery} onChange={e => setPickerQuery(e.target.value)}
+                placeholder="Rechercher dans toutes les cartes du site (2 lettres min.)..." style={inputStyle}
+              />
+              <input
+                ref={fileInputRef} type="file" accept="image/*" style={{ display: 'none' }}
+                onChange={e => { const f = e.target.files?.[0]; if (f) uploadImage(f); e.target.value = '' }}
+              />
+              <button
+                onClick={() => fileInputRef.current?.click()} disabled={uploading}
+                style={{
+                  padding: '0 16px', borderRadius: 8, border: `1px solid ${team.color}`, background: 'transparent',
+                  color: team.color, fontWeight: 800, fontSize: 13, cursor: 'pointer', whiteSpace: 'nowrap',
+                }}
+              >
+                {uploading ? '...' : '📤 Importer une image'}
+              </button>
+            </div>
             {pickerQuery.trim().length < 2 ? (
               <div style={{ textAlign: 'center', padding: 30, color: '#888', fontSize: 13.5 }}>Tape un nom de joueur, d'équipe ou de marque...</div>
             ) : pickerLoading ? (
