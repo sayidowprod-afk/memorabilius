@@ -3,8 +3,9 @@ import { useEffect, useState } from 'react'
 import Link from 'next/link'
 import { useParams, useRouter } from 'next/navigation'
 import { supabase } from '@/lib/supabase'
-import { SPORTS_TEAMS, teamLogoUrl } from '@/lib/sportsTeams'
+import { SPORTS_TEAMS } from '@/lib/sportsTeams'
 import { useTheme } from '@/lib/ThemeContext'
+import TeamBadge from '@/components/TeamBadge'
 
 interface Sheet {
   id: string; player_name: string; card_image_recto: string | null
@@ -95,7 +96,7 @@ export default function TeamPlayerSheetsPage() {
         display: 'flex', alignItems: 'center', gap: 14, margin: '10px 0 22px',
         padding: '16px 18px', borderRadius: 16, background: team.color, color: '#fff',
       }}>
-        <img src={teamLogoUrl(team)} alt="" style={{ width: 48, height: 48, objectFit: 'contain', filter: 'drop-shadow(0 2px 6px rgba(0,0,0,.3))' }} />
+        <TeamBadge teamId={team.id} size={48} />
         <div style={{ fontWeight: 900, fontSize: 22 }}>{team.name}</div>
       </div>
 

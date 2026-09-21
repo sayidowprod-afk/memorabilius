@@ -3,8 +3,9 @@ import { useEffect, useState } from 'react'
 import Link from 'next/link'
 import { useRouter } from 'next/navigation'
 import { supabase } from '@/lib/supabase'
-import { SPORTS_TEAMS, teamLogoUrl } from '@/lib/sportsTeams'
+import { SPORTS_TEAMS } from '@/lib/sportsTeams'
 import { useTheme } from '@/lib/ThemeContext'
+import TeamBadge from '@/components/TeamBadge'
 
 const NBA_TEAMS = SPORTS_TEAMS.filter(t => t.sport === 'nba')
 
@@ -42,7 +43,7 @@ export default function PlayerSheetsHubPage() {
             background: dark ? '#1a1a1a' : '#fff', border: `1px solid ${dark ? '#2a2a2a' : '#eee'}`,
             borderTop: `3px solid ${team.color}`,
           }}>
-            <img src={teamLogoUrl(team)} alt="" style={{ width: 44, height: 44, objectFit: 'contain' }} />
+            <TeamBadge teamId={team.id} size={44} />
             <div style={{ fontSize: 12.5, fontWeight: 700, textAlign: 'center', lineHeight: 1.25 }}>{team.name}</div>
           </Link>
         ))}

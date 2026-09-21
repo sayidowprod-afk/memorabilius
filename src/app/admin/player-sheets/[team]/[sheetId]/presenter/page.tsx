@@ -3,8 +3,9 @@ import { useEffect, useState } from 'react'
 import Link from 'next/link'
 import { useParams, useRouter } from 'next/navigation'
 import { supabase } from '@/lib/supabase'
-import { SPORTS_TEAMS, teamLogoUrl } from '@/lib/sportsTeams'
+import { SPORTS_TEAMS } from '@/lib/sportsTeams'
 import Card3DInline from '@/components/Card3DInline'
+import TeamBadge from '@/components/TeamBadge'
 
 interface Sheet {
   player_name: string
@@ -17,10 +18,12 @@ interface Sheet {
   notes: string | null
 }
 
-function countryFlag(code: string | null | undefined): string | null {
-  const c = (code || '').trim().toUpperCase()
+// Image plutôt qu'emoji -- pas de police couleur pour les drapeaux sur
+// Windows/Chrome desktop (affiche juste les 2 lettres du code).
+function flagImgUrl(code: string | null | undefined): string | null {
+  const c = (code || '').trim().toLowerCase()
   if (c.length !== 2) return null
-  return [...c].map(ch => String.fromCodePoint(ch.charCodeAt(0) + 127397)).join('')
+  return `https://flagcdn.com/w80/${c}.png`
 }
 
 function StatCard({ label, value, accent }: { label: string; value: string; accent: string }) {
@@ -60,7 +63,12 @@ export default function PlayerSheetPresenterPage() {
     return <div style={{ position: 'fixed', inset: 0, background: '#05070c', color: '#fff', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>Chargement...</div>
   }
 
-  const flag = countryFlag(sheet.stat_country)
+  const flag = flagImgUrl(sheet.stat_country)
+  const infoBadges = [
+    sheet.stat_poste && { label: 'Poste', value: sheet.stat_poste },
+    sheet.stat_age && { label: 'Âge', value: sheet.stat_age },
+    sheet.stat_saison && { label: 'Expérience', value: sheet.stat_saison },
+  ].filter(Boolean) as { label: string; value: string }[]
   const stats = [
     sheet.stat_points && { label: 'Points', value: sheet.stat_points },
     sheet.stat_rebonds && { label: 'Rebonds', value: sheet.stat_rebonds },
@@ -110,11 +118,11 @@ export default function PlayerSheetPresenterPage() {
         <div style={{ maxWidth: 580, width: '100%', display: 'flex', flexDirection: 'column', gap: 28 }}>
           <div>
             <div style={{ display: 'flex', alignItems: 'center', gap: 10, marginBottom: 14 }}>
-              <img src={teamLogoUrl(team)} alt="" style={{ width: 30, height: 30, objectFit: 'contain' }} />
+              <TeamBadge teamId={team.id} size={30} />
               <div style={{ fontSize: 13, fontWeight: 800, letterSpacing: 3, textTransform: 'uppercase', color: 'rgba(255,255,255,0.5)' }}>{team.name}</div>
             </div>
             <div style={{ display: 'flex', alignItems: 'center', gap: 16 }}>
-              {flag && <span style={{ fontSize: 40, lineHeight: 1 }}>{flag}</span>}
+              {flag && <img src={flag} alt="" style={{ width: 46, height: 34, objectFit: 'cover', borderRadius: 5, flexShrink: 0 }} />}
               <div style={{
                 fontSize: 'clamp(36px, 5.2vw, 58px)', fontWeight: 900, lineHeight: 1.03, letterSpacing: -1,
                 background: `linear-gradient(135deg, #fff 40%, ${team.color})`,
@@ -123,14 +131,16 @@ export default function PlayerSheetPresenterPage() {
                 {sheet.player_name}
               </div>
             </div>
-            {(sheet.stat_poste || sheet.stat_age || sheet.stat_saison) && (
+            {infoBadges.length > 0 && (
               <div style={{ display: 'flex', flexWrap: 'wrap', gap: 8, marginTop: 14 }}>
-                {[sheet.stat_poste, sheet.stat_age, sheet.stat_saison].filter(Boolean).map((v, i) => (
-                  <span key={i} style={{
-                    fontSize: 14, fontWeight: 800, color: 'rgba(255,255,255,0.85)',
+                {infoBadges.map(b => (
+                  <span key={b.label} style={{
+                    fontSize: 14, fontWeight: 700, color: 'rgba(255,255,255,0.85)',
                     background: 'rgba(255,255,255,0.08)', border: '1px solid rgba(255,255,255,0.1)',
                     borderRadius: 999, padding: '6px 14px',
-                  }}>{v}</span>
+                  }}>
+                    <span style={{ color: 'rgba(255,255,255,0.5)', fontWeight: 800 }}>{b.label} : </span>{b.value}
+                  </span>
                 ))}
               </div>
             )}

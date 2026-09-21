@@ -3,9 +3,10 @@ import { useEffect, useRef, useState } from 'react'
 import Link from 'next/link'
 import { useParams, useRouter } from 'next/navigation'
 import { supabase } from '@/lib/supabase'
-import { SPORTS_TEAMS, teamLogoUrl } from '@/lib/sportsTeams'
+import { SPORTS_TEAMS } from '@/lib/sportsTeams'
 import { useTheme } from '@/lib/ThemeContext'
 import Card3DInline from '@/components/Card3DInline'
+import TeamBadge from '@/components/TeamBadge'
 import type { CardSearchResult } from '@/app/api/admin/player-sheets-card-search/route'
 
 interface Sheet {
@@ -26,12 +27,13 @@ async function freshToken(): Promise<string | null> {
   return (await supabase.auth.getSession()).data.session?.access_token ?? null
 }
 
-// Code ISO 3166-1 alpha-2 -> emoji drapeau (paire de symboles indicateurs
-// régionaux), même technique que admin/stats.
-function countryFlag(code: string | null | undefined): string | null {
-  const c = (code || '').trim().toUpperCase()
+// Image plutôt qu'emoji drapeau -- Windows/Chrome desktop n'a pas de police
+// couleur pour les indicateurs régionaux et affiche juste les 2 lettres du
+// code au lieu du drapeau (constaté en test réel sur desktop).
+function flagImgUrl(code: string | null | undefined): string | null {
+  const c = (code || '').trim().toLowerCase()
   if (c.length !== 2) return null
-  return [...c].map(ch => String.fromCodePoint(ch.charCodeAt(0) + 127397)).join('')
+  return `https://flagcdn.com/w80/${c}.png`
 }
 
 export default function PlayerSheetEditorPage() {
@@ -154,8 +156,8 @@ export default function PlayerSheetEditorPage() {
         display: 'flex', alignItems: 'center', gap: 12, margin: '10px 0 20px',
         padding: '14px 18px', borderRadius: 14, background: team.color, color: '#fff',
       }}>
-        <img src={teamLogoUrl(team)} alt="" style={{ width: 36, height: 36, objectFit: 'contain' }} />
-        {countryFlag(sheet.stat_country) && <span style={{ fontSize: 22 }}>{countryFlag(sheet.stat_country)}</span>}
+        <TeamBadge teamId={team.id} size={36} />
+        {flagImgUrl(sheet.stat_country) && <img src={flagImgUrl(sheet.stat_country)!} alt="" style={{ width: 26, height: 19, objectFit: 'cover', borderRadius: 3 }} />}
         <input
           value={sheet.player_name}
           onChange={e => patch({ player_name: e.target.value })}
@@ -217,7 +219,7 @@ export default function PlayerSheetEditorPage() {
             <div>
               <span style={labelStyle}>Pays</span>
               <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
-                {countryFlag(sheet.stat_country) && <span style={{ fontSize: 20 }}>{countryFlag(sheet.stat_country)}</span>}
+                {flagImgUrl(sheet.stat_country) && <img src={flagImgUrl(sheet.stat_country)!} alt="" style={{ width: 24, height: 18, objectFit: 'cover', borderRadius: 3, flexShrink: 0 }} />}
                 <input
                   style={inputStyle} value={sheet.stat_country || ''} maxLength={2}
                   onChange={e => patch({ stat_country: e.target.value.toUpperCase() })}
