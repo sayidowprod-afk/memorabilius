@@ -140,6 +140,11 @@ export default function AutographQuizPresenterPage() {
       // plus tard, elle ne sera de toute facon plus reproposee au rechargement.
       return reviewMode ? updated : updated.filter(c => c.id !== current.id || newTier === null)
     })
+    // La carte suivante glisse automatiquement au meme index (celle-ci sort de
+    // la file) -- sans ca, `revealed` restait a true et la carte suivante
+    // s'affichait direct avec la reponse/les propositions au lieu de repartir
+    // sur la signature seule, comme next()/prev()/reshuffle() le font deja.
+    if (!reviewMode && newTier !== null) setRevealed(false)
     try {
       await fetch('/api/admin/autograph-quiz', {
         method: 'PATCH',
