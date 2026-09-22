@@ -44,9 +44,15 @@ export async function GET(req: NextRequest) {
   const safeQ = q.replace(/%/g, '\\%').replace(/_/g, '\\_')
 
   const [{ data: manuelles }, { data: setEntries }, { data: csvProfiles }] = await Promise.all([
+    // Sans tri explicite, Postgres ne garantit aucun ordre -- pour un nom
+    // demande (ex: un prospect populaire, 60+ cartes correspondantes), la
+    // limite etait remplie par un sous-ensemble arbitraire et une carte tout
+    // juste ajoutee pouvait ne jamais apparaitre. Les plus recentes d'abord
+    // garantit qu'un ajout recent survit toujours a la coupe.
     admin.from('cartes_manuelles')
       .select('id, nom, equipe, annee, marque, num, image_recto, image_recto_hd, image_verso, image_verso_hd, is_horizontal, user_id')
       .or(`nom.ilike.%${safeQ}%,equipe.ilike.%${safeQ}%,marque.ilike.%${safeQ}%`)
+      .order('created_at', { ascending: false })
       .limit(60),
     admin.from('card_set_entries')
       .select('id, player_name, card_number, image_url, is_rc, card_sets(name, year, brand)')
