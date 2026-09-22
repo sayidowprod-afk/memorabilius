@@ -42,19 +42,24 @@ function truncate(ctx: CanvasRenderingContext2D, text: string, maxW: number): st
   return t + '…'
 }
 
-// La carte est déjà affichée ailleurs sur la page via un <img> sans crossOrigin
-// -- si on redemande la même URL en mode CORS, le navigateur peut resservir
-// l'entrée de cache non-CORS existante, ce qui "tainted" le canvas et fait
-// échouer toBlob() au moment du download. Un paramètre cache-buster force une
-// requête réseau fraîche, correctement négociée en CORS cette fois.
+// Un <img crossOrigin="anonymous"> direct echoue en pratique aussi bien vers
+// notre propre Supabase Storage (bloque cote CDN) que vers un hebergeur
+// externe (cartes importees via CSV, ex: i.ibb.co, aucune garantie CORS) --
+// constate : rendu de l'export totalement noir pour les cartes CSV, la
+// promesse de chargement ne se resolvant jamais proprement. /api/proxy-image
+// existe deja pour ce cas precis (deja utilise ici meme pour les logos
+// d'equipe) : il recharge l'image cote serveur et la resert depuis notre
+// propre domaine, donc plus aucun probleme de CORS cote client, et son
+// propre timeout serveur (10s) garantit une reponse (succes ou erreur nette)
+// au lieu d'un chargement qui ne se termine jamais.
+const proxied = (src: string) => src.startsWith('/') ? src : `/api/proxy-image?url=${encodeURIComponent(src)}`
+
 const loadImage = (src: string): Promise<HTMLImageElement> =>
   new Promise(resolve => {
-    const bustedSrc = src + (src.includes('?') ? '&' : '?') + '_cors=1'
     const img = new Image()
-    img.crossOrigin = 'anonymous'
     img.onload = () => resolve(img)
-    img.onerror = () => { const i2 = new Image(); i2.onload = () => resolve(i2); i2.onerror = () => resolve(i2); i2.src = src }
-    img.src = bustedSrc
+    img.onerror = () => resolve(img) // reste "cassee" (0x0) -- gere par l'appelant (voir drawImage plus bas)
+    img.src = proxied(src)
   })
 
 export default function CardPhotoExport({ card, accent: accentProp, onClose, ownerId }: Props) {
@@ -328,7 +333,16 @@ export default function CardPhotoExport({ card, accent: accentProp, onClose, own
     // sur le fond.
 
     // ── Image de la carte ─────────────────────────────────────────────────────
-    ctx.drawImage(img, cardX, cardTop, cardW, cardH)
+    // Filet de securite : si les deux tentatives de chargement ont echoue
+    // (image vraiment injoignable), img reste une image "cassee" (0x0) --
+    // drawImage() leve alors une exception qui interromprait tout le reste du
+    // dessin (badges, texte...). On saute juste l'image plutot que de tout
+    // faire echouer silencieusement.
+    if (img.naturalWidth > 0) ctx.drawImage(img, cardX, cardTop, cardW, cardH)
+    else {
+      ctx.fillStyle = isDark ? '#111122' : '#e5e0d5'
+      ctx.fillRect(cardX, cardTop, cardW, cardH)
+    }
 
     // ── Highlight du bord supérieur (lumière zénithale) -- seul effet de
     // lumière laissé directement sur l'image, discret et non coloré ──────────

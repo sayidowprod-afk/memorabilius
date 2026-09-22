@@ -224,13 +224,20 @@ export default function CardVideoExport({ card, accent: accentProp, onClose, own
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [vfmt, theme, recording, accent, teamTheme, teamLogoImg])
 
+  // Un <img crossOrigin="anonymous"> direct echoue en pratique aussi bien vers
+  // notre propre Supabase Storage (bloque cote CDN) que vers un hebergeur
+  // externe (cartes importees via CSV, aucune garantie CORS) -- constate :
+  // export video totalement noir pour les cartes CSV. /api/proxy-image (deja
+  // utilise ici pour les logos d'equipe) recharge l'image cote serveur et la
+  // resert depuis notre propre domaine, donc plus de probleme CORS cote
+  // client, et son timeout serveur garantit une reponse nette au lieu d'un
+  // chargement qui ne se termine jamais.
   const loadImage = (src: string): Promise<HTMLImageElement> =>
     new Promise(resolve => {
       const img = new Image()
-      img.crossOrigin = 'anonymous'
       img.onload = () => resolve(img)
-      img.onerror = () => { const i2 = new Image(); i2.onload = () => resolve(i2); i2.onerror = () => resolve(i2); i2.src = src }
-      img.src = src
+      img.onerror = () => resolve(img)
+      img.src = src.startsWith('/') ? src : `/api/proxy-image?url=${encodeURIComponent(src)}`
     })
 
   const drawFrame = (ctx: CanvasRenderingContext2D, frontImg: HTMLImageElement, backImg: HTMLImageElement, p: number, holdT = 0) => {
