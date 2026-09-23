@@ -20,6 +20,7 @@ interface CardInfo {
   auto: boolean
   patch: boolean
   isManuelle: boolean
+  valeur?: number | null
 }
 
 interface Filters {
@@ -43,6 +44,10 @@ interface TradeModalProps {
   initialTargetSelected?: string[]
   initialMySelected?: string[]
   initialMessage?: string
+  // Contre-offre : id de l'offre d'origine (voir api/trades POST `counterOf`)
+  counterOfId?: string
+  // false = reste sur la page appelante apres l'envoi (ex: /trades) au lieu d'ouvrir le chat
+  redirectToChat?: boolean
   targetUserId: string
   targetUserName: string
   onClose: () => void
@@ -202,7 +207,7 @@ function FilterBar({ cards, filters, onChange }: { cards: CardInfo[]; filters: F
   )
 }
 
-export default function TradeModal({ targetCard, initialTargetSelected, initialMySelected, initialMessage, targetUserId, targetUserName, onClose, onSuccess }: TradeModalProps) {
+export default function TradeModal({ targetCard, initialTargetSelected, initialMySelected, initialMessage, counterOfId, redirectToChat = true, targetUserId, targetUserName, onClose, onSuccess }: TradeModalProps) {
   const router = useRouter()
   const { t } = useLang()
 
@@ -227,7 +232,7 @@ export default function TradeModal({ targetCard, initialTargetSelected, initialM
   const fetchTargetCards = useCallback(async () => {
     const [{ data: manuelles }, { data: profile }, { data: privees }] = await Promise.all([
       supabase.from('cartes_manuelles')
-        .select('id, nom, annee, marque, equipe, image_recto, rc, auto, patch')
+        .select('id, nom, annee, marque, equipe, image_recto, rc, auto, patch, valeur')
         .eq('user_id', targetUserId)
         .order('created_at', { ascending: false }),
       supabase.from('profiles').select('lien_csv').eq('id', targetUserId).single(),
@@ -253,7 +258,7 @@ export default function TradeModal({ targetCard, initialTargetSelected, initialM
     if (!session) return
     const [{ data: manuelles }, { data: profile }] = await Promise.all([
       supabase.from('cartes_manuelles')
-        .select('id, nom, annee, marque, equipe, image_recto, rc, auto, patch')
+        .select('id, nom, annee, marque, equipe, image_recto, rc, auto, patch, valeur')
         .eq('user_id', session.user.id)
         .order('created_at', { ascending: false }),
       supabase.from('profiles').select('lien_csv').eq('id', session.user.id).single(),
@@ -285,6 +290,12 @@ export default function TradeModal({ targetCard, initialTargetSelected, initialM
     const next = new Set(prev); next.has(id) ? next.delete(id) : next.add(id); return next
   })
 
+  // Valeur estimee (cartes de galerie ayant une valeur ; CSV = inconnue) --
+  // toi donnes = mes cartes selectionnees, tu recois = celles du destinataire.
+  const sumSel = (cards: CardInfo[], sel: Set<string>) => cards.filter(c => sel.has(c.id)).reduce((a, c) => a + (Number(c.valeur) || 0), 0)
+  const giveValue = sumSel(myCards, mySelected)
+  const getValue = sumSel(targetCards, targetSelected)
+
   const filteredTarget = applyFilters(targetCards, targetFilters)
   const filteredMy = applyFilters(myCards, myFilters)
 
@@ -313,14 +324,14 @@ export default function TradeModal({ targetCard, initialTargetSelected, initialM
       const res = await fetch('/api/trades', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${session.access_token}` },
-        body: JSON.stringify({ receiverId: targetUserId, offeredCards, requestedCards, message: message.trim() || undefined }),
+        body: JSON.stringify({ receiverId: targetUserId, offeredCards, requestedCards, message: message.trim() || undefined, counterOf: counterOfId }),
       })
       const json = await res.json()
       if (!res.ok) { setError(json.error || t('trademodal_err_generic')); setSending(false); return }
       setJustSent(true)
       setTimeout(() => {
         onSuccess()
-        router.push(`/messages?to=${targetUserId}`)
+        if (redirectToChat) router.push(`/messages?to=${targetUserId}`)
       }, 650)
     } catch {
       setError(t('trademodal_err_network'))
@@ -341,7 +352,7 @@ export default function TradeModal({ targetCard, initialTargetSelected, initialM
       <div onClick={e => e.stopPropagation()} style={{ background: 'var(--card-bg, #fff)', color: 'var(--text, #121212)', borderRadius: 18, padding: 24, width: '100%', maxWidth: 560, maxHeight: '92vh', display: 'flex', flexDirection: 'column', gap: 14, overflowY: 'auto', boxSizing: 'border-box' }}>
 
         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-          <h2 style={{ fontSize: 18, fontWeight: 800, margin: 0 }}>{t('trademodal_title')}</h2>
+          <h2 style={{ fontSize: 18, fontWeight: 800, margin: 0 }}>{counterOfId ? `↩️ ${t('trades_counter_title')}` : t('trademodal_title')}</h2>
           <ModalCloseButton onClick={onClose} />
         </div>
 
@@ -366,6 +377,16 @@ export default function TradeModal({ targetCard, initialTargetSelected, initialM
           <FilterBar cards={myCards} filters={myFilters} onChange={setMyFilters} />
           <CardGrid cards={filteredMy} selected={mySelected} onToggle={toggleMy} loading={myLoading} emptyMsg={t('trademodal_my_empty')} />
         </div>
+
+        {(giveValue > 0 || getValue > 0) && (
+          <div style={{ display: 'flex', gap: 14, flexWrap: 'wrap', fontSize: 12, color: 'var(--text2, #555)', background: 'var(--bg3, #f8f8f8)', borderRadius: 10, padding: '8px 12px' }}>
+            <span>{t('trades_value_give')} <b>{giveValue.toFixed(0)}€</b></span>
+            <span>{t('trades_value_get')} <b>{getValue.toFixed(0)}€</b></span>
+            <span style={{ fontWeight: 800, color: Math.abs(giveValue - getValue) <= Math.max(5, Math.max(giveValue, getValue) * 0.15) ? '#1b5e20' : '#c0392b' }}>
+              {t('trades_value_gap')} {Math.abs(giveValue - getValue).toFixed(0)}€
+            </span>
+          </div>
+        )}
 
         <div>
           <textarea placeholder={t('trademodal_message_placeholder')} value={message} onChange={e => setMessage(e.target.value)}
@@ -392,7 +413,7 @@ export default function TradeModal({ targetCard, initialTargetSelected, initialM
         >
           {justSent
             ? <span className="trade-sent-fly" style={{ display: 'inline-flex', alignItems: 'center', gap: 8 }}>🃏 <span style={{ fontSize: 18 }}>→</span> ✓ {t('trademodal_sent')}</span>
-            : sending ? t('trademodal_sending') : `${t('trademodal_send_offer')} (${targetSelected.size}↔${mySelected.size})`}
+            : sending ? t('trademodal_sending') : `${counterOfId ? t('trades_counter_send') : t('trademodal_send_offer')} (${targetSelected.size}↔${mySelected.size})`}
         </button>
       </div>
     </div>

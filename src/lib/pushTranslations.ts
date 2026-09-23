@@ -153,3 +153,45 @@ export function winbackPush(lang: PushLang) {
     }[lang],
   }
 }
+
+export type TradeEvent = 'counter' | 'expiring' | 'expired' | 'shipped' | 'received' | 'completed' | 'followup' | 'review'
+
+// Evenements du cycle de vie d'un echange (contre-offre, expiration, suivi,
+// avis) -- voir api/trades/** et api/cron/trade-expiry.
+export function tradeEventPush(lang: PushLang, event: TradeEvent, actorName: string) {
+  const t: Record<TradeEvent, { title: Record<PushLang, string>; body: Record<PushLang, string> }> = {
+    counter: {
+      title: { fr: '↩️ Contre-offre reçue', en: '↩️ Counter-offer received', de: '↩️ Gegenangebot erhalten' },
+      body: { fr: `${actorName} te propose une contre-offre`, en: `${actorName} sent you a counter-offer`, de: `${actorName} hat dir ein Gegenangebot gemacht` },
+    },
+    expiring: {
+      title: { fr: '⏳ Offre bientôt expirée', en: '⏳ Offer about to expire', de: '⏳ Angebot läuft bald ab' },
+      body: { fr: `L'offre de ${actorName} expire dans moins de 48h — réponds-lui !`, en: `${actorName}'s offer expires in under 48h — reply now!`, de: `Das Angebot von ${actorName} läuft in unter 48h ab — antworte jetzt!` },
+    },
+    expired: {
+      title: { fr: '⌛ Offre expirée', en: '⌛ Offer expired', de: '⌛ Angebot abgelaufen' },
+      body: { fr: `Ton offre à ${actorName} a expiré sans réponse`, en: `Your offer to ${actorName} expired without a reply`, de: `Dein Angebot an ${actorName} ist ohne Antwort abgelaufen` },
+    },
+    shipped: {
+      title: { fr: '📦 Cartes envoyées', en: '📦 Cards shipped', de: '📦 Karten verschickt' },
+      body: { fr: `${actorName} a envoyé ses cartes`, en: `${actorName} shipped their cards`, de: `${actorName} hat die Karten verschickt` },
+    },
+    received: {
+      title: { fr: '✅ Cartes reçues', en: '✅ Cards received', de: '✅ Karten erhalten' },
+      body: { fr: `${actorName} a bien reçu tes cartes`, en: `${actorName} received your cards`, de: `${actorName} hat deine Karten erhalten` },
+    },
+    completed: {
+      title: { fr: '🎉 Échange terminé', en: '🎉 Trade completed', de: '🎉 Tausch abgeschlossen' },
+      body: { fr: `Ton échange avec ${actorName} est terminé — laisse un avis !`, en: `Your trade with ${actorName} is complete — leave a review!`, de: `Dein Tausch mit ${actorName} ist abgeschlossen — hinterlasse eine Bewertung!` },
+    },
+    followup: {
+      title: { fr: '📮 Où en est votre échange ?', en: '📮 How is your trade going?', de: '📮 Wie läuft euer Tausch?' },
+      body: { fr: `N'oublie pas de confirmer l'envoi/la réception avec ${actorName}`, en: `Don't forget to confirm shipping/receipt with ${actorName}`, de: `Vergiss nicht, Versand/Erhalt mit ${actorName} zu bestätigen` },
+    },
+    review: {
+      title: { fr: '⭐ Nouvel avis', en: '⭐ New review', de: '⭐ Neue Bewertung' },
+      body: { fr: `${actorName} t'a laissé un avis suite à votre échange`, en: `${actorName} left you a review after your trade`, de: `${actorName} hat dir nach eurem Tausch eine Bewertung hinterlassen` },
+    },
+  }
+  return { title: t[event].title[lang], body: t[event].body[lang] }
+}

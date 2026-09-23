@@ -58,6 +58,7 @@ import { parseNaturalQuery } from '@/lib/parseNaturalQuery'
 import BadgeBox from '@/components/BadgeBox'
 import { cardDisplayRatio, isHorizontalFormat, getFormat } from '@/lib/cardFormats'
 import TeamBadge from '@/components/TeamBadge'
+import TradeReputation from '@/components/TradeReputation'
 
 // ── Helpers numériques (module scope pour éviter re-création à chaque render) ──
 const numValue = (num: string) => { const m = num.trim().match(/\/(\d+)$/); return m ? parseInt(m[1]) : null }
@@ -2155,6 +2156,7 @@ export default function GalerieClient({ userId, initialCardUrl, initialCards, in
                 ) : (
                   <h1 className={profile?.is_donor ? 'holo-name' : ''} style={{ fontSize: 24, fontWeight: 900, margin: 0, color: profile?.is_donor ? undefined : undefined }}>{profile?.display_name || t('gallery_default_collector')}</h1>
                 )}
+                <TradeReputation userId={userId} />
                 {profile?.is_donor && (
                   <span className="sticker-holo" data-label="Donateur Ko-fi" style={{ fontSize: 26 }}>☕</span>
                 )}

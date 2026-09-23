@@ -80,7 +80,8 @@ export default function Trades() {
 
   // ── Matches wishlist <-> collection (voir api/trades/matches) ───────────────
   const [matches, setMatches] = useState<any[] | null>(null)
-  const [tradeModal, setTradeModal] = useState<{ userId: string; name: string; targetIds: string[]; myIds: string[]; message?: string } | null>(null)
+  const [tradeModal, setTradeModal] = useState<{ userId: string; name: string; targetIds: string[]; myIds: string[]; message?: string; counterOfId?: string } | null>(null)
+  const [reviewDraft, setReviewDraft] = useState<Record<string, { rating: number; comment: string }>>({})
   const [fAnnee, setFAnnee] = useState('')
   const [sortBy, setSortBy] = useState<'recent' | 'valeur_asc' | 'valeur_desc'>('recent')
 
@@ -274,6 +275,44 @@ export default function Trades() {
     setLoadingOffers(false)
   }
 
+  // Suivi apres acceptation : "j'ai envoye" / "j'ai recu" (voir api/trades/[id]).
+  const trackTrade = async (tradeId: string, action: 'ship' | 'receive') => {
+    setActing(tradeId + action)
+    const { data: { session } } = await supabase.auth.getSession()
+    if (!session) { setActing(null); return }
+    try {
+      const res = await fetch(`/api/trades/${tradeId}`, {
+        method: 'PATCH',
+        headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${session.access_token}` },
+        body: JSON.stringify({ action }),
+      })
+      if (!res.ok) toast.error((await res.json().catch(() => ({}))).error || t('trades_offer_action_error'))
+    } catch { toast.error(t('trades_offer_action_error')) }
+    await loadTradeOffers()
+    setActing(null)
+  }
+
+  const submitReview = async (tradeId: string) => {
+    const draft = reviewDraft[tradeId]
+    if (!draft?.rating) return
+    setActing(tradeId + 'review')
+    const { data: { session } } = await supabase.auth.getSession()
+    if (!session) { setActing(null); return }
+    try {
+      const res = await fetch(`/api/trades/${tradeId}/review`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${session.access_token}` },
+        body: JSON.stringify({ rating: draft.rating, comment: draft.comment || undefined }),
+      })
+      if (res.ok) toast.success(t('trades_review_thanks'))
+      else toast.error((await res.json().catch(() => ({}))).error || t('trades_offer_action_error'))
+    } catch { toast.error(t('trades_offer_action_error')) }
+    await loadTradeOffers()
+    setActing(null)
+  }
+
+  const sumValue = (cards: any[]) => (cards || []).reduce((acc, c) => acc + (Number(c.valeur) || 0), 0)
+
   const OFFER_CONFIRM_KEY = { accept: 'trades_offer_accept_confirm', refuse: 'trades_offer_refuse_confirm', cancel: 'trades_offer_cancel_confirm' } as const
 
   const actOnOffer = async (tradeId: string, action: 'accept' | 'refuse' | 'cancel') => {
@@ -336,8 +375,8 @@ export default function Trades() {
     return sortBy === 'valeur_asc' ? va - vb : vb - va
   })
 
-  const pendingOffers = tradeOffers.filter(t => t.status === 'pending')
-  const historyOffers = tradeOffers.filter(t => t.status !== 'pending')
+  const pendingOffers = tradeOffers.filter(t => t.status === 'pending' || t.status === 'accepted')
+  const historyOffers = tradeOffers.filter(t => t.status !== 'pending' && t.status !== 'accepted')
   const shownOffers = offerTab === 'pending' ? pendingOffers : historyOffers
 
   const SocialBadges = ({ profile }: { profile: any }) => (
@@ -458,6 +497,8 @@ export default function Trades() {
           initialTargetSelected={tradeModal.targetIds}
           initialMySelected={tradeModal.myIds}
           initialMessage={tradeModal.message}
+          counterOfId={tradeModal.counterOfId}
+          redirectToChat={false}
           onClose={() => setTradeModal(null)}
           onSuccess={() => { setTradeModal(null); toast.success(t('trades_offer_sent')); setMainTab('echanges'); loadTradeOffers() }}
         />
@@ -616,13 +657,13 @@ export default function Trades() {
         <div style={{ maxWidth: 640, margin: '0 auto' }}>
           {/* Sous-onglets */}
           <div style={{ display: 'flex', gap: 8, marginBottom: 20 }}>
-            {(['pending', 'history'] as const).map(t => (
-              <button key={t} onClick={() => setOfferTab(t)} style={{
+            {(['pending', 'history'] as const).map(sub => (
+              <button key={sub} onClick={() => setOfferTab(sub)} style={{
                 border: 'none', borderRadius: 50, padding: '8px 18px', fontWeight: 700, fontSize: 13, cursor: 'pointer',
-                background: offerTab === t ? '#003DA6' : 'var(--bg3, #f0f0f0)',
-                color: offerTab === t ? '#fff' : 'var(--text2, #555)',
+                background: offerTab === sub ? '#003DA6' : 'var(--bg3, #f0f0f0)',
+                color: offerTab === sub ? '#fff' : 'var(--text2, #555)',
               }}>
-                {t === 'pending' ? `En attente (${pendingOffers.length})` : `Historique (${historyOffers.length})`}
+                {sub === 'pending' ? `${t('trades_in_progress')} (${pendingOffers.length})` : `Historique (${historyOffers.length})`}
               </button>
             ))}
           </div>
@@ -640,6 +681,9 @@ export default function Trades() {
                   accepted:  { label: t('echanges_status_accepted'),  ...TRADE_STATUS_COLOR.accepted },
                   refused:   { label: t('echanges_status_refused'),   ...TRADE_STATUS_COLOR.refused },
                   cancelled: { label: t('echanges_status_cancelled'), ...TRADE_STATUS_COLOR.cancelled },
+                  countered: { label: t('echanges_status_countered'), ...TRADE_STATUS_COLOR.countered },
+                  expired:   { label: t('echanges_status_expired'),   ...TRADE_STATUS_COLOR.expired },
+                  completed: { label: t('echanges_status_completed'), ...TRADE_STATUS_COLOR.completed },
                 }
                 const isSender = trade.sender_id === userId
                 const status = STATUS_LABEL[trade.status] || STATUS_LABEL.cancelled
@@ -647,6 +691,12 @@ export default function Trades() {
                 const otherUserId = isSender ? trade.receiver_id : trade.sender_id
                 const myCards = isSender ? trade.offered_cards : trade.requested_cards
                 const theirCards = isSender ? trade.requested_cards : trade.offered_cards
+                const myValue = sumValue(myCards), theirValue = sumValue(theirCards)
+                const myShipped = isSender ? trade.sender_shipped_at : trade.receiver_shipped_at
+                const theirShipped = isSender ? trade.receiver_shipped_at : trade.sender_shipped_at
+                const myReceived = isSender ? trade.sender_received_at : trade.receiver_received_at
+                const theirReceived = isSender ? trade.receiver_received_at : trade.sender_received_at
+                const draft = reviewDraft[trade.id] || { rating: 0, comment: '' }
 
                 return (
                   <div key={trade.id} style={{ background: 'var(--card-bg, #fff)', borderRadius: 16, padding: 20, boxShadow: '0 2px 12px rgba(0,0,0,0.07)', border: '1.5px solid var(--border, #f0f0f0)' }}>
@@ -698,6 +748,22 @@ export default function Trades() {
                       </div>
                     </div>
 
+                    {/* Valeur estimee des deux cotes (cartes de galerie ayant une valeur) */}
+                    {(myValue > 0 || theirValue > 0) && (
+                      <div style={{ marginBottom: 12, fontSize: 12, color: 'var(--text2, #555)', display: 'flex', gap: 14, flexWrap: 'wrap' }}>
+                        <span>{t('trades_value_give')} <b>{myValue.toFixed(0)}€</b></span>
+                        <span>{t('trades_value_get')} <b>{theirValue.toFixed(0)}€</b></span>
+                        <span style={{ fontWeight: 800, color: Math.abs(myValue - theirValue) <= Math.max(5, Math.max(myValue, theirValue) * 0.15) ? '#1b5e20' : '#c0392b' }}>
+                          {t('trades_value_gap')} {Math.abs(myValue - theirValue).toFixed(0)}€
+                        </span>
+                      </div>
+                    )}
+                    {trade.status === 'pending' && trade.expires_at && (
+                      <div style={{ marginBottom: 10, fontSize: 12, color: 'var(--text3, #888)' }}>
+                        ⏳ {t('trades_expires_on')} {new Date(trade.expires_at).toLocaleDateString(localeFor(lang))}
+                      </div>
+                    )}
+
                     {/* Message */}
                     {trade.message && (
                       <div style={{ marginBottom: 12, background: 'var(--bg3, #f8f8f8)', borderRadius: 8, padding: '8px 12px', fontSize: 13, color: 'var(--text2, #555)' }}>
@@ -721,6 +787,14 @@ export default function Trades() {
                             style={{ flex: 1, border: '2px solid var(--border, #ccc)', borderRadius: 50, padding: '10px', background: 'var(--card-bg, #fff)', color: 'var(--text2, #555)', fontWeight: 800, fontSize: 13, cursor: 'pointer' }}>
                             {acting === trade.id + 'refuse' ? '…' : '✕ Refuser'}
                           </button>
+                          <button disabled={acting !== null} onClick={() => setTradeModal({
+                            userId: otherUserId, name: otherName, counterOfId: trade.id,
+                            targetIds: (trade.offered_cards || []).map((c: any) => c.id),
+                            myIds: (trade.requested_cards || []).map((c: any) => c.id),
+                          })}
+                            style={{ border: '2px solid #003DA6', borderRadius: 50, padding: '10px 16px', background: 'var(--card-bg, #fff)', color: '#003DA6', fontWeight: 800, fontSize: 13, cursor: 'pointer' }}>
+                            ↩️ {t('trades_counter_offer')}
+                          </button>
                         </>
                       )}
                       {trade.status === 'pending' && isSender && (
@@ -730,6 +804,68 @@ export default function Trades() {
                         </button>
                       )}
                     </div>
+
+                    {/* Suivi apres acceptation */}
+                    {(trade.status === 'accepted' || trade.status === 'completed') && (
+                      <div style={{ marginTop: 14, borderTop: '1px dashed var(--border, #e5e5e5)', paddingTop: 12 }}>
+                        <div style={{ fontSize: 11, fontWeight: 800, textTransform: 'uppercase', color: 'var(--text3, #888)', marginBottom: 8 }}>{t('trades_track_title')}</div>
+                        <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 6, fontSize: 12, marginBottom: 10 }}>
+                          <span>{myShipped ? '✅' : '⬜'} {t('trades_track_you_shipped')}</span>
+                          <span>{theirShipped ? '✅' : '⬜'} {t('trades_track_they_shipped')}</span>
+                          <span>{myReceived ? '✅' : '⬜'} {t('trades_track_you_received')}</span>
+                          <span>{theirReceived ? '✅' : '⬜'} {t('trades_track_they_received')}</span>
+                        </div>
+                        {trade.status === 'accepted' && (
+                          <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap' }}>
+                            {!myShipped && (
+                              <button disabled={acting !== null} onClick={() => trackTrade(trade.id, 'ship')}
+                                style={{ border: 'none', borderRadius: 50, padding: '9px 16px', background: '#003DA6', color: '#fff', fontWeight: 800, fontSize: 12, cursor: 'pointer' }}>
+                                {acting === trade.id + 'ship' ? '…' : '📦 ' + t('trades_mark_shipped')}
+                              </button>
+                            )}
+                            {!myReceived && (
+                              <button disabled={acting !== null} onClick={() => trackTrade(trade.id, 'receive')}
+                                style={{ border: 'none', borderRadius: 50, padding: '9px 16px', background: '#1b5e20', color: '#fff', fontWeight: 800, fontSize: 12, cursor: 'pointer' }}>
+                                {acting === trade.id + 'receive' ? '…' : '✅ ' + t('trades_mark_received')}
+                              </button>
+                            )}
+                          </div>
+                        )}
+                      </div>
+                    )}
+
+                    {/* Avis apres un echange termine */}
+                    {trade.status === 'completed' && (
+                      <div style={{ marginTop: 14, borderTop: '1px dashed var(--border, #e5e5e5)', paddingTop: 12 }}>
+                        {trade.my_review ? (
+                          <div style={{ fontSize: 12, color: 'var(--text2, #555)' }}>
+                            {t('trades_review_yours')} : {'⭐'.repeat(trade.my_review.rating)}{trade.my_review.comment ? ` — ${trade.my_review.comment}` : ''}
+                          </div>
+                        ) : (
+                          <div>
+                            <div style={{ fontSize: 12, fontWeight: 800, marginBottom: 6 }}>{t('trades_review_title')}</div>
+                            <div style={{ display: 'flex', gap: 4, marginBottom: 8 }}>
+                              {[1, 2, 3, 4, 5].map(n => (
+                                <button key={n} onClick={() => setReviewDraft(prev => ({ ...prev, [trade.id]: { ...draft, rating: n } }))}
+                                  style={{ border: 'none', background: 'none', fontSize: 24, cursor: 'pointer', opacity: n <= draft.rating ? 1 : 0.25, padding: 0 }}>⭐</button>
+                              ))}
+                            </div>
+                            <input value={draft.comment} maxLength={500} placeholder={t('trades_review_placeholder')}
+                              onChange={e => setReviewDraft(prev => ({ ...prev, [trade.id]: { ...draft, comment: e.target.value } }))}
+                              style={{ width: '100%', boxSizing: 'border-box', marginBottom: 8 }} />
+                            <button disabled={!draft.rating || acting !== null} onClick={() => submitReview(trade.id)}
+                              style={{ border: 'none', borderRadius: 50, padding: '9px 18px', background: draft.rating ? '#003DA6' : '#ccc', color: '#fff', fontWeight: 800, fontSize: 12, cursor: draft.rating ? 'pointer' : 'default' }}>
+                              {acting === trade.id + 'review' ? '…' : t('trades_review_send')}
+                            </button>
+                          </div>
+                        )}
+                        {trade.their_review && (
+                          <div style={{ fontSize: 12, color: 'var(--text2, #555)', marginTop: 8 }}>
+                            {t('trades_review_theirs')} : {'⭐'.repeat(trade.their_review.rating)}{trade.their_review.comment ? ` — ${trade.their_review.comment}` : ''}
+                          </div>
+                        )}
+                      </div>
+                    )}
                   </div>
                 )
               })}

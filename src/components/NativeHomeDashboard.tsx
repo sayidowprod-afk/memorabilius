@@ -97,6 +97,26 @@ export default function NativeHomeDashboard({ siteStats }: { siteStats: SiteStat
   const [retryKey, setRetryKey] = useState(0)
   const [showXpInfo, setShowXpInfo] = useState(false)
 
+  // Encart echanges (offres en attente + matches wishlist) : requete SEPAREE
+  // et non bloquante -- ne doit jamais retarder ni faire echouer le
+  // chargement principal du dashboard (voir l'historique du "F5" plus haut).
+  const [tradeSummary, setTradeSummary] = useState<{ pendingReceived: number; inProgress: number; matches: number; perfectMatches: number } | null>(null)
+  useEffect(() => {
+    if (!user) return
+    let cancelled = false
+    ;(async () => {
+      try {
+        const { data: { session } } = await supabase.auth.getSession()
+        if (!session) return
+        const res = await fetch('/api/trades/summary', { headers: { Authorization: `Bearer ${session.access_token}` } })
+        if (!res.ok) return
+        const json = await res.json()
+        if (!cancelled) setTradeSummary(json)
+      } catch { /* encart optionnel */ }
+    })()
+    return () => { cancelled = true }
+  }, [user?.id])
+
   // Depend sur user?.id (primitif stable), PAS sur l'objet `user` entier --
   // AuthContext peut fournir plusieurs references differentes pour le meme
   // utilisateur (lecture localStorage initiale, puis confirmation Supabase
@@ -334,6 +354,27 @@ export default function NativeHomeDashboard({ siteStats }: { siteStats: SiteStat
           <div style={{ position: 'absolute', top: 14, right: 14, color: 'rgba(255,255,255,0.85)' }}><ChevronIcon /></div>
         </div>
       </Link>
+
+      {tradeSummary && (tradeSummary.pendingReceived > 0 || tradeSummary.inProgress > 0 || tradeSummary.matches > 0) && (
+        <Link href={tradeSummary.pendingReceived > 0 || tradeSummary.inProgress > 0 ? '/trades?tab=echanges' : '/trades?tab=matches'} onClick={hapticTap} style={{
+          display: 'flex', alignItems: 'center', gap: 12, margin: '0 16px 14px', padding: '13px 16px',
+          background: 'var(--card-bg, #fff)', border: '1.5px solid #f39c12', borderRadius: 16,
+          textDecoration: 'none', color: 'var(--text, #121212)',
+        }}>
+          <span style={{ fontSize: 24 }}>🔄</span>
+          <div style={{ flex: 1, minWidth: 0 }}>
+            <div style={{ fontSize: 12, fontWeight: 900, textTransform: 'uppercase', letterSpacing: 0.5, color: '#e67e22' }}>{t('home_trades_title')}</div>
+            <div style={{ fontSize: 13, fontWeight: 700, marginTop: 2, lineHeight: 1.35 }}>
+              {[
+                tradeSummary.pendingReceived > 0 && `${tradeSummary.pendingReceived} ${t('home_trades_pending')}`,
+                tradeSummary.inProgress > 0 && `${tradeSummary.inProgress} ${t('home_trades_in_progress')}`,
+                tradeSummary.matches > 0 && `${tradeSummary.matches} ${t('home_trades_matches')}`,
+              ].filter(Boolean).join(' · ')}
+            </div>
+          </div>
+          <ChevronIcon />
+        </Link>
+      )}
 
       <div style={{ display: 'flex', gap: 8, margin: '0 16px 14px' }}>
         {galleryStats.map(s => (

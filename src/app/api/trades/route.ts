@@ -3,6 +3,7 @@ import { createClient } from '@supabase/supabase-js'
 import { z } from 'zod'
 import { sendPushToUser } from '@/lib/pushNotify'
 import { tradeOfferPush, someoneNameFallback, normalizePushLang } from '@/lib/pushTranslations'
+import { notifyTradeEvent, TRADE_OFFER_TTL_DAYS } from '@/lib/tradeNotify'
 
 const cardInputSchema = z.object({
   id: z.string().min(1).max(2000),
@@ -22,6 +23,8 @@ const tradePostSchema = z.object({
   offeredCards: z.array(cardInputSchema).min(1).max(50),
   requestedCards: z.array(cardInputSchema).min(1).max(50),
   message: z.string().max(1000).optional(),
+  // Contre-offre : id de l'offre d'origine (dont l'appelant est le destinataire)
+  counterOf: z.string().uuid().optional(),
 })
 
 const supabaseAdmin = createClient(
@@ -50,7 +53,19 @@ export async function GET(req: NextRequest) {
     .order('created_at', { ascending: false })
   if (filterIds && filterIds.length > 0) tradesQuery = tradesQuery.in('id', filterIds)
 
-  const { data: trades } = await tradesQuery
+  const { data: tradesRaw } = await tradesQuery
+
+  // Expiration paresseuse : une offre en attente dont expires_at est passe est
+  // cloturee des qu'on la lit (le cron /api/cron/trade-expiry fait pareil pour
+  // celles que personne n'ouvre, et envoie les notifications).
+  const nowMs = Date.now()
+  const overdue = (tradesRaw || []).filter(t => t.status === 'pending' && t.expires_at && new Date(t.expires_at).getTime() < nowMs)
+  if (overdue.length) {
+    await supabaseAdmin.from('trade_offers').update({ status: 'expired', updated_at: new Date().toISOString() })
+      .in('id', overdue.map(t => t.id)).eq('status', 'pending')
+  }
+  const overdueIds = new Set(overdue.map(t => t.id))
+  const trades = (tradesRaw || []).map(t => overdueIds.has(t.id) ? { ...t, status: 'expired' } : t)
 
   if (!trades?.length) return NextResponse.json({ trades: [] })
 
@@ -65,7 +80,7 @@ export async function GET(req: NextRequest) {
   const manualIds = (tradeCards || []).filter(tc => tc.is_manuelle).map(tc => tc.card_id)
   const { data: manualCards } = manualIds.length
     ? await supabaseAdmin.from('cartes_manuelles')
-        .select('id, nom, annee, marque, image_recto, rc, auto, patch')
+        .select('id, nom, annee, marque, image_recto, rc, auto, patch, valeur')
         .in('id', manualIds)
     : { data: [] }
 
@@ -92,8 +107,17 @@ export async function GET(req: NextRequest) {
 
   const profileMap = Object.fromEntries((profiles || []).map(p => [p.id, p.display_name]))
 
+  // Avis (migration v2) : mon avis sur chaque echange termine + celui recu.
+  // Table absente = aucune ligne, pas d'erreur.
+  const { data: reviewRows } = await supabaseAdmin
+    .from('trade_reviews').select('trade_id, reviewer_id, rating, comment').in('trade_id', tradeIds)
+  const reviewsByTrade = new Map<string, any[]>()
+  for (const r of reviewRows || []) reviewsByTrade.set(r.trade_id, [...(reviewsByTrade.get(r.trade_id) || []), r])
+
   const enriched = trades.map(t => ({
     ...t,
+    my_review: (reviewsByTrade.get(t.id) || []).find(r => r.reviewer_id === user.id) || null,
+    their_review: (reviewsByTrade.get(t.id) || []).find(r => r.reviewer_id !== user.id) || null,
     sender_name: profileMap[t.sender_id] || 'Collector',
     receiver_name: profileMap[t.receiver_id] || 'Collector',
     offered_cards: (tradeCards || [])
@@ -126,7 +150,7 @@ async function postHandler(req: NextRequest) {
   const parsed = tradePostSchema.safeParse(await req.json())
   if (!parsed.success)
     return NextResponse.json({ error: 'Paramètres invalides' }, { status: 400 })
-  const { receiverId, offeredCards, requestedCards, message } = parsed.data
+  const { receiverId, offeredCards, requestedCards, message, counterOf } = parsed.data
 
   if (receiverId === user.id)
     return NextResponse.json({ error: 'Impossible de s\'échanger avec soi-même' }, { status: 400 })
@@ -159,7 +183,7 @@ async function postHandler(req: NextRequest) {
   // Anti-doublon : bloque une offre identique (memes cartes offertes +
   // demandees) deja en attente vers le meme destinataire -- evite le spam
   // de doublons (clic multiple, retry reseau, ou envoi volontaire en boucle).
-  const { data: pendingOffers } = await supabaseAdmin
+  const { data: pendingOffers } = counterOf ? { data: [] as { id: string }[] } : await supabaseAdmin
     .from('trade_offers')
     .select('id')
     .eq('sender_id', user.id)
@@ -185,14 +209,38 @@ async function postHandler(req: NextRequest) {
       return NextResponse.json({ error: 'Une offre identique est déjà en attente pour ce destinataire' }, { status: 409 })
   }
 
+  // Contre-offre : l'offre d'origine doit etre en attente ET m'avoir pour
+  // destinataire, et la nouvelle offre repart vers son expediteur. Marquee
+  // 'countered' AVANT l'insertion (atomique via .eq('status','pending')), puis
+  // restauree si l'insertion echoue.
+  if (counterOf) {
+    const { data: parent } = await supabaseAdmin.from('trade_offers').select('id, sender_id, receiver_id, status').eq('id', counterOf).single()
+    if (!parent || parent.receiver_id !== user.id || parent.sender_id !== receiverId)
+      return NextResponse.json({ error: 'Contre-offre invalide' }, { status: 403 })
+    const { data: marked, error: markErr } = await supabaseAdmin
+      .from('trade_offers').update({ status: 'countered', updated_at: new Date().toISOString() })
+      .eq('id', counterOf).eq('status', 'pending').select('id')
+    if (markErr || !marked?.length)
+      return NextResponse.json({ error: 'Cette offre a déjà été traitée' }, { status: 409 })
+  }
+
   const { data: trade, error: tradeErr } = await supabaseAdmin
     .from('trade_offers')
     .insert({ sender_id: user.id, receiver_id: receiverId, message: message || null })
     .select()
     .single()
 
-  if (tradeErr || !trade)
+  if (tradeErr || !trade) {
+    if (counterOf) await supabaseAdmin.from('trade_offers').update({ status: 'pending' }).eq('id', counterOf)
     return NextResponse.json({ error: 'Erreur lors de la création' }, { status: 500 })
+  }
+
+  // Expiration + lien de contre-offre (colonnes de la migration v2 : mise a
+  // jour separee et tolerante pour ne rien casser tant qu'elle n'est pas appliquee).
+  await supabaseAdmin.from('trade_offers').update({
+    expires_at: new Date(Date.now() + TRADE_OFFER_TTL_DAYS * 86400000).toISOString(),
+    ...(counterOf ? { parent_offer_id: counterOf } : {}),
+  }).eq('id', trade.id)
 
   const rows = [
     ...offeredCards.map(c => ({
@@ -226,6 +274,9 @@ async function postHandler(req: NextRequest) {
   const senderName = senderProfile?.display_name || someoneNameFallback(receiverLang)
   const { title, body } = tradeOfferPush(receiverLang, senderName)
 
+  if (counterOf) {
+    await notifyTradeEvent(supabaseAdmin, { toUserId: receiverId, actorId: user.id, event: 'counter', imageUrl: rows.find(r => r.owner_id === receiverId && r.card_image)?.card_image })
+  } else {
   await supabaseAdmin.from('notifications').insert({
     user_id: receiverId,
     type: 'trade_offer',
@@ -245,6 +296,7 @@ async function postHandler(req: NextRequest) {
       imageUrl: tradeImage || undefined,
     })
   } catch { /* push non critique */ }
+  }
 
   // Insérer automatiquement le message de l'offre dans le chat
   await supabaseAdmin.from('messages').insert({

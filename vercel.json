@@ -39,6 +39,10 @@
     {
       "path": "/api/cron/sports-birthday",
       "schedule": "0 6 * * *"
+    },
+    {
+      "path": "/api/cron/trade-expiry",
+      "schedule": "0 9 * * *"
     }
   ],
   "headers": [
