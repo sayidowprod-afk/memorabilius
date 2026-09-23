@@ -36,7 +36,13 @@ interface Filters {
 const emptyFilters = (): Filters => ({ search: '', annee: '', marque: '', equipe: '', sport: '', rc: false, auto: false, patch: false })
 
 interface TradeModalProps {
-  targetCard: { id: string; nom: string; annee: string; marque: string; image_recto?: string }
+  // Optionnelle : proposer un echange depuis un profil ou un match, sans carte
+  // precise visee (l'utilisateur choisit dans la grille du destinataire).
+  targetCard?: { id: string; nom: string; annee: string; marque: string; image_recto?: string }
+  // Pre-selections (ex: depuis un match wishlist) -- ids de cartes du destinataire / des miennes.
+  initialTargetSelected?: string[]
+  initialMySelected?: string[]
+  initialMessage?: string
   targetUserId: string
   targetUserName: string
   onClose: () => void
@@ -196,24 +202,24 @@ function FilterBar({ cards, filters, onChange }: { cards: CardInfo[]; filters: F
   )
 }
 
-export default function TradeModal({ targetCard, targetUserId, targetUserName, onClose, onSuccess }: TradeModalProps) {
+export default function TradeModal({ targetCard, initialTargetSelected, initialMySelected, initialMessage, targetUserId, targetUserName, onClose, onSuccess }: TradeModalProps) {
   const router = useRouter()
   const { t } = useLang()
 
-  const [targetCards, setTargetCards] = useState<CardInfo[]>([{
+  const [targetCards, setTargetCards] = useState<CardInfo[]>(targetCard ? [{
     id: targetCard.id, nom: targetCard.nom, annee: targetCard.annee, marque: targetCard.marque, equipe: '',
     image_recto: targetCard.image_recto || null, rc: false, auto: false, patch: false, isManuelle: true,
-  }])
-  const [targetSelected, setTargetSelected] = useState<Set<string>>(new Set([targetCard.id]))
+  }] : [])
+  const [targetSelected, setTargetSelected] = useState<Set<string>>(new Set([...(targetCard ? [targetCard.id] : []), ...(initialTargetSelected || [])]))
   const [targetFilters, setTargetFilters] = useState<Filters>(emptyFilters())
   const [targetLoading, setTargetLoading] = useState(true)
 
   const [myCards, setMyCards] = useState<CardInfo[]>([])
-  const [mySelected, setMySelected] = useState<Set<string>>(new Set())
+  const [mySelected, setMySelected] = useState<Set<string>>(new Set(initialMySelected || []))
   const [myFilters, setMyFilters] = useState<Filters>(emptyFilters())
   const [myLoading, setMyLoading] = useState(true)
 
-  const [message, setMessage] = useState('')
+  const [message, setMessage] = useState(initialMessage || '')
   const [sending, setSending] = useState(false)
   const [error, setError] = useState('')
   const [justSent, setJustSent] = useState(false)

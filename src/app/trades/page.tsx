@@ -16,6 +16,7 @@ import TradeTypeBadge from '@/components/TradeTypeBadge'
 import ScrollToTopButton from '@/components/ScrollToTopButton'
 import { TRADE_STATUS_COLOR } from '@/lib/tradeStatus'
 import { toast } from '@/lib/toast'
+import TradeModal from '@/components/TradeModal'
 
 // ── Image zoom (forum annonces) ───────────────────────────────────────────────
 function ImageZoom({ src, alt }: { src: string; alt: string }) {
@@ -73,9 +74,15 @@ export default function Trades() {
   const { dark } = useTheme()
 
   // Tab principal : annonces forum | mes échanges directs
-  const [mainTab, setMainTab] = useState<'annonces' | 'echanges'>(
-    searchParams.get('tab') === 'echanges' ? 'echanges' : 'annonces'
+  const [mainTab, setMainTab] = useState<'annonces' | 'matches' | 'echanges'>(
+    searchParams.get('tab') === 'echanges' ? 'echanges' : searchParams.get('tab') === 'matches' ? 'matches' : 'annonces'
   )
+
+  // ── Matches wishlist <-> collection (voir api/trades/matches) ───────────────
+  const [matches, setMatches] = useState<any[] | null>(null)
+  const [tradeModal, setTradeModal] = useState<{ userId: string; name: string; targetIds: string[]; myIds: string[]; message?: string } | null>(null)
+  const [fAnnee, setFAnnee] = useState('')
+  const [sortBy, setSortBy] = useState<'recent' | 'valeur_asc' | 'valeur_desc'>('recent')
 
   // ── État forum ──────────────────────────────────────────────────────────────
   const [trades, setTrades] = useState<any[]>([])
@@ -111,6 +118,10 @@ export default function Trades() {
       if (!session) { router.replace('/connexion'); setLoadingForum(false); return }
       setUserId(session.user.id)
       loadForum()
+      fetch('/api/trades/matches', { headers: { Authorization: `Bearer ${session.access_token}` } })
+        .then(r => r.ok ? r.json() : { members: [] })
+        .then(j => setMatches(j.members || []))
+        .catch(() => setMatches([]))
       Promise.resolve(supabase.from('trade_favorites').select('item_type, item_id').eq('user_id', session.user.id))
         .then(({ data }) => setFavorites(new Set((data || []).map((f: any) => `${f.item_type}:${f.item_id}`))))
         .catch(() => {})
@@ -304,17 +315,25 @@ export default function Trades() {
 
   const SPORTS: Record<string, string> = { basket: '🏀', foot: '⚽', football_us: '🏈', baseball: '⚾', hockey: '🏒', pokemon: '🟡', tcg: '🃏' }
 
-  const filteredForum = trades.filter(t => {
+  const filteredForumBase = trades.filter(t => {
     if (showFavoritesOnly && !favorites.has(favKey(t))) return false
     if (filter !== 'tous' && t.type !== filter) return false
     if (search && !t.titre?.toLowerCase().includes(search.toLowerCase()) && !t.joueur?.toLowerCase().includes(search.toLowerCase())) return false
     if (fEquipe && !t.equipe?.toLowerCase().includes(fEquipe.toLowerCase())) return false
+    if (fAnnee && !String(t.annee || '').includes(fAnnee.trim())) return false
     if (fSport && t.sport !== fSport) return false
     if (fTags.rc && !t.rc) return false
     if (fTags.auto && !t.auto) return false
     if (fTags.num && !t.num) return false
     if (fTags.patch && !t.patch) return false
     return true
+  })
+
+  // Tri : recent (defaut, deja l'ordre du chargement) ou par valeur estimee
+  // (cartes de galerie uniquement -- les annonces forum n'ont pas de valeur).
+  const filteredForum = sortBy === 'recent' ? filteredForumBase : [...filteredForumBase].sort((a, b) => {
+    const va = Number(a.valeur) || 0, vb = Number(b.valeur) || 0
+    return sortBy === 'valeur_asc' ? va - vb : vb - va
   })
 
   const pendingOffers = tradeOffers.filter(t => t.status === 'pending')
@@ -364,6 +383,7 @@ export default function Trades() {
       <div style={{ display: 'flex', gap: 6, marginBottom: 20, borderBottom: '2px solid var(--border, #f0f0f0)', paddingBottom: 0, flexWrap: 'wrap' }}>
         {([
           { key: 'annonces', label: '📋 Annonces' },
+          { key: 'matches', label: `🎯 ${t('trades_for_you')}${matches && matches.length > 0 ? ` (${matches.length})` : ''}` },
           { key: 'echanges', label: `🔄 Mes échanges${pendingOffers.length > 0 ? ` (${pendingOffers.length})` : ''}` },
         ] as const).map(tab => (
           <button key={tab.key} onClick={() => setMainTab(tab.key)} style={{
@@ -374,6 +394,74 @@ export default function Trades() {
           }}>{tab.label}</button>
         ))}
       </div>
+
+      {/* ══════════════════════════════════════════════════════════════════════ */}
+      {/* Onglet POUR TOI -- matches wishlist <-> collection                    */}
+      {/* ══════════════════════════════════════════════════════════════════════ */}
+      {mainTab === 'matches' && (
+        <div style={{ display: 'flex', flexDirection: 'column', gap: 16 }}>
+          <p style={{ fontSize: 13, color: 'var(--text3, #888)', margin: 0 }}>{t('trades_matches_intro')}</p>
+          {matches === null ? (
+            <div style={{ display: 'flex', flexDirection: 'column', gap: 12 }}>
+              {[0, 1, 2].map(i => <SkeletonBlock key={i} style={{ height: 120, borderRadius: 16 }} />)}
+            </div>
+          ) : matches.length === 0 ? (
+            <EmptyState icon="🎯" title={t('trades_matches_empty')}
+              action={<Link href="/wishlist" className="btn-main btn-primary" style={{ padding: '10px 24px', fontSize: 14 }}>{t('trades_matches_empty_cta')}</Link>} />
+          ) : matches.map((m: any) => (
+            <div key={m.id} style={{
+              background: 'var(--card-bg, #fff)', border: m.perfect ? '2px solid #f39c12' : '1px solid var(--border, #eee)',
+              borderRadius: 16, padding: 16, boxShadow: '0 4px 20px rgba(0,0,0,0.05)',
+            }}>
+              <div style={{ display: 'flex', alignItems: 'center', gap: 12, marginBottom: 12, flexWrap: 'wrap' }}>
+                <img loading="lazy" src={m.avatar || `https://ui-avatars.com/api/?name=${encodeURIComponent(m.name)}&background=003DA6&color=fff`}
+                  style={{ width: 40, height: 40, borderRadius: '50%', objectFit: 'cover' }} alt="" />
+                <Link href={`/galerie/${m.id}`} style={{ fontWeight: 800, fontSize: 16, color: 'inherit', textDecoration: 'none' }}>{m.name}</Link>
+                {m.perfect && <span style={{ background: '#f39c12', color: '#fff', fontSize: 11, fontWeight: 900, padding: '3px 10px', borderRadius: 20 }}>⭐ {t('trades_match_perfect')}</span>}
+                <button onClick={() => setTradeModal({
+                  userId: m.id, name: m.name,
+                  targetIds: m.theyHave.map((c: any) => c.id), myIds: m.theyWantFromMe.map((c: any) => c.id),
+                })} style={{ marginLeft: 'auto', background: '#1b5e20', color: '#fff', border: 'none', borderRadius: 10, padding: '9px 16px', fontWeight: 800, fontSize: 13, cursor: 'pointer' }}>
+                  🔄 {t('trades_propose_exchange')}
+                </button>
+              </div>
+              <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))', gap: 14 }}>
+                {[
+                  { title: t('trades_match_they_have'), cards: m.theyHave },
+                  { title: t('trades_match_they_want'), cards: m.theyWantFromMe },
+                ].map(col => col.cards.length > 0 && (
+                  <div key={col.title}>
+                    <div style={{ fontSize: 11, fontWeight: 800, textTransform: 'uppercase', color: 'var(--text3, #888)', marginBottom: 8 }}>{col.title}</div>
+                    <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap' }}>
+                      {col.cards.slice(0, 6).map((c: any) => (
+                        <div key={c.id} title={[c.nom, c.annee, c.marque].filter(Boolean).join(' · ')} style={{ width: 64 }}>
+                          <div style={{ aspectRatio: '2.5/3.5', overflow: 'hidden', background: 'var(--bg3, #f4f4f4)' }}>
+                            {c.image_recto && <img loading="lazy" src={c.image_recto} alt="" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />}
+                          </div>
+                          <div style={{ fontSize: 10, fontWeight: 700, marginTop: 3, lineHeight: 1.2, overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>{c.nom}</div>
+                        </div>
+                      ))}
+                      {col.cards.length > 6 && <div style={{ alignSelf: 'center', fontSize: 12, color: 'var(--text3, #888)', fontWeight: 700 }}>+{col.cards.length - 6}</div>}
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          ))}
+        </div>
+      )}
+
+      {tradeModal && (
+        <TradeModal
+          targetUserId={tradeModal.userId}
+          targetUserName={tradeModal.name}
+          initialTargetSelected={tradeModal.targetIds}
+          initialMySelected={tradeModal.myIds}
+          initialMessage={tradeModal.message}
+          onClose={() => setTradeModal(null)}
+          onSuccess={() => { setTradeModal(null); toast.success(t('trades_offer_sent')); setMainTab('echanges'); loadTradeOffers() }}
+        />
+      )}
 
       {/* ══════════════════════════════════════════════════════════════════════ */}
       {/* Onglet ANNONCES FORUM                                                 */}
@@ -398,6 +486,12 @@ export default function Trades() {
             <div style={{ display: 'flex', gap: 12, flexWrap: 'wrap' }}>
               <input value={search} onChange={e => setSearch(e.target.value)} placeholder={t('trades_search')} style={{ flex: 1, minWidth: 200, boxSizing: 'border-box' }} />
               <input value={fEquipe} onChange={e => setFEquipe(e.target.value)} placeholder={t('trades_filter_team_placeholder')} style={{ width: 180, maxWidth: '100%', boxSizing: 'border-box' }} />
+              <input value={fAnnee} onChange={e => setFAnnee(e.target.value)} placeholder={t('trades_filter_year_placeholder')} style={{ width: 110, maxWidth: '100%', boxSizing: 'border-box' }} />
+              <select value={sortBy} onChange={e => setSortBy(e.target.value as any)} style={{ padding: '8px 10px', borderRadius: 8, border: '1.5px solid var(--border, #e0e0e0)', fontSize: 13, background: 'var(--card-bg, #fff)', color: 'var(--text, #121212)' }}>
+                <option value="recent">{t('trades_sort_recent')}</option>
+                <option value="valeur_desc">{t('trades_sort_value_desc')}</option>
+                <option value="valeur_asc">{t('trades_sort_value_asc')}</option>
+              </select>
               <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap' }}>
                 {(['tous', 'offre', 'recherche'] as const).map(f => (
                   <button key={f} onClick={() => setFilter(f)} style={{
@@ -780,6 +874,22 @@ export default function Trades() {
                         </a>
                       )}
                     </div>
+                  )}
+                  {userId && userId !== popup.user_id && popup.user_id && (
+                    <button onClick={() => {
+                      // Carte de galerie : pre-selectionne la carte visee. Annonce forum
+                      // (pas de carte precise) : l'acheteur choisit dans la grille du membre.
+                      setTradeModal({
+                        userId: popup.user_id, name: popup.profiles?.display_name || 'Collector',
+                        targetIds: popup._source === 'galerie' ? [String(popup.id)] : [], myIds: [],
+                      })
+                      setPopup(null)
+                    }} style={{
+                      background: '#1b5e20', color: 'white', padding: '12px', border: 'none',
+                      borderRadius: 10, fontWeight: 700, fontSize: 14, textAlign: 'center', cursor: 'pointer',
+                    }}>
+                      🔄 {t('trades_propose_exchange')}
+                    </button>
                   )}
                   {userId && userId !== popup.user_id && (
                     <Link href={`/messages?to=${popup.profiles?.id}&trade=${popup.id}`} onClick={() => setPopup(null)} style={{
