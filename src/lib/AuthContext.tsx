@@ -3,7 +3,7 @@ import { createContext, useContext, useEffect, useState, ReactNode } from 'react
 import { useRouter } from 'next/navigation'
 import { supabase } from '@/lib/supabase'
 import type { Session, User } from '@supabase/supabase-js'
-import { setCrashlyticsUserId } from '@/lib/crashlytics'
+import { setCrashlyticsUserId, recordJsError } from '@/lib/crashlytics'
 
 interface AuthState {
   session: Session | null
@@ -123,6 +123,13 @@ export function AuthProvider({ children }: { children: ReactNode }) {
 
     const timeoutId = setTimeout(async () => {
       if (settled) return
+      // Signale a distance (Firebase Crashlytics, non-fatal) qu'on atteint ce
+      // filet de secours -- diagnostic pour le "F5 obligatoire" recurrent :
+      // ni la session persistee synchrone ni onAuthStateChange n'ont regle
+      // l'etat en 1200ms. Sans ca, seule la console de l'appareil du signaleur
+      // montre quoi que ce soit (filtre "Verbose" desactive par defaut,
+      // difficile a demander en pratique) -- ceci remonte au dashboard.
+      recordJsError(new Error('fallback timer atteint (ni session sync ni onAuthStateChange n\'ont regle avant 1200ms)'), '[F5-diag] AuthContext')
 
       // Hors-ligne (cold start sans reseau notamment, signale comme "comme
       // deconnecte" -- galerie invisible) : getSession() peut tenter une
@@ -140,10 +147,12 @@ export function AuthProvider({ children }: { children: ReactNode }) {
         // lui-meme bloque en attendant indefiniment cet appel. Course contre
         // un timeout : si le plugin ne repond pas vite, on suppose "connecte"
         // et on continue plutot que de risquer de bloquer le filet entier.
+        let netTimedOut = false
         const status = await Promise.race([
           Network.getStatus(),
-          new Promise<{ connected: boolean }>(resolve => setTimeout(() => resolve({ connected: true }), 1500)),
+          new Promise<{ connected: boolean }>(resolve => setTimeout(() => { netTimedOut = true; resolve({ connected: true }) }, 1500)),
         ])
+        if (netTimedOut) recordJsError(new Error('Network.getStatus() n\'a pas repondu en 1500ms'), '[F5-diag] AuthContext')
         if (!status.connected) {
           await new Promise(r => setTimeout(r, 4000))
           if (settled) return
@@ -164,6 +173,10 @@ export function AuthProvider({ children }: { children: ReactNode }) {
       } catch {}
       if (settled) return
       settled = true
+      // Issue du filet : montre si le repli a fini par trouver une session
+      // (etat correct mais utilisateur bloque ~1.2-9s sur un loader) ou non
+      // (rendu la mauvaise vue -- hero au lieu du dashboard -- jusqu'au F5).
+      recordJsError(new Error(`filet resolu avec session=${session ? 'presente' : 'absente'}`), '[F5-diag] AuthContext')
       setState({ session, user: session?.user ?? null, loading: false })
       setCrashlyticsUserId(session?.user?.id ?? null)
       // Délai initial raccourci (1200ms, avant 2500ms) : ne change rien au cas

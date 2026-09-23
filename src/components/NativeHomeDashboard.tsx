@@ -8,6 +8,7 @@ import { hapticTap } from '@/lib/haptics'
 import { BADGE_CATEGORIES, type BadgeCategory, type BadgeTier } from '@/lib/badgeDefinitions'
 import { levelFromXP, type LevelInfo } from '@/lib/leveling'
 import { currentChallenge, startOfWeekISO, endOfWeekISO, type ChallengeTemplate } from '@/lib/weeklyChallenge'
+import { recordJsError } from '@/lib/crashlytics'
 
 interface SiteStats { total: number; totalCartes: number; totalBinders: number; totalTrade: number }
 
@@ -198,6 +199,10 @@ export default function NativeHomeDashboard({ siteStats }: { siteStats: SiteStat
           setTimeout(() => { if (!cancelled) load(attempt + 1) }, 1000 * (attempt + 1))
         } else {
           console.error('[NativeHomeDashboard] load failed after retries', e)
+          // Diagnostic F5 a distance (voir AuthContext.tsx) -- les 5
+          // tentatives ont toutes echoue, le panneau reste bloque avec un
+          // bouton "reessayer" au lieu de charger normalement.
+          recordJsError(e, '[F5-diag] NativeHomeDashboard load failed after 5 retries')
           setFailed(true)
         }
       }
