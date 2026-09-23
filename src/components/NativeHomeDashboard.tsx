@@ -133,7 +133,14 @@ export default function NativeHomeDashboard({ siteStats }: { siteStats: SiteStat
       currentAbort = abort
       try {
         const challenge = currentChallenge()
-        const timeout = new Promise<never>((_, reject) => setTimeout(() => reject(new Error('timeout')), 4000))
+        const pending = new Set<string>()
+        const timeout = new Promise<never>((_, reject) => setTimeout(() => {
+          // console.warn (visible au niveau "Default levels" de DevTools,
+          // contrairement a console.debug masque par defaut) : liste des
+          // requetes qui n'ont toujours pas repondu au moment du timeout.
+          console.warn(`[dashboard] tentative ${attempt} timeout apres 4s -- en attente: ${[...pending].join(', ') || 'aucune (tout a repondu ?)'}`)
+          reject(new Error('timeout'))
+        }, 4000))
         // Diagnostic temporaire (signalement "timeout" recurrent malgre des
         // requetes individuellement rapides cote serveur) : chaque requete
         // logue sa propre duree des qu'elle repond, meme si l'ensemble finit
@@ -141,11 +148,14 @@ export default function NativeHomeDashboard({ siteStats }: { siteStats: SiteStat
         // au lieu de deviner. A retirer une fois la cause confirmee.
         const timed = <T,>(label: string, p: PromiseLike<T>) => {
           const t0 = performance.now()
+          pending.add(label)
           return Promise.resolve(p).then(r => {
-            console.debug(`[dashboard] ${label}: ${Math.round(performance.now() - t0)}ms`)
+            pending.delete(label)
+            console.warn(`[dashboard] ${label}: ${Math.round(performance.now() - t0)}ms`)
             return r
           }, e => {
-            console.debug(`[dashboard] ${label}: FAILED after ${Math.round(performance.now() - t0)}ms`, e)
+            pending.delete(label)
+            console.warn(`[dashboard] ${label}: FAILED after ${Math.round(performance.now() - t0)}ms`, e)
             throw e
           })
         }
