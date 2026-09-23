@@ -72,20 +72,33 @@ export default function OnboardingTooltip() {
     // juste apres la connexion -- signale en prod sur l'app Android.
     try { if (localStorage.getItem(STORAGE_KEY)) return } catch {}
 
-    const { data: { subscription } } = supabase.auth.onAuthStateChange(async (_e, session) => {
+    // JAMAIS de `await supabase...` DANS ce callback : auth-js attend la fin
+    // des callbacks onAuthStateChange pendant son initialisation (event
+    // INITIAL_SESSION), alors que toute requete .from() attend justement cette
+    // initialisation pour lire le token -> blocage mutuel silencieux, plus
+    // AUCUNE requete Supabase ne part de la page (ni erreur, ni timeout : le
+    // fetch n'est meme jamais emis). Cause identifiee du "F5 obligatoire" :
+    // les 6 requetes du dashboard restaient toutes "en attente" a chaque
+    // tentative. Le travail est donc deporte hors du callback (setTimeout 0),
+    // comme le recommande la doc Supabase.
+    const { data: { subscription } } = supabase.auth.onAuthStateChange((_e, session) => {
       if (!session?.user || authChecked.current) return
       authChecked.current = true
-      subscription.unsubscribe()
+      const uid = session.user.id
+      setTimeout(() => {
+        subscription.unsubscribe()
+        ;(async () => {
+          const { count } = await supabase
+            .from('cartes_manuelles')
+            .select('id', { count: 'exact', head: true })
+            .eq('user_id', uid)
 
-      const { count } = await supabase
-        .from('cartes_manuelles')
-        .select('id', { count: 'exact', head: true })
-        .eq('user_id', session.user.id)
-
-      if ((count ?? 0) === 0) {
-        setUserId(session.user.id)
-        setVisible(true)
-      }
+          if ((count ?? 0) === 0) {
+            setUserId(uid)
+            setVisible(true)
+          }
+        })()
+      }, 0)
     })
 
     return () => subscription.unsubscribe()
