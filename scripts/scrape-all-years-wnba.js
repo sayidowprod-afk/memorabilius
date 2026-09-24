@@ -69,6 +69,10 @@ function saveCheckpoint(cp) {
   fs.writeFileSync(CHECKPOINT, JSON.stringify(cp, null, 2))
 }
 
+// Titre de la page de defi Cloudflare uniquement -- un simple 'includes(instant)'
+// bloquait sur tout set dont le nom contient ce mot (ex: 'Panini Instant WNBA').
+const isChallenge = tl => /^(just a moment|un instant|attention required)|captcha|verify you are|checking your browser/.test(tl)
+
 let _solverrOk = null
 async function solverrGet(url) {
   if (_solverrOk === false) return null
@@ -104,7 +108,7 @@ async function waitCF(page, url) {
     await page.goto(url, { waitUntil: 'domcontentloaded', timeout: 30000 })
     const t = await page.title().catch(() => '')
     const tl = t.toLowerCase()
-    if (!tl.includes('instant') && !tl.includes('moment') && !tl.includes('attention') && !tl.includes('captcha')) return
+    if (!isChallenge(tl)) return
     console.log(`  ⚠️  Encore bloqué — chargement HTML FlareSolverr (${sol.response?.length || 0} chars)`)
     if (sol.response) { await page.setContent(sol.response, { waitUntil: 'domcontentloaded' }); return }
   }
@@ -112,7 +116,7 @@ async function waitCF(page, url) {
   for (let i = 0; i < 150; i++) {
     const t = await page.title().catch(() => '')
     const tl = t.toLowerCase()
-    if (!tl.includes('instant') && !tl.includes('moment') && !tl.includes('attention') && !tl.includes('captcha') && !tl.includes('verify') && !tl.includes('checking')) break
+    if (!isChallenge(tl)) break
     if (i === 0) console.log('\n⚠️  CAPTCHA dans la fenêtre Chrome — résous-le manuellement (5 min max)...')
     await sleep(2000)
   }
