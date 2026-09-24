@@ -275,7 +275,10 @@ async function scrapeSet(page, set, year, cp) {
     for (let attempt = 1; attempt <= 3; attempt++) {
       try {
         const cards = await fetchTeamCards(page, set.tcdb_id, teamId, teamSlug || encodeURIComponent(teamName))
-        allCards.push(...cards); console.log(cards.length); if (cards.length === 0) incomplete = true; ok = true; break
+        // 0 carte : verifie une 2e fois (page vide transitoire), puis accepte -- une
+        // equipe listee sans carte dans ce set (ex: USA) est legitime, ce n'est pas un echec.
+        if (cards.length === 0 && attempt < 2) { process.stdout.write('0? recheck... '); await sleep(rand(2000, 4000)); continue }
+        allCards.push(...cards); console.log(cards.length); ok = true; break
       } catch (e) {
         if (attempt < 3) { const w = rand(3000,6000)*attempt; process.stdout.write(`❌ retry... `); await sleep(w) }
         else { console.log(`❌ abandon: ${e.message}`); incomplete = true }
