@@ -40,7 +40,7 @@ function CompletionBar({ pct, dark = false }: { pct: number; dark?: boolean }) {
 }
 
 function seasonLabel(year: number, sport = 'nba') {
-  return ['nfl', 'baseball', 'pokemon', 'mtg', 'soccer-international', 'racing', 'tennis', 'wrestling', 'mma'].includes(sport)
+  return ['nfl', 'baseball', 'wnba', 'pokemon', 'mtg', 'soccer-international', 'racing', 'tennis', 'wrestling', 'mma'].includes(sport)
     ? String(year)
     : `${year}-${String(year + 1).slice(2)}`
 }
@@ -52,7 +52,7 @@ export default function SetlistPage() {
   const [loading, setLoading] = useState(true)
   const [userId, setUserId] = useState<string | null>(null)
   const [authReady, setAuthReady] = useState(false)
-  const [activeSport, setActiveSport] = useState<'nba' | 'nfl' | 'baseball' | 'hockey' | 'pokemon' | 'mtg' | 'soccer-international' | 'racing' | 'tennis' | 'wrestling' | 'mma'>('nba')
+  const [activeSport, setActiveSport] = useState<'nba' | 'wnba' | 'nfl' | 'baseball' | 'hockey' | 'pokemon' | 'mtg' | 'soccer-international' | 'racing' | 'tennis' | 'wrestling' | 'mma'>('nba')
   const [activeSeason, setActiveSeason] = useState<number | null>(null)
   const [activeDecade, setActiveDecade] = useState<number | null>(null)
   const [searchSet, setSearchSet] = useState('')
@@ -620,9 +620,9 @@ export default function SetlistPage() {
       <div className="sl-header-row">
         {/* Sélecteur de sport */}
         <div className="sl-sport-grid">
-          {([ 'nba', 'nfl', 'baseball', 'hockey', 'soccer-international', 'racing', 'tennis', 'wrestling', 'mma', 'pokemon', 'mtg' ] as const).map(sp => {
-            const accent = sp === 'nba' ? '#003DA6' : sp === 'nfl' ? '#1a5c1a' : sp === 'baseball' ? '#c0392b' : sp === 'hockey' ? '#1a3a5c' : sp === 'soccer-international' ? '#2d6a2d' : sp === 'racing' ? '#b85c00' : sp === 'tennis' ? '#5a8a00' : sp === 'wrestling' ? '#7a0000' : sp === 'mma' ? '#4a0050' : sp === 'pokemon' ? '#e6b800' : '#6b21a8'
-            const label  = sp === 'nba' ? '🏀 NBA' : sp === 'nfl' ? '🏈 NFL' : sp === 'baseball' ? '⚾ Baseball' : sp === 'hockey' ? '🏒 Hockey' : sp === 'soccer-international' ? '⚽ Football' : sp === 'racing' ? '🏎️ Racing' : sp === 'tennis' ? '🎾 Tennis' : sp === 'wrestling' ? '🤼 Wrestling' : sp === 'mma' ? '🥊 MMA' : sp === 'pokemon' ? '🎴 Pokémon' : '🧙 MTG'
+          {([ 'nba', 'nfl', 'baseball', 'hockey', 'soccer-international', 'racing', 'wnba', 'tennis', 'wrestling', 'mma', 'pokemon', 'mtg' ] as const).map(sp => {
+            const accent = sp === 'nba' ? '#003DA6' : sp === 'nfl' ? '#1a5c1a' : sp === 'baseball' ? '#c0392b' : sp === 'hockey' ? '#1a3a5c' : sp === 'soccer-international' ? '#2d6a2d' : sp === 'racing' ? '#b85c00' : sp === 'wnba' ? '#e8590c' : sp === 'tennis' ? '#5a8a00' : sp === 'wrestling' ? '#7a0000' : sp === 'mma' ? '#4a0050' : sp === 'pokemon' ? '#e6b800' : '#6b21a8'
+            const label  = sp === 'nba' ? '🏀 NBA' : sp === 'nfl' ? '🏈 NFL' : sp === 'baseball' ? '⚾ Baseball' : sp === 'hockey' ? '🏒 Hockey' : sp === 'soccer-international' ? '⚽ Football' : sp === 'racing' ? '🏎️ Racing' : sp === 'wnba' ? '🏀 WNBA' : sp === 'tennis' ? '🎾 Tennis' : sp === 'wrestling' ? '🤼 Wrestling' : sp === 'mma' ? '🥊 MMA' : sp === 'pokemon' ? '🎴 Pokémon' : '🧙 MTG'
             const isActive = activeSport === sp
             return (
               <button key={sp} onClick={() => {

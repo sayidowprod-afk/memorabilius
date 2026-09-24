@@ -1,0 +1,349 @@
+#!/usr/bin/env node
+/**
+ * Scraper TCDB WNBA — Toutes saisons 2025→1997 (categorie WNBA de la page Basketball/year)
+ *
+ * Usage:
+ *   node scripts/scrape-all-years-wnba.js
+ *   node scripts/scrape-all-years-wnba.js --from=2020 --to=2000
+ *   node scripts/scrape-all-years-wnba.js --dry-run
+ */
+require('dotenv').config({ path: require('path').join(__dirname, '../.env.local') })
+
+const { openBrowser: launchBrowser, killChrome } = require('./browser-helper')
+const fs   = require('fs')
+const path = require('path')
+const { spawnSync } = require('child_process')
+
+const TCDB          = 'https://www.tcdb.com'
+const CHECKPOINT    = path.join(__dirname, 'checkpoint-all-wnba.json')
+const DATA_DIR      = path.join(__dirname, 'year-data')
+const IMPORT_SCRIPT = path.join(__dirname, 'import-tcdb.js')
+
+const args = Object.fromEntries(
+  process.argv.slice(2).filter(a => a.startsWith('--')).map(a => {
+    const [k, v] = a.replace('--', '').split('=')
+    return [k, v ?? true]
+  })
+)
+const FROM    = args.from  ? parseInt(args.from)  : 2025
+const TO      = args.to    ? parseInt(args.to)    : 1997
+const DRY_RUN = !!args['dry-run']
+// --gaps : au lieu de ne traiter que les annees pas encore dans doneYears, retraite
+// TOUTES les annees de la plage -- mais scrapeSet() saute deja les sets presents
+// dans doneTcdbIds (voir plus bas), donc ca ne re-scrape reellement QUE les sets
+// qui avaient echoue silencieusement (l'annee entiere etait marquee 'done' meme
+// si certains sets dedans avaient rate -- cf. cp.doneYears.push(year) en fin de
+// boucle annee, inconditionnel). Fetch de la liste de sets par annee reste rapide
+// (une page), donc revisiter des annees deja faites coute peu meme si la plupart
+// des sets sont sautes.
+const GAPS = !!args.gaps
+const SLOT    = args.slot ? parseInt(args.slot) : 1
+
+const rand    = (min, max) => Math.floor(Math.random() * (max - min)) + min
+const sleep   = ms => new Promise(r => setTimeout(r, ms))
+const delayTeam  = () => sleep(rand(300, 700))
+const delaySet   = () => sleep(rand(1500, 3500))
+const BREAK_EVERY = 60
+const delayBreak = () => {
+  const ms = rand(20000, 40000)
+  console.log(`\n☕ Pause anti-détection ${Math.round(ms/1000)}s...\n`)
+  return sleep(ms)
+}
+
+const MAJOR_BRANDS = /(Upper Deck|Topps|Panini|O-Pee-Chee|OPC|Parkhurst|Score|Fleer|Donruss|Pinnacle|Pacific|Leaf|Bowman|Ultra|Finest|Chrome|SP Authentic|SP|The Cup|Artifacts|Trilogy|Black Diamond|Be A Player|BAP|In The Game|ITG|Certified|Contenders|National Treasures|Immaculate|Prizm|Select|Mosaic|Chronicles|Revolution|Paramount)/i
+
+function findChrome() {
+  for (const p of [
+    'C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe',
+    'C:\\Program Files (x86)\\Google\\Chrome\\Application\\chrome.exe',
+    process.env.LOCALAPPDATA + '\\Google\\Chrome\\Application\\chrome.exe',
+  ]) { try { if (fs.existsSync(p)) return p } catch {} }
+}
+
+function loadCheckpoint() {
+  try { return JSON.parse(fs.readFileSync(CHECKPOINT, 'utf8')) }
+  catch { return { doneYears: [], doneTcdbIds: [] } }
+}
+
+function saveCheckpoint(cp) {
+  fs.writeFileSync(CHECKPOINT, JSON.stringify(cp, null, 2))
+}
+
+let _solverrOk = null
+async function solverrGet(url) {
+  if (_solverrOk === false) return null
+  return new Promise(resolve => {
+    const payload = JSON.stringify({ cmd: 'request.get', url, maxTimeout: 60000 })
+    const req = require('http').request(
+      { hostname: 'localhost', port: 8191, path: '/v1', method: 'POST',
+        headers: { 'Content-Type': 'application/json', 'Content-Length': Buffer.byteLength(payload) } },
+      res => {
+        let body = ''
+        res.on('data', d => body += d)
+        res.on('end', () => {
+          _solverrOk = true
+          try {
+            const d = JSON.parse(body)
+            if (d.status === 'ok' && d.solution) return resolve(d.solution)
+          } catch {}
+          resolve(null)
+        })
+      }
+    )
+    req.on('error', () => { _solverrOk = false; resolve(null) })
+    req.setTimeout(65000, () => { req.destroy(); resolve(null) })
+    req.write(payload); req.end()
+  })
+}
+async function waitCF(page, url) {
+  const sol = await solverrGet(url)
+  if (sol) {
+    for (const c of (sol.cookies || [])) {
+      await page.setCookie({ name: c.name, value: c.value, domain: c.domain || '.tcdb.com', path: c.path || '/', expires: typeof c.expiry === 'number' ? c.expiry : -1 }).catch(() => {})
+    }
+    await page.goto(url, { waitUntil: 'domcontentloaded', timeout: 30000 })
+    const t = await page.title().catch(() => '')
+    const tl = t.toLowerCase()
+    if (!tl.includes('instant') && !tl.includes('moment') && !tl.includes('attention') && !tl.includes('captcha')) return
+    console.log(`  ⚠️  Encore bloqué — chargement HTML FlareSolverr (${sol.response?.length || 0} chars)`)
+    if (sol.response) { await page.setContent(sol.response, { waitUntil: 'domcontentloaded' }); return }
+  }
+  await page.goto(url, { waitUntil: 'domcontentloaded', timeout: 30000 })
+  for (let i = 0; i < 150; i++) {
+    const t = await page.title().catch(() => '')
+    const tl = t.toLowerCase()
+    if (!tl.includes('instant') && !tl.includes('moment') && !tl.includes('attention') && !tl.includes('captcha') && !tl.includes('verify') && !tl.includes('checking')) break
+    if (i === 0) console.log('\n⚠️  CAPTCHA dans la fenêtre Chrome — résous-le manuellement (5 min max)...')
+    await sleep(2000)
+  }
+}
+
+async function fetchSets(page, year) {
+  await waitCF(page, `${TCDB}/ViewAll.cfm/sp/Basketball/year/${year}`)
+  await sleep(rand(500, 1000))
+  const { results, headings } = await page.evaluate(() => {
+    const results = []
+    const headings = []
+    const seen = new Set()
+    let inWnba = false
+    const walker = document.createTreeWalker(document.body, NodeFilter.SHOW_ELEMENT, {
+      acceptNode(node) {
+        const tag = node.tagName
+        if (['SCRIPT','STYLE','NAV','HEADER','FOOTER'].includes(tag)) return NodeFilter.FILTER_REJECT
+        if (['H3','H2','H4','LI','A'].includes(tag)) return NodeFilter.FILTER_ACCEPT
+        return NodeFilter.FILTER_SKIP
+      }
+    })
+    while (walker.nextNode()) {
+      const el = walker.currentNode
+      const tag = el.tagName
+      const text = el.textContent?.trim() || ''
+      if (['H3','H2','H4'].includes(tag)) { headings.push(text.slice(0, 60)); inWnba = /wnba/i.test(text); continue }
+      if (tag !== 'A') continue
+      const href = el.getAttribute('href') || ''
+      const m = href.match(/sid\/(\d+)/)
+      if (!m || seen.has(m[1])) continue
+      const name = el.textContent?.trim()
+      if (!name || name.length < 3) continue
+      // Sous un titre de section WNBA, ou set dont le nom contient WNBA
+      // (au cas ou la categorie serait melangee a une autre section).
+      if (!inWnba && !/wnba/i.test(name)) continue
+      seen.add(m[1])
+      results.push({ tcdb_id: parseInt(m[1]), name })
+    }
+    return { results, headings }
+  })
+  if (!results.length) console.log(`   (sections vues sur la page : ${headings.join(' | ') || 'aucune'})`)
+  return results
+}
+
+async function fetchTeams(page, sid, year) {
+  // WNBA: saison sur l'annee civile, slug = "2024"
+  const slugs = [String(year), `${year}-${String(year + 1).slice(2)}`]
+  for (const slug of slugs) {
+    await waitCF(page, `${TCDB}/ViewTeams.cfm/sid/${sid}/${slug}`)
+    await sleep(rand(300, 700))
+    // Pas de filtre NHL_TEAMS : un set "spécial" (équipe hors franchise, ex:
+    // sélection All-Star/Team Canada) glissée parmi de vraies équipes NHL sur la
+    // page passait à travers le filtre et disparaissait silencieusement -- le
+    // fallback existant ne se déclenchait que si le filtre videtait TOUT (0 trou visé).
+    const teams = await page.evaluate(() => {
+      const results = []
+      const seen = new Set()
+      document.querySelectorAll('a[href*="/team/"]').forEach(a => {
+        const href = a.getAttribute('href') || ''
+        const m = href.match(/\/team\/(\d+)\/(.+)/)
+        if (!m || seen.has(m[1])) return
+        seen.add(m[1])
+        results.push({ teamId: m[1], teamName: decodeURIComponent(m[2].replace(/\+/g, ' ')), teamSlug: m[2] })
+      })
+      return results
+    })
+    if (teams.length > 0) return teams
+  }
+  await waitCF(page, `${TCDB}/ViewTeams.cfm/sid/${sid}`)
+  await sleep(rand(300, 700))
+  return await page.evaluate(() => {
+    const results = []
+    const seen = new Set()
+    document.querySelectorAll('a[href*="/team/"]').forEach(a => {
+      const href = a.getAttribute('href') || ''
+      const m = href.match(/\/team\/(\d+)\/(.+)/)
+      if (!m || seen.has(m[1])) return
+      seen.add(m[1])
+      results.push({ teamId: m[1], teamName: decodeURIComponent(m[2].replace(/\+/g, ' ')), teamSlug: m[2] })
+    })
+    return results
+  })
+}
+
+async function fetchTeamCards(page, sid, teamId, teamSlug) {
+  await waitCF(page, `${TCDB}/ViewTeamsIns.cfm/sid/${sid}/team/${teamId}/${teamSlug}`)
+  await sleep(rand(250, 600))
+  return await page.evaluate(() => {
+    const cards = []
+    let currentVariation = null
+    let inInserts = false
+    const walker = document.createTreeWalker(document.body, NodeFilter.SHOW_ELEMENT, {
+      acceptNode(node) {
+        const tag = node.tagName
+        if (['SCRIPT','STYLE','NAV','HEADER','FOOTER'].includes(tag)) return NodeFilter.FILTER_REJECT
+        if (['H3','H2','STRONG','TR'].includes(tag)) return NodeFilter.FILTER_ACCEPT
+        return NodeFilter.FILTER_SKIP
+      }
+    })
+    while (walker.nextNode()) {
+      const el = walker.currentNode
+      const tag = el.tagName
+      const text = el.textContent?.trim() || ''
+      if (tag === 'H3' || tag === 'H2') {
+        if (/^base cards?$/i.test(text)) { currentVariation = null; inInserts = false }
+        else if (/^inserts and related/i.test(text)) { inInserts = true; currentVariation = null }
+        continue
+      }
+      if (tag === 'STRONG' && inInserts) {
+        if (text && text.length < 100 && !/^\d+\s*record/i.test(text)) currentVariation = text
+        continue
+      }
+      if (tag === 'TR') {
+        const tds = Array.from(el.querySelectorAll('td'))
+        if (tds.length < 2) continue
+        let cardNum = null, playerName = null, team = null
+        for (const td of tds) {
+          const rawText = td.textContent?.trim() || ''
+          const linkText = td.querySelector('a')?.textContent?.trim() || null
+          const isCardCode = /^\d+[a-zA-Z]?$/.test(rawText) || /^[A-Z0-9]{1,6}-[A-Z0-9]{1,6}$/i.test(rawText)
+          if (!cardNum && isCardCode && rawText.length <= 12) { cardNum = rawText; continue }
+          const isPlayerName = linkText && linkText.length > 3 && /[a-zA-Z]{2}/.test(linkText) && !/^\d/.test(linkText) && linkText.includes(' ')
+          if (!playerName && isPlayerName) { playerName = linkText; continue }
+          if (playerName && !team && isPlayerName) team = linkText
+        }
+        if (!cardNum || !playerName) continue
+        const rowText = el.textContent || ''
+        cards.push({
+          card_number: cardNum, player_name: playerName, team: team || null,
+          variation: currentVariation || null,
+          is_rc: /\bRC\b/.test(rowText), is_auto: /\bAU\b/.test(rowText),
+        })
+      }
+    }
+    return cards
+  })
+}
+
+function importYear(jsonFile) {
+  console.log()
+  const result = spawnSync('node', [IMPORT_SCRIPT, jsonFile], { stdio: 'inherit' })
+  return result.status === 0
+}
+
+async function scrapeSet(page, set, year, cp) {
+  if (cp.doneTcdbIds.includes(set.tcdb_id)) { console.log(`  ⏭️  tcdb_id:${set.tcdb_id} déjà fait`); return null }
+  const teams = await fetchTeams(page, set.tcdb_id, year)
+  if (!teams.length) { console.log(`  ⚠️  0 équipes WNBA — ignoré`); return null }
+  console.log(`  📂 ${teams.length} équipes`)
+  const allCards = []
+  let incomplete = false
+  for (let ti = 0; ti < teams.length; ti++) {
+    const { teamId, teamName, teamSlug } = teams[ti]
+    process.stdout.write(`  [${ti+1}/${teams.length}] ${teamName}... `)
+    let ok = false
+    for (let attempt = 1; attempt <= 3; attempt++) {
+      try {
+        const cards = await fetchTeamCards(page, set.tcdb_id, teamId, teamSlug || encodeURIComponent(teamName))
+        allCards.push(...cards); console.log(cards.length); if (cards.length === 0) incomplete = true; ok = true; break
+      } catch (e) {
+        if (attempt < 3) { const w = rand(3000,6000)*attempt; process.stdout.write(`❌ retry... `); await sleep(w) }
+        else { console.log(`❌ abandon: ${e.message}`); incomplete = true }
+      }
+    }
+    if (ok) await delayTeam()
+  }
+  if (!allCards.length) { console.log(`  ⚠️  0 cartes`); return null }
+  const seen = new Set()
+  const unique = allCards.filter(c => { const k = `${c.card_number}|${c.player_name}|${c.variation||''}`; if (seen.has(k)) return false; seen.add(k); return true })
+  const brandMatch = set.name.match(MAJOR_BRANDS)
+  console.log(`  📊 ${unique.length} cartes uniques${incomplete ? ' (incomplet -- sera retente)' : ''}`)
+  // complete:false empeche le set d'etre marque "done" definitivement si au
+  // moins une equipe a echoue -- sinon --gaps ne le retente jamais.
+  return { set, unique, brand: brandMatch ? brandMatch[1] : null, complete: !incomplete }
+}
+
+async function main() {
+  if (!fs.existsSync(DATA_DIR)) fs.mkdirSync(DATA_DIR)
+  const cp = loadCheckpoint()
+  console.log(`🏀 Scraper WNBA — saisons ${FROM} → ${TO}`)
+  console.log(`   Categorie WNBA | Checkpoint: ${cp.doneYears.length} années déjà faites\n`)
+  const ASC = process.argv.includes('--asc')
+  const years = []; for (let y = FROM; y >= TO; y--) years.push(y)
+  if (ASC) years.reverse()
+  const remaining = GAPS ? years : years.filter(y => !cp.doneYears.includes(y))
+  console.log(`   ${remaining.length} années à scraper\n`)
+  let browser = null; let totalSets = 0
+  const openBrowser = async () => {
+    const result = await launchBrowser(SLOT)
+    browser = result.browser
+    const page = result.page
+    await waitCF(page, TCDB); await sleep(rand(2000,4000)); console.log('✓ Browser OK (webdriver=false)'); return page
+  }
+  let page = await openBrowser()
+  try {
+    for (let yi = 0; yi < remaining.length; yi++) {
+      const year = remaining[yi]
+      const season = String(year)
+      console.log(`\n${'═'.repeat(60)}\n📅 Saison WNBA ${season} (${yi+1}/${remaining.length})\n${'═'.repeat(60)}`)
+      if (yi > 0 && yi % 8 === 0) { page = await openBrowser() }
+      let sets = []
+      try { sets = await fetchSets(page, year); console.log(`   ${sets.length} sets trouvés`) }
+      catch (e) { console.log(`   ❌ ${e.message}`); cp.doneYears.push(year); saveCheckpoint(cp); continue }
+      if (!sets.length) { cp.doneYears.push(year); saveCheckpoint(cp); continue }
+      for (let si = 0; si < sets.length; si++) {
+        const set = sets[si]; console.log(`\n  [${si+1}/${sets.length}] ${set.name} (sid:${set.tcdb_id})`)
+        try {
+          const result = await scrapeSet(page, set, year, cp)
+          if (result && result.complete === false) {
+            // Jamais d'import partiel -- un set deja complet sur le site ne doit
+            // jamais regresser suite a un echec transitoire de re-scrape.
+            console.log(`  ⏭️  Incomplet -- pas importe, sera retente au prochain --gaps`)
+          } else if (result) {
+            totalSets++
+            if (!DRY_RUN) {
+              const jsonFile = path.join(DATA_DIR, `scraped-${set.tcdb_id}.json`)
+              fs.writeFileSync(jsonFile, JSON.stringify({ year, sport: 'wnba', sets: [result] }, null, 2))
+              const ok = importYear(jsonFile)
+              if (ok) { cp.doneTcdbIds.push(set.tcdb_id); saveCheckpoint(cp); console.log(`  ✅ Importé`) }
+              else { console.log(`  ⚠️  Import échoué`) }
+            }
+          }
+        } catch (e) { console.log(`  ❌ ${e.message}`) }
+        if (totalSets > 0 && totalSets % BREAK_EVERY === 0) await delayBreak()
+        else if (si < sets.length - 1) await delaySet()
+      }
+      cp.doneYears.push(year); saveCheckpoint(cp)
+      if (yi < remaining.length - 1) { await sleep(rand(8000, 18000)) }
+    }
+    console.log(`\n\n🏁 TERMINÉ — ${cp.doneYears.length} années scrapées`)
+  } finally { killChrome(SLOT) }
+}
+
+main().catch(e => { console.error('Fatal:', e.message); process.exit(1) })
