@@ -53,12 +53,12 @@ export async function GET(req: NextRequest) {
       .select('id, nom, equipe, annee, marque, num, image_recto, image_recto_hd, image_verso, image_verso_hd, is_horizontal, user_id')
       .or(`nom.ilike.%${safeQ}%,equipe.ilike.%${safeQ}%,marque.ilike.%${safeQ}%`)
       .order('created_at', { ascending: false })
-      .limit(60),
+      .limit(400),
     admin.from('card_set_entries')
       .select('id, player_name, card_number, image_url, is_rc, card_sets(name, year, brand)')
       .ilike('player_name', `%${safeQ}%`)
       .not('image_url', 'is', null)
-      .limit(40),
+      .limit(150),
     // lien_csv est '' (chaine vide) pour la grande majorite des profils, pas
     // null -- .not('lien_csv','is',null) seul en laissait passer des centaines
     // et noyait les quelques vrais liens sous la limite. neq('') les ecarte.
@@ -131,5 +131,5 @@ export async function GET(req: NextRequest) {
     })
   })
 
-  return NextResponse.json({ results: results.slice(0, 80) })
+  return NextResponse.json({ results: results.slice(0, 600) })
 }
