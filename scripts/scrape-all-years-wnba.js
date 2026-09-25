@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 /**
- * Scraper TCDB WNBA — Toutes saisons 2025→1997 (categorie WNBA de la page Basketball/year)
+ * Scraper TCDB WNBA — Toutes saisons 2026→1997 (categorie WNBA de la page Basketball/year)
  *
  * Usage:
  *   node scripts/scrape-all-years-wnba.js
@@ -25,7 +25,7 @@ const args = Object.fromEntries(
     return [k, v ?? true]
   })
 )
-const FROM    = args.from  ? parseInt(args.from)  : 2025
+const FROM    = args.from  ? parseInt(args.from)  : 2026
 const TO      = args.to    ? parseInt(args.to)    : 1997
 const DRY_RUN = !!args['dry-run']
 // --gaps : au lieu de ne traiter que les annees pas encore dans doneYears, retraite
