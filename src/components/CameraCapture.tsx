@@ -35,7 +35,7 @@ export default function CameraCapture({ onCapture, onClose, ratio }: Props) {
   const [ready, setReady] = useState(false)
   const [error, setError] = useState<string | null>(null)
   const streamRef = useRef<MediaStream | null>(null)
-  const imageCaptureRef = useRef<{ takePhoto: () => Promise<Blob> } | null>(null)
+  const imageCaptureRef = useRef<{ takePhoto: (settings?: any) => Promise<Blob>; getPhotoCapabilities?: () => Promise<any> } | null>(null)
   const [torch, setTorch] = useState(false)
   const [torchCapable, setTorchCapable] = useState(false)   // useState → re-render quand détecté
   const [focusPt, setFocusPt] = useState<{ x: number; y: number } | null>(null)
@@ -122,7 +122,10 @@ export default function CameraCapture({ onCapture, onClose, ratio }: Props) {
       else
         setError('Caméra inaccessible')
     }
-    const size = { width: { ideal: 1920 }, height: { ideal: 1080 } }
+    // 4:3 = format natif des capteurs photo : l'apercu couvre le meme champ que la
+    // photo finale (sinon le cadre est decale sur l'axe vertical), et la
+    // definition est plus haute que l'ancien 1920x1080 pour le zoom numerique.
+    const size = { width: { ideal: 2560 }, height: { ideal: 1920 } }
     const get = (video: MediaTrackConstraints | boolean) => navigator.mediaDevices.getUserMedia({ video, audio: false })
     const wantedId = forceId !== undefined ? forceId : readSavedCamera()
     const byFacing = () => get({ facingMode: 'environment', ...size })
@@ -352,12 +355,29 @@ export default function CameraCapture({ onCapture, onClose, ratio }: Props) {
     // La photo peut avoir une resolution differente de vw/vh (le flux
     // preview) -- on remet le frameRect a l'echelle en consequence.
     let blob: Blob | null = null
+    // Echelle video -> pixels du blob final (1 pour la capture de la frame video).
+    let sx = 1, sy = 1
     if (imageCaptureRef.current) {
       try {
-        const photoBlob = await imageCaptureRef.current.takePhoto()
+        // Sans reglage, takePhoto() renvoie la resolution PAR DEFAUT du capteur,
+        // pas la maximale : on demande la resolution max annoncee par l'appareil
+        // (plafonnee a ~16 Mpx pour ne pas saturer la memoire / le scan).
+        let photoSettings: any = undefined
+        try {
+          const pc = await imageCaptureRef.current.getPhotoCapabilities?.()
+          const mw = pc?.imageWidth?.max, mh = pc?.imageHeight?.max
+          if (mw && mh) {
+            const k = Math.min(1, Math.sqrt(16_000_000 / (mw * mh)))
+            photoSettings = { imageWidth: Math.floor(mw * k), imageHeight: Math.floor(mh * k) }
+          }
+        } catch { photoSettings = undefined }
+        let photoBlob: Blob
+        try { photoBlob = await imageCaptureRef.current.takePhoto(photoSettings) }
+        catch { photoBlob = await imageCaptureRef.current.takePhoto() }
         const bmp = await createImageBitmap(photoBlob)
-        const scale = bmp.width / vw
-        frameRect = { x: frameRect.x * scale, y: frameRect.y * scale, w: frameRect.w * scale, h: frameRect.h * scale }
+        sx = bmp.width / vw
+        sy = bmp.height / vh
+        frameRect = { x: frameRect.x * sx, y: frameRect.y * sy, w: frameRect.w * sx, h: frameRect.h * sy }
         bmp.close?.()
         // Pleine resolution renvoyee telle quelle -- un cap ici degraderait
         // aussi l'image finale stockee en galerie (image_recto/HD/Viewer3D),
@@ -374,6 +394,29 @@ export default function CameraCapture({ onCapture, onClose, ratio }: Props) {
       canvas.height = vh
       canvas.getContext('2d')!.drawImage(video, 0, 0, vw, vh)
       blob = await new Promise<Blob | null>(resolve => canvas.toBlob(resolve, 'image/jpeg', 0.92))
+    }
+
+    // Zoom numerique : la photo est la frame COMPLETE -- on la recadre sur la
+    // zone zoomee visible (sinon l'etape de reperage des coins affiche la photo
+    // non zoomee). Recadrage en pleine resolution, sans re-echantillonnage.
+    if (blob && digitalZoomRef.current && zoomRef.current > 1.001) {
+      try {
+        const bmp = await createImageBitmap(blob)
+        const cx = Math.max(0, Math.round(srcX * sx)), cy = Math.max(0, Math.round(srcY * sy))
+        const cw = Math.min(bmp.width - cx, Math.round(srcW * sx)), ch = Math.min(bmp.height - cy, Math.round(srcH * sy))
+        if (cw > 50 && ch > 50) {
+          const cv = document.createElement('canvas')
+          cv.width = cw; cv.height = ch
+          cv.getContext('2d')!.drawImage(bmp, cx, cy, cw, ch, 0, 0, cw, ch)
+          const cropped = await new Promise<Blob | null>(resolve => cv.toBlob(resolve, 'image/jpeg', 0.95))
+          if (cropped) {
+            const x = Math.max(0, frameRect.x - cx), y = Math.max(0, frameRect.y - cy)
+            frameRect = { x, y, w: Math.min(cw - x, frameRect.w), h: Math.min(ch - y, frameRect.h) }
+            blob = cropped
+          }
+        }
+        bmp.close?.()
+      } catch { /* on garde la photo complete */ }
     }
 
     streamRef.current?.getTracks().forEach(t => t.stop())
