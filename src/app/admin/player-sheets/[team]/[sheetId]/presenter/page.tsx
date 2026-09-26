@@ -51,6 +51,9 @@ export default function PlayerSheetPresenterPage() {
 
   const [ready, setReady] = useState(false)
   const [sheet, setSheet] = useState<Sheet | null>(null)
+  // Fiches de l'equipe dans l'ordre de la page equipe -- pour passer a la
+  // precedente / suivante (fleches du clavier ou boutons) sans quitter la presentation.
+  const [order, setOrder] = useState<string[]>([])
 
   useEffect(() => {
     supabase.auth.getSession().then(async ({ data: { session } }) => {
@@ -63,6 +66,34 @@ export default function PlayerSheetPresenterPage() {
       setReady(true)
     })
   }, [sheetId])
+
+  useEffect(() => {
+    supabase.from('player_sheets')
+      .select('id, card_image_recto')
+      .eq('team_abbr', teamAbbr).order('sort_order', { ascending: true })
+      .then(({ data }) => {
+        const rows = data || []
+        // Comme le bouton "Presentation" (visible seulement avec une carte) : on ne
+        // navigue que parmi les fiches avec carte, en gardant toujours la fiche courante.
+        setOrder(rows.filter(x => x.card_image_recto || x.id === sheetId).map(x => x.id))
+      })
+  }, [teamAbbr, sheetId])
+
+  const idx = order.indexOf(sheetId)
+  const prevId = idx > 0 ? order[idx - 1] : null
+  const nextId = idx >= 0 && idx < order.length - 1 ? order[idx + 1] : null
+  const goTo = (id: string | null) => { if (id) router.replace(`/admin/player-sheets/${teamAbbr}/${id}/presenter`) }
+
+  useEffect(() => {
+    const onKey = (e: KeyboardEvent) => {
+      const el = e.target as HTMLElement | null
+      if (el && (el.tagName === 'INPUT' || el.tagName === 'TEXTAREA' || el.isContentEditable)) return
+      if (e.key === 'ArrowRight') { e.preventDefault(); goTo(nextId) }
+      else if (e.key === 'ArrowLeft') { e.preventDefault(); goTo(prevId) }
+    }
+    window.addEventListener('keydown', onKey)
+    return () => window.removeEventListener('keydown', onKey)
+  }, [prevId, nextId, teamAbbr])
 
   if (!ready || !sheet || !team) {
     return <div style={{ position: 'fixed', inset: 0, background: '#05070c', color: '#fff', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>Chargement...</div>
@@ -98,6 +129,21 @@ export default function PlayerSheetPresenterPage() {
         display: 'flex', alignItems: 'center', justifyContent: 'center', textDecoration: 'none',
       }}>✕</Link>
 
+      {order.length > 1 && (
+        <div style={{
+          position: 'fixed', bottom: 20, left: '50%', transform: 'translateX(-50%)', zIndex: 10,
+          display: 'flex', alignItems: 'center', gap: 12,
+          background: 'rgba(255,255,255,0.08)', border: '1px solid rgba(255,255,255,0.12)',
+          borderRadius: 999, padding: '6px 8px',
+        }}>
+          <button onClick={() => goTo(prevId)} disabled={!prevId} aria-label="Joueur précédent"
+            style={{ width: 36, height: 36, borderRadius: '50%', border: 'none', background: 'rgba(255,255,255,0.12)', color: '#fff', fontSize: 18, cursor: prevId ? 'pointer' : 'default', opacity: prevId ? 1 : 0.3 }}>‹</button>
+          <span style={{ fontSize: 13, fontWeight: 800, color: 'rgba(255,255,255,0.7)', minWidth: 44, textAlign: 'center', fontVariantNumeric: 'tabular-nums' }}>{idx + 1} / {order.length}</span>
+          <button onClick={() => goTo(nextId)} disabled={!nextId} aria-label="Joueur suivant"
+            style={{ width: 36, height: 36, borderRadius: '50%', border: 'none', background: 'rgba(255,255,255,0.12)', color: '#fff', fontSize: 18, cursor: nextId ? 'pointer' : 'default', opacity: nextId ? 1 : 0.3 }}>›</button>
+        </div>
+      )}
+
       <div style={{
         minHeight: '100%', display: 'flex', flexWrap: 'wrap-reverse', alignItems: 'center', justifyContent: 'center',
         gap: 72, padding: '70px 40px',
@@ -111,6 +157,7 @@ export default function PlayerSheetPresenterPage() {
             }} />
             {sheet.card_image_recto && (
               <Card3DInline
+                key={sheetId}
                 front={sheet.card_image_recto_hd || sheet.card_image_recto}
                 back={sheet.card_image_verso_hd || sheet.card_image_verso || undefined}
                 isHorizontal={sheet.card_is_horizontal}
