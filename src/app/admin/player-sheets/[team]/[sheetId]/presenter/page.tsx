@@ -131,16 +131,16 @@ export default function PlayerSheetPresenterPage() {
 
       {order.length > 1 && (
         <div style={{
-          position: 'fixed', bottom: 20, left: '50%', transform: 'translateX(-50%)', zIndex: 10,
-          display: 'flex', alignItems: 'center', gap: 12,
-          background: 'rgba(255,255,255,0.08)', border: '1px solid rgba(255,255,255,0.12)',
-          borderRadius: 999, padding: '6px 8px',
-        }}>
+          // Discret : petit, coin bas droit, quasi transparent (visible au survol).
+          position: 'fixed', bottom: 10, right: 12, zIndex: 10,
+          display: 'flex', alignItems: 'center', gap: 4,
+          opacity: 0.18, transition: 'opacity .2s',
+        }} onMouseEnter={e => { e.currentTarget.style.opacity = '0.9' }} onMouseLeave={e => { e.currentTarget.style.opacity = '0.18' }}>
           <button onClick={() => goTo(prevId)} disabled={!prevId} aria-label="Joueur précédent"
-            style={{ width: 36, height: 36, borderRadius: '50%', border: 'none', background: 'rgba(255,255,255,0.12)', color: '#fff', fontSize: 18, cursor: prevId ? 'pointer' : 'default', opacity: prevId ? 1 : 0.3 }}>‹</button>
-          <span style={{ fontSize: 13, fontWeight: 800, color: 'rgba(255,255,255,0.7)', minWidth: 44, textAlign: 'center', fontVariantNumeric: 'tabular-nums' }}>{idx + 1} / {order.length}</span>
+            style={{ width: 22, height: 22, borderRadius: '50%', border: 'none', background: 'rgba(255,255,255,0.15)', color: '#fff', fontSize: 14, lineHeight: 1, cursor: prevId ? 'pointer' : 'default', opacity: prevId ? 1 : 0.3 }}>‹</button>
+          <span style={{ fontSize: 10.5, fontWeight: 700, color: 'rgba(255,255,255,0.8)', minWidth: 30, textAlign: 'center', fontVariantNumeric: 'tabular-nums' }}>{idx + 1} / {order.length}</span>
           <button onClick={() => goTo(nextId)} disabled={!nextId} aria-label="Joueur suivant"
-            style={{ width: 36, height: 36, borderRadius: '50%', border: 'none', background: 'rgba(255,255,255,0.12)', color: '#fff', fontSize: 18, cursor: nextId ? 'pointer' : 'default', opacity: nextId ? 1 : 0.3 }}>›</button>
+            style={{ width: 22, height: 22, borderRadius: '50%', border: 'none', background: 'rgba(255,255,255,0.15)', color: '#fff', fontSize: 14, lineHeight: 1, cursor: nextId ? 'pointer' : 'default', opacity: nextId ? 1 : 0.3 }}>›</button>
         </div>
       )}
 
