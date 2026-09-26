@@ -31,6 +31,7 @@ export default function CameraCapture({ onCapture, onClose, ratio }: Props) {
   }, [])
 
   const videoRef = useRef<HTMLVideoElement>(null)
+  const rootRef = useRef<HTMLDivElement>(null)
   const [ready, setReady] = useState(false)
   const [error, setError] = useState<string | null>(null)
   const streamRef = useRef<MediaStream | null>(null)
@@ -167,22 +168,39 @@ export default function CameraCapture({ onCapture, onClose, ratio }: Props) {
       })
   }
 
-  const touchDist = (t: React.TouchList) => Math.hypot(t[0].clientX - t[1].clientX, t[0].clientY - t[1].clientY)
-  const handleTouchStart = (e: React.TouchEvent<HTMLVideoElement>) => {
-    if (e.touches.length === 2 && zoomCapsRef.current) {
-      pinchRef.current = { dist: touchDist(e.touches), zoom: zoomRef.current }
-      return
+  // Pincement a deux doigts sur TOUT l'ecran (comme l'appli photo native) :
+  // ecouteurs natifs non passifs pour pouvoir bloquer le zoom/scroll de la page
+  // pendant le geste -- les handlers React sont passifs et ne le permettent pas.
+  useEffect(() => {
+    const el = rootRef.current
+    if (!el) return
+    const dist = (t: TouchList) => Math.hypot(t[0].clientX - t[1].clientX, t[0].clientY - t[1].clientY)
+    const onStart = (e: TouchEvent) => {
+      if (e.touches.length === 2 && zoomCapsRef.current) {
+        pinchRef.current = { dist: dist(e.touches), zoom: zoomRef.current }
+        e.preventDefault()
+      }
     }
-    if (e.touches.length === 1) handleTapFocus(e)
-  }
-  const handleTouchMove = (e: React.TouchEvent<HTMLVideoElement>) => {
-    const p = pinchRef.current
-    if (!p || e.touches.length !== 2 || p.dist <= 0) return
-    applyZoom(p.zoom * (touchDist(e.touches) / p.dist))
-  }
-  const handleTouchEnd = (e: React.TouchEvent<HTMLVideoElement>) => {
-    if (e.touches.length < 2) pinchRef.current = null
-  }
+    const onMove = (e: TouchEvent) => {
+      const p = pinchRef.current
+      if (!p || e.touches.length < 2 || p.dist <= 0) return
+      e.preventDefault()
+      applyZoomRef.current(p.zoom * (dist(e.touches) / p.dist))
+    }
+    const onEnd = (e: TouchEvent) => { if (e.touches.length < 2) pinchRef.current = null }
+    el.addEventListener('touchstart', onStart, { passive: false })
+    el.addEventListener('touchmove', onMove, { passive: false })
+    el.addEventListener('touchend', onEnd)
+    el.addEventListener('touchcancel', onEnd)
+    return () => {
+      el.removeEventListener('touchstart', onStart)
+      el.removeEventListener('touchmove', onMove)
+      el.removeEventListener('touchend', onEnd)
+      el.removeEventListener('touchcancel', onEnd)
+    }
+  }, [])
+  const applyZoomRef = useRef(applyZoom)
+  applyZoomRef.current = applyZoom
   const handleWheel = (e: React.WheelEvent<HTMLVideoElement>) => {
     if (!zoomCapsRef.current) return
     applyZoom(zoomRef.current * (e.deltaY < 0 ? 1.1 : 1 / 1.1))
@@ -219,6 +237,7 @@ export default function CameraCapture({ onCapture, onClose, ratio }: Props) {
   const handleTapFocus = async (e: React.MouseEvent<HTMLVideoElement> | React.TouchEvent<HTMLVideoElement>) => {
     const track = streamRef.current?.getVideoTracks()[0]
     if (!track || !ready) return
+    if ('touches' in e && e.touches.length > 1) return
     const video = videoRef.current!
     const rect = video.getBoundingClientRect()
     const clientX = 'touches' in e ? e.touches[0].clientX : (e as React.MouseEvent).clientX
@@ -364,7 +383,7 @@ export default function CameraCapture({ onCapture, onClose, ratio }: Props) {
   const CARD_RATIO = ratio ?? (2.5 / 3.5)
 
   const content = (
-    <div style={{ position: 'fixed', inset: 0, background: 'black', zIndex: 9999, display: 'flex', flexDirection: 'column' }}>
+    <div ref={rootRef} style={{ position: 'fixed', inset: 0, background: 'black', zIndex: 9999, display: 'flex', flexDirection: 'column', touchAction: 'none' }}>
       <style>{`@keyframes focusFade { 0%{opacity:1;transform:scale(1)} 60%{opacity:1;transform:scale(0.85)} 100%{opacity:0;transform:scale(0.8)} }`}</style>
       {error ? (
         <div style={{ flex: 1, display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', color: 'white', gap: 16, padding: '0 28px', textAlign: 'center' }}>
@@ -426,10 +445,7 @@ export default function CameraCapture({ onCapture, onClose, ratio }: Props) {
             playsInline
             muted
             onClick={handleTapFocus}
-            onTouchStart={handleTouchStart}
-            onTouchMove={handleTouchMove}
-            onTouchEnd={handleTouchEnd}
-            onTouchCancel={handleTouchEnd}
+            onTouchStart={handleTapFocus}
             onWheel={handleWheel}
             style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover', cursor: 'crosshair', touchAction: 'none', transform: digitalZoom && zoom > 1 ? `scale(${zoom})` : undefined, transformOrigin: 'center center' }}
           />
