@@ -43,6 +43,10 @@ export default function CameraCapture({ onCapture, onClose, ratio }: Props) {
   // dans capture() reste valable. Absent (null) = pas de zoom materiel, UI masquee.
   const [zoomCaps, setZoomCaps] = useState<{ min: number; max: number; step: number } | null>(null)
   const [zoom, setZoom] = useState(1)
+  // Zoom numerique de secours (agrandissement de l'apercu + recadrage a la capture)
+  // quand l'appareil n'expose pas de zoom materiel (webcam, iOS, certains Android).
+  const [digitalZoom, setDigitalZoom] = useState(false)
+  const digitalZoomRef = useRef(false)
   const zoomCapsRef = useRef<{ min: number; max: number; step: number } | null>(null)
   const zoomRef = useRef(1)
   const zoomBusyRef = useRef(false)
@@ -72,14 +76,21 @@ export default function CameraCapture({ onCapture, onClose, ratio }: Props) {
       setActiveId(settings.deviceId ?? null)
       if (caps.zoom && typeof caps.zoom.max === 'number' && caps.zoom.max > caps.zoom.min) {
         const zc = { min: caps.zoom.min as number, max: caps.zoom.max as number, step: (caps.zoom.step as number) || 0.1 }
+        digitalZoomRef.current = false
+        setDigitalZoom(false)
         zoomCapsRef.current = zc
         setZoomCaps(zc)
         const z0 = typeof settings.zoom === 'number' ? settings.zoom : zc.min
         zoomRef.current = z0
         setZoom(z0)
       } else {
-        zoomCapsRef.current = null
-        setZoomCaps(null)
+        const zc = { min: 1, max: 4, step: 0.05 }
+        digitalZoomRef.current = true
+        setDigitalZoom(true)
+        zoomCapsRef.current = zc
+        setZoomCaps(zc)
+        zoomRef.current = 1
+        setZoom(1)
       }
       // Les libelles des cameras ne sont disponibles qu'apres l'autorisation.
       navigator.mediaDevices.enumerateDevices()
@@ -142,6 +153,7 @@ export default function CameraCapture({ onCapture, onClose, ratio }: Props) {
     const z = Math.max(zc.min, Math.min(zc.max, value))
     zoomRef.current = z
     setZoom(z)
+    if (digitalZoomRef.current) return
     // Une seule applyConstraints en vol a la fois (le pincement en envoie des dizaines/s).
     if (zoomBusyRef.current) { zoomPendingRef.current = z; return }
     zoomBusyRef.current = true
@@ -287,6 +299,16 @@ export default function CameraCapture({ onCapture, onClose, ratio }: Props) {
       srcH = vw / displayAspect
       srcY = (vh - srcH) / 2
     }
+    // Zoom numerique : la zone visible est le centre de la video, reduite d'un
+    // facteur zoom -- le cadre (position ecran inchangee) pointe donc une zone
+    // plus petite de la vraie frame, recadree en pleine resolution par l'appelant.
+    if (digitalZoomRef.current && zoomRef.current > 1) {
+      const nw = srcW / zoomRef.current, nh = srcH / zoomRef.current
+      srcX += (srcW - nw) / 2
+      srcY += (srcH - nh) / 2
+      srcW = nw
+      srcH = nh
+    }
     const scaleX = srcW / dw
     const scaleY = srcH / dh
 
@@ -409,7 +431,7 @@ export default function CameraCapture({ onCapture, onClose, ratio }: Props) {
             onTouchEnd={handleTouchEnd}
             onTouchCancel={handleTouchEnd}
             onWheel={handleWheel}
-            style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover', cursor: 'crosshair', touchAction: 'none' }}
+            style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover', cursor: 'crosshair', touchAction: 'none', transform: digitalZoom && zoom > 1 ? `scale(${zoom})` : undefined, transformOrigin: 'center center' }}
           />
 
           {/* Indicateur de mise au point */}
