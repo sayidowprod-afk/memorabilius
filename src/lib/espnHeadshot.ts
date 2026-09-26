@@ -494,6 +494,44 @@ const ESPN_POSITION_TO_POSTE: Record<string, string> = {
   Guard: 'Meneur', Forward: 'Ailier', Center: 'Pivot',
 }
 
+// Un passage dans une equipe (saisons consecutives regroupees).
+export interface TeamStint {
+  slug: string
+  abbr: string
+  name: string
+  logo: string | null
+  logoDark: string | null
+  from: string   // "2003-04"
+  to: string     // "2009-10"
+}
+
+// Historique des equipes a partir des lignes de saison ESPN (categorie
+// "averages") : chaque ligne porte teamSlug ; les lignes "Totals" d'un joueur
+// echange en cours de saison n'ont pas de slug d'equipe valide (absentes du
+// dictionnaire "teams") et sont ignorees.
+export function buildTeamHistory(statsData: any): TeamStint[] {
+  const teams = statsData?.teams || {}
+  const avg = statsData?.categories?.find((c: any) => c.name === 'averages')
+  const stints: TeamStint[] = []
+  for (const row of avg?.statistics || []) {
+    const slug: string | undefined = row?.teamSlug
+    const t = slug ? teams[slug] : null
+    const label: string | undefined = row?.season?.displayName
+    if (!slug || !t || !label) continue
+    const last = stints[stints.length - 1]
+    if (last && last.slug === slug) { last.to = label; continue }
+    const logos: any[] = t.logos || []
+    const pick = (rel: string) => logos.find(l => Array.isArray(l.rel) && l.rel.includes('default') && l.rel.includes(rel))?.href
+    stints.push({
+      slug, abbr: t.abbreviation || '', name: t.displayName || slug,
+      logo: logos.find(l => l.rel?.includes('default') && !l.rel?.includes('dark'))?.href || pick('full') || null,
+      logoDark: logos.find(l => l.rel?.includes('dark') && !l.rel?.includes('scoreboard'))?.href || null,
+      from: label, to: label,
+    })
+  }
+  return stints
+}
+
 export interface EspnPlayerAutofill {
   age: number | null
   // Devine large (Guard/Forward/Center) faute de granularite ESPN --
@@ -507,6 +545,7 @@ export interface EspnPlayerAutofill {
   points: string | null
   rebounds: string | null
   assists: string | null
+  teamHistory: TeamStint[]
 }
 
 function frenchifyExperience(displayExperience: string): string {
@@ -571,6 +610,7 @@ export async function fetchEspnPlayerAutofill(name: string, sportHint = 'nba'): 
     experience,
     season,
     gamesPlayed, minutes, points, rebounds, assists,
+    teamHistory: buildTeamHistory(statsData),
   }
 }
  

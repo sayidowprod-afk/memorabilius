@@ -39,6 +39,18 @@ export default function TeamPlayerSheetsPage() {
       if (!p?.is_admin) { router.replace('/'); return }
       await load()
       setReady(true)
+      // Fiches deja faites sans historique : on les complete en arriere-plan
+      // (par lots, le serveur repond "remaining" tant qu'il en reste).
+      const tok = session.access_token
+      for (let i = 0; i < 12; i++) {
+        const res = await fetch('/api/admin/player-sheets-history', {
+          method: 'POST', headers: { Authorization: `Bearer ${tok}`, 'Content-Type': 'application/json' },
+          body: JSON.stringify({ team: teamAbbr }),
+        }).catch(() => null)
+        if (!res || !res.ok) break            // migration pas passee / erreur : on abandonne sans bruit
+        const j = await res.json().catch(() => null)
+        if (!j || !j.remaining || j.remaining <= 0) break
+      }
     })
   }, [teamAbbr])
 

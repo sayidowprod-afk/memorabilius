@@ -7,6 +7,8 @@ import { SPORTS_TEAMS } from '@/lib/sportsTeams'
 import Card3DInline from '@/components/Card3DInline'
 import TeamBadge from '@/components/TeamBadge'
 import type { CardMeta } from '@/app/api/admin/player-sheets-card-search/route'
+import TeamHistory from '@/components/TeamHistory'
+import type { TeamStint } from '@/lib/espnHeadshot'
 
 interface Sheet {
   player_name: string
@@ -18,6 +20,7 @@ interface Sheet {
   stat_matches: string | null; stat_minutes: string | null
   stat_points: string | null; stat_rebonds: string | null; stat_passes: string | null; stat_autres: string | null
   notes: string | null
+  team_history?: TeamStint[] | null
 }
 
 // Image plutôt qu'emoji -- pas de police couleur pour les drapeaux sur
@@ -157,6 +160,13 @@ export default function PlayerSheetPresenterPage() {
           {stats.length > 0 && (
             <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(130px, 1fr))', gap: 12 }}>
               {stats.map(s => <StatCard key={s.label} {...s} accent={team.color} />)}
+            </div>
+          )}
+
+          {Array.isArray(sheet.team_history) && sheet.team_history.length > 1 && (
+            <div>
+              <div style={{ fontSize: 12, fontWeight: 800, letterSpacing: 1.8, textTransform: 'uppercase', color: 'rgba(255,255,255,0.45)', marginBottom: 10 }}>Parcours</div>
+              <TeamHistory history={sheet.team_history} variant="dark" />
             </div>
           )}
 

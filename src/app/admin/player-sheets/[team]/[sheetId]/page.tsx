@@ -9,6 +9,8 @@ import Card3DInline from '@/components/Card3DInline'
 import TeamBadge from '@/components/TeamBadge'
 import type { CardSearchResult, CardMeta } from '@/app/api/admin/player-sheets-card-search/route'
 import { ALL_NBA_COUNTRIES, nbaCountryName } from '@/lib/nbaCountries'
+import TeamHistory from '@/components/TeamHistory'
+import type { TeamStint } from '@/lib/espnHeadshot'
 
 const POSTES = ['Meneur', 'Arrière', 'Ailier', 'Ailier Fort', 'Pivot']
 
@@ -66,6 +68,27 @@ export default function PlayerSheetEditorPage() {
   // chargée, en repartant du code deja enregistre si possible.
   const [countryText, setCountryText] = useState('')
 
+  // Historique des equipes, garde HORS de `sheet` : la sauvegarde ecrit toute la
+  // fiche, et une valeur perimee ecraserait celle que le serveur vient de calculer
+  // (ou ferait echouer l'update tant que la migration n'est pas passee).
+  const [history, setHistory] = useState<TeamStint[] | null>(null)
+  const [historyLoading, setHistoryLoading] = useState(false)
+
+  const refreshHistory = async (id: string) => {
+    setHistoryLoading(true)
+    try {
+      const tok = await freshToken()
+      if (!tok) return
+      const res = await fetch('/api/admin/player-sheets-history', {
+        method: 'POST', headers: { Authorization: `Bearer ${tok}`, 'Content-Type': 'application/json' },
+        body: JSON.stringify({ sheetId: id }),
+      })
+      if (res.ok) setHistory((await res.json()).history || [])
+    } catch { /* silencieux : l'historique est un bonus */ } finally {
+      setHistoryLoading(false)
+    }
+  }
+
   useEffect(() => {
     supabase.auth.getSession().then(async ({ data: { session } }) => {
       if (!session) { router.replace('/connexion'); return }
@@ -75,7 +98,10 @@ export default function PlayerSheetEditorPage() {
       if (!data) { router.replace(`/admin/player-sheets/${teamAbbr}`); return }
       setSheet(data)
       setCountryText(nbaCountryName(data.stat_country) || data.stat_country || '')
+      setHistory(Array.isArray(data.team_history) ? data.team_history : null)
       setReady(true)
+      // Automatique : fiche jamais traitee (colonne presente mais vide) -> on la remplit.
+      if ('team_history' in data && data.team_history == null && data.player_name?.trim()) refreshHistory(data.id)
     })
   }, [sheetId])
 
@@ -92,7 +118,8 @@ export default function PlayerSheetEditorPage() {
   const save = async () => {
     if (!sheet) return
     setSaving(true)
-    const { id, ...rest } = sheet
+    const { id, ...rest } = sheet as Sheet & { team_history?: unknown }
+    delete rest.team_history
     await supabase.from('player_sheets').update({ ...rest, updated_at: new Date().toISOString() }).eq('id', id)
     setSaving(false)
     setSavedAt(Date.now())
@@ -174,6 +201,7 @@ export default function PlayerSheetEditorPage() {
         stat_passes: d.assists ?? sheet.stat_passes,
       })
       if (d.countryCode) setCountryText(nbaCountryName(d.countryCode) || d.countryCode)
+      if (Array.isArray(d.teamHistory) && d.teamHistory.length) { refreshHistory(sheet.id) }
     } catch {
       setAutofillError(true)
     } finally {
@@ -321,6 +349,12 @@ export default function PlayerSheetEditorPage() {
             <div><span style={labelStyle}>Passes</span><input style={inputStyle} value={sheet.stat_passes || ''} onChange={e => patch({ stat_passes: e.target.value })} placeholder="7.8" /></div>
           </div>
           <div><span style={labelStyle}>Autres stats</span><input style={inputStyle} value={sheet.stat_autres || ''} onChange={e => patch({ stat_autres: e.target.value })} placeholder="3pts: 38% · Contres: 0.4" /></div>
+          {(history && history.length > 0) || historyLoading ? (
+            <div>
+              <span style={labelStyle}>Historique des équipes {historyLoading && '· mise à jour…'}</span>
+              {history && history.length > 0 && <TeamHistory history={history} />}
+            </div>
+          ) : null}
           <div>
             <span style={labelStyle}>Notes / infos libres</span>
             <textarea
