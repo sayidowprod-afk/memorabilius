@@ -237,36 +237,62 @@ export default function CameraCapture({ onCapture, onClose, ratio }: Props) {
     } catch { /* non supporté */ }
   }
 
+  const lastTouchRef = useRef(0)
   const handleTapFocus = async (e: React.MouseEvent<HTMLVideoElement> | React.TouchEvent<HTMLVideoElement>) => {
     const track = streamRef.current?.getVideoTracks()[0]
     if (!track || !ready) return
-    if ('touches' in e && e.touches.length > 1) return
+    if ('touches' in e) {
+      if (e.touches.length > 1) return
+      lastTouchRef.current = Date.now()
+    } else if (Date.now() - lastTouchRef.current < 700) {
+      return // le "click" qui suit un toucher : deja traite (evite 2 cycles de mise au point)
+    }
     const video = videoRef.current!
     const rect = video.getBoundingClientRect()
     const clientX = 'touches' in e ? e.touches[0].clientX : (e as React.MouseEvent).clientX
     const clientY = 'touches' in e ? e.touches[0].clientY : (e as React.MouseEvent).clientY
-    const x = Math.max(0, Math.min(1, (clientX - rect.left) / rect.width))
-    const y = Math.max(0, Math.min(1, (clientY - rect.top) / rect.height))
-    setFocusPt({ x: clientX - rect.left, y: clientY - rect.top })
+    // Indicateur : position ecran (le conteneur n'est pas zoome, la video l'est).
+    const root = rootRef.current?.getBoundingClientRect()
+    setFocusPt({ x: clientX - (root?.left ?? 0), y: clientY - (root?.top ?? 0) })
     setTimeout(() => setFocusPt(null), 900)
+
+    // Point ecran -> coordonnees normalisees du flux video (0..1). L'element est
+    // en object-fit:cover (la video deborde) et eventuellement agrandi par le
+    // zoom numerique -- getBoundingClientRect() renvoie deja la boite agrandie.
+    const u = Math.max(0, Math.min(1, (clientX - rect.left) / rect.width))
+    const v = Math.max(0, Math.min(1, (clientY - rect.top) / rect.height))
+    const vw = video.videoWidth, vh = video.videoHeight
+    let x = u, y = v
+    if (vw && vh) {
+      const va = vw / vh, da = video.clientWidth / video.clientHeight
+      if (va > da) x = 0.5 + (u - 0.5) * (da / va)
+      else y = 0.5 + (v - 0.5) * (va / da)
+    }
 
     const caps = (track.getCapabilities?.() ?? {}) as any
     const supportedModes: string[] = caps.focusMode ?? []
+    const t = track as any
+    // NB : la contrainte standard est pointsOfInterest (tableau) -- l'ancienne
+    // "pointOfInterest" (singulier) etait ignoree, d'ou l'absence d'effet.
+    const poi = { pointsOfInterest: [{ x, y }] }
 
     try {
-      // 'single-shot' déclenche un cycle de mise au point puis verrouille
-      // 'manual' = garder la distance actuelle (NE refocalise PAS — à éviter)
       if (supportedModes.includes('single-shot')) {
-        await (track as any).applyConstraints({ advanced: [{ pointOfInterest: { x, y }, focusMode: 'single-shot' }] })
-        // Reprendre autofocus continu après 2s pour les prochains réglages
-        setTimeout(async () => {
-          try { await (track as any).applyConstraints({ advanced: [{ focusMode: 'continuous' }] }) } catch {}
-        }, 2000)
+        // 'single-shot' : un cycle de mise au point sur le point, puis verrouille.
+        await t.applyConstraints({ advanced: [{ ...poi, focusMode: 'single-shot' }] })
+      } else if (supportedModes.includes('continuous')) {
+        // Pas de single-shot : on cible le point et on relance l'autofocus continu.
+        await t.applyConstraints({ advanced: [{ ...poi, focusMode: 'continuous' }] })
       } else {
-        // Fallback : juste déplacer le point d'intérêt sans changer le mode
-        await (track as any).applyConstraints({ advanced: [{ pointOfInterest: { x, y } }] })
+        await t.applyConstraints({ advanced: [poi] })
       }
-    } catch { /* non supporté sur cet appareil */ }
+      if (supportedModes.includes('single-shot') && supportedModes.includes('continuous')) {
+        // Reprend l'autofocus continu apres 2 s pour la suite.
+        setTimeout(async () => {
+          try { await t.applyConstraints({ advanced: [{ focusMode: 'continuous' }] }) } catch {}
+        }, 2000)
+      }
+    } catch { /* non supporte sur cet appareil */ }
   }
 
   // Force un cycle de mise au point juste avant la prise de vue. Sans ça,
@@ -361,13 +387,13 @@ export default function CameraCapture({ onCapture, onClose, ratio }: Props) {
       try {
         // Sans reglage, takePhoto() renvoie la resolution PAR DEFAUT du capteur,
         // pas la maximale : on demande la resolution max annoncee par l'appareil
-        // (plafonnee a ~16 Mpx pour ne pas saturer la memoire / le scan).
+        // (plafonnee a ~12 Mpx : au-dela, les gros capteurs passent en mode pleine resolution, plus granuleux).
         let photoSettings: any = undefined
         try {
           const pc = await imageCaptureRef.current.getPhotoCapabilities?.()
           const mw = pc?.imageWidth?.max, mh = pc?.imageHeight?.max
           if (mw && mh) {
-            const k = Math.min(1, Math.sqrt(16_000_000 / (mw * mh)))
+            const k = Math.min(1, Math.sqrt(12_000_000 / (mw * mh)))
             photoSettings = { imageWidth: Math.floor(mw * k), imageHeight: Math.floor(mh * k) }
           }
         } catch { photoSettings = undefined }
