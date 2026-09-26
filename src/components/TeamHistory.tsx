@@ -29,7 +29,9 @@ export default function TeamHistory({ history, variant = 'light' }: { history: T
             border: `1px solid ${current ? (dark ? 'rgba(255,255,255,0.35)' : '#003DA6') : (dark ? 'rgba(255,255,255,0.08)' : 'rgba(0,0,0,0.08)')}`,
           }}>
             {logo
-              ? <img src={logo} alt={s.name} style={{ width: dark ? 48 : 34, height: dark ? 48 : 34, objectFit: 'contain' }} />
+              // Image de fond CSS plutot que <img> : un carre plein apparaissait avec <img>
+              // (meme probleme que TeamBadge, voir son commentaire LogoBox).
+              ? <div role="img" aria-label={s.name} style={{ width: dark ? 48 : 34, height: dark ? 48 : 34, backgroundImage: `url(${logo})`, backgroundSize: 'contain', backgroundRepeat: 'no-repeat', backgroundPosition: 'center' }} />
               : <div style={{ fontWeight: 900, fontSize: 14 }}>{s.abbr}</div>}
             <div style={{ fontSize: dark ? 13 : 11, fontWeight: 800, textAlign: 'center', lineHeight: 1.2, color: dark ? '#fff' : 'inherit' }}>{s.abbr || s.name}</div>
             <div style={{ fontSize: dark ? 12 : 10.5, color: dark ? 'rgba(255,255,255,0.5)' : '#888', whiteSpace: 'nowrap' }}>{yearsLabel(s.from, s.to)}</div>
