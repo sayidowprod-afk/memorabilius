@@ -38,15 +38,53 @@ export default function CameraCapture({ onCapture, onClose, ratio }: Props) {
   const [torch, setTorch] = useState(false)
   const [torchCapable, setTorchCapable] = useState(false)   // useState → re-render quand détecté
   const [focusPt, setFocusPt] = useState<{ x: number; y: number } | null>(null)
+  // Zoom materiel (track.getCapabilities().zoom) : pince, molette, boutons +/-.
+  // Le flux et takePhoto() sont zoomes de la meme facon, donc le calcul du cadre
+  // dans capture() reste valable. Absent (null) = pas de zoom materiel, UI masquee.
+  const [zoomCaps, setZoomCaps] = useState<{ min: number; max: number; step: number } | null>(null)
+  const [zoom, setZoom] = useState(1)
+  const zoomCapsRef = useRef<{ min: number; max: number; step: number } | null>(null)
+  const zoomRef = useRef(1)
+  const zoomBusyRef = useRef(false)
+  const zoomPendingRef = useRef<number | null>(null)
+  const pinchRef = useRef<{ dist: number; zoom: number } | null>(null)
+  // Choix du capteur (grand angle, tele, avant...) -- liste des cameras video.
+  const [devices, setDevices] = useState<MediaDeviceInfo[]>([])
+  const [activeId, setActiveId] = useState<string | null>(null)
+  const [showOpts, setShowOpts] = useState(false)
 
-  const startCamera = () => {
+  const readSavedCamera = (): string | null => {
+    try { return localStorage.getItem('camera_device_id') } catch { return null }
+  }
+
+  const startCamera = (forceId?: string | null) => {
     setError(null)
     setReady(false)
+    // Changement de capteur : libere l'ancien flux avant d'ouvrir le nouveau.
+    streamRef.current?.getTracks().forEach(t => t.stop())
     const attach = (stream: MediaStream) => {
       streamRef.current = stream
       const track = stream.getVideoTracks()[0]
       const caps = (track.getCapabilities?.() ?? {}) as any
-      if (caps.torch) setTorchCapable(true)
+      const settings = (track.getSettings?.() ?? {}) as any
+      setTorch(false)
+      setTorchCapable(!!caps.torch)
+      setActiveId(settings.deviceId ?? null)
+      if (caps.zoom && typeof caps.zoom.max === 'number' && caps.zoom.max > caps.zoom.min) {
+        const zc = { min: caps.zoom.min as number, max: caps.zoom.max as number, step: (caps.zoom.step as number) || 0.1 }
+        zoomCapsRef.current = zc
+        setZoomCaps(zc)
+        const z0 = typeof settings.zoom === 'number' ? settings.zoom : zc.min
+        zoomRef.current = z0
+        setZoom(z0)
+      } else {
+        zoomCapsRef.current = null
+        setZoomCaps(null)
+      }
+      // Les libelles des cameras ne sont disponibles qu'apres l'autorisation.
+      navigator.mediaDevices.enumerateDevices()
+        .then(list => setDevices(list.filter(d => d.kind === 'videoinput')))
+        .catch(() => {})
       // ImageCapture.takePhoto() demande une vraie photo au capteur (pas juste
       // une frame du flux video affiche, plafonne a 1920x1080 plus haut) --
       // bien supporte sur Chrome/Android (le cas PWA vise ici), absent sur
@@ -72,15 +110,83 @@ export default function CameraCapture({ onCapture, onClose, ratio }: Props) {
       else
         setError('Caméra inaccessible')
     }
-    navigator.mediaDevices
-      .getUserMedia({ video: { facingMode: 'environment', width: { ideal: 1920 }, height: { ideal: 1080 } }, audio: false })
+    const size = { width: { ideal: 1920 }, height: { ideal: 1080 } }
+    const get = (video: MediaTrackConstraints | boolean) => navigator.mediaDevices.getUserMedia({ video, audio: false })
+    const wantedId = forceId !== undefined ? forceId : readSavedCamera()
+    const byFacing = () => get({ facingMode: 'environment', ...size })
+    const first = wantedId ? get({ deviceId: { exact: wantedId }, ...size }) : byFacing()
+    first
+      .catch(() => {
+        // Capteur memorise introuvable (autre appareil, debranche) : on l'oublie.
+        if (wantedId) { try { localStorage.removeItem('camera_device_id') } catch {} }
+        return wantedId ? byFacing() : Promise.reject(new Error('retry'))
+      })
       .then(attach)
       .catch(() =>
         // Fallback sans contrainte facingMode (desktop / webcam)
-        navigator.mediaDevices.getUserMedia({ video: true, audio: false })
-          .then(attach)
-          .catch(handleError)
+        get(true).then(attach).catch(handleError)
       )
+  }
+
+  const switchCamera = (id: string) => {
+    setShowOpts(false)
+    if (id === activeId) return
+    try { localStorage.setItem('camera_device_id', id) } catch {}
+    startCamera(id)
+  }
+
+  const applyZoom = (value: number) => {
+    const zc = zoomCapsRef.current
+    const track = streamRef.current?.getVideoTracks()[0]
+    if (!zc || !track) return
+    const z = Math.max(zc.min, Math.min(zc.max, value))
+    zoomRef.current = z
+    setZoom(z)
+    // Une seule applyConstraints en vol a la fois (le pincement en envoie des dizaines/s).
+    if (zoomBusyRef.current) { zoomPendingRef.current = z; return }
+    zoomBusyRef.current = true
+    ;(track as any).applyConstraints({ advanced: [{ zoom: z }] })
+      .catch(() => {})
+      .finally(() => {
+        zoomBusyRef.current = false
+        const p = zoomPendingRef.current
+        zoomPendingRef.current = null
+        if (p !== null && p !== z) applyZoom(p)
+      })
+  }
+
+  const touchDist = (t: React.TouchList) => Math.hypot(t[0].clientX - t[1].clientX, t[0].clientY - t[1].clientY)
+  const handleTouchStart = (e: React.TouchEvent<HTMLVideoElement>) => {
+    if (e.touches.length === 2 && zoomCapsRef.current) {
+      pinchRef.current = { dist: touchDist(e.touches), zoom: zoomRef.current }
+      return
+    }
+    if (e.touches.length === 1) handleTapFocus(e)
+  }
+  const handleTouchMove = (e: React.TouchEvent<HTMLVideoElement>) => {
+    const p = pinchRef.current
+    if (!p || e.touches.length !== 2 || p.dist <= 0) return
+    applyZoom(p.zoom * (touchDist(e.touches) / p.dist))
+  }
+  const handleTouchEnd = (e: React.TouchEvent<HTMLVideoElement>) => {
+    if (e.touches.length < 2) pinchRef.current = null
+  }
+  const handleWheel = (e: React.WheelEvent<HTMLVideoElement>) => {
+    if (!zoomCapsRef.current) return
+    applyZoom(zoomRef.current * (e.deltaY < 0 ? 1.1 : 1 / 1.1))
+  }
+
+  // Noms lisibles : Android ne donne que "camera2 0, facing back" et consorts.
+  const isFront = (d: MediaDeviceInfo) => /front|user|avant|facetime/.test((d.label || '').toLowerCase())
+  const isBack = (d: MediaDeviceInfo) => /back|rear|environment|arri/.test((d.label || '').toLowerCase())
+  const cameraName = (d: MediaDeviceInfo, list: MediaDeviceInfo[]) => {
+    const front = isFront(d)
+    if (front || isBack(d)) {
+      const group = list.filter(x => front ? isFront(x) : isBack(x))
+      const base = front ? 'Caméra avant' : 'Caméra arrière'
+      return group.length > 1 ? `${base} ${group.indexOf(d) + 1}` : base
+    }
+    return (d.label || '').replace(/\s*\([0-9a-f:]{4,}\)\s*$/i, '') || `Caméra ${list.indexOf(d) + 1}`
   }
 
   useEffect(() => {
@@ -285,7 +391,7 @@ export default function CameraCapture({ onCapture, onClose, ratio }: Props) {
             <p style={{ fontSize: 15, margin: 0, lineHeight: 1.5 }}>{error}</p>
           )}
           <div style={{ display: 'flex', gap: 10 }}>
-            <button onClick={startCamera} style={{ padding: '10px 24px', background: '#003DA6', color: 'white', border: 'none', borderRadius: 8, fontWeight: 700, cursor: 'pointer' }}>Réessayer</button>
+            <button onClick={() => startCamera()} style={{ padding: '10px 24px', background: '#003DA6', color: 'white', border: 'none', borderRadius: 8, fontWeight: 700, cursor: 'pointer' }}>Réessayer</button>
             <button onClick={onClose} style={{ padding: '10px 24px', background: 'rgba(255,255,255,0.15)', color: 'white', border: '1px solid rgba(255,255,255,0.3)', borderRadius: 8, fontWeight: 700, cursor: 'pointer' }}>Fermer</button>
           </div>
         </div>
@@ -298,8 +404,12 @@ export default function CameraCapture({ onCapture, onClose, ratio }: Props) {
             playsInline
             muted
             onClick={handleTapFocus}
-            onTouchStart={handleTapFocus}
-            style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover', cursor: 'crosshair' }}
+            onTouchStart={handleTouchStart}
+            onTouchMove={handleTouchMove}
+            onTouchEnd={handleTouchEnd}
+            onTouchCancel={handleTouchEnd}
+            onWheel={handleWheel}
+            style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover', cursor: 'crosshair', touchAction: 'none' }}
           />
 
           {/* Indicateur de mise au point */}
@@ -318,6 +428,44 @@ export default function CameraCapture({ onCapture, onClose, ratio }: Props) {
           {/* Overlay sombre avec découpe */}
           {ready && (
             <OverlayMask cardRatio={CARD_RATIO} />
+          )}
+
+          {/* Zoom : - / curseur / + */}
+          {ready && zoomCaps && (
+            <div style={{ position: 'absolute', bottom: 132, left: '50%', transform: 'translateX(-50%)', display: 'flex', alignItems: 'center', gap: 10, background: 'rgba(0,0,0,0.5)', borderRadius: 24, padding: '6px 14px', width: 'min(86vw, 340px)', boxSizing: 'border-box' }}>
+              <button onClick={() => applyZoom(zoomRef.current - Math.max(zoomCaps.step, (zoomCaps.max - zoomCaps.min) / 20))}
+                aria-label="Dézoomer"
+                style={{ width: 28, height: 28, borderRadius: '50%', border: 'none', background: 'rgba(255,255,255,0.2)', color: 'white', fontSize: 18, lineHeight: 1, cursor: 'pointer' }}>−</button>
+              <input type="range" min={zoomCaps.min} max={zoomCaps.max} step={zoomCaps.step} value={zoom}
+                onChange={e => applyZoom(parseFloat(e.target.value))}
+                style={{ flex: 1, minWidth: 0, accentColor: '#00e5ff' }} />
+              <button onClick={() => applyZoom(zoomRef.current + Math.max(zoomCaps.step, (zoomCaps.max - zoomCaps.min) / 20))}
+                aria-label="Zoomer"
+                style={{ width: 28, height: 28, borderRadius: '50%', border: 'none', background: 'rgba(255,255,255,0.2)', color: 'white', fontSize: 18, lineHeight: 1, cursor: 'pointer' }}>+</button>
+              <span style={{ color: 'white', fontSize: 12, fontWeight: 700, minWidth: 34, textAlign: 'right' }}>{zoom.toFixed(1)}×</span>
+            </div>
+          )}
+
+          {/* Options : choix du capteur camera (visible seulement s'il y en a plusieurs) */}
+          {ready && devices.length > 1 && (
+            <>
+              <button onClick={() => setShowOpts(o => !o)} aria-label="Options caméra"
+                style={{ position: 'absolute', top: 'calc(var(--safe-area-inset-top, env(safe-area-inset-top)) + 10px)', right: 12, width: 42, height: 42, borderRadius: '50%', background: 'rgba(0,0,0,0.5)', border: '1.5px solid rgba(255,255,255,0.7)', color: 'white', fontSize: 20, cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center', zIndex: 2 }}>
+                ⚙️
+              </button>
+              {showOpts && (
+                <div style={{ position: 'absolute', top: 'calc(var(--safe-area-inset-top, env(safe-area-inset-top)) + 60px)', right: 12, background: 'rgba(20,20,20,0.95)', border: '1px solid rgba(255,255,255,0.2)', borderRadius: 12, padding: 8, minWidth: 210, maxWidth: '80vw', zIndex: 2 }}>
+                  <p style={{ margin: '4px 8px 8px', fontSize: 11, fontWeight: 700, color: 'rgba(255,255,255,0.55)', textTransform: 'uppercase', letterSpacing: 0.5 }}>Capteur caméra</p>
+                  {devices.map(d => (
+                    <button key={d.deviceId} onClick={() => switchCamera(d.deviceId)}
+                      style={{ display: 'flex', alignItems: 'center', gap: 8, width: '100%', textAlign: 'left', padding: '10px 10px', background: d.deviceId === activeId ? 'rgba(0,229,255,0.18)' : 'transparent', color: 'white', border: 'none', borderRadius: 8, fontSize: 14, cursor: 'pointer' }}>
+                      <span style={{ width: 16, color: '#00e5ff' }}>{d.deviceId === activeId ? '✓' : ''}</span>
+                      {cameraName(d, devices)}
+                    </button>
+                  ))}
+                </div>
+              )}
+            </>
           )}
 
           {/* Boutons */}
@@ -342,7 +490,7 @@ export default function CameraCapture({ onCapture, onClose, ratio }: Props) {
 
           {ready && (
             <p style={{ position: 'absolute', top: 'calc(var(--safe-area-inset-top, env(safe-area-inset-top)) + 16px)', left: 0, right: 0, textAlign: 'center', color: 'rgba(255,255,255,0.5)', fontSize: 12, margin: 0, pointerEvents: 'none' }}>
-              Touchez l'écran pour faire la mise au point
+              {zoomCaps ? 'Touchez pour la mise au point · pincez pour zoomer' : "Touchez l'écran pour faire la mise au point"}
             </p>
           )}
 
