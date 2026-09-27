@@ -385,21 +385,14 @@ export default function CameraCapture({ onCapture, onClose, ratio }: Props) {
     let sx = 1, sy = 1
     if (imageCaptureRef.current) {
       try {
-        // Sans reglage, takePhoto() renvoie la resolution PAR DEFAUT du capteur,
-        // pas la maximale : on demande la resolution max annoncee par l'appareil
-        // (plafonnee a ~12 Mpx : au-dela, les gros capteurs passent en mode pleine resolution, plus granuleux).
-        let photoSettings: any = undefined
-        try {
-          const pc = await imageCaptureRef.current.getPhotoCapabilities?.()
-          const mw = pc?.imageWidth?.max, mh = pc?.imageHeight?.max
-          if (mw && mh) {
-            const k = Math.min(1, Math.sqrt(12_000_000 / (mw * mh)))
-            photoSettings = { imageWidth: Math.floor(mw * k), imageHeight: Math.floor(mh * k) }
-          }
-        } catch { photoSettings = undefined }
-        let photoBlob: Blob
-        try { photoBlob = await imageCaptureRef.current.takePhoto(photoSettings) }
-        catch { photoBlob = await imageCaptureRef.current.takePhoto() }
+        // REVERT (URGENT) : forcer imageWidth/imageHeight via getPhotoCapabilities()
+        // rendait la photo NOIRE sur beaucoup d'appareils Android -- takePhoto()
+        // renvoie un blob valide (pas d'exception, donc pas de repli), mais les
+        // pixels sont vides des que la resolution demandee ne correspond pas a une
+        // valeur discrete supportee par le capteur (bug connu de plusieurs
+        // implementations Chromium/Android). On repasse a takePhoto() sans
+        // reglage -- resolution par defaut du capteur, mais fiable partout.
+        const photoBlob = await imageCaptureRef.current.takePhoto()
         const bmp = await createImageBitmap(photoBlob)
         sx = bmp.width / vw
         sy = bmp.height / vh
