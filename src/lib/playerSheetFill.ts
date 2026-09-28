@@ -75,6 +75,7 @@ Points faibles : <1 à 3 défauts ou limites, séparés par des virgules>
 Règles :
 - Appuie-toi sur ce que tu sais réellement de ce joueur (style, tendances, réputation) ET sur les faits JSON ci-dessous (gabarit, formation, draft, rôle déduit des chiffres).
 - Reste sur des caractéristiques largement reconnues. N'invente ni anecdote, ni blessure, ni distinction, ni statistique précise. Aucun chiffre de stats.
+- Uniquement des qualités et défauts SPORTIFS observables sur le terrain (tir, création, finition, défense, rebond, physique, gestion de balle...). Interdit : éthique de travail, leadership, mentalité, professionnalisme, "potentiel" vague, et tout trait de caractère.
 - N'écris pas l'âge, le pays ni l'expérience. Pas d'emoji, pas de guillemets, pas de superlatifs gratuits.
 - Chaque ligne fait au plus 150 caractères.
 ${recent ? "- Joueur très récent (drafté en 2025 ou 2026) : tu le connais peut-être mal. Base-toi surtout sur le gabarit, l'université, la position au draft et le rôle ; reste prudent et termine la dernière ligne par ' (profil à confirmer)'.\n" : "- Si tu ne connais pas vraiment ce joueur, base-toi sur les faits et termine la dernière ligne par ' (profil à confirmer)'.\n"}
