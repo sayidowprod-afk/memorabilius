@@ -193,7 +193,8 @@ export default function PlayerSheetEditorPage() {
         stat_age: d.age != null ? `${d.age} ans` : sheet.stat_age,
         stat_poste: d.position || sheet.stat_poste,
         stat_country: d.countryCode || sheet.stat_country,
-        stat_saison: d.experience || sheet.stat_saison,
+        // "Pick n°X" (joueur drafte cette annee) n'est pas ecrase par l'experience ESPN.
+        stat_saison: /^Pick/i.test(sheet.stat_saison || '') ? sheet.stat_saison : (d.experience || sheet.stat_saison),
         stat_matches: d.gamesPlayed ?? sheet.stat_matches,
         stat_minutes: d.minutes ?? sheet.stat_minutes,
         stat_points: d.points ?? sheet.stat_points,

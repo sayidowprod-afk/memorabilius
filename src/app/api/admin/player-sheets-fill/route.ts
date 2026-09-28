@@ -33,7 +33,7 @@ export async function POST(req: NextRequest) {
 
   const update: Record<string, unknown> = {}
   for (const [k, v] of Object.entries(fill.fields)) {
-    if (force || isEmpty(sheet[k])) update[k] = v
+    if (force || fill.forceFields.includes(k) || isEmpty(sheet[k])) update[k] = v
   }
   // Notes : remplacees seulement si vides ou si c'est l'ancienne description
   // automatique (qui recitait les stats) -- jamais un texte ecrit a la main.

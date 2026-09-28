@@ -110,6 +110,7 @@ Faits : ${JSON.stringify(facts)}`
 
 export interface SheetFill {
   fields: Record<string, string>
+  forceFields: string[]   // champs a ecrire meme s'ils sont deja renseignes
   team_history: EspnPlayerAutofill['teamHistory']
   notes: string
 }
@@ -144,6 +145,14 @@ export async function computeSheetFill(name: string): Promise<SheetFill | null> 
   const country = d?.countryCode ?? espnCitizenshipToCode(nba?.country)
   if (country && nbaCountryName(country)) fields.stat_country = country
 
+  // Joueur drafte cette annee : "Pick n°X" a la place de l'experience (remplace
+  // aussi une valeur deja saisie -- voir forceFields dans la route).
+  const forceFields: string[] = []
+  if (nba?.draftYear === new Date().getFullYear() && nba.draftNumber) {
+    fields.stat_saison = `Pick n°${nba.draftNumber}`
+    forceFields.push('stat_saison')
+  }
+
   const notes = (await geminiDescription(name, nba, d)) || fallbackDescription(nba, d)
-  return { fields, team_history: d?.teamHistory ?? [], notes }
+  return { fields, forceFields, team_history: d?.teamHistory ?? [], notes }
 }
