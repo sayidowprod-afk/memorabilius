@@ -303,7 +303,7 @@ async function cmdConcoursParticiper(body: any) {
     imageUrl = result.data.img
     cardInfo = result.data
   }
-  if (!imageUrl) return reply({ content: '❌ Colle le lien de ta carte Memorabilius (ou le nom d\'une carte de ta galerie) dans `lien`, ou utilise `/concours-photo` pour envoyer une photo.', flags: 64 })
+  if (!imageUrl) return reply({ content: '❌ Joins une image, ou colle un lien Memorabilius dans `lien`, ou précise `nom` (nom d\'une carte de ta galerie).', flags: 64 })
 
   // Une seule participation par personne et par semaine (contrainte unique
   // week_id+discord_user_id) -- un second /concours-participer REMPLACE la
@@ -932,7 +932,7 @@ export async function POST(req: NextRequest) {
     else if (name === 'concours-themes') result = await cmdConcoursThemes()
     else if (name === 'concours-gagnants') result = await cmdConcoursGagnants()
     else if (name === 'concours-participants') result = await cmdConcoursParticipants()
-    else if (name === 'concours-participer' || name === 'concours-photo') result = await cmdConcoursParticiper(body)
+    else if (name === 'concours-participer') result = await cmdConcoursParticiper(body)
     return NextResponse.json(result)
   }
 
