@@ -20,7 +20,9 @@ export async function POST(req: NextRequest) {
   const user = await requireAdmin(admin, req.headers.get('authorization'))
   if (!user) return NextResponse.json({ error: 'forbidden' }, { status: 403 })
 
-  const { sheetId, force } = await req.json().catch(() => ({}))
+  // force : remplace tous les champs ; forceNotes : remplace seulement les notes
+  // (utile pour regenerer la description sans toucher aux stats/poste ajustes a la main).
+  const { sheetId, force, forceNotes } = await req.json().catch(() => ({}))
   if (!sheetId) return NextResponse.json({ error: 'missing sheetId' }, { status: 400 })
 
   const { data: sheet, error } = await admin.from('player_sheets').select('*').eq('id', sheetId).single()
@@ -36,7 +38,7 @@ export async function POST(req: NextRequest) {
   // Notes : remplacees seulement si vides ou si c'est l'ancienne description
   // automatique (qui recitait les stats) -- jamais un texte ecrit a la main.
   const oldAuto = typeof sheet.notes === 'string' && /\d+([.,]\d+)? pts/.test(sheet.notes) && /rbs/.test(sheet.notes)
-  if (fill.notes && (force || isEmpty(sheet.notes) || oldAuto)) update.notes = fill.notes
+  if (fill.notes && (force || forceNotes || isEmpty(sheet.notes) || oldAuto)) update.notes = fill.notes
 
   if (Object.keys(update).length) {
     update.updated_at = new Date().toISOString()

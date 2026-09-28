@@ -15,17 +15,23 @@ const { createClient } = require('@supabase/supabase-js')
 
 const DAYS = parseInt((process.argv.find(a => a.startsWith('--days=')) || '--days=3').split('=')[1], 10)
 const ONLY = (process.argv.find(a => a.startsWith('--team=')) || '').split('=')[1]
+const SINCE = (process.argv.find(a => a.startsWith('--since=')) || '').split('=')[1]               // ISO : fiches creees apres
+const SKIP_AFTER = (process.argv.find(a => a.startsWith('--skip-edited-after=')) || '').split('=')[1] // ISO
+const FORCE_NOTES = process.argv.includes('--force-notes')                                            // regenere la description
 const BASE = process.env.SEED_API_BASE || 'https://www.memorabilius.fr'
 const URL = process.env.NEXT_PUBLIC_SUPABASE_URL
 const admin = createClient(URL, process.env.SUPABASE_SERVICE_ROLE_KEY)
 const sleep = ms => new Promise(r => setTimeout(r, ms))
 
 async function main() {
-  const since = new Date(Date.now() - DAYS * 86400000).toISOString()
-  let q = admin.from('player_sheets').select('id, team_abbr, player_name').gte('created_at', since).order('team_abbr').limit(5000)
+  const since = SINCE || new Date(Date.now() - DAYS * 86400000).toISOString()
+  let q = admin.from('player_sheets').select('id, team_abbr, player_name, updated_at').gte('created_at', since).order('team_abbr').limit(5000)
   if (ONLY) q = q.eq('team_abbr', ONLY)
-  const { data: sheets, error } = await q
+  const { data: all, error } = await q
   if (error) throw error
+  // Fiches modifiees a la main depuis la derniere passe automatique : on n'y touche pas.
+  const sheets = SKIP_AFTER ? all.filter(s => s.updated_at <= SKIP_AFTER) : all
+  if (sheets.length !== all.length) console.log(`${all.length - sheets.length} fiches ignorees (modifiees apres ${SKIP_AFTER})`)
   console.log(`${sheets.length} fiches a traiter (creees depuis ${DAYS} j)`)
   if (!sheets.length) return
 
@@ -53,7 +59,7 @@ async function main() {
           try {
             const res = await fetch(`${BASE}/api/admin/player-sheets-fill`, {
               method: 'POST', headers: { Authorization: `Bearer ${token}`, 'Content-Type': 'application/json' },
-              body: JSON.stringify({ sheetId: s.id }), signal: AbortSignal.timeout(60000),
+              body: JSON.stringify({ sheetId: s.id, forceNotes: FORCE_NOTES }), signal: AbortSignal.timeout(60000),
             })
             if (res.ok) ok = true
             else if (res.status === 404) break

@@ -6,11 +6,11 @@ import { espnCitizenshipToCode, nbaCountryName } from '@/lib/nbaCountries'
 // poste, pays, experience, historique des equipes (ESPN) + pays/gabarit/draft
 // (NBA.com) + une courte description de PROFIL dans les notes.
 //
-// La description ne repete PAS ce qui est deja affiche sur la fiche (poste, age,
-// pays, experience, stats) : elle parle du joueur (gabarit, formation, draft,
-// parcours, role). Redigee par Gemini a partir de faits fournis uniquement ; si
-// Gemini est indisponible ou renvoie du hors-sujet, repli deterministe sur les
-// faits NBA.com.
+// La description est un profil de scout en 3 lignes (style de jeu, points forts,
+// points faibles) redige par Gemini a partir de ses connaissances du joueur ET des
+// faits NBA.com/ESPN ; elle ne repete pas ce qui est deja affiche sur la fiche.
+// Joueur inconnu du modele (recrue recente) : mention "(profil a confirmer)".
+// Si Gemini est indisponible, repli deterministe sur les faits NBA.com.
 
 // Noms qui different entre notre liste (Spotrac) et ESPN.
 const ESPN_ALIASES: Record<string, string[]> = {
@@ -52,56 +52,59 @@ async function geminiDescription(name: string, nba: NbaComPlayer | null, d: Espn
   const key = process.env.GEMINI_API_KEY
   if (!key) return null
   const hist = (d?.teamHistory || []).map(s => `${s.name} (${s.from} à ${s.to})`)
+  const recent = !!nba?.draftYear && nba.draftYear >= 2025
   const facts = {
     joueur: name,
+    poste_espn: d?.position || null,
     gabarit: [heightMeters(nba?.height ?? null), weightKg(nba?.weight ?? null)].filter(Boolean).join(', ') || null,
     universite: nba?.college || null,
     draft: draftText(nba),
     premiere_saison_nba: nba?.fromYear ?? null,
     parcours_equipes_nba: hist.length ? hist : null,
-    // Pour deduire le ROLE uniquement (ne pas citer les chiffres) :
     derniere_saison: d?.points != null ? {
       saison: d.season, points: d.points, rebonds: d.rebounds, passes: d.assists, minutes: d.minutes, matchs: d.gamesPlayed,
     } : null,
   }
-  const prompt = `Tu rédiges la courte description de profil d'un joueur NBA pour sa fiche dans une émission de cartes de collection (français, ton sobre et factuel).
+  const prompt = `Tu es un analyste basket qui rédige le profil d'un joueur NBA pour sa fiche dans une émission de cartes de collection. Français, ton direct et sobre, comme un scout.
 
-Règles STRICTES :
-- 2 phrases maximum, 260 caractères maximum.
-- Utilise UNIQUEMENT les faits JSON ci-dessous. N'ajoute aucune connaissance extérieure : pas d'anecdote, de distinction, de blessure, de style de jeu ou de qualité qui ne se déduit pas des faits.
-- NE répète PAS l'âge, le poste, le pays, l'expérience ni les chiffres de statistiques (déjà affichés à côté). Tu peux déduire un rôle des chiffres (scoreur, rebondeur, passeur, joueur de rotation...) sans les citer.
-- Parle du profil : gabarit, formation universitaire, draft, parcours entre équipes, rôle.
-- Si peu de faits sont fournis, écris une seule phrase courte plutôt que d'inventer.
-- Pas d'emoji, pas de guillemets, pas de superlatifs.
+Format EXACT (3 lignes, séparées par un retour à la ligne, sans autre texte) :
+Style de jeu : <1 phrase courte>
+Points forts : <2 à 4 qualités, séparées par des virgules>
+Points faibles : <1 à 3 défauts ou limites, séparés par des virgules>
 
-Faits : ${JSON.stringify(facts)}
-
-Réponds uniquement par le texte de la description.`
-  try {
-    const res = await fetch('https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json', 'x-goog-api-key': key },
-      body: JSON.stringify({
-        contents: [{ role: 'user', parts: [{ text: prompt }] }],
-        generationConfig: { temperature: 0.3, maxOutputTokens: 240, thinkingConfig: { thinkingBudget: 0 } },
-      }),
-      signal: AbortSignal.timeout(20000),
-    })
-    if (!res.ok) return null
-    const json = await res.json()
-    let text: string = (json?.candidates?.[0]?.content?.parts || []).map((p: any) => p.text || '').join('').trim()
-    text = text.replace(/^["«\s]+|["»\s]+$/g, '').replace(/\s+/g, ' ')
-    if (!text || text.length < 15) return null
-    // Garde-fous : pas de stats chiffrees recitees, pas de pavé.
-    if (/\d+[.,]?\d*\s*(pts|points|rebonds|rbs|passes|pds|min)\b/i.test(text)) return null
-    if (text.length > 320) {
-      const cut = text.slice(0, 320)
-      text = cut.slice(0, Math.max(cut.lastIndexOf('. ') + 1, 0)) || cut
-    }
-    return text
-  } catch {
-    return null
+Règles :
+- Appuie-toi sur ce que tu sais réellement de ce joueur (style, tendances, réputation) ET sur les faits JSON ci-dessous (gabarit, formation, draft, rôle déduit des chiffres).
+- Reste sur des caractéristiques largement reconnues. N'invente ni anecdote, ni blessure, ni distinction, ni statistique précise. Aucun chiffre de stats.
+- N'écris pas l'âge, le pays ni l'expérience. Pas d'emoji, pas de guillemets, pas de superlatifs gratuits.
+- Chaque ligne fait au plus 150 caractères.
+${recent ? "- Joueur très récent (drafté en 2025 ou 2026) : tu le connais peut-être mal. Base-toi surtout sur le gabarit, l'université, la position au draft et le rôle ; reste prudent et termine la dernière ligne par ' (profil à confirmer)'.\n" : "- Si tu ne connais pas vraiment ce joueur, base-toi sur les faits et termine la dernière ligne par ' (profil à confirmer)'.\n"}
+Faits : ${JSON.stringify(facts)}`
+  for (let attempt = 0; attempt < 2; attempt++) {
+    try {
+      const res = await fetch('https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', 'x-goog-api-key': key },
+        body: JSON.stringify({
+          contents: [{ role: 'user', parts: [{ text: prompt }] }],
+          generationConfig: { temperature: 0.4, maxOutputTokens: 800, thinkingConfig: { thinkingBudget: 256 } },
+        }),
+        signal: AbortSignal.timeout(22000),
+      })
+      if (!res.ok) continue
+      const json = await res.json()
+      const raw: string = (json?.candidates?.[0]?.content?.parts || []).map((p: any) => p.text || '').join('').trim()
+      const lines = raw.split('\n').map(l => l.replace(/^[\s*\-•"«]+|["»\s*]+$/g, '').replace(/\s+/g, ' ')).filter(Boolean)
+      const style = lines.find(l => /^style de jeu\s*:/i.test(l))
+      const forts = lines.find(l => /^points? forts?\s*:/i.test(l))
+      const faibles = lines.find(l => /^points? faibles?\s*:/i.test(l))
+      if (!style || !forts || !faibles) continue
+      // Pas de statistiques chiffrees recitees.
+      const out = [style, forts, faibles]
+      if (out.some(l => /\d+[.,]?\d*\s*(pts|points|rebonds|rbs|passes|pds|min)\b/i.test(l))) continue
+      return out.join('\n')
+    } catch { /* on retente une fois */ }
   }
+  return null
 }
 
 export interface SheetFill {
