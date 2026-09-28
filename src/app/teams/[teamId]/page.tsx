@@ -614,6 +614,11 @@ export default function TeamPage({ params }: { params: Promise<{ teamId: string 
           .team-header-row { align-items: flex-start !important; }
           .team-header-text { flex-basis: 100% !important; min-width: 100% !important; order: 1; }
           .team-header-stats { flex-basis: 100% !important; order: 2; }
+          /* Les boutons (classeur/carte aléatoire, partager, rejoindre...) restaient
+             sur une seule ligne non wrappée : au-dela de 3-4 boutons, les derniers
+             (dont "Rejoindre") sortaient de l'ecran sur mobile, invisibles et
+             inaccessibles. Prend toute la largeur et wrap sur plusieurs lignes. */
+          .team-header-actions { flex-basis: 100% !important; order: 3; }
         }
       `}</style>
 
@@ -646,7 +651,7 @@ export default function TeamPage({ params }: { params: Promise<{ teamId: string 
               </div>
             ))}
           </div>
-          <div style={{ display: 'flex', gap: 8, alignItems: 'center' }}>
+          <div className="team-header-actions" style={{ display: 'flex', gap: 8, alignItems: 'center', flexWrap: 'wrap' }}>
             <button onClick={randomTeamBinder} disabled={randomBinderLoading} style={{ background: 'var(--bg3, #f0f0f0)', color: 'var(--text2, #555)', border: 'none', borderRadius: 8, padding: '8px 14px', fontWeight: 700, cursor: randomBinderLoading ? 'wait' : 'pointer', fontSize: 13, display: 'inline-flex', alignItems: 'center', gap: 5 }}>
               {randomBinderLoading ? '⏳' : '🎲'} {t('teams_random_binder')}
             </button>
