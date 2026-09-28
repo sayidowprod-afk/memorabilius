@@ -8,7 +8,7 @@ import { useTheme } from '@/lib/ThemeContext'
 import TeamBadge from '@/components/TeamBadge'
 
 interface Sheet {
-  id: string; player_name: string; card_image_recto: string | null
+  id: string; player_name: string; card_image_recto: string | null; card_image_recto_hd?: string | null
   card_is_horizontal: boolean; updated_at: string; sort_order: number
 }
 
@@ -27,7 +27,7 @@ export default function TeamPlayerSheetsPage() {
 
   const load = async () => {
     const { data } = await supabase.from('player_sheets')
-      .select('id, player_name, card_image_recto, card_is_horizontal, updated_at, sort_order')
+      .select('id, player_name, card_image_recto, card_image_recto_hd, card_is_horizontal, updated_at, sort_order')
       .eq('team_abbr', teamAbbr).order('sort_order', { ascending: true })
     setSheets(data || [])
   }
@@ -98,6 +98,42 @@ export default function TeamPlayerSheetsPage() {
     ))
   }
 
+  // Zip de tous les rectos choisis (haute definition si dispo), dans l'ordre de la
+  // page. Les images passent par /api/proxy-image : les fetch directs sont bloques
+  // par CORS pour les cartes hebergees ailleurs (CSV, sets, uploads).
+  const [zipping, setZipping] = useState(false)
+  const downloadRectos = async () => {
+    const withCard = sheets.filter(s => s.card_image_recto_hd || s.card_image_recto)
+    if (!withCard.length || zipping) return
+    setZipping(true)
+    try {
+      const JSZip = (await import('jszip')).default
+      const zip = new JSZip()
+      let n = 0
+      for (const [i, s] of withCard.entries()) {
+        const url = (s.card_image_recto_hd || s.card_image_recto)!
+        try {
+          const res = await fetch(`/api/proxy-image?url=${encodeURIComponent(url)}`)
+          if (!res.ok) continue
+          const blob = await res.blob()
+          const ext = blob.type.includes('png') ? 'png' : blob.type.includes('webp') ? 'webp' : 'jpg'
+          const safe = s.player_name.replace(/[^\p{L}\p{N}\-_. ]/gu, '').trim().replace(/\s+/g, '_') || 'joueur'
+          zip.file(`${String(i + 1).padStart(2, '0')}-${safe}.${ext}`, blob)
+          n++
+        } catch { /* une image en echec ne bloque pas les autres */ }
+      }
+      if (!n) { alert('Aucune image téléchargeable.'); return }
+      const out = await zip.generateAsync({ type: 'blob' })
+      const a = document.createElement('a')
+      a.href = URL.createObjectURL(out)
+      a.download = `${teamAbbr}-rectos.zip`
+      document.body.appendChild(a); a.click(); a.remove()
+      setTimeout(() => URL.revokeObjectURL(a.href), 10000)
+    } finally {
+      setZipping(false)
+    }
+  }
+
   if (!ready) return <div style={{ padding: 40, textAlign: 'center' }}>Chargement...</div>
   if (!team) return <div style={{ padding: 40, textAlign: 'center' }}>Équipe inconnue.</div>
 
@@ -110,6 +146,13 @@ export default function TeamPlayerSheetsPage() {
       }}>
         <TeamBadge teamId={team.id} size={48} />
         <div style={{ fontWeight: 900, fontSize: 22, flex: 1 }}>{team.name}</div>
+        <button onClick={downloadRectos} disabled={zipping || !sheets.some(s => s.card_image_recto)} style={{
+          padding: '9px 16px', borderRadius: 10, border: '1px solid rgba(255,255,255,0.6)', background: 'transparent',
+          color: '#fff', fontWeight: 800, fontSize: 13.5, whiteSpace: 'nowrap', cursor: 'pointer',
+          opacity: sheets.some(s => s.card_image_recto) ? 1 : 0.5,
+        }}>
+          {zipping ? 'Préparation…' : '⬇ Rectos (zip)'}
+        </button>
         <Link href={`/admin/player-sheets/${teamAbbr}/leaders`} style={{
           padding: '9px 16px', borderRadius: 10, border: '1px solid rgba(255,255,255,0.6)', background: 'transparent',
           color: '#fff', fontWeight: 800, fontSize: 13.5, textDecoration: 'none', whiteSpace: 'nowrap',
