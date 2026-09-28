@@ -25,6 +25,9 @@ export default function Profil() {
   const [wrapOptOut, setWrapOptOut] = useState(false)
   const [avatarUrl, setAvatarUrl] = useState<string | null>(null)
   const [csvLinked, setCsvLinked] = useState(false)
+  const [converting, setConverting] = useState(false)
+  const [convertResult, setConvertResult] = useState<{ conversionId: string; inserted: number; skipped: number } | null>(null)
+  const [reverting, setReverting] = useState(false)
   const [saved, setSaved] = useState(false)
   const [loading, setLoading] = useState(true)
   const [uploading, setUploading] = useState(false)
@@ -155,6 +158,50 @@ export default function Profil() {
       setSaved(true)
       setTimeout(() => setSaved(false), 3000)
     } else { toast.error('Erreur : ' + error.message) }
+  }
+
+  const convertCsvCards = async () => {
+    if (converting || !form.lien_csv) return
+    if (!confirm("Convertir toutes les cartes de ton Google Sheet en vraies cartes sur ton profil ? Le lien CSV sera retiré ensuite (tu pourras annuler juste après si besoin).")) return
+    setConverting(true)
+    setConvertResult(null)
+    try {
+      const { data: { session } } = await supabase.auth.getSession()
+      const res = await fetch('/api/convert-csv-cards', {
+        method: 'POST', headers: { Authorization: `Bearer ${session?.access_token}` },
+      })
+      const json = await res.json().catch(() => ({}))
+      if (!res.ok) { toast.error(json.error || 'Erreur pendant la conversion.'); return }
+      setForm(f => ({ ...f, lien_csv: '' }))
+      setCsvLinked(false)
+      setConvertResult({ conversionId: json.conversionId, inserted: json.inserted, skipped: json.skipped })
+      toast.success(`${json.inserted} carte${json.inserted > 1 ? 's' : ''} converties.`)
+    } catch {
+      toast.error('Erreur pendant la conversion.')
+    } finally {
+      setConverting(false)
+    }
+  }
+
+  const revertConversion = async () => {
+    if (reverting || !convertResult) return
+    setReverting(true)
+    try {
+      const { data: { session } } = await supabase.auth.getSession()
+      const res = await fetch('/api/convert-csv-cards/revert', {
+        method: 'POST', headers: { Authorization: `Bearer ${session?.access_token}`, 'Content-Type': 'application/json' },
+        body: JSON.stringify({ conversionId: convertResult.conversionId }),
+      })
+      const json = await res.json().catch(() => ({}))
+      if (!res.ok) { toast.error(json.error || "Erreur pendant l'annulation."); return }
+      if (json.csvRestored) { setForm(f => ({ ...f, lien_csv: json.lienCsv || '' })); setCsvLinked(true) }
+      setConvertResult(null)
+      toast.success('Conversion annulée.')
+    } catch {
+      toast.error("Erreur pendant l'annulation.")
+    } finally {
+      setReverting(false)
+    }
   }
 
   const handlePasswordChange = async (e: React.FormEvent) => {
@@ -339,6 +386,33 @@ export default function Profil() {
             <label style={{ fontSize: 12, fontWeight: 700, textTransform: 'uppercase', color: '#888', display: 'block', marginBottom: 6 }}>{t('profile_csv_label')}</label>
             <input value={form.lien_csv} onChange={e => setForm({ ...form, lien_csv: e.target.value })} placeholder="https://docs.google.com/spreadsheets/d/..." />
             <p style={{ fontSize: 11, color: '#999', marginTop: 4 }}>{t('profile_csv_hint')}</p>
+            {csvLinked && !convertResult && (
+              <div style={{ marginTop: 10 }}>
+                <button type="button" onClick={convertCsvCards} disabled={converting} style={{
+                  padding: '8px 14px', borderRadius: 8, border: '1px solid #003DA6', background: 'transparent',
+                  color: '#003DA6', fontWeight: 700, fontSize: 12.5, cursor: converting ? 'wait' : 'pointer',
+                }}>
+                  {converting ? 'Conversion en cours…' : '🔄 Convertir ces cartes CSV en cartes de ma galerie'}
+                </button>
+                <p style={{ fontSize: 11, color: '#999', marginTop: 4 }}>
+                  Crée une vraie carte pour chacune de tes lignes du Google Sheet, puis retire le lien CSV (pour ne plus avoir les mêmes cartes en double). Annulable juste après.
+                </p>
+              </div>
+            )}
+            {convertResult && (
+              <div style={{ marginTop: 10, padding: '10px 14px', borderRadius: 8, background: 'rgba(0,61,166,0.08)', display: 'flex', alignItems: 'center', gap: 10, flexWrap: 'wrap' }}>
+                <span style={{ fontSize: 12.5 }}>
+                  ✓ {convertResult.inserted} carte{convertResult.inserted > 1 ? 's' : ''} converties
+                  {convertResult.skipped > 0 ? ` (${convertResult.skipped} déjà présentes, ignorées)` : ''}.
+                </span>
+                <button type="button" onClick={revertConversion} disabled={reverting} style={{
+                  padding: '5px 12px', borderRadius: 6, border: '1px solid #e74c3c', background: 'transparent',
+                  color: '#e74c3c', fontWeight: 700, fontSize: 12, cursor: reverting ? 'wait' : 'pointer',
+                }}>
+                  {reverting ? 'Annulation…' : 'Annuler'}
+                </button>
+              </div>
+            )}
           </div>
 
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(140px, 1fr))', gap: 12 }}>
