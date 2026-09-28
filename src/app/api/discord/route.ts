@@ -303,7 +303,7 @@ async function cmdConcoursParticiper(body: any) {
     imageUrl = result.data.img
     cardInfo = result.data
   }
-  if (!imageUrl) return reply({ content: '❌ Joins une image, ou précise `nom` avec un nom de carte OU un lien Memorabilius collé dedans.', flags: 64 })
+  if (!imageUrl) return reply({ content: '❌ Colle le lien de ta carte Memorabilius (ou le nom d\'une carte de ta galerie) dans `lien`, ou utilise `/concours-photo` pour envoyer une photo.', flags: 64 })
 
   // Une seule participation par personne et par semaine (contrainte unique
   // week_id+discord_user_id) -- un second /concours-participer REMPLACE la
@@ -740,13 +740,15 @@ async function findCardByLink(rawLink: string): Promise<CardData | null> {
 // Partagé par /carte, /carte-gif et /concours-participer -- même recherche
 // (lien direct, puis DB, puis CSV en repli), juste le format de reponse differe.
 async function findCardData(options: any[]): Promise<{ error: string } | { data: CardData }> {
-  const lienOpt = (options.find((o: any) => o.name === 'lien')?.value || '') as string
-  const nomOpt = (options.find((o: any) => o.name === 'nom')?.value || '') as string
-  // Discord oblige a choisir un parametre AVANT de taper -- signale comme
-  // fastidieux de devoir selectionner `lien` specifiquement juste pour coller
-  // une URL. On detecte donc aussi un lien colle dans `nom` (le premier
-  // parametre propose), pas seulement dans `lien`.
-  const lien = lienOpt || (/https?:\/\//.test(nomOpt) ? nomOpt : '')
+  const lienRaw = (options.find((o: any) => o.name === 'lien')?.value || '') as string
+  const nomRaw = (options.find((o: any) => o.name === 'nom')?.value || '') as string
+  const isUrl = (s: string) => /https?:\/\//.test(s)
+  // Champ `lien` : accepte un lien Memorabilius OU un nom de carte (pas de champ
+  // separe a choisir avant de taper -- voir /concours-participer, dont `lien` est
+  // obligatoire pour que Discord y place tout de suite le curseur). `nom` reste
+  // accepte pour /carte et /carte-gif, avec la meme detection d'un lien colle dedans.
+  const lien = isUrl(lienRaw) ? lienRaw : isUrl(nomRaw) ? nomRaw : ''
+  const nomOpt = nomRaw || (lienRaw && !isUrl(lienRaw) ? lienRaw : '')
   if (lien) {
     const byLink = await findCardByLink(lien)
     if (byLink) return { data: byLink }
@@ -930,7 +932,7 @@ export async function POST(req: NextRequest) {
     else if (name === 'concours-themes') result = await cmdConcoursThemes()
     else if (name === 'concours-gagnants') result = await cmdConcoursGagnants()
     else if (name === 'concours-participants') result = await cmdConcoursParticipants()
-    else if (name === 'concours-participer') result = await cmdConcoursParticiper(body)
+    else if (name === 'concours-participer' || name === 'concours-photo') result = await cmdConcoursParticiper(body)
     return NextResponse.json(result)
   }
 

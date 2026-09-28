@@ -63,24 +63,35 @@ const commands = [
   {
     name: 'concours-participer',
     description: 'Soumets une carte pour le concours de la semaine',
+    // `lien` OBLIGATOIRE et en premier : Discord n'y place le curseur tout de suite
+    // (on colle le lien juste apres la commande) que pour un champ obligatoire --
+    // un champ facultatif oblige a le choisir dans la liste avant de taper.
     options: [
       {
-        name: 'nom',
-        description: 'Nom d\'une carte de ta galerie, OU lien direct Memorabilius (memorabilius.fr/...)',
+        name: 'lien',
+        description: 'Lien Memorabilius de ta carte (ou nom d\'une carte de ta galerie)',
         type: 3,
-        required: false,
-      },
-      {
-        name: 'image',
-        description: 'Photo de ta carte (si tu ne joues pas via `nom`)',
-        type: 11,
-        required: false,
+        required: true,
       },
       {
         name: 'utilisateur',
-        description: 'Ton nom de collectionneur (si tu utilises `nom`)',
+        description: 'Ton nom de collectionneur (seulement si tu donnes un nom de carte au lieu d\'un lien)',
         type: 3,
         required: false,
+      },
+    ],
+  },
+  {
+    // Envoi d'une photo : commande separee, pour que /concours-participer puisse
+    // avoir un champ obligatoire (voir ci-dessus).
+    name: 'concours-photo',
+    description: 'Soumets une photo de ta carte pour le concours de la semaine',
+    options: [
+      {
+        name: 'image',
+        description: 'Photo de ta carte',
+        type: 11,
+        required: true,
       },
     ],
   },
