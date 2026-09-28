@@ -1,5 +1,5 @@
 'use client'
-import { useEffect, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import Link from 'next/link'
 import { useParams, useRouter } from 'next/navigation'
 import { supabase } from '@/lib/supabase'
@@ -95,6 +95,29 @@ export default function PlayerSheetPresenterPage() {
     return () => window.removeEventListener('keydown', onKey)
   }, [prevId, nextId, teamAbbr])
 
+  // Tient tout sur l'ecran : quand il y a beaucoup de contenu (long parcours, notes
+  // detaillees), on reduit l'ensemble au lieu de le laisser deborder. Mesure de la
+  // taille de mise en page (offsetHeight/Width), non affectee par le scale.
+  // Petits ecrans / mobile : pas de reduction, on garde le defilement normal.
+  const contentRef = useRef<HTMLDivElement>(null)
+  const [scale, setScale] = useState(1)
+  useEffect(() => {
+    const el = contentRef.current
+    if (!el) return
+    const measure = () => {
+      if (window.innerWidth < 1100) { setScale(1); return }
+      const h = el.offsetHeight, w = el.offsetWidth
+      if (!h || !w) return
+      const next = Math.max(0.45, Math.min(1, window.innerHeight / h, window.innerWidth / w))
+      setScale(prev => (Math.abs(prev - next) < 0.005 ? prev : next))
+    }
+    measure()
+    const ro = typeof ResizeObserver !== 'undefined' ? new ResizeObserver(measure) : null
+    ro?.observe(el)
+    window.addEventListener('resize', measure)
+    return () => { ro?.disconnect(); window.removeEventListener('resize', measure) }
+  }, [ready, sheetId, sheet])
+
   if (!ready || !sheet || !team) {
     return <div style={{ position: 'fixed', inset: 0, background: '#05070c', color: '#fff', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>Chargement...</div>
   }
@@ -145,8 +168,13 @@ export default function PlayerSheetPresenterPage() {
       )}
 
       <div style={{
-        minHeight: '100%', display: 'flex', flexWrap: 'wrap-reverse', alignItems: 'center', justifyContent: 'center',
+        display: 'flex', alignItems: 'center', justifyContent: 'center',
+        ...(scale < 1 ? { height: '100%', overflow: 'hidden' } : { minHeight: '100%' }),
+      }}>
+      <div ref={contentRef} style={{
+        display: 'flex', flexWrap: 'wrap-reverse', alignItems: 'center', justifyContent: 'center',
         gap: 72, padding: '70px 40px',
+        transform: scale < 1 ? `scale(${scale})` : undefined, transformOrigin: 'center center',
       }}>
         <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
           <div style={{ position: 'relative' }}>
@@ -236,6 +264,7 @@ export default function PlayerSheetPresenterPage() {
             </div>
           )}
         </div>
+      </div>
       </div>
     </div>
   )
