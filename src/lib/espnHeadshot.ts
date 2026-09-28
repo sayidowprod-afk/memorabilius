@@ -602,9 +602,12 @@ export async function fetchEspnPlayerAutofill(name: string, sportHint = 'nba'): 
   // citizenship est parfois absent (ex: Victor Wembanyama) alors que
   // displayBirthPlace ("Paris, France") est fiable -- on retombe sur le
   // dernier segment du lieu de naissance dans ce cas.
-  const birthCountry: string | undefined = typeof athlete.displayBirthPlace === 'string'
+  let birthCountry: string | undefined = typeof athlete.displayBirthPlace === 'string'
     ? athlete.displayBirthPlace.split(',').pop()?.trim()
     : undefined
+  // Lieu americain : ESPN donne "Milwaukee, WI" (code d'etat sur 2 lettres) ou
+  // "Washington, D.C." au lieu du pays.
+  if (birthCountry && (/^[A-Z]{2}$/.test(birthCountry) || /^D\.?C\.?$/i.test(birthCountry))) birthCountry = 'United States'
   const countryCode = espnCitizenshipToCode(athlete.citizenship) ?? espnCitizenshipToCode(birthCountry)
 
   return {

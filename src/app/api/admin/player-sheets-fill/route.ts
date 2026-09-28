@@ -33,7 +33,10 @@ export async function POST(req: NextRequest) {
   for (const [k, v] of Object.entries(fill.fields)) {
     if (force || isEmpty(sheet[k])) update[k] = v
   }
-  if (fill.notes && (force || isEmpty(sheet.notes))) update.notes = fill.notes
+  // Notes : remplacees seulement si vides ou si c'est l'ancienne description
+  // automatique (qui recitait les stats) -- jamais un texte ecrit a la main.
+  const oldAuto = typeof sheet.notes === 'string' && /\d+([.,]\d+)? pts/.test(sheet.notes) && /rbs/.test(sheet.notes)
+  if (fill.notes && (force || isEmpty(sheet.notes) || oldAuto)) update.notes = fill.notes
 
   if (Object.keys(update).length) {
     update.updated_at = new Date().toISOString()
