@@ -395,7 +395,7 @@ export default function Profil() {
                   {converting ? 'Conversion en cours…' : '🔄 Convertir ces cartes CSV en cartes de ma galerie'}
                 </button>
                 <p style={{ fontSize: 11, color: '#999', marginTop: 4 }}>
-                  Crée une vraie carte pour chacune de tes lignes du Google Sheet, puis retire le lien CSV (pour ne plus avoir les mêmes cartes en double). Annulable juste après.
+                  Crée une vraie carte pour chacune de tes lignes du Google Sheet (images réhébergées sur Memorabilius, peut prendre quelques minutes en arrière-plan), puis retire le lien CSV. Annulable juste après.
                 </p>
               </div>
             )}
