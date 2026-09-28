@@ -335,7 +335,11 @@ async function findEspnAthleteId(name: string, sportHint?: string): Promise<{ id
     let fallback: { id: string; sport: string } | null = null
     for (const section of data.results ?? []) {
       for (const a of section.contents ?? []) {
-        if (!a.displayName || norm(a.displayName) !== target || !a.uid) continue
+        // Egalite aussi a espaces pres ("C.J." -> "c j" vs "CJ" -> "cj"). Les
+        // suffixes (II, Jr.) restent significatifs : Gary Payton != Gary Payton II.
+        if (!a.displayName || !a.uid) continue
+        const cand = norm(a.displayName)
+        if (cand !== target && cand.replace(/ /g, '') !== target.replace(/ /g, '')) continue
         const m = /a:(\d+)/.exec(a.uid)
         if (!m) continue
         const espnLeague = (a.defaultLeagueSlug as string) || ''

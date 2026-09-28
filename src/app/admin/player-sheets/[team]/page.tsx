@@ -62,8 +62,20 @@ export default function TeamPlayerSheetsPage() {
     const { data, error } = await supabase.from('player_sheets').insert({
       user_id: user!.id, team_abbr: teamAbbr, player_name: name, sort_order: sheets.length,
     }).select('id').single()
+    if (error) { setCreating(false); alert(error.message); return }
+    // Automatique : stats, age, poste, pays, experience, historique et courte
+    // description depuis ESPN. Silencieux en cas d'echec (joueur introuvable) --
+    // la fiche existe deja et reste editable a la main.
+    try {
+      const tok = (await supabase.auth.getSession()).data.session?.access_token
+      if (tok) {
+        await fetch('/api/admin/player-sheets-fill', {
+          method: 'POST', headers: { Authorization: `Bearer ${tok}`, 'Content-Type': 'application/json' },
+          body: JSON.stringify({ sheetId: data.id }),
+        })
+      }
+    } catch { /* non bloquant */ }
     setCreating(false)
-    if (error) { alert(error.message); return }
     setNewName('')
     router.push(`/admin/player-sheets/${teamAbbr}/${data.id}`)
   }
@@ -174,7 +186,7 @@ export default function TeamPlayerSheetsPage() {
           padding: '10px 18px', borderRadius: 10, border: 'none', background: team.color, color: '#fff',
           fontWeight: 800, fontSize: 14, cursor: newName.trim() ? 'pointer' : 'default', opacity: newName.trim() ? 1 : 0.5,
         }}>
-          + Nouvelle fiche
+          {creating ? 'Recherche des stats…' : '+ Nouvelle fiche'}
         </button>
       </div>
 
