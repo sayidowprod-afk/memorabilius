@@ -1281,28 +1281,33 @@ export default function Viewer3D({ popup, accent, onClose, onNext, onPrev, getTa
                 const edge = isSlabFmt ? (
                   <>
                     {/* Tranches translucides (visibles à la rotation) */}
-                    <div style={{ position: 'absolute', left: 0, top: 0, bottom: 0, width: half * 2, transformOrigin: 'left center', transform: 'rotateY(-90deg)', background: 'linear-gradient(to left, rgba(175,202,235,0.85), rgba(238,248,255,0.97))', backfaceVisibility: 'hidden', WebkitBackfaceVisibility: 'hidden' }} />
-                    <div style={{ position: 'absolute', right: 0, top: 0, bottom: 0, width: half * 2, transformOrigin: 'right center', transform: 'rotateY(90deg)', background: 'linear-gradient(to right, rgba(175,202,235,0.85), rgba(238,248,255,0.97))', backfaceVisibility: 'hidden', WebkitBackfaceVisibility: 'hidden' }} />
-                    <div style={{ position: 'absolute', left: 0, right: 0, top: 0, height: half * 2, transformOrigin: 'top center', transform: 'rotateX(90deg)', background: 'linear-gradient(to top, rgba(175,202,235,0.85), rgba(238,248,255,0.97))', backfaceVisibility: 'hidden', WebkitBackfaceVisibility: 'hidden' }} />
-                    <div style={{ position: 'absolute', left: 0, right: 0, bottom: 0, height: half * 2, transformOrigin: 'bottom center', transform: 'rotateX(-90deg)', background: 'linear-gradient(to bottom, rgba(175,202,235,0.85), rgba(238,248,255,0.97))', backfaceVisibility: 'hidden', WebkitBackfaceVisibility: 'hidden' }} />
+                    {/* transformOrigin 'center center' + position decalee de -half
+                        (au lieu de 'left center' + position a 0) : voir le
+                        commentaire detaille sur la version carte normale
+                        ci-dessous -- meme correction geometrique ici. */}
+                    <div style={{ position: 'absolute', left: -half, top: 0, bottom: 0, width: half * 2, transformOrigin: 'center center', transform: 'rotateY(-90deg)', background: 'linear-gradient(to left, rgba(175,202,235,0.85), rgba(238,248,255,0.97))', backfaceVisibility: 'hidden', WebkitBackfaceVisibility: 'hidden' }} />
+                    <div style={{ position: 'absolute', right: -half, top: 0, bottom: 0, width: half * 2, transformOrigin: 'center center', transform: 'rotateY(90deg)', background: 'linear-gradient(to right, rgba(175,202,235,0.85), rgba(238,248,255,0.97))', backfaceVisibility: 'hidden', WebkitBackfaceVisibility: 'hidden' }} />
+                    <div style={{ position: 'absolute', left: 0, right: 0, top: -half, height: half * 2, transformOrigin: 'center center', transform: 'rotateX(90deg)', background: 'linear-gradient(to top, rgba(175,202,235,0.85), rgba(238,248,255,0.97))', backfaceVisibility: 'hidden', WebkitBackfaceVisibility: 'hidden' }} />
+                    <div style={{ position: 'absolute', left: 0, right: 0, bottom: -half, height: half * 2, transformOrigin: 'center center', transform: 'rotateX(-90deg)', background: 'linear-gradient(to bottom, rgba(175,202,235,0.85), rgba(238,248,255,0.97))', backfaceVisibility: 'hidden', WebkitBackfaceVisibility: 'hidden' }} />
                   </>
                 ) : (
                   <>
-                    {/* Tranche carton opaque, avec un fin lisere sombre en bordure
-                        pour qu'elle se detache nettement du fond (clair ou sombre)
-                        au lieu de s'y fondre. backfaceVisibility:hidden est
-                        indispensable ici (contrairement au recto/verso, ca manquait) :
-                        sans ca, a angle serre le navigateur affiche l'envers-miroir
-                        d'une tranche PAR-DESSUS une autre -- deux largeurs/couleurs
-                        differentes superposees, exactement le bug signale. */}
-                    {/* Blanc (comme la doublure recto/verso juste en dessous) plutot
-                        que le degrade beige d'avant -- une seule teinte partout
-                        pour ne plus jamais laisser voir "deux couleurs differentes"
-                        sur la tranche selon la face la plus proche de la camera. */}
-                    <div style={{ position: 'absolute', left: 0, top: 0, bottom: 0, width: half * 2, transformOrigin: 'left center', transform: 'rotateY(-90deg)', background: '#f4f1e6', boxShadow: 'inset 0 0 0 1px rgba(0,0,0,0.12)', backfaceVisibility: 'hidden', WebkitBackfaceVisibility: 'hidden' }} />
-                    <div style={{ position: 'absolute', right: 0, top: 0, bottom: 0, width: half * 2, transformOrigin: 'right center', transform: 'rotateY(90deg)', background: '#f4f1e6', boxShadow: 'inset 0 0 0 1px rgba(0,0,0,0.12)', backfaceVisibility: 'hidden', WebkitBackfaceVisibility: 'hidden' }} />
-                    <div style={{ position: 'absolute', left: 0, right: 0, top: 0, height: half * 2, transformOrigin: 'top center', transform: 'rotateX(90deg)', background: '#f4f1e6', boxShadow: 'inset 0 0 0 1px rgba(0,0,0,0.12)', backfaceVisibility: 'hidden', WebkitBackfaceVisibility: 'hidden' }} />
-                    <div style={{ position: 'absolute', left: 0, right: 0, bottom: 0, height: half * 2, transformOrigin: 'bottom center', transform: 'rotateX(-90deg)', background: '#f4f1e6', boxShadow: 'inset 0 0 0 1px rgba(0,0,0,0.12)', backfaceVisibility: 'hidden', WebkitBackfaceVisibility: 'hidden' }} />
+                    {/* LA vraie cause du "on dirait 2 epaisseurs / une face pas collee
+                        a la tranche" : avec transformOrigin:'left center' (pivot sur
+                        le BORD de la tranche, a x=0) et une boite allant de x=0 a
+                        x=half*2, la rotation de -90° envoie la tranche de z=0 a
+                        z=half*2 -- alors que le recto est a z=+half et le verso a
+                        z=-half (boite centree sur z=0). La tranche etait donc
+                        entierement decalee vers l'avant : elle depassait le recto
+                        de "half" ET laissait un vide de "half" avant d'atteindre le
+                        verso. Fix : boite centree sur le bord de la carte
+                        (left:-half, width:half*2) + pivot au CENTRE de cette boite
+                        (qui tombe alors exactement sur le bord, x=0) -- la tranche
+                        va alors bien de z=-half a z=+half, collee aux deux faces. */}
+                    <div style={{ position: 'absolute', left: -half, top: 0, bottom: 0, width: half * 2, transformOrigin: 'center center', transform: 'rotateY(-90deg)', background: '#f4f1e6', backfaceVisibility: 'hidden', WebkitBackfaceVisibility: 'hidden' }} />
+                    <div style={{ position: 'absolute', right: -half, top: 0, bottom: 0, width: half * 2, transformOrigin: 'center center', transform: 'rotateY(90deg)', background: '#f4f1e6', backfaceVisibility: 'hidden', WebkitBackfaceVisibility: 'hidden' }} />
+                    <div style={{ position: 'absolute', left: 0, right: 0, top: -half, height: half * 2, transformOrigin: 'center center', transform: 'rotateX(90deg)', background: '#f4f1e6', backfaceVisibility: 'hidden', WebkitBackfaceVisibility: 'hidden' }} />
+                    <div style={{ position: 'absolute', left: 0, right: 0, bottom: -half, height: half * 2, transformOrigin: 'center center', transform: 'rotateX(-90deg)', background: '#f4f1e6', backfaceVisibility: 'hidden', WebkitBackfaceVisibility: 'hidden' }} />
                   </>
                 )
                 return (
