@@ -83,7 +83,9 @@ export default function Viewer3D({ popup, accent, onClose, onNext, onPrev, getTa
 }) {
   const { dark } = useTheme()
   const bg = dark ? '#1a1a1a' : '#fff'
-  const zoneBg = dark ? '#111' : '#f8f8f8'
+  // Gris un peu plus marque qu'avant (#f8f8f8, quasi blanc) -- la carte et son
+  // ombre au sol se detachaient mal dessus.
+  const zoneBg = dark ? '#111' : '#e9e9e9'
   const infoBg = dark ? '#1a1a1a' : 'white'
   const textColor = dark ? '#eee' : '#111'
   const borderColor = dark ? '#2a2a2a' : '#eee'
