@@ -1236,7 +1236,13 @@ export default function Viewer3D({ popup, accent, onClose, onNext, onPrev, getTa
               /* ── CARD VIEW (original) ── */
               /* Le format "slab" est plus épais : demi-profondeur devant/derrière + 4 tranches acryliques */
               (() => {
-                const half = isSlabFmt ? 11 : 0 // demi-épaisseur (px) — slab ≈ 22px d'épaisseur totale
+                // Demi-épaisseur (px) — slab ≈ 22px d'épaisseur totale. Une carte
+                // normale avait 0 (recto/verso parfaitement coincidents) : a la
+                // rotation, aucune tranche n'etait visible, la carte paraissait
+                // plate comme une feuille de papier plutot qu'un carton epais.
+                // Legere epaisseur (6px total) + tranche cartonnee opaque, pour
+                // un effet plus proche d'une vraie carte sans exagerer non plus.
+                const half = isSlabFmt ? 11 : 3
                 const edge = isSlabFmt ? (
                   <>
                     {/* Tranches translucides (visibles à la rotation) */}
@@ -1245,7 +1251,16 @@ export default function Viewer3D({ popup, accent, onClose, onNext, onPrev, getTa
                     <div style={{ position: 'absolute', left: 0, right: 0, top: 0, height: half * 2, transformOrigin: 'top center', transform: 'rotateX(90deg)', background: 'linear-gradient(to top, rgba(175,202,235,0.85), rgba(238,248,255,0.97))' }} />
                     <div style={{ position: 'absolute', left: 0, right: 0, bottom: 0, height: half * 2, transformOrigin: 'bottom center', transform: 'rotateX(-90deg)', background: 'linear-gradient(to bottom, rgba(175,202,235,0.85), rgba(238,248,255,0.97))' }} />
                   </>
-                ) : null
+                ) : (
+                  <>
+                    {/* Tranche carton opaque (pas translucide comme le slab -- une
+                        vraie carte n'est pas transparente sur l'epaisseur) */}
+                    <div style={{ position: 'absolute', left: 0, top: 0, bottom: 0, width: half * 2, transformOrigin: 'left center', transform: 'rotateY(-90deg)', background: 'linear-gradient(to left, #d8d4c8, #f4f2ea)' }} />
+                    <div style={{ position: 'absolute', right: 0, top: 0, bottom: 0, width: half * 2, transformOrigin: 'right center', transform: 'rotateY(90deg)', background: 'linear-gradient(to right, #d8d4c8, #f4f2ea)' }} />
+                    <div style={{ position: 'absolute', left: 0, right: 0, top: 0, height: half * 2, transformOrigin: 'top center', transform: 'rotateX(90deg)', background: 'linear-gradient(to top, #e4e0d4, #f9f7f0)' }} />
+                    <div style={{ position: 'absolute', left: 0, right: 0, bottom: 0, height: half * 2, transformOrigin: 'bottom center', transform: 'rotateX(-90deg)', background: 'linear-gradient(to bottom, #c8c4b8, #ece8dc)' }} />
+                  </>
+                )
                 return (
               <div ref={cardRef} className={`viewer-card${popup.is_horizontal ? ' viewer-card--horizontal' : isSlabFmt ? ' viewer-card--slab' : ''}`} style={{
                 position: 'relative', transformStyle: 'preserve-3d', willChange: 'transform',
