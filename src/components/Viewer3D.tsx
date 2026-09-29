@@ -1269,6 +1269,20 @@ export default function Viewer3D({ popup, accent, onClose, onNext, onPrev, getTa
                 position: 'relative', transformStyle: 'preserve-3d', willChange: 'transform',
               }}>
                 {edge}
+                {half > 0 && (
+                  <>
+                    {/* Doublure blanche derriere le recto et le verso : a une
+                        rotation combinant les deux axes (X et Y, comme le
+                        balancement idle), un mince interstice entre les 4
+                        tranches (qui ne couvrent que les 4 cotes, pas les coins)
+                        pouvait laisser voir le fond de la page a travers -- d'ou
+                        l'impression de carte qui "se fond" avec le fond. Une
+                        doublure opaque exactement derriere chaque face comble cet
+                        interstice avec du blanc carton plutot que par le fond. */}
+                    <div style={{ position: 'absolute', inset: 0, backfaceVisibility: 'hidden', WebkitBackfaceVisibility: 'hidden', background: '#f4f1e6', transform: `rotateY(180deg) translateZ(${-half}px)` }} />
+                    <div style={{ position: 'absolute', inset: 0, backfaceVisibility: 'hidden', WebkitBackfaceVisibility: 'hidden', background: '#f4f1e6', transform: `translateZ(${-half}px)` }} />
+                  </>
+                )}
                 {/* Ombre sur le recto seulement -- avec l'epaisseur, la dupliquer
                     sur les deux faces (legerement decalees en Z) produisait une
                     tache floue a la rotation au lieu d'une ombre nette. */}
