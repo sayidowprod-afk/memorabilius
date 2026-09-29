@@ -6,11 +6,12 @@ import { useCallback, useEffect, useRef, useState } from 'react'
 // tourne) pour la fiche joueur en émission.
 // Pas de coins arrondis sur la carte elle-meme (voir memoire projet) --
 // contrairement au reste de l'UI, une vraie carte a des bords nets.
-export default function Card3DInline({ front, back, isHorizontal, accent }: {
+export default function Card3DInline({ front, back, isHorizontal, accent, maxWidth }: {
   front: string
   back?: string
   isHorizontal?: boolean
   accent?: string
+  maxWidth?: number   // taille max en px (portrait) -- 340 par defaut ; l'horizontal suit au prorata
 }) {
   const cardRef = useRef<HTMLDivElement>(null)
   const rotX = useRef(0)
@@ -90,9 +91,10 @@ export default function Card3DInline({ front, back, isHorizontal, accent }: {
 
   const onPointerUp = useCallback(() => { isDragging.current = false; startIdleWobble(2500) }, [startIdleWobble])
 
+  const portraitMax = maxWidth ?? 340
   const boxStyle: React.CSSProperties = isHorizontal
-    ? { width: 'min(85vw, 480px)', aspectRatio: '5 / 3.5' }
-    : { width: 'min(70vw, 340px)', aspectRatio: '2.5 / 3.5' }
+    ? { width: `min(85vw, ${Math.round(portraitMax * (480 / 340))}px)`, aspectRatio: '5 / 3.5' }
+    : { width: `min(70vw, ${portraitMax}px)`, aspectRatio: '2.5 / 3.5' }
 
   const faceStyle: React.CSSProperties = {
     position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover',

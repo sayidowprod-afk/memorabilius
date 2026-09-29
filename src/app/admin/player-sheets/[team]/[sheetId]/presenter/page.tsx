@@ -190,6 +190,7 @@ export default function PlayerSheetPresenterPage() {
                 back={sheet.card_image_verso_hd || sheet.card_image_verso || undefined}
                 isHorizontal={sheet.card_is_horizontal}
                 accent={team.color}
+                maxWidth={520}
               />
             )}
           </div>
