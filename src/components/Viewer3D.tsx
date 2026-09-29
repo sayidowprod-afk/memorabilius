@@ -1236,11 +1236,11 @@ export default function Viewer3D({ popup, accent, onClose, onNext, onPrev, getTa
               /* ── CARD VIEW (original) ── */
               /* Le format "slab" est plus épais : demi-profondeur devant/derrière + 4 tranches acryliques */
               (() => {
-                // REVERT : l'epaisseur ajoutee sur une carte normale (tranche
-                // cartonnee) rendait mal a la rotation -- couleur se confondant
-                // avec le fond, forme deformee vue de profil. Retour a 0 (recto/
-                // verso coincidents, comme avant) ; le slab garde son epaisseur.
-                const half = isSlabFmt ? 11 : 0
+                // Demi-épaisseur (px) — slab ≈ 22px, carte normale ≈ 6px. Verifie
+                // visuellement (angles normaux + quasi-profil, fond clair et
+                // sombre) avant d'ajuster ces valeurs -- un essai precedent avait
+                // l'air correct en theorie mais rendait mal en pratique.
+                const half = isSlabFmt ? 11 : 3
                 const edge = isSlabFmt ? (
                   <>
                     {/* Tranches translucides (visibles à la rotation) */}
@@ -1249,16 +1249,29 @@ export default function Viewer3D({ popup, accent, onClose, onNext, onPrev, getTa
                     <div style={{ position: 'absolute', left: 0, right: 0, top: 0, height: half * 2, transformOrigin: 'top center', transform: 'rotateX(90deg)', background: 'linear-gradient(to top, rgba(175,202,235,0.85), rgba(238,248,255,0.97))' }} />
                     <div style={{ position: 'absolute', left: 0, right: 0, bottom: 0, height: half * 2, transformOrigin: 'bottom center', transform: 'rotateX(-90deg)', background: 'linear-gradient(to bottom, rgba(175,202,235,0.85), rgba(238,248,255,0.97))' }} />
                   </>
-                ) : null
+                ) : (
+                  <>
+                    {/* Tranche carton opaque, avec un fin lisere sombre en bordure
+                        pour qu'elle se detache nettement du fond (clair ou sombre)
+                        au lieu de s'y fondre. */}
+                    <div style={{ position: 'absolute', left: 0, top: 0, bottom: 0, width: half * 2, transformOrigin: 'left center', transform: 'rotateY(-90deg)', background: 'linear-gradient(to left, #c9c4b4, #efece0)', boxShadow: 'inset 0 0 0 1px rgba(0,0,0,0.15)' }} />
+                    <div style={{ position: 'absolute', right: 0, top: 0, bottom: 0, width: half * 2, transformOrigin: 'right center', transform: 'rotateY(90deg)', background: 'linear-gradient(to right, #c9c4b4, #efece0)', boxShadow: 'inset 0 0 0 1px rgba(0,0,0,0.15)' }} />
+                    <div style={{ position: 'absolute', left: 0, right: 0, top: 0, height: half * 2, transformOrigin: 'top center', transform: 'rotateX(90deg)', background: 'linear-gradient(to top, #d8d4c4, #f5f2e8)', boxShadow: 'inset 0 0 0 1px rgba(0,0,0,0.15)' }} />
+                    <div style={{ position: 'absolute', left: 0, right: 0, bottom: 0, height: half * 2, transformOrigin: 'bottom center', transform: 'rotateX(-90deg)', background: 'linear-gradient(to bottom, #b5b0a0, #dedad0)', boxShadow: 'inset 0 0 0 1px rgba(0,0,0,0.15)' }} />
+                  </>
+                )
                 return (
               <div ref={cardRef} className={`viewer-card${popup.is_horizontal ? ' viewer-card--horizontal' : isSlabFmt ? ' viewer-card--slab' : ''}`} style={{
                 position: 'relative', transformStyle: 'preserve-3d', willChange: 'transform',
               }}>
                 {edge}
+                {/* Ombre sur le recto seulement -- avec l'epaisseur, la dupliquer
+                    sur les deux faces (legerement decalees en Z) produisait une
+                    tache floue a la rotation au lieu d'une ombre nette. */}
                 <div style={{ position: 'absolute', inset: 0, backfaceVisibility: 'hidden', WebkitBackfaceVisibility: 'hidden', boxShadow: '0 20px 60px rgba(0,0,0,0.3)', overflow: 'hidden', transform: half ? `translateZ(${half}px)` : undefined }}>
                   <img src={popup.fHd || popup.f} draggable={false} style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }} alt={popup.n} />
                 </div>
-                <div style={{ position: 'absolute', inset: 0, backfaceVisibility: 'hidden', WebkitBackfaceVisibility: 'hidden', transform: `rotateY(180deg)${half ? ` translateZ(${half}px)` : ''}`, boxShadow: '0 20px 60px rgba(0,0,0,0.3)', overflow: 'hidden' }}>
+                <div style={{ position: 'absolute', inset: 0, backfaceVisibility: 'hidden', WebkitBackfaceVisibility: 'hidden', transform: `rotateY(180deg)${half ? ` translateZ(${half}px)` : ''}`, overflow: 'hidden' }}>
                   <img src={popup.bHd || popup.b} draggable={false} style={backFaceImgStyle(!!popup.is_horizontal, popup.verso_is_horizontal ?? !!popup.is_horizontal)} alt={popup.n} />
                 </div>
               </div>
