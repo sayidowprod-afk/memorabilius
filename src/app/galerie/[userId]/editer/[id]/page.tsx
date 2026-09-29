@@ -60,20 +60,43 @@ async function downscaleToDataURL(file: File, maxDim = 1600): Promise<string> {
 // publique/privée -- privé par défaut, jamais affiché nulle part tant que
 // l'utilisateur ne choisit pas explicitement de le rendre visible sur la
 // fiche publique de la carte.
+// Icone oeil / oeil barre -- SVG inline (pas d'emoji, rendu trop discret/pas
+// assez lisible comme bouton d'apres retour utilisateur).
+function EyeIcon({ open }: { open: boolean }) {
+  return open ? (
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round">
+      <path d="M1 12s4-7 11-7 11 7 11 7-4 7-11 7-11-7-11-7Z" />
+      <circle cx="12" cy="12" r="3" />
+    </svg>
+  ) : (
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round">
+      <path d="M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 7 11 7a17.7 17.7 0 0 1-3.06 3.94M6.5 6.5C3.4 8.4 1 12 1 12s4 7 11 7a9.6 9.6 0 0 0 4.24-.94M9.9 9.9a3 3 0 0 0 4.2 4.2" />
+      <path d="M1 1l22 22" />
+    </svg>
+  )
+}
+
 function NotesPersoField({ value, isPublic, onChange, onTogglePublic }: {
   value: string; isPublic: boolean; onChange: (v: string) => void; onTogglePublic: () => void
 }) {
   return (
     <div>
       <label style={{ fontSize: 12, fontWeight: 700, textTransform: 'uppercase', color: '#888', display: 'block', marginBottom: 6 }}>Notes personnelles</label>
-      <input value={value} onChange={e => onChange(e.target.value)} placeholder="Ex : auto in person, achetée 40€ le 12/03..." />
-      <button type="button" onClick={onTogglePublic} style={{
-        display: 'inline-flex', alignItems: 'center', gap: 5, marginTop: 6, padding: '3px 10px', borderRadius: 20,
-        border: 'none', cursor: 'pointer', fontSize: 11, fontWeight: 700,
-        background: isPublic ? '#e8f5e9' : '#f0f0f0', color: isPublic ? '#2e7d32' : '#777',
-      }}>
-        {isPublic ? '🌍 Publique — visible sur la fiche de la carte' : '🔒 Privée — visible seulement par toi'}
-      </button>
+      <div style={{ display: 'flex', gap: 8, alignItems: 'stretch' }}>
+        <input value={value} onChange={e => onChange(e.target.value)} placeholder="Ex : auto in person, achetée 40€ le 12/03..." style={{ flex: 1, minWidth: 0 }} />
+        <button type="button" onClick={onTogglePublic}
+          title={isPublic ? 'Publique — visible sur la fiche de la carte. Cliquer pour rendre privée.' : 'Privée — visible seulement par toi. Cliquer pour rendre publique.'}
+          style={{
+            flexShrink: 0, width: 40, borderRadius: 8, border: 'none', cursor: 'pointer',
+            display: 'flex', alignItems: 'center', justifyContent: 'center',
+            background: isPublic ? '#2e7d32' : '#c0392b', transition: '0.15s',
+          }}>
+          <EyeIcon open={isPublic} />
+        </button>
+      </div>
+      <p style={{ fontSize: 11, color: '#999', marginTop: 4 }}>
+        {isPublic ? '🌍 Publique — visible sur la fiche de la carte.' : '🔒 Privée — visible seulement par toi.'}
+      </p>
     </div>
   )
 }
