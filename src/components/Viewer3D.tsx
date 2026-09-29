@@ -1244,20 +1244,24 @@ export default function Viewer3D({ popup, accent, onClose, onNext, onPrev, getTa
                 const edge = isSlabFmt ? (
                   <>
                     {/* Tranches translucides (visibles à la rotation) */}
-                    <div style={{ position: 'absolute', left: 0, top: 0, bottom: 0, width: half * 2, transformOrigin: 'left center', transform: 'rotateY(-90deg)', background: 'linear-gradient(to left, rgba(175,202,235,0.85), rgba(238,248,255,0.97))' }} />
-                    <div style={{ position: 'absolute', right: 0, top: 0, bottom: 0, width: half * 2, transformOrigin: 'right center', transform: 'rotateY(90deg)', background: 'linear-gradient(to right, rgba(175,202,235,0.85), rgba(238,248,255,0.97))' }} />
-                    <div style={{ position: 'absolute', left: 0, right: 0, top: 0, height: half * 2, transformOrigin: 'top center', transform: 'rotateX(90deg)', background: 'linear-gradient(to top, rgba(175,202,235,0.85), rgba(238,248,255,0.97))' }} />
-                    <div style={{ position: 'absolute', left: 0, right: 0, bottom: 0, height: half * 2, transformOrigin: 'bottom center', transform: 'rotateX(-90deg)', background: 'linear-gradient(to bottom, rgba(175,202,235,0.85), rgba(238,248,255,0.97))' }} />
+                    <div style={{ position: 'absolute', left: 0, top: 0, bottom: 0, width: half * 2, transformOrigin: 'left center', transform: 'rotateY(-90deg)', background: 'linear-gradient(to left, rgba(175,202,235,0.85), rgba(238,248,255,0.97))', backfaceVisibility: 'hidden', WebkitBackfaceVisibility: 'hidden' }} />
+                    <div style={{ position: 'absolute', right: 0, top: 0, bottom: 0, width: half * 2, transformOrigin: 'right center', transform: 'rotateY(90deg)', background: 'linear-gradient(to right, rgba(175,202,235,0.85), rgba(238,248,255,0.97))', backfaceVisibility: 'hidden', WebkitBackfaceVisibility: 'hidden' }} />
+                    <div style={{ position: 'absolute', left: 0, right: 0, top: 0, height: half * 2, transformOrigin: 'top center', transform: 'rotateX(90deg)', background: 'linear-gradient(to top, rgba(175,202,235,0.85), rgba(238,248,255,0.97))', backfaceVisibility: 'hidden', WebkitBackfaceVisibility: 'hidden' }} />
+                    <div style={{ position: 'absolute', left: 0, right: 0, bottom: 0, height: half * 2, transformOrigin: 'bottom center', transform: 'rotateX(-90deg)', background: 'linear-gradient(to bottom, rgba(175,202,235,0.85), rgba(238,248,255,0.97))', backfaceVisibility: 'hidden', WebkitBackfaceVisibility: 'hidden' }} />
                   </>
                 ) : (
                   <>
                     {/* Tranche carton opaque, avec un fin lisere sombre en bordure
                         pour qu'elle se detache nettement du fond (clair ou sombre)
-                        au lieu de s'y fondre. */}
-                    <div style={{ position: 'absolute', left: 0, top: 0, bottom: 0, width: half * 2, transformOrigin: 'left center', transform: 'rotateY(-90deg)', background: 'linear-gradient(to left, #c9c4b4, #efece0)', boxShadow: 'inset 0 0 0 1px rgba(0,0,0,0.15)' }} />
-                    <div style={{ position: 'absolute', right: 0, top: 0, bottom: 0, width: half * 2, transformOrigin: 'right center', transform: 'rotateY(90deg)', background: 'linear-gradient(to right, #c9c4b4, #efece0)', boxShadow: 'inset 0 0 0 1px rgba(0,0,0,0.15)' }} />
-                    <div style={{ position: 'absolute', left: 0, right: 0, top: 0, height: half * 2, transformOrigin: 'top center', transform: 'rotateX(90deg)', background: 'linear-gradient(to top, #d8d4c4, #f5f2e8)', boxShadow: 'inset 0 0 0 1px rgba(0,0,0,0.15)' }} />
-                    <div style={{ position: 'absolute', left: 0, right: 0, bottom: 0, height: half * 2, transformOrigin: 'bottom center', transform: 'rotateX(-90deg)', background: 'linear-gradient(to bottom, #b5b0a0, #dedad0)', boxShadow: 'inset 0 0 0 1px rgba(0,0,0,0.15)' }} />
+                        au lieu de s'y fondre. backfaceVisibility:hidden est
+                        indispensable ici (contrairement au recto/verso, ca manquait) :
+                        sans ca, a angle serre le navigateur affiche l'envers-miroir
+                        d'une tranche PAR-DESSUS une autre -- deux largeurs/couleurs
+                        differentes superposees, exactement le bug signale. */}
+                    <div style={{ position: 'absolute', left: 0, top: 0, bottom: 0, width: half * 2, transformOrigin: 'left center', transform: 'rotateY(-90deg)', background: 'linear-gradient(to left, #c9c4b4, #efece0)', boxShadow: 'inset 0 0 0 1px rgba(0,0,0,0.15)', backfaceVisibility: 'hidden', WebkitBackfaceVisibility: 'hidden' }} />
+                    <div style={{ position: 'absolute', right: 0, top: 0, bottom: 0, width: half * 2, transformOrigin: 'right center', transform: 'rotateY(90deg)', background: 'linear-gradient(to right, #c9c4b4, #efece0)', boxShadow: 'inset 0 0 0 1px rgba(0,0,0,0.15)', backfaceVisibility: 'hidden', WebkitBackfaceVisibility: 'hidden' }} />
+                    <div style={{ position: 'absolute', left: 0, right: 0, top: 0, height: half * 2, transformOrigin: 'top center', transform: 'rotateX(90deg)', background: 'linear-gradient(to top, #d8d4c4, #f5f2e8)', boxShadow: 'inset 0 0 0 1px rgba(0,0,0,0.15)', backfaceVisibility: 'hidden', WebkitBackfaceVisibility: 'hidden' }} />
+                    <div style={{ position: 'absolute', left: 0, right: 0, bottom: 0, height: half * 2, transformOrigin: 'bottom center', transform: 'rotateX(-90deg)', background: 'linear-gradient(to bottom, #b5b0a0, #dedad0)', boxShadow: 'inset 0 0 0 1px rgba(0,0,0,0.15)', backfaceVisibility: 'hidden', WebkitBackfaceVisibility: 'hidden' }} />
                   </>
                 )
                 return (
