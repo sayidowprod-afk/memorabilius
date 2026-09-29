@@ -471,6 +471,7 @@ export default function Viewer3D({ popup, accent, onClose, onNext, onPrev, getTa
   const lastTap = useRef(0)
   const cardRef = useRef<HTMLDivElement>(null)
   const wrapRef = useRef<HTMLDivElement>(null)
+  const shadowRef = useRef<HTMLDivElement>(null)
   const idleRef = useRef<HTMLDivElement>(null)
   const rafRef = useRef<number>(0)
   const idleWobbleRaf = useRef<number>(0)
@@ -556,6 +557,23 @@ export default function Viewer3D({ popup, accent, onClose, onNext, onPrev, getTa
     }
     if (wrapRef.current) {
       wrapRef.current.style.transform = `scale(${scale.current})`
+    }
+    if (shadowRef.current) {
+      // Ombre au sol : suit l'angle de la carte pour rester credible (sinon
+      // une ellipse fixe a n'importe quelle rotation avait l'air fausse). Pas
+      // une simulation physique -- juste une approximation visuelle simple :
+      // - tourner autour de Y (gauche/droite) resserre l'empreinte au sol
+      //   (une carte de profil "occupe" moins de place vue du dessus) et la
+      //   decale legerement dans le sens de la rotation.
+      // - incliner autour de X (avant/arriere) allonge/raccourcit l'ombre et
+      //   la decale verticalement, comme un gnomon de cadran solaire.
+      const ryRad = rotY.current * Math.PI / 180
+      const rxRad = rotX.current * Math.PI / 180
+      const scaleX = 0.4 + 0.6 * Math.abs(Math.cos(ryRad))
+      const scaleY = 0.75 + 0.25 * Math.abs(Math.cos(rxRad))
+      const offsetX = Math.sin(ryRad) * 14
+      const offsetY = Math.sin(rxRad) * 10
+      shadowRef.current.style.transform = `translate(${offsetX}px, ${offsetY}px) scale(${scaleX}, ${scaleY})`
     }
   }, [])
 
@@ -751,6 +769,11 @@ export default function Viewer3D({ popup, accent, onClose, onNext, onPrev, getTa
         .viewer-zone { flex: 1.2; position: relative; overflow: hidden; background: ${zoneBg}; display: flex; align-items: center; justify-content: center; perspective: 2000px; cursor: grab; user-select: none; -webkit-user-select: none; touch-action: none; }
         .viewer-info { flex: 0.8; padding: 30px; display: flex; flex-direction: column; justify-content: center; background: ${infoBg}; overflow-y: auto; color: ${textColor}; }
         .viewer-card { width: 560px; height: 784px; }
+        /* Ombre au sol statique (voir viewer-ground-shadow plus bas) : reutilise
+           EXACTEMENT les memes tailles/breakpoints que .viewer-card pour rester
+           alignee avec elle a chaque taille d'ecran, sans dupliquer les regles. */
+        .viewer-ground-shadow { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); pointer-events: none; z-index: 0; }
+        .viewer-ground-shadow > div { position: absolute; left: 8%; right: 8%; bottom: -6%; height: 14%; border-radius: 50%; background: radial-gradient(ellipse, rgba(0,0,0,0.38), rgba(0,0,0,0) 72%); filter: blur(6px); }
         .viewer-card--horizontal { width: min(784px, 54vw) !important; height: min(560px, 38.6vw) !important; }
         .viewer-card--slab { width: 478px !important; height: 784px !important; }
         .viewer-info-handle { display: none; }
@@ -854,8 +877,15 @@ export default function Viewer3D({ popup, accent, onClose, onNext, onPrev, getTa
             </div>
           )}
 
+          {/* Ombre au sol fixe -- ne tourne PAS avec la carte (contrairement a
+              l'ancien box-shadow porte par le recto, illisible ou absent des
+              qu'on s'ecarte d'une vue de face). Un vrai objet pose sur une
+              table projette une ombre qui suit la table, pas l'objet. */}
+          <div className={`viewer-ground-shadow viewer-card${popup.is_horizontal ? ' viewer-card--horizontal' : isSlabFmt ? ' viewer-card--slab' : ''}`}>
+            <div ref={shadowRef} style={{ willChange: 'transform' }} />
+          </div>
           <style>{`.card-idle { transform-style: preserve-3d; }`}</style>
-          <div ref={wrapRef} style={{ willChange: 'transform' }}>
+          <div ref={wrapRef} style={{ willChange: 'transform', position: 'relative', zIndex: 1 }}>
             <div ref={idleRef} className="card-idle">
             {slabMode && gradeInfo ? (
               /* ── SLAB VIEW ── */
@@ -1283,10 +1313,10 @@ export default function Viewer3D({ popup, accent, onClose, onNext, onPrev, getTa
                     <div style={{ position: 'absolute', inset: 0, backfaceVisibility: 'hidden', WebkitBackfaceVisibility: 'hidden', background: '#f4f1e6', transform: `translateZ(${-half}px)` }} />
                   </>
                 )}
-                {/* Ombre sur le recto seulement -- avec l'epaisseur, la dupliquer
-                    sur les deux faces (legerement decalees en Z) produisait une
-                    tache floue a la rotation au lieu d'une ombre nette. */}
-                <div style={{ position: 'absolute', inset: 0, backfaceVisibility: 'hidden', WebkitBackfaceVisibility: 'hidden', boxShadow: '0 20px 60px rgba(0,0,0,0.3)', overflow: 'hidden', transform: half ? `translateZ(${half}px)` : undefined }}>
+                {/* Plus d'ombre portee par la carte elle-meme -- remplacee par
+                    l'ombre au sol fixe (viewer-ground-shadow) juste au-dessus,
+                    qui reste lisible a n'importe quel angle de rotation. */}
+                <div style={{ position: 'absolute', inset: 0, backfaceVisibility: 'hidden', WebkitBackfaceVisibility: 'hidden', overflow: 'hidden', transform: half ? `translateZ(${half}px)` : undefined }}>
                   <img src={popup.fHd || popup.f} draggable={false} style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }} alt={popup.n} />
                 </div>
                 <div style={{ position: 'absolute', inset: 0, backfaceVisibility: 'hidden', WebkitBackfaceVisibility: 'hidden', transform: `rotateY(180deg)${half ? ` translateZ(${half}px)` : ''}`, overflow: 'hidden' }}>
