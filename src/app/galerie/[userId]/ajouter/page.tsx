@@ -236,7 +236,7 @@ export default function AjouterCarte({ params }: { params: Promise<{ userId: str
   const [uploadingIL, setUploadingIL] = useState(false)
   const [uploadingIR, setUploadingIR] = useState(false)
   const [form, setForm] = useState({
-    nom: '', equipe: '', annee: '', marque: '', collection: '', variation: '',
+    nom: '', equipe: '', annee: '', marque: '', collection: '', variation: '', notes_perso: '',
     grade: 'Raw', cert_number: '', num: '', card_number: '', rc: false, auto: false, patch: false, printing_plate: false, booklet: false,
     is_horizontal: false, format: 'standard', collection_tag: '', disponible_vente: false,
     image_recto: '', image_verso: '', image_interieur_gauche: '', image_interieur_droite: '',
@@ -777,7 +777,7 @@ export default function AjouterCarte({ params }: { params: Promise<{ userId: str
 
   const resetForm = () => {
     setForm({
-      nom: '', equipe: '', annee: '', marque: '', collection: '', variation: '',
+      nom: '', equipe: '', annee: '', marque: '', collection: '', variation: '', notes_perso: '',
       grade: 'Raw', cert_number: '', num: '', card_number: '', rc: false, auto: false, patch: false, printing_plate: false, booklet: false,
       is_horizontal: false, format: 'standard', collection_tag: '', disponible_vente: false,
       image_recto: '', image_verso: '', image_interieur_gauche: '', image_interieur_droite: '',
@@ -803,7 +803,7 @@ export default function AjouterCarte({ params }: { params: Promise<{ userId: str
   const doInsert = async (uid: string) => {
     const { data: newCard, error } = await supabase.from('cartes_manuelles').insert({
       user_id: uid, nom: form.nom, equipe: form.equipe || null, annee: form.annee || null,
-      marque: form.marque || null, collection: form.collection || null, variation: form.variation || null, grade: form.grade,
+      marque: form.marque || null, collection: form.collection || null, variation: form.variation || null, notes_perso: form.notes_perso || null, grade: form.grade,
       num: form.num || null, card_number: form.card_number || null, cert_number: form.cert_number || null,
       rc: form.rc, auto: form.auto, patch: form.patch, printing_plate: form.printing_plate, booklet: form.booklet,
       format: form.format || 'standard',
@@ -1129,6 +1129,12 @@ export default function AjouterCarte({ params }: { params: Promise<{ userId: str
               <input value={form.card_number} onChange={e => setField('card_number', e.target.value)} placeholder={t('addcard_ex_patch_desc')} />
             </div>
             )}
+          </div>
+
+          <div>
+            <label style={{ fontSize: 12, fontWeight: 700, textTransform: 'uppercase', color: '#888', display: 'block', marginBottom: 6 }}>Notes personnelles</label>
+            <input value={form.notes_perso} onChange={e => setField('notes_perso', e.target.value)} placeholder="Ex : auto in person, achetée 40€ le 12/03..." />
+            <p style={{ fontSize: 11, color: '#999', marginTop: 4 }}>Visible uniquement par toi, jamais affiché publiquement.</p>
           </div>
 
           {form.item_type !== 'memorabilia' ? (

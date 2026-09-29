@@ -91,7 +91,7 @@ export default function EditerCarte({ params }: { params: Promise<{ userId: stri
   const [previewIL, setPreviewIL] = useState<string | null>(null)
   const [previewIR, setPreviewIR] = useState<string | null>(null)
   const [form, setForm] = useState({
-    nom: '', equipe: '', annee: '', marque: '', collection: '', variation: '',
+    nom: '', equipe: '', annee: '', marque: '', collection: '', variation: '', notes_perso: '',
     grade: 'Raw', cert_number: '', num: '', card_number: '', rc: false, auto: false, patch: false, printing_plate: false,
     image_recto: '', image_verso: '', image_recto_hd: '', image_verso_hd: '', collection_tag: '', disponible_vente: false,
     booklet: false, is_horizontal: false, format: 'standard',
@@ -137,7 +137,7 @@ export default function EditerCarte({ params }: { params: Promise<{ userId: stri
       if (error || !data) { router.push(`/galerie/${userId}`); return }
       const loadedForm = {
         nom: data.nom || '', equipe: data.equipe || '', annee: data.annee || '',
-        marque: data.marque || '', collection: data.collection || '', variation: data.variation || '',
+        marque: data.marque || '', collection: data.collection || '', variation: data.variation || '', notes_perso: data.notes_perso || '',
         grade: data.grade || 'Raw', cert_number: data.cert_number || '', num: data.num || '', card_number: data.card_number || '',
         rc: data.rc || false, auto: data.auto || false, patch: data.patch || false, printing_plate: data.printing_plate || false,
         image_recto: data.image_recto || '', image_verso: data.image_verso || '',
@@ -513,7 +513,7 @@ export default function EditerCarte({ params }: { params: Promise<{ userId: stri
 
     const { error } = await supabase.from('cartes_manuelles').update({
       nom: form.nom, equipe: form.equipe || null, annee: form.annee || null,
-      marque: form.marque || null, collection: form.collection || null, variation: form.variation || null, grade: form.grade,
+      marque: form.marque || null, collection: form.collection || null, variation: form.variation || null, notes_perso: form.notes_perso || null, grade: form.grade,
       num: form.num || null, card_number: form.card_number || null, cert_number: form.cert_number || null, rc: form.rc, auto: form.auto, patch: form.patch, printing_plate: form.printing_plate,
       image_recto: form.image_recto || null, image_verso: form.image_verso || null,
       image_recto_hd: form.image_recto_hd || null, image_verso_hd: form.image_verso_hd || null,
@@ -751,6 +751,12 @@ export default function EditerCarte({ params }: { params: Promise<{ userId: stri
               <input value={form.card_number} onChange={e => setForm({ ...form, card_number: e.target.value })} placeholder={t('addcard_ex_patch_desc')} />
             </div>
             )}
+          </div>
+
+          <div>
+            <label style={{ fontSize: 12, fontWeight: 700, textTransform: 'uppercase', color: '#888', display: 'block', marginBottom: 6 }}>Notes personnelles</label>
+            <input value={form.notes_perso} onChange={e => setForm({ ...form, notes_perso: e.target.value })} placeholder="Ex : auto in person, achetée 40€ le 12/03..." />
+            <p style={{ fontSize: 11, color: '#999', marginTop: 4 }}>Visible uniquement par toi, jamais affiché publiquement.</p>
           </div>
 
           <div>
