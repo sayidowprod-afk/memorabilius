@@ -1266,10 +1266,15 @@ export default function Viewer3D({ popup, accent, onClose, onNext, onPrev, getTa
                 position: 'relative', transformStyle: 'preserve-3d', willChange: 'transform',
               }}>
                 {edge}
+                {/* L'ombre etait dupliquee sur les DEUX faces (recto ET verso),
+                    decalees de quelques px en Z l'une de l'autre depuis l'ajout de
+                    l'epaisseur -- deux ombres floues (60px chacune) qui se
+                    chevauchaient produisaient une tache disgracieuse a la rotation.
+                    Sur la face recto seulement : une carte n'a qu'une ombre. */}
                 <div style={{ position: 'absolute', inset: 0, backfaceVisibility: 'hidden', WebkitBackfaceVisibility: 'hidden', boxShadow: '0 20px 60px rgba(0,0,0,0.3)', overflow: 'hidden', transform: half ? `translateZ(${half}px)` : undefined }}>
                   <img src={popup.fHd || popup.f} draggable={false} style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }} alt={popup.n} />
                 </div>
-                <div style={{ position: 'absolute', inset: 0, backfaceVisibility: 'hidden', WebkitBackfaceVisibility: 'hidden', transform: `rotateY(180deg)${half ? ` translateZ(${half}px)` : ''}`, boxShadow: '0 20px 60px rgba(0,0,0,0.3)', overflow: 'hidden' }}>
+                <div style={{ position: 'absolute', inset: 0, backfaceVisibility: 'hidden', WebkitBackfaceVisibility: 'hidden', transform: `rotateY(180deg)${half ? ` translateZ(${half}px)` : ''}`, overflow: 'hidden' }}>
                   <img src={popup.bHd || popup.b} draggable={false} style={backFaceImgStyle(!!popup.is_horizontal, popup.verso_is_horizontal ?? !!popup.is_horizontal)} alt={popup.n} />
                 </div>
               </div>
