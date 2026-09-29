@@ -35,6 +35,7 @@ interface Card {
   booklet?: boolean; is_horizontal?: boolean; verso_is_horizontal?: boolean | null; format?: string; il?: string; ir?: string
   storage_binder?: string; storage_page?: number | null; storage_slot?: string;
   lien_vinted?: string; lien_ebay?: string; vendue?: boolean; disponible_vente?: boolean;
+  notes_perso?: string; notes_perso_public?: boolean
 }
 
 // Le container .viewer-card a une forme fixe (déterminée par le recto, is_horizontal).
@@ -1311,6 +1312,12 @@ export default function Viewer3D({ popup, accent, onClose, onNext, onPrev, getTa
               <div>
                 <label style={{ display: 'block', fontSize: 9, fontWeight: 800, color: metaColor, textTransform: 'uppercase' }}>✍️ Signé par</label>
                 <span className="viewer-info-value" style={{ fontSize: 12, fontWeight: 700, color: textColor }}>{popup.cert_number}</span>
+              </div>
+            )}
+            {popup.notes_perso_public && popup.notes_perso?.trim() && (
+              <div style={{ gridColumn: '1 / -1' }}>
+                <label style={{ display: 'block', fontSize: 9, fontWeight: 800, color: metaColor, textTransform: 'uppercase' }}>📝 Note du collectionneur</label>
+                <span className="viewer-info-value" style={{ fontSize: 12, fontWeight: 700, color: textColor }}>{popup.notes_perso}</span>
               </div>
             )}
             {isMemo && popup.card_number?.trim() && (

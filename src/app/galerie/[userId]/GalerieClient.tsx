@@ -391,6 +391,7 @@ interface Card {
   storage_binder?: string; storage_page?: number | null; storage_slot?: string;
   lien_vinted?: string; lien_ebay?: string;
   created_at?: string; position?: number; collection_tag?: string; collections?: string[];
+  notes_perso?: string; notes_perso_public?: boolean;
 }
 
 interface PreviewCard { id: string; image_recto: string; is_horizontal: boolean }
@@ -1036,6 +1037,7 @@ export default function GalerieClient({ userId, initialCardUrl, initialCards, in
         n: m.nom || '', t: m.equipe || '', y: m.annee || '',
         br: m.marque || '', s: m.collection || '', v: m.variation || '',
         num: m.num || '', card_number: m.card_number || '', cert_number: m.cert_number || '', auto: m.auto || false, rc: m.rc || false,
+        notes_perso: m.notes_perso || '', notes_perso_public: m.notes_perso_public || false,
         patch: m.patch || false, printing_plate: m.printing_plate || false, g: m.grade || 'Raw', isManuelle: true, beckett_designation: m.beckett_designation || '',
         booklet: m.booklet || false, is_horizontal: m.is_horizontal || false, verso_is_horizontal: m.verso_is_horizontal ?? null, format: m.format || (m.is_horizontal ? 'horizontal' : 'standard'),
         il: m.image_interieur_gauche || '', ir: m.image_interieur_droite || '',

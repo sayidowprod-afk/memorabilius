@@ -56,6 +56,28 @@ async function downscaleToDataURL(file: File, maxDim = 1600): Promise<string> {
   })
 }
 
+// Notes libres sur la carte (ex: "auto in person", prix payé...) + bascule
+// publique/privée -- privé par défaut, jamais affiché nulle part tant que
+// l'utilisateur ne choisit pas explicitement de le rendre visible sur la
+// fiche publique de la carte.
+function NotesPersoField({ value, isPublic, onChange, onTogglePublic }: {
+  value: string; isPublic: boolean; onChange: (v: string) => void; onTogglePublic: () => void
+}) {
+  return (
+    <div>
+      <label style={{ fontSize: 12, fontWeight: 700, textTransform: 'uppercase', color: '#888', display: 'block', marginBottom: 6 }}>Notes personnelles</label>
+      <input value={value} onChange={e => onChange(e.target.value)} placeholder="Ex : auto in person, achetée 40€ le 12/03..." />
+      <button type="button" onClick={onTogglePublic} style={{
+        display: 'inline-flex', alignItems: 'center', gap: 5, marginTop: 6, padding: '3px 10px', borderRadius: 20,
+        border: 'none', cursor: 'pointer', fontSize: 11, fontWeight: 700,
+        background: isPublic ? '#e8f5e9' : '#f0f0f0', color: isPublic ? '#2e7d32' : '#777',
+      }}>
+        {isPublic ? '🌍 Publique — visible sur la fiche de la carte' : '🔒 Privée — visible seulement par toi'}
+      </button>
+    </div>
+  )
+}
+
 export default function EditerCarte({ params }: { params: Promise<{ userId: string; id: string }> }) {
   const { userId, id } = use(params)
   const router = useRouter()
@@ -91,7 +113,7 @@ export default function EditerCarte({ params }: { params: Promise<{ userId: stri
   const [previewIL, setPreviewIL] = useState<string | null>(null)
   const [previewIR, setPreviewIR] = useState<string | null>(null)
   const [form, setForm] = useState({
-    nom: '', equipe: '', annee: '', marque: '', collection: '', variation: '', notes_perso: '',
+    nom: '', equipe: '', annee: '', marque: '', collection: '', variation: '', notes_perso: '', notes_perso_public: false,
     grade: 'Raw', cert_number: '', num: '', card_number: '', rc: false, auto: false, patch: false, printing_plate: false,
     image_recto: '', image_verso: '', image_recto_hd: '', image_verso_hd: '', collection_tag: '', disponible_vente: false,
     booklet: false, is_horizontal: false, format: 'standard',
@@ -137,7 +159,8 @@ export default function EditerCarte({ params }: { params: Promise<{ userId: stri
       if (error || !data) { router.push(`/galerie/${userId}`); return }
       const loadedForm = {
         nom: data.nom || '', equipe: data.equipe || '', annee: data.annee || '',
-        marque: data.marque || '', collection: data.collection || '', variation: data.variation || '', notes_perso: data.notes_perso || '',
+        marque: data.marque || '', collection: data.collection || '', variation: data.variation || '',
+        notes_perso: data.notes_perso || '', notes_perso_public: data.notes_perso_public || false,
         grade: data.grade || 'Raw', cert_number: data.cert_number || '', num: data.num || '', card_number: data.card_number || '',
         rc: data.rc || false, auto: data.auto || false, patch: data.patch || false, printing_plate: data.printing_plate || false,
         image_recto: data.image_recto || '', image_verso: data.image_verso || '',
@@ -513,7 +536,8 @@ export default function EditerCarte({ params }: { params: Promise<{ userId: stri
 
     const { error } = await supabase.from('cartes_manuelles').update({
       nom: form.nom, equipe: form.equipe || null, annee: form.annee || null,
-      marque: form.marque || null, collection: form.collection || null, variation: form.variation || null, notes_perso: form.notes_perso || null, grade: form.grade,
+      marque: form.marque || null, collection: form.collection || null, variation: form.variation || null,
+      notes_perso: form.notes_perso || null, notes_perso_public: form.notes_perso_public, grade: form.grade,
       num: form.num || null, card_number: form.card_number || null, cert_number: form.cert_number || null, rc: form.rc, auto: form.auto, patch: form.patch, printing_plate: form.printing_plate,
       image_recto: form.image_recto || null, image_verso: form.image_verso || null,
       image_recto_hd: form.image_recto_hd || null, image_verso_hd: form.image_verso_hd || null,
@@ -714,6 +738,27 @@ export default function EditerCarte({ params }: { params: Promise<{ userId: stri
             </div>
           </div>
 
+          {form.item_type === 'card' && (
+          <div>
+            <label style={{ fontSize: 12, fontWeight: 700, textTransform: 'uppercase', color: '#888', display: 'block', marginBottom: 10 }}>Format</label>
+            <div style={{ display: 'flex', flexWrap: 'wrap', gap: 8 }}>
+              {SELECTABLE_FORMATS.map(fmt => (
+                <button key={fmt.id} type="button" onClick={() => setForm({ ...form, format: fmt.id })}
+                  style={{
+                    padding: '8px 14px', borderRadius: 10, cursor: 'pointer', fontWeight: 700, fontSize: 12, transition: '0.15s',
+                    border: form.format === fmt.id ? '2px solid #003DA6' : '2px solid #e0e0e0',
+                    background: form.format === fmt.id ? '#003DA6' : 'white',
+                    color: form.format === fmt.id ? 'white' : '#333',
+                    display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 2, minWidth: 64,
+                  }}>
+                  <span style={{ fontSize: 18, lineHeight: 1 }}>{fmt.icon}</span>
+                  <span>{fmt.label}</span>
+                </button>
+              ))}
+            </div>
+          </div>
+          )}
+
           <div>
             <label style={{ fontSize: 12, fontWeight: 700, textTransform: 'uppercase', color: '#888', display: 'block', marginBottom: 6 }}>
               {t('addcard_player_name')}
@@ -745,19 +790,21 @@ export default function EditerCarte({ params }: { params: Promise<{ userId: stri
               <label style={{ fontSize: 12, fontWeight: 700, textTransform: 'uppercase', color: '#888', display: 'block', marginBottom: 6 }}>{t('addcard_label_variation')}</label>
               <input value={form.variation} onChange={e => setForm({ ...form, variation: e.target.value })} placeholder={t('addcard_ex_variation')} />
             </div>
-            {form.item_type === 'memorabilia' && (
-            <div>
-              <label style={{ fontSize: 12, fontWeight: 700, textTransform: 'uppercase', color: '#888', display: 'block', marginBottom: 6 }}>Patch</label>
-              <input value={form.card_number} onChange={e => setForm({ ...form, card_number: e.target.value })} placeholder={t('addcard_ex_patch_desc')} />
-            </div>
+            {form.item_type === 'memorabilia' ? (
+              <div>
+                <label style={{ fontSize: 12, fontWeight: 700, textTransform: 'uppercase', color: '#888', display: 'block', marginBottom: 6 }}>Patch</label>
+                <input value={form.card_number} onChange={e => setForm({ ...form, card_number: e.target.value })} placeholder={t('addcard_ex_patch_desc')} />
+              </div>
+            ) : (
+              <NotesPersoField value={form.notes_perso} isPublic={form.notes_perso_public}
+                onChange={v => setForm({ ...form, notes_perso: v })} onTogglePublic={() => setForm(f => ({ ...f, notes_perso_public: !f.notes_perso_public }))} />
             )}
           </div>
 
-          <div>
-            <label style={{ fontSize: 12, fontWeight: 700, textTransform: 'uppercase', color: '#888', display: 'block', marginBottom: 6 }}>Notes personnelles</label>
-            <input value={form.notes_perso} onChange={e => setForm({ ...form, notes_perso: e.target.value })} placeholder="Ex : auto in person, achetée 40€ le 12/03..." />
-            <p style={{ fontSize: 11, color: '#999', marginTop: 4 }}>Visible uniquement par toi, jamais affiché publiquement.</p>
-          </div>
+          {form.item_type === 'memorabilia' && (
+            <NotesPersoField value={form.notes_perso} isPublic={form.notes_perso_public}
+              onChange={v => setForm({ ...form, notes_perso: v })} onTogglePublic={() => setForm(f => ({ ...f, notes_perso_public: !f.notes_perso_public }))} />
+          )}
 
           <div>
             <label style={{ fontSize: 12, fontWeight: 700, textTransform: 'uppercase', color: '#888', display: 'block', marginBottom: 6 }}>
@@ -855,27 +902,6 @@ export default function EditerCarte({ params }: { params: Promise<{ userId: stri
                   style={{ width: '100%', padding: '8px 12px', borderRadius: 8, border: '1.5px solid #f5c6c7', fontSize: 13, outline: 'none', boxSizing: 'border-box' }} />
               </div>
             </div>
-          )}
-
-          {form.item_type === 'card' && (
-          <div>
-            <label style={{ fontSize: 12, fontWeight: 700, textTransform: 'uppercase', color: '#888', display: 'block', marginBottom: 10 }}>Format</label>
-            <div style={{ display: 'flex', flexWrap: 'wrap', gap: 8 }}>
-              {SELECTABLE_FORMATS.map(fmt => (
-                <button key={fmt.id} type="button" onClick={() => setForm({ ...form, format: fmt.id })}
-                  style={{
-                    padding: '8px 14px', borderRadius: 10, cursor: 'pointer', fontWeight: 700, fontSize: 12, transition: '0.15s',
-                    border: form.format === fmt.id ? '2px solid #003DA6' : '2px solid #e0e0e0',
-                    background: form.format === fmt.id ? '#003DA6' : 'white',
-                    color: form.format === fmt.id ? 'white' : '#333',
-                    display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 2, minWidth: 64,
-                  }}>
-                  <span style={{ fontSize: 18, lineHeight: 1 }}>{fmt.icon}</span>
-                  <span>{fmt.label}</span>
-                </button>
-              ))}
-            </div>
-          </div>
           )}
 
           {form.item_type !== 'memorabilia' ? (
