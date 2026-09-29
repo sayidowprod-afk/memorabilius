@@ -569,11 +569,16 @@ export default function Viewer3D({ popup, accent, onClose, onNext, onPrev, getTa
       //   decale legerement dans le sens de la rotation.
       // - incliner autour de X (avant/arriere) allonge/raccourcit l'ombre et
       //   la decale verticalement, comme un gnomon de cadran solaire.
+      // Plancher de retrecissement BEAUCOUP plus bas qu'au premier essai (0.4) :
+      // pres de 90°, la carte elle-meme devient un fil quasi invisible -- une
+      // ombre qui restait a 40% de sa largeur paraissait alors flotter, decrochee
+      // du fil de carte, comme une seconde tache separee. Elle doit retrecir
+      // au meme rythme que la carte pour rester visuellement "attachee".
       const ryRad = rotY.current * Math.PI / 180
       const rxRad = rotX.current * Math.PI / 180
-      const scaleX = 0.4 + 0.6 * Math.abs(Math.cos(ryRad))
+      const scaleX = Math.max(0.05, Math.abs(Math.cos(ryRad)))
       const scaleY = 0.75 + 0.25 * Math.abs(Math.cos(rxRad))
-      const offsetX = Math.sin(ryRad) * 14
+      const offsetX = Math.sin(ryRad) * 8
       const offsetY = Math.sin(rxRad) * 10
       shadowRef.current.style.transform = `translate(${offsetX}px, ${offsetY}px) scale(${scaleX}, ${scaleY})`
     }
@@ -1290,10 +1295,14 @@ export default function Viewer3D({ popup, accent, onClose, onNext, onPrev, getTa
                         sans ca, a angle serre le navigateur affiche l'envers-miroir
                         d'une tranche PAR-DESSUS une autre -- deux largeurs/couleurs
                         differentes superposees, exactement le bug signale. */}
-                    <div style={{ position: 'absolute', left: 0, top: 0, bottom: 0, width: half * 2, transformOrigin: 'left center', transform: 'rotateY(-90deg)', background: 'linear-gradient(to left, #c9c4b4, #efece0)', boxShadow: 'inset 0 0 0 1px rgba(0,0,0,0.15)', backfaceVisibility: 'hidden', WebkitBackfaceVisibility: 'hidden' }} />
-                    <div style={{ position: 'absolute', right: 0, top: 0, bottom: 0, width: half * 2, transformOrigin: 'right center', transform: 'rotateY(90deg)', background: 'linear-gradient(to right, #c9c4b4, #efece0)', boxShadow: 'inset 0 0 0 1px rgba(0,0,0,0.15)', backfaceVisibility: 'hidden', WebkitBackfaceVisibility: 'hidden' }} />
-                    <div style={{ position: 'absolute', left: 0, right: 0, top: 0, height: half * 2, transformOrigin: 'top center', transform: 'rotateX(90deg)', background: 'linear-gradient(to top, #d8d4c4, #f5f2e8)', boxShadow: 'inset 0 0 0 1px rgba(0,0,0,0.15)', backfaceVisibility: 'hidden', WebkitBackfaceVisibility: 'hidden' }} />
-                    <div style={{ position: 'absolute', left: 0, right: 0, bottom: 0, height: half * 2, transformOrigin: 'bottom center', transform: 'rotateX(-90deg)', background: 'linear-gradient(to bottom, #b5b0a0, #dedad0)', boxShadow: 'inset 0 0 0 1px rgba(0,0,0,0.15)', backfaceVisibility: 'hidden', WebkitBackfaceVisibility: 'hidden' }} />
+                    {/* Blanc (comme la doublure recto/verso juste en dessous) plutot
+                        que le degrade beige d'avant -- une seule teinte partout
+                        pour ne plus jamais laisser voir "deux couleurs differentes"
+                        sur la tranche selon la face la plus proche de la camera. */}
+                    <div style={{ position: 'absolute', left: 0, top: 0, bottom: 0, width: half * 2, transformOrigin: 'left center', transform: 'rotateY(-90deg)', background: '#f4f1e6', boxShadow: 'inset 0 0 0 1px rgba(0,0,0,0.12)', backfaceVisibility: 'hidden', WebkitBackfaceVisibility: 'hidden' }} />
+                    <div style={{ position: 'absolute', right: 0, top: 0, bottom: 0, width: half * 2, transformOrigin: 'right center', transform: 'rotateY(90deg)', background: '#f4f1e6', boxShadow: 'inset 0 0 0 1px rgba(0,0,0,0.12)', backfaceVisibility: 'hidden', WebkitBackfaceVisibility: 'hidden' }} />
+                    <div style={{ position: 'absolute', left: 0, right: 0, top: 0, height: half * 2, transformOrigin: 'top center', transform: 'rotateX(90deg)', background: '#f4f1e6', boxShadow: 'inset 0 0 0 1px rgba(0,0,0,0.12)', backfaceVisibility: 'hidden', WebkitBackfaceVisibility: 'hidden' }} />
+                    <div style={{ position: 'absolute', left: 0, right: 0, bottom: 0, height: half * 2, transformOrigin: 'bottom center', transform: 'rotateX(-90deg)', background: '#f4f1e6', boxShadow: 'inset 0 0 0 1px rgba(0,0,0,0.12)', backfaceVisibility: 'hidden', WebkitBackfaceVisibility: 'hidden' }} />
                   </>
                 )
                 return (
