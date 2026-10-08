@@ -15,6 +15,7 @@ interface Props {
   auto?: boolean
   patch?: boolean
   grade?: string
+  cardNumber?: string
   accent: string
   img?: string
 }
@@ -31,7 +32,7 @@ function fmtDate(iso: string, lang: string) {
   return new Date(iso).toLocaleDateString(localeFor(lang as Lang), { day: 'numeric', month: 'short' })
 }
 
-export default function CardValueModule({ cardName, set, year, num, variant, rc, auto, patch, grade, accent, img }: Props) {
+export default function CardValueModule({ cardName, set, year, num, variant, rc, auto, patch, grade, cardNumber, accent, img }: Props) {
   const [active, setActive]   = useState<ActiveListing[]>([])
   const [sold, setSold]       = useState<SoldListing[]>([])
   const [loading, setLoading] = useState(true)
@@ -44,7 +45,9 @@ export default function CardValueModule({ cardName, set, year, num, variant, rc,
   // 130point n'a ni API publique ni lien de recherche direct (l'adresse /search ne
   // contient pas la requete) : on copie la recherche dans le presse-papiers puis on
   // ouvre leur accueil, ou il suffit de la coller dans la barre.
-  const pointQuery = [cardName, variant, set, year, printRun, rc && 'RC', auto && 'AUTO', patch && 'PATCH', grade].filter(Boolean).join(' ')
+  // Ordre "designation Beckett" : annee, marque + set, variation, #numero, joueur, tirage, RC/AUTO/PATCH, grade
+  const cardNo = cardNumber ? `#${cardNumber.replace(/^#/, '')}` : ''
+  const pointQuery = [year, set, variant, cardNo, cardName, printRun, rc && 'RC', auto && 'AUTO', patch && 'PATCH', grade].filter(Boolean).join(' ')
   const copyPointQuery = () => {
     try { navigator.clipboard?.writeText(pointQuery).then(() => { setPointCopied(true); setTimeout(() => setPointCopied(false), 2500) }, () => {}) } catch {}
   }

@@ -2046,6 +2046,7 @@ export default function Viewer3D({ popup, accent, onClose, onNext, onPrev, getTa
             auto={popup.auto}
             patch={popup.patch}
             grade={popup.g}
+            cardNumber={popup.card_number}
             accent={accent}
             img={popup.f}
           />
