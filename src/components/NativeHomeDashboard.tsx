@@ -381,8 +381,9 @@ export default function NativeHomeDashboard({ siteStats }: { siteStats: SiteStat
             <span>{L.levelShort}</span><b className="da-num">{data.level.level}</b>
           </button>
           <div className="dd-lvl-bar">
-            <div className="dd-lvl-row"><span>{t('word_level')}</span><span>{data.level.xpIntoLevel}/{data.level.xpForNextLevel} XP</span></div>
-            <div className="dd-bar"><i style={{ width: `${Math.min(100, Math.round(data.level.pct * 100))}%` }} /></div>
+            <div className="dd-lvl-row"><span>{t('word_level')} {data.level.level + 1}</span><span>{data.level.xpIntoLevel}/{data.level.xpForNextLevel} XP</span></div>
+            <div className="dd-bar dd-bar--seg"><i style={{ width: `${Math.min(100, Math.round(data.level.pct * 100))}%` }} /></div>
+            <div className="dd-sub">{Math.max(0, data.level.xpForNextLevel - data.level.xpIntoLevel)} {L.toNext}</div>
           </div>
         </div>
         {showXpInfo && <p className="dd-info">{t('xp_info_explanation')}</p>}
@@ -423,12 +424,12 @@ export default function NativeHomeDashboard({ siteStats }: { siteStats: SiteStat
   )
 }
 
-const DD_TEXT: Record<string, { add: string; since: string; likes: string; comments: string; wishlist: string; other: string; levelShort: string }> = {
-  fr: { add: 'Ajouter une carte', since: 'Depuis ta dernière visite', likes: 'j’aime reçus', comments: 'commentaires', wishlist: 'cartes de ta wishlist trouvées', other: 'autres notifications', levelShort: 'Niv.' },
-  en: { add: 'Add a card', since: 'Since your last visit', likes: 'likes received', comments: 'comments', wishlist: 'wishlist matches', other: 'other notifications', levelShort: 'Lvl' },
-  de: { add: 'Karte hinzufügen', since: 'Seit deinem letzten Besuch', likes: 'Likes erhalten', comments: 'Kommentare', wishlist: 'Wunschlisten-Treffer', other: 'weitere Benachrichtigungen', levelShort: 'Lvl' },
-  es: { add: 'Añadir carta', since: 'Desde tu última visita', likes: 'me gusta recibidos', comments: 'comentarios', wishlist: 'coincidencias de tu lista de deseos', other: 'otras notificaciones', levelShort: 'Nv.' },
-  it: { add: 'Aggiungi carta', since: 'Dalla tua ultima visita', likes: 'mi piace ricevuti', comments: 'commenti', wishlist: 'corrispondenze della wishlist', other: 'altre notifiche', levelShort: 'Liv.' },
+const DD_TEXT: Record<string, { add: string; since: string; likes: string; comments: string; wishlist: string; other: string; levelShort: string; toNext: string }> = {
+  fr: { add: 'Ajouter une carte', since: 'Depuis ta dernière visite', likes: 'j’aime reçus', comments: 'commentaires', wishlist: 'cartes de ta wishlist trouvées', other: 'autres notifications', levelShort: 'Niv.', toNext: 'XP avant le niveau suivant' },
+  en: { add: 'Add a card', since: 'Since your last visit', likes: 'likes received', comments: 'comments', wishlist: 'wishlist matches', other: 'other notifications', levelShort: 'Lvl', toNext: 'XP to next level' },
+  de: { add: 'Karte hinzufügen', since: 'Seit deinem letzten Besuch', likes: 'Likes erhalten', comments: 'Kommentare', wishlist: 'Wunschlisten-Treffer', other: 'weitere Benachrichtigungen', levelShort: 'Lvl', toNext: 'XP bis zum nächsten Level' },
+  es: { add: 'Añadir carta', since: 'Desde tu última visita', likes: 'me gusta recibidos', comments: 'comentarios', wishlist: 'coincidencias de tu lista de deseos', other: 'otras notificaciones', levelShort: 'Nv.', toNext: 'XP para el siguiente nivel' },
+  it: { add: 'Aggiungi carta', since: 'Dalla tua ultima visita', likes: 'mi piace ricevuti', comments: 'commenti', wishlist: 'corrispondenze della wishlist', other: 'altre notifiche', levelShort: 'Liv.', toNext: 'XP al prossimo livello' },
 }
 
 // Style du tableau de bord (nouvelle DA) : pose directement sur le fond de la
@@ -476,9 +477,12 @@ const DD_CSS = `
 .dd-act-item b { font-size: 34px; line-height: 1; min-width: 44px; font-weight: 400; color: var(--text); }
 .dd-act-item span { flex: 1; font: 700 14px system-ui, sans-serif; }
 .dd-lvl { display: flex; align-items: center; gap: 16px; padding: 14px 0; }
-.dd-lvl-n { background: #003da6; color: #fff; border: 0; cursor: pointer; padding: 8px 16px; display: grid; justify-items: center; flex-shrink: 0; }
-.dd-lvl-n span { font: 800 11px system-ui, sans-serif; letter-spacing: .14em; text-transform: uppercase; }
-.dd-lvl-n b { font-size: 46px; line-height: 1; font-weight: 400; }
+.dd-lvl-n { background: transparent; color: var(--text); border: 3px solid var(--text); cursor: pointer; padding: 8px 18px 4px; display: grid; justify-items: center; flex-shrink: 0; min-width: 92px; }
+.dd-lvl-n span { font: 800 11px system-ui, sans-serif; letter-spacing: .18em; text-transform: uppercase; color: var(--text2); }
+.dd-lvl-n b { font-size: 72px; line-height: .95; font-weight: 400; }
+.dd-bar--seg { height: 20px; position: relative; }
+.dd-bar--seg::after { content: ''; position: absolute; inset: 0; pointer-events: none;
+  background: repeating-linear-gradient(90deg, transparent 0 calc(10% - 3px), var(--card-bg) calc(10% - 3px) 10%); }
 .dd-lvl-bar { flex: 1; min-width: 0; }
 .dd-lvl-row { display: flex; justify-content: space-between; gap: 10px; font: 800 12px system-ui, sans-serif; letter-spacing: .06em; text-transform: uppercase; margin-bottom: 7px; }
 .dd-lvl-row span:first-child { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
