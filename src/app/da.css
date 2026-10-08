@@ -191,3 +191,19 @@ h1 { line-height: 1.02; }
     position: absolute; top: 82px; right: 30px; width: auto !important; gap: 10px !important;
   }
 }
+
+/* Accueil (bureau) : banniere + bandeau en pleine largeur, hauteur d'ecran (comme l'apercu) */
+@media (min-width: 821px) {
+  body { overflow-x: clip; }
+  .mb-hero, .da-ticker {
+    width: 100vw; position: relative; left: 50%; margin-left: -50vw !important; max-width: none;
+  }
+  .mb-hero { min-height: calc(100vh - 112px); margin-bottom: 0 !important; margin-top: calc(var(--da-hero-pull, 0px) * -1); }
+  .mb-hero-inner { padding: 72px clamp(24px, 4vw, 64px) !important; max-width: 58% !important; }
+  .mb-card { width: clamp(200px, 19vw, 300px) !important; height: calc(clamp(200px, 19vw, 300px) * 1.4) !important; }
+  .da-ticker { margin-top: 0 !important; margin-bottom: 40px; }
+}
+.da-ticker, .da-ticker span { background: #003da6 !important; color: #fff !important; border-color: #003da6 !important; }
+.da-ticker span { background: transparent !important; }
+:root { --da-hero-pull: 20px; }
+@media (min-width: 821px) { .mb-hero-title { max-width: 5.6em; } }
