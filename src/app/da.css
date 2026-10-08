@@ -165,3 +165,17 @@ h1 { line-height: 1.02; }
 .da-profile a[href^="/messages"] { background: #fff !important; color: #06122e !important; padding: 9px 18px !important; font-size: 13px !important; }
 .da-profile .btn-ajouter { background: #fff !important; color: #06122e !important; border: 3px solid #fff !important; }
 .da-profile .btn-menu button { background: transparent !important; color: #fff !important; border: 2px solid rgba(255,255,255,.55) !important; border-radius: 0 !important; }
+
+/* Accueil (bureau) : texte aligne a gauche, titre geant, eventail de cartes a droite -- comme l'apercu */
+@media (min-width: 821px) {
+  .mb-hero { min-height: 640px; display: flex; align-items: center; }
+  .mb-hero-inner { text-align: left !important; max-width: 60% !important; margin: 0 !important; padding: 80px 56px !important; }
+  .mb-hero-inner > div { justify-content: flex-start !important; }
+  .mb-hero-sub { margin-left: 0 !important; margin-right: 0 !important; max-width: 34em !important; }
+  .mb-hero-title { font-size: clamp(4rem, 8.4vw, 8.4rem) !important; }
+  .mb-card { width: 230px !important; height: 322px !important; opacity: 1 !important; }
+  .mb-card-1 { left: auto !important; bottom: auto !important; top: 26% !important; right: 30% !important; z-index: 1; }
+  .mb-card-2 { left: auto !important; bottom: auto !important; top: 46% !important; right: 4% !important; z-index: 3; }
+  .mb-card-3 { left: auto !important; bottom: auto !important; top: 8% !important; right: 15% !important; z-index: 2; }
+  .mb-card-4 { display: none !important; }
+}

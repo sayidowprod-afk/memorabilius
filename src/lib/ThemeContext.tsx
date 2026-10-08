@@ -23,7 +23,8 @@ export function ThemeProvider({ children }: { children: React.ReactNode }) {
     // persistant meme apres un simple refresh, donc la premiere lecture seule
     // ne suffisait pas.
     try {
-      if (localStorage.getItem('theme') === 'dark') {
+      // Nouvelle DA : sombre par defaut, clair seulement si choisi explicitement.
+      if (localStorage.getItem('theme') !== 'light') {
         document.documentElement.setAttribute('data-theme', 'dark')
         setDark(true)
         return
