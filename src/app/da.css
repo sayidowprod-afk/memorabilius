@@ -179,3 +179,15 @@ h1 { line-height: 1.02; }
   .mb-card-3 { left: auto !important; bottom: auto !important; top: 8% !important; right: 15% !important; z-index: 2; }
   .mb-card-4 { display: none !important; }
 }
+
+/* Profil : "Top x %" encadre et boutons d'action en haut a droite (comme l'apercu) */
+@media (min-width: 901px) {
+  .da-profile .header-stats-block > p {
+    position: absolute; top: 26px; right: 30px; margin: 0 !important; text-align: right !important;
+    border: 3px solid #fff; padding: 7px 14px; font-size: 13px !important; font-weight: 800 !important;
+    text-transform: uppercase; letter-spacing: 0.1em; color: #fff !important; background: rgba(5, 9, 18, 0.35);
+  }
+  .da-profile .header-stats-block .galerie-actions {
+    position: absolute; top: 82px; right: 30px; width: auto !important; gap: 10px !important;
+  }
+}
