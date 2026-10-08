@@ -41,8 +41,9 @@ export default function CardValueModule({ cardName, set, year, num, variant, rc,
   const printRun = num?.match(/\/\d+/) ? num.match(/\/\d+/)![0] : num
   const ebaySearchUrl = `https://www.ebay.fr/sch/i.html?_nkw=${encodeURIComponent([cardName, variant, set, year, printRun, rc && 'RC', auto && 'AUTO', patch && 'PATCH', grade].filter(Boolean).join(' '))}`
 
-  // 130point n'a pas d'API publique ni de lien de recherche direct : on copie la
-  // recherche dans le presse-papiers puis on ouvre leur page, ou il suffit de coller.
+  // 130point n'a ni API publique ni lien de recherche direct (l'adresse /search ne
+  // contient pas la requete) : on copie la recherche dans le presse-papiers puis on
+  // ouvre leur accueil, ou il suffit de la coller dans la barre.
   const pointQuery = [cardName, variant, set, year, printRun, rc && 'RC', auto && 'AUTO', patch && 'PATCH', grade].filter(Boolean).join(' ')
   const copyPointQuery = () => {
     try { navigator.clipboard?.writeText(pointQuery).then(() => { setPointCopied(true); setTimeout(() => setPointCopied(false), 2500) }, () => {}) } catch {}
@@ -105,11 +106,11 @@ export default function CardValueModule({ cardName, set, year, num, variant, rc,
   )
 
   const pointLink = (
-    <a href="https://130point.com/sales/" target="_blank" rel="noopener noreferrer" onClick={copyPointQuery}
+    <a href="https://130point.com/" target="_blank" rel="noopener noreferrer" onClick={copyPointQuery}
       title="Copie la recherche puis ouvre 130point : colle-la dans leur barre de recherche"
       style={{ fontSize: 10, fontWeight: 800, color: '#fff', background: '#f57c00', textDecoration: 'none',
         display: 'inline-flex', alignItems: 'center', gap: 3, border: '1px solid #f57c00', borderRadius: 20, padding: '3px 9px' }}>
-      {pointCopied ? 'Copié ✓ — colle' : '130pt ↗'}
+      {pointCopied ? 'Recherche copiée → colle-la' : '130pt ↗'}
     </a>
   )
 
