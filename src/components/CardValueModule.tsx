@@ -36,9 +36,17 @@ export default function CardValueModule({ cardName, set, year, num, variant, rc,
   const [sold, setSold]       = useState<SoldListing[]>([])
   const [loading, setLoading] = useState(true)
   const { lang, t } = useLang()
+  const [pointCopied, setPointCopied] = useState(false)
 
   const printRun = num?.match(/\/\d+/) ? num.match(/\/\d+/)![0] : num
   const ebaySearchUrl = `https://www.ebay.fr/sch/i.html?_nkw=${encodeURIComponent([cardName, variant, set, year, printRun, rc && 'RC', auto && 'AUTO', patch && 'PATCH', grade].filter(Boolean).join(' '))}`
+
+  // 130point n'a pas d'API publique ni de lien de recherche direct : on copie la
+  // recherche dans le presse-papiers puis on ouvre leur page, ou il suffit de coller.
+  const pointQuery = [cardName, variant, set, year, printRun, rc && 'RC', auto && 'AUTO', patch && 'PATCH', grade].filter(Boolean).join(' ')
+  const copyPointQuery = () => {
+    try { navigator.clipboard?.writeText(pointQuery).then(() => { setPointCopied(true); setTimeout(() => setPointCopied(false), 2500) }, () => {}) } catch {}
+  }
 
   useEffect(() => {
     if (!cardName) { setLoading(false); return }
@@ -96,6 +104,15 @@ export default function CardValueModule({ cardName, set, year, num, variant, rc,
     </a>
   )
 
+  const pointLink = (
+    <a href="https://130point.com/sales/" target="_blank" rel="noopener noreferrer" onClick={copyPointQuery}
+      title="Copie la recherche puis ouvre 130point : colle-la dans leur barre de recherche"
+      style={{ fontSize: 10, fontWeight: 800, color: '#fff', background: '#f57c00', textDecoration: 'none',
+        display: 'inline-flex', alignItems: 'center', gap: 3, border: '1px solid #f57c00', borderRadius: 20, padding: '3px 9px' }}>
+      {pointCopied ? 'Copié ✓ — colle' : '130pt ↗'}
+    </a>
+  )
+
   return (
     <div style={{ borderTop: '1px solid var(--border, #eee)', paddingTop: 14, marginTop: 14 }}>
       {/* Header avec stats médiane */}
@@ -107,7 +124,7 @@ export default function CardValueModule({ cardName, set, year, num, variant, rc,
         {!loading && activeMedian > 0 && (
           <span style={{ fontSize: 13, fontWeight: 900, color: accent }}>{activeMedian}€ <span style={{ fontSize: 9, fontWeight: 700, color: 'var(--text3, #aaa)' }}>{t('cardvalue_asked_median')}</span></span>
         )}
-        <span style={{ marginLeft: 'auto' }}>{ebayLink}</span>
+        <span style={{ marginLeft: 'auto', display: 'inline-flex', gap: 6 }}>{pointLink}{ebayLink}</span>
       </div>
 
       {loading && (
