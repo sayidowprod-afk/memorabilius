@@ -16,9 +16,9 @@ type Dir = 'A' | 'B' | 'C'
 
 const SB = 'https://snnrkzbevjhdtviizfyp.supabase.co/storage/v1/object/public/avatars/cartes/eb730dee-414e-4fcb-89d8-4a7b3448c218/'
 const CARDS = [
-  { nom: 'Jared McCain', meta: '2024-25 · Panini · Contenders Optic', img: SB + '1787763372857_recto.jpg', tags: ['RC', 'AUTO'] },
+  { nom: 'Jared McCain', meta: '2024-25 · Panini · Contenders Optic', v: 'Season Ticket', img: SB + '1787763372857_recto.jpg', tags: ['RC', 'AUTO'] },
   { nom: 'Anthony Edwards', meta: '2020-21 · Panini · Chronicles', img: SB + '1784235265864_recto.jpg', tags: ['RC'] },
-  { nom: 'Michael Carter-Williams', meta: '2013-14 · Panini', img: SB + '1781875894817_recto.jpg', tags: ['RC', 'AUTO'] },
+  { nom: 'Michael Carter-Williams', meta: '2013-14 · Panini', v: 'Rising Tide Autographs', img: SB + '1781875894817_recto.jpg', tags: ['RC', 'AUTO'] },
   { nom: 'Luwawu-Cabarrot', meta: '2016-17 · Panini · Gold Standard', img: SB + 'csv_1790632470730_4f41x1.jpg', tags: ['RC', 'AUTO', 'PATCH', '#038/149'] },
   { nom: 'Tyrese Maxey', meta: '2020-21 · Court Kings', img: SB + '1781291200820_recto.jpg', tags: ['RC'] },
   { nom: 'Hersey Hawkins', meta: '2018-19 · Panini · Prizm', img: SB + '1781534889963_recto.jpg', tags: ['AUTO'] },
@@ -57,21 +57,20 @@ function Wordmark({ height = 30 }: { height?: number }) {
 function CardTile({ c }: { c: typeof CARDS[number] }) {
   return (
     <article className="dp-card">
+      {/* Meme structure que la galerie actuelle : tuile blanche bordee d'accent, image, pastilles, nom, variation, set, likes */}
       <div className="dp-tile">
         <div className="dp-tile-img">
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img src={c.img} alt={c.nom} loading="lazy" />
-          <div className="dp-tile-tags">{c.tags.map(t => <span key={t} className={`dp-tagchip dp-tagchip--${t.replace('#', 'n').toLowerCase()}`}>{t}</span>)}</div>
         </div>
-        <div className="dp-tile-foot">
-          <div className="dp-tile-row">
+        <div className="dp-tile-tags">{c.tags.map(t => <span key={t} className={`dp-pill dp-pill--${t.replace('#', 'n').toLowerCase()}`}>{t}</span>)}</div>
+        <div className="dp-tile-row">
+          <div style={{ minWidth: 0 }}>
             <h4>{c.nom}</h4>
-            <span className="dp-tile-ico" aria-hidden>
-              <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M4 5h16v11H9l-5 4z" /></svg>
-              <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M12 20s-8-4.7-8-10.5A4.5 4.5 0 0112 7a4.5 4.5 0 018 2.5C20 15.300 12 20 12 20z" /></svg>
-            </span>
+            {c.v && <em>{c.v}</em>}
+            <p>{c.meta.replace(/ · /g, ' ')}</p>
           </div>
-          <p>{c.meta}</p>
+          <span className="dp-tile-ico" aria-hidden><span>💬</span><span>🤍</span></span>
         </div>
       </div>
     </article>
@@ -421,8 +420,8 @@ const CSS = `
 .dp-chips button{background:transparent;border:2px solid var(--line);padding:6px 14px;font-size:19px;letter-spacing:.06em;color:var(--dim)}
 .dp-chips button.on{background:var(--text);color:var(--bg-solid,#fff);border-color:var(--text)}
 .dp[data-dir=A] .dp-chips button.on{color:#06122e}
-.dp-vitrine{display:grid;grid-template-columns:repeat(auto-fill,minmax(190px,1fr));gap:26px 22px;padding:clamp(18px,3vw,36px);
-  background:radial-gradient(120% 90% at 50% 0%,var(--vit),transparent 70%);border:3px solid var(--line)}
+.dp-vitrine{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:12px;padding:clamp(14px,2.4vw,28px);
+  background:#f3f5fa;border:3px solid var(--line)}
 @media(max-width:600px){.dp-vitrine{grid-template-columns:repeat(2,1fr);gap:20px 12px;padding:12px}.dp-card h4{font-size:17px}.dp-score b{font-size:34px}}
 .dp-card{cursor:pointer;transition:transform .25s}
 .dp-empty{display:block;min-height:220px}
@@ -431,17 +430,20 @@ const CSS = `
 /* Tuile : on garde l'esprit de la galerie actuelle (tuile blanche encadree + infos),
    en version DA : cadre bleu a double filet, angles droits, pastilles sur la carte. */
 .dp-card{display:flex}
-.dp-tile{flex:1;min-width:0;position:relative;background:#fff;color:#0a1228;border:3px solid #003da6;padding:8px;box-shadow:0 16px 30px rgba(0,0,0,.32);transition:box-shadow .25s}
-.dp-tile::after{content:'';position:absolute;inset:3px;border:1.5px solid rgba(0,61,166,.45);pointer-events:none}
-.dp-card:hover .dp-tile{box-shadow:0 28px 46px rgba(0,0,0,.42)}
-.dp-tile-img{position:relative;background:#eef1f8}
+.dp-tile{flex:1;min-width:0;background:#fff;color:#121212;border:2px solid #003da6;border-radius:8px!important;padding:8px;box-sizing:border-box;transition:transform .15s,box-shadow .15s}
+.dp-card:hover{transform:none}
+.dp-card:hover .dp-tile{transform:translateY(-3px) scale(1.015);box-shadow:0 10px 24px rgba(0,0,0,.28)}
+.dp-tile-img{width:100%;margin-bottom:8px}
 .dp-tile-img img{display:block;width:100%;aspect-ratio:2.5/3.5;object-fit:cover}
-.dp-tile-tags{position:absolute;left:6px;bottom:6px;right:6px;display:flex;gap:4px;flex-wrap:wrap}
-.dp-tile-foot{padding:10px 4px 4px}
-.dp-tile-row{display:flex;justify-content:space-between;align-items:flex-start;gap:8px}
-.dp-tile-ico{display:flex;gap:7px;color:#7a86a3;flex-shrink:0;padding-top:1px}
-.dp-card h4{margin:0 0 3px;font-size:15px;letter-spacing:.02em;line-height:1.2;color:#0a1228}
-.dp-card p{margin:0;font-size:11.5px;letter-spacing:.04em;color:#5b6684;font-weight:600;line-height:1.35}
+.dp-tile-tags{display:flex;gap:4px;flex-wrap:wrap;min-height:18px}
+.dp-pill{font:900 9px system-ui,sans-serif;padding:3px 6px;border-radius:4px!important;color:#fff;background:#e67e22}
+.dp-pill--auto{background:#2e7d32}.dp-pill--patch{background:#1976d2}.dp-pill--n{background:#7b1fa2}
+.dp-tile-row{display:flex;justify-content:space-between;align-items:flex-start;gap:4px;margin-top:4px}
+.dp-tile-ico{display:flex;flex-shrink:0;font-size:16px;line-height:1}
+.dp-tile-ico span{padding:2px 4px}
+.dp-card .dp-tile h4{margin:0;font:800 13px system-ui,sans-serif;text-transform:none;letter-spacing:0;color:#121212;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.dp-card .dp-tile em{display:block;margin:2px 0;font:italic 700 10px system-ui,sans-serif;color:#003da6;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.dp-card .dp-tile p{margin:2px 0 0;font:400 10px system-ui,sans-serif;text-transform:none;letter-spacing:0;color:#999;line-height:1.35}
 .dp-tags{display:flex;gap:6px;flex-wrap:wrap}
 /* Etiquettes : pleines, texte fonce/clair a fort contraste, lisibles sur fond sombre comme clair */
 .dp-tagchip{display:inline-block;padding:3px 9px;font-size:13px;letter-spacing:.09em;line-height:1.3;border:2px solid transparent}
