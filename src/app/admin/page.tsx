@@ -37,6 +37,12 @@ const GROUPS: { title: string; links: AdminLink[] }[] = [
       { href: '/admin/player-sheets', icon: '🏀', title: 'Fiches joueurs', desc: 'Équipe NBA, carte 3D et stats par joueur' },
     ],
   },
+  {
+    title: 'Design',
+    links: [
+      { href: '/design-preview', icon: '🎨', title: 'Aperçu direction artistique', desc: 'Maquette de la nouvelle DA (3 directions) — page de travail, rien n\'est modifié sur le site' },
+    ],
+  },
 ]
 
 export default function AdminHubPage() {
