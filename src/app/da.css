@@ -154,3 +154,14 @@ h1 { line-height: 1.02; }
 .da-profile .header-stats-block > p { text-align: left !important; color: #fff !important; font-size: 13px !important; }
 .da-profile { border-width: 3px; }
 @media (max-width: 640px) { .da-profile .header-stats-block .da-num { font-size: 32px !important; } }
+
+/* Profil : nom plus grand, boutons blancs a angles droits (comme l'apercu) */
+.da-profile h1 { font-size: clamp(44px, 6vw, 80px) !important; }
+.da-profile .header-row > div:first-child { align-items: flex-start !important; }
+.da-profile a[href^="/messages"],
+.da-profile .header-row button:not(.profile-avatar-halo):not([aria-label^="Copier"]):not([title^="Signaler"]) {
+  border-radius: 0 !important; text-transform: uppercase; letter-spacing: 0.06em; font-weight: 800 !important;
+}
+.da-profile a[href^="/messages"] { background: #fff !important; color: #06122e !important; padding: 9px 18px !important; font-size: 13px !important; }
+.da-profile .btn-ajouter { background: #fff !important; color: #06122e !important; border: 3px solid #fff !important; }
+.da-profile .btn-menu button { background: transparent !important; color: #fff !important; border: 2px solid rgba(255,255,255,.55) !important; border-radius: 0 !important; }

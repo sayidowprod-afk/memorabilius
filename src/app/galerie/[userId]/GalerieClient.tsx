@@ -384,14 +384,15 @@ function renderCardImage(card: { f: string; n: string; format?: string; is_horiz
   if (fmt.isSlab || horiz) {
     return (
       <div style={{ aspectRatio: ratio, overflow: 'hidden', position: 'relative', background: fmt.isSlab ? '#111' : undefined }}>
-        <NextImage
-          src={src} alt={card.n} fill
-          sizes="(max-width: 640px) 150px, 220px"
-          unoptimized
+        {/* <img> simple (pas NextImage fill) : next/image refuse "fill" + style.width en dev
+            et faisait planter la galerie en local ; rendu identique (unoptimized). */}
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img
+          src={src} alt={card.n}
           onError={e => { const img = e.currentTarget; if (img.src !== BROKEN_IMAGE_FALLBACK) img.src = BROKEN_IMAGE_FALLBACK }}
           style={horiz
-            ? { width: '140%', height: '71.43%', left: '-20%', top: '14.286%', transform: 'rotate(90deg)', objectFit: 'cover' }
-            : { objectFit: 'cover' }
+            ? { position: 'absolute', width: '140%', height: '71.43%', left: '-20%', top: '14.286%', transform: 'rotate(90deg)', objectFit: 'cover' }
+            : { position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover' }
           } />
       </div>
     )
