@@ -1,5 +1,6 @@
 import type { Metadata, Viewport } from 'next'
 import './globals.css'
+import './da.css'
 import { ThemeProvider } from '@/lib/ThemeContext'
 import { LangProvider } from '@/lib/LangContext'
 import { AuthProvider } from '@/lib/AuthContext'

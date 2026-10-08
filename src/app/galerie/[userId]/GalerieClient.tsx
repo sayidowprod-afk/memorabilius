@@ -2267,7 +2267,7 @@ export default function GalerieClient({ userId, initialCardUrl, initialCards, in
                   { val: patchCount, label: 'Patch', color: '#1976d2', flash: patchFlash },
                 ].map(s => (
                   <div key={s.label} style={{ textAlign: 'center', minWidth: 45 }}>
-                    <div className={s.flash ? 'stat-flash' : undefined} style={{ fontSize: 22, fontWeight: 900, color: s.color || accent }}>{s.val}</div>
+                    <div className={`da-num${s.flash ? ' stat-flash' : ''}`} style={{ fontSize: 30, fontWeight: 900, color: s.color || accent }}>{s.val}</div>
                     <div style={{ fontSize: 10, fontWeight: 700, color: '#999', textTransform: 'uppercase' }}>{s.label}</div>
                   </div>
                 ))}

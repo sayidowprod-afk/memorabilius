@@ -229,6 +229,14 @@ export default function HomeHero({ total, totalCartes, totalBinders, totalTrade,
         </div>
       </section>
 
+      <div className="da-ticker" aria-hidden="true">
+        <div>
+          {[0, 1].map(k => (
+            <span key={k}>Scan IA ✦ Galerie 3D ✦ Prix eBay en direct ✦ Échanges ✦ Badges ✦ Classeurs ✦ Gratuit ✦ </span>
+          ))}
+        </div>
+      </div>
+
       {/* Grille des 6 fonctionnalités — 1 ligne forcée */}
       <section style={{ marginBottom: 56 }}>
         <div className="section-title">{t('home_everything_needed')}</div>
@@ -342,7 +350,7 @@ export default function HomeHero({ total, totalCartes, totalBinders, totalTrade,
           { val: liveStats.totalTrade, label: t('home_trade') },
         ].map(s => (
           <div key={s.label} style={{ background: dark ? '#0d1230' : 'white', padding: 30, borderRadius: 15, textAlign: 'center', boxShadow: dark ? '0 4px 24px rgba(0,0,0,0.3)' : '0 10px 30px rgba(0,0,0,0.05)', border: dark ? '1px solid rgba(255,255,255,0.07)' : 'none' }}>
-            <h3 style={{ fontSize: '2.5rem', fontWeight: 900, color: dark ? '#4da3ff' : '#003DA6', fontVariantNumeric: 'tabular-nums' }}>
+            <h3 className="da-num" style={{ fontSize: '3.2rem', fontWeight: 900, color: dark ? '#4da3ff' : '#003DA6', fontVariantNumeric: 'tabular-nums' }}>
               <LiveNumber value={s.val} locale={localeFor(lang)} />
             </h3>
             <p style={{ color: dark ? 'rgba(255,255,255,0.5)' : '#999', textTransform: 'uppercase', fontSize: 12, fontWeight: 700, marginTop: 5 }}>{s.label}</p>
