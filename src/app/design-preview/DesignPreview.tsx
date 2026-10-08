@@ -1,6 +1,7 @@
 'use client'
 import { useState } from 'react'
 import Link from 'next/link'
+import { InstagramIcon, XIcon, DiscordIcon } from '@/components/SocialIcons'
 
 // Aperçu de la nouvelle direction artistique -- voir page.tsx. Tout le style est
 // ici, prefixe .dp-, et la page s'affiche en plein ecran par-dessus la navigation
@@ -144,11 +145,35 @@ export default function DesignPreview() {
         <div className="dp-eyebrow"><span className="dp-frame">02 — Profil</span></div>
         <div className={`dp-profile${ondark}`}>
           <div className="dp-profile-id">
-            <div className="dp-avatar dp-frame">G</div>
-            <div>
-              <h2 className="dp-h2">GKNNN_Cards</h2>
+            <div className="dp-av">
+              <div className="dp-av-ring"><span>G</span></div>
+              <i className="dp-av-lvl">12</i>
+              <i className="dp-av-on" />
+            </div>
+            <div className="dp-pmain">
+              <div className="dp-pname">
+                <h2 className="dp-h2">GKNNN_Cards</h2>
+                <span className="dp-rep" title="Réputation d’échange">★ 100 % · 14 échanges</span>
+                <span className="dp-team" title="Philadelphia 76ers">76</span>
+                <span className="dp-team dp-team--b" title="San Jose Sharks">SJ</span>
+              </div>
+              <div className="dp-follow"><b>128</b> abonnés <span>·</span> <b>54</b> abonnements</div>
               <p className="dp-dim">Fondateur de Memorabilius.fr — PC 76ers et Iguodala Sixers Era</p>
-              <span className="dp-badge">Top 4 % des collectionneurs</span>
+              <div className="dp-pactions">
+                <a className="dp-soc dp-soc--ig" title="Instagram"><InstagramIcon size={16} /></a>
+                <a className="dp-soc dp-soc--x" title="X"><XIcon size={14} /></a>
+                <a className="dp-soc dp-soc--dc" title="Discord"><DiscordIcon size={16} /></a>
+                <button className="dp-btn dp-btn--sm">Message</button>
+                <button className="dp-btn dp-btn--sm dp-btn--ghost">Suivre</button>
+                <button className="dp-soc dp-soc--flag" title="Signaler" aria-label="Signaler">⚑</button>
+              </div>
+            </div>
+            <div className="dp-pright">
+              <span className="dp-badge">🏆 Top 4 % des collectionneurs</span>
+              <div className="dp-pbtns">
+                <button className="dp-btn dp-btn--sm dp-btn--ghost" aria-label="Plus d’actions">⋮</button>
+                <button className="dp-btn dp-btn--sm">+ Ajouter</button>
+              </div>
             </div>
           </div>
           <div className="dp-score">
@@ -359,6 +384,27 @@ const CSS = `
 .dp-profile{padding:clamp(20px,3vw,40px);border:3px solid var(--line)}
 .dp:not([data-dir=A]) .dp-profile.dp-ondark{border-color:transparent}
 .dp-profile-id{display:flex;gap:24px;align-items:center;margin-bottom:28px;flex-wrap:wrap}
+.dp-profile-id{align-items:flex-start;flex-wrap:nowrap}
+@media(max-width:860px){.dp-profile-id{flex-wrap:wrap}}
+.dp-av{position:relative;flex-shrink:0;width:96px;height:96px}
+.dp-av-ring{width:100%;height:100%;border-radius:50%!important;padding:4px;background:conic-gradient(#fff 0 62%,rgba(255,255,255,.22) 62% 100%)}
+.dp-av-ring span{display:grid;place-items:center;width:100%;height:100%;border-radius:50%!important;background:#003da6;font-family:'SQ',sans-serif;font-size:44px;color:#fff;border:3px solid #08153b}
+.dp-av-lvl{position:absolute;left:50%;bottom:-8px;transform:translateX(-50%);background:#fff;color:#06122e;font:800 12px system-ui;font-style:normal;padding:1px 8px}
+.dp-av-on{position:absolute;right:4px;top:4px;width:16px;height:16px;background:#2fd072;border:3px solid #08153b;border-radius:50%!important}
+.dp-pmain{flex:1;min-width:240px}
+.dp-pname{display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin-bottom:6px}
+.dp-pname .dp-h2{margin:0}
+.dp-rep{font:800 12px system-ui;letter-spacing:.06em;text-transform:uppercase;background:#2fd072;color:#032612;padding:4px 9px}
+.dp-team{display:grid;place-items:center;width:34px;height:34px;border-radius:50%!important;background:#fff;color:#c8102e;font:900 13px system-ui;border:2px solid #003da6}
+.dp-team--b{color:#006d75}
+.dp-follow{font-size:15px;color:var(--dim);margin-bottom:6px}
+.dp-follow b{color:var(--text)}
+.dp-pactions{display:flex;gap:8px;align-items:center;flex-wrap:wrap;margin-top:10px}
+.dp-soc{display:grid;place-items:center;width:34px;height:34px;border-radius:50%!important;border:0;padding:0;flex-shrink:0}
+.dp-soc--ig{background:#fce4ec;color:#e1306c}.dp-soc--x{background:#f0f0f0;color:#121212}.dp-soc--dc{background:#eef0ff;color:#5865f2}
+.dp-soc--flag{background:transparent;border:2px solid var(--line)!important;color:var(--dim);font-size:16px}
+.dp-pright{display:flex;flex-direction:column;align-items:flex-end;gap:14px;margin-left:auto}
+.dp-pbtns{display:flex;gap:8px}
 .dp-avatar{font-family:'SQ',sans-serif;font-size:64px;padding:10px 26px;line-height:1.05}
 .dp-badge{display:inline-block;border:2px solid var(--text);padding:3px 10px;font-size:15px;letter-spacing:.12em}
 .dp-score{display:grid;grid-template-columns:repeat(5,1fr);border-top:3px solid var(--line)}
