@@ -470,7 +470,7 @@ const DD_CSS = `
 .dd-act:hover { transform: translateY(-3px); }
 .dd-box { margin: 0 16px 14px; border: 3px solid var(--text); background: var(--card-bg); padding: 4px 16px 6px; }
 .dd-h { font: 800 13px system-ui, sans-serif; letter-spacing: .16em; text-transform: uppercase; color: var(--text2); margin: 14px 0 6px; }
-.dd-h--site { margin: 26px 16px 10px; }
+.dd-h--site { margin: 26px 16px 10px; text-align: center; }
 .dd-act-list { display: grid; }
 .dd-act-item { display: flex; align-items: center; gap: 12px; padding: 12px 0; border-top: 2px solid var(--border); }
 .dd-act-item:first-child { border-top: 0; }
@@ -485,7 +485,7 @@ const DD_CSS = `
 .dd-info { font-size: 12px; color: var(--text2); line-height: 1.6; padding-bottom: 10px; }
 .dd-prog { display: flex; align-items: center; gap: 14px; padding: 14px 0; border-top: 2px solid var(--border); }
 .dd-lvl-ico { background: transparent; color: var(--text); cursor: pointer; padding: 0; }
-.dd-lvl-ico b { font-size: 36px; line-height: 1; font-weight: 400; }
+.dd-lvl-ico b { font-size: 36px; line-height: .8; font-weight: 400; display: block; transform: translateY(-2px); }
 .dd-prog--first { border-top: 0; }
 .dd-prog-ico { width: 46px; height: 46px; display: grid; place-items: center; font-size: 22px; border: 3px solid var(--text); flex-shrink: 0; }
 .dd-prog-b { flex: 1; min-width: 0; }
