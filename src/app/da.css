@@ -138,3 +138,19 @@ h1 { line-height: 1.02; }
 
 /* Boutons d'action : angles droits, capitales */
 .btn-ajouter { border-radius: 0 !important; text-transform: uppercase; letter-spacing: 0.06em; }
+
+/* Profil de galerie : rangee de score pleine largeur sous l'identite (comme l'apercu) */
+.da-profile .header-stats-block { flex: 1 1 100% !important; min-width: 0 !important; margin-left: 0 !important; align-items: stretch !important; }
+.da-profile .header-stats-block > div:first-child {
+  display: grid !important; grid-template-columns: repeat(5, 1fr); gap: 0 !important; justify-content: stretch !important;
+  border-top: 3px solid rgba(255, 255, 255, 0.22); padding-top: 8px;
+}
+.da-profile .header-stats-block > div:first-child > div { min-width: 0 !important; padding: 10px 4px 4px; border-right: 2px solid rgba(255, 255, 255, 0.18); }
+.da-profile .header-stats-block > div:first-child > div:last-child { border-right: 0; }
+.da-profile .header-stats-block .da-num { font-size: clamp(40px, 7vw, 96px) !important; line-height: 1; }
+.da-profile .header-stats-block > div:first-child > div > div:last-child {
+  font-size: clamp(13px, 1.5vw, 18px) !important; letter-spacing: 0.14em; color: rgba(255, 255, 255, 0.7) !important;
+}
+.da-profile .header-stats-block > p { text-align: left !important; color: #fff !important; font-size: 13px !important; }
+.da-profile { border-width: 3px; }
+@media (max-width: 640px) { .da-profile .header-stats-block .da-num { font-size: 32px !important; } }
