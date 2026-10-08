@@ -61,3 +61,30 @@ h1 { line-height: 1.02; }
     radial-gradient(circle at 15% -10%, rgba(91,141,239,0.07), transparent 45%),
     linear-gradient(160deg, #050912 0%, #08153b 55%, #0a2468 100%) fixed !important;
 }
+
+/* ── Classes utilitaires de la DA (posees sur des elements precis) ── */
+.da-display { font-family: 'Surfquest', Impact, 'Arial Narrow', sans-serif !important; font-weight: 400 !important; text-transform: uppercase; letter-spacing: 0.02em; }
+.da-h2 { font-size: 34px !important; line-height: 1; }
+.da-box { border-radius: 0 !important; border-width: 2px !important; }
+.da-grain { position: relative; }
+.da-grain::after {
+  content: ''; position: absolute; inset: 0; pointer-events: none; z-index: 1; opacity: 0.2; mix-blend-mode: overlay;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='240' height='240'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='2' stitchTiles='stitch'/><feColorMatrix type='saturate' values='0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
+}
+
+/* ── Bandeau de profil de galerie : marine -> bleu, chiffres Surfquest blancs ── */
+.da-profile {
+  border-radius: 0 !important;
+  background: linear-gradient(135deg, #050912 0%, #08153b 48%, #003da6 100%) !important;
+  border: 3px solid rgba(255, 255, 255, 0.22);
+  color: #fff;
+}
+.da-profile h1 { color: #fff !important; font-size: 44px !important; line-height: 0.95; }
+.da-profile p { color: rgba(255, 255, 255, 0.72) !important; }
+.da-profile .da-num { color: #fff !important; font-size: 40px !important; }
+.da-profile a, .da-profile span { color: inherit; }
+.da-profile .header-stats-block > div:first-child { border-top: 0; }
+@media (max-width: 640px) {
+  .da-profile h1 { font-size: 34px !important; }
+  .da-profile .da-num { font-size: 30px !important; }
+}

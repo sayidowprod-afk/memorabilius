@@ -137,7 +137,7 @@ export default function PepitesSection({ cards }: { cards: Card[] }) {
 
   return (
     <section style={{ margin: '28px 0 36px' }}>
-      <h2 style={{ fontSize: 20, fontWeight: 900, margin: '0 0 16px', textAlign: 'center', color: dark ? '#fff' : '#121212' }}>
+      <h2 className="da-display da-h2" style={{ fontSize: 20, fontWeight: 900, margin: '0 0 16px', textAlign: 'center', color: dark ? '#fff' : '#121212' }}>
         {t('home_pepites')}
       </h2>
       <div

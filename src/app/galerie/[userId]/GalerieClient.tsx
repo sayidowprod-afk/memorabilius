@@ -2138,7 +2138,7 @@ export default function GalerieClient({ userId, initialCardUrl, initialCards, in
             en bas a droite et qui s'estompe vers le haut a gauche. Calque plein format
             (pas juste une bande en haut) pour que le clip coincide avec le contour reel
             du header (coins arrondis) plutot que de couper au milieu du contenu. */}
-        <div style={{ position: 'relative', background: dark ? '#1e1e1e' : 'white', borderRadius: 16, marginBottom: 20, boxShadow: 'var(--elevation-md)', overflow: 'hidden' }}>
+        <div className="da-profile da-grain" style={{ position: 'relative', background: dark ? '#1e1e1e' : 'white', borderRadius: 16, marginBottom: 20, boxShadow: 'var(--elevation-md)', overflow: 'hidden' }}>
           <div style={{
             position: 'absolute', inset: 0,
             background: `linear-gradient(to top left, ${accent}${dark ? '3d' : '2b'}, transparent 70%)`,
@@ -2518,7 +2518,7 @@ export default function GalerieClient({ userId, initialCardUrl, initialCards, in
             <div ref={grailReveal.ref} className={grailReveal.className} style={{ marginBottom: 24 }}>
               <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 12 }}>
                 <span style={{ fontSize: 18 }}>💎</span>
-                <span style={{ fontWeight: 900, fontSize: 15, color: dark ? '#eee' : '#121212', letterSpacing: 0.5 }}>Grail Wall</span>
+                <span className="da-display" style={{ fontWeight: 900, fontSize: 24, color: dark ? '#eee' : '#121212', letterSpacing: 0.5 }}>Grail Wall</span>
                 <span style={{ fontSize: 11, color: '#bbb', fontWeight: 600 }}>— {t('gallery_jewels')}</span>
               </div>
 

@@ -311,7 +311,7 @@ export default function NativeHomeDashboard({ siteStats }: { siteStats: SiteStat
         }
         <div style={{ minWidth: 0, flex: 1 }}>
           <div style={{ fontSize: 12.5, color: 'var(--text2, #777)', fontWeight: 600 }}>{t('dashboard_greeting')}</div>
-          <div style={{ fontSize: 18, fontWeight: 900, color: 'var(--text, #121212)', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>{data.displayName}</div>
+          <div className="da-display" style={{ fontSize: 26, fontWeight: 900, color: 'var(--text, #121212)', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>{data.displayName}</div>
         </div>
         {data.streak > 0 && (
           <div style={{ display: 'flex', alignItems: 'center', gap: 4, background: 'rgba(230,126,34,0.12)', borderRadius: 20, padding: '5px 10px', flexShrink: 0 }}>
@@ -323,7 +323,7 @@ export default function NativeHomeDashboard({ siteStats }: { siteStats: SiteStat
         )}
       </div>
 
-      <Link href={`/galerie/${user?.id}`} onClick={hapticTap} style={{
+      <Link href={`/galerie/${user?.id}`} onClick={hapticTap} className="da-box da-grain" style={{
         display: 'flex', alignItems: 'stretch', margin: '0 16px 14px',
         background: 'linear-gradient(120deg, #0B1E4D 0%, #12318f 60%, #1E63E0 130%)',
         borderRadius: 20, overflow: 'hidden', textDecoration: 'none', color: '#fff',
@@ -331,7 +331,7 @@ export default function NativeHomeDashboard({ siteStats }: { siteStats: SiteStat
       }}>
         <div style={{ flex: 1, padding: '18px 6px 18px 20px', display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
           <div style={{ fontSize: 10.5, fontWeight: 800, letterSpacing: 0.8, color: '#80B4FF', textTransform: 'uppercase' }}>{t('dashboard_my_gallery')}</div>
-          <div style={{ fontSize: 30, fontWeight: 900, lineHeight: 1.15, marginTop: 4 }}>{data.totalCards}</div>
+          <div className="da-num" style={{ fontSize: 56, fontWeight: 900, lineHeight: 1, marginTop: 4 }}>{data.totalCards}</div>
           <div style={{ fontSize: 13, fontWeight: 600, color: '#cddcff', marginTop: -2 }}>{t(data.totalCards === 1 ? 'dashboard_card_one' : 'dashboard_card_other')}</div>
           {data.lastCard?.name && (
             <div style={{ fontSize: 11.5, color: '#9fbdf5', marginTop: 12, display: 'flex', alignItems: 'center', gap: 4 }}>
@@ -378,14 +378,14 @@ export default function NativeHomeDashboard({ siteStats }: { siteStats: SiteStat
 
       <div style={{ display: 'flex', gap: 8, margin: '0 16px 14px' }}>
         {galleryStats.map(s => (
-          <div key={s.label} style={{ flex: 1, background: 'var(--card-bg, #fff)', border: '1px solid var(--border, #eee)', borderRadius: 12, padding: '11px 4px', textAlign: 'center' }}>
-            <div style={{ fontSize: 20, fontWeight: 900, color: s.color }}>{s.val}</div>
+          <div key={s.label} className="da-box" style={{ flex: 1, background: 'var(--card-bg, #fff)', border: '1px solid var(--border, #eee)', borderRadius: 12, padding: '11px 4px', textAlign: 'center' }}>
+            <div className="da-num" style={{ fontSize: 30, fontWeight: 900, color: s.color }}>{s.val}</div>
             <div style={{ fontSize: 10, fontWeight: 800, color: 'var(--text3, #999)', letterSpacing: 0.3, marginTop: 2 }}>{s.label}</div>
           </div>
         ))}
       </div>
 
-      <div style={{ position: 'relative', margin: '0 16px 20px', padding: '0 16px', background: 'var(--card-bg, #fff)', border: '1px solid var(--border, #eee)', borderRadius: 18 }}>
+      <div className="da-box" style={{ position: 'relative', margin: '0 16px 20px', padding: '0 16px', background: 'var(--card-bg, #fff)', border: '1px solid var(--border, #eee)', borderRadius: 18 }}>
         <ProgressRow
           first
           href={`/galerie/${user?.id}`}
@@ -432,13 +432,13 @@ export default function NativeHomeDashboard({ siteStats }: { siteStats: SiteStat
         )}
       </div>
 
-      <h2 style={{ fontSize: 20, fontWeight: 900, margin: '4px 0 16px', textAlign: 'center', color: 'var(--text, #121212)' }}>
+      <h2 className="da-display da-h2" style={{ fontSize: 20, fontWeight: 900, margin: '4px 0 16px', textAlign: 'center', color: 'var(--text, #121212)' }}>
         {t('dashboard_site_stats_title')}
       </h2>
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: 10, padding: '0 16px 0' }}>
         {siteStatsList.map(s => (
-          <div key={s.label} style={{ background: 'var(--card-bg, #fff)', border: '1px solid var(--border, #eee)', borderRadius: 14, padding: '14px 12px', textAlign: 'center' }}>
-            <div style={{ fontSize: 20, fontWeight: 900, color: '#003DA6' }}>{s.val.toLocaleString()}</div>
+          <div key={s.label} className="da-box" style={{ background: 'var(--card-bg, #fff)', border: '1px solid var(--border, #eee)', borderRadius: 14, padding: '14px 12px', textAlign: 'center' }}>
+            <div className="da-num" style={{ fontSize: 34, fontWeight: 900, color: '#003DA6' }}>{s.val.toLocaleString()}</div>
             <div style={{ fontSize: 10, fontWeight: 700, color: 'var(--text3, #999)', textTransform: 'uppercase', marginTop: 2 }}>{s.label}</div>
           </div>
         ))}
