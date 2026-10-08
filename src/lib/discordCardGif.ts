@@ -11,8 +11,14 @@ import { GIFEncoder, quantize, applyPalette } from 'gifenc'
 
 const W = 360
 const H = Math.round(W * 3.5 / 2.5) // ratio carte a collectionner standard
-const FRAMES = 60
-const DELAY_MS = 65  // ~3,9s par rotation complete -- meme nombre de frames (fluidite inchangee), juste chaque frame affichee plus longtemps
+// 100 images x 50 ms = 5,0 s par rotation (avant : 60 x 65 ms = 3,9 s) -- un peu
+// plus lent MAIS plus fluide : 20 images/s au lieu de 15, et 3,6° de rotation
+// par image au lieu de 6°. Mesure sur une vraie carte : ~6,5 Mo (contre ~3,9 Mo),
+// sous la limite d'upload Discord (10 Mo par defaut). Aller plus loin (120+
+// images) approche les 8 Mo : trop pres de la limite. Le delai est un multiple de
+// 10 ms (le format GIF compte en centiemes de seconde, 55 ms etait arrondi a 60).
+const FRAMES = 100
+const DELAY_MS = 50
 
 // Cause reelle trouvee (pas juste "parfois lent") : les hebergeurs d'images
 // des cartes CSV (i.ibb.co notamment) ralentissent tres fortement les
@@ -79,7 +85,8 @@ export async function renderCardSpinGif(frontUrl: string, backUrl: string | null
   const cx = W / 2
   const cy = H / 2
 
-  for (let i = 0; i < FRAMES; i++) {
+  // Dessine l'image i dans le canvas et renvoie si on voit le verso.
+  const drawFrame = (i: number): boolean => {
     const t = i / FRAMES
     const angle = t * Math.PI * 2
     const scaleX = Math.cos(angle)
@@ -128,8 +135,26 @@ export async function renderCardSpinGif(frontUrl: string, backUrl: string | null
       ctx.fillRect(cx - 2, cy - cardH / 2, 4, cardH)
     }
 
+    return showBack
+  }
+
+  // Palette de couleurs quantifiee UNE FOIS par face, sur l'image ou la carte est
+  // de face (i=0 pour le recto, i=FRAMES/2 pour le verso), puis reutilisee pour
+  // toutes les images de cette face. Avant : quantize() sur chacune des 60 images
+  // -- c'etait l'essentiel du temps de rendu (~15 s sur un PC, plus sur Vercel) ;
+  // maintenant ~1 s. Calculer la palette du verso sur la PREMIERE image verso
+  // serait faux : a cet instant la carte est quasi de profil, la palette ne
+  // contiendrait presque que du fond.
+  const quantizeCurrent = () => quantize(ctx.getImageData(0, 0, W, H).data, 256)
+  drawFrame(0)
+  const palFront = quantizeCurrent()
+  drawFrame(Math.floor(FRAMES / 2))
+  const palBack = quantizeCurrent()
+
+  for (let i = 0; i < FRAMES; i++) {
+    const showBack = drawFrame(i)
+    const palette = showBack ? palBack : palFront
     const { data } = ctx.getImageData(0, 0, W, H)
-    const palette = quantize(data, 256)
     const index = applyPalette(data, palette)
     gif.writeFrame(index, W, H, { palette, delay: DELAY_MS })
   }

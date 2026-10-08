@@ -7,7 +7,7 @@ import { waitUntil } from '@vercel/functions'
 import { renderCardSpinGif } from '@/lib/discordCardGif'
 import { resolveProfileBySlugParam } from '@/lib/resolveProfileSlug'
 import { discordFetch, contestChannelId, parisWeekStart } from '@/lib/discordContest'
-import { postPublicBirthday, postTestBirthday, parisToday, type BirthdayPlayer } from '@/lib/discordBirthday'
+import { postPublicBirthdays, postTestBirthdays, parisToday, type BirthdayPlayer } from '@/lib/discordBirthday'
 
 // ── Concours hebdomadaire ─────────────────────────────────────────────────────
 
@@ -178,9 +178,28 @@ async function postConcoursParticipationPublic(cardInfo: CardData | null, imageU
     fields: cardInfo?.badges?.length ? [{ name: 'Badges', value: cardInfo.badges.join('  '), inline: false }] : [],
   }
 
+  // Une nouvelle participation REMPLACE la precedente (meme ligne) : on efface
+  // d'abord l'ancien GIF, sinon le vote afficherait la carte d'avant. Tolerant :
+  // sans la colonne gif_url (migration pas encore passee), l'erreur est ignoree.
+  try { await supabase.from('discord_contest_entries').update({ gif_url: null }).eq('week_id', weekId).eq('discord_user_id', discordUser.id) } catch { /* colonne absente */ }
+
   if (cardInfo?.img && cardInfo?.imgBack) {
     try {
       const gifBuffer = await renderCardSpinGif(cardInfo.img, cardInfo.imgBack)
+      // Garde le GIF dans notre storage (les pieces jointes Discord expirent) pour
+      // que le message de VOTE (api/contest/tick) puisse l'afficher en entier,
+      // recto + verso qui tournent, plutot que le seul recto. Meilleur effort :
+      // un echec ici ne doit jamais empecher l'annonce publique.
+      const saveGif = (async () => {
+        await ensureContestBucket()
+        const fileName = `gif-${discordUser.id}-${Date.now()}.gif`
+        const { error } = await supabase.storage.from('discord-contest').upload(fileName, gifBuffer, { contentType: 'image/gif', upsert: true })
+        if (error) return
+        const { data: pub } = supabase.storage.from('discord-contest').getPublicUrl(fileName)
+        await supabase.from('discord_contest_entries').update({ gif_url: pub.publicUrl })
+          .eq('week_id', weekId).eq('discord_user_id', discordUser.id)
+      })().catch(e => console.error('[postConcoursParticipationPublic] sauvegarde du GIF echouee:', e))
+
       const form = new FormData()
       form.append('payload_json', JSON.stringify({ embeds: [{ ...embedBase, image: { url: 'attachment://participation.gif' } }] }))
       form.append('files[0]', new Blob([new Uint8Array(gifBuffer)], { type: 'image/gif' }), 'participation.gif')
@@ -189,6 +208,7 @@ async function postConcoursParticipationPublic(cardInfo: CardData | null, imageU
         headers: { Authorization: `Bot ${process.env.DISCORD_BOT_TOKEN}` },
         body: form,
       })
+      await saveGif
       if (res.ok) return
     } catch (e) {
       console.error('[postConcoursParticipationPublic] gif failed, repli sur image fixe:', e)
@@ -397,6 +417,9 @@ async function handleContestComponent(body: any) {
 
   if (customId.startsWith('bday:')) return handleBirthdayComponent(customId)
   if (customId.startsWith('bdaytest:')) return handleBirthdayTestComponent(customId, body.channel_id)
+  // Menu a choix multiple (voir birthdaySelectMenu) : body.data.values = ids choisis.
+  if (customId.startsWith('bdaysel:')) return handleBirthdayComponent(customId, body.data?.values || [])
+  if (customId.startsWith('bdayseltest:')) return handleBirthdayTestComponent(customId, body.channel_id, body.data?.values || [])
 
   return reply({ content: '❌ Action inconnue.', flags: 64 })
 }
@@ -407,8 +430,11 @@ async function handleContestComponent(body: any) {
 // des boutons differents en meme temps, un seul touche une ligne (0 ligne
 // modifiee pour l'autre => on lui indique qu'un choix a deja ete fait,
 // plutot que de publier deux annonces pour le meme jour).
-async function handleBirthdayComponent(customId: string) {
-  const [, postDate, playerId] = customId.split(':')
+async function handleBirthdayComponent(customId: string, selectedIds?: string[]) {
+  // Bouton (ancien format, un seul joueur dans le custom_id) ou menu a choix
+  // multiple (plusieurs ids dans selectedIds).
+  const [, postDate, buttonPlayerId] = customId.split(':')
+  const ids = selectedIds && selectedIds.length ? selectedIds : [buttonPlayerId]
 
   const { data: claimed } = await supabase.from('nba_birthday_posts')
     .update({ status: 'posted' })
@@ -420,20 +446,21 @@ async function handleBirthdayComponent(customId: string) {
   }
   const threadId: string | null = claimed[0].thread_id
 
-  const { data: player } = await supabase.from('sports_birthdays')
-    .select('id, player_name, birth_date, headshot_url, sport').eq('id', playerId).single()
-  if (!player) return reply({ content: '❌ Joueur introuvable.', flags: 64 })
+  const { data: players } = await supabase.from('sports_birthdays')
+    .select('id, player_name, birth_date, headshot_url, sport').in('id', ids)
+  if (!players?.length) return reply({ content: '❌ Joueur introuvable.', flags: 64 })
 
   // Publication + suppression du thread en arriere-plan (waitUntil) : l'ACK
-  // Discord doit repondre sous 3s, la suite (2 appels API sequentiels) peut
-  // depasser cette marge de facon intermittente -- meme pattern que
-  // postConcoursParticipationPublic plus haut dans ce fichier.
+  // Discord doit repondre sous 3s, la suite (1 appel API par joueur, + pauses)
+  // depasse cette marge -- meme pattern que postConcoursParticipationPublic
+  // plus haut dans ce fichier.
   waitUntil((async () => {
-    await postPublicBirthday(supabase, player as BirthdayPlayer, postDate)
+    await postPublicBirthdays(supabase, players as BirthdayPlayer[], postDate)
     if (threadId) await discordFetch(`/channels/${threadId}`, { method: 'DELETE' }).catch(() => {})
   })())
 
-  return reply({ content: `✅ Annonce publiée pour **${player.player_name}**.`, flags: 64 })
+  const plural = players.length > 1
+  return reply({ content: `✅ Annonce${plural ? 's' : ''} publiée${plural ? 's' : ''} pour **${players.map(p => p.player_name).join('**, **')}**.`, flags: 64 })
 }
 
 // Clic admin dans le thread de TEST (?channelId= sur le cron, voir
@@ -442,20 +469,22 @@ async function handleBirthdayComponent(customId: string) {
 // test), donc le channelId cible est encode directement dans le custom_id du
 // bouton plutot que lu en base, et le thread a supprimer est celui ou le clic
 // a eu lieu (body.channel_id de l'interaction Discord).
-async function handleBirthdayTestComponent(customId: string, threadId: string) {
-  const [, channelId, playerId] = customId.split(':')
+async function handleBirthdayTestComponent(customId: string, threadId: string, selectedIds?: string[]) {
+  const [, channelId, buttonPlayerId] = customId.split(':')
+  const ids = selectedIds && selectedIds.length ? selectedIds : [buttonPlayerId]
 
-  const { data: player } = await supabase.from('sports_birthdays')
-    .select('id, player_name, birth_date, headshot_url, sport').eq('id', playerId).single()
-  if (!player) return reply({ content: '❌ Joueur introuvable.', flags: 64 })
+  const { data: players } = await supabase.from('sports_birthdays')
+    .select('id, player_name, birth_date, headshot_url, sport').in('id', ids)
+  if (!players?.length) return reply({ content: '❌ Joueur introuvable.', flags: 64 })
 
   const { dateStr } = parisToday()
   waitUntil((async () => {
-    await postTestBirthday(player as BirthdayPlayer, dateStr, channelId)
+    await postTestBirthdays(players as BirthdayPlayer[], dateStr, channelId)
     if (threadId) await discordFetch(`/channels/${threadId}`, { method: 'DELETE' }).catch(() => {})
   })())
 
-  return reply({ content: `✅ [TEST] Annonce publiée pour **${player.player_name}**.`, flags: 64 })
+  const plural = players.length > 1
+  return reply({ content: `✅ [TEST] Annonce${plural ? 's' : ''} publiée${plural ? 's' : ''} pour **${players.map(p => p.player_name).join('**, **')}**.`, flags: 64 })
 }
 
 export const dynamic = 'force-dynamic'

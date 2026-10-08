@@ -82,6 +82,36 @@ export async function postPublicBirthday(supabase: SupabaseClient, player: Birth
   return msg
 }
 
+// Plusieurs anniversaires le meme jour : l'admin en coche autant qu'il veut dans
+// le menu (voir birthdaySelectMenu) -- un message d'annonce par joueur, poste
+// l'un apres l'autre (petite pause : Discord rate-limite un salon a quelques
+// messages/seconde). nba_birthday_posts n'a qu'une colonne chosen_player_id /
+// message_id : on y garde le premier joueur, c'est un simple marqueur
+// "traite", seule status='posted' compte pour l'idempotence du cron.
+export function sortBirthdayPlayers(players: BirthdayPlayer[]): BirthdayPlayer[] {
+  return [...players].sort((a, b) => SPORT_ORDER.indexOf(a.sport) - SPORT_ORDER.indexOf(b.sport))
+}
+
+export async function postPublicBirthdays(supabase: SupabaseClient, players: BirthdayPlayer[], dateStr: string, channelId: string = birthdayChannelId()) {
+  const ordered = sortBirthdayPlayers(players)
+  let first: { id: string; messageId: string } | null = null
+  for (const player of ordered) {
+    const msg = await discordFetch(`/channels/${channelId}/messages`, { method: 'POST', body: JSON.stringify(birthdayEmbed(player, dateStr)) })
+    if (!first) first = { id: player.id, messageId: msg.id }
+    await new Promise(r => setTimeout(r, 400))
+  }
+  if (first) {
+    await supabase.from('nba_birthday_posts').update({ status: 'posted', chosen_player_id: first.id, message_id: first.messageId }).eq('post_date', dateStr)
+  }
+}
+
+export async function postTestBirthdays(players: BirthdayPlayer[], dateStr: string, channelId: string) {
+  for (const player of sortBirthdayPlayers(players)) {
+    await postTestBirthday(player, dateStr, channelId)
+    await new Promise(r => setTimeout(r, 400))
+  }
+}
+
 // Variante test (?channelId= sur le cron, voir sports-birthday/route.ts) :
 // post_date est une colonne SQL `date`, donc un test ne peut jamais y ecrire
 // une cle propre (essaye avec un suffixe "-test" -> echec silencieux, le test
@@ -111,6 +141,30 @@ export async function postTestBirthday(player: BirthdayPlayer, dateStr: string, 
 // "bdaytest:<channelId>" en test (voir handleBirthdayTestComponent) -- aucune
 // des deux variantes ne re-parse dateStr comme une date SQL, seulement comme
 // une cle de matching/routing texte.
+// Menu deroulant a CHOIX MULTIPLE (1 a 25 joueurs) -- remplace les boutons
+// ci-dessous, qui n'en laissaient publier qu'un seul. Discord envoie la selection
+// complete (data.values) quand l'admin ferme le menu. Les anciens messages a
+// boutons encore ouverts restent geres (handleBirthdayComponent).
+// customId : "bdaysel:<dateStr>" en prod, "bdayseltest:<channelId>" en test.
+export function birthdaySelectMenu(customId: string, candidates: BirthdayPlayer[]) {
+  const sorted = sortBirthdayPlayers(candidates).slice(0, 25)
+  return [{
+    type: 1,
+    components: [{
+      type: 3,
+      custom_id: customId,
+      placeholder: 'Choisis un ou plusieurs anniversaires à publier…',
+      min_values: 1,
+      max_values: sorted.length,
+      options: sorted.map(p => ({
+        label: `${SPORT_EMOJI[p.sport] || ''} ${p.player_name}`.trim().slice(0, 100),
+        description: (SPORT_LABEL[p.sport] || p.sport).slice(0, 100),
+        value: p.id,
+      })),
+    }],
+  }]
+}
+
 export function birthdayPickButtons(customIdBase: string, candidates: BirthdayPlayer[]) {
   const sorted = [...candidates].sort((a, b) => SPORT_ORDER.indexOf(a.sport) - SPORT_ORDER.indexOf(b.sport)).slice(0, 25)
   const buttons = sorted.map(p => ({

@@ -153,7 +153,9 @@ async function openEntryVote(week: any) {
       body: JSON.stringify({
         embeds: [{
           description: `Participation de **${entry.discord_username || 'un membre'}**`,
-          image: { url: entry.image_url },
+          // GIF tournant (recto/verso) quand la participation en a un -- voir
+          // gif_url dans postConcoursParticipationPublic ; sinon le recto seul.
+          image: { url: entry.gif_url || entry.image_url },
           color: 0x003DA6,
         }],
         components: entryVoteButton(week.id, entry.id),
@@ -198,7 +200,7 @@ async function closeEntryVote(week: any) {
       embeds: [{
         title: '🏆 Résultat du concours de la semaine',
         description: `Félicitations à **${winner?.discord_username || 'un membre'}** !\n\n${ranking}`,
-        image: winner ? { url: winner.image_url } : undefined,
+        image: winner ? { url: winner.gif_url || winner.image_url } : undefined,
         color: 0xffd700,
       }],
     }),
