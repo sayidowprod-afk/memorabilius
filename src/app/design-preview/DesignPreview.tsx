@@ -421,7 +421,7 @@ const CSS = `
 .dp-chips button.on{background:var(--text);color:var(--bg-solid,#fff);border-color:var(--text)}
 .dp[data-dir=A] .dp-chips button.on{color:#06122e}
 .dp-vitrine{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:12px;padding:clamp(14px,2.4vw,28px);
-  background:#f3f5fa;border:3px solid var(--line)}
+  background:var(--tl-vit);border:3px solid var(--line)}
 @media(max-width:600px){.dp-vitrine{grid-template-columns:repeat(2,1fr);gap:20px 12px;padding:12px}.dp-card h4{font-size:17px}.dp-score b{font-size:34px}}
 .dp-card{cursor:pointer;transition:transform .25s}
 .dp-empty{display:block;min-height:220px}
@@ -429,8 +429,10 @@ const CSS = `
 .dp-card:hover{transform:translateY(-8px)}
 /* Tuile : on garde l'esprit de la galerie actuelle (tuile blanche encadree + infos),
    en version DA : cadre bleu a double filet, angles droits, pastilles sur la carte. */
+.dp[data-dir=A]{--tl-bg:#0c0d12;--tl-text:#fff;--tl-bd:#1f4fd0;--tl-em:#4d8dff;--tl-sub:#a9adb8;--tl-vit:rgba(5,9,18,.55)}
+.dp[data-dir=B],.dp[data-dir=C]{--tl-bg:#fff;--tl-text:#121212;--tl-bd:#003da6;--tl-em:#003da6;--tl-sub:#999;--tl-vit:#f3f5fa}
 .dp-card{display:flex}
-.dp-tile{flex:1;min-width:0;background:#fff;color:#121212;border:2px solid #003da6;border-radius:8px!important;padding:8px;box-sizing:border-box;transition:transform .15s,box-shadow .15s}
+.dp-tile{flex:1;min-width:0;background:var(--tl-bg);color:var(--tl-text);border:2px solid var(--tl-bd);border-radius:8px!important;padding:8px;box-sizing:border-box;transition:transform .15s,box-shadow .15s}
 .dp-card:hover{transform:none}
 .dp-card:hover .dp-tile{transform:translateY(-3px) scale(1.015);box-shadow:0 10px 24px rgba(0,0,0,.28)}
 .dp-tile-img{width:100%;margin-bottom:8px}
@@ -441,9 +443,9 @@ const CSS = `
 .dp-tile-row{display:flex;justify-content:space-between;align-items:flex-start;gap:4px;margin-top:4px}
 .dp-tile-ico{display:flex;flex-shrink:0;font-size:16px;line-height:1}
 .dp-tile-ico span{padding:2px 4px}
-.dp-card .dp-tile h4{margin:0;font:800 13px system-ui,sans-serif;text-transform:none;letter-spacing:0;color:#121212;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.dp-card .dp-tile em{display:block;margin:2px 0;font:italic 700 10px system-ui,sans-serif;color:#003da6;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.dp-card .dp-tile p{margin:2px 0 0;font:400 10px system-ui,sans-serif;text-transform:none;letter-spacing:0;color:#999;line-height:1.35}
+.dp-card .dp-tile h4{margin:0;font:800 13px system-ui,sans-serif;text-transform:none;letter-spacing:0;color:var(--tl-text);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.dp-card .dp-tile em{display:block;margin:2px 0;font:italic 700 10px system-ui,sans-serif;color:var(--tl-em);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.dp-card .dp-tile p{margin:2px 0 0;font:400 10px system-ui,sans-serif;text-transform:none;letter-spacing:0;color:var(--tl-sub);line-height:1.35}
 .dp-tags{display:flex;gap:6px;flex-wrap:wrap}
 /* Etiquettes : pleines, texte fonce/clair a fort contraste, lisibles sur fond sombre comme clair */
 .dp-tagchip{display:inline-block;padding:3px 9px;font-size:13px;letter-spacing:.09em;line-height:1.3;border:2px solid transparent}
