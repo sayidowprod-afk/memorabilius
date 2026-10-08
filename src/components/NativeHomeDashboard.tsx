@@ -48,34 +48,6 @@ function findNextBadge(stat: Record<string, number>): DashboardData['nextBadge']
   return best
 }
 
-function ProgressRow({ icon, iconBg, label, valueLabel, valueColor, pct, barColor, href, onIconClick, first, sublabel }: {
-  icon: React.ReactNode; iconBg: string; label: React.ReactNode; valueLabel: string; valueColor: string
-  pct: number; barColor: string; href: string; onIconClick?: () => void; first?: boolean; sublabel?: React.ReactNode
-}) {
-  const content = (
-    <div style={{ display: 'flex', alignItems: 'center', gap: 10, padding: '12px 0', borderTop: first ? undefined : '1px solid var(--border, #eee)' }}>
-      <span
-        onClick={onIconClick ? (e) => { e.preventDefault(); onIconClick() } : undefined}
-        style={{
-          fontSize: 15, fontWeight: 900, flexShrink: 0, width: 30, height: 30, borderRadius: '50%',
-          background: iconBg, color: '#fff', display: 'flex', alignItems: 'center', justifyContent: 'center',
-        }}>{icon}</span>
-      <div style={{ flex: 1, minWidth: 0 }}>
-        <div style={{ display: 'flex', justifyContent: 'space-between', gap: 8, fontSize: 11.5, fontWeight: 700, color: 'var(--text, #121212)' }}>
-          <span style={{ overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>{label}</span>
-          <span style={{ color: valueColor, flexShrink: 0 }}>{valueLabel}</span>
-        </div>
-        <div style={{ height: 5, background: 'var(--bg3, #eee)', borderRadius: 3, overflow: 'hidden', marginTop: 6 }}>
-          <div style={{ height: '100%', width: `${Math.min(100, Math.round(pct * 100))}%`, background: barColor, borderRadius: 3 }} />
-        </div>
-        {sublabel && (
-          <div style={{ fontSize: 9.5, fontWeight: 700, color: 'var(--text3, #999)', marginTop: 4 }}>{sublabel}</div>
-        )}
-      </div>
-    </div>
-  )
-  return <Link href={href} onClick={hapticTap} style={{ textDecoration: 'none', display: 'block' }}>{content}</Link>
-}
 
 // "3j 4h" / "5h" / "moins d'1h" — pas besoin de granularité seconde, le défi
 // change une fois par semaine (voir currentChallenge dans weeklyChallenge.ts).
@@ -91,7 +63,7 @@ function formatCountdown(msLeft: number, t: (k: TranslationKey) => string): stri
 
 export default function NativeHomeDashboard({ siteStats }: { siteStats: SiteStats }) {
   const { user } = useAuth()
-  const { t } = useLang()
+  const { t, lang } = useLang()
   const [data, setData] = useState<DashboardData | null>(null)
   const [failed, setFailed] = useState(false)
   const [retryKey, setRetryKey] = useState(0)
@@ -114,6 +86,27 @@ export default function NativeHomeDashboard({ siteStats }: { siteStats: SiteStat
         if (!cancelled) setTradeSummary(json)
       } catch { /* encart optionnel */ }
     })()
+    return () => { cancelled = true }
+  }, [user?.id])
+
+  // "Depuis ta derniere visite" : notifications non lues par type. Requete
+  // separee et non bloquante (meme principe que l'encart echanges ci-dessus).
+  const [activity, setActivity] = useState<{ like: number; comment: number; wishlist_match: number; other: number } | null>(null)
+  useEffect(() => {
+    if (!user) return
+    let cancelled = false
+    supabase.from('notifications').select('type').eq('user_id', user.id).eq('lu', false).limit(200)
+      .then(({ data: rows }) => {
+        if (cancelled || !rows) return
+        const acc = { like: 0, comment: 0, wishlist_match: 0, other: 0 }
+        for (const r of rows as { type: string }[]) {
+          if (r.type === 'like') acc.like++
+          else if (r.type === 'comment') acc.comment++
+          else if (r.type === 'wishlist_match') acc.wishlist_match++
+          else acc.other++
+        }
+        setActivity(acc)
+      }, () => {})
     return () => { cancelled = true }
   }, [user?.id])
 
@@ -286,10 +279,10 @@ export default function NativeHomeDashboard({ siteStats }: { siteStats: SiteStat
   }
 
   const galleryStats = [
-    { label: 'RC', val: data.rc, color: '#e67e22' },
-    { label: 'AUTO', val: data.auto, color: '#2e7d32' },
-    { label: 'PATCH', val: data.patch, color: '#1976d2' },
-    { label: 'NUM', val: data.num, color: '#7b1fa2' },
+    { label: 'RC', val: data.rc },
+    { label: 'AUTO', val: data.auto },
+    { label: 'PATCH', val: data.patch },
+    { label: 'NUM', val: data.num },
   ]
 
   const siteStatsList = [
@@ -301,148 +294,212 @@ export default function NativeHomeDashboard({ siteStats }: { siteStats: SiteStat
 
   const challengeDone = data.challengeProgress >= data.challenge.target
   const challengeMsLeft = new Date(endOfWeekISO()).getTime() - Date.now()
+  const L = DD_TEXT[lang] || DD_TEXT.en
+
+  // "Depuis ta derniere visite" : notifications non lues + echanges en attente.
+  const activityItems: { n: number; label: string; href: string }[] = []
+  if (activity) {
+    if (activity.like > 0) activityItems.push({ n: activity.like, label: L.likes, href: '/notifications' })
+    if (activity.comment > 0) activityItems.push({ n: activity.comment, label: L.comments, href: '/notifications' })
+    if (activity.wishlist_match > 0) activityItems.push({ n: activity.wishlist_match, label: L.wishlist, href: '/notifications' })
+    if (activity.other > 0) activityItems.push({ n: activity.other, label: L.other, href: '/notifications' })
+  }
+  if (tradeSummary && tradeSummary.pendingReceived > 0) activityItems.push({ n: tradeSummary.pendingReceived, label: t('home_trades_pending'), href: '/trades?tab=echanges' })
+  if (tradeSummary && tradeSummary.matches > 0) activityItems.push({ n: tradeSummary.matches, label: t('home_trades_matches'), href: '/trades?tab=matches' })
+
+  const galleryHref = `/galerie/${user?.id}`
 
   return (
-    <div style={{ background: 'var(--bg, #f8f9fa)', paddingBottom: 8 }}>
-      <div style={{ display: 'flex', alignItems: 'center', gap: 12, padding: '22px 18px 18px' }}>
-        {data.avatarUrl
-          ? <img src={data.avatarUrl} alt="" style={{ width: 46, height: 46, borderRadius: '50%', objectFit: 'cover', flexShrink: 0 }} />
-          : <div style={{ width: 46, height: 46, borderRadius: '50%', background: '#003DA6', color: '#fff', display: 'flex', alignItems: 'center', justifyContent: 'center', fontWeight: 900, fontSize: 17, flexShrink: 0 }}>{data.displayName[0]?.toUpperCase()}</div>
-        }
-        <div style={{ minWidth: 0, flex: 1 }}>
-          <div style={{ fontSize: 12.5, color: 'var(--text2, #777)', fontWeight: 600 }}>{t('dashboard_greeting')}</div>
-          <div className="da-display" style={{ fontSize: 26, fontWeight: 900, color: 'var(--text, #121212)', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>{data.displayName}</div>
+    <div className="dd">
+      <style>{DD_CSS}</style>
+
+      <header className="dd-head">
+        <div className="dd-who">
+          {data.avatarUrl
+            ? <img src={data.avatarUrl} alt="" className="dd-avatar" />
+            : <div className="dd-avatar dd-avatar--ph">{data.displayName[0]?.toUpperCase()}</div>}
+          <div style={{ minWidth: 0 }}>
+            <div className="dd-kicker">{t('dashboard_greeting')}</div>
+            <h1 className="dd-name">{data.displayName}</h1>
+          </div>
         </div>
         {data.streak > 0 && (
-          <div style={{ display: 'flex', alignItems: 'center', gap: 4, background: 'rgba(230,126,34,0.12)', borderRadius: 20, padding: '5px 10px', flexShrink: 0 }}>
-            <span style={{ fontSize: 14 }}>🔥</span>
-            <span style={{ fontSize: 11.5, fontWeight: 800, color: '#e67e22', whiteSpace: 'nowrap' }}>
-              {t(data.streak === 1 ? 'dashboard_streak_one' : 'dashboard_streak_other').replace('{n}', String(data.streak))}
-            </span>
+          <div className="dd-streak">
+            {t(data.streak === 1 ? 'dashboard_streak_one' : 'dashboard_streak_other').replace('{n}', String(data.streak))}
           </div>
         )}
-      </div>
+      </header>
 
-      <Link href={`/galerie/${user?.id}`} onClick={hapticTap} className="da-box da-grain" style={{
-        display: 'flex', alignItems: 'stretch', margin: '0 16px 14px',
-        background: 'linear-gradient(120deg, #0B1E4D 0%, #12318f 60%, #1E63E0 130%)',
-        borderRadius: 20, overflow: 'hidden', textDecoration: 'none', color: '#fff',
-        boxShadow: '0 6px 14px -6px rgba(11,30,77,0.35)',
-      }}>
-        <div style={{ flex: 1, padding: '18px 6px 18px 20px', display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
-          <div style={{ fontSize: 10.5, fontWeight: 800, letterSpacing: 0.8, color: '#80B4FF', textTransform: 'uppercase' }}>{t('dashboard_my_gallery')}</div>
-          <div className="da-num" style={{ fontSize: 56, fontWeight: 900, lineHeight: 1, marginTop: 4 }}>{data.totalCards}</div>
-          <div style={{ fontSize: 13, fontWeight: 600, color: '#cddcff', marginTop: -2 }}>{t(data.totalCards === 1 ? 'dashboard_card_one' : 'dashboard_card_other')}</div>
+      <Link href={galleryHref} onClick={hapticTap} className="dd-hero da-grain">
+        <div className="dd-hero-l">
+          <div className="dd-hero-k">{t('dashboard_my_gallery')}</div>
+          <div className="dd-hero-n da-num">{data.totalCards}</div>
+          <div className="dd-hero-u">{t(data.totalCards === 1 ? 'dashboard_card_one' : 'dashboard_card_other')}</div>
           {data.lastCard?.name && (
-            <div style={{ fontSize: 11.5, color: '#9fbdf5', marginTop: 12, display: 'flex', alignItems: 'center', gap: 4 }}>
-              {t('dashboard_last_added')} <strong style={{ color: '#fff', fontWeight: 700 }}>{data.lastCard.name}</strong>
-            </div>
+            <div className="dd-hero-last">{t('dashboard_last_added')} <strong>{data.lastCard.name}</strong></div>
           )}
         </div>
-        <div style={{ position: 'relative', width: 108, flexShrink: 0 }}>
-          {data.lastCard ? (
-            <>
-              <div style={{ position: 'absolute', inset: 0, background: `linear-gradient(90deg, #12318f, transparent 40%), url(${data.lastCard.image}) center/cover`, transform: 'scale(1.15)', opacity: 0.5, filter: 'blur(1px)' }} />
-              <img src={data.lastCard.image} alt="" style={{
-                position: 'absolute', bottom: 14, right: 16, width: 66, height: 92, borderRadius: 9, objectFit: 'cover',
-                boxShadow: '0 10px 22px rgba(0,0,0,0.5)', border: '1px solid rgba(255,255,255,0.25)', transform: 'rotate(4deg)',
-              }} />
-            </>
-          ) : (
-            <div style={{ position: 'absolute', bottom: 14, right: 16, width: 66, height: 92, borderRadius: 9, background: 'rgba(255,255,255,0.1)', border: '1px dashed rgba(255,255,255,0.3)' }} />
-          )}
-          <div style={{ position: 'absolute', top: 14, right: 14, color: 'rgba(255,255,255,0.85)' }}><ChevronIcon /></div>
+        <div className="dd-hero-r">
+          {data.lastCard
+            ? <img src={data.lastCard.image} alt="" className="dd-hero-card" />
+            : <div className="dd-hero-card dd-hero-card--empty" />}
+          <span className="dd-hero-go"><ChevronIcon /></span>
         </div>
       </Link>
 
-      {tradeSummary && (tradeSummary.pendingReceived > 0 || tradeSummary.inProgress > 0 || tradeSummary.matches > 0) && (
-        <Link href={tradeSummary.pendingReceived > 0 || tradeSummary.inProgress > 0 ? '/trades?tab=echanges' : '/trades?tab=matches'} onClick={hapticTap} style={{
-          display: 'flex', alignItems: 'center', gap: 12, margin: '0 16px 14px', padding: '13px 16px',
-          background: 'var(--card-bg, #fff)', border: '1.5px solid #f39c12', borderRadius: 16,
-          textDecoration: 'none', color: 'var(--text, #121212)',
-        }}>
-          <span style={{ fontSize: 24 }}>🔄</span>
-          <div style={{ flex: 1, minWidth: 0 }}>
-            <div style={{ fontSize: 12, fontWeight: 900, textTransform: 'uppercase', letterSpacing: 0.5, color: '#e67e22' }}>{t('home_trades_title')}</div>
-            <div style={{ fontSize: 13, fontWeight: 700, marginTop: 2, lineHeight: 1.35 }}>
-              {[
-                tradeSummary.pendingReceived > 0 && `${tradeSummary.pendingReceived} ${t('home_trades_pending')}`,
-                tradeSummary.inProgress > 0 && `${tradeSummary.inProgress} ${t('home_trades_in_progress')}`,
-                tradeSummary.matches > 0 && `${tradeSummary.matches} ${t('home_trades_matches')}`,
-              ].filter(Boolean).join(' · ')}
-            </div>
-          </div>
-          <ChevronIcon />
-        </Link>
-      )}
-
-      <div style={{ display: 'flex', gap: 8, margin: '0 16px 14px' }}>
+      <div className="dd-score">
         {galleryStats.map(s => (
-          <div key={s.label} className="da-box" style={{ flex: 1, background: 'var(--card-bg, #fff)', border: '1px solid var(--border, #eee)', borderRadius: 12, padding: '11px 4px', textAlign: 'center' }}>
-            <div className="da-num" style={{ fontSize: 30, fontWeight: 900, color: s.color }}>{s.val}</div>
-            <div style={{ fontSize: 10, fontWeight: 800, color: 'var(--text3, #999)', letterSpacing: 0.3, marginTop: 2 }}>{s.label}</div>
+          <div key={s.label}>
+            <b className="da-num">{s.val}</b>
+            <span>{s.label}</span>
           </div>
         ))}
       </div>
 
-      <div className="da-box" style={{ position: 'relative', margin: '0 16px 20px', padding: '0 16px', background: 'var(--card-bg, #fff)', border: '1px solid var(--border, #eee)', borderRadius: 18 }}>
-        <ProgressRow
-          first
-          href={`/galerie/${user?.id}`}
-          icon={data.level.level}
-          iconBg="linear-gradient(135deg, #1E63E0, #003DA6)"
-          label={t('word_level')}
-          valueLabel={`${data.level.xpIntoLevel}/${data.level.xpForNextLevel} XP`}
-          valueColor="#003DA6"
-          pct={data.level.pct}
-          barColor="linear-gradient(90deg, #1E63E0, #003DA6)"
-          onIconClick={() => setShowXpInfo(v => !v)}
-        />
-        {data.nextBadge && (
-          <ProgressRow
-            href={`/galerie/${user?.id}?tab=badges`}
-            icon={data.nextBadge.cat.emoji}
-            iconBg="radial-gradient(circle at 35% 30%, #f0cc70, #a07018 75%)"
-            label={`${t('dashboard_next_badge_prefix')} ${data.nextBadge.tier.label} ${data.nextBadge.cat.unit}`}
-            valueLabel={`${data.nextBadge.value}/${data.nextBadge.tier.threshold}`}
-            valueColor="#a07018"
-            pct={data.nextBadge.pct}
-            barColor="linear-gradient(90deg, #a07018, #f0cc70)"
-          />
-        )}
-        <ProgressRow
-          href={`/galerie/${user?.id}`}
-          icon={challengeDone ? '✓' : data.challenge.emoji}
-          iconBg={challengeDone ? '#2e7d32' : 'rgba(0,61,166,0.12)'}
-          label={`${t('dashboard_challenge_prefix')} ${t(data.challenge.labelKey)}`}
-          valueLabel={challengeDone ? t('dashboard_challenge_done') : `${data.challengeProgress}/${data.challenge.target}`}
-          valueColor={challengeDone ? '#2e7d32' : '#003DA6'}
-          pct={data.challengeProgress / data.challenge.target}
-          barColor={challengeDone ? '#2e7d32' : 'linear-gradient(90deg, #1E63E0, #003DA6)'}
-          sublabel={`🎁 +${data.challenge.rewardXp} XP · ⏳ ${t('dashboard_challenge_ends_in')} ${formatCountdown(challengeMsLeft, t)}`}
-        />
-        {showXpInfo && (
-          <div style={{
-            position: 'absolute', top: 8, left: 16, right: 16, zIndex: 5,
-            background: 'var(--bg, #f8f9fa)', border: '1px solid var(--border, #eee)', borderRadius: 12,
-            padding: 10, fontSize: 10, color: 'var(--text2, #777)', lineHeight: 1.6, boxShadow: '0 8px 24px rgba(0,0,0,0.15)',
-          }}>
-            {t('xp_info_explanation')}
-          </div>
-        )}
+      <div className="dd-actions">
+        <Link href="/scanner" onClick={hapticTap} className="dd-act">{t('nav_scanner')}</Link>
+        <Link href={`${galleryHref}/ajouter`} onClick={hapticTap} className="dd-act">{L.add}</Link>
+        <Link href="/trades" onClick={hapticTap} className="dd-act">{t('nav_trades')}</Link>
       </div>
 
-      <h2 className="da-display da-h2" style={{ fontSize: 20, fontWeight: 900, margin: '4px 0 16px', textAlign: 'center', color: 'var(--text, #121212)' }}>
-        {t('dashboard_site_stats_title')}
-      </h2>
-      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: 10, padding: '0 16px 0' }}>
+      {activityItems.length > 0 && (
+        <section className="dd-box">
+          <h2 className="dd-h">{L.since}</h2>
+          <div className="dd-act-list">
+            {activityItems.map((a, i) => (
+              <Link key={i} href={a.href} onClick={hapticTap} className="dd-act-item">
+                <b className="da-num">{a.n}</b><span>{a.label}</span><ChevronIcon />
+              </Link>
+            ))}
+          </div>
+        </section>
+      )}
+
+      <section className="dd-box">
+        <div className="dd-lvl">
+          <button type="button" className="dd-lvl-n" onClick={() => setShowXpInfo(v => !v)} aria-label="XP">
+            <span>{L.levelShort}</span><b className="da-num">{data.level.level}</b>
+          </button>
+          <div className="dd-lvl-bar">
+            <div className="dd-lvl-row"><span>{t('word_level')}</span><span>{data.level.xpIntoLevel}/{data.level.xpForNextLevel} XP</span></div>
+            <div className="dd-bar"><i style={{ width: `${Math.min(100, Math.round(data.level.pct * 100))}%` }} /></div>
+          </div>
+        </div>
+        {showXpInfo && <p className="dd-info">{t('xp_info_explanation')}</p>}
+
+        {data.nextBadge && (
+          <Link href={`${galleryHref}?tab=badges`} onClick={hapticTap} className="dd-prog">
+            <span className="dd-prog-ico">{data.nextBadge.cat.emoji}</span>
+            <div className="dd-prog-b">
+              <div className="dd-lvl-row"><span>{`${t('dashboard_next_badge_prefix')} ${data.nextBadge.tier.label} ${data.nextBadge.cat.unit}`}</span><span>{data.nextBadge.value}/{data.nextBadge.tier.threshold}</span></div>
+              <div className="dd-bar dd-bar--gold"><i style={{ width: `${Math.min(100, Math.round(data.nextBadge.pct * 100))}%` }} /></div>
+            </div>
+          </Link>
+        )}
+
+        <Link href={galleryHref} onClick={hapticTap} className="dd-prog">
+          <span className="dd-prog-ico">{challengeDone ? '✓' : data.challenge.emoji}</span>
+          <div className="dd-prog-b">
+            <div className="dd-lvl-row">
+              <span>{`${t('dashboard_challenge_prefix')} ${t(data.challenge.labelKey)}`}</span>
+              <span>{challengeDone ? t('dashboard_challenge_done') : `${data.challengeProgress}/${data.challenge.target}`}</span>
+            </div>
+            <div className={`dd-bar${challengeDone ? ' dd-bar--ok' : ''}`}><i style={{ width: `${Math.min(100, Math.round((data.challengeProgress / data.challenge.target) * 100))}%` }} /></div>
+            <div className="dd-sub">+{data.challenge.rewardXp} XP · {t('dashboard_challenge_ends_in')} {formatCountdown(challengeMsLeft, t)}</div>
+          </div>
+        </Link>
+      </section>
+
+      <h2 className="dd-h dd-h--site">{t('dashboard_site_stats_title')}</h2>
+      <div className="dd-site">
         {siteStatsList.map(s => (
-          <div key={s.label} className="da-box" style={{ background: 'var(--card-bg, #fff)', border: '1px solid var(--border, #eee)', borderRadius: 14, padding: '14px 12px', textAlign: 'center' }}>
-            <div className="da-num" style={{ fontSize: 34, fontWeight: 900, color: '#003DA6' }}>{s.val.toLocaleString()}</div>
-            <div style={{ fontSize: 10, fontWeight: 700, color: 'var(--text3, #999)', textTransform: 'uppercase', marginTop: 2 }}>{s.label}</div>
+          <div key={s.label}>
+            <b className="da-num">{s.val.toLocaleString()}</b>
+            <span>{s.label}</span>
           </div>
         ))}
       </div>
     </div>
   )
 }
+
+const DD_TEXT: Record<string, { add: string; since: string; likes: string; comments: string; wishlist: string; other: string; levelShort: string }> = {
+  fr: { add: 'Ajouter une carte', since: 'Depuis ta dernière visite', likes: 'j’aime reçus', comments: 'commentaires', wishlist: 'cartes de ta wishlist trouvées', other: 'autres notifications', levelShort: 'Niv.' },
+  en: { add: 'Add a card', since: 'Since your last visit', likes: 'likes received', comments: 'comments', wishlist: 'wishlist matches', other: 'other notifications', levelShort: 'Lvl' },
+  de: { add: 'Karte hinzufügen', since: 'Seit deinem letzten Besuch', likes: 'Likes erhalten', comments: 'Kommentare', wishlist: 'Wunschlisten-Treffer', other: 'weitere Benachrichtigungen', levelShort: 'Lvl' },
+  es: { add: 'Añadir carta', since: 'Desde tu última visita', likes: 'me gusta recibidos', comments: 'comentarios', wishlist: 'coincidencias de tu lista de deseos', other: 'otras notificaciones', levelShort: 'Nv.' },
+  it: { add: 'Aggiungi carta', since: 'Dalla tua ultima visita', likes: 'mi piace ricevuti', comments: 'commenti', wishlist: 'corrispondenze della wishlist', other: 'altre notifiche', levelShort: 'Liv.' },
+}
+
+// Style du tableau de bord (nouvelle DA) : pose directement sur le fond de la
+// page, cadres epais a angles droits, Surfquest pour les gros chiffres. Les
+// cartes (image) restent a coins nets.
+const DD_CSS = `
+.dd { max-width: 1180px; margin: 0 auto; padding: 4px 0 28px; color: var(--text); }
+.dd a { text-decoration: none; color: inherit; }
+.dd-head { display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 18px 16px 14px; flex-wrap: wrap; }
+.dd-who { display: flex; align-items: center; gap: 14px; min-width: 0; }
+.dd-avatar { width: 56px; height: 56px; border-radius: 50%; object-fit: cover; flex-shrink: 0; border: 3px solid var(--text); }
+.dd-avatar--ph { display: grid; place-items: center; background: #003da6; color: #fff; font-weight: 900; font-size: 22px; }
+.dd-kicker { font: 800 12px system-ui, sans-serif; letter-spacing: .14em; text-transform: uppercase; color: var(--text2); }
+.dd-name { font-size: clamp(34px, 5vw, 56px); line-height: .95; margin: 2px 0 0; color: var(--text); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.dd-streak { font: 800 12px system-ui, sans-serif; letter-spacing: .1em; text-transform: uppercase; border: 3px solid var(--text); padding: 7px 12px; }
+.dd-hero { display: flex; align-items: stretch; margin: 0 16px 14px; border: 3px solid rgba(255,255,255,.28);
+  background: linear-gradient(135deg, #050912 0%, #08153b 48%, #003da6 100%); color: #fff; overflow: hidden; }
+.dd-hero-l { flex: 1; padding: clamp(18px, 3vw, 36px); display: flex; flex-direction: column; justify-content: center; min-width: 0; }
+.dd-hero-k { font: 800 12px system-ui, sans-serif; letter-spacing: .16em; text-transform: uppercase; color: #9fbdf5; }
+.dd-hero-n { font-size: clamp(76px, 13vw, 160px); line-height: .9; margin: 6px 0 2px; color: #fff; }
+.dd-hero-u { font: 800 14px system-ui, sans-serif; letter-spacing: .14em; text-transform: uppercase; color: #cddcff; }
+.dd-hero-last { font-size: 13px; color: #9fbdf5; margin-top: 14px; }
+.dd-hero-last strong { color: #fff; }
+.dd-hero-r { position: relative; width: clamp(130px, 24vw, 280px); flex-shrink: 0; }
+.dd-hero-card { position: absolute; right: clamp(14px, 3vw, 40px); bottom: clamp(14px, 3vw, 30px); width: clamp(84px, 14vw, 170px); aspect-ratio: 2.5/3.5;
+  object-fit: cover; transform: rotate(5deg); box-shadow: 0 24px 50px rgba(0,0,0,.55); border: 0; border-radius: 0; }
+.dd-hero-card--empty { background: rgba(255,255,255,.1); border: 2px dashed rgba(255,255,255,.35); }
+.dd-hero-go { position: absolute; top: 14px; right: 14px; color: rgba(255,255,255,.85); }
+.dd-score { display: grid; grid-template-columns: repeat(4, 1fr); margin: 0 16px 14px; border: 3px solid var(--text); background: var(--card-bg); }
+.dd-score > div { text-align: center; padding: 14px 6px 10px; border-right: 2px solid var(--border); }
+.dd-score > div:last-child { border-right: 0; }
+.dd-score b, .dd-site b { display: block; font-size: clamp(36px, 6vw, 72px); line-height: 1; color: var(--text); font-weight: 400; }
+.dd-score span, .dd-site span { display: block; margin-top: 4px; font: 800 12px system-ui, sans-serif; letter-spacing: .14em; text-transform: uppercase; color: var(--text2); }
+.dd-actions { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin: 0 16px 14px; }
+.dd-act { display: grid; place-items: center; text-align: center; padding: 16px 8px; background: #fff; color: #06122e !important; border: 3px solid #fff;
+  font: 800 14px system-ui, sans-serif; letter-spacing: .08em; text-transform: uppercase; transition: transform .15s; }
+:root:not([data-theme="dark"]) .dd-act { background: #003da6; border-color: #003da6; color: #fff !important; }
+.dd-act:hover { transform: translateY(-3px); }
+.dd-box { margin: 0 16px 14px; border: 3px solid var(--text); background: var(--card-bg); padding: 4px 16px 6px; }
+.dd-h { font: 800 13px system-ui, sans-serif; letter-spacing: .16em; text-transform: uppercase; color: var(--text2); margin: 14px 0 6px; }
+.dd-h--site { margin: 26px 16px 10px; }
+.dd-act-list { display: grid; }
+.dd-act-item { display: flex; align-items: center; gap: 12px; padding: 12px 0; border-top: 2px solid var(--border); }
+.dd-act-item:first-child { border-top: 0; }
+.dd-act-item b { font-size: 34px; line-height: 1; min-width: 44px; font-weight: 400; color: var(--text); }
+.dd-act-item span { flex: 1; font: 700 14px system-ui, sans-serif; }
+.dd-lvl { display: flex; align-items: center; gap: 16px; padding: 14px 0; }
+.dd-lvl-n { background: #003da6; color: #fff; border: 0; cursor: pointer; padding: 8px 16px; display: grid; justify-items: center; flex-shrink: 0; }
+.dd-lvl-n span { font: 800 11px system-ui, sans-serif; letter-spacing: .14em; text-transform: uppercase; }
+.dd-lvl-n b { font-size: 46px; line-height: 1; font-weight: 400; }
+.dd-lvl-bar { flex: 1; min-width: 0; }
+.dd-lvl-row { display: flex; justify-content: space-between; gap: 10px; font: 800 12px system-ui, sans-serif; letter-spacing: .06em; text-transform: uppercase; margin-bottom: 7px; }
+.dd-lvl-row span:first-child { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.dd-bar { height: 12px; background: var(--bg3); }
+.dd-bar i { display: block; height: 100%; background: #2f6bff; }
+.dd-bar--gold i { background: #e0a526; }
+.dd-bar--ok i { background: #2fd072; }
+.dd-info { font-size: 12px; color: var(--text2); line-height: 1.6; padding-bottom: 10px; }
+.dd-prog { display: flex; align-items: center; gap: 14px; padding: 14px 0; border-top: 2px solid var(--border); }
+.dd-prog-ico { width: 46px; height: 46px; display: grid; place-items: center; font-size: 22px; border: 3px solid var(--text); flex-shrink: 0; }
+.dd-prog-b { flex: 1; min-width: 0; }
+.dd-sub { font: 700 11px system-ui, sans-serif; color: var(--text2); margin-top: 7px; letter-spacing: .04em; }
+.dd-site { display: grid; grid-template-columns: repeat(4, 1fr); margin: 0 16px; border: 3px solid var(--text); background: var(--card-bg); }
+.dd-site > div { text-align: center; padding: 16px 6px 12px; border-right: 2px solid var(--border); }
+.dd-site > div:last-child { border-right: 0; }
+@media (max-width: 700px) {
+  .dd-site { grid-template-columns: repeat(2, 1fr); }
+  .dd-site > div:nth-child(2) { border-right: 0; }
+  .dd-site > div:nth-child(-n+2) { border-bottom: 2px solid var(--border); }
+  .dd-actions { gap: 6px; }
+  .dd-act { padding: 14px 4px; font-size: 11px; letter-spacing: .04em; }
+  .dd-score span { font-size: 10px; letter-spacing: .08em; }
+}
+`
