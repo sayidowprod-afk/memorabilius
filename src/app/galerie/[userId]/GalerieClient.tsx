@@ -330,6 +330,35 @@ function SortableCard({ id, disabled, children, className, style, onClick, onLon
 
 const PAGE_SIZE = 24
 
+// Lien direct vers la fiche d'une carte (la galerie avec son Viewer3D ouvert),
+// autour de l'image dans les grilles. Avant, l'image n'etait qu'un <img> dans un
+// div cliquable : un clic droit ne proposait que "Ouvrir l'image dans un nouvel
+// onglet", jamais la page de la carte. Clic simple = ouvre le popup comme avant
+// (preventDefault, c'est le onClick de la carte parente qui fait le reste) ;
+// Ctrl/Cmd/Maj+clic et clic molette = vrai lien dans un nouvel onglet/fenetre,
+// sans ouvrir le popup en plus (stopPropagation).
+// draggable={false} : sinon le navigateur lance un glisser-deposer natif du lien.
+// Sur ecran tactile, l'appui long garde son role actuel (partage) : sans le
+// preventDefault du contextmenu tactile, Android ouvrirait en plus le menu du lien.
+function CardLink({ slug, cardKey, children }: { slug: string; cardKey: string; children: React.ReactNode }) {
+  const pointerType = useRef('mouse')
+  return (
+    <a
+      href={`/galerie/${slug}?card=${encodeURIComponent(cardKey)}`}
+      draggable={false}
+      onPointerDown={e => { pointerType.current = e.pointerType }}
+      onContextMenu={e => { if (pointerType.current === 'touch') e.preventDefault() }}
+      onClick={e => {
+        if (e.ctrlKey || e.metaKey || e.shiftKey || e.altKey) { e.stopPropagation(); return }
+        e.preventDefault()
+      }}
+      style={{ display: 'block', color: 'inherit', textDecoration: 'none', WebkitTouchCallout: 'none' }}
+    >
+      {children}
+    </a>
+  )
+}
+
 function cardThumb(url: string): string {
   return url
 }
@@ -2448,7 +2477,7 @@ export default function GalerieClient({ userId, initialCardUrl, initialCards, in
                           }}>✕</button>
                         )
                       )}
-                      {renderCardImage(card)}
+                      <CardLink slug={profile?.slug || userId} cardKey={card.f}>{renderCardImage(card)}</CardLink>
                       <div style={{ padding: '6px 8px' }}>
                         <p style={{ fontWeight: 800, fontSize: 10, margin: 0, whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>{card.n}</p>
                         <p style={{ fontSize: 9, color: medal.color, fontWeight: 700, margin: '1px 0 0', fontStyle: 'italic', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>{card.v || card.s}</p>
@@ -3275,7 +3304,7 @@ export default function GalerieClient({ userId, initialCardUrl, initialCards, in
                       flex: '0 0 auto', width: 90, cursor: 'pointer', borderRadius: 8, overflow: 'hidden',
                       ...coloredBorder(cardTagColor(c)),
                     }}>
-                      {renderCardImage(c)}
+                      <CardLink slug={profile?.slug || userId} cardKey={c.f}>{renderCardImage(c)}</CardLink>
                     </div>
                   ))}
                 </div>
@@ -3386,7 +3415,9 @@ export default function GalerieClient({ userId, initialCardUrl, initialCards, in
                   </div>
                 </div>
               )}
-              <div style={{ width: '100%', marginBottom: 8 }}>{renderCardImage(d)}</div>
+              <div style={{ width: '100%', marginBottom: 8 }}>
+                <CardLink slug={profile?.slug || userId} cardKey={d.f}>{renderCardImage(d)}</CardLink>
+              </div>
               {getTags(d)}
               <div style={{ display: 'flex', alignItems: 'flex-start', justifyContent: 'space-between', gap: 4, marginTop: 4 }}>
                 <div style={{ minWidth: 0 }}>
