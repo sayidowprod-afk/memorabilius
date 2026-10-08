@@ -25,6 +25,7 @@ const CARDS = [
   { nom: 'Carmelo Anthony', meta: '2012 · Nike · Olympics', img: SB + '1786023952939_recto.jpg', tags: ['AUTO'] },
   { nom: 'Jared McCain', meta: '2024-25 · Court Kings', img: SB + '1781291328026_recto.jpg', tags: ['RC'] },
 ]
+const TABS = ['Collection', 'Classeurs', 'Objectifs', 'Badges', 'Commentaires']
 const STATS = [
   { v: '577', l: 'Cartes' }, { v: '110', l: 'RC' }, { v: '29', l: 'Auto' }, { v: '85', l: 'Num' }, { v: '22', l: 'Patch' },
 ]
@@ -46,15 +47,19 @@ function Icon({ name, size = 26 }: { name: 'grid' | 'scan' | 'swap' | 'medal' | 
   )
 }
 
-function Wordmark({ size = 22 }: { size?: number }) {
-  return <span className="dp-frame dp-wordmark" style={{ fontSize: size }}>MEMORABILIUS</span>
+// Logo actuel du site, inchange (version blanche : l'en-tete est toujours sur fond sombre)
+function Wordmark({ height = 30 }: { height?: number }) {
+  // eslint-disable-next-line @next/next/no-img-element
+  return <img src="/memorabilius-logo-white.png" alt="Memorabilius" height={height} style={{ height, width: 'auto', display: 'block' }} />
 }
 
 function CardTile({ c }: { c: typeof CARDS[number] }) {
   return (
     <article className="dp-card">
-      {/* eslint-disable-next-line @next/next/no-img-element */}
-      <img src={c.img} alt={c.nom} loading="lazy" />
+      <div className="dp-cframe">
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img src={c.img} alt={c.nom} loading="lazy" />
+      </div>
       <h4>{c.nom}</h4>
       <p>{c.meta}</p>
       <div className="dp-tags">{c.tags.map(t => <span key={t} className={`dp-tagchip dp-tagchip--${t.replace('#', 'n').toLowerCase()}`}>{t}</span>)}</div>
@@ -64,6 +69,8 @@ function CardTile({ c }: { c: typeof CARDS[number] }) {
 
 export default function DesignPreview() {
   const [dir, setDir] = useState<Dir>('A')
+  const [tab, setTab] = useState('Collection')
+  const [chip, setChip] = useState('Toutes')
   const ondark = dir === 'A' ? '' : ' dp-ondark'
 
   return (
@@ -146,14 +153,26 @@ export default function DesignPreview() {
       <section className="dp-sec">
         <div className="dp-eyebrow"><span className="dp-frame">03 — Galerie</span></div>
         <div className="dp-tabs">
-          {['Collection', 'Classeurs', 'Objectifs', 'Badges', 'Commentaires'].map((t, i) => <button key={t} className={i === 0 ? 'on' : ''}>{t}</button>)}
+          {TABS.map(t => <button key={t} className={tab === t ? 'on' : ''} onClick={() => setTab(t)}>{t}</button>)}
         </div>
-        <div className="dp-chips">
-          {['Toutes', 'Rick Barry', 'Trade / vente', 'Sharks de San José', 'Auto joueurs Warriors'].map((t, i) => <button key={t} className={i === 0 ? 'on' : ''}>{t}</button>)}
-        </div>
-        <div className="dp-vitrine">
-          {CARDS.map((c, i) => <CardTile key={i} c={c} />)}
-        </div>
+        {tab === 'Collection' ? (
+          <>
+            <div className="dp-chips">
+              {['Toutes', 'Rick Barry', 'Trade / vente', 'Sharks de San José', 'Auto joueurs Warriors'].map(t => <button key={t} className={chip === t ? 'on' : ''} onClick={() => setChip(t)}>{t}</button>)}
+            </div>
+            <div className="dp-vitrine">
+              {(chip === 'Toutes' ? CARDS : chip === 'Trade / vente' ? CARDS.slice(0, 3) : chip === 'Auto joueurs Warriors' ? CARDS.filter(c => c.tags.includes('AUTO')) : CARDS.slice(3, 6)).map((c, i) => <CardTile key={chip + i} c={c} />)}
+            </div>
+          </>
+        ) : (
+          <div className="dp-vitrine dp-empty">
+            <div className="dp-panel">
+              <h3 className="dp-h2">{tab}</h3>
+              <p className="dp-dim">Exemple de l’onglet « {tab} » dans la même direction : cadres, étiquettes et typographie identiques. Contenu réel inchangé sur le site.</p>
+              <div className="dp-row"><span className="dp-tagchip dp-tagchip--rc">RC</span><span className="dp-tagchip dp-tagchip--auto">AUTO</span><span className="dp-tagchip dp-tagchip--patch">PATCH</span><span className="dp-badge">12 / 40</span></div>
+            </div>
+          </div>
+        )}
       </section>
 
       {/* 5 — Composants */}
@@ -198,33 +217,11 @@ export default function DesignPreview() {
       <section className="dp-sec">
         <div className="dp-eyebrow"><span className="dp-frame">05 — Application</span></div>
         <div className="dp-phones">
-          <div className="dp-phone">
-            <div className="dp-phone-in">
-              <div className="dp-app-top"><Wordmark size={15} /><Icon name="bell" size={20} /></div>
-              <div className="dp-app-hero dp-grain">
-                <div className="dp-kicker">Ma collection</div>
-                <div className="dp-app-num">577</div>
-                <div className="dp-kicker">cartes · 110 RC · 29 auto</div>
-              </div>
-              <div className="dp-app-grid">
-                {[0, 1, 3, 4].map(i => (
-                  // eslint-disable-next-line @next/next/no-img-element
-                  <img key={i} src={CARDS[i].img} alt="" />
-                ))}
-              </div>
-              <div className="dp-app-nav">
-                <span className="on"><Icon name="grid" />Galerie</span>
-                <span className="scan"><Icon name="scan" size={30} /></span>
-                <span><Icon name="swap" />Échanges</span>
-                <span><Icon name="user" />Profil</span>
-              </div>
-            </div>
-          </div>
           <div className="dp-notes">
             <h5>Dans l’app</h5>
             <ul>
-              <li>Écran de lancement : dégradé navy → bleu électrique, grain, logo encadré.</li>
-              <li>Barre du bas : le scan devient le bouton central, carré, en blanc.</li>
+              <li>L’interface de l’app mobile reste telle quelle (aucune modification de la navigation ni des écrans).</li>
+              <li>Seul le visuel évolue : écran de lancement (dégradé + grain), couleurs, cadres de cartes, étiquettes.</li>
               <li>Captures Play Store dans le même style (titres Surfquest géants).</li>
             </ul>
           </div>
@@ -282,9 +279,11 @@ const CSS = `
 .dp > *:not(.dp-grain-fixed){position:relative;z-index:2}
 
 /* ── Typographie ───────────────────────────────────────────────────── */
-.dp-h1,.dp-h2,.dp-wordmark,.dp-btn,.dp-score b,.dp-app-num,.dp-t1,.dp-t2{font-family:'SQ',Impact,sans-serif;text-transform:uppercase;font-weight:400}
-.dp-kicker,.dp-eyebrow,.dp-tabs button,.dp-chips button,.dp-tagchip,.dp-badge,.dp-score span,.dp-card h4,.dp-card p,.dp-links a,
-.dp-ticker,.dp-sheet h5,.dp-notes h5,.dp-swatches b,.dp-t3,.dp-field span,.dp-toast b,.dp-app-nav span,.dp-ctl{font-family:'SQC',Impact,sans-serif;text-transform:uppercase}
+/* Surfquest uniquement pour les GROS titres et chiffres ; tout le reste (nav, onglets,
+   boutons, etiquettes, noms de cartes) en police systeme grasse, lisible a toute taille. */
+.dp-h1,.dp-h2,.dp-score b,.dp-t1,.dp-avatar{font-family:'SQ',Impact,sans-serif;text-transform:uppercase;font-weight:400}
+.dp-btn,.dp-kicker,.dp-eyebrow,.dp-tabs button,.dp-chips button,.dp-tagchip,.dp-badge,.dp-score span,.dp-card h4,.dp-card p,.dp-links a,
+.dp-ticker,.dp-sheet h5,.dp-notes h5,.dp-swatches b,.dp-t2,.dp-t3,.dp-field span,.dp-toast b,.dp-ctl{font-family:system-ui,-apple-system,'Segoe UI',sans-serif;text-transform:uppercase;font-weight:800}
 .dp-h1{font-size:clamp(54px,10.5vw,164px);line-height:.9;letter-spacing:-.005em;margin:.18em 0 .22em}
 .dp-h2{font-size:clamp(40px,6vw,84px);line-height:.92;margin:0 0 8px}
 .dp-kicker{font-size:clamp(17px,1.7vw,24px);letter-spacing:.12em;color:var(--dim)}
@@ -370,15 +369,26 @@ const CSS = `
   background:radial-gradient(120% 90% at 50% 0%,var(--vit),transparent 70%);border:3px solid var(--line)}
 @media(max-width:600px){.dp-vitrine{grid-template-columns:repeat(2,1fr);gap:20px 12px;padding:12px}.dp-card h4{font-size:17px}.dp-score b{font-size:34px}}
 .dp-card{cursor:pointer;transition:transform .25s}
-.dp-card img{display:block;width:100%;aspect-ratio:2.5/3.5;object-fit:cover;box-shadow:0 18px 34px rgba(0,0,0,.35);transition:box-shadow .25s,transform .25s}
+.dp-empty{display:block;min-height:220px}
+.dp-panel{max-width:36em}
 .dp-card:hover{transform:translateY(-8px)}
-.dp-card:hover img{box-shadow:0 30px 50px rgba(0,0,0,.45)}
-.dp-card h4{margin:14px 0 3px;font-size:22px;letter-spacing:.03em;font-weight:400;font-family:'SQ',sans-serif;line-height:1.05}
-.dp-card p{margin:0 0 8px;font-size:12px;letter-spacing:.07em;color:var(--dim);font-family:system-ui,sans-serif;font-weight:600;text-transform:uppercase}
+/* Cadre de la carte : double filet (signature de la DA) autour de la carte, qui garde ses coins nets */
+.dp-cframe{position:relative;padding:9px;border:3px solid var(--cf);background:var(--cf-bg);box-shadow:0 18px 34px rgba(0,0,0,.35);transition:box-shadow .25s}
+.dp-cframe::after{content:'';position:absolute;inset:3px;border:1.5px solid var(--cf);pointer-events:none;opacity:.85}
+.dp-cframe img{display:block;width:100%;aspect-ratio:2.5/3.5;object-fit:cover;position:relative;z-index:1}
+.dp-card:hover .dp-cframe{box-shadow:0 30px 50px rgba(0,0,0,.45)}
+.dp[data-dir=A]{--cf:#fff;--cf-bg:rgba(255,255,255,.1)}
+.dp[data-dir=B]{--cf:#0a1228;--cf-bg:#fff}
+.dp[data-dir=C]{--cf:#003da6;--cf-bg:#fff}
+.dp-card h4{margin:14px 0 3px;font-size:17px;letter-spacing:.03em;line-height:1.15}
+.dp-card p{margin:0 0 9px;font-size:12px;letter-spacing:.06em;color:var(--dim);font-weight:600}
 .dp-tags{display:flex;gap:6px;flex-wrap:wrap}
-.dp-tagchip{display:inline-block;border:2px solid currentColor;padding:1px 8px;font-size:17px;letter-spacing:.08em;line-height:1.4}
-.dp-tagchip--rc{color:#ff9d2e}.dp-tagchip--auto{color:#32c46a}.dp-tagchip--patch{color:#5da2ff}.dp-tagchip--n{color:var(--dim)}
-.dp:not([data-dir=A]) .dp-tagchip--rc{color:#d9730a}.dp:not([data-dir=A]) .dp-tagchip--auto{color:#17894a}.dp:not([data-dir=A]) .dp-tagchip--patch{color:#1f63c9}
+/* Etiquettes : pleines, texte fonce/clair a fort contraste, lisibles sur fond sombre comme clair */
+.dp-tagchip{display:inline-block;padding:3px 9px;font-size:13px;letter-spacing:.09em;line-height:1.3;border:2px solid transparent}
+.dp-tagchip--rc{background:#ffb02e;color:#241300}
+.dp-tagchip--auto{background:#2fd072;color:#032612}
+.dp-tagchip--patch{background:#2f6bff;color:#fff}
+.dp-tagchip--n{background:transparent;color:var(--text);border-color:var(--text)}
 
 /* Composants */
 .dp-sheet{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:22px}
