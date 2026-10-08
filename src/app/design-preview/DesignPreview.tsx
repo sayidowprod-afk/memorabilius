@@ -56,13 +56,23 @@ function Wordmark({ height = 30 }: { height?: number }) {
 function CardTile({ c }: { c: typeof CARDS[number] }) {
   return (
     <article className="dp-card">
-      <div className="dp-cframe">
-        {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img src={c.img} alt={c.nom} loading="lazy" />
+      <div className="dp-tile">
+        <div className="dp-tile-img">
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img src={c.img} alt={c.nom} loading="lazy" />
+          <div className="dp-tile-tags">{c.tags.map(t => <span key={t} className={`dp-tagchip dp-tagchip--${t.replace('#', 'n').toLowerCase()}`}>{t}</span>)}</div>
+        </div>
+        <div className="dp-tile-foot">
+          <div className="dp-tile-row">
+            <h4>{c.nom}</h4>
+            <span className="dp-tile-ico" aria-hidden>
+              <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M4 5h16v11H9l-5 4z" /></svg>
+              <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M12 20s-8-4.7-8-10.5A4.5 4.5 0 0112 7a4.5 4.5 0 018 2.5C20 15.300 12 20 12 20z" /></svg>
+            </span>
+          </div>
+          <p>{c.meta}</p>
+        </div>
       </div>
-      <h4>{c.nom}</h4>
-      <p>{c.meta}</p>
-      <div className="dp-tags">{c.tags.map(t => <span key={t} className={`dp-tagchip dp-tagchip--${t.replace('#', 'n').toLowerCase()}`}>{t}</span>)}</div>
     </article>
   )
 }
@@ -372,23 +382,28 @@ const CSS = `
 .dp-empty{display:block;min-height:220px}
 .dp-panel{max-width:36em}
 .dp-card:hover{transform:translateY(-8px)}
-/* Cadre de la carte : double filet (signature de la DA) autour de la carte, qui garde ses coins nets */
-.dp-cframe{position:relative;padding:9px;border:3px solid var(--cf);background:var(--cf-bg);box-shadow:0 18px 34px rgba(0,0,0,.35);transition:box-shadow .25s}
-.dp-cframe::after{content:'';position:absolute;inset:3px;border:1.5px solid var(--cf);pointer-events:none;opacity:.85}
-.dp-cframe img{display:block;width:100%;aspect-ratio:2.5/3.5;object-fit:cover;position:relative;z-index:1}
-.dp-card:hover .dp-cframe{box-shadow:0 30px 50px rgba(0,0,0,.45)}
-.dp[data-dir=A]{--cf:#fff;--cf-bg:rgba(255,255,255,.1)}
-.dp[data-dir=B]{--cf:#0a1228;--cf-bg:#fff}
-.dp[data-dir=C]{--cf:#003da6;--cf-bg:#fff}
-.dp-card h4{margin:14px 0 3px;font-size:17px;letter-spacing:.03em;line-height:1.15}
-.dp-card p{margin:0 0 9px;font-size:12px;letter-spacing:.06em;color:var(--dim);font-weight:600}
+/* Tuile : on garde l'esprit de la galerie actuelle (tuile blanche encadree + infos),
+   en version DA : cadre bleu a double filet, angles droits, pastilles sur la carte. */
+.dp-card{display:flex}
+.dp-tile{flex:1;min-width:0;position:relative;background:#fff;color:#0a1228;border:3px solid #003da6;padding:8px;box-shadow:0 16px 30px rgba(0,0,0,.32);transition:box-shadow .25s}
+.dp-tile::after{content:'';position:absolute;inset:3px;border:1.5px solid rgba(0,61,166,.45);pointer-events:none}
+.dp-card:hover .dp-tile{box-shadow:0 28px 46px rgba(0,0,0,.42)}
+.dp-tile-img{position:relative;background:#eef1f8}
+.dp-tile-img img{display:block;width:100%;aspect-ratio:2.5/3.5;object-fit:cover}
+.dp-tile-tags{position:absolute;left:6px;bottom:6px;right:6px;display:flex;gap:4px;flex-wrap:wrap}
+.dp-tile-foot{padding:10px 4px 4px}
+.dp-tile-row{display:flex;justify-content:space-between;align-items:flex-start;gap:8px}
+.dp-tile-ico{display:flex;gap:7px;color:#7a86a3;flex-shrink:0;padding-top:1px}
+.dp-card h4{margin:0 0 3px;font-size:15px;letter-spacing:.02em;line-height:1.2;color:#0a1228}
+.dp-card p{margin:0;font-size:11.5px;letter-spacing:.04em;color:#5b6684;font-weight:600;line-height:1.35}
 .dp-tags{display:flex;gap:6px;flex-wrap:wrap}
 /* Etiquettes : pleines, texte fonce/clair a fort contraste, lisibles sur fond sombre comme clair */
 .dp-tagchip{display:inline-block;padding:3px 9px;font-size:13px;letter-spacing:.09em;line-height:1.3;border:2px solid transparent}
 .dp-tagchip--rc{background:#ffb02e;color:#241300}
 .dp-tagchip--auto{background:#2fd072;color:#032612}
 .dp-tagchip--patch{background:#2f6bff;color:#fff}
-.dp-tagchip--n{background:transparent;color:var(--text);border-color:var(--text)}
+.dp-tagchip--n{background:#fff;color:#0a1228;border-color:#0a1228}
+.dp-tile-tags .dp-tagchip{font-size:12px;padding:2px 7px;box-shadow:0 2px 6px rgba(0,0,0,.35)}
 
 /* Composants */
 .dp-sheet{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:22px}
