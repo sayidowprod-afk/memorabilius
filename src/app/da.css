@@ -88,3 +88,53 @@ h1 { line-height: 1.02; }
   .da-profile h1 { font-size: 34px !important; }
   .da-profile .da-num { font-size: 30px !important; }
 }
+
+/* ═══ Portage de /design-preview sur le site ═══════════════════════════ */
+
+/* Barre de navigation : en mode sombre, marine ; liens en capitales grasses */
+[data-theme="dark"] .da-nav { background: #050912 !important; border-bottom: 1px solid rgba(255, 255, 255, 0.16) !important; }
+.da-nav .nav-desktop a, .da-nav .nav-desktop button { text-transform: uppercase; letter-spacing: 0.07em; font-weight: 800 !important; font-size: 13px !important; }
+.da-nav a.btn-main { border-radius: 0 !important; }
+
+/* Titres de section : cadre a double filet (signature du logo) */
+.section-title {
+  width: fit-content; max-width: 100%; padding: 6px 18px; border: 3px solid var(--text);
+  box-shadow: inset 0 0 0 3px var(--bg), inset 0 0 0 4.5px var(--text);
+}
+.section-title::after { display: none; }
+[data-theme="dark"] .section-title { box-shadow: inset 0 0 0 3px #08153b, inset 0 0 0 4.5px var(--text); }
+
+/* Banniere d'accueil : toujours marine -> bleu electrique, texte blanc (clair ET sombre) */
+.mb-hero {
+  background: linear-gradient(135deg, #050912 0%, #08153b 45%, #003da6 100%) !important;
+  border: 0 !important;
+}
+.mb-hero .aurora-bg { display: none; }
+.mb-hero-title { color: #fff !important; }
+.mb-hero-sub { color: rgba(255, 255, 255, 0.78) !important; }
+.mb-hero-badge { color: #fff !important; background: rgba(255, 255, 255, 0.1) !important; border: 2px solid rgba(255, 255, 255, 0.5) !important; }
+.mb-hero .btn-primary { background: #fff; color: #06122e !important; border-color: #fff; }
+.mb-hero .btn-primary:hover { background: transparent; color: #fff !important; }
+.mb-hero .btn-secondary { color: #fff !important; border-color: #fff; background: transparent; }
+.mb-hero .btn-secondary:hover { background: #fff; color: #06122e !important; }
+.mb-hero-inner > div:last-child span {
+  color: rgba(255, 255, 255, 0.85) !important; background: rgba(255, 255, 255, 0.08) !important;
+  border: 2px solid rgba(255, 255, 255, 0.25) !important; border-radius: 0 !important; text-transform: uppercase; letter-spacing: 0.08em;
+}
+
+/* Onglets de galerie : capitales grasses, soulignement epais (plus de pilule) */
+.da-tabs {
+  background: transparent !important; border-radius: 0 !important; padding: 0 !important; gap: 0 !important;
+  border-bottom: 3px solid var(--border); margin-bottom: 18px !important;
+}
+.da-tabs > div:first-child {
+  top: auto !important; bottom: -3px !important; height: 6px !important; border-radius: 0 !important;
+  background: var(--text) !important; box-shadow: none !important;
+}
+.da-tabs button {
+  padding: 12px 18px !important; border-radius: 0 !important; font-size: 15px !important;
+  text-transform: uppercase; letter-spacing: 0.1em; font-weight: 800 !important;
+}
+
+/* Boutons d'action : angles droits, capitales */
+.btn-ajouter { border-radius: 0 !important; text-transform: uppercase; letter-spacing: 0.06em; }

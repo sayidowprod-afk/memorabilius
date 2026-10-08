@@ -147,7 +147,7 @@ export default function Navbar() {
 
   return (
     <>
-      <nav style={{ background: dark ? '#1a1a1a' : 'white', borderBottom: `1px solid ${dark ? '#2a2a2a' : '#eee'}`, padding: '0 20px', display: 'flex', alignItems: 'center', justifyContent: 'space-between', height: 60, position: 'sticky', top: 0, zIndex: 200 }}>
+      <nav className="da-nav" style={{ background: dark ? '#1a1a1a' : 'white', borderBottom: `1px solid ${dark ? '#2a2a2a' : '#eee'}`, padding: '0 20px', display: 'flex', alignItems: 'center', justifyContent: 'space-between', height: 60, position: 'sticky', top: 0, zIndex: 200 }}>
         <Link href="/" style={{ display: 'flex', alignItems: 'center' }}>
           <img src="/memorabilius-logo.png" alt="Memorabilius" width={150} height={30}
             style={{ height: 30, width: 'auto', mixBlendMode: dark ? 'screen' : 'multiply', filter: dark ? 'invert(1)' : 'none' }}

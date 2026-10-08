@@ -2589,7 +2589,7 @@ export default function GalerieClient({ userId, initialCardUrl, initialCards, in
         {/* Onglets Collection / Wishlist / Commentaires / Bibliothèque — scrollable sur mobile.
             L'onglet actif est indique par une pilule qui glisse (mesuree via refs) plutot
             que chaque bouton togglant independamment son propre fond. */}
-        <div ref={tabBarRef} style={{ position: 'relative', display: 'flex', gap: 4, marginBottom: 16, background: dark ? '#2a2a2a' : '#f0f0f0', borderRadius: 10, padding: 4, maxWidth: '100%', overflowX: 'auto', WebkitOverflowScrolling: 'touch' }}>
+        <div ref={tabBarRef} className="da-tabs" style={{ position: 'relative', display: 'flex', gap: 4, marginBottom: 16, background: dark ? '#2a2a2a' : '#f0f0f0', borderRadius: 10, padding: 4, maxWidth: '100%', overflowX: 'auto', WebkitOverflowScrolling: 'touch' }}>
           {tabIndicator && (
             <div style={{
               position: 'absolute', top: 4, bottom: 4, left: tabIndicator.left, width: tabIndicator.width,
