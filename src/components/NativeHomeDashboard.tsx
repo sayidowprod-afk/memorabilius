@@ -376,12 +376,12 @@ export default function NativeHomeDashboard({ siteStats }: { siteStats: SiteStat
       )}
 
       <section className="dd-box">
-        <div className="dd-lvl">
-          <button type="button" className="dd-lvl-n" onClick={() => setShowXpInfo(v => !v)} aria-label="XP">
-            <span>{L.levelShort}</span><b className="da-num">{data.level.level}</b>
+        <div className="dd-prog dd-prog--first">
+          <button type="button" className="dd-prog-ico dd-lvl-ico" onClick={() => setShowXpInfo(v => !v)} aria-label="XP">
+            <b className="da-num">{data.level.level}</b>
           </button>
-          <div className="dd-lvl-bar">
-            <div className="dd-lvl-row"><span>{t('word_level')} {data.level.level + 1}</span><span>{data.level.xpIntoLevel}/{data.level.xpForNextLevel} XP</span></div>
+          <div className="dd-prog-b">
+            <div className="dd-lvl-row"><span>{t('word_level')} {data.level.level}</span><span>{data.level.xpIntoLevel}/{data.level.xpForNextLevel} XP</span></div>
             <div className="dd-bar dd-bar--seg"><i style={{ width: `${Math.min(100, Math.round(data.level.pct * 100))}%` }} /></div>
             <div className="dd-sub">{Math.max(0, data.level.xpForNextLevel - data.level.xpIntoLevel)} {L.toNext}</div>
           </div>
@@ -476,14 +476,6 @@ const DD_CSS = `
 .dd-act-item:first-child { border-top: 0; }
 .dd-act-item b { font-size: 34px; line-height: 1; min-width: 44px; font-weight: 400; color: var(--text); }
 .dd-act-item span { flex: 1; font: 700 14px system-ui, sans-serif; }
-.dd-lvl { display: flex; align-items: center; gap: 16px; padding: 14px 0; }
-.dd-lvl-n { background: transparent; color: var(--text); border: 3px solid var(--text); cursor: pointer; padding: 8px 18px 4px; display: grid; justify-items: center; flex-shrink: 0; min-width: 92px; }
-.dd-lvl-n span { font: 800 11px system-ui, sans-serif; letter-spacing: .18em; text-transform: uppercase; color: var(--text2); }
-.dd-lvl-n b { font-size: 72px; line-height: .95; font-weight: 400; }
-.dd-bar--seg { height: 20px; position: relative; }
-.dd-bar--seg::after { content: ''; position: absolute; inset: 0; pointer-events: none;
-  background: repeating-linear-gradient(90deg, transparent 0 calc(10% - 3px), var(--card-bg) calc(10% - 3px) 10%); }
-.dd-lvl-bar { flex: 1; min-width: 0; }
 .dd-lvl-row { display: flex; justify-content: space-between; gap: 10px; font: 800 12px system-ui, sans-serif; letter-spacing: .06em; text-transform: uppercase; margin-bottom: 7px; }
 .dd-lvl-row span:first-child { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
 .dd-bar { height: 12px; background: var(--bg3); }
@@ -492,6 +484,9 @@ const DD_CSS = `
 .dd-bar--ok i { background: #2fd072; }
 .dd-info { font-size: 12px; color: var(--text2); line-height: 1.6; padding-bottom: 10px; }
 .dd-prog { display: flex; align-items: center; gap: 14px; padding: 14px 0; border-top: 2px solid var(--border); }
+.dd-lvl-ico { background: transparent; color: var(--text); cursor: pointer; padding: 0; }
+.dd-lvl-ico b { font-size: 36px; line-height: 1; font-weight: 400; }
+.dd-prog--first { border-top: 0; }
 .dd-prog-ico { width: 46px; height: 46px; display: grid; place-items: center; font-size: 22px; border: 3px solid var(--text); flex-shrink: 0; }
 .dd-prog-b { flex: 1; min-width: 0; }
 .dd-sub { font: 700 11px system-ui, sans-serif; color: var(--text2); margin-top: 7px; letter-spacing: .04em; }
