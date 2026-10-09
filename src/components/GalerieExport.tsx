@@ -681,9 +681,9 @@ export default function GalerieExport({ cards: allCards, profileName, avatarUrl,
   const activeFilters = [fRc, fAuto, fPatch, fNum].filter(Boolean).length + [search, fTeam, fBrand, fYear].filter(Boolean).length
 
   const modal = open && mounted ? createPortal(
-    <div style={{ position: 'fixed', inset: 0, background: 'rgba(0,0,0,0.55)', zIndex: 9999, display: 'flex', alignItems: 'center', justifyContent: 'center', padding: 16 }}
+    <div style={{ position: 'fixed', inset: 0, background: 'rgba(0,0,0,0.55)', zIndex: 9999, display: 'flex', alignItems: 'center', justifyContent: 'center', padding: 16, paddingTop: 'calc(16px + var(--safe-top))', paddingBottom: 'calc(16px + var(--bottom-nav-h, 0px))' }}
       onClick={e => { if (e.target === e.currentTarget) setOpen(false) }}>
-      <div style={{ background: '#fff', borderRadius: 16, width: '100%', maxWidth: 420, maxHeight: '90vh', overflowY: 'auto', boxShadow: '0 20px 60px rgba(0,0,0,0.3)' }}>
+      <div style={{ background: '#fff', borderRadius: 16, width: '100%', maxWidth: 420, maxHeight: '100%', overflowY: 'auto', boxShadow: '0 20px 60px rgba(0,0,0,0.3)' }}>
 
         {/* Header */}
         <div style={{ padding: '16px 20px 12px', borderBottom: '1px solid #f0f0f0', display: 'flex', justifyContent: 'space-between', alignItems: 'center', position: 'sticky', top: 0, background: '#fff', zIndex: 1 }}>

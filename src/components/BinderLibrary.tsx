@@ -201,7 +201,8 @@ export default function BinderLibrary({ userId, isOwner, accent, pendingCard, on
 
   const [cardCounts, setCardCounts] = useState<Record<number, number>>({})
 
-  const [pageW, setPageW] = useState(PAGE_MAX_W)
+  // Taille initiale adaptee a l'ecran (avant : 620px fixes = enorme sur mobile tant que la mesure n'avait pas tourne)
+  const [pageW, setPageW] = useState(() => (typeof window === 'undefined' ? PAGE_MAX_W : Math.max(120, Math.min(PAGE_MAX_W, Math.floor((window.innerWidth - 32) / 2)))))
   const stageRef = useRef<HTMLDivElement>(null)
   const pageH = Math.round(pageW * PAGE_RATIO)
   const [binderFullscreen, setBinderFullscreen] = useState(false)
@@ -238,7 +239,7 @@ export default function BinderLibrary({ userId, isOwner, accent, pendingCard, on
     const el = stageRef.current
     if (!el) return
     const measure = () => {
-      const avail = el.clientWidth - 32
+      const avail = (el.clientWidth || window.innerWidth) - 32
       const byWidth = Math.floor(avail / 2)                       // deux pages côte à côte
       const byHeight = binderFullscreenRef.current
         ? Math.floor((window.innerHeight - 16) / PAGE_RATIO)    // stage padding(8) + marge(8) — bottom bar flotte en absolu
@@ -246,6 +247,9 @@ export default function BinderLibrary({ userId, isOwner, accent, pendingCard, on
       setPageW(Math.max(120, Math.min(PAGE_MAX_W, byWidth, byHeight)))
     }
     measure()
+    // remesure apres la mise en page (ouverture directe via lien / navigation : le conteneur n'a pas encore sa largeur finale)
+    const raf = requestAnimationFrame(measure)
+    const t1 = setTimeout(measure, 250)
     const ro = new ResizeObserver(measure)
     ro.observe(el)
     window.addEventListener('resize', measure)
@@ -258,7 +262,7 @@ export default function BinderLibrary({ userId, isOwner, accent, pendingCard, on
       }
     }
     window.addEventListener('keydown', onKey)
-    return () => { ro.disconnect(); window.removeEventListener('resize', measure); window.removeEventListener('keydown', onKey) }
+    return () => { cancelAnimationFrame(raf); clearTimeout(t1); ro.disconnect(); window.removeEventListener('resize', measure); window.removeEventListener('keydown', onKey) }
   }, [selected, binderFullscreen])
 
   // Feuilletage à deux faces : la feuille tourne en continu de 0 à ±180°.
@@ -1652,7 +1656,7 @@ export default function BinderLibrary({ userId, isOwner, accent, pendingCard, on
         )}
 
         {undoBinderBanner && createPortal(
-          <div style={{ position: 'fixed', bottom: 0, left: 0, right: 0, zIndex: 10000, display: 'flex', alignItems: 'center', gap: 14, background: '#1a1a1a', color: 'white', borderRadius: '12px 12px 0 0', padding: '12px 24px', paddingBottom: 'max(12px, var(--safe-area-inset-bottom, env(safe-area-inset-bottom)), 40px)', fontSize: 13, fontWeight: 700, boxShadow: '0 -4px 24px rgba(0,0,0,0.35)' }}>
+          <div style={{ position: 'fixed', bottom: 'var(--bottom-nav-h, 0px)', left: 0, right: 0, zIndex: 10000, display: 'flex', alignItems: 'center', gap: 14, background: '#1a1a1a', color: 'white', borderRadius: '12px 12px 0 0', padding: '12px 24px', fontSize: 13, fontWeight: 700, boxShadow: '0 -4px 24px rgba(0,0,0,0.35)' }}>
             <span style={{ flex: 1 }}>🗑️ {t('binder_deleted_toast').replace('{nom}', undoBinderBanner.nom)}</span>
             <button onClick={undoDeleteBinder}
               style={{ background: 'white', color: '#111', border: 'none', borderRadius: 8, padding: '7px 16px', fontSize: 13, fontWeight: 800, cursor: 'pointer', flexShrink: 0 }}>
@@ -1806,7 +1810,7 @@ export default function BinderLibrary({ userId, isOwner, accent, pendingCard, on
       {binderFullscreen && (
         <div style={{
           position: 'absolute', top: 0, left: 0, right: 0, zIndex: 10,
-          display: 'flex', alignItems: 'center', gap: 12, padding: '10px 16px',
+          display: 'flex', alignItems: 'center', gap: 12, padding: '10px 16px', paddingTop: 'calc(10px + var(--safe-top))',
           pointerEvents: 'none',
         }}>
           <span style={{ color: dark ? 'rgba(255,255,255,0.6)' : 'rgba(0,0,0,0.45)', fontWeight: 700, fontSize: 13, flex: 1, overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap', pointerEvents: 'none' }}>
@@ -2115,7 +2119,7 @@ export default function BinderLibrary({ userId, isOwner, accent, pendingCard, on
         <div style={{
           position: 'absolute', bottom: 0, left: 0, right: 0, zIndex: 10,
           display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 16,
-          padding: '8px 16px', pointerEvents: 'none',
+          padding: '8px 16px', paddingBottom: 'calc(8px + var(--safe-bottom))', pointerEvents: 'none',
         }}>
           {!isOpen ? (
             <button onClick={openTheBinder}

@@ -159,32 +159,46 @@ export default function ScannerPage() {
         await videoRef.current.play()
       }
 
-      if (typeof BarcodeDetector === 'undefined') {
-        // Fallback: invite l'utilisateur à utiliser l'appareil photo
+      // Detecteur natif si disponible ; sinon (WebView Android, Firefox, Safari...) decodage en JavaScript pur (jsQR).
+      // Avant : sans BarcodeDetector on basculait silencieusement sur l'appareil photo "carte" -> QR impossible a scanner.
+      let native: any = null
+      if (typeof BarcodeDetector !== 'undefined') {
+        try { native = new BarcodeDetector({ formats: ['qr_code'] }) } catch { native = null }
+      }
+      const jsQR = native ? null : (await import('jsqr')).default
+      const grab = document.createElement('canvas')
+      const gctx = grab.getContext('2d', { willReadFrequently: true })!
+
+      const open = (val: string) => {
+        setQrFound(val)
         stopQrScan()
-        setCameraModal('recto')
-        return
+        setTimeout(() => {
+          try {
+            const url = new URL(/^https?:\/\//i.test(val) ? val : 'https://' + val.replace(/^\/+/, ''))
+            router.push(url.pathname + url.search)
+          } catch { /* QR illisible */ }
+        }, 600)
       }
 
-      const detector = new BarcodeDetector({ formats: ['qr_code'] })
-
+      let last = 0
       const scan = async () => {
         const video = videoRef.current
         if (!video || video.readyState < 2) { qrAnimRef.current = requestAnimationFrame(scan); return }
         try {
-          const codes = await detector.detect(video)
-          for (const code of codes) {
-            const val: string = code.rawValue
-            if (val.includes('memorabilius')) {
-              setQrFound(val)
-              stopQrScan()
-              setTimeout(() => {
-                const url = new URL(val)
-                router.push(url.pathname + url.search)
-              }, 600)
-              return
-            }
+          let val: string | null = null
+          if (native) {
+            const codes = await native.detect(video)
+            val = codes.map((c: any) => c.rawValue as string).find((v: string) => v && /memorabilius/i.test(v)) || null
+          } else if (jsQR && performance.now() - last > 120) {
+            last = performance.now()
+            const k = Math.min(1, 720 / Math.max(video.videoWidth, video.videoHeight))
+            grab.width = Math.max(1, Math.round(video.videoWidth * k)); grab.height = Math.max(1, Math.round(video.videoHeight * k))
+            gctx.drawImage(video, 0, 0, grab.width, grab.height)
+            const img = gctx.getImageData(0, 0, grab.width, grab.height)
+            const res = jsQR(img.data, img.width, img.height, { inversionAttempts: 'attemptBoth' })
+            if (res?.data && /memorabilius/i.test(res.data)) val = res.data
           }
+          if (val) { open(val); return }
         } catch { /* frame skip */ }
         qrAnimRef.current = requestAnimationFrame(scan)
       }

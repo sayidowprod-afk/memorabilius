@@ -315,6 +315,27 @@ export default function CameraCapture({ onCapture, onClose, ratio }: Props) {
     } catch { /* tant pis, on capture quand meme */ }
   }
 
+  // Delai maximum : sur certains telephones (Samsung, apres un zoom materiel) takePhoto() / la mise au point
+  // restent suspendus plusieurs secondes -> l'appli semblait figee.
+  const withTimeout = <T,>(p: Promise<T>, ms: number): Promise<T> =>
+    new Promise<T>((resolve, reject) => {
+      const t = setTimeout(() => reject(new Error('timeout')), ms)
+      p.then(v => { clearTimeout(t); resolve(v) }, e => { clearTimeout(t); reject(e) })
+    })
+  // Photo "noire" : takePhoto() renvoie parfois un fichier valide mais vide (bug Android/Chromium connu).
+  const isBlackBlob = async (b: Blob): Promise<boolean> => {
+    try {
+      const bmp = await createImageBitmap(b)
+      const c = document.createElement('canvas'); c.width = 24; c.height = 24
+      const cx = c.getContext('2d', { willReadFrequently: true })!
+      cx.drawImage(bmp, 0, 0, 24, 24); bmp.close?.()
+      const d = cx.getImageData(0, 0, 24, 24).data
+      let sum = 0
+      for (let i = 0; i < d.length; i += 4) sum += d[i] + d[i + 1] + d[i + 2]
+      return sum / (24 * 24 * 3) < 6
+    } catch { return false }
+  }
+
   const capture = async () => {
     const video = videoRef.current
     if (!video) return
@@ -373,7 +394,10 @@ export default function CameraCapture({ onCapture, onClose, ratio }: Props) {
       h: Math.min(vh, fh * (1 + PAD * 2)),
     }
 
-    await ensureFocused()
+    // Zoom MATERIEL actif : takePhoto() ignore souvent le zoom du flux (photo non zoomee, differente de l'apercu) ;
+    // l'image du flux video, elle, est exactement ce que l'utilisateur voit -> on la prend, plus fiable.
+    const hwZoomActive = !digitalZoomRef.current && zoomRef.current > 1.05
+    try { await withTimeout(ensureFocused(), 1500) } catch { /* on capture quand meme */ }
 
     // ImageCapture.takePhoto() capture une vraie photo depuis le capteur
     // (pas juste la frame video affichee, plafonnee a 1920x1080) -- doit
@@ -383,7 +407,7 @@ export default function CameraCapture({ onCapture, onClose, ratio }: Props) {
     let blob: Blob | null = null
     // Echelle video -> pixels du blob final (1 pour la capture de la frame video).
     let sx = 1, sy = 1
-    if (imageCaptureRef.current) {
+    if (imageCaptureRef.current && !hwZoomActive) {
       try {
         // REVERT (URGENT) : forcer imageWidth/imageHeight via getPhotoCapabilities()
         // rendait la photo NOIRE sur beaucoup d'appareils Android -- takePhoto()
@@ -392,7 +416,8 @@ export default function CameraCapture({ onCapture, onClose, ratio }: Props) {
         // valeur discrete supportee par le capteur (bug connu de plusieurs
         // implementations Chromium/Android). On repasse a takePhoto() sans
         // reglage -- resolution par defaut du capteur, mais fiable partout.
-        const photoBlob = await imageCaptureRef.current.takePhoto()
+        const photoBlob = await withTimeout(imageCaptureRef.current.takePhoto(), 5000)
+        if (await isBlackBlob(photoBlob)) throw new Error('black photo')
         const bmp = await createImageBitmap(photoBlob)
         sx = bmp.width / vw
         sy = bmp.height / vh
@@ -532,7 +557,7 @@ export default function CameraCapture({ onCapture, onClose, ratio }: Props) {
 
           {/* Zoom : - / curseur / + */}
           {ready && zoomCaps && (
-            <div style={{ position: 'absolute', bottom: 132, left: '50%', transform: 'translateX(-50%)', display: 'flex', alignItems: 'center', gap: 10, background: 'rgba(0,0,0,0.5)', borderRadius: 24, padding: '6px 14px', width: 'min(86vw, 340px)', boxSizing: 'border-box' }}>
+            <div style={{ position: 'absolute', bottom: 'calc(132px + var(--safe-bottom))', left: '50%', transform: 'translateX(-50%)', display: 'flex', alignItems: 'center', gap: 10, background: 'rgba(0,0,0,0.5)', borderRadius: 24, padding: '6px 14px', width: 'min(86vw, 340px)', boxSizing: 'border-box' }}>
               <button onClick={() => applyZoom(zoomRef.current - Math.max(zoomCaps.step, (zoomCaps.max - zoomCaps.min) / 20))}
                 aria-label="Dézoomer"
                 style={{ width: 28, height: 28, borderRadius: '50%', border: 'none', background: 'rgba(255,255,255,0.2)', color: 'white', fontSize: 18, lineHeight: 1, cursor: 'pointer' }}>−</button>
@@ -569,7 +594,7 @@ export default function CameraCapture({ onCapture, onClose, ratio }: Props) {
           )}
 
           {/* Boutons */}
-          <div style={{ position: 'absolute', bottom: 40, left: 0, right: 0, display: 'flex', justifyContent: 'center', alignItems: 'center', gap: 32 }}>
+          <div style={{ position: 'absolute', bottom: 'calc(40px + var(--safe-bottom))', left: 0, right: 0, display: 'flex', justifyContent: 'center', alignItems: 'center', gap: 32 }}>
             <button onClick={onClose}
               style={{ width: 48, height: 48, borderRadius: '50%', background: 'rgba(255,255,255,0.2)', border: '2px solid white', color: 'white', fontSize: 20, cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
               ✕

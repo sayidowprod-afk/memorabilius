@@ -572,6 +572,9 @@ export default function GalerieClient({ userId, initialCardUrl, initialCards, in
   const [cardValues, setCardValues] = useState<Map<string, number>>(new Map())
   const [editMode, setEditMode] = useState(false)
   const [qrMode, setQrMode] = useState(false)
+  // Export de la galerie : ouvert depuis le menu "..." mais rendu EN DEHORS de ce menu, pour que le menu
+  // se referme au clic (avant, il restait affiche derriere/au-dessus de la fenetre d'export)
+  const [exportOpen, setExportOpen] = useState(false)
   const [qrSelected, setQrSelected] = useState<Map<string, { url: string; title: string; subtitle: string }>>(new Map())
   const [qrDownloading, setQrDownloading] = useState(false)
   const [mounted, setMounted] = useState(false)
@@ -2042,6 +2045,9 @@ export default function GalerieClient({ userId, initialCardUrl, initialCards, in
                   <option key={p} value={p}>↳ dans « {p} »</option>
                 ))}
               </select>
+              {/* Zone "supprimer" collee en bas du panneau : le panneau defile en interne, le bouton restait
+                  hors de vue (en bas) sur les petits ecrans */}
+              <div style={{ position: 'sticky', bottom: -10, margin: '0 -10px -10px', padding: '4px 10px 10px', background: dark ? '#1e1e1e' : 'white' }}>
               {deleteTagConfirm === tag ? (
                 <div style={{ borderTop: '1px solid #f0f0f0', paddingTop: 8 }}>
                   <p style={{ fontSize: 10, color: '#e53935', fontWeight: 700, margin: '0 0 6px' }}>Supprimer "{tag}" ? Les cartes ne seront pas supprimées.</p>
@@ -2073,6 +2079,7 @@ export default function GalerieClient({ userId, initialCardUrl, initialCards, in
                   🗑 Supprimer cette collection
                 </button>
               )}
+              </div>
               </div>
             </>,
             document.body,
@@ -2335,17 +2342,10 @@ export default function GalerieClient({ userId, initialCardUrl, initialCards, in
                             style={{ background: 'none', border: 'none', borderRadius: 8, padding: '9px 14px', fontWeight: 700, fontSize: 13, cursor: 'pointer', textAlign: 'left', color: dark ? '#ddd' : '#333', width: '100%' }}>
                             ⊞ Mode expo
                           </button>
-                          <div style={{ padding: '0 4px' }}>
-                            <GalerieExport
-                              cards={cards}
-                              profileName={profile?.display_name || ''}
-                              avatarUrl={profile?.avatar_url || `https://ui-avatars.com/api/?name=${encodeURIComponent(profile?.display_name || 'U')}&background=003DA6&color=fff&size=128`}
-                              accent={accent}
-                              lang={lang}
-                              cardValues={cardValues}
-                              isOwner={isOwner}
-                            />
-                          </div>
+                          <button onClick={() => { setActionMenuOpen(false); setExportOpen(true) }} disabled={!cards.length}
+                            style={{ background: 'none', border: 'none', borderRadius: 8, padding: '9px 14px', fontWeight: 700, fontSize: 13, cursor: cards.length ? 'pointer' : 'not-allowed', textAlign: 'left', color: dark ? '#ddd' : '#333', width: '100%', opacity: cards.length ? 1 : 0.5 }}>
+                            📸 {t('export_button')}
+                          </button>
                           <button onClick={() => { setShowStats(s => !s); setActionMenuOpen(false) }}
                             style={{ background: 'none', border: 'none', borderRadius: 8, padding: '9px 14px', fontWeight: 700, fontSize: 13, cursor: 'pointer', textAlign: 'left', color: dark ? '#ddd' : '#333', width: '100%' }}>
                             📊 {showStats ? t('gallery_hide_stats') : t('gallery_show_stats')}
@@ -3086,7 +3086,7 @@ export default function GalerieClient({ userId, initialCardUrl, initialCards, in
         `}</style>
         
         {mounted && undoBanner && createPortal(
-          <div style={{ position: 'fixed', bottom: 0, left: 0, right: 0, zIndex: 10000, display: 'flex', alignItems: 'center', gap: 14, background: '#1a1a1a', color: 'white', borderRadius: '12px 12px 0 0', padding: '12px 24px', paddingBottom: 'max(12px, var(--safe-area-inset-bottom, env(safe-area-inset-bottom)), 40px)', fontSize: 13, fontWeight: 700, boxShadow: '0 -4px 24px rgba(0,0,0,0.35)' }}>
+          <div style={{ position: 'fixed', bottom: 'var(--bottom-nav-h, 0px)', left: 0, right: 0, zIndex: 10000, display: 'flex', alignItems: 'center', gap: 14, background: '#1a1a1a', color: 'white', borderRadius: '12px 12px 0 0', padding: '12px 24px', fontSize: 13, fontWeight: 700, boxShadow: '0 -4px 24px rgba(0,0,0,0.35)' }}>
             <span style={{ flex: 1 }}>🗑️ {t('gallery_deleted_toast').replace('{nom}', undoBanner.nom)}</span>
             <button onClick={() => undoBanner.ids ? undoBulkDelete(undoBanner.ids) : undoDeleteCard(undoBanner.id)}
               style={{ background: 'white', color: '#111', border: 'none', borderRadius: 8, padding: '7px 16px', fontSize: 13, fontWeight: 800, cursor: 'pointer', flexShrink: 0 }}>
@@ -3097,7 +3097,7 @@ export default function GalerieClient({ userId, initialCardUrl, initialCards, in
         )}
 
         {mounted && editMode && isOwner && selectedCards.size > 0 && createPortal(
-          <div style={{ position: 'fixed', bottom: 0, left: 0, right: 0, zIndex: 9999, display: 'flex', alignItems: 'center', gap: 10, background: '#003DA6', color: 'white', borderRadius: '12px 12px 0 0', padding: '12px 24px', paddingBottom: 'max(12px, var(--safe-area-inset-bottom, env(safe-area-inset-bottom)), 40px)', fontSize: 13, fontWeight: 700, flexWrap: 'wrap', boxShadow: '0 -4px 24px rgba(0,61,166,0.35)' }}>
+          <div style={{ position: 'fixed', bottom: 'var(--bottom-nav-h, 0px)', left: 0, right: 0, zIndex: 9999, display: 'flex', alignItems: 'center', gap: 10, background: '#003DA6', color: 'white', borderRadius: '12px 12px 0 0', padding: '12px 24px', fontSize: 13, fontWeight: 700, flexWrap: 'wrap', boxShadow: '0 -4px 24px rgba(0,61,166,0.35)' }}>
             <span style={{ flex: '1 1 120px' }}>{selectedCards.size} carte{selectedCards.size > 1 ? 's' : ''} sélectionnée{selectedCards.size > 1 ? 's' : ''}</span>
             {/* Assigner collection tag en masse */}
             {showBulkNewTag ? (
@@ -3225,6 +3225,19 @@ export default function GalerieClient({ userId, initialCardUrl, initialCards, in
           lang={lang}
           cardValues={cardValues}
           isOwner={isOwner}
+          open={exportOpen}
+          onOpenChange={setExportOpen}
+          hideTrigger
+        />
+
+        <GalerieExport
+          cards={cards}
+          profileName={profile?.display_name || ''}
+          avatarUrl={profile?.avatar_url || `https://ui-avatars.com/api/?name=${encodeURIComponent(profile?.display_name || 'U')}&background=003DA6&color=fff&size=128`}
+          accent={accent}
+          lang={lang}
+          cardValues={cardValues}
+          isOwner={isOwner}
           restrictToKeys={exportSelectionKeys}
           open={exportSelectionOpen}
           onOpenChange={setExportSelectionOpen}
@@ -3232,7 +3245,7 @@ export default function GalerieClient({ userId, initialCardUrl, initialCards, in
         />
 
         {mounted && qrMode && createPortal(
-          <div style={{ position: 'fixed', bottom: 0, left: 0, right: 0, zIndex: 9999, display: 'flex', alignItems: 'center', gap: 10, background: '#7c3aed', color: 'white', borderRadius: '12px 12px 0 0', padding: '12px 24px', paddingBottom: 'max(12px, var(--safe-area-inset-bottom, env(safe-area-inset-bottom)), 40px)', fontSize: 13, fontWeight: 700, flexWrap: 'wrap', boxShadow: '0 -4px 24px rgba(124,58,237,0.35)' }}>
+          <div style={{ position: 'fixed', bottom: 'var(--bottom-nav-h, 0px)', left: 0, right: 0, zIndex: 9999, display: 'flex', alignItems: 'center', gap: 10, background: '#7c3aed', color: 'white', borderRadius: '12px 12px 0 0', padding: '12px 24px', fontSize: 13, fontWeight: 700, flexWrap: 'wrap', boxShadow: '0 -4px 24px rgba(124,58,237,0.35)' }}>
             <span style={{ flex: '1 1 160px' }}>
               {qrSelected.size === 0
                 ? '▦ Clique sur des cartes pour les sélectionner'

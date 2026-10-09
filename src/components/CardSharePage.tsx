@@ -5,6 +5,7 @@ import { createClient } from '@supabase/supabase-js'
 import CardValueModule from './CardValueModule'
 import ShareButton from './ShareButton'
 import CardTagBadges from '@/components/CardTagBadges'
+import { useTheme } from '@/lib/ThemeContext'
 
 const supabase = createClient(
   process.env.NEXT_PUBLIC_SUPABASE_URL!,
@@ -18,6 +19,10 @@ export default function CardSharePage({ cardId }: { cardId: string }) {
   const [profile, setProfile] = useState<any>(null)
   const [loading, setLoading] = useState(true)
   const [flipped, setFlipped] = useState(false)
+  const { dark } = useTheme()
+  // Visiteur deja connecte : on n'affiche pas l'invitation "Rejoindre Memorabilius"
+  const [loggedIn, setLoggedIn] = useState(false)
+  useEffect(() => { supabase.auth.getSession().then(({ data }) => setLoggedIn(!!data.session)).catch(() => {}) }, [])
 
   useEffect(() => {
     const load = async () => {
@@ -56,6 +61,11 @@ export default function CardSharePage({ cardId }: { cardId: string }) {
   )
 
   const accent   = profile?.couleur_bordure || BRAND
+  const panel    = dark ? '#0e1530' : 'white'
+  const ink      = dark ? '#ffffff' : '#0f172a'
+  const ink2     = dark ? '#e2e8f8' : '#1e293b'
+  const muted    = dark ? '#8fa0c4' : '#94a3b8'
+  const hair     = dark ? 'rgba(255,255,255,0.12)' : '#f1f5f9'
   const hasVerso = !!card.image_verso
   const isH      = !!card.is_horizontal
   const galLink  = `/galerie/${profile?.slug || card.user_id}`
@@ -74,7 +84,7 @@ export default function CardSharePage({ cardId }: { cardId: string }) {
   ].filter(([, v]) => v) as [string, string][]
 
   return (
-    <div style={{ minHeight: '100vh', background: '#f1f5f9', fontFamily: 'system-ui, sans-serif', colorScheme: 'light' }}>
+    <div style={{ minHeight: '100vh', background: dark ? '#050912' : '#f1f5f9', fontFamily: 'system-ui, sans-serif', colorScheme: dark ? 'dark' : 'light' }}>
       <style>{`@keyframes spin { to { transform: rotate(360deg) } }`}</style>
 
       {/* Header */}
@@ -130,20 +140,20 @@ export default function CardSharePage({ cardId }: { cardId: string }) {
             </div>
           </div>
           {hasVerso && (
-            <div style={{ marginTop: 10, fontSize: 12, color: '#94a3b8', display: 'flex', alignItems: 'center', gap: 5 }}>
+            <div style={{ marginTop: 10, fontSize: 12, color: muted, display: 'flex', alignItems: 'center', gap: 5 }}>
               ↔ Appuyez pour retourner
             </div>
           )}
         </div>
 
         {/* Card info */}
-        <div style={{ background: 'white', borderRadius: 16, padding: '22px 24px', boxShadow: '0 1px 6px rgba(0,0,0,0.07)', marginBottom: 12 }}>
+        <div style={{ background: panel, borderRadius: 16, padding: '22px 24px', boxShadow: '0 1px 6px rgba(0,0,0,0.07)', marginBottom: 12 }}>
           {card.equipe && (
             <div style={{ color: accent, fontWeight: 800, fontSize: 11, textTransform: 'uppercase', letterSpacing: '0.08em', marginBottom: 4 }}>
               {card.equipe}
             </div>
           )}
-          <h1 style={{ fontSize: 22, fontWeight: 900, margin: '0 0 8px', lineHeight: 1.2, color: '#0f172a' }}>{card.nom}</h1>
+          <h1 style={{ fontSize: 22, fontWeight: 900, margin: '0 0 8px', lineHeight: 1.2, color: ink }}>{card.nom}</h1>
           {card.variation && (
             <div style={{ fontSize: 13, color: accent, fontStyle: 'italic', marginBottom: 12 }}>{card.variation}</div>
           )}
@@ -155,11 +165,11 @@ export default function CardSharePage({ cardId }: { cardId: string }) {
           )}
 
           {infoRows.length > 0 && (
-            <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '10px 20px', paddingTop: 12, borderTop: '1px solid #f1f5f9' }}>
+            <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '10px 20px', paddingTop: 12, borderTop: `1px solid ${hair}` }}>
               {infoRows.map(([label, value]) => (
                 <div key={label}>
-                  <div style={{ fontSize: 10, fontWeight: 700, color: '#94a3b8', textTransform: 'uppercase', marginBottom: 2 }}>{label}</div>
-                  <div style={{ fontSize: 14, fontWeight: 600, color: '#1e293b' }}>{value}</div>
+                  <div style={{ fontSize: 10, fontWeight: 700, color: muted, textTransform: 'uppercase', marginBottom: 2 }}>{label}</div>
+                  <div style={{ fontSize: 14, fontWeight: 600, color: ink2 }}>{value}</div>
                 </div>
               ))}
             </div>
@@ -167,7 +177,7 @@ export default function CardSharePage({ cardId }: { cardId: string }) {
         </div>
 
         {/* eBay prices */}
-        <div style={{ background: 'white', borderRadius: 16, padding: '20px 24px', boxShadow: '0 1px 6px rgba(0,0,0,0.07)', marginBottom: 12 }}>
+        <div style={{ background: panel, borderRadius: 16, padding: '20px 24px', boxShadow: '0 1px 6px rgba(0,0,0,0.07)', marginBottom: 12 }}>
           <CardValueModule
             cardName={card.nom}
             set={`${card.marque || ''} ${card.collection || ''}`.trim()}
@@ -187,7 +197,7 @@ export default function CardSharePage({ cardId }: { cardId: string }) {
         {profile && (
           <Link href={galLink} style={{ textDecoration: 'none', display: 'block', marginBottom: 20 }}>
             <div style={{
-              background: 'white', borderRadius: 16, padding: '14px 18px',
+              background: panel, borderRadius: 16, padding: '14px 18px',
               boxShadow: '0 1px 6px rgba(0,0,0,0.07)',
               display: 'flex', alignItems: 'center', gap: 14,
               border: '2px solid transparent', transition: 'border-color 0.2s',
@@ -201,16 +211,16 @@ export default function CardSharePage({ cardId }: { cardId: string }) {
                 alt={profile.display_name}
               />
               <div style={{ flex: 1, minWidth: 0 }}>
-                <div style={{ fontSize: 10, fontWeight: 700, color: '#94a3b8', textTransform: 'uppercase', marginBottom: 2 }}>Collectionneur</div>
-                <div style={{ fontSize: 15, fontWeight: 800, color: '#0f172a', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>{profile.display_name}</div>
+                <div style={{ fontSize: 10, fontWeight: 700, color: muted, textTransform: 'uppercase', marginBottom: 2 }}>Collectionneur</div>
+                <div style={{ fontSize: 15, fontWeight: 800, color: ink, whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>{profile.display_name}</div>
               </div>
               <span style={{ fontSize: 13, fontWeight: 700, color: accent, flexShrink: 0 }}>Voir la galerie →</span>
             </div>
           </Link>
         )}
 
-        {/* CTA */}
-        <div style={{ background: accent, borderRadius: 16, padding: '24px 20px', textAlign: 'center', color: 'white' }}>
+        {/* CTA (visiteurs non connectes uniquement) */}
+        {!loggedIn && <div style={{ background: accent, borderRadius: 16, padding: '24px 20px', textAlign: 'center', color: 'white' }}>
           <div style={{ fontSize: 16, fontWeight: 900, marginBottom: 6 }}>Collectionnez et partagez vos cartes</div>
           <div style={{ fontSize: 13, opacity: 0.8, marginBottom: 18 }}>Scanner IA · Galerie 3D · Échanges — 100% gratuit</div>
           <Link href="/sinscrire" style={{
@@ -219,7 +229,7 @@ export default function CardSharePage({ cardId }: { cardId: string }) {
           }}>
             Rejoindre Memorabilius
           </Link>
-        </div>
+        </div>}
       </div>
     </div>
   )

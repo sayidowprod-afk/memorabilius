@@ -62,6 +62,8 @@ export default function CommunityCardsSection({ cards, totalCollectors }: { card
   const [myMode, setMyMode] = useState<MyMode>('all')
   const [sort, setSort] = useState<SortKey>('default')
   const [visibleCount, setVisibleCount] = useState(48)
+  // Joueurs avec des centaines de cartes : on peut replier la liste pour atteindre les sets / la checklist
+  const [collapsed, setCollapsed] = useState(false)
   const sentinelRef = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
@@ -126,7 +128,18 @@ export default function CommunityCardsSection({ cards, totalCollectors }: { card
           }
           {' · '}{totalCollectors} collectionneur{totalCollectors > 1 ? 's' : ''}
         </span>
+        <span style={{ display: 'flex', gap: 8 }}>
+          <button onClick={() => setCollapsed(c => !c)}
+            style={{ background: 'var(--jp-surface)', color: 'var(--jp-text2)', border: '1.5px solid var(--jp-border)', borderRadius: 6, padding: '4px 12px', fontSize: 12, fontWeight: 700, cursor: 'pointer' }}>
+            {collapsed ? 'Afficher les cartes ▼' : 'Masquer les cartes ▲'}
+          </button>
+          <a href="#checklist-joueur"
+            style={{ background: 'var(--jp-surface)', color: 'var(--jp-accent)', border: '1.5px solid var(--jp-border)', borderRadius: 6, padding: '4px 12px', fontSize: 12, fontWeight: 700, textDecoration: 'none' }}>
+            Checklist ↓
+          </a>
+        </span>
       </div>
+      {!collapsed && (<>
 
       {/* Toolbar */}
       <div style={{ background: 'var(--jp-surface)', border: '1px solid var(--jp-border)', borderRadius: 10, padding: '10px 12px', marginBottom: 14, display: 'flex', flexWrap: 'wrap', gap: 8, alignItems: 'center' }}>
@@ -251,6 +264,7 @@ export default function CommunityCardsSection({ cards, totalCollectors }: { card
           )}
         </>
       )}
+      </>)}
     </section>
   )
 }

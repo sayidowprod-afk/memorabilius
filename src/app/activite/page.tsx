@@ -84,7 +84,7 @@ export default function ActivitePage() {
           {items.map(item => (
             <Link
               key={item.id_manuelle}
-              href={`/galerie/${item.slug || item.user_id}`}
+              href={`/galerie/${item.slug || item.user_id}${item.image_recto ? `?card=${encodeURIComponent(item.image_recto)}` : ''}`}
               style={{
                 display: 'flex', alignItems: 'center', gap: 12, padding: '10px 8px', borderRadius: 10,
                 textDecoration: 'none', color: 'var(--text, #121212)',

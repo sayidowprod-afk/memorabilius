@@ -6,6 +6,7 @@ import { fetchEspnHeadshot, fetchEspnPlayerBio } from '@/lib/espnHeadshot'
 import { normalizeName, cardPageUrl } from '@/lib/playerSlug'
 import CommunityCardsSection from './CommunityCardsSection'
 import PlayerChecklistSection from './PlayerChecklistSection'
+import ScrollTopButton from '@/components/ScrollTopButton'
 import TagIcon from '@/components/TagIcon'
 
 export const revalidate = 3600
@@ -859,6 +860,7 @@ export default async function JoueurPage({ params }: { params: Promise<{ slug: s
 
           {/* Checklist personnelle */}
           <PlayerChecklistSection playerName={playerName} />
+          <ScrollTopButton />
 
           {/* Sets groupés par année */}
           {sets.length > 0 && (

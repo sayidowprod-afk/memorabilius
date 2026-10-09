@@ -101,6 +101,11 @@ body {
 a { color: inherit; text-decoration: none; }
 
 /* Garder en phase avec NAV_TOTAL_HEIGHT_CSS dans src/lib/nativeLayout.ts (CSS ne peut pas importer du JS) */
+/* Zones de securite reutilisables (App native : Android bord a bord, la barre d'etat et la barre de navigation
+   du telephone se dessinent PAR-DESSUS l'appli ; --bottom-nav-h = hauteur de notre propre nav du bas). */
+:root { --safe-top: var(--safe-area-inset-top, env(safe-area-inset-top, 0px)); --safe-bottom: var(--safe-area-inset-bottom, env(safe-area-inset-bottom, 0px)); }
+body.native-app { --safe-top: max(var(--safe-area-inset-top, env(safe-area-inset-top, 0px)), 28px); --safe-bottom: max(var(--safe-area-inset-bottom, env(safe-area-inset-bottom, 0px)), 48px); }
+body.native-bottom-nav { --bottom-nav-h: calc(56px + max(var(--safe-area-inset-bottom, env(safe-area-inset-bottom)), 56px)); }
 body.native-bottom-nav { padding-bottom: calc(56px + max(var(--safe-area-inset-bottom, env(safe-area-inset-bottom)), 48px)); }
 
 /* Le classeur/la camera en plein ecran sont censes etre des vues immersives

@@ -185,7 +185,7 @@ export default function ExpoPage() {
   return createPortal(
     <div style={{ position: 'fixed', inset: 0, background: '#0a0a0a', color: '#fff', zIndex: 99999, display: 'flex', flexDirection: 'column', overflow: 'hidden' }}>
       {/* Barre de contrôles */}
-      <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '10px 16px', background: 'rgba(0,0,0,0.85)', backdropFilter: 'blur(8px)', flexShrink: 0, gap: 12 }}>
+      <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '10px 16px', paddingTop: 'calc(10px + var(--safe-top))', background: 'rgba(0,0,0,0.85)', backdropFilter: 'blur(8px)', flexShrink: 0, gap: 12 }}>
         <div style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
           <button onClick={() => router.back()} style={{ background: 'rgba(255,255,255,0.1)', border: 'none', color: '#fff', borderRadius: 8, padding: '7px 14px', cursor: 'pointer', fontWeight: 700, fontSize: 13 }}>
             ✕ Quitter
@@ -225,7 +225,7 @@ export default function ExpoPage() {
       ) : mode === 'grid' ? (
         /* ── Mode grille ── */
         <div style={{
-          flex: 1, overflowY: 'auto', padding: '20px 16px',
+          flex: 1, overflowY: 'auto', padding: '20px 16px', paddingBottom: 'calc(20px + var(--safe-bottom))',
           display: 'grid',
           gridTemplateColumns: 'repeat(auto-fill, minmax(110px, 1fr))',
           gap: 10, alignContent: 'start',
