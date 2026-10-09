@@ -1,31 +1,18 @@
 'use client'
+import CardTags, { type TagSize } from '@/components/CardTags'
+import { TAG_BASE } from '@/lib/cardTags'
 
-// Palette canonique RC/AUTO/PATCH, reprise de GalerieClient (deja la plus
-// repandue dans l'app) et desormais partagee partout pour eviter les 3 jeux
-// de couleurs differents observes (galerie, TradeModal, messages).
-export const TAG_COLORS = { rc: '#e67e22', auto: '#2e7d32', patch: '#1976d2', num: '#7b1fa2' } as const
+// Palette canonique RC/AUTO/PATCH/NUM, encore utilisee par des filtres et des compteurs.
+export const TAG_COLORS = TAG_BASE
 
+// Les etiquettes d'une carte (style "teintees"), sur une seule ligne, toujours en entier.
 export default function CardTagBadges({
-  rc, auto, patch, num, size = 'sm', compact = false,
+  rc, auto, patch, num, numText, size = 'sm',
 }: {
-  rc?: boolean; auto?: boolean; patch?: boolean; num?: boolean
-  size?: 'xs' | 'sm' | 'md' | 'lg'
+  rc?: boolean; auto?: boolean; patch?: boolean; num?: boolean | string | null
+  numText?: string | null   // ex: "038/125" -> affiche "/125", numero complet au survol
+  size?: TagSize
   compact?: boolean
 }) {
-  if (!rc && !auto && !patch && !num) return null
-  const dims = {
-    xs: { fontSize: 7, padding: '1px 3px' },
-    sm: { fontSize: 9, padding: '2px 5px' },
-    md: { fontSize: 9, padding: '3px 6px' },
-    lg: { fontSize: 10, padding: '3px 8px' },
-  }[size]
-  const base: React.CSSProperties = { ...dims, fontWeight: 900, borderRadius: 4, color: 'white', lineHeight: 1.4 }
-  return (
-    <>
-      {rc && <span style={{ ...base, background: TAG_COLORS.rc }}>{compact ? 'RC' : 'RC'}</span>}
-      {auto && <span style={{ ...base, background: TAG_COLORS.auto }}>{compact ? 'AU' : 'AUTO'}</span>}
-      {patch && <span style={{ ...base, background: TAG_COLORS.patch }}>{compact ? 'PA' : 'PATCH'}</span>}
-      {num && <span style={{ ...base, background: TAG_COLORS.num }}>{compact ? '#N' : '# NUM'}</span>}
-    </>
-  )
+  return <CardTags rc={rc} auto={auto} patch={patch} num={num} numText={numText} size={size} />
 }

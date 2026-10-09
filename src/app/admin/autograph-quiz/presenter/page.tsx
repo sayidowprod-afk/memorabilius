@@ -3,6 +3,7 @@ import { useEffect, useRef, useState } from 'react'
 import Link from 'next/link'
 import { supabase } from '@/lib/supabase'
 import { loadUprightImage } from '@/lib/uprightImage'
+import CardTagBadges from '@/components/CardTagBadges'
 
 interface QuizCard {
   id: string; player_name: string; team: string | null; image_recto: string
@@ -218,9 +219,7 @@ export default function AutographQuizPresenterPage() {
           <div style={{ display: 'flex', flexDirection: 'column', gap: 10, minWidth: 220 }}>
             {(current.rc || current.patch || current.num) && (
               <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap' }}>
-                {current.rc && <span style={badgeStyle('#e67e22')}>★ RC</span>}
-                {current.patch && <span style={badgeStyle('#1565c0')}>PATCH</span>}
-                {current.num && <span style={badgeStyle('#7b1fa2')}>{current.num}</span>}
+                <CardTagBadges rc={!!current.rc} patch={!!current.patch} num={current.num || null} size="lg" />
               </div>
             )}
             {(current.annee || current.marque || current.collection) && (

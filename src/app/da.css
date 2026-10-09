@@ -3,7 +3,7 @@
    structure modifiee. Pour revenir en arriere : retirer l'import de ce fichier
    dans layout.tsx. */
 
-@font-face { font-family: 'Surfquest'; src: url('/Surfquest-3zVXL.otf') format('opentype'); font-display: swap; }
+@font-face { font-family: 'Surfquest'; src: url('/Surfquest-NoSlash.otf') format('opentype'); font-display: swap; }
 
 /* ── Typographie : Surfquest reservee aux gros titres et aux chiffres ── */
 h1,

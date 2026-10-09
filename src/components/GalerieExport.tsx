@@ -3,6 +3,7 @@ import { useState, useMemo, useEffect } from 'react'
 import { createPortal } from 'react-dom'
 import { saveOrShareFile } from '@/lib/saveOrShare'
 import { useLang, localeFor, type Lang } from '@/lib/LangContext'
+import { numTier, numShort, mix, rgba, TAG_BASE } from '@/lib/cardTags'
 
 interface Card {
   f: string; b?: string; n: string; v: string; y: string; br: string; s: string; t: string
@@ -242,28 +243,59 @@ async function generate(cards: Card[], profileName: string, avatarUrl: string, a
     let lineY = y + cardH + 4
     ctx.textBaseline = 'top'
 
-    // Badges (sous la carte, comme la galerie)
+    // Badges (sous la carte, comme la galerie) : etiquettes "teintees" RC / AUTO / tirage / PATCH
     if (opts.showBadges) {
-      const tags: { label: string; color: string }[] = []
-      if (card.rc)   tags.push({ label: 'RC',    color: '#e67e22' })
-      if (card.auto) tags.push({ label: 'AUTO',  color: '#2e7d32' })
-      if (card.num)  tags.push({ label: card.num, color: '#7b1fa2' })
-      if (card.patch) tags.push({ label: 'PATCH', color: '#1976d2' })
-      if (card.g && card.g !== 'Raw') tags.push({ label: card.g, color: accent })
-      if (tags.length) {
-        ctx.font = `700 ${tagFont}px ${FONT}`
-        ctx.textBaseline = 'middle'
+      const items: { kind: 'rc' | 'auto' | 'patch' | 'num'; text: string; num?: string }[] = []
+      if (card.rc) items.push({ kind: 'rc', text: 'RC' })
+      if (card.auto) items.push({ kind: 'auto', text: 'AUTO' })
+      if (card.num) items.push({ kind: 'num', text: numShort(card.num) || 'NUM', num: card.num })
+      if (card.patch) items.push({ kind: 'patch', text: 'PATCH' })
+      const grade = card.g && card.g !== 'Raw' ? card.g : ''
+      if (items.length || grade) {
+        const avail = cardW - 4
+        const gap = 3
+        let pillH = Math.max(14, Math.round(tagH * 1.5))
+        const setFont = (ph: number) => { ctx.font = `900 ${Math.max(7, Math.round(ph * 0.5))}px ${FONT}` }
+        const measure = (ph: number) => { setFont(ph); return items.reduce((a, it) => a + ctx.measureText(it.text).width + ph * 0.9 + gap, 0) }
+        const total = measure(pillH)
+        if (total > avail) pillH = Math.max(11, Math.floor(pillH * (avail / total)))   // tout reste sur la ligne
+        setFont(pillH)
+        ctx.textAlign = 'center'; ctx.textBaseline = 'middle'
         let tagX = x + 2
-        tags.slice(0, 5).forEach(tag => {
-          const tw = ctx.measureText(tag.label).width + tagFont + 2
-          ctx.fillStyle = tag.color
-          ctx.beginPath(); ctx.roundRect(tagX, lineY, tw, tagH, 3); ctx.fill()
-          ctx.fillStyle = '#fff'
-          ctx.fillText(tag.label, tagX + (tagFont + 2) / 2, lineY + tagH / 2)
-          tagX += tw + 3
+        items.forEach(it => {
+          const w = Math.round(ctx.measureText(it.text).width + pillH * 0.9)
+          const r = Math.round(pillH * 0.28)
+          const tier = it.kind === 'num' ? numTier(it.num) : 'std'
+          if (tier !== 'std') {
+            const stops = tier === 'gold' ? ['#b8860b', '#ffd700', '#fffacd', '#ffd700', '#b8860b'] : tier === 'silver' ? ['#555555', '#c0c0c0', '#ffffff', '#c0c0c0', '#555555'] : ['#6d3a00', '#cd7f32', '#f5cba7', '#cd7f32', '#6d3a00']
+            const g = ctx.createLinearGradient(tagX, lineY, tagX + w, lineY + pillH)
+            stops.forEach((c, i) => g.addColorStop(i / (stops.length - 1), c))
+            ctx.fillStyle = g
+            ctx.beginPath(); ctx.roundRect(tagX, lineY, w, pillH, r); ctx.fill()
+            ctx.fillStyle = tier === 'gold' ? '#3d2800' : tier === 'silver' ? '#111111' : '#ffffff'
+          } else {
+            const c = TAG_BASE[it.kind]
+            ctx.fillStyle = rgba(c, isDark ? 0.32 : 0.18)
+            ctx.beginPath(); ctx.roundRect(tagX, lineY, w, pillH, r); ctx.fill()
+            ctx.strokeStyle = rgba(c, 0.85); ctx.lineWidth = 1
+            ctx.beginPath(); ctx.roundRect(tagX + 0.5, lineY + 0.5, w - 1, pillH - 1, r); ctx.stroke()
+            ctx.fillStyle = isDark ? mix(c, 0.7) : mix(c, -0.3)
+          }
+          ctx.fillText(it.text, tagX + w / 2, lineY + pillH / 2 + 0.5)
+          tagX += w + gap
         })
-        ctx.textBaseline = 'top'
-        lineY += tagH + 4
+        if (grade) {
+          ctx.font = `700 ${tagFont}px ${FONT}`
+          const tw = ctx.measureText(grade).width + tagFont + 2
+          if (tagX + tw <= x + cardW) {
+            ctx.fillStyle = accent
+            ctx.beginPath(); ctx.roundRect(tagX, lineY + (pillH - tagH) / 2, tw, tagH, 3); ctx.fill()
+            ctx.fillStyle = '#fff'
+            ctx.fillText(grade, tagX + tw / 2, lineY + pillH / 2 + 0.5)
+          }
+        }
+        ctx.textAlign = 'start'; ctx.textBaseline = 'top'
+        lineY += pillH + 3
       }
     }
 

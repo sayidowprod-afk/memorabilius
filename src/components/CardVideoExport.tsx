@@ -6,6 +6,7 @@ import { useLang } from '@/lib/LangContext'
 import { saveOrShareFile } from '@/lib/saveOrShare'
 import { toast } from '@/lib/toast'
 import { supabase } from '@/lib/supabase'
+import { cardTagDrawItems, drawTagRow } from '@/lib/drawCardTags'
 import { SPORTS_TEAMS, teamLogoUrl, SPORT_LABELS, type Sport } from '@/lib/sportsTeams'
 
 // Couleur par defaut pour les equipes "custom" de l'app (Fedération de la
@@ -612,41 +613,9 @@ export default function CardVideoExport({ card, accent: accentProp, onClose, own
       const badgePad = Math.round(W * 0.022)
       const badgeR   = badgeH / 2
 
-      type BadgeEntry = { label: string; color: string }
-      const tags: BadgeEntry[] = []
-      if (card.rc) tags.push({ label: '★ RC', color: '#e67e22' })
-      if (card.auto) tags.push({ label: 'AUTO', color: '#2e7d32' })
-      if (card.num) {
-        const m = card.num.trim().match(/\/(\d+)$/)
-        const n = m ? parseInt(m[1]) : null
-        const c = n === 1 ? '#b8860b' : n !== null && n <= 10 ? '#777' : n !== null && n <= 25 ? '#a0622e' : '#7b1fa2'
-        tags.push({ label: card.num, color: c })
-      }
-      if (card.patch) tags.push({ label: 'PATCH', color: '#1565c0' })
-
-      if (tags.length > 0) {
-        ictx.font = `800 ${badgeFs}px Inter, sans-serif`
-        const widths  = tags.map(t => ictx.measureText(t.label).width + badgePad * 2)
-        const gap     = Math.round(W * 0.012)
-        const totalW  = widths.reduce((a, b) => a + b, 0) + gap * (tags.length - 1)
-        let bx = tx - totalW / 2
-
-        tags.forEach((tag, i) => {
-          const bw  = widths[i]
-          const bcy = ty + badgeH / 2
-
-          ictx.fillStyle = isDark ? 'rgba(255,255,255,0.08)' : 'rgba(0,0,0,0.05)'
-          ictx.beginPath(); ictx.roundRect(bx, ty, bw, badgeH, badgeR); ictx.fill()
-          ictx.strokeStyle = `${tag.color}55`
-          ictx.lineWidth = 1
-          ictx.stroke()
-
-          ictx.fillStyle = tag.color
-          ictx.textBaseline = 'middle'
-          ictx.fillText(tag.label, bx + bw / 2, bcy + 0.5)
-          ictx.textBaseline = 'top'
-          bx += bw + gap
-        })
+      const tagItems = cardTagDrawItems(card)
+      if (tagItems.length > 0) {
+        drawTagRow(ictx, tagItems, { cx: tx, y: ty, maxW: W * 0.84, h: badgeH, gap: Math.round(W * 0.012), isDark, fontFamily: 'Inter, sans-serif' })
         ty += badgeH + Math.round(panelH * 0.07)
       }
 

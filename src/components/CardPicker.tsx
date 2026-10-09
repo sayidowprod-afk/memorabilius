@@ -5,6 +5,7 @@ import { supabase } from '@/lib/supabase'
 import { fetchCsvCardsForProfiles } from '@/lib/csvCards'
 import { useLang } from '@/lib/LangContext'
 import ModalCloseButton from '@/components/ModalCloseButton'
+import CardTagBadges from '@/components/CardTagBadges'
 
 export interface PickableCard {
   key: string
@@ -210,9 +211,7 @@ export default function CardPicker({ userId, onSelect, onSelectMany, onClose, ex
                   style={{ width: '100%', height: 140, objectFit: 'contain', display: 'block', borderRadius: '6px 6px 0 0' }} />
                 {(c.rc || c.auto || c.patch) && (
                   <div style={{ position: 'absolute', top: 3, left: 3, display: 'flex', gap: 2 }}>
-                    {c.rc && <span style={{ fontSize: 7, fontWeight: 900, color: 'white', background: '#e67e22', borderRadius: 2, padding: '1px 3px' }}>RC</span>}
-                    {c.auto && <span style={{ fontSize: 7, fontWeight: 900, color: 'white', background: '#2e7d32', borderRadius: 2, padding: '1px 3px' }}>AU</span>}
-                    {c.patch && <span style={{ fontSize: 7, fontWeight: 900, color: 'white', background: '#1976d2', borderRadius: 2, padding: '1px 3px' }}>PA</span>}
+                    <CardTagBadges rc={c.rc} auto={c.auto} patch={c.patch} size="xs" />
                   </div>
                 )}
                 {multi && sel && (

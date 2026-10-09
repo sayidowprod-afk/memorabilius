@@ -5,6 +5,7 @@ import { supabase } from '@/lib/supabase'
 import { SPORTS_TEAMS, teamLogoUrl } from '@/lib/sportsTeams'
 import { teamSlug as toTeamSlug } from '@/lib/playerSlug'
 import { useLang } from '@/lib/LangContext'
+import CardTagBadges from '@/components/CardTagBadges'
 
 const ACCENT = '#003DA6'
 
@@ -133,10 +134,7 @@ function MemoLinkPreview({ url }: { url: string }) {
             )}
             {(data.num || badges.length > 0) && (
               <div style={{ display: 'flex', gap: 4, flexWrap: 'wrap', marginTop: 6 }}>
-                {data.num && <span style={{ fontSize: 10, fontWeight: 800, color: '#555', background: '#f0f0f0', borderRadius: 4, padding: '2px 6px' }}>#{data.num}</span>}
-                {badges.map(b => (
-                  <span key={b.label} style={{ fontSize: 10, fontWeight: 900, color: 'white', background: b.bg, borderRadius: 4, padding: '2px 6px' }}>{b.label}</span>
-                ))}
+                <CardTagBadges rc={!!data.rc} auto={!!data.auto} patch={!!data.patch} num={data.num} size="sm" />
               </div>
             )}
           </div>

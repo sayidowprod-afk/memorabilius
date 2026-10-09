@@ -48,11 +48,21 @@ export default async function OGImage({ params }: { params: Promise<{ cardId: st
   const avatarUrl = profile?.avatar_url
     || `https://ui-avatars.com/api/?name=${encodeURIComponent(collectorName)}&background=0c1942&color=ffffff&size=200`
 
-  const tags: { label: string; bg: string }[] = []
-  if (card.rc) tags.push({ label: 'RC', bg: '#e67e22' })
-  if (card.auto) tags.push({ label: 'AUTO', bg: '#2e7d32' })
-  if (card.patch) tags.push({ label: 'PATCH', bg: '#1976d2' })
-  if (card.num) tags.push({ label: card.num, bg: '#7b1fa2' })
+  // Etiquettes "teintees" (meme style que le site) : fond de la couleur a faible opacite, bordure et texte de la couleur
+  const tags: { label: string; color: string; fx?: { bg: string; fg: string } }[] = []
+  if (card.rc) tags.push({ label: 'RC', color: '#e67e22' })
+  if (card.auto) tags.push({ label: 'AUTO', color: '#2e7d32' })
+  if (card.num) {
+    const m = String(card.num).trim().match(/\/\s*(\d+)\s*$/)
+    const n = m ? parseInt(m[1], 10) : null
+    const fx = n === 1 ? { bg: 'linear-gradient(135deg,#b8860b,#ffd700,#fffacd,#ffd700,#b8860b)', fg: '#3d2800' }
+      : n !== null && n <= 10 ? { bg: 'linear-gradient(135deg,#555555,#c0c0c0,#ffffff,#c0c0c0,#555555)', fg: '#111111' }
+      : n !== null && n <= 25 ? { bg: 'linear-gradient(135deg,#6d3a00,#cd7f32,#f5cba7,#cd7f32,#6d3a00)', fg: '#ffffff' } : undefined
+    tags.push({ label: n === 1 ? '1/1' : n !== null ? `/${n}` : 'NUM', color: '#7b1fa2', fx })
+  }
+  if (card.patch) tags.push({ label: 'PATCH', color: '#1976d2' })
+  const hexToRgba = (hex: string, a: number) => { const v = parseInt(hex.slice(1), 16); return `rgba(${(v >> 16) & 255},${(v >> 8) & 255},${v & 255},${a})` }
+  const lighten = (hex: string, t: number) => { const v = parseInt(hex.slice(1), 16); const c = [(v >> 16) & 255, (v >> 8) & 255, v & 255].map(x => Math.round(x + (255 - x) * t)); return `rgb(${c[0]},${c[1]},${c[2]})` }
 
   const subLine = [card.marque, card.collection, card.annee].filter(Boolean).join(' · ')
 
@@ -102,7 +112,8 @@ export default async function OGImage({ params }: { params: Promise<{ cardId: st
             {tags.length > 0 && (
               <div style={{ display: 'flex', flexWrap: 'wrap', gap: 8 }}>
                 {tags.map(tag => (
-                  <div key={tag.label} style={{ fontSize: 14, fontWeight: 900, padding: '5px 12px', borderRadius: 6, background: tag.bg, color: 'white', display: 'flex' }}>
+                  <div key={tag.label} style={{ fontSize: 16, fontWeight: 900, padding: '6px 14px', borderRadius: 7, display: 'flex',
+                    ...(tag.fx ? { background: tag.fx.bg, color: tag.fx.fg } : { background: hexToRgba(tag.color, 0.32), color: lighten(tag.color, 0.7), border: `1px solid ${hexToRgba(tag.color, 0.85)}` }) }}>
                     {tag.label}
                   </div>
                 ))}

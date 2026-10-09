@@ -3,6 +3,7 @@ import Link from 'next/link'
 import { useEffect, useRef } from 'react'
 import { useLang } from '@/lib/LangContext'
 import { useTheme } from '@/lib/ThemeContext'
+import CardTagBadges from '@/components/CardTagBadges'
 
 interface Card {
   img: string; name: string; variant: string; year: string
@@ -23,9 +24,7 @@ function PepiteCard({ card, eager, dark }: { card: Card; eager: boolean; dark: b
       </div>
       <div style={{ padding: '7px 8px' }}>
         <div style={{ display: 'flex', gap: 3, flexWrap: 'wrap', marginBottom: 4 }}>
-          {card.rc && <span style={{ fontSize: 7.5, fontWeight: 900, padding: '2px 4px', borderRadius: 3, background: '#e67e22', color: 'white' }}>RC</span>}
-          {card.auto && <span style={{ fontSize: 7.5, fontWeight: 900, padding: '2px 4px', borderRadius: 3, background: '#2e7d32', color: 'white' }}>AUTO</span>}
-          {card.patch && <span style={{ fontSize: 7.5, fontWeight: 900, padding: '2px 4px', borderRadius: 3, background: '#1976d2', color: 'white' }}>PATCH</span>}
+          <CardTagBadges rc={card.rc} auto={card.auto} patch={card.patch} num={card.num} size="xs" />
         </div>
         <p style={{ fontWeight: 800, fontSize: 11, margin: 0, whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis', color: dark ? '#fff' : '#121212' }}>{card.name}</p>
         <p style={{ fontSize: 9, color: '#999', margin: '2px 0 0', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>{card.year} {card.brand}</p>

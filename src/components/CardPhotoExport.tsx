@@ -5,6 +5,7 @@ import { useLang } from '@/lib/LangContext'
 import { saveOrShareFile } from '@/lib/saveOrShare'
 import { toast } from '@/lib/toast'
 import { supabase } from '@/lib/supabase'
+import { cardTagDrawItems, drawTagRow } from '@/lib/drawCardTags'
 import { SPORTS_TEAMS, teamLogoUrl, SPORT_LABELS, type Sport } from '@/lib/sportsTeams'
 
 interface Card {
@@ -402,42 +403,9 @@ export default function CardPhotoExport({ card, accent: accentProp, onClose, own
     const badgePad = Math.round(w * 0.022)
     const badgeR   = badgeH / 2
 
-    type BadgeEntry = { label: string; color: string }
-    const tags: BadgeEntry[] = []
-    if (card.rc) tags.push({ label: '★ RC', color: '#e67e22' })
-    if (card.auto) tags.push({ label: 'AUTO', color: '#2e7d32' })
-    if (card.num) {
-      const m = card.num.trim().match(/\/(\d+)$/)
-      const n = m ? parseInt(m[1]) : null
-      const c = n === 1 ? '#b8860b' : n !== null && n <= 10 ? '#777' : n !== null && n <= 25 ? '#a0622e' : '#7b1fa2'
-      tags.push({ label: card.num, color: c })
-    }
-    if (card.patch) tags.push({ label: 'PATCH', color: '#1565c0' })
-    if (card.g && card.g !== 'Raw') tags.push({ label: card.g, color: accent })
-
-    if (tags.length > 0) {
-      ctx.font = `800 ${badgeFs}px Inter, sans-serif`
-      const widths = tags.map(tg => ctx.measureText(tg.label).width + badgePad * 2)
-      const gap = Math.round(w * 0.012)
-      const totalW = widths.reduce((a, b) => a + b, 0) + gap * (tags.length - 1)
-      let bx = tx - totalW / 2
-
-      tags.forEach((tag, i) => {
-        const bw = widths[i]
-        const bcy = ty + badgeH / 2
-
-        ctx.fillStyle = isDark ? 'rgba(255,255,255,0.08)' : 'rgba(0,0,0,0.05)'
-        ctx.beginPath(); ctx.roundRect(bx, ty, bw, badgeH, badgeR); ctx.fill()
-        ctx.strokeStyle = `${tag.color}55`
-        ctx.lineWidth = 1
-        ctx.stroke()
-
-        ctx.fillStyle = tag.color
-        ctx.textBaseline = 'middle'
-        ctx.fillText(tag.label, bx + bw / 2, bcy + 0.5)
-        ctx.textBaseline = 'top'
-        bx += bw + gap
-      })
+    const tagItems = cardTagDrawItems(card, accent)
+    if (tagItems.length > 0) {
+      drawTagRow(ctx, tagItems, { cx: tx, y: ty, maxW: w * 0.84, h: badgeH, gap: Math.round(w * 0.012), isDark, fontFamily: 'Inter, sans-serif' })
       ty += badgeH + Math.round(panelH * 0.07)
     }
 
