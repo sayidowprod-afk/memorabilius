@@ -637,13 +637,8 @@ export default function TeamPage({ params }: { params: Promise<{ teamId: string 
 
       {/* Header — meme traitement que le header de profil galerie : degrade
           d'accent en bas a droite, plutot qu'un aplat uni. */}
-      <div style={{ position: 'relative', overflow: 'hidden', background: dark ? '#1e1e1e' : 'white', borderRadius: 16, marginBottom: 20, boxShadow: 'var(--elevation-md, 0 4px 20px rgba(0,0,0,0.06))' }}>
-        <div style={{
-          position: 'absolute', inset: 0,
-          background: `linear-gradient(to top left, ${ACCENT}${dark ? '3d' : '2b'}, transparent 70%)`,
-          pointerEvents: 'none',
-        }} />
-        <div className="team-header-row" style={{ position: 'relative', padding: 28, display: 'flex', alignItems: 'center', gap: 20, flexWrap: 'wrap' }}>
+      <div className="da-profile da-grain da-team" style={{ ['--da-accent' as string]: ACCENT, position: 'relative', overflow: 'hidden', marginBottom: 20 }}>
+        <div className="team-header-row header-row" style={{ position: 'relative', padding: 28, display: 'flex', alignItems: 'center', gap: 20, flexWrap: 'wrap' }}>
           {team.avatar_url
             ? <img src={team.avatar_url} style={{ width: 70, height: 70, borderRadius: '50%', objectFit: 'cover', border: `3px solid ${ACCENT}`, flexShrink: 0 }} alt={team.name} />
             : <div style={{ width: 70, height: 70, borderRadius: '50%', background: ACCENT, display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 28, fontWeight: 900, color: 'white', flexShrink: 0 }}>{team.name.charAt(0).toUpperCase()}</div>
@@ -657,13 +652,15 @@ export default function TeamPage({ params }: { params: Promise<{ teamId: string 
             <p style={{ color: 'var(--text3, #999)', fontSize: 12, margin: '4px 0 0' }}>{members.length} membre{members.length > 1 ? 's' : ''}</p>
           </div>
           <CardFan images={fanImages} />
-          <div className="team-header-stats" style={{ display: 'flex', gap: 16, flexWrap: 'wrap' }}>
-            {[{ val: totalStats.total, label: 'Cartes', color: ACCENT }, { val: totalStats.rc, label: 'RC', color: '#e67e22' }, { val: totalStats.auto, label: 'Auto', color: '#2e7d32' }].map(s => (
-              <div key={s.label} style={{ textAlign: 'center' }}>
-                <div style={{ fontSize: 20, fontWeight: 900, color: s.color }}>{s.val}</div>
-                <div style={{ fontSize: 10, color: 'var(--text3, #999)', textTransform: 'uppercase', fontWeight: 700 }}>{s.label}</div>
-              </div>
-            ))}
+          <div className="header-stats-block" style={{ order: 2 }}>
+            <div className="team-header-stats" style={{ gridTemplateColumns: 'repeat(3, 1fr)' }}>
+              {[{ val: totalStats.total, label: 'Cartes' }, { val: totalStats.rc, label: 'RC' }, { val: totalStats.auto, label: 'Auto' }].map(s => (
+                <div key={s.label} style={{ textAlign: 'center' }}>
+                  <div className="da-num">{s.val}</div>
+                  <div style={{ textTransform: 'uppercase', fontWeight: 700 }}>{s.label}</div>
+                </div>
+              ))}
+            </div>
           </div>
           <div className="team-header-actions" style={{ display: 'flex', gap: 8, alignItems: 'center', flexWrap: 'wrap' }}>
             <button onClick={randomTeamBinder} disabled={randomBinderLoading} style={{ background: 'var(--bg3, #f0f0f0)', color: 'var(--text2, #555)', border: 'none', borderRadius: 8, padding: '8px 14px', fontWeight: 700, cursor: randomBinderLoading ? 'wait' : 'pointer', fontSize: 13, display: 'inline-flex', alignItems: 'center', gap: 5 }}>
@@ -676,10 +673,10 @@ export default function TeamPage({ params }: { params: Promise<{ teamId: string 
               {copied ? <><span className="selection-check-pop">✓</span> {t('teams_copied')}</> : t('teams_share')}
             </button>
             {!isMember && !hasCandidature && currentUser && (
-              <button onClick={postuler} style={{ background: ACCENT, color: 'white', border: 'none', borderRadius: 8, padding: '10px 20px', fontWeight: 700, cursor: 'pointer' }}>{t('teams_join')}</button>
+              <button onClick={postuler} className="team-join" style={{ background: ACCENT, color: 'white', border: 'none', borderRadius: 8, padding: '10px 20px', fontWeight: 700, cursor: 'pointer' }}>{t('teams_join')}</button>
             )}
             {hasCandidature && !isMember && <span style={{ background: '#fff3e0', color: '#e67e22', padding: '10px 16px', borderRadius: 8, fontWeight: 700, fontSize: 13 }}>⏳ En attente</span>}
-            {isMember && <span style={{ color: ACCENT, fontWeight: 700 }}>✓ Membre</span>}
+            {isMember && <span style={{ color: '#fff', fontWeight: 800, textTransform: 'uppercase', letterSpacing: '0.06em' }}>✓ Membre</span>}
             {isMember && !isChef && (
               leavePending ? (
                 // Delai de grace avant l'action reelle (contrairement a avant, qui

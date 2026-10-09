@@ -294,3 +294,19 @@ img[src$=".png"], img[src$=".svg"] { background: none !important; animation: non
 .vit-ref { position: absolute; left: 0; right: 0; top: 100%; width: 100%; aspect-ratio: 2.5 / 3.5; object-fit: cover; transform: scaleY(-1); opacity: .3; pointer-events: none;
   -webkit-mask-image: linear-gradient(to top, rgba(0,0,0,.9), transparent 52%); mask-image: linear-gradient(to top, rgba(0,0,0,.9), transparent 52%);
   background: none !important; animation: none !important; }
+
+/* ── Profil d'equipe : meme DA que le profil de galerie ── */
+.da-team .team-header-actions { order: 3; }
+.da-team .team-header-actions button, .da-team .team-header-actions a {
+  background: transparent !important; color: #fff !important; border: 2px solid rgba(255, 255, 255, .55) !important; border-radius: 0 !important;
+  text-transform: uppercase; letter-spacing: .06em; font-weight: 800 !important;
+}
+.da-team .team-header-actions button.team-join { background: #fff !important; color: #06122e !important; border-color: #fff !important; }
+.da-team .team-header-text h1 { color: #fff !important; }
+.da-team .team-header-text a { background: rgba(255,255,255,.12) !important; color: #fff !important; border-radius: 0 !important; }
+.da-team .team-header-stats { display: grid !important; gap: 0 !important; border-top: 3px solid color-mix(in srgb, var(--da-accent, #003da6) 70%, #fff); padding-top: 8px; width: 100%; }
+.da-team .team-header-stats > div { padding: 10px 4px 4px; border-right: 2px solid color-mix(in srgb, var(--da-accent, #003da6) 55%, transparent); }
+.da-team .team-header-stats > div:last-child { border-right: 0; }
+.da-team .team-header-stats .da-num { font-size: clamp(40px, 7vw, 96px) !important; line-height: 1; color: #fff !important; }
+.da-team .team-header-stats > div > div:last-child { font-size: clamp(13px, 1.5vw, 18px); letter-spacing: .14em; color: rgba(255,255,255,.7) !important; }
+.da-team .header-stats-block { flex: 1 1 100%; min-width: 0; }
