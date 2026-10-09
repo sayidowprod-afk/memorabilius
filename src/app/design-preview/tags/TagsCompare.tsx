@@ -267,9 +267,12 @@ function StripW({ s, h, dark, tier, v }: { s: Sample; h: number; dark: boolean; 
   // meme taille (donc meme hauteur) quel que soit le nombre d'etiquettes : on dimensionne pour le pire cas
   // (RC + AUTO + PATCH + tirage a 4 chiffres), jamais pour la carte en cours
   void chars
-  const K = 16 * 0.86 + 4 * 1.5 + (separate ? 4 * 0.35 : 0.4)
-  const base = Math.round(h * 0.54 * 10) / 10
-  const outer: React.CSSProperties = { display: 'inline-flex', alignItems: 'stretch', gap: separate ? '0.32em' : 0, height: '2.3em', fontFamily: 'system-ui, -apple-system, "Segoe UI", sans-serif',
+  const isSurf = v === 'c11' || v === 'c12'
+  // Surfquest est tres etroite (RC+AUTO+PATCH+/1250 = 5,4em contre ~12em en Arial gras) : pire cas recalcule,
+  // donc le texte peut etre bien plus grand a largeur egale
+  const K = isSurf ? 11.4 : 16 * 0.86 + 4 * 1.5 + (separate ? 4 * 0.35 : 0.4)
+  const base = isSurf ? Math.round(h * 1.0 * 10) / 10 : Math.round(h * 0.54 * 10) / 10
+  const outer: React.CSSProperties = { display: 'inline-flex', alignItems: 'stretch', gap: separate ? '0.32em' : 0, height: isSurf ? (v === 'c12' ? '1.12em' : '1.3em') : '2.3em', fontFamily: 'system-ui, -apple-system, "Segoe UI", sans-serif',
     fontWeight: 900, letterSpacing: '0.05em', lineHeight: 1, fontSize: `clamp(8px, calc(100cqw / ${K.toFixed(2)}), ${base}px)`, whiteSpace: 'nowrap', fontVariantNumeric: 'tabular-nums',
     textTransform: 'uppercase', maxWidth: '100%' }
   const R = '0.42em'
@@ -279,8 +282,8 @@ function StripW({ s, h, dark, tier, v }: { s: Sample; h: number; dark: boolean; 
     const c = col(g)
     const surf = v === 'c11' || v === 'c12'
     // Surfquest : police condensee, plus haute que large -> texte agrandi pour remplir l'etiquette
-    const base: React.CSSProperties = { display: 'inline-flex', alignItems: 'center', padding: surf ? '0 0.55em' : pad,
-      ...(surf ? { fontFamily: 'Surfquest, system-ui, sans-serif', fontWeight: 400, letterSpacing: v === 'c12' ? '0.06em' : '0.03em', fontSize: v === 'c12' ? '1.62em' : '1.42em', paddingTop: '0.04em' } : {}) }
+    const base: React.CSSProperties = { display: 'inline-flex', alignItems: 'center', padding: surf ? '0 0.4em' : pad,
+      ...(surf ? { fontFamily: 'Surfquest, system-ui, sans-serif', fontWeight: 400, letterSpacing: v === 'c12' ? '0.07em' : '0.04em', fontSize: '1em', paddingTop: '0.05em' } : {}) }
     if (g.isNum && tier !== 'std' && v !== 'c9') {
       // memes effets que les pastilles actuelles : or (1/1), argent (2-10), bronze (11-25), avec halo anime (keyframes de globals.css)
       const fx = {
