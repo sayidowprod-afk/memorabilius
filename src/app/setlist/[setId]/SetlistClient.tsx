@@ -286,8 +286,8 @@ export default function SetlistClient({ setId }: { setId: string }) {
     const PAGE = 1000
     for (let from = 0; ; from += PAGE) {
       const q = isBase
-        ? supabase.from('card_set_entries').select('*').eq('set_id', setId).is('variation', null).range(from, from + PAGE - 1)
-        : supabase.from('card_set_entries').select('*').eq('set_id', setId).eq('variation', varName).range(from, from + PAGE - 1)
+        ? supabase.from('card_set_entries').select('*').eq('set_id', setId).is('variation', null).order('id').range(from, from + PAGE - 1)
+        : supabase.from('card_set_entries').select('*').eq('set_id', setId).eq('variation', varName).order('id').range(from, from + PAGE - 1)
       const { data: page } = await q
       if (!page?.length) break
       allPages.push(...page)
@@ -364,8 +364,8 @@ export default function SetlistClient({ setId }: { setId: string }) {
     const PAGE = 1000
     for (let from = 0; ; from += PAGE) {
       const q = isBase
-        ? supabase.from('card_set_entries').select('id').eq('set_id', setId).is('variation', null).range(from, from + PAGE - 1)
-        : supabase.from('card_set_entries').select('id').eq('set_id', setId).eq('variation', varName).range(from, from + PAGE - 1)
+        ? supabase.from('card_set_entries').select('id').eq('set_id', setId).is('variation', null).order('id').range(from, from + PAGE - 1)
+        : supabase.from('card_set_entries').select('id').eq('set_id', setId).eq('variation', varName).order('id').range(from, from + PAGE - 1)
       const { data: page } = await q
       if (!page?.length) break
       allEntryIds.push(...(page as any[]).map(e => e.id))

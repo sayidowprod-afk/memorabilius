@@ -117,14 +117,22 @@ export async function POST(req: NextRequest) {
     return { ...c, ...real, verified: true }
   })
 
-  // 1. Fetch ALL entries in one query (service role bypasses the 1000-row default limit)
-  const { data: allEntries } = await supabase
-    .from('card_set_entries')
-    .select('id, player_name, variation')
-    .eq('set_id', setId)
-    .limit(100000)
-
-  const entries = allEntries || []
+  // 1. Toutes les entrees du set, PAGINEES : PostgREST plafonne chaque reponse a 1000 lignes (max_rows), meme en
+  //    service role et malgre .limit(100000) -- sur un set de 15 000 cartes, seules les 1000 premieres arrivaient,
+  //    donc cases cochees perdues, auto-detection tronquee et "7 cartes" en haut de page.
+  const PAGE = 1000
+  const entries: { id: number; player_name: string; variation: string | null }[] = []
+  for (let from = 0; ; from += PAGE) {
+    const { data: page } = await supabase
+      .from('card_set_entries')
+      .select('id, player_name, variation')
+      .eq('set_id', setId)
+      .order('id')
+      .range(from, from + PAGE - 1)
+    if (!page?.length) break
+    entries.push(...(page as any[]))
+    if (page.length < PAGE) break
+  }
 
   // 2. Get completions — prefer RPC JOIN (migration 20260808_set_sync_rpc.sql),
   //    fallback to chunked .in() if RPC not yet deployed.
@@ -136,24 +144,33 @@ export async function POST(req: NextRequest) {
     p_user_id: user.id,
   })
 
-  if (!rpcErr && rpcRows) {
+  // Le RPC est plafonne a 1000 lignes comme le reste : s'il echoue OU atteint le plafond, on relit les completions
+  // de l'utilisateur par pages (index user_id, entry_id), bornees aux identifiants du set.
+  if (!rpcErr && rpcRows && rpcRows.length < PAGE) {
     for (const row of rpcRows) {
       completedEntryIds.add(row.entry_id)
       completionDetails[row.entry_id] = { id: row.completion_id, manually_checked: row.manually_checked, matched_card_key: row.matched_card_key || null }
     }
   } else {
-    // Fallback: chunked .in() (max 2000 per chunk to stay under URL limits)
-    const entryIds = entries.map(e => e.id)
-    const CHUNK = 2000
-    for (let i = 0; i < entryIds.length; i += CHUNK) {
-      const { data } = await supabase
-        .from('user_set_completion')
-        .select('id, entry_id, manually_checked, matched_card_key')
-        .eq('user_id', user.id)
-        .in('entry_id', entryIds.slice(i, i + CHUNK))
-      for (const c of data || []) {
-        completedEntryIds.add(c.entry_id)
-        completionDetails[c.entry_id] = { id: c.id, manually_checked: c.manually_checked, matched_card_key: c.matched_card_key || null }
+    if (rpcErr) console.error('set-sync: get_set_completions a echoue, lecture par pages', rpcErr.message)
+    const inSet = new Set(entries.map(e => e.id))
+    if (entries.length) {
+      const lo = entries[0].id, hi = entries[entries.length - 1].id
+      for (let from = 0; ; from += PAGE) {
+        const { data } = await supabase
+          .from('user_set_completion')
+          .select('id, entry_id, manually_checked, matched_card_key')
+          .eq('user_id', user.id)
+          .gte('entry_id', lo).lte('entry_id', hi)
+          .order('entry_id')
+          .range(from, from + PAGE - 1)
+        if (!data?.length) break
+        for (const c of data as any[]) {
+          if (!inSet.has(c.entry_id)) continue
+          completedEntryIds.add(c.entry_id)
+          completionDetails[c.entry_id] = { id: c.id, manually_checked: c.manually_checked, matched_card_key: c.matched_card_key || null }
+        }
+        if (data.length < PAGE) break
       }
     }
   }
