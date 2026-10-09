@@ -19,7 +19,7 @@ async function resolveUserId(userId: string): Promise<string> {
 async function loadCardRow(resolvedId: string, src?: string) {
   let query = supabase
     .from('cartes_manuelles')
-    .select('nom, marque, collection, annee, variation, num, rc, auto, patch, grade, image_recto')
+    .select('nom, marque, collection, annee, variation, num, rc, auto, patch, grade, image_recto, beckett_designation, card_number, cert_number, team')
     .eq('user_id', resolvedId)
   // Sans src, on ne peut pas identifier la carte précise parmi toutes celles du
   // collectionneur — mieux vaut ne rien renvoyer qu'une carte au hasard.
@@ -50,9 +50,10 @@ export async function generateMetadata({
   const cardRow = await loadCardRow(resolvedId, src)
   const cardName = cardRow?.nom || slugToTitle(cardSlug)
   const setLine = [cardRow?.annee, cardRow?.marque, cardRow?.collection, cardRow?.variation].filter(Boolean).join(' ')
-  const title = setLine ? `${cardName} — ${setLine}` : cardName
+  const designation = fullDesignation(cardRow)
+  const title = designation || (setLine ? `${cardName} — ${setLine}` : cardName)
   const description = cardRow
-    ? `${title} trading card, owned by ${name}. View it in interactive 3D, check its numbering, grade and estimated market value on Memorabilius.`
+    ? `${designation} : carte de collection / trading card de ${name}. Vue 3D interactive, numerotation, grade, cote et valeur estimee sur Memorabilius.`
     : `Trading card collection by ${name} on Memorabilius — the platform for sports and TCG card collectors.`
   const imageUrl = src || cardRow?.image_recto || profile?.avatar_url || ''
   const canonical = `https://www.memorabilius.fr/galerie/${userId}/${cardSlug}${src ? `?src=${encodeURIComponent(src)}` : ''}`
@@ -74,6 +75,19 @@ export async function generateMetadata({
       images: imageUrl ? [imageUrl] : [],
     },
   }
+}
+
+// Designation complete facon Beckett : annee, marque, set, variation, #numero, joueur, tirage, RC/AUTO/PATCH, grade.
+// C'est ce que les collectionneurs tapent dans Google ("2023 Panini Prizm Silver #12 Victor Wembanyama RC PSA 10").
+// Si la designation Beckett exacte est saisie sur la carte, elle prime.
+function fullDesignation(c: any): string {
+  const given = (c?.beckett_designation || '').trim()
+  if (given) return given
+  const raw = (c?.grade || '').trim()
+  const grade = raw && raw.toLowerCase() !== 'raw' ? raw : ''
+  const no = c?.card_number ? `#${String(c.card_number).replace(/^#/, '')}` : ''
+  return [c?.annee, c?.marque, c?.collection, c?.variation, no, c?.nom, c?.num, c?.rc && 'RC', c?.auto && 'AUTO', c?.patch && 'PATCH', grade]
+    .filter(Boolean).join(' ')
 }
 
 function slugToTitle(slug: string) {
@@ -105,8 +119,12 @@ export default async function CardPage({
   const jsonLd = cardRow ? {
     '@context': 'https://schema.org',
     '@type': 'Product',
-    name: factLine ? `${cardName} ${factLine}` : cardName,
-    description: `${cardName} trading card${factLine ? `, ${factLine}` : ''}, part of ${collectorName}'s collection on Memorabilius.`,
+    name: fullDesignation(cardRow) || (factLine ? `${cardName} ${factLine}` : cardName),
+    description: `${fullDesignation(cardRow)} - trading card / carte de collection, part of ${collectorName}'s collection on Memorabilius.`,
+    category: 'Trading Cards',
+    sku: cardRow.cert_number || undefined,
+    mpn: cardRow.card_number ? String(cardRow.card_number) : undefined,
+    ...(cardRow.cert_number ? { productID: `cert:${cardRow.cert_number}` } : {}),
     image: cardRow.image_recto || undefined,
     brand: cardRow.marque ? { '@type': 'Brand', name: cardRow.marque } : undefined,
     additionalProperty: [
@@ -131,13 +149,17 @@ export default async function CardPage({
           de la page, plus riche/interactif, qui charge après hydratation). */}
       {cardRow && (
         <div style={{ position: 'absolute', width: 1, height: 1, overflow: 'hidden', clip: 'rect(0,0,0,0)' }}>
-          <h1>{cardName}{factLine ? ` — ${factLine}` : ''}</h1>
+          <h1>{fullDesignation(cardRow) || cardName}</h1>
           <p>
             This {cardName} trading card{factLine ? ` (${factLine})` : ''} is part of {collectorName}&apos;s collection
             on Memorabilius, the platform for sports and TCG card collectors. View it in interactive 3D
             {cardRow.num ? `, numbered ${cardRow.num}` : ''}
             {cardRow.grade && cardRow.grade.toLowerCase() !== 'raw' ? `, graded ${cardRow.grade}` : ''}
             {cardRow.rc ? ', rookie card' : ''}{cardRow.auto ? ', autographed' : ''}{cardRow.patch ? ', patch card' : ''}.
+          </p>
+          <p>
+            Designation : {fullDesignation(cardRow)}.{cardRow.team ? ` Equipe : ${cardRow.team}.` : ''}
+            {cardRow.cert_number ? ` Certificat : ${cardRow.cert_number}.` : ''}
           </p>
           <Link href={`/galerie/${profile?.slug || resolvedId}`}>See {collectorName}&apos;s full collection on Memorabilius</Link>
         </div>

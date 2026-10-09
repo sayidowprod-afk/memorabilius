@@ -135,7 +135,7 @@ export default function CardPublicPage({ userId, cardSlug, src }: Props) {
               border: `3px solid ${accent}22`,
             }}
           >
-            <img src={card.f} alt={card.n} style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }} />
+            <img src={card.f} alt={[card.y, card.br, card.s, card.v, card.n, card.num].filter(Boolean).join(' ')} style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }} />
           </div>
 
           {/* Collectionneur */}

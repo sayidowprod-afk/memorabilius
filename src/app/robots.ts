@@ -16,6 +16,11 @@ export default function robots(): MetadataRoute.Robots {
         '/wishlist', '/scanner', '/qr-gen', '/auth/callback', '/confirm',
       ],
     },
-    sitemap: 'https://www.memorabilius.fr/sitemap.xml',
+    // Racine + tranches de fiches carte (/cartes/sitemap/<id>.xml, 5000 cartes chacune, avec images).
+    // Marge de tranches : les tranches vides ou au-dela du total renvoient un sitemap vide, sans erreur.
+    sitemap: [
+      'https://www.memorabilius.fr/sitemap.xml',
+      ...Array.from({ length: 30 }, (_, i) => `https://www.memorabilius.fr/cartes/sitemap/${i}.xml`),
+    ],
   }
 }

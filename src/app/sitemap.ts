@@ -1,6 +1,6 @@
 import { MetadataRoute } from 'next'
 import { createClient } from '@supabase/supabase-js'
-import { cardPageUrl, playerSlug, teamSlug } from '@/lib/playerSlug'
+import { playerSlug, teamSlug } from '@/lib/playerSlug'
 
 const supabase = createClient(
   process.env.NEXT_PUBLIC_SUPABASE_URL!,
@@ -52,14 +52,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       priority: 0.6,
     }))
 
-    const cardPages: MetadataRoute.Sitemap = (cards || [])
-      .filter((c: any) => c.nom && c.image_recto)
-      .map((c: any) => ({
-        url: `${base}${cardPageUrl(c.user_id, c)}`,
-        lastModified: new Date(c.created_at || new Date()),
-        changeFrequency: 'monthly' as const,
-        priority: 0.6,
-      }))
+    // Fiches carte : voir src/app/cartes/sitemap.ts (toutes les cartes, par tranches, avec images)
 
     const guidePages: MetadataRoute.Sitemap = (guides || []).map((g: any) => ({
       url: `${base}/guides/${g.slug}`,
@@ -93,7 +86,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       }
     }
 
-    return [...staticPages, ...galeries, ...setPages, ...cardPages, ...guidePages, ...playerPages, ...teamPages]
+    return [...staticPages, ...galeries, ...setPages, ...guidePages, ...playerPages, ...teamPages]
   } catch {
     return staticPages
   }
