@@ -114,13 +114,13 @@ export default function CardSharePage({ cardId }: { cardId: string }) {
         <div className="vitrine" style={{ marginBottom: 24 }}>
           <div className="vit-col" style={{ width: isH ? '100%' : 220, maxWidth: '100%' }}>
           <div
-            onClick={() => hasVerso && setFlipped(f => !f)}
+            onClick={() => setFlipped(f => !f)}
             style={{
               width: '100%',
               maxWidth: '100%',
               aspectRatio: isH ? '3.5 / 2.5' : '2.5 / 3.5',
               perspective: '1000px',
-              cursor: hasVerso ? 'pointer' : 'default',
+              cursor: 'pointer',
             }}
           >
             <div style={{
@@ -133,18 +133,21 @@ export default function CardSharePage({ cardId }: { cardId: string }) {
               <div style={{ position: 'absolute', inset: 0, backfaceVisibility: 'hidden', WebkitBackfaceVisibility: 'hidden' }}>
                 <img src={card.image_recto} alt={card.nom} style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }} />
               </div>
-              {hasVerso && (
-                <div style={{ position: 'absolute', inset: 0, backfaceVisibility: 'hidden', WebkitBackfaceVisibility: 'hidden', transform: 'rotateY(180deg)' }}>
-                  <img src={card.image_verso} alt={`${card.nom} verso`} style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }} />
-                </div>
-              )}
+              <div style={{ position: 'absolute', inset: 0, backfaceVisibility: 'hidden', WebkitBackfaceVisibility: 'hidden', transform: 'rotateY(180deg)', overflow: 'hidden' }}>
+                {hasVerso
+                  ? <img src={card.image_verso} alt={`${card.nom} verso`} style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }} />
+                  /* pas de photo de verso : dos Memorabilius par defaut */
+                  : <img src="/card-back.png" alt="" style={isH
+                      ? { position: 'absolute', width: '71.43%', height: '140%', left: '14.285%', top: '-20%', transform: 'rotate(90deg)', objectFit: 'cover' }
+                      : { width: '100%', height: '100%', objectFit: 'cover', display: 'block' }} />}
+              </div>
             </div>
           </div>
           {/* reflet au sol */}
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img className="vit-ref" src={card.image_recto} alt="" aria-hidden style={isH ? { aspectRatio: '3.5 / 2.5' } : undefined} />
           </div>
-          {hasVerso && (
+          {(
             <div style={{ marginTop: 64, position: 'relative', zIndex: 2, fontSize: 12, color: muted, display: 'flex', alignItems: 'center', gap: 5 }}>
               ↔ Appuyez pour retourner
             </div>

@@ -96,6 +96,8 @@ function tierColorIdx(i: number, total: number) {
   if (total <= 1) return TIER.length - 1
   return Math.round((i / (total - 1)) * (TIER.length - 1))
 }
+// encres des tampons (passeport), du bois au diamant
+const INK = ['#8a4a1a', '#5b6577', '#2a63b5', '#b8620f', '#46607a', '#a67c00', '#0b66c9', '#7a1fb8']
 function fmtN(n: number) { return n >= 1000 ? `${(n / 1000).toFixed(n >= 10000 ? 0 : 1)}k` : String(n) }
 
 // ── Data types ───────────────────────────────────────────────────────────
@@ -579,87 +581,49 @@ export default function BadgeBox({ userId, isOwner }: { userId: string; isOwner?
         }
       `}</style>
 
-      <div style={{ perspective: '900px', perspectiveOrigin: '50% 15%' }}>
-        <div style={{
-          transform: 'rotateX(10deg)', transformOrigin: 'center 65%',
-          background: 'linear-gradient(160deg,#f0cc70 0%,#c89428 20%,#a07018 45%,#c89428 70%,#f0cc70 100%)',
-          borderRadius: 18, padding: '0 0 8px',
-          boxShadow: '0 28px 70px rgba(0,0,0,.8),0 10px 28px rgba(0,0,0,.5),inset 0 1px 0 rgba(255,255,255,.35)',
-          position: 'relative', overflow: 'hidden',
-        }}>
-          {/* Grain bois */}
-          <div style={{ position: 'absolute', inset: 0, borderRadius: 18, backgroundImage: 'repeating-linear-gradient(87deg,transparent 0px,rgba(0,0,0,.06) 1px,transparent 3px,transparent 12px)', pointerEvents: 'none' }} />
-
-          {/* Moulure */}
-          <div style={{ minHeight: 28, background: 'linear-gradient(180deg,rgba(255,255,255,.18) 0%,rgba(0,0,0,.15) 100%)', borderRadius: '18px 18px 0 0', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', padding: '5px 10px', gap: 2 }}>
-            <span style={{ fontWeight: 900, fontSize: 11, color: '#6b3c00', letterSpacing: '.18em', textTransform: 'uppercase', textShadow: '0 1px 0 rgba(255,255,255,.25)' }}>{t('badge_case_label')}</span>
-            <span style={{ fontSize: 10.5, fontWeight: 800, color: '#5a3200', textShadow: '0 1px 0 rgba(255,255,255,.2)' }}>
-              {earned.size}/{TOTAL_BADGES} {t('badge_progress_unlocked')}
-            </span>
-          </div>
-
-          {/* Velours -- une rangee par categorie, tous les paliers affiches
-              d'un coup (verrouilles en gris, debloques en brillant). Deux
-              variantes "ergonomiques" (barre de progression, puis accordion
-              replie/deplie) ont ete tentees puis rejetees par retour direct --
-              ce grid complet est la version retenue. */}
-          <div style={{
-            margin: '0 10px',
-            background: 'linear-gradient(170deg,#50124a 0%,#38083a 50%,#50124a 100%)',
-            borderRadius: 8, padding: '10px 8px 16px',
-            boxShadow: 'inset 0 6px 24px rgba(0,0,0,.75),inset 0 0 50px rgba(90,0,90,.4)',
-            position: 'relative',
-          }}>
-            <div style={{ position: 'absolute', inset: 0, borderRadius: 8, backgroundImage: 'radial-gradient(circle,rgba(255,255,255,.015) 1px,transparent 1px)', backgroundSize: '6px 6px', pointerEvents: 'none' }} />
-            <div style={{ position: 'absolute', bottom: 0, left: '5%', right: '5%', height: 40, background: 'radial-gradient(ellipse at 50% 100%,rgba(180,20,220,.55) 0%,transparent 70%)', pointerEvents: 'none' }} />
-
-            <div style={{ display: 'flex', flexDirection: 'column', gap: 4, position: 'relative' }}>
-              {BADGE_CATEGORIES.map(cat => {
-                const earnedTiers = earnedTiersByCategory.get(cat.id)!
-                return (
-                  <div key={cat.id}>
-                    <div
-                      className="badge-cat-row"
-                      style={{ display: 'flex', alignItems: 'center', gap: 10, padding: '6px', borderRadius: 10 }}
-                    >
-                      <div style={{ width: 56, flexShrink: 0, display: 'flex', flexDirection: 'column', gap: 1 }}>
-                        <span style={{ fontSize: 15 }}>{cat.emoji}</span>
-                        <span style={{
-                          fontSize: 8, fontWeight: 700, color: 'rgba(255,255,255,.55)', lineHeight: 1.1,
-                          overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap', maxWidth: '100%',
-                        }}>{cat.label}</span>
-                      </div>
-
-                      <div className="badge-row-gap" style={{ display: 'flex', alignItems: 'center', flexWrap: 'wrap', flex: 1, minWidth: 0 }}>
-                        {cat.tiers.map((tier, ti) => (
-                          <Badge3D
-                            key={tier.id}
-                            cat={cat}
-                            tier={tier}
-                            tierIdx={ti}
-                            totalTiers={cat.tiers.length}
-                            isEarned={earned.has(tier.id)}
-                            statVal={statMap[cat.id] ?? 0}
-                            setTooltip={setTooltip}
-                            justUnlocked={justUnlockedIds.has(tier.id)}
-                            isNext={nextTierByCategory.get(cat.id) === tier.id}
-                          />
-                        ))}
-                      </div>
-
-                      <div style={{ flexShrink: 0, marginLeft: 'auto', paddingLeft: 8 }}>
-                        <span style={{ fontSize: 10, fontWeight: 800, color: 'rgba(255,255,255,.6)' }}>{earnedTiers.length}/{cat.tiers.length}</span>
-                      </div>
-                    </div>
-                  </div>
-                )
-              })}
-            </div>
-          </div>
-
-          {/* Pied */}
-          <div style={{ height: 8, margin: '0 6px', background: 'linear-gradient(180deg,#a07018,#6a4a10)', borderRadius: '0 0 12px 12px', boxShadow: '0 4px 12px rgba(0,0,0,.4)' }} />
+      <div className="passport">
+        <div className="pp-head">
+          <b className="da-display">{t('badge_case_label')}</b>
+          <small>{earned.size}/{TOTAL_BADGES} {t('badge_progress_unlocked')}</small>
         </div>
+        {/* une rangee par categorie, TOUS les paliers visibles d'un coup (tampons debloques en encre, verrouilles en pointilles) --
+            les variantes barre de progression et accordion ont ete rejetees. */}
+        {BADGE_CATEGORIES.map(cat => {
+          const earnedTiers = earnedTiersByCategory.get(cat.id)!
+          return (
+            <div className="pp-row" key={cat.id}>
+              <div className="pp-cat"><span>{cat.emoji}</span>{cat.label}<i>{earnedTiers.length}/{cat.tiers.length}</i></div>
+              <div className="pp-stamps">
+                {cat.tiers.map((tier, ti) => {
+                  const palIdx = tierColorIdx(ti, cat.tiers.length)
+                  const isEarned = earned.has(tier.id)
+                  const isNext = nextTierByCategory.get(cat.id) === tier.id
+                  const ink = INK[palIdx]
+                  const rot = ((ti * 7 + cat.id.length * 3) % 13) - 6
+                  return (
+                    <div
+                      key={tier.id}
+                      className={`pp-st${isEarned ? '' : ' locked'}${isNext && !isEarned ? ' next' : ''}${justUnlockedIds.has(tier.id) ? ' slam' : ''}`}
+                      style={{ ['--c' as string]: ink, ['--r' as string]: `${rot}deg` }}
+                      onMouseEnter={e => {
+                        const rect = (e.currentTarget as HTMLElement).getBoundingClientRect()
+                        setTooltip({ x: rect.left + rect.width / 2, y: rect.top, above: rect.top > 200, cat, tier, palIdx, isEarned, statVal: statMap[cat.id] ?? 0 })
+                      }}
+                      onMouseLeave={() => setTooltip(null)}
+                      onClick={e => {
+                        const rect = (e.currentTarget as HTMLElement).getBoundingClientRect()
+                        setTooltip({ x: rect.left + rect.width / 2, y: rect.top, above: rect.top > 200, cat, tier, palIdx, isEarned, statVal: statMap[cat.id] ?? 0 })
+                      }}
+                    >
+                      <b className="da-display">{fmtN(tier.threshold)}</b>
+                      <small>{tier.label}</small>
+                    </div>
+                  )
+                })}
+              </div>
+            </div>
+          )
+        })}
       </div>
 
       {mounted && tooltip && createPortal(<BadgeTooltip t={tooltip} />, document.body)}

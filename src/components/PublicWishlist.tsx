@@ -1,4 +1,5 @@
 'use client'
+import { useTheme } from '@/lib/ThemeContext'
 import { useEffect, useState } from 'react'
 import { supabase } from '@/lib/supabase'
 import Link from 'next/link'
@@ -24,6 +25,7 @@ function WishCard({ item, accent, isOwner, onRemove }: {
   const [collectors, setCollectors] = useState<Collector[] | null>(null)
   const [cardImg, setCardImg] = useState<string | null>(null)
   const { t } = useLang()
+  const { dark } = useTheme()
 
   useEffect(() => {
     const params = new URLSearchParams({ name: item.nom })
@@ -54,17 +56,10 @@ function WishCard({ item, accent, isOwner, onRemove }: {
   const isSupabase = cardImg?.includes('supabase.co')
 
   return (
-    <div style={{
-      background: 'var(--card-bg, #fff)', borderRadius: 14, overflow: 'hidden',
-      boxShadow: '0 2px 12px rgba(0,0,0,0.07)', border: '1px solid var(--border, #f0f0f0)',
-      display: 'flex', flexDirection: 'column', position: 'relative',
-    }}>
+    <div className={`wanted-poster${dark ? ' dk' : ''}`}>
+      <div className="wp-head da-display">Recherché</div>
       {/* Card image area */}
-      <div style={{
-        background: cardImg ? 'transparent' : `linear-gradient(135deg, ${accent}22 0%, ${accent}44 100%)`,
-        aspectRatio: '3/4', display: 'flex', alignItems: 'center', justifyContent: 'center',
-        overflow: 'hidden', position: 'relative', flexShrink: 0,
-      }}>
+      <div className="wp-pic">
         {cardImg ? (
           isSupabase ? (
             <Image
@@ -80,12 +75,7 @@ function WishCard({ item, accent, isOwner, onRemove }: {
             <img src={cardImg} alt={item.nom} style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
           )
         ) : (
-          <div style={{ textAlign: 'center', padding: '0 12px' }}>
-            <div style={{ fontSize: 36, marginBottom: 6 }}>🎯</div>
-            <div style={{ fontSize: 11, fontWeight: 800, color: accent, opacity: 0.7, textTransform: 'uppercase', letterSpacing: 1 }}>
-              Recherchée
-            </div>
-          </div>
+          <span className="wp-q da-display">?</span>
         )}
         {/* Owner delete button overlay */}
         {isOwner && (
@@ -93,7 +83,7 @@ function WishCard({ item, accent, isOwner, onRemove }: {
             onClick={onRemove}
             style={{
               position: 'absolute', top: 6, right: 6,
-              background: 'rgba(0,0,0,0.55)', border: 'none', borderRadius: 20,
+              background: 'rgba(0,0,0,0.65)', border: 'none', borderRadius: 0,
               width: 24, height: 24, cursor: 'pointer', color: 'white',
               fontSize: 12, display: 'flex', alignItems: 'center', justifyContent: 'center',
               backdropFilter: 'blur(4px)',
@@ -103,9 +93,9 @@ function WishCard({ item, accent, isOwner, onRemove }: {
       </div>
 
       {/* Info area */}
-      <div style={{ padding: '10px 12px', flex: 1, display: 'flex', flexDirection: 'column', gap: 4 }}>
-        <div style={{ fontWeight: 800, fontSize: 13, lineHeight: 1.2, color: 'var(--text, #111)' }}>{item.nom}</div>
-        <div style={{ fontSize: 11, color: 'var(--text3, #999)', lineHeight: 1.3 }}>
+      <div className="wp-info">
+        <div className="wp-name da-display">{item.nom}</div>
+        <div className="wp-meta" style={{ fontSize: 11, lineHeight: 1.3 }}>
           {[item.annee, item.marque, item.collection].filter(Boolean).join(' · ')}
         </div>
 
@@ -116,7 +106,7 @@ function WishCard({ item, accent, isOwner, onRemove }: {
         )}
 
         {item.notes && (
-          <div style={{ fontSize: 10, color: 'var(--text3, #aaa)', fontStyle: 'italic', lineHeight: 1.3 }}>
+          <div className="wp-note" style={{ fontSize: 10, fontStyle: 'italic', lineHeight: 1.3 }}>
             &ldquo;{item.notes}&rdquo;
           </div>
         )}
@@ -124,7 +114,7 @@ function WishCard({ item, accent, isOwner, onRemove }: {
         {/* Possédée par */}
         {collectors && collectors.length > 0 && (
           <div style={{ marginTop: 'auto', paddingTop: 6 }}>
-            <div style={{ fontSize: 9, color: 'var(--text3, #bbb)', fontWeight: 700, textTransform: 'uppercase', letterSpacing: 0.5, marginBottom: 4 }}>
+            <div className="wp-lab" style={{ fontSize: 9, fontWeight: 700, textTransform: 'uppercase', letterSpacing: 0.5, marginBottom: 4 }}>
               {t('wishlist_owned_by')}
             </div>
             <div style={{ display: 'flex', gap: 4, flexWrap: 'wrap' }}>

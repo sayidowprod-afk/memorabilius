@@ -5,6 +5,7 @@ import { supabase } from '@/lib/supabase'
 import { useLang } from '@/lib/LangContext'
 import { levelFromXP, type LevelInfo } from '@/lib/leveling'
 import { fireConfetti } from '@/components/Confetti'
+import LevelUpOverlay from '@/components/LevelUpOverlay'
 
 // Niveau affiché autour de l'avatar sur la galerie publique — même source que
 // le dashboard perso : le total XP événementiel (xp_events, voir xp.ts),
@@ -25,6 +26,8 @@ export default function LevelBadge({ userId, celebrateOnLevelUp, accent = '#003D
   const popoverRef = useRef<HTMLDivElement>(null)
 
   useEffect(() => { setMounted(true) }, [])
+  // ecran plein ecran de montee de niveau (voir LevelUpOverlay) -- remplace la bulle, qui etait coupee par le bandeau du profil
+  const [overlayLevel, setOverlayLevel] = useState<number | null>(null)
 
   useEffect(() => {
     let cancelled = false
@@ -40,6 +43,7 @@ export default function LevelBadge({ userId, celebrateOnLevelUp, accent = '#003D
         const prev = Number(localStorage.getItem(key) || 0)
         if (prev > 0 && info.level > prev) {
           setJustLeveledUp(true)
+          setOverlayLevel(info.level)
           fireConfetti()
           setTimeout(() => setJustLeveledUp(false), 2600)
         }
@@ -97,15 +101,7 @@ export default function LevelBadge({ userId, celebrateOnLevelUp, accent = '#003D
 
   return (
     <div ref={ref} style={{ position: 'relative', width: 80, height: 80, flexShrink: 0, ['--avatar-accent' as any]: accent }}>
-      {justLeveledUp && (
-        <div className="selection-check-pop" style={{
-          position: 'absolute', bottom: 'calc(100% + 6px)', left: '50%', transform: 'translateX(-50%)',
-          background: 'linear-gradient(135deg, #ffd700, #f39c12)', color: '#3d2800', fontWeight: 900, fontSize: 11,
-          padding: '4px 10px', borderRadius: 20, whiteSpace: 'nowrap', boxShadow: '0 4px 16px rgba(243,156,18,0.5)', zIndex: 51,
-        }}>
-          ⬆ Niveau supérieur !
-        </div>
-      )}
+      {mounted && overlayLevel !== null && createPortal(<LevelUpOverlay level={overlayLevel} onClose={() => setOverlayLevel(null)} />, document.body)}
 
       <div style={{
         width: '100%', height: '100%', borderRadius: '50%', padding: 4, boxSizing: 'border-box',

@@ -2416,9 +2416,9 @@ export default function GalerieClient({ userId, initialCardUrl, initialCards, in
         {(isOwner || grailCards.length > 0) && (() => {
           const GRAIL_MAX = 3
           const MEDALS = [
-            { emoji: '🥇', color: '#FFD700', glow: '#FFD70088', width: 152 },
-            { emoji: '🥈', color: '#C0C0C0', glow: '#C0C0C088', width: 152 },
-            { emoji: '🥉', color: '#CD7F32', glow: '#CD7F3288', width: 152 },
+            { emoji: '', color: '#E8C25A', glow: '#E8C25A88', width: 152 },
+            { emoji: '', color: '#E8C25A', glow: '#E8C25A88', width: 152 },
+            { emoji: '', color: '#E8C25A', glow: '#E8C25A88', width: 152 },
           ]
           const grailMap = new Map(cards.map(c => [c.f, c]))
           const grailItems = grailCards.map(g => grailMap.get(g.card_key)).filter(Boolean) as Card[]
@@ -2447,7 +2447,7 @@ export default function GalerieClient({ userId, initialCardUrl, initialCards, in
                 <div key={i} style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 6 }}>
                   <div onClick={() => setPopup(card)} role="button" tabIndex={0} aria-label={card.n}
                     onKeyDown={e => { if ((e.key === 'Enter' || e.key === ' ') && e.target === e.currentTarget) { e.preventDefault(); setPopup(card) } }}
-                    className={`grail-wall-cursor${i === 0 ? ' grail-gold-glow' : ''}`} style={{
+                    className="grail-wall-cursor grail-gold-glow" style={{
                     width: medal.width, cursor: 'pointer', position: 'relative',
                     background: `linear-gradient(145deg, ${medal.color}, ${medal.color}aa 45%, ${medal.color})`, padding: 6, borderRadius: 0, outline: '1px solid rgba(0,0,0,.45)', outlineOffset: -1,
                     boxShadow: i === 0 ? undefined : `0 6px 20px ${medal.glow}`, transition: 'transform 0.2s',

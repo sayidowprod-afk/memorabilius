@@ -1,4 +1,5 @@
 'use client'
+import CardOfTheDay from '@/components/CardOfTheDay'
 import { useEffect, useState } from 'react'
 import Link from 'next/link'
 import { supabase } from '@/lib/supabase'
@@ -354,6 +355,8 @@ export default function NativeHomeDashboard({ siteStats }: { siteStats: SiteStat
           <span className="dd-hero-go"><ChevronIcon /></span>
         </div>
       </Link>
+
+      <CardOfTheDay />
 
       <div className="dd-score">
         {galleryStats.map(s => (

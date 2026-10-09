@@ -334,21 +334,20 @@ img[src$=".png"], img[src$=".svg"] { background: none !important; animation: non
   font: 800 14px system-ui, sans-serif; line-height: 1.25; text-align: left; }
 
 /* ── Grail Wall : salle de musee (3 cadres alignes, meme taille) ── */
-.grail-museum { position: relative; display: flex; flex-wrap: wrap; gap: 34px; justify-content: center; align-items: flex-start; padding: 44px 20px 84px; overflow: hidden;
+.grail-museum { position: relative; display: flex; flex-wrap: wrap; gap: 34px; justify-content: center; align-items: flex-start; padding: 44px 20px 56px; overflow: hidden;
   border: 3px solid rgba(255, 255, 255, .16);
   background:
     radial-gradient(70% 90% at 50% 0%, rgba(255, 238, 190, .13), transparent 62%),
     repeating-linear-gradient(90deg, rgba(255, 255, 255, .028) 0 2px, transparent 2px 7px),
-    linear-gradient(180deg, #0c1334 0%, #08102b 86%, #02040a 86%, #04070f 100%); }
+    linear-gradient(180deg, #0c1334 0%, #08102b 100%); }
 .grail-museum > * { position: relative; z-index: 1; }
 .grail-museum::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 9px; background: linear-gradient(90deg, #6b5217, #e4c46c 50%, #6b5217); }
-.grail-museum::after { content: ''; position: absolute; left: 0; right: 0; bottom: 14%; z-index: 0; height: 3px; background: linear-gradient(90deg, transparent, rgba(228, 196, 108, .55), transparent); pointer-events: none; }
 
 /* ── Rubans de coin (statuts : a vendre, vendu, prive) ── */
 .sash-clip { position: absolute; inset: 0; overflow: hidden; pointer-events: none; z-index: 4; }
-.sash { position: absolute; width: 112px; text-align: center; padding: 3px 0; font: 800 9px system-ui, sans-serif; letter-spacing: .12em; text-transform: uppercase; color: #fff; font-style: normal; box-shadow: 0 2px 6px rgba(0, 0, 0, .45); }
-.sash-tr { top: 15px; right: -32px; transform: rotate(45deg); }
-.sash-tl { top: 15px; left: -32px; transform: rotate(-45deg); }
+.sash { position: absolute; width: 150px; text-align: center; padding: 3px 0; font: 800 8.5px system-ui, sans-serif; letter-spacing: .07em; white-space: nowrap; text-transform: uppercase; color: #fff; font-style: normal; box-shadow: 0 2px 6px rgba(0, 0, 0, .45); }
+.sash-tr { top: 21px; right: -44px; transform: rotate(45deg); }
+.sash-tl { top: 21px; left: -44px; transform: rotate(-45deg); }
 
 /* ── Main de cartes (barres de selection) : les cartes cochees depassent vers le haut ── */
 .shand { position: relative; width: 150px; height: 30px; flex-shrink: 0; align-self: flex-end; }
@@ -401,3 +400,81 @@ html[data-theme="light"] .cf-loader i, :root:not([data-theme="dark"]) .cf-loader
 .hero-wall::after { content: ''; position: absolute; inset: 0; background: linear-gradient(90deg, rgba(5, 9, 18, .88), rgba(5, 9, 18, .55) 50%, rgba(5, 9, 18, .88)); }
 @media (max-width: 640px) { .hero-wall-col:nth-child(n+5) { display: none; } }
 @media (prefers-reduced-motion: reduce) { .hero-wall-col { animation: none; } }
+
+/* ── Passeport de tampons (badges) ── */
+.passport { background: #eee9dc; border: 3px solid #b8923a; padding: 16px 16px 22px; box-shadow: 0 18px 40px rgba(0,0,0,.45); position: relative; }
+.passport, .passport * { color: #06122e !important; }
+.pp-head { display: flex; justify-content: space-between; align-items: baseline; gap: 10px; flex-wrap: wrap; border-bottom: 3px double #06122e; padding-bottom: 8px; margin-bottom: 12px; }
+.pp-head b { font-size: 30px; line-height: 1; } .pp-head small { font: 800 10px system-ui, sans-serif; letter-spacing: .18em; text-transform: uppercase; }
+.pp-row { display: flex; align-items: center; gap: 12px; padding: 10px 0; border-bottom: 1px dashed rgba(6, 18, 46, .28); }
+.pp-row:last-child { border-bottom: 0; }
+.pp-cat { width: 74px; flex-shrink: 0; display: flex; flex-direction: column; gap: 2px; font: 800 10px system-ui, sans-serif; letter-spacing: .08em; text-transform: uppercase; line-height: 1.15; }
+.pp-cat span { font-size: 20px; } .pp-cat i { font-style: normal; opacity: .6; letter-spacing: .12em; }
+.pp-stamps { display: flex; flex-wrap: wrap; gap: 12px; flex: 1; min-width: 0; }
+.pp-st { width: 74px; height: 74px; display: flex; flex-direction: column; align-items: center; justify-content: center; border: 4px solid var(--c); transform: rotate(var(--r)); position: relative; opacity: .93; mix-blend-mode: multiply; cursor: default; }
+.pp-st::after { content: ''; position: absolute; inset: 3px; border: 1.5px solid var(--c); opacity: .7; }
+.pp-st, .pp-st * { color: var(--c) !important; }
+.pp-st b { font-size: 30px; line-height: .9; font-weight: 400; } .pp-st small { font: 800 8px system-ui, sans-serif; letter-spacing: .1em; text-transform: uppercase; margin-top: 3px; }
+.pp-st.locked { border-style: dashed; opacity: .5; transform: rotate(0); mix-blend-mode: normal; }
+.pp-st.locked::after { display: none; }
+.pp-st.locked, .pp-st.locked * { color: #8a90a2 !important; }
+.pp-st.next { opacity: .85; border-color: #06122e; } .pp-st.next, .pp-st.next * { color: #06122e !important; }
+@keyframes ppSlam { 0% { transform: scale(2.6) rotate(-18deg); opacity: 0; } 55% { transform: scale(.92) rotate(var(--r)); opacity: 1; } 100% { transform: scale(1) rotate(var(--r)); } }
+.pp-st.slam { animation: ppSlam .6s cubic-bezier(.2, .9, .3, 1.1) both; }
+
+/* ── Carte du jour ── */
+.cdj { position: relative; display: grid; grid-template-columns: 190px 1fr; gap: 32px; align-items: center; border: 3px solid #fff; padding: 22px 26px 22px 24px; margin: 0 0 40px;
+  background: linear-gradient(135deg, #050912 0%, #08153b 45%, #003da6 100%); }
+.cdj, .cdj * { color: #fff !important; }
+.cdj-day { position: absolute; top: -3px; left: -3px; z-index: 3; background: #fff; padding: 6px 14px 4px; text-align: center; }
+.cdj-day, .cdj-day * { color: #06122e !important; }
+.cdj-day b { display: block; font-size: 46px; line-height: .9; font-weight: 400; } .cdj-day small { font: 800 9px system-ui, sans-serif; letter-spacing: .18em; text-transform: uppercase; }
+.cdj-img { display: block; transform: rotate(-4deg); margin-top: 52px; position: relative; z-index: 1; }
+.cdj-img img { display: block; width: 100%; aspect-ratio: 2.5 / 3.5; object-fit: cover; border-radius: 0; box-shadow: 0 16px 36px rgba(0,0,0,.55); background: none !important; animation: none !important; }
+.cdj h3 { margin: 12px 0 8px; font-size: clamp(36px, 5.5vw, 62px); line-height: .92; font-weight: 400; }
+.cdj p { margin: 0 0 14px; max-width: 460px; opacity: .85; font-size: 14px; line-height: 1.45; }
+.cdj-btn { display: inline-block; background: #fff; padding: 9px 18px; font: 800 12px system-ui, sans-serif; letter-spacing: .1em; text-transform: uppercase; text-decoration: none; border: 3px solid #fff; }
+.cdj-btn, .cdj-btn * { color: #06122e !important; } .cdj-btn:hover { background: transparent; } .cdj-btn:hover, .cdj-btn:hover * { color: #fff !important; }
+.cdj-eyebrow { display: inline-block; padding: 5px 14px; border: 3px solid #fff; box-shadow: inset 0 0 0 3px #08153b, inset 0 0 0 4.5px #fff; font: 800 12px system-ui, sans-serif; letter-spacing: .18em; text-transform: uppercase; }
+@media (max-width: 640px) { .cdj { grid-template-columns: 120px 1fr; gap: 18px; padding: 18px 16px 18px 16px; } .cdj h3 { font-size: 30px; } .cdj p { font-size: 12.5px; } }
+
+/* ── Affiche "Recherche" (wishlist publique) ── */
+.wanted-poster { --pp: #eee3c8; --ink: #3a2a0a; --ink2: #6a5630; background: var(--pp); border: 5px double var(--ink); box-shadow: 0 10px 24px rgba(0,0,0,.4); display: flex; flex-direction: column; position: relative;
+  transform: rotate(var(--rot, 0deg)); transition: transform .2s; }
+.wanted-poster.dk { --pp: #1f1a10; --ink: #eadfbf; --ink2: #b8a883; }
+.wanted-poster:nth-child(3n+1) { --rot: -1.5deg; } .wanted-poster:nth-child(3n+2) { --rot: 1deg; } .wanted-poster:nth-child(3n) { --rot: -.5deg; }
+.wanted-poster:hover { transform: rotate(0) translateY(-4px); }
+.wp-head { text-align: center; font-size: 30px; line-height: 1; padding: 8px 4px 5px; border-bottom: 3px double var(--ink); letter-spacing: .06em; }
+.wp-head, .wp-name { color: var(--ink) !important; font-weight: 400; text-transform: uppercase; }
+.wp-pic { position: relative; aspect-ratio: 3 / 4; margin: 9px 10px 4px; border: 3px solid var(--ink); background: color-mix(in srgb, var(--ink) 18%, var(--pp)); overflow: hidden; display: flex; align-items: center; justify-content: center; }
+.wp-pic img { filter: grayscale(1) sepia(.5) contrast(1.1); }
+.wp-q { font-size: 92px; line-height: 1; color: color-mix(in srgb, var(--ink) 55%, transparent) !important; font-weight: 400; }
+.wp-info { padding: 4px 12px 12px; flex: 1; display: flex; flex-direction: column; gap: 4px; }
+.wp-name { font-size: 22px; line-height: 1; }
+.wp-meta, .wp-note, .wp-lab { color: var(--ink2) !important; }
+
+/* ── Bande a chevrons (separateur de sections) ── */
+.chev-band { position: relative; overflow: hidden; background: #fff; padding: 11px 0; margin: 8px 0 36px; }
+.chev-band div { display: inline-block; white-space: nowrap; font-size: 34px; line-height: 1; letter-spacing: .02em; animation: chevMarch 22s linear infinite; font-family: 'Surfquest', Impact, sans-serif; text-transform: uppercase; }
+.chev-band, .chev-band * { color: #06122e !important; }
+.chev-band.blue { background: #2f6bff; } .chev-band.blue, .chev-band.blue * { color: #fff !important; }
+@keyframes chevMarch { to { transform: translateX(-50%); } }
+@media (prefers-reduced-motion: reduce) { .chev-band div { animation: none; } }
+
+/* ── Niveau superieur : ecran plein ecran (jamais coupe par un conteneur) ── */
+.lvlup { position: fixed; inset: 0; z-index: 10000010; display: flex; align-items: center; justify-content: center; flex-direction: column; text-align: center; cursor: pointer;
+  background: radial-gradient(circle at 50% 50%, rgba(8, 21, 59, .92), rgba(5, 9, 18, .96)); animation: lvlIn .35s ease both; overflow: hidden; }
+.lvlup, .lvlup * { color: #fff !important; }
+.lvlup::before { content: ''; position: absolute; left: 50%; top: 50%; width: 240vmax; height: 240vmax; margin: -120vmax 0 0 -120vmax; pointer-events: none;
+  background: repeating-conic-gradient(from 0deg at 50% 50%, rgba(47, 107, 255, .38) 0 7deg, transparent 7deg 18deg); animation: lvlRot 26s linear infinite;
+  -webkit-mask-image: radial-gradient(circle, #000 0, rgba(0,0,0,.6) 12%, transparent 30%); mask-image: radial-gradient(circle, #000 0, rgba(0,0,0,.6) 12%, transparent 30%); }
+.lvlup .k { position: relative; font: 800 14px system-ui, sans-serif; letter-spacing: .32em; text-transform: uppercase; }
+.lvlup .n { position: relative; font-size: min(46vw, 260px); line-height: .85; font-weight: 400; text-shadow: 0 0 50px rgba(47, 107, 255, .95); animation: lvlPop .7s cubic-bezier(.2, .9, .3, 1.2) both; }
+.lvlup .xp { position: relative; margin-top: 18px; width: min(320px, 70vw); height: 14px; border: 3px solid #fff; padding: 2px; } .lvlup .xp i { display: block; height: 100%; background: #fff; }
+.lvlup .hint { position: relative; margin-top: 18px; font: 700 11px system-ui, sans-serif; letter-spacing: .2em; text-transform: uppercase; opacity: .6; }
+.lvlup .sq { position: absolute; width: 12px; height: 12px; animation: lvlSq 1.6s ease-out both; }
+@keyframes lvlIn { from { opacity: 0; } to { opacity: 1; } }
+@keyframes lvlRot { to { transform: rotate(360deg); } }
+@keyframes lvlPop { 0% { transform: scale(.3); opacity: 0; } 100% { transform: scale(1); opacity: 1; } }
+@keyframes lvlSq { 0% { transform: translate(0,0) rotate(0); opacity: 0; } 15% { opacity: 1; } 100% { transform: translate(var(--dx), var(--dy)) rotate(var(--rr)); opacity: 0; } }
+@media (prefers-reduced-motion: reduce) { .lvlup::before, .lvlup .sq { animation: none; } }
