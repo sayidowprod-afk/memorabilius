@@ -41,6 +41,7 @@ const GROUPS: { title: string; links: AdminLink[] }[] = [
     title: 'Design',
     links: [
       { href: '/design-preview', icon: '🎨', title: 'Aperçu direction artistique', desc: 'Maquette de la nouvelle DA (3 directions) — page de travail, rien n\'est modifié sur le site' },
+      { href: '/design-preview/tags', icon: '🏷️', title: 'Comparaison des icônes', desc: 'RC / AUTO / PATCH / NUM : 4 styles comparés sur de vraies cartes' },
     ],
   },
 ]
