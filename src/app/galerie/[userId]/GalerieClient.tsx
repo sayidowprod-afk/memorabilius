@@ -1,5 +1,5 @@
 'use client'
-import CardFan from '@/components/CardFan'
+import { numTier } from '@/lib/cardTags'
 import { toast } from '@/lib/toast'
 import { useEffect, useLayoutEffect, useState, useRef, useMemo, useCallback } from 'react'
 import { flushSync } from 'react-dom'
@@ -1202,11 +1202,6 @@ export default function GalerieClient({ userId, initialCardUrl, initialCards, in
   const lastAddedCard = [...cards]
     .filter(c => c.created_at)
     .sort((a, b) => new Date(b.created_at || 0).getTime() - new Date(a.created_at || 0).getTime())[0]
-  // 3 dernieres cartes ajoutees (eventail de l'en-tete)
-  const fanImages = [...cards]
-    .filter(c => c.created_at && c.f)
-    .sort((a, b) => new Date(b.created_at || 0).getTime() - new Date(a.created_at || 0).getTime())
-    .slice(0, 3).map(c => c.f)
   const lastAddedKey = lastAddedCard ? `${lastAddedCard.f}_${cards.length}` : `_${cards.length}`
 
   useEffect(() => {
@@ -2262,8 +2257,6 @@ export default function GalerieClient({ userId, initialCardUrl, initialCards, in
             </div>
           </div>
 
-          {loaded && fanImages.length > 0 && <CardFan images={fanImages} />}
-
           {loaded && (
             <div style={{ display: 'flex', flexDirection: 'column', gap: 14, alignItems: 'flex-end', flexShrink: 0, minWidth: 260, marginLeft: 'auto' }} className="header-stats-block">
               <div style={{ display: 'flex', gap: 16, justifyContent: 'flex-end', width: '100%' }}>
@@ -2456,13 +2449,13 @@ export default function GalerieClient({ userId, initialCardUrl, initialCards, in
                     onKeyDown={e => { if ((e.key === 'Enter' || e.key === ' ') && e.target === e.currentTarget) { e.preventDefault(); setPopup(card) } }}
                     className={`grail-wall-cursor${i === 0 ? ' grail-gold-glow' : ''}`} style={{
                     width: medal.width, cursor: 'pointer', position: 'relative',
-                    background: `linear-gradient(160deg, ${medal.color}, ${medal.color}99)`, padding: 3, borderRadius: 12,
+                    background: `linear-gradient(145deg, ${medal.color}, ${medal.color}aa 45%, ${medal.color})`, padding: 6, borderRadius: 0, outline: '1px solid rgba(0,0,0,.45)', outlineOffset: -1,
                     boxShadow: i === 0 ? undefined : `0 6px 20px ${medal.glow}`, transition: 'transform 0.2s',
                   }}
                     onMouseEnter={e => (e.currentTarget.style.transform = 'translateY(-4px)')}
                     onMouseLeave={e => (e.currentTarget.style.transform = 'translateY(0)')}
                   >
-                    <div style={{ borderRadius: 9, overflow: 'hidden', background: 'white', position: 'relative' }}>
+                    <div style={{ borderRadius: 0, overflow: 'hidden', background: '#ece6d6', position: 'relative', padding: 6, boxShadow: 'inset 0 0 0 1px rgba(0,0,0,.35)' }}>
                       {isOwner && (
                         deleteGrailConfirm === card.f ? (
                           <div style={{ position: 'absolute', top: 4, right: 4, zIndex: 3, display: 'flex', gap: 2 }}>
@@ -2479,9 +2472,9 @@ export default function GalerieClient({ userId, initialCardUrl, initialCards, in
                         )
                       )}
                       <CardLink slug={profile?.slug || userId} cardKey={card.f}>{renderCardImage(card)}</CardLink>
-                      <div style={{ padding: '6px 8px' }}>
-                        <p style={{ fontWeight: 800, fontSize: 10, margin: 0, whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>{card.n}</p>
-                        <p style={{ fontSize: 9, color: medal.color, fontWeight: 700, margin: '1px 0 0', fontStyle: 'italic', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>{card.v || card.s}</p>
+                      <div style={{ margin: '8px -6px -6px', padding: '6px 8px 7px', background: 'linear-gradient(135deg,#d8b45a,#f1dc9a 45%,#b8923a)', borderTop: '1px solid rgba(0,0,0,.35)' }}>
+                        <p style={{ fontWeight: 800, fontSize: 10, margin: 0, whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis', color: '#2a1c00', textTransform: 'uppercase' }}>{card.n}</p>
+                        <p style={{ fontSize: 9, color: '#5a3f08', fontWeight: 700, margin: '1px 0 0', fontStyle: 'italic', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>{card.v || card.s}</p>
                       </div>
                     </div>
                   </div>
@@ -3310,15 +3303,18 @@ export default function GalerieClient({ userId, initialCardUrl, initialCards, in
                   <span style={{ fontSize: 11, color: '#999', fontWeight: 700 }}>{group.cards.length} {t('gallery_cards')}</span>
                   <div style={{ flex: 1, height: 1, background: dark ? '#2a2a2a' : '#eee' }} />
                 </div>
-                <div style={{ display: 'flex', gap: 10, overflowX: 'auto', paddingBottom: 6 }}>
-                  {group.cards.map(c => (
-                    <div key={getCardId(c)} onClick={() => setPopup(c)} role="button" tabIndex={0} aria-label={c.n}
+                <div className="film-strip">
+                  {group.cards.map((c, fi) => (
+                    <div key={getCardId(c)} className="film-frame">
+                    <div onClick={() => setPopup(c)} role="button" tabIndex={0} aria-label={c.n}
                       onKeyDown={e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); setPopup(c) } }}
                       style={{
-                      flex: '0 0 auto', width: 90, cursor: 'pointer', borderRadius: 8, overflow: 'hidden',
+                      width: '100%', cursor: 'pointer', overflow: 'hidden',
                       ...coloredBorder(cardTagColor(c)),
                     }}>
                       <CardLink slug={profile?.slug || userId} cardKey={c.f}>{renderCardImage(c)}</CardLink>
+                    </div>
+                    <div className="film-meta"><span>{String(fi + 1).padStart(2, '0')}A</span><span>{c.created_at ? new Date(c.created_at).toLocaleDateString('fr-FR', { day: '2-digit', month: '2-digit' }) : ''}</span></div>
                     </div>
                   ))}
                 </div>
@@ -3429,7 +3425,7 @@ export default function GalerieClient({ userId, initialCardUrl, initialCards, in
                   </div>
                 </div>
               )}
-              <div className="holo-light" style={{ width: '100%', marginBottom: 8 }}>
+              <div className={`holo-light${numTier(d.num) !== 'std' ? ` halo halo-${numTier(d.num)}` : ''}`} style={{ width: '100%', marginBottom: 8 }}>
                 <CardLink slug={profile?.slug || userId} cardKey={d.f}>{renderCardImage(d)}</CardLink>
               </div>
               {getTags(d)}

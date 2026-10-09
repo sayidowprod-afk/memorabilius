@@ -35,21 +35,15 @@ export default function Toaster() {
   return (
     <div style={{ position: 'fixed', bottom: bottomOffset, left: '50%', transform: 'translateX(-50%)', zIndex: 10000004, display: 'flex', flexDirection: 'column', gap: 8, alignItems: 'center', pointerEvents: 'none' }}>
       {toasts.map(t => (
-        <div key={t.id} style={{
-          background: t.type === 'error' ? '#e74c3c' : t.type === 'success' ? '#27ae60' : '#2c3e50',
-          color: 'white', borderRadius: 12, padding: '12px 20px', fontWeight: 700, fontSize: 14,
-          boxShadow: '0 4px 20px rgba(0,0,0,0.25)', maxWidth: 360, textAlign: 'center',
-          display: 'flex', alignItems: 'center', gap: 10,
-          animation: t.leaving ? 'mb-toast-out 0.2s ease forwards' : 'mb-toast-in 0.2s ease',
-        }}>
-          <span className={t.leaving ? undefined : 'toast-icon-pop'} style={{ width: 20, height: 20, borderRadius: '50%', background: 'rgba(255,255,255,0.25)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 11, flexShrink: 0 }}>
+        <div key={t.id} className="mb-toast" style={{ animation: t.leaving ? 'mb-toast-out 0.2s ease forwards' : 'mb-toast-in 0.35s cubic-bezier(.2,.9,.2,1)' }}>
+          <div className={`mb-toast-ic${t.leaving ? '' : ' toast-icon-pop'}`} style={{ background: t.type === 'error' ? '#e74c3c' : t.type === 'success' ? '#1f9d55' : '#2f6bff' }}>
             {ICON[t.type]}
-          </span>
-          {t.message}
+          </div>
+          <div className="mb-toast-tx">{t.message}</div>
         </div>
       ))}
       <style>{`
-        @keyframes mb-toast-in { from { opacity:0; transform:translateY(8px) } to { opacity:1; transform:translateY(0) } }
+        @keyframes mb-toast-in { from { opacity:0; transform:translateX(-48px) } to { opacity:1; transform:translateX(0) } }
         @keyframes mb-toast-out { from { opacity:1; transform:translateY(0) scale(1) } to { opacity:0; transform:translateY(4px) scale(0.96) } }
       `}</style>
     </div>
