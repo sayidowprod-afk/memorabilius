@@ -77,7 +77,9 @@ function MessagesContent() {
   const toParam = searchParams.get('to')
   const tradeParam = searchParams.get('trade')
   // trade_id en DB est integer (table trades) — les cartes galerie ont un UUID : ignorer
-  const tradeIdInt = tradeParam ? parseInt(tradeParam, 10) : null
+  // Seuls les identifiants 100 % numeriques sont valides : parseInt("4f2c9e...") renvoyait 4 pour un UUID
+  // d'echange (trade_offers), d'ou l'erreur "messages_trade_id_fkey" a l'envoi.
+  const tradeIdInt = tradeParam && /^\d+$/.test(tradeParam) ? parseInt(tradeParam, 10) : null
   const tradeIdForMsg = (tradeIdInt !== null && !isNaN(tradeIdInt)) ? tradeIdInt : null
 
   const [userId, setUserId] = useState<string | null>(null)
@@ -405,16 +407,22 @@ function MessagesContent() {
   // setNewMsg('') n'ait pu s'appliquer, notamment sur mobile).
   const sendingRef = useRef(false)
 
+  // Insere un message ; si l'echange lie n'existe pas (cle etrangere, code 23503), on reessaie sans trade_id
+  // plutot que de bloquer l'envoi.
+  const insertMessage = async (contenu: string) => {
+    const base = { from_user_id: userId, to_user_id: activeConv, contenu }
+    let res = await supabase.from('messages').insert({ ...base, trade_id: tradeIdForMsg }).select('id').single()
+    if (res.error?.code === '23503' && tradeIdForMsg !== null) {
+      res = await supabase.from('messages').insert({ ...base, trade_id: null }).select('id').single()
+    }
+    return res
+  }
+
   const sendMessage = async (contentOverride?: string) => {
     const content = (contentOverride ?? newMsg).trim()
     if (!content || !userId || !activeConv || sendingRef.current) return
     sendingRef.current = true
-    const { data: inserted, error } = await supabase.from('messages').insert({
-      from_user_id: userId,
-      to_user_id: activeConv,
-      contenu: content,
-      trade_id: tradeIdForMsg,
-    }).select('id').single()
+    const { data: inserted, error } = await insertMessage(content)
     sendingRef.current = false
     if (error) {
       // RLS rejette l'insert si le destinataire nous a bloques (voir migration
@@ -449,12 +457,7 @@ function MessagesContent() {
         const { error } = await supabase.storage.from('avatars').upload(path, blob, { upsert: true, contentType: 'image/jpeg' })
         if (error) { toast.error('Erreur upload : ' + error.message); continue }
         const { data } = supabase.storage.from('avatars').getPublicUrl(path)
-        await supabase.from('messages').insert({
-          from_user_id: userId,
-          to_user_id: activeConv,
-          contenu: IMG_PREFIX + data.publicUrl,
-          trade_id: tradeIdForMsg,
-        })
+        await insertMessage(IMG_PREFIX + data.publicUrl)
       }
       loadMessages(userId, activeConv)
       loadConversations(userId)
