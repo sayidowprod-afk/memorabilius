@@ -156,11 +156,92 @@ function StripX({ s, h, dark, tier }: { s: Sample; h: number; dark: boolean; tie
   )
 }
 
-type Variant = 'old' | 'q1' | 'q2' | 'q3' | 'sx' | 'dx' | 'bx'
+// ── Bandeaux : 5 variantes. Tout tient TOUJOURS sur une ligne, en entier : la taille du texte
+//    s'adapte a la largeur disponible (container query), tout est en em. ──
+type StripStyle = 'b1' | 'b2' | 'b3' | 'b4' | 'b5'
+function StripV({ s, h, dark, tier, v }: { s: Sample; h: number; dark: boolean; tier: Tier; v: StripStyle }) {
+  const segs: { key: string; text: string; color: string; isNum?: boolean }[] = []
+  if (s.rc) segs.push({ key: 'rc', text: 'RC', color: BASE.rc })
+  if (s.auto) segs.push({ key: 'auto', text: 'AUTO', color: BASE.auto })
+  if (s.patch) segs.push({ key: 'patch', text: 'PATCH', color: BASE.patch })
+  if (s.num) segs.push({ key: 'num', text: s.num, color: BASE.num, isNum: true })
+  if (!segs.length) return null
+  const metal = s.num && tier !== 'std' ? METAL[tier] : null
+  const chars = segs.reduce((a, g) => a + g.text.length, 0)
+  const K = chars * 0.86 + segs.length * 1.5 + 0.4          // largeur estimee en em
+  const base = Math.round(h * 0.47 * 10) / 10                // taille de texte voulue (px)
+  const fam = 'system-ui, -apple-system, "Segoe UI", sans-serif'
+  const numBg = (g: { isNum?: boolean; color: string }) => g.isNum && metal ? metal.g : `linear-gradient(180deg, ${mix(g.color, 0.24)} 0%, ${g.color} 52%, ${mix(g.color, -0.24)} 100%)`
+  const numFg = (g: { isNum?: boolean }) => g.isNum && metal ? metal.fg : '#fff'
+  const ink = dark ? '#ffffff' : '#0a1228'
+  const glow = metal?.glow ? `, ${metal.glow}` : ''
+
+  const outer: React.CSSProperties = { display: 'inline-flex', alignItems: 'stretch', height: '2.15em', fontFamily: fam, fontWeight: 800, letterSpacing: '0.08em', lineHeight: 1,
+    fontSize: `clamp(7px, calc(100cqw / ${K.toFixed(2)}), ${base}px)`, whiteSpace: 'nowrap', fontVariantNumeric: 'tabular-nums', textTransform: 'uppercase', position: 'relative', maxWidth: '100%' }
+  const pad = '0 0.7em'
+
+  let body: React.ReactNode
+  let style: React.CSSProperties
+  if (v === 'b1') {
+    // capsule coloree d'un seul tenant : un segment par critere, aux couleurs des pastilles
+    style = { ...outer, borderRadius: '0.55em', overflow: 'hidden', border: '1px solid rgba(0,0,0,0.4)', boxShadow: `inset 0 1px 0 rgba(255,255,255,0.45), 0 2px 5px rgba(0,0,0,0.4)${glow}` }
+    body = segs.map((g, i) => (
+      <span key={g.key} style={{ display: 'inline-flex', alignItems: 'center', padding: pad, background: numBg(g), color: numFg(g), borderLeft: i ? '1px solid rgba(255,255,255,0.55)' : 0, textShadow: g.isNum && metal ? 'none' : '0 1px 1px rgba(0,0,0,0.4)' }}>{g.text}</span>
+    ))
+  } else if (v === 'b2') {
+    // verre + filet multicolore en haut + pastille ronde de couleur devant chaque critere
+    const grad = `linear-gradient(90deg, ${segs.map(g => (g.isNum && metal ? TIER_BASE[tier] : g.color)).join(', ')}${segs.length === 1 ? ', ' + segs[0].color : ''})`
+    style = { ...outer, borderRadius: '0.55em', overflow: 'hidden', background: dark ? 'linear-gradient(180deg,#1d2850,#0a1024)' : 'linear-gradient(180deg,#ffffff,#e8ecf3)',
+      border: `1px solid ${dark ? 'rgba(255,255,255,0.3)' : 'rgba(10,18,40,0.32)'}`, boxShadow: `inset 0 1px 0 ${dark ? 'rgba(255,255,255,0.2)' : '#fff'}, 0 2px 5px rgba(0,0,0,0.35)${glow}`, color: ink }
+    body = <>
+      <i style={{ position: 'absolute', left: 0, right: 0, top: 0, height: '0.22em', background: grad }} />
+      {segs.map((g, i) => (
+        <span key={g.key} style={{ display: 'inline-flex', alignItems: 'center', gap: '0.45em', padding: pad, borderLeft: i ? `1px solid ${dark ? 'rgba(255,255,255,0.14)' : 'rgba(10,18,40,0.14)'}` : 0,
+          ...(g.isNum && metal ? { background: metal.g, color: metal.fg } : {}) }}>
+          {!(g.isNum && metal) && <i style={{ width: '0.62em', height: '0.62em', borderRadius: '50%', background: `radial-gradient(circle at 35% 30%, ${mix(g.color, 0.5)}, ${g.color} 60%, ${mix(g.color, -0.3)})`, boxShadow: `0 0 0.5em ${g.color}99`, display: 'block', flexShrink: 0 }} />}
+          {g.text}
+        </span>
+      ))}
+    </>
+  } else if (v === 'b3') {
+    // ruban degrade : les couleurs des criteres se fondent les unes dans les autres, reflet par-dessus
+    const cols = segs.map(g => (g.isNum && metal ? TIER_BASE[tier] : g.color))
+    const bg = cols.length > 1 ? `linear-gradient(90deg, ${cols.join(', ')})` : cols[0]
+    style = { ...outer, borderRadius: '2em', overflow: 'hidden', border: '1px solid rgba(255,255,255,0.55)', color: '#fff',
+      background: `linear-gradient(180deg, rgba(255,255,255,0.32) 0%, rgba(255,255,255,0.04) 50%, rgba(0,0,0,0.18) 52%, rgba(0,0,0,0.3) 100%), ${bg}`,
+      boxShadow: `0 2px 6px rgba(0,0,0,0.45), 0 0 0 1px rgba(0,0,0,0.35)${glow}`, textShadow: '0 1px 1px rgba(0,0,0,0.5)' }
+    body = segs.map((g, i) => (
+      <span key={g.key} style={{ display: 'inline-flex', alignItems: 'center', padding: i === 0 ? '0 0.7em 0 0.95em' : i === segs.length - 1 ? '0 0.95em 0 0.7em' : pad, borderLeft: i ? '1px solid rgba(255,255,255,0.4)' : 0 }}>{g.text}</span>
+    ))
+  } else if (v === 'b4') {
+    // luxe : noir profond, filet or, libelles or, soulignement de la couleur du critere, numero en metal
+    style = { ...outer, borderRadius: '0.4em', overflow: 'hidden', background: 'linear-gradient(180deg,#171720,#07070b)', color: '#ecd08a',
+      boxShadow: 'inset 0 0 0 1px #b8923a, inset 0 0 0 2px #07070b, inset 0 0 0 3px rgba(236,208,138,0.35), 0 2px 6px rgba(0,0,0,0.5)' + glow }
+    body = segs.map((g, i) => (
+      <span key={g.key} style={{ display: 'inline-flex', alignItems: 'center', padding: '0 0.75em', position: 'relative', borderLeft: i ? '1px solid rgba(236,208,138,0.3)' : 0,
+        ...(g.isNum && metal ? { background: metal.g, color: metal.fg } : g.isNum ? { color: '#fff', background: `linear-gradient(180deg, ${mix(BASE.num, 0.2)}, ${BASE.num} 60%, ${mix(BASE.num, -0.25)})` } : {}) }}>
+        {g.text}
+        {!g.isNum && <i style={{ position: 'absolute', left: '0.75em', right: '0.75em', bottom: '0.28em', height: '0.18em', borderRadius: 2, background: g.color }} />}
+      </span>
+    ))
+  } else {
+    // ticket : extremites coupees, segments colores, filet interieur clair
+    style = { ...outer, color: '#fff', clipPath: 'polygon(0.55em 0, calc(100% - 0.55em) 0, 100% 50%, calc(100% - 0.55em) 100%, 0.55em 100%, 0 50%)',
+      filter: 'drop-shadow(0 2px 3px rgba(0,0,0,0.45))', textShadow: '0 1px 1px rgba(0,0,0,0.4)' }
+    body = segs.map((g, i) => (
+      <span key={g.key} style={{ display: 'inline-flex', alignItems: 'center', padding: i === 0 ? '0 0.7em 0 1.1em' : i === segs.length - 1 ? '0 1.1em 0 0.7em' : pad, background: numBg(g), color: numFg(g),
+        boxShadow: 'inset 0 1px 0 rgba(255,255,255,0.4), inset 0 -1px 0 rgba(0,0,0,0.25)', borderLeft: i ? '1px dashed rgba(255,255,255,0.7)' : 0, textShadow: g.isNum && metal ? 'none' : undefined }}>{g.text}</span>
+    ))
+  }
+  return <span style={{ display: 'block', containerType: 'inline-size', width: '100%' }}><span style={style}>{body}</span></span>
+}
+
+type Variant = 'old' | 'q1' | 'q2' | 'q3' | 'sx' | 'dx' | 'bx' | StripStyle
 function Tags({ s, v, h, dark }: { s: Sample; v: Variant; h: number; dark: boolean }) {
   const tier = numTier(s.num)
   if (v === 'sx') return <>{s.rc && <ShieldX kind="rc" h={h * 1.45} tier={tier} />}{s.auto && <ShieldX kind="auto" h={h * 1.45} tier={tier} />}{s.patch && <ShieldX kind="patch" h={h * 1.45} tier={tier} />}{s.num && <ShieldX kind="num" h={h * 1.45} num={s.num} tier={tier} />}</>
   if (v === 'bx') return <StripX s={s} h={h} dark={dark} tier={tier} />
+  if (v === 'b1' || v === 'b2' || v === 'b3' || v === 'b4' || v === 'b5') return <StripV s={s} h={h} dark={dark} tier={tier} v={v} />
   const items: { kind: Kind; text: string }[] = []
   if (s.rc) items.push({ kind: 'rc', text: LABEL.rc })
   if (s.auto) items.push({ kind: 'auto', text: LABEL.auto })
@@ -178,13 +259,19 @@ const TITLES: Record<Variant, [string, string]> = {
   q2: ['Q2 · Affiné + rareté', 'Comme Q1 ; le numéro devient métal selon la rareté : or 1/1 (avec halo), argent ≤10, bronze ≤25'],
   sx: ['S · Écusson premium', 'Même forme pour les 4 : rebord métal, biseau, reflet, filet intérieur, texte en relief ; le numéro passe en or / argent / bronze si rare'],
   dx: ['D · Double filet premium', 'Angles droits, filet extérieur clair + filet intérieur, reflet, couleurs actuelles ; numéro métal si rare'],
-  bx: ['B · Bandeau premium', 'Un seul bloc en verre, repère de couleur par critère, numéro en relief (violet ou métal)'],
+  b1: ['B1 · Capsule colorée', 'Un seul bloc, un segment par critère aux couleurs des pastilles, séparés par un filet blanc ; numéro métal si rare'],
+  b2: ['B2 · Verre + filet multicolore', 'Verre sombre/clair, filet des couleurs des critères en haut, pastille ronde lumineuse devant chaque critère'],
+  b3: ['B3 · Ruban dégradé', 'Les couleurs des critères se fondent en un ruban arrondi, reflet par-dessus ; numéro à l’extrémité'],
+  b4: ['B4 · Luxe noir et or', 'Noir profond, triple filet or, libellés or, soulignement de la couleur du critère, numéro en métal'],
+  b5: ['B5 · Ticket', 'Extrémités coupées en pointe, segments colorés, séparés en pointillés comme un billet'],
+  bx: ['B · Bandeau premium (version précédente)', 'Un seul bloc en verre, repère de couleur par critère, numéro en relief (violet ou métal)'],
   q3: ['Q3 · Affiné + rareté + mini-picto', 'Comme Q2, avec un petit symbole devant le texte : étoile (RC), signature (AUTO), patch cousu (PATCH), # (numéro)'],
 }
 
 export default function TagsCompare() {
   const [dark, setDark] = useState(true)
   const [h, setH] = useState(22)
+  const [mobile, setMobile] = useState(false)
   const btn = (on: boolean): React.CSSProperties => ({ padding: '8px 12px', fontWeight: 800, cursor: 'pointer', border: '2px solid currentColor', background: on ? (dark ? '#fff' : '#0a1228') : 'transparent', color: on ? (dark ? '#050912' : '#fff') : 'inherit' })
   return (
     <div style={{ minHeight: '100vh', background: dark ? 'linear-gradient(160deg,#050912,#08153b 60%,#0a2468)' : '#f3f5fa', color: dark ? '#fff' : '#0a1228', padding: '20px clamp(12px,3vw,40px) 60px', fontFamily: 'system-ui, sans-serif' }}>
@@ -195,13 +282,14 @@ export default function TagsCompare() {
         <button onClick={() => setDark(true)} style={btn(dark)}>Sombre</button>
         <button onClick={() => setDark(false)} style={btn(!dark)}>Clair</button>
         {[18, 22, 28].map(n => <button key={n} onClick={() => setH(n)} style={btn(h === n)}>{n}px</button>)}
+        <button onClick={() => setMobile(m => !m)} style={btn(mobile)}>Mobile (2 col.)</button>
       </div>
 
-      {(['old', 'q1', 'q2', 'q3', 'sx', 'dx', 'bx'] as Variant[]).map(v => (
+      {(['old', 'b1', 'b2', 'b3', 'b4', 'b5', 'bx'] as Variant[]).map(v => (
         <section key={v} style={{ marginBottom: 34 }}>
           <h2 style={{ margin: '0 0 2px', fontSize: 18, fontWeight: 900 }}>{TITLES[v][0]}</h2>
           <p style={{ margin: '0 0 12px', fontSize: 12.5, opacity: 0.7 }}>{TITLES[v][1]}</p>
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(190px, 1fr))', gap: 12 }}>
+          <div style={{ display: 'grid', gridTemplateColumns: mobile ? 'repeat(2, 1fr)' : 'repeat(auto-fill, minmax(190px, 1fr))', gap: mobile ? 8 : 12, maxWidth: mobile ? 360 : undefined }}>
             {SAMPLES.map(s => (
               <div key={s.nom} style={{ background: dark ? '#0e1530' : '#fff', border: `2px solid ${dark ? '#1f4fd0' : '#003da6'}`, borderRadius: 8, padding: 8 }}>
                 {/* eslint-disable-next-line @next/next/no-img-element */}
