@@ -2,8 +2,6 @@
 import { useState, useEffect, useCallback, useMemo, useRef } from 'react'
 import Link from 'next/link'
 import { supabase } from '@/lib/supabase'
-import TagIcon from '@/components/TagIcon'
-import CardTagBadges from '@/components/CardTagBadges'
 
 interface Card {
   f: string; b: string; n: string; t: string; s: string; y: string
@@ -229,7 +227,7 @@ function PlayerChecklist({ pc, userId, bg, bg2, border, text, muted, accent }: {
                               {entry.variation || 'Base'}
                             </span>
                             {entry.is_rc && (
-                              <TagIcon kind="rc" h={20} />
+                              <span style={{ fontSize: 9, background: '#e67e22', color: 'white', padding: '2px 5px', borderRadius: 3, fontWeight: 800, flexShrink: 0 }}>RC</span>
                             )}
                           </div>
                         )
@@ -424,7 +422,9 @@ export default function MesPCTab({ cards, cardsLoaded = true, userId, accent, da
                       <div style={{ fontSize: 11, color: muted }}>{card.y && `${card.y} `}{card.s}{card.v ? ` · ${card.v}` : ''}</div>
                     </div>
                     <div style={{ display: 'flex', gap: 3, flexShrink: 0 }}>
-                      <CardTagBadges rc={card.rc} auto={card.auto} patch={card.patch} size="xs" />
+                      {card.rc   && <span style={{ fontSize: 9, background: '#e67e22', color: 'white', padding: '2px 5px', borderRadius: 3, fontWeight: 800 }}>RC</span>}
+                      {card.auto && <span style={{ fontSize: 9, background: '#3b82f6', color: 'white', padding: '2px 5px', borderRadius: 3, fontWeight: 800 }}>AUTO</span>}
+                      {card.patch && <span style={{ fontSize: 9, background: '#8b5cf6', color: 'white', padding: '2px 5px', borderRadius: 3, fontWeight: 800 }}>PATCH</span>}
                     </div>
                   </div>
                 ))}

@@ -3,7 +3,6 @@ import { useState, useMemo, useEffect } from 'react'
 import { createPortal } from 'react-dom'
 import { saveOrShareFile } from '@/lib/saveOrShare'
 import { useLang, localeFor, type Lang } from '@/lib/LangContext'
-import { numTier, numLabel } from '@/components/TagIcon'
 
 interface Card {
   f: string; b?: string; n: string; v: string; y: string; br: string; s: string; t: string
@@ -215,10 +214,6 @@ async function generate(cards: Card[], profileName: string, avatarUrl: string, a
   ctx.textAlign = 'left'
 
   const images = await loadImgs(cards.map(c => c.f))
-  // Icones RC / AUTO / PATCH / NUM (nouvelle DA), pre-chargees une fois pour tout l'export
-  const TAGSRC = { rc: '/tags/dist/rc.png', auto: '/tags/dist/auto.png', patch: '/tags/dist/patch.png', num: '/tags/dist/num.png', numGold: '/tags/dist/num-gold.png', numSilver: '/tags/dist/num-silver.png', numBronze: '/tags/dist/num-bronze.png' }
-  const tagImgs: Record<string, HTMLImageElement> = {}
-  await Promise.all(Object.entries(TAGSRC).map(async ([k, src]) => { tagImgs[k] = await loadImg(src) }))
 
   // Tailles de texte proportionnelles à la carte, plafonnées
   const tagH   = Math.min(14, Math.max(9,  Math.round(cardW * 0.075)))
@@ -247,46 +242,28 @@ async function generate(cards: Card[], profileName: string, avatarUrl: string, a
     let lineY = y + cardH + 4
     ctx.textBaseline = 'top'
 
-    // Badges (sous la carte, comme la galerie) : icones RC / AUTO / PATCH / NUM
+    // Badges (sous la carte, comme la galerie)
     if (opts.showBadges) {
-      const iconH = Math.max(16, Math.round(tagH * 1.6))
-      const items: { img: HTMLImageElement; h: number; text?: string; stroke?: string }[] = []
-      const push = (key: string, h: number, text?: string, stroke?: string) => { const im = tagImgs[key]; if (im && im.naturalWidth) items.push({ img: im, h, text, stroke }) }
-      if (card.rc) push('rc', iconH)
-      if (card.auto) push('auto', Math.round(iconH * 0.8))
-      if (card.num) {
-        const tier = numTier(card.num)
-        push(tier === 'gold' ? 'numGold' : tier === 'silver' ? 'numSilver' : tier === 'bronze' ? 'numBronze' : 'num', Math.round(iconH * 1.08), numLabel(card.num), tier === 'gold' ? '#3d2800' : tier === 'silver' ? '#1c2128' : tier === 'bronze' ? '#2b1500' : '#1a0033')
-      }
-      if (card.patch) push('patch', Math.round(iconH * 0.92))
-      const grade = card.g && card.g !== 'Raw' ? card.g : ''
-      if (items.length || grade) {
+      const tags: { label: string; color: string }[] = []
+      if (card.rc)   tags.push({ label: 'RC',    color: '#e67e22' })
+      if (card.auto) tags.push({ label: 'AUTO',  color: '#2e7d32' })
+      if (card.num)  tags.push({ label: card.num, color: '#7b1fa2' })
+      if (card.patch) tags.push({ label: 'PATCH', color: '#1976d2' })
+      if (card.g && card.g !== 'Raw') tags.push({ label: card.g, color: accent })
+      if (tags.length) {
+        ctx.font = `700 ${tagFont}px ${FONT}`
+        ctx.textBaseline = 'middle'
         let tagX = x + 2
-        const rowH = iconH + 2
-        items.forEach(it => {
-          const iw = Math.round(it.h * it.img.naturalWidth / it.img.naturalHeight)
-          const iy = lineY + (rowH - it.h) / 2
-          ctx.drawImage(it.img, tagX, iy, iw, it.h)
-          if (it.text) {
-            ctx.font = `900 ${Math.round(it.h * (it.text.length > 4 ? 0.27 : 0.33))}px ${FONT}`
-            ctx.textAlign = 'center'; ctx.textBaseline = 'middle'
-            ctx.lineJoin = 'round'; ctx.lineWidth = Math.max(1, it.h * 0.17); ctx.strokeStyle = it.stroke || '#000'
-            ctx.strokeText(it.text, tagX + iw / 2, iy + it.h * 0.55)
-            ctx.fillStyle = '#fff'; ctx.fillText(it.text, tagX + iw / 2, iy + it.h * 0.55)
-            ctx.textAlign = 'start'
-          }
-          tagX += iw + 4
-        })
-        if (grade) {
-          ctx.font = `700 ${tagFont}px ${FONT}`; ctx.textBaseline = 'middle'
-          const tw = ctx.measureText(grade).width + tagFont + 2
-          ctx.fillStyle = accent
-          ctx.beginPath(); ctx.roundRect(tagX, lineY + (rowH - tagH) / 2, tw, tagH, 3); ctx.fill()
+        tags.slice(0, 5).forEach(tag => {
+          const tw = ctx.measureText(tag.label).width + tagFont + 2
+          ctx.fillStyle = tag.color
+          ctx.beginPath(); ctx.roundRect(tagX, lineY, tw, tagH, 3); ctx.fill()
           ctx.fillStyle = '#fff'
-          ctx.fillText(grade, tagX + (tagFont + 2) / 2, lineY + rowH / 2)
-        }
+          ctx.fillText(tag.label, tagX + (tagFont + 2) / 2, lineY + tagH / 2)
+          tagX += tw + 3
+        })
         ctx.textBaseline = 'top'
-        lineY += rowH + 3
+        lineY += tagH + 4
       }
     }
 

@@ -58,7 +58,6 @@ import { parseNaturalQuery } from '@/lib/parseNaturalQuery'
 import BadgeBox from '@/components/BadgeBox'
 import { cardDisplayRatio, isHorizontalFormat, getFormat } from '@/lib/cardFormats'
 import TeamBadge from '@/components/TeamBadge'
-import TagIcon from '@/components/TagIcon'
 import TradeReputation from '@/components/TradeReputation'
 
 // ── Helpers numériques (module scope pour éviter re-création à chaque render) ──
@@ -1772,11 +1771,17 @@ export default function GalerieClient({ userId, initialCardUrl, initialCards, in
   }, [displayed, activeDragId])
 
   const getTags = (d: Card) => {
+    const oon = d.num && isOneOfOne(d.num)
+    const low = d.num && !oon && isLowNum(d.num)
+    const bronze = d.num && !oon && !low && isBronzeNum(d.num)
     return (
-      <div style={{ display: 'flex', gap: 4, flexWrap: 'wrap', alignItems: 'center', minHeight: 32 }}>
+      <div style={{ display: 'flex', gap: 4, flexWrap: 'wrap', minHeight: 18 }}>
         {d.item_type && d.item_type !== 'card' && <span style={{ fontSize: 9, fontWeight: 900, padding: '3px 6px', borderRadius: 4, background: '#7b1fa2', color: 'white' }}>🏆 MÉMO</span>}
         <CardTagBadges rc={d.rc} auto={d.auto} size="md" />
-        {d.num && <TagIcon kind="num" h={30} num={d.num} />}
+        {d.num && !oon && !low && !bronze && <span style={{ fontSize: 9, fontWeight: 900, padding: '3px 6px', borderRadius: 4, background: '#7b1fa2', color: 'white' }}>{d.num}</span>}
+        {bronze && <span style={{ fontSize: 9, fontWeight: 900, padding: '3px 6px', borderRadius: 4, background: 'linear-gradient(135deg,#6d3a00,#cd7f32,#f5cba7,#cd7f32,#6d3a00)', color: 'white', textShadow: '0 1px 2px rgba(0,0,0,0.6)', display: 'inline-block', animation: 'bro-anim 2.6s ease-in-out infinite' }}>{d.num}</span>}
+        {oon && <span style={{ fontSize: 9, fontWeight: 900, padding: '3px 6px', borderRadius: 4, background: 'linear-gradient(135deg,#b8860b,#ffd700,#fffacd,#ffd700,#b8860b)', color: '#3d2800', textShadow: '0 1px 0 rgba(255,255,255,0.4)', display: 'inline-block', animation: 'oon-anim 1.8s ease-in-out infinite' }}>{d.num}</span>}
+        {low && <span style={{ fontSize: 9, fontWeight: 900, padding: '3px 6px', borderRadius: 4, background: 'linear-gradient(135deg,#555,#c0c0c0,#fff,#c0c0c0,#555)', color: '#111', display: 'inline-block', animation: 'low-anim 2.2s ease-in-out infinite' }}>{d.num}</span>}
         <CardTagBadges patch={d.patch} size="md" />
         {d.printing_plate && <span style={{ fontSize: 9, fontWeight: 900, padding: '3px 6px', borderRadius: 4, background: '#111827', color: 'white' }}>PLATE</span>}
       </div>

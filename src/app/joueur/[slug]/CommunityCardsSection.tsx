@@ -2,7 +2,6 @@
 import { useState, useEffect, useRef, useMemo } from 'react'
 import Link from 'next/link'
 import { supabase } from '@/lib/supabase'
-import TagIcon from '@/components/TagIcon'
 
 type Card = {
   id: string | number
@@ -209,10 +208,12 @@ export default function CommunityCardsSection({ cards, totalCollectors }: { card
                         left: '-20%', top: '14.286%', transform: 'rotate(90deg)', objectFit: 'cover',
                       } : { width: '100%', height: '100%', objectFit: 'cover', display: 'block' }}
                     />
-                    {card.rc && <span style={{ position: 'absolute', top: 6, left: 6 }}><TagIcon kind="rc" h={26} /></span>}
+                    {card.rc && (
+                      <span style={{ position: 'absolute', top: 6, left: 6, fontSize: 9, fontWeight: 900, background: '#e67e22', color: 'white', padding: '2px 6px', borderRadius: 3, lineHeight: 1.4 }}>RC</span>
+                    )}
                     <div style={{ position: 'absolute', top: 6, right: 6, display: 'flex', flexDirection: 'column', gap: 2, alignItems: 'flex-end' }}>
-                      {card.auto && <TagIcon kind="auto" h={26} />}
-                      {card.patch && <TagIcon kind="patch" h={26} />}
+                      {card.auto && <span style={{ fontSize: 9, fontWeight: 900, background: '#2e7d32', color: 'white', padding: '2px 5px', borderRadius: 3, lineHeight: 1.4 }}>AUTO</span>}
+                      {card.patch && <span style={{ fontSize: 9, fontWeight: 900, background: '#1976d2', color: 'white', padding: '2px 5px', borderRadius: 3, lineHeight: 1.4 }}>PATCH</span>}
                       {card.disponible_vente && <span style={{ fontSize: 9, fontWeight: 900, background: '#c0392b', color: 'white', padding: '2px 5px', borderRadius: 3, lineHeight: 1.4 }}>🏷️</span>}
                     </div>
                     {card.num && (

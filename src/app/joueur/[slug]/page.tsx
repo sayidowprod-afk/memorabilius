@@ -6,7 +6,6 @@ import { fetchEspnHeadshot, fetchEspnPlayerBio } from '@/lib/espnHeadshot'
 import { normalizeName, cardPageUrl } from '@/lib/playerSlug'
 import CommunityCardsSection from './CommunityCardsSection'
 import PlayerChecklistSection from './PlayerChecklistSection'
-import TagIcon from '@/components/TagIcon'
 
 export const revalidate = 3600
 
@@ -889,7 +888,7 @@ export default async function JoueurPage({ params }: { params: Promise<{ slug: s
                               <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', gap: 8 }}>
                                 <div style={{ fontWeight: 800, fontSize: 13, color: 'var(--jp-text)', lineHeight: 1.3, flex: 1 }}>{set.name}</div>
                                 {set.isRc && (
-                                  <TagIcon kind="rc" h={22} />
+                                  <span style={{ fontSize: 9, background: '#e67e22', color: 'white', padding: '2px 7px', borderRadius: 3, fontWeight: 800, flexShrink: 0, marginTop: 1 }}>RC</span>
                                 )}
                               </div>
                               {set.brand && (

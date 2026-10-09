@@ -2,7 +2,6 @@
 import { useEffect, useState, useCallback } from 'react'
 import { supabase } from '@/lib/supabase'
 import Link from 'next/link'
-import TagIcon from '@/components/TagIcon'
 
 interface EntryWithSet {
   id: number
@@ -288,7 +287,7 @@ export default function PlayerChecklistSection({ playerName }: { playerName: str
                               {entry.variation || 'Base'}
                             </span>
                             {entry.is_rc && (
-                              <TagIcon kind="rc" h={20} />
+                              <span style={{ fontSize: 9, background: '#e67e22', color: 'white', padding: '2px 5px', borderRadius: 3, fontWeight: 800, flexShrink: 0 }}>RC</span>
                             )}
                           </div>
                         )

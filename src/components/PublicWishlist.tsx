@@ -6,7 +6,6 @@ import Image from 'next/image'
 import { useLang } from '@/lib/LangContext'
 import EmptyState from '@/components/EmptyState'
 import { toast } from '@/lib/toast'
-import CardTagBadges from '@/components/CardTagBadges'
 
 interface WishItem {
   id: string; nom: string; annee: string; marque: string
@@ -111,7 +110,12 @@ function WishCard({ item, accent, isOwner, onRemove }: {
 
         {tags.length > 0 && (
           <div style={{ display: 'flex', gap: 4, flexWrap: 'wrap', marginTop: 2 }}>
-            <CardTagBadges rc={!!item.rc} auto={!!item.auto} patch={!!item.patch} num={item.num} size="md" />
+            {tags.map(tag => (
+              <span key={tag.label} style={{
+                fontSize: 9, fontWeight: 900, padding: '2px 6px', borderRadius: 4,
+                background: tag.bg, color: 'white', textTransform: 'uppercase', letterSpacing: 0.5,
+              }}>{tag.label}</span>
+            ))}
           </div>
         )}
 

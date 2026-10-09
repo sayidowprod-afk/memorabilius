@@ -4,7 +4,6 @@ import Link from 'next/link'
 import { createClient } from '@supabase/supabase-js'
 import CardValueModule from './CardValueModule'
 import ShareButton from './ShareButton'
-import CardTagBadges from '@/components/CardTagBadges'
 
 const supabase = createClient(
   process.env.NEXT_PUBLIC_SUPABASE_URL!,
@@ -150,7 +149,11 @@ export default function CardSharePage({ cardId }: { cardId: string }) {
 
           {tags.length > 0 && (
             <div style={{ display: 'flex', gap: 6, flexWrap: 'wrap', marginBottom: 16 }}>
-              <CardTagBadges rc={!!card.rc} auto={!!card.auto} patch={!!card.patch} num={card.num} size="lg" />
+              {tags.map(tag => (
+                <span key={tag.label} style={{ fontSize: 11, fontWeight: 900, padding: '4px 9px', borderRadius: 6, background: tag.bg, color: 'white' }}>
+                  {tag.label}
+                </span>
+              ))}
             </div>
           )}
 

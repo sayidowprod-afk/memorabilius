@@ -4,7 +4,6 @@ import Link from 'next/link'
 import { SPORTS_TEAMS, teamLogoUrl, SportsTeam } from '@/lib/sportsTeams'
 import { teamSlug, playerSlug } from '@/lib/playerSlug'
 import { fetchCsvCardsForProfiles } from '@/lib/csvCards'
-import TagIcon from '@/components/TagIcon'
 
 export const revalidate = 3600
 
@@ -163,7 +162,7 @@ export default async function EquipePage({ params }: { params: Promise<{ slug: s
               <Link key={p.name} href={`/joueur/${playerSlug(p.name)}`} style={{ textDecoration: 'none' }}>
                 <div style={{ display: 'flex', alignItems: 'center', gap: 6, background: 'var(--card-bg, #fff)', border: `2px solid ${teamColor}`, borderRadius: 50, padding: '5px 14px 5px 10px' }}>
                   <span style={{ fontWeight: 800, fontSize: 13, color: 'var(--text, #121212)' }}>{p.name}</span>
-                  {p.isRc && <TagIcon kind="rc" h={20} />}
+                  {p.isRc && <span style={{ fontSize: 9, background: '#e67e22', color: 'white', padding: '2px 5px', borderRadius: 3, fontWeight: 700 }}>RC</span>}
                 </div>
               </Link>
             ))}
