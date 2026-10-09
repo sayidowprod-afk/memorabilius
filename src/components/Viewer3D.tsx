@@ -16,6 +16,7 @@ import ShareButton from '@/components/ShareButton'
 import { getFormat } from '@/lib/cardFormats'
 import { supabase } from '@/lib/supabase'
 import { getCsvCardSharePath } from '@/lib/csvCardShortLink'
+import TagIcon from '@/components/TagIcon'
 
 interface SetPlacementData {
   entry_id: number; set_id: number; set_name: string
@@ -1598,7 +1599,7 @@ export default function Viewer3D({ popup, accent, onClose, onNext, onPrev, getTa
                     <div style={{ flex: 1, minWidth: 0 }}>
                       <div style={{ fontSize: 14, fontWeight: hi ? 700 : 500, color: hi ? (dark ? '#86efac' : '#15803d') : (dark ? '#ddd' : '#111'), overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
                         {e.player_name}
-                        {e.is_rc && <span style={{ marginLeft: 6, fontSize: 9, fontWeight: 900, background: '#f97316', color: 'white', borderRadius: 3, padding: '1px 4px' }}>RC</span>}
+                        {e.is_rc && <span style={{ marginLeft: 6 }}><TagIcon kind="rc" h={20} /></span>}
                       </div>
                       <div style={{ fontSize: 12, marginTop: 2, color: e.variation ? accent : (dark ? '#444' : '#ccc'), fontWeight: e.variation ? 700 : 400 }}>
                         {e.variation || 'Base'}
@@ -2047,6 +2048,7 @@ export default function Viewer3D({ popup, accent, onClose, onNext, onPrev, getTa
             patch={popup.patch}
             grade={popup.g}
             cardNumber={popup.card_number}
+            designation={popup.beckett_designation || undefined}
             accent={accent}
             img={popup.f}
           />

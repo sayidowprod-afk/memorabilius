@@ -16,6 +16,7 @@ interface Props {
   patch?: boolean
   grade?: string
   cardNumber?: string
+  designation?: string   // designation Beckett complete si elle est connue
   accent: string
   img?: string
 }
@@ -32,7 +33,7 @@ function fmtDate(iso: string, lang: string) {
   return new Date(iso).toLocaleDateString(localeFor(lang as Lang), { day: 'numeric', month: 'short' })
 }
 
-export default function CardValueModule({ cardName, set, year, num, variant, rc, auto, patch, grade, cardNumber, accent, img }: Props) {
+export default function CardValueModule({ cardName, set, year, num, variant, rc, auto, patch, grade, cardNumber, designation, accent, img }: Props) {
   const [active, setActive]   = useState<ActiveListing[]>([])
   const [sold, setSold]       = useState<SoldListing[]>([])
   const [loading, setLoading] = useState(true)
@@ -47,7 +48,7 @@ export default function CardValueModule({ cardName, set, year, num, variant, rc,
   // ouvre leur accueil, ou il suffit de la coller dans la barre.
   // Ordre "designation Beckett" : annee, marque + set, variation, #numero, joueur, tirage, RC/AUTO/PATCH, grade
   const cardNo = cardNumber ? `#${cardNumber.replace(/^#/, '')}` : ''
-  const pointQuery = [year, set, variant, cardNo, cardName, printRun, rc && 'RC', auto && 'AUTO', patch && 'PATCH', grade].filter(Boolean).join(' ')
+  const pointQuery = designation?.trim() || [year, set, variant, cardNo, cardName, printRun, rc && 'RC', auto && 'AUTO', patch && 'PATCH', grade].filter(Boolean).join(' ')
   const copyPointQuery = () => {
     try { navigator.clipboard?.writeText(pointQuery).then(() => { setPointCopied(true); setTimeout(() => setPointCopied(false), 2500) }, () => {}) } catch {}
   }

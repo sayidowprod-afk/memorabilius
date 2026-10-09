@@ -9,6 +9,8 @@ import { SPORTS_TEAMS, teamLogoUrl } from '@/lib/sportsTeams'
 import { supabase } from '@/lib/supabase'
 import { parseNaturalQuery } from '@/lib/parseNaturalQuery'
 import SkeletonBlock from '@/components/SkeletonBlock'
+import TagIcon from '@/components/TagIcon'
+import CardTagBadges from '@/components/CardTagBadges'
 
 type Section = 'all' | 'cards' | 'players' | 'collectors'
 type SortKey = 'default' | 'y_desc' | 'y_asc' | 'name'
@@ -418,7 +420,7 @@ export default function Recherche() {
                       <span style={{ fontWeight: 800, fontSize: 13, color: text, display: 'block', whiteSpace: 'nowrap' }}>{p.name}</span>
                       <div style={{ display: 'flex', gap: 4, alignItems: 'center' }}>
                         <span style={{ fontSize: 10, color: muted }}>{sportEmoji(p.sports || [])}</span>
-                        {p.isRc && <span style={{ fontSize: 8, background: '#e67e22', color: 'white', padding: '1px 4px', borderRadius: 2, fontWeight: 800 }}>RC</span>}
+                        {p.isRc && <TagIcon kind="rc" h={20} />}
                       </div>
                     </div>
 
@@ -589,10 +591,7 @@ export default function Recherche() {
                       {/* Info */}
                       <div style={{ padding: '8px 10px 10px' }}>
                         <div style={{ display: 'flex', gap: 3, flexWrap: 'wrap', marginBottom: 4 }}>
-                          {card.rc && <span style={{ fontSize: 9, fontWeight: 900, padding: '2px 5px', borderRadius: 3, background: '#e67e22', color: 'white' }}>RC</span>}
-                          {card.auto && <span style={{ fontSize: 9, fontWeight: 900, padding: '2px 5px', borderRadius: 3, background: '#2e7d32', color: 'white' }}>AUTO</span>}
-                          {card.num && <NumTag num={card.num} />}
-                          {card.patch && <span style={{ fontSize: 9, fontWeight: 900, padding: '2px 5px', borderRadius: 3, background: '#1976d2', color: 'white' }}>PATCH</span>}
+                          <CardTagBadges rc={card.rc} auto={card.auto} patch={card.patch} num={card.num} size="sm" />
                         </div>
                         <p style={{ fontWeight: 800, fontSize: 12, margin: '0 0 2px', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis', color: text }}>{card.name}</p>
                         {card.variant && <p style={{ fontSize: 10, color: card.accent || accent, fontWeight: 700, margin: '0 0 1px', fontStyle: 'italic', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>{card.variant}</p>}

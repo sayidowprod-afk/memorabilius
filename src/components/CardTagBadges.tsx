@@ -1,31 +1,28 @@
 'use client'
+import TagIcon from '@/components/TagIcon'
 
-// Palette canonique RC/AUTO/PATCH, reprise de GalerieClient (deja la plus
-// repandue dans l'app) et desormais partagee partout pour eviter les 3 jeux
-// de couleurs differents observes (galerie, TradeModal, messages).
+// Palette canonique RC/AUTO/PATCH/NUM, encore utilisee par des filtres et des
+// compteurs (les pastilles de carte, elles, sont maintenant des icones : TagIcon).
 export const TAG_COLORS = { rc: '#e67e22', auto: '#2e7d32', patch: '#1976d2', num: '#7b1fa2' } as const
 
+const HEIGHT = { xs: 22, sm: 26, md: 30, lg: 34 } as const
+
 export default function CardTagBadges({
-  rc, auto, patch, num, size = 'sm', compact = false,
+  rc, auto, patch, num, numText, size = 'sm',
 }: {
-  rc?: boolean; auto?: boolean; patch?: boolean; num?: boolean
+  rc?: boolean; auto?: boolean; patch?: boolean; num?: boolean | string | null
+  numText?: string | null   // ex: "038/149" -> l'icone NUM affiche "/149"
   size?: 'xs' | 'sm' | 'md' | 'lg'
   compact?: boolean
 }) {
   if (!rc && !auto && !patch && !num) return null
-  const dims = {
-    xs: { fontSize: 7, padding: '1px 3px' },
-    sm: { fontSize: 9, padding: '2px 5px' },
-    md: { fontSize: 9, padding: '3px 6px' },
-    lg: { fontSize: 10, padding: '3px 8px' },
-  }[size]
-  const base: React.CSSProperties = { ...dims, fontWeight: 900, borderRadius: 4, color: 'white', lineHeight: 1.4 }
+  const h = HEIGHT[size]
   return (
     <>
-      {rc && <span style={{ ...base, background: TAG_COLORS.rc }}>{compact ? 'RC' : 'RC'}</span>}
-      {auto && <span style={{ ...base, background: TAG_COLORS.auto }}>{compact ? 'AU' : 'AUTO'}</span>}
-      {patch && <span style={{ ...base, background: TAG_COLORS.patch }}>{compact ? 'PA' : 'PATCH'}</span>}
-      {num && <span style={{ ...base, background: TAG_COLORS.num }}>{compact ? '#N' : '# NUM'}</span>}
+      {rc && <TagIcon kind="rc" h={h} />}
+      {auto && <TagIcon kind="auto" h={h} />}
+      {patch && <TagIcon kind="patch" h={h} />}
+      {num && <TagIcon kind="num" h={h} num={typeof num === 'string' ? num : numText} />}
     </>
   )
 }

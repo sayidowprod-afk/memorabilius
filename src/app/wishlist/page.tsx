@@ -5,6 +5,7 @@ import { supabase } from '@/lib/supabase'
 import { withTimeout } from '@/lib/withTimeout'
 import { useLang } from '@/lib/LangContext'
 import { useTheme } from '@/lib/ThemeContext'
+import CardTagBadges from '@/components/CardTagBadges'
 
 interface WishItem {
   id: string; nom: string; annee: string; marque: string
@@ -168,9 +169,7 @@ export default function WishlistPage() {
                 {[item.annee, item.marque, item.collection, item.variation].filter(Boolean).join(' · ')}
               </div>
               <div style={{ display: 'flex', gap: 5, flexWrap: 'wrap' }}>
-                {tags(item).map(t => (
-                  <span key={t.label} style={{ fontSize: 9, fontWeight: 900, padding: '2px 7px', borderRadius: 4, background: t.bg, color: 'white' }}>{t.label}</span>
-                ))}
+                <CardTagBadges rc={!!item.rc} auto={!!item.auto} patch={!!item.patch} num={item.num} size="md" />
               </div>
               {item.notes && <div style={{ fontSize: 11, color: '#888', marginTop: 6, fontStyle: 'italic' }}>"{item.notes}"</div>}
             </div>

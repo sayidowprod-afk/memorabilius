@@ -6,6 +6,7 @@ import { supabase } from '@/lib/supabase'
 import { playerSlug } from '@/lib/playerSlug'
 import { useTheme } from '@/lib/ThemeContext'
 import { useLang } from '@/lib/LangContext'
+import TagIcon from '@/components/TagIcon'
 
 const normStr = (s: string) =>
   s?.normalize('NFD').replace(/\p{M}/gu, '').toLowerCase().replace(/[^a-z0-9]/g, '') || ''
@@ -686,7 +687,7 @@ export default function SetlistClient({ setId }: { setId: string }) {
                           </div>
                           <div style={{ display: 'flex', alignItems: 'center', gap: 6, overflow: 'hidden' }}>
                             <Link href={`/joueur/${playerSlug(entry.player_name)}`} style={{ fontSize: 14, fontWeight: entry.owned ? 700 : 400, color: entry.owned ? (dark ? '#eee' : '#111') : (dark ? '#999' : '#444'), overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap', textDecoration: 'none' }} onClick={e => e.stopPropagation()}>{entry.player_name}</Link>
-                            {entry.is_rc && <span style={{ fontSize: 10, fontWeight: 900, background: '#e67e22', color: 'white', borderRadius: 4, padding: '1px 5px', flexShrink: 0 }}>RC</span>}
+                            {entry.is_rc && <TagIcon kind="rc" h={20} />}
                             {entry.manually_checked && <span style={{ fontSize: 10, color: '#2ecc71', fontWeight: 700, flexShrink: 0 }}>✓</span>}
                           </div>
                           {!isMobile && <span style={{ fontSize: 12, color: '#999', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>{entry.team || '—'}</span>}

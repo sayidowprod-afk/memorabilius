@@ -3,6 +3,7 @@ import { useEffect, useState, useCallback, useRef } from 'react'
 import { createPortal } from 'react-dom'
 import { useParams, useRouter } from 'next/navigation'
 import { supabase } from '@/lib/supabase'
+import TagIcon from '@/components/TagIcon'
 
 interface Card {
   f: string
@@ -42,9 +43,9 @@ function Badges({ card, big = false }: { card: Card; big?: boolean }) {
   const s = big ? { fontSize: 11, fontWeight: 900, padding: '3px 8px', borderRadius: 6 } : { fontSize: 7, fontWeight: 900, padding: '1px 3px', borderRadius: 3 }
   return (
     <div style={{ display: 'flex', gap: big ? 6 : 2, flexWrap: 'wrap' }}>
-      {card.rc && <span style={{ ...s, background: '#003DA6', color: '#fff' }}>RC</span>}
-      {card.auto && <span style={{ ...s, background: '#8B0000', color: '#fff' }}>AUTO</span>}
-      {card.patch && <span style={{ ...s, background: '#4a2c00', color: '#fff' }}>PATCH</span>}
+      {card.rc && <TagIcon kind="rc" h={big ? 34 : 18} />}
+      {card.auto && <TagIcon kind="auto" h={big ? 34 : 18} />}
+      {card.patch && <TagIcon kind="patch" h={big ? 34 : 18} />}
       {card.printing_plate && <span style={{ ...s, background: '#222', color: '#fff' }}>PRINTING PLATE</span>}
       {card.booklet && <span style={{ ...s, background: '#5a3e00', color: '#fff' }}>BOOKLET</span>}
       {card.g && card.g !== 'Raw' && <span style={{ ...s, background: '#1a5c1a', color: '#fff' }}>{card.g}</span>}
