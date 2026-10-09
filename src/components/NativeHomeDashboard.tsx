@@ -17,6 +17,7 @@ interface DashboardData {
   avatarUrl: string | null
   totalCards: number
   lastCard: { image: string; name: string } | null
+  lastCards: { image: string; name: string }[]   // 3 dernieres cartes (eventail), la plus recente en premier
   nextBadge: { cat: BadgeCategory; tier: BadgeTier; value: number; pct: number } | null
   rc: number; patch: number; auto: number; num: number
   level: LevelInfo
@@ -62,7 +63,8 @@ function formatCountdown(msLeft: number, t: (k: TranslationKey) => string): stri
 }
 
 export default function NativeHomeDashboard({ siteStats }: { siteStats: SiteStats }) {
-  const [heroLandscape, setHeroLandscape] = useState(false)
+  // orientation reelle de chaque carte de l'eventail (lue sur l'image chargee)
+  const [heroLandscape, setHeroLandscape] = useState<Record<number, boolean>>({})
   const { user } = useAuth()
   const { t, lang } = useLang()
   const [data, setData] = useState<DashboardData | null>(null)
@@ -181,7 +183,7 @@ export default function NativeHomeDashboard({ siteStats }: { siteStats: SiteStat
         const [{ data: profile }, { data: lastCards }, { data: badgeRows }, { data: streakRows }, { data: weekCards }, { data: xpTotal }] = await Promise.race([
           Promise.all([
             timed('profile', supabase.from('profiles').select('display_name, avatar_url, stats_total, stats_auto').eq('id', user.id).abortSignal(abort.signal).single()),
-            timed('lastCard', supabase.from('cartes_manuelles').select('image_recto, nom').eq('user_id', user.id).not('image_recto', 'is', null).order('created_at', { ascending: false }).abortSignal(abort.signal).limit(1)),
+            timed('lastCard', supabase.from('cartes_manuelles').select('image_recto, nom').eq('user_id', user.id).not('image_recto', 'is', null).order('created_at', { ascending: false }).abortSignal(abort.signal).limit(3)),
             timed('badgeData', supabase.rpc('get_user_badge_data', { p_user_id: user.id }).abortSignal(abort.signal)),
             timed('bumpStreak', supabase.rpc('bump_streak', { p_user_id: user.id }).abortSignal(abort.signal)),
             timed('weekCards', supabase.from('cartes_manuelles').select('rc, auto, patch, num').eq('user_id', user.id).gte('created_at', startOfWeekISO()).abortSignal(abort.signal)),
@@ -206,6 +208,7 @@ export default function NativeHomeDashboard({ siteStats }: { siteStats: SiteStat
           avatarUrl: profile?.avatar_url || null,
           totalCards: profile?.stats_total || 0,
           lastCard: lastCards?.[0] ? { image: lastCards[0].image_recto, name: lastCards[0].nom || '' } : null,
+          lastCards: (lastCards || []).map((c: any) => ({ image: c.image_recto, name: c.nom || '' })),
           nextBadge,
           rc: b?.stat_rc ?? 0, patch: b?.stat_patch ?? 0, num: b?.stat_num ?? 0, auto: profile?.stats_auto ?? 0,
           level,
@@ -341,9 +344,12 @@ export default function NativeHomeDashboard({ siteStats }: { siteStats: SiteStat
           )}
         </div>
         <div className="dd-hero-r">
-          {data.lastCard
-            ? <img src={data.lastCard.image} alt="" className={`dd-hero-card${heroLandscape ? ' dd-hero-card--h' : ''}`}
-                onLoad={e => setHeroLandscape(e.currentTarget.naturalWidth > e.currentTarget.naturalHeight)} />
+          {(data.lastCards || []).length
+            // eventail : de l'arriere (3e carte) vers l'avant (la plus recente)
+            ? [...(data.lastCards || [])].slice(0, 3).map((c, i) => ({ c, i })).reverse().map(({ c, i }) => (
+                <img key={i} src={c.image} alt="" className={`dd-hero-card dd-fan-${i}${heroLandscape[i] ? ' dd-hero-card--h' : ''}`}
+                  onLoad={e => { const land = e.currentTarget.naturalWidth > e.currentTarget.naturalHeight; setHeroLandscape(p => p[i] === land ? p : { ...p, [i]: land }) }} />
+              ))
             : <div className="dd-hero-card dd-hero-card--empty" />}
           <span className="dd-hero-go"><ChevronIcon /></span>
         </div>
@@ -459,7 +465,13 @@ const DD_CSS = `
 .dd-hero-card { position: absolute; right: clamp(14px, 3vw, 40px); bottom: clamp(14px, 3vw, 30px); width: clamp(84px, 14vw, 170px); aspect-ratio: 2.5/3.5;
   object-fit: cover; transform: rotate(5deg); box-shadow: 0 24px 50px rgba(0,0,0,.55); border: 0; border-radius: 0; }
 /* carte horizontale : ratio inverse (sinon elle est rognee en vertical) et un peu plus large pour rester lisible */
-.dd-hero-card--h { aspect-ratio: 3.5/2.5; width: clamp(120px, 20vw, 250px); transform: rotate(-4deg); }
+.dd-hero-card--h { aspect-ratio: 3.5/2.5; width: clamp(120px, 20vw, 250px); }
+/* eventail des 3 dernieres cartes : la plus recente devant (a droite), les autres decalees vers la gauche */
+.dd-hero-card { transform-origin: 50% 100%; }
+.dd-fan-0 { transform: rotate(7deg); z-index: 3; }
+.dd-fan-1 { transform: translateX(-40%) rotate(-3deg); z-index: 2; }
+.dd-fan-2 { transform: translateX(-80%) rotate(-12deg); z-index: 1; }
+@media (max-width: 560px) { .dd-fan-1 { transform: translateX(-30%) rotate(-3deg); } .dd-fan-2 { transform: translateX(-60%) rotate(-12deg); } }
 .dd-hero-card--empty { background: rgba(255,255,255,.1); border: 2px dashed rgba(255,255,255,.35); }
 .dd-hero-go { position: absolute; top: 14px; right: 14px; color: rgba(255,255,255,.85); }
 .dd-score { display: grid; grid-template-columns: repeat(4, 1fr); margin: 0 16px 14px; border: 3px solid var(--text); background: var(--card-bg); }
