@@ -235,10 +235,80 @@ function StripV({ s, h, dark, tier, v }: { s: Sample; h: number; dark: boolean; 
   return <span style={{ display: 'block', containerType: 'inline-size', width: '100%' }}><span style={style}>{body}</span></span>
 }
 
-type Variant = 'old' | 'q1' | 'q2' | 'q3' | 'sx' | 'dx' | 'bx' | StripStyle
+// ── Nouvelle serie : coins arrondis comme les pastilles actuelles (pas de pilule). Tout tient sur une ligne,
+//    le texte s'adapte a la largeur (container query), tout est en em. ──
+type WStyle = 'r1' | 'r2' | 'c1' | 'c2' | 'c3' | 'c4' | 'c5' | 'c6' | 'c7' | 'c8' | 'c9' | 'c10'
+function rgba(hex: string, a: number) {
+  const n = parseInt(hex.slice(1), 16)
+  return `rgba(${(n >> 16) & 255},${(n >> 8) & 255},${n & 255},${a})`
+}
+function StripW({ s, h, dark, tier, v }: { s: Sample; h: number; dark: boolean; tier: Tier; v: WStyle }) {
+  type G = { key: string; text: string; color: string; isNum?: boolean }
+  const segs: G[] = []
+  if (s.rc) segs.push({ key: 'rc', text: 'RC', color: BASE.rc })
+  if (s.auto) segs.push({ key: 'auto', text: 'AUTO', color: BASE.auto })
+  if (s.patch) segs.push({ key: 'patch', text: 'PATCH', color: BASE.patch })
+  if (s.num) segs.push({ key: 'num', text: s.num, color: BASE.num, isNum: true })
+  if (!segs.length) return null
+  const metal = s.num && tier !== 'std' ? METAL[tier] : null
+  const col = (g: G) => (g.isNum && metal ? TIER_BASE[tier] : g.color)
+  const solid = (g: G, grad: boolean) => (g.isNum && metal ? metal.g : grad ? `linear-gradient(180deg, ${mix(g.color, 0.18)} 0%, ${g.color} 55%, ${mix(g.color, -0.18)} 100%)` : g.color)
+  const fg = (g: G) => (g.isNum && metal ? metal.fg : '#fff')
+  const sh = (g: G) => (g.isNum && metal ? 'none' : '0 1px 2px rgba(0,0,0,0.5)')
+  const ink = dark ? '#ffffff' : '#0a1228'
+  const neutral = dark ? '#18224a' : '#eef1f6'
+  const light = (c: string) => (dark ? mix(c, 0.5) : mix(c, -0.12))
+  const ordered = v === 'c8' ? [...segs.filter(g => g.isNum), ...segs.filter(g => !g.isNum)] : segs
+  const chars = segs.reduce((a, g) => a + g.text.length, 0)
+  const separate = !['r1', 'r2', 'c8'].includes(v)
+  const K = chars * 0.9 + segs.length * 1.55 + (separate ? segs.length * 0.35 : 0.4)
+  const base = Math.round(h * 0.5 * 10) / 10
+  const outer: React.CSSProperties = { display: 'inline-flex', alignItems: 'stretch', gap: separate ? '0.32em' : 0, height: '2.3em', fontFamily: 'system-ui, -apple-system, "Segoe UI", sans-serif',
+    fontWeight: 900, letterSpacing: '0.07em', lineHeight: 1, fontSize: `clamp(7px, calc(100cqw / ${K.toFixed(2)}), ${base}px)`, whiteSpace: 'nowrap', fontVariantNumeric: 'tabular-nums',
+    textTransform: 'uppercase', maxWidth: '100%' }
+  const R = '0.42em'
+  const pad = '0 0.75em'
+  let wrap: React.CSSProperties = {}
+  const item = (g: G, i: number): React.ReactNode => {
+    const c = col(g)
+    const base: React.CSSProperties = { display: 'inline-flex', alignItems: 'center', padding: pad }
+    switch (v) {
+      case 'r1': case 'r2':
+        return <span key={g.key} style={{ ...base, background: solid(g, v === 'r2'), color: fg(g), textShadow: sh(g), borderLeft: i ? '1px solid rgba(255,255,255,0.5)' : 0 }}>{g.text}</span>
+      case 'c1':
+        return <span key={g.key} style={{ ...base, borderRadius: R, background: solid(g, true), color: fg(g), textShadow: sh(g), border: '1px solid rgba(255,255,255,0.2)', boxShadow: 'inset 0 1px 0 rgba(255,255,255,0.35), 0 2px 5px -1px rgba(0,0,0,0.45)' }}>{g.text}</span>
+      case 'c2':
+        return <span key={g.key} style={{ ...base, borderRadius: R, background: rgba(c, dark ? 0.24 : 0.16), color: light(c), border: `1px solid ${rgba(c, 0.7)}` }}>{g.text}</span>
+      case 'c3':
+        return <span key={g.key} style={{ ...base, borderRadius: R, background: 'transparent', color: light(c), border: `1.5px solid ${c}` }}>{g.text}</span>
+      case 'c4':
+        return <span key={g.key} style={{ ...base, borderRadius: `${R} ${R} 0.2em 0.2em`, background: neutral, color: ink, borderBottom: `0.28em solid ${c}`, border: `1px solid ${dark ? 'rgba(255,255,255,0.12)' : 'rgba(10,18,40,0.14)'}`, borderBottomWidth: '0.28em', borderBottomColor: c }}>{g.text}</span>
+      case 'c5':
+        return <span key={g.key} style={{ ...base, borderRadius: R, background: neutral, color: ink, borderLeft: `0.32em solid ${c}`, border: `1px solid ${dark ? 'rgba(255,255,255,0.12)' : 'rgba(10,18,40,0.14)'}`, borderLeftWidth: '0.32em', borderLeftColor: c, paddingLeft: '0.6em' }}>{g.text}</span>
+      case 'c6':
+        return <span key={g.key} style={{ ...base, borderRadius: R, background: dark ? '#080d1f' : '#ffffff', color: light(c), boxShadow: `inset 0 0 0 1px ${rgba(c, 0.85)}, inset 0 0 0.9em ${rgba(c, 0.28)}`, textShadow: dark ? `0 0 0.6em ${rgba(c, 0.6)}` : 'none' }}>{g.text}</span>
+      case 'c7':
+        return <span key={g.key} style={{ ...base, borderRadius: R, background: solid(g, true), color: fg(g), textShadow: sh(g), border: '1.5px solid #e9edf3', boxShadow: '0 0 0 1px rgba(0,0,0,0.4), 0 2px 4px rgba(0,0,0,0.4)' }}>{g.text}</span>
+      case 'c8':
+        return <span key={g.key} style={{ ...base, background: solid(g, false), color: fg(g), textShadow: sh(g), borderLeft: i ? '1px solid rgba(255,255,255,0.5)' : 0,
+          ...(g.isNum ? { fontSize: '1.15em', padding: '0 0.85em' } : {}) }}>{g.text}</span>
+      case 'c9':
+        return <span key={g.key} style={{ ...base, gap: '0.45em', color: '#fff', textShadow: '0 1px 2px rgba(0,0,0,0.6)' }}>
+          <i style={{ width: '0.6em', height: '0.6em', borderRadius: '50%', background: c, display: 'block', flexShrink: 0, boxShadow: '0 0 0 1px rgba(255,255,255,0.7)' }} />{g.text}</span>
+      default: // c10 : neon
+        return <span key={g.key} style={{ ...base, borderRadius: R, background: dark ? 'rgba(5,9,18,0.5)' : '#fff', color: light(c), border: `1.5px solid ${c}`, boxShadow: `0 0 0.8em ${rgba(c, dark ? 0.55 : 0.25)}, inset 0 0 0.6em ${rgba(c, 0.25)}`, textShadow: dark ? `0 0 0.5em ${rgba(c, 0.8)}` : 'none' }}>{g.text}</span>
+    }
+  }
+  if (v === 'r1' || v === 'r2' || v === 'c8') wrap = { borderRadius: R, overflow: 'hidden', border: '1px solid rgba(255,255,255,0.22)', boxShadow: `0 3px 8px -2px rgba(0,0,0,0.5)${metal?.glow ? ', ' + metal.glow : ''}` }
+  if (v === 'c9') wrap = { borderRadius: '0.55em', background: 'rgba(8,14,34,0.52)', backdropFilter: 'blur(6px)', WebkitBackdropFilter: 'blur(6px)', border: '1px solid rgba(255,255,255,0.28)', gap: 0, boxShadow: '0 3px 10px rgba(0,0,0,0.4)' }
+  return <span style={{ display: 'block', containerType: 'inline-size', width: '100%' }}><span style={{ ...outer, ...wrap }}>{ordered.map(item)}</span></span>
+}
+
+type Variant = 'old' | 'q1' | 'q2' | 'q3' | 'sx' | 'dx' | 'bx' | StripStyle | WStyle
 function Tags({ s, v, h, dark }: { s: Sample; v: Variant; h: number; dark: boolean }) {
   const tier = numTier(s.num)
   if (v === 'sx') return <>{s.rc && <ShieldX kind="rc" h={h * 1.45} tier={tier} />}{s.auto && <ShieldX kind="auto" h={h * 1.45} tier={tier} />}{s.patch && <ShieldX kind="patch" h={h * 1.45} tier={tier} />}{s.num && <ShieldX kind="num" h={h * 1.45} num={s.num} tier={tier} />}</>
+  if (['r1','r2','c1','c2','c3','c4','c5','c6','c7','c8','c9','c10'].includes(v)) return <StripW s={s} h={h} dark={dark} tier={tier} v={v as WStyle} />
   if (v === 'bx') return <StripX s={s} h={h} dark={dark} tier={tier} />
   if (v === 'b1' || v === 'b2' || v === 'b3' || v === 'b4' || v === 'b6') return <StripV s={s} h={h} dark={dark} tier={tier} v={v} />
   const items: { kind: Kind; text: string }[] = []
@@ -258,6 +328,18 @@ const TITLES: Record<Variant, [string, string]> = {
   q2: ['Q2 · Affiné + rareté', 'Comme Q1 ; le numéro devient métal selon la rareté : or 1/1 (avec halo), argent ≤10, bronze ≤25'],
   sx: ['S · Écusson premium', 'Même forme pour les 4 : rebord métal, biseau, reflet, filet intérieur, texte en relief ; le numéro passe en or / argent / bronze si rare'],
   dx: ['D · Double filet premium', 'Angles droits, filet extérieur clair + filet intérieur, reflet, couleurs actuelles ; numéro métal si rare'],
+  r1: ['R1 · Ruban à coins arrondis, aplat', 'Comme les pastilles actuelles (coins arrondis, pas de pilule) ; chaque catégorie sa couleur fixe ; numéro métal si rare'],
+  r2: ['R2 · Ruban à coins arrondis, léger dégradé par étiquette', 'Même ruban, léger dégradé vertical propre à chaque étiquette'],
+  c1: ['C1 · Pastilles régularisées', 'Pastilles séparées, même hauteur, texte plus ferme, léger relief'],
+  c2: ['C2 · Teintées', 'Fond de la couleur à 20 %, bordure et texte de la couleur — douces, très lisibles sur sombre'],
+  c3: ['C3 · Contour', 'Fond transparent, contour de la couleur, texte de la couleur'],
+  c4: ['C4 · Onglets neutres + trait de couleur', 'Fond neutre, texte normal, trait épais de la couleur en bas'],
+  c5: ['C5 · Barre de couleur à gauche', 'Fond neutre, barre de la couleur à gauche, texte normal'],
+  c6: ['C6 · Encre sur fond sombre', 'Fond noir, texte de la couleur, filet fin et lueur douce intérieure'],
+  c7: ['C7 · Liseré argent', 'Aplat de la couleur entouré d’un fin liseré argent, comme le bord d’une carte'],
+  c8: ['C8 · Numéro en tête', 'Ruban où le numéro passe en premier et en plus gros, puis les critères'],
+  c9: ['C9 · Verre sur l’image', 'Bandeau flouté posé en bas à gauche de la carte, pastilles de couleur'],
+  c10: ['C10 · Néon', 'Contour et lueur de la couleur ; surtout beau en mode sombre'],
   b1: ['B1 · Capsule colorée', 'Un seul bloc, un segment par critère aux couleurs des pastilles, séparés par un filet blanc ; numéro métal si rare'],
   b2: ['B2 · Verre + filet multicolore', 'Verre sombre/clair, filet des couleurs des critères en haut, pastille ronde lumineuse devant chaque critère'],
   b3: ['B3 · Ruban arrondi, couleurs fixes', 'Un ruban en pilule ; chaque catégorie garde sa couleur fixe en aplat (aucun dégradé) ; numéro métal si rare'],
@@ -284,7 +366,7 @@ export default function TagsCompare() {
         <button onClick={() => setMobile(m => !m)} style={btn(mobile)}>Mobile (2 col.)</button>
       </div>
 
-      {(['old', 'b3', 'b6', 'b1', 'b2', 'b4'] as Variant[]).map(v => (
+      {(['old', 'r1', 'r2', 'c1', 'c2', 'c3', 'c4', 'c5', 'c6', 'c7', 'c8', 'c9', 'c10'] as Variant[]).map(v => (
         <section key={v} style={{ marginBottom: 34 }}>
           <h2 style={{ margin: '0 0 2px', fontSize: 18, fontWeight: 900 }}>{TITLES[v][0]}</h2>
           <p style={{ margin: '0 0 12px', fontSize: 12.5, opacity: 0.7 }}>{TITLES[v][1]}</p>
@@ -292,10 +374,15 @@ export default function TagsCompare() {
             {SAMPLES.map(s => (
               <div key={s.nom} style={{ background: dark ? '#0e1530' : '#fff', border: `2px solid ${dark ? '#1f4fd0' : '#003da6'}`, borderRadius: 8, padding: 8 }}>
                 {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img src={s.img} alt={s.nom} loading="lazy" style={{ display: 'block', width: '100%', aspectRatio: '2.5/3.5', objectFit: 'cover', marginBottom: 8, background: 'none', animation: 'none' }} />
-                <div style={{ display: 'flex', gap: 4, flexWrap: 'wrap', alignItems: 'center', minHeight: 22 }}>
-                  <Tags s={s} v={v} h={h} dark={dark} />
+                <div style={{ position: 'relative', marginBottom: 8 }}>
+                  <img src={s.img} alt={s.nom} loading="lazy" style={{ display: 'block', width: '100%', aspectRatio: '2.5/3.5', objectFit: 'cover', background: 'none', animation: 'none' }} />
+                  {v === 'c9' && <div style={{ position: 'absolute', left: 6, bottom: 6, maxWidth: 'calc(100% - 12px)' }}><Tags s={s} v={v} h={h} dark={dark} /></div>}
                 </div>
+                {v !== 'c9' && (
+                  <div style={{ display: 'flex', gap: 4, flexWrap: 'wrap', alignItems: 'center', minHeight: 22 }}>
+                    <Tags s={s} v={v} h={h} dark={dark} />
+                  </div>
+                )}
                 <div style={{ fontWeight: 800, fontSize: 13, marginTop: 4 }}>{s.nom}</div>
                 <div style={{ fontSize: 10, opacity: 0.6 }}>{s.meta}</div>
               </div>
