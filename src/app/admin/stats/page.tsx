@@ -1281,7 +1281,12 @@ export default function AdminStats() {
             headers: { Authorization: `Bearer ${session.access_token}` },
           })
           if (r.status === 403) { setError('Accès refusé — compte non admin'); return null }
-          if (!r.ok) { setError(`Erreur ${r.status}`); return null }
+          if (!r.ok) {
+            // affiche le message renvoye par le serveur (ex: "canceling statement due to statement timeout")
+            const detail = await r.json().then((j: { error?: string }) => j?.error).catch(() => undefined)
+            setError(detail ? `Erreur ${r.status} — ${detail}` : `Erreur ${r.status}`)
+            return null
+          }
           const data: Stats = await r.json()
           statsCache = { data, at: Date.now() }
           return data
