@@ -231,7 +231,7 @@ export default function HomeHero({ total, totalCartes, totalBinders, totalTrade,
 
       <div className="da-ticker" aria-hidden="true">
         <div>
-          {[0, 1].map(k => (
+          {[0, 1, 2, 3, 4, 5, 6, 7].map(k => (
             <span key={k}>Scan IA ✦ Galerie 3D ✦ Prix eBay en direct ✦ Échanges ✦ Badges ✦ Classeurs ✦ Gratuit ✦ </span>
           ))}
         </div>

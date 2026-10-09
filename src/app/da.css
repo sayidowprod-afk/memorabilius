@@ -43,7 +43,7 @@ h1 { line-height: 1.02; }
   border-block: 3px solid #fff; font: 800 18px system-ui, sans-serif; letter-spacing: 0.12em; text-transform: uppercase; }
 [data-theme="dark"] .da-ticker { background: #fff; }
 :root:not([data-theme="dark"]) .da-ticker { background: #003da6; color: #fff; border-color: #003da6; }
-.da-ticker > div { display: inline-block; animation: daTicker 32s linear infinite; }
+.da-ticker > div { display: inline-block; animation: daTicker 64s linear infinite; }
 @keyframes daTicker { to { transform: translateX(-50%); } }
 @media (prefers-reduced-motion: reduce) { .da-ticker > div { animation: none; } }
 
