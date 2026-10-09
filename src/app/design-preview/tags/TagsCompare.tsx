@@ -237,7 +237,7 @@ function StripV({ s, h, dark, tier, v }: { s: Sample; h: number; dark: boolean; 
 
 // ── Nouvelle serie : coins arrondis comme les pastilles actuelles (pas de pilule). Tout tient sur une ligne,
 //    le texte s'adapte a la largeur (container query), tout est en em. ──
-type WStyle = 'r1' | 'r2' | 'c1' | 'c2' | 'c3' | 'c4' | 'c5' | 'c6' | 'c7' | 'c8' | 'c9' | 'c10'
+type WStyle = 'r1' | 'r2' | 'c1' | 'c2' | 'c3' | 'c4' | 'c5' | 'c6' | 'c7' | 'c8' | 'c9' | 'c10' | 'c11' | 'c12'
 function rgba(hex: string, a: number) {
   const n = parseInt(hex.slice(1), 16)
   return `rgba(${(n >> 16) & 255},${(n >> 8) & 255},${n & 255},${a})`
@@ -277,7 +277,10 @@ function StripW({ s, h, dark, tier, v }: { s: Sample; h: number; dark: boolean; 
   let wrap: React.CSSProperties = {}
   const item = (g: G, i: number): React.ReactNode => {
     const c = col(g)
-    const base: React.CSSProperties = { display: 'inline-flex', alignItems: 'center', padding: pad }
+    const surf = v === 'c11' || v === 'c12'
+    // Surfquest : police condensee, plus haute que large -> texte agrandi pour remplir l'etiquette
+    const base: React.CSSProperties = { display: 'inline-flex', alignItems: 'center', padding: surf ? '0 0.55em' : pad,
+      ...(surf ? { fontFamily: 'Surfquest, system-ui, sans-serif', fontWeight: 400, letterSpacing: v === 'c12' ? '0.06em' : '0.03em', fontSize: v === 'c12' ? '1.62em' : '1.42em', paddingTop: '0.04em' } : {}) }
     if (g.isNum && tier !== 'std' && v !== 'c9') {
       // memes effets que les pastilles actuelles : or (1/1), argent (2-10), bronze (11-25), avec halo anime (keyframes de globals.css)
       const fx = {
@@ -293,7 +296,7 @@ function StripW({ s, h, dark, tier, v }: { s: Sample; h: number; dark: boolean; 
         return <span key={g.key} style={{ ...base, background: solid(g, v === 'r2'), color: fg(g), textShadow: sh(g), borderLeft: i ? '1px solid rgba(255,255,255,0.5)' : 0 }}>{g.text}</span>
       case 'c1':
         return <span key={g.key} style={{ ...base, borderRadius: R, background: solid(g, true), color: fg(g), textShadow: sh(g), border: '1px solid rgba(255,255,255,0.2)', boxShadow: 'inset 0 1px 0 rgba(255,255,255,0.35), 0 2px 5px -1px rgba(0,0,0,0.45)' }}>{g.text}</span>
-      case 'c2':
+      case 'c2': case 'c11': case 'c12':
         return <span key={g.key} style={{ ...base, borderRadius: R, background: rgba(c, dark ? 0.32 : 0.18), color: light(c), border: `1px solid ${rgba(c, 0.85)}` }}>{g.text}</span>
       case 'c3':
         return <span key={g.key} style={{ ...base, borderRadius: R, background: 'transparent', color: light(c), border: `1.5px solid ${c}` }}>{g.text}</span>
@@ -324,7 +327,7 @@ type Variant = 'old' | 'q1' | 'q2' | 'q3' | 'sx' | 'dx' | 'bx' | StripStyle | WS
 function Tags({ s, v, h, dark }: { s: Sample; v: Variant; h: number; dark: boolean }) {
   const tier = numTier(s.num)
   if (v === 'sx') return <>{s.rc && <ShieldX kind="rc" h={h * 1.45} tier={tier} />}{s.auto && <ShieldX kind="auto" h={h * 1.45} tier={tier} />}{s.patch && <ShieldX kind="patch" h={h * 1.45} tier={tier} />}{s.num && <ShieldX kind="num" h={h * 1.45} num={s.num} tier={tier} />}</>
-  if (['r1','r2','c1','c2','c3','c4','c5','c6','c7','c8','c9','c10'].includes(v)) return <StripW s={s} h={h} dark={dark} tier={tier} v={v as WStyle} />
+  if (['r1','r2','c1','c2','c3','c4','c5','c6','c7','c8','c9','c10','c11','c12'].includes(v)) return <StripW s={s} h={h} dark={dark} tier={tier} v={v as WStyle} />
   if (v === 'bx') return <StripX s={s} h={h} dark={dark} tier={tier} />
   if (v === 'b1' || v === 'b2' || v === 'b3' || v === 'b4' || v === 'b6') return <StripV s={s} h={h} dark={dark} tier={tier} v={v} />
   const items: { kind: Kind; text: string }[] = []
@@ -348,6 +351,8 @@ const TITLES: Record<Variant, [string, string]> = {
   r2: ['R2 · Ruban à coins arrondis, léger dégradé par étiquette', 'Même ruban, léger dégradé vertical propre à chaque étiquette'],
   c1: ['C1 · Pastilles régularisées', 'Pastilles séparées, même hauteur, texte plus ferme, léger relief'],
   c2: ['C2 · Teintées', 'Fond de la couleur à 20 %, bordure et texte de la couleur — douces, très lisibles sur sombre'],
+  c11: ['C11 · Teintées Surfquest', 'Comme C2 (teintées) mais texte en Surfquest, fin, agrandi pour remplir l’étiquette'],
+  c12: ['C12 · Teintées Surfquest XL', 'Idem, texte encore plus grand et un peu plus espacé'],
   c3: ['C3 · Contour', 'Fond transparent, contour de la couleur, texte de la couleur'],
   c4: ['C4 · Onglets neutres + trait de couleur', 'Fond neutre, texte normal, trait épais de la couleur en bas'],
   c5: ['C5 · Barre de couleur à gauche', 'Fond neutre, barre de la couleur à gauche, texte normal'],
@@ -382,7 +387,7 @@ export default function TagsCompare() {
         <button onClick={() => setMobile(m => !m)} style={btn(mobile)}>Mobile (2 col.)</button>
       </div>
 
-      {(['old', 'r1', 'r2', 'c1', 'c2', 'c3', 'c4', 'c5', 'c6', 'c7', 'c8', 'c9', 'c10'] as Variant[]).map(v => (
+      {(['old', 'c2', 'c11', 'c12', 'r1', 'r2', 'c1', 'c2', 'c3', 'c4', 'c5', 'c6', 'c7', 'c8', 'c9', 'c10'] as Variant[]).map(v => (
         <section key={v} style={{ marginBottom: 34 }}>
           <h2 style={{ margin: '0 0 2px', fontSize: 18, fontWeight: 900 }}>{TITLES[v][0]}</h2>
           <p style={{ margin: '0 0 12px', fontSize: 12.5, opacity: 0.7 }}>{TITLES[v][1]}</p>
