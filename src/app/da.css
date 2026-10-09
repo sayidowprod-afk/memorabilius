@@ -181,7 +181,7 @@ h1 { line-height: 1.02; }
 }
 
 /* Profil : "Top x %" encadre et boutons d'action en haut a droite (comme l'apercu) */
-@media (min-width: 901px) {
+@media (min-width: 1201px) {
   .da-profile .header-stats-block > p {
     position: absolute; top: 26px; right: 30px; margin: 0 !important; text-align: right !important;
     border: 3px solid #fff; padding: 7px 14px; font-size: 13px !important; font-weight: 800 !important;
@@ -220,3 +220,18 @@ h1 { line-height: 1.02; }
   .mb-hero-badge { font-size: 10px !important; padding: 6px 10px !important; }
   .mb-hero-sub { text-shadow: 0 1px 8px rgba(5, 9, 18, 0.9); }
 }
+
+/* Profil : la couleur choisie par le collectionneur prend beaucoup plus de place */
+.da-profile {
+  background:
+    radial-gradient(120% 140% at 100% 100%, color-mix(in srgb, var(--da-accent, #003da6) 85%, transparent) 0%, transparent 62%),
+    linear-gradient(135deg, #050912 0%, color-mix(in srgb, var(--da-accent, #003da6) 30%, #08153b) 55%, var(--da-accent, #003da6) 135%) !important;
+  border: 3px solid var(--da-accent, #003da6) !important;
+  box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.12), 0 10px 40px -12px color-mix(in srgb, var(--da-accent, #003da6) 70%, transparent) !important;
+}
+.da-profile::before {
+  content: ''; position: absolute; left: 0; right: 0; top: 0; height: 8px; z-index: 2; pointer-events: none;
+  background: linear-gradient(90deg, var(--da-accent, #003da6), color-mix(in srgb, var(--da-accent, #003da6) 55%, #fff));
+}
+.da-profile .header-stats-block > div:first-child { border-top-color: color-mix(in srgb, var(--da-accent, #003da6) 70%, #fff) !important; }
+.da-profile .header-stats-block > div:first-child > div { border-right-color: color-mix(in srgb, var(--da-accent, #003da6) 55%, transparent) !important; }

@@ -2139,7 +2139,7 @@ export default function GalerieClient({ userId, initialCardUrl, initialCards, in
             en bas a droite et qui s'estompe vers le haut a gauche. Calque plein format
             (pas juste une bande en haut) pour que le clip coincide avec le contour reel
             du header (coins arrondis) plutot que de couper au milieu du contenu. */}
-        <div className="da-profile da-grain" style={{ position: 'relative', background: dark ? '#1e1e1e' : 'white', borderRadius: 16, marginBottom: 20, boxShadow: 'var(--elevation-md)', overflow: 'hidden' }}>
+        <div className="da-profile da-grain" style={{ ['--da-accent' as any]: accent.startsWith('#') ? accent : '#003DA6', position: 'relative', background: dark ? '#1e1e1e' : 'white', borderRadius: 16, marginBottom: 20, boxShadow: 'var(--elevation-md)', overflow: 'hidden' }}>
           <div style={{
             position: 'absolute', inset: 0,
             background: `linear-gradient(to top left, ${accent}${dark ? '3d' : '2b'}, transparent 70%)`,
