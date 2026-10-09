@@ -161,10 +161,10 @@ function Tags({ s, v, h, dark }: { s: Sample; v: Variant; h: number; dark: boole
   if (v === 'g' || v === 'h') {
     const flat = v === 'h'
     return <>
-      {s.rc && <Shield kind="rc" h={h * 1.7} tier={tier} flat={flat} />}
-      {s.auto && <Shield kind="auto" h={h * 1.7} tier={tier} flat={flat} />}
-      {s.patch && <Shield kind="patch" h={h * 1.7} tier={tier} flat={flat} />}
-      {s.num && <Shield kind="num" h={h * 1.7} num={s.num} tier={tier} flat={flat} />}
+      {s.rc && <Shield kind="rc" h={h * 1.5} tier={tier} flat={flat} />}
+      {s.auto && <Shield kind="auto" h={h * 1.5} tier={tier} flat={flat} />}
+      {s.patch && <Shield kind="patch" h={h * 1.5} tier={tier} flat={flat} />}
+      {s.num && <Shield kind="num" h={h * 1.5} num={s.num} tier={tier} flat={flat} />}
     </>
   }
   if (v === 'e' || v === 'f') return <SlabStrip s={s} tier={tier} h={h} ink={ink} panel={v === 'f' ? (dark ? 'rgba(5,9,18,0.82)' : 'rgba(255,255,255,0.88)') : panel} />
@@ -201,7 +201,7 @@ const TITLES: Record<Variant, [string, string]> = {
 
 export default function TagsCompare() {
   const [dark, setDark] = useState(true)
-  const [h, setH] = useState(30)
+  const [h, setH] = useState(22)
   return (
     <div style={{ minHeight: '100vh', background: dark ? 'linear-gradient(160deg,#050912,#08153b 60%,#0a2468)' : '#f3f5fa', color: dark ? '#fff' : '#0a1228', padding: '20px clamp(12px,3vw,40px) 60px', fontFamily: 'system-ui, sans-serif' }}>
       <div style={{ display: 'flex', gap: 12, alignItems: 'center', flexWrap: 'wrap', marginBottom: 20 }}>
@@ -211,7 +211,7 @@ export default function TagsCompare() {
         {([[true, 'Sombre'], [false, 'Clair']] as [boolean, string][]).map(([d, l]) => (
           <button key={l} onClick={() => setDark(d)} style={{ padding: '8px 14px', fontWeight: 800, cursor: 'pointer', border: '2px solid currentColor', background: dark === d ? (dark ? '#fff' : '#0a1228') : 'transparent', color: dark === d ? (dark ? '#050912' : '#fff') : 'inherit' }}>{l}</button>
         ))}
-        {[22, 30, 38].map(n => (
+        {[18, 22, 30].map(n => (
           <button key={n} onClick={() => setH(n)} style={{ padding: '8px 12px', fontWeight: 800, cursor: 'pointer', border: '2px solid currentColor', background: h === n ? (dark ? '#fff' : '#0a1228') : 'transparent', color: h === n ? (dark ? '#050912' : '#fff') : 'inherit' }}>{n}px</button>
         ))}
       </div>
