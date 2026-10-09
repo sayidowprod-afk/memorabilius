@@ -62,6 +62,7 @@ function formatCountdown(msLeft: number, t: (k: TranslationKey) => string): stri
 }
 
 export default function NativeHomeDashboard({ siteStats }: { siteStats: SiteStats }) {
+  const [heroLandscape, setHeroLandscape] = useState(false)
   const { user } = useAuth()
   const { t, lang } = useLang()
   const [data, setData] = useState<DashboardData | null>(null)
@@ -341,7 +342,8 @@ export default function NativeHomeDashboard({ siteStats }: { siteStats: SiteStat
         </div>
         <div className="dd-hero-r">
           {data.lastCard
-            ? <img src={data.lastCard.image} alt="" className="dd-hero-card" />
+            ? <img src={data.lastCard.image} alt="" className={`dd-hero-card${heroLandscape ? ' dd-hero-card--h' : ''}`}
+                onLoad={e => setHeroLandscape(e.currentTarget.naturalWidth > e.currentTarget.naturalHeight)} />
             : <div className="dd-hero-card dd-hero-card--empty" />}
           <span className="dd-hero-go"><ChevronIcon /></span>
         </div>
@@ -456,6 +458,8 @@ const DD_CSS = `
 .dd-hero-r { position: relative; width: clamp(130px, 24vw, 280px); flex-shrink: 0; }
 .dd-hero-card { position: absolute; right: clamp(14px, 3vw, 40px); bottom: clamp(14px, 3vw, 30px); width: clamp(84px, 14vw, 170px); aspect-ratio: 2.5/3.5;
   object-fit: cover; transform: rotate(5deg); box-shadow: 0 24px 50px rgba(0,0,0,.55); border: 0; border-radius: 0; }
+/* carte horizontale : ratio inverse (sinon elle est rognee en vertical) et un peu plus large pour rester lisible */
+.dd-hero-card--h { aspect-ratio: 3.5/2.5; width: clamp(120px, 20vw, 250px); transform: rotate(-4deg); }
 .dd-hero-card--empty { background: rgba(255,255,255,.1); border: 2px dashed rgba(255,255,255,.35); }
 .dd-hero-go { position: absolute; top: 14px; right: 14px; color: rgba(255,255,255,.85); }
 .dd-score { display: grid; grid-template-columns: repeat(4, 1fr); margin: 0 16px 14px; border: 3px solid var(--text); background: var(--card-bg); }
