@@ -59,8 +59,9 @@ function Shield({ kind, h, num, tier, flat }: { kind: 'rc' | 'auto' | 'patch' | 
   const id = kind + Math.round(h) + (flat ? 'f' : 'm') + (num || '').replace(/\W/g, '')
   const base = kind === 'num' && (tier === 'gold' || tier === 'silver' || tier === 'bronze') ? SHIELD_TIER[tier] : SHIELD_COLORS[kind]
   const label = kind === 'num' ? numLabel(num) || '#' : kind === 'rc' ? 'RC' : kind === 'auto' ? 'AUTO' : 'PATCH'
-  const fs = kind === 'rc' ? 40 : kind === 'num' ? (label.length > 4 ? 26 : 32) : kind === 'auto' ? 27 : 22
-  const ty = kind === 'num' ? 62 : 54
+  const fs = kind === 'rc' ? 50 : kind === 'num' ? (label.length > 4 ? 30 : 38) : kind === 'auto' ? 30 : 25
+  const tl = kind === 'rc' ? 58 : kind === 'auto' ? 62 : kind === 'patch' ? 64 : label.length > 4 ? 64 : label.length > 3 ? 58 : 46
+  const ty = 62
   const ink = '#ffffff'
   return (
     <svg viewBox="0 0 100 122" width={h * 100 / 122} height={h} style={{ display: 'inline-block', flexShrink: 0, verticalAlign: 'middle', overflow: 'visible', filter: flat ? undefined : 'drop-shadow(0 2px 2px rgba(0,0,0,0.35))' }}>
@@ -83,13 +84,16 @@ function Shield({ kind, h, num, tier, flat }: { kind: 'rc' | 'auto' | 'patch' | 
           <path d="M15 13 H85 V60 H15 Z" fill={`url(#s${id})`} />
         </>
       )}
-      <text x="50" y={ty} textAnchor="middle" dominantBaseline="middle" fontFamily="'Surfquest', Impact, system-ui, sans-serif" fontWeight={900} fontSize={fs} fill={ink} letterSpacing="0.5" style={{ textTransform: 'uppercase' }}>{label}</text>
-      {kind === 'rc' && <g stroke={ink} strokeWidth="2.6" fill="none" opacity="0.95"><circle cx="50" cy="90" r="13" /><path d="M37 90 H63 M50 77 V103 M41 80 Q50 90 41 100 M59 80 Q50 90 59 100" /></g>}
-      {kind === 'auto' && <path d="M26 88 C34 74 40 100 46 86 S58 78 62 92 S72 86 76 84" stroke={ink} strokeWidth="3" fill="none" strokeLinecap="round" opacity="0.95" />}
-      {kind === 'patch' && <g fill="none" stroke={ink} strokeWidth="2.4" opacity="0.95"><rect x="30" y="78" width="40" height="26" strokeDasharray="4 3" /><rect x="38" y="85" width="24" height="12" /></g>}
-      {kind === 'num' && <path d="M32 90 H68" stroke={ink} strokeWidth="2.4" opacity="0.8" />}
+      <text x="50" y={ty} textAnchor="middle" dominantBaseline="middle" fontFamily="system-ui, 'Segoe UI', Arial, sans-serif" fontWeight={900} fontSize={fs} fill={ink} textLength={tl} lengthAdjust="spacingAndGlyphs" style={{ textTransform: 'uppercase' }}>{label}</text>
     </svg>
   )
+}
+
+// P : etiquettes de la page d'apercu DA (aplat vif, angles droits, capitales)
+function ChipP({ kind, text, h }: { kind: 'rc' | 'auto' | 'patch' | 'num'; text: string; h: number }) {
+  const st = { rc: ['#ffb02e', '#241300'], auto: ['#2fd072', '#032612'], patch: ['#2f6bff', '#ffffff'], num: ['#ffffff', '#0a1228'] }[kind]
+  return <span style={{ display: 'inline-flex', alignItems: 'center', height: h * 0.8, padding: `0 ${h * 0.3}px`, background: st[0], color: st[1], fontFamily: 'system-ui, sans-serif', fontWeight: 900,
+    fontSize: h * 0.38, letterSpacing: '0.09em', textTransform: 'uppercase', lineHeight: 1, border: kind === 'num' ? '2px solid #0a1228' : '2px solid transparent', whiteSpace: 'nowrap' }}>{text}</span>
 }
 
 // ── Variantes typographiques (sans pictogramme) ───────────────────────────
@@ -131,7 +135,7 @@ function SlabStrip({ s, tier, h, ink, panel }: { s: Sample; tier: TagTier; h: nu
   )
 }
 
-type Variant = 'old' | 'v1' | 'v2' | 'v3' | 'd' | 'e' | 'f' | 'g' | 'h'
+type Variant = 'old' | 'v1' | 'v2' | 'v3' | 'd' | 'e' | 'f' | 'g' | 'h' | 'p'
 function Tags({ s, v, h, dark }: { s: Sample; v: Variant; h: number; dark: boolean }) {
   const ink = dark ? '#ffffff' : '#0a1228'
   const counter = dark ? '#050912' : '#ffffff'
@@ -146,13 +150,21 @@ function Tags({ s, v, h, dark }: { s: Sample; v: Variant; h: number; dark: boole
       {s.num && <FrameLabel kind="num" text={s.num} tier={tier} h={h} big />}
     </>
   }
+  if (v === 'p') {
+    return <>
+      {s.rc && <ChipP kind="rc" text="RC" h={h} />}
+      {s.auto && <ChipP kind="auto" text="Auto" h={h} />}
+      {s.patch && <ChipP kind="patch" text="Patch" h={h} />}
+      {s.num && <ChipP kind="num" text={s.num} h={h} />}
+    </>
+  }
   if (v === 'g' || v === 'h') {
     const flat = v === 'h'
     return <>
-      {s.rc && <Shield kind="rc" h={h * 1.25} tier={tier} flat={flat} />}
-      {s.auto && <Shield kind="auto" h={h * 1.25} tier={tier} flat={flat} />}
-      {s.patch && <Shield kind="patch" h={h * 1.25} tier={tier} flat={flat} />}
-      {s.num && <Shield kind="num" h={h * 1.25} num={s.num} tier={tier} flat={flat} />}
+      {s.rc && <Shield kind="rc" h={h * 1.7} tier={tier} flat={flat} />}
+      {s.auto && <Shield kind="auto" h={h * 1.7} tier={tier} flat={flat} />}
+      {s.patch && <Shield kind="patch" h={h * 1.7} tier={tier} flat={flat} />}
+      {s.num && <Shield kind="num" h={h * 1.7} num={s.num} tier={tier} flat={flat} />}
     </>
   }
   if (v === 'e' || v === 'f') return <SlabStrip s={s} tier={tier} h={h} ink={ink} panel={v === 'f' ? (dark ? 'rgba(5,9,18,0.82)' : 'rgba(255,255,255,0.88)') : panel} />
@@ -181,7 +193,8 @@ const TITLES: Record<Variant, [string, string]> = {
   v3: ['3 · Vectoriel + rareté', 'Net à toute taille, dégradé métallique, éclat, halo doré pour le 1/1'],
   d: ['D · Étiquettes à double filet, couleurs des pastilles', 'RC orange · Auto vert · Patch bleu · Numéro violet (or / argent / bronze si rare) ; double filet comme le logo'],
   e: ['E · Bandeau de carte gradée (2 + 3 + 4)', 'Un seul bloc, segments séparés par des filets, tirage en grand, accent selon la rareté'],
-  g: ['G · Écussons métal (comme l’exemple Fanatics), couleurs actuelles', 'Même forme pour les 4, biseau métallique, glyphe sous le texte ; le tirage passe en or/argent/bronze si rare'],
+  p: ['P · Étiquettes de la page d’aperçu DA', 'Aplats vifs (orange / vert / bleu / blanc), angles droits, capitales — celles de la section « Composants »'],
+  g: ['G · Écussons métal (comme l’exemple Fanatics), couleurs actuelles', 'Même forme pour les 4, biseau métallique, texte lisible ; le tirage passe en or/argent/bronze si rare'],
   h: ['H · Écussons plats (version DA)', 'Même forme, aplat de couleur, contour blanc à double filet, sans effet'],
   f: ['F · Bandeau sur l’image', 'Même bandeau E, posé en bas à gauche de la carte (sous le nom : plus rien)'],
 }
@@ -203,7 +216,7 @@ export default function TagsCompare() {
         ))}
       </div>
 
-      {(['old', 'd', 'g', 'h', 'e', 'f'] as Variant[]).map(v => (
+      {(['old', 'p', 'd', 'g', 'h', 'e', 'f'] as Variant[]).map(v => (
         <section key={v} style={{ marginBottom: 34 }}>
           <h2 style={{ margin: '0 0 2px', fontSize: 18, fontWeight: 900 }}>{TITLES[v][0]}</h2>
           <p style={{ margin: '0 0 12px', fontSize: 12.5, opacity: 0.7 }}>{TITLES[v][1]}</p>
