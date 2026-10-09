@@ -238,3 +238,59 @@ h1 { line-height: 1.02; }
 
 /* pas de fond de chargement (shimmer) derriere les images transparentes (logos, badges) */
 img[src$=".png"], img[src$=".svg"] { background: none !important; animation: none !important; }
+
+/* ── Reflet holo leger (voir components/HoloLight.tsx) : galerie, accueil, listes -- jamais le visualiseur 3D ni le partage ── */
+@media (hover: hover) and (pointer: fine) {
+  .holo-light { position: relative; transition: transform .16s ease-out; will-change: transform; }
+  .holo-light::after {
+    content: ''; position: absolute; inset: 0; pointer-events: none; z-index: 3; opacity: 0; transition: opacity .2s;
+    mix-blend-mode: soft-light;
+    background:
+      radial-gradient(circle at var(--mx, 50%) var(--my, 50%), rgba(255,255,255,.75) 0%, rgba(255,255,255,0) 42%),
+      linear-gradient(115deg, rgba(80,160,255,0) 25%, rgba(90,170,255,.45) 42%, rgba(255,130,220,.4) 52%, rgba(255,230,100,.4) 62%, rgba(255,230,100,0) 78%);
+  }
+  .holo-light[data-holo]::after { opacity: .55; }
+  .holo-light.holo-tilt::after { display: none; }
+}
+
+/* ── Eventail des 3 dernieres cartes (components/CardFan.tsx) ── */
+.cfan { position: relative; width: calc(var(--w) * 2.15); height: calc(var(--w) * 1.62); flex-shrink: 0; align-self: center; margin: 0 8px; }
+.cfan-card { position: absolute; right: 0; bottom: 0; width: var(--w); aspect-ratio: 2.5 / 3.5; object-fit: cover; border-radius: 0; box-shadow: 0 14px 30px rgba(0,0,0,.5);
+  background: none !important; animation: none !important; transform-origin: 50% 100%; }
+.cfan-card.cfan-h { aspect-ratio: 3.5 / 2.5; width: calc(var(--w) * 1.4); }
+.cfan-0 { transform: rotate(7deg); z-index: 3; }
+.cfan-1 { transform: translateX(-46%) rotate(-3deg); z-index: 2; }
+.cfan-2 { transform: translateX(-92%) rotate(-12deg); z-index: 1; }
+@media (max-width: 899px) { .cfan { display: none; } }
+
+/* ── Billet d'echange (page Trades) : deux faces separees par une perforation, talon numerote ── */
+.tt-row { display: grid; grid-template-columns: 1fr auto 1fr auto; align-items: stretch; border: 2px solid var(--text, #121212); background: var(--bg3, #f4f4f4); position: relative; }
+.tt-side { padding: 14px 16px; min-width: 0; }
+.tt-mid { position: relative; width: 0; border-left: 3px dashed var(--text, #121212); margin: 0 18px; }
+.tt-mid span { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 36px; height: 36px; display: flex; align-items: center; justify-content: center;
+  background: #003da6; color: #fff; font-size: 20px; font-weight: 900; }
+/* encoches de la perforation (haut et bas de la ligne pointillee) */
+.tt-mid::before, .tt-mid::after { content: ''; position: absolute; left: -11px; width: 20px; height: 20px; border-radius: 50%; background: var(--card-bg, #fff); border: 2px solid var(--text, #121212); box-sizing: border-box; }
+.tt-mid::before { top: -12px; clip-path: inset(50% 0 0 0); }
+.tt-mid::after { bottom: -12px; clip-path: inset(0 0 50% 0); }
+.tt-stub { background: #003da6; color: #fff; padding: 0 12px; display: flex; align-items: center; justify-content: center; writing-mode: vertical-rl; font: 800 11px system-ui, sans-serif; letter-spacing: .18em; text-transform: uppercase; }
+@media (max-width: 640px) {
+  .tt-row { grid-template-columns: 1fr; }
+  .tt-mid { width: auto; height: 0; border-left: 0; border-top: 3px dashed var(--text, #121212); margin: 18px 0; }
+  .tt-mid span { transform: translate(-50%, -50%) rotate(90deg); }
+  .tt-mid::before, .tt-mid::after { top: -11px; bottom: auto; clip-path: none; border-radius: 50%; }
+  .tt-mid::before { left: -13px; clip-path: inset(0 50% 0 0); } .tt-mid::after { left: auto; right: -13px; clip-path: inset(0 0 0 50%); }
+  .tt-stub { writing-mode: horizontal-tb; padding: 8px 12px; }
+}
+
+/* ── Vitrine : la carte sous un projecteur, reflet au sol (pages de partage / fiche carte) ── */
+.vitrine { position: relative; display: flex; flex-direction: column; align-items: center; padding: 30px 20px 64px; overflow: hidden;
+  background: linear-gradient(160deg, #050912 0%, #08153b 58%, #0a2468 100%); border: 3px solid rgba(255,255,255,.18); }
+.vitrine::before { content: ''; position: absolute; top: -20px; left: 50%; width: 460px; height: 100%; transform: translateX(-50%); pointer-events: none;
+  background: conic-gradient(from 180deg at 50% 0%, transparent 150deg, rgba(160,200,255,.18) 168deg, rgba(255,255,255,.42) 180deg, rgba(160,200,255,.18) 192deg, transparent 210deg); }
+.vitrine::after { content: ''; position: absolute; left: 50%; bottom: 0; transform: translateX(-50%); width: 120%; height: 70px; pointer-events: none;
+  background: radial-gradient(ellipse at 50% 0%, rgba(120,170,255,.38), transparent 70%); }
+.vit-col { position: relative; z-index: 1; width: 100%; max-width: 280px; }
+.vit-ref { position: absolute; left: 0; right: 0; top: 100%; width: 100%; aspect-ratio: 2.5 / 3.5; object-fit: cover; transform: scaleY(-1); opacity: .3; pointer-events: none;
+  -webkit-mask-image: linear-gradient(to top, rgba(0,0,0,.9), transparent 52%); mask-image: linear-gradient(to top, rgba(0,0,0,.9), transparent 52%);
+  background: none !important; animation: none !important; }

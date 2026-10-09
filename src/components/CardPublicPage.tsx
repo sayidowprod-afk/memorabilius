@@ -122,20 +122,26 @@ export default function CardPublicPage({ userId, cardSlug, src }: Props) {
       <div className="card-page-layout">
         {/* Image */}
         <div className="card-page-image">
+          <div className="vitrine">
+          <div className="vit-col">
           <div
             ref={cardRef}
             onMouseMove={handleMouseMove}
             onMouseLeave={handleMouseLeave}
             style={{
               width: '100%', aspectRatio: '2.5/3.5',
-              borderRadius: 12, overflow: 'hidden',
-              boxShadow: `0 20px 60px ${accent}33, 0 4px 20px rgba(0,0,0,0.15)`,
+              borderRadius: 0, overflow: 'hidden',
+              boxShadow: `0 20px 60px ${accent}55, 0 4px 20px rgba(0,0,0,0.3)`,
               transition: 'transform 0.15s ease',
               cursor: 'default',
               border: `3px solid ${accent}22`,
             }}
           >
             <img src={card.f} alt={[card.y, card.br, card.s, card.v, card.n, card.num].filter(Boolean).join(' ')} style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }} />
+          </div>
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img className="vit-ref" src={card.f} alt="" aria-hidden />
+          </div>
           </div>
 
           {/* Collectionneur */}

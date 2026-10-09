@@ -1,4 +1,5 @@
 'use client'
+import CardFan from '@/components/CardFan'
 import { toast } from '@/lib/toast'
 import { useEffect, useLayoutEffect, useState, useRef, useMemo, useCallback } from 'react'
 import { flushSync } from 'react-dom'
@@ -1201,6 +1202,11 @@ export default function GalerieClient({ userId, initialCardUrl, initialCards, in
   const lastAddedCard = [...cards]
     .filter(c => c.created_at)
     .sort((a, b) => new Date(b.created_at || 0).getTime() - new Date(a.created_at || 0).getTime())[0]
+  // 3 dernieres cartes ajoutees (eventail de l'en-tete)
+  const fanImages = [...cards]
+    .filter(c => c.created_at && c.f)
+    .sort((a, b) => new Date(b.created_at || 0).getTime() - new Date(a.created_at || 0).getTime())
+    .slice(0, 3).map(c => c.f)
   const lastAddedKey = lastAddedCard ? `${lastAddedCard.f}_${cards.length}` : `_${cards.length}`
 
   useEffect(() => {
@@ -2255,6 +2261,8 @@ export default function GalerieClient({ userId, initialCardUrl, initialCards, in
               </div>
             </div>
           </div>
+
+          {loaded && fanImages.length > 0 && <CardFan images={fanImages} />}
 
           {loaded && (
             <div style={{ display: 'flex', flexDirection: 'column', gap: 14, alignItems: 'flex-end', flexShrink: 0, minWidth: 260, marginLeft: 'auto' }} className="header-stats-block">
@@ -3421,7 +3429,7 @@ export default function GalerieClient({ userId, initialCardUrl, initialCards, in
                   </div>
                 </div>
               )}
-              <div style={{ width: '100%', marginBottom: 8 }}>
+              <div className="holo-light" style={{ width: '100%', marginBottom: 8 }}>
                 <CardLink slug={profile?.slug || userId} cardKey={d.f}>{renderCardImage(d)}</CardLink>
               </div>
               {getTags(d)}

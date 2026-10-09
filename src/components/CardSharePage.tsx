@@ -111,11 +111,12 @@ export default function CardSharePage({ cardId }: { cardId: string }) {
       <div style={{ maxWidth: 560, margin: '0 auto', padding: '28px 16px 60px' }}>
 
         {/* Card flip */}
-        <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', marginBottom: 24 }}>
+        <div className="vitrine" style={{ marginBottom: 24 }}>
+          <div className="vit-col" style={{ width: isH ? '100%' : 220, maxWidth: '100%' }}>
           <div
             onClick={() => hasVerso && setFlipped(f => !f)}
             style={{
-              width: isH ? '100%' : 220,
+              width: '100%',
               maxWidth: '100%',
               aspectRatio: isH ? '3.5 / 2.5' : '2.5 / 3.5',
               perspective: '1000px',
@@ -139,8 +140,12 @@ export default function CardSharePage({ cardId }: { cardId: string }) {
               )}
             </div>
           </div>
+          {/* reflet au sol */}
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img className="vit-ref" src={card.image_recto} alt="" aria-hidden style={isH ? { aspectRatio: '3.5 / 2.5' } : undefined} />
+          </div>
           {hasVerso && (
-            <div style={{ marginTop: 10, fontSize: 12, color: muted, display: 'flex', alignItems: 'center', gap: 5 }}>
+            <div style={{ marginTop: 64, position: 'relative', zIndex: 2, fontSize: 12, color: muted, display: 'flex', alignItems: 'center', gap: 5 }}>
               ↔ Appuyez pour retourner
             </div>
           )}

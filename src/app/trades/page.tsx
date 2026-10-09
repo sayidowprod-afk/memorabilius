@@ -760,8 +760,8 @@ export default function Trades() {
                     </div>
 
                     {/* Cartes */}
-                    <div style={{ display: 'flex', gap: 16, alignItems: 'flex-start', flexWrap: 'wrap', marginBottom: 12 }}>
-                      <div>
+                    <div className="tt-row" style={{ marginBottom: 12 }}>
+                      <div className="tt-side">
                         <div style={{ fontSize: 11, color: 'var(--text3, #888)', fontWeight: 700, textTransform: 'uppercase', marginBottom: 6 }}>Tu offres</div>
                         <div style={{ display: 'flex', gap: 5, flexWrap: 'wrap' }}>
                           {myCards.map((c: any, i: number) => {
@@ -777,8 +777,8 @@ export default function Trades() {
                         </div>
                         {myCards.length > 0 && <div style={{ fontSize: 11, color: 'var(--text3, #888)', marginTop: 4 }}>{myCards.map((c: any) => c.nom || c.card_nom || '').filter(Boolean).join(', ')}</div>}
                       </div>
-                      <div title={t('trades_swap_title')} style={{ fontSize: 20, paddingTop: 20, color: 'var(--text3, #ccc)', flex: '0 0 auto' }}>⇄</div>
-                      <div>
+                      <div title={t('trades_swap_title')} className="tt-mid"><span>⇄</span></div>
+                      <div className="tt-side">
                         <div style={{ fontSize: 11, color: 'var(--text3, #888)', fontWeight: 700, textTransform: 'uppercase', marginBottom: 6 }}>Tu demandes</div>
                         <div style={{ display: 'flex', gap: 5, flexWrap: 'wrap' }}>
                           {theirCards.map((c: any, i: number) => {
@@ -794,6 +794,7 @@ export default function Trades() {
                         </div>
                         {theirCards.length > 0 && <div style={{ fontSize: 11, color: 'var(--text3, #888)', marginTop: 4 }}>{theirCards.map((c: any) => c.nom || c.card_nom || '').filter(Boolean).join(', ')}</div>}
                       </div>
+                      <div className="tt-stub">Échange n° {String(trade.id).slice(-4).toUpperCase()}</div>
                     </div>
 
                     {/* Valeur estimee des deux cotes (cartes de galerie ayant une valeur) */}

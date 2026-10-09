@@ -1,4 +1,5 @@
 'use client'
+import CardFan from '@/components/CardFan'
 import { toast } from '@/lib/toast'
 import { useEffect, useState, useRef, use, useCallback } from 'react'
 import Link from 'next/link'
@@ -67,7 +68,19 @@ export default function TeamPage({ params }: { params: Promise<{ teamId: string 
   }
 
   const [randomBinderLoading, setRandomBinderLoading] = useState(false)
+  const [fanImages, setFanImages] = useState<string[]>([])
   const [randomCardLoading, setRandomCardLoading] = useState(false)
+
+  // 3 dernieres cartes ajoutees par les membres (eventail de l'en-tete)
+  useEffect(() => {
+    if (!members.length) return
+    let cancelled = false
+    supabase.from('cartes_manuelles').select('image_recto')
+      .in('user_id', members.map((m: any) => m.user_id)).not('image_recto', 'is', null)
+      .order('created_at', { ascending: false }).limit(3)
+      .then(({ data }) => { if (!cancelled) setFanImages((data || []).map((c: any) => c.image_recto)) })
+    return () => { cancelled = true }
+  }, [members])
 
   const randomTeamBinder = async () => {
     if (randomBinderLoading || !members.length) return
@@ -643,6 +656,7 @@ export default function TeamPage({ params }: { params: Promise<{ teamId: string 
             {team.description && <p style={{ color: 'var(--text2, #666)', fontSize: 14, margin: '4px 0 0', wordBreak: 'break-word' }}>{team.description}</p>}
             <p style={{ color: 'var(--text3, #999)', fontSize: 12, margin: '4px 0 0' }}>{members.length} membre{members.length > 1 ? 's' : ''}</p>
           </div>
+          <CardFan images={fanImages} />
           <div className="team-header-stats" style={{ display: 'flex', gap: 16, flexWrap: 'wrap' }}>
             {[{ val: totalStats.total, label: 'Cartes', color: ACCENT }, { val: totalStats.rc, label: 'RC', color: '#e67e22' }, { val: totalStats.auto, label: 'Auto', color: '#2e7d32' }].map(s => (
               <div key={s.label} style={{ textAlign: 'center' }}>

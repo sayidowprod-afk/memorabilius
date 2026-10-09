@@ -343,7 +343,7 @@ export default function NativeHomeDashboard({ siteStats }: { siteStats: SiteStat
             <div className="dd-hero-last">{t('dashboard_last_added')} <strong>{data.lastCard.name}</strong></div>
           )}
         </div>
-        <div className="dd-hero-r">
+        <div className="dd-hero-r holo-light holo-tilt">
           {(data.lastCards || []).length
             // eventail : de l'arriere (3e carte) vers l'avant (la plus recente)
             ? [...(data.lastCards || [])].slice(0, 3).map((c, i) => ({ c, i })).reverse().map(({ c, i }) => (

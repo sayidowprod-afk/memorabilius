@@ -212,7 +212,7 @@ export default function CommunityCardsSection({ cards, totalCollectors }: { card
             {filtered.slice(0, visibleCount).map((card) => (
               <Link key={card.id} href={card.source === 'manuel' ? card.cardUrl : `/galerie/${card.user_id}`} style={{ textDecoration: 'none' }}>
                 <div className="jp-card-hover" style={{ borderRadius: 12, overflow: 'hidden', background: 'var(--jp-surface)', border: `1.5px solid ${card.user_id === myId ? 'var(--jp-accent)' : 'var(--jp-border)'}`, height: '100%' }}>
-                  <div style={{ aspectRatio: '2.5/3.5', overflow: 'hidden', position: 'relative', background: '#111' }}>
+                  <div className="holo-light" style={{ aspectRatio: '2.5/3.5', overflow: 'hidden', position: 'relative', background: '#111' }}>
                     <img
                       src={card.img}
                       alt={card.nom}
