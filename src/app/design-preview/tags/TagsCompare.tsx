@@ -264,7 +264,10 @@ function StripW({ s, h, dark, tier, v }: { s: Sample; h: number; dark: boolean; 
   const ordered = v === 'c8' ? [...segs.filter(g => g.isNum), ...segs.filter(g => !g.isNum)] : segs
   const chars = segs.reduce((a, g) => a + g.text.length, 0)
   const separate = !['r1', 'r2', 'c8'].includes(v)
-  const K = chars * 0.86 + segs.length * 1.5 + (separate ? segs.length * 0.35 : 0.4)
+  // meme taille (donc meme hauteur) quel que soit le nombre d'etiquettes : on dimensionne pour le pire cas
+  // (RC + AUTO + PATCH + tirage a 4 chiffres), jamais pour la carte en cours
+  void chars
+  const K = 16 * 0.86 + 4 * 1.5 + (separate ? 4 * 0.35 : 0.4)
   const base = Math.round(h * 0.54 * 10) / 10
   const outer: React.CSSProperties = { display: 'inline-flex', alignItems: 'stretch', gap: separate ? '0.32em' : 0, height: '2.3em', fontFamily: 'system-ui, -apple-system, "Segoe UI", sans-serif',
     fontWeight: 900, letterSpacing: '0.05em', lineHeight: 1, fontSize: `clamp(8px, calc(100cqw / ${K.toFixed(2)}), ${base}px)`, whiteSpace: 'nowrap', fontVariantNumeric: 'tabular-nums',
@@ -275,6 +278,16 @@ function StripW({ s, h, dark, tier, v }: { s: Sample; h: number; dark: boolean; 
   const item = (g: G, i: number): React.ReactNode => {
     const c = col(g)
     const base: React.CSSProperties = { display: 'inline-flex', alignItems: 'center', padding: pad }
+    if (g.isNum && tier !== 'std' && v !== 'c9') {
+      // memes effets que les pastilles actuelles : or (1/1), argent (2-10), bronze (11-25), avec halo anime (keyframes de globals.css)
+      const fx = {
+        gold: { bg: 'linear-gradient(135deg,#b8860b,#ffd700,#fffacd,#ffd700,#b8860b)', fg: '#3d2800', sh: '0 1px 0 rgba(255,255,255,0.45)', an: 'oon-anim 1.8s ease-in-out infinite' },
+        silver: { bg: 'linear-gradient(135deg,#555,#c0c0c0,#ffffff,#c0c0c0,#555)', fg: '#111', sh: 'none', an: 'low-anim 2.2s ease-in-out infinite' },
+        bronze: { bg: 'linear-gradient(135deg,#6d3a00,#cd7f32,#f5cba7,#cd7f32,#6d3a00)', fg: '#fff', sh: '0 1px 2px rgba(0,0,0,0.6)', an: 'bro-anim 2.6s ease-in-out infinite' },
+      }[tier as 'gold' | 'silver' | 'bronze']
+      const round = v === 'r1' || v === 'r2' || v === 'c8' ? 0 : R
+      return <span key={g.key} style={{ ...base, borderRadius: round, background: fx.bg, color: fx.fg, textShadow: fx.sh, animation: fx.an, position: 'relative', zIndex: 1 }}>{g.text}</span>
+    }
     switch (v) {
       case 'r1': case 'r2':
         return <span key={g.key} style={{ ...base, background: solid(g, v === 'r2'), color: fg(g), textShadow: sh(g), borderLeft: i ? '1px solid rgba(255,255,255,0.5)' : 0 }}>{g.text}</span>
