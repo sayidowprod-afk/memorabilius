@@ -228,6 +228,13 @@ export default function Trades() {
     }
   }
 
+  const itemKey = (it: any) => `${it._source === 'galerie' ? 'galerie' : 'trade'}:${it.id}`
+  const mergeForum = (prev: any[], extra: any[]) => {
+    const seen = new Set(prev.map(itemKey))
+    const fresh = extra.filter(it => !seen.has(itemKey(it)))
+    return [...prev, ...fresh].sort((a, b) => new Date(b.created_at).getTime() - new Date(a.created_at).getTime())
+  }
+
   const loadMoreForum = async () => {
     if (loadingMoreForum || (tradesDone && ventesDone)) return
     setLoadingMoreForum(true)
@@ -246,8 +253,7 @@ export default function Trades() {
         .range(ventesOffset, ventesOffset + FORUM_PAGE_SIZE - 1),
     ])
 
-    setTrades(prev => [...prev, ...(tradeData || []), ...(carteData || []).map(mapCarteToOffer)]
-      .sort((a, b) => new Date(b.created_at).getTime() - new Date(a.created_at).getTime()))
+    setTrades(prev => mergeForum(prev, [...(tradeData || []), ...(carteData || []).map(mapCarteToOffer)]))
     if (!tradesDone) { setTradesOffset(o => o + (tradeData?.length || 0)); if ((tradeData?.length || 0) < FORUM_PAGE_SIZE) setTradesDone(true) }
     if (!ventesDone) { setVentesOffset(o => o + (carteData?.length || 0)); if ((carteData?.length || 0) < FORUM_PAGE_SIZE) setVentesDone(true) }
     setLoadingMoreForum(false)
@@ -263,7 +269,7 @@ export default function Trades() {
     obs.observe(node)
     return () => obs.disconnect()
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [tradesDone, ventesDone, tradesOffset, ventesOffset])
+  }, [tradesDone, ventesDone, tradesOffset, ventesOffset, showFavoritesOnly, fEquipe, search, fAnnee, fSport, filter, fTags])
 
   const loadTradeOffers = async () => {
     setLoadingOffers(true)
@@ -374,6 +380,48 @@ export default function Trades() {
     const va = Number(a.valeur) || 0, vb = Number(b.valeur) || 0
     return sortBy === 'valeur_asc' ? va - vb : vb - va
   })
+
+  const hasForumFilter = showFavoritesOnly || filter !== 'tous' || !!search || !!fEquipe || !!fAnnee || !!fSport
+    || fTags.rc || fTags.auto || fTags.num || fTags.patch
+
+  // Les filtres s'appliquent aux cartes DEJA chargees (60 par page). Tant qu'un filtre est actif et que la liste
+  // filtree est courte, on charge les pages suivantes automatiquement : sinon les resultats n'apparaissaient qu'en
+  // faisant defiler, et un filtre qui laissait la sentinelle visible bloquait le chargement.
+  useEffect(() => {
+    if (!hasForumFilter || loadingMoreForum || loadingForum) return
+    if (tradesDone && ventesDone) return
+    if (filteredForumBase.length >= FORUM_PAGE_SIZE) return
+    loadMoreForum()
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [hasForumFilter, filteredForumBase.length, tradesDone, ventesDone, loadingMoreForum, loadingForum, tradesOffset, ventesOffset])
+
+  // Favoris : on les recupere directement par identifiant, pour qu'ils s'affichent des le clic sur "Favoris",
+  // meme s'ils se trouvent plus loin dans la liste paginee.
+  useEffect(() => {
+    if (!showFavoritesOnly || favorites.size === 0) return
+    const have = new Set(trades.map(itemKey))
+    const missingTrade: number[] = []
+    const missingCarte: string[] = []
+    favorites.forEach(k => {
+      if (have.has(k)) return
+      const [type, id] = k.split(':')
+      if (type === 'galerie') missingCarte.push(id)
+      else if (/^\d+$/.test(id)) missingTrade.push(parseInt(id, 10))
+    })
+    if (!missingTrade.length && !missingCarte.length) return
+    let cancelled = false
+    ;(async () => {
+      const [{ data: td }, { data: cd }] = await Promise.all([
+        missingTrade.length ? supabase.from('trades').select('*, profiles(id, display_name, avatar_url, instagram, twitter, discord)').eq('statut', 'actif').in('id', missingTrade) : Promise.resolve({ data: [] as any[] }),
+        missingCarte.length ? supabase.from('cartes_manuelles').select('*, profiles(id, display_name, avatar_url, instagram, twitter, discord)').eq('disponible_vente', true).in('id', missingCarte) : Promise.resolve({ data: [] as any[] }),
+      ])
+      if (cancelled) return
+      const extra = [...(td || []), ...(cd || []).map(mapCarteToOffer)]
+      if (extra.length) setTrades(prev => mergeForum(prev, extra))
+    })()
+    return () => { cancelled = true }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [showFavoritesOnly, favorites, trades.length])
 
   const pendingOffers = tradeOffers.filter(t => t.status === 'pending' || t.status === 'accepted')
   const historyOffers = tradeOffers.filter(t => t.status !== 'pending' && t.status !== 'accepted')
