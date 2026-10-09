@@ -49,6 +49,49 @@ function OldPills({ s }: { s: Sample }) {
   return <>{s.rc && p('#e67e22', 'RC')}{s.auto && p('#2e7d32', 'AUTO')}{s.num && p('#7b1fa2', s.num)}{s.patch && p('#1976d2', 'PATCH')}</>
 }
 
+// ── Famille d'ecussons : meme forme pour RC / AUTO / PATCH / NUM, couleurs des pastilles actuelles ──
+const SHIELD_COLORS = { rc: '#e67e22', auto: '#2e7d32', patch: '#1976d2', num: '#7b1fa2' }
+const SHIELD_TIER: Record<string, string> = { gold: '#d9a521', silver: '#8e98a6', bronze: '#b06a30' }
+const SH_OUT = 'M8 6 H92 V70 Q92 98 50 116 Q8 98 8 70 Z'
+const SH_IN = 'M15 13 H85 V69 Q85 93 50 108 Q15 93 85 69 Z'
+const SH_IN2 = 'M15 13 H85 V69 Q85 93 50 108 Q15 93 15 69 Z'
+function Shield({ kind, h, num, tier, flat }: { kind: 'rc' | 'auto' | 'patch' | 'num'; h: number; num?: string; tier: TagTier; flat: boolean }) {
+  const id = kind + Math.round(h) + (flat ? 'f' : 'm') + (num || '').replace(/\W/g, '')
+  const base = kind === 'num' && (tier === 'gold' || tier === 'silver' || tier === 'bronze') ? SHIELD_TIER[tier] : SHIELD_COLORS[kind]
+  const label = kind === 'num' ? numLabel(num) || '#' : kind === 'rc' ? 'RC' : kind === 'auto' ? 'AUTO' : 'PATCH'
+  const fs = kind === 'rc' ? 40 : kind === 'num' ? (label.length > 4 ? 26 : 32) : kind === 'auto' ? 27 : 22
+  const ty = kind === 'num' ? 62 : 54
+  const ink = '#ffffff'
+  return (
+    <svg viewBox="0 0 100 122" width={h * 100 / 122} height={h} style={{ display: 'inline-block', flexShrink: 0, verticalAlign: 'middle', overflow: 'visible', filter: flat ? undefined : 'drop-shadow(0 2px 2px rgba(0,0,0,0.35))' }}>
+      <defs>
+        <linearGradient id={'r' + id} x1="0" y1="0" x2="0" y2="1"><stop offset="0" stopColor="#ffffff" /><stop offset="0.5" stopColor="#c9cfd8" /><stop offset="1" stopColor="#8a929e" /></linearGradient>
+        <linearGradient id={'f' + id} x1="0" y1="0" x2="0.25" y2="1"><stop offset="0" stopColor={base} stopOpacity="1" /><stop offset="1" stopColor="#000" stopOpacity="0.38" /></linearGradient>
+        <linearGradient id={'s' + id} x1="0" y1="0" x2="0" y2="1"><stop offset="0" stopColor="#fff" stopOpacity="0.38" /><stop offset="0.5" stopColor="#fff" stopOpacity="0" /></linearGradient>
+      </defs>
+      {flat ? (
+        <>
+          <path d={SH_OUT} fill={base} />
+          <path d={SH_OUT} fill="none" stroke="#fff" strokeWidth="3" />
+          <path d="M15 13 H85 V69 Q85 93 50 108 Q15 93 15 69 Z" fill="none" stroke="#fff" strokeWidth="1.4" opacity="0.8" />
+        </>
+      ) : (
+        <>
+          <path d={SH_OUT} fill={`url(#r${id})`} />
+          <path d="M15 13 H85 V69 Q85 93 50 108 Q15 93 15 69 Z" fill={base} />
+          <path d="M15 13 H85 V69 Q85 93 50 108 Q15 93 15 69 Z" fill={`url(#f${id})`} />
+          <path d="M15 13 H85 V60 H15 Z" fill={`url(#s${id})`} />
+        </>
+      )}
+      <text x="50" y={ty} textAnchor="middle" dominantBaseline="middle" fontFamily="'Surfquest', Impact, system-ui, sans-serif" fontWeight={900} fontSize={fs} fill={ink} letterSpacing="0.5" style={{ textTransform: 'uppercase' }}>{label}</text>
+      {kind === 'rc' && <g stroke={ink} strokeWidth="2.6" fill="none" opacity="0.95"><circle cx="50" cy="90" r="13" /><path d="M37 90 H63 M50 77 V103 M41 80 Q50 90 41 100 M59 80 Q50 90 59 100" /></g>}
+      {kind === 'auto' && <path d="M26 88 C34 74 40 100 46 86 S58 78 62 92 S72 86 76 84" stroke={ink} strokeWidth="3" fill="none" strokeLinecap="round" opacity="0.95" />}
+      {kind === 'patch' && <g fill="none" stroke={ink} strokeWidth="2.4" opacity="0.95"><rect x="30" y="78" width="40" height="26" strokeDasharray="4 3" /><rect x="38" y="85" width="24" height="12" /></g>}
+      {kind === 'num' && <path d="M32 90 H68" stroke={ink} strokeWidth="2.4" opacity="0.8" />}
+    </svg>
+  )
+}
+
 // ── Variantes typographiques (sans pictogramme) ───────────────────────────
 const FILL: Record<TagTier, { bg: string; fg: string; edge: string }> = {
   base: { bg: 'transparent', fg: 'INK', edge: 'INK' },
@@ -58,13 +101,17 @@ const FILL: Record<TagTier, { bg: string; fg: string; edge: string }> = {
   gold: { bg: 'linear-gradient(160deg,#fff2b8,#e3b53b 55%,#8f6208)', fg: '#2a1a00', edge: '#e3b53b' },
 }
 
-// D : etiquette a double filet (signature du logo), remplie selon la rarete
-function FrameLabel({ text, tier, h, ink, panel, big }: { text: string; tier: TagTier; h: number; ink: string; panel: string; big?: boolean }) {
-  const f = FILL[tier]; const edge = f.edge === 'INK' ? ink : f.edge; const fg = f.fg === 'INK' ? ink : f.fg
+// D : etiquette a double filet (signature du logo), aux couleurs des pastilles actuelles
+const KIND_COL = { rc: '#e67e22', auto: '#2e7d32', patch: '#1976d2', num: '#7b1fa2' }
+const TIER_COL: Record<string, { c: string; fg: string }> = { gold: { c: '#d9a521', fg: '#2a1a00' }, silver: { c: '#aab3c0', fg: '#10151d' }, bronze: { c: '#b06a30', fg: '#fff' } }
+function FrameLabel({ text, kind, tier, h, big }: { text: string; kind: 'rc' | 'auto' | 'patch' | 'num'; tier: TagTier; h: number; big?: boolean }) {
+  const t = kind === 'num' ? TIER_COL[tier] : undefined
+  const c = t ? t.c : KIND_COL[kind]; const fg = t ? t.fg : '#fff'
   const fs = h * (big ? 0.5 : 0.4)
   return (
-    <span style={{ display: 'inline-flex', alignItems: 'center', height: h * 0.9, padding: `0 ${h * 0.3}px`, background: f.bg, color: fg, border: `2px solid ${edge}`,
-      boxShadow: `inset 0 0 0 2px ${tier === 'base' ? panel : 'rgba(255,255,255,0)'}, inset 0 0 0 3px ${tier === 'base' ? edge : 'rgba(0,0,0,0.28)'}${tier === 'gold' ? ', 0 0 8px rgba(227,181,59,0.5)' : ''}`,
+    <span style={{ display: 'inline-flex', alignItems: 'center', height: h * 0.9, padding: `0 ${h * 0.3}px`, color: fg,
+      background: `linear-gradient(180deg, rgba(255,255,255,0.2), rgba(0,0,0,0.16)), ${c}`, border: '2px solid rgba(255,255,255,0.92)',
+      boxShadow: `inset 0 0 0 2px ${c}, inset 0 0 0 3px rgba(255,255,255,0.6)${tier === 'gold' && kind === 'num' ? ', 0 0 8px rgba(217,165,33,0.55)' : ''}`,
       fontFamily: big ? "'Surfquest', Impact, sans-serif" : 'system-ui, sans-serif', fontWeight: big ? 400 : 900, fontSize: fs, letterSpacing: big ? '0.04em' : '0.14em', textTransform: 'uppercase', lineHeight: 1, whiteSpace: 'nowrap' }}>{text}</span>
   )
 }
@@ -84,7 +131,7 @@ function SlabStrip({ s, tier, h, ink, panel }: { s: Sample; tier: TagTier; h: nu
   )
 }
 
-type Variant = 'old' | 'v1' | 'v2' | 'v3' | 'd' | 'e' | 'f'
+type Variant = 'old' | 'v1' | 'v2' | 'v3' | 'd' | 'e' | 'f' | 'g' | 'h'
 function Tags({ s, v, h, dark }: { s: Sample; v: Variant; h: number; dark: boolean }) {
   const ink = dark ? '#ffffff' : '#0a1228'
   const counter = dark ? '#050912' : '#ffffff'
@@ -93,10 +140,19 @@ function Tags({ s, v, h, dark }: { s: Sample; v: Variant; h: number; dark: boole
   const panel = dark ? '#0e1530' : '#ffffff'
   if (v === 'd') {
     return <>
-      {s.rc && <FrameLabel text="RC" tier={tier} h={h} ink={ink} panel={panel} />}
-      {s.auto && <FrameLabel text="Auto" tier={tier} h={h} ink={ink} panel={panel} />}
-      {s.patch && <FrameLabel text="Patch" tier={tier} h={h} ink={ink} panel={panel} />}
-      {s.num && <FrameLabel text={s.num} tier={tier} h={h} ink={ink} panel={panel} big />}
+      {s.rc && <FrameLabel kind="rc" text="RC" tier={tier} h={h} />}
+      {s.auto && <FrameLabel kind="auto" text="Auto" tier={tier} h={h} />}
+      {s.patch && <FrameLabel kind="patch" text="Patch" tier={tier} h={h} />}
+      {s.num && <FrameLabel kind="num" text={s.num} tier={tier} h={h} big />}
+    </>
+  }
+  if (v === 'g' || v === 'h') {
+    const flat = v === 'h'
+    return <>
+      {s.rc && <Shield kind="rc" h={h * 1.25} tier={tier} flat={flat} />}
+      {s.auto && <Shield kind="auto" h={h * 1.25} tier={tier} flat={flat} />}
+      {s.patch && <Shield kind="patch" h={h * 1.25} tier={tier} flat={flat} />}
+      {s.num && <Shield kind="num" h={h * 1.25} num={s.num} tier={tier} flat={flat} />}
     </>
   }
   if (v === 'e' || v === 'f') return <SlabStrip s={s} tier={tier} h={h} ink={ink} panel={v === 'f' ? (dark ? 'rgba(5,9,18,0.82)' : 'rgba(255,255,255,0.88)') : panel} />
@@ -123,8 +179,10 @@ const TITLES: Record<Variant, [string, string]> = {
   v1: ['1 · Monochrome', 'Une seule teinte (blanc / navy), sans couleur'],
   v2: ['2 · Monochrome + rareté', 'Bleu = auto/patch/numérotée · bronze ≤25 · argent ≤10 · or 1/1'],
   v3: ['3 · Vectoriel + rareté', 'Net à toute taille, dégradé métallique, éclat, halo doré pour le 1/1'],
-  d: ['D · Étiquettes à double filet (1 + 4)', 'Texte en cadre double filet comme le logo ; rempli selon la rareté ; tirage en Surfquest'],
+  d: ['D · Étiquettes à double filet, couleurs des pastilles', 'RC orange · Auto vert · Patch bleu · Numéro violet (or / argent / bronze si rare) ; double filet comme le logo'],
   e: ['E · Bandeau de carte gradée (2 + 3 + 4)', 'Un seul bloc, segments séparés par des filets, tirage en grand, accent selon la rareté'],
+  g: ['G · Écussons métal (comme l’exemple Fanatics), couleurs actuelles', 'Même forme pour les 4, biseau métallique, glyphe sous le texte ; le tirage passe en or/argent/bronze si rare'],
+  h: ['H · Écussons plats (version DA)', 'Même forme, aplat de couleur, contour blanc à double filet, sans effet'],
   f: ['F · Bandeau sur l’image', 'Même bandeau E, posé en bas à gauche de la carte (sous le nom : plus rien)'],
 }
 
@@ -145,7 +203,7 @@ export default function TagsCompare() {
         ))}
       </div>
 
-      {(['old', 'v1', 'v2', 'v3', 'd', 'e', 'f'] as Variant[]).map(v => (
+      {(['old', 'd', 'g', 'h', 'e', 'f'] as Variant[]).map(v => (
         <section key={v} style={{ marginBottom: 34 }}>
           <h2 style={{ margin: '0 0 2px', fontSize: 18, fontWeight: 900 }}>{TITLES[v][0]}</h2>
           <p style={{ margin: '0 0 12px', fontSize: 12.5, opacity: 0.7 }}>{TITLES[v][1]}</p>
