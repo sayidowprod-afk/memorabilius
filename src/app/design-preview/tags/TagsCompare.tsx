@@ -49,12 +49,57 @@ function OldPills({ s }: { s: Sample }) {
   return <>{s.rc && p('#e67e22', 'RC')}{s.auto && p('#2e7d32', 'AUTO')}{s.num && p('#7b1fa2', s.num)}{s.patch && p('#1976d2', 'PATCH')}</>
 }
 
-type Variant = 'old' | 'v1' | 'v2' | 'v3'
+// ── Variantes typographiques (sans pictogramme) ───────────────────────────
+const FILL: Record<TagTier, { bg: string; fg: string; edge: string }> = {
+  base: { bg: 'transparent', fg: 'INK', edge: 'INK' },
+  blue: { bg: 'linear-gradient(160deg,#5b8cff,#2f6bff 55%,#1a43b8)', fg: '#fff', edge: '#2f6bff' },
+  bronze: { bg: 'linear-gradient(160deg,#f0b982,#b36b30 55%,#6f3f17)', fg: '#2b1500', edge: '#b36b30' },
+  silver: { bg: 'linear-gradient(160deg,#fbfcfe,#b4bcc8 55%,#6c7585)', fg: '#10151d', edge: '#b4bcc8' },
+  gold: { bg: 'linear-gradient(160deg,#fff2b8,#e3b53b 55%,#8f6208)', fg: '#2a1a00', edge: '#e3b53b' },
+}
+
+// D : etiquette a double filet (signature du logo), remplie selon la rarete
+function FrameLabel({ text, tier, h, ink, panel, big }: { text: string; tier: TagTier; h: number; ink: string; panel: string; big?: boolean }) {
+  const f = FILL[tier]; const edge = f.edge === 'INK' ? ink : f.edge; const fg = f.fg === 'INK' ? ink : f.fg
+  const fs = h * (big ? 0.5 : 0.4)
+  return (
+    <span style={{ display: 'inline-flex', alignItems: 'center', height: h * 0.9, padding: `0 ${h * 0.3}px`, background: f.bg, color: fg, border: `2px solid ${edge}`,
+      boxShadow: `inset 0 0 0 2px ${tier === 'base' ? panel : 'rgba(255,255,255,0)'}, inset 0 0 0 3px ${tier === 'base' ? edge : 'rgba(0,0,0,0.28)'}${tier === 'gold' ? ', 0 0 8px rgba(227,181,59,0.5)' : ''}`,
+      fontFamily: big ? "'Surfquest', Impact, sans-serif" : 'system-ui, sans-serif', fontWeight: big ? 400 : 900, fontSize: fs, letterSpacing: big ? '0.04em' : '0.14em', textTransform: 'uppercase', lineHeight: 1, whiteSpace: 'nowrap' }}>{text}</span>
+  )
+}
+
+// E : bandeau d'etiquette de carte gradee -- segments separes par des filets, tirage en grand
+function SlabStrip({ s, tier, h, ink, panel }: { s: Sample; tier: TagTier; h: number; ink: string; panel: string }) {
+  const f = FILL[tier]
+  const seg: React.CSSProperties = { display: 'inline-flex', alignItems: 'center', padding: `0 ${h * 0.32}px`, height: '100%', fontFamily: 'system-ui, sans-serif', fontWeight: 900, fontSize: h * 0.36, letterSpacing: '0.14em', textTransform: 'uppercase', color: ink, borderLeft: `1px solid ${ink}55` }
+  return (
+    <span style={{ display: 'inline-flex', alignItems: 'stretch', height: h * 0.95, background: panel, border: `2px solid ${ink}`, overflow: 'hidden', lineHeight: 1 }}>
+      <span style={{ width: h * 0.16, background: tier === 'base' ? ink : f.bg }} />
+      {s.rc && <span style={{ ...seg, borderLeft: 0 }}>RC</span>}
+      {s.auto && <span style={seg}>AUTO</span>}
+      {s.patch && <span style={seg}>PATCH</span>}
+      {s.num && <span style={{ ...seg, fontFamily: "'Surfquest', Impact, sans-serif", fontWeight: 400, letterSpacing: '0.05em', fontSize: h * 0.5, background: tier === 'base' ? 'transparent' : f.bg, color: tier === 'base' ? ink : (f.fg === 'INK' ? ink : f.fg) }}>{s.num}</span>}
+    </span>
+  )
+}
+
+type Variant = 'old' | 'v1' | 'v2' | 'v3' | 'd' | 'e' | 'f'
 function Tags({ s, v, h, dark }: { s: Sample; v: Variant; h: number; dark: boolean }) {
   const ink = dark ? '#ffffff' : '#0a1228'
   const counter = dark ? '#050912' : '#ffffff'
   const tier = cardTier(s)
   if (v === 'old') return <OldPills s={s} />
+  const panel = dark ? '#0e1530' : '#ffffff'
+  if (v === 'd') {
+    return <>
+      {s.rc && <FrameLabel text="RC" tier={tier} h={h} ink={ink} panel={panel} />}
+      {s.auto && <FrameLabel text="Auto" tier={tier} h={h} ink={ink} panel={panel} />}
+      {s.patch && <FrameLabel text="Patch" tier={tier} h={h} ink={ink} panel={panel} />}
+      {s.num && <FrameLabel text={s.num} tier={tier} h={h} ink={ink} panel={panel} big />}
+    </>
+  }
+  if (v === 'e' || v === 'f') return <SlabStrip s={s} tier={tier} h={h} ink={ink} panel={v === 'f' ? (dark ? 'rgba(5,9,18,0.82)' : 'rgba(255,255,255,0.88)') : panel} />
   if (v === 'v3') {
     return <>
       {s.rc && <TagGlyph kind="rc" h={h} tier={tier} ink={ink} />}
@@ -78,6 +123,9 @@ const TITLES: Record<Variant, [string, string]> = {
   v1: ['1 · Monochrome', 'Une seule teinte (blanc / navy), sans couleur'],
   v2: ['2 · Monochrome + rareté', 'Bleu = auto/patch/numérotée · bronze ≤25 · argent ≤10 · or 1/1'],
   v3: ['3 · Vectoriel + rareté', 'Net à toute taille, dégradé métallique, éclat, halo doré pour le 1/1'],
+  d: ['D · Étiquettes à double filet (1 + 4)', 'Texte en cadre double filet comme le logo ; rempli selon la rareté ; tirage en Surfquest'],
+  e: ['E · Bandeau de carte gradée (2 + 3 + 4)', 'Un seul bloc, segments séparés par des filets, tirage en grand, accent selon la rareté'],
+  f: ['F · Bandeau sur l’image', 'Même bandeau E, posé en bas à gauche de la carte (sous le nom : plus rien)'],
 }
 
 export default function TagsCompare() {
@@ -97,18 +145,23 @@ export default function TagsCompare() {
         ))}
       </div>
 
-      {(['old', 'v1', 'v2', 'v3'] as Variant[]).map(v => (
+      {(['old', 'v1', 'v2', 'v3', 'd', 'e', 'f'] as Variant[]).map(v => (
         <section key={v} style={{ marginBottom: 34 }}>
           <h2 style={{ margin: '0 0 2px', fontSize: 18, fontWeight: 900 }}>{TITLES[v][0]}</h2>
           <p style={{ margin: '0 0 12px', fontSize: 12.5, opacity: 0.7 }}>{TITLES[v][1]}</p>
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(190px, 1fr))', gap: 12 }}>
             {SAMPLES.map(s => (
               <div key={s.nom} style={{ background: dark ? '#0e1530' : '#fff', border: `2px solid ${dark ? '#1f4fd0' : '#003da6'}`, borderRadius: 8, padding: 8 }}>
-                {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img src={s.img} alt={s.nom} loading="lazy" style={{ display: 'block', width: '100%', aspectRatio: '2.5/3.5', objectFit: 'cover', marginBottom: 8, background: 'none', animation: 'none' }} />
-                <div style={{ display: 'flex', gap: 5, flexWrap: 'wrap', alignItems: 'center', minHeight: h + 4 }}>
-                  <Tags s={s} v={v} h={h} dark={dark} />
+                <div style={{ position: 'relative', marginBottom: 8 }}>
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
+                  <img src={s.img} alt={s.nom} loading="lazy" style={{ display: 'block', width: '100%', aspectRatio: '2.5/3.5', objectFit: 'cover', background: 'none', animation: 'none' }} />
+                  {v === 'f' && <div style={{ position: 'absolute', left: 6, bottom: 6, maxWidth: 'calc(100% - 12px)' }}><Tags s={s} v={v} h={h} dark={dark} /></div>}
                 </div>
+                {v !== 'f' && (
+                  <div style={{ display: 'flex', gap: 5, flexWrap: 'wrap', alignItems: 'center', minHeight: h + 4 }}>
+                    <Tags s={s} v={v} h={h} dark={dark} />
+                  </div>
+                )}
                 <div style={{ fontWeight: 800, fontSize: 13, marginTop: 4 }}>{s.nom}</div>
                 <div style={{ fontSize: 10, opacity: 0.6 }}>{s.meta}</div>
               </div>
