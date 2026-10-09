@@ -1,14 +1,6 @@
-import type { Metadata } from 'next'
-import DesignPreview from './DesignPreview'
+import { redirect } from 'next/navigation'
 
-// Page de travail pour valider la nouvelle direction artistique AVANT de toucher
-// aux vraies pages : non liee depuis le site, non indexee, aucune donnee reelle
-// ecrite ni lue (cartes d'exemple en dur).
-export const metadata: Metadata = {
-  title: 'Aperçu DA',
-  robots: { index: false, follow: false },
-}
-
+// L'ancien apercu de la direction artistique a ete remplace par /admin/da (idees visuelles, reservees aux admins).
 export default function Page() {
-  return <DesignPreview />
+  redirect('/admin/da')
 }
