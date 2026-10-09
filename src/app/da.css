@@ -235,3 +235,6 @@ h1 { line-height: 1.02; }
 }
 .da-profile .header-stats-block > div:first-child { border-top-color: color-mix(in srgb, var(--da-accent, #003da6) 70%, #fff) !important; }
 .da-profile .header-stats-block > div:first-child > div { border-right-color: color-mix(in srgb, var(--da-accent, #003da6) 55%, transparent) !important; }
+
+/* pas de fond de chargement (shimmer) derriere les images transparentes (logos, badges) */
+img[src$=".png"], img[src$=".svg"] { background: none !important; animation: none !important; }

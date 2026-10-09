@@ -6,9 +6,13 @@ import { useTheme } from '@/lib/ThemeContext'
 import { useLang } from '@/lib/LangContext'
 import FeedbackForm from './FeedbackForm'
 
+const PRESSKIT_LABEL: Record<string, string> = {
+  fr: 'Dossier de presse', en: 'Press kit', de: 'Pressemappe', es: 'Dossier de prensa', it: 'Cartella stampa',
+}
+
 export default function Footer() {
   const { dark } = useTheme()
-  const { t } = useLang()
+  const { t, lang } = useLang()
   const [feedbackOpen, setFeedbackOpen] = useState(false)
   const year = new Date().getFullYear()
   const linkStyle = { color: '#666', textDecoration: 'none', fontSize: 13, fontWeight: 600 }
@@ -28,25 +32,18 @@ export default function Footer() {
               src="/google-play-badge.png"
               alt="Disponible sur Google Play"
               height={40}
-              style={{ height: 40, width: 'auto' }}
+              style={{ height: 40, width: 'auto', background: 'none', animation: 'none' }}
             />
           </a>
         </div>
         <nav style={{ display: 'flex', flexWrap: 'wrap', gap: 18, alignItems: 'center' }}>
           <Link href="/mentions-legales" style={linkStyle}>Mentions légales</Link>
+          <a href={`/api/presskit?lang=${lang}`} download style={linkStyle}>{PRESSKIT_LABEL[lang] || PRESSKIT_LABEL.fr}</a>
           <Link href="/confidentialite" style={linkStyle}>Confidentialité</Link>
           <Link href="/cgu" style={linkStyle}>CGU</Link>
           <button onClick={() => setFeedbackOpen(true)} style={{ ...linkStyle, background: 'none', border: 'none', cursor: 'pointer', padding: 0, font: 'inherit' }}>
             {t('feedback_title')}
           </button>
-          {/* Lien temporaire de diagnostic natif -- l'app n'a pas de barre d'adresse,
-              donc un lien externe (SMS, notes...) tape par l'utilisateur s'ouvre dans
-              le navigateur au lieu de l'app (App Links non fiable sur tous les
-              appareils/config). Un lien interne comme celui-ci reste dans la meme
-              WebView, sans passer par la resolution d'intent Android. A retirer une
-              fois le diagnostic Filesystem termine (Nothing Phone 2a, timeout
-              ecriture persistant). */}
-          <Link href="/native-diag" style={linkStyle}>Diag natif</Link>
           <a
             href="https://ko-fi.com/gknnn_cards"
             target="_blank"
