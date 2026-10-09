@@ -151,6 +151,46 @@ export default function CollectionStats({ cards, accent, totalValeur }: Props) {
         )}
       </div>
 
+      {/* Radar : profil de la collection (part de RC, auto, patch, numerotees, gradees + variete des equipes) */}
+      {(() => {
+        const share = (n: number) => (stats.total > 0 ? n / stats.total : 0)
+        const teams = new Set(cards.map(c => normalizeKey(c.t || '')).filter(Boolean)).size
+        const axes = [
+          { l: 'RC', v: share(stats.rc), d: `${Math.round(share(stats.rc) * 100)} %` },
+          { l: 'Auto', v: share(stats.auto), d: `${Math.round(share(stats.auto) * 100)} %` },
+          { l: 'Patch', v: share(stats.patch), d: `${Math.round(share(stats.patch) * 100)} %` },
+          { l: t('stats_num_short'), v: share(stats.num), d: `${Math.round(share(stats.num) * 100)} %` },
+          { l: t('stats_graded'), v: share(stats.graded), d: `${Math.round(share(stats.graded) * 100)} %` },
+          { l: 'Équipes', v: Math.min(1, teams / 30), d: `${teams}` },
+        ]
+        // racine carree : une part de 10 % reste lisible sur le radar (sinon tout est colle au centre)
+        const k = (v: number) => Math.sqrt(Math.max(0, Math.min(1, v)))
+        const R = 92, cx = 150, cy = 132
+        const ang = (i: number) => (-90 + (360 / axes.length) * i) * Math.PI / 180
+        const pt = (i: number, r: number) => `${(cx + Math.cos(ang(i)) * r).toFixed(1)},${(cy + Math.sin(ang(i)) * r).toFixed(1)}`
+        return (
+          <div className="stats-radar" style={{ marginBottom: 18, paddingBottom: 16, borderBottom: '1px solid var(--border, #f4f4f4)' }}>
+            <div style={{ fontSize: 10, fontWeight: 800, color: 'var(--text3, #bbb)', textTransform: 'uppercase', letterSpacing: 0.5, marginBottom: 6 }}>Profil de la collection</div>
+            <svg viewBox="0 0 300 264" style={{ width: '100%', maxWidth: 340, display: 'block', margin: '0 auto' }} role="img" aria-label="Radar de la collection">
+              {[0.25, 0.5, 0.75, 1].map(g => <polygon key={g} points={axes.map((_, i) => pt(i, R * g)).join(' ')} fill="none" stroke="currentColor" strokeOpacity=".16" strokeWidth="1.5" />)}
+              {axes.map((_, i) => <line key={i} x1={cx} y1={cy} x2={pt(i, R).split(',')[0]} y2={pt(i, R).split(',')[1]} stroke="currentColor" strokeOpacity=".16" strokeWidth="1.5" />)}
+              <polygon points={axes.map((a, i) => pt(i, R * k(a.v))).join(' ')} fill={accent} fillOpacity=".38" stroke={accent} strokeWidth="3" strokeLinejoin="miter" />
+              {axes.map((a, i) => {
+                const [px, py] = pt(i, R * k(a.v)).split(',').map(Number)
+                const [lx, ly] = pt(i, R + 26).split(',').map(Number)
+                return (
+                  <g key={a.l}>
+                    <rect x={px - 4} y={py - 4} width="8" height="8" fill="currentColor" />
+                    <text x={lx} y={ly - 2} textAnchor="middle" fontSize="10.5" fontWeight="800" letterSpacing="1.2" fill="currentColor">{String(a.l).toUpperCase()}</text>
+                    <text x={lx} y={ly + 11} textAnchor="middle" fontSize="10" fontWeight="700" fill="currentColor" fillOpacity=".6">{a.d}</text>
+                  </g>
+                )
+              })}
+            </svg>
+          </div>
+        )
+      })()}
+
       {/* Croissance mensuelle */}
       {monthlyGrowth.some(m => m.count > 0) && (
         <div style={{ marginBottom: 18, paddingBottom: 16, borderBottom: '1px solid var(--border, #f4f4f4)' }}>

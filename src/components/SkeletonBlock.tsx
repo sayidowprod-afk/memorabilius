@@ -1,13 +1,9 @@
 'use client'
 import { useTheme } from '@/lib/ThemeContext'
 
-// Bloc pulsant reutilisable pour les etats de chargement (remplace les "Chargement..."
-// en texte brut par une preview de la mise en page finale, sans changer le comportement).
+// Bloc de chargement reutilisable (remplace les "Chargement..." en texte brut par une preview de la mise en page finale).
+// Angles droits et reflet qui balaie (DA), au lieu d'un simple clignotement.
 export default function SkeletonBlock({ style }: { style?: React.CSSProperties }) {
   const { dark } = useTheme()
-  return (
-    <div style={{ background: dark ? '#333' : '#eee', borderRadius: 6, animation: 'skelPulse 1.4s ease infinite alternate', ...style }}>
-      <style>{`@keyframes skelPulse { from{opacity:1} to{opacity:.5} }`}</style>
-    </div>
-  )
+  return <div className="skel-block" style={{ background: dark ? '#2a2f45' : '#e7e9f0', borderRadius: 0, ...style }} />
 }

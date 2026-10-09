@@ -6,8 +6,8 @@ export default function NotFound() {
   const { t } = useLang()
   return (
     <div style={{ maxWidth: 600, margin: '80px auto', textAlign: 'center' }}>
-      <div className="not-found-card-float" style={{ fontSize: 80, marginBottom: 16 }}>🃏</div>
-      <h1 style={{ fontWeight: 900, fontSize: 48, color: '#003DA6', marginBottom: 8 }}>404</h1>
+      <div className="nf-404" aria-hidden><span className="da-display">404</span><div className="not-found-card-float nf-ghost"><b className="da-display">?</b></div></div>
+      <h1 className="sr-only" style={{ position: 'absolute', width: 1, height: 1, overflow: 'hidden', clip: 'rect(0,0,0,0)' }}>404</h1>
       <h2 style={{ fontWeight: 900, fontSize: 24, marginBottom: 16 }}>{t('not_found_title')}</h2>
       <p style={{ color: '#666', fontSize: 16, lineHeight: 1.6, marginBottom: 40 }}>{t('not_found_sub')}</p>
       <div style={{ display: 'flex', gap: 16, justifyContent: 'center', flexWrap: 'wrap' }}>

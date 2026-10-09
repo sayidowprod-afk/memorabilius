@@ -1,4 +1,5 @@
 'use client'
+import SelectionHand from '@/components/SelectionHand'
 import { numTier } from '@/lib/cardTags'
 import { toast } from '@/lib/toast'
 import { useEffect, useLayoutEffect, useState, useRef, useMemo, useCallback } from 'react'
@@ -2415,14 +2416,14 @@ export default function GalerieClient({ userId, initialCardUrl, initialCards, in
         {(isOwner || grailCards.length > 0) && (() => {
           const GRAIL_MAX = 3
           const MEDALS = [
-            { emoji: '🥇', color: '#FFD700', glow: '#FFD70088', width: 132 },
-            { emoji: '🥈', color: '#C0C0C0', glow: '#C0C0C088', width: 104 },
-            { emoji: '🥉', color: '#CD7F32', glow: '#CD7F3288', width: 104 },
+            { emoji: '🥇', color: '#FFD700', glow: '#FFD70088', width: 152 },
+            { emoji: '🥈', color: '#C0C0C0', glow: '#C0C0C088', width: 152 },
+            { emoji: '🥉', color: '#CD7F32', glow: '#CD7F3288', width: 152 },
           ]
           const grailMap = new Map(cards.map(c => [c.f, c]))
           const grailItems = grailCards.map(g => grailMap.get(g.card_key)).filter(Boolean) as Card[]
           const grailLoading = grailCards.length > 0 && !cardsLoaded
-          const podiumOrder = [1, 0, 2] // argent · or · bronze, l'or au centre
+          const podiumOrder = [0, 1, 2] // trois cadres alignes, meme taille (plus de podium)
 
           const renderSlot = (i: number) => {
             const medal = MEDALS[i]
@@ -2444,7 +2445,6 @@ export default function GalerieClient({ userId, initialCardUrl, initialCards, in
             if (card) {
               return (
                 <div key={i} style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 6 }}>
-                  <span style={{ fontSize: i === 0 ? 26 : 20 }}>{medal.emoji}</span>
                   <div onClick={() => setPopup(card)} role="button" tabIndex={0} aria-label={card.n}
                     onKeyDown={e => { if ((e.key === 'Enter' || e.key === ' ') && e.target === e.currentTarget) { e.preventDefault(); setPopup(card) } }}
                     className={`grail-wall-cursor${i === 0 ? ' grail-gold-glow' : ''}`} style={{
@@ -2485,7 +2485,6 @@ export default function GalerieClient({ userId, initialCardUrl, initialCards, in
             // Slot vide
             return (
               <div key={`empty-${i}`} style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 6 }}>
-                <span style={{ fontSize: i === 0 ? 26 : 20, opacity: 0.35 }}>{medal.emoji}</span>
                 {isOwner ? (
                   <div
                     onClick={() => { setGrailPickerOpen(true); setGrailSearch('') }}
@@ -2516,7 +2515,7 @@ export default function GalerieClient({ userId, initialCardUrl, initialCards, in
                 <span style={{ fontSize: 11, color: '#bbb', fontWeight: 600 }}>— {t('gallery_jewels')}</span>
               </div>
 
-              <div style={{ display: 'flex', gap: 14, alignItems: 'flex-end', justifyContent: 'center' }}>
+              <div className="grail-museum">
                 {podiumOrder.map(i => renderSlot(i))}
               </div>
 
@@ -3099,6 +3098,7 @@ export default function GalerieClient({ userId, initialCardUrl, initialCards, in
 
         {mounted && editMode && isOwner && selectedCards.size > 0 && createPortal(
           <div style={{ position: 'fixed', bottom: 'var(--bottom-nav-h, 0px)', left: 0, right: 0, zIndex: 9999, display: 'flex', alignItems: 'center', gap: 10, background: '#003DA6', color: 'white', borderRadius: '12px 12px 0 0', padding: '12px 24px', fontSize: 13, fontWeight: 700, flexWrap: 'wrap', boxShadow: '0 -4px 24px rgba(0,61,166,0.35)' }}>
+            <SelectionHand images={cards.filter(c => selectedCards.has(getCardId(c))).slice(-7).map(c => c.f)} />
             <span style={{ flex: '1 1 120px' }}>{selectedCards.size} carte{selectedCards.size > 1 ? 's' : ''} sélectionnée{selectedCards.size > 1 ? 's' : ''}</span>
             {/* Assigner collection tag en masse */}
             {showBulkNewTag ? (
@@ -3247,6 +3247,7 @@ export default function GalerieClient({ userId, initialCardUrl, initialCards, in
 
         {mounted && qrMode && createPortal(
           <div style={{ position: 'fixed', bottom: 'var(--bottom-nav-h, 0px)', left: 0, right: 0, zIndex: 9999, display: 'flex', alignItems: 'center', gap: 10, background: '#7c3aed', color: 'white', borderRadius: '12px 12px 0 0', padding: '12px 24px', fontSize: 13, fontWeight: 700, flexWrap: 'wrap', boxShadow: '0 -4px 24px rgba(124,58,237,0.35)' }}>
+            <SelectionHand images={cards.filter(c => qrSelected.has(getCardId(c))).slice(-7).map(c => c.f)} />
             <span style={{ flex: '1 1 160px' }}>
               {qrSelected.size === 0
                 ? '▦ Clique sur des cartes pour les sélectionner'
@@ -3362,20 +3363,6 @@ export default function GalerieClient({ userId, initialCardUrl, initialCards, in
               transition: 'opacity 0.15s',
               overflow: 'visible',
             }}>
-              {isOwner && privateCards.has(d.f) && (
-                <div style={{ position: 'absolute', top: 6, left: 6, background: '#e74c3c', color: 'white', fontSize: 9, fontWeight: 900, padding: '2px 6px', borderRadius: 4, zIndex: 2 }}>
-                  {t('gallery_private')}
-                </div>
-              )}
-              {d.vendue ? (
-                <div title={t('gallery_sold_badge')} style={{ position: 'absolute', top: 6, right: 6, background: '#c0392b', color: 'white', fontSize: 9, fontWeight: 900, padding: '2px 6px', borderRadius: 4, zIndex: 2, letterSpacing: 0.3 }}>
-                  💰 {t('gallery_sold_badge').toUpperCase()}
-                </div>
-              ) : d.disponible_vente && (
-                <div title={t('gallery_for_sale_title')} style={{ position: 'absolute', top: 6, right: 6, background: '#2e7d32', color: 'white', fontSize: 9, fontWeight: 900, padding: '2px 6px', borderRadius: 4, zIndex: 2, letterSpacing: 0.3 }}>
-                  🏷️ {t('gallery_for_sale_label')}
-                </div>
-              )}
               {editMode && isOwner && selectedCards.has(getCardId(d)) && (
                 <>
                   <div style={{ position: 'absolute', inset: 0, background: 'rgba(0,61,166,0.14)', zIndex: 1, borderRadius: 6, pointerEvents: 'none' }} />
@@ -3427,6 +3414,14 @@ export default function GalerieClient({ userId, initialCardUrl, initialCards, in
               )}
               <div className={`holo-light${numTier(d.num) !== 'std' ? ` halo halo-${numTier(d.num)}` : ''}`} style={{ width: '100%', marginBottom: 8 }}>
                 <CardLink slug={profile?.slug || userId} cardKey={d.f}>{renderCardImage(d)}</CardLink>
+                {(d.vendue || d.disponible_vente || (isOwner && privateCards.has(d.f))) && (
+                  <div className="sash-clip" aria-hidden>
+                    {isOwner && privateCards.has(d.f) && <i className="sash sash-tl" style={{ background: '#c0392b' }}>{t('gallery_private')}</i>}
+                    {d.vendue
+                      ? <i className="sash sash-tr" title={t('gallery_sold_badge')} style={{ background: '#8e2b22' }}>{t('gallery_sold_badge').toUpperCase()}</i>
+                      : d.disponible_vente && <i className="sash sash-tr" title={t('gallery_for_sale_title')} style={{ background: '#1f9d55' }}>{t('gallery_for_sale_label')}</i>}
+                  </div>
+                )}
               </div>
               {getTags(d)}
               <div style={{ display: 'flex', alignItems: 'flex-start', justifyContent: 'space-between', gap: 4, marginTop: 4 }}>

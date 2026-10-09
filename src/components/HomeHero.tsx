@@ -99,6 +99,8 @@ export default function HomeHero({ total, totalCartes, totalBinders, totalTrade,
   const { t, lang } = useLang()
   const { dark } = useTheme()
   const [cardImgs, setCardImgs] = useState<string[]>([])
+  // mur de cartes qui defile derriere la banniere (memes cartes recentes que les 4 cartes flottantes)
+  const [wallImgs, setWallImgs] = useState<string[]>([])
   const cardsRef = useRef<HTMLDivElement>(null)
 
   // Compteurs "en direct" -- partent des valeurs rendues serveur (déjà à
@@ -138,6 +140,9 @@ export default function HomeHero({ total, totalCartes, totalBinders, totalTrade,
           if (pick.length >= 4) break
         }
         setCardImgs(pick)
+        const wall: string[] = []; const seenWall = new Set<string>()
+        for (const u of urls) { if (!seenWall.has(u)) { seenWall.add(u); wall.push(u) } if (wall.length >= 30) break }
+        setWallImgs(wall)
       })
   }, [])
 
@@ -190,6 +195,24 @@ export default function HomeHero({ total, totalCartes, totalBinders, totalTrade,
             ? 'radial-gradient(700px 400px at 20% 20%, rgba(0,150,255,0.16), transparent 60%), radial-gradient(700px 400px at 80% 80%, rgba(140,60,220,0.16), transparent 60%)'
             : 'radial-gradient(700px 400px at 20% 20%, rgba(0,120,255,0.10), transparent 60%), radial-gradient(700px 400px at 80% 80%, rgba(0,180,255,0.10), transparent 60%)',
         }} />
+        {wallImgs.length >= 12 && (
+          <div className="hero-wall" aria-hidden="true">
+            <div className="hero-wall-cols">
+              {[0, 1, 2, 3, 4, 5].map(c => {
+                const mine = wallImgs.filter((_, i) => i % 6 === c)
+                const list = mine.length ? [...mine, ...mine] : []
+                return (
+                  <div className="hero-wall-col" key={c}>
+                    {list.map((u, i) => (
+                      // eslint-disable-next-line @next/next/no-img-element
+                      <img key={i} src={u} alt="" loading="lazy" decoding="async" />
+                    ))}
+                  </div>
+                )
+              })}
+            </div>
+          </div>
+        )}
         {/* Vraies cartes de sport flottantes (décor + parallaxe) */}
         <div className="mb-hero-cards" aria-hidden="true" ref={cardsRef}>
           {[0, 1, 2, 3].map(i => (

@@ -1,4 +1,5 @@
 'use client'
+import CardLoader from '@/components/CardLoader'
 import { useEffect, useState } from 'react'
 import Link from 'next/link'
 import { createClient } from '@supabase/supabase-js'
@@ -48,8 +49,7 @@ export default function CardSharePage({ cardId }: { cardId: string }) {
 
   if (loading) return (
     <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', minHeight: '80vh' }}>
-      <style>{`@keyframes spin { to { transform: rotate(360deg) } }`}</style>
-      <div style={{ width: 36, height: 36, border: '3px solid #e2e8f0', borderTopColor: BRAND, borderRadius: '50%', animation: 'spin 0.8s linear infinite' }} />
+      <CardLoader />
     </div>
   )
 

@@ -10,15 +10,14 @@ export default function EmptyState({
   compact?: boolean
 }) {
   return (
-    <div style={{
-      background: 'var(--card-bg, #fff)', borderRadius: 16,
-      padding: compact ? '40px 20px' : '60px 20px', textAlign: 'center',
-      boxShadow: compact ? 'none' : 'var(--elevation-sm, 0 4px 20px rgba(0,0,0,0.06))',
-    }}>
-      <div style={{ fontSize: compact ? 36 : 48, marginBottom: 14 }}>{icon}</div>
-      <p style={{ color: 'var(--text2, #666)', fontWeight: 700, fontSize: 16, margin: 0 }}>{title}</p>
-      {subtitle && <p style={{ color: 'var(--text3, #999)', fontSize: 13, marginTop: 6 }}>{subtitle}</p>}
-      {action && <div style={{ marginTop: 16 }}>{action}</div>}
+    <div className="es-wrap" style={{ padding: compact ? '34px 20px' : '54px 20px' }}>
+      {/* carte fantome : l'icone dans une carte en pointilles, legerement inclinee */}
+      <div className="es-ghost" style={{ width: compact ? 72 : 96 }}>
+        <span style={{ fontSize: compact ? 30 : 40, lineHeight: 1 }}>{icon}</span>
+      </div>
+      <p className="es-title da-display" style={{ fontSize: compact ? 24 : 32 }}>{title}</p>
+      {subtitle && <p style={{ color: 'var(--text3, #999)', fontSize: 13, margin: '8px auto 0', maxWidth: 360 }}>{subtitle}</p>}
+      {action && <div style={{ marginTop: 18 }}>{action}</div>}
     </div>
   )
 }

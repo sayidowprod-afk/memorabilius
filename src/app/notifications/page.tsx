@@ -50,6 +50,14 @@ export default function Notifications() {
     return icons[type] || '🔔'
   }
 
+  const getColor = (type: string) => {
+    const c: Record<string, string> = {
+      team_join: '#7a3fbf', team_candidature: '#7a3fbf', message: '#2f6bff', trade: '#2f6bff', system: '#5b6b8c',
+      wishlist_match: '#e67e22', comment: '#2f6bff', badge: '#e9b44c', like: '#e63a6e',
+    }
+    return c[type] || '#5b6b8c'
+  }
+
   const dateGroupLabel = (iso: string) => {
     const d = new Date(iso)
     const now = new Date()
@@ -97,43 +105,27 @@ export default function Notifications() {
       {notifs.length === 0 ? (
         <EmptyState icon="🔔" title={t('notif_none')} />
       ) : (
-        <div style={{ background: 'var(--card-bg, #fff)', borderRadius: 16, overflow: 'hidden', boxShadow: '0 4px 20px rgba(0,0,0,0.06)' }}>
+        <div className="notif-list">
           {notifs.map((n, i) => {
             const label = dateGroupLabel(n.created_at)
             const showHeader = i === 0 || dateGroupLabel(notifs[i - 1].created_at) !== label
             return (
-              <div key={n.id}>
-                {showHeader && (
-                  <div style={{
-                    position: 'sticky', top: 0, zIndex: 1,
-                    padding: '8px 20px', fontSize: 11, fontWeight: 800, textTransform: 'uppercase', letterSpacing: 0.4,
-                    color: 'var(--text3, #999)', background: dark ? '#161616' : '#fafafa',
-                    borderBottom: `1px solid ${dark ? '#2a2a2a' : '#f0f0f0'}`,
-                  }}>{label}</div>
-                )}
+              <div key={n.id} style={{ display: 'contents' }}>
+                {showHeader && <div className="notif-day">{label}<span /></div>}
                 <div
                   onClick={() => n.lien && router.push(n.lien)}
                   role={n.lien ? 'button' : undefined}
                   tabIndex={n.lien ? 0 : undefined}
                   onKeyDown={e => { if (n.lien && (e.key === 'Enter' || e.key === ' ')) { e.preventDefault(); router.push(n.lien) } }}
                   aria-label={!n.lu ? `${t('notif_unread_label')} — ${n.message}` : n.message}
-                  style={{
-                  padding: '16px 20px', borderBottom: i < notifs.length - 1 ? `1px solid ${dark ? '#2a2a2a' : '#f5f5f5'}` : 'none',
-                  borderLeft: n.lu ? '4px solid transparent' : '4px solid #003DA6',
-                  display: 'flex', alignItems: 'center', gap: 16,
-                  background: n.lu ? (dark ? '#1e1e1e' : 'white') : (dark ? '#0f1f42' : '#f0f4ff'),
-                  cursor: n.lien ? 'pointer' : 'default',
-                  transition: '0.2s',
-                }}
-                  onMouseEnter={e => { if (n.lien) e.currentTarget.style.background = dark ? '#1a2b57' : '#e8eeff' }}
-                  onMouseLeave={e => e.currentTarget.style.background = n.lu ? (dark ? '#1e1e1e' : 'white') : (dark ? '#0f1f42' : '#f0f4ff')}
+                  className={`notif-banner${n.lu ? '' : ' unread'}${n.lien ? ' link' : ''}`}
+                  style={{ ['--c' as string]: getColor(n.type) }}
                 >
-                  <span aria-hidden="true" style={{ fontSize: 24, flexShrink: 0 }}>{getIcon(n.type)}</span>
-                  <div style={{ flex: 1 }}>
-                    <p style={{ margin: 0, fontSize: 14, fontWeight: n.lu ? 400 : 700, color: dark ? '#f0f0f0' : '#121212' }}>{n.message}</p>
-                    <p style={{ margin: '3px 0 0', fontSize: 12, color: 'var(--text3, #999)' }}>{timeAgo(n.created_at)}</p>
+                  <div className="notif-ic" aria-hidden="true">{getIcon(n.type)}</div>
+                  <div className="notif-tx">
+                    <p className="m">{n.message}</p>
+                    <p className="t">{timeAgo(n.created_at)}{!n.lu && <b>Nouveau</b>}</p>
                   </div>
-                  {!n.lu && <span aria-hidden="true" style={{ width: 8, height: 8, borderRadius: '50%', background: '#003DA6', flexShrink: 0 }} />}
                 </div>
               </div>
             )
