@@ -19,23 +19,21 @@ def bounds(name):
     return bp.bounds  # (xMin, yMin, xMax, yMax)
 
 b0, bO = bounds(g0), bounds(gO)
-# hauteur de reference : celle des chiffres (on prend la moyenne des chiffres 1-9 pour ne pas dependre du 0 barre)
-hs = [bounds(cmap[ord(str(d))]) for d in range(1, 10)]
-digit_ymin = sum(b[1] for b in hs) / len(hs)
-digit_ymax = sum(b[3] for b in hs) / len(hs)
-sy = (digit_ymax - digit_ymin) / (bO[3] - bO[1])
-sx = sy  # meme echelle : on garde les proportions du O
-tx = -bO[0] * sx + (b0[0])          # aligne le bord gauche sur celui du 0 d'origine
-ty = digit_ymin - bO[1] * sy
-adv_O = font['hmtx'][gO][0]
-adv = round(adv_O * sx)
+# Le O reprend EXACTEMENT la boite et l'avance du 0 barre d'origine : meme taille, meme position,
+# memes espacements que les autres chiffres (echelle x et y calculees separement).
+sx = (b0[2] - b0[0]) / (bO[2] - bO[0])
+sy = (b0[3] - b0[1]) / (bO[3] - bO[1])
+tx = b0[0] - bO[0] * sx
+ty = b0[1] - bO[1] * sy
+adv = font['hmtx'][g0][0]
+print('echelle x', round(sx, 3), 'y', round(sy, 3), '| avance du 0 d origine', adv)
 
-pen = T2CharStringPen(adv, gs)
+pen = T2CharStringPen(None, gs)   # pas de largeur explicite : le glyphe prend defaultWidthX (339), comme le 0 d'origine
 gs[gO].draw(TransformPen(pen, (sx, 0, 0, sy, tx, ty)))
-new_cs = pen.getCharString()
-
 cff = font['CFF '].cff[0]
 old_cs = cff.CharStrings[g0]
+# private requis : la largeur est codee par rapport a nominalWidthX / defaultWidthX du dictionnaire prive
+new_cs = pen.getCharString(private=old_cs.private, globalSubrs=old_cs.globalSubrs)
 new_cs.private = old_cs.private
 new_cs.globalSubrs = old_cs.globalSubrs
 cff.CharStrings[g0] = new_cs
@@ -45,4 +43,4 @@ font.save(OUT)
 chk = TTFont(OUT)
 cs = chk.getGlyphSet()
 bp = BoundsPen(cs); cs[g0].draw(bp)
-print('0 original', b0, '-> nouveau', bp.bounds, '| chiffres 1-9 : yMin', round(digit_ymin), 'yMax', round(digit_ymax), '| avance', adv)
+print('0 original', b0, '-> nouveau', bp.bounds, '| avance', adv)

@@ -284,7 +284,7 @@ export default function DesignPreview() {
 }
 
 const CSS = `
-@font-face{font-family:'SQ';src:url('/Surfquest-NoSlash.otf?v=2') format('opentype');font-display:swap}
+@font-face{font-family:'SQ';src:url('/Surfquest-NoSlash.otf?v=3') format('opentype');font-display:swap}
 @font-face{font-family:'SQC';src:url('/SurfquestCondensed-ZVxOm.otf') format('opentype');font-display:swap}
 
 .dp{position:fixed;inset:0;z-index:99999;overflow:auto;font-family:system-ui,-apple-system,'Segoe UI',sans-serif;
