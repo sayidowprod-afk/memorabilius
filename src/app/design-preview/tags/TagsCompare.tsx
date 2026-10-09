@@ -1,5 +1,5 @@
 'use client'
-import { useState } from 'react'
+import React, { useState } from 'react'
 import Link from 'next/link'
 import { printRunOf } from '@/components/TagIcon'
 
@@ -248,7 +248,9 @@ function StripW({ s, h, dark, tier, v }: { s: Sample; h: number; dark: boolean; 
   if (s.rc) segs.push({ key: 'rc', text: 'RC', color: BASE.rc })
   if (s.auto) segs.push({ key: 'auto', text: 'AUTO', color: BASE.auto })
   if (s.patch) segs.push({ key: 'patch', text: 'PATCH', color: BASE.patch })
-  if (s.num) segs.push({ key: 'num', text: s.num, color: BASE.num, isNum: true })
+  const pr = printRunOf(s.num)
+  const numShort = pr === 1 ? '1/1' : pr !== null ? `/${pr}` : (s.num || '')
+  if (s.num) segs.push({ key: 'num', text: numShort, color: BASE.num, isNum: true })
   if (!segs.length) return null
   const metal = s.num && tier !== 'std' ? METAL[tier] : null
   const col = (g: G) => (g.isNum && metal ? TIER_BASE[tier] : g.color)
@@ -257,14 +259,15 @@ function StripW({ s, h, dark, tier, v }: { s: Sample; h: number; dark: boolean; 
   const sh = (g: G) => (g.isNum && metal ? 'none' : '0 1px 2px rgba(0,0,0,0.5)')
   const ink = dark ? '#ffffff' : '#0a1228'
   const neutral = dark ? '#18224a' : '#eef1f6'
-  const light = (c: string) => (dark ? mix(c, 0.5) : mix(c, -0.12))
+  const light = (c: string) => (dark ? mix(c, 0.7) : mix(c, -0.3))
+  const full = s.num ? `Numérotation : ${s.num}` : undefined
   const ordered = v === 'c8' ? [...segs.filter(g => g.isNum), ...segs.filter(g => !g.isNum)] : segs
   const chars = segs.reduce((a, g) => a + g.text.length, 0)
   const separate = !['r1', 'r2', 'c8'].includes(v)
-  const K = chars * 0.9 + segs.length * 1.55 + (separate ? segs.length * 0.35 : 0.4)
-  const base = Math.round(h * 0.5 * 10) / 10
+  const K = chars * 0.86 + segs.length * 1.5 + (separate ? segs.length * 0.35 : 0.4)
+  const base = Math.round(h * 0.54 * 10) / 10
   const outer: React.CSSProperties = { display: 'inline-flex', alignItems: 'stretch', gap: separate ? '0.32em' : 0, height: '2.3em', fontFamily: 'system-ui, -apple-system, "Segoe UI", sans-serif',
-    fontWeight: 900, letterSpacing: '0.07em', lineHeight: 1, fontSize: `clamp(7px, calc(100cqw / ${K.toFixed(2)}), ${base}px)`, whiteSpace: 'nowrap', fontVariantNumeric: 'tabular-nums',
+    fontWeight: 900, letterSpacing: '0.05em', lineHeight: 1, fontSize: `clamp(8px, calc(100cqw / ${K.toFixed(2)}), ${base}px)`, whiteSpace: 'nowrap', fontVariantNumeric: 'tabular-nums',
     textTransform: 'uppercase', maxWidth: '100%' }
   const R = '0.42em'
   const pad = '0 0.75em'
@@ -278,7 +281,7 @@ function StripW({ s, h, dark, tier, v }: { s: Sample; h: number; dark: boolean; 
       case 'c1':
         return <span key={g.key} style={{ ...base, borderRadius: R, background: solid(g, true), color: fg(g), textShadow: sh(g), border: '1px solid rgba(255,255,255,0.2)', boxShadow: 'inset 0 1px 0 rgba(255,255,255,0.35), 0 2px 5px -1px rgba(0,0,0,0.45)' }}>{g.text}</span>
       case 'c2':
-        return <span key={g.key} style={{ ...base, borderRadius: R, background: rgba(c, dark ? 0.24 : 0.16), color: light(c), border: `1px solid ${rgba(c, 0.7)}` }}>{g.text}</span>
+        return <span key={g.key} style={{ ...base, borderRadius: R, background: rgba(c, dark ? 0.32 : 0.18), color: light(c), border: `1px solid ${rgba(c, 0.85)}` }}>{g.text}</span>
       case 'c3':
         return <span key={g.key} style={{ ...base, borderRadius: R, background: 'transparent', color: light(c), border: `1.5px solid ${c}` }}>{g.text}</span>
       case 'c4':
@@ -301,7 +304,7 @@ function StripW({ s, h, dark, tier, v }: { s: Sample; h: number; dark: boolean; 
   }
   if (v === 'r1' || v === 'r2' || v === 'c8') wrap = { borderRadius: R, overflow: 'hidden', border: '1px solid rgba(255,255,255,0.22)', boxShadow: `0 3px 8px -2px rgba(0,0,0,0.5)${metal?.glow ? ', ' + metal.glow : ''}` }
   if (v === 'c9') wrap = { borderRadius: '0.55em', background: 'rgba(8,14,34,0.52)', backdropFilter: 'blur(6px)', WebkitBackdropFilter: 'blur(6px)', border: '1px solid rgba(255,255,255,0.28)', gap: 0, boxShadow: '0 3px 10px rgba(0,0,0,0.4)' }
-  return <span style={{ display: 'block', containerType: 'inline-size', width: '100%' }}><span style={{ ...outer, ...wrap }}>{ordered.map(item)}</span></span>
+  return <span style={{ display: 'block', containerType: 'inline-size', width: '100%' }}><span style={{ ...outer, ...wrap }}>{ordered.map((g, i) => { const el = item(g, i) as React.ReactElement<{ title?: string }>; return g.isNum ? React.cloneElement(el, { title: full }) : el })}</span></span>
 }
 
 type Variant = 'old' | 'q1' | 'q2' | 'q3' | 'sx' | 'dx' | 'bx' | StripStyle | WStyle
