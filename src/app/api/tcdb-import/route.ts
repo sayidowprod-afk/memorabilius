@@ -55,7 +55,10 @@ export async function POST(req: NextRequest) {
 
   let pdf
   try { pdf = await parseTcdbPdf(new Uint8Array(await file.arrayBuffer())) }
-  catch { return NextResponse.json({ error: 'Lecture du PDF impossible. Utilise le PDF imprimable de TCDB (Checklist, Your Collection ou Collection Print).' }, { status: 422 }) }
+  catch (e) {
+    console.error('[tcdb-import] lecture PDF', e)
+    return NextResponse.json({ error: 'Lecture du PDF impossible. Utilise le PDF imprimable de TCDB (Checklist, Your Collection ou Collection Print).', detail: String((e as Error)?.message || e).slice(0, 300) }, { status: 422 })
+  }
 
   // 1. lignes possedees -> {setId, num, variation, name}
   type Want = { setId: number; num: string; variation: string; name: string; text: string }

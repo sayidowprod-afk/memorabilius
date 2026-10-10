@@ -19,6 +19,11 @@ const TAGS = new Set(['RC', 'AU', 'SP', 'VAR', 'ART', 'CL', 'SSP', 'ERR', 'COR',
 
 export async function parseTcdbPdf(data: Uint8Array): Promise<TcdbPdf> {
   const pdfjs: any = await import('pdfjs-dist/legacy/build/pdf.mjs')
+  // En serverless le worker n'est pas retrouve par un import dynamique relatif : on l'importe explicitement et on le fournit.
+  if (!(globalThis as any).pdfjsWorker) {
+    // @ts-expect-error pas de declaration de types pour le worker
+    try { (globalThis as any).pdfjsWorker = await import('pdfjs-dist/legacy/build/pdf.worker.mjs') } catch { /* sinon pdfjs charge son worker lui-meme */ }
+  }
   const doc = await pdfjs.getDocument({ data, useSystemFonts: true, isEvalSupported: false, disableFontFace: true }).promise
   const OPS = pdfjs.OPS
   let title = ''
@@ -64,19 +69,25 @@ export async function parseTcdbPdf(data: Uint8Array): Promise<TcdbPdf> {
     // 3. titre : premier texte apres l'adresse tcdb.com
     if (!title) {
       const k = items.findIndex((i: any) => /tcdb\.com/i.test(i.s))
-      const t = k >= 0 ? items.slice(k + 1).filter((i: any) => i.y < items[k].y + 30) : []
+      const t = k >= 0 ? items.slice(k + 1).filter((i: any) => i.y > items[k].y && i.y < items[k].y + 30) : []
       if (t.length) title = t.map((i: any) => i.s).join(' ').replace(/\s+/g, ' ')
     }
 
     collectionMode = collectionMode || /'s collection/i.test(title) || /collection\s*-\s*\w+/i.test(title)
     if (collectionMode) {
       // deux colonnes ; chaque carte commence par une annee ("2022-23 ...") et peut passer a la ligne
-      const colOf = (x: number) => (x < 200 ? 0 : 1)
-      const lines = [...items].filter((i: any) => i.y > 85).sort((a: any, b: any) => colOf(a.x) - colOf(b.x) || a.y - b.y || a.x - b.x)
+      // colonnes : leurs positions = x des lignes qui commencent par une annee (2 ou 3 colonnes selon la mise en page)
+      const startRe = /^(\d{4}(-\d{2,4})?|\d{2}-\d{2})\s/
+      const anchors: number[] = []
+      for (const it of items) if (startRe.test(it.s.replace(/\s+/g, ' ')) && !anchors.some(a => Math.abs(a - it.x) < 6)) anchors.push(it.x)
+      anchors.sort((a, b) => a - b)
+      const colOf = (x: number) => { let c = 0; anchors.forEach((a, i) => { if (x >= a - 6) c = i }); return c }
+      // y>85 / y<800 : ecarte l'en-tete de TCDB et l'en-tete / pied de page que le navigateur ajoute a l'impression (date, URL, 1/1)
+      const lines = [...items].filter((i: any) => i.y > 85 && i.y < 800).sort((a: any, b: any) => colOf(a.x) - colOf(b.x) || a.y - b.y || a.x - b.x)
       let cur = ''
       for (const it of lines) {
         const t = it.s.replace(/\s+/g, ' ')
-        if (/^(\d{4}(-\d{2,4})?|\d{2}-\d{2})\s/.test(t)) { if (cur) entries.push(cur.trim()); cur = t }
+        if (startRe.test(t)) { if (cur) entries.push(cur.trim()); cur = t }
         else if (cur) cur += (cur.endsWith('-') ? '' : ' ') + t
       }
       if (cur) entries.push(cur.trim())

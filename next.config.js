@@ -5,6 +5,8 @@ const nextConfig = {
   // ("Module parse failed: Unexpected character") sur /api/discord
   // (voir src/lib/discordCardGif.ts, generation du GIF /carte-gif).
   serverExternalPackages: ['web-push', '@napi-rs/canvas', 'gifenc', 'pdfjs-dist'],
+  // pdfjs-dist (lecture des PDF TCDB) charge son worker et ses polices par chemins dynamiques : sans ca ils manquent sur Vercel
+  outputFileTracingIncludes: { '/api/tcdb-import': ['./node_modules/pdfjs-dist/legacy/build/**', './node_modules/pdfjs-dist/cmaps/**', './node_modules/pdfjs-dist/standard_fonts/**'] },
   // Inline le SHA du commit deploye dans le bundle client (voir NativeInit.tsx +
   // /api/app-version) : sert a detecter qu'un nouveau deploy a eu lieu pendant
   // que l'app native etait en arriere-plan, pour forcer un vrai reload plutot

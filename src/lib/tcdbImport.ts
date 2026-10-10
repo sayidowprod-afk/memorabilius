@@ -69,14 +69,36 @@ export function sameName(a: string, b: string): boolean {
   return la.length > 3 && la === lb
 }
 
+// TCDB abrege/tronque les noms de parallele a l'impression ("Red Cracked Ice" pour "Red Cracked Ice Prizm", "Green White Purp"
+// pour "Green White Purple Prizm") : on compare aussi sans le mot "Prizm", puis par debut de nom (unique obligatoire).
+const noPrizm = (v: string | null | undefined) => norm((v || '').replace(/prizms?/gi, ''))
+
 /** Entree de checklist correspondant a (set, numero, variation) ; null si absente ou ambigue */
 export function findEntry(entries: IEntry[], p: { num: string; variation: string; name: string }): IEntry | null {
-  const n = norm(p.num), v = norm(p.variation)
-  const c = entries.filter(e => norm(e.card_number) === n && norm(e.variation) === v)
-  if (c.length === 1) return c[0]
-  if (c.length > 1) {
-    const byName = c.filter(e => sameName(e.player_name, p.name))
-    return byName.length === 1 ? byName[0] : null
+  const n = norm(p.num)
+  const sameNum = entries.filter(e => norm(e.card_number) === n)
+  const pick = (c: IEntry[]): IEntry | null => {
+    if (c.length === 1) return c[0]
+    if (c.length > 1) {
+      const byName = c.filter(e => sameName(e.player_name, p.name))
+      return byName.length === 1 ? byName[0] : null
+    }
+    return null
+  }
+  const v = norm(p.variation)
+  const exact = sameNum.filter(e => norm(e.variation) === v)
+  if (exact.length) return pick(exact)
+  if (!v) return null
+  const v2 = noPrizm(p.variation)
+  const loose = sameNum.filter(e => noPrizm(e.variation) === v2)
+  if (loose.length) return pick(loose)
+  if (v2.length >= 3) {
+    const pref = sameNum.filter(e => noPrizm(e.variation).startsWith(v2))
+    const byName = pref.filter(e => sameName(e.player_name, p.name))
+    // plusieurs possibilites a egalite -> on ne coche rien
+    const names = new Set(byName.map(e => noPrizm(e.variation)))
+    if (byName.length === 1) return byName[0]
+    if (names.size === 1 && byName.length > 0) return null
   }
   return null
 }
