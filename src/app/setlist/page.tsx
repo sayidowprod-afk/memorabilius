@@ -569,7 +569,7 @@ export default function SetlistPage() {
       }
     `}</style>
     <div className="sl-container">
-      <div style={{ marginBottom: 16 }}>
+      <div className="sl-titlebar">
         <h1 className="sl-h1">Setlist</h1>
         <p style={{ color: '#888', fontSize: 15, marginBottom: 0 }}>{loading ? '...' : `${sets.length} ${t('setlist_collections_available')}`}</p>
       </div>

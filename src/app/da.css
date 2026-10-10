@@ -673,3 +673,29 @@ html[data-theme="light"] .tcdb-imp-open { border-color: #06122e; color: #06122e;
 .sl-req-act { display: flex; gap: 8px; flex-wrap: wrap; }
 .sl-req-ok { padding: 8px 12px; border-left: 4px solid #3ddc97; background: rgba(61,220,151,.12); font-weight: 800; color: var(--text, #111); }
 .sl-req-ok button { margin-left: 10px; background: none; border: none; text-decoration: underline; cursor: pointer; color: inherit; font-weight: 700; }
+
+/* Page Setlist : en-tete compact (titre + compteur sur une ligne, sports en pastilles, actions en barre) */
+.sl-container .sl-titlebar { display: flex; align-items: baseline; gap: 14px; flex-wrap: wrap; margin-bottom: 12px; }
+.sl-container .sl-titlebar .sl-h1 { margin: 0; }
+.sl-container .sl-header-row { flex-direction: column !important; align-items: stretch !important; gap: 12px !important; margin-bottom: 18px !important; }
+.sl-container .sl-sport-grid { display: flex !important; flex-wrap: wrap; gap: 6px !important; }
+.sl-container .sl-sport-btn { width: auto !important; padding: 6px 14px !important; border-radius: 0 !important; }
+.sl-container .sl-sport-label { font-size: 13px !important; }
+.sl-container .sl-actions { flex-direction: row !important; flex-wrap: wrap; align-items: center !important; gap: 8px !important; width: 100%; }
+.sl-container .sl-actions > button { width: auto; border-radius: 0 !important; padding: 9px 16px !important; font-size: 12px !important; letter-spacing: .08em; text-transform: uppercase; }
+.sl-container .sl-stats-box { flex: 1 1 100%; min-width: 0 !important; padding: 0 !important; background: none !important; flex-direction: row !important; flex-wrap: wrap; align-items: center !important; gap: 10px !important; border-radius: 0 !important; }
+.sl-container .sl-stats-box .sl-ticket { flex: 1 1 340px; max-width: 520px; }
+.sl-container .sl-stats-box .sl-ticket-b b { font-size: 34px; }
+.sl-container .sl-stats-box .sl-ticket-b > div { padding: 8px 14px; }
+.sl-container .sl-stats-box > button { width: auto !important; flex: 0 0 auto; padding: 8px 14px !important; font-size: 12px !important; border-radius: 0 !important; }
+/* Import TCDB : le bouton se range dans la barre d'actions, le panneau prend toute la largeur dessous */
+.tcdb-imp { display: contents; }
+.tcdb-imp-open { align-self: auto; }
+.tcdb-imp-body { flex: 1 1 100%; order: 20; max-width: 760px; }
+.sl-container .sl-actions .sl-stats-box { order: 10; }
+@media (max-width: 767px) {
+  .sl-container .sl-sport-grid { flex-wrap: nowrap; overflow-x: auto; padding-bottom: 4px; scrollbar-width: none; }
+  .sl-container .sl-sport-grid::-webkit-scrollbar { display: none; }
+  .sl-container .sl-sport-btn { flex: 0 0 auto; }
+  .sl-container .sl-actions > button { flex: 1 1 auto; }
+}
