@@ -144,8 +144,11 @@ export default function Viewer3D({ popup, accent, onClose, onNext, onPrev, getTa
   const [tagSaving, setTagSaving] = useState(false)
   const [valeurInput, setValeurInput] = useState(cardValue != null ? String(cardValue) : '')
   useEffect(() => { setValeurInput(cardValue != null ? String(cardValue) : '') }, [popup.f, cardValue])
-  // changement de carte : si le tiroir etait ouvert a fond (carte masquee), on repasse a la moitie ; les autres etats sont conserves
-  useEffect(() => { setInfoStage(st => (st === 2 ? 1 : st)) }, [popup.f])
+  // changement de carte : si le tiroir est ouvert a fond (carte masquee), on le redescend a ~55 % pour revoir la carte
+  useEffect(() => {
+    const vh = layoutRef.current?.clientHeight || 0
+    if (vh && sheetPx.current != null && sheetPx.current >= vh - 2) applySheet(vh * 0.55)
+  }, [popup.f])
 
   // Lien de partage court pour les cartes CSV (pas d'UUID cartes_manuelles disponible
   // pour /s/{id}) — voir src/lib/csvCardShortLink.ts. Se résout en arrière-plan ; le
@@ -558,11 +561,71 @@ export default function Viewer3D({ popup, accent, onClose, onNext, onPrev, getTa
   const isSlabFmt = cardFmt.isSlab
   const [addState, setAddState] = useState<'idle' | 'loading' | 'added' | 'duplicate'>(initialAddState ?? 'idle')
   const [closeHover, setCloseHover] = useState(false)
-  const [infoStage, setInfoStage] = useState<0 | 1 | 2>(0)   // tiroir mobile : 0 = en bas, 1 = moitie, 2 = ouvert a fond
-  const infoExpanded = infoStage === 2
-  const dragY = useRef<number | null>(null)
-  const dragMoved = useRef(false)   // vrai si le geste a commence dans l'en-tete / la poignee
-  const dragTop = useRef(0)         // position de defilement du tiroir au debut du geste
+  // Tiroir mobile : hauteur CONTINUE (px) qui suit le doigt, sans niveaux ; la carte se redimensionne toute seule
+  // (variables CSS --sheet-h / --zone-h / --cz posees directement sur la mise en page pendant le glissement)
+  const layoutRef = useRef<HTMLDivElement>(null)
+  const infoRef = useRef<HTMLDivElement>(null)
+  const sheetPx = useRef<number | null>(null)
+  const [sheetFull, setSheetFull] = useState(false)
+  const applySheet = useCallback((px: number) => {
+    const el = layoutRef.current
+    if (!el) return
+    const vh = el.clientHeight || window.innerHeight
+    const h = Math.max(Math.round(vh * 0.2), Math.min(vh, px))
+    sheetPx.current = h
+    const zone = vh - h
+    el.style.setProperty('--sheet-h', `${h}px`)
+    el.style.setProperty('--zone-h', `${zone}px`)
+    el.style.setProperty('--cz', String(Math.max(0.15, Math.min(1, (zone - 56) / 440))))
+    setSheetFull(h >= vh - 2)
+  }, [])
+  useEffect(() => {
+    const init = () => {
+      const el = layoutRef.current
+      if (!el) return
+      if (window.innerWidth > 600) {   // ordinateur : panneau lateral, aucune variable de tiroir
+        el.style.removeProperty('--sheet-h'); el.style.removeProperty('--zone-h'); el.style.removeProperty('--cz')
+        sheetPx.current = null; setSheetFull(false)
+        return
+      }
+      applySheet(sheetPx.current ?? (el.clientHeight || window.innerHeight) * 0.22)
+    }
+    init()
+    window.addEventListener('resize', init)
+    return () => window.removeEventListener('resize', init)
+  }, [applySheet])
+  useEffect(() => {
+    const el = infoRef.current
+    if (!el) return
+    let y0 = 0, h0 = 0, started = false, dragging = false, inHead = false
+    const onStart = (e: TouchEvent) => {
+      if (window.innerWidth > 600) return
+      started = true; dragging = false
+      y0 = e.touches[0].clientY
+      h0 = sheetPx.current ?? el.offsetHeight
+      inHead = !!(e.target as HTMLElement).closest('.v3d-head, .viewer-info-handle')
+    }
+    const onMove = (e: TouchEvent) => {
+      if (!started) return
+      const y = e.touches[0].clientY
+      const dy = y - y0
+      const vh = layoutRef.current?.clientHeight || window.innerHeight
+      if (!dragging) {
+        if (Math.abs(dy) < 6) return
+        const full = (sheetPx.current ?? h0) >= vh - 2
+        // l'en-tete se tire toujours ; ailleurs : vers le haut tant que le tiroir n'est pas plein, vers le bas quand le contenu est tout en haut
+        if (inHead || (dy < 0 && !full) || (dy > 0 && el.scrollTop <= 0)) { dragging = true; y0 = y; h0 = sheetPx.current ?? h0 } else { started = false; return }
+      }
+      e.preventDefault()
+      applySheet(h0 - (y - y0))
+    }
+    const onEnd = () => { started = false; dragging = false }
+    el.addEventListener('touchstart', onStart, { passive: true })
+    el.addEventListener('touchmove', onMove, { passive: false })
+    el.addEventListener('touchend', onEnd)
+    el.addEventListener('touchcancel', onEnd)
+    return () => { el.removeEventListener('touchstart', onStart); el.removeEventListener('touchmove', onMove); el.removeEventListener('touchend', onEnd); el.removeEventListener('touchcancel', onEnd) }
+  }, [applySheet])
   const [colOpen, setColOpen] = useState(false)
   const [jersey, setJersey] = useState<string | null>(null)
   useEffect(() => {
@@ -901,19 +964,17 @@ export default function Viewer3D({ popup, accent, onClose, onNext, onPrev, getTa
           .viewer-hint { display: none !important; }
           .viewer-layout--info-expanded .viewer-zone { flex-grow: 0 !important; flex-shrink: 0 !important; flex-basis: 0% !important; opacity: 0; pointer-events: none; }
           .viewer-layout--info-expanded .viewer-info { flex-grow: 0 !important; flex-shrink: 0 !important; flex-basis: 100% !important; padding-top: calc(18px + var(--safe-area-inset-top, env(safe-area-inset-top))) !important; padding-bottom: calc(20px + var(--safe-area-inset-bottom, env(safe-area-inset-bottom))) !important; }
-          .viewer-layout--info-half .viewer-zone { flex-basis: 40% !important; }
-          .viewer-layout--info-half .viewer-info { flex-basis: 60% !important; }
-          .viewer-layout--info-half .viewer-card { width: min(190px, 46vw) !important; height: min(266px, 64.4vw) !important; }
-          .viewer-layout--info-half .viewer-card--horizontal { width: min(260px, 66vw) !important; height: min(186px, 47vw) !important; }
-          .viewer-layout--info-half .viewer-card--slab { width: min(163px, 40vw) !important; height: min(266px, 64.4vw) !important; }
-          .viewer-info-handle {
-            position: absolute; top: 2px; left: 50%; transform: translateX(-50%);
-            height: 38px; display: flex; align-items: center; justify-content: center; gap: 4px;
-            background: none; border: none; padding: 0; z-index: 3;
-          }
-          .v3d-stg { color: var(--v3d-ht, #888); width: 54px; height: 38px; display: flex; align-items: center; justify-content: center; background: none; border: 0; padding: 0; cursor: pointer; }
-          .v3d-grip { width: 34px; height: 4px; background: var(--v3d-ht, #888); opacity: .6; }
-          .viewer-layout--info-expanded .viewer-info-handle { top: calc(4px + var(--safe-area-inset-top, env(safe-area-inset-top))) !important; }
+          .viewer-layout { --sheet-h: 22vh; --zone-h: 78vh; --cz: 1; }
+          .viewer-zone { flex: 1 1 0 !important; min-height: 0 !important; }
+          .viewer-info { flex: 0 0 var(--sheet-h) !important; }
+          .viewer-card, .viewer-ground-shadow { zoom: var(--cz); }
+          .viewer-layout--info-expanded .viewer-zone { opacity: 0; pointer-events: none; }
+          .viewer-info-handle { position: absolute; top: 11px; left: 0; right: 0; height: 18px; display: flex; align-items: flex-start; justify-content: center; z-index: 3; touch-action: none; }
+          .v3d-grip { display: block; width: 38px; height: 4px; background: var(--v3d-ht, #9aa6c0); opacity: .55; }
+          .viewer-layout--info-expanded .viewer-info-handle { top: calc(11px + var(--safe-area-inset-top, env(safe-area-inset-top))) !important; }
+          .v3d-head { touch-action: none; }
+          .v3d-head--team { padding-top: calc(var(--vi-pt) + 22px) !important; }
+          .v3d-head:not(.v3d-head--team) { padding-top: 24px; }
         }
       `}</style>
       <button
@@ -935,7 +996,7 @@ export default function Viewer3D({ popup, accent, onClose, onNext, onPrev, getTa
         {closeHover ? 'Fermer cette Carte' : '×'}
       </button>
 
-      <div className={`viewer-layout${infoExpanded ? ' viewer-layout--info-expanded' : ''}${infoStage === 1 ? ' viewer-layout--info-half' : ''}`}>
+      <div ref={layoutRef} className={`viewer-layout${sheetFull ? ' viewer-layout--info-expanded' : ''}`}>
         {popup.booklet ? (
           <div className="viewer-zone" style={{ padding: 0, display: 'flex', flexDirection: 'column' }}>
             <BookletViewer
@@ -1476,24 +1537,8 @@ export default function Viewer3D({ popup, accent, onClose, onNext, onPrev, getTa
         </div>
         )}
 
-        <div className={dark ? 'viewer-info v3d-dk' : 'viewer-info'} style={teamVars(popup.t, accent) as React.CSSProperties | undefined}
-          onTouchStart={e => { dragY.current = e.touches[0].clientY; dragMoved.current = (e.target as HTMLElement).closest('.v3d-head, .viewer-info-handle') != null; dragTop.current = (e.currentTarget as HTMLElement).scrollTop }}
-          onTouchEnd={e => {
-            const y0 = dragY.current; dragY.current = null
-            if (y0 == null) return
-            const dy = e.changedTouches[0].clientY - y0
-            if (dy > 60 && dragTop.current <= 0) setInfoStage(st => Math.max(0, st - 1) as 0 | 1 | 2)
-            else if (dy < -60 && dragMoved.current) setInfoStage(st => Math.min(2, st + 1) as 0 | 1 | 2)
-          }}>
-          <div className="viewer-info-handle">
-            <button type="button" className="v3d-stg" style={{ visibility: infoStage > 0 ? 'visible' : 'hidden' }} onClick={() => setInfoStage(st => Math.max(0, st - 1) as 0 | 1 | 2)} aria-label="Réduire les infos">
-              <svg width="22" height="12" viewBox="0 0 20 10" fill="none"><path d="M2 2l8 6 8-6" stroke="currentColor" strokeWidth="2.6" fill="none" strokeLinecap="round" strokeLinejoin="round" /></svg>
-            </button>
-            <span className="v3d-grip" aria-hidden />
-            <button type="button" className="v3d-stg" style={{ visibility: infoStage < 2 ? 'visible' : 'hidden' }} onClick={() => setInfoStage(st => Math.min(2, st + 1) as 0 | 1 | 2)} aria-label="Agrandir les infos">
-              <svg width="22" height="12" viewBox="0 0 20 10" fill="none" style={{ transform: 'rotate(180deg)' }}><path d="M2 2l8 6 8-6" stroke="currentColor" strokeWidth="2.6" fill="none" strokeLinecap="round" strokeLinejoin="round" /></svg>
-            </button>
-          </div>
+        <div ref={infoRef} className={dark ? 'viewer-info v3d-dk' : 'viewer-info'} style={teamVars(popup.t, accent) as React.CSSProperties | undefined}>
+          <div className="viewer-info-handle" aria-hidden><span className="v3d-grip" /></div>
           <div className="v3d-band" style={{ background: teamColorOf(popup.t) ? 'var(--v3d-p2)' : `linear-gradient(90deg, ${accent} 62%, ${accent} 62%)` }} />
           <div className={teamColorOf(popup.t) ? 'v3d-head v3d-head--team' : 'v3d-head'} style={teamColorOf(popup.t) ? { ['--v3d-team' as string]: teamColorOf(popup.t)!, ['--v3d-ht' as string]: onTeamColor(teamColorOf(popup.t)!) } : undefined}>
           {jersey && <span className="v3d-jersey" aria-hidden>{jersey}</span>}
