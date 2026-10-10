@@ -236,14 +236,15 @@ function AnnuaireContent() {
   }
 
   const th =(k: typeof sortKey, label: string) => (
-    <th onClick={() => handleSort(k)} style={{ background: dark ? '#252525' : '#fdfdfd', padding: isMobile ? '10px 6px' : '18px 15px', textAlign: isMobile ? 'center' : 'left', fontSize: isMobile ? 10 : 11, textTransform: 'uppercase', color: '#999', borderBottom: `2px solid ${dark ? '#333' : '#f0f0f0'}`, cursor: 'pointer', whiteSpace: 'nowrap' }}>
+    <th onClick={() => handleSort(k)} style={{ background: 'transparent', padding: isMobile ? '10px 6px' : '16px 15px', textAlign: isMobile ? 'center' : 'left', fontSize: isMobile ? 10 : 11, letterSpacing: '0.12em', textTransform: 'uppercase', color: dark ? '#fff' : '#06122e', borderBottom: `2px solid ${dark ? '#fff' : '#06122e'}`, cursor: 'pointer', whiteSpace: 'nowrap' }}>
       {label}{sortKey === k ? (sortAsc ? ' ↑' : ' ↓') : ''}
     </th>
   )
 
   const badge = (val: number, bg: string, color: string) => (
-    <span style={{ padding: isMobile ? '4px 6px' : '6px 12px', borderRadius: 6, fontWeight: 900, fontSize: isMobile ? 11 : 13, display: 'inline-block', minWidth: isMobile ? 28 : 40, textAlign: 'center', background: bg, color }}>{val ?? '—'}</span>
+    <span className="da-display" style={{ fontSize: isMobile ? 17 : 28, lineHeight: 1, color: bg === 'total' ? (dark ? '#fff' : '#06122e') : color }}>{val == null ? '—' : val.toLocaleString('fr-FR')}</span>
   )
+
 
   return (
     <div style={{ maxWidth: 1200, margin: '0 auto', fontFamily: 'Inter, sans-serif' }}>
@@ -335,9 +336,10 @@ function AnnuaireContent() {
         @media (max-width: 600px) {
           .holo-name { animation: none; background-position: 30% 50%; }
         }
-        .annuaire-row { transition: transform 0.15s, box-shadow 0.15s; position: relative; }
+        .annuaire-row { transition: background 0.15s; position: relative; }
+        .annuaire-donor td:first-child { background: linear-gradient(90deg, rgba(255,213,74,0.16), transparent 90%); box-shadow: inset 6px 0 0 #ffd54a; }
         @media (hover: hover) and (pointer: fine) {
-          .annuaire-row:hover { transform: translateY(-2px) scale(1.003); box-shadow: 0 4px 16px rgba(0,0,0,0.1); z-index: 1; }
+          .annuaire-row:hover td { background-color: rgba(120,140,200,0.10); }
         }
         @media (prefers-reduced-motion: reduce) {
           .annuaire-row { transition: none; }
@@ -392,8 +394,8 @@ function AnnuaireContent() {
           <style>{`@keyframes annuaireSkelPulse { from{opacity:1} to{opacity:.5} } .annuaire-skel-pulse{ animation: annuaireSkelPulse 1.4s ease infinite alternate }`}</style>
         </div>
       ) : (
-        <div style={{ borderRadius: 12, boxShadow: '0 4px 20px rgba(0,0,0,0.08)', overflow: 'hidden' }}>
-          <table style={{ width: '100%', borderCollapse: 'collapse', background: dark ? '#1e1e1e' : 'white', tableLayout: 'fixed' }}>
+        <div style={{ borderRadius: 0, border: `1px solid ${dark ? 'rgba(255,255,255,0.28)' : '#06122e'}`, overflow: 'hidden' }}>
+          <table style={{ width: '100%', borderCollapse: 'collapse', background: 'transparent', tableLayout: 'fixed' }}>
             <colgroup>
               <col style={{ width: isMobile ? '42%' : '40%' }} />
               <col style={{ width: isMobile ? '12%' : '12%' }} />
@@ -415,31 +417,31 @@ function AnnuaireContent() {
                 <tr><td colSpan={6} style={{ textAlign: 'center', padding: 40, color: '#bbb' }}>{t('annuaire_no_collectors')}</td></tr>
               )}
               {visible.map(c => (
-                <tr key={c.id} className="annuaire-row"
+                <tr key={c.id} className={c.is_donor ? 'annuaire-row annuaire-donor' : 'annuaire-row'}
                   onMouseEnter={!isMobile ? e => scheduleHoverPreview(c.id, e.clientX, e.clientY) : undefined}
                   onMouseMove={!isMobile ? e => scheduleHoverPreview(c.id, e.clientX, e.clientY) : undefined}
                   onMouseLeave={!isMobile ? cancelHoverPreview : undefined}>
                   <td style={{ padding: isMobile ? '10px 8px' : 15, borderBottom: `1px solid ${dark ? '#2a2a2a' : '#f5f5f5'}`, overflow: 'hidden' }}>
                     <div style={{ display: 'flex', alignItems: 'center', gap: isMobile ? 8 : 15, minWidth: 0 }}>
-                      <img src={c.avatar_url || `https://ui-avatars.com/api/?name=${encodeURIComponent(c.display_name || 'U')}&background=003DA6&color=fff`} loading="lazy" width={isMobile ? 28 : 42} height={isMobile ? 28 : 42} style={{ width: isMobile ? 28 : 42, height: isMobile ? 28 : 42, borderRadius: '50%', border: `2px solid ${dark ? '#333' : '#eee'}`, objectFit: 'cover', flexShrink: 0 }} alt={c.display_name} />
+                      <img src={c.avatar_url || `https://ui-avatars.com/api/?name=${encodeURIComponent(c.display_name || 'U')}&background=003DA6&color=fff`} loading="lazy" width={isMobile ? 34 : 48} height={isMobile ? 34 : 48} style={{ width: isMobile ? 34 : 48, height: isMobile ? 34 : 48, borderRadius: 0, objectFit: 'cover', flexShrink: 0 }} alt={c.display_name} />
                       <div style={{ minWidth: 0, display: 'flex', alignItems: 'center', gap: 8, flexWrap: 'wrap' }}>
-                        <Link href={`/galerie/${c.id}`} className={c.is_donor ? 'holo-name' : ''} style={{ fontWeight: 800, color: c.is_donor ? undefined : (dark ? '#f0f0f0' : '#121212'), fontSize: isMobile ? 12 : 14, overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap', textDecoration: 'none' }}>{c.display_name || 'Collectionneur'}</Link>
+                        <Link href={`/galerie/${c.id}`} className="da-display" style={{ color: c.is_donor ? '#ffd54a' : (dark ? '#fff' : '#06122e'), fontSize: isMobile ? 18 : 32, lineHeight: 1, overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap', textDecoration: 'none' }}>{c.display_name || 'Collectionneur'}</Link>
                         {(c.favorite_teams || []).slice(0, 3).map((id: string) => (
-                          <span key={id} className="sticker-badge-sm" data-label={getTeamById(id)?.name ?? id} style={{ fontSize: 26 }}>
-                            <TeamBadge teamId={id} size={26} />
+                          <span key={id} className="sticker-badge-sm" data-label={getTeamById(id)?.name ?? id} style={{ fontSize: 18 }}>
+                            <TeamBadge teamId={id} size={isMobile ? 15 : 18} />
                           </span>
                         ))}
                         {c.is_donor && (
-                          <span className="sticker-holo" data-label="Donateur Ko-fi" style={{ fontSize: 22 }}>☕</span>
+                          <span className="sticker-holo" data-label="Donateur Ko-fi" style={{ fontSize: isMobile ? 14 : 18, color: '#ffd54a' }}>☕</span>
                         )}
                       </div>
                     </div>
                   </td>
-                  <td style={{ padding: isMobile ? '10px 4px' : 15, borderBottom: `1px solid ${dark ? '#2a2a2a' : '#f5f5f5'}`, textAlign: 'center' }}>{badge(c.stats?.total ?? 0, dark ? '#333' : '#f0f0f0', dark ? '#eee' : '#333')}</td>
-                  <td style={{ padding: isMobile ? '10px 4px' : 15, borderBottom: `1px solid ${dark ? '#2a2a2a' : '#f5f5f5'}`, textAlign: 'center' }}>{badge(c.stats?.rc ?? 0, '#e67e22', 'white')}</td>
-                  <td style={{ padding: isMobile ? '10px 4px' : 15, borderBottom: `1px solid ${dark ? '#2a2a2a' : '#f5f5f5'}`, textAlign: 'center' }}>{badge(c.stats?.auto ?? 0, '#2e7d32', 'white')}</td>
-                  <td style={{ padding: isMobile ? '10px 4px' : 15, borderBottom: `1px solid ${dark ? '#2a2a2a' : '#f5f5f5'}`, textAlign: 'center' }}>{badge(c.stats?.num ?? 0, '#7b1fa2', 'white')}</td>
-                  <td style={{ padding: isMobile ? '10px 4px' : 15, borderBottom: `1px solid ${dark ? '#2a2a2a' : '#f5f5f5'}`, textAlign: 'center' }}>{badge(c.stats?.patch ?? 0, '#1976d2', 'white')}</td>
+                  <td style={{ padding: isMobile ? '10px 4px' : 15, borderBottom: `1px solid ${dark ? '#2a2a2a' : '#f5f5f5'}`, textAlign: 'center' }}>{badge(c.stats?.total ?? 0, 'total', '')}</td>
+                  <td style={{ padding: isMobile ? '10px 4px' : 15, borderBottom: `1px solid ${dark ? '#2a2a2a' : '#f5f5f5'}`, textAlign: 'center' }}>{badge(c.stats?.rc ?? 0, '', dark ? '#ff9a3c' : '#d9640a')}</td>
+                  <td style={{ padding: isMobile ? '10px 4px' : 15, borderBottom: `1px solid ${dark ? '#2a2a2a' : '#f5f5f5'}`, textAlign: 'center' }}>{badge(c.stats?.auto ?? 0, '', dark ? '#4cd37b' : '#1f8a45')}</td>
+                  <td style={{ padding: isMobile ? '10px 4px' : 15, borderBottom: `1px solid ${dark ? '#2a2a2a' : '#f5f5f5'}`, textAlign: 'center' }}>{badge(c.stats?.num ?? 0, '', dark ? '#c77dff' : '#7b1fa2')}</td>
+                  <td style={{ padding: isMobile ? '10px 4px' : 15, borderBottom: `1px solid ${dark ? '#2a2a2a' : '#f5f5f5'}`, textAlign: 'center' }}>{badge(c.stats?.patch ?? 0, '', dark ? '#5aa9ff' : '#1565c0')}</td>
                 </tr>
               ))}
               {renderLimit < sorted.length && (
