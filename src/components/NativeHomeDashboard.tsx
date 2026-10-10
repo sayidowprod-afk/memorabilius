@@ -456,9 +456,9 @@ const DD_CSS = `
 .dd-avatar--ph { display: grid; place-items: center; background: #003da6; color: #fff; font-weight: 900; font-size: 22px; }
 .dd-kicker { font: 800 12px system-ui, sans-serif; letter-spacing: .14em; text-transform: uppercase; color: var(--text2); }
 .dd-name { font-size: clamp(34px, 5vw, 56px); line-height: .95; margin: 2px 0 0; color: var(--text); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-.dd-streak { display: flex; align-items: center; gap: 10px; font: 800 12px system-ui, sans-serif; letter-spacing: .1em; text-transform: uppercase; border: 3px solid var(--text); padding: 6px 14px 6px 10px; }
-.dd-streak span { display: flex; flex-direction: column; line-height: 1.05; }
-.dd-streak b { font-size: 34px; line-height: .9; letter-spacing: 0; }
+.dd-streak { display: inline-flex; align-items: center; gap: 6px; font: 800 12px system-ui, sans-serif; letter-spacing: .1em; text-transform: uppercase; padding: 0; border: 0; }
+.dd-streak span { display: inline-flex; align-items: baseline; gap: 6px; line-height: 1; }
+.dd-streak b { font-size: 24px; line-height: 1; letter-spacing: 0; }
 .flame-ic { filter: drop-shadow(0 0 10px rgba(255,140,0,.7)); animation: flameFlick 1.4s ease-in-out infinite; transform-origin: 50% 100%; flex-shrink: 0; }
 @keyframes flameFlick { 0%,100% { transform: scale(1,1) rotate(0); } 25% { transform: scale(1.04,.97) rotate(-2deg); } 55% { transform: scale(.98,1.05) rotate(2deg); } 80% { transform: scale(1.02,.99) rotate(-1deg); } }
 @media (prefers-reduced-motion: reduce) { .flame-ic { animation: none; } }

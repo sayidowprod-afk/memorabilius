@@ -3,7 +3,7 @@
 // Flamme de serie : vacille doucement, et grossit avec la serie (petite au 1er jour, pleine taille a partir de ~60 jours).
 export default function StreakFlame({ streak }: { streak: number }) {
   const k = Math.max(0, Math.min(1, streak / 60))
-  const h = Math.round(30 + k * 30)   // 30 -> 60 px
+  const h = Math.round(22 + k * 8)    // 22 -> 30 px
   return (
     <svg className="flame-ic" width={h * 0.78} height={h} viewBox="0 0 100 130" aria-hidden>
       <defs>
