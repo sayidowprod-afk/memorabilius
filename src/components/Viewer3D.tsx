@@ -595,9 +595,19 @@ export default function Viewer3D({ popup, accent, onClose, onNext, onPrev, getTa
     return () => window.removeEventListener('resize', init)
   }, [applySheet])
   useEffect(() => {
+    const de = document.documentElement, bo = document.body
+    const p1 = de.style.overscrollBehaviorY, p2 = bo.style.overscrollBehaviorY
+    de.style.overscrollBehaviorY = 'none'; bo.style.overscrollBehaviorY = 'none'
+    return () => { de.style.overscrollBehaviorY = p1; bo.style.overscrollBehaviorY = p2 }
+  }, [])
+  useEffect(() => {
     const el = infoRef.current
     if (!el) return
     let y0 = 0, h0 = 0, started = false, dragging = false, inHead = false
+    // mises a jour regroupees a chaque image : fluide meme sur un appareil modeste
+    let raf = 0, pending = 0
+    const schedule = (h: number) => { pending = h; if (!raf) raf = requestAnimationFrame(() => { raf = 0; applySheet(pending) }) }
+    const flush = () => { if (raf) { cancelAnimationFrame(raf); raf = 0; applySheet(pending) } }
     const onStart = (e: TouchEvent) => {
       if (window.innerWidth > 600) return
       started = true; dragging = false
@@ -611,20 +621,20 @@ export default function Viewer3D({ popup, accent, onClose, onNext, onPrev, getTa
       const dy = y - y0
       const vh = layoutRef.current?.clientHeight || window.innerHeight
       if (!dragging) {
-        if (Math.abs(dy) < 6) return
+        if (Math.abs(dy) < 2) return
         const full = (sheetPx.current ?? h0) >= vh - 2
         // l'en-tete se tire toujours ; ailleurs : vers le haut tant que le tiroir n'est pas plein, vers le bas quand le contenu est tout en haut
         if (inHead || (dy < 0 && !full) || (dy > 0 && el.scrollTop <= 0)) { dragging = true; y0 = y; h0 = sheetPx.current ?? h0 } else { started = false; return }
       }
       e.preventDefault()
-      applySheet(h0 - (y - y0))
+      schedule(h0 - (y - y0))
     }
-    const onEnd = () => { started = false; dragging = false }
+    const onEnd = () => { flush(); started = false; dragging = false }
     el.addEventListener('touchstart', onStart, { passive: true })
     el.addEventListener('touchmove', onMove, { passive: false })
     el.addEventListener('touchend', onEnd)
     el.addEventListener('touchcancel', onEnd)
-    return () => { el.removeEventListener('touchstart', onStart); el.removeEventListener('touchmove', onMove); el.removeEventListener('touchend', onEnd); el.removeEventListener('touchcancel', onEnd) }
+    return () => { if (raf) cancelAnimationFrame(raf); el.removeEventListener('touchstart', onStart); el.removeEventListener('touchmove', onMove); el.removeEventListener('touchend', onEnd); el.removeEventListener('touchcancel', onEnd) }
   }, [applySheet])
   const [colOpen, setColOpen] = useState(false)
   const [jersey, setJersey] = useState<string | null>(null)
@@ -967,7 +977,11 @@ export default function Viewer3D({ popup, accent, onClose, onNext, onPrev, getTa
           .viewer-layout { --sheet-h: 22vh; --zone-h: 78vh; --cz: 1; }
           .viewer-zone { flex: 1 1 0 !important; min-height: 0 !important; }
           .viewer-info { flex: 0 0 var(--sheet-h) !important; }
-          .viewer-card, .viewer-ground-shadow { zoom: var(--cz); }
+          .viewer-card { scale: var(--cz); }
+          .viewer-ground-shadow { transform: none !important; translate: -50% -50%; scale: var(--cz); }
+          .viewer-info { overscroll-behavior: contain; transition: none !important; }
+          .viewer-zone { transition: none !important; }
+          .viewer-card, .viewer-ground-shadow { transition-property: transform, opacity, filter; }
           .viewer-layout--info-expanded .viewer-zone { opacity: 0; pointer-events: none; }
           .viewer-info-handle { position: absolute; top: 11px; left: 0; right: 0; height: 18px; display: flex; align-items: flex-start; justify-content: center; z-index: 3; touch-action: none; }
           .v3d-grip { display: block; width: 38px; height: 4px; background: var(--v3d-ht, #9aa6c0); opacity: .55; }
@@ -1537,7 +1551,7 @@ export default function Viewer3D({ popup, accent, onClose, onNext, onPrev, getTa
         </div>
         )}
 
-        <div ref={infoRef} className={dark ? 'viewer-info v3d-dk' : 'viewer-info'} style={teamVars(popup.t, accent) as React.CSSProperties | undefined}>
+        <div ref={infoRef} data-no-ptr="true" className={dark ? 'viewer-info v3d-dk' : 'viewer-info'} style={teamVars(popup.t, accent) as React.CSSProperties | undefined}>
           <div className="viewer-info-handle" aria-hidden><span className="v3d-grip" /></div>
           <div className="v3d-band" style={{ background: teamColorOf(popup.t) ? 'var(--v3d-p2)' : `linear-gradient(90deg, ${accent} 62%, ${accent} 62%)` }} />
           <div className={teamColorOf(popup.t) ? 'v3d-head v3d-head--team' : 'v3d-head'} style={teamColorOf(popup.t) ? { ['--v3d-team' as string]: teamColorOf(popup.t)!, ['--v3d-ht' as string]: onTeamColor(teamColorOf(popup.t)!) } : undefined}>
