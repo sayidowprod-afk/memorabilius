@@ -6,6 +6,7 @@ import { useLang } from '@/lib/LangContext'
 import ConfirmDeleteCard from '@/components/ConfirmDeleteCard'
 import { playerSlug, cardSlug, normalizeName } from '@/lib/playerSlug'
 import { SPORTS_TEAMS } from '@/lib/sportsTeams'
+import { teamPalette } from '@/lib/teamColors'
 import { useTheme } from '@/lib/ThemeContext'
 import CardVideoExport from '@/components/CardVideoExport'
 import CardPhotoExport from '@/components/CardPhotoExport'
@@ -78,6 +79,28 @@ function onTeamColor(hex: string): string {
   const n = parseInt(m[1], 16)
   const lum = (0.299 * ((n >> 16) & 255) + 0.587 * ((n >> 8) & 255) + 0.114 * (n & 255)) / 255
   return lum > 0.62 ? '#111' : '#fff'
+}
+
+function lumOf(hex: string): number {
+  const m = /^#?([0-9a-f]{6})$/i.exec(hex.trim())
+  if (!m) return 0.5
+  const n = parseInt(m[1], 16)
+  return (0.299 * ((n >> 16) & 255) + 0.587 * ((n >> 8) & 255) + 0.114 * (n & 255)) / 255
+}
+
+// Variables de couleur d'equipe du panneau : principale, secondaire LISIBLE sur la principale (sinon blanc / noir), barres visibles sur fond sombre
+function teamVars(team: string | null | undefined, accent: string): Record<string, string> | undefined {
+  const pal = teamPalette(team)
+  const p1 = pal?.primary || teamColorOf(team)
+  if (!p1) return undefined
+  const p2 = pal?.secondary || accent
+  const ht = onTeamColor(p1)
+  const t2 = Math.abs(lumOf(p1) - lumOf(p2)) >= 0.28 ? p2 : ht
+  const vis = (c: string, alt: string) => (lumOf(c) < 0.2 ? alt : c)
+  return {
+    '--v3d-team': p1, '--v3d-ht': ht, '--v3d-t2': t2, '--v3d-p2': p2, '--v3d-p2t': onTeamColor(p2),
+    '--v3d-bar': vis(p1, '#ffffff'), '--v3d-bar2': vis(p2, ht === '#fff' ? '#ffffff' : p1),
+  }
 }
 
 export default function Viewer3D({ popup, accent, onClose, onNext, onPrev, getTags, userId, userSlug, isOwner, currentUserId, onCollectionTagChange, onCollectionsChange, onVendueChange, onDisponibleVenteChange, allCollectionTags, onAddToMyGallery, initialAddState, onProposeTrade, cardValue, onValueSave, likeData, onLike, onDeleteCard }: {
@@ -830,16 +853,20 @@ export default function Viewer3D({ popup, accent, onClose, onNext, onPrev, getTa
         .v3d-head { position: relative; flex-shrink: 0; }
         .v3d-head--team { margin: calc(var(--vi-pt) * -1) calc(var(--vi-px) * -1) 6px; padding: calc(var(--vi-pt) + 4px) var(--vi-px) 20px; overflow: hidden; background: linear-gradient(180deg, var(--v3d-team) 0%, var(--v3d-team) 80%, transparent 100%); }
         .v3d-head--team .v3d-head-in, .v3d-head--team > div, .v3d-head--team > a { position: relative; z-index: 1; }
-        .v3d-head--team .v3d-kicker, .v3d-head--team h2, .v3d-head--team .v3d-var, .v3d-head--team .v3d-dz { color: var(--v3d-ht, #fff) !important; }
-        .v3d-head--team .v3d-var, .v3d-head--team .v3d-dz { opacity: .85; }
+        .v3d-head--team h2, .v3d-head--team .v3d-dz { color: var(--v3d-ht, #fff) !important; }
+        .v3d-head--team .v3d-kicker { display: inline-block; background: var(--v3d-p2, #fff); color: var(--v3d-p2t, #111) !important; padding: 4px 11px; margin-bottom: 8px !important; }
+        .v3d-head--team .v3d-var { color: var(--v3d-ht, #fff) !important; border-left: 6px solid var(--v3d-p2, #fff); padding-left: 10px; }
+        .v3d-head--team .v3d-dz { opacity: .85; }
+        .v3d-var { font-size: 1.55rem; line-height: 1; margin-top: 2px; }
+        .v3d-head--team .v3d-kicker { font-size: 12px !important; letter-spacing: 0.14em !important; font-weight: 800 !important; }
         .v3d-jersey { position: absolute; right: 8px; top: -8px; font-family: 'Surfquest', Impact, 'Arial Narrow', sans-serif; font-size: 150px; line-height: 1; color: var(--v3d-ht, #fff); opacity: .16; pointer-events: none; z-index: 0; }
         @media (max-width: 600px) { .v3d-jersey { font-size: 96px; top: 0; } }
-        .v3d-band { position: absolute; top: 0; left: 0; right: 0; height: 5px; }
+        .v3d-band { position: absolute; top: 0; left: 0; right: 0; height: 8px; z-index: 2; }
         .v3d-grid { gap: 12px 16px !important; }
         .v3d-grid > div { border-left: 4px solid var(--v3d-bar, #003DA6); padding-left: 10px; min-width: 0; }
         .v3d-grid > div:nth-child(even) { border-left-color: var(--v3d-bar2, #003DA6); }
         .v3d-grid label { font-size: 10px !important; letter-spacing: 0.1em; }
-        .v3d-grid .viewer-info-value { font-family: 'Surfquest', Impact, 'Arial Narrow', sans-serif !important; font-weight: 400 !important; font-size: 21px !important; line-height: 1.05; text-transform: uppercase; letter-spacing: 0.02em; display: block; }
+        .v3d-grid .viewer-info-value { font-size: 18px !important; font-weight: 800 !important; line-height: 1.15; display: block; }
         .viewer-info { justify-content: flex-start !important; }
         .v3d-btns > a, .v3d-btns > button, .v3d-btns > div > button:first-child { transition: background .15s, border-color .15s; }
         .v3d-dk .v3d-btns > a, .v3d-dk .v3d-btns > button, .v3d-dk .v3d-btns > div > button:first-child { background: transparent !important; border: 1px solid rgba(255,255,255,.38) !important; color: #fff !important; }
@@ -848,8 +875,8 @@ export default function Viewer3D({ popup, accent, onClose, onNext, onPrev, getTa
         .v3d-btns > div > button[style*="13, 13, 31"] { background: #05080f !important; border: 1px solid rgba(255,255,255,.38) !important; }
         .v3d-dk .v3d-btns > a:hover, .v3d-dk .v3d-btns > button:hover { border-color: #fff !important; }
         .v3d-dk input { border-radius: 0 !important; background: transparent !important; border: 1px solid rgba(255,255,255,.4) !important; color: #fff !important; }
-        .viewer-info h2.v3d-name { font-size: 2.3rem !important; line-height: 0.98; letter-spacing: 0.02em; margin: 4px 0 6px !important; }
-        @media (max-width: 600px) { .viewer-info h2.v3d-name { font-size: 1.85rem !important; } .v3d-grid .viewer-info-value { font-size: 18px !important; } }
+        .viewer-info h2.v3d-name { font-size: clamp(3rem, 5.2vw, 4.6rem) !important; line-height: 0.92; letter-spacing: 0.01em; margin: 6px 0 8px !important; }
+        @media (max-width: 600px) { .viewer-info h2.v3d-name { font-size: 2.5rem !important; } .v3d-var { font-size: 1.25rem; } .v3d-grid .viewer-info-value { font-size: 17px !important; } }
         .v3d-btns { grid-template-columns: repeat(3, 1fr) !important; gap: 6px !important; }
         .v3d-btns > a, .v3d-btns > button, .v3d-btns > div > button:first-child { border-radius: 0 !important; padding: 11px 4px !important; font-size: 12px !important; white-space: normal !important; line-height: 1.15; min-height: 44px; text-align: center; }
         .v3d-btns > div { display: flex; flex-direction: column; } .v3d-btns > div > button:first-child { flex: 1; }
@@ -1437,13 +1464,13 @@ export default function Viewer3D({ popup, accent, onClose, onNext, onPrev, getTa
         </div>
         )}
 
-        <div className={dark ? 'viewer-info v3d-dk' : 'viewer-info'} style={teamColorOf(popup.t) ? { ['--v3d-team' as string]: teamColorOf(popup.t)!, ['--v3d-ht' as string]: onTeamColor(teamColorOf(popup.t)!) } : undefined}>
+        <div className={dark ? 'viewer-info v3d-dk' : 'viewer-info'} style={teamVars(popup.t, accent) as React.CSSProperties | undefined}>
           <button className="viewer-info-handle" onClick={() => setInfoExpanded(v => !v)} aria-label={infoExpanded ? 'Réduire les infos' : 'Agrandir les infos'}>
             <svg width="20" height="10" viewBox="0 0 20 10" fill="none" style={{ transform: infoExpanded ? 'none' : 'rotate(180deg)', transition: 'transform 0.2s' }}>
               <path d="M2 2l8 6 8-6" stroke={metaColor} strokeWidth="2" fill="none" strokeLinecap="round" strokeLinejoin="round" />
             </svg>
           </button>
-          <div className="v3d-band" style={{ background: `linear-gradient(90deg, ${teamColorOf(popup.t) || accent} 62%, ${accent} 62%)` }} />
+          <div className="v3d-band" style={{ background: teamColorOf(popup.t) ? 'var(--v3d-p2)' : `linear-gradient(90deg, ${accent} 62%, ${accent} 62%)` }} />
           <div className={teamColorOf(popup.t) ? 'v3d-head v3d-head--team' : 'v3d-head'} style={teamColorOf(popup.t) ? { ['--v3d-team' as string]: teamColorOf(popup.t)!, ['--v3d-ht' as string]: onTeamColor(teamColorOf(popup.t)!) } : undefined}>
           {jersey && <span className="v3d-jersey" aria-hidden>{jersey}</span>}
           <div className="v3d-kicker" style={{ color: teamColorOf(popup.t) ? undefined : accent, fontWeight: 900, fontSize: 11, letterSpacing: '0.1em', textTransform: 'uppercase', marginBottom: 2 }}>{popup.t}</div>
@@ -1453,7 +1480,7 @@ export default function Viewer3D({ popup, accent, onClose, onNext, onPrev, getTa
           >
             <h2 className="da-display v3d-name" style={{ margin: '4px 0', cursor: 'pointer' }}>{popup.n}</h2>
           </Link>
-          <div className="v3d-var" style={{ fontSize: '0.9rem', color: accent, fontWeight: 700, marginBottom: 4, fontStyle: 'italic' }}>{popup.v}</div>
+          <div className="v3d-var da-display" style={{ color: accent, marginBottom: 6 }}>{popup.v}</div>
           {popup.isManuelle && (popup.beckett_designation || popup.y || popup.br || popup.s) && (
             <div className="v3d-dz" style={{ fontSize: 11, color: metaColor, marginBottom: 8, lineHeight: 1.4 }}>
               {popup.beckett_designation ||
@@ -1462,7 +1489,7 @@ export default function Viewer3D({ popup, accent, onClose, onNext, onPrev, getTa
           )}
           </div>
           {getTags(popup)}
-          <div className="v3d-grid" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 10, borderTop: `1px solid ${borderColor}`, marginTop: 10, paddingTop: 10, ['--v3d-bar' as string]: teamColorOf(popup.t) || accent, ['--v3d-bar2' as string]: accent }}>
+          <div className="v3d-grid" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 10, borderTop: `1px solid ${borderColor}`, marginTop: 10, paddingTop: 10, ...(teamColorOf(popup.t) ? {} : { ['--v3d-bar' as string]: accent, ['--v3d-bar2' as string]: accent }) }}>
             {[
               ['Année', popup.y],
               ['Numérotation', popup.num || 'N/A'],
