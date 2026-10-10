@@ -71,6 +71,15 @@ function teamColorOf(name?: string | null): string | null {
   return m.length === 1 ? m[0].color : null
 }
 
+// Texte clair ou fonce selon la luminance de la couleur d'equipe (ex. jaune des Lakers : texte fonce)
+function onTeamColor(hex: string): string {
+  const m = /^#?([0-9a-f]{6})$/i.exec(hex.trim())
+  if (!m) return '#fff'
+  const n = parseInt(m[1], 16)
+  const lum = (0.299 * ((n >> 16) & 255) + 0.587 * ((n >> 8) & 255) + 0.114 * (n & 255)) / 255
+  return lum > 0.62 ? '#111' : '#fff'
+}
+
 export default function Viewer3D({ popup, accent, onClose, onNext, onPrev, getTags, userId, userSlug, isOwner, currentUserId, onCollectionTagChange, onCollectionsChange, onVendueChange, onDisponibleVenteChange, allCollectionTags, onAddToMyGallery, initialAddState, onProposeTrade, cardValue, onValueSave, likeData, onLike, onDeleteCard }: {
   popup: Card
   accent: string
@@ -527,6 +536,17 @@ export default function Viewer3D({ popup, accent, onClose, onNext, onPrev, getTa
   const [closeHover, setCloseHover] = useState(false)
   const [infoExpanded, setInfoExpanded] = useState(false)
   const [colOpen, setColOpen] = useState(false)
+  const [jersey, setJersey] = useState<string | null>(null)
+  useEffect(() => {
+    setJersey(null)
+    if (!popup.n || !popup.t || !teamColorOf(popup.t)) return
+    let cancelled = false
+    fetch(`/api/player-jersey?name=${encodeURIComponent(popup.n)}&team=${encodeURIComponent(popup.t)}`)
+      .then(r => (r.ok ? r.json() : null))
+      .then(d => { if (!cancelled && d?.jersey) setJersey(String(d.jersey)) })
+      .catch(() => {})
+    return () => { cancelled = true }
+  }, [popup.n, popup.t])
   useEffect(() => { setColOpen(false) }, [popup.f])
   const { lang, t } = useLang()
 
@@ -804,6 +824,16 @@ export default function Viewer3D({ popup, accent, onClose, onNext, onPrev, getTa
         .viewer-card--slab { width: 478px !important; height: 784px !important; }
         .viewer-info-handle { display: none; }
         .viewer-info { position: relative; }
+        .viewer-info { --vi-px: 30px; --vi-pt: 30px; }
+        @media (min-width: 601px) { .viewer-info { border-left: 4px solid var(--v3d-team, transparent); } }
+        @media (max-width: 600px) { .viewer-info { --vi-px: 14px; --vi-pt: 18px; } .viewer-layout--info-expanded .viewer-info { --vi-pt: calc(18px + var(--safe-area-inset-top, env(safe-area-inset-top))); } }
+        .v3d-head { position: relative; flex-shrink: 0; }
+        .v3d-head--team { margin: calc(var(--vi-pt) * -1) calc(var(--vi-px) * -1) 6px; padding: calc(var(--vi-pt) + 4px) var(--vi-px) 20px; overflow: hidden; background: linear-gradient(180deg, var(--v3d-team) 0%, var(--v3d-team) 80%, transparent 100%); }
+        .v3d-head--team .v3d-head-in, .v3d-head--team > div, .v3d-head--team > a { position: relative; z-index: 1; }
+        .v3d-head--team .v3d-kicker, .v3d-head--team h2, .v3d-head--team .v3d-var, .v3d-head--team .v3d-dz { color: var(--v3d-ht, #fff) !important; }
+        .v3d-head--team .v3d-var, .v3d-head--team .v3d-dz { opacity: .85; }
+        .v3d-jersey { position: absolute; right: 8px; top: -8px; font-family: 'Surfquest', Impact, 'Arial Narrow', sans-serif; font-size: 150px; line-height: 1; color: var(--v3d-ht, #fff); opacity: .16; pointer-events: none; z-index: 0; }
+        @media (max-width: 600px) { .v3d-jersey { font-size: 96px; top: 0; } }
         .v3d-band { position: absolute; top: 0; left: 0; right: 0; height: 5px; }
         .v3d-grid { gap: 12px 16px !important; }
         .v3d-grid > div { border-left: 4px solid var(--v3d-bar, #003DA6); padding-left: 10px; min-width: 0; }
@@ -869,6 +899,7 @@ export default function Viewer3D({ popup, accent, onClose, onNext, onPrev, getTa
           </div>
         ) : (
         <div className="viewer-zone" data-no-ptr="true"
+          style={teamColorOf(popup.t) ? { background: `radial-gradient(circle at 50% 45%, color-mix(in srgb, ${teamColorOf(popup.t)} 55%, ${zoneBg}) 0%, ${zoneBg} 68%)` } : undefined}
           onMouseDown={onMouseDown} onMouseMove={onMouseMove}
           onMouseUp={onMouseUp} onMouseLeave={onMouseUp}
           onDoubleClick={onDoubleClick} onWheel={onWheel}
@@ -1396,27 +1427,30 @@ export default function Viewer3D({ popup, accent, onClose, onNext, onPrev, getTa
         </div>
         )}
 
-        <div className="viewer-info">
+        <div className="viewer-info" style={teamColorOf(popup.t) ? { ['--v3d-team' as string]: teamColorOf(popup.t)! } : undefined}>
           <button className="viewer-info-handle" onClick={() => setInfoExpanded(v => !v)} aria-label={infoExpanded ? 'Réduire les infos' : 'Agrandir les infos'}>
             <svg width="20" height="10" viewBox="0 0 20 10" fill="none" style={{ transform: infoExpanded ? 'none' : 'rotate(180deg)', transition: 'transform 0.2s' }}>
               <path d="M2 2l8 6 8-6" stroke={metaColor} strokeWidth="2" fill="none" strokeLinecap="round" strokeLinejoin="round" />
             </svg>
           </button>
           <div className="v3d-band" style={{ background: `linear-gradient(90deg, ${teamColorOf(popup.t) || accent} 62%, ${accent} 62%)` }} />
-          <div style={{ color: teamColorOf(popup.t) || accent, fontWeight: 900, fontSize: 11, letterSpacing: '0.1em', textTransform: 'uppercase', marginBottom: 2, filter: 'brightness(1.25)' }}>{popup.t}</div>
+          <div className={teamColorOf(popup.t) ? 'v3d-head v3d-head--team' : 'v3d-head'} style={teamColorOf(popup.t) ? { ['--v3d-team' as string]: teamColorOf(popup.t)!, ['--v3d-ht' as string]: onTeamColor(teamColorOf(popup.t)!) } : undefined}>
+          {jersey && <span className="v3d-jersey" aria-hidden>{jersey}</span>}
+          <div className="v3d-kicker" style={{ color: teamColorOf(popup.t) ? undefined : accent, fontWeight: 900, fontSize: 11, letterSpacing: '0.1em', textTransform: 'uppercase', marginBottom: 2 }}>{popup.t}</div>
           <Link href={`/joueur/${playerSlug(popup.n)}`} style={{ textDecoration: 'none', color: 'inherit' }}
             onMouseEnter={e => (e.currentTarget.querySelector('h2')!.style.textDecoration = 'underline')}
             onMouseLeave={e => (e.currentTarget.querySelector('h2')!.style.textDecoration = 'none')}
           >
             <h2 style={{ fontSize: '1.4rem', fontWeight: 900, margin: '3px 0', cursor: 'pointer' }}>{popup.n}</h2>
           </Link>
-          <div style={{ fontSize: '0.9rem', color: accent, fontWeight: 700, marginBottom: 4, fontStyle: 'italic' }}>{popup.v}</div>
+          <div className="v3d-var" style={{ fontSize: '0.9rem', color: accent, fontWeight: 700, marginBottom: 4, fontStyle: 'italic' }}>{popup.v}</div>
           {popup.isManuelle && (popup.beckett_designation || popup.y || popup.br || popup.s) && (
-            <div style={{ fontSize: 11, color: metaColor, marginBottom: 8, lineHeight: 1.4 }}>
+            <div className="v3d-dz" style={{ fontSize: 11, color: metaColor, marginBottom: 8, lineHeight: 1.4 }}>
               {popup.beckett_designation ||
                 [popup.y, popup.br, popup.s, popup.v, popup.card_number ? `#${popup.card_number}` : '', popup.n].filter(Boolean).join(' ')}
             </div>
           )}
+          </div>
           {getTags(popup)}
           <div className="v3d-grid" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 10, borderTop: `1px solid ${borderColor}`, marginTop: 10, paddingTop: 10, ['--v3d-bar' as string]: teamColorOf(popup.t) || accent, ['--v3d-bar2' as string]: accent }}>
             {[
