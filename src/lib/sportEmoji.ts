@@ -1,5 +1,5 @@
 const SPORT_EMOJI: Record<string, string> = {
-  nba: '🏀', basketball: '🏀',
+  nba: '🏀', basketball: '🏀', 'euro-basketball': '🏀',
   nfl: '🏈', football: '🏈',
   mlb: '⚾', baseball: '⚾',
   nhl: '🏒', hockey: '🏒',
