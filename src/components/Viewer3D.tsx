@@ -144,7 +144,8 @@ export default function Viewer3D({ popup, accent, onClose, onNext, onPrev, getTa
   const [tagSaving, setTagSaving] = useState(false)
   const [valeurInput, setValeurInput] = useState(cardValue != null ? String(cardValue) : '')
   useEffect(() => { setValeurInput(cardValue != null ? String(cardValue) : '') }, [popup.f, cardValue])
-  useEffect(() => { setInfoExpanded(false) }, [popup.f])
+  // changement de carte : si le tiroir etait ouvert a fond (carte masquee), on repasse a la moitie ; les autres etats sont conserves
+  useEffect(() => { setInfoStage(st => (st === 2 ? 1 : st)) }, [popup.f])
 
   // Lien de partage court pour les cartes CSV (pas d'UUID cartes_manuelles disponible
   // pour /s/{id}) — voir src/lib/csvCardShortLink.ts. Se résout en arrière-plan ; le
@@ -557,7 +558,10 @@ export default function Viewer3D({ popup, accent, onClose, onNext, onPrev, getTa
   const isSlabFmt = cardFmt.isSlab
   const [addState, setAddState] = useState<'idle' | 'loading' | 'added' | 'duplicate'>(initialAddState ?? 'idle')
   const [closeHover, setCloseHover] = useState(false)
-  const [infoExpanded, setInfoExpanded] = useState(false)
+  const [infoStage, setInfoStage] = useState<0 | 1 | 2>(0)   // tiroir mobile : 0 = en bas, 1 = moitie, 2 = ouvert a fond
+  const infoExpanded = infoStage === 2
+  const dragY = useRef<number | null>(null)
+  const dragMoved = useRef(false)
   const [colOpen, setColOpen] = useState(false)
   const [jersey, setJersey] = useState<string | null>(null)
   useEffect(() => {
@@ -896,9 +900,14 @@ export default function Viewer3D({ popup, accent, onClose, onNext, onPrev, getTa
           .viewer-hint { display: none !important; }
           .viewer-layout--info-expanded .viewer-zone { flex-grow: 0 !important; flex-shrink: 0 !important; flex-basis: 0% !important; opacity: 0; pointer-events: none; }
           .viewer-layout--info-expanded .viewer-info { flex-grow: 0 !important; flex-shrink: 0 !important; flex-basis: 100% !important; padding-top: calc(18px + var(--safe-area-inset-top, env(safe-area-inset-top))) !important; padding-bottom: calc(20px + var(--safe-area-inset-bottom, env(safe-area-inset-bottom))) !important; }
+          .viewer-layout--info-half .viewer-zone { flex-basis: 40% !important; }
+          .viewer-layout--info-half .viewer-info { flex-basis: 60% !important; }
+          .viewer-layout--info-half .viewer-card { width: min(190px, 46vw) !important; height: min(266px, 64.4vw) !important; }
+          .viewer-layout--info-half .viewer-card--horizontal { width: min(260px, 66vw) !important; height: min(186px, 47vw) !important; }
+          .viewer-layout--info-half .viewer-card--slab { width: min(163px, 40vw) !important; height: min(266px, 64.4vw) !important; }
           .viewer-info-handle {
-            position: absolute; top: 4px; left: 50%; transform: translateX(-50%);
-            width: 44px; height: 22px; display: flex; align-items: center; justify-content: center;
+            position: absolute; top: 4px; left: 50%; transform: translateX(-50%); touch-action: none;
+            width: 120px; height: 30px; display: flex; align-items: center; justify-content: center;
             cursor: pointer; background: none; border: none; padding: 0; z-index: 2;
           }
           .viewer-layout--info-expanded .viewer-info-handle { top: calc(4px + var(--safe-area-inset-top, env(safe-area-inset-top))) !important; }
@@ -923,7 +932,7 @@ export default function Viewer3D({ popup, accent, onClose, onNext, onPrev, getTa
         {closeHover ? 'Fermer cette Carte' : '×'}
       </button>
 
-      <div className={`viewer-layout${infoExpanded ? ' viewer-layout--info-expanded' : ''}`}>
+      <div className={`viewer-layout${infoExpanded ? ' viewer-layout--info-expanded' : ''}${infoStage === 1 ? ' viewer-layout--info-half' : ''}`}>
         {popup.booklet ? (
           <div className="viewer-zone" style={{ padding: 0, display: 'flex', flexDirection: 'column' }}>
             <BookletViewer
@@ -1465,7 +1474,17 @@ export default function Viewer3D({ popup, accent, onClose, onNext, onPrev, getTa
         )}
 
         <div className={dark ? 'viewer-info v3d-dk' : 'viewer-info'} style={teamVars(popup.t, accent) as React.CSSProperties | undefined}>
-          <button className="viewer-info-handle" onClick={() => setInfoExpanded(v => !v)} aria-label={infoExpanded ? 'Réduire les infos' : 'Agrandir les infos'}>
+          <button className="viewer-info-handle"
+            onClick={() => { if (dragMoved.current) return; setInfoStage(st => (st === 0 ? 1 : st === 1 ? 2 : 1)) }}
+            onTouchStart={e => { dragY.current = e.touches[0].clientY; dragMoved.current = false }}
+            onTouchMove={e => { if (dragY.current != null && Math.abs(e.touches[0].clientY - dragY.current) > 8) dragMoved.current = true }}
+            onTouchEnd={e => {
+              if (dragY.current == null) return
+              const dy = e.changedTouches[0].clientY - dragY.current
+              dragY.current = null
+              if (Math.abs(dy) > 36) setInfoStage(st => (dy < 0 ? Math.min(2, st + 1) : Math.max(0, st - 1)) as 0 | 1 | 2)
+            }}
+            aria-label={infoStage === 2 ? 'Réduire les infos' : 'Agrandir les infos'}>
             <svg width="20" height="10" viewBox="0 0 20 10" fill="none" style={{ transform: infoExpanded ? 'none' : 'rotate(180deg)', transition: 'transform 0.2s' }}>
               <path d="M2 2l8 6 8-6" stroke={metaColor} strokeWidth="2" fill="none" strokeLinecap="round" strokeLinejoin="round" />
             </svg>
