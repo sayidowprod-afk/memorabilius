@@ -310,7 +310,7 @@ img[src$=".png"], img[src$=".svg"] { background: none !important; animation: non
 @keyframes haloSpin { to { --halo-a: 360deg; } }
 @media (prefers-reduced-motion: reduce) { .halo::before { animation: none; } }
 /* le halo vit dans le contexte d'empilement de la vignette (sinon z-index:-1 passerait derriere toute la tuile) */
-.halo { isolation: isolate; }
+.halo { position: relative; isolation: isolate; }
 
 /* ── Pellicule : vue Chronologie de la galerie ── */
 .film-strip { display: flex; gap: 14px; overflow-x: auto; padding: 26px 16px 22px; border: 0;
