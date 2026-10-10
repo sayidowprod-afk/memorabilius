@@ -109,11 +109,11 @@ export default function Viewer3D({ popup, accent, onClose, onNext, onPrev, getTa
   const bg = dark ? '#1a1a1a' : '#fff'
   // Gris un peu plus marque qu'avant (#f8f8f8, quasi blanc) -- la carte et son
   // ombre au sol se detachaient mal dessus.
-  const zoneBg = dark ? '#111' : '#e9e9e9'
-  const infoBg = dark ? '#1a1a1a' : 'white'
+  const zoneBg = dark ? '#05080f' : '#e9e9e9'
+  const infoBg = dark ? '#0a1330' : 'white'
   const textColor = dark ? '#eee' : '#111'
-  const borderColor = dark ? '#2a2a2a' : '#eee'
-  const metaColor = dark ? '#888' : '#999'
+  const borderColor = dark ? 'rgba(255,255,255,.14)' : '#eee'
+  const metaColor = dark ? 'rgba(255,255,255,.55)' : '#999'
 
   const [confirmDelete, setConfirmDelete] = useState(false)
   useEffect(() => { setConfirmDelete(false) }, [popup.f])
@@ -839,7 +839,17 @@ export default function Viewer3D({ popup, accent, onClose, onNext, onPrev, getTa
         .v3d-grid > div { border-left: 4px solid var(--v3d-bar, #003DA6); padding-left: 10px; min-width: 0; }
         .v3d-grid > div:nth-child(even) { border-left-color: var(--v3d-bar2, #003DA6); }
         .v3d-grid label { font-size: 10px !important; letter-spacing: 0.1em; }
-        .v3d-grid .viewer-info-value { font-size: 14px !important; }
+        .v3d-grid .viewer-info-value { font-family: 'Surfquest', Impact, 'Arial Narrow', sans-serif !important; font-weight: 400 !important; font-size: 21px !important; line-height: 1.05; text-transform: uppercase; letter-spacing: 0.02em; display: block; }
+        .viewer-info { justify-content: flex-start !important; }
+        .v3d-btns > a, .v3d-btns > button, .v3d-btns > div > button:first-child { transition: background .15s, border-color .15s; }
+        .v3d-dk .v3d-btns > a, .v3d-dk .v3d-btns > button, .v3d-dk .v3d-btns > div > button:first-child { background: transparent !important; border: 1px solid rgba(255,255,255,.38) !important; color: #fff !important; }
+        .v3d-dk .v3d-btns > a:first-child { background: var(--v3d-team, #003DA6) !important; border-color: var(--v3d-team, #003DA6) !important; color: var(--v3d-ht, #fff) !important; }
+        .v3d-btns > button[style*="231, 76, 60"], .v3d-dk .v3d-btns > button[style*="231, 76, 60"] { background: transparent !important; border: 1px solid rgba(255,138,141,.65) !important; color: #ff8a8d !important; }
+        .v3d-btns > div > button[style*="13, 13, 31"] { background: #05080f !important; border: 1px solid rgba(255,255,255,.38) !important; }
+        .v3d-dk .v3d-btns > a:hover, .v3d-dk .v3d-btns > button:hover { border-color: #fff !important; }
+        .v3d-dk input { border-radius: 0 !important; background: transparent !important; border: 1px solid rgba(255,255,255,.4) !important; color: #fff !important; }
+        .viewer-info h2.v3d-name { font-size: 2.3rem !important; line-height: 0.98; letter-spacing: 0.02em; margin: 4px 0 6px !important; }
+        @media (max-width: 600px) { .viewer-info h2.v3d-name { font-size: 1.85rem !important; } .v3d-grid .viewer-info-value { font-size: 18px !important; } }
         .v3d-btns { grid-template-columns: repeat(3, 1fr) !important; gap: 6px !important; }
         .v3d-btns > a, .v3d-btns > button, .v3d-btns > div > button:first-child { border-radius: 0 !important; padding: 11px 4px !important; font-size: 12px !important; white-space: normal !important; line-height: 1.15; min-height: 44px; text-align: center; }
         .v3d-btns > div { display: flex; flex-direction: column; } .v3d-btns > div > button:first-child { flex: 1; }
@@ -1427,7 +1437,7 @@ export default function Viewer3D({ popup, accent, onClose, onNext, onPrev, getTa
         </div>
         )}
 
-        <div className="viewer-info" style={teamColorOf(popup.t) ? { ['--v3d-team' as string]: teamColorOf(popup.t)! } : undefined}>
+        <div className={dark ? 'viewer-info v3d-dk' : 'viewer-info'} style={teamColorOf(popup.t) ? { ['--v3d-team' as string]: teamColorOf(popup.t)!, ['--v3d-ht' as string]: onTeamColor(teamColorOf(popup.t)!) } : undefined}>
           <button className="viewer-info-handle" onClick={() => setInfoExpanded(v => !v)} aria-label={infoExpanded ? 'Réduire les infos' : 'Agrandir les infos'}>
             <svg width="20" height="10" viewBox="0 0 20 10" fill="none" style={{ transform: infoExpanded ? 'none' : 'rotate(180deg)', transition: 'transform 0.2s' }}>
               <path d="M2 2l8 6 8-6" stroke={metaColor} strokeWidth="2" fill="none" strokeLinecap="round" strokeLinejoin="round" />
@@ -1441,7 +1451,7 @@ export default function Viewer3D({ popup, accent, onClose, onNext, onPrev, getTa
             onMouseEnter={e => (e.currentTarget.querySelector('h2')!.style.textDecoration = 'underline')}
             onMouseLeave={e => (e.currentTarget.querySelector('h2')!.style.textDecoration = 'none')}
           >
-            <h2 style={{ fontSize: '1.4rem', fontWeight: 900, margin: '3px 0', cursor: 'pointer' }}>{popup.n}</h2>
+            <h2 className="da-display v3d-name" style={{ margin: '4px 0', cursor: 'pointer' }}>{popup.n}</h2>
           </Link>
           <div className="v3d-var" style={{ fontSize: '0.9rem', color: accent, fontWeight: 700, marginBottom: 4, fontStyle: 'italic' }}>{popup.v}</div>
           {popup.isManuelle && (popup.beckett_designation || popup.y || popup.br || popup.s) && (
