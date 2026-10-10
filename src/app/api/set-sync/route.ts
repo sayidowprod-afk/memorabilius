@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { createClient } from '@supabase/supabase-js'
+import { rootEntryIds } from '@/lib/setFamilies'
 
 export const maxDuration = 30
 
@@ -205,8 +206,11 @@ export async function POST(req: NextRequest) {
     const setWords = productWords(setName)
     const sameSet = (a: Set<string>, b: Set<string>) => a.size === b.size && [...a].every(w => b.has(w))
 
+    // une carte = une entree : on ne matche que les entrees "racines" (les paralleles /150, Gold... sont la meme carte)
+    const roots = rootEntryIds(entries)
     const byPlayer = new Map<string, typeof entries>()
     for (const e of entries) {
+      if (!roots.has(e.id)) continue
       const k = norm(e.player_name)
       const arr = byPlayer.get(k) || []
       arr.push(e); byPlayer.set(k, arr)
@@ -225,7 +229,7 @@ export async function POST(req: NextRequest) {
       if (!collText.trim()) continue
       if (!sameSet(productWords(collText), setWords)) continue
 
-      let cands = pool.filter(e => matchVariation(card.variation || '', e.variation || ''))
+      let cands = pool.slice()
       if (card.set_entry_id != null) cands = cands.filter(e => e.id === card.set_entry_id)
       // numero de carte
       const cn = norm(card.card_number || '')
@@ -233,6 +237,17 @@ export async function POST(req: NextRequest) {
         const exact = cands.filter(e => norm((e as any).card_number || '') === cn)
         if (exact.length) cands = exact
         else cands = cands.filter(e => !(e as any).card_number)  // numero different -> pas cette entree
+      }
+      if (cands.length > 1) {
+        // plusieurs cartes racines possibles (base + inserts) : la plus specifique dont la variation est contenue dans celle de la carte ;
+        // sans variation sur la carte -> la base
+        const cw = new Set(words(card.variation || ''))
+        const fit = cands
+          .map(e => ({ e, w: words(e.variation || '') }))
+          .filter(x => x.w.every(t => cw.has(t)))
+        const best = Math.max(-1, ...fit.map(x => x.w.length))
+        const top = fit.filter(x => x.w.length === best)
+        cands = top.map(x => x.e)
       }
       if (cands.length !== 1) continue   // ambigu ou introuvable : on ne coche rien
       const e = cands[0]

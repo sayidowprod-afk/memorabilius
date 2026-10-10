@@ -73,6 +73,8 @@ export default function SetlistClient({ setId }: { setId: string }) {
   }, [])
   const playerToImgRef = useRef<Map<string, string>>(new Map())
   const matchedCardImagesRef = useRef<Map<number, string>>(new Map())
+  const rootsRef = useRef<Set<number> | null>(null)   // entrees racines (une par carte) ; null = pas d'info -> tout afficher
+  const [rootTotal, setRootTotal] = useState<number | null>(null)
 
   useEffect(() => {
     supabase.auth.getSession().then(({ data: { session } }) => setUserId(session?.user?.id || null))
@@ -158,15 +160,25 @@ export default function SetlistClient({ setId }: { setId: string }) {
     if (!setData) { setLoading(false); return }
     setSet(setData)
 
-    // Charger les counts par variation via RPC (évite la limite max_rows)
-    const { data: varData } = await supabase.rpc('get_set_variations', { p_set_id: parseInt(setId) })
-    if (!varData) { setLoading(false); return }
-
+    // Une carte = une entree : les paralleles (/150, Gold...) sont ecartes (voir lib/setFamilies.ts, /api/set-roots)
+    let roots: Set<number> | null = null
     const counts = new Map<string, number>()
-    for (const row of varData) {
-      const v = row.variation ?? 'Base'
-      counts.set(v, Number(row.cnt))
+    try {
+      const r = await fetch(`/api/set-roots?setId=${parseInt(setId)}`)
+      if (r.ok) {
+        const d = await r.json()
+        roots = new Set<number>(d.rootIds)
+        for (const v of d.variations as { variation: string; count: number }[]) counts.set(v.variation, v.count)
+      }
+    } catch { /* repli ci-dessous */ }
+    if (!roots) {
+      // repli : ancien comportement (toutes les entrees)
+      const { data: varData } = await supabase.rpc('get_set_variations', { p_set_id: parseInt(setId) })
+      if (!varData) { setLoading(false); return }
+      for (const row of varData) counts.set(row.variation ?? 'Base', Number(row.cnt))
     }
+    rootsRef.current = roots
+    setRootTotal(roots ? roots.size : null)
 
     let completedEntryIds = new Set<number>()
     let completionDetails = new Map<number, { id: string; manually_checked: boolean; matched_card_key?: string | null }>()
@@ -249,7 +261,7 @@ export default function SetlistClient({ setId }: { setId: string }) {
         } catch { /* si set-sync échoue, on continue sans completions */ }
       }
 
-      setTotalOwned(completedEntryIds.size)
+      setTotalOwned(roots ? [...completedEntryIds].filter(id => roots!.has(id)).length : completedEntryIds.size)
     }
 
     // Construire les variations meta (sans les cartes)
@@ -293,7 +305,7 @@ export default function SetlistClient({ setId }: { setId: string }) {
       allPages.push(...page)
       if (page.length < PAGE) break
     }
-    const finalData = allPages
+    const finalData = rootsRef.current ? allPages.filter(e => rootsRef.current!.has(e.id)) : allPages
 
     if (!finalData.length && !isBase) return
 
@@ -368,7 +380,7 @@ export default function SetlistClient({ setId }: { setId: string }) {
         : supabase.from('card_set_entries').select('id').eq('set_id', setId).eq('variation', varName).order('id').range(from, from + PAGE - 1)
       const { data: page } = await q
       if (!page?.length) break
-      allEntryIds.push(...(page as any[]).map(e => e.id))
+      allEntryIds.push(...(page as any[]).map(e => e.id).filter((id: number) => !rootsRef.current || rootsRef.current.has(id)))
       if (page.length < PAGE) break
     }
 
@@ -464,7 +476,7 @@ export default function SetlistClient({ setId }: { setId: string }) {
     setSaving(null)
   }
 
-  const pct = set?.total_cards ? Math.round((totalOwned / set.total_cards) * 100) : 0
+  const pct = (rootTotal ?? set?.total_cards) ? Math.round((totalOwned / (rootTotal ?? set!.total_cards)) * 100) : 0
 
   // Équipes disponibles depuis toutes les variations chargées
   const allTeams = Array.from(new Set(
@@ -491,12 +503,12 @@ export default function SetlistClient({ setId }: { setId: string }) {
         <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap', alignItems: 'center', marginBottom: userId ? 16 : 0 }}>
           {set.year && <span style={{ fontSize: 13, color: '#888', fontWeight: 700 }}>{set.year}</span>}
           {set.brand && <span style={{ fontSize: 13, color: '#003DA6', fontWeight: 700, background: '#f0f4ff', borderRadius: 6, padding: '2px 8px' }}>{set.brand}</span>}
-          <span style={{ fontSize: 13, color: '#aaa' }}>{set.total_cards.toLocaleString()} {t('setlistdetail_cards')} · {variations.length} {t('setlistdetail_variations')}</span>
+          <span style={{ fontSize: 13, color: '#aaa' }}>{(rootTotal ?? set.total_cards).toLocaleString()} {t('setlistdetail_cards')} · {variations.length} {t('setlistdetail_variations')}</span>
         </div>
         {userId ? (
           <div>
             <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 6 }}>
-              <span style={{ fontSize: 14, fontWeight: 700, color: dark ? '#eee' : '#333' }}>{totalOwned} / {set.total_cards.toLocaleString()} {t('setlistdetail_owned')}</span>
+              <span style={{ fontSize: 14, fontWeight: 700, color: dark ? '#eee' : '#333' }}>{totalOwned} / {(rootTotal ?? set.total_cards).toLocaleString()} {t('setlistdetail_owned')}</span>
               <span style={{ fontSize: 20, fontWeight: 900, color: pct === 100 ? '#2ecc71' : '#003DA6' }}>{pct}%</span>
             </div>
             <div style={{ height: 10, borderRadius: 5, background: dark ? '#333' : '#f0f0f0', overflow: 'hidden' }}>
@@ -720,7 +732,7 @@ export default function SetlistClient({ setId }: { setId: string }) {
       </div>
 
       <div style={{ textAlign: 'center', padding: '16px 0', fontSize: 12, color: '#aaa' }}>
-        {set.total_cards.toLocaleString()} cartes · {variations.length} variations
+        {(rootTotal ?? set.total_cards).toLocaleString()} cartes · {variations.length} variations
       </div>
     </div>
   )
