@@ -1,4 +1,5 @@
 'use client'
+import StreakFlame from '@/components/StreakFlame'
 import { useEffect, useState } from 'react'
 import Link from 'next/link'
 import { supabase } from '@/lib/supabase'
@@ -329,7 +330,8 @@ export default function NativeHomeDashboard({ siteStats }: { siteStats: SiteStat
         </div>
         {data.streak > 0 && (
           <div className="dd-streak">
-            {t(data.streak === 1 ? 'dashboard_streak_one' : 'dashboard_streak_other').replace('{n}', String(data.streak))}
+            <StreakFlame streak={data.streak} />
+            <span><b className="da-num">{data.streak}</b>{t(data.streak === 1 ? 'dashboard_streak_one' : 'dashboard_streak_other').replace('{n}', '').trim()}</span>
           </div>
         )}
       </header>
@@ -445,6 +447,8 @@ const DD_TEXT: Record<string, { add: string; since: string; likes: string; comme
 // cartes (image) restent a coins nets.
 const DD_CSS = `
 .dd { max-width: 1180px; margin: 0 auto; padding: 4px 0 28px; color: var(--text); }
+/* les blocs ont deja 16px de marge : on elargit le conteneur de 16px de chaque cote pour qu'ils aient la meme largeur que la carte du jour (placee hors du tableau de bord) */
+.dd { width: calc(100% + 32px); max-width: none; margin-left: -16px; margin-right: -16px; }
 .dd a { text-decoration: none; color: inherit; }
 .dd-head { display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 18px 16px 14px; flex-wrap: wrap; }
 .dd-who { display: flex; align-items: center; gap: 14px; min-width: 0; }
@@ -452,7 +456,12 @@ const DD_CSS = `
 .dd-avatar--ph { display: grid; place-items: center; background: #003da6; color: #fff; font-weight: 900; font-size: 22px; }
 .dd-kicker { font: 800 12px system-ui, sans-serif; letter-spacing: .14em; text-transform: uppercase; color: var(--text2); }
 .dd-name { font-size: clamp(34px, 5vw, 56px); line-height: .95; margin: 2px 0 0; color: var(--text); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-.dd-streak { font: 800 12px system-ui, sans-serif; letter-spacing: .1em; text-transform: uppercase; border: 3px solid var(--text); padding: 7px 12px; }
+.dd-streak { display: flex; align-items: center; gap: 10px; font: 800 12px system-ui, sans-serif; letter-spacing: .1em; text-transform: uppercase; border: 3px solid var(--text); padding: 6px 14px 6px 10px; }
+.dd-streak span { display: flex; flex-direction: column; line-height: 1.05; }
+.dd-streak b { font-size: 34px; line-height: .9; letter-spacing: 0; }
+.flame-ic { filter: drop-shadow(0 0 10px rgba(255,140,0,.7)); animation: flameFlick 1.4s ease-in-out infinite; transform-origin: 50% 100%; flex-shrink: 0; }
+@keyframes flameFlick { 0%,100% { transform: scale(1,1) rotate(0); } 25% { transform: scale(1.04,.97) rotate(-2deg); } 55% { transform: scale(.98,1.05) rotate(2deg); } 80% { transform: scale(1.02,.99) rotate(-1deg); } }
+@media (prefers-reduced-motion: reduce) { .flame-ic { animation: none; } }
 .dd-hero { display: flex; align-items: stretch; margin: 0 16px 14px; border: 3px solid rgba(255,255,255,.28);
   background: linear-gradient(135deg, #050912 0%, #08153b 48%, #003da6 100%); color: #fff; overflow: hidden; }
 .dd-hero-l { flex: 1; padding: clamp(18px, 3vw, 36px); display: flex; flex-direction: column; justify-content: center; min-width: 0; }

@@ -544,5 +544,13 @@ html[data-theme="light"] .cf-loader i, :root:not([data-theme="dark"]) .cf-loader
 .tcp-sports button { background: transparent; border: 2px solid color-mix(in srgb, var(--text, #121212) 30%, transparent); padding: 4px 10px; font: 800 11px system-ui, sans-serif; letter-spacing: .08em; cursor: pointer; color: var(--text2, #555); }
 .tcp-sports button.on { background: var(--text, #121212); color: var(--bg, #fff); border-color: var(--text, #121212); }
 .tcp-grid { display: flex; flex-wrap: wrap; gap: 6px; max-height: 170px; overflow-y: auto; padding: 2px; }
-.tcp-grid button { width: 32px; height: 32px; border: 0; cursor: pointer; outline: 3px solid transparent; outline-offset: 2px; padding: 0; }
+.tcp-grid button { width: 46px; height: 38px; border: 0; cursor: pointer; outline: 3px solid transparent; outline-offset: 2px; padding: 0; font: 800 11px system-ui, sans-serif; letter-spacing: .02em; }
+.tcp-name { margin-top: 10px; min-height: 22px; display: flex; align-items: center; gap: 8px; font-size: 13px; color: var(--text2, #555); }
+.tcp-name i { width: 16px; height: 16px; display: inline-block; flex-shrink: 0; } .tcp-name b { color: var(--text, #121212); } .tcp-name span { opacity: .65; }
 .tcp-grid button.on { outline-color: var(--text, #121212); }
+
+/* Carte du jour : pellicule a gratter (devoilee une fois grattee dans la journee) */
+.cdj-scratch { position: relative; cursor: crosshair; touch-action: none; }
+.cdj-scratch img { display: block; width: 100%; aspect-ratio: 2.5 / 3.5; object-fit: cover; border-radius: 0; box-shadow: 0 22px 46px rgba(0,0,0,.6); background: none !important; animation: none !important; }
+.cdj-foil { position: absolute; inset: 0; width: 100%; height: 100%; touch-action: none; }
+button.cdj-btn { cursor: pointer; }
