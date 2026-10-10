@@ -4,7 +4,7 @@ import Link from 'next/link'
 
 // Idees visuelles pour pousser la nouvelle DA (Surfquest, marine -> bleu electrique, angles droits, doubles filets, metaux).
 // Page de TRAVAIL reservee aux admins : donnees d'exemple en dur, rien n'est lu ni ecrit.
-// Serie 24 : visualiseur, DA poussee (typo, champs agrandis, fonds speciaux) (ordinateur + mobile). Tout le style est ici, prefixe .ix.
+// Serie 25 : langue et mode nuit (en-tete, ordinateur + mobile). Tout le style est ici, prefixe .ix.
 
 const SB = 'https://snnrkzbevjhdtviizfyp.supabase.co/storage/v1/object/public/avatars/cartes/eb730dee-414e-4fcb-89d8-4a7b3448c218/'
 const C = {
@@ -434,6 +434,26 @@ const CSS = `
 
 .ix .qp-scr.q6, .ix .qp-phn.q6 { --cardimg: url(https://snnrkzbevjhdtviizfyp.supabase.co/storage/v1/object/public/avatars/cartes/eb730dee-414e-4fcb-89d8-4a7b3448c218/1787763372857_recto.jpg); }
 .ix .qp-pan:has(.qp.q6):after { content: ''; position: absolute; inset: 0; background: linear-gradient(rgba(10,19,48,.7), rgba(10,19,48,.92)); z-index: 0; }
+/* serie 25 : langue / mode nuit (prefixe hd-) */
+.ix .hd-wrap { max-width: 880px; margin-bottom: 4px; } .ix .hd-cap { font: 700 10px system-ui; letter-spacing: .14em; text-transform: uppercase; opacity: .5; margin: 4px 0 0 4px; }
+.ix .hd-bar { display: flex; align-items: center; gap: 14px; height: 64px; padding: 0 18px; background: #050912; border: 1px solid rgba(255,255,255,.2); }
+.ix .hd-logo { font-size: 26px; border: 3px solid #fff; padding: 0 6px; line-height: 1.1; } .ix .hd-sp { flex: 1; }
+.ix .hd-ico { font-size: 16px; } .ix .hd-link { font: 800 13px system-ui; letter-spacing: .1em; }
+.ix .hd-pill { border: 1px solid rgba(255,255,255,.5); border-radius: 20px; padding: 6px 12px; font: 800 12px system-ui; }
+.ix .hd-out { border: 2px solid rgba(255,255,255,.7); border-radius: 0; padding: 0 16px; height: 34px; display: inline-flex; align-items: center; font: 800 12px system-ui; letter-spacing: .12em; } .ix .hd-out.r { border-radius: 20px; border-width: 1px; } .ix .hd-out.hdw { width: 100%; justify-content: center; margin-top: 12px; height: 40px; }
+.ix .hd-sw { position: relative; width: 62px; height: 30px; border: 3px solid #fff; display: inline-block; flex-shrink: 0; background: #050912; } .ix .hd-sw b { position: absolute; left: 3px; top: 3px; width: 18px; height: 18px; background: #fff; color: #050912 !important; display: flex; align-items: center; justify-content: center; font-size: 11px; } .ix .hd-sw.l b { left: auto; right: 3px; }
+.ix .hd-sq { height: 34px; padding: 0 12px; border: 2px solid #fff; display: inline-flex; align-items: center; gap: 6px; font: 800 13px system-ui; letter-spacing: .1em; } .ix .hd-sq i { font-style: normal; font-size: 10px; } .ix .hd-sq.g { font-size: 18px; width: 34px; justify-content: center; padding: 0; }
+.ix .hd-drop-wrap { max-width: 880px; display: flex; justify-content: flex-end; padding-right: 150px; margin-top: 6px; }
+.ix .hd-drop { width: 210px; border: 3px solid #fff; background: #08122b; box-shadow: inset 0 0 0 3px #08122b, inset 0 0 0 4.5px rgba(255,255,255,.5); padding: 8px 6px; } .ix .hd-drop .row { display: flex; align-items: center; gap: 12px; padding: 8px 12px; cursor: pointer; } .ix .hd-drop .row b { width: 30px; font-size: 14px; } .ix .hd-drop .row span { flex: 1; font-size: 13px; opacity: .8; } .ix .hd-drop .row em { font-style: normal; } .ix .hd-drop .row.on { background: #fff; } .ix .hd-drop .row.on, .ix .hd-drop .row.on * { color: #06122e !important; opacity: 1; }
+.ix .hd-drop.sfd .row b { font-size: 24px; width: 46px; line-height: 1; } .ix .hd-drop.sfd .row span { font: 700 10px system-ui; letter-spacing: .16em; }
+.ix .hd-seg { display: inline-flex; border: 2px solid #fff; } .ix .hd-seg span { min-width: 34px; height: 30px; padding: 0 8px; display: inline-flex; align-items: center; justify-content: center; font: 800 12px system-ui; letter-spacing: .06em; cursor: pointer; border-right: 1px solid rgba(255,255,255,.35); } .ix .hd-seg span:last-child { border-right: 0; } .ix .hd-seg span.on { background: #fff; color: #06122e !important; } .ix .hd-seg.hdw { display: flex; } .ix .hd-seg.hdw span { flex: 1; height: 38px; }
+.ix .hd-cluster { display: inline-flex; border: 2px solid #fff; height: 38px; } .ix .hd-cluster .c1 { display: inline-flex; align-items: center; gap: 6px; padding: 0 14px; font: 800 13px system-ui; letter-spacing: .08em; border-right: 2px solid rgba(255,255,255,.4); } .ix .hd-cluster .c1 i { font-style: normal; font-size: 10px; } .ix .hd-cluster .c2 { display: inline-flex; align-items: center; padding: 0 8px; }
+.ix .hd-sf { font-size: 28px; line-height: 1; position: relative; padding-bottom: 4px; } .ix .hd-sf u { position: absolute; left: 0; right: 0; bottom: 0; height: 4px; background: #fff; text-decoration: none; }
+.ix .hd-flags { display: inline-flex; gap: 6px; } .ix .hd-flags > span { padding: 3px; border: 3px solid transparent; opacity: .55; } .ix .hd-flags > span.on { border-color: #fff; opacity: 1; } .ix .hd-flag { display: block; width: 30px; height: 20px; }
+.ix .f-fr { background: linear-gradient(90deg, #0055a4 33%, #fff 33% 66%, #ef4135 66%); } .ix .f-de { background: linear-gradient(#000 33%, #dd0000 33% 66%, #ffce00 66%); } .ix .f-es { background: linear-gradient(#aa151b 25%, #f1bf00 25% 75%, #aa151b 75%); } .ix .f-it { background: linear-gradient(90deg, #009246 33%, #fff 33% 66%, #ce2b37 66%); } .ix .f-en { background: linear-gradient(0deg, transparent 40%, #fff 40% 60%, transparent 60%), linear-gradient(90deg, transparent 40%, #fff 40% 60%, transparent 60%), linear-gradient(0deg, transparent 45%, #c8102e 45% 55%, transparent 55%), linear-gradient(90deg, transparent 45%, #c8102e 45% 55%, transparent 55%), #012169; }
+.ix .hd-panel { width: 280px; border: 3px solid #fff; background: #08122b; padding: 14px 16px; box-shadow: inset 0 0 0 3px #08122b, inset 0 0 0 4.5px rgba(255,255,255,.5); } .ix .hd-panel .t { display: block; font: 800 11px system-ui; letter-spacing: .18em; text-transform: uppercase; margin-bottom: 10px; opacity: .7; } .ix .hd-panel .r { display: flex; align-items: center; justify-content: space-between; gap: 10px; padding: 8px 0; border-top: 1px solid rgba(255,255,255,.15); } .ix .hd-panel label { font: 800 11px system-ui; letter-spacing: .1em; text-transform: uppercase; opacity: .7; }
+.ix .hd-phone { width: 300px; border: 4px solid #fff; background: #050912; } .ix .hd-phone .top { display: flex; align-items: center; gap: 12px; height: 54px; padding: 0 12px; border-bottom: 1px solid rgba(255,255,255,.25); } .ix .hd-phone .hd-logo { font-size: 20px; } .ix .hd-phone .burger { font-size: 22px; } .ix .hd-phone .sheet { padding: 16px 14px 18px; display: flex; flex-direction: column; gap: 8px; } .ix .hd-phone .sheet .t { font: 800 11px system-ui; letter-spacing: .18em; text-transform: uppercase; opacity: .6; } .ix .hd-phone label { font: 800 11px system-ui; letter-spacing: .1em; text-transform: uppercase; opacity: .7; margin-top: 6px; } .ix .hd-phone .sw-row { display: flex; align-items: center; gap: 10px; } .ix .hd-phone small { opacity: .7; }
+@media (max-width: 700px) { .ix .hd-bar { gap: 8px; padding: 0 10px; } .ix .hd-logo { font-size: 18px; } .ix .hd-link { display: none; } .ix .hd-drop-wrap { padding-right: 20px; } }
 `
 function Bay({ id, n, title, desc, children }: { id: string; n: string; title: string; desc: string; children: React.ReactNode }) {
   return (
@@ -446,80 +466,45 @@ function Bay({ id, n, title, desc, children }: { id: string; n: string; title: s
   )
 }
 
-const ALL = [C.mccain, C.edwards, C.maxey, C.hawkins, C.mcw, C.luwawu]
-
-// Panneau reel (capture Markelle Fultz) : seule la peau change d'une version a l'autre
-function Panel({ v, compact, tn }: { v: string; compact?: boolean; tn?: string }) {
-  const acts: [string, string][] = [['✏️', 'Modifier'], ['🗑', 'Supprimer'], ['🏷', 'Vente / Trade'], ['💰', 'Vendue'], ['🔗', 'Partager'], ['⬇', 'Exporter']]
-  return (
-    <div className={`qp ${v}${compact ? ' qpc' : ''}`}>
-      <div className="qp-band" />
-      {v === 'q14' && <div className="qp-stripes" />}
-      {v === 'q4' && <div className="qp-num"><small>Exemplaire</small><b className="sf">63<i>/99</i></b></div>}
-      {v === 'q13' && <span className="qp-jersey sf">20</span>}
-      <span className="qp-k">{tn || 'Philadelphia 76ers'}</span>
-      <h3 className="qp-n sf">Markelle Fultz</h3>
-      <div className="qp-vr">Prime Prospects</div>
-      <div className="qp-dz">2017-18 Panini Vanguard Prime Prospects Markelle Fultz</div>
-      <div className="qp-tg"><span className="rc">RC</span><span className="au">AUTO</span><span className="nu">/99</span><span className="pa">PATCH</span></div>
-      <div className="qp-ig">
-        <div><small>Année</small><b className="sf">2017-18</b></div>
-        <div><small>Numérotation</small><b className="sf">63/99</b></div>
-        <div><small>Grade</small><b className="sf">Raw</b></div>
-        <div><small>Collection</small><b className="sf">Panini Vanguard</b></div>
-      </div>
-      <div className="qp-row"><span className="l">Mes collections</span><span className="r">—</span><i>▾</i></div>
-      <div className="qp-row"><span className="l">🃏 Setlist</span><span className="r red">2022-23 Panini Mosaic <u>Changer</u> ✕</span></div>
-      <div className="qp-ab">{acts.map(a => <span key={a[1]} className={a[1] === 'Supprimer' ? 'del' : a[1] === 'Modifier' ? 'pri' : ''}><i>{a[0]}</i>{a[1]}</span>)}</div>
-      <div className="qp-row"><span className="l">Valeur est.</span><span className="qp-inp">0.00 €</span><span className="qp-pv">Privé</span></div>
-      <div className="qp-row"><span className="l">Marché</span><span className="r"><b className="red">46 €</b> demandé (méd.)</span><span className="qp-lk"><em>130pt</em><em>eBay</em></span></div>
-      <div className="qp-lst"><div><img src={C.maxey.img} alt="" /><b>46 €</b></div></div>
-    </div>
-  )
-}
-const TEAMS: Record<string, [string, string]> = { sixers: ['#006bb6', '#ed174c'], lakers: ['#552583', '#fdb927'], celtics: ['#007a33', '#ba9653'], bulls: ['#ce1141', '#111111'] }
-const tv = (t?: string) => (t ? ({ ['--tc1' as string]: TEAMS[t][0], ['--tc2' as string]: TEAMS[t][1] } as React.CSSProperties) : undefined)
-const Desk = ({ v, team, tn }: { v: string; team?: string; tn?: string }) => (
-  <div className={`qp-scr ${v}`} style={tv(team)}>
-    <div className="qp-stg"><div className="qp-x">×</div><img className="qp-card" src={C.mccain.img} alt="" /><div className="qp-nv"><span>🔍</span><span>↻</span></div></div>
-    <div className="qp-pan"><Panel v={v} tn={tn} /></div>
+const LANGS: [string, string, string][] = [['FR', 'Français', 'fr'], ['EN', 'English', 'en'], ['DE', 'Deutsch', 'de'], ['ES', 'Español', 'es'], ['IT', 'Italiano', 'it']]
+const Flag = ({ c }: { c: string }) => <i className={`hd-flag f-${c}`} />
+const Sw = ({ light }: { light?: boolean }) => <span className={`hd-sw${light ? ' l' : ''}`}><b>{light ? '☀' : '☾'}</b></span>
+const Bell = () => <span className="hd-ico">🔔</span>
+const Bar = ({ children, label }: { children: React.ReactNode; label?: string }) => (
+  <div className="hd-wrap">
+    <div className="hd-bar"><span className="hd-logo sf">MEMORABILIUS</span><span className="hd-sp" /><Bell /><span className="hd-link">PROFIL</span>{children}</div>
+    {label && <div className="hd-cap">{label}</div>}
   </div>
 )
-const Phone = ({ v, team, tn }: { v: string; team?: string; tn?: string }) => (
-  <div className={`qp-phn ${v}`} style={tv(team)}>
-    <div className="qp-pt"><div className="qp-x s">×</div><img className="qp-card" src={C.mccain.img} alt="" /></div>
-    <div className="qp-ps"><div className="qp-grip" /><Panel v={v} compact tn={tn} /></div>
-  </div>
-)
+const Out = ({ round }: { round?: boolean }) => <span className={`hd-out${round ? ' r' : ''}`}>DÉCONNEXION</span>
 
 export default function DaIdeas() {
-  const items: [string, string, string, string][] = [
-    ['q1', '01', 'Surfquest partout : nom géant, valeurs et sections dans la police du site', "Le nom passe à 44 px en Surfquest (comme les titres de l'accueil), les valeurs des infos (2017-18, 63/99, Raw, Panini Vanguard) aussi, et les titres de section (Mes collections, Setlist, Valeur, Marché) restent en petites capitales. La typographie fait à elle seule le lien avec le reste du site."],
-    ['q2', '02', 'Fond texturé : fines hachures et grain', "Le panneau n'est plus un aplat gris : une trame de fines lignes diagonales très discrète, un voile de grain, et une lueur aux couleurs de l'équipe en haut. Même matière que les cartes et les cadres du site."],
-    ['q3', '03', "Fond d'équipe : dégradé qui descend du liseré", "Un dégradé aux couleurs de l'équipe (bleu des 76ers) part du haut du panneau et se fond dans le noir vers le bas. Le nom se lit sur la couleur, le reste sur le sombre. Chaque carte a son ambiance."],
-    ['q4', '04', 'Numérotation en vedette : le « 63/99 » en énorme', "Quand la carte est numérotée, l'exemplaire (63 / 99) s'affiche en très grand Surfquest en haut du panneau, comme un numéro de maillot. L'info la plus recherchée par les collectionneurs devient le premier regard."],
-    ['q5', '05', "Bandeau d'équipe : le nom sur une bande pleine largeur", "Le nom et l'équipe sont inscrits sur une bande pleine couleur d'équipe, en blanc, de bord à bord. Le reste du panneau reste sombre et sobre. Très proche du hero de l'accueil et des titres de page."],
-    ['q6', '06', 'Carte floutée en fond : le panneau prend les couleurs de la carte', "L'image de la carte, agrandie et très floue, sert de fond au panneau (à 25 %, sous un voile sombre). Le panneau change de teinte à chaque carte sans jamais gêner la lecture."],
-    ['q7', '07', 'Fiche claire : le panneau en papier, nom en encre', "Panneau clair (papier) avec le nom en Surfquest encre bleu nuit et le liseré d'équipe : un contraste fort avec la scène sombre, lisible en plein soleil, et très « fiche de collection »."],
-    ['q8', '08', 'Boutons à la DA : plein blanc, filets, libellés en capitales', "Les 6 boutons deviennent plus « DA » : Modifier en blanc plein (encre bleu nuit), les autres en filet blanc, libellés en petites capitales espacées, Supprimer en rouge contour. Les titres de section ont un double filet dessous."],
-    ['q9', '09', "Panneau plein couleur d'équipe : tout le panneau aux couleurs de la franchise", "Le fond du panneau devient la couleur principale de l'équipe (bleu des 76ers, violet des Lakers, vert des Celtics…), le texte en blanc, les barres d'infos et les boutons dans la couleur secondaire. Le visualiseur change entièrement d'ambiance selon la carte."],
-    ['q10', '10', 'Diagonale à deux couleurs : le panneau coupé aux couleurs de l\'équipe', "Un fond en diagonale qui mélange la couleur principale et la secondaire de l'équipe (rouge et bleu pour les 76ers), assombri vers le bas pour la lecture. Très « maillot », et la carte ressort sur le fond noir à côté."],
-    ['q11', '11', "Boutons, tags et puces aux couleurs d'équipe", "Rien d'autre ne change : seuls les boutons (Modifier plein dans la couleur principale, les autres en filet de la secondaire), les puces de collections, les liens et les titres de section prennent les couleurs de l'équipe. La touche d'équipe est partout, discrètement."],
-    ['q12', '12', "Scène et panneau accordés : la lueur d'équipe derrière la carte aussi", "Une lueur dans les couleurs de l'équipe derrière la carte (côté scène) qui continue dans le panneau par le liseré et les barres. Les deux moitiés de l'écran font un seul bloc de couleur."],
-    ['q13', '13', 'Numéro de maillot en filigrane derrière le nom', "Un énorme numéro (ici le 20 de Fultz chez les Sixers) en Surfquest, translucide, derrière le nom, dans la couleur d'équipe. Très sportif, et il ne coûte aucune place."],
-    ['q14', '14', 'Rayures de maillot : une bande rayée en tête de panneau', "Une bande de rayures verticales aux couleurs de l'équipe (comme un col ou un liseré de maillot) en haut du panneau, avec un trait de la même couleur sous chaque titre de section."],
-  ]
+  const [l, setL] = useState(0)
+  const [seg, setSeg] = useState(0)
+  const names = ['Aujourd’hui', 'Carré à menu', 'Segments', 'Bloc réglages', 'Surfquest', 'Drapeaux carrés', 'Menu réglages', 'Panneau mobile']
   return (
     <div className="ix">
       <style>{CSS}</style>
       <Link href="/admin" className="back">← Admin</Link>
-      <h1 className="sf">Idées · Série 24 · Visualiseur : encore plus dans la DA</h1>
-      <p className="lead">Basé sur ton panneau réel (capture de la Markelle Fultz) : tout le contenu et les 6 boutons restent. On pousse la DA par la typographie (Surfquest sur le nom et les valeurs), des champs plus grands (nom, numérotation), et des fonds spéciaux (trame, équipe, carte floutée, papier). Chaque version est montrée sur ordinateur et téléphone, et on peut combiner : par exemple 01 + 03, ou 05 + 08.</p>
-      <nav className="tags">{items.map((it, i) => <a key={it[0]} href={`#s${i + 1}`}>{it[1]} {it[2].split(':')[0]}</a>)}</nav>
-      {items.map((it, i) => (
-        <Bay key={it[0]} id={`s${i + 1}`} n={it[1]} title={it[2]} desc={it[3]}><div className="pair"><Desk v={it[0]} /><Phone v={it[0]} /></div></Bay>
-      ))}
-      <Bay id="s15" n="15" title="Le même panneau pour d'autres équipes : les couleurs suivent la carte" desc="La version 09 sur trois autres équipes : Lakers (violet et or), Celtics (vert et or pâle), Bulls (rouge et noir). Le panneau lit l'équipe imprimée sur la carte et prend ses couleurs. Si l'équipe est inconnue (carte sans équipe, Pokémon…), il reste en bleu neutre."><div className="pair">{([['lakers', 'Los Angeles Lakers'], ['celtics', 'Boston Celtics'], ['bulls', 'Chicago Bulls']] as [string, string][]).map(t => <Phone key={t[0]} v="q9" team={t[0]} tn={t[1]} />)}</div></Bay>
+      <h1 className="sf">Idées · Série 25 · Langue et mode nuit</h1>
+      <p className="lead">Le groupe en haut à droite : aujourd&apos;hui la langue est une pastille arrondie, le mode nuit un interrupteur carré, et Déconnexion une pastille arrondie : trois formes différentes. Les versions suivantes les unifient en angles droits, filets blancs et Surfquest, comme le reste de la nouvelle DA. Chaque version montre le groupe fermé, le menu ouvert quand il y en a un, et la version mobile à la fin.</p>
+      <nav className="tags">{names.map((t, i) => <a key={t} href={`#s${i + 1}`}>{String(i + 1).padStart(2, '0')} {t}</a>)}</nav>
+
+      <Bay id="s1" n="00" title="Aujourd'hui, pour comparer" desc="La langue en pastille arrondie « FR ⌄ », l'interrupteur carré du mode nuit, Déconnexion en pastille arrondie. Trois formes, trois styles."><Bar label="Actuel"><span className="hd-pill">FR ⌄</span><Sw /><Out round /></Bar>
+      </Bay>
+      <Bay id="s2" n="01" title="Carré à menu : « FR ▾ » à angles droits, comme l'interrupteur" desc="La langue devient un carré à filet blanc de la même hauteur que l'interrupteur (34 px), avec le code en capitales. Au clic, une liste à double filet : code en gras à gauche, nom complet à droite, la langue active cochée. Déconnexion passe aussi en rectangle."><Bar label="Fermé"><span className="hd-sq">FR <i>▾</i></span><Sw /><Out /></Bar>
+        <div className="hd-drop-wrap"><div className="hd-drop">{LANGS.map((x, i) => <div key={x[0]} className={'row' + (l === i ? ' on' : '')} onClick={() => setL(i)}><b>{x[0]}</b><span>{x[1]}</span><em>{l === i ? '✓' : ''}</em></div>)}</div></div>
+      </Bay>
+      <Bay id="s3" n="02" title="Segments : les cinq langues visibles d'un coup" desc="Un bloc de cinq segments FR · EN · DE · ES · IT (34 px chacun), l'actif plein blanc, comme les onglets du site. Pas de menu à ouvrir : un seul clic pour changer. Sur écran moyen, il se replie en « FR ▾ »."><Bar><span className="hd-seg">{LANGS.map((x, i) => <span key={x[0]} className={seg === i ? 'on' : ''} onClick={() => setSeg(i)}>{x[0]}</span>)}</span><Sw /><Out /></Bar></Bay>
+      <Bay id="s4" n="03" title="Bloc réglages : langue et mode nuit dans un seul cadre" desc="Langue et interrupteur sont réunis dans un même rectangle à filet, séparés par un trait fin : on comprend que ce sont deux réglages du site. Plus compact, et ça libère de la place pour Profil et Déconnexion."><Bar><span className="hd-cluster"><span className="c1">🌐 FR <i>▾</i></span><span className="c2"><Sw /></span></span><Out /></Bar></Bay>
+      <Bay id="s5" n="04" title="Surfquest : le code de langue comme un titre" desc="« FR » en Surfquest, plus grand, souligné d'un trait épais, à côté de l'interrupteur. Le menu s'ouvre sur les codes en Surfquest avec le nom en petites capitales. Le plus typographique, très proche des titres du site."><Bar label="Fermé"><span className="hd-sf sf">FR<u /></span><Sw /><Out /></Bar>
+        <div className="hd-drop-wrap"><div className="hd-drop sfd">{LANGS.map((x, i) => <div key={x[0]} className={'row' + (i === 0 ? ' on' : '')}><b className="sf">{x[0]}</b><span>{x[1].toUpperCase()}</span></div>)}</div></div>
+      </Bay>
+      <Bay id="s6" n="05" title="Drapeaux carrés : reconnaissables sans lire" desc="Cinq petits drapeaux rectangulaires à angles droits (30 × 20 px), l'actif entouré d'un filet blanc épais et les autres légèrement estompés. Visuel, international, et sans texte à traduire."><Bar><span className="hd-flags">{LANGS.map((x, i) => <span key={x[0]} className={i === 0 ? 'on' : ''} title={x[1]}><Flag c={x[2]} /></span>)}</span><Sw /><Out /></Bar></Bay>
+      <Bay id="s7" n="06" title="Un seul bouton réglages (⚙) qui ouvre langue + mode nuit" desc="L'en-tête s'allège : il ne garde qu'un carré ⚙. Son panneau (double filet) contient la langue en segments, le mode nuit en interrupteur et, pourquoi pas plus tard, la taille du texte. Idéal quand on ajoute d'autres réglages."><Bar label="Fermé"><span className="hd-sq g">⚙</span><Out /></Bar>
+        <div className="hd-drop-wrap"><div className="hd-panel"><span className="t">Réglages</span><div className="r"><label>Langue</label><span className="hd-seg">{LANGS.map((x, i) => <span key={x[0]} className={i === 0 ? 'on' : ''}>{x[0]}</span>)}</span></div><div className="r"><label>Mode nuit</label><Sw /></div></div></div>
+      </Bay>
+      <Bay id="s8" n="07" title="Sur mobile : dans le menu, en segments pleine largeur" desc="Sur téléphone, la langue et le mode nuit quittent la barre du haut (déjà chargée) pour le menu : une rangée de 5 segments pleine largeur (zone du pouce) et l'interrupteur dessous. Même style que sur ordinateur."><div className="hd-phone"><div className="top"><span className="hd-logo sf">MEMORABILIUS</span><span className="hd-sp" /><Bell /><span className="burger">☰</span></div><div className="sheet"><span className="t">Réglages</span><label>Langue</label><span className="hd-seg hdw">{LANGS.map((x, i) => <span key={x[0]} className={i === 0 ? 'on' : ''}>{x[0]}</span>)}</span><label>Mode nuit</label><div className="sw-row"><Sw /><small>Sombre</small></div><span className="hd-out hdw">DÉCONNEXION</span></div></div></Bay>
     </div>
   )
 }
