@@ -608,8 +608,21 @@ export default function Viewer3D({ popup, accent, onClose, onNext, onPrev, getTa
     let raf = 0, pending = 0
     const schedule = (h: number) => { pending = h; if (!raf) raf = requestAnimationFrame(() => { raf = 0; applySheet(pending) }) }
     const flush = () => { if (raf) { cancelAnimationFrame(raf); raf = 0; applySheet(pending) } }
+    // elan : un geste rapide ("balancer") continue sur sa lancee, un vrai coup de pouce va jusqu'au bout
+    let anim = 0, lastY = 0, lastT = 0, vel = 0   // vel en px/ms, positif = vers le bas
+    const stopAnim = () => { if (anim) { cancelAnimationFrame(anim); anim = 0 } }
+    const glide = (from: number, to: number, ms: number) => {
+      const t0 = performance.now()
+      const step = (now: number) => {
+        const k = Math.min(1, (now - t0) / ms), e = 1 - Math.pow(1 - k, 3)
+        applySheet(from + (to - from) * e)
+        anim = k < 1 ? requestAnimationFrame(step) : 0
+      }
+      anim = requestAnimationFrame(step)
+    }
     const onStart = (e: TouchEvent) => {
       if (window.innerWidth > 600) return
+      stopAnim(); vel = 0; lastY = e.touches[0].clientY; lastT = performance.now()
       started = true; dragging = false
       y0 = e.touches[0].clientY
       h0 = sheetPx.current ?? el.offsetHeight
@@ -627,14 +640,26 @@ export default function Viewer3D({ popup, accent, onClose, onNext, onPrev, getTa
         if (inHead || (dy < 0 && !full) || (dy > 0 && el.scrollTop <= 0)) { dragging = true; y0 = y; h0 = sheetPx.current ?? h0 } else { started = false; return }
       }
       e.preventDefault()
+      const now = performance.now(), dt = now - lastT
+      if (dt > 0) vel = vel * 0.6 + ((y - lastY) / dt) * 0.4
+      lastY = y; lastT = now
       schedule(h0 - (y - y0))
     }
-    const onEnd = () => { flush(); started = false; dragging = false }
+    const onEnd = () => {
+      flush()
+      const was = dragging
+      started = false; dragging = false
+      if (!was || performance.now() - lastT > 90) return   // doigt reste immobile avant de lever : pas d'elan
+      const vh = layoutRef.current?.clientHeight || window.innerHeight
+      const cur = sheetPx.current ?? vh * 0.22
+      if (Math.abs(vel) > 0.55) glide(cur, vel < 0 ? vh : Math.round(vh * 0.2), 260)
+      else if (Math.abs(vel) > 0.12) glide(cur, Math.max(vh * 0.2, Math.min(vh, cur - vel * 220)), 320)
+    }
     el.addEventListener('touchstart', onStart, { passive: true })
     el.addEventListener('touchmove', onMove, { passive: false })
     el.addEventListener('touchend', onEnd)
     el.addEventListener('touchcancel', onEnd)
-    return () => { if (raf) cancelAnimationFrame(raf); el.removeEventListener('touchstart', onStart); el.removeEventListener('touchmove', onMove); el.removeEventListener('touchend', onEnd); el.removeEventListener('touchcancel', onEnd) }
+    return () => { if (raf) cancelAnimationFrame(raf); stopAnim(); el.removeEventListener('touchstart', onStart); el.removeEventListener('touchmove', onMove); el.removeEventListener('touchend', onEnd); el.removeEventListener('touchcancel', onEnd) }
   }, [applySheet])
   const [colOpen, setColOpen] = useState(false)
   const [jersey, setJersey] = useState<string | null>(null)
