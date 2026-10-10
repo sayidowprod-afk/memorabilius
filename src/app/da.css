@@ -674,28 +674,43 @@ html[data-theme="light"] .tcdb-imp-open { border-color: #06122e; color: #06122e;
 .sl-req-ok { padding: 8px 12px; border-left: 4px solid #3ddc97; background: rgba(61,220,151,.12); font-weight: 800; color: var(--text, #111); }
 .sl-req-ok button { margin-left: 10px; background: none; border: none; text-decoration: underline; cursor: pointer; color: inherit; font-weight: 700; }
 
-/* Page Setlist : en-tete compact (titre + compteur sur une ligne, sports en pastilles, actions en barre) */
-.sl-container .sl-titlebar { display: flex; align-items: baseline; gap: 14px; flex-wrap: wrap; margin-bottom: 12px; }
+/* Page Setlist : en-tete (titre + compteur, grille de sports reguliere, une barre stats + actions) */
+.sl-container .sl-titlebar { display: flex; align-items: baseline; gap: 14px; flex-wrap: wrap; margin-bottom: 14px; }
 .sl-container .sl-titlebar .sl-h1 { margin: 0; }
-.sl-container .sl-header-row { flex-direction: column !important; align-items: stretch !important; gap: 12px !important; margin-bottom: 18px !important; }
-.sl-container .sl-sport-grid { display: flex !important; flex-wrap: wrap; gap: 6px !important; }
-.sl-container .sl-sport-btn { width: auto !important; padding: 6px 14px !important; border-radius: 0 !important; }
+.sl-container .sl-header-row { flex-direction: column !important; align-items: stretch !important; gap: 14px !important; margin-bottom: 20px !important; }
+.sl-container .sl-sport-grid { display: grid !important; grid-template-columns: repeat(7, 1fr) !important; gap: 6px !important; }
+.sl-container .sl-sport-btn { width: 100% !important; padding: 9px 6px !important; border-radius: 0 !important; }
 .sl-container .sl-sport-label { font-size: 13px !important; }
-.sl-container .sl-actions { flex-direction: row !important; flex-wrap: wrap; align-items: center !important; gap: 8px !important; width: 100%; }
-.sl-container .sl-actions > button { width: auto; border-radius: 0 !important; padding: 9px 16px !important; font-size: 12px !important; letter-spacing: .08em; text-transform: uppercase; }
-.sl-container .sl-stats-box { flex: 1 1 100%; min-width: 0 !important; padding: 0 !important; background: none !important; flex-direction: row !important; flex-wrap: wrap; align-items: center !important; gap: 10px !important; border-radius: 0 !important; }
-.sl-container .sl-stats-box .sl-ticket { flex: 1 1 340px; max-width: 520px; }
-.sl-container .sl-stats-box .sl-ticket-b b { font-size: 34px; }
-.sl-container .sl-stats-box .sl-ticket-b > div { padding: 8px 14px; }
-.sl-container .sl-stats-box > button { width: auto !important; flex: 0 0 auto; padding: 8px 14px !important; font-size: 12px !important; border-radius: 0 !important; }
-/* Import TCDB : le bouton se range dans la barre d'actions, le panneau prend toute la largeur dessous */
-.tcdb-imp { display: contents; }
-.tcdb-imp-open { align-self: auto; }
-.tcdb-imp-body { flex: 1 1 100%; order: 20; max-width: 760px; }
-.sl-container .sl-actions .sl-stats-box { order: 10; }
-@media (max-width: 767px) {
-  .sl-container .sl-sport-grid { flex-wrap: nowrap; overflow-x: auto; padding-bottom: 4px; scrollbar-width: none; }
-  .sl-container .sl-sport-grid::-webkit-scrollbar { display: none; }
-  .sl-container .sl-sport-btn { flex: 0 0 auto; }
-  .sl-container .sl-actions > button { flex: 1 1 auto; }
+.tcdb-imp { display: block; grid-column: 1 / -1; }
+.tcdb-imp-body { margin: 0; padding: 14px 16px; border: 0; border-top: 2px solid rgba(255,255,255,.25); background: rgba(255,255,255,.04); max-width: none; }
+.tcdb-imp-body, .tcdb-imp-body * { color: #fff; }
+.tcdb-imp-body .tcdb-imp-go { color: #06122e; }
+.tcdb-imp-body .tcdb-imp-err { color: #ff8a8d; }
+.sl-bar { display: grid; grid-template-columns: 1fr auto; align-items: stretch; border: 3px solid rgba(255,255,255,.85); background: linear-gradient(135deg, #050912 0%, #08153b 60%, #0a2468 100%); }
+.sl-bar, .sl-bar * { color: #fff; }
+.sl-bar-stats { display: flex; align-items: center; gap: 0; flex-wrap: wrap; min-width: 0; }
+.sl-bar-num { padding: 12px 22px; border-right: 2px solid rgba(255,255,255,.22); }
+.sl-bar-num b { display: block; font-size: 34px; line-height: .9; font-weight: 400; }
+.sl-bar-num small { display: block; margin-top: 4px; font: 800 10px system-ui, sans-serif; letter-spacing: .12em; text-transform: uppercase; opacity: .8; }
+.sl-bar-detail { padding: 12px 22px; display: flex; flex-direction: column; gap: 4px; font: 600 12px system-ui, sans-serif; opacity: .95; min-width: 0; }
+.sl-bar-link { align-self: flex-start; padding: 0; background: none; border: 0; border-bottom: 2px solid #fff; color: #fff !important; font: 800 12px system-ui, sans-serif; letter-spacing: .04em; cursor: pointer; }
+.sl-bar-btns { display: flex; align-items: center; gap: 8px; padding: 12px 16px; border-left: 2px solid rgba(255,255,255,.22); }
+.sl-btn { padding: 10px 16px; border: 3px solid #fff; background: transparent; color: #fff !important; font: 800 12px system-ui, sans-serif; letter-spacing: .08em; text-transform: uppercase; cursor: pointer; border-radius: 0; white-space: nowrap; }
+.sl-btn.primary { background: #fff; color: #06122e !important; }
+.sl-btn:disabled { opacity: .6; cursor: default; }
+.sl-bar-progress { grid-column: 1 / -1; height: 5px; background: rgba(255,255,255,.18); }
+.sl-bar-progress i { display: block; height: 100%; background: #fff; transition: width .3s; }
+@media (max-width: 900px) {
+  .sl-container .sl-sport-grid { grid-template-columns: repeat(4, 1fr) !important; }
 }
+@media (max-width: 767px) {
+  .sl-bar { grid-template-columns: 1fr; }
+  .sl-bar-btns { border-left: 0; border-top: 2px solid rgba(255,255,255,.22); }
+  .sl-bar-btns .sl-btn { flex: 1 1 0; padding: 10px 8px; }
+  .sl-bar-num { padding: 10px 14px; }
+  .sl-bar-num b { font-size: 28px; }
+  .sl-bar-detail { padding: 8px 14px 10px; flex: 1 1 100%; }
+  .sl-container .sl-sport-grid { grid-template-columns: repeat(3, 1fr) !important; }
+}
+.sl-noscroll { scrollbar-width: none; }
+.sl-noscroll::-webkit-scrollbar { display: none; }

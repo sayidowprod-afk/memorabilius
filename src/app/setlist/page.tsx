@@ -62,6 +62,7 @@ export default function SetlistPage() {
   const [showOnlyOwned, setShowOnlyOwned] = useState(false)
   const [sortSets, setSortSets] = useState<'az' | 'pct_desc' | 'pct_asc'>('az')
   const [syncing, setSyncing] = useState(false)
+  const [importOpen, setImportOpen] = useState(false)
   const [syncProgress, setSyncProgress] = useState(0)
   const [syncDone, setSyncDone] = useState(false)
   const [newMatchCount, setNewMatchCount] = useState(0)
@@ -544,6 +545,22 @@ export default function SetlistPage() {
       return a.name.localeCompare(b.name)
     })
 
+  // Ouvre la liste des cartes non placees (apres avoir retire celles deja placees a la main depuis la derniere synchro)
+  const openUnplaced = async () => {
+    if (userId && unmatchedCards.length > 0) {
+      const { data: placed } = await supabase.from('user_set_completion').select('entry_id').eq('user_id', userId)
+      if (placed?.length) {
+        const placedIds = new Set(placed.map((r: any) => r.entry_id))
+        const stillUnmatched = unmatchedCards.filter(c => !c.candidates?.some((cd: any) => placedIds.has(cd.entryId)))
+        if (stillUnmatched.length !== unmatchedCards.length) {
+          setUnmatchedCards(stillUnmatched)
+          saveUnmatched(stillUnmatched)
+        }
+      }
+    }
+    setShowMissing(true)
+  }
+
   return (
     <>
     <style>{`
@@ -611,62 +628,25 @@ export default function SetlistPage() {
         </div>
 
         {userId && (
-          <div className="sl-actions">
-            <TcdbImportPanel onImported={() => loadSets()} />
-            <button
-              onClick={syncAll}
-              disabled={syncing}
-              style={{ padding: '11px 22px', borderRadius: 12, border: 'none', background: syncing ? '#ccc' : '#003DA6', color: syncing ? '#666' : 'white', fontWeight: 800, fontSize: 14, cursor: syncing ? 'default' : 'pointer' }}
-            >
-              {syncing ? `${t('setlist_syncing')} ${syncProgress}%` : t('setlist_sync_btn')}
-            </button>
-            {syncing && (
-              <div style={{ height: 6, borderRadius: 3, background: dark ? '#333' : '#f0f0f0', overflow: 'hidden' }}>
-                <div style={{ height: '100%', width: `${syncProgress}%`, background: '#003DA6', borderRadius: 3, transition: 'width 0.3s' }} />
-              </div>
-            )}
-            {/* Stats toujours visibles dès que les sets sont chargés */}
+          <div className="sl-bar">
             {!loading && (
-              <div className="sl-stats-box" style={{ background: dark ? '#1a2440' : '#f0f4ff', borderRadius: 12, padding: '12px 18px', fontSize: 14, display: 'flex', flexDirection: 'column', gap: 6 }}>
-                {/* ticket de resultat : cartes inscrites au total + nouvelles de la derniere synchro, detail et cartes non placees */}
-                <div className="sl-ticket">
-                  <div className="sl-ticket-h">{syncDone ? 'Synchronisation terminée' : 'Mes setlists'}</div>
-                  <div className="sl-ticket-b">
-                    <div><b className="da-display">{totalOwnedAllSets.toLocaleString()}</b><small>{t('setlist_cards_synced')}</small></div>
-                    <div><b className="da-display">{syncDone ? `+${newMatchCount}` : setsWithCards}</b><small>{syncDone ? t(newMatchCount !== 1 ? 'setlist_new_match_other' : 'setlist_new_match_one') : `setlist${setsWithCards !== 1 ? 's' : ''}`}</small></div>
-                  </div>
-                  <div className="sl-ticket-f">
-                    {completionSplit ? `dont ${completionSplit.auto.toLocaleString()} par synchronisation · ${completionSplit.manual.toLocaleString()} cochées à la main` : ''}
-                    {syncDone ? ` — ${t('setlist_in')} ${setsWithCards} setlist${setsWithCards !== 1 ? 's' : ''}` : ''}
-                  </div>
+              <div className="sl-bar-stats">
+                <div className="sl-bar-num"><b className="da-display">{totalOwnedAllSets.toLocaleString()}</b><small>{t('setlist_cards_synced')}</small></div>
+                <div className="sl-bar-num"><b className="da-display">{syncDone ? `+${newMatchCount}` : setsWithCards}</b><small>{syncDone ? t(newMatchCount !== 1 ? 'setlist_new_match_other' : 'setlist_new_match_one') : `setlist${setsWithCards !== 1 ? 's' : ''}`}</small></div>
+                <div className="sl-bar-detail">
+                  {completionSplit ? <span>{completionSplit.auto.toLocaleString()} par synchro · {completionSplit.manual.toLocaleString()} cochées à la main</span> : null}
+                  <button type="button" className="sl-bar-link" onClick={openUnplaced}>{syncDone ? `${t('setlist_see_unplaced')} (${unmatchedCards.length})` : `${t('setlist_see_unplaced')} →`}</button>
                 </div>
-                <button
-                  onClick={async () => {
-                    // Retire du localStorage les cartes déjà placées manuellement depuis la dernière synchro
-                    if (userId && unmatchedCards.length > 0) {
-                      const { data: placed } = await supabase
-                        .from('user_set_completion')
-                        .select('entry_id')
-                        .eq('user_id', userId)
-                      if (placed?.length) {
-                        const placedIds = new Set(placed.map((r: any) => r.entry_id))
-                        const stillUnmatched = unmatchedCards.filter(c =>
-                          !c.candidates?.some((cd: any) => placedIds.has(cd.entryId))
-                        )
-                        if (stillUnmatched.length !== unmatchedCards.length) {
-                          setUnmatchedCards(stillUnmatched)
-                          saveUnmatched(stillUnmatched)
-                        }
-                      }
-                    }
-                    setShowMissing(true)
-                  }}
-                  style={{ marginTop: 4, padding: '7px 14px', borderRadius: 8, border: '1.5px solid #003DA6', background: dark ? '#1e1e1e' : 'white', color: '#003DA6', fontWeight: 700, fontSize: 13, cursor: 'pointer' }}
-                >
-                  {syncDone ? `${t('setlist_see_unplaced')} (${unmatchedCards.length})` : `${t('setlist_see_unplaced')} →`}
-                </button>
               </div>
             )}
+            <div className="sl-bar-btns">
+              <button type="button" className="sl-btn primary" onClick={syncAll} disabled={syncing}>
+                {syncing ? `${t('setlist_syncing')} ${syncProgress}%` : t('setlist_sync_btn')}
+              </button>
+              <button type="button" className="sl-btn" onClick={() => setImportOpen(o => !o)}>{importOpen ? '✕ Fermer' : '⬆ Importer TCDB (PDF)'}</button>
+            </div>
+            {syncing && <div className="sl-bar-progress"><i style={{ width: `${syncProgress}%` }} /></div>}
+            <TcdbImportPanel open={importOpen} onImported={() => loadSets()} />
           </div>
         )}
       </div>

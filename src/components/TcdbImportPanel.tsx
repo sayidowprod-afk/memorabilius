@@ -11,8 +11,7 @@ interface Result {
 }
 
 // Import d'une collection TCDB depuis son PDF imprimable : on analyse d'abord (rien n'est ecrit), puis on confirme.
-export default function TcdbImportPanel({ onImported }: { onImported?: () => void }) {
-  const [open, setOpen] = useState(false)
+export default function TcdbImportPanel({ open, onImported }: { open: boolean; onImported?: () => void }) {
   const [busy, setBusy] = useState(false)
   const [res, setRes] = useState<Result | null>(null)
   const [done, setDone] = useState(false)
@@ -37,7 +36,6 @@ export default function TcdbImportPanel({ onImported }: { onImported?: () => voi
 
   return (
     <div className="tcdb-imp">
-      <button type="button" className="tcdb-imp-open" onClick={() => setOpen(o => !o)}>{open ? '✕ Fermer' : '⬆ Importer depuis TCDB (PDF)'}</button>
       {open && (
         <div className="tcdb-imp-body">
           <p className="tcdb-imp-help">Sur TCDB, ouvre ta collection ou un set, clique sur <b>Print</b> / imprimer, enregistre en PDF (« Collection Print », « Your Collection »), puis dépose-le ici. Les cartes retrouvées sont cochées à la main dans tes setlists et ne seront jamais effacées par la synchro.</p>
