@@ -126,6 +126,9 @@ async function solverrGet(url) {
     req.write(payload); req.end()
   })
 }
+// Titres des pages d'interstitiel Cloudflare. Pas de simple "includes('instant')" : le titre d'un vrai set TCDB comme
+// "2025-26 Panini Instant Turkish Airlines EuroLeague" declenchait une fausse alerte captcha et bloquait le scrape.
+const isCfTitle = title => /^(just a moment|un instant|attention required|verify you are human|checking your browser|please wait|vérification|verification)/i.test((title || '').trim()) || /captcha/i.test(title || '')
 async function waitCF(page, url) {
   const sol = await solverrGet(url)
   if (sol) {
@@ -135,7 +138,7 @@ async function waitCF(page, url) {
     await page.goto(url, { waitUntil: 'domcontentloaded', timeout: 30000 })
     const t = await page.title().catch(() => '')
     const tl = t.toLowerCase()
-    if (!tl.includes('instant') && !tl.includes('moment') && !tl.includes('attention') && !tl.includes('captcha')) return
+    if (!isCfTitle(t)) return
     console.log(`  ⚠️  Encore bloqué — chargement HTML FlareSolverr (${sol.response?.length || 0} chars)`)
     if (sol.response) { await page.setContent(sol.response, { waitUntil: 'domcontentloaded' }); return }
   }
@@ -143,7 +146,7 @@ async function waitCF(page, url) {
   for (let i = 0; i < 150; i++) {
     const t = await page.title().catch(() => '')
     const tl = t.toLowerCase()
-    if (!tl.includes('instant') && !tl.includes('moment') && !tl.includes('attention') && !tl.includes('captcha') && !tl.includes('verify') && !tl.includes('checking')) break
+    if (!isCfTitle(t)) break
     if (i === 0) console.log('\n⚠️  CAPTCHA dans la fenêtre Chrome — résous-le manuellement (5 min max)...')
     await sleep(2000)
   }
