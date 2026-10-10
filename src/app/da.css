@@ -562,3 +562,13 @@ button.cdj-btn { cursor: pointer; }
 .cdj-wd a { position: absolute; inset: 0; display: block; } .cdj-wd img { width: 100%; height: 100%; object-fit: cover; display: block; border-radius: 0; background: none !important; animation: none !important; }
 .cdj-wd b { font-size: 26px; font-weight: 400; opacity: .4; }
 .cdj-wd small { position: absolute; left: 0; right: 0; bottom: -19px; text-align: center; font: 800 9px system-ui, sans-serif; letter-spacing: .12em; text-transform: uppercase; opacity: .7; }
+
+/* ── Mobile / ecrans tactiles : on coupe tout ce qui bouge ou se melange (effet "spasme" sur l'accueil deconnecte) ──
+   mur de cartes qui defile (30 images animees + rotation), grain en mix-blend-mode sur la banniere, bandeau defilant rapide. */
+@media (hover: none), (pointer: coarse), (max-width: 820px) {
+  .hero-wall { display: none !important; }
+  .mb-hero::after, .da-grain::after { display: none !important; mix-blend-mode: normal !important; }
+  .da-ticker > div { animation-duration: 140s !important; will-change: transform; transform: translateZ(0); backface-visibility: hidden; }
+  .halo::before { animation: none !important; }
+  .holo-light { transition: none !important; }
+}
