@@ -4,7 +4,7 @@ import Link from 'next/link'
 
 // Idees visuelles pour pousser la nouvelle DA (Surfquest, marine -> bleu electrique, angles droits, doubles filets, metaux).
 // Page de TRAVAIL reservee aux admins : donnees d'exemple en dur, rien n'est lu ni ecrit.
-// Serie 20 : visualiseur aere, couleur d equipe, meme contenu (ordinateur + mobile). Tout le style est ici, prefixe .ix.
+// Serie 21 : visualiseur compact, structure reelle du panneau, couleur d equipe (ordinateur + mobile). Tout le style est ici, prefixe .ix.
 
 const SB = 'https://snnrkzbevjhdtviizfyp.supabase.co/storage/v1/object/public/avatars/cartes/eb730dee-414e-4fcb-89d8-4a7b3448c218/'
 const C = {
@@ -289,6 +289,46 @@ const CSS = `
 .ix .scr3.wide .fq.q5 { display: grid; grid-template-columns: 1fr 1fr; column-gap: 26px; row-gap: 22px; } .ix .scr3.wide .fq.q5 .band, .ix .scr3.wide .fq.q5 header { grid-column: 1 / -1; } .ix .scr3.wide .fq.q5 .sec2.last { grid-column: 1 / -1; }
 /* q6 mobile d'abord : les actions montent sous l'identite */
 .ix .fq.q6 > * { order: 3; } .ix .fq.q6 .band { order: 0; } .ix .fq.q6 header { order: 1; } .ix .fq.q6 .hv { order: 2; } .ix .fq.q6 .sec2.last { order: 2; } .ix .fq.q6 .hv { border-bottom: 0; padding-bottom: 0; }
+/* serie 21 : structure reelle, compacte, couleur d'equipe */
+.ix .pair { display: flex; gap: 18px; align-items: flex-start; flex-wrap: wrap; }
+.ix .scr4 { display: flex; width: 780px; max-width: 100%; border: 3px solid #fff; background: #060b1a; overflow: hidden; align-items: stretch; }
+.ix .stg4 { flex: 1; position: relative; display: flex; align-items: center; justify-content: center; background: #05080f; min-width: 0; min-height: 560px; }
+.ix .stg4 .vc { height: 400px; position: relative; z-index: 1; }
+.ix .cl { position: absolute; top: 10px; right: 10px; z-index: 3; width: 28px; height: 28px; display: flex; align-items: center; justify-content: center; border-radius: 50%; background: rgba(255,255,255,.14); font: 800 14px system-ui; } .ix .cl.s { width: 22px; height: 22px; top: 6px; right: 6px; font-size: 12px; }
+.ix .nv { position: absolute; bottom: 10px; right: 10px; display: flex; gap: 6px; z-index: 3; } .ix .nv span { width: 30px; height: 30px; display: flex; align-items: center; justify-content: center; border-radius: 50%; background: rgba(255,255,255,.14); font-size: 13px; }
+.ix .pan4 { width: 380px; flex-shrink: 0; background: #0a1330; border-left: 1px solid rgba(255,255,255,.25); }
+.ix .scr4.wide .pan4 { width: 440px; }
+.ix .phn5 { width: 230px; height: 760px; border: 4px solid #fff; background: #05080f; display: flex; flex-direction: column; overflow: hidden; flex-shrink: 0; }
+.ix .pt5 { flex: 0 0 150px; position: relative; display: flex; align-items: center; justify-content: center; background: #05080f; } .ix .pt5 .vc { height: 126px; }
+.ix .ps5 { flex: 1; min-height: 0; position: relative; overflow: hidden; background: #0a1330; border-top: 1px solid rgba(255,255,255,.35); } .ix .ps5:after { content: ''; position: absolute; left: 0; right: 0; bottom: 0; height: 70px; background: linear-gradient(transparent, #0a1330); pointer-events: none; }
+.ix .phn5 .grip { width: 36px; height: 3px; background: rgba(255,255,255,.5); margin: 6px auto 0; }
+
+.ix .rp { position: relative; padding: 0 20px 18px; display: flex; flex-direction: column; gap: 10px; font-size: 13px; color: #e8eefc; line-height: 1.4; }
+.ix .rp * { box-sizing: border-box; }
+.ix .rp .band { height: 5px; margin: 0 -20px 6px; background: linear-gradient(90deg, #c8102e 0 62%, #1d428a 62% 100%); }
+.ix .rp .k { font: 800 11px system-ui; letter-spacing: .14em; text-transform: uppercase; color: #ff6b82; }
+.ix .rp .n { font-size: 28px; line-height: 1; margin: 0; font-weight: 400; }
+.ix .rp .dz { font-size: 11.5px; color: rgba(255,255,255,.5); margin-bottom: 4px; }
+.ix .rp .ig { display: grid; grid-template-columns: 1fr 1fr; gap: 8px 16px; padding: 10px 0; border-top: 1px solid rgba(255,255,255,.12); } .ix .rp .ig.four { grid-template-columns: repeat(4, 1fr); gap: 8px; }
+.ix .rp .ig small, .ix .rp label { display: block; font: 700 10px system-ui; letter-spacing: .12em; text-transform: uppercase; color: rgba(255,255,255,.5); margin: 0 0 2px; } .ix .rp .ig b { font-size: 13px; font-weight: 700; }
+.ix .rp .loc { font-size: 12px; color: rgba(255,255,255,.7); margin-top: -4px; }
+.ix .rp .sc { padding-top: 10px; border-top: 1px solid rgba(255,255,255,.12); } .ix .rp .sc.inl { display: flex; align-items: center; gap: 10px; } .ix .rp .sc.inl label { margin: 0; }
+.ix .rp .chs { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 6px; } .ix .rp .chs span { padding: 3px 10px; border: 1px solid rgba(255,255,255,.28); font: 600 12px system-ui; background: transparent; display: inline; } .ix .rp .chs .on { background: #1d428a; border-color: #1d428a; } .ix .rp .chs .add { border-style: dashed; color: rgba(255,255,255,.65); }
+.ix .rp .stl { font-size: 12px; color: rgba(255,255,255,.6); border: 1px dashed rgba(255,255,255,.25); padding: 4px 10px; flex: 1; }
+.ix .rp .ab { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; } .ix .rp .ab span { display: flex; align-items: center; justify-content: center; gap: 6px; padding: 12px 6px; border: 1px solid rgba(255,255,255,.3); font: 700 12.5px system-ui; text-align: center; } .ix .rp .ab span i { font-style: normal; } .ix .rp .ab span:first-child { background: #1d428a; border-color: #1d428a; } .ix .rp .ab .del { color: #ff8a8d; border-color: rgba(255,138,141,.5); } .ix .rp .ab .exp { background: #060b1a; }
+.ix .rp .ab.three { grid-template-columns: repeat(3, 1fr); gap: 6px; } .ix .rp .ab.three span { flex-direction: column; gap: 2px; padding: 9px 2px; font-size: 11px; }
+.ix .rp .ab.row6 { grid-template-columns: repeat(6, 1fr); gap: 4px; position: sticky; bottom: 0; margin: 0 -20px -18px; padding: 8px 20px 10px; background: #0a1330; border-top: 1px solid rgba(255,255,255,.3); } .ix .rp .ab.row6 span { flex-direction: column; gap: 1px; padding: 6px 0; font-size: 8.5px; border-color: rgba(255,255,255,.25); background: none !important; } .ix .rp .ab.row6 span i { font-size: 15px; }
+.ix .rp .inp { border: 1px solid rgba(255,255,255,.4); padding: 3px 14px; font-size: 14px; font-weight: 700; min-width: 74px; } .ix .rp .pv { font-size: 11px; color: rgba(255,255,255,.6); display: inline-flex; align-items: center; gap: 5px; } .ix .rp .pv i { width: 8px; height: 8px; background: #888; display: inline-block; }
+.ix .rp .mk { display: flex; align-items: baseline; gap: 8px; flex-wrap: wrap; } .ix .rp .mk label { margin: 0; } .ix .rp .mp { font-size: 18px; color: #ff6b82; font-weight: 700; } .ix .rp .mk small { font-size: 11px; color: rgba(255,255,255,.55); } .ix .rp .lk { margin-left: auto; display: flex; gap: 6px; } .ix .rp .lk i { font-style: normal; font: 700 10.5px system-ui; padding: 3px 9px; border: 1px solid rgba(255,255,255,.4); } .ix .rp .lk .o { background: #f08a00; border-color: #f08a00; color: #06122e !important; }
+.ix .lst { display: flex; gap: 6px; overflow: hidden; } .ix .lst > div { flex: 0 0 62px; border: 1px solid rgba(255,255,255,.2); padding: 3px; background: #08122b; } .ix .lst > div.best { border-color: #3ddc97; } .ix .lst img { width: 100%; aspect-ratio: 2.5/3.5; object-fit: cover; display: block; } .ix .lst b { display: block; font-size: 11px; color: #ff6b82; margin-top: 2px; } .ix .lst small { display: block; font-size: 9px; color: rgba(255,255,255,.5); } .ix .lst .best b { color: #3ddc97; } .ix .lst .best small { color: #3ddc97; }
+/* compact (mobile) */
+.ix .rp.cr { padding: 0 12px 14px; gap: 8px; font-size: 12px; } .ix .rp.cr .band { margin: 0 -12px 4px; } .ix .rp.cr .n { font-size: 22px; } .ix .rp.cr .ab span { padding: 9px 3px; font-size: 10.5px; } .ix .rp.cr .ab.row6 { margin: 0 -12px -14px; padding: 6px 12px 8px; } .ix .rp.cr .ab.three span { font-size: 9.5px; } .ix .rp.cr .ig.four { grid-template-columns: 1fr 1fr; } .ix .rp.cr .lst > div { flex-basis: 50px; }
+/* r4 jauge marche */
+.ix .rp.r4 .mk:after { content: ''; flex: 1 1 100%; height: 6px; background: linear-gradient(90deg, rgba(255,255,255,.15), rgba(255,255,255,.15)); position: relative; margin-top: 4px; }
+/* petites idees */
+.ix .mini2 { max-width: 560px; padding: 14px; border: 1px solid rgba(255,255,255,.25); background: #0a1330; } .ix .mini2 .ln { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; } .ix .mini2 .inp { border: 1px solid rgba(255,255,255,.4); padding: 4px 14px; font-weight: 700; } .ix .mini2 .mp { font-size: 18px; color: #ff6b82; } .ix .mini2 .eqs { opacity: .6; } .ix .mini2 small { font-size: 12px; opacity: .65; }
+.ix .swt { position: relative; width: 52px; height: 26px; border: 3px solid #fff; display: inline-block; } .ix .swt i { position: absolute; left: 2px; top: 2px; width: 16px; height: 16px; background: #fff; }
+.ix .srch { border: 1px solid rgba(255,255,255,.35); padding: 8px 12px; font-size: 13px; opacity: .8; }
 `
 function Bay({ id, n, title, desc, children }: { id: string; n: string; title: string; desc: string; children: React.ReactNode }) {
   return (
@@ -302,80 +342,75 @@ function Bay({ id, n, title, desc, children }: { id: string; n: string; title: s
 }
 
 const ALL = [C.mccain, C.edwards, C.maxey, C.hawkins, C.mcw, C.luwawu]
+const COLS = ['Allen Iverson', 'Autre', 'Ben Simmons', 'F1', 'Football', 'Frenchies', 'Iguodala', 'James Harden', 'Jared McCain', 'Joel Embiid', 'Kelly Oubre Jr.', 'Memorabilia', 'Old School', 'Paul George']
 
-// Meme contenu que le panneau actuel, mais hierarchise : identite, details, ma carte, valeur, actions. Couleur = equipe de la carte (76ers ici).
+// Structure REELLE du panneau actuel (proprietaire) : equipe, nom, designation, infos, localisation, collections, setlist, 6 boutons, valeur (+ prive), marche (130pt / eBay, annonces en vente)
 function Panel({ v, compact }: { v: string; compact?: boolean }) {
-  const rows: [string, string][] = [['Année', '2024-25'], ['Numérotation', '/149'], ['Grade', 'Brut'], ['Collection', 'Panini Contenders'], ['Variation', 'Rookie Ticket'], ['Signé par', 'Jared McCain'], ['Note', 'Pièce de mon PC Sixers']]
-  const acts: [string, string][] = [['✏️', 'Modifier'], ['🏷', 'À vendre'], ['✓', 'Vendue'], ['🔗', 'Partager'], ['⬇', 'Exporter'], ['🗑', 'Supprimer']]
-  const num = (i: number, t: string) => (v === 'q2' ? <h4 className="sh"><i>{`0${i}`}</i>{t}</h4> : <h4 className="sh">{t}</h4>)
+  const acts: [string, string][] = [['✏️', 'Modifier'], ['🏷', 'Mettre en vente / trade'], ['🔗', 'Partager'], ['💰', 'Marquer vendue'], ['⬇', 'Exporter'], ['🗑', 'Supprimer']]
+  const folded = v === 'r2' || v === 'r6'
   return (
-    <div className={`fq ${v}${compact ? ' cq' : ''}`}>
+    <div className={`rp ${v}${compact ? ' cr' : ''}`}>
       <div className="band" />
-      <header>
-        <span className="k">Philadelphia 76ers</span>
-        <h3 className="n sf">Jared McCain</h3>
-        <div className="vr">Rookie Ticket Autographs</div>
-        <div className="dz">2024-25 Panini Contenders Rookie Ticket Variation #12 Jared McCain</div>
-        <div className="tg2"><span className="rc">RC</span><span className="au">AUTO</span><span className="nu">/149</span></div>
-      </header>
-      {(v === 'q3' || v === 'q6') && <div className="hv"><div><small>Valeur estimée</small><b className="sf">45 €</b></div><svg viewBox="0 0 120 34" preserveAspectRatio="none"><polyline points="0,28 20,24 40,26 60,16 80,18 100,8 120,4" fill="none" stroke="#3ddc97" strokeWidth="2.5" /></svg></div>}
-      <div className="sec2">
-        {num(1, 'Détails')}
-        <dl className="dl">{rows.map(r => <div key={r[0]}><dt>{r[0]}</dt><dd>{r[1]}</dd></div>)}</dl>
-        <div className="loc">📍 Classeur Rookies · p.4 · A3</div>
+      <span className="k">Philadelphia 76ers</span>
+      <h3 className="n sf">Ron Anderson</h3>
+      <div className="dz">1991-92 SkyBox Base #210 Ron Anderson</div>
+      <div className={`ig${v === 'r5' ? ' four' : ''}`}>
+        <div><small>Année</small><b>1991-92</b></div>
+        <div><small>Numérotation</small><b>N/A</b></div>
+        <div><small>Grade</small><b>Raw</b></div>
+        <div><small>Collection</small><b>SkyBox Base</b></div>
       </div>
-      <div className="sec2">
-        {num(2, 'Ma carte')}
-        <div className="line"><span className="lb">Mes collections</span><span className="ch"><i>Rookies ✕</i><i>Sixers ✕</i><i className="add">+ Ajouter</i></span></div>
-        <div className="line"><span className="lb">🃏 Setlist</span><span className="st">2024-25 Contenders · #12 <u>Changer</u> <u>Retirer</u></span></div>
+      <div className="loc">📍 <b>Binder 76ers</b> · p.45 · A3</div>
+      <div className="sc"><label>Mes collections</label>
+        {folded
+          ? <div className="chs"><span className="on">✓ Philadelphia 76ers</span><span className="add">Gérer · 18</span></div>
+          : <div className="chs">{COLS.map(c => <span key={c}>{c}</span>)}<span className="on">✓ Philadelphia 76ers</span><span className="add">+ Nouvelle</span></div>}
       </div>
-      {v !== 'q3' && (
-        <div className="sec2">
-          {num(3, 'Valeur')}
-          <div className="vl"><span className="inp">45</span><b>€</b><span className="eb2">eBay · 38 – 52 €</span></div>
-        </div>
-      )}
-      <div className="sec2">
-        {num(4, 'Autres collectionneurs de cette carte')}
-        <div className="avs2"><i style={{ background: '#e63a6e' }}>K</i><i style={{ background: '#2f6bff' }}>T</i><i style={{ background: '#1f9d55' }}>B</i><em>+2</em></div>
-      </div>
-      <div className="sec2 last">
-        {num(5, 'Actions')}
-        <div className={`ac2${v === 'q4' ? ' icons' : ''}`}>{acts.map(a => <span key={a[1]} className={a[1] === 'Supprimer' ? 'del' : ''}><i>{a[0]}</i>{a[1]}</span>)}</div>
-        <div className="vis2"><small>Vue visiteur</small><span className="pri">Proposer un échange</span><span>Ajouter à ma galerie</span><span>🤍 18</span></div>
+      <div className="sc inl"><label>🃏 Setlist</label><span className="stl">+ Placer dans un set</span></div>
+      <div className={`ab${v === 'r3' ? ' three' : ''}${v === 'r6' ? ' row6' : ''}`}>{acts.map(a => <span key={a[1]} className={a[1] === 'Supprimer' ? 'del' : a[1] === 'Exporter' ? 'exp' : ''}><i>{a[0]}</i>{a[1]}</span>)}</div>
+      <div className="sc inl"><label>Valeur est.</label><span className="inp">1 €</span><span className="pv"><i /> Privé</span></div>
+      <div className="sc">
+        <div className="mk"><label>Marché</label><b className="mp">1 €</b><small>demandé (méd.)</small><span className="lk"><i className="o">130pt ↗</i><i>eBay ↗</i></span></div>
+        <label style={{ marginTop: 8 }}>En vente (20)</label>
+        <div className="lst">{[...ALL, ...ALL].slice(0, 7).map((c, i) => <div key={i}><img src={c.img} alt="" /><b>{i < 4 ? '0.99 €' : '1 €'}</b><small>En vente</small></div>)}</div>
       </div>
     </div>
   )
 }
 const Desk = ({ v, wide }: { v: string; wide?: boolean }) => (
-  <div className={`scr3 ${v}${wide ? ' wide' : ''}`}>
-    <div className="stg3"><div className="cl">× Fermer</div><img className="vc" src={C.mccain.img} alt="" /><div className="nv"><span>‹</span><span>🔍 Loupe</span><span>↻ Retourner</span><span>›</span></div></div>
-    <div className="pan3"><Panel v={v} /></div>
+  <div className={`scr4 ${v}${wide ? ' wide' : ''}`}>
+    <div className="stg4"><div className="cl">×</div><img className="vc" src={C.hawkins.img} alt="" /><div className="nv"><span>🔍</span><span>↻</span></div></div>
+    <div className="pan4"><Panel v={v} /></div>
   </div>
 )
 const Phone = ({ v }: { v: string }) => (
-  <div className={`phn4 ${v}`}>
-    <div className="pt4"><div className="cl s">×</div><img className="vc" src={C.mccain.img} alt="" /></div>
-    <div className="ps4"><div className="grip" /><Panel v={v} compact /></div>
+  <div className={`phn5 ${v}`}>
+    <div className="pt5"><div className="cl s">×</div><img className="vc" src={C.hawkins.img} alt="" /></div>
+    <div className="ps5"><div className="grip" /><Panel v={v} compact /></div>
   </div>
 )
 
 export default function DaIdeas() {
-  const names = ['Respire', 'Sections numérotées', 'Valeur en vedette', 'Actions en icônes', 'Panneau large en 2 colonnes', 'Mobile d’abord']
+  const names = ['Comme aujourd’hui, en DA', 'Collections repliées', 'Actions 3 × 2', 'Marché en vedette', 'Infos sur 4 colonnes', 'Actions en barre fixe', 'Valeur et marché', 'Interrupteur Privé', 'Annonces triées', 'Collections rapides']
   return (
     <div className="ix">
       <style>{CSS}</style>
       <Link href="/admin" className="back">← Admin</Link>
-      <h1 className="sf">Idées · Série 20 · Visualiseur aéré, couleur d&apos;équipe</h1>
-      <p className="lead">On garde la couleur de l&apos;équipe de la carte (ici les 76ers : rouge et bleu, bleu neutre si l&apos;équipe est inconnue) et TOUT le contenu actuel, mais on aère : plus de gros cadres, plus de gras partout. Une hiérarchie claire (identité, détails, ma carte, valeur, actions), des listes sobres à filets fins, des libellés petits et discrets, beaucoup d&apos;espace entre les blocs. Chaque version est montrée sur ordinateur et sur téléphone.</p>
+      <h1 className="sf">Idées · Série 21 · Visualiseur compact, structure réelle</h1>
+      <p className="lead">Cette fois la maquette suit EXACTEMENT ton panneau actuel : équipe, nom, désignation, infos en 2 colonnes (libellé au-dessus de la valeur, comme tu l&apos;aimes), localisation, Mes collections, Setlist, les 6 boutons, Valeur est. avec « Privé », et tout le bloc Marché (130pt, eBay, annonces en vente). La couleur d&apos;équipe de la carte et la nouvelle DA, mais compact : on gagne de la place sur chaque bloc. Puis quelques nouvelles idées (07 à 10). Chaque version est montrée sur ordinateur et téléphone.</p>
       <nav className="tags">{names.map((t, i) => <a key={t} href={`#s${i + 1}`}>{String(i + 1).padStart(2, '0')} {t}</a>)}</nav>
 
-      <Bay id="s1" n="01" title="Respire : tout est là, mais sans cadres" desc="Les infos passent en liste à filets fins (libellé discret à gauche, valeur à droite) au lieu de cases. Un seul liseré aux couleurs de l'équipe en haut, des titres de section en petites capitales colorées, et les actions en boutons à filet fin, tous de la même taille. Seul le bouton principal est plein."><div className="pair"><Desk v="q1" /><Phone v="q1" /></div></Bay>
-      <Bay id="s2" n="02" title="Sections numérotées : on sait toujours où on est" desc="Même contenu, mais chaque bloc a un numéro et un titre (01 Détails, 02 Ma carte, 03 Valeur, 04 Autres collectionneurs, 05 Actions). Facile à parcourir, même au pouce, et chaque action se retrouve au même endroit."><div className="pair"><Desk v="q2" /><Phone v="q2" /></div></Bay>
-      <Bay id="s3" n="03" title="Valeur en vedette : le chiffre qui compte en haut" desc="La valeur estimée (avec sa petite courbe) remonte juste sous l'identité, parce que c'est l'info la plus regardée. Le reste est identique, en liste sobre."><div className="pair"><Desk v="q3" /><Phone v="q3" /></div></Bay>
-      <Bay id="s4" n="04" title="Actions en icônes : six boutons sur une seule ligne" desc="Les six actions (Modifier, À vendre, Vendue, Partager, Exporter, Supprimer) deviennent six carrés avec icône et libellé, sur une seule ligne au lieu de deux rangées de gros boutons. Chacune garde son libellé, rien n'est caché."><div className="pair"><Desk v="q4" /><Phone v="q4" /></div></Bay>
-      <Bay id="s5" n="05" title="Panneau large en deux colonnes : moins de défilement" desc="Sur ordinateur, le panneau est plus large et se range en deux colonnes (identité et détails à gauche, ma carte, valeur et collectionneurs à droite), actions en bas sur toute la largeur. Tout tient presque sans défiler. Sur téléphone, une seule colonne."><div className="pair"><Desk v="q5" wide /><Phone v="q5" /></div></Bay>
-      <Bay id="s6" n="06" title="Mobile d'abord : l'essentiel en haut, le reste juste en dessous" desc="Même contenu, mais l'ordre est pensé pour le pouce : nom, tags et valeur tout en haut du tiroir, puis les actions, puis les détails et le reste. Aucun bouton retiré, seulement une meilleure priorité de lecture."><div className="pair"><Desk v="q6" /><Phone v="q6" /></div></Bay>
+      <Bay id="s1" n="01" title="Comme aujourd'hui, mais à la nouvelle DA" desc="Même structure et même ordre que ton écran. Les infos restent en 2 colonnes compactes. Changements : liseré aux couleurs de l'équipe, nom en Surfquest, libellés plus lisibles, boutons à angles droits avec un seul plein (Modifier), Supprimer en rouge discret, Exporter en bleu nuit comme aujourd'hui."><div className="pair"><Desk v="r1" /><Phone v="r1" /></div></Bay>
+      <Bay id="s2" n="02" title="Collections repliées : seulement celles de la carte" desc="Aujourd'hui toutes tes collections s'affichent (18 puces sur 3 lignes). Ici on n'affiche que celles où se trouve la carte, plus un bouton « Gérer · 18 » qui ouvre la liste complète. Gain : trois lignes, et on voit d'un coup où est rangée la carte."><div className="pair"><Desk v="r2" /><Phone v="r2" /></div></Bay>
+      <Bay id="s3" n="03" title="Actions en grille 3 × 2" desc="Les six boutons passent de 2 colonnes à 3 colonnes, donc de 3 rangées à 2, avec le libellé sur deux lignes si besoin. Aucun bouton retiré, ni renommé : 70 px de gagnés."><div className="pair"><Desk v="r3" /><Phone v="r3" /></div></Bay>
+      <Bay id="s4" n="04" title="Marché en vedette : ta valeur face au prix du marché" desc="Le bloc Marché reçoit une petite barre qui situe ta valeur estimée (1 €) par rapport au prix médian demandé (1 €) et à la fourchette des annonces, avec 130pt et eBay à droite. Les annonces en vente restent en défilement horizontal."><div className="pair"><Desk v="r4" /><Phone v="r4" /></div></Bay>
+      <Bay id="s5" n="05" title="Infos sur 4 colonnes sur panneau large" desc="Sur ordinateur, le panneau est un peu plus large et les quatre infos (Année, Numérotation, Grade, Collection) tiennent sur une seule ligne. Les infos optionnelles (variation, signature, note) passent dessous quand elles existent."><div className="pair"><Desk v="r5" wide /><Phone v="r5" /></div></Bay>
+      <Bay id="s6" n="06" title="Collections repliées + barre d'actions fixe" desc="Les mêmes six boutons sur une seule ligne d'icônes avec libellé court, collés en bas du panneau pendant qu'on fait défiler les infos et le marché. Les actions sont toujours à portée de pouce, sur téléphone surtout."><div className="pair"><Desk v="r6" /><Phone v="r6" /></div></Bay>
+
+      <Bay id="s7" n="07 — Nouveau" title="Valeur et marché au même endroit" desc="La ligne « Valeur est. 1 € » et le bloc « Marché 1 € demandé » fusionnent : à gauche ta valeur (modifiable), à droite le prix médian et la fourchette, avec un petit écart (« +0 % »). Moins de répétition, comparaison immédiate."><div className="mini2 wht"><div className="ln"><span className="inp">1 €</span><small>ta valeur</small><span className="eqs">=</span><b className="mp">1 €</b><small>médiane du marché · 0,99 – 1 €</small></div></div></Bay>
+      <Bay id="s8" n="08 — Nouveau" title="Un interrupteur Privé / Public pour la valeur" desc="Le petit « Privé » devient un interrupteur à glissière (comme le thème clair / sombre) : à gauche privé (cadenas), à droite visible par les visiteurs. On comprend l'état d'un coup d'œil et on le change d'un doigt."><div className="mini2 wht"><div className="ln"><span className="inp">1 €</span><span className="swt"><i /></span><small>Privé · seul toi vois la valeur</small></div></div></Bay>
+      <Bay id="s9" n="09 — Nouveau" title="Annonces triées, la moins chère mise en avant" desc="Dans « En vente (20) » : un tri (Moins cher, Plus récent) et la meilleure annonce marquée « Moins cher » en tête, avec le vendeur et un clic pour ouvrir. Aujourd'hui toutes les annonces ont le même poids."><div className="mini2 wht"><div className="sv"><span className="on">Moins cher</span><span>Plus récent</span></div><div className="lst" style={{ marginTop: 10 }}>{ALL.slice(0, 5).map((c, i) => <div key={i} className={i === 0 ? 'best' : ''}><img src={c.img} alt="" /><b>{i < 3 ? '0.99 €' : '1 €'}</b><small>{i === 0 ? 'Moins cher' : 'En vente'}</small></div>)}</div></div></Bay>
+      <Bay id="s10" n="10 — Nouveau" title="Collections : recherche rapide et récentes d'abord" desc="Le bouton « Gérer » ouvre une feuille avec un champ de recherche, tes collections récentes en tête et un compteur de cartes par collection, au lieu d'une longue liste de puces à parcourir. Cocher / décocher en un toucher."><div className="mini2 wht"><div className="srch">🔍 Chercher une collection…</div><div className="chs" style={{ marginTop: 10 }}><span className="on">✓ Philadelphia 76ers · 87</span><span>Old School · 42</span><span>Joel Embiid · 31</span><span>Rookies · 128</span></div></div></Bay>
     </div>
   )
 }
