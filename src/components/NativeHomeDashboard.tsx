@@ -21,6 +21,7 @@ interface DashboardData {
   lastCards: { image: string; name: string }[]   // 3 dernieres cartes (eventail), la plus recente en premier
   nextBadge: { cat: BadgeCategory; tier: BadgeTier; value: number; pct: number } | null
   rc: number; patch: number; auto: number; num: number
+  week: { rc: number; patch: number; auto: number; num: number }   // cartes ajoutees cette semaine, par type
   level: LevelInfo
   streak: number
   challenge: ChallengeTemplate
@@ -72,6 +73,36 @@ export default function NativeHomeDashboard({ siteStats }: { siteStats: SiteStat
   const [failed, setFailed] = useState(false)
   const [retryKey, setRetryKey] = useState(0)
   const [showXpInfo, setShowXpInfo] = useState(false)
+
+  // Personnalisation de l'accueil (raccourcis choisis, ordre et visibilite des blocs) : stockee sur l'appareil, sans base de donnees
+  const [editMode, setEditMode] = useState(false)
+  const [shortcuts, setShortcuts] = useState<string[]>(DEFAULT_SHORTCUTS)
+  const [layout, setLayout] = useState<{ order: BlockId[]; hidden: BlockId[] }>({ order: DEFAULT_BLOCKS, hidden: [] })
+  useEffect(() => {
+    try {
+      const sc = JSON.parse(localStorage.getItem('dd-shortcuts') || 'null')
+      if (Array.isArray(sc) && sc.length) setShortcuts(sc.filter((k: string) => k in SHORTCUT_DEFS).slice(0, 4))
+      const ly = JSON.parse(localStorage.getItem('dd-layout') || 'null')
+      if (ly && Array.isArray(ly.order)) {
+        const order = (ly.order as BlockId[]).filter(b => DEFAULT_BLOCKS.includes(b))
+        for (const b of DEFAULT_BLOCKS) if (!order.includes(b)) order.push(b)
+        setLayout({ order, hidden: (ly.hidden || []).filter((b: BlockId) => DEFAULT_BLOCKS.includes(b)) })
+      }
+    } catch { /* stockage indisponible : valeurs par defaut */ }
+  }, [])
+  const saveShortcuts = (next: string[]) => { setShortcuts(next); try { localStorage.setItem('dd-shortcuts', JSON.stringify(next)) } catch {} }
+  const saveLayout = (next: { order: BlockId[]; hidden: BlockId[] }) => { setLayout(next); try { localStorage.setItem('dd-layout', JSON.stringify(next)) } catch {} }
+  const moveBlock = (id: BlockId, dir: -1 | 1) => {
+    const o = [...layout.order]; const i = o.indexOf(id); const j = i + dir
+    if (j < 0 || j >= o.length) return
+    ;[o[i], o[j]] = [o[j], o[i]]
+    saveLayout({ ...layout, order: o })
+  }
+  const toggleBlock = (id: BlockId) => saveLayout({ ...layout, hidden: layout.hidden.includes(id) ? layout.hidden.filter(b => b !== id) : [...layout.hidden, id] })
+  const toggleShortcut = (k: string) => {
+    if (shortcuts.includes(k)) { if (shortcuts.length > 1) saveShortcuts(shortcuts.filter(x => x !== k)) }
+    else if (shortcuts.length < 4) saveShortcuts([...shortcuts, k])
+  }
 
   // Encart echanges (offres en attente + matches wishlist) : requete SEPAREE
   // et non bloquante -- ne doit jamais retarder ni faire echouer le
@@ -212,6 +243,10 @@ export default function NativeHomeDashboard({ siteStats }: { siteStats: SiteStat
           lastCards: (lastCards || []).map((c: any) => ({ image: c.image_recto, name: c.nom || '' })),
           nextBadge,
           rc: b?.stat_rc ?? 0, patch: b?.stat_patch ?? 0, num: b?.stat_num ?? 0, auto: profile?.stats_auto ?? 0,
+          week: {
+            rc: (weekCards || []).filter(c => c.rc).length, patch: (weekCards || []).filter(c => c.patch).length,
+            auto: (weekCards || []).filter(c => c.auto).length, num: (weekCards || []).filter(c => c.num).length,
+          },
           level,
           streak: streakRows?.[0]?.current_streak ?? 0,
           challenge,
@@ -283,11 +318,12 @@ export default function NativeHomeDashboard({ siteStats }: { siteStats: SiteStat
     )
   }
 
+  // chaque tuile ouvre la galerie deja filtree (le champ de recherche comprend "rc", "auto", "patch", "num")
   const galleryStats = [
-    { label: 'RC', val: data.rc },
-    { label: 'AUTO', val: data.auto },
-    { label: 'PATCH', val: data.patch },
-    { label: 'NUM', val: data.num },
+    { label: 'RC', val: data.rc, week: data.week.rc, q: 'rc' },
+    { label: 'AUTO', val: data.auto, week: data.week.auto, q: 'auto' },
+    { label: 'PATCH', val: data.patch, week: data.week.patch, q: 'patch' },
+    { label: 'NUM', val: data.num, week: data.week.num, q: 'num' },
   ]
 
   const siteStatsList = [
@@ -299,7 +335,7 @@ export default function NativeHomeDashboard({ siteStats }: { siteStats: SiteStat
 
   const challengeDone = data.challengeProgress >= data.challenge.target
   const challengeMsLeft = new Date(endOfWeekISO()).getTime() - Date.now()
-  const L = DD_TEXT[lang] || DD_TEXT.en
+  const L = { ...(DD_TEXT[lang] || DD_TEXT.en), ...(DD_TEXT2[lang as keyof typeof DD_TEXT2] || DD_TEXT2.en) }
 
   // "Depuis ta derniere visite" : notifications non lues + echanges en attente.
   const activityItems: { n: number; label: string; href: string }[] = []
@@ -313,6 +349,69 @@ export default function NativeHomeDashboard({ siteStats }: { siteStats: SiteStat
   if (tradeSummary && tradeSummary.matches > 0) activityItems.push({ n: tradeSummary.matches, label: t('home_trades_matches'), href: '/trades?tab=matches' })
 
   const galleryHref = `/galerie/${user?.id}`
+
+  const renderActivity = () => activityItems.length === 0 ? <p className="dd-sub" style={{ margin: 0 }}>{L.since} : 0</p> : (
+        <section className="dd-box">
+          <h2 className="dd-h">{L.since}</h2>
+          <div className="dd-act-list">
+            {activityItems.map((a, i) => (
+              <Link key={i} href={a.href} onClick={hapticTap} className="dd-act-item">
+                <b className="da-num">{a.n}</b><span>{a.label}</span><ChevronIcon />
+              </Link>
+            ))}
+          </div>
+        </section>
+  )
+  const renderProgress = () => (
+      <section className="dd-box">
+        <div className="dd-prog dd-prog--first">
+          <button type="button" className="dd-prog-ico dd-lvl-ico" onClick={() => setShowXpInfo(v => !v)} aria-label="XP">
+            <b className="da-num">{data.level.level}</b>
+          </button>
+          <div className="dd-prog-b">
+            <div className="dd-lvl-row"><span>{t('word_level')} {data.level.level}</span><span>{data.level.xpIntoLevel}/{data.level.xpForNextLevel} XP</span></div>
+            <div className="dd-bar dd-bar--seg"><i style={{ width: `${Math.min(100, Math.round(data.level.pct * 100))}%` }} /></div>
+            <div className="dd-sub">{Math.max(0, data.level.xpForNextLevel - data.level.xpIntoLevel)} {L.toNext}</div>
+          </div>
+        </div>
+        {showXpInfo && <p className="dd-info">{t('xp_info_explanation')}</p>}
+
+        {data.nextBadge && (
+          <Link href={`${galleryHref}?tab=badges`} onClick={hapticTap} className="dd-prog">
+            <span className="dd-prog-ico">{data.nextBadge.cat.emoji}</span>
+            <div className="dd-prog-b">
+              <div className="dd-lvl-row"><span>{`${t('dashboard_next_badge_prefix')} ${data.nextBadge.tier.label} ${data.nextBadge.cat.unit}`}</span><span>{data.nextBadge.value}/{data.nextBadge.tier.threshold}</span></div>
+              <div className="dd-bar dd-bar--gold"><i style={{ width: `${Math.min(100, Math.round(data.nextBadge.pct * 100))}%` }} /></div>
+            </div>
+          </Link>
+        )}
+
+        <Link href={galleryHref} onClick={hapticTap} className="dd-prog">
+          <span className="dd-prog-ico">{challengeDone ? '✓' : data.challenge.emoji}</span>
+          <div className="dd-prog-b">
+            <div className="dd-lvl-row">
+              <span>{`${t('dashboard_challenge_prefix')} ${t(data.challenge.labelKey)}`}</span>
+              <span>{challengeDone ? t('dashboard_challenge_done') : `${data.challengeProgress}/${data.challenge.target}`}</span>
+            </div>
+            <div className={`dd-bar${challengeDone ? ' dd-bar--ok' : ''}`}><i style={{ width: `${Math.min(100, Math.round((data.challengeProgress / data.challenge.target) * 100))}%` }} /></div>
+            <div className="dd-sub">+{data.challenge.rewardXp} XP · {t('dashboard_challenge_ends_in')} {formatCountdown(challengeMsLeft, t)}</div>
+          </div>
+        </Link>
+      </section>
+  )
+  const renderSite = () => (
+    <>
+      <h2 className="dd-h dd-h--site">{t('dashboard_site_stats_title')}</h2>
+      <div className="dd-site">
+        {siteStatsList.map(s => (
+          <div key={s.label}>
+            <b className="da-num">{s.val.toLocaleString()}</b>
+            <span>{s.label}</span>
+          </div>
+        ))}
+      </div>
+    </>
+  )
 
   return (
     <div className="dd">
@@ -359,77 +458,52 @@ export default function NativeHomeDashboard({ siteStats }: { siteStats: SiteStat
 
       <div className="dd-score">
         {galleryStats.map(s => (
-          <div key={s.label}>
+          <Link key={s.label} href={`${galleryHref}?q=${s.q}`} onClick={hapticTap} className="dd-score-tile">
             <b className="da-num">{s.val}</b>
             <span>{s.label}</span>
-          </div>
+            <i title={L.thisWeek}>{s.week > 0 ? `+${s.week}` : ''}</i>
+          </Link>
         ))}
       </div>
 
-      <div className="dd-actions">
-        <Link href="/scanner" onClick={hapticTap} className="dd-act">{t('nav_scanner')}</Link>
-        <Link href={`${galleryHref}/ajouter`} onClick={hapticTap} className="dd-act">{L.add}</Link>
-        <Link href="/trades" onClick={hapticTap} className="dd-act">{t('nav_trades')}</Link>
+      <div className="dd-actions" style={{ ['--n' as string]: shortcuts.length }}>
+        {shortcuts.map(k => {
+          const d = SHORTCUT_DEFS[k]; if (!d) return null
+          const href = d.href.replace('{g}', galleryHref)
+          return <Link key={k} href={href} onClick={hapticTap} className="dd-act">{d.label(t, L)}</Link>
+        })}
+        <button type="button" className={'dd-act dd-act-edit' + (editMode ? ' on' : '')} onClick={() => setEditMode(v => !v)} aria-label={L.customize}>{editMode ? `✓ ${L.done}` : '✎'}</button>
       </div>
-
-      {activityItems.length > 0 && (
-        <section className="dd-box">
-          <h2 className="dd-h">{L.since}</h2>
-          <div className="dd-act-list">
-            {activityItems.map((a, i) => (
-              <Link key={i} href={a.href} onClick={hapticTap} className="dd-act-item">
-                <b className="da-num">{a.n}</b><span>{a.label}</span><ChevronIcon />
-              </Link>
+      {editMode && (
+        <div className="dd-edit">
+          <div className="dd-edit-h">{L.shortcutsHelp}</div>
+          <div className="dd-edit-chips">
+            {Object.keys(SHORTCUT_DEFS).map(k => (
+              <button key={k} type="button" className={'dd-chip' + (shortcuts.includes(k) ? ' on' : '')} onClick={() => toggleShortcut(k)}>{SHORTCUT_DEFS[k].label(t, L)}</button>
             ))}
           </div>
-        </section>
+        </div>
       )}
 
-      <section className="dd-box">
-        <div className="dd-prog dd-prog--first">
-          <button type="button" className="dd-prog-ico dd-lvl-ico" onClick={() => setShowXpInfo(v => !v)} aria-label="XP">
-            <b className="da-num">{data.level.level}</b>
-          </button>
-          <div className="dd-prog-b">
-            <div className="dd-lvl-row"><span>{t('word_level')} {data.level.level}</span><span>{data.level.xpIntoLevel}/{data.level.xpForNextLevel} XP</span></div>
-            <div className="dd-bar dd-bar--seg"><i style={{ width: `${Math.min(100, Math.round(data.level.pct * 100))}%` }} /></div>
-            <div className="dd-sub">{Math.max(0, data.level.xpForNextLevel - data.level.xpIntoLevel)} {L.toNext}</div>
+      {layout.order.map(id => {
+        const hidden = layout.hidden.includes(id)
+        if (hidden && !editMode) return null
+        if (id === 'activity' && activityItems.length === 0 && !editMode) return null
+        const body = id === 'activity' ? renderActivity() : id === 'progress' ? renderProgress() : renderSite()
+        return (
+          <div key={id} className={'dd-blk' + (hidden ? ' dd-blk--off' : '')}>
+            {editMode && (
+              <div className="dd-blk-bar">
+                <span>{id === 'activity' ? L.blkActivity : id === 'progress' ? L.blkProgress : L.blkSite}</span>
+                <button type="button" onClick={() => moveBlock(id, -1)} aria-label={L.up}>↑</button>
+                <button type="button" onClick={() => moveBlock(id, 1)} aria-label={L.down}>↓</button>
+                <button type="button" onClick={() => toggleBlock(id)}>{hidden ? L.show : L.hide}</button>
+              </div>
+            )}
+            {body}
           </div>
-        </div>
-        {showXpInfo && <p className="dd-info">{t('xp_info_explanation')}</p>}
-
-        {data.nextBadge && (
-          <Link href={`${galleryHref}?tab=badges`} onClick={hapticTap} className="dd-prog">
-            <span className="dd-prog-ico">{data.nextBadge.cat.emoji}</span>
-            <div className="dd-prog-b">
-              <div className="dd-lvl-row"><span>{`${t('dashboard_next_badge_prefix')} ${data.nextBadge.tier.label} ${data.nextBadge.cat.unit}`}</span><span>{data.nextBadge.value}/{data.nextBadge.tier.threshold}</span></div>
-              <div className="dd-bar dd-bar--gold"><i style={{ width: `${Math.min(100, Math.round(data.nextBadge.pct * 100))}%` }} /></div>
-            </div>
-          </Link>
-        )}
-
-        <Link href={galleryHref} onClick={hapticTap} className="dd-prog">
-          <span className="dd-prog-ico">{challengeDone ? '✓' : data.challenge.emoji}</span>
-          <div className="dd-prog-b">
-            <div className="dd-lvl-row">
-              <span>{`${t('dashboard_challenge_prefix')} ${t(data.challenge.labelKey)}`}</span>
-              <span>{challengeDone ? t('dashboard_challenge_done') : `${data.challengeProgress}/${data.challenge.target}`}</span>
-            </div>
-            <div className={`dd-bar${challengeDone ? ' dd-bar--ok' : ''}`}><i style={{ width: `${Math.min(100, Math.round((data.challengeProgress / data.challenge.target) * 100))}%` }} /></div>
-            <div className="dd-sub">+{data.challenge.rewardXp} XP · {t('dashboard_challenge_ends_in')} {formatCountdown(challengeMsLeft, t)}</div>
-          </div>
-        </Link>
-      </section>
-
-      <h2 className="dd-h dd-h--site">{t('dashboard_site_stats_title')}</h2>
-      <div className="dd-site">
-        {siteStatsList.map(s => (
-          <div key={s.label}>
-            <b className="da-num">{s.val.toLocaleString()}</b>
-            <span>{s.label}</span>
-          </div>
-        ))}
-      </div>
+        )
+      })}
     </div>
   )
 }
@@ -440,6 +514,27 @@ const DD_TEXT: Record<string, { add: string; since: string; likes: string; comme
   de: { add: 'Karte hinzufügen', since: 'Seit deinem letzten Besuch', likes: 'Likes erhalten', comments: 'Kommentare', wishlist: 'Wunschlisten-Treffer', other: 'weitere Benachrichtigungen', levelShort: 'Lvl', toNext: 'XP bis zum nächsten Level' },
   es: { add: 'Añadir carta', since: 'Desde tu última visita', likes: 'me gusta recibidos', comments: 'comentarios', wishlist: 'coincidencias de tu lista de deseos', other: 'otras notificaciones', levelShort: 'Nv.', toNext: 'XP para el siguiente nivel' },
   it: { add: 'Aggiungi carta', since: 'Dalla tua ultima visita', likes: 'mi piace ricevuti', comments: 'commenti', wishlist: 'corrispondenze della wishlist', other: 'altre notifiche', levelShort: 'Liv.', toNext: 'XP al prossimo livello' },
+}
+
+type BlockId = 'activity' | 'progress' | 'site'
+const DEFAULT_BLOCKS: BlockId[] = ['activity', 'progress', 'site']
+const DEFAULT_SHORTCUTS = ['scanner', 'add', 'trades']
+type DDL = typeof DD_TEXT2['en']
+const SHORTCUT_DEFS: Record<string, { href: string; label: (t: (k: TranslationKey) => string, L: DDL & { add: string }) => string }> = {
+  scanner: { href: '/scanner', label: t => t('nav_scanner') },
+  add: { href: '{g}/ajouter', label: (_t, L) => L.add },
+  trades: { href: '/trades', label: t => t('nav_trades') },
+  setlist: { href: '/setlist', label: t => t('nav_setlist') },
+  wishlist: { href: '/wishlist', label: (_t, L) => L.wishlist2 },
+  messages: { href: '/messages', label: t => t('nav_messages') },
+  expo: { href: '{g}/expo', label: (_t, L) => L.expo },
+}
+const DD_TEXT2 = {
+  fr: { thisWeek: 'ajoutées cette semaine', customize: 'Personnaliser', done: 'OK', shortcutsHelp: 'Choisis jusqu’à 4 raccourcis', wishlist2: 'Wishlist', expo: 'Mode expo', blkActivity: 'Activité', blkProgress: 'Niveau, badge, défi', blkSite: 'Le site en chiffres', up: 'Monter', down: 'Descendre', show: 'Afficher', hide: 'Masquer' },
+  en: { thisWeek: 'added this week', customize: 'Customize', done: 'Done', shortcutsHelp: 'Pick up to 4 shortcuts', wishlist2: 'Wishlist', expo: 'Expo mode', blkActivity: 'Activity', blkProgress: 'Level, badge, challenge', blkSite: 'Site in numbers', up: 'Move up', down: 'Move down', show: 'Show', hide: 'Hide' },
+  de: { thisWeek: 'diese Woche hinzugefügt', customize: 'Anpassen', done: 'OK', shortcutsHelp: 'Wähle bis zu 4 Kürzel', wishlist2: 'Wunschliste', expo: 'Expo-Modus', blkActivity: 'Aktivität', blkProgress: 'Level, Badge, Challenge', blkSite: 'Die Seite in Zahlen', up: 'Nach oben', down: 'Nach unten', show: 'Anzeigen', hide: 'Ausblenden' },
+  es: { thisWeek: 'añadidas esta semana', customize: 'Personalizar', done: 'OK', shortcutsHelp: 'Elige hasta 4 atajos', wishlist2: 'Lista de deseos', expo: 'Modo expo', blkActivity: 'Actividad', blkProgress: 'Nivel, insignia, reto', blkSite: 'El sitio en cifras', up: 'Subir', down: 'Bajar', show: 'Mostrar', hide: 'Ocultar' },
+  it: { thisWeek: 'aggiunte questa settimana', customize: 'Personalizza', done: 'OK', shortcutsHelp: 'Scegli fino a 4 scorciatoie', wishlist2: 'Wishlist', expo: 'Modalità expo', blkActivity: 'Attività', blkProgress: 'Livello, badge, sfida', blkSite: 'Il sito in numeri', up: 'Su', down: 'Giù', show: 'Mostra', hide: 'Nascondi' },
 }
 
 // Style du tableau de bord (nouvelle DA) : pose directement sur le fond de la
@@ -462,6 +557,20 @@ const DD_CSS = `
 .flame-ic { filter: drop-shadow(0 0 10px rgba(255,140,0,.7)); animation: flameFlick 1.4s ease-in-out infinite; transform-origin: 50% 100%; flex-shrink: 0; }
 @keyframes flameFlick { 0%,100% { transform: scale(1,1) rotate(0); } 25% { transform: scale(1.04,.97) rotate(-2deg); } 55% { transform: scale(.98,1.05) rotate(2deg); } 80% { transform: scale(1.02,.99) rotate(-1deg); } }
 @media (prefers-reduced-motion: reduce) { .flame-ic { animation: none; } }
+.dd-score-tile { position: relative; display: flex; flex-direction: column; align-items: center; justify-content: center; text-decoration: none; color: inherit; }
+.dd-score-tile i { font-style: normal; font: 800 12px system-ui, sans-serif; color: #3ddc97; min-height: 16px; margin-top: 2px; }
+.dd-score-tile:hover { background: rgba(255,255,255,.08); }
+.dd-act-edit { flex: 0 0 auto !important; width: 56px; cursor: pointer; background: transparent; border: 3px solid var(--text); color: var(--text); font: 800 14px system-ui, sans-serif; }
+.dd-act-edit.on { width: auto; padding: 0 16px; background: var(--text); color: var(--bg, #000); }
+.dd-edit { margin: -6px 16px 14px; padding: 12px 14px; border: 2px dashed var(--text2, rgba(128,128,128,.6)); }
+.dd-edit-h { font: 800 11px system-ui, sans-serif; letter-spacing: .14em; text-transform: uppercase; color: var(--text2); margin-bottom: 8px; }
+.dd-edit-chips { display: flex; flex-wrap: wrap; gap: 8px; }
+.dd-chip { padding: 7px 12px; border: 2px solid var(--text); background: transparent; color: var(--text); font: 800 12px system-ui, sans-serif; letter-spacing: .06em; text-transform: uppercase; cursor: pointer; border-radius: 0; }
+.dd-chip.on { background: var(--text); color: var(--bg, #000); }
+.dd-blk--off { opacity: .45; }
+.dd-blk-bar { display: flex; align-items: center; gap: 6px; margin: 0 16px 6px; font: 800 11px system-ui, sans-serif; letter-spacing: .1em; text-transform: uppercase; color: var(--text2); }
+.dd-blk-bar span { flex: 1; }
+.dd-blk-bar button { padding: 4px 10px; border: 2px solid var(--text2, #888); background: transparent; color: var(--text); font: 800 11px system-ui, sans-serif; cursor: pointer; border-radius: 0; }
 .dd-hero { display: flex; align-items: stretch; margin: 0 16px 14px; border: 3px solid rgba(255,255,255,.28);
   background: linear-gradient(135deg, #050912 0%, #08153b 48%, #003da6 100%); color: #fff; overflow: hidden; }
 .dd-hero-l { flex: 1; padding: clamp(18px, 3vw, 36px); display: flex; flex-direction: column; justify-content: center; min-width: 0; }
@@ -484,11 +593,11 @@ const DD_CSS = `
 .dd-hero-card--empty { background: rgba(255,255,255,.1); border: 2px dashed rgba(255,255,255,.35); }
 .dd-hero-go { position: absolute; top: 14px; right: 14px; color: rgba(255,255,255,.85); }
 .dd-score { display: grid; grid-template-columns: repeat(4, 1fr); margin: 0 16px 14px; border: 3px solid var(--text); background: var(--card-bg); }
-.dd-score > div { text-align: center; padding: 14px 6px 10px; border-right: 2px solid var(--border); }
-.dd-score > div:last-child { border-right: 0; }
+.dd-score > div, .dd-score > a { text-align: center; padding: 14px 6px 10px; border-right: 2px solid var(--border); }
+.dd-score > div:last-child, .dd-score > a:last-child { border-right: 0; }
 .dd-score b, .dd-site b { display: block; font-size: clamp(36px, 6vw, 72px); line-height: 1; color: var(--text); font-weight: 400; }
 .dd-score span, .dd-site span { display: block; margin-top: 4px; font: 800 12px system-ui, sans-serif; letter-spacing: .14em; text-transform: uppercase; color: var(--text2); }
-.dd-actions { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin: 0 16px 14px; }
+.dd-actions { display: grid; grid-template-columns: repeat(var(--n, 3), minmax(0, 1fr)) auto; gap: 10px; margin: 0 16px 14px; }
 .dd-act { display: grid; place-items: center; text-align: center; padding: 16px 8px; background: #fff; color: #06122e !important; border: 3px solid #fff;
   font: 800 14px system-ui, sans-serif; letter-spacing: .08em; text-transform: uppercase; transition: transform .15s; }
 :root:not([data-theme="dark"]) .dd-act { background: #003da6; border-color: #003da6; color: #fff !important; }
