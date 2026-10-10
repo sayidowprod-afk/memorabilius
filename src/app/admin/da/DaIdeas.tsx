@@ -4,7 +4,7 @@ import Link from 'next/link'
 
 // Idees visuelles pour pousser la nouvelle DA (Surfquest, marine -> bleu electrique, angles droits, doubles filets, metaux).
 // Page de TRAVAIL reservee aux admins : donnees d'exemple en dur, rien n'est lu ni ecrit.
-// Serie 21 : visualiseur compact, structure reelle du panneau, couleur d equipe (ordinateur + mobile). Tout le style est ici, prefixe .ix.
+// Serie 22 : visualiseur, essentiel d abord (infos + boutons), reste deroulant (ordinateur + mobile). Tout le style est ici, prefixe .ix.
 
 const SB = 'https://snnrkzbevjhdtviizfyp.supabase.co/storage/v1/object/public/avatars/cartes/eb730dee-414e-4fcb-89d8-4a7b3448c218/'
 const C = {
@@ -329,6 +329,43 @@ const CSS = `
 .ix .mini2 { max-width: 560px; padding: 14px; border: 1px solid rgba(255,255,255,.25); background: #0a1330; } .ix .mini2 .ln { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; } .ix .mini2 .inp { border: 1px solid rgba(255,255,255,.4); padding: 4px 14px; font-weight: 700; } .ix .mini2 .mp { font-size: 18px; color: #ff6b82; } .ix .mini2 .eqs { opacity: .6; } .ix .mini2 small { font-size: 12px; opacity: .65; }
 .ix .swt { position: relative; width: 52px; height: 26px; border: 3px solid #fff; display: inline-block; } .ix .swt i { position: absolute; left: 2px; top: 2px; width: 16px; height: 16px; background: #fff; }
 .ix .srch { border: 1px solid rgba(255,255,255,.35); padding: 8px 12px; font-size: 13px; opacity: .8; }
+/* serie 22 : l'essentiel d'abord (prefixe tp-, pas de conflit avec da.css) */
+.ix .pair { display: flex; gap: 18px; align-items: flex-start; flex-wrap: wrap; }
+.ix .tp-scr { display: flex; width: 760px; max-width: 100%; border: 3px solid #fff; background: #05080f; overflow: hidden; align-items: stretch; }
+.ix .tp-stg { flex: 1; position: relative; display: flex; align-items: center; justify-content: center; min-width: 0; min-height: 520px; background: #05080f; }
+.ix .tp-card { height: 380px; aspect-ratio: 2.5/3.5; object-fit: cover; display: block; box-shadow: 0 18px 44px rgba(0,0,0,.6); border-radius: 0; }
+.ix .tp-x { position: absolute; top: 10px; right: 10px; width: 28px; height: 28px; display: flex; align-items: center; justify-content: center; border-radius: 50%; background: rgba(255,255,255,.14); font: 800 14px system-ui; z-index: 2; } .ix .tp-x.s { width: 22px; height: 22px; top: 6px; right: 6px; font-size: 12px; }
+.ix .tp-nv { position: absolute; bottom: 10px; right: 10px; display: flex; gap: 6px; } .ix .tp-nv span { width: 30px; height: 30px; display: flex; align-items: center; justify-content: center; border-radius: 50%; background: rgba(255,255,255,.14); font-size: 13px; }
+.ix .tp-pan { width: 370px; flex-shrink: 0; background: #0a1330; border-left: 1px solid rgba(255,255,255,.25); }
+.ix .tp-phn { width: 230px; height: 700px; border: 4px solid #fff; background: #05080f; display: flex; flex-direction: column; overflow: hidden; flex-shrink: 0; }
+.ix .tp-pt { flex: 0 0 140px; position: relative; display: flex; align-items: center; justify-content: center; } .ix .tp-pt .tp-card { height: 116px; }
+.ix .tp-ps { flex: 1; min-height: 0; position: relative; overflow: hidden; background: #0a1330; border-top: 1px solid rgba(255,255,255,.35); } .ix .tp-ps:after { content: ''; position: absolute; left: 0; right: 0; bottom: 0; height: 60px; background: linear-gradient(transparent, #0a1330); pointer-events: none; }
+.ix .tp-grip { width: 36px; height: 3px; background: rgba(255,255,255,.5); margin: 6px auto 0; }
+
+.ix .tp { position: relative; padding: 0 20px 18px; display: flex; flex-direction: column; gap: 10px; font-size: 13px; color: #e8eefc; line-height: 1.4; }
+.ix .tp * { box-sizing: border-box; }
+.ix .tp .tp-band { height: 5px; margin: 0 -20px 6px; background: linear-gradient(90deg, #c8102e 0 62%, #1d428a 62% 100%); }
+.ix .tp .tp-k { font: 800 11px system-ui; letter-spacing: .14em; text-transform: uppercase; color: #ff6b82; }
+.ix .tp .tp-n { font-size: 30px; line-height: 1; margin: 0; font-weight: 400; }
+.ix .tp .tp-dz { font-size: 11.5px; color: rgba(255,255,255,.5); }
+.ix .tp .tp-ig { display: grid; grid-template-columns: 1fr 1fr; gap: 10px 16px; padding: 10px 0 4px; } .ix .tp .tp-ig small { display: block; font: 700 10px system-ui; letter-spacing: .12em; text-transform: uppercase; color: rgba(255,255,255,.5); margin-bottom: 1px; } .ix .tp .tp-ig b { font-size: 15px; font-weight: 700; }
+.ix .tp .tp-loc { font-size: 12px; color: rgba(255,255,255,.7); }
+.ix .tp .tp-ab { display: grid; grid-template-columns: repeat(3, 1fr); gap: 6px; margin: 4px 0 6px; } .ix .tp .tp-ab span { display: flex; align-items: center; justify-content: center; gap: 5px; padding: 11px 2px; border: 1px solid rgba(255,255,255,.35); font: 700 12px system-ui; text-align: center; background: transparent; } .ix .tp .tp-ab span i { font-style: normal; font-size: 13px; } .ix .tp .tp-ab span:first-child { background: #1d428a; border-color: #1d428a; } .ix .tp .tp-ab .del { color: #ff8a8d; border-color: rgba(255,138,141,.5); }
+.ix .tp .tp-rows { display: flex; flex-direction: column; }
+.ix .tp .tp-row { display: flex; align-items: center; gap: 10px; padding: 9px 0; border-top: 1px solid rgba(255,255,255,.12); font-size: 12px; background: none; } .ix .tp .tp-row:last-child { border-bottom: 1px solid rgba(255,255,255,.12); }
+.ix .tp .tp-rl { flex: 0 0 auto; font: 700 10.5px system-ui; letter-spacing: .1em; text-transform: uppercase; color: rgba(255,255,255,.55); min-width: 88px; } .ix .tp .tp-rv { flex: 1; min-width: 0; text-align: right; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; } .ix .tp .tp-rv.mut { color: rgba(255,255,255,.5); } .ix .tp .tp-row i { font-style: normal; opacity: .6; width: 12px; text-align: center; }
+.ix .tp .tp-mp { color: #ff6b82; font-weight: 700; }
+.ix .tp .tp-inp { margin-left: auto; border: 1px solid rgba(255,255,255,.4); padding: 2px 12px; font-weight: 700; } .ix .tp .tp-pv { font-size: 11px; color: rgba(255,255,255,.6); display: inline-flex; align-items: center; gap: 5px; } .ix .tp .tp-pv u { width: 8px; height: 8px; background: #888; display: inline-block; text-decoration: none; }
+.ix .tp .tp-lk { display: inline-flex; gap: 4px; } .ix .tp .tp-lk em { font-style: normal; font: 700 10px system-ui; padding: 2px 6px; border: 1px solid rgba(255,255,255,.4); } .ix .tp .tp-lk em:first-child { background: #f08a00; border-color: #f08a00; color: #06122e !important; }
+.ix .tp .tp-body { padding: 4px 0 10px; background: none; border: 0; }
+.ix .tp .tp-search { border: 1px solid rgba(255,255,255,.3); padding: 6px 10px; font-size: 12px; color: rgba(255,255,255,.6); margin-bottom: 8px; }
+.ix .tp .tp-chips { display: flex; flex-wrap: wrap; gap: 5px; max-height: 96px; overflow: hidden; } .ix .tp .tp-chips span { padding: 2px 9px; border: 1px solid rgba(255,255,255,.28); font: 600 11.5px system-ui; background: transparent; display: inline; } .ix .tp .tp-chips .sel { background: #1d428a; border-color: #1d428a; } .ix .tp .tp-chips .add { border-style: dashed; color: rgba(255,255,255,.6); }
+.ix .tp .tp-lst { display: flex; gap: 6px; overflow: hidden; } .ix .tp .tp-lst > div { flex: 0 0 58px; } .ix .tp .tp-lst img { width: 100%; aspect-ratio: 2.5/3.5; object-fit: cover; display: block; } .ix .tp .tp-lst b { display: block; font-size: 11px; color: #ff6b82; margin-top: 2px; }
+.ix .tp.tpc { padding: 0 12px 14px; gap: 8px; font-size: 12px; } .ix .tp.tpc .tp-band { margin: 0 -12px 4px; } .ix .tp.tpc .tp-n { font-size: 24px; } .ix .tp.tpc .tp-ab span { padding: 9px 1px; font-size: 10px; } .ix .tp.tpc .tp-rl { min-width: 70px; font-size: 9.5px; } .ix .tp.tpc .tp-lst > div { flex-basis: 48px; }
+/* t4 : outils en puces */
+.ix .tp.t4 .tp-rows { flex-direction: row; flex-wrap: wrap; gap: 6px; } .ix .tp.t4 .tp-row { border: 1px solid rgba(255,255,255,.3) !important; padding: 5px 10px; gap: 6px; } .ix .tp.t4 .tp-rv, .ix .tp.t4 .tp-lk { display: none; } .ix .tp.t4 .tp-rl { min-width: 0; color: #fff; } .ix .tp.t4 .tp-inp { margin: 0; padding: 0 6px; border: 0; } .ix .tp.t4 .tp-pv { display: none; }
+/* t6 : tout petit */
+.ix .tp.t6 { gap: 8px; } .ix .tp.t6 .tp-ig { grid-template-columns: repeat(4, 1fr); gap: 6px; } .ix .tp.t6 .tp-ig b { font-size: 12px; } .ix .tp.t6 .tp-ab { grid-template-columns: repeat(6, 1fr); gap: 4px; } .ix .tp.t6 .tp-ab span { flex-direction: column; gap: 1px; padding: 7px 0; font-size: 9px; } .ix .tp.t6 .tp-row { padding: 6px 0; } .ix .tp.t6 .tp-n { font-size: 26px; }
 `
 function Bay({ id, n, title, desc, children }: { id: string; n: string; title: string; desc: string; children: React.ReactNode }) {
   return (
@@ -342,75 +379,71 @@ function Bay({ id, n, title, desc, children }: { id: string; n: string; title: s
 }
 
 const ALL = [C.mccain, C.edwards, C.maxey, C.hawkins, C.mcw, C.luwawu]
-const COLS = ['Allen Iverson', 'Autre', 'Ben Simmons', 'F1', 'Football', 'Frenchies', 'Iguodala', 'James Harden', 'Jared McCain', 'Joel Embiid', 'Kelly Oubre Jr.', 'Memorabilia', 'Old School', 'Paul George']
+const COLS = ['Allen Iverson', 'Autre', 'Ben Simmons', 'F1', 'Football', 'Frenchies', 'Iguodala', 'James Harden', 'Jared McCain', 'Joel Embiid']
 
-// Structure REELLE du panneau actuel (proprietaire) : equipe, nom, designation, infos, localisation, collections, setlist, 6 boutons, valeur (+ prive), marche (130pt / eBay, annonces en vente)
-function Panel({ v, compact }: { v: string; compact?: boolean }) {
-  const acts: [string, string][] = [['✏️', 'Modifier'], ['🏷', 'Mettre en vente / trade'], ['🔗', 'Partager'], ['💰', 'Marquer vendue'], ['⬇', 'Exporter'], ['🗑', 'Supprimer']]
-  const folded = v === 'r2' || v === 'r6'
+// Contenu REEL du panneau. Priorite visuelle : infos de la carte + boutons. Le reste (collections, setlist, valeur, marche) est petit et deroulant.
+function Panel({ v, open, compact }: { v: string; open?: 'col' | 'mkt'; compact?: boolean }) {
+  const acts: [string, string][] = [['✏️', 'Modifier'], ['🏷', 'Vente / Trade'], ['🔗', 'Partager'], ['💰', 'Vendue'], ['⬇', 'Exporter'], ['🗑', 'Supprimer']]
+  const btns = <div className="tp-ab">{acts.map(a => <span key={a[1]} className={a[1] === 'Supprimer' ? 'del' : ''}><i>{a[0]}</i>{a[1]}</span>)}</div>
+  const infos = (
+    <div className="tp-ig">
+      <div><small>Année</small><b>1991-92</b></div>
+      <div><small>Numérotation</small><b>N/A</b></div>
+      <div><small>Grade</small><b>Raw</b></div>
+      <div><small>Collection</small><b>SkyBox Base</b></div>
+    </div>
+  )
+  const rows = (
+    <div className="tp-rows">
+      <div className={`tp-row${open === 'col' ? ' on' : ''}`}><span className="tp-rl">Mes collections</span><span className="tp-rv">Philadelphia 76ers</span><i>{open === 'col' ? '▴' : '▾'}</i></div>
+      {open === 'col' && <div className="tp-body"><div className="tp-search">🔍 Chercher…</div><div className="tp-chips">{COLS.map(c => <span key={c}>{c}</span>)}<span className="sel">✓ Philadelphia 76ers</span><span className="add">+ Nouvelle</span></div></div>}
+      <div className="tp-row"><span className="tp-rl">🃏 Setlist</span><span className="tp-rv mut">+ Placer dans un set</span><i>›</i></div>
+      <div className="tp-row"><span className="tp-rl">Valeur est.</span><span className="tp-inp">1 €</span><span className="tp-pv"><u /> Privé</span></div>
+      <div className={`tp-row${open === 'mkt' ? ' on' : ''}`}><span className="tp-rl">Marché</span><span className="tp-rv"><b className="tp-mp">1 €</b> méd. · 20 en vente</span><span className="tp-lk"><em>130pt</em><em>eBay</em></span><i>{open === 'mkt' ? '▴' : '▾'}</i></div>
+      {open === 'mkt' && <div className="tp-body"><div className="tp-lst">{[...ALL, ...ALL].slice(0, 7).map((c, i) => <div key={i}><img src={c.img} alt="" /><b>{i < 4 ? '0.99 €' : '1 €'}</b></div>)}</div></div>}
+    </div>
+  )
   return (
-    <div className={`rp ${v}${compact ? ' cr' : ''}`}>
-      <div className="band" />
-      <span className="k">Philadelphia 76ers</span>
-      <h3 className="n sf">Ron Anderson</h3>
-      <div className="dz">1991-92 SkyBox Base #210 Ron Anderson</div>
-      <div className={`ig${v === 'r5' ? ' four' : ''}`}>
-        <div><small>Année</small><b>1991-92</b></div>
-        <div><small>Numérotation</small><b>N/A</b></div>
-        <div><small>Grade</small><b>Raw</b></div>
-        <div><small>Collection</small><b>SkyBox Base</b></div>
-      </div>
-      <div className="loc">📍 <b>Binder 76ers</b> · p.45 · A3</div>
-      <div className="sc"><label>Mes collections</label>
-        {folded
-          ? <div className="chs"><span className="on">✓ Philadelphia 76ers</span><span className="add">Gérer · 18</span></div>
-          : <div className="chs">{COLS.map(c => <span key={c}>{c}</span>)}<span className="on">✓ Philadelphia 76ers</span><span className="add">+ Nouvelle</span></div>}
-      </div>
-      <div className="sc inl"><label>🃏 Setlist</label><span className="stl">+ Placer dans un set</span></div>
-      <div className={`ab${v === 'r3' ? ' three' : ''}${v === 'r6' ? ' row6' : ''}`}>{acts.map(a => <span key={a[1]} className={a[1] === 'Supprimer' ? 'del' : a[1] === 'Exporter' ? 'exp' : ''}><i>{a[0]}</i>{a[1]}</span>)}</div>
-      <div className="sc inl"><label>Valeur est.</label><span className="inp">1 €</span><span className="pv"><i /> Privé</span></div>
-      <div className="sc">
-        <div className="mk"><label>Marché</label><b className="mp">1 €</b><small>demandé (méd.)</small><span className="lk"><i className="o">130pt ↗</i><i>eBay ↗</i></span></div>
-        <label style={{ marginTop: 8 }}>En vente (20)</label>
-        <div className="lst">{[...ALL, ...ALL].slice(0, 7).map((c, i) => <div key={i}><img src={c.img} alt="" /><b>{i < 4 ? '0.99 €' : '1 €'}</b><small>En vente</small></div>)}</div>
-      </div>
+    <div className={`tp ${v}${compact ? ' tpc' : ''}`}>
+      <div className="tp-band" />
+      <span className="tp-k">Philadelphia 76ers</span>
+      <h3 className="tp-n sf">Ron Anderson</h3>
+      <div className="tp-dz">1991-92 SkyBox Base #210 Ron Anderson</div>
+      {infos}
+      <div className="tp-loc">📍 <b>Binder 76ers</b> · p.45 · A3</div>
+      {v === 't5' ? <>{rows}{btns}</> : <>{btns}{rows}</>}
     </div>
   )
 }
-const Desk = ({ v, wide }: { v: string; wide?: boolean }) => (
-  <div className={`scr4 ${v}${wide ? ' wide' : ''}`}>
-    <div className="stg4"><div className="cl">×</div><img className="vc" src={C.hawkins.img} alt="" /><div className="nv"><span>🔍</span><span>↻</span></div></div>
-    <div className="pan4"><Panel v={v} /></div>
+const Desk = ({ v, open }: { v: string; open?: 'col' | 'mkt' }) => (
+  <div className={`tp-scr ${v}`}>
+    <div className="tp-stg"><div className="tp-x">×</div><img className="tp-card" src={C.hawkins.img} alt="" /><div className="tp-nv"><span>🔍</span><span>↻</span></div></div>
+    <div className="tp-pan"><Panel v={v} open={open} /></div>
   </div>
 )
-const Phone = ({ v }: { v: string }) => (
-  <div className={`phn5 ${v}`}>
-    <div className="pt5"><div className="cl s">×</div><img className="vc" src={C.hawkins.img} alt="" /></div>
-    <div className="ps5"><div className="grip" /><Panel v={v} compact /></div>
+const Phone = ({ v, open }: { v: string; open?: 'col' | 'mkt' }) => (
+  <div className="tp-phn">
+    <div className="tp-pt"><div className="tp-x s">×</div><img className="tp-card" src={C.hawkins.img} alt="" /></div>
+    <div className="tp-ps"><div className="tp-grip" /><Panel v={v} open={open} compact /></div>
   </div>
 )
 
 export default function DaIdeas() {
-  const names = ['Comme aujourd’hui, en DA', 'Collections repliées', 'Actions 3 × 2', 'Marché en vedette', 'Infos sur 4 colonnes', 'Actions en barre fixe', 'Valeur et marché', 'Interrupteur Privé', 'Annonces triées', 'Collections rapides']
+  const names = ['Accordéons fermés', 'Collections en menu', 'Marché déplié', 'Outils en puces', 'Boutons en bas', 'Tout petit et clair']
   return (
     <div className="ix">
       <style>{CSS}</style>
       <Link href="/admin" className="back">← Admin</Link>
-      <h1 className="sf">Idées · Série 21 · Visualiseur compact, structure réelle</h1>
-      <p className="lead">Cette fois la maquette suit EXACTEMENT ton panneau actuel : équipe, nom, désignation, infos en 2 colonnes (libellé au-dessus de la valeur, comme tu l&apos;aimes), localisation, Mes collections, Setlist, les 6 boutons, Valeur est. avec « Privé », et tout le bloc Marché (130pt, eBay, annonces en vente). La couleur d&apos;équipe de la carte et la nouvelle DA, mais compact : on gagne de la place sur chaque bloc. Puis quelques nouvelles idées (07 à 10). Chaque version est montrée sur ordinateur et téléphone.</p>
+      <h1 className="sf">Idées · Série 22 · Visualiseur : l&apos;essentiel d&apos;abord</h1>
+      <p className="lead">Correction : les gros blocs noirs de la dernière série venaient d&apos;un conflit de style (j&apos;ai renommé), il n&apos;y en a plus. Ici, comme tu le demandes : les infos de la carte et les 6 boutons dominent, bien lisibles, et tout le reste devient petit et déroulant : Mes collections en menu, Setlist en une ligne, Valeur en ligne, Marché replié (130pt, eBay et annonces dedans). Pas de blocs ni de cadres lourds : seulement des filets fins, le liseré d&apos;équipe et la nouvelle DA. Chaque version est montrée sur ordinateur et téléphone.</p>
       <nav className="tags">{names.map((t, i) => <a key={t} href={`#s${i + 1}`}>{String(i + 1).padStart(2, '0')} {t}</a>)}</nav>
 
-      <Bay id="s1" n="01" title="Comme aujourd'hui, mais à la nouvelle DA" desc="Même structure et même ordre que ton écran. Les infos restent en 2 colonnes compactes. Changements : liseré aux couleurs de l'équipe, nom en Surfquest, libellés plus lisibles, boutons à angles droits avec un seul plein (Modifier), Supprimer en rouge discret, Exporter en bleu nuit comme aujourd'hui."><div className="pair"><Desk v="r1" /><Phone v="r1" /></div></Bay>
-      <Bay id="s2" n="02" title="Collections repliées : seulement celles de la carte" desc="Aujourd'hui toutes tes collections s'affichent (18 puces sur 3 lignes). Ici on n'affiche que celles où se trouve la carte, plus un bouton « Gérer · 18 » qui ouvre la liste complète. Gain : trois lignes, et on voit d'un coup où est rangée la carte."><div className="pair"><Desk v="r2" /><Phone v="r2" /></div></Bay>
-      <Bay id="s3" n="03" title="Actions en grille 3 × 2" desc="Les six boutons passent de 2 colonnes à 3 colonnes, donc de 3 rangées à 2, avec le libellé sur deux lignes si besoin. Aucun bouton retiré, ni renommé : 70 px de gagnés."><div className="pair"><Desk v="r3" /><Phone v="r3" /></div></Bay>
-      <Bay id="s4" n="04" title="Marché en vedette : ta valeur face au prix du marché" desc="Le bloc Marché reçoit une petite barre qui situe ta valeur estimée (1 €) par rapport au prix médian demandé (1 €) et à la fourchette des annonces, avec 130pt et eBay à droite. Les annonces en vente restent en défilement horizontal."><div className="pair"><Desk v="r4" /><Phone v="r4" /></div></Bay>
-      <Bay id="s5" n="05" title="Infos sur 4 colonnes sur panneau large" desc="Sur ordinateur, le panneau est un peu plus large et les quatre infos (Année, Numérotation, Grade, Collection) tiennent sur une seule ligne. Les infos optionnelles (variation, signature, note) passent dessous quand elles existent."><div className="pair"><Desk v="r5" wide /><Phone v="r5" /></div></Bay>
-      <Bay id="s6" n="06" title="Collections repliées + barre d'actions fixe" desc="Les mêmes six boutons sur une seule ligne d'icônes avec libellé court, collés en bas du panneau pendant qu'on fait défiler les infos et le marché. Les actions sont toujours à portée de pouce, sur téléphone surtout."><div className="pair"><Desk v="r6" /><Phone v="r6" /></div></Bay>
-
-      <Bay id="s7" n="07 — Nouveau" title="Valeur et marché au même endroit" desc="La ligne « Valeur est. 1 € » et le bloc « Marché 1 € demandé » fusionnent : à gauche ta valeur (modifiable), à droite le prix médian et la fourchette, avec un petit écart (« +0 % »). Moins de répétition, comparaison immédiate."><div className="mini2 wht"><div className="ln"><span className="inp">1 €</span><small>ta valeur</small><span className="eqs">=</span><b className="mp">1 €</b><small>médiane du marché · 0,99 – 1 €</small></div></div></Bay>
-      <Bay id="s8" n="08 — Nouveau" title="Un interrupteur Privé / Public pour la valeur" desc="Le petit « Privé » devient un interrupteur à glissière (comme le thème clair / sombre) : à gauche privé (cadenas), à droite visible par les visiteurs. On comprend l'état d'un coup d'œil et on le change d'un doigt."><div className="mini2 wht"><div className="ln"><span className="inp">1 €</span><span className="swt"><i /></span><small>Privé · seul toi vois la valeur</small></div></div></Bay>
-      <Bay id="s9" n="09 — Nouveau" title="Annonces triées, la moins chère mise en avant" desc="Dans « En vente (20) » : un tri (Moins cher, Plus récent) et la meilleure annonce marquée « Moins cher » en tête, avec le vendeur et un clic pour ouvrir. Aujourd'hui toutes les annonces ont le même poids."><div className="mini2 wht"><div className="sv"><span className="on">Moins cher</span><span>Plus récent</span></div><div className="lst" style={{ marginTop: 10 }}>{ALL.slice(0, 5).map((c, i) => <div key={i} className={i === 0 ? 'best' : ''}><img src={c.img} alt="" /><b>{i < 3 ? '0.99 €' : '1 €'}</b><small>{i === 0 ? 'Moins cher' : 'En vente'}</small></div>)}</div></div></Bay>
-      <Bay id="s10" n="10 — Nouveau" title="Collections : recherche rapide et récentes d'abord" desc="Le bouton « Gérer » ouvre une feuille avec un champ de recherche, tes collections récentes en tête et un compteur de cartes par collection, au lieu d'une longue liste de puces à parcourir. Cocher / décocher en un toucher."><div className="mini2 wht"><div className="srch">🔍 Chercher une collection…</div><div className="chs" style={{ marginTop: 10 }}><span className="on">✓ Philadelphia 76ers · 87</span><span>Old School · 42</span><span>Joel Embiid · 31</span><span>Rookies · 128</span></div></div></Bay>
+      <Bay id="s1" n="01" title="Accordéons fermés : infos et boutons en grand, le reste en lignes" desc="Les 4 infos (2 colonnes, comme aujourd'hui) puis les 6 boutons, et dessous quatre lignes fines : Mes collections (la collection de la carte à droite, flèche pour déplier), Setlist, Valeur est. avec Privé, et Marché (médiane, 130pt, eBay). Aucun bloc : juste des filets. C'est le panneau le plus court."><div className="pair"><Desk v="t1" /><Phone v="t1" /></div></Bay>
+      <Bay id="s2" n="02" title="Collections en menu déroulant avec recherche" desc="Même panneau, avec « Mes collections » déplié : un champ de recherche et la liste des puces, qui défile dans une zone limitée au lieu d'occuper trois lignes en permanence. On y coche et décoche, puis on referme."><div className="pair"><Desk v="t2" open="col" /><Phone v="t2" open="col" /></div></Bay>
+      <Bay id="s3" n="03" title="Marché déplié : les annonces seulement quand on les veut" desc="Le Marché reste une ligne (« 1 € méd. · 20 en vente ») avec 130pt et eBay à portée de clic. En dépliant, on voit les annonces en vente en défilement horizontal. Aujourd'hui ce bloc occupe un tiers du panneau en permanence."><div className="pair"><Desk v="t3" open="mkt" /><Phone v="t3" open="mkt" /></div></Bay>
+      <Bay id="s4" n="04" title="Outils en puces : une seule ligne sous les boutons" desc="Collections, Setlist, Valeur et Marché deviennent quatre petites puces sur une seule ligne, qui ouvrent chacune leur petit panneau. Le panneau se réduit à : infos, boutons, une ligne de puces. Idéal sur téléphone."><div className="pair"><Desk v="t4" /><Phone v="t4" /></div></Bay>
+      <Bay id="s5" n="05" title="Boutons en bas, du pouce : les lignes d'abord, les actions après" desc="L'ordre s'inverse : infos, puis les lignes compactes, puis les 6 boutons tout en bas du panneau (zone du pouce sur téléphone). Les boutons restent grands et ne se perdent plus entre les blocs."><div className="pair"><Desk v="t5" /><Phone v="t5" /></div></Bay>
+      <Bay id="s6" n="06" title="Tout petit et clair : la version la plus resserrée" desc="Infos sur une ligne de 4 colonnes, boutons sur une rangée de six, lignes secondaires à 28 px et sans valeur de grande taille. Tient sans défiler sur un écran d'ordinateur standard, et sur téléphone avec peu de défilement."><div className="pair"><Desk v="t6" /><Phone v="t6" /></div></Bay>
     </div>
   )
 }
