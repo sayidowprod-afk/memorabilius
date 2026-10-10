@@ -215,7 +215,7 @@ export default function NativeHomeDashboard({ siteStats }: { siteStats: SiteStat
         const [{ data: profile }, { data: lastCards }, { data: badgeRows }, { data: streakRows }, { data: weekCards }, { data: xpTotal }] = await Promise.race([
           Promise.all([
             timed('profile', supabase.from('profiles').select('display_name, avatar_url, stats_total, stats_auto').eq('id', user.id).abortSignal(abort.signal).single()),
-            timed('lastCard', supabase.from('cartes_manuelles').select('image_recto, nom').eq('user_id', user.id).not('image_recto', 'is', null).order('created_at', { ascending: false }).abortSignal(abort.signal).limit(3)),
+            timed('lastCard', supabase.from('cartes_manuelles').select('image_recto, nom').eq('user_id', user.id).not('image_recto', 'is', null).order('created_at', { ascending: false }).abortSignal(abort.signal).limit(24)),
             timed('badgeData', supabase.rpc('get_user_badge_data', { p_user_id: user.id }).abortSignal(abort.signal)),
             timed('bumpStreak', supabase.rpc('bump_streak', { p_user_id: user.id }).abortSignal(abort.signal)),
             timed('weekCards', supabase.from('cartes_manuelles').select('rc, auto, patch, num').eq('user_id', user.id).gte('created_at', startOfWeekISO()).abortSignal(abort.signal)),
@@ -444,11 +444,17 @@ export default function NativeHomeDashboard({ siteStats }: { siteStats: SiteStat
             <div className="dd-hero-last">{t('dashboard_last_added')} <strong>{data.lastCard.name}</strong></div>
           )}
         </div>
+        {/* fond : mosaique de tes dernieres cartes (vignettes optimisees, fixe, fondue vers la gauche) */}
+        {(data.lastCards || []).length > 5 && (
+          <div className="dd-hero-mos" aria-hidden>
+            {data.lastCards.slice(0, 24).map((c, i) => <img key={i} src={heroThumb(c.image, 220)} alt="" loading="lazy" decoding="async" />)}
+          </div>
+        )}
         <div className="dd-hero-r holo-light holo-tilt">
           {(data.lastCards || []).length
-            // eventail : de l'arriere (3e carte) vers l'avant (la plus recente)
-            ? [...(data.lastCards || [])].slice(0, 3).map((c, i) => ({ c, i })).reverse().map(({ c, i }) => (
-                <img key={i} src={c.image} alt="" className={`dd-hero-card dd-fan-${i}${heroLandscape[i] ? ' dd-hero-card--h' : ''}`}
+            // pile des 5 dernieres cartes ajoutees : de l'arriere (la plus ancienne) vers l'avant (la plus recente)
+            ? [...(data.lastCards || [])].slice(0, 5).map((c, i) => ({ c, i })).reverse().map(({ c, i }) => (
+                <img key={i} src={heroThumb(c.image, 440)} alt="" className={`dd-hero-card dd-pile-${i}${heroLandscape[i] ? ' dd-hero-card--h' : ''}`}
                   onLoad={e => { const land = e.currentTarget.naturalWidth > e.currentTarget.naturalHeight; setHeroLandscape(p => p[i] === land ? p : { ...p, [i]: land }) }} />
               ))
             : <div className="dd-hero-card dd-hero-card--empty" />}
@@ -516,6 +522,9 @@ const DD_TEXT: Record<string, { add: string; since: string; likes: string; comme
   it: { add: 'Aggiungi carta', since: 'Dalla tua ultima visita', likes: 'mi piace ricevuti', comments: 'commenti', wishlist: 'corrispondenze della wishlist', other: 'altre notifiche', levelShort: 'Liv.', toNext: 'XP al prossimo livello' },
 }
 
+// Vignette optimisee (meme optimiseur que la galerie, mise en cache 1 an) pour les images Supabase ; autres sources : image d'origine
+const heroThumb = (url: string, w: number) => (url.includes('.supabase.co') ? `/_next/image?url=${encodeURIComponent(url)}&w=${w}&q=70` : url)
+
 type BlockId = 'activity' | 'progress' | 'site'
 const DEFAULT_BLOCKS: BlockId[] = ['activity', 'progress', 'site']
 const DEFAULT_SHORTCUTS = ['scanner', 'add', 'trades']
@@ -540,7 +549,7 @@ const DD_TEXT2 = {
 // Style du tableau de bord (nouvelle DA) : pose directement sur le fond de la
 // page, cadres epais a angles droits, Surfquest pour les gros chiffres. Les
 // cartes (image) restent a coins nets.
-const DD_CSS = `
+export const DD_CSS = `
 .dd { max-width: 1180px; margin: 0 auto; padding: 4px 0 28px; color: var(--text); }
 /* les blocs ont deja 16px de marge : on elargit le conteneur de 16px de chaque cote pour qu'ils aient la meme largeur que la carte du jour (placee hors du tableau de bord) */
 .dd { width: calc(100% + 32px); max-width: none; margin-left: -16px; margin-right: -16px; }
@@ -586,10 +595,23 @@ const DD_CSS = `
 .dd-hero-card--h { aspect-ratio: 3.5/2.5; width: clamp(120px, 20vw, 250px); }
 /* eventail des 3 dernieres cartes : la plus recente devant (a droite), les autres decalees vers la gauche */
 .dd-hero-card { transform-origin: 50% 100%; }
-.dd-fan-0 { transform: rotate(7deg); z-index: 3; }
-.dd-fan-1 { transform: translateX(-40%) rotate(-3deg); z-index: 2; }
-.dd-fan-2 { transform: translateX(-80%) rotate(-12deg); z-index: 1; }
-@media (max-width: 560px) { .dd-fan-1 { transform: translateX(-30%) rotate(-3deg); } .dd-fan-2 { transform: translateX(-60%) rotate(-12deg); } }
+/* pile des 5 dernieres cartes : la plus recente devant, les autres decalees et inclinees, qui debordent du cadre par le bas */
+.dd-hero-card { bottom: clamp(-30px, -2vw, -14px); }
+.dd-pile-0 { transform: rotate(7deg); z-index: 5; }
+.dd-pile-1 { transform: translateX(-42%) rotate(-3deg); z-index: 4; }
+.dd-pile-2 { transform: translateX(-84%) rotate(-12deg); z-index: 3; }
+.dd-pile-3 { transform: translateX(-126%) rotate(-20deg); z-index: 2; }
+.dd-pile-4 { transform: translateX(-168%) rotate(-28deg); z-index: 1; }
+@media (max-width: 560px) { .dd-pile-1 { transform: translateX(-30%) rotate(-3deg); } .dd-pile-2 { transform: translateX(-60%) rotate(-12deg); } .dd-pile-3, .dd-pile-4 { display: none; } }
+/* mosaique de fond : fixe (aucune animation), fondue vers la gauche pour garder le chiffre lisible */
+.dd-hero { position: relative; }
+.dd-hero:before { content: ''; position: absolute; inset: 0; z-index: 1; pointer-events: none; background: linear-gradient(90deg, #050912 0%, rgba(5,9,18,.92) 30%, rgba(5,9,18,.45) 60%, rgba(5,9,18,.2) 100%); }
+.dd-hero-l { position: relative; z-index: 2; }
+.dd-hero-r { z-index: 3; }
+.dd-hero-mos { position: absolute; right: 0; top: 0; bottom: 0; width: 66%; display: grid; grid-template-columns: repeat(6, 1fr); gap: 6px; padding: 6px; overflow: hidden; z-index: 0; opacity: .6; }
+.dd-hero-mos img { width: 100%; aspect-ratio: 2.5/3.5; object-fit: cover; display: block; border-radius: 0; background: none; }
+.dd-hero-mos img:nth-child(6n+2) { margin-top: -34px; } .dd-hero-mos img:nth-child(6n+4) { margin-top: -62px; } .dd-hero-mos img:nth-child(6n+3) { margin-top: -12px; } .dd-hero-mos img:nth-child(6n+5) { margin-top: -48px; }
+@media (max-width: 767px) { .dd-hero-mos { width: 100%; grid-template-columns: repeat(4, 1fr); } .dd-hero-mos img:nth-child(n+13) { display: none; } .dd-hero:before { background: linear-gradient(90deg, rgba(5,9,18,.95) 0%, rgba(5,9,18,.7) 55%, rgba(5,9,18,.35) 100%); } }
 .dd-hero-card--empty { background: rgba(255,255,255,.1); border: 2px dashed rgba(255,255,255,.35); }
 .dd-hero-go { position: absolute; top: 14px; right: 14px; color: rgba(255,255,255,.85); }
 .dd-score { display: grid; grid-template-columns: repeat(4, 1fr); margin: 0 16px 14px; border: 3px solid var(--text); background: var(--card-bg); }
