@@ -48,15 +48,9 @@ export default function Footer() {
             href="https://ko-fi.com/gknnn_cards"
             target="_blank"
             rel="noopener noreferrer"
-            className="kofi-btn"
-            style={{
-              display: 'inline-flex', alignItems: 'center', gap: 6,
-              background: '#003DA6', color: 'white',
-              padding: '7px 14px', borderRadius: 20,
-              fontSize: 13, fontWeight: 800, textDecoration: 'none',
-            }}
+            className="support-btn"
           >
-            ☕ Soutenir le projet
+            🏆 Soutenir le projet
           </a>
         </nav>
       </div>

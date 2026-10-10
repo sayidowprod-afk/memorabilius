@@ -3,6 +3,7 @@ import { useRef, useCallback, useEffect, useState } from 'react'
 import { createPortal } from 'react-dom'
 import Link from 'next/link'
 import { useLang } from '@/lib/LangContext'
+import ConfirmDeleteCard from '@/components/ConfirmDeleteCard'
 import { playerSlug, cardSlug } from '@/lib/playerSlug'
 import { useTheme } from '@/lib/ThemeContext'
 import CardVideoExport from '@/components/CardVideoExport'
@@ -1810,22 +1811,7 @@ export default function Viewer3D({ popup, accent, onClose, onNext, onPrev, getTa
                 </Link>
               )}
               {onDeleteCard && (
-                confirmDelete ? (
-                  <div style={{ display: 'flex', gap: 6 }}>
-                    <button onClick={() => { setConfirmDelete(false); onDeleteCard() }} style={{
-                      flex: 1, background: '#e74c3c', color: 'white', border: 'none', borderRadius: 10,
-                      padding: '12px 8px', boxSizing: 'border-box', fontWeight: 800, cursor: 'pointer', fontSize: 13,
-                    }}>
-                      ✓ {t('viewer_delete_confirm')}
-                    </button>
-                    <button onClick={() => setConfirmDelete(false)} style={{
-                      background: dark ? '#2a2a2a' : '#f0f0f0', color: dark ? '#eee' : '#333', border: 'none',
-                      borderRadius: 10, padding: '12px 14px', boxSizing: 'border-box', fontWeight: 800, cursor: 'pointer', fontSize: 13,
-                    }}>
-                      ✕
-                    </button>
-                  </div>
-                ) : (
+                <>
                   <button onClick={() => setConfirmDelete(true)} style={{
                     background: '#e74c3c', color: 'white',
                     border: 'none', borderRadius: 10, padding: '12px 14px', boxSizing: 'border-box',
@@ -1834,7 +1820,8 @@ export default function Viewer3D({ popup, accent, onClose, onNext, onPrev, getTa
                   }}>
                     🗑️ {t('viewer_delete_btn')}
                   </button>
-                )
+                  {confirmDelete && <ConfirmDeleteCard image={popup.f} name={popup.n} onCancel={() => setConfirmDelete(false)} onConfirm={() => { setConfirmDelete(false); onDeleteCard() }} />}
+                </>
               )}
               {isOwner && onDisponibleVenteChange && (popup.id_manuelle || userId) && (
                 <button onClick={async () => {

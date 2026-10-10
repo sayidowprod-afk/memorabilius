@@ -5,6 +5,7 @@ function numHint(min: number | null, max: number | null): string {
   if (min != null) return `≥ /${min}`
   return ''
 }
+import ConfirmDeleteCard from '@/components/ConfirmDeleteCard'
 import SelectionHand from '@/components/SelectionHand'
 import { numTier } from '@/lib/cardTags'
 import { toast } from '@/lib/toast'
@@ -3408,19 +3409,13 @@ export default function GalerieClient({ userId, initialCardUrl, initialCards, in
                       }} title={t('gallery_edit_card')}>
                         ✏️
                       </button>
-                      {deleteCardConfirm === d.id_manuelle ? (
-                        <>
-                          <button onClick={e => { e.stopPropagation(); handleDeleteCard(d.id_manuelle!, d.f); setDeleteCardConfirm(null) }} aria-label="Confirmer la suppression" style={{ background: '#e74c3c', color: 'white', border: 'none', borderRadius: 6, padding: '4px 5px', fontSize: 9, fontWeight: 900, cursor: 'pointer' }}>✓</button>
-                          <button onClick={e => { e.stopPropagation(); setDeleteCardConfirm(null) }} aria-label="Annuler" style={{ background: '#555', color: 'white', border: 'none', borderRadius: 6, padding: '4px 5px', fontSize: 9, fontWeight: 900, cursor: 'pointer' }}>✕</button>
-                        </>
-                      ) : (
-                        <button onClick={e => { e.stopPropagation(); setDeleteCardConfirm(d.id_manuelle!) }} style={{
-                          background: '#e74c3c', color: 'white', border: 'none', borderRadius: 6,
-                          padding: '4px 6px', fontSize: 10, fontWeight: 900, cursor: 'pointer',
-                        }} title={t('gallery_delete_card')}>
-                          🗑️
-                        </button>
-                      )}
+                      <button onClick={e => { e.stopPropagation(); setDeleteCardConfirm(d.id_manuelle!) }} style={{
+                        background: '#e74c3c', color: 'white', border: 'none', borderRadius: 6,
+                        padding: '4px 6px', fontSize: 10, fontWeight: 900, cursor: 'pointer',
+                      }} title={t('gallery_delete_card')}>
+                        🗑️
+                      </button>
+                      {deleteCardConfirm === d.id_manuelle && <ConfirmDeleteCard image={d.f} name={d.n} onCancel={() => setDeleteCardConfirm(null)} onConfirm={() => { handleDeleteCard(d.id_manuelle!, d.f); setDeleteCardConfirm(null) }} />}
                     </>)}
                   </div>
                 </div>
