@@ -619,3 +619,23 @@ button.cdj-btn { cursor: pointer; }
 .hof-item img { display: block; width: 100%; aspect-ratio: 2.5 / 3.5; object-fit: cover; border: 2px solid #ffd54a; border-radius: 0; box-shadow: 0 10px 22px rgba(0,0,0,.5); background: none !important; animation: none !important; }
 .hof-who { display: block; margin-top: 6px; font: 800 12px system-ui; color: #fff !important; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
 .hof-nom { display: block; font: 600 10px system-ui; color: rgba(255,255,255,.65) !important; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+
+/* Franchise complete : tous les joueurs d'une equipe, coches quand on a une carte */
+.fr { margin-bottom: 40px; }
+.fr-title { font-size: 20px; font-weight: 800; margin: 0 0 6px; color: var(--text, #111); }
+.fr-sub { font-size: 13px; color: var(--text2, #666); margin: 0 0 12px; }
+.fr-prog { margin: 8px 0 14px; max-width: 520px; }
+.fr-prog-l { font-size: 14px; margin-bottom: 6px; color: var(--text, #111); }
+.fr-bar { height: 14px; background: var(--bg3, rgba(128,128,128,.25)); }
+.fr-bar i { display: block; height: 100%; background: var(--fr-c, #003DA6); }
+.fr-tools { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 10px; align-items: center; }
+.fr-search { padding: 8px 12px; border: 2px solid var(--border, #ccc); background: var(--card-bg, #fff); color: var(--text, #111); font-size: 14px; min-width: 200px; border-radius: 0; }
+.fr-chip { padding: 6px 12px; border: 2px solid var(--fr-c, #003DA6); background: transparent; color: var(--text, #111); font: 800 12px system-ui; letter-spacing: .06em; text-transform: uppercase; cursor: pointer; border-radius: 0; }
+.fr-chip.on { background: var(--fr-c, #003DA6); color: #fff; }
+.fr-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 8px; margin-top: 6px; }
+.fr-cell { position: relative; display: flex; flex-direction: column; gap: 2px; padding: 9px 10px 9px 30px; border: 2px solid var(--border, rgba(128,128,128,.35)); background: var(--card-bg, transparent); text-decoration: none; min-height: 52px; border-radius: 0; }
+.fr-cell.have { border-color: var(--fr-c, #003DA6); background: var(--fr-c, #003DA6); }
+.fr-mark { position: absolute; left: 9px; top: 9px; font-weight: 900; font-size: 14px; color: var(--text3, #999); }
+.fr-name { font-weight: 800; font-size: 13px; line-height: 1.15; color: var(--text, #111); word-break: break-word; }
+.fr-years { font-size: 11px; color: var(--text3, #888); }
+.fr-cell.have .fr-mark, .fr-cell.have .fr-name, .fr-cell.have .fr-years { color: #fff; }

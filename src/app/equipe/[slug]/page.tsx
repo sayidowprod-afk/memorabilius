@@ -5,6 +5,7 @@ import { SPORTS_TEAMS, teamLogoUrl, SportsTeam } from '@/lib/sportsTeams'
 import { teamSlug, playerSlug } from '@/lib/playerSlug'
 import { fetchCsvCardsForProfiles } from '@/lib/csvCards'
 import TagIcon from '@/components/TagIcon'
+import FranchiseChecklist, { type FranchisePlayer } from '@/components/FranchiseChecklist'
 
 export const revalidate = 3600
 
@@ -116,9 +117,15 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
 
 const ACCENT = '#003DA6'
 
+// Liste complete des joueurs de la franchise (generee par scripts/build-franchise.js)
+async function loadFranchise(slug: string): Promise<FranchisePlayer[]> {
+  try { return (await import(`@/data/franchise/${slug}.json`)).default as FranchisePlayer[] } catch { return [] }
+}
+
 export default async function EquipePage({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params
   const { team, sets, communityCards, players } = await fetchTeamData(slug)
+  const franchise = team ? await loadFranchise(slug) : []
 
   if (!team) {
     return (
@@ -153,6 +160,8 @@ export default async function EquipePage({ params }: { params: Promise<{ slug: s
           </div>
         </div>
       </div>
+
+      {franchise.length > 0 && <FranchiseChecklist team={team.name} players={franchise} color={teamColor} />}
 
       {/* Joueurs */}
       {players.length > 0 && (
