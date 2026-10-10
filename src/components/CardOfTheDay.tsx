@@ -5,12 +5,12 @@ import { useLang, localeFor } from '@/lib/LangContext'
 
 type Pick = { day: { y: number; m: number; d: number }; card: { image: string; nom: string; annee?: string; marque?: string; collection?: string; variation?: string; num?: string; rc: boolean; auto: boolean; patch: boolean; owner: { id: string; slug: string | null; name: string | null; avatar: string | null; total: number } } }
 
-const TXT: Record<string, { eyebrow: string; by: string; cta: string; gal: string; cards: string; scratch: string; hint: string; skip: string }> = {
-  fr: { eyebrow: 'Carte du jour', by: 'Dans la collection de', cta: 'Voir la carte', gal: 'Sa galerie', cards: 'cartes', scratch: 'GRATTE', hint: 'Gratte la carte pour la découvrir', skip: 'Révéler' },
-  en: { eyebrow: 'Card of the day', by: 'In the collection of', cta: 'View the card', gal: 'Their gallery', cards: 'cards', scratch: 'SCRATCH', hint: 'Scratch the card to reveal it', skip: 'Reveal' },
-  de: { eyebrow: 'Karte des Tages', by: 'In der Sammlung von', cta: 'Karte ansehen', gal: 'Seine Galerie', cards: 'Karten', scratch: 'RUBBELN', hint: 'Rubbel die Karte frei', skip: 'Aufdecken' },
-  es: { eyebrow: 'Carta del día', by: 'En la colección de', cta: 'Ver la carta', gal: 'Su galería', cards: 'cartas', scratch: 'RASCA', hint: 'Rasca la carta para descubrirla', skip: 'Revelar' },
-  it: { eyebrow: 'Carta del giorno', by: 'Nella collezione di', cta: 'Vedi la carta', gal: 'La sua galleria', cards: 'carte', scratch: 'GRATTA', hint: 'Gratta la carta per scoprirla', skip: 'Rivela' },
+const TXT: Record<string, { eyebrow: string; by: string; cta: string; gal: string; cards: string; scratch: string; hint: string; skip: string; week: string }> = {
+  fr: { eyebrow: 'Carte du jour', by: 'Dans la collection de', cta: 'Voir la carte', gal: 'Sa galerie', cards: 'cartes', scratch: 'GRATTE', hint: 'Gratte la carte pour la découvrir', skip: 'Révéler', week: 'Cartes de la semaine' },
+  en: { eyebrow: 'Card of the day', by: 'In the collection of', cta: 'View the card', gal: 'Their gallery', cards: 'cards', scratch: 'SCRATCH', hint: 'Scratch the card to reveal it', skip: 'Reveal', week: 'This week' },
+  de: { eyebrow: 'Karte des Tages', by: 'In der Sammlung von', cta: 'Karte ansehen', gal: 'Seine Galerie', cards: 'Karten', scratch: 'RUBBELN', hint: 'Rubbel die Karte frei', skip: 'Aufdecken', week: 'Diese Woche' },
+  es: { eyebrow: 'Carta del día', by: 'En la colección de', cta: 'Ver la carta', gal: 'Su galería', cards: 'cartas', scratch: 'RASCA', hint: 'Rasca la carta para descubrirla', skip: 'Revelar', week: 'Esta semana' },
+  it: { eyebrow: 'Carta del giorno', by: 'Nella collezione di', cta: 'Vedi la carta', gal: 'La sua galleria', cards: 'carte', scratch: 'GRATTA', hint: 'Gratta la carta per scoprirla', skip: 'Rivela', week: 'Questa settimana' },
 }
 
 // Pellicule a gratter : couvre la carte tant qu'elle n'a pas ete devoilee aujourd'hui. Passe a "devoilee" des qu'~40 % est gratte.
@@ -62,12 +62,21 @@ export default function CardOfTheDay() {
   const { lang } = useLang()
   const [pick, setPick] = useState<Pick | null>(null)
   const [revealed, setRevealed] = useState(false)
+  const [, setTick] = useState(0)
   useEffect(() => {
     let cancelled = false
     fetch('/api/card-of-the-day').then(r => r.json()).then(d => {
       if (cancelled || !d?.card) return
       setPick(d)
-      try { setRevealed(localStorage.getItem(`cdj-revealed-${d.day.y}-${d.day.m}-${d.day.d}`) === '1') } catch { /* stockage indisponible : on garde le grattage */ }
+      try {
+        const k = `${d.day.y}-${d.day.m}-${d.day.d}`
+        const was = localStorage.getItem(`cdj-revealed-${k}`) === '1'
+        setRevealed(was)
+        if (was && !localStorage.getItem(`cdj-card-${k}`)) {
+          const o = d.card.owner
+          localStorage.setItem(`cdj-card-${k}`, JSON.stringify({ image: d.card.image, nom: d.card.nom, href: `/galerie/${o.slug || o.id}?card=${encodeURIComponent(d.card.image)}` }))
+        }
+      } catch { /* stockage indisponible : on garde le grattage */ }
     }).catch(() => {})
     return () => { cancelled = true }
   }, [])
@@ -75,8 +84,26 @@ export default function CardOfTheDay() {
   const { card, day } = pick
   const reveal = () => {
     setRevealed(true)
-    try { localStorage.setItem(`cdj-revealed-${day.y}-${day.m}-${day.d}`, '1') } catch { /* tant pis */ }
+    saveDay()
+    setTick(t => t + 1)
   }
+  // Memorise la carte du jour devoilee (pour la frise de la semaine) : l'API tire la carte du jour, mais le lot de candidats
+  // evolue, donc on garde ce que le joueur a reellement vu.
+  const saveDay = () => {
+    try {
+      localStorage.setItem(`cdj-revealed-${day.y}-${day.m}-${day.d}`, '1')
+      localStorage.setItem(`cdj-card-${day.y}-${day.m}-${day.d}`, JSON.stringify({ image: card.image, nom: card.nom, href }))
+    } catch { /* tant pis */ }
+  }
+  // 7 derniers jours (aujourd'hui en dernier) : carte memorisee si grattee ce jour-la, sinon case vide
+  const week = Array.from({ length: 7 }, (_, i) => {
+    const d = new Date(Date.UTC(day.y, day.m - 1, day.d - (6 - i)))
+    const key = `${d.getUTCFullYear()}-${d.getUTCMonth() + 1}-${d.getUTCDate()}`
+    let saved: { image: string; nom: string; href: string } | null = null
+    try { const raw = localStorage.getItem(`cdj-card-${key}`); if (raw) saved = JSON.parse(raw) } catch { /* ignore */ }
+    const label = new Intl.DateTimeFormat(localeFor(lang), { weekday: 'short', timeZone: 'UTC' }).format(d).replace('.', '')
+    return { key, saved, label, today: i === 6 }
+  })
   const T = TXT[lang] || TXT.en
   const month = new Intl.DateTimeFormat(localeFor(lang), { month: 'short', timeZone: 'UTC' }).format(new Date(Date.UTC(day.y, day.m - 1, day.d)))
   const gal = `/galerie/${card.owner.slug || card.owner.id}`
@@ -124,6 +151,21 @@ export default function CardOfTheDay() {
             <Link href={gal} className="cdj-btn alt">{T.gal} →</Link>
           </div>
         )}
+      </div>
+      <div className="cdj-week" aria-label={T.week}>
+        {week.map(w => {
+          const shown = w.today ? (revealed ? { image: card.image, nom: card.nom, href } : null) : w.saved
+          const inner = shown
+            // eslint-disable-next-line @next/next/no-img-element
+            ? <img src={shown.image} alt={shown.nom} loading="lazy" />
+            : <b className="da-display">?</b>
+          return (
+            <div key={w.key} className={`cdj-wd${shown ? '' : ' miss'}${w.today ? ' today' : ''}`}>
+              {shown ? <Link href={shown.href} aria-label={shown.nom}>{inner}</Link> : inner}
+              <small>{w.label}</small>
+            </div>
+          )
+        })}
       </div>
     </section>
   )

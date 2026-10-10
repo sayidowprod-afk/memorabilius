@@ -554,3 +554,11 @@ html[data-theme="light"] .cf-loader i, :root:not([data-theme="dark"]) .cf-loader
 .cdj-scratch img { display: block; width: 100%; aspect-ratio: 2.5 / 3.5; object-fit: cover; border-radius: 0; box-shadow: 0 22px 46px rgba(0,0,0,.6); background: none !important; animation: none !important; }
 .cdj-foil { position: absolute; inset: 0; width: 100%; height: 100%; touch-action: none; }
 button.cdj-btn { cursor: pointer; }
+
+/* Carte du jour : frise des 7 derniers jours */
+.cdj-week { grid-column: 1 / -1; position: relative; z-index: 1; display: grid; grid-template-columns: repeat(7, 1fr); gap: 8px; max-width: 560px; margin-top: 6px; padding-bottom: 22px; }
+.cdj-wd { position: relative; aspect-ratio: 2.5 / 3.5; border: 2px solid rgba(255,255,255,.3); background: rgba(255,255,255,.06); display: flex; align-items: center; justify-content: center; }
+.cdj-wd.miss { border-style: dashed; } .cdj-wd.today { border-color: #ffd54a; box-shadow: 0 0 14px rgba(255,213,74,.55); }
+.cdj-wd a { position: absolute; inset: 0; display: block; } .cdj-wd img { width: 100%; height: 100%; object-fit: cover; display: block; border-radius: 0; background: none !important; animation: none !important; }
+.cdj-wd b { font-size: 26px; font-weight: 400; opacity: .4; }
+.cdj-wd small { position: absolute; left: 0; right: 0; bottom: -19px; text-align: center; font: 800 9px system-ui, sans-serif; letter-spacing: .12em; text-transform: uppercase; opacity: .7; }
