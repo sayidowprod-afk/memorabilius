@@ -4,7 +4,8 @@ import { createPortal } from 'react-dom'
 import Link from 'next/link'
 import { useLang } from '@/lib/LangContext'
 import ConfirmDeleteCard from '@/components/ConfirmDeleteCard'
-import { playerSlug, cardSlug } from '@/lib/playerSlug'
+import { playerSlug, cardSlug, normalizeName } from '@/lib/playerSlug'
+import { SPORTS_TEAMS } from '@/lib/sportsTeams'
 import { useTheme } from '@/lib/ThemeContext'
 import CardVideoExport from '@/components/CardVideoExport'
 import CardPhotoExport from '@/components/CardPhotoExport'
@@ -57,6 +58,17 @@ function backFaceImgStyle(boxIsHorizontal: boolean, backIsHorizontal: boolean): 
     position: 'absolute', top: '50%', left: '50%',
     transform: 'translate(-50%, -50%) rotate(90deg)',
   }
+}
+
+// Couleur de l'equipe imprimee sur la carte (nom complet, ou dernier mot : "76ers" -> Philadelphia 76ers) ; null si inconnue
+function teamColorOf(name?: string | null): string | null {
+  const n = normalizeName(name || '')
+  if (!n) return null
+  const exact = SPORTS_TEAMS.find(t => normalizeName(t.name) === n)
+  if (exact) return exact.color
+  const last = n.split(' ').slice(-1)[0]
+  const m = SPORTS_TEAMS.filter(t => normalizeName(t.name).split(' ').slice(-1)[0] === last)
+  return m.length === 1 ? m[0].color : null
 }
 
 export default function Viewer3D({ popup, accent, onClose, onNext, onPrev, getTags, userId, userSlug, isOwner, currentUserId, onCollectionTagChange, onCollectionsChange, onVendueChange, onDisponibleVenteChange, allCollectionTags, onAddToMyGallery, initialAddState, onProposeTrade, cardValue, onValueSave, likeData, onLike, onDeleteCard }: {
@@ -514,6 +526,8 @@ export default function Viewer3D({ popup, accent, onClose, onNext, onPrev, getTa
   const [addState, setAddState] = useState<'idle' | 'loading' | 'added' | 'duplicate'>(initialAddState ?? 'idle')
   const [closeHover, setCloseHover] = useState(false)
   const [infoExpanded, setInfoExpanded] = useState(false)
+  const [colOpen, setColOpen] = useState(false)
+  useEffect(() => { setColOpen(false) }, [popup.f])
   const { lang, t } = useLang()
 
   const isMemo = popup.item_type === 'memorabilia'
@@ -789,6 +803,18 @@ export default function Viewer3D({ popup, accent, onClose, onNext, onPrev, getTa
         .viewer-card--horizontal { width: min(784px, 54vw) !important; height: min(560px, 38.6vw) !important; }
         .viewer-card--slab { width: 478px !important; height: 784px !important; }
         .viewer-info-handle { display: none; }
+        .viewer-info { position: relative; }
+        .v3d-band { position: absolute; top: 0; left: 0; right: 0; height: 5px; }
+        .v3d-grid { gap: 12px 16px !important; }
+        .v3d-grid > div { border-left: 4px solid var(--v3d-bar, #003DA6); padding-left: 10px; min-width: 0; }
+        .v3d-grid > div:nth-child(even) { border-left-color: var(--v3d-bar2, #003DA6); }
+        .v3d-grid label { font-size: 10px !important; letter-spacing: 0.1em; }
+        .v3d-grid .viewer-info-value { font-size: 14px !important; }
+        .v3d-btns { grid-template-columns: repeat(3, 1fr) !important; gap: 6px !important; }
+        .v3d-btns > a, .v3d-btns > button, .v3d-btns > div > button:first-child { border-radius: 0 !important; padding: 11px 4px !important; font-size: 12px !important; white-space: normal !important; line-height: 1.15; min-height: 44px; text-align: center; }
+        .v3d-btns > div { display: flex; flex-direction: column; } .v3d-btns > div > button:first-child { flex: 1; }
+        .v3d-fold { display: flex; align-items: center; gap: 10px; width: 100%; background: none; border: 0; padding: 4px 0; cursor: pointer; font: inherit; text-align: left; }
+        .v3d-fold-v { flex: 1; min-width: 0; text-align: right; font-size: 12px; font-weight: 700; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
         @media (max-width: 1200px) { .viewer-card { width: 420px; height: 588px; } .viewer-card--horizontal { width: min(560px, 54vw) !important; height: min(400px, 38.6vw) !important; } .viewer-card--slab { width: 359px !important; height: 588px !important; } }
         @media (max-width: 600px) {
           .viewer-layout { flex-direction: column; transition: none; }
@@ -1376,7 +1402,8 @@ export default function Viewer3D({ popup, accent, onClose, onNext, onPrev, getTa
               <path d="M2 2l8 6 8-6" stroke={metaColor} strokeWidth="2" fill="none" strokeLinecap="round" strokeLinejoin="round" />
             </svg>
           </button>
-          <div style={{ color: accent, fontWeight: 900, fontSize: 10, textTransform: 'uppercase', marginBottom: 2 }}>{popup.t}</div>
+          <div className="v3d-band" style={{ background: `linear-gradient(90deg, ${teamColorOf(popup.t) || accent} 62%, ${accent} 62%)` }} />
+          <div style={{ color: teamColorOf(popup.t) || accent, fontWeight: 900, fontSize: 11, letterSpacing: '0.1em', textTransform: 'uppercase', marginBottom: 2, filter: 'brightness(1.25)' }}>{popup.t}</div>
           <Link href={`/joueur/${playerSlug(popup.n)}`} style={{ textDecoration: 'none', color: 'inherit' }}
             onMouseEnter={e => (e.currentTarget.querySelector('h2')!.style.textDecoration = 'underline')}
             onMouseLeave={e => (e.currentTarget.querySelector('h2')!.style.textDecoration = 'none')}
@@ -1391,7 +1418,7 @@ export default function Viewer3D({ popup, accent, onClose, onNext, onPrev, getTa
             </div>
           )}
           {getTags(popup)}
-          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 10, borderTop: `1px solid ${borderColor}`, marginTop: 10, paddingTop: 10 }}>
+          <div className="v3d-grid" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 10, borderTop: `1px solid ${borderColor}`, marginTop: 10, paddingTop: 10, ['--v3d-bar' as string]: teamColorOf(popup.t) || accent, ['--v3d-bar2' as string]: accent }}>
             {[
               ['Année', popup.y],
               ['Numérotation', popup.num || 'N/A'],
@@ -1442,10 +1469,12 @@ export default function Viewer3D({ popup, accent, onClose, onNext, onPrev, getTa
           {/* Ma collection — owner seulement. Une carte peut appartenir à plusieurs collections. */}
           {isOwner && userId && (onCollectionsChange || onCollectionTagChange) && (
             <div style={{ marginTop: 10, borderTop: `1px solid ${borderColor}`, paddingTop: 10 }}>
-              <label style={{ display: 'block', fontSize: 9, fontWeight: 800, color: metaColor, textTransform: 'uppercase', marginBottom: 6 }}>
-                Mes collections
-              </label>
-              {onCollectionsChange ? (
+              <button type="button" className="v3d-fold" onClick={() => setColOpen(o => !o)} aria-expanded={colOpen} style={{ color: textColor }}>
+                <span style={{ fontSize: 10, fontWeight: 800, letterSpacing: '0.1em', textTransform: 'uppercase', color: metaColor }}>Mes collections</span>
+                <span className="v3d-fold-v" style={{ color: textColor }}>{(popup.collections && popup.collections.length) ? popup.collections.join(', ') : (tagInput || '—')}</span>
+                <i style={{ fontStyle: 'normal', color: metaColor }}>{colOpen ? '▴' : '▾'}</i>
+              </button>
+              {colOpen && (onCollectionsChange ? (
                 <CollectionMultiSelect
                   userId={userId}
                   cardKey={popup.f}
@@ -1459,7 +1488,7 @@ export default function Viewer3D({ popup, accent, onClose, onNext, onPrev, getTa
                   value={tagInput}
                   onChange={async (tag) => { setTagInput(tag); setTagSaving(true); await onCollectionTagChange!(popup, tag); setTagSaving(false) }}
                 />
-              )}
+              ))}
             </div>
           )}
 
@@ -1799,7 +1828,7 @@ export default function Viewer3D({ popup, accent, onClose, onNext, onPrev, getTa
               Marquer vendue, Partager/Exporter vidéo (au lieu d'un flex-wrap qui
               cassait la ligne au hasard selon les boutons visibles). */}
           <div style={{ marginTop: 16, display: 'flex', flexDirection: 'column', gap: 8 }}>
-            <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 8 }}>
+            <div className="v3d-btns" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 8 }}>
               {isOwner && popup.id_manuelle && userId && (
                 <Link href={`/galerie/${userId}/editer/${popup.id_manuelle}`} style={{
                   background: dark ? '#2a2a2a' : '#f0f0f0', color: dark ? '#eee' : '#333',
