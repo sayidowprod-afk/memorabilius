@@ -8,6 +8,7 @@ import { useAuth } from '@/lib/AuthContext'
 import { useTheme } from '@/lib/ThemeContext'
 import { useLang } from '@/lib/LangContext'
 import ThemeToggleButton from '@/components/ThemeToggleButton'
+import SettingsMenu, { SettingsInline } from '@/components/SettingsMenu'
 import type { User } from '@supabase/supabase-js'
 
 const LANGS = [
@@ -227,62 +228,12 @@ export default function Navbar() {
                 <Link href="/profil" style={linkStyle}>{t('nav_profil')}</Link>
               </div>
 
-              {/* Dropdown langue */}
-              <div ref={langRef} style={{ position: 'relative' }}>
-                <button onClick={() => toggleDrop('lang')} aria-label={t('settings_language')} aria-haspopup="true" aria-expanded={openDrop === 'lang'} style={{
-                  background: 'none', border: `1px solid ${dark ? '#555' : '#ddd'}`,
-                  borderRadius: 20, padding: '4px 10px', cursor: 'pointer',
-                  fontSize: 13, fontWeight: 700, color: dark ? '#ddd' : '#555',
-                  display: 'flex', alignItems: 'center', gap: 5,
-                }}>
-                  <span key={lang} className="lang-flag-fade">{currentLang.flag}</span>
-                  <svg width="8" height="5" viewBox="0 0 10 6" style={{ transition: '0.2s', transform: openDrop === 'lang' ? 'rotate(180deg)' : 'none', opacity: 0.5 }}>
-                    <path d="M1 1l4 4 4-4" stroke="currentColor" strokeWidth="1.5" fill="none" strokeLinecap="round"/>
-                  </svg>
-                </button>
-                {openDrop === 'lang' && (
-                  <div style={{ position: 'absolute', top: '110%', right: 0, background: dropBg, border: `1px solid ${dropBorder}`, borderRadius: 12, padding: 6, boxShadow: '0 8px 24px rgba(0,0,0,0.12)', minWidth: 130, zIndex: 300 }}>
-                    {LANGS.map(l => (
-                      <button key={l.code} onClick={() => { setLang(l.code); closeDrop() }}
-                        style={{ ...dropItemStyle, width: '100%', textAlign: 'left', cursor: 'pointer', border: 'none', display: 'flex', alignItems: 'center', gap: 8, background: lang === l.code ? (dark ? '#2a2a2a' : '#f5f5f5') : 'none', fontWeight: lang === l.code ? 800 : 600 }}>
-                        {l.flag} {l.label}
-                      </button>
-                    ))}
-                  </div>
-                )}
-              </div>
-
-              <ThemeToggleButton />
-              <button onClick={handleLogout} style={{ background: 'none', border: `1px solid ${dark ? '#555' : '#ddd'}`, borderRadius: 20, padding: '6px 14px', cursor: 'pointer', fontSize: 13, fontWeight: 600, color: dark ? '#ddd' : '#555' }}>{t('nav_deconnexion')}</button>
+              <SettingsMenu />
+              <button onClick={handleLogout} className="sm-out" style={{ background: 'none', border: `1px solid ${dark ? '#555' : '#ddd'}`, borderRadius: 20, padding: '6px 14px', cursor: 'pointer', fontSize: 13, fontWeight: 600, color: dark ? '#ddd' : '#555' }}>{t('nav_deconnexion')}</button>
             </div>
           ) : (
             <div style={{ display: 'flex', gap: 8, alignItems: 'center' }}>
-              {/* Dropdown langue (non connecté) */}
-              <div ref={langRef} style={{ position: 'relative' }}>
-                <button onClick={() => toggleDrop('lang')} aria-label={t('settings_language')} aria-haspopup="true" aria-expanded={openDrop === 'lang'} style={{
-                  background: 'none', border: `1px solid ${dark ? '#555' : '#ddd'}`,
-                  borderRadius: 20, padding: '4px 10px', cursor: 'pointer',
-                  fontSize: 13, fontWeight: 700, color: dark ? '#ddd' : '#555',
-                  display: 'flex', alignItems: 'center', gap: 5,
-                }}>
-                  <span key={lang} className="lang-flag-fade">{currentLang.flag}</span>
-                  <svg width="8" height="5" viewBox="0 0 10 6" style={{ transition: '0.2s', transform: openDrop === 'lang' ? 'rotate(180deg)' : 'none', opacity: 0.5 }}>
-                    <path d="M1 1l4 4 4-4" stroke="currentColor" strokeWidth="1.5" fill="none" strokeLinecap="round"/>
-                  </svg>
-                </button>
-                {openDrop === 'lang' && (
-                  <div style={{ position: 'absolute', top: '110%', right: 0, background: dropBg, border: `1px solid ${dropBorder}`, borderRadius: 12, padding: 6, boxShadow: '0 8px 24px rgba(0,0,0,0.12)', minWidth: 130, zIndex: 300 }}>
-                    {LANGS.map(l => (
-                      <button key={l.code} onClick={() => { setLang(l.code); closeDrop() }}
-                        style={{ ...dropItemStyle, width: '100%', textAlign: 'left', cursor: 'pointer', border: 'none', display: 'flex', alignItems: 'center', gap: 8, background: lang === l.code ? (dark ? '#2a2a2a' : '#f5f5f5') : 'none', fontWeight: lang === l.code ? 800 : 600 }}>
-                        {l.flag} {l.label}
-                      </button>
-                    ))}
-                  </div>
-                )}
-              </div>
-
-              <ThemeToggleButton />
+              <SettingsMenu />
               <Link href="/connexion" className="btn-main btn-primary" style={{ padding: '8px 18px', fontSize: 14 }}>{t('nav_connexion')}</Link>
             </div>
           )}
@@ -330,24 +281,14 @@ export default function Navbar() {
                 <span className={bellPulse ? 'bell-pulse' : undefined} style={{ display: 'inline-block' }}>🔔</span> Notifications <Badge count={notifs} />
               </Link>
               <Link href="/profil" style={ls} onClick={() => setMenuOpen(false)}>{t('nav_profil')}</Link>
-              <div style={{ padding: '12px 0', borderBottom: `1px solid ${dark ? '#2a2a2a' : '#f5f5f5'}`, display: 'flex', gap: 6 }}>
-                <ThemeToggleButton style={{ flex: 1, background: dark ? '#2a2a2a' : '#f5f5f5', border: 'none', borderRadius: 8, padding: '10px', color: dark ? '#ddd' : '#333', fontWeight: 600 }} />
-                {LANGS.map(l => (
-                  <button key={l.code} onClick={() => setLang(l.code)} aria-label={l.label} aria-pressed={lang === l.code} style={{ flex: 1, background: lang === l.code ? '#003DA6' : (dark ? '#2a2a2a' : '#f5f5f5'), color: lang === l.code ? 'white' : (dark ? '#ddd' : '#333'), border: 'none', borderRadius: 8, padding: '10px', cursor: 'pointer', fontSize: 15, fontWeight: 700 }}>{l.flag}</button>
-                ))}
-              </div>
+              <SettingsInline />
               <div style={{ padding: '16px 0' }}>
                 <button onClick={handleLogout} style={{ width: '100%', background: '#003DA6', color: 'white', border: 'none', borderRadius: 8, padding: '12px', fontWeight: 700, cursor: 'pointer', fontSize: 15 }}>{t('nav_deconnexion')}</button>
               </div>
             </>
           ) : (
             <>
-              <div style={{ padding: '12px 0', borderBottom: `1px solid ${dark ? '#2a2a2a' : '#f5f5f5'}`, display: 'flex', gap: 6 }}>
-                <ThemeToggleButton style={{ flex: 1, background: dark ? '#2a2a2a' : '#f5f5f5', border: 'none', borderRadius: 8, padding: '10px', color: dark ? '#ddd' : '#333', fontWeight: 600 }} />
-                {LANGS.map(l => (
-                  <button key={l.code} onClick={() => setLang(l.code)} aria-label={l.label} aria-pressed={lang === l.code} style={{ flex: 1, background: lang === l.code ? '#003DA6' : (dark ? '#2a2a2a' : '#f5f5f5'), color: lang === l.code ? 'white' : (dark ? '#ddd' : '#333'), border: 'none', borderRadius: 8, padding: '10px', cursor: 'pointer', fontSize: 15, fontWeight: 700 }}>{l.flag}</button>
-                ))}
-              </div>
+              <SettingsInline />
               <div style={{ padding: '16px 0' }}>
                 <Link href="/connexion" style={{ display: 'block', background: '#003DA6', color: 'white', borderRadius: 8, padding: '12px', fontWeight: 700, fontSize: 15, textAlign: 'center', textDecoration: 'none' }} onClick={() => setMenuOpen(false)}>{t('nav_connexion')}</Link>
               </div>
