@@ -639,3 +639,10 @@ button.cdj-btn { cursor: pointer; }
 .fr-name { font-weight: 800; font-size: 13px; line-height: 1.15; color: var(--text, #111); word-break: break-word; }
 .fr-years { font-size: 11px; color: var(--text3, #888); }
 .fr-cell.have .fr-mark, .fr-cell.have .fr-name, .fr-cell.have .fr-years { color: #fff; }
+.hof-help { font-size: 13px; color: rgba(255,255,255,.7) !important; margin: 0 0 14px; }
+.hof-err { font-size: 13px; color: #ff6b6f !important; margin: 0 0 10px; }
+.hof-slot { display: flex; flex-direction: column; align-items: stretch; }
+.hof-empty { aspect-ratio: 2.5 / 3.5; border: 2px dashed rgba(255,213,74,.55); display: flex; align-items: center; justify-content: center; text-align: center; padding: 8px; font: 800 11px system-ui; letter-spacing: .08em; text-transform: uppercase; color: rgba(255,213,74,.8) !important; }
+.hof-empty.mine { cursor: pointer; border-color: #ffd54a; color: #ffd54a !important; }
+.hof-actions { display: flex; gap: 6px; justify-content: center; margin-top: 6px; }
+.hof-actions button { background: transparent; border: 2px solid #ffd54a; color: #ffd54a !important; font: 800 10px system-ui; letter-spacing: .08em; text-transform: uppercase; padding: 3px 8px; cursor: pointer; border-radius: 0; }
