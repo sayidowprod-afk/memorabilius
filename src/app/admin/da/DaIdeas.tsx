@@ -4,7 +4,7 @@ import Link from 'next/link'
 
 // Idees visuelles pour pousser la nouvelle DA (Surfquest, marine -> bleu electrique, angles droits, doubles filets, metaux).
 // Page de TRAVAIL reservee aux admins : donnees d'exemple en dur, rien n'est lu ni ecrit.
-// Serie 19 : visualiseur, meme contenu et memes boutons, 10 peaux a la nouvelle DA (ordinateur + mobile). Tout le style est ici, prefixe .ix.
+// Serie 20 : visualiseur aere, couleur d equipe, meme contenu (ordinateur + mobile). Tout le style est ici, prefixe .ix.
 
 const SB = 'https://snnrkzbevjhdtviizfyp.supabase.co/storage/v1/object/public/avatars/cartes/eb730dee-414e-4fcb-89d8-4a7b3448c218/'
 const C = {
@@ -242,6 +242,53 @@ const CSS = `
 .ix .fp.i .gr > div { aspect-ratio: 1.5; display: flex; flex-direction: column; justify-content: space-between; padding: 8px; } .ix .fp.i .gr b { font-size: 15px; white-space: normal; } .ix .fp.i .acts { grid-template-columns: 1fr 1fr 1fr; } .ix .fp.i .acts span { aspect-ratio: 1.5; display: flex; align-items: center; justify-content: center; padding: 2px; }
 /* J barre d'actions collante */
 .ix .fp.j .acts { position: sticky; bottom: 0; background: #08122b; border-top: 3px solid #fff; margin: 4px -16px -16px; padding: 10px 16px; gap: 6px; } .ix .fp.j.cp .acts { margin: 4px -12px -10px; padding: 8px 12px; }
+/* serie 20 : aere, couleur d'equipe */
+.ix .pair { display: flex; gap: 18px; align-items: flex-start; flex-wrap: wrap; }
+.ix .scr3 { display: flex; width: 780px; max-width: 100%; border: 3px solid #fff; background: #060b1a; overflow: hidden; align-items: stretch; }
+.ix .stg3 { flex: 1; position: relative; display: flex; align-items: center; justify-content: center; background: radial-gradient(circle at 50% 45%, #0e2257, #060b1a 72%); min-width: 0; min-height: 640px; }
+.ix .stg3 .vc { height: 420px; position: relative; z-index: 1; }
+.ix .cl { position: absolute; top: 10px; right: 10px; z-index: 3; padding: 4px 10px; border: 1px solid rgba(255,255,255,.5); font: 700 11px system-ui; background: rgba(6,11,26,.7); } .ix .cl.s { padding: 2px 8px; top: 6px; right: 6px; }
+.ix .nv { position: absolute; bottom: 12px; left: 0; right: 0; display: flex; justify-content: center; gap: 6px; z-index: 3; } .ix .nv span { padding: 5px 10px; border: 1px solid rgba(255,255,255,.4); font: 700 11px system-ui; background: rgba(6,11,26,.7); }
+.ix .pan3 { width: 350px; flex-shrink: 0; background: #0a1330; border-left: 1px solid rgba(255,255,255,.25); }
+.ix .scr3.wide .pan3 { width: 520px; }
+.ix .phn4 { width: 230px; height: 780px; border: 4px solid #fff; background: #060b1a; display: flex; flex-direction: column; overflow: hidden; flex-shrink: 0; }
+.ix .pt4 { flex: 0 0 150px; position: relative; display: flex; align-items: center; justify-content: center; background: radial-gradient(circle at 50% 45%, #0e2257, #060b1a 72%); } .ix .pt4 .vc { height: 126px; }
+.ix .ps4 { flex: 1; min-height: 0; position: relative; overflow: hidden; background: #0a1330; border-top: 1px solid rgba(255,255,255,.35); } .ix .ps4:after { content: ''; position: absolute; left: 0; right: 0; bottom: 0; height: 70px; background: linear-gradient(transparent, #0a1330); pointer-events: none; }
+.ix .phn4 .grip { width: 36px; height: 3px; background: rgba(255,255,255,.5); margin: 6px auto 0; }
+
+/* panneau aere */
+.ix .fq { position: relative; padding: 0 22px 20px; display: flex; flex-direction: column; gap: 16px; font-size: 13px; color: #e8eefc; line-height: 1.45; }
+.ix .fq * { box-sizing: border-box; }
+.ix .fq .band { height: 5px; margin: 0 -22px; background: linear-gradient(90deg, #c8102e 0 62%, #1d428a 62% 100%); }
+.ix .fq header { display: flex; flex-direction: column; gap: 5px; }
+.ix .fq .k { font: 700 11px system-ui; letter-spacing: .16em; text-transform: uppercase; color: #ff6b82; }
+.ix .fq .n { font-size: 30px; line-height: 1; margin: 2px 0 0; font-weight: 400; }
+.ix .fq .vr { font-style: italic; color: #9fbdf5; font-size: 13px; }
+.ix .fq .dz { font-size: 11.5px; color: rgba(255,255,255,.5); }
+.ix .fq .tg2 { display: flex; gap: 6px; margin-top: 4px; } .ix .fq .tg2 span { padding: 2px 8px; font: 800 11px system-ui; letter-spacing: .08em; }
+.ix .fq .sec2 { display: flex; flex-direction: column; gap: 8px; }
+.ix .fq .sh { margin: 0; font: 700 10.5px system-ui; letter-spacing: .18em; text-transform: uppercase; color: #ff6b82; display: flex; align-items: center; gap: 8px; } .ix .fq .sh i { font-style: normal; color: rgba(255,255,255,.4); }
+.ix .fq .dl { margin: 0; display: flex; flex-direction: column; } .ix .fq .dl > div { display: flex; justify-content: space-between; gap: 14px; padding: 4px 0; border-bottom: 1px solid rgba(255,255,255,.1); } .ix .fq .dl dt { margin: 0; color: rgba(255,255,255,.5); font-size: 12px; } .ix .fq .dl dd { margin: 0; font-weight: 600; text-align: right; }
+.ix .fq .loc { font-size: 12px; color: rgba(255,255,255,.65); }
+.ix .fq .line { display: flex; flex-direction: column; gap: 5px; } .ix .fq .lb { font-size: 12px; color: rgba(255,255,255,.5); }
+.ix .fq .ch { display: flex; flex-wrap: wrap; gap: 6px; } .ix .fq .ch i { font-style: normal; font-size: 12px; padding: 2px 9px; border: 1px solid rgba(255,255,255,.35); } .ix .fq .ch .add { border-style: dashed; color: rgba(255,255,255,.6); }
+.ix .fq .st { font-size: 12.5px; } .ix .fq .st u { margin-left: 8px; color: #9fbdf5; text-underline-offset: 3px; }
+.ix .fq .vl { display: flex; align-items: center; gap: 8px; } .ix .fq .vl .inp { border: 1px solid rgba(255,255,255,.4); padding: 3px 12px; font-size: 17px; min-width: 64px; text-align: center; } .ix .fq .vl b { font-size: 18px; font-weight: 600; } .ix .fq .eb2 { margin-left: auto; font-size: 12px; color: rgba(255,255,255,.65); border-bottom: 1px solid rgba(255,255,255,.3); }
+.ix .fq .avs2 { display: flex; gap: 5px; align-items: center; } .ix .fq .avs2 i { width: 28px; height: 28px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font: 700 12px system-ui; font-style: normal; } .ix .fq .avs2 em { font: 700 12px system-ui; font-style: normal; color: rgba(255,255,255,.55); margin-left: 3px; }
+.ix .fq .ac2 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; } .ix .fq .ac2 span { display: flex; align-items: center; justify-content: center; gap: 6px; padding: 10px 4px; border: 1px solid rgba(255,255,255,.35); font: 600 12px system-ui; } .ix .fq .ac2 span i { font-style: normal; font-size: 13px; opacity: .85; } .ix .fq .ac2 span:first-child { background: #1d428a; border-color: #1d428a; } .ix .fq .ac2 .del { color: #ff8a8d; border-color: rgba(255,138,141,.45); }
+.ix .fq .vis2 { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; margin-top: 10px; padding-top: 12px; border-top: 1px dashed rgba(255,255,255,.2); } .ix .fq .vis2 small { flex: 1 1 100%; font: 700 10.5px system-ui; letter-spacing: .16em; text-transform: uppercase; color: rgba(255,255,255,.4); } .ix .fq .vis2 span { padding: 8px 12px; border: 1px solid rgba(255,255,255,.3); font: 600 12px system-ui; } .ix .fq .vis2 .pri { background: #c8102e; border-color: #c8102e; }
+/* compact (mobile) */
+.ix .fq.cq { padding: 0 14px 16px; gap: 16px; font-size: 12px; } .ix .fq.cq .band { margin: 0 -14px; } .ix .fq.cq .n { font-size: 24px; } .ix .fq.cq .dl > div { padding: 5px 0; } .ix .fq.cq .ac2 span { padding: 8px 2px; font-size: 10.5px; }
+/* q2 numerotees */
+.ix .fq.q2 .sh i { color: #fff; border: 1px solid rgba(255,255,255,.5); padding: 0 5px; }
+/* q3 valeur en vedette */
+.ix .fq .hv { display: flex; align-items: flex-end; gap: 14px; padding: 12px 0; border-top: 1px solid rgba(255,255,255,.12); border-bottom: 1px solid rgba(255,255,255,.12); } .ix .fq .hv small { display: block; font: 700 10.5px system-ui; letter-spacing: .16em; text-transform: uppercase; color: rgba(255,255,255,.5); } .ix .fq .hv b { font-size: 46px; line-height: .95; font-weight: 400; } .ix .fq .hv svg { flex: 1; height: 38px; }
+/* q4 icones */
+.ix .fq .ac2.icons { grid-template-columns: repeat(6, 1fr); gap: 4px; } .ix .fq .ac2.icons span { flex-direction: column; gap: 3px; padding: 8px 0; font-size: 9.5px; } .ix .fq .ac2.icons span i { font-size: 16px; } .ix .fq .ac2.icons span:first-child { background: none; border-color: rgba(255,255,255,.35); }
+/* q5 deux colonnes */
+.ix .scr3.wide .fq.q5 { display: grid; grid-template-columns: 1fr 1fr; column-gap: 26px; row-gap: 22px; } .ix .scr3.wide .fq.q5 .band, .ix .scr3.wide .fq.q5 header { grid-column: 1 / -1; } .ix .scr3.wide .fq.q5 .sec2.last { grid-column: 1 / -1; }
+/* q6 mobile d'abord : les actions montent sous l'identite */
+.ix .fq.q6 > * { order: 3; } .ix .fq.q6 .band { order: 0; } .ix .fq.q6 header { order: 1; } .ix .fq.q6 .hv { order: 2; } .ix .fq.q6 .sec2.last { order: 2; } .ix .fq.q6 .hv { border-bottom: 0; padding-bottom: 0; }
 `
 function Bay({ id, n, title, desc, children }: { id: string; n: string; title: string; desc: string; children: React.ReactNode }) {
   return (
@@ -256,67 +303,79 @@ function Bay({ id, n, title, desc, children }: { id: string; n: string; title: s
 
 const ALL = [C.mccain, C.edwards, C.maxey, C.hawkins, C.mcw, C.luwawu]
 
-// Tout le contenu actuel du panneau du visualiseur, dans le meme ordre ; seule la peau change d'une version a l'autre
+// Meme contenu que le panneau actuel, mais hierarchise : identite, details, ma carte, valeur, actions. Couleur = equipe de la carte (76ers ici).
 function Panel({ v, compact }: { v: string; compact?: boolean }) {
+  const rows: [string, string][] = [['Année', '2024-25'], ['Numérotation', '/149'], ['Grade', 'Brut'], ['Collection', 'Panini Contenders'], ['Variation', 'Rookie Ticket'], ['Signé par', 'Jared McCain'], ['Note', 'Pièce de mon PC Sixers']]
+  const acts: [string, string][] = [['✏️', 'Modifier'], ['🏷', 'À vendre'], ['✓', 'Vendue'], ['🔗', 'Partager'], ['⬇', 'Exporter'], ['🗑', 'Supprimer']]
+  const num = (i: number, t: string) => (v === 'q2' ? <h4 className="sh"><i>{`0${i}`}</i>{t}</h4> : <h4 className="sh">{t}</h4>)
   return (
-    <div className={`fp ${v}${compact ? ' cp' : ''}`}>
-      <span className="k">Philadelphia 76ers</span>
-      <h3 className="n sf">Jared McCain</h3>
-      <div className="vr">Rookie Ticket Autographs</div>
-      <div className="dz">2024-25 Panini Contenders Rookie Ticket Variation #12 Jared McCain</div>
-      <div className="tg"><span className="rc">RC</span><span className="au">AUTO</span><span className="nu">/149</span></div>
-      <div className="gr">
-        <div><small>Année</small><b>2024-25</b></div>
-        <div><small>Numérotation</small><b>/149</b></div>
-        <div><small>Grade</small><b>Brut</b></div>
-        <div><small>Collection</small><b>Panini Contenders</b></div>
-        <div><small>Variation</small><b>Rookie Ticket</b></div>
-        <div><small>✍️ Signé par</small><b>Jared McCain</b></div>
-        <div className="w"><small>📝 Note du collectionneur</small><b>Pièce de mon PC Sixers</b></div>
+    <div className={`fq ${v}${compact ? ' cq' : ''}`}>
+      <div className="band" />
+      <header>
+        <span className="k">Philadelphia 76ers</span>
+        <h3 className="n sf">Jared McCain</h3>
+        <div className="vr">Rookie Ticket Autographs</div>
+        <div className="dz">2024-25 Panini Contenders Rookie Ticket Variation #12 Jared McCain</div>
+        <div className="tg2"><span className="rc">RC</span><span className="au">AUTO</span><span className="nu">/149</span></div>
+      </header>
+      {(v === 'q3' || v === 'q6') && <div className="hv"><div><small>Valeur estimée</small><b className="sf">45 €</b></div><svg viewBox="0 0 120 34" preserveAspectRatio="none"><polyline points="0,28 20,24 40,26 60,16 80,18 100,8 120,4" fill="none" stroke="#3ddc97" strokeWidth="2.5" /></svg></div>}
+      <div className="sec2">
+        {num(1, 'Détails')}
+        <dl className="dl">{rows.map(r => <div key={r[0]}><dt>{r[0]}</dt><dd>{r[1]}</dd></div>)}</dl>
+        <div className="loc">📍 Classeur Rookies · p.4 · A3</div>
       </div>
-      <div className="loc">📍 <b>Classeur Rookies</b> · p.4 · A3</div>
-      <div className="sec"><label>Mes collections</label><div className="chips"><span>Rookies ✕</span><span>Sixers ✕</span><span className="add">+ Ajouter</span></div></div>
-      <div className="sec"><label>🃏 Setlist</label><div className="setl"><span>2024-25 Contenders · #12 Jared McCain</span><i>Changer</i><i>Retirer</i></div></div>
-      <div className="acts"><span className="p">Modifier</span><span>À vendre</span><span>Vendue</span><span>Partager</span><span>⬇ Exporter</span><span className="d">🗑 Supprimer</span></div>
-      <div className="sec val"><label>Valeur est.</label><div className="vrow"><span className="inp">45</span><b className="sf">€</b><span className="ebay"><i>e</i><i>B</i><i>a</i><i>y</i> 38 – 52 €</span></div></div>
-      <div className="sec"><label>Autres collectionneurs de cette carte</label><div className="avs"><i style={{ background: '#e63a6e' }}>K</i><i style={{ background: '#2f6bff' }}>T</i><i style={{ background: '#1f9d55' }}>B</i><em>+2</em></div></div>
-      <div className="sec vis"><label>Vue visiteur</label><div className="acts v3"><span className="p">Proposer un échange</span><span>Ajouter à ma galerie</span><span>🤍 18</span></div></div>
+      <div className="sec2">
+        {num(2, 'Ma carte')}
+        <div className="line"><span className="lb">Mes collections</span><span className="ch"><i>Rookies ✕</i><i>Sixers ✕</i><i className="add">+ Ajouter</i></span></div>
+        <div className="line"><span className="lb">🃏 Setlist</span><span className="st">2024-25 Contenders · #12 <u>Changer</u> <u>Retirer</u></span></div>
+      </div>
+      {v !== 'q3' && (
+        <div className="sec2">
+          {num(3, 'Valeur')}
+          <div className="vl"><span className="inp">45</span><b>€</b><span className="eb2">eBay · 38 – 52 €</span></div>
+        </div>
+      )}
+      <div className="sec2">
+        {num(4, 'Autres collectionneurs de cette carte')}
+        <div className="avs2"><i style={{ background: '#e63a6e' }}>K</i><i style={{ background: '#2f6bff' }}>T</i><i style={{ background: '#1f9d55' }}>B</i><em>+2</em></div>
+      </div>
+      <div className="sec2 last">
+        {num(5, 'Actions')}
+        <div className={`ac2${v === 'q4' ? ' icons' : ''}`}>{acts.map(a => <span key={a[1]} className={a[1] === 'Supprimer' ? 'del' : ''}><i>{a[0]}</i>{a[1]}</span>)}</div>
+        <div className="vis2"><small>Vue visiteur</small><span className="pri">Proposer un échange</span><span>Ajouter à ma galerie</span><span>🤍 18</span></div>
+      </div>
     </div>
   )
 }
-const Desk = ({ v, stage }: { v: string; stage?: React.ReactNode }) => (
-  <div className={`scr2 ${v}`}>
-    <div className="stg2"><div className="close">× Fermer cette carte</div>{stage ?? <img className="vc" src={C.mccain.img} alt="" />}<div className="nav2"><span>‹</span><span>🔍 Loupe</span><span>↻ Retourner</span><span>›</span></div></div>
-    <div className="pan2"><Panel v={v} /></div>
+const Desk = ({ v, wide }: { v: string; wide?: boolean }) => (
+  <div className={`scr3 ${v}${wide ? ' wide' : ''}`}>
+    <div className="stg3"><div className="cl">× Fermer</div><img className="vc" src={C.mccain.img} alt="" /><div className="nv"><span>‹</span><span>🔍 Loupe</span><span>↻ Retourner</span><span>›</span></div></div>
+    <div className="pan3"><Panel v={v} /></div>
   </div>
 )
 const Phone = ({ v }: { v: string }) => (
-  <div className={`phn3 ${v}`}>
-    <div className="pt3"><div className="close s">×</div><img className="vc" src={C.mccain.img} alt="" /></div>
-    <div className="ps3"><div className="grip" /><Panel v={v} compact /></div>
+  <div className={`phn4 ${v}`}>
+    <div className="pt4"><div className="cl s">×</div><img className="vc" src={C.mccain.img} alt="" /></div>
+    <div className="ps4"><div className="grip" /><Panel v={v} compact /></div>
   </div>
 )
 
 export default function DaIdeas() {
-  const names = ['Filets', 'Bandes', 'Papier', 'Verre', 'Musée', 'Liste dense', 'Équipe', 'Bleu plein', 'Tuiles', 'Barre d’actions collante']
+  const names = ['Respire', 'Sections numérotées', 'Valeur en vedette', 'Actions en icônes', 'Panneau large en 2 colonnes', 'Mobile d’abord']
   return (
     <div className="ix">
       <style>{CSS}</style>
       <Link href="/admin" className="back">← Admin</Link>
-      <h1 className="sf">Idées · Série 19 · Visualiseur : même contenu, nouvelle peau</h1>
-      <p className="lead">Cette fois, rien n&apos;est retiré ni déplacé. Chaque maquette reprend TOUT le panneau actuel dans le même ordre : équipe, nom (lien vers la page joueur), variation, désignation, tags, infos (année, numérotation, grade, collection, variation, signature, note), localisation, mes collections, setlist, Modifier / À vendre / Vendue / Partager / Exporter / Supprimer, valeur estimée et eBay, autres collectionneurs, et la vue visiteur (échange, ajouter à ma galerie, j&apos;aime). Les boutons Fermer, Loupe, Retourner et flèches sont aussi là. Seul l&apos;habillage change. Chaque version est montrée sur ordinateur et sur téléphone (tiroir déplié, le contenu défile).</p>
+      <h1 className="sf">Idées · Série 20 · Visualiseur aéré, couleur d&apos;équipe</h1>
+      <p className="lead">On garde la couleur de l&apos;équipe de la carte (ici les 76ers : rouge et bleu, bleu neutre si l&apos;équipe est inconnue) et TOUT le contenu actuel, mais on aère : plus de gros cadres, plus de gras partout. Une hiérarchie claire (identité, détails, ma carte, valeur, actions), des listes sobres à filets fins, des libellés petits et discrets, beaucoup d&apos;espace entre les blocs. Chaque version est montrée sur ordinateur et sur téléphone.</p>
       <nav className="tags">{names.map((t, i) => <a key={t} href={`#s${i + 1}`}>{String(i + 1).padStart(2, '0')} {t}</a>)}</nav>
 
-      <Bay id="s1" n="A" title="Filets : la base de la nouvelle DA" desc="Cadres à doubles filets blancs, angles droits, libellés en petites capitales (11 px au lieu de 9), nom en Surfquest, boutons à filet blanc dont le principal est plein. Le plus proche de l'accueil."><div className="pair"><Desk v="a" /><Phone v="a" /></div></Bay>
-      <Bay id="s2" n="B" title="Bandes : une ligne pleine par information" desc="Les infos deviennent des bandes blanches pleine largeur (libellé à gauche, valeur à droite) en encre bleu nuit. Très lisible au pouce, et le panneau a une vraie structure."><div className="pair"><Desk v="b" /><Phone v="b" /></div></Bay>
-      <Bay id="s3" n="C" title="Papier : un panneau clair sur scène sombre" desc="Le panneau est une fiche claire avec le texte en encre bleu nuit et des filets sombres. Le meilleur contraste en plein soleil, et la carte ressort sur la scène sombre."><div className="pair"><Desk v="c" /><Phone v="c" /></div></Bay>
-      <Bay id="s4" n="D" title="Verre : panneau translucide sur ambiance colorée" desc="Le fond de la scène prend les couleurs de la carte (lueur floue) et le panneau est un verre sombre à filet blanc. Plus immersif, tout le contenu reste identique."><div className="pair"><Desk v="d" stage={<><img className="glow" src={C.mccain.img} alt="" /><img className="vc" src={C.mccain.img} alt="" /></>} /><Phone v="d" /></div></Bay>
-      <Bay id="s5" n="E" title="Musée : accents or, nom sur plaque" desc="Filets et accents dorés, le nom du joueur sur une plaque de laiton, les boutons en or et noir. Pour un visualiseur plus précieux, sans rien changer à ce qu'on peut faire."><div className="pair"><Desk v="e" /><Phone v="e" /></div></Bay>
-      <Bay id="s6" n="F" title="Liste dense : tableau serré, une ligne par info" desc="Les infos en tableau compact à filets fins, sans cadres, pour voir le maximum sans défiler (utile sur petit écran). Les boutons restent grands et cliquables."><div className="pair"><Desk v="f" /><Phone v="f" /></div></Bay>
-      <Bay id="s7" n="G" title="Équipe : un liseré aux couleurs de la franchise" desc="Un bandeau rouge et bleu en haut du panneau (couleurs de l'équipe du joueur) et des pastilles teintées. Tout le reste est identique à la version A."><div className="pair"><Desk v="g" /><Phone v="g" /></div></Bay>
-      <Bay id="s8" n="H" title="Bleu plein : le panneau en bleu électrique" desc="Fond bleu électrique uni (comme les boutons du site), texte blanc, filets blancs. Très franc et très DA, et la carte sombre ressort au milieu."><div className="pair"><Desk v="h" /><Phone v="h" /></div></Bay>
-      <Bay id="s9" n="I" title="Tuiles : chaque info et chaque action dans sa case" desc="Les infos en tuiles carrées à filets, les actions en grille de boutons égaux 3 × 2. Tout est à la même taille, donc facile à viser au pouce."><div className="pair"><Desk v="i" /><Phone v="i" /></div></Bay>
-      <Bay id="s10" n="J" title="Barre d'actions collante : les boutons ne défilent pas" desc="Mêmes infos et mêmes actions, mais les 6 boutons (Modifier, À vendre, Vendue, Partager, Exporter, Supprimer) sont rassemblés dans une barre fixe en bas du panneau, toujours accessible même quand on défile les informations."><div className="pair"><Desk v="j" /><Phone v="j" /></div></Bay>
+      <Bay id="s1" n="01" title="Respire : tout est là, mais sans cadres" desc="Les infos passent en liste à filets fins (libellé discret à gauche, valeur à droite) au lieu de cases. Un seul liseré aux couleurs de l'équipe en haut, des titres de section en petites capitales colorées, et les actions en boutons à filet fin, tous de la même taille. Seul le bouton principal est plein."><div className="pair"><Desk v="q1" /><Phone v="q1" /></div></Bay>
+      <Bay id="s2" n="02" title="Sections numérotées : on sait toujours où on est" desc="Même contenu, mais chaque bloc a un numéro et un titre (01 Détails, 02 Ma carte, 03 Valeur, 04 Autres collectionneurs, 05 Actions). Facile à parcourir, même au pouce, et chaque action se retrouve au même endroit."><div className="pair"><Desk v="q2" /><Phone v="q2" /></div></Bay>
+      <Bay id="s3" n="03" title="Valeur en vedette : le chiffre qui compte en haut" desc="La valeur estimée (avec sa petite courbe) remonte juste sous l'identité, parce que c'est l'info la plus regardée. Le reste est identique, en liste sobre."><div className="pair"><Desk v="q3" /><Phone v="q3" /></div></Bay>
+      <Bay id="s4" n="04" title="Actions en icônes : six boutons sur une seule ligne" desc="Les six actions (Modifier, À vendre, Vendue, Partager, Exporter, Supprimer) deviennent six carrés avec icône et libellé, sur une seule ligne au lieu de deux rangées de gros boutons. Chacune garde son libellé, rien n'est caché."><div className="pair"><Desk v="q4" /><Phone v="q4" /></div></Bay>
+      <Bay id="s5" n="05" title="Panneau large en deux colonnes : moins de défilement" desc="Sur ordinateur, le panneau est plus large et se range en deux colonnes (identité et détails à gauche, ma carte, valeur et collectionneurs à droite), actions en bas sur toute la largeur. Tout tient presque sans défiler. Sur téléphone, une seule colonne."><div className="pair"><Desk v="q5" wide /><Phone v="q5" /></div></Bay>
+      <Bay id="s6" n="06" title="Mobile d'abord : l'essentiel en haut, le reste juste en dessous" desc="Même contenu, mais l'ordre est pensé pour le pouce : nom, tags et valeur tout en haut du tiroir, puis les actions, puis les détails et le reste. Aucun bouton retiré, seulement une meilleure priorité de lecture."><div className="pair"><Desk v="q6" /><Phone v="q6" /></div></Bay>
     </div>
   )
 }
