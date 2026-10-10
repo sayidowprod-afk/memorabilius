@@ -868,7 +868,7 @@ export default function SetlistPage() {
       {!loading && sets.length > 0 && (
         <div style={{ marginBottom: 32 }}>
           {/* Onglets décennie */}
-          <div style={{ display: 'flex', gap: 8, marginBottom: 14, borderBottom: `2px solid ${dark ? '#333' : '#f0f0f0'}`, paddingBottom: 0, overflowX: 'auto' }}>
+          <div className="sl-noscroll" style={{ display: 'flex', gap: 8, marginBottom: 14, borderBottom: `2px solid ${dark ? '#333' : '#f0f0f0'}`, paddingBottom: 0, overflowX: 'auto', overflowY: 'hidden' }}>
             {decades.map(decade => {
               const isAct = resolvedDecade === decade
               const label = `${String(decade).slice(2)}s`
@@ -894,7 +894,7 @@ export default function SetlistPage() {
           </div>
 
           {/* Boutons d'années dans la décennie */}
-          <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap', paddingTop: 8, overflowX: 'auto' }}>
+          <div className="sl-noscroll" style={{ display: 'flex', gap: 8, flexWrap: 'wrap', paddingTop: 8, overflowX: 'auto', overflowY: 'hidden' }}>
             {decadeSeasons.map(year => {
               const isActive = activeSeason === year
               const ssets = sets.filter(s => s.year === year)
