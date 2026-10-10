@@ -64,6 +64,8 @@ export default function SetlistPage() {
   const [syncDone, setSyncDone] = useState(false)
   const [newMatchCount, setNewMatchCount] = useState(0)
   const [totalSynced, setTotalSynced] = useState<number | null>(null)
+  // detail des cartes inscrites en setlist (sport actif) : validees par la synchro / cochees a la main
+  const [completionSplit, setCompletionSplit] = useState<{ auto: number; manual: number } | null>(null)
   const [unmatchedCards, setUnmatchedCards] = useState<UnmatchedCard[]>([])
   const [showMissing, setShowMissing] = useState(false)
   const [showAddManual, setShowAddManual] = useState(false)
@@ -188,6 +190,15 @@ export default function SetlistPage() {
       const pct = s.total_cards > 0 ? Math.round((owned / s.total_cards) * 100) : 0
       return { ...s, owned, pct }
     })
+
+    let autoN = 0, manualN = 0
+    const sportSets = new Set(setsData.map((s: any) => s.id))
+    allCompletions.forEach((c: any) => {
+      const sid = c.card_set_entries?.set_id
+      if (!sid || !sportSets.has(sid)) return
+      if (c.manually_checked) manualN++; else autoN++
+    })
+    setCompletionSplit({ auto: autoN, manual: manualN })
 
     setSets(enriched)
     const mostRecent = setsData[0]?.year
@@ -620,8 +631,13 @@ export default function SetlistPage() {
                   </div>
                 )}
                 <div style={{ fontWeight: 700, color: '#003DA6' }}>
-                  {(totalSynced ?? totalOwnedAllSets).toLocaleString()} {t('setlist_cards_synced')}
+                  {totalOwnedAllSets.toLocaleString()} {t('setlist_cards_synced')}
                 </div>
+                {completionSplit && (
+                  <div style={{ color: '#666', fontSize: 12 }}>
+                    dont {completionSplit.auto.toLocaleString()} par synchronisation · {completionSplit.manual.toLocaleString()} cochées à la main
+                  </div>
+                )}
                 <div style={{ color: '#666', fontSize: 13 }}>
                   {t('setlist_in')} {setsWithCards} setlist{setsWithCards !== 1 ? 's' : ''}
                 </div>
