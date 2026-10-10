@@ -1,10 +1,10 @@
 'use client'
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import Link from 'next/link'
 
 // Idees visuelles pour pousser la nouvelle DA (Surfquest, marine -> bleu electrique, angles droits, doubles filets, metaux).
 // Page de TRAVAIL reservee aux admins : donnees d'exemple en dur, rien n'est lu ni ecrit.
-// Serie 8 : 20 idees. Tout le style est ici, prefixe .ix.
+// Serie 9 : 20 idees, plutot tournees setlists / progression / partage. Tout le style est ici, prefixe .ix.
 
 const SB = 'https://snnrkzbevjhdtviizfyp.supabase.co/storage/v1/object/public/avatars/cartes/eb730dee-414e-4fcb-89d8-4a7b3448c218/'
 const C = {
@@ -18,7 +18,7 @@ const C = {
 const ALL = [C.mccain, C.edwards, C.mcw, C.maxey, C.hawkins, C.luwawu]
 
 const CSS = `
-.ix { --el:#2f6bff; font-family: system-ui, sans-serif; color:#fff; min-height:100vh;
+.ix { font-family: system-ui, sans-serif; color:#fff; min-height:100vh;
   background: radial-gradient(circle at 15% -10%, rgba(91,141,239,.10), transparent 45%), linear-gradient(160deg,#050912 0%,#08153b 55%,#0a2468 100%); padding: 24px clamp(14px,3vw,44px) 90px; }
 .ix * { box-sizing: border-box; }
 .ix img { background: none !important; animation: none !important; }
@@ -42,76 +42,61 @@ const CSS = `
 .ix .tags a:hover { background:#fff; color:#06122e; }
 .ix .lab { font: 800 10px system-ui; letter-spacing:.16em; text-transform:uppercase; }
 
-/* 1 match wishlist */
-.ix .match { display:flex; align-items:stretch; max-width: 560px; filter: drop-shadow(0 10px 20px rgba(0,0,0,.5)); }
-.ix .match .ic { width: 64px; background:#ffd54a; display:flex; align-items:center; justify-content:center; font-size: 30px; clip-path: polygon(0 0,100% 0,calc(100% - 12px) 100%,0 100%); }
-.ix .match .tx { flex:1; background:#fff; margin-left:-12px; padding: 12px 18px 12px 26px; display:flex; gap: 12px; align-items:center; clip-path: polygon(12px 0,100% 0,100% 100%,0 100%); }
-.ix .match .tx img { width: 44px; box-shadow:none; } .ix .match .tx b { display:block; font-size: 26px; line-height:1; } .ix .match .tx span { font: 700 12px system-ui; }
-/* 2 mur d'equipes */
-.ix .teams { display:grid; grid-template-columns: repeat(auto-fill, minmax(110px,1fr)); gap: 8px; }
-.ix .tm { padding: 10px 12px; background: var(--c); min-height: 74px; display:flex; flex-direction:column; justify-content:space-between; }
-.ix .tm b { font-size: 34px; line-height:.9; } .ix .tm span { font: 800 10px system-ui; letter-spacing:.12em; text-transform:uppercase; }
-/* 3 vote */
-.ix .vote { max-width: 560px; display:grid; gap: 10px; }
-.ix .vt { display:flex; align-items:center; gap: 12px; } .ix .vt img { width: 44px; box-shadow:none; flex-shrink:0; }
-.ix .vt .bar { flex:1; height: 30px; background: rgba(255,255,255,.1); position:relative; } .ix .vt .bar i { position:absolute; inset:0 auto 0 0; background: var(--el); display:flex; align-items:center; padding-left: 10px; font: 800 12px system-ui; }
-.ix .vt .bar i.win { background:#ffd54a; } .ix .vt .bar i.win, .ix .vt .bar i.win * { color:#06122e !important; }
-.ix .vt .pc { width: 56px; text-align:right; font-size: 24px; }
-/* 4 diaporama */
-.ix .show { position:relative; height: 320px; background:#000; display:flex; align-items:center; justify-content:center; overflow:hidden; }
-.ix .show::before { content:''; position:absolute; inset:0; background: var(--bg) center/cover; filter: blur(30px) brightness(.45); transform: scale(1.3); }
-.ix .show .card { position:relative; width: 170px; } .ix .show .cap2 { position:absolute; left: 18px; bottom: 14px; z-index:2; } .ix .show .cap2 b { font-size: 34px; line-height:.9; display:block; } .ix .show .dots { position:absolute; right: 18px; bottom: 18px; display:flex; gap:6px; z-index:2; } .ix .show .dots i { width: 10px; height: 10px; background: rgba(255,255,255,.4); } .ix .show .dots i.on { background:#fff; }
-/* 5 spine */
-.ix .spines { display:flex; align-items:flex-end; gap: 4px; height: 210px; padding: 0 10px; border-bottom: 12px solid #7a5420; }
-.ix .sp { width: 46px; background: var(--c); display:flex; align-items:center; justify-content:center; writing-mode: vertical-rl; transform: rotate(180deg); font: 800 11px system-ui; letter-spacing:.16em; text-transform:uppercase; border: 2px solid rgba(255,255,255,.4); border-bottom:0; transition: transform .2s; cursor:pointer; }
-.ix .sp:hover { transform: rotate(180deg) translateX(-14px); }
-/* 6 donut */
-.ix .donut { display:flex; gap: 28px; flex-wrap:wrap; align-items:center; }
-.ix .donut .ring { width: 190px; height:190px; border-radius:50%; background: conic-gradient(#e67e22 0 46%, #2f6bff 46% 74%, #1f9d55 74% 90%, #a45cff 90% 100%); position:relative; }
-.ix .donut .ring::after { content:''; position:absolute; inset: 40px; background:#08153b; border-radius:50%; } .ix .donut .mid { position:absolute; inset:0; display:flex; flex-direction:column; align-items:center; justify-content:center; z-index:2; } .ix .donut .mid b { font-size: 44px; line-height:.9; }
-.ix .lg2 { display:grid; gap:8px; font: 800 12px system-ui; letter-spacing:.08em; text-transform:uppercase; } .ix .lg2 span { display:flex; gap:8px; align-items:center; } .ix .lg2 i { width:14px; height:14px; background: var(--c); display:inline-block; }
-/* 7 onboarding */
-.ix .onb { display:grid; grid-template-columns: repeat(3,1fr); gap: 10px; max-width: 760px; }
-.ix .st3 { border: 3px solid #fff; padding: 14px; position:relative; } .ix .st3 .n { font-size: 54px; line-height:.85; opacity:.9; } .ix .st3 b { display:block; margin-top: 8px; font: 800 13px system-ui; letter-spacing:.1em; text-transform:uppercase; } .ix .st3 p { margin: 4px 0 0; font-size: 12px; opacity:.75; }
-.ix .st3.done { background:#1f9d55; border-color:#1f9d55; }
-/* 8 jalon */
-.ix .mile { position:relative; text-align:center; padding: 30px 10px; } .ix .mile .n { font-size: clamp(90px,16vw,170px); line-height:.85; text-shadow: 0 0 40px rgba(47,107,255,.9); } .ix .mile .bars { position:absolute; left:0; right:0; top:50%; height: 70%; transform: translateY(-50%); background: repeating-linear-gradient(90deg, rgba(47,107,255,.18) 0 8px, transparent 8px 22px); mask-image: radial-gradient(closest-side, #000, transparent); -webkit-mask-image: radial-gradient(closest-side, #000, transparent); }
-/* 9 proches */
-.ix .map { position:relative; height: 260px; background: linear-gradient(#0a1030,#0a1030) , repeating-linear-gradient(0deg, rgba(255,255,255,.05) 0 1px, transparent 1px 30px), repeating-linear-gradient(90deg, rgba(255,255,255,.05) 0 1px, transparent 1px 30px); border: 3px solid rgba(255,255,255,.25); }
-.ix .pin { position:absolute; transform: translate(-50%,-100%); text-align:center; } .ix .pin b { display:block; width: 38px; height:38px; background:#fff; color:#06122e !important; clip-path: polygon(0 0,100% 0,100% 72%,50% 100%,0 72%); font: 800 14px system-ui; padding-top: 8px; }
-.ix .pin small { display:block; font: 800 9px system-ui; letter-spacing:.1em; margin-top:2px; }
-/* 10 sparkline */
-.ix .spark { display:grid; grid-template-columns: repeat(auto-fit, minmax(190px,1fr)); gap: 10px; max-width: 800px; }
-.ix .sk { display:flex; gap: 10px; align-items:center; border: 2px solid rgba(255,255,255,.2); padding: 8px; } .ix .sk img { width: 40px; box-shadow:none; } .ix .sk svg { width: 70px; height: 34px; } .ix .sk b { font-size: 22px; line-height:1; display:block; } .ix .sk span { font: 800 11px system-ui; }
-/* 11 sceau */
-.ix .seal { width: 150px; height: 150px; border-radius:50%; display:flex; align-items:center; justify-content:center; flex-direction:column; text-align:center; background: radial-gradient(circle at 35% 30%, #fff6a8, #ffd700 45%, #b8860b); color:#3d2800 !important; box-shadow: 0 10px 30px rgba(0,0,0,.5), inset 0 0 0 6px rgba(255,255,255,.35), inset 0 0 0 9px rgba(120,80,0,.5); transform: rotate(-8deg); }
-.ix .seal * { color:#3d2800 !important; } .ix .seal b { font-size: 34px; line-height:.9; } .ix .seal small { font: 800 9px system-ui; letter-spacing:.16em; text-transform:uppercase; }
-/* 12 swipe */
-.ix .swipe { position:relative; width: 220px; height: 330px; } .ix .swipe .card { position:absolute; inset:0; height:100%; } .ix .swipe .card:nth-child(1) { transform: rotate(-6deg) scale(.95); } .ix .swipe .card:nth-child(2) { transform: rotate(5deg) scale(.97); } .ix .swipe .stp { position:absolute; top: 16px; left: 14px; z-index:3; border: 4px solid #1f9d55; color:#1f9d55 !important; padding: 2px 12px; font-size: 34px; transform: rotate(-14deg); background: rgba(5,9,18,.5); }
-.ix .swbtn { display:flex; gap: 14px; margin-top: 16px; } .ix .swbtn span { width: 56px; height:56px; border-radius:50%; display:flex; align-items:center; justify-content:center; font-size: 26px; border: 3px solid currentColor; }
-/* 13 postit */
-.ix .pc { position:relative; width: 170px; } .ix .postit { position:absolute; right: -28px; bottom: 24px; width: 120px; padding: 10px 10px 12px; background:#ffe56b; transform: rotate(6deg); box-shadow: 0 8px 14px rgba(0,0,0,.45); font: 600 13px/1.25 'Segoe Print','Comic Sans MS',cursive; color:#3a3000 !important; }
-.ix .postit * { color:#3a3000 !important; }
-/* 14 classement */
-.ix .lb { max-width: 520px; } .ix .lrow { display:flex; align-items:center; gap: 12px; padding: 9px 12px; border-bottom: 2px solid rgba(255,255,255,.12); } .ix .lrow .r { width: 34px; font-size: 28px; line-height:1; } .ix .lrow .a { width: 34px; height:34px; border-radius:50%; background: var(--c); flex-shrink:0; } .ix .lrow .nm { flex:1; font: 800 13px system-ui; letter-spacing:.06em; text-transform:uppercase; } .ix .lrow .v { font-size: 26px; } .ix .lrow.me { background: rgba(47,107,255,.35); }
-.ix .lrow .d { font: 800 11px system-ui; width: 36px; text-align:right; } .ix .up { color:#3ddc97 !important; } .ix .dn { color:#ff7a7a !important; }
-/* 15 carriere */
-.ix .career { position:relative; padding: 36px 0 10px; max-width: 760px; } .ix .career::before { content:''; position:absolute; left:0; right:0; top: 56px; height: 4px; background: rgba(255,255,255,.35); }
-.ix .career .pts { display:flex; justify-content:space-between; } .ix .cp { position:relative; width: 90px; text-align:center; } .ix .cp i { display:block; width: 18px; height: 18px; background:#fff; margin: 0 auto 10px; border: 3px solid #08153b; box-shadow: 0 0 0 2px #fff; } .ix .cp img { width: 58px; margin: 0 auto 6px; box-shadow:none; } .ix .cp b { font-size: 22px; line-height:1; display:block; } .ix .cp small { font: 700 10px system-ui; opacity:.7; }
-/* 16 doublons */
-.ix .dups { display:flex; gap: 34px; flex-wrap:wrap; } .ix .dp { position:relative; width: 118px; } .ix .dp .card { position:absolute; left:0; top:0; width:100%; } .ix .dp .card:nth-child(1) { transform: translate(14px,14px) rotate(4deg); filter: brightness(.7); } .ix .dp .card:nth-child(2) { transform: translate(7px,7px) rotate(2deg); filter: brightness(.85); } .ix .dp .box { position:relative; width:100%; aspect-ratio:2.5/3.5; } .ix .dp .box .card { position:relative; }
-.ix .dp .x { position:absolute; top:-12px; right:-12px; z-index:4; background:#ffd54a; color:#06122e !important; font-size: 26px; padding: 2px 9px; clip-path: polygon(0 0,100% 0,100% 80%,60% 100%,0 80%); }
-/* 17 viseur */
-.ix .vis { position:relative; width: 240px; aspect-ratio: 2.5/3.5; } .ix .vis .card { height:100%; filter: brightness(.7); } .ix .vis i { position:absolute; width: 32px; height: 32px; border: 0 solid #2fffa0; animation: ixbl 1.2s ease-in-out infinite; } @keyframes ixbl { 50% { transform: scale(.88); } }
-.ix .vis i:nth-of-type(1) { left:-8px; top:-8px; border-width: 4px 0 0 4px; } .ix .vis i:nth-of-type(2) { right:-8px; top:-8px; border-width: 4px 4px 0 0; } .ix .vis i:nth-of-type(3) { left:-8px; bottom:-8px; border-width: 0 0 4px 4px; } .ix .vis i:nth-of-type(4) { right:-8px; bottom:-8px; border-width: 0 4px 4px 0; }
-.ix .vis .ln { position:absolute; left:0; right:0; height: 3px; background:#2fffa0; box-shadow: 0 0 14px #2fffa0; animation: ixscan 2.2s ease-in-out infinite alternate; } @keyframes ixscan { from { top: 4%; } to { top: 96%; } }
-/* 18 mosaique */
-.ix .mosa { columns: 5 90px; column-gap: 6px; } .ix .mosa img { margin-bottom: 6px; width:100%; box-shadow:none; aspect-ratio: auto; }
-/* 19 ticker cartes */
-.ix .tick { overflow:hidden; background:#fff; padding: 8px 0; } .ix .tick div { display:inline-flex; gap: 22px; align-items:center; white-space:nowrap; animation: ixtk 30s linear infinite; } .ix .tick span { display:inline-flex; align-items:center; gap: 8px; font: 800 12px system-ui; letter-spacing:.08em; text-transform:uppercase; } .ix .tick img { width: 22px; box-shadow:none; } @keyframes ixtk { to { transform: translateX(-50%); } }
-/* 20 statut du jour */
-.ix .qd { display:grid; grid-template-columns: repeat(auto-fit, minmax(150px,1fr)); gap: 10px; max-width: 760px; } .ix .qd div { border: 3px solid #fff; padding: 12px; } .ix .qd b { display:block; font-size: 46px; line-height:.9; } .ix .qd small { font: 800 10px system-ui; letter-spacing:.14em; text-transform:uppercase; opacity:.75; }
-@media (prefers-reduced-motion: reduce) { .ix .vis i, .ix .vis .ln, .ix .tick div { animation: none; } }
+/* 1 resultat de synchro */
+.ix .sync { max-width: 520px; border: 3px solid #fff; background: linear-gradient(135deg,#050912,#003da6); }
+.ix .sync .h { background:#fff; padding: 6px 14px; font: 800 11px system-ui; letter-spacing:.18em; text-transform:uppercase; color:#06122e !important; }
+.ix .sync .b { display:grid; grid-template-columns: 1fr 1fr; } .ix .sync .b div { padding: 14px 16px; border-right: 2px solid rgba(255,255,255,.25); } .ix .sync .b div:last-child { border: 0; }
+.ix .sync b { font-size: 54px; line-height:.9; display:block; } .ix .sync small { font: 800 10px system-ui; letter-spacing:.14em; text-transform:uppercase; opacity:.8; }
+.ix .sync .f { padding: 10px 16px; border-top: 2px solid rgba(255,255,255,.25); font: 700 12px system-ui; opacity:.85; }
+/* 2 paliers de set */
+.ix .tiers { max-width: 620px; } .ix .tbar { position:relative; height: 28px; background: rgba(255,255,255,.12); border: 3px solid #fff; padding: 3px; } .ix .tbar i { display:block; height:100%; width: 62%; background: repeating-linear-gradient(90deg,#2f6bff 0 14px,#1a47b8 14px 16px); }
+.ix .tmk { position:relative; height: 62px; } .ix .tmk div { position:absolute; transform: translateX(-50%); text-align:center; font: 800 10px system-ui; letter-spacing:.1em; } .ix .tmk i { display:block; width: 30px; height: 30px; margin: 4px auto 3px; clip-path: polygon(50% 0,100% 25%,100% 75%,50% 100%,0 75%,0 25%); background: var(--c); } .ix .tmk div.lock i { opacity:.35; filter: grayscale(1); }
+/* 3 il t'en manque */
+.ix .near { display:flex; gap: 16px; flex-wrap:wrap; }
+.ix .nr { width: 210px; border: 3px solid #fff; padding: 12px; } .ix .nr h4 { margin: 0 0 6px; font-size: 22px; line-height:1; } .ix .nr .m { font-size: 52px; line-height:.9; color:#ffd54a !important; } .ix .nr small { font: 800 10px system-ui; letter-spacing:.12em; text-transform:uppercase; opacity:.8; }
+.ix .nr .ghosts { display:flex; gap:4px; margin-top: 10px; } .ix .nr .ghosts i { width: 28px; aspect-ratio: 2.5/3.5; border: 2px dashed rgba(255,255,255,.5); display:block; }
+/* 4 set complet */
+.ix .done { position:relative; width: 230px; padding: 18px 14px 14px; text-align:center; background: linear-gradient(135deg,#b8860b,#ffd700 45%,#fff6a8 50%,#ffd700 55%,#b8860b); box-shadow: 0 0 40px rgba(255,215,0,.45); }
+.ix .done, .ix .done * { color:#3d2800 !important; } .ix .done h4 { margin: 0; font-size: 40px; line-height:.9; } .ix .done b { font-size: 70px; line-height:.9; display:block; } .ix .done small { font: 800 10px system-ui; letter-spacing:.2em; text-transform:uppercase; }
+/* 5 grille de numeros */
+.ix .nums { display:grid; grid-template-columns: repeat(auto-fill, 30px); gap: 3px; max-width: 760px; }
+.ix .nums i { width:30px; height:30px; font: 800 10px system-ui; font-style:normal; display:flex; align-items:center; justify-content:center; border: 2px solid rgba(255,255,255,.28); }
+.ix .nums i.on { background:#2f6bff; border-color:#2f6bff; } .ix .nums i.rc { background:#e67e22; border-color:#e67e22; }
+/* 6 palette de paralleles */
+.ix .pals { display:flex; flex-wrap:wrap; gap: 8px; } .ix .pal { display:flex; align-items:center; gap: 8px; padding: 6px 12px 6px 6px; border: 2px solid rgba(255,255,255,.25); font: 800 11px system-ui; letter-spacing:.06em; text-transform:uppercase; } .ix .pal i { width: 22px; height: 22px; background: var(--c); border: 2px solid rgba(255,255,255,.6); } .ix .pal.own { background: rgba(47,107,255,.35); border-color:#2f6bff; }
+/* 7 filtres */
+.ix .fbar { display:flex; gap: 8px; flex-wrap:wrap; padding: 10px; background:#0a1030; border: 3px solid rgba(255,255,255,.3); } .ix .fbar span { padding: 7px 14px; border: 2px solid rgba(255,255,255,.4); font: 800 11px system-ui; letter-spacing:.1em; text-transform:uppercase; cursor:pointer; } .ix .fbar span.on { background:#fff; color:#06122e !important; } .ix .fbar .n { margin-left:auto; font-size: 22px; align-self:center; }
+/* 8 hors ligne */
+.ix .off { display:flex; align-items:center; gap: 12px; max-width: 560px; background:#ffd54a; padding: 10px 16px; } .ix .off, .ix .off * { color:#2a2000 !important; } .ix .off b { font: 800 13px system-ui; letter-spacing:.08em; text-transform:uppercase; } .ix .off span { font: 600 12px system-ui; } .ix .off i { width: 12px; height: 12px; background:#2a2000; animation: ixblink 1.2s infinite; } @keyframes ixblink { 50% { opacity:.2; } }
+/* 9 story */
+.ix .story { width: 210px; aspect-ratio: 9/16; position:relative; background: linear-gradient(170deg,#050912,#003da6); border: 3px solid #fff; display:flex; flex-direction:column; align-items:center; justify-content:space-between; padding: 14px 12px; text-align:center; }
+.ix .story .card { width: 64%; } .ix .story .t { font-size: 38px; line-height:.9; } .ix .story small { font: 800 9px system-ui; letter-spacing:.2em; text-transform:uppercase; opacity:.8; }
+/* 10 nouveautes */
+.ix .news { max-width: 480px; border: 3px solid #fff; background:#0a1030; } .ix .news .h { display:flex; justify-content:space-between; align-items:center; background:#fff; padding: 8px 14px; } .ix .news .h b { font-size: 24px; color:#06122e !important; line-height:1; } .ix .news .h i { font: 800 10px system-ui; letter-spacing:.14em; color:#06122e !important; font-style:normal; }
+.ix .news li { list-style:none; padding: 10px 14px; border-bottom: 2px solid rgba(255,255,255,.14); display:flex; gap: 10px; align-items:baseline; font-size: 13px; } .ix .news li b { background: var(--c); padding: 2px 8px; font: 800 9px system-ui; letter-spacing:.12em; text-transform:uppercase; flex-shrink:0; } .ix .news ul { margin:0; padding:0; }
+/* 11 carte de joueur profil */
+.ix .pcard { width: 250px; background: linear-gradient(160deg,#08153b,#003da6); border: 4px solid #fff; padding: 14px; } .ix .pcard .top { display:flex; justify-content:space-between; align-items:flex-start; } .ix .pcard h4 { margin: 0; font-size: 34px; line-height:.9; } .ix .pcard .ovr { font-size: 54px; line-height:.85; text-align:right; }
+.ix .pcard .av { height: 120px; margin: 10px 0; background: linear-gradient(135deg,#2f6bff,#0a2468); display:flex; align-items:center; justify-content:center; font-size: 76px; border: 3px solid #fff; } .ix .pcard .st { display:grid; grid-template-columns: repeat(3,1fr); text-align:center; } .ix .pcard .st b { font-size: 26px; display:block; line-height:1; } .ix .pcard .st small { font: 800 9px system-ui; letter-spacing:.14em; opacity:.8; }
+/* 12 cadres d'avatar */
+.ix .frames { display:flex; gap: 22px; flex-wrap:wrap; } .ix .fr { text-align:center; } .ix .fr .av { width: 84px; height: 84px; border-radius:50%; background: #2f6bff; display:flex; align-items:center; justify-content:center; font-size: 36px; margin: 0 auto 8px; box-shadow: 0 0 0 5px var(--a), 0 0 0 8px #08153b, 0 0 0 10px var(--b); }
+/* 13 nouveau */
+.ix .newset { display:flex; align-items:center; gap: 12px; max-width: 520px; padding: 12px 14px; border: 3px solid #fff; position:relative; } .ix .newset .nw { background:#e63a6e; padding: 3px 10px; font: 800 10px system-ui; letter-spacing:.16em; text-transform:uppercase; } .ix .newset h4 { margin:0; font-size: 26px; line-height:1; flex:1; } .ix .newset small { font: 700 11px system-ui; opacity:.7; }
+/* 14 duel setlist */
+.ix .vs2 { max-width: 560px; } .ix .vs2 .r { display:grid; grid-template-columns: 1fr 74px 1fr; align-items:center; gap: 8px; margin: 8px 0; } .ix .vs2 .bar { height: 18px; background: rgba(255,255,255,.1); position:relative; } .ix .vs2 .bar i { position:absolute; top:0; bottom:0; background: var(--c); } .ix .vs2 .l .bar i { right:0; } .ix .vs2 .mid { text-align:center; font: 800 10px system-ui; letter-spacing:.12em; text-transform:uppercase; } .ix .vs2 .n { font-size: 20px; }
+/* 15 suggestion */
+.ix .sugg { display:flex; gap: 18px; align-items:center; border: 3px solid #fff; padding: 14px; max-width: 560px; } .ix .sugg .card { width: 90px; flex-shrink:0; } .ix .sugg h4 { margin: 0 0 6px; font-size: 28px; line-height:.95; } .ix .sugg p { margin: 0 0 8px; font-size: 13px; opacity:.8; } .ix .sugg .gain { display:inline-block; background:#1f9d55; padding: 3px 10px; font: 800 11px system-ui; letter-spacing:.1em; text-transform:uppercase; }
+/* 16 provenance */
+.ix .prov { position:relative; max-width: 460px; padding-left: 30px; } .ix .prov::before { content:''; position:absolute; left: 8px; top: 6px; bottom: 6px; width: 3px; background: rgba(255,255,255,.35); } .ix .pv { position:relative; margin-bottom: 16px; } .ix .pv::before { content:''; position:absolute; left: -29px; top: 3px; width: 13px; height: 13px; background:#fff; border: 3px solid #08153b; box-shadow: 0 0 0 2px #fff; } .ix .pv b { font-size: 22px; line-height:1; display:block; } .ix .pv small { font: 700 11px system-ui; opacity:.7; }
+/* 17 bascule de theme */
+.ix .tg { width: 130px; height: 62px; border: 3px solid #fff; position:relative; display:flex; align-items:center; background:#0a1030; cursor:pointer; } .ix .tg span { position:absolute; top: 3px; left: 3px; width: 50px; height: 50px; background:#fff; display:flex; align-items:center; justify-content:center; font-size: 26px; transition: transform .3s cubic-bezier(.3,1.4,.5,1); color:#06122e !important; } .ix .tg.light { background:#e9edf8; } .ix .tg.light span { transform: translateX(68px); background:#06122e; color:#fff !important; }
+/* 18 pastille de synchro */
+.ix .cloud { display:inline-flex; align-items:center; gap: 10px; border: 3px solid #fff; padding: 8px 14px; font: 800 12px system-ui; letter-spacing:.1em; text-transform:uppercase; } .ix .cloud i { width: 12px; height: 12px; background:#3ddc97; box-shadow: 0 0 10px #3ddc97; } .ix .cloud.sy i { background:#2f6bff; box-shadow: 0 0 10px #2f6bff; animation: ixblink .8s infinite; } .ix .cloud.er i { background:#e5484d; box-shadow: 0 0 10px #e5484d; }
+/* 19 tampon coche */
+.ix .chk { display:flex; flex-wrap:wrap; gap: 12px; } .ix .ck { width: 120px; border: 3px solid rgba(255,255,255,.3); padding: 10px; cursor:pointer; position:relative; text-align:center; font: 800 11px system-ui; letter-spacing:.08em; text-transform:uppercase; min-height: 70px; display:flex; align-items:center; justify-content:center; }
+.ix .ck .st { position:absolute; inset:auto -8px -10px auto; transform: rotate(-12deg); border: 3px solid #3ddc97; color:#3ddc97 !important; padding: 0 8px; font-size: 24px; background: rgba(5,9,18,.7); opacity:0; transform: rotate(-12deg) scale(2.5); transition: all .25s cubic-bezier(.3,1.4,.5,1); } .ix .ck.on { border-color:#3ddc97; } .ix .ck.on .st { opacity:1; transform: rotate(-12deg) scale(1); }
+/* 20 index A-Z */
+.ix .az { display:flex; gap: 20px; max-width: 520px; } .ix .az .list { flex:1; } .ix .az .gr { font-size: 30px; line-height:1; border-bottom: 3px solid #fff; margin: 10px 0 4px; } .ix .az .p { padding: 6px 0; font: 700 14px system-ui; border-bottom: 1px solid rgba(255,255,255,.12); } .ix .az nav { display:flex; flex-direction:column; justify-content:space-between; font: 800 11px system-ui; letter-spacing:.04em; opacity:.8; }
+@media (prefers-reduced-motion: reduce) { .ix .off i, .ix .cloud.sy i { animation: none; } }
 `
 
 function Bay({ id, n, title, desc, children }: { id: string; n: string; title: string; desc: string; children: React.ReactNode }) {
@@ -130,77 +115,77 @@ const I = ({ c, w }: { c: { img: string }; w?: number }) => (
 )
 
 export default function DaIdeas() {
-  const [slide, setSlide] = useState(0)
-  useEffect(() => { const id = setInterval(() => setSlide(s => (s + 1) % 4), 2600); return () => clearInterval(id) }, [])
-  const names = ['Match de wishlist', 'Mur d’équipes', 'Vote', 'Diaporama', 'Dos de classeurs', 'Anneau', 'Premiers pas', 'Jalon', 'Collectionneurs proches', 'Valeur en courbes', 'Sceau', 'Swipe d’échange', 'Post-it', 'Classement', 'Carrière', 'Doublons', 'Viseur', 'Mosaïque', 'Bandeau live', 'Chiffres du jour']
+  const [ck, setCk] = useState<number[]>([1])
+  const [light, setLight] = useState(false)
+  const names = ['Résultat de synchro', 'Paliers de set', 'Il t’en manque', 'Set complet', 'Grille de numéros', 'Palette de parallèles', 'Filtres capsules', 'Hors ligne', 'Story', 'Nouveautés', 'Carte de joueur', 'Cadres d’avatar', 'Nouveau set', 'Duel de setlist', 'Prochaine carte', 'Provenance', 'Bascule de thème', 'État de synchro', 'Tampon de coche', 'Index A-Z']
+  const toggle = (i: number) => setCk(c => (c.includes(i) ? c.filter(x => x !== i) : [...c, i]))
   return (
     <div className="ix">
       <style>{CSS}</style>
       <Link href="/admin" className="back">← Admin</Link>
-      <h1 className="sf">Idées visuelles · Série 8</h1>
-      <p className="lead">Vingt nouvelles pistes, des plus petites aux plus ambitieuses : alertes, tableaux, objets, écrans de fonctions. Dis-moi les numéros à garder.</p>
-      <nav className="tags">{names.map((t, i) => <a key={t} href={`#q${i + 1}`}>{String(i + 1).padStart(2, '0')} {t}</a>)}</nav>
+      <h1 className="sf">Idées visuelles · Série 9</h1>
+      <p className="lead">Vingt nouvelles pistes, surtout autour des setlists, de la progression et du partage. Dis-moi les numéros à garder.</p>
+      <nav className="tags">{names.map((t, i) => <a key={t} href={`#r${i + 1}`}>{String(i + 1).padStart(2, '0')} {t}</a>)}</nav>
 
-      <Bay id="q1" n="01 — Match de wishlist" title="Une carte de ta wishlist vient d'apparaître" desc="Quand un collectionneur ajoute une carte que tu cherches : un bandeau doré « TROUVÉE ! » avec la miniature, le nom et qui la possède. Plus visible qu'une notification texte.">
-        <div className="match ink"><div className="ic">🎯</div><div className="tx"><I c={C.maxey} w={44} /><div><b className="sf">Trouvée !</b><span>Tyrese Maxey 2020-21 chez Benlou33</span></div></div></div>
+      <Bay id="r1" n="01 — Résultat de synchro" title="Un ticket de résultat après la synchronisation" desc="Après « Synchroniser », un ticket à deux colonnes : cartes inscrites au total et nouvelles cartes cochées, avec le détail (synchro / à la main) et le nombre de cartes non placées à traiter.">
+        <div className="sync wht"><div className="h">Synchronisation terminée</div><div className="b"><div><b className="sf">231</b><small>Cartes inscrites</small></div><div><b className="sf">+48</b><small>Nouvelles</small></div></div><div className="f">dont 205 par synchro · 26 à la main — 31 cartes non placées</div></div>
       </Bay>
-      <Bay id="q2" n="02 — Mur d'équipes" title="Ta collection par équipe en tuiles de couleur" desc="Une tuile par équipe, à ses couleurs, avec le nombre de cartes en gros : on voit d'un regard quelles équipes dominent. Un clic filtre la galerie.">
-        <div className="teams wht">{([['76ers', '#006bb6', 212], ['Suns', '#7a3fbf', 96], ['Celtics', '#1f9d55', 74], ['Lakers', '#b8860b', 58], ['Bulls', '#d4202c', 41], ['Knicks', '#f58426', 36], ['Heat', '#98002e', 22], ['Nets', '#4a4f57', 14]] as [string, string, number][]).map(t => <div key={t[0]} className="tm" style={{ ['--c' as string]: t[1] }}><b className="sf">{t[2]}</b><span>{t[0]}</span></div>)}</div>
+      <Bay id="r2" n="02 — Paliers de set" title="Des paliers de progression sur chaque set" desc="La barre d'un set porte des jalons à 25 %, 50 %, 75 % et 100 %, chacun avec un écusson métal (bronze, argent, or, diamant) qui s'allume en l'atteignant.">
+        <div className="tiers wht"><div className="tbar"><i /></div><div className="tmk">{([[25, '#cd7f32', 0], [50, '#c0c0c0', 0], [75, '#ffd700', 1], [100, '#58c8ff', 1]] as [number, string, number][]).map(m => <div key={m[0]} className={m[2] ? 'lock' : ''} style={{ left: `${m[0] - (m[0] === 100 ? 4 : 0)}%` }}><i style={{ ['--c' as string]: m[1] }} />{m[0]} %</div>)}</div></div>
       </Bay>
-      <Bay id="q3" n="03 — Vote" title="Voter pour la carte de la semaine" desc="Trois cartes en lice, barres de vote animées, pourcentage en gros, la gagnante en doré. Pour un rendez-vous communautaire chaque semaine.">
-        <div className="vote wht">{([[C.mccain, 52, true], [C.hawkins, 31, false], [C.mcw, 17, false]] as [typeof C.mccain, number, boolean][]).map(v => <div className="vt" key={v[0].nom}><I c={v[0]} w={44} /><div className="bar"><i className={v[2] ? 'win' : ''} style={{ width: `${v[1]}%` }}>{v[0].nom}</i></div><div className="pc sf">{v[1]}%</div></div>)}</div>
+      <Bay id="r3" n="03 — Il t'en manque" title="Les sets que tu peux finir bientôt" desc="Des fiches « Il t'en manque 3 » avec les cartes manquantes en pointillés : les sets presque complets passent en tête, avec un bouton pour voir les manquantes. Motive à finir.">
+        <div className="near wht">{([['2023-24 Court Kings', 3, 5], ['2024-25 Optic Rated Rookies', 2, 6], ['2022-23 Hoops Base', 7, 9]] as [string, number, number][]).map(n => <div className="nr" key={n[0]}><h4 className="sf">{n[0]}</h4><div className="m sf">{n[1]}</div><small>cartes manquantes</small><div className="ghosts">{Array.from({ length: n[1] }, (_, i) => <i key={i} />)}</div></div>)}</div>
       </Bay>
-      <Bay id="q4" n="04 — Diaporama" title="Un mode présentation plein écran" desc="Pour un salon ou une tablette : la carte au centre sur son propre fond flouté, nom en grand en bas à gauche, points de progression. Défilement automatique.">
-        <div className="show wht" style={{ ['--bg' as string]: `url(${ALL[slide].img})` }}><I c={ALL[slide]} /><div className="cap2"><b className="sf">{ALL[slide].nom}</b></div><div className="dots">{[0, 1, 2, 3].map(i => <i key={i} className={i === slide ? 'on' : ''} />)}</div></div>
+      <Bay id="r4" n="04 — Set complet" title="Un set complété a droit à son sceau d'or" desc="Quand un set est fini à 100 % : la tuile passe en or métal avec « COMPLET » en grand et la date. Les sets terminés se rangent dans une vitrine du profil.">
+        <div className="done"><small>2022-23 Optic</small><b className="sf">100%</b><h4 className="sf">Complet</h4><small>Terminé le 6 oct. 2026</small></div>
       </Bay>
-      <Bay id="q5" n="05 — Dos de classeurs" title="Les classeurs rangés en dos de livre" desc="La bibliothèque montre les classeurs de profil, par couleur, avec le titre vertical ; au survol un classeur sort un peu de l'étagère.">
-        <div className="spines wht">{([['Court Kings', '#006bb6', 190], ['Rookies', '#e67e22', 150], ['Autos', '#7a3fbf', 200], ['Old School', '#1f9d55', 170], ['Prizm', '#d4202c', 185], ['PC Iguodala', '#b8860b', 160]] as [string, string, number][]).map(s => <div key={s[0]} className="sp" style={{ ['--c' as string]: s[1], height: s[2] }}>{s[0]}</div>)}</div>
+      <Bay id="r5" n="05 — Grille de numéros" title="Un set vu comme une grille de numéros" desc="Chaque numéro de la checklist est une case : bleu si tu l'as, orange pour les rookies, vide sinon. On repère les trous d'un coup d'œil, par plage de numéros.">
+        <div className="nums wht">{Array.from({ length: 120 }, (_, i) => <i key={i} className={[3, 7, 8, 12, 20, 21, 22, 40, 41, 55, 56, 57, 58, 90, 91, 100, 101, 102, 103, 110].includes(i) ? (i % 5 === 0 ? 'rc' : 'on') : ''}>{i + 1}</i>)}</div>
       </Bay>
-      <Bay id="q6" n="06 — Anneau" title="La répartition par sport en anneau" desc="Basket, foot, football US, hockey : un anneau coloré avec le total au centre et une légende en carrés. Remplace les barres quand on a plusieurs sports.">
-        <div className="donut wht"><div className="ring"><div className="mid"><b className="sf">599</b><span className="lab">cartes</span></div></div><div className="lg2">{([['Basket', '#e67e22', '46 %'], ['Football', '#2f6bff', '28 %'], ['NFL', '#1f9d55', '16 %'], ['Autres', '#a45cff', '10 %']] as [string, string, string][]).map(l => <span key={l[0]}><i style={{ ['--c' as string]: l[1] }} />{l[0]} · {l[2]}</span>)}</div></div>
+      <Bay id="r6" n="06 — Palette de parallèles" title="Les parallèles d'un set en pastilles de couleur" desc="Chaque parallèle (Silver, Gold, Blue Ice…) devient une pastille à sa vraie couleur ; ceux que tu possèdes sont surlignés. Plus parlant qu'une liste de 31 noms.">
+        <div className="pals wht">{([['Silver', '#c0c0c0', 1], ['Gold', '#ffd700', 1], ['Blue Ice', '#58c8ff', 0], ['Red', '#e5484d', 1], ['Green', '#1f9d55', 0], ['Pink', '#e63a6e', 0], ['Orange', '#f58426', 1], ['Black', '#222', 0]] as [string, string, number][]).map(p => <span key={p[0]} className={`pal${p[2] ? ' own' : ''}`}><i style={{ ['--c' as string]: p[1] }} />{p[0]}</span>)}</div>
       </Bay>
-      <Bay id="q7" n="07 — Premiers pas" title="Trois étapes pour bien démarrer" desc="Pour un nouveau compte : trois cases numérotées (ajouter une carte, choisir sa couleur, suivre un collectionneur) qui passent au vert à mesure qu'on les fait.">
-        <div className="onb wht">{([['1', 'Ajoute une carte', 'Scanne ou prends en photo', true], ['2', 'Choisis ta couleur', 'Couleur d’équipe du profil', true], ['3', 'Suis un collectionneur', 'Découvre l’annuaire', false]] as [string, string, string, boolean][]).map(s => <div key={s[0]} className={`st3${s[3] ? ' done' : ''}`}><div className="n sf">{s[3] ? '✓' : s[0]}</div><b>{s[1]}</b><p>{s[2]}</p></div>)}</div>
+      <Bay id="r7" n="07 — Filtres capsules" title="Des filtres en capsules rectangulaires avec compteur" desc="Tout / Possédées / Manquantes / RC en capsules à angles droits ; la sélection se remplit en blanc et le nombre de cartes correspondantes s'affiche à droite en grand.">
+        <div className="fbar wht">{['Tout', 'Possédées', 'Manquantes', 'RC'].map((f, i) => <span key={f} className={i === 1 ? 'on' : ''}>{f}</span>)}<b className="n sf">231</b></div>
       </Bay>
-      <Bay id="q8" n="08 — Jalon" title="Un écran quand on atteint 600 cartes" desc="Un grand numéro entouré de rayons verticaux, « Cap des 600 cartes » : un moment de fête, avec un partage en un clic.">
-        <div className="mile wht"><div className="bars" /><div className="lab" style={{ position: 'relative' }}>Cap franchi</div><div className="n sf" style={{ position: 'relative' }}>600</div><div className="lab" style={{ position: 'relative' }}>cartes dans ta collection</div></div>
+      <Bay id="r8" n="08 — Hors ligne" title="Un bandeau clair quand la connexion saute" desc="Une bande jaune en haut : « Hors ligne — tes modifications seront envoyées au retour du réseau », avec un petit voyant clignotant. Rassure au lieu de laisser un écran qui semble bloqué.">
+        <div className="off"><i /><div><b>Hors ligne</b><br /><span>Tes cases cochées seront envoyées au retour du réseau.</span></div></div>
       </Bay>
-      <Bay id="q9" n="09 — Collectionneurs proches" title="Les collectionneurs près de chez toi" desc="Une carte stylisée avec des épingles carrées (nombre de cartes) : utile pour repérer des échanges en main propre ou un salon. Position approximative seulement, jamais d'adresse.">
-        <div className="map wht">{([[22, 40, '212', 'Lyon'], [48, 68, '96', 'Grenoble'], [70, 30, '74', 'Dijon'], [82, 76, '41', 'Nice']] as [number, number, string, string][]).map(p => <div className="pin" key={p[3]} style={{ left: `${p[0]}%`, top: `${p[1]}%` }}><b className="sf">{p[2]}</b><small>{p[3]}</small></div>)}</div>
+      <Bay id="r9" n="09 — Story" title="Partager sa collection en story 9:16" desc="Un visuel vertical prêt pour Instagram : carte phare, « 599 CARTES » en grand, nom de collectionneur, adresse. Généré en un clic depuis le profil.">
+        <div className="story wht"><small>Ma collection</small><I c={C.mccain} /><div><div className="t sf">599 cartes</div><small>GKNNN_Cards · memorabilius.fr</small></div></div>
       </Bay>
-      <Bay id="q10" n="10 — Valeur en courbes" title="La valeur des cartes qui bougent, en mini-courbes" desc="Chaque carte avec une mini-courbe sur 30 jours et la variation. Rien qu'une ligne, mais on voit tout de suite quelles cartes montent.">
-        <div className="spark wht">{([[C.maxey, '+18 %', true, 'M0 28 L12 24 L24 26 L36 16 L48 18 L60 8 L70 4'], [C.hawkins, '−6 %', false, 'M0 6 L12 10 L24 8 L36 18 L48 16 L60 24 L70 28'], [C.mccain, '+9 %', true, 'M0 24 L12 20 L24 22 L36 18 L48 12 L60 14 L70 8']] as [typeof C.maxey, string, boolean, string][]).map(s => <div className="sk" key={s[0].nom}><I c={s[0]} w={40} /><svg viewBox="0 0 70 34"><path d={s[3]} fill="none" stroke={s[2] ? '#3ddc97' : '#ff7a7a'} strokeWidth="3" /></svg><div><b className="sf">{s[1]}</b><span>{s[0].nom}</span></div></div>)}</div>
+      <Bay id="r10" n="10 — Nouveautés" title="« Quoi de neuf » en liste d'étiquettes" desc="Une fenêtre à la première ouverture après une mise à jour : une ligne par nouveauté, avec une étiquette colorée (Nouveau, Corrigé, Amélioré). Remplace de longs patchnotes.">
+        <div className="news wht"><div className="h"><b className="sf">Quoi de neuf</b><i>v. 10 oct.</i></div><ul>{([['Nouveau', '#2f6bff', 'Carte du jour à gratter'], ['Nouveau', '#2f6bff', 'Loupe pour inspecter'], ['Corrigé', '#1f9d55', 'Synchronisation des setlists'], ['Amélioré', '#e67e22', 'Scanner plus net']] as [string, string, string][]).map(n => <li key={n[2]}><b style={{ ['--c' as string]: n[1] }}>{n[0]}</b>{n[2]}</li>)}</ul></div>
       </Bay>
-      <Bay id="q11" n="11 — Sceau" title="Un sceau « collection vérifiée »" desc="Pour les cartes dont la photo a été contrôlée (ou les collections ouvertes depuis un an) : un sceau doré incliné sur la fiche. Un gage de confiance pour les échanges.">
-        <div className="row" style={{ alignItems: 'center' }}><div style={{ width: 140 }}><I c={C.mcw} /></div><div className="seal"><b className="sf">Vérifiée</b><small>Collection · 1 an</small></div></div>
+      <Bay id="r11" n="11 — Carte de joueur" title="Le profil en carte de joueur" desc="Une carte à l'ancienne : note générale (niveau) en haut à droite, pseudo, avatar, trois stats en pied. Un format de partage qui ressemble à ce qu'on collectionne.">
+        <div className="pcard wht"><div className="top"><h4 className="sf">GKNNN<br />_Cards</h4><div className="ovr sf">87</div></div><div className="av sf">G</div><div className="st"><div><b className="sf">599</b><small>Cartes</small></div><div><b className="sf">119</b><small>RC</small></div><div><b className="sf">29</b><small>Auto</small></div></div></div>
       </Bay>
-      <Bay id="q12" n="12 — Swipe d'échange" title="Parcourir les cartes à échanger en glissant" desc="Une pile de cartes à échanger : on glisse à droite pour « m'intéresse » (ajouté à une liste), à gauche pour passer. Tampon vert ou rouge selon le sens.">
-        <div className="swipe wht"><I c={C.edwards} /><I c={C.maxey} /><div className="stp sf">Intéressé</div><I c={C.hawkins} /></div>
-        <div className="swbtn"><span style={{ color: '#ff7a7a' }}>✕</span><span style={{ color: '#3ddc97' }}>♥</span></div>
+      <Bay id="r12" n="12 — Cadres d'avatar" title="Le niveau se voit sur le cadre de l'avatar" desc="L'avatar reçoit un double cercle métallique selon le niveau (bois, bronze, argent, or, diamant). On repère les vétérans dans une liste, sans lire un chiffre.">
+        <div className="frames wht">{([['Niv. 1', '#8a5220', '#c8803c'], ['Niv. 5', '#9aa6bd', '#fff'], ['Niv. 10', '#e9b44c', '#fff6a8'], ['Niv. 20', '#58c8ff', '#fff']] as [string, string, string][]).map(f => <div className="fr" key={f[0]}><div className="av sf" style={{ ['--a' as string]: f[1], ['--b' as string]: f[2] }}>G</div><span className="lab">{f[0]}</span></div>)}</div>
       </Bay>
-      <Bay id="q13" n="13 — Post-it" title="Une note perso collée sur la carte" desc="Les notes personnelles (déjà possibles) apparaissent comme un post-it jaune légèrement incliné sur la vignette, visible seulement par toi.">
-        <div className="pc"><I c={C.luwawu} /><div className="postit">Échangée contre la Maxey — à renvoyer avant le 15 !</div></div>
+      <Bay id="r13" n="13 — Nouveau set" title="Un ruban « Nouveau » sur les sets récents" desc="Les sets ajoutés depuis moins de 30 jours portent une étiquette rose et leur date d'ajout. Sur la liste des setlists, on voit tout de suite ce qui vient d'arriver.">
+        <div className="newset wht"><span className="nw">Nouveau</span><h4 className="sf">2025-26 Topps Chrome</h4><small>Ajouté il y a 4 jours</small></div>
       </Bay>
-      <Bay id="q14" n="14 — Classement" title="Le classement hebdomadaire des collectionneurs" desc="Rang en gros, avatar, pseudo, total et flèche de progression ; ta ligne surlignée en bleu. Remonte la compétition amicale.">
-        <div className="lb wht">{([['1', 'KathleenFR', '858', '▲2', true], ['2', 'T1T177', '821', '—', false], ['3', 'GKNNN_Cards', '599', '▲1', true], ['4', 'Benlou33', '540', '▼2', false]] as [string, string, string, string, boolean][]).map((r, i) => <div key={r[0]} className={`lrow${i === 2 ? ' me' : ''}`}><div className="r sf">{r[0]}</div><div className="a" style={{ ['--c' as string]: ['#e9b44c', '#9aa6bd', '#2f6bff', '#c47a3a'][i] }} /><div className="nm">{r[1]}</div><div className="v sf">{r[2]}</div><div className={`d ${r[3].startsWith('▲') ? 'up' : r[3].startsWith('▼') ? 'dn' : ''}`}>{r[3]}</div></div>)}</div>
+      <Bay id="r14" n="14 — Duel de setlist" title="Ma setlist face à celle d'un ami" desc="Deux barres opposées pour un même set : toi à gauche, lui à droite, avec les nombres au centre. Pratique pour savoir qui est le plus avancé, ou pour s'échanger les doublons.">
+        <div className="vs2 wht">{([['Court Kings', 62, 41, 'Toi', 'KathleenFR'], ['Optic', 33, 58, '', '']] as [string, number, number, string, string][]).map(r => <div className="r" key={r[0]}><div className="l"><div className="bar"><i style={{ width: `${r[1]}%`, ['--c' as string]: '#2f6bff' }} /></div></div><div className="mid"><div className="n sf">{r[1]} · {r[2]}</div>{r[0]}</div><div><div className="bar"><i style={{ width: `${r[2]}%`, left: 0, ['--c' as string]: '#e63a6e' }} /></div></div></div>)}</div>
       </Bay>
-      <Bay id="q15" n="15 — Carrière" title="La carrière d'un joueur en frise" desc="Sur la page joueur : une ligne du temps par année avec la carte clé de chaque saison (rookie, meilleure année) et le nombre de cartes recensées.">
-        <div className="career wht"><div className="pts">{([[C.mcw, '2013', '4'], [C.maxey, '2020', '75'], [C.edwards, '2022', '31'], [C.mccain, '2025', '12']] as [typeof C.mcw, string, string][]).map(p => <div className="cp" key={p[1]}><I c={p[0]} w={58} /><i /><b className="sf">{p[1]}</b><small>{p[2]} cartes</small></div>)}</div></div>
+      <Bay id="r15" n="15 — Prochaine carte" title="La prochaine carte à chercher" desc="Le site te propose la carte qui ferait avancer le plus un de tes sets, avec « +1,2 % » en pastille verte et un bouton pour la mettre en wishlist ou chercher des vendeurs.">
+        <div className="sugg wht"><I c={C.maxey} /><div><h4 className="sf">Tyrese Maxey #157</h4><p>2023-24 Select — te rapproche de 62 % à 63 % du set.</p><span className="gain">+1,2 %</span></div></div>
       </Bay>
-      <Bay id="q16" n="16 — Doublons" title="Tes doublons en piles avec compteur" desc="Les cartes que tu as en plusieurs exemplaires s'affichent en pile décalée avec un « ×3 » doré : idéal pour préparer des échanges.">
-        <div className="dups wht">{([[C.mccain, 3], [C.hawkins, 2], [C.maxey, 4]] as [typeof C.mccain, number][]).map(d => <div className="dp" key={d[0].nom}><div className="box"><I c={d[0]} /></div><div className="card" style={{ position: 'absolute', inset: 0, transform: 'translate(10px,10px) rotate(3deg)', filter: 'brightness(.6)', zIndex: -1 }} /><div className="x sf">×{d[1]}</div></div>)}</div>
+      <Bay id="r16" n="16 — Provenance" title="L'histoire d'une carte, de main en main" desc="Sur la fiche d'une carte échangée : une frise des propriétaires successifs (« Benlou33 → GKNNN_Cards »), avec les dates. Donne de la valeur aux cartes qui ont circulé.">
+        <div className="prov wht">{([['GKNNN_Cards', 'Depuis le 8 oct. 2026 · échange'], ['Benlou33', '2025 – 2026'], ['Ajoutée sur le site', 'mars 2025']] as [string, string][]).map(p => <div className="pv" key={p[0]}><b className="sf">{p[0]}</b><small>{p[1]}</small></div>)}</div>
       </Bay>
-      <Bay id="q17" n="17 — Viseur" title="Un viseur animé pour le scanner" desc="Quatre coins verts qui respirent et un trait lumineux qui balaie la carte pendant l'analyse. On sait que l'IA travaille.">
-        <div className="vis"><I c={C.mccain} /><i /><i /><i /><i /><div className="ln" /></div>
+      <Bay id="r17" n="17 — Bascule de thème" title="Clair / sombre en interrupteur à glissière" desc="Une glissière carrée avec soleil et lune qui se déplace d'un coin à l'autre, à la place du petit bouton rond. Cohérent avec les angles droits.">
+        <div className={`tg${light ? ' light' : ''}`} onClick={() => setLight(l => !l)} role="switch" aria-checked={light}><span>{light ? '☀' : '☾'}</span></div><div className="cap">Clique</div>
       </Bay>
-      <Bay id="q18" n="18 — Mosaïque" title="Une galerie en mosaïque sans marges" desc="Option d'affichage : les cartes serrées en colonnes, sans nom ni cadre, pour voir beaucoup de cartes d'un coup, comme un mur.">
-        <div className="mosa">{ALL.concat(ALL).concat(ALL).slice(0, 15).map((c, i) => <img key={i} src={c.img} alt="" style={{ aspectRatio: i % 4 === 1 ? '3.5/2.5' : '2.5/3.5', objectFit: 'cover' }} />)}</div>
+      <Bay id="r18" n="18 — État de synchro" title="Un voyant d'état pour la synchronisation" desc="Une pastille toujours visible : vert « À jour », bleu qui clignote « Synchronisation… », rouge « Erreur — réessayer ». On ne se demande plus si ça tourne.">
+        <div className="row"><div className="cloud wht"><i />À jour</div><div className="cloud sy wht"><i />Synchronisation… 62 %</div><div className="cloud er wht"><i />Erreur · réessayer</div></div>
       </Bay>
-      <Bay id="q19" n="19 — Bandeau live" title="Les derniers ajouts de la communauté, en direct" desc="Un bandeau fin sous la barre du haut : de petites cartes et « KathleenFR a ajouté Tyrese Maxey » qui défilent. Donne le sentiment que le site est vivant.">
-        <div className="tick ink"><div>{[...ALL, ...ALL, ...ALL, ...ALL].map((c, i) => <span key={i}><img src={c.img} alt="" />{['KathleenFR', 'T1T177', 'Benlou33', 'kevinllg'][i % 4]} · {c.nom}</span>)}</div></div>
+      <Bay id="r19" n="19 — Tampon de coche" title="Cocher une carte la tamponne" desc="La case cochée se remplit d'un tampon vert « OK » qui tombe de haut avec un petit rebond. Simple, satisfaisant, et ça confirme que l'enregistrement a eu lieu.">
+        <div className="chk wht">{['#1 Tatum', '#2 Brown', '#3 Porzingis', '#4 Pritchard'].map((t, i) => <div key={t} className={`ck${ck.includes(i) ? ' on' : ''}`} onClick={() => toggle(i)}>{t}<span className="st sf">OK</span></div>)}</div><div className="cap">Clique une case</div>
       </Bay>
-      <Bay id="q20" n="20 — Chiffres du jour" title="Les chiffres de la journée sur le tableau de bord" desc="Quatre cases : cartes ajoutées aujourd'hui sur le site, échanges, nouveaux collectionneurs, ta position. Un coup d'œil pour savoir si ça bouge.">
-        <div className="qd wht">{([['+84', 'Cartes ajoutées'], ['23', 'Échanges'], ['+6', 'Nouveaux membres'], ['#3', 'Ton rang']] as [string, string][]).map(q => <div key={q[1]}><b className="sf">{q[0]}</b><small>{q[1]}</small></div>)}</div>
+      <Bay id="r20" n="20 — Index A-Z" title="Un index de lettres sur les listes de joueurs" desc="Dans les longues checklists : une colonne de lettres à droite pour sauter directement à une initiale, avec des en-têtes de lettre en grand dans la liste. Évite de faire défiler 600 lignes.">
+        <div className="az wht"><div className="list">{[['A', ['Anthony Edwards', 'Andre Iguodala']], ['B', ['Brandon Miller', 'Bam Adebayo']], ['J', ['Jared McCain', 'Jrue Holiday']]].map(g => <div key={g[0] as string}><div className="gr sf">{g[0] as string}</div>{(g[1] as string[]).map(p => <div className="p" key={p}>{p}</div>)}</div>)}</div><nav>{'ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split('').map(l => <span key={l}>{l}</span>)}</nav></div>
       </Bay>
     </div>
   )
