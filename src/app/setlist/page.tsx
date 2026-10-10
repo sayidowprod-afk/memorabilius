@@ -5,6 +5,8 @@ import Link from 'next/link'
 import { supabase } from '@/lib/supabase'
 import { useLang } from '@/lib/LangContext'
 import { useTheme } from '@/lib/ThemeContext'
+import { rootEntryIds } from '@/lib/setFamilies'
+import { candidatesForCard, pickEntry, norm as mNorm, type MSet, type MEntry } from '@/lib/setMatcher'
 
 interface CardSet {
   id: number
@@ -354,120 +356,47 @@ export default function SetlistPage() {
     const matchedGalleryIdx = new Set<number>()
     const newRows: { user_id: string; entry_id: number; manually_checked: boolean }[] = []
 
-    // Index des entrées par nom de joueur — UNIQUEMENT pour le sport actif
-    // (les entrées d'autres sports sont ignorées pour éviter les faux positifs)
-    const entriesByPlayer = new Map<string, typeof allEntries>()
+    // Entrees "racines" uniquement (une par carte, paralleles ecartes -- lib/setFamilies.ts), calculees PAR SET
+    const entriesBySet = new Map<number, typeof allEntries>()
     for (const e of allEntries) {
       if (!setsMap.has(e.set_id)) continue  // filtre sport : ignore les autres sports
-      const key = norm(e.player_name)
+      const arr = entriesBySet.get(e.set_id) || []
+      arr.push(e); entriesBySet.set(e.set_id, arr)
+    }
+    const rootEntries: typeof allEntries = []
+    for (const arr of entriesBySet.values()) {
+      const roots = rootEntryIds(arr)
+      for (const e of arr) if (roots.has(e.id)) rootEntries.push(e)
+    }
+    const entriesByPlayer = new Map<string, MEntry[]>()
+    for (const e of rootEntries) {
+      const key = mNorm(e.player_name)
       if (!entriesByPlayer.has(key)) entriesByPlayer.set(key, [])
       entriesByPlayer.get(key)!.push(e)
     }
+    const metaSets = new Map<number, MSet>(allSetsData.map(x => [x.id, x]))
 
-    // Formats d'année acceptés pour une année de set Y
+    // Une carte de galerie ne valide qu'UNE entree (moteur commun lib/setMatcher.ts, memes regles que la page d'un set).
+    // Les entrees deja cochees a la main sont laissees telles quelles.
+    const claimed = new Set<number>()
+    for (let gi = 0; gi < galleryCards.length; gi++) {
+      const card = galleryCards[gi]
+      const pool = (entriesByPlayer.get(mNorm(card.nom)) || []).filter(e => !manualEntryIds.has(e.id))
+      if (!pool.length) {
+        if ((entriesByPlayer.get(mNorm(card.nom)) || []).length) matchedGalleryIdx.add(gi)   // deja coche a la main
+        continue
+      }
+      const best = pickEntry(candidatesForCard(card, pool, metaSets))
+      if (!best || claimed.has(best.id)) continue
+      claimed.add(best.id)
+      matchedGalleryIdx.add(gi)
+      newRows.push({ user_id: userId, entry_id: best.id, manually_checked: false })
+    }
+    // Formats d'annee acceptes pour une annee de set Y (liste "non placees")
     const yearOk = (cy: string, y: number) => {
       if (!cy) return false
       const ys = String(y)
-      return cy === ys
-        || cy === `${y}-${String(y+1).slice(2)}`    // "2024-25"
-        || cy === `${y-1}-${ys.slice(2)}`            // "2023-24" (saison précédente)
-        || cy === `${y}-${y+1}`                      // "2024-2025"
-        || cy === `${y-1}-${y}`                      // "2023-2024"
-        || cy === `${String(y).slice(2)}-${String(y+1).slice(2)}`  // "24-25" (format court)
-        || cy === `${String(y-1).slice(2)}-${ys.slice(2)}`         // "23-24" (format court prev)
-    }
-
-    for (let gi = 0; gi < galleryCards.length; gi++) {
-      const card = galleryCards[gi]
-      const coll = (card.collection || card.collection_tag || '').trim()
-      if (!coll) continue  // collection obligatoire
-
-      const playerEntriesAll = entriesByPlayer.get(norm(card.nom)) || []
-      if (!playerEntriesAll.length) continue
-
-      // Ne pas toucher les entrées déjà cochées manuellement pour ce joueur, mais laisser
-      // la carte matcher d'AUTRES entrées disponibles du même joueur (année/produit différents)
-      // — l'ancien comportement excluait TOUTES les cartes du joueur dès qu'une seule entrée
-      // était cochée manuellement, faisant disparaître silencieusement les autres du sync.
-      const playerEntries = playerEntriesAll.filter(e => !manualEntryIds.has(e.id))
-      if (!playerEntries.length) { matchedGalleryIdx.add(gi); continue }
-
-      const uw = collWords(coll)
-      if (!uw.length) continue
-      // Collection trop générique (ex: juste "Panini") pour désigner un produit précis
-      // → on préfère laisser la carte non-matchée plutôt que deviner au hasard.
-      if (!specificWords(uw).length) continue
-
-      // Trouver toutes les entrées candidates pour cette carte
-      const candidates: { entryId: number; extraWords: number }[] = []
-
-      for (const e of playerEntries) {
-        const set = setsMap.get(e.set_id)
-        if (!set?.year) continue
-
-        const cy = (card.annee || '').trim()
-        if (!yearOk(cy, set.year)) continue
-
-        // La collection doit matcher le nom du set
-        if (!uw.some(w => norm(set.name).includes(w))) continue
-
-        // Le nom du set ne doit pas contenir de mot significatif ABSENT de la
-        // collection de la carte -- sans ca, "Hoops" matchait aussi "Hoops
-        // Premium Stock" (produit distinct, sa propre numerotation) simplement
-        // parce que son nom contient "hoops". Les alias legitimes (Optic ↔
-        // Donruss Optic, Hoops ↔ NBA Hoops...) restent geres via COLL_ALIASES
-        // ci-dessus, qui enrichit deja `uw` avant ce test.
-        // Exclut les nombres purs (annee en prefixe : "2025-26 Bowman", "1996
-        // Pinnacle"...) -- l'annee est deja validee separement par yearOk()
-        // juste au-dessus, et ne fait jamais partie du champ collection de la
-        // carte. Sans cette exclusion, TOUT set matchait comme "en trop" a
-        // cause de son annee, rejetant quasiment tous les matchs valides.
-        const setSignificantWords = words(set.name).filter(w => w.length > 3 && !GENERIC_WORDS.has(w) && !/^\d+$/.test(w))
-        if (setSignificantWords.some(w => !uw.includes(w))) continue
-
-        // Brand optionnel — avec résolution des sous-marques (Hoops→Panini, Flagship→Topps…)
-        if (card.marque && set.brand) {
-          const nb = normBrand(card.marque), ns = normBrand(set.brand)
-          if (!nb.includes(ns) && !ns.includes(nb)) continue
-        }
-
-        // Variation : base↔base = parfait ; carte a variation mais entrée n'en a pas = match faible
-        const cv = (card.variation || '').trim(), ev = (e.variation || '').trim()
-        let varScore = 0
-        if (!cv && !ev) {
-          varScore = 0
-        } else if (!cv && ev) {
-          continue  // carte base ne peut pas matcher un insert
-        } else if (cv && !ev) {
-          varScore = 1  // insert dont la variation n'a pas été scrapée → match faible
-        } else {
-          const varOk = norm(cv).includes(norm(ev)) || norm(ev).includes(norm(cv)) || words(cv).some(w => norm(ev).includes(w))
-          if (!varOk) continue
-          varScore = 0
-        }
-
-        const sn = norm(set.name)
-        const extraWords = words(set.name).filter(w => !uw.includes(w) && w.length > 3).length
-        const missedWords = uw.filter(w => w.length > 3 && !sn.includes(w)).length
-        const cn = (card.card_number || '').trim(), en = (e.card_number || '').trim()
-        const cardNumBonus = cn && en && norm(cn) === norm(en) ? -1 : 0
-        candidates.push({ entryId: e.id, extraWords: extraWords + missedWords + varScore + cardNumBonus })
-      }
-
-      if (!candidates.length) continue
-
-      // Tie-break déterministe par entryId : sans ça, les entrées à égalité de score
-      // étaient départagées par l'ordre de retour (non garanti) de la requête Supabase,
-      // ce qui donnait l'impression d'un placement "random" à chaque nouveau sync.
-      candidates.sort((a, b) => a.extraWords - b.extraWords || a.entryId - b.entryId)
-      const best = candidates[0]
-      // Ambiguïté persistante (plusieurs entrées à égalité parfaite malgré le filtrage
-      // des mots génériques) → mieux vaut laisser non-matché que trancher au hasard.
-      if (candidates.length > 1 && candidates[1].extraWords === best.extraWords) continue
-
-      matchedGalleryIdx.add(gi)
-      if (!best.entryId) continue
-      newRows.push({ user_id: userId, entry_id: best.entryId, manually_checked: false })
+      return cy === ys || cy === `${y}-${String(y + 1).slice(2)}` || cy === `${y}-${y + 1}` || cy === `${ys.slice(2)}-${String(y + 1).slice(2)}`
     }
     setSyncProgress(88)
 

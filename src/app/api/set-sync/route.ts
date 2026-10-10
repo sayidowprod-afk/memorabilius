@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { createClient } from '@supabase/supabase-js'
 import { rootEntryIds } from '@/lib/setFamilies'
+import { candidatesForCard, pickEntry, type MSet, type MEntry } from '@/lib/setMatcher'
 
 export const maxDuration = 30
 
@@ -191,25 +192,12 @@ export async function POST(req: NextRequest) {
   const autoSet = new Set<number>()
 
   if (safeGalleryCards.length > 0 && entries.length > 0) {
-    const y = setYear
-    const yearOk = (cardYear: string) => {
-      if (!y) return true
-      const cy = (cardYear || '').trim()
-      if (!cy) return false
-      const yearStr = String(y)
-      return [yearStr, `${y}-${String(y + 1).slice(2)}`, `${y - 1}-${yearStr.slice(2)}`, String(y + 1), `${y}-${y + 1}`].includes(cy)
-    }
-    const brandWords = new Set([...words(setBrand || ''), ...words(setBrand ? (BRAND_PARENT[norm(setBrand)] || '') : ''), 'panini', 'topps', 'upper', 'deck', 'upperdeck'])
-    const productWords = (txt: string) => new Set(
-      words(txt).map(w => w.replace(/s$/, '')).filter(w => w.length > 1 && !/^\d+$/.test(w) && !GENERIC_WORDS.has(w) && !brandWords.has(w) && !brandWords.has(w + 's')),
-    )
-    const setWords = productWords(setName)
-    const sameSet = (a: Set<string>, b: Set<string>) => a.size === b.size && [...a].every(w => b.has(w))
-
-    // une carte = une entree : on ne matche que les entrees "racines" (les paralleles /150, Gold... sont la meme carte)
-    const roots = rootEntryIds(entries)
-    const byPlayer = new Map<string, typeof entries>()
-    for (const e of entries) {
+    // moteur commun (lib/setMatcher.ts) : memes regles que la synchronisation de tous les sets
+    const metaSet = new Map<number, MSet>([[setId, { id: setId, name: setName, year: setYear, brand: setBrand }]])
+    const asEntries: MEntry[] = entries.map(e => ({ id: e.id, player_name: e.player_name, variation: e.variation, set_id: setId, card_number: e.card_number }))
+    const roots = rootEntryIds(asEntries)
+    const byPlayer = new Map<string, MEntry[]>()
+    for (const e of asEntries) {
       if (!roots.has(e.id)) continue
       const k = norm(e.player_name)
       const arr = byPlayer.get(k) || []
@@ -219,39 +207,8 @@ export async function POST(req: NextRequest) {
     for (const card of safeGalleryCards) {
       const pool = byPlayer.get(norm(card.nom))
       if (!pool?.length) continue
-      if (!yearOk(card.annee || '')) continue
-      if (setBrand && card.marque) {
-        const nb = normBrand(card.marque), ns = normBrand(setBrand)
-        if (!nb.includes(ns) && !ns.includes(nb)) continue
-      }
-      // collection : sans collection ni tag, on ne devine pas
-      const collText = card.collection || card.collection_tag || ''
-      if (!collText.trim()) continue
-      if (!sameSet(productWords(collText), setWords)) continue
-
-      let cands = pool.slice()
-      if (card.set_entry_id != null) cands = cands.filter(e => e.id === card.set_entry_id)
-      // numero de carte
-      const cn = norm(card.card_number || '')
-      if (cn) {
-        const exact = cands.filter(e => norm((e as any).card_number || '') === cn)
-        if (exact.length) cands = exact
-        else cands = cands.filter(e => !(e as any).card_number)  // numero different -> pas cette entree
-      }
-      if (cands.length > 1) {
-        // plusieurs cartes racines possibles (base + inserts) : la plus specifique dont la variation est contenue dans celle de la carte ;
-        // sans variation sur la carte -> la base
-        const cw = new Set(words(card.variation || ''))
-        const fit = cands
-          .map(e => ({ e, w: words(e.variation || '') }))
-          .filter(x => x.w.every(t => cw.has(t)))
-        const best = Math.max(-1, ...fit.map(x => x.w.length))
-        const top = fit.filter(x => x.w.length === best)
-        cands = top.map(x => x.e)
-      }
-      if (cands.length !== 1) continue   // ambigu ou introuvable : on ne coche rien
-      const e = cands[0]
-      if (autoSet.has(e.id)) continue
+      const e = pickEntry(candidatesForCard(card, pool, metaSet))
+      if (!e || autoSet.has(e.id)) continue
       autoSet.add(e.id)
       if (!completedEntryIds.has(e.id)) {
         completedEntryIds.add(e.id)
