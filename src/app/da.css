@@ -610,3 +610,12 @@ button.cdj-btn { cursor: pointer; }
 .support-card h4 { margin: 0 0 6px; font-size: 24px; color: #fff !important; }
 .support-card p { margin: 0 0 12px; font-size: 13px; color: #fff !important; opacity: .8; }
 .support-tr { font-size: 52px; line-height: 1; filter: drop-shadow(0 0 14px rgba(255,213,74,.6)); }
+
+/* Hall of fame de la team : la carte phare de chaque membre */
+.hof { margin-bottom: 22px; padding: 16px; border: 3px solid #ffd54a; background: linear-gradient(135deg, #050912, #08153b); }
+.hof-eyebrow { display: inline-block; font: 800 12px system-ui; letter-spacing: .2em; text-transform: uppercase; color: #ffd54a; margin-bottom: 12px; }
+.hof-wall { display: grid; grid-template-columns: repeat(auto-fill, minmax(112px, 1fr)); gap: 14px; }
+.hof-item { display: block; text-decoration: none; text-align: center; }
+.hof-item img { display: block; width: 100%; aspect-ratio: 2.5 / 3.5; object-fit: cover; border: 2px solid #ffd54a; border-radius: 0; box-shadow: 0 10px 22px rgba(0,0,0,.5); background: none !important; animation: none !important; }
+.hof-who { display: block; margin-top: 6px; font: 800 12px system-ui; color: #fff !important; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.hof-nom { display: block; font: 600 10px system-ui; color: rgba(255,255,255,.65) !important; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }

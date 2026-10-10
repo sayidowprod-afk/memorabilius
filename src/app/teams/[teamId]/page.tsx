@@ -41,6 +41,7 @@ export default function TeamPage({ params }: { params: Promise<{ teamId: string 
   // admin non-fondateur voit un lien qui echoue silencieusement.
   const [isFounder, setIsFounder] = useState(false)
   const [hasCandidature, setHasCandidature] = useState(false)
+  const [hallOfFame, setHallOfFame] = useState<{ uid: string; img: string; nom: string; annee: string; who: string }[]>([])
   const [activeTab, setActiveTab] = useState<'feed' | 'membres' | 'galerie' | 'chat' | 'candidatures'>('feed')
   const [loading, setLoading] = useState(true)
   const [copied, setCopied] = useState(false)
@@ -255,6 +256,18 @@ export default function TeamPage({ params }: { params: Promise<{ teamId: string 
     const shuffled = (data || []).sort(() => Math.random() - 0.5)
     setGalerieCards(shuffled)
     setGalerieLimit(48)
+    // Hall of fame : la carte phare n°1 (grail) de chaque membre qui en a une
+    const { data: gr } = await supabase.from('grail_cards').select('user_id, card_key, position').in('user_id', memberIds).order('position')
+    const first = new Map<string, string>()
+    for (const g of gr || []) if (/^https?:\/\//.test(g.card_key) && !first.has(g.user_id)) first.set(g.user_id, g.card_key)
+    if (first.size) {
+      const { data: named } = await supabase.from('cartes_manuelles').select('nom, annee, image_recto, user_id').in('user_id', [...first.keys()]).in('image_recto', [...first.values()])
+      setHallOfFame([...first.entries()].map(([uid, img]) => {
+        const c = (named || []).find((n: any) => n.user_id === uid && n.image_recto === img) as any
+        const m = membersList.find((x: any) => x.user_id === uid)
+        return { uid, img, nom: c?.nom || '', annee: c?.annee || '', who: m?.profiles?.display_name || '' }
+      }))
+    } else setHallOfFame([])
   }
 
   const loadMyCards = async (uid: string) => {
@@ -947,6 +960,20 @@ export default function TeamPage({ params }: { params: Promise<{ teamId: string 
       {/* ── GALERIE COMMUNE ── */}
       {activeTab === 'galerie' && (
         <div>
+          {hallOfFame.length > 0 && (
+            <div className="hof">
+              <div className="hof-eyebrow">Hall of fame</div>
+              <div className="hof-wall">
+                {hallOfFame.map(h => (
+                  <Link key={h.uid} href={`/galerie/${h.uid}`} className="hof-item">
+                    <img loading="lazy" src={h.img} alt={h.nom} />
+                    <span className="hof-who">{h.who}</span>
+                    {h.nom && <span className="hof-nom">{[h.annee, h.nom].filter(Boolean).join(' · ')}</span>}
+                  </Link>
+                ))}
+              </div>
+            </div>
+          )}
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(140px, 1fr))', gap: 10 }}>
             {galerieCards.length === 0 && <p style={{ gridColumn: '1/-1', textAlign: 'center', color: 'var(--text3, #bbb)', padding: 60 }}>{t('teams_no_cards_found')}</p>}
             {galerieCards.slice(0, galerieLimit).map(card => (
