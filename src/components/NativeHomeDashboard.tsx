@@ -529,7 +529,7 @@ const DD_TEXT: Record<string, { add: string; since: string; likes: string; comme
 }
 
 // Vignette optimisee (meme optimiseur que la galerie, mise en cache 1 an) pour les images Supabase ; autres sources : image d'origine
-const heroThumb = (url: string, w: number) => (url.includes('.supabase.co') ? `/_next/image?url=${encodeURIComponent(url)}&w=${w}&q=70` : url)
+const heroThumb = (url: string, w: number) => (url.includes('.supabase.co') ? `/_next/image?url=${encodeURIComponent(url)}&w=${w}&q=75` : url)
 
 type BlockId = 'activity' | 'progress' | 'site'
 const DEFAULT_BLOCKS: BlockId[] = ['activity', 'progress', 'site']
