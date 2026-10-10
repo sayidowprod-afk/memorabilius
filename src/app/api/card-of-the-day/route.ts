@@ -5,8 +5,8 @@ import { createClient } from '@supabase/supabase-js'
 // Choix : parmi les cartes recentes (60 derniers jours) qui ont une vraie photo et au moins un atout (RC, AUTO, PATCH ou numerotee),
 // jamais une carte privee (table cartes_privees), jamais le compte de demonstration. La carte du jour est tiree de facon
 // deterministe avec la date comme graine : pas de stockage, pas de tache planifiee, et tout le monde voit la meme.
-// Reponse mise en cache 1 h au niveau du CDN.
-export const revalidate = 3600
+// Reponse mise en cache au CDN au plus 1 h, et jamais au-dela de minuit (Paris).
+export const dynamic = 'force-dynamic'
 
 const supabase = createClient(process.env.NEXT_PUBLIC_SUPABASE_URL!, process.env.SUPABASE_SERVICE_ROLE_KEY!)
 
@@ -53,6 +53,8 @@ export async function GET() {
   for (const c of cands as any[]) { const sc = hash(`${day}|${c.id}`); if (sc > top) { top = sc; pick = c } }
   const prof: any = (profiles || []).find((p: any) => p.id === pick.user_id)
   const [y, m, d] = day.split('-').map(Number)
+  // le cache CDN ne depasse jamais minuit (Paris) ; le client ajoute ?d=AAAA-MM-JJ, donc une nouvelle journee = une nouvelle entree de cache
+  const secondsToMidnight = Math.max(60, Math.min(3600, Math.round((86400000 - (parisNow.getHours() * 3600000 + parisNow.getMinutes() * 60000 + parisNow.getSeconds() * 1000)) / 1000)))
   return NextResponse.json(
     {
       day: { y, m, d },
@@ -62,6 +64,6 @@ export async function GET() {
         owner: { id: pick.user_id, slug: prof?.slug || null, name: prof?.display_name || null, avatar: prof?.avatar_url || null, total: prof?.stats_total || 0 },
       },
     },
-    { headers: { 'Cache-Control': 'public, s-maxage=3600, stale-while-revalidate=86400' } },
+    { headers: { 'Cache-Control': `public, s-maxage=${secondsToMidnight}` } },
   )
 }

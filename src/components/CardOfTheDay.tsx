@@ -65,7 +65,7 @@ export default function CardOfTheDay() {
   const [, setTick] = useState(0)
   useEffect(() => {
     let cancelled = false
-    fetch('/api/card-of-the-day').then(r => r.json()).then(d => {
+    fetch(`/api/card-of-the-day?d=${new Intl.DateTimeFormat('fr-CA', { timeZone: 'Europe/Paris' }).format(new Date())}`).then(r => r.json()).then(d => {
       if (cancelled || !d?.card) return
       setPick(d)
       try {
