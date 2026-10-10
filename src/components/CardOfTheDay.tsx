@@ -70,7 +70,9 @@ export default function CardOfTheDay() {
       setPick(d)
       try {
         const k = `${d.day.y}-${d.day.m}-${d.day.d}`
-        const was = localStorage.getItem(`cdj-revealed-${k}`) === '1'
+        let was = localStorage.getItem(`cdj-revealed-${k}`) === '1'
+        // la carte du jour a change depuis le dernier grattage : on remet le ticket a gratter
+        try { const sv = JSON.parse(localStorage.getItem(`cdj-card-${k}`) || 'null'); if (was && sv?.image && sv.image !== d.card.image) { was = false; localStorage.removeItem(`cdj-revealed-${k}`); localStorage.removeItem(`cdj-card-${k}`) } } catch { /* ignore */ }
         setRevealed(was)
         if (was && !localStorage.getItem(`cdj-card-${k}`)) {
           const o = d.card.owner

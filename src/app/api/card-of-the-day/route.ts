@@ -1,5 +1,6 @@
 import { NextResponse } from 'next/server'
 import { createClient } from '@supabase/supabase-js'
+import { printRunOf, specialNum } from '@/lib/cardTags'
 
 // CARTE DU JOUR : une carte de la communaute, la meme pour tout le monde toute la journee (fuseau de Paris), qui change a minuit.
 // Choix : parmi les cartes recentes (60 derniers jours) qui ont une vraie photo et au moins un atout (RC, AUTO, PATCH ou numerotee),
@@ -49,8 +50,20 @@ export async function GET() {
 
   // tirage "au plus grand score" (hash date + id) : ajouter/retirer d'autres cartes ne change PAS la carte du jour, seule la
   // suppression de la carte elle-meme la change (avant : index modulo la taille du lot, qui changeait quand le lot bougeait)
-  let pick: any = cands[0], top = -1
-  for (const c of cands as any[]) { const sc = hash(`${day}|${c.id}`); if (sc > top) { top = sc; pick = c } }
+  // on privilegie les belles cartes : auto, patch, numerotation basse (/25 et moins, SP/SSP). Repli sur le reste s'il n'y en a pas.
+  const beauty = (c: any) => {
+    const run = printRunOf(c.num), sp = specialNum(c.num)
+    let b = (c.auto ? 3 : 0) + (c.patch ? 3 : 0) + (c.rc ? 1 : 0)
+    if (sp === 'SSP' || (run !== null && run <= 10)) b += 4
+    else if (sp === 'SP' || (run !== null && run <= 25)) b += 3
+    else if (run !== null && run <= 99) b += 2
+    else if (c.num) b += 1
+    return b
+  }
+  const nice = (cands as any[]).filter(c => beauty(c) >= 3)
+  const pool = nice.length ? nice : (cands as any[])
+  let pick: any = pool[0], top = -1
+  for (const c of pool) { const sc = hash(`${day}|${c.id}`); if (sc > top) { top = sc; pick = c } }
   const prof: any = (profiles || []).find((p: any) => p.id === pick.user_id)
   const [y, m, d] = day.split('-').map(Number)
   // le cache CDN ne depasse jamais minuit (Paris) ; le client ajoute ?d=AAAA-MM-JJ, donc une nouvelle journee = une nouvelle entree de cache
