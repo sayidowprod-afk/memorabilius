@@ -424,7 +424,14 @@ export default function NativeHomeDashboard({ siteStats }: { siteStats: SiteStat
             : <div className="dd-avatar dd-avatar--ph">{data.displayName[0]?.toUpperCase()}</div>}
           <div style={{ minWidth: 0 }}>
             <div className="dd-kicker">{t('dashboard_greeting')}</div>
-            <h1 className="dd-name">{data.displayName}</h1>
+            <div className="dd-name-row">
+              <h1 className="dd-name">{data.displayName}</h1>
+              <button type="button" className={'dd-edit-btn' + (editMode ? ' on' : '')} onClick={() => setEditMode(v => !v)} aria-label={L.customize} title={L.customize}>
+                {editMode
+                  ? L.done
+                  : <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M12 20h9" /><path d="M16.5 3.5a2.1 2.1 0 013 3L7 19l-4 1 1-4 12.5-12.5z" /></svg>}
+              </button>
+            </div>
           </div>
         </div>
         {data.streak > 0 && (
@@ -478,7 +485,6 @@ export default function NativeHomeDashboard({ siteStats }: { siteStats: SiteStat
           const href = d.href.replace('{g}', galleryHref)
           return <Link key={k} href={href} onClick={hapticTap} className="dd-act">{d.label(t, L)}</Link>
         })}
-        <button type="button" className={'dd-act dd-act-edit' + (editMode ? ' on' : '')} onClick={() => setEditMode(v => !v)} aria-label={L.customize}>{editMode ? `✓ ${L.done}` : '✎'}</button>
       </div>
       {editMode && (
         <div className="dd-edit">
@@ -569,8 +575,12 @@ export const DD_CSS = `
 .dd-score-tile { position: relative; display: flex; flex-direction: column; align-items: center; justify-content: center; text-decoration: none; color: inherit; }
 .dd-score-tile i { font-style: normal; font: 800 12px system-ui, sans-serif; color: #3ddc97; min-height: 16px; margin-top: 2px; }
 .dd-score-tile:hover { background: rgba(255,255,255,.08); }
-.dd-act-edit { flex: 0 0 auto !important; width: 56px; cursor: pointer; background: transparent; border: 3px solid var(--text); color: var(--text); font: 800 14px system-ui, sans-serif; }
-.dd-act-edit.on { width: auto; padding: 0 16px; background: var(--text); color: var(--bg, #000); }
+/* bouton de personnalisation : discret, a droite du pseudo */
+.dd-name-row { display: flex; align-items: center; gap: 10px; min-width: 0; }
+.dd-name-row .dd-name { min-width: 0; }
+.dd-edit-btn { flex: 0 0 auto; display: inline-flex; align-items: center; justify-content: center; min-width: 30px; height: 30px; padding: 0 6px; background: transparent; border: 0; color: var(--text2); opacity: .55; cursor: pointer; font: 800 11px system-ui, sans-serif; letter-spacing: .1em; text-transform: uppercase; border-radius: 0; }
+.dd-edit-btn:hover { opacity: 1; }
+.dd-edit-btn.on { opacity: 1; color: var(--text); border-bottom: 2px solid var(--text); }
 .dd-edit { margin: -6px 16px 14px; padding: 12px 14px; border: 2px dashed var(--text2, rgba(128,128,128,.6)); }
 .dd-edit-h { font: 800 11px system-ui, sans-serif; letter-spacing: .14em; text-transform: uppercase; color: var(--text2); margin-bottom: 8px; }
 .dd-edit-chips { display: flex; flex-wrap: wrap; gap: 8px; }
@@ -619,7 +629,7 @@ export const DD_CSS = `
 .dd-score > div:last-child, .dd-score > a:last-child { border-right: 0; }
 .dd-score b, .dd-site b { display: block; font-size: clamp(36px, 6vw, 72px); line-height: 1; color: var(--text); font-weight: 400; }
 .dd-score span, .dd-site span { display: block; margin-top: 4px; font: 800 12px system-ui, sans-serif; letter-spacing: .14em; text-transform: uppercase; color: var(--text2); }
-.dd-actions { display: grid; grid-template-columns: repeat(var(--n, 3), minmax(0, 1fr)) auto; gap: 10px; margin: 0 16px 14px; }
+.dd-actions { display: grid; grid-template-columns: repeat(var(--n, 3), minmax(0, 1fr)); gap: 10px; margin: 0 16px 14px; }
 .dd-act { display: grid; place-items: center; text-align: center; padding: 16px 8px; background: #fff; color: #06122e !important; border: 3px solid #fff;
   font: 800 14px system-ui, sans-serif; letter-spacing: .08em; text-transform: uppercase; transition: transform .15s; }
 :root:not([data-theme="dark"]) .dd-act { background: #003da6; border-color: #003da6; color: #fff !important; }
