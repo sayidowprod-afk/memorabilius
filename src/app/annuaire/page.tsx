@@ -242,7 +242,7 @@ function AnnuaireContent() {
   )
 
   const badge = (val: number, bg: string, color: string) => (
-    <span className="da-display" style={{ fontSize: isMobile ? 17 : 28, lineHeight: 1, color: bg === 'total' ? (dark ? '#fff' : '#06122e') : color }}>{val == null ? '—' : val.toLocaleString('fr-FR')}</span>
+    <span className="da-display" style={{ fontSize: isMobile ? 22 : 40, lineHeight: 1, color: bg === 'total' ? (dark ? '#fff' : '#06122e') : color }}>{val == null ? '—' : val.toLocaleString('fr-FR')}</span>
   )
 
 
@@ -423,9 +423,9 @@ function AnnuaireContent() {
                   onMouseLeave={!isMobile ? cancelHoverPreview : undefined}>
                   <td style={{ padding: isMobile ? '10px 8px' : 15, borderBottom: `1px solid ${dark ? '#2a2a2a' : '#f5f5f5'}`, overflow: 'hidden' }}>
                     <div style={{ display: 'flex', alignItems: 'center', gap: isMobile ? 8 : 15, minWidth: 0 }}>
-                      <img src={c.avatar_url || `https://ui-avatars.com/api/?name=${encodeURIComponent(c.display_name || 'U')}&background=003DA6&color=fff`} loading="lazy" width={isMobile ? 34 : 48} height={isMobile ? 34 : 48} style={{ width: isMobile ? 34 : 48, height: isMobile ? 34 : 48, borderRadius: 0, objectFit: 'cover', flexShrink: 0 }} alt={c.display_name} />
+                      <img src={c.avatar_url || `https://ui-avatars.com/api/?name=${encodeURIComponent(c.display_name || 'U')}&background=003DA6&color=fff`} loading="lazy" width={isMobile ? 34 : 48} height={isMobile ? 34 : 48} style={{ width: isMobile ? 34 : 48, height: isMobile ? 34 : 48, borderRadius: '50%', objectFit: 'cover', flexShrink: 0 }} alt={c.display_name} />
                       <div style={{ minWidth: 0, display: 'flex', alignItems: 'center', gap: 8, flexWrap: 'wrap' }}>
-                        <Link href={`/galerie/${c.id}`} className="da-display" style={{ color: c.is_donor ? '#ffd54a' : (dark ? '#fff' : '#06122e'), fontSize: isMobile ? 18 : 32, lineHeight: 1, overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap', textDecoration: 'none' }}>{c.display_name || 'Collectionneur'}</Link>
+                        <Link href={`/galerie/${c.id}`} className={c.is_donor ? 'da-display holo-name' : 'da-display'} style={{ color: c.is_donor ? undefined : (dark ? '#fff' : '#06122e'), fontSize: isMobile ? 18 : 32, lineHeight: 1, overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap', textDecoration: 'none' }}>{c.display_name || 'Collectionneur'}</Link>
                         {(c.favorite_teams || []).slice(0, 3).map((id: string) => (
                           <span key={id} className="sticker-badge-sm" data-label={getTeamById(id)?.name ?? id} style={{ fontSize: 18 }}>
                             <TeamBadge teamId={id} size={isMobile ? 15 : 18} />
