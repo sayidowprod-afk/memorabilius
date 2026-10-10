@@ -2,6 +2,7 @@
 import { useId } from 'react'
 import { TAG_GLYPHS } from '@/lib/tagGlyphs'
 import { numLabel, printRunOf } from '@/components/TagIcon'
+import { specialNum } from '@/lib/cardTags'
 
 // Icones RC / AUTO / PATCH / NUM en vectoriel (SVG), avec systeme de rarete :
 // la teinte monte avec la valeur de la carte (voir cardTier). Les decoupes
@@ -11,12 +12,13 @@ export type TagTier = 'base' | 'blue' | 'bronze' | 'silver' | 'gold'
 type Kind = 'rc' | 'auto' | 'patch' | 'num'
 
 // Rarete de la carte, deduite de ses attributs :
-//  1/1 -> or ; 2-10 -> argent ; 11-25 -> bronze ; auto/patch/numerote -> bleu ; sinon base.
+//  1/1 -> or ; 2-10 -> argent ; 11-25 -> bronze ; SSP -> or ; SP -> argent ; auto/patch/numerote -> bleu ; sinon base.
 export function cardTier(c: { rc?: boolean; auto?: boolean; patch?: boolean; num?: string | null }): TagTier {
   const pr = printRunOf(c.num)
   if (pr === 1) return 'gold'
   if (pr !== null && pr <= 10) return 'silver'
   if (pr !== null && pr <= 25) return 'bronze'
+  if (pr === null) { const sp = specialNum(c.num); if (sp === 'SSP') return 'gold'; if (sp === 'SP') return 'silver' }
   if (c.auto || c.patch || pr !== null) return 'blue'
   return 'base'
 }

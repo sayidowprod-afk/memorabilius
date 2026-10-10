@@ -14,19 +14,33 @@ export function printRunOf(num?: string | null): number | null {
   return m ? parseInt(m[1], 10) : null
 }
 
-// Rarete du tirage : 1/1 -> or ; 2-10 -> argent ; 11-25 -> bronze
+// Numerotations speciales sans tirage chiffre : "SP" (short print) et "SSP" (super short print)
+export function specialNum(num?: string | null): 'SP' | 'SSP' | null {
+  if (!num) return null
+  const t = num.toUpperCase()
+  if (/\bSSP\b/.test(t)) return 'SSP'
+  if (/\bSP\b/.test(t)) return 'SP'
+  return null
+}
+
+// Rarete du tirage : 1/1 -> or ; 2-10 -> argent ; 11-25 -> bronze ; sans tirage : SSP -> or, SP -> argent
 export function numTier(num?: string | null): NumTier {
   const v = printRunOf(num)
   if (v === 1) return 'gold'
   if (v !== null && v >= 2 && v <= 10) return 'silver'
   if (v !== null && v >= 11 && v <= 25) return 'bronze'
+  if (v === null) {
+    const sp = specialNum(num)
+    if (sp === 'SSP') return 'gold'
+    if (sp === 'SP') return 'silver'
+  }
   return 'std'
 }
 
-// Texte court affiche : "/125" (ou "1/1"). Le numero complet s'affiche au survol.
+// Texte court affiche : "/125" (ou "1/1", "SP", "SSP"). Le numero complet s'affiche au survol.
 export function numShort(num?: string | null): string {
   const v = printRunOf(num)
-  if (v === null) return ''
+  if (v === null) return specialNum(num) ?? ''
   return v === 1 ? '1/1' : `/${v}`
 }
 
