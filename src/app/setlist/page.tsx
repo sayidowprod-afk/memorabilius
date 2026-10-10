@@ -393,9 +393,10 @@ export default function SetlistPage() {
         continue
       }
       const best = pickEntry(candidatesForCard(card, pool, metaSets))
-      if (!best || claimed.has(best.id)) continue
+      if (!best) continue
+      matchedGalleryIdx.add(gi)                 // une carte en double compte aussi comme synchronisee
+      if (claimed.has(best.id)) continue
       claimed.add(best.id)
-      matchedGalleryIdx.add(gi)
       newRows.push({ user_id: userId, entry_id: best.id, manually_checked: false })
     }
     // Formats d'annee acceptes pour une annee de set Y (liste "non placees")

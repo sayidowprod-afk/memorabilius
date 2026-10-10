@@ -100,7 +100,12 @@ export function candidatesForCard(card: MCard, playerRoots: MEntry[], sets: Map<
     // variation : on garde les meilleures (score le plus bas)
     const scored = c.map(e => ({ e, v: variationScore(card.variation || '', e.variation || '') })).filter(x => x.v !== null) as { e: MEntry; v: number }[]
     const best = Math.min(Infinity, ...scored.map(x => x.v))
-    out.push(...scored.filter(x => x.v === best).map(x => x.e))
+    if (scored.length) out.push(...scored.filter(x => x.v === best).map(x => x.e))
+    else if (cn) {
+      // la variation de la carte n'existe pas sous ce nom dans la checklist (noms differents d'une source a l'autre) mais le NUMERO
+      // correspond exactement : on retombe sur la carte de base portant ce numero (jamais sur un parallele au hasard)
+      out.push(...c.filter(e => norm(e.card_number) === cn && !(e.variation || '').trim()))
+    }
   }
   return out
 }
