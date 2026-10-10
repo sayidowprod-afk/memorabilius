@@ -17,6 +17,7 @@ interface GalleryCard {
   collection_tag?: string
   variation?: string
   image_recto?: string
+  card_number?: string
   set_entry_id?: number | null  // lien manuel explicite → jamais auto-matché ailleurs
 }
 
@@ -106,7 +107,7 @@ export async function POST(req: NextRequest) {
   const claimedIds = (galleryCards || []).map(c => c.id).filter(Boolean) as string[]
   const verifiedRows = claimedIds.length
     ? (await supabase.from('cartes_manuelles')
-        .select('id, nom, annee, marque, collection, variation, image_recto, set_entry_id')
+        .select('id, nom, annee, marque, collection, variation, image_recto, set_entry_id, card_number')
         .eq('user_id', user.id).in('id', claimedIds)).data || []
     : []
   const verifiedById = new Map(verifiedRows.map(r => [r.id, r]))
@@ -121,11 +122,11 @@ export async function POST(req: NextRequest) {
   //    service role et malgre .limit(100000) -- sur un set de 15 000 cartes, seules les 1000 premieres arrivaient,
   //    donc cases cochees perdues, auto-detection tronquee et "7 cartes" en haut de page.
   const PAGE = 1000
-  const entries: { id: number; player_name: string; variation: string | null }[] = []
+  const entries: { id: number; player_name: string; variation: string | null; card_number: string | null }[] = []
   for (let from = 0; ; from += PAGE) {
     const { data: page } = await supabase
       .from('card_set_entries')
-      .select('id, player_name, variation')
+      .select('id, player_name, variation, card_number')
       .eq('set_id', setId)
       .order('id')
       .range(from, from + PAGE - 1)
@@ -175,65 +176,86 @@ export async function POST(req: NextRequest) {
     }
   }
 
-  // 3. Auto-match gallery cards → unmatched entries
+  // 3. Auto-match gallery cards → entries du set.
+  //    REGLES (strictes : mieux vaut rater une carte que valider la mauvaise) :
+  //    - joueur identique, annee compatible (OBLIGATOIRE si le set a une annee), marque compatible ;
+  //    - collection : les mots "produit" de la carte (hors marque, annee, mots generiques) doivent etre EXACTEMENT ceux du set
+  //      ("Hoops" ne valide plus "Hoops Premium Stock", "Prizm Draft Picks" ne valide plus "Prizm") ;
+  //    - variation compatible ; numero de carte identique quand les deux sont renseignes ;
+  //    - UNE carte ne valide qu'UNE entree : si plusieurs entrees restent possibles (ex. deux numeros pour le meme joueur),
+  //      la carte est ignoree plutot que de cocher toutes les entrees. Aucun lien set_entry_id n'est plus ecrit automatiquement
+  //      (un lien auto errone devenait un lien "manuel" definitif).
   const autoMatchedIds: number[] = []
   const autoMatchedImages: { entry_id: number; image_url: string; user_id: string }[] = []
-  const autoMatchedGalleryLinks: { gallery_id: string; entry_id: number }[] = []
+  const autoSet = new Set<number>()
 
-  if (safeGalleryCards.length > 0 && setYear && entries.length > 0) {
+  if (safeGalleryCards.length > 0 && entries.length > 0) {
     const y = setYear
-    const yearStr = String(y)
-    const yearNext = `${y}-${String(y + 1).slice(2)}`
-    const yearPrev = `${y - 1}-${yearStr.slice(2)}`
-    const yearNextFull = String(y + 1)
-    const yearFull2 = `${y}-${y + 1}`
+    const yearOk = (cardYear: string) => {
+      if (!y) return true
+      const cy = (cardYear || '').trim()
+      if (!cy) return false
+      const yearStr = String(y)
+      return [yearStr, `${y}-${String(y + 1).slice(2)}`, `${y - 1}-${yearStr.slice(2)}`, String(y + 1), `${y}-${y + 1}`].includes(cy)
+    }
+    const brandWords = new Set([...words(setBrand || ''), ...words(setBrand ? (BRAND_PARENT[norm(setBrand)] || '') : ''), 'panini', 'topps', 'upper', 'deck', 'upperdeck'])
+    const productWords = (txt: string) => new Set(
+      words(txt).map(w => w.replace(/s$/, '')).filter(w => w.length > 1 && !/^\d+$/.test(w) && !GENERIC_WORDS.has(w) && !brandWords.has(w) && !brandWords.has(w + 's')),
+    )
+    const setWords = productWords(setName)
+    const sameSet = (a: Set<string>, b: Set<string>) => a.size === b.size && [...a].every(w => b.has(w))
 
+    const byPlayer = new Map<string, typeof entries>()
     for (const e of entries) {
-      if (completedEntryIds.has(e.id)) continue
+      const k = norm(e.player_name)
+      const arr = byPlayer.get(k) || []
+      arr.push(e); byPlayer.set(k, arr)
+    }
 
-      const matched = safeGalleryCards.find(card => {
-        // Carte liée manuellement à une entrée précise → n'auto-matcher que sur cette entrée
-        if (card.set_entry_id != null && card.set_entry_id !== e.id) return false
+    for (const card of safeGalleryCards) {
+      const pool = byPlayer.get(norm(card.nom))
+      if (!pool?.length) continue
+      if (!yearOk(card.annee || '')) continue
+      if (setBrand && card.marque) {
+        const nb = normBrand(card.marque), ns = normBrand(setBrand)
+        if (!nb.includes(ns) && !ns.includes(nb)) continue
+      }
+      // collection : sans collection ni tag, on ne devine pas
+      const collText = card.collection || card.collection_tag || ''
+      if (!collText.trim()) continue
+      if (!sameSet(productWords(collText), setWords)) continue
 
-        if (norm(card.nom) !== norm(e.player_name)) return false
-
-        const cardYear = (card.annee || '').trim()
-        if (cardYear && cardYear !== yearStr && cardYear !== yearNext &&
-            cardYear !== yearPrev && cardYear !== yearNextFull && cardYear !== yearFull2) return false
-
-        if (setBrand && card.marque) {
-          const nb = normBrand(card.marque), ns = normBrand(setBrand)
-          if (!nb.includes(ns) && !ns.includes(nb)) return false
-        }
-
-        const collToTest = card.collection || card.collection_tag || ''
-        if (collToTest) {
-          const setNorm = norm(setName)
-          const userWords = words(collToTest)
-          if (userWords.length > 0 && !userWords.some(w => setNorm.includes(w))) return false
-          // Collection trop générique (ex: juste "Panini") pour désigner ce produit
-          // précis avec confiance → ne pas auto-matcher sur ce seul indice.
-          if (userWords.length > 0 && !userWords.some(w => !GENERIC_WORDS.has(w))) return false
-        }
-
-        return matchVariation(card.variation || '', e.variation || '')
-      })
-
-      if (matched) {
+      let cands = pool.filter(e => matchVariation(card.variation || '', e.variation || ''))
+      if (card.set_entry_id != null) cands = cands.filter(e => e.id === card.set_entry_id)
+      // numero de carte
+      const cn = norm(card.card_number || '')
+      if (cn) {
+        const exact = cands.filter(e => norm((e as any).card_number || '') === cn)
+        if (exact.length) cands = exact
+        else cands = cands.filter(e => !(e as any).card_number)  // numero different -> pas cette entree
+      }
+      if (cands.length !== 1) continue   // ambigu ou introuvable : on ne coche rien
+      const e = cands[0]
+      if (autoSet.has(e.id)) continue
+      autoSet.add(e.id)
+      if (!completedEntryIds.has(e.id)) {
         completedEntryIds.add(e.id)
         autoMatchedIds.push(e.id)
-        // L'image publique partagée (card_set_entries.image_url, plus bas) ne
-        // reçoit que des cartes vérifiées contre la vraie base — une carte
-        // "sans id" (non vérifiable) peut toujours compter pour la complétion
-        // personnelle de cet utilisateur, mais jamais pousser une image
-        // arbitraire visible par tout le monde.
-        if (matched.image_recto && matched.verified) {
-          autoMatchedImages.push({ entry_id: e.id, image_url: matched.image_recto, user_id: user.id })
-        }
-        if (matched.id) {
-          autoMatchedGalleryLinks.push({ gallery_id: matched.id, entry_id: e.id })
-        }
       }
+      if (card.image_recto && card.verified) autoMatchedImages.push({ entry_id: e.id, image_url: card.image_recto, user_id: user.id })
+    }
+
+    // Nettoyage : anciennes validations AUTOMATIQUES (jamais cochees a la main, sans carte choisie) qui ne correspondent plus
+    // aux regles ci-dessus (faux positifs des anciennes versions) -> retirees.
+    const stale: string[] = []
+    for (const [eid, det] of Object.entries(completionDetails)) {
+      const id = Number(eid)
+      if (!det.manually_checked && !det.matched_card_key && !autoSet.has(id)) {
+        stale.push(det.id); completedEntryIds.delete(id); delete completionDetails[id]
+      }
+    }
+    for (let i = 0; i < stale.length; i += 500) {
+      await supabase.from('user_set_completion').delete().eq('user_id', user.id).in('id', stale.slice(i, i + 500))
     }
 
     if (autoMatchedIds.length > 0) {
@@ -244,24 +266,11 @@ export async function POST(req: NextRequest) {
           { onConflict: 'user_id,entry_id', ignoreDuplicates: true }
         )
     }
-
-    // Écrire set_entry_id dans cartes_manuelles pour les cartes auto-matchées
-    // N'écrase pas les valeurs déjà définies manuellement (set_entry_id IS NULL)
-    for (const { gallery_id, entry_id } of autoMatchedGalleryLinks) {
-      await supabase
-        .from('cartes_manuelles')
-        .update({ set_entry_id: entry_id })
-        .eq('id', gallery_id)
-        .eq('user_id', user.id)
-        .is('set_entry_id', null)
-    }
   }
 
   // 4b. Stocker les images
   {
-    // a) card_set_entries.image_url — image côté site, visible par tous
-    //    Seulement les auto-matchés (image exacte de la carte trouvée)
-    //    ignoreDuplicates: true pour ne pas écraser une image déjà en place
+    // image publique de l'entree : seulement les auto-matchees avec une carte VERIFIEE ; ignoreDuplicates pour ne rien ecraser
     if (autoMatchedImages.length > 0) {
       await supabase
         .from('card_set_entries')
@@ -271,25 +280,17 @@ export async function POST(req: NextRequest) {
         )
     }
 
-    // b) entry_images — image par utilisateur (ownership display)
+    // image par utilisateur : la carte reellement matchee, ou la carte explicitement choisie. PLUS de repli "meme nom de joueur"
+    // (il affichait la carte d'un AUTRE set pour une case cochee a la main).
     const imageRows: { entry_id: number; image_url: string; user_id: string }[] = [...autoMatchedImages]
-
-    {
-      const autoMatchedEntryIds = new Set(autoMatchedImages.map(r => r.entry_id))
-      for (const e of entries) {
-        if (!completedEntryIds.has(e.id)) continue
-        if (autoMatchedEntryIds.has(e.id)) continue
-        // Prefer explicit card choice over fuzzy player-name lookup
-        const matchedKey = completionDetails[e.id]?.matched_card_key
-        const img = matchedKey || (playerImages && playerImages[norm(e.player_name)])
-        if (img) imageRows.push({ entry_id: e.id, image_url: img, user_id: user.id })
-      }
+    const have = new Set(imageRows.map(r => r.entry_id))
+    for (const e of entries) {
+      if (!completedEntryIds.has(e.id) || have.has(e.id)) continue
+      const matchedKey = completionDetails[e.id]?.matched_card_key
+      if (matchedKey) imageRows.push({ entry_id: e.id, image_url: matchedKey, user_id: user.id })
     }
-
     if (imageRows.length > 0) {
-      await supabase
-        .from('entry_images')
-        .upsert(imageRows, { onConflict: 'entry_id,user_id' })
+      await supabase.from('entry_images').upsert(imageRows, { onConflict: 'entry_id,user_id' })
     }
   }
 

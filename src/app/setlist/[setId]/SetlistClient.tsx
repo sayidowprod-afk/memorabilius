@@ -173,10 +173,10 @@ export default function SetlistClient({ setId }: { setId: string }) {
 
     if (userId) {
       // Charger les cartes galerie (Supabase + CSV) pour le matching
-      type GalleryCard = { id?: string; nom: string; annee: string; marque: string; collection: string; collection_tag: string; variation: string; image_recto?: string | null; set_entry_id?: number | null }
+      type GalleryCard = { id?: string; nom: string; annee: string; marque: string; collection: string; collection_tag: string; variation: string; image_recto?: string | null; set_entry_id?: number | null; card_number?: string | null }
       const { data: gc } = await supabase
         .from('cartes_manuelles')
-        .select('id, nom, annee, marque, collection, collection_tag, variation, image_recto, set_entry_id')
+        .select('id, nom, annee, marque, collection, collection_tag, variation, image_recto, set_entry_id, card_number')
         .eq('user_id', userId)
       let galleryCards: GalleryCard[] = gc || []
 
@@ -191,7 +191,7 @@ export default function SetlistClient({ setId }: { setId: string }) {
             ...text.split(/\r?\n/).slice(4).flatMap(row => {
               const c = row.split(/,(?=(?:(?:[^"]*"){2})*[^"]*$)/)
               if (!c[0] || !c[0].includes('http')) return []
-              return [{ nom: c[2]?.trim() || '', annee: c[4]?.trim() || '', marque: c[5]?.trim() || '', collection: c[6]?.trim() || '', collection_tag: '', variation: c[7]?.trim() || '', image_recto: c[0]?.trim() || undefined }]
+              return [{ nom: c[2]?.trim() || '', annee: c[4]?.trim() || '', marque: c[5]?.trim() || '', collection: c[6]?.trim() || '', collection_tag: '', variation: c[7]?.trim() || '', card_number: c[13]?.trim() || '', image_recto: c[0]?.trim() || undefined }]
             })
           ]
         } catch { /* CSV indisponible */ }
