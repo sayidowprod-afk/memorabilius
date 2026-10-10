@@ -660,3 +660,16 @@ html[data-theme="light"] .tcdb-imp-open { border-color: #06122e; color: #06122e;
 .tcdb-imp-ok { padding: 8px 10px; border-left: 4px solid #3ddc97; background: rgba(61,220,151,.12); font-weight: 800; }
 .tcdb-imp-go { align-self: flex-start; padding: 10px 18px; background: #fff; color: #06122e; border: 3px solid #fff; font: 800 13px system-ui; letter-spacing: .08em; text-transform: uppercase; cursor: pointer; border-radius: 0; }
 .tcdb-imp-go:disabled { opacity: .5; }
+
+/* Demande de setlist manquante (bas de la page Setlist) */
+.sl-req { margin: 40px 0 10px; padding: 18px; border: 3px solid rgba(128,128,128,.45); display: flex; flex-direction: column; gap: 8px; align-items: flex-start; }
+.sl-req-t { font-size: 20px; font-weight: 800; color: var(--text, #111); }
+.sl-req-p { margin: 0; font-size: 13px; color: var(--text2, #666); }
+.sl-req-btn { padding: 10px 18px; background: #003DA6; color: #fff; border: 3px solid #003DA6; font: 800 12px system-ui; letter-spacing: .08em; text-transform: uppercase; cursor: pointer; border-radius: 0; }
+.sl-req-btn:disabled { opacity: .5; }
+.sl-req-cancel { padding: 10px 14px; background: transparent; color: var(--text2, #666); border: 2px solid rgba(128,128,128,.5); font: 800 12px system-ui; cursor: pointer; border-radius: 0; }
+.sl-req-form { display: flex; flex-direction: column; gap: 8px; width: 100%; max-width: 460px; }
+.sl-req-form select, .sl-req-form input { padding: 9px 11px; font-size: 14px; border: 2px solid var(--border, #ccc); background: var(--card-bg, #fff); color: var(--text, #111); border-radius: 0; }
+.sl-req-act { display: flex; gap: 8px; flex-wrap: wrap; }
+.sl-req-ok { padding: 8px 12px; border-left: 4px solid #3ddc97; background: rgba(61,220,151,.12); font-weight: 800; color: var(--text, #111); }
+.sl-req-ok button { margin-left: 10px; background: none; border: none; text-decoration: underline; cursor: pointer; color: inherit; font-weight: 700; }

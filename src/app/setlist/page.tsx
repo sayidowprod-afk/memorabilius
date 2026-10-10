@@ -1,4 +1,5 @@
 'use client'
+import SetlistRequest from '@/components/SetlistRequest'
 import TcdbImportPanel from '@/components/TcdbImportPanel'
 import { useEffect, useState, useCallback } from 'react'
 import { createPortal } from 'react-dom'
@@ -1039,6 +1040,7 @@ export default function SetlistPage() {
           ))}
         </div>
       )}
+      <SetlistRequest defaultSport={activeSport} />
     </div>
     </>
   )
