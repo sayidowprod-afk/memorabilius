@@ -2,7 +2,7 @@
 import { useEffect, useState } from 'react'
 import Link from 'next/link'
 import { supabase } from '@/lib/supabase'
-import { useLang } from '@/lib/LangContext'
+import { useLang, localeFor } from '@/lib/LangContext'
 import { useTheme } from '@/lib/ThemeContext'
 import { useAuth } from '@/lib/AuthContext'
 
@@ -32,7 +32,7 @@ function timeAgo(iso: string, t: ReturnType<typeof useLang>['t']): string {
 }
 
 export default function ActivitePage() {
-  const { t } = useLang()
+  const { t, lang } = useLang()
   const { dark } = useTheme()
   const { user } = useAuth()
   const [items, setItems] = useState<ActivityItem[] | null>(null)
@@ -48,6 +48,19 @@ export default function ActivitePage() {
     })
     return () => { cancelled = true }
   }, [user?.id])
+
+  // Evenements : les ajouts d'un meme collectionneur le meme jour sont regroupes (une entree, plusieurs miniatures)
+  const events = (() => {
+    const out: { key: string; user: ActivityItem; items: ActivityItem[] }[] = []
+    for (const it of items || []) {
+      const day = new Date(it.created_at)
+      const key = `${it.user_id}|${day.getFullYear()}-${day.getMonth()}-${day.getDate()}`
+      const last = out[out.length - 1]
+      if (last && last.key === key) last.items.push(it)
+      else out.push({ key, user: it, items: [it] })
+    }
+    return out
+  })()
 
   return (
     <div style={{ maxWidth: 620, margin: '0 auto', padding: '20px 14px 90px', fontFamily: 'Inter, sans-serif' }}>
@@ -80,39 +93,45 @@ export default function ActivitePage() {
           {t('activity_empty')}
         </p>
       ) : (
-        <div style={{ display: 'flex', flexDirection: 'column', gap: 2 }}>
-          {items.map(item => (
-            <Link
-              key={item.id_manuelle}
-              href={`/galerie/${item.slug || item.user_id}${item.image_recto ? `?card=${encodeURIComponent(item.image_recto)}` : ''}`}
-              style={{
-                display: 'flex', alignItems: 'center', gap: 12, padding: '10px 8px', borderRadius: 10,
-                textDecoration: 'none', color: 'var(--text, #121212)',
-              }}
-              className="activity-row"
-            >
-              <img
-                src={item.avatar_url || `https://ui-avatars.com/api/?name=${encodeURIComponent(item.display_name || 'U')}&background=003DA6&color=fff`}
-                loading="lazy" width={40} height={40} alt=""
-                style={{ width: 40, height: 40, borderRadius: '50%', objectFit: 'cover', flexShrink: 0, border: `2px solid ${dark ? '#2a2a2a' : '#f0f0f0'}` }}
-              />
-              <div style={{ flex: 1, minWidth: 0 }}>
-                <div style={{ fontSize: 13.5, lineHeight: 1.4 }}>
-                  <b>{item.display_name || 'Collectionneur'}</b>{' '}
-                  <span style={{ color: 'var(--text3, #999)' }}>{t('activity_added')}</span>{' '}
-                  <b>{item.nom || t('activity_a_card')}</b>
-                  {item.equipe && <span style={{ color: 'var(--text3, #999)' }}> · {item.equipe}</span>}
-                  {item.annee && <span style={{ color: 'var(--text3, #999)' }}> · {item.annee}</span>}
+        <div className="tl-feed">
+          {events.map(ev => {
+            const u = ev.user
+            const first = ev.items[0]
+            const gal = `/galerie/${u.slug || u.user_id}`
+            const n = ev.items.length
+            const d = new Date(first.created_at)
+            return (
+              <div className="tl-ev" key={ev.key}>
+                <div className="tl-date da-display">
+                  {d.toLocaleDateString(localeFor(lang), { day: '2-digit', month: 'short' }).replace('.', '')}
+                  <small>{timeAgo(first.created_at, t)}</small>
                 </div>
-                <div style={{ fontSize: 11, color: 'var(--text3, #aaa)', marginTop: 2 }}>{timeAgo(item.created_at, t)}</div>
+                <div className="tl-body">
+                  <Link href={gal} className="tl-who">
+                    <img
+                      src={u.avatar_url || `https://ui-avatars.com/api/?name=${encodeURIComponent(u.display_name || 'U')}&background=003DA6&color=fff`}
+                      loading="lazy" width={32} height={32} alt=""
+                    />
+                    <span>
+                      <b>{u.display_name || 'Collectionneur'}</b>{' '}
+                      <span className="tl-act">{t('activity_added')}</span>{' '}
+                      <b>{n > 1 ? `${n} ${t('gallery_cards').toLowerCase()}` : (first.nom || t('activity_a_card'))}</b>
+                      {n === 1 && first.equipe && <span className="tl-act"> · {first.equipe}</span>}
+                      {n === 1 && first.annee && <span className="tl-act"> · {first.annee}</span>}
+                    </span>
+                  </Link>
+                  <div className="tl-th">
+                    {ev.items.slice(0, 6).map(it => it.image_recto && (
+                      <Link key={it.id_manuelle} href={`${gal}?card=${encodeURIComponent(it.image_recto)}`} aria-label={it.nom || ''}>
+                        <img src={it.image_recto} loading="lazy" alt="" />
+                      </Link>
+                    ))}
+                    {n > 6 && <span className="tl-more">+{n - 6}</span>}
+                  </div>
+                </div>
               </div>
-              {item.image_recto && (
-                <img src={item.image_recto} loading="lazy" alt=""
-                  style={{ width: 34, height: 48, objectFit: 'cover', borderRadius: 4, flexShrink: 0, border: `1px solid ${dark ? '#2a2a2a' : '#eee'}` }}
-                />
-              )}
-            </Link>
-          ))}
+            )
+          })}
         </div>
       )}
 

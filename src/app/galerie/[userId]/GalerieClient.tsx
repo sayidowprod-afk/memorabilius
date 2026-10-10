@@ -2356,6 +2356,12 @@ export default function GalerieClient({ userId, initialCardUrl, initialCards, in
                             style={{ background: 'none', border: 'none', borderRadius: 8, padding: '9px 14px', fontWeight: 700, fontSize: 13, cursor: 'pointer', textAlign: 'left', color: dark ? '#ddd' : '#333', width: '100%' }}>
                             ▦ {qrMode ? 'Quitter Multi-QR' : 'Multi-QR'}
                           </button>
+                          {isOwner && (
+                            <button onClick={() => { setActionMenuOpen(false); router.push(`/galerie/${userId}/plaque`) }}
+                              style={{ background: 'none', border: 'none', borderRadius: 8, padding: '9px 14px', fontWeight: 700, fontSize: 13, cursor: 'pointer', textAlign: 'left', color: dark ? '#ddd' : '#333', width: '100%' }}>
+                              🪧 Plaque de salon
+                            </button>
+                          )}
                         </div>
                       </>,
                       document.body

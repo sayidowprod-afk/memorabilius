@@ -33,7 +33,7 @@ export async function GET() {
 
   const userIds = [...new Set(cands.map((c: any) => c.user_id))]
   const [{ data: profiles }, { data: priv }] = await Promise.all([
-    supabase.from('profiles').select('id, display_name, slug, is_demo').in('id', userIds),
+    supabase.from('profiles').select('id, display_name, slug, is_demo, avatar_url, stats_total').in('id', userIds),
     supabase.from('cartes_privees').select('user_id, card_key').in('user_id', userIds),
   ])
   const demo = new Set((profiles || []).filter((p: any) => p.is_demo).map((p: any) => p.id))
@@ -52,7 +52,7 @@ export async function GET() {
       card: {
         image: pick.image_recto, nom: pick.nom, annee: pick.annee, marque: pick.marque, collection: pick.collection, variation: pick.variation,
         num: pick.num, rc: !!pick.rc, auto: !!pick.auto, patch: !!pick.patch,
-        owner: { id: pick.user_id, slug: prof?.slug || null, name: prof?.display_name || null },
+        owner: { id: pick.user_id, slug: prof?.slug || null, name: prof?.display_name || null, avatar: prof?.avatar_url || null, total: prof?.stats_total || 0 },
       },
     },
     { headers: { 'Cache-Control': 'public, s-maxage=3600, stale-while-revalidate=86400' } },

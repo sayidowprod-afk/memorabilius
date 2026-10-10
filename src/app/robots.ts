@@ -13,7 +13,7 @@ export default function robots(): MetadataRoute.Robots {
         '/admin', '/evenements/admin',
         // Comptes/reglages personnels, jamais utiles a indexer.
         '/mot-de-passe-oublie', '/parametres', '/moi', '/notifications',
-        '/wishlist', '/scanner', '/qr-gen', '/auth/callback', '/confirm',
+        '/wishlist', '/scanner', '/qr-gen', '/auth/callback', '/confirm', '/galerie/*/plaque',
       ],
     },
     // Racine + tranches de fiches carte (/cartes/sitemap/<id>.xml, 5000 cartes chacune, avec images).

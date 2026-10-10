@@ -1,4 +1,4 @@
-import ChevronBand from '@/components/ChevronBand'
+import CardOfTheDay from '@/components/CardOfTheDay'
 import { supabase } from '@/lib/supabase'
 import PepitesSection from '@/components/PepitesSection'
 import HomeHero from '@/components/HomeHero'
@@ -237,9 +237,9 @@ export default async function Home() {
         hero={<HomeHero total={total} totalCartes={totalCartes} totalBinders={totalBinders} totalTrade={totalTrade} featuredGalleries={featuredGalleries} />}
         siteStats={{ total, totalCartes, totalBinders, totalTrade }}
       />
-      <ChevronBand words={['Pépites', 'Nouveautés', 'Communauté', 'Pépites', 'Nouveautés', 'Communauté']} />
+      {/* Carte du jour : sous l'accueil / le tableau de bord, juste avant les pepites */}
+      <CardOfTheDay />
       <PepitesSection cards={cards} />
-      <ChevronBand blue words={['Classement', 'Collectionneurs', 'Podium', 'Classement', 'Collectionneurs', 'Podium']} />
       <PodiumSection month={podium} week={podiumWeek} day={podiumDay} />
       <PWAInstall />
     </div>

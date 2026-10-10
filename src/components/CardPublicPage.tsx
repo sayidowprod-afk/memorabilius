@@ -1,4 +1,5 @@
 'use client'
+import LoupeOverlay from '@/components/LoupeOverlay'
 import { useEffect, useState, useRef } from 'react'
 import { useRouter } from 'next/navigation'
 import Link from 'next/link'
@@ -23,6 +24,7 @@ export default function CardPublicPage({ userId, cardSlug, src }: Props) {
   const [profile, setProfile] = useState<any>(null)
   const [card, setCard] = useState<any>(null)
   const [loading, setLoading] = useState(true)
+  const [loupe, setLoupe] = useState(false)
   const cardRef = useRef<HTMLDivElement>(null)
 
   const accent = profile?.couleur_bordure || '#003DA6'
@@ -143,6 +145,9 @@ export default function CardPublicPage({ userId, cardSlug, src }: Props) {
           <img className="vit-ref" src={card.f} alt="" aria-hidden />
           </div>
           </div>
+
+          <button className="loupe-btn" onClick={() => setLoupe(true)} style={{ marginTop: 14 }}>🔍 Loupe</button>
+          {loupe && <LoupeOverlay front={card.f} back={card.b !== card.f ? card.b : undefined} onClose={() => setLoupe(false)} />}
 
           {/* Collectionneur */}
           {profile && (

@@ -1,4 +1,5 @@
 'use client'
+import TeamColorPicker from '@/components/TeamColorPicker'
 import { toast } from '@/lib/toast'
 import { saveOrShareFile } from '@/lib/saveOrShare'
 import { useEffect, useState, useRef } from 'react'
@@ -452,6 +453,10 @@ export default function Profil() {
                 }}>+ Ajouter</span>
               </div>
             </div>
+          </div>
+          <div>
+            <label style={{ fontSize: 12, fontWeight: 700, textTransform: 'uppercase', color: '#888', display: 'block', marginBottom: 6 }}>Couleur d&apos;équipe</label>
+            <TeamColorPicker value={form.couleur_bordure} onPick={hex => setForm({ ...form, couleur_bordure: hex })} />
           </div>
           <div>
             <label style={{ display: 'flex', alignItems: 'center', gap: 10, cursor: 'pointer' }}>

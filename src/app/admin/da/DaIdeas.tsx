@@ -1,10 +1,10 @@
 'use client'
-import { useEffect, useState } from 'react'
+import { useEffect, useRef } from 'react'
 import Link from 'next/link'
 
 // Idees visuelles pour pousser la nouvelle DA (Surfquest, marine -> bleu electrique, angles droits, doubles filets, metaux).
 // Page de TRAVAIL reservee aux admins : donnees d'exemple en dur, rien n'est lu ni ecrit.
-// Serie 5 : les series precedentes sont integrees au site ou ecartees. Tout le style est ici, prefixe .ix.
+// Serie 6 : les series precedentes sont integrees au site ou ecartees. Tout le style est ici, prefixe .ix.
 
 const SB = 'https://snnrkzbevjhdtviizfyp.supabase.co/storage/v1/object/public/avatars/cartes/eb730dee-414e-4fcb-89d8-4a7b3448c218/'
 const C = {
@@ -37,110 +37,101 @@ const CSS = `
 .ix .row { display:flex; gap: 28px; flex-wrap: wrap; align-items: flex-end; }
 .ix .cap { font: 700 11px system-ui; letter-spacing:.14em; text-transform:uppercase; color: rgba(255,255,255,.55); margin-top: 10px; }
 .ix .card { display:block; aspect-ratio: 2.5/3.5; object-fit: cover; border-radius: 0; box-shadow: 0 16px 36px rgba(0,0,0,.5); width:100%; }
-.ix .btn { background:#fff; color:#06122e !important; border:3px solid #fff; padding: 9px 18px; font: 800 12px system-ui; letter-spacing:.1em; text-transform:uppercase; cursor:pointer; }
-.ix .btn:hover { background: transparent; color:#fff !important; }
 .ix .tags { display:flex; flex-wrap:wrap; gap: 8px; margin: 0 0 30px; }
 .ix .tags a { color:#fff; text-decoration:none; border: 2px solid rgba(255,255,255,.4); padding: 5px 12px; font: 800 11px system-ui; letter-spacing:.12em; text-transform:uppercase; }
 .ix .tags a:hover { background:#fff; color:#06122e; }
 
-/* 01 · journal */
-.ix .tl { position:relative; max-width: 640px; padding-left: 38px; }
-.ix .tl::before { content:''; position:absolute; left: 10px; top: 4px; bottom: 4px; width: 4px; background: rgba(255,255,255,.3); }
-.ix .ev { position:relative; margin-bottom: 22px; }
-.ix .ev::before { content:''; position:absolute; left: -36px; top: 4px; width: 16px; height: 16px; background: var(--c); border: 3px solid #08153b; box-shadow: 0 0 0 2px #fff; }
-.ix .ev .d { font-size: 28px; line-height: 1; } .ix .ev .d small { font: 800 10px system-ui; letter-spacing:.16em; opacity:.65; margin-left: 8px; }
-.ix .ev p { margin: 4px 0 8px; font-size: 14px; opacity:.88; } .ix .ev .th { display:flex; gap: 6px; }
-.ix .ev .th img { width: 46px; box-shadow: 0 4px 10px rgba(0,0,0,.5); }
+/* 01 · toploader */
+.ix .tlb { position:relative; width: 190px; padding: 16px 12px 22px; background: linear-gradient(135deg, rgba(255,255,255,.28), rgba(255,255,255,.08) 40%, rgba(255,255,255,.2)); border: 2px solid rgba(255,255,255,.55); box-shadow: 0 22px 44px rgba(0,0,0,.55), inset 0 0 0 5px rgba(255,255,255,.12); }
+.ix .tlb::before { content:''; position:absolute; left: 8px; right: 8px; top: 6px; height: 7px; background: rgba(255,255,255,.35); }
+.ix .tlb::after { content:''; position:absolute; inset:0; background: linear-gradient(115deg, transparent 30%, rgba(255,255,255,.35) 46%, transparent 58%); pointer-events:none; }
+.ix .tlb .card { box-shadow:none; }
+.ix .tlg { position:absolute; left: 50%; bottom: -12px; transform: translateX(-50%); background:#fff; padding: 3px 12px; font: 800 10px system-ui; letter-spacing:.12em; text-transform:uppercase; white-space:nowrap; z-index:2; }
 
-/* 02 · exemplaires recenses */
-.ix .pop { display:grid; grid-template-columns: 150px 1fr; gap: 28px; align-items:start; }
-.ix .pop .n { font-size: 84px; line-height:.85; } .ix .pop .lb { font: 800 12px system-ui; letter-spacing:.18em; text-transform:uppercase; opacity:.8; margin: 6px 0 14px; }
-.ix .grid149 { display:grid; grid-template-columns: repeat(auto-fill, 13px); gap: 3px; }
-.ix .grid149 i { width: 13px; height: 13px; display:block; border: 1.5px solid rgba(255,255,255,.25); }
-.ix .grid149 i.on { background: var(--el); border-color: var(--el); } .ix .grid149 i.me { background:#ffd700; border-color:#ffd700; box-shadow: 0 0 10px rgba(255,215,0,.8); }
+/* 02 · tapis */
+.ix .mat { position:relative; height: 380px; background: radial-gradient(120% 120% at 50% 40%, #12306b, #091a3d 70%); border: 6px solid #0a1228; box-shadow: inset 0 0 60px rgba(0,0,0,.6); overflow:hidden; }
+.ix .mat::before { content:''; position:absolute; inset:0; background: repeating-linear-gradient(45deg, rgba(255,255,255,.025) 0 2px, transparent 2px 6px); }
+.ix .mat .scd { position:absolute; width: 96px; transition: transform .25s; box-shadow: 0 10px 20px rgba(0,0,0,.55); }
+.ix .mat .scd:hover { transform: translateY(-14px) rotate(0deg) scale(1.12) !important; z-index: 20 !important; }
+.ix .mat .scd .card { box-shadow:none; }
 
-/* 03 · tournoi */
-.ix .bracket { display:flex; align-items:center; gap: 0; max-width: 700px; }
-.ix .rd { display:flex; flex-direction:column; justify-content:space-around; gap: 14px; }
-.ix .rd .cc { width: 70px; position:relative; } .ix .rd .cc img { box-shadow:none; border: 3px solid rgba(255,255,255,.35); }
-.ix .rd .cc.w img { border-color:#ffd700; box-shadow: 0 0 16px rgba(255,215,0,.6); } .ix .rd .cc.l img { filter: grayscale(1) brightness(.6); }
-.ix .link { width: 44px; align-self:stretch; display:flex; flex-direction:column; justify-content:space-around; }
-.ix .link i { display:block; flex:1; margin: 36px 0; border: 3px solid rgba(255,255,255,.35); border-left: 0; }
-.ix .fin { margin-left: 8px; text-align:center; } .ix .fin .cc { width: 110px; } .ix .fin .cc img { border: 4px solid #ffd700; box-shadow: 0 0 26px rgba(255,215,0,.7); }
-.ix .fin small { display:block; font: 800 10px system-ui; letter-spacing:.2em; text-transform:uppercase; margin-bottom: 8px; color:#ffd700 !important; }
+/* 03 · flamme */
+.ix .flame { display:flex; align-items:center; gap: 26px; flex-wrap:wrap; }
+.ix .flame svg { width: 150px; height: 190px; filter: drop-shadow(0 0 24px rgba(255,140,0,.75)); animation: ixflick 1.4s ease-in-out infinite; transform-origin: 50% 100%; }
+@keyframes ixflick { 0%,100% { transform: scale(1,1) rotate(0); } 25% { transform: scale(1.03,.97) rotate(-1.5deg); } 55% { transform: scale(.98,1.04) rotate(1.5deg); } 80% { transform: scale(1.02,.99) rotate(-.8deg); } }
+.ix .flame .n { font-size: 120px; line-height: .85; } .ix .flame .lb { font: 800 14px system-ui; letter-spacing:.24em; text-transform:uppercase; margin-top: 8px; }
+.ix .flame .rec { font: 700 12px system-ui; letter-spacing:.14em; text-transform:uppercase; opacity:.7; margin-top: 12px; }
+@media (prefers-reduced-motion: reduce) { .ix .flame svg { animation: none; } }
 
-/* 04 · etagere */
-.ix .shelves { display:flex; flex-direction:column; gap: 34px; max-width: 640px; }
-.ix .shelf { position:relative; padding: 0 16px; display:flex; gap: 14px; align-items:flex-end; }
-.ix .shelf .it { width: 92px; transform-origin: 50% 100%; } .ix .shelf .it:nth-child(1) { transform: rotate(-3deg); } .ix .shelf .it:nth-child(3) { transform: rotate(2.5deg); } .ix .shelf .it:nth-child(4) { transform: rotate(-1.5deg); }
-.ix .shelf .it img { box-shadow: 8px 6px 14px rgba(0,0,0,.55); }
-.ix .shelf::after { content:''; position:absolute; left: 0; right: 0; bottom: -14px; height: 14px; background: linear-gradient(180deg,#a8742a,#6b4514); box-shadow: 0 10px 18px rgba(0,0,0,.55), inset 0 2px 0 rgba(255,255,255,.25); }
-.ix .shelf .lbl { position:absolute; left: 16px; bottom: -34px; font: 800 10px system-ui; letter-spacing:.2em; text-transform:uppercase; opacity:.7; }
+/* 04 · autographes */
+.ix .sigs { display:grid; grid-template-columns: repeat(auto-fill, minmax(230px,1fr)); gap: 12px; }
+.ix .sig { position:relative; height: 96px; overflow:hidden; background:#ddd; border: 3px solid #fff; }
+.ix .sig img { position:absolute; left:0; width:100%; height: auto; bottom: -6%; transform: scale(1.7); transform-origin: 50% 82%; box-shadow:none; filter: contrast(1.15); }
+.ix .sig b { position:absolute; left: 0; bottom: 0; background:#06122e; padding: 3px 9px; font: 800 10px system-ui; letter-spacing:.12em; text-transform:uppercase; color:#fff !important; }
 
-/* 05 · loupe */
-.ix .loupe { position:relative; width: 260px; cursor: none; touch-action:none; }
-.ix .loupe .lens { position:absolute; width: 120px; height: 120px; border: 4px solid #fff; border-radius: 50%; pointer-events:none; background-repeat:no-repeat; box-shadow: 0 10px 30px rgba(0,0,0,.6), inset 0 0 0 2px #08153b; opacity:0; transition: opacity .12s; }
-.ix .loupe:hover .lens { opacity:1; }
+/* 05 · maillot */
+.ix .jersey { position:relative; width: 230px; height: 260px; display:flex; flex-direction:column; align-items:center; justify-content:center; text-align:center; background: linear-gradient(160deg, var(--c), color-mix(in srgb, var(--c) 55%, #000));
+  clip-path: polygon(0 12%, 22% 0, 36% 0, 42% 9%, 58% 9%, 64% 0, 78% 0, 100% 12%, 100% 28%, 84% 28%, 84% 100%, 16% 100%, 16% 28%, 0 28%); }
+.ix .jersey::before { content:''; position:absolute; inset:0; background: repeating-linear-gradient(90deg, rgba(255,255,255,.07) 0 3px, transparent 3px 8px); }
+.ix .jersey .nm { position:relative; font: 800 13px system-ui; letter-spacing:.2em; text-transform:uppercase; margin-top: 30px; }
+.ix .jersey .no { position:relative; font-size: 128px; line-height: .85; text-shadow: 0 4px 0 rgba(0,0,0,.25); }
+.ix .jersey .ct { position:relative; font: 800 11px system-ui; letter-spacing:.16em; text-transform:uppercase; opacity:.85; margin-top: 8px; }
 
-/* 06 · centrage */
-.ix .center { position:relative; width: 230px; margin: 28px 0 0 54px; }
-.ix .center .g { position:absolute; background: rgba(47,255,160,.9); }
-.ix .center .gv { top: 0; bottom: 0; width: 2px; } .ix .center .gh { left: 0; right: 0; height: 2px; }
-.ix .center .lab { position:absolute; font: 800 11px system-ui; letter-spacing:.08em; background: #08153b; padding: 2px 6px; border: 2px solid rgba(47,255,160,.9); color: #7dffc8 !important; }
-.ix .verdict { margin-top: 14px; display:inline-block; background: #12b76a; padding: 7px 14px; font: 800 13px system-ui; letter-spacing:.1em; text-transform:uppercase; }
+/* 06 · box score */
+.ix .box { width:100%; max-width: 720px; border-collapse: collapse; font-variant-numeric: tabular-nums; }
+.ix .box th { text-align:right; padding: 8px 12px; font: 800 10px system-ui; letter-spacing:.16em; text-transform:uppercase; background:#fff !important; color:#06122e !important; }
+.ix .box th:first-child { text-align:left; }
+.ix .box td { text-align:right; padding: 9px 12px; font-size: 26px; line-height:1; border-bottom: 2px solid rgba(255,255,255,.14); }
+.ix .box td:first-child { text-align:left; font: 800 14px system-ui; letter-spacing:.1em; text-transform:uppercase; }
+.ix .box td i { display:inline-block; width: 12px; height: 12px; margin-right: 10px; background: var(--c); }
+.ix .box tr:nth-child(even) td { background: rgba(255,255,255,.05); } .ix .box td.top { color:#ffd54a !important; }
+.ix .box tfoot td { border-bottom: 0; border-top: 4px solid #fff; background: transparent !important; }
 
-/* 07 · paquet */
-.ix .packwrap { position:relative; width: 170px; height: 440px; }
-.ix .pack { position:absolute; left:0; right:0; bottom:0; height: 250px; background: linear-gradient(135deg,#0a2468,#2f6bff 45%,#9db8ff 52%,#2f6bff 58%,#0a2468); z-index: 3;
-  clip-path: polygon(0 8px, 6% 0, 12% 8px, 18% 0, 24% 8px, 30% 0, 36% 8px, 42% 0, 48% 8px, 54% 0, 60% 8px, 66% 0, 72% 8px, 78% 0, 84% 8px, 90% 0, 96% 8px, 100% 0, 100% 100%, 0 100%); display:flex; flex-direction:column; align-items:center; justify-content:center; gap: 10px; border-bottom: 4px solid #fff; }
-.ix .pack .lg { font-size: 30px; line-height:.9; text-align:center; } .ix .pack small { font: 800 9px system-ui; letter-spacing:.2em; opacity:.85; text-transform:uppercase; }
-.ix .packcards img { position:absolute; left: 50%; bottom: 130px; width: 100px; margin-left: -50px; z-index: 2; animation: ixout 1.1s cubic-bezier(.2,.8,.3,1) both !important; }
-@keyframes ixout { 0% { transform: translateY(70px) rotate(0); opacity: 0; } 100% { transform: translateY(var(--y)) translateX(var(--x)) rotate(var(--r)); opacity: 1; } }
+/* 07 · gratter */
+.ix .scratch { position:relative; width: 230px; aspect-ratio: 2.5/3.5; touch-action:none; cursor: crosshair; }
+.ix .scratch .card { position:absolute; inset:0; height:100%; }
+.ix .scratch canvas { position:absolute; inset:0; width:100%; height:100%; }
 
-/* 08 · plaque de salon */
-.ix .sign { width: 340px; background:#fff; padding: 20px 20px 16px; text-align:center; box-shadow: 0 24px 50px rgba(0,0,0,.6); border: 6px solid #08153b; outline: 3px solid #fff; }
-.ix .sign .big { font-size: 40px; line-height: .9; margin-bottom: 12px; }
-.ix .sign .qr { width: 170px; height: 170px; margin: 0 auto 12px; background: repeating-conic-gradient(#06122e 0 25%, #fff 0 50%) 0 0 / 22px 22px; border: 10px solid #06122e; outline: 4px solid #fff; box-shadow: 0 0 0 7px #06122e; }
-.ix .sign .th { display:flex; justify-content:center; gap: 8px; margin: 12px 0; } .ix .sign .th img { width: 56px; box-shadow: 0 4px 10px rgba(0,0,0,.4); }
-.ix .sign .url { background:#06122e; padding: 6px; font: 800 11px system-ui; letter-spacing:.14em; text-transform:uppercase; color:#fff !important; }
+/* 08 · suivi d'envoi */
+.ix .steps { display:flex; max-width: 760px; }
+.ix .stp { flex:1; position:relative; padding: 16px 12px 14px 26px; background: rgba(255,255,255,.08); margin-right: -1px; clip-path: polygon(0 0, calc(100% - 18px) 0, 100% 50%, calc(100% - 18px) 100%, 0 100%, 18px 50%); text-align:center; }
+.ix .stp:first-child { clip-path: polygon(0 0, calc(100% - 18px) 0, 100% 50%, calc(100% - 18px) 100%, 0 100%); }
+.ix .stp.done { background: #1f9d55; } .ix .stp.now { background: #2f6bff; animation: ixpulse 1.6s ease-in-out infinite; }
+@keyframes ixpulse { 50% { filter: brightness(1.25); } }
+.ix .stp .ic { font-size: 26px; line-height:1; } .ix .stp b { display:block; font: 800 11px system-ui; letter-spacing:.12em; text-transform:uppercase; margin-top: 6px; } .ix .stp small { font: 600 10px system-ui; opacity:.8; }
+@media (prefers-reduced-motion: reduce) { .ix .stp.now { animation: none; } }
 
-/* 09 · histogramme de miniatures */
-.ix .histo { display:flex; align-items:flex-end; gap: 10px; height: 330px; padding-bottom: 26px; position:relative; border-bottom: 4px solid #fff; overflow-x:auto; }
-.ix .hcol { display:flex; flex-direction:column-reverse; align-items:center; width: 50px; flex-shrink:0; position:relative; }
-.ix .hcol img { width: 44px; margin-top: -42px; box-shadow: 0 2px 6px rgba(0,0,0,.5); border: 1px solid rgba(255,255,255,.4); }
-.ix .hcol img:first-child { margin-top: 0; }
-.ix .hcol .yr { position:absolute; bottom: -24px; font: 800 11px system-ui; letter-spacing:.06em; } .ix .hcol .ct { position:absolute; top: -18px; font-size: 20px; line-height: 1; display:none; }
+/* 09 · accreditation */
+.ix .lanyard { position:relative; width: 270px; padding-top: 60px; }
+.ix .lanyard::before { content:''; position:absolute; left: 50%; top: -400px; width: 26px; height: 460px; margin-left: -13px; background: repeating-linear-gradient(180deg, #2f6bff 0 14px, #1a47b8 14px 28px); }
+.ix .lanyard .clip { position:absolute; left: 50%; top: 40px; width: 46px; height: 26px; margin-left: -23px; background: linear-gradient(180deg,#e6ebf5,#8d97ad); z-index: 2; }
+.ix .pass { background:#fff; padding: 20px 18px 16px; text-align:center; box-shadow: 0 26px 50px rgba(0,0,0,.6); position:relative; border-top: 14px solid #08153b; }
+.ix .pass .lvl { display:inline-block; background:#08153b; padding: 3px 12px; font: 800 10px system-ui; letter-spacing:.2em; text-transform:uppercase; color:#fff !important; }
+.ix .pass .ph { width: 110px; height: 110px; margin: 12px auto 10px; border: 4px solid #06122e; background: linear-gradient(135deg,#0a2468,#2f6bff); display:flex; align-items:center; justify-content:center; font-size: 60px; color:#fff !important; }
+.ix .pass .nm { font-size: 34px; line-height: .95; } .ix .pass .ac { font: 800 11px system-ui; letter-spacing:.2em; text-transform:uppercase; margin: 6px 0 12px; }
+.ix .pass .qr { width: 86px; height: 86px; margin: 0 auto; background: repeating-conic-gradient(#06122e 0 25%, #fff 0 50%) 0 0 / 14px 14px; border: 6px solid #06122e; outline: 3px solid #fff; box-shadow: 0 0 0 5px #06122e; }
+.ix .pass .bar { margin-top: 14px; background:#06122e; padding: 5px; font: 800 10px system-ui; letter-spacing:.18em; text-transform:uppercase; color:#fff !important; }
 
-/* 10 · balance */
-.ix .scale { max-width: 600px; text-align:center; }
-.ix .beam-wrap { position:relative; height: 230px; }
-.ix .beam { position:absolute; left: 50%; top: 30px; width: 460px; margin-left: -230px; height: 10px; background: linear-gradient(180deg,#f1dc9a,#b8923a); transform-origin: 50% 50%; transition: transform .6s cubic-bezier(.3,1.4,.5,1); box-shadow: 0 4px 10px rgba(0,0,0,.5); }
-.ix .pan { position:absolute; top: 8px; width: 150px; transform-origin: 50% 0; transition: transform .6s cubic-bezier(.3,1.4,.5,1); }
-.ix .pan .rope { height: 80px; margin: 0 auto; width: 76px; border-left: 2px solid #d9dde8; border-right: 2px solid #d9dde8; transform: perspective(60px) rotateX(-10deg); clip-path: polygon(50% 0, 100% 100%, 0 100%); background: rgba(255,255,255,.1); }
-.ix .pan .tray { background: linear-gradient(180deg,#f1dc9a,#b8923a); padding: 8px 8px 6px; display:flex; flex-direction:column; align-items:center; gap: 4px; clip-path: polygon(0 0,100% 0,88% 100%,12% 100%); }
-.ix .pan .tray img { width: 54px; box-shadow:none; } .ix .pan .tray b { font-size: 28px; line-height:1; color:#2a1c00 !important; }
-.ix .post { position:absolute; left: 50%; top: 28px; width: 14px; margin-left: -7px; height: 190px; background: linear-gradient(90deg,#8a6420,#e4c46c,#8a6420); }
-.ix .base { position:absolute; left: 50%; bottom: 0; width: 160px; margin-left: -80px; height: 16px; background: linear-gradient(180deg,#e4c46c,#6b4514); }
-.ix .slider { width: 100%; max-width: 380px; accent-color: var(--el); margin-top: 18px; }
-.ix .fair { display:inline-block; margin-top: 10px; padding: 6px 14px; font: 800 12px system-ui; letter-spacing:.12em; text-transform:uppercase; }
+/* 10 · draft board */
+.ix .draft { display:grid; grid-template-columns: repeat(5, 1fr); gap: 6px; max-width: 760px; }
+.ix .pick { position:relative; padding: 8px 8px 8px 10px; background: var(--c); min-height: 96px; display:flex; flex-direction:column; justify-content:space-between; overflow:hidden; }
+.ix .pick .no { font-size: 38px; line-height:.9; opacity:.95; } .ix .pick .pl { font: 800 11px system-ui; letter-spacing:.06em; text-transform:uppercase; line-height:1.15; }
+.ix .pick .tm { font: 700 9px system-ui; letter-spacing:.14em; text-transform:uppercase; opacity:.85; }
+.ix .pick .card { position:absolute; right: -6px; bottom: -12px; width: 46px; transform: rotate(8deg); box-shadow: 0 6px 12px rgba(0,0,0,.5); }
 
-/* 11 · couleurs */
-.ix .swatches { display:flex; flex-wrap:wrap; gap: 8px; margin-bottom: 18px; }
-.ix .swatches button { all: unset; cursor:pointer; width: 44px; height: 44px; background: var(--c); outline: 3px solid transparent; outline-offset: 2px; position:relative; }
-.ix .swatches button.on { outline-color:#fff; }
-.ix .swatches button span { position:absolute; bottom: -18px; left:0; right:0; text-align:center; font: 800 8px system-ui; letter-spacing:.1em; opacity:.7; text-transform:uppercase; }
-.ix .tbanner { border: 3px solid var(--c); padding: 20px 24px; max-width: 700px; display:flex; justify-content:space-between; align-items:flex-end; gap: 16px; flex-wrap:wrap; transition: background .3s, border-color .3s;
-  background: radial-gradient(120% 140% at 100% 100%, color-mix(in srgb, var(--c) 85%, transparent), transparent 62%), linear-gradient(135deg,#050912, color-mix(in srgb, var(--c) 30%, #08153b) 55%, var(--c) 135%); }
-.ix .tbanner h3 { margin:0; font-size: 56px; line-height:.9; } .ix .tbanner .st { display:flex; gap: 22px; } .ix .tbanner .st b { font-size: 40px; line-height:1; display:block; } .ix .tbanner .st small { font: 800 10px system-ui; letter-spacing:.16em; text-transform:uppercase; opacity:.8; }
+/* 11 · galons */
+.ix .ranks { display:grid; grid-template-columns: repeat(auto-fit, minmax(110px,1fr)); gap: 14px; max-width: 880px; }
+.ix .rk { text-align:center; padding: 14px 6px; background: rgba(255,255,255,.06); border: 2px solid rgba(255,255,255,.18); }
+.ix .rk .st { height: 74px; display:flex; flex-direction:column; align-items:center; justify-content:flex-end; gap: 3px; margin-bottom: 8px; }
+.ix .rk .st i { display:block; width: 54px; height: 14px; background: var(--c); clip-path: polygon(0 55%, 50% 0, 100% 55%, 100% 100%, 50% 45%, 0 100%); }
+.ix .rk b { display:block; font-size: 26px; line-height: 1; } .ix .rk small { font: 800 9px system-ui; letter-spacing:.16em; text-transform:uppercase; opacity:.7; }
 
-/* 12 · compte a rebours */
-.ix .clock { display:inline-block; background:#0a0a0a; border: 6px solid #2a2a2a; padding: 18px 24px 14px; box-shadow: 0 20px 40px rgba(0,0,0,.6), inset 0 0 0 2px #000; }
-.ix .clock .dg { display:flex; align-items:flex-end; gap: 8px; }
-.ix .clock .u { text-align:center; } .ix .clock .v { font-size: 88px; line-height:.9; color:#ff3b30 !important; text-shadow: 0 0 22px rgba(255,59,48,.85); position:relative; display:block; font-variant-numeric: tabular-nums; }
-.ix .clock .v::after { content:''; position:absolute; inset:0; background: radial-gradient(circle, rgba(10,10,10,.85) 38%, transparent 42%) 0 0/4px 4px; pointer-events:none; }
-.ix .clock .l { font: 800 10px system-ui; letter-spacing:.2em; text-transform:uppercase; color:#7a2a26 !important; margin-top: 4px; }
-.ix .clock .sep { font-size: 70px; line-height:.9; color:#ff3b30 !important; text-shadow: 0 0 18px rgba(255,59,48,.8); padding-bottom: 20px; }
-.ix .clock .evt { text-align:center; margin-bottom: 10px; font: 800 12px system-ui; letter-spacing:.24em; text-transform:uppercase; color:#e9b44c !important; }
+/* 12 · ruban de chantier */
+.ix .tape-card { position:relative; width: 180px; overflow:hidden; }
+.ix .tape-card .card { filter: blur(6px) brightness(.6); transform: scale(1.06); }
+.ix .tape { position:absolute; left: -30%; width: 160%; padding: 7px 0; background: repeating-linear-gradient(-45deg, #ffd54a 0 16px, #111 16px 32px); text-align:center; font: 800 13px system-ui; letter-spacing:.34em; text-transform:uppercase; box-shadow: 0 6px 14px rgba(0,0,0,.5); }
+.ix .tape span { background:#ffd54a; color:#111 !important; padding: 2px 14px; }
+.ix .tape.a { top: 34%; transform: rotate(-14deg); } .ix .tape.b { top: 58%; transform: rotate(10deg); }
 `
 
 function Bay({ id, n, title, desc, children }: { id: string; n: string; title: string; desc: string; children: React.ReactNode }) {
@@ -154,197 +145,158 @@ function Bay({ id, n, title, desc, children }: { id: string; n: string; title: s
   )
 }
 
-function Loupe({ src }: { src: string }) {
-  const [pos, setPos] = useState({ x: 0, y: 0, px: 0, py: 0 })
-  const move = (e: React.PointerEvent<HTMLDivElement>) => {
-    const r = e.currentTarget.getBoundingClientRect()
-    setPos({ x: e.clientX - r.left, y: e.clientY - r.top, px: (e.clientX - r.left) / r.width, py: (e.clientY - r.top) / r.height })
+function Scratch({ src }: { src: string }) {
+  const cv = useRef<HTMLCanvasElement>(null)
+  const down = useRef(false)
+  useEffect(() => {
+    const c = cv.current; if (!c) return
+    const r = c.getBoundingClientRect()
+    c.width = Math.round(r.width * 2); c.height = Math.round(r.height * 2)
+    const g = c.getContext('2d')!
+    const grad = g.createLinearGradient(0, 0, c.width, c.height)
+    grad.addColorStop(0, '#9aa6bd'); grad.addColorStop(.35, '#e8edf7'); grad.addColorStop(.5, '#b9c4da'); grad.addColorStop(.75, '#f4f7fd'); grad.addColorStop(1, '#8895ae')
+    g.fillStyle = grad; g.fillRect(0, 0, c.width, c.height)
+    g.fillStyle = 'rgba(6,18,46,.55)'; g.font = `${Math.round(c.width * 0.16)}px Surfquest, Impact, sans-serif`; g.textAlign = 'center'
+    g.fillText('GRATTE', c.width / 2, c.height / 2 - 8); g.font = `${Math.round(c.width * 0.07)}px system-ui`; g.fillText('TA CARTE DU JOUR', c.width / 2, c.height / 2 + 40)
+  }, [])
+  const scratch = (e: React.PointerEvent<HTMLCanvasElement>) => {
+    if (!down.current) return
+    const c = cv.current!; const r = c.getBoundingClientRect(); const g = c.getContext('2d')!
+    g.globalCompositeOperation = 'destination-out'
+    g.beginPath(); g.arc((e.clientX - r.left) * 2, (e.clientY - r.top) * 2, 34, 0, Math.PI * 2); g.fill()
   }
-  const Z = 3
   return (
-    <div className="loupe" onPointerMove={move}>
+    <div className="scratch">
       {/* eslint-disable-next-line @next/next/no-img-element */}
-      <img className="card" src={src} alt="" draggable={false} />
-      <div className="lens" style={{ left: pos.x - 60, top: pos.y - 60, backgroundImage: `url(${src})`, backgroundSize: `${260 * Z}px ${364 * Z}px`, backgroundPosition: `${-(pos.px * 260 * Z - 60)}px ${-(pos.py * 364 * Z - 60)}px` }} />
+      <img className="card" src={src} alt="" />
+      <canvas ref={cv} onPointerDown={e => { down.current = true; (e.target as HTMLElement).setPointerCapture(e.pointerId); scratch(e) }} onPointerMove={scratch} onPointerUp={() => { down.current = false }} />
     </div>
   )
 }
 
 export default function DaIdeas() {
-  const [pack, setPack] = useState(0)
-  const [diff, setDiff] = useState(35) // 0..100 : 50 = equilibre
-  const [team, setTeam] = useState(0)
-  const [left, setLeft] = useState(2 * 86400 + 14 * 3600 + 37 * 60 + 12)
-  useEffect(() => { const id = setInterval(() => setLeft(l => (l > 0 ? l - 1 : 0)), 1000); return () => clearInterval(id) }, [])
-  const two = (n: number) => String(n).padStart(2, '0')
-  const dd = Math.floor(left / 86400), hh = Math.floor((left % 86400) / 3600), mm = Math.floor((left % 3600) / 60), ss = left % 60
-
-  const teams = [{ n: 'Sixers', c: '#006bb6' }, { n: 'Suns', c: '#7a3fbf' }, { n: 'Celtics', c: '#1f9d55' }, { n: 'Lakers', c: '#e9b44c' }, { n: 'Bulls', c: '#d4202c' }, { n: 'Knicks', c: '#f58426' }, { n: 'Heat', c: '#98002e' }, { n: 'Nets', c: '#4a4f57' }]
-  const years = [2013, 2016, 2018, 2019, 2020, 2021, 2022, 2023, 2024, 2025]
-  const counts = [2, 3, 2, 4, 6, 5, 4, 6, 8, 3]
-  const valA = Math.round(60 + (diff - 50) * 1.2), valB = 95
-  const gap = Math.abs(valA - valB)
-  // le cote le plus cher descend (rotation positive = sens horaire = plateau de droite vers le bas)
-  const tilt = Math.max(-14, Math.min(14, (valB - valA) * 0.2))
-  const fair = gap <= 12
-
   return (
     <div className="ix">
       <style>{CSS}</style>
       <Link href="/admin" className="back">← Admin</Link>
-      <h1 className="sf">Idées visuelles · Série 5</h1>
-      <p className="lead">Douze nouvelles pistes, plus orientées « fonctions » : fil d&apos;activité, exemplaires recensés, tournoi, étagère, loupe, centrage, ouverture de paquet, plaque de salon, balance d&apos;échange… Chaque maquette est vivante : survole, clique, bouge le curseur. Dis-moi les numéros à garder.</p>
+      <h1 className="sf">Idées visuelles · Série 6</h1>
+      <p className="lead">Douze nouvelles pistes, plus « objet » : toploader, tapis de table, flamme de série, mur d&apos;autographes, maillot, box score, carte à gratter, suivi d&apos;envoi, accréditation, draft board, galons, ruban de chantier. Chaque maquette est vivante : survole, gratte. Dis-moi les numéros à garder.</p>
       <nav className="tags">
-        {['01 Journal', '02 Exemplaires', '03 Tournoi', '04 Étagère', '05 Loupe', '06 Centrage', '07 Paquet', '08 Plaque de salon', '09 Histogramme', '10 Balance', '11 Couleurs', '12 Compte à rebours'].map((t, i) => <a key={t} href={`#n${i + 1}`}>{t}</a>)}
+        {['01 Toploader', '02 Tapis', '03 Flamme', '04 Autographes', '05 Maillot', '06 Box score', '07 Gratter', '08 Suivi d’envoi', '09 Accréditation', '10 Draft board', '11 Galons', '12 Ruban de chantier'].map((t, i) => <a key={t} href={`#o${i + 1}`}>{t}</a>)}
       </nav>
 
-      <Bay id="n1" n="01 — Journal" title="Le fil d'activité en frise verticale" desc="La page Activité devient une frise : un carré coloré par événement (ajout, échange, badge), la date en Surfquest, une phrase et les miniatures des cartes concernées. Se lit comme un journal de bord.">
-        <div className="tl">
-          {[
-            { d: '10 Oct.', t: 'Aujourd\'hui', p: 'KathleenFR a ajouté 3 cartes à sa collection.', c: '#2f6bff', imgs: [C.maxey, C.edwards, C.mccain] },
-            { d: '08 Oct.', t: 'Il y a 2 j', p: 'Échange conclu avec Benlou33 : Hersey Hawkins contre Luwawu-Cabarrot.', c: '#1f9d55', imgs: [C.hawkins, C.luwawu] },
-            { d: '05 Oct.', t: 'Il y a 5 j', p: 'Badge débloqué : 100 rookie cards.', c: '#e9b44c', imgs: [C.mcw] },
-          ].map(e => (
-            <div className="ev" key={e.d} style={{ ['--c' as string]: e.c }}>
-              <div className="d sf">{e.d}<small>{e.t}</small></div>
-              <p>{e.p}</p>
-              <div className="th">{e.imgs.map((c, i) => <div key={i}>{/* eslint-disable-next-line @next/next/no-img-element */}<img className="card" src={c.img} alt="" /></div>)}</div>
+      <Bay id="o1" n="01 — Toploader" title="La carte dans son toploader" desc="Pour les cartes protégées : un boîtier rigide transparent avec reflet, bord supérieur épais et une étiquette sur le bas (nom du set ou note perso). Un rendu « objet » plus réaliste qu'une simple image, sans toucher à la carte.">
+        <div className="row">
+          <div className="tlb">{/* eslint-disable-next-line @next/next/no-img-element */}<img className="card" src={C.mccain.img} alt="" /><span className="tlg ink">Contenders Optic</span></div>
+          <div className="tlb" style={{ width: 160 }}>{/* eslint-disable-next-line @next/next/no-img-element */}<img className="card" src={C.hawkins.img} alt="" /><span className="tlg ink">Prizm · Auto</span></div>
+        </div>
+      </Bay>
+
+      <Bay id="o2" n="02 — Tapis" title="Étaler sa collection sur un tapis de table" desc="Une vue « tapis » : les cartes éparpillées sur un feutre marine, légèrement penchées, qui se soulèvent et se redressent au survol. Pour feuilleter une sélection comme si on triait ses cartes à la main.">
+        <div className="mat">
+          {ALL.concat(ALL).slice(0, 9).map((c, i) => (
+            <div key={i} className="scd" style={{ left: `${6 + (i % 5) * 18 + (i > 4 ? 8 : 0)}%`, top: `${i > 4 ? 48 : 8}%`, transform: `rotate(${((i * 37) % 29) - 14}deg)`, zIndex: i }}>
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img className="card" src={c.img} alt="" />
             </div>
+          ))}
+        </div>
+        <div className="cap">Survole les cartes</div>
+      </Bay>
+
+      <Bay id="o3" n="03 — Flamme" title="La série de jours avec une vraie flamme" desc="Le « 53 jours de suite » devient une flamme qui vacille, le nombre en géant dessous, et le record personnel en petit. Plus la série est longue, plus la flamme est grande. Très motivant, très reconnaissable.">
+        <div className="flame">
+          <svg viewBox="0 0 100 130" aria-hidden>
+            <defs><linearGradient id="fl1" x1="0" y1="1" x2="0" y2="0"><stop offset="0" stopColor="#ff3b00" /><stop offset=".55" stopColor="#ff9a00" /><stop offset="1" stopColor="#ffe26a" /></linearGradient></defs>
+            <path d="M50 4 C58 28 86 40 86 78 C86 108 68 126 50 126 C32 126 14 108 14 78 C14 58 26 50 30 34 C40 44 40 56 44 60 C50 44 46 24 50 4Z" fill="url(#fl1)" />
+            <path d="M50 52 C56 68 70 78 70 96 C70 112 60 122 50 122 C40 122 30 112 30 96 C30 82 42 76 44 62 C48 68 48 60 50 52Z" fill="#fff3b0" opacity=".85" />
+          </svg>
+          <div><div className="n sf">53</div><div className="lb">jours de suite</div><div className="rec">Record : 61 jours · prochain palier : 60</div></div>
+        </div>
+      </Bay>
+
+      <Bay id="o4" n="04 — Autographes" title="Un mur de signatures" desc="Pour les cartes dédicacées : on ne montre que le bas de la carte, zoomé sur la signature, en tuiles larges avec le nom du joueur. Un « livre d'or » des autographes de la collection, très différent de la grille de cartes.">
+        <div className="sigs">
+          {[C.hawkins, C.mccain, C.mcw, C.luwawu].map(c => (
+            <div className="sig" key={c.nom}>{/* eslint-disable-next-line @next/next/no-img-element */}<img className="card" src={c.img} alt="" /><b>{c.nom}</b></div>
           ))}
         </div>
       </Bay>
 
-      <Bay id="n2" n="02 — Exemplaires recensés" title="Combien d'exemplaires de cette carte existent sur le site" desc="Sur une carte numérotée /149 : une grille de 149 carrés, bleus pour les exemplaires recensés chez des collectionneurs, un carré doré pour le tien. On voit la rareté réelle, pas seulement le tirage.">
-        <div className="pop">
-          <div>{/* eslint-disable-next-line @next/next/no-img-element */}<img className="card" src={C.luwawu.img} alt="" /></div>
-          <div>
-            <div className="n sf">7</div>
-            <div className="lb">exemplaires recensés sur 149</div>
-            <div className="grid149">{Array.from({ length: 149 }, (_, i) => <i key={i} className={i === 38 ? 'me' : [4, 12, 26, 55, 71, 104].includes(i) ? 'on' : ''} />)}</div>
-            <div className="cap">Le carré doré, c&apos;est le tien (n° 039)</div>
-          </div>
-        </div>
-      </Bay>
-
-      <Bay id="n3" n="03 — Tournoi" title="Voter pour la plus belle carte, en tableau" desc="Un événement communautaire « Card Madness » : huit cartes, quarts, demis, finale, avec les vainqueurs en doré et les éliminées en gris. Tout le monde vote à chaque tour, le tableau avance chaque jour.">
-        <div className="bracket">
-          <div className="rd">{ALL.slice(0, 4).map((c, i) => <div key={i} className={`cc ${i % 2 ? 'l' : 'w'}`}>{/* eslint-disable-next-line @next/next/no-img-element */}<img className="card" src={c.img} alt="" /></div>)}</div>
-          <div className="link"><i /><i /></div>
-          <div className="rd">{[C.mccain, C.maxey].map((c, i) => <div key={i} className={`cc ${i ? 'l' : 'w'}`}>{/* eslint-disable-next-line @next/next/no-img-element */}<img className="card" src={c.img} alt="" /></div>)}</div>
-          <div className="link"><i style={{ margin: '70px 0' }} /></div>
-          <div className="fin"><small>Finale</small><div className="cc">{/* eslint-disable-next-line @next/next/no-img-element */}<img className="card" src={C.mccain.img} alt="" /></div></div>
-        </div>
-      </Bay>
-
-      <Bay id="n4" n="04 — Étagère" title="Les classeurs et collections sur une étagère en bois" desc="La vue « bibliothèque » des classeurs et des collections : des cartes debout, légèrement penchées, sur une planche de bois avec ombre et étiquette. Plus chaleureux qu'une grille.">
-        <div className="shelves">
-          {[{ l: 'Court Kings', cs: [C.maxey, C.edwards, C.mccain, C.hawkins] }, { l: 'Rookies', cs: [C.mcw, C.luwawu, C.maxey, C.edwards] }].map(s => (
-            <div className="shelf" key={s.l}>
-              {s.cs.map((c, i) => <div className="it" key={i}>{/* eslint-disable-next-line @next/next/no-img-element */}<img className="card" src={c.img} alt="" /></div>)}
-              <span className="lbl">{s.l}</span>
-            </div>
-          ))}
-        </div>
-      </Bay>
-
-      <Bay id="n5" n="05 — Loupe" title="Inspecter une carte à la loupe" desc="Une loupe ronde suit le doigt ou la souris et grossit trois fois la zone : coins, surface, signature, numérotation. Pour la fiche, l'estimation de gradation et les photos de carte à vendre.">
-        <Loupe src={C.hawkins.img} />
-        <div className="cap">Passe la souris sur la carte</div>
-      </Bay>
-
-      <Bay id="n6" n="06 — Centrage" title="Des repères de centrage sur la carte" desc="Pour l'estimation de gradation : traits verts à gauche/droite et en haut/bas, ratios en pastilles (52/48), verdict en une ligne. Le centrage devient visible au lieu de rester une impression.">
-        <div className="center">
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img className="card" src={C.mccain.img} alt="" />
-          <i className="g gv" style={{ left: '6%' }} /><i className="g gv" style={{ right: '6.5%' }} /><i className="g gh" style={{ top: '4.5%' }} /><i className="g gh" style={{ bottom: '4%' }} />
-          <span className="lab" style={{ top: '48%', left: '-8px', transform: 'translateX(-100%)' }}>G 52</span>
-          <span className="lab" style={{ top: '48%', right: '-8px', transform: 'translateX(100%)' }}>D 48</span>
-          <span className="lab" style={{ left: '40%', top: '-12px', transform: 'translateY(-100%)' }}>H 51</span>
-          <span className="lab" style={{ left: '40%', bottom: '-12px', transform: 'translateY(100%)' }}>B 49</span>
-        </div>
-        <div style={{ height: 22 }} /><div className="verdict wht">Centrage 52/48 · excellent</div>
-      </Bay>
-
-      <Bay id="n7" n="07 — Paquet" title="L'ajout de plusieurs cartes comme une ouverture de paquet" desc="Quand on ajoute un lot de cartes : un paquet scellé, déchiré en haut, d'où les cartes sortent une à une avant de se ranger dans la galerie. Un petit rituel de collectionneur.">
+      <Bay id="o5" n="05 — Maillot" title="Le numéro de maillot en tête des pages joueur" desc="La fiche joueur s'ouvre sur un maillot aux couleurs de l'équipe : nom de famille en haut, gros numéro Surfquest, nombre de cartes en bas. Un repère immédiat, et un visuel fort pour le partage.">
         <div className="row" style={{ alignItems: 'center' }}>
-          <div className="packwrap" key={pack}>
-            <div className="packcards">
-              {[C.mccain, C.maxey, C.edwards].map((c, i) => (
-                // eslint-disable-next-line @next/next/no-img-element
-                <img key={i} className="card" src={c.img} alt="" style={{ animationDelay: `${0.3 + i * 0.35}s`, ['--y' as string]: `${-140 - i * 4}px`, ['--x' as string]: `${(i - 1) * 62 + 44}px`, ['--r' as string]: `${(i - 1) * 12}deg` }} />
-              ))}
-            </div>
-            <div className="pack wht"><div className="lg sf">Memorabilius</div><small>Lot de 3 cartes</small></div>
+          <div className="jersey wht" style={{ ['--c' as string]: '#006bb6' }}><div className="nm">Maxey</div><div className="no sf">0</div><div className="ct">75 cartes</div></div>
+          <div className="jersey wht" style={{ ['--c' as string]: '#7a3fbf' }}><div className="nm">Booker</div><div className="no sf">1</div><div className="ct">646 cartes</div></div>
+        </div>
+      </Bay>
+
+      <Bay id="o6" n="06 — Box score" title="Les stats par équipe façon feuille de match" desc="Un tableau « box score » : une ligne par équipe avec carré de couleur, colonnes cartes / RC / auto / patch, meilleur score de chaque colonne en doré, total en pied. Dense, lisible, très sport.">
+        <table className="box wht">
+          <thead><tr><th>Équipe</th><th>Cartes</th><th>RC</th><th>Auto</th><th>Patch</th></tr></thead>
+          <tbody>
+            {([['76ers', '#006bb6', 212, 41, 14, 9], ['Suns', '#7a3fbf', 96, 22, 8, 3], ['Celtics', '#1f9d55', 74, 12, 5, 4], ['Lakers', '#e9b44c', 58, 9, 3, 2]] as (string | number)[][]).map(r => (
+              <tr key={r[0] as string}><td><i style={{ ['--c' as string]: r[1] }} />{r[0]}</td>{[2, 3, 4, 5].map(k => <td key={k} className={(r[k] as number) === [212, 41, 14, 9][k - 2] ? 'top sf' : 'sf'}>{r[k]}</td>)}</tr>
+            ))}
+          </tbody>
+          <tfoot><tr><td>Total</td><td className="sf">440</td><td className="sf">84</td><td className="sf">30</td><td className="sf">18</td></tr></tfoot>
+        </table>
+      </Bay>
+
+      <Bay id="o7" n="07 — Gratter" title="Une carte à gratter pour les récompenses" desc="Quand on a une récompense (carte du jour, badge, bonus d'XP) : une pellicule argentée « GRATTE » à effacer du doigt pour révéler ce qu'il y a dessous. Interactif et ludique, sans gros développement.">
+        <Scratch src={C.maxey.img} />
+        <div className="cap">Gratte avec la souris ou le doigt</div>
+      </Bay>
+
+      <Bay id="o8" n="08 — Suivi d'envoi" title="Les échanges avec une barre d'étapes" desc="Un échange accepté se suit en quatre étapes fléchées : Accepté → Expédié → Reçu → Terminé, vert pour fait, bleu qui pulse pour l'étape en cours, gris pour la suite. On voit tout de suite où en est chaque trade.">
+        <div className="steps wht">
+          {[['✓', 'Accepté', '8 oct.', 'done'], ['📦', 'Expédié', '9 oct.', 'done'], ['📬', 'Reçu', 'en attente', 'now'], ['⭐', 'Terminé', '', '']].map(s => (
+            <div key={s[1]} className={`stp ${s[3]}`}><div className="ic">{s[0]}</div><b>{s[1]}</b><small>{s[2]}</small></div>
+          ))}
+        </div>
+      </Bay>
+
+      <Bay id="o9" n="09 — Accréditation" title="Le profil comme un badge d'accréditation" desc="Pour partager son profil : un badge à lanière façon accréditation de salon, avec photo, pseudo, niveau (« COLLECTIONNEUR · NIV. 5 »), QR vers la galerie et bandeau noir en pied. Un objet qu'on a envie de poster.">
+        <div className="lanyard">
+          <div className="clip" />
+          <div className="pass ink">
+            <span className="lvl">Accès · Collectionneur</span>
+            <div className="ph sf">G</div>
+            <div className="nm sf">GKNNN_Cards</div>
+            <div className="ac">Niveau 5 · 599 cartes</div>
+            <div className="qr" />
+            <div className="bar">memorabilius.fr</div>
           </div>
-          <button className="btn" onClick={() => setPack(p => p + 1)}>Ouvrir ↻</button>
         </div>
       </Bay>
 
-      <Bay id="n8" n="08 — Plaque de salon" title="Un panneau à imprimer pour les salons de cartes" desc="Un visuel A5 prêt à imprimer ou à afficher sur une tablette : « SCANNE POUR VOIR MA COLLECTION », QR géant, nom du collectionneur, trois cartes phares et l'adresse. Idéal pour les card shows.">
-        <div className="sign ink">
-          <div className="big sf">Scanne pour voir ma collection</div>
-          <div className="qr" />
-          <div className="sf" style={{ fontSize: 26, lineHeight: 1 }}>GKNNN_Cards</div>
-          <div className="th">{[C.mcw, C.luwawu, C.mccain].map((c, i) => <div key={i}>{/* eslint-disable-next-line @next/next/no-img-element */}<img className="card" src={c.img} alt="" /></div>)}</div>
-          <div className="url">memorabilius.fr/galerie/gknnn-cards</div>
-        </div>
-      </Bay>
-
-      <Bay id="n9" n="09 — Histogramme" title="Ta collection par année, en piles de cartes" desc="Dans les stats : un histogramme où chaque barre est une pile de vraies miniatures (plus tu as de cartes cette année-là, plus la pile monte). On voit les périodes qui t'intéressent sans lire un chiffre.">
-        <div className="histo">
-          {years.map((y, k) => (
-            <div className="hcol" key={y}>
-              {Array.from({ length: counts[k] }, (_, i) => (
-                // eslint-disable-next-line @next/next/no-img-element
-                <img key={i} className="card" src={ALL[(i + k) % ALL.length].img} alt="" />
-              ))}
-              <span className="yr">{y}</span>
+      <Bay id="o10" n="10 — Draft board" title="Une collection par équipe sur un tableau de draft" desc="Pour les sets et les équipes : cases numérotées (n° 1, 2, 3…), couleur de l'équipe, nom du joueur, mini-carte qui dépasse. Évoque la soirée de draft, idéal pour les rookies d'une année ou d'un set.">
+        <div className="draft wht">
+          {([['1', 'Wembanyama', 'Spurs', '#6b7380', C.maxey], ['2', 'Edwards', 'Wolves', '#0c4a8a', C.edwards], ['3', 'McCain', 'Sixers', '#006bb6', C.mccain], ['4', 'Carter-Williams', 'Sixers', '#006bb6', C.mcw], ['5', 'Maxey', 'Sixers', '#006bb6', C.hawkins]] as [string, string, string, string, { img: string }][]).map(p => (
+            <div className="pick" key={p[0]} style={{ ['--c' as string]: p[3] }}>
+              <div className="no sf">{p[0]}</div>
+              <div><div className="pl">{p[1]}</div><div className="tm">{p[2]}</div></div>
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img className="card" src={p[4].img} alt="" />
             </div>
           ))}
         </div>
       </Bay>
 
-      <Bay id="n10" n="10 — Balance" title="La balance d'un échange" desc="Pour proposer ou juger un trade : une balance dorée qui penche du côté le plus cher, valeurs sous chaque plateau, verdict « équilibré » ou « écart de X € ». Bouge le curseur pour voir.">
-        <div className="scale">
-          <div className="beam-wrap">
-            <div className="post" /><div className="base" />
-            <div className="beam" style={{ transform: `rotate(${tilt}deg)` }} />
-            <div className="pan" style={{ left: 'calc(50% - 230px - 75px + 0px)', transform: `translateY(${(50 - diff) * 0.0}px)` }}>
-              <div style={{ transform: `translateY(${Math.sin((tilt * Math.PI) / 180) * -230}px)`, transition: 'transform .6s cubic-bezier(.3,1.4,.5,1)' }}>
-                <div className="rope" /><div className="tray">{/* eslint-disable-next-line @next/next/no-img-element */}<img className="card" src={C.edwards.img} alt="" /><b className="sf">{valA} €</b></div>
-              </div>
+      <Bay id="o11" n="11 — Galons" title="Le niveau en galons militaires" desc="Le niveau du collectionneur s'affiche en chevrons empilés comme des galons (1 chevron au niveau 1, jusqu'à 5, puis couleur or, puis diamant) à côté de l'avatar. Lisible et collectionnable : on veut gagner ses galons.">
+        <div className="ranks wht">
+          {[{ n: 1, c: '#c47a3a', l: 'Recrue', lv: 1 }, { n: 3, c: '#9aa6bd', l: 'Habitué', lv: 4 }, { n: 5, c: '#e9b44c', l: 'Confirmé', lv: 8 }, { n: 5, c: '#58c8ff', l: 'Expert', lv: 12 }].map(r => (
+            <div className="rk" key={r.l}>
+              <div className="st" style={{ ['--c' as string]: r.c }}>{Array.from({ length: r.n }, (_, i) => <i key={i} />)}</div>
+              <b className="sf">Niv. {r.lv}</b><small>{r.l}</small>
             </div>
-            <div className="pan" style={{ left: 'calc(50% + 230px - 75px)' }}>
-              <div style={{ transform: `translateY(${Math.sin((tilt * Math.PI) / 180) * 230}px)`, transition: 'transform .6s cubic-bezier(.3,1.4,.5,1)' }}>
-                <div className="rope" /><div className="tray">{/* eslint-disable-next-line @next/next/no-img-element */}<img className="card" src={C.maxey.img} alt="" /><b className="sf">{valB} €</b></div>
-              </div>
-            </div>
-          </div>
-          <input className="slider" type="range" min={0} max={100} value={diff} onChange={e => setDiff(Number(e.target.value))} aria-label="Valeur" />
-          <div><span className={`fair wht`} style={{ background: fair ? '#12b76a' : '#e5484d' }}>{fair ? 'Échange équilibré' : `Écart de ${gap} €`}</span></div>
+          ))}
         </div>
       </Bay>
 
-      <Bay id="n11" n="11 — Couleurs d'équipe" title="Choisir la couleur de son profil par équipe" desc="Au lieu d'un sélecteur de couleur libre : une palette de couleurs d'équipe (maillots) avec aperçu en direct du bandeau de profil. Plus rapide et plus joli, et ça raconte quelle équipe tu collectionnes.">
-        <div className="swatches">{teams.map((t, i) => <button key={t.n} className={team === i ? 'on' : ''} style={{ ['--c' as string]: t.c }} onClick={() => setTeam(i)} aria-label={t.n}><span>{t.n}</span></button>)}</div>
-        <div style={{ height: 8 }} />
-        <div className="tbanner wht" style={{ ['--c' as string]: teams[team].c }}>
-          <div><div className="cap" style={{ marginTop: 0 }}>Aperçu du profil</div><h3 className="sf">GKNNN_Cards</h3></div>
-          <div className="st"><div><b className="sf">599</b><small>Cartes</small></div><div><b className="sf">119</b><small>RC</small></div><div><b className="sf">29</b><small>Auto</small></div></div>
-        </div>
-      </Bay>
-
-      <Bay id="n12" n="12 — Compte à rebours" title="Le compte à rebours des événements façon shot clock" desc="Pour les événements (salons, sorties de sets, quiz en direct) : un grand compte à rebours rouge à pastilles lumineuses, jours / heures / minutes / secondes, dans un boîtier noir de salle.">
-        <div className="clock">
-          <div className="evt">Salon Paris Cartes · dans</div>
-          <div className="dg">
-            {[[dd, 'Jours'], [hh, 'Heures'], [mm, 'Min'], [ss, 'Sec']].map((u, i) => (
-              <div key={i} style={{ display: 'flex', alignItems: 'flex-end', gap: 8 }}>
-                {i > 0 && <span className="sep sf">:</span>}
-                <div className="u"><span className="v sf">{two(u[0] as number)}</span><div className="l">{u[1]}</div></div>
-              </div>
-            ))}
-          </div>
+      <Bay id="o12" n="12 — Ruban de chantier" title="Les cartes privées derrière un ruban de chantier" desc="Pour le propriétaire : les cartes privées sont floutées et barrées de rubans jaune et noir « PRIVÉ ». Impossible de les confondre avec les publiques, plus parlant que la petite pastille rouge actuelle.">
+        <div className="row">
+          <div className="tape-card">{/* eslint-disable-next-line @next/next/no-img-element */}<img className="card" src={C.edwards.img} alt="" /><div className="tape a"><span>Privé</span></div><div className="tape b"><span>Privé</span></div></div>
+          <div style={{ width: 180 }}>{/* eslint-disable-next-line @next/next/no-img-element */}<img className="card" src={C.mcw.img} alt="" /><div className="cap">Carte publique</div></div>
         </div>
       </Bay>
     </div>

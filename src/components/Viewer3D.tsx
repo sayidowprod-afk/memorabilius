@@ -17,6 +17,7 @@ import { getFormat } from '@/lib/cardFormats'
 import { supabase } from '@/lib/supabase'
 import { getCsvCardSharePath } from '@/lib/csvCardShortLink'
 import TagIcon from '@/components/TagIcon'
+import LoupeOverlay from '@/components/LoupeOverlay'
 
 interface SetPlacementData {
   entry_id: number; set_id: number; set_name: string
@@ -503,6 +504,8 @@ export default function Viewer3D({ popup, accent, onClose, onNext, onPrev, getTa
 
   const [slabMode, setSlabMode] = useState(false)
   const [flip90, setFlip90] = useState(false)
+  // mode loupe (bouton) : carte a plat + lentille x3, a part du visualiseur ou l'on fait tourner la carte
+  const [loupeOpen, setLoupeOpen] = useState(false)
   const flip90Ref = useRef(false)
   // Format "slab" = photo réelle du slab entier (déjà recadrée aux proportions du boîtier)
   const cardFmt = getFormat(popup.format)
@@ -860,6 +863,18 @@ export default function Viewer3D({ popup, accent, onClose, onNext, onPrev, getTa
           {/* Rotation 90° — petit bouton discret directement sur le panel, a la place
               du gros bouton dans la grille d'actions (voir plus bas : ce slot sert
               maintenant a la suppression de carte). */}
+          {!popup.booklet && (
+            <button onClick={(e) => { e.stopPropagation(); setLoupeOpen(true) }} title="Loupe" aria-label="Loupe" style={{
+              position: 'absolute', bottom: 12, right: 52, zIndex: 10,
+              background: 'rgba(0,0,0,0.45)', color: 'white',
+              border: 'none', borderRadius: '50%', width: 32, height: 32,
+              display: 'flex', alignItems: 'center', justifyContent: 'center',
+              fontSize: 15, cursor: 'pointer', backdropFilter: 'blur(4px)',
+            }}>
+              🔍
+            </button>
+          )}
+          {loupeOpen && createPortal(<LoupeOverlay front={popup.fHd || popup.f} back={popup.b !== popup.f ? (popup.bHd || popup.b) : undefined} onClose={() => setLoupeOpen(false)} />, document.body)}
           {!popup.booklet && (
             <button onClick={(e) => { e.stopPropagation(); toggleFlip90() }} title={t('viewer_rotate_title')} style={{
               position: 'absolute', bottom: 12, right: 12, zIndex: 10,

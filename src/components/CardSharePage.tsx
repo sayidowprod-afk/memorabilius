@@ -1,4 +1,5 @@
 'use client'
+import LoupeOverlay from '@/components/LoupeOverlay'
 import CardLoader from '@/components/CardLoader'
 import { useEffect, useState } from 'react'
 import Link from 'next/link'
@@ -21,6 +22,7 @@ export default function CardSharePage({ cardId }: { cardId: string }) {
   const [loading, setLoading] = useState(true)
   const [flipped, setFlipped] = useState(false)
   const { dark } = useTheme()
+  const [loupe, setLoupe] = useState(false)
   // Visiteur deja connecte : on n'affiche pas l'invitation "Rejoindre Memorabilius"
   const [loggedIn, setLoggedIn] = useState(false)
   useEffect(() => { supabase.auth.getSession().then(({ data }) => setLoggedIn(!!data.session)).catch(() => {}) }, [])
@@ -147,8 +149,9 @@ export default function CardSharePage({ cardId }: { cardId: string }) {
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img className="vit-ref" src={card.image_recto} alt="" aria-hidden style={isH ? { aspectRatio: '3.5 / 2.5' } : undefined} />
           </div>
+          <button className="loupe-btn" onClick={() => setLoupe(true)} style={{ marginTop: 64, position: 'relative', zIndex: 2 }}>🔍 Loupe</button>
           {(
-            <div style={{ marginTop: 64, position: 'relative', zIndex: 2, fontSize: 12, color: muted, display: 'flex', alignItems: 'center', gap: 5 }}>
+            <div style={{ marginTop: 14, position: 'relative', zIndex: 2, fontSize: 12, color: muted, display: 'flex', alignItems: 'center', gap: 5 }}>
               ↔ Appuyez pour retourner
             </div>
           )}
@@ -239,6 +242,7 @@ export default function CardSharePage({ cardId }: { cardId: string }) {
           </Link>
         </div>}
       </div>
+      {loupe && <LoupeOverlay front={card.image_recto} back={hasVerso ? card.image_verso : undefined} onClose={() => setLoupe(false)} />}
     </div>
   )
 }

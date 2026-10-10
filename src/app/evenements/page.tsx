@@ -1,4 +1,5 @@
 'use client'
+import EventClock from '@/components/EventClock'
 import { toast } from '@/lib/toast'
 import { useEffect, useState, useRef } from 'react'
 import { createPortal } from 'react-dom'
@@ -182,6 +183,7 @@ export default function Evenements() {
 
         {upcoming.length > 0 && (
           <>
+            <EventClock title={upcoming[0].title} date={upcoming[0].date} />
             <h2 style={{ color: text, fontSize: 16, fontWeight: 700, marginBottom: 16 }}>{t('events_upcoming')}</h2>
             <div style={{ display: 'flex', flexDirection: 'column', gap: 16, marginBottom: 40 }}>
               {upcoming.map(ev => <EventCard key={ev.id} ev={ev} dark={dark} text={text} sub={sub} card={card} border={border} onToggle={() => toggleAttend(ev)} userId={userId} formatDate={formatDate} />)}

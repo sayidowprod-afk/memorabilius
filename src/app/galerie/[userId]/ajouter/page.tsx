@@ -1,4 +1,5 @@
 'use client'
+import PackReveal from '@/components/PackReveal'
 import { toast } from '@/lib/toast'
 import { useState, use, useRef, useEffect, useCallback } from 'react'
 import { createPortal } from 'react-dom'
@@ -303,6 +304,7 @@ export default function AjouterCarte({ params }: { params: Promise<{ userId: str
   }
 
   type Side = 'recto' | 'verso' | 'il' | 'ir'
+  const [packReveal, setPackReveal] = useState<{ image: string; total?: number } | null>(null)
   const [scannerModal, setScannerModal] = useState<{ side: Side; src: string; frameRect?: { x: number; y: number; w: number; h: number } } | null>(null)
   const [cameraModal, setCameraModal] = useState<Side | null>(null)
   const [cropModal, setCropModal] = useState<{ side: Side; src: string } | null>(null)
@@ -956,6 +958,8 @@ export default function AjouterCarte({ params }: { params: Promise<{ userId: str
       // classeur quelques secondes apres son ajout (signale : dos absent dans
       // les classeurs pour les cartes "nouvellement saisies" uniquement).
       setBinderPrompt({ userId: uid, img: form.image_recto, back: form.image_verso || undefined, nom: form.nom })
+      // ouverture de paquet : la carte qui vient d'etre ajoutee sort d'un paquet (toucher pour passer)
+      setPackReveal({ image: form.image_recto, total: cardAddedTotal })
     } else {
       router.push(`/galerie/${userId}`)
     }
@@ -1450,6 +1454,8 @@ export default function AjouterCarte({ params }: { params: Promise<{ userId: str
         </div>,
         document.body
       )}
+
+      {packReveal && createPortal(<PackReveal image={packReveal.image} total={packReveal.total} onClose={() => setPackReveal(null)} />, document.body)}
 
       {cameraModal && (
         <CameraCapture

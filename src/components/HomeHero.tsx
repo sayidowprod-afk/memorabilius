@@ -1,5 +1,4 @@
 'use client'
-import CardOfTheDay from '@/components/CardOfTheDay'
 import { useEffect, useRef, useState } from 'react'
 import Link from 'next/link'
 import { useRouter } from 'next/navigation'
@@ -260,8 +259,6 @@ export default function HomeHero({ total, totalCartes, totalBinders, totalTrade,
           ))}
         </div>
       </div>
-
-      <CardOfTheDay />
 
       {/* Grille des 6 fonctionnalités — 1 ligne forcée */}
       <section style={{ marginBottom: 56 }}>
