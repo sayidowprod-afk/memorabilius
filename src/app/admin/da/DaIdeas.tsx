@@ -4,7 +4,7 @@ import Link from 'next/link'
 
 // Idees visuelles pour pousser la nouvelle DA (Surfquest, marine -> bleu electrique, angles droits, doubles filets, metaux).
 // Page de TRAVAIL reservee aux admins : donnees d'exemple en dur, rien n'est lu ni ecrit.
-// Serie 23 : visualiseur, la 03 pure + 9 facons d afficher les infos (ordinateur + mobile). Tout le style est ici, prefixe .ix.
+// Serie 24 : visualiseur, DA poussee (typo, champs agrandis, fonds speciaux) (ordinateur + mobile). Tout le style est ici, prefixe .ix.
 
 const SB = 'https://snnrkzbevjhdtviizfyp.supabase.co/storage/v1/object/public/avatars/cartes/eb730dee-414e-4fcb-89d8-4a7b3448c218/'
 const C = {
@@ -377,6 +377,63 @@ const CSS = `
 .ix .tp .tp-t9 { display: grid; grid-template-columns: 1fr 1fr; gap: 10px 14px; padding-top: 6px; } .ix .tp .tp-t9 > div { border-left: 4px solid #c8102e; padding-left: 10px; min-width: 0; } .ix .tp .tp-t9 > div.b { border-left-color: #2f6bff; } .ix .tp .tp-t9 small { display: block; font: 700 9.5px system-ui; letter-spacing: .12em; text-transform: uppercase; color: rgba(255,255,255,.55); } .ix .tp .tp-t9 b { font-size: 14px; display: block; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
 .ix .tp .tp-t10 { margin-top: 6px; border: 2px solid rgba(255,255,255,.55); } .ix .tp .tp-t10 .h, .ix .tp .tp-t10 .d { display: grid; grid-template-columns: 0.9fr 1.2fr 0.8fr 1.5fr; } .ix .tp .tp-t10 .h { background: #fff; } .ix .tp .tp-t10 .h span { font: 800 8.5px system-ui; letter-spacing: .08em; text-transform: uppercase; padding: 3px 6px; color: #06122e !important; } .ix .tp .tp-t10 .d b { font-size: 12.5px; padding: 6px; border-right: 1px solid rgba(255,255,255,.2); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; } .ix .tp .tp-t10 .d b:last-child { border-right: 0; }
 .ix .tp.tpc .tp-t2 b, .ix .tp.tpc .tp-t9 b { font-size: 12.5px; } .ix .tp.tpc .tp-t4 b { font-size: 17px; } .ix .tp.tpc .tp-t3 { flex-wrap: wrap; } .ix .tp.tpc .tp-t3 > div { flex: 1 1 45%; border-bottom: 2px solid rgba(255,255,255,.3); } .ix .tp.tpc .tp-t8 { grid-template-columns: 1fr 1fr; } .ix .tp.tpc .tp-t10 .h span { font-size: 7px; padding: 3px 3px; } .ix .tp.tpc .tp-t10 .d b { font-size: 10px; padding: 5px 3px; } .ix .tp.tpc .tp-t7 .g { flex-basis: 64px; }
+/* serie 24 : DA poussee (prefixe qp-) */
+.ix .pair { display: flex; gap: 18px; align-items: flex-start; flex-wrap: wrap; }
+.ix .qp-scr { display: flex; width: 760px; max-width: 100%; border: 3px solid #fff; background: #05080f; overflow: hidden; align-items: stretch; }
+.ix .qp-stg { flex: 1; position: relative; display: flex; align-items: center; justify-content: center; min-width: 0; min-height: 640px; background: #05080f; }
+.ix .qp-card { height: 400px; aspect-ratio: 2.5/3.5; object-fit: cover; display: block; box-shadow: 0 18px 44px rgba(0,0,0,.6); border-radius: 0; }
+.ix .qp-x { position: absolute; top: 10px; right: 10px; width: 28px; height: 28px; display: flex; align-items: center; justify-content: center; border-radius: 50%; background: rgba(255,255,255,.14); font: 800 14px system-ui; z-index: 3; } .ix .qp-x.s { width: 22px; height: 22px; top: 6px; right: 6px; font-size: 12px; }
+.ix .qp-nv { position: absolute; bottom: 10px; right: 10px; display: flex; gap: 6px; } .ix .qp-nv span { width: 30px; height: 30px; display: flex; align-items: center; justify-content: center; border-radius: 50%; background: rgba(255,255,255,.14); font-size: 13px; }
+.ix .qp-pan { width: 380px; flex-shrink: 0; background: #0a1330; border-left: 1px solid rgba(255,255,255,.25); position: relative; overflow: hidden; }
+.ix .qp-phn { width: 230px; height: 760px; border: 4px solid #fff; background: #05080f; display: flex; flex-direction: column; overflow: hidden; flex-shrink: 0; }
+.ix .qp-pt { flex: 0 0 140px; position: relative; display: flex; align-items: center; justify-content: center; } .ix .qp-pt .qp-card { height: 116px; }
+.ix .qp-ps { flex: 1; min-height: 0; position: relative; overflow: hidden; background: #0a1330; border-top: 1px solid rgba(255,255,255,.35); } .ix .qp-ps:after { content: ''; position: absolute; left: 0; right: 0; bottom: 0; height: 60px; background: linear-gradient(transparent, #0a1330); pointer-events: none; z-index: 5; }
+.ix .qp-grip { width: 36px; height: 3px; background: rgba(255,255,255,.5); margin: 6px auto 0; position: relative; z-index: 2; }
+
+.ix .qp { position: relative; z-index: 1; padding: 0 20px 18px; display: flex; flex-direction: column; gap: 9px; font-size: 13px; color: #e8eefc; line-height: 1.4; }
+.ix .qp * { box-sizing: border-box; }
+.ix .qp-band { height: 5px; margin: 0 -20px 8px; background: linear-gradient(90deg, var(--tc1, #006bb6) 0 62%, var(--tc2, #ed174c) 62% 100%); }
+.ix .qp-k { font: 800 11px system-ui; letter-spacing: .14em; text-transform: uppercase; color: var(--tc1, #3d9be0); }
+.ix .qp-n { font-size: 30px; line-height: 1; margin: 0; font-weight: 400; text-transform: uppercase; }
+.ix .qp-vr { font-style: italic; font-weight: 700; color: #ff5a78; }
+.ix .qp-dz { font-size: 11.5px; color: rgba(255,255,255,.5); }
+.ix .qp-tg { display: flex; gap: 6px; flex-wrap: wrap; } .ix .qp-tg span { padding: 3px 9px; font: 800 12px system-ui; letter-spacing: .06em; }
+.ix .qp-ig { display: grid; grid-template-columns: 1fr 1fr; gap: 10px 14px; padding: 8px 0 2px; } .ix .qp-ig > div { border-left: 4px solid var(--tc1, #006bb6); padding-left: 10px; min-width: 0; } .ix .qp-ig > div:nth-child(even) { border-left-color: var(--tc2, #ed174c); } .ix .qp-ig small { display: block; font: 700 10px system-ui; letter-spacing: .12em; text-transform: uppercase; color: rgba(255,255,255,.55); } .ix .qp-ig b { font-size: 14px; display: block; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; font-weight: 700; }
+.ix .qp-ig b.sf { font-family: system-ui, sans-serif; font-weight: 700; text-transform: none; letter-spacing: 0; }
+.ix .qp-row { display: flex; align-items: center; gap: 10px; padding: 8px 0; border-top: 1px solid rgba(255,255,255,.12); font-size: 12px; } .ix .qp-row .l { flex: 0 0 auto; font: 700 10.5px system-ui; letter-spacing: .1em; text-transform: uppercase; color: rgba(255,255,255,.55); min-width: 84px; } .ix .qp-row .r { flex: 1; min-width: 0; text-align: right; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; } .ix .qp-row .red, .ix .qp-row .r.red { color: #ff5a78; font-weight: 700; } .ix .qp-row .r u { margin-left: 6px; color: rgba(255,255,255,.65); } .ix .qp-row i { font-style: normal; opacity: .6; }
+.ix .qp-ab { display: grid; grid-template-columns: repeat(3, 1fr); gap: 6px; margin: 4px 0; } .ix .qp-ab span { display: flex; align-items: center; justify-content: center; gap: 5px; padding: 11px 2px; border: 1px solid rgba(255,255,255,.35); font: 700 12px system-ui; text-align: center; } .ix .qp-ab span i { font-style: normal; font-size: 13px; } .ix .qp-ab .pri { background: var(--tc1, #006bb6); border-color: var(--tc1, #006bb6); } .ix .qp-ab .del { color: #ff8a8d; border-color: rgba(255,138,141,.5); }
+.ix .qp-inp { margin-left: auto; border: 1px solid rgba(255,255,255,.4); padding: 2px 12px; font-weight: 700; } .ix .qp-pv { font-size: 11px; color: rgba(255,255,255,.6); }
+.ix .qp-lk { display: inline-flex; gap: 4px; } .ix .qp-lk em { font-style: normal; font: 700 10px system-ui; padding: 2px 6px; border: 1px solid rgba(255,255,255,.4); } .ix .qp-lk em:first-child { background: #f08a00; border-color: #f08a00; color: #06122e !important; }
+.ix .qp-lst { display: flex; gap: 6px; } .ix .qp-lst > div { flex: 0 0 58px; } .ix .qp-lst img { width: 100%; aspect-ratio: 2.5/3.5; object-fit: cover; display: block; } .ix .qp-lst b { display: block; font-size: 11px; color: #ff5a78; margin-top: 2px; }
+.ix .qp.qpc { padding: 0 12px 14px; gap: 7px; font-size: 12px; } .ix .qp.qpc .qp-band { margin: 0 -12px 6px; } .ix .qp.qpc .qp-n { font-size: 24px; } .ix .qp.qpc .qp-ab span { padding: 9px 1px; font-size: 10px; } .ix .qp.qpc .qp-row .l { min-width: 66px; font-size: 9.5px; }
+
+/* q1 : Surfquest partout */
+.ix .qp.q1 .qp-n { font-size: 46px; line-height: .92; } .ix .qp.q1.qpc .qp-n { font-size: 32px; } .ix .qp.q1 .qp-ig b { font-family: 'Surfquest', Impact, 'Arial Narrow', sans-serif; font-weight: 400; font-size: 22px; line-height: 1; text-transform: uppercase; letter-spacing: .02em; } .ix .qp.q1 .qp-ig small { margin-bottom: 3px; } .ix .qp.q1 .qp-tg span { font-size: 13px; padding: 4px 11px; }
+/* q2 : fond texture */
+.ix .qp-pan:has(.qp.q2) { background-color: #0a1330; background-image: repeating-linear-gradient(45deg, rgba(255,255,255,.045) 0 1px, transparent 1px 8px), radial-gradient(ellipse at 50% -10%, rgba(0,107,182,.45), transparent 60%); } .ix .qp-ps:has(.qp.q2) { background-color: #0a1330; background-image: repeating-linear-gradient(45deg, rgba(255,255,255,.045) 0 1px, transparent 1px 8px), radial-gradient(ellipse at 50% -10%, rgba(0,107,182,.45), transparent 60%); } .ix .qp.q2 .qp-n { font-size: 38px; }
+/* q3 : fond equipe */
+.ix .qp-pan:has(.qp.q3), .ix .qp-ps:has(.qp.q3) { background: linear-gradient(180deg, #0a4f90 0%, #0a2a55 28%, #0a1330 62%); } .ix .qp.q3 .qp-k { color: #fff !important; opacity: .9; } .ix .qp.q3 .qp-n { font-size: 40px; } .ix .qp.q3 .qp-dz, .ix .qp.q3 .qp-vr { color: rgba(255,255,255,.75) !important; }
+/* q4 : numerotation en vedette */
+.ix .qp-num { position: relative; text-align: right; margin-top: -2px; } .ix .qp-num small { display: block; font: 700 10px system-ui; letter-spacing: .16em; text-transform: uppercase; color: rgba(255,255,255,.55); } .ix .qp-num b { font-size: 78px; line-height: .85; font-weight: 400; color: #fff; } .ix .qp-num b i { font-style: normal; font-size: 34px; color: #ff5a78; margin-left: 4px; } .ix .qp.qpc .qp-num b { font-size: 54px; } .ix .qp.q4 .qp-ig > div:nth-child(2) { display: none; } .ix .qp.q4 .qp-n { font-size: 36px; }
+/* q5 : bandeau d'equipe */
+.ix .qp.q5 { padding-top: 0; } .ix .qp.q5 .qp-band { display: none; } .ix .qp.q5 .qp-k, .ix .qp.q5 .qp-n { margin-left: -20px; margin-right: -20px; padding: 0 20px; background: var(--tc1, #006bb6); color: #fff !important; } .ix .qp.q5 .qp-k { padding-top: 14px; } .ix .qp.q5 .qp-n { padding-bottom: 14px; margin-top: -9px; font-size: 40px; } .ix .qp.q5.qpc .qp-k, .ix .qp.q5.qpc .qp-n { margin-left: -12px; margin-right: -12px; padding-left: 12px; padding-right: 12px; } .ix .qp.q5.qpc .qp-n { font-size: 28px; }
+/* q6 : carte floutee en fond */
+.ix .qp-pan:has(.qp.q6), .ix .qp-ps:has(.qp.q6) { background: #0a1330; } .ix .qp-pan:has(.qp.q6):before, .ix .qp-ps:has(.qp.q6):before { content: ''; position: absolute; inset: -30px; background-image: var(--cardimg); background-size: cover; background-position: center; filter: blur(34px) saturate(1.6); opacity: .5; z-index: 0; } .ix .qp.q6 .qp-n { font-size: 38px; }
+/* q7 : fiche claire */
+.ix .qp-pan:has(.qp.q7), .ix .qp-ps:has(.qp.q7) { background: #f1f4fb; } .ix .qp-ps:has(.qp.q7):after { background: linear-gradient(transparent, #f1f4fb); } .ix .qp.q7, .ix .qp.q7 * { color: #06122e !important; } .ix .qp.q7 .qp-k { color: var(--tc1, #006bb6) !important; } .ix .qp.q7 .qp-vr, .ix .qp.q7 .qp-row .red, .ix .qp.q7 .qp-lst b { color: #c8102e !important; } .ix .qp.q7 .qp-dz, .ix .qp.q7 .qp-ig small, .ix .qp.q7 .qp-row .l { color: rgba(6,18,46,.6) !important; } .ix .qp.q7 .qp-row, .ix .qp.q7 .qp-inp, .ix .qp.q7 .qp-lk em, .ix .qp.q7 .qp-ab span { border-color: rgba(6,18,46,.3); } .ix .qp.q7 .qp-tg span { color: #fff !important; } .ix .qp.q7 .qp-ab .pri { background: #06122e; color: #fff !important; } .ix .qp.q7 .qp-ab .del { color: #c0262d !important; border-color: #c0262d; } .ix .qp.q7 .qp-n { font-size: 40px; } .ix .qp.q7 .qp-lk em:first-child { color: #06122e !important; }
+/* q8 : boutons DA */
+.ix .qp.q8 .qp-ab span { font-size: 10.5px; letter-spacing: .1em; text-transform: uppercase; border-width: 2px; border-color: #fff; } .ix .qp.q8 .qp-ab .pri { background: #fff; color: #06122e !important; border-color: #fff; } .ix .qp.q8 .qp-ab .del { border-color: #ff6b6f; color: #ff8a8d !important; } .ix .qp.q8 .qp-ig b { font-family: 'Surfquest', Impact, sans-serif; font-weight: 400; font-size: 19px; text-transform: uppercase; } .ix .qp.q8 .qp-row { border-top: 3px double rgba(255,255,255,.35); } .ix .qp.q8 .qp-n { font-size: 38px; }
+
+/* couleurs d'equipe poussees */
+.ix .qp-pan:has(.qp.q9), .ix .qp-ps:has(.qp.q9) { background: var(--tc1, #006bb6); } .ix .qp.q9, .ix .qp.q9 * { color: #fff !important; } .ix .qp.q9 .qp-dz { opacity: .75; } .ix .qp.q9 .qp-ig > div, .ix .qp.q9 .qp-ig > div:nth-child(even) { border-left-color: var(--tc2, #ed174c); } .ix .qp.q9 .qp-row { border-top-color: rgba(255,255,255,.35); } .ix .qp.q9 .qp-ab span { border-color: rgba(255,255,255,.7); } .ix .qp.q9 .qp-ab .pri { background: var(--tc2, #ed174c); border-color: var(--tc2, #ed174c); } .ix .qp.q9 .qp-n { font-size: 40px; } .ix .qp.q9 .qp-band { background: var(--tc2, #ed174c); } .ix .qp.q9 .qp-inp, .ix .qp.q9 .qp-lk em { border-color: rgba(255,255,255,.7); } .ix .qp.q9 .qp-ps:after { display: none; } .ix .qp-ps:has(.qp.q9):after { background: linear-gradient(transparent, var(--tc1, #006bb6)); }
+.ix .qp-pan:has(.qp.q10), .ix .qp-ps:has(.qp.q10) { background: linear-gradient(135deg, var(--tc1, #006bb6) 0%, var(--tc1, #006bb6) 32%, var(--tc2, #ed174c) 32%, var(--tc2, #ed174c) 40%, #0a1330 40%, #0a1330 100%); background-size: 100% 260px; background-repeat: no-repeat; background-color: #0a1330; } .ix .qp.q10 .qp-n { font-size: 40px; } .ix .qp.q10 .qp-k { color: #fff !important; }
+.ix .qp.q11 .qp-ab span { border-color: var(--tc2, #ed174c); } .ix .qp.q11 .qp-ab .pri { background: var(--tc1, #006bb6); border-color: var(--tc1, #006bb6); } .ix .qp.q11 .qp-ab .del { border-color: #ff6b6f; } .ix .qp.q11 .qp-row .l, .ix .qp.q11 .qp-row .r.red { color: var(--tc2, #ed174c); } .ix .qp.q11 .qp-lk em:not(:first-child), .ix .qp.q11 .qp-inp { border-color: var(--tc2, #ed174c); } .ix .qp.q11 .qp-row { border-top-color: var(--tc1, #006bb6); } .ix .qp.q11 .qp-ig > div { border-left-color: var(--tc1, #006bb6); } .ix .qp.q11 .qp-ig > div:nth-child(even) { border-left-color: var(--tc2, #ed174c); }
+.ix .qp-scr.q12 .qp-stg { background: radial-gradient(circle at 50% 45%, color-mix(in srgb, var(--tc1, #006bb6) 70%, #000), #05080f 70%); } .ix .qp-phn.q12 .qp-pt { background: radial-gradient(circle at 50% 45%, color-mix(in srgb, var(--tc1, #006bb6) 70%, #000), #05080f 70%); } .ix .qp-pan:has(.qp.q12) { border-left: 4px solid var(--tc1, #006bb6); } .ix .qp.q12 .qp-n { font-size: 38px; }
+.ix .qp-jersey { position: absolute; right: 8px; top: -6px; font-size: 150px; line-height: 1; color: color-mix(in srgb, var(--tc1, #006bb6) 55%, transparent) !important; z-index: 0; pointer-events: none; } .ix .qp.q13 > *:not(.qp-jersey) { position: relative; z-index: 1; } .ix .qp.q13 .qp-n { font-size: 40px; } .ix .qp.qpc .qp-jersey { font-size: 96px; }
+.ix .qp-stripes { height: 18px; margin: -8px -20px 6px; background: repeating-linear-gradient(90deg, var(--tc1, #006bb6) 0 14px, #fff 14px 18px, var(--tc2, #ed174c) 18px 32px, #fff 32px 36px); } .ix .qp.qpc .qp-stripes { margin: -6px -12px 4px; } .ix .qp.q14 .qp-band { display: none; } .ix .qp.q14 .qp-row { border-top: 2px solid var(--tc1, #006bb6); } .ix .qp.q14 .qp-n { font-size: 38px; }
+
+.ix .qp-scr.q6, .ix .qp-phn.q6 { --cardimg: url(https://snnrkzbevjhdtviizfyp.supabase.co/storage/v1/object/public/avatars/cartes/eb730dee-414e-4fcb-89d8-4a7b3448c218/1787763372857_recto.jpg); }
+.ix .qp-pan:has(.qp.q6):after { content: ''; position: absolute; inset: 0; background: linear-gradient(rgba(10,19,48,.7), rgba(10,19,48,.92)); z-index: 0; }
 `
 function Bay({ id, n, title, desc, children }: { id: string; n: string; title: string; desc: string; children: React.ReactNode }) {
   return (
@@ -390,95 +447,79 @@ function Bay({ id, n, title, desc, children }: { id: string; n: string; title: s
 }
 
 const ALL = [C.mccain, C.edwards, C.maxey, C.hawkins, C.mcw, C.luwawu]
-const COLS = ['Allen Iverson', 'Autre', 'Ben Simmons', 'F1', 'Football', 'Frenchies', 'Iguodala', 'James Harden', 'Jared McCain', 'Joel Embiid']
 
-// Contenu REEL du panneau. Priorite visuelle : infos de la carte + boutons. Le reste (collections, setlist, valeur, marche) est petit et deroulant.
-function Panel({ v, open, compact }: { v: string; open?: 'col' | 'mkt'; compact?: boolean }) {
-  const acts: [string, string][] = [['✏️', 'Modifier'], ['🏷', 'Vente / Trade'], ['🔗', 'Partager'], ['💰', 'Vendue'], ['⬇', 'Exporter'], ['🗑', 'Supprimer']]
-  const btns = <div className="tp-ab">{acts.map(a => <span key={a[1]} className={a[1] === 'Supprimer' ? 'del' : ''}><i>{a[0]}</i>{a[1]}</span>)}</div>
-  const I: [string, string, string][] = [['Année', '1991-92', '📅'], ['Numérotation', 'N/A', '#'], ['Grade', 'Raw', '🛡'], ['Collection', 'SkyBox Base', '📦']]
-  const infos = v === 'i2' ? (
-    <div className="tp-t2">{I.map(x => <div key={x[0]}><span>{x[0]}</span><b>{x[1]}</b></div>)}</div>
-  ) : v === 'i3' ? (
-    <div className="tp-t3">{I.map(x => <div key={x[0]}><small>{x[0]}</small><b>{x[1]}</b></div>)}</div>
-  ) : v === 'i4' ? (
-    <div className="tp-t4">{I.map(x => <div key={x[0]}><b className="sf">{x[1]}</b><small>{x[0]}</small></div>)}</div>
-  ) : v === 'i5' ? (
-    <div className="tp-t5">{I.map(x => <div key={x[0]}><span>{x[0]}</span><u /><b>{x[1]}</b></div>)}</div>
-  ) : v === 'i6' ? (
-    <div className="tp-t6">{I.map(x => <span key={x[0]}><small>{x[0]}</small><b>{x[1]}</b></span>)}</div>
-  ) : v === 'i7' ? (
-    <div className="tp-t7"><div className="g"><small>Grade</small><b className="sf">Raw</b></div><div className="r">{[I[0], I[1], I[3]].map(x => <div key={x[0]}><small>{x[0]}</small><b>{x[1]}</b></div>)}</div></div>
-  ) : v === 'i8' ? (
-    <div className="tp-t8">{I.map(x => <div key={x[0]}><i>{x[2]}</i><b>{x[1]}</b><small>{x[0]}</small></div>)}</div>
-  ) : v === 'i9' ? (
-    <div className="tp-t9">{I.map((x, k) => <div key={x[0]} className={k % 2 ? 'b' : ''}><small>{x[0]}</small><b>{x[1]}</b></div>)}</div>
-  ) : v === 'i10' ? (
-    <div className="tp-t10"><div className="h">{I.map(x => <span key={x[0]}>{x[0]}</span>)}</div><div className="d">{I.map(x => <b key={x[0]}>{x[1]}</b>)}</div></div>
-  ) : (
-    <div className="tp-ig">
-      {I.map(x => <div key={x[0]}><small>{x[0]}</small><b>{x[1]}</b></div>)}
-    </div>
-  )
-  const rows = (
-    <div className="tp-rows">
-      <div className={`tp-row${open === 'col' ? ' on' : ''}`}><span className="tp-rl">Mes collections</span><span className="tp-rv">Philadelphia 76ers</span><i>{open === 'col' ? '▴' : '▾'}</i></div>
-      {open === 'col' && <div className="tp-body"><div className="tp-search">🔍 Chercher…</div><div className="tp-chips">{COLS.map(c => <span key={c}>{c}</span>)}<span className="sel">✓ Philadelphia 76ers</span><span className="add">+ Nouvelle</span></div></div>}
-      <div className="tp-row"><span className="tp-rl">🃏 Setlist</span><span className="tp-rv mut">+ Placer dans un set</span><i>›</i></div>
-      <div className="tp-row"><span className="tp-rl">Valeur est.</span><span className="tp-inp">1 €</span><span className="tp-pv"><u /> Privé</span></div>
-      <div className={`tp-row${open === 'mkt' ? ' on' : ''}`}><span className="tp-rl">Marché</span><span className="tp-rv"><b className="tp-mp">1 €</b> méd. · 20 en vente</span><span className="tp-lk"><em>130pt</em><em>eBay</em></span><i>{open === 'mkt' ? '▴' : '▾'}</i></div>
-      {open === 'mkt' && <div className="tp-body"><div className="tp-lst">{[...ALL, ...ALL].slice(0, 7).map((c, i) => <div key={i}><img src={c.img} alt="" /><b>{i < 4 ? '0.99 €' : '1 €'}</b></div>)}</div></div>}
-    </div>
-  )
+// Panneau reel (capture Markelle Fultz) : seule la peau change d'une version a l'autre
+function Panel({ v, compact, tn }: { v: string; compact?: boolean; tn?: string }) {
+  const acts: [string, string][] = [['✏️', 'Modifier'], ['🗑', 'Supprimer'], ['🏷', 'Vente / Trade'], ['💰', 'Vendue'], ['🔗', 'Partager'], ['⬇', 'Exporter']]
   return (
-    <div className={`tp ${v}${compact ? ' tpc' : ''}`}>
-      <div className="tp-band" />
-      <span className="tp-k">Philadelphia 76ers</span>
-      <h3 className="tp-n sf">Ron Anderson</h3>
-      <div className="tp-dz">1991-92 SkyBox Base #210 Ron Anderson</div>
-      {infos}
-      <div className="tp-loc">📍 <b>Binder 76ers</b> · p.45 · A3</div>
-      {v === 't5' ? <>{rows}{btns}</> : <>{btns}{rows}</>}
+    <div className={`qp ${v}${compact ? ' qpc' : ''}`}>
+      <div className="qp-band" />
+      {v === 'q14' && <div className="qp-stripes" />}
+      {v === 'q4' && <div className="qp-num"><small>Exemplaire</small><b className="sf">63<i>/99</i></b></div>}
+      {v === 'q13' && <span className="qp-jersey sf">20</span>}
+      <span className="qp-k">{tn || 'Philadelphia 76ers'}</span>
+      <h3 className="qp-n sf">Markelle Fultz</h3>
+      <div className="qp-vr">Prime Prospects</div>
+      <div className="qp-dz">2017-18 Panini Vanguard Prime Prospects Markelle Fultz</div>
+      <div className="qp-tg"><span className="rc">RC</span><span className="au">AUTO</span><span className="nu">/99</span><span className="pa">PATCH</span></div>
+      <div className="qp-ig">
+        <div><small>Année</small><b className="sf">2017-18</b></div>
+        <div><small>Numérotation</small><b className="sf">63/99</b></div>
+        <div><small>Grade</small><b className="sf">Raw</b></div>
+        <div><small>Collection</small><b className="sf">Panini Vanguard</b></div>
+      </div>
+      <div className="qp-row"><span className="l">Mes collections</span><span className="r">—</span><i>▾</i></div>
+      <div className="qp-row"><span className="l">🃏 Setlist</span><span className="r red">2022-23 Panini Mosaic <u>Changer</u> ✕</span></div>
+      <div className="qp-ab">{acts.map(a => <span key={a[1]} className={a[1] === 'Supprimer' ? 'del' : a[1] === 'Modifier' ? 'pri' : ''}><i>{a[0]}</i>{a[1]}</span>)}</div>
+      <div className="qp-row"><span className="l">Valeur est.</span><span className="qp-inp">0.00 €</span><span className="qp-pv">Privé</span></div>
+      <div className="qp-row"><span className="l">Marché</span><span className="r"><b className="red">46 €</b> demandé (méd.)</span><span className="qp-lk"><em>130pt</em><em>eBay</em></span></div>
+      <div className="qp-lst"><div><img src={C.maxey.img} alt="" /><b>46 €</b></div></div>
     </div>
   )
 }
-const Desk = ({ v, open }: { v: string; open?: 'col' | 'mkt' }) => (
-  <div className={`tp-scr ${v}`}>
-    <div className="tp-stg"><div className="tp-x">×</div><img className="tp-card" src={C.hawkins.img} alt="" /><div className="tp-nv"><span>🔍</span><span>↻</span></div></div>
-    <div className="tp-pan"><Panel v={v} open={open} /></div>
+const TEAMS: Record<string, [string, string]> = { sixers: ['#006bb6', '#ed174c'], lakers: ['#552583', '#fdb927'], celtics: ['#007a33', '#ba9653'], bulls: ['#ce1141', '#111111'] }
+const tv = (t?: string) => (t ? ({ ['--tc1' as string]: TEAMS[t][0], ['--tc2' as string]: TEAMS[t][1] } as React.CSSProperties) : undefined)
+const Desk = ({ v, team, tn }: { v: string; team?: string; tn?: string }) => (
+  <div className={`qp-scr ${v}`} style={tv(team)}>
+    <div className="qp-stg"><div className="qp-x">×</div><img className="qp-card" src={C.mccain.img} alt="" /><div className="qp-nv"><span>🔍</span><span>↻</span></div></div>
+    <div className="qp-pan"><Panel v={v} tn={tn} /></div>
   </div>
 )
-const Phone = ({ v, open }: { v: string; open?: 'col' | 'mkt' }) => (
-  <div className="tp-phn">
-    <div className="tp-pt"><div className="tp-x s">×</div><img className="tp-card" src={C.hawkins.img} alt="" /></div>
-    <div className="tp-ps"><div className="tp-grip" /><Panel v={v} open={open} compact /></div>
+const Phone = ({ v, team, tn }: { v: string; team?: string; tn?: string }) => (
+  <div className={`qp-phn ${v}`} style={tv(team)}>
+    <div className="qp-pt"><div className="qp-x s">×</div><img className="qp-card" src={C.mccain.img} alt="" /></div>
+    <div className="qp-ps"><div className="qp-grip" /><Panel v={v} compact tn={tn} /></div>
   </div>
 )
 
 export default function DaIdeas() {
-  const names = ['03 pure (référence)', 'Tuiles à bandeau', 'Ruban d’infos', 'Chiffres Surfquest', 'Catalogue à pointillés', 'Étiquettes en ligne', 'Étiquette de gradation', 'Icônes', 'Barres d’équipe', 'Box score']
   const items: [string, string, string, string][] = [
-    ['i1', '01', '03 pure : ta version préférée, telle quelle', "Référence : les 4 infos en 2 colonnes (libellé au-dessus, valeur dessous), les 6 boutons, des lignes fines et le Marché déplié. Rien n'a changé par rapport à la 03 de la série précédente."],
-    ['i2', '02', 'Tuiles à bandeau : le libellé sur une bande blanche', "Chaque info est une petite tuile à filet épais dont le libellé est inscrit sur une bande blanche (encre bleu nuit), la valeur dessous. Même langage que les titres de l'accueil et le ticket de synchro."],
-    ['i3', '03', "Ruban d'infos : tout sur un seul bandeau", "Les 4 infos forment un seul ruban à double filet, séparées par des traits verticaux, comme le bandeau du hero de l'accueil. Une seule ligne au lieu de deux rangées."],
-    ['i4', '04', 'Chiffres Surfquest : la valeur en grand, le libellé dessous', "Comme les tuiles de stats de l'accueil (RC / AUTO / PATCH / NUM) : la valeur en Surfquest, le libellé en petites capitales dessous, avec des séparateurs fins."],
-    ['i5', '05', 'Catalogue à pointillés : une fiche de musée', "Chaque info sur une ligne : libellé à gauche, valeur à droite, reliés par des pointillés, comme un catalogue d'exposition. Très lisible, très sobre."],
-    ['i6', '06', 'Étiquettes en ligne : des pastilles à angles droits', "Les infos deviennent des étiquettes (libellé gris + valeur en blanc) qui s'enchaînent et passent à la ligne si besoin. Le même esprit que les tags RC / AUTO du site."],
-    ['i7', '07', 'Étiquette de gradation : le grade en gros à gauche', "Le grade (Raw) dans un grand carré à gauche, comme sur une étiquette de société de gradation, et les trois autres infos en lignes à droite. Le grade devient l'élément fort."],
-    ['i8', '08', 'Icônes : une petite icône par info', "Quatre colonnes avec une icône, la valeur et le libellé en minuscule dessous. Les icônes guident l'œil et la ligne tient en hauteur réduite."],
-    ['i9', '09', "Barres d'équipe : un trait de couleur devant chaque info", "Chaque info a une barre verticale aux couleurs de l'équipe (rouge puis bleu, en alternance). Un rappel discret de la franchise, sans cadre."],
-    ['i10', '10', 'Box score : un tableau comme une feuille de match', "Une ligne d'en-tête blanche avec les libellés et une ligne de valeurs dessous, comme un box score. Compact, très net, et très « stats »."],
+    ['q1', '01', 'Surfquest partout : nom géant, valeurs et sections dans la police du site', "Le nom passe à 44 px en Surfquest (comme les titres de l'accueil), les valeurs des infos (2017-18, 63/99, Raw, Panini Vanguard) aussi, et les titres de section (Mes collections, Setlist, Valeur, Marché) restent en petites capitales. La typographie fait à elle seule le lien avec le reste du site."],
+    ['q2', '02', 'Fond texturé : fines hachures et grain', "Le panneau n'est plus un aplat gris : une trame de fines lignes diagonales très discrète, un voile de grain, et une lueur aux couleurs de l'équipe en haut. Même matière que les cartes et les cadres du site."],
+    ['q3', '03', "Fond d'équipe : dégradé qui descend du liseré", "Un dégradé aux couleurs de l'équipe (bleu des 76ers) part du haut du panneau et se fond dans le noir vers le bas. Le nom se lit sur la couleur, le reste sur le sombre. Chaque carte a son ambiance."],
+    ['q4', '04', 'Numérotation en vedette : le « 63/99 » en énorme', "Quand la carte est numérotée, l'exemplaire (63 / 99) s'affiche en très grand Surfquest en haut du panneau, comme un numéro de maillot. L'info la plus recherchée par les collectionneurs devient le premier regard."],
+    ['q5', '05', "Bandeau d'équipe : le nom sur une bande pleine largeur", "Le nom et l'équipe sont inscrits sur une bande pleine couleur d'équipe, en blanc, de bord à bord. Le reste du panneau reste sombre et sobre. Très proche du hero de l'accueil et des titres de page."],
+    ['q6', '06', 'Carte floutée en fond : le panneau prend les couleurs de la carte', "L'image de la carte, agrandie et très floue, sert de fond au panneau (à 25 %, sous un voile sombre). Le panneau change de teinte à chaque carte sans jamais gêner la lecture."],
+    ['q7', '07', 'Fiche claire : le panneau en papier, nom en encre', "Panneau clair (papier) avec le nom en Surfquest encre bleu nuit et le liseré d'équipe : un contraste fort avec la scène sombre, lisible en plein soleil, et très « fiche de collection »."],
+    ['q8', '08', 'Boutons à la DA : plein blanc, filets, libellés en capitales', "Les 6 boutons deviennent plus « DA » : Modifier en blanc plein (encre bleu nuit), les autres en filet blanc, libellés en petites capitales espacées, Supprimer en rouge contour. Les titres de section ont un double filet dessous."],
+    ['q9', '09', "Panneau plein couleur d'équipe : tout le panneau aux couleurs de la franchise", "Le fond du panneau devient la couleur principale de l'équipe (bleu des 76ers, violet des Lakers, vert des Celtics…), le texte en blanc, les barres d'infos et les boutons dans la couleur secondaire. Le visualiseur change entièrement d'ambiance selon la carte."],
+    ['q10', '10', 'Diagonale à deux couleurs : le panneau coupé aux couleurs de l\'équipe', "Un fond en diagonale qui mélange la couleur principale et la secondaire de l'équipe (rouge et bleu pour les 76ers), assombri vers le bas pour la lecture. Très « maillot », et la carte ressort sur le fond noir à côté."],
+    ['q11', '11', "Boutons, tags et puces aux couleurs d'équipe", "Rien d'autre ne change : seuls les boutons (Modifier plein dans la couleur principale, les autres en filet de la secondaire), les puces de collections, les liens et les titres de section prennent les couleurs de l'équipe. La touche d'équipe est partout, discrètement."],
+    ['q12', '12', "Scène et panneau accordés : la lueur d'équipe derrière la carte aussi", "Une lueur dans les couleurs de l'équipe derrière la carte (côté scène) qui continue dans le panneau par le liseré et les barres. Les deux moitiés de l'écran font un seul bloc de couleur."],
+    ['q13', '13', 'Numéro de maillot en filigrane derrière le nom', "Un énorme numéro (ici le 20 de Fultz chez les Sixers) en Surfquest, translucide, derrière le nom, dans la couleur d'équipe. Très sportif, et il ne coûte aucune place."],
+    ['q14', '14', 'Rayures de maillot : une bande rayée en tête de panneau', "Une bande de rayures verticales aux couleurs de l'équipe (comme un col ou un liseré de maillot) en haut du panneau, avec un trait de la même couleur sous chaque titre de section."],
   ]
   return (
     <div className="ix">
       <style>{CSS}</style>
       <Link href="/admin" className="back">← Admin</Link>
-      <h1 className="sf">Idées · Série 23 · Visualiseur : autres façons d&apos;afficher les infos</h1>
-      <p className="lead">On garde la version 03 pure en première et on change seulement la façon d&apos;afficher les 4 infos de la carte (année, numérotation, grade, collection), en s&apos;inspirant de la DA du site. Tout le reste est identique à la 03 : les 6 boutons, les lignes Collections / Setlist / Valeur / Marché (déplié, avec 130pt, eBay et annonces). Chaque version est montrée sur ordinateur et téléphone.</p>
-      <nav className="tags">{names.map((t, i) => <a key={t} href={`#s${i + 1}`}>{String(i + 1).padStart(2, '0')} {t}</a>)}</nav>
+      <h1 className="sf">Idées · Série 24 · Visualiseur : encore plus dans la DA</h1>
+      <p className="lead">Basé sur ton panneau réel (capture de la Markelle Fultz) : tout le contenu et les 6 boutons restent. On pousse la DA par la typographie (Surfquest sur le nom et les valeurs), des champs plus grands (nom, numérotation), et des fonds spéciaux (trame, équipe, carte floutée, papier). Chaque version est montrée sur ordinateur et téléphone, et on peut combiner : par exemple 01 + 03, ou 05 + 08.</p>
+      <nav className="tags">{items.map((it, i) => <a key={it[0]} href={`#s${i + 1}`}>{it[1]} {it[2].split(':')[0]}</a>)}</nav>
       {items.map((it, i) => (
-        <Bay key={it[0]} id={`s${i + 1}`} n={it[1]} title={it[2]} desc={it[3]}><div className="pair"><Desk v={it[0]} open="mkt" /><Phone v={it[0]} open="mkt" /></div></Bay>
+        <Bay key={it[0]} id={`s${i + 1}`} n={it[1]} title={it[2]} desc={it[3]}><div className="pair"><Desk v={it[0]} /><Phone v={it[0]} /></div></Bay>
       ))}
+      <Bay id="s15" n="15" title="Le même panneau pour d'autres équipes : les couleurs suivent la carte" desc="La version 09 sur trois autres équipes : Lakers (violet et or), Celtics (vert et or pâle), Bulls (rouge et noir). Le panneau lit l'équipe imprimée sur la carte et prend ses couleurs. Si l'équipe est inconnue (carte sans équipe, Pokémon…), il reste en bleu neutre."><div className="pair">{([['lakers', 'Los Angeles Lakers'], ['celtics', 'Boston Celtics'], ['bulls', 'Chicago Bulls']] as [string, string][]).map(t => <Phone key={t[0]} v="q9" team={t[0]} tn={t[1]} />)}</div></Bay>
     </div>
   )
 }
