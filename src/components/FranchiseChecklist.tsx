@@ -10,7 +10,7 @@ export type FranchisePlayer = [string, number, number, number]
 const DECADES = [2020, 2010, 2000, 1990, 1980, 1970, 1960, 1950]
 const decadeOf = (y: number) => Math.floor(y / 10) * 10
 
-export default function FranchiseChecklist({ team, players, color }: { team: string; players: FranchisePlayer[]; color: string }) {
+export default function FranchiseChecklist({ team, players, color, ownedNames }: { team: string; players: FranchisePlayer[]; color: string; ownedNames?: string[] }) {
   const [owned, setOwned] = useState<Set<string> | null>(null) // null = non connecte / en chargement
   const [loggedIn, setLoggedIn] = useState(false)
   const [decade, setDecade] = useState<number | null>(null)
@@ -19,6 +19,8 @@ export default function FranchiseChecklist({ team, players, color }: { team: str
   const [limit, setLimit] = useState(120)
 
   useEffect(() => {
+    // collection deja connue de l'appelant (ex. galerie d'un utilisateur, CSV compris) : pas besoin de la relire
+    if (ownedNames) { setLoggedIn(true); setOwned(new Set(ownedNames.map(n => normalizeName(n)))); return }
     let cancelled = false
     ;(async () => {
       const { data: { user } } = await supabase.auth.getUser()
@@ -33,7 +35,7 @@ export default function FranchiseChecklist({ team, players, color }: { team: str
       if (!cancelled) setOwned(names)
     })()
     return () => { cancelled = true }
-  }, [])
+  }, [ownedNames])
 
   const rows = useMemo(() => players.map(p => ({ name: p[0], y0: p[1], y1: p[2], n: p[3], key: normalizeName(p[0]) })), [players])
   const haveCount = owned ? rows.filter(r => owned.has(r.key)).length : 0

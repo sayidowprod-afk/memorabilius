@@ -4,6 +4,19 @@ import Link from 'next/link'
 import { supabase } from '@/lib/supabase'
 import TagIcon from '@/components/TagIcon'
 import CardTagBadges from '@/components/CardTagBadges'
+import FranchiseChecklist, { type FranchisePlayer } from '@/components/FranchiseChecklist'
+import { SPORTS_TEAMS } from '@/lib/sportsTeams'
+import { teamSlug, normalizeName } from '@/lib/playerSlug'
+
+// PC "equipe" -> franchise connue (nom complet, ou dernier mot : "76ers" -> Philadelphia 76ers)
+function findFranchiseTeam(name: string) {
+  const n = normalizeName(name)
+  if (!n) return null
+  const exact = SPORTS_TEAMS.find(t => normalizeName(t.name) === n)
+  if (exact) return exact
+  const last = SPORTS_TEAMS.filter(t => normalizeName(t.name).split(' ').slice(-1)[0] === n.split(' ').slice(-1)[0])
+  return last.length === 1 ? last[0] : null
+}
 
 interface Card {
   f: string; b: string; n: string; t: string; s: string; y: string
@@ -267,6 +280,22 @@ export default function MesPCTab({ cards, cardsLoaded = true, userId, accent, da
   const [dragOverIdx, setDragOverIdx] = useState<number | null>(null)
   const blurTimer = useRef<ReturnType<typeof setTimeout> | null>(null)
 
+  // Franchise complete des PC "equipe" (liste de tous les joueurs de la franchise, chargee a la demande)
+  const [franchise, setFranchise] = useState<Record<string, FranchisePlayer[]>>({})
+  const [frOpen, setFrOpen] = useState<PCEntry | null>(null)
+  const ownedNames = useMemo(() => cards.map(c => c.n).filter(Boolean), [cards])
+  const ownedKeys = useMemo(() => new Set(ownedNames.map(n => normalizeName(n))), [ownedNames])
+  useEffect(() => {
+    for (const pc of pcs) {
+      if (pc.type !== 'team') continue
+      const team = findFranchiseTeam(pc.name)
+      if (!team) continue
+      const slug = teamSlug(team.name)
+      if (franchise[slug]) continue
+      import(`@/data/franchise/${slug}.json`).then(m => setFranchise(prev => ({ ...prev, [slug]: m.default as FranchisePlayer[] }))).catch(() => {})
+    }
+  }, [pcs, franchise])
+
   const bg     = dark ? '#1a1a2e' : '#ffffff'
   const bg2    = dark ? '#252540' : '#f8f9fc'
   const border = dark ? '#2a2a4a' : '#e8eaf0'
@@ -437,8 +466,18 @@ export default function MesPCTab({ cards, cardsLoaded = true, userId, accent, da
   }
 
   // ── Grid view ────────────────────────────────────────────────────────────────
+  const frTeam = frOpen ? findFranchiseTeam(frOpen.name) : null
+  const frList = frTeam ? franchise[teamSlug(frTeam.name)] : undefined
   return (
     <div style={{ padding: '16px 0' }}>
+      {frOpen && frTeam && frList && (
+        <div onClick={() => setFrOpen(null)} style={{ position: 'fixed', inset: 0, background: 'rgba(0,0,0,0.6)', zIndex: 3000, display: 'flex', alignItems: 'flex-start', justifyContent: 'center', padding: '4vh 12px', overflowY: 'auto' }}>
+          <div onClick={e => e.stopPropagation()} style={{ position: 'relative', width: '100%', maxWidth: 980, background: dark ? '#10162b' : '#ffffff', border: `3px solid ${dark ? '#ffffff55' : '#111'}`, padding: '22px 20px 26px' }}>
+            <button onClick={() => setFrOpen(null)} aria-label="Fermer" style={{ position: 'absolute', top: 8, right: 10, background: 'none', border: 'none', fontSize: 26, cursor: 'pointer', color: muted, lineHeight: 1 }}>×</button>
+            <FranchiseChecklist team={frTeam.name} players={frList} color={frTeam.color} ownedNames={ownedNames} />
+          </div>
+        </div>
+      )}
       <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 20 }}>
         <div>
           <h2 style={{ fontSize: 18, fontWeight: 900, color: text, margin: '0 0 2px' }}>PCs</h2>
@@ -610,6 +649,18 @@ export default function MesPCTab({ cards, cardsLoaded = true, userId, accent, da
                         <div style={{ height: '100%', width: '35%', background: `${accent}44`, borderRadius: 2 }} />
                       </div>
                     )}
+                    {pc.type === 'team' && (() => {
+                      const team = findFranchiseTeam(pc.name)
+                      const list = team ? franchise[teamSlug(team.name)] : undefined
+                      if (!team || !list) return null
+                      const have = list.filter(p => ownedKeys.has(normalizeName(p[0]))).length
+                      return (
+                        <button onClick={e => { e.stopPropagation(); setFrOpen(pc) }} title="Tous les joueurs de la franchise" style={{
+                          alignSelf: 'flex-start', padding: '2px 8px', background: `${TYPE_COLOR.team}1f`, color: TYPE_COLOR.team,
+                          border: `1px solid ${TYPE_COLOR.team}66`, borderRadius: 10, cursor: 'pointer', fontWeight: 800, fontSize: 11,
+                        }}>🏛 {have} / {list.length} joueurs ›</button>
+                      )
+                    })()}
                     <button onClick={() => setSelected(pc)} style={{
                       width: '100%', padding: '7px 0', background: 'transparent',
                       color: accent, border: `1.5px solid ${accent}`, borderRadius: 8,
