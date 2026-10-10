@@ -561,7 +561,8 @@ export default function Viewer3D({ popup, accent, onClose, onNext, onPrev, getTa
   const [infoStage, setInfoStage] = useState<0 | 1 | 2>(0)   // tiroir mobile : 0 = en bas, 1 = moitie, 2 = ouvert a fond
   const infoExpanded = infoStage === 2
   const dragY = useRef<number | null>(null)
-  const dragMoved = useRef(false)
+  const dragMoved = useRef(false)   // vrai si le geste a commence dans l'en-tete / la poignee
+  const dragTop = useRef(0)         // position de defilement du tiroir au debut du geste
   const [colOpen, setColOpen] = useState(false)
   const [jersey, setJersey] = useState<string | null>(null)
   useEffect(() => {
@@ -906,10 +907,12 @@ export default function Viewer3D({ popup, accent, onClose, onNext, onPrev, getTa
           .viewer-layout--info-half .viewer-card--horizontal { width: min(260px, 66vw) !important; height: min(186px, 47vw) !important; }
           .viewer-layout--info-half .viewer-card--slab { width: min(163px, 40vw) !important; height: min(266px, 64.4vw) !important; }
           .viewer-info-handle {
-            position: absolute; top: 4px; left: 50%; transform: translateX(-50%); touch-action: none;
-            width: 120px; height: 30px; display: flex; align-items: center; justify-content: center;
-            cursor: pointer; background: none; border: none; padding: 0; z-index: 2;
+            position: absolute; top: 2px; left: 50%; transform: translateX(-50%);
+            height: 38px; display: flex; align-items: center; justify-content: center; gap: 4px;
+            background: none; border: none; padding: 0; z-index: 3;
           }
+          .v3d-stg { color: var(--v3d-ht, #888); width: 54px; height: 38px; display: flex; align-items: center; justify-content: center; background: none; border: 0; padding: 0; cursor: pointer; }
+          .v3d-grip { width: 34px; height: 4px; background: var(--v3d-ht, #888); opacity: .6; }
           .viewer-layout--info-expanded .viewer-info-handle { top: calc(4px + var(--safe-area-inset-top, env(safe-area-inset-top))) !important; }
         }
       `}</style>
@@ -1473,22 +1476,24 @@ export default function Viewer3D({ popup, accent, onClose, onNext, onPrev, getTa
         </div>
         )}
 
-        <div className={dark ? 'viewer-info v3d-dk' : 'viewer-info'} style={teamVars(popup.t, accent) as React.CSSProperties | undefined}>
-          <button className="viewer-info-handle"
-            onClick={() => { if (dragMoved.current) return; setInfoStage(st => (st === 0 ? 1 : st === 1 ? 2 : 1)) }}
-            onTouchStart={e => { dragY.current = e.touches[0].clientY; dragMoved.current = false }}
-            onTouchMove={e => { if (dragY.current != null && Math.abs(e.touches[0].clientY - dragY.current) > 8) dragMoved.current = true }}
-            onTouchEnd={e => {
-              if (dragY.current == null) return
-              const dy = e.changedTouches[0].clientY - dragY.current
-              dragY.current = null
-              if (Math.abs(dy) > 36) setInfoStage(st => (dy < 0 ? Math.min(2, st + 1) : Math.max(0, st - 1)) as 0 | 1 | 2)
-            }}
-            aria-label={infoStage === 2 ? 'Réduire les infos' : 'Agrandir les infos'}>
-            <svg width="20" height="10" viewBox="0 0 20 10" fill="none" style={{ transform: infoExpanded ? 'none' : 'rotate(180deg)', transition: 'transform 0.2s' }}>
-              <path d="M2 2l8 6 8-6" stroke={metaColor} strokeWidth="2" fill="none" strokeLinecap="round" strokeLinejoin="round" />
-            </svg>
-          </button>
+        <div className={dark ? 'viewer-info v3d-dk' : 'viewer-info'} style={teamVars(popup.t, accent) as React.CSSProperties | undefined}
+          onTouchStart={e => { dragY.current = e.touches[0].clientY; dragMoved.current = (e.target as HTMLElement).closest('.v3d-head, .viewer-info-handle') != null; dragTop.current = (e.currentTarget as HTMLElement).scrollTop }}
+          onTouchEnd={e => {
+            const y0 = dragY.current; dragY.current = null
+            if (y0 == null) return
+            const dy = e.changedTouches[0].clientY - y0
+            if (dy > 60 && dragTop.current <= 0) setInfoStage(st => Math.max(0, st - 1) as 0 | 1 | 2)
+            else if (dy < -60 && dragMoved.current) setInfoStage(st => Math.min(2, st + 1) as 0 | 1 | 2)
+          }}>
+          <div className="viewer-info-handle">
+            <button type="button" className="v3d-stg" style={{ visibility: infoStage > 0 ? 'visible' : 'hidden' }} onClick={() => setInfoStage(st => Math.max(0, st - 1) as 0 | 1 | 2)} aria-label="Réduire les infos">
+              <svg width="22" height="12" viewBox="0 0 20 10" fill="none"><path d="M2 2l8 6 8-6" stroke="currentColor" strokeWidth="2.6" fill="none" strokeLinecap="round" strokeLinejoin="round" /></svg>
+            </button>
+            <span className="v3d-grip" aria-hidden />
+            <button type="button" className="v3d-stg" style={{ visibility: infoStage < 2 ? 'visible' : 'hidden' }} onClick={() => setInfoStage(st => Math.min(2, st + 1) as 0 | 1 | 2)} aria-label="Agrandir les infos">
+              <svg width="22" height="12" viewBox="0 0 20 10" fill="none" style={{ transform: 'rotate(180deg)' }}><path d="M2 2l8 6 8-6" stroke="currentColor" strokeWidth="2.6" fill="none" strokeLinecap="round" strokeLinejoin="round" /></svg>
+            </button>
+          </div>
           <div className="v3d-band" style={{ background: teamColorOf(popup.t) ? 'var(--v3d-p2)' : `linear-gradient(90deg, ${accent} 62%, ${accent} 62%)` }} />
           <div className={teamColorOf(popup.t) ? 'v3d-head v3d-head--team' : 'v3d-head'} style={teamColorOf(popup.t) ? { ['--v3d-team' as string]: teamColorOf(popup.t)!, ['--v3d-ht' as string]: onTeamColor(teamColorOf(popup.t)!) } : undefined}>
           {jersey && <span className="v3d-jersey" aria-hidden>{jersey}</span>}
