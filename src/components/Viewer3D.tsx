@@ -1993,18 +1993,47 @@ export default function Viewer3D({ popup, accent, onClose, onNext, onPrev, getTa
                   {t('binder_edit')}
                 </Link>
               )}
-              {onDeleteCard && (
-                <>
-                  <button onClick={() => setConfirmDelete(true)} style={{
-                    background: '#e74c3c', color: 'white',
-                    border: 'none', borderRadius: 10, padding: '12px 14px', boxSizing: 'border-box',
-                    fontWeight: 800, cursor: 'pointer', fontSize: 14, whiteSpace: 'nowrap',
-                    transition: '0.2s',
+              <div ref={exportMenuRef} style={{ position: 'relative' }}>
+                <button onClick={() => setShowExportChoice(v => !v)} style={{
+                  background: '#0d0d1f', color: 'white', border: 'none', boxSizing: 'border-box',
+                  borderRadius: 10, padding: '12px', fontWeight: 800, cursor: 'pointer', fontSize: 14, width: '100%',
+                }}>
+                  ⬇️ {t('export_button')}
+                </button>
+                {showExportChoice && (
+                  <div style={{
+                    position: 'absolute', bottom: '100%', left: 0, right: 0, marginBottom: 6,
+                    background: dark ? '#1a1a1a' : '#fff', border: `1px solid ${dark ? '#333' : '#e0e0e0'}`,
+                    borderRadius: 10, overflow: 'hidden', boxShadow: '0 8px 24px rgba(0,0,0,0.25)', zIndex: 2,
                   }}>
-                    🗑️ {t('viewer_delete_btn')}
-                  </button>
-                  {confirmDelete && <ConfirmDeleteCard image={popup.f} name={popup.n} onCancel={() => setConfirmDelete(false)} onConfirm={() => { setConfirmDelete(false); onDeleteCard() }} />}
-                </>
+                    <button onClick={() => { setShowExportChoice(false); setShowVideo(true) }} style={{
+                      display: 'block', width: '100%', textAlign: 'left', background: 'none', border: 'none',
+                      padding: '12px 14px', fontWeight: 700, fontSize: 14, cursor: 'pointer', color: dark ? '#eee' : '#333',
+                    }}>
+                      🎬 {t('video_export_title')}
+                    </button>
+                    <button onClick={() => { setShowExportChoice(false); setShowPhoto(true) }} style={{
+                      display: 'block', width: '100%', textAlign: 'left', background: 'none', border: 'none',
+                      borderTop: `1px solid ${dark ? '#333' : '#eee'}`,
+                      padding: '12px 14px', fontWeight: 700, fontSize: 14, cursor: 'pointer', color: dark ? '#eee' : '#333',
+                    }}>
+                      📸 {t('photo_export_title')}
+                    </button>
+                  </div>
+                )}
+              </div>
+              {userId && (
+                <ShareButton
+                  url={popup.id_manuelle ? `/s/${popup.id_manuelle}` : (csvSharePath || `/galerie/${userSlug || userId}/${cardSlug(popup.n, popup.y, popup.br, popup.s)}?src=${encodeURIComponent(popup.f)}`)}
+                  title={popup.n}
+                  subtitle={[popup.y, popup.br, popup.s].filter(Boolean).join(' · ')}
+                  buttonStyle={{
+                    background: dark ? '#2a2a2a' : '#f0f0f0',
+                    color: dark ? '#eee' : '#333',
+                    border: 'none', borderRadius: 10, padding: '12px 14px', boxSizing: 'border-box', width: '100%',
+                    fontWeight: 800, cursor: 'pointer', fontSize: 14, whiteSpace: 'nowrap',
+                  }}
+                />
               )}
               {isOwner && onDisponibleVenteChange && (popup.id_manuelle || userId) && (
                 <button onClick={async () => {
@@ -2040,48 +2069,19 @@ export default function Viewer3D({ popup, accent, onClose, onNext, onPrev, getTa
                   {popup.vendue ? `✓ ${t('gallery_sold_badge')}` : t('viewer_mark_sold_btn')}
                 </button>
               )}
-              {userId && (
-                <ShareButton
-                  url={popup.id_manuelle ? `/s/${popup.id_manuelle}` : (csvSharePath || `/galerie/${userSlug || userId}/${cardSlug(popup.n, popup.y, popup.br, popup.s)}?src=${encodeURIComponent(popup.f)}`)}
-                  title={popup.n}
-                  subtitle={[popup.y, popup.br, popup.s].filter(Boolean).join(' · ')}
-                  buttonStyle={{
-                    background: dark ? '#2a2a2a' : '#f0f0f0',
-                    color: dark ? '#eee' : '#333',
-                    border: 'none', borderRadius: 10, padding: '12px 14px', boxSizing: 'border-box', width: '100%',
+              {onDeleteCard && (
+                <>
+                  <button onClick={() => setConfirmDelete(true)} style={{
+                    background: '#e74c3c', color: 'white',
+                    border: 'none', borderRadius: 10, padding: '12px 14px', boxSizing: 'border-box',
                     fontWeight: 800, cursor: 'pointer', fontSize: 14, whiteSpace: 'nowrap',
-                  }}
-                />
-              )}
-              <div ref={exportMenuRef} style={{ position: 'relative' }}>
-                <button onClick={() => setShowExportChoice(v => !v)} style={{
-                  background: '#0d0d1f', color: 'white', border: 'none', boxSizing: 'border-box',
-                  borderRadius: 10, padding: '12px', fontWeight: 800, cursor: 'pointer', fontSize: 14, width: '100%',
-                }}>
-                  ⬇️ {t('export_button')}
-                </button>
-                {showExportChoice && (
-                  <div style={{
-                    position: 'absolute', bottom: '100%', left: 0, right: 0, marginBottom: 6,
-                    background: dark ? '#1a1a1a' : '#fff', border: `1px solid ${dark ? '#333' : '#e0e0e0'}`,
-                    borderRadius: 10, overflow: 'hidden', boxShadow: '0 8px 24px rgba(0,0,0,0.25)', zIndex: 2,
+                    transition: '0.2s',
                   }}>
-                    <button onClick={() => { setShowExportChoice(false); setShowVideo(true) }} style={{
-                      display: 'block', width: '100%', textAlign: 'left', background: 'none', border: 'none',
-                      padding: '12px 14px', fontWeight: 700, fontSize: 14, cursor: 'pointer', color: dark ? '#eee' : '#333',
-                    }}>
-                      🎬 {t('video_export_title')}
-                    </button>
-                    <button onClick={() => { setShowExportChoice(false); setShowPhoto(true) }} style={{
-                      display: 'block', width: '100%', textAlign: 'left', background: 'none', border: 'none',
-                      borderTop: `1px solid ${dark ? '#333' : '#eee'}`,
-                      padding: '12px 14px', fontWeight: 700, fontSize: 14, cursor: 'pointer', color: dark ? '#eee' : '#333',
-                    }}>
-                      📸 {t('photo_export_title')}
-                    </button>
-                  </div>
-                )}
-              </div>
+                    🗑️ {t('viewer_delete_btn')}
+                  </button>
+                  {confirmDelete && <ConfirmDeleteCard image={popup.f} name={popup.n} onCancel={() => setConfirmDelete(false)} onConfirm={() => { setConfirmDelete(false); onDeleteCard() }} />}
+                </>
+              )}
             </div>
             {(popup.lien_vinted || popup.lien_ebay) && (
               <div style={{ display: 'flex', gap: 8 }}>
