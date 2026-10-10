@@ -1,59 +1,87 @@
 'use client'
 import { useCallback, useEffect, useRef, useState } from 'react'
+import { createPortal } from 'react-dom'
 import Link from 'next/link'
 import { useLang, localeFor } from '@/lib/LangContext'
 
 type Pick = { day: { y: number; m: number; d: number }; card: { image: string; nom: string; annee?: string; marque?: string; collection?: string; variation?: string; num?: string; rc: boolean; auto: boolean; patch: boolean; owner: { id: string; slug: string | null; name: string | null; avatar: string | null; total: number } } }
 
 const TXT: Record<string, { eyebrow: string; by: string; cta: string; gal: string; cards: string; scratch: string; hint: string; skip: string; week: string }> = {
-  fr: { eyebrow: 'Carte du jour', by: 'Dans la collection de', cta: 'Voir la carte', gal: 'Sa galerie', cards: 'cartes', scratch: 'GRATTE', hint: 'Gratte la carte pour la découvrir', skip: 'Révéler', week: 'Cartes de la semaine' },
-  en: { eyebrow: 'Card of the day', by: 'In the collection of', cta: 'View the card', gal: 'Their gallery', cards: 'cards', scratch: 'SCRATCH', hint: 'Scratch the card to reveal it', skip: 'Reveal', week: 'This week' },
-  de: { eyebrow: 'Karte des Tages', by: 'In der Sammlung von', cta: 'Karte ansehen', gal: 'Seine Galerie', cards: 'Karten', scratch: 'RUBBELN', hint: 'Rubbel die Karte frei', skip: 'Aufdecken', week: 'Diese Woche' },
-  es: { eyebrow: 'Carta del día', by: 'En la colección de', cta: 'Ver la carta', gal: 'Su galería', cards: 'cartas', scratch: 'RASCA', hint: 'Rasca la carta para descubrirla', skip: 'Revelar', week: 'Esta semana' },
-  it: { eyebrow: 'Carta del giorno', by: 'Nella collezione di', cta: 'Vedi la carta', gal: 'La sua galleria', cards: 'carte', scratch: 'GRATTA', hint: 'Gratta la carta per scoprirla', skip: 'Rivela', week: 'Questa settimana' },
+  fr: { eyebrow: 'Carte du jour', by: 'Dans la collection de', cta: 'Voir la carte', gal: 'Sa galerie', cards: 'cartes', scratch: 'GRATTE', hint: 'Touche la carte pour la gratter', skip: 'Révéler', week: 'Cartes de la semaine' },
+  en: { eyebrow: 'Card of the day', by: 'In the collection of', cta: 'View the card', gal: 'Their gallery', cards: 'cards', scratch: 'SCRATCH', hint: 'Tap the card to scratch it', skip: 'Reveal', week: 'This week' },
+  de: { eyebrow: 'Karte des Tages', by: 'In der Sammlung von', cta: 'Karte ansehen', gal: 'Seine Galerie', cards: 'Karten', scratch: 'RUBBELN', hint: 'Tippe die Karte an und rubbele sie frei', skip: 'Aufdecken', week: 'Diese Woche' },
+  es: { eyebrow: 'Carta del día', by: 'En la colección de', cta: 'Ver la carta', gal: 'Su galería', cards: 'cartas', scratch: 'RASCA', hint: 'Toca la carta para rascarla', skip: 'Revelar', week: 'Esta semana' },
+  it: { eyebrow: 'Carta del giorno', by: 'Nella collezione di', cta: 'Vedi la carta', gal: 'La sua galleria', cards: 'carte', scratch: 'GRATTA', hint: 'Tocca la carta per grattarla', skip: 'Rivela', week: 'Questa settimana' },
 }
 
-// Pellicule a gratter : couvre la carte tant qu'elle n'a pas ete devoilee aujourd'hui. Passe a "devoilee" des qu'~40 % est gratte.
-function ScratchFoil({ label, onReveal }: { label: string; onReveal: () => void }) {
+// Pellicule a gratter. `still` : simple apercu (sur l'accueil, aucune interaction). Sinon on gratte au doigt / a la souris :
+// trait continu (pas de trous entre deux mouvements), gros pinceau, et il faut degager ~65 % de la carte pour la devoiler.
+const REVEAL_AT = 0.65
+function paintFoil(c: HTMLCanvasElement, label: string) {
+  const g = c.getContext('2d')!
+  const W = c.width, H = c.height
+  const grad = g.createLinearGradient(0, 0, W, H)
+  grad.addColorStop(0, '#8e9bb5'); grad.addColorStop(.28, '#e8edf7'); grad.addColorStop(.5, '#aab6cf'); grad.addColorStop(.74, '#f4f7fd'); grad.addColorStop(1, '#7f8ca7')
+  g.fillStyle = grad; g.fillRect(0, 0, W, H)
+  // fines rayures diagonales + grain, comme un vrai ticket
+  g.strokeStyle = 'rgba(255,255,255,.22)'; g.lineWidth = Math.max(1, W * 0.006)
+  for (let x = -H; x < W; x += W * 0.045) { g.beginPath(); g.moveTo(x, H); g.lineTo(x + H, 0); g.stroke() }
+  for (let i = 0; i < W * 1.2; i++) { g.fillStyle = Math.random() < .5 ? 'rgba(255,255,255,.18)' : 'rgba(6,18,46,.08)'; g.fillRect(Math.random() * W, Math.random() * H, 2, 2) }
+  g.strokeStyle = 'rgba(6,18,46,.5)'; g.lineWidth = Math.max(2, W * 0.012); g.strokeRect(W * 0.05, W * 0.05, W * 0.9, H - W * 0.1)
+  g.fillStyle = 'rgba(6,18,46,.62)'; g.textAlign = 'center'; g.textBaseline = 'middle'
+  g.font = `${Math.round(W * 0.2)}px Surfquest, Impact, sans-serif`; g.fillText(label, W / 2, H / 2)
+}
+function ScratchFoil({ label, still, onReveal, onProgress }: { label: string; still?: boolean; onReveal?: () => void; onProgress?: (f: number) => void }) {
   const cv = useRef<HTMLCanvasElement>(null)
-  const down = useRef(false)
+  const last = useRef<{ x: number; y: number } | null>(null)
   const moves = useRef(0)
+  const done = useRef(false)
+  const [gone, setGone] = useState(false)
   useEffect(() => {
     const c = cv.current; if (!c) return
     const r = c.getBoundingClientRect()
-    c.width = Math.max(2, Math.round(r.width * 2)); c.height = Math.max(2, Math.round(r.height * 2))
-    const g = c.getContext('2d')!
-    const grad = g.createLinearGradient(0, 0, c.width, c.height)
-    grad.addColorStop(0, '#9aa6bd'); grad.addColorStop(.35, '#e8edf7'); grad.addColorStop(.5, '#b9c4da'); grad.addColorStop(.75, '#f4f7fd'); grad.addColorStop(1, '#8895ae')
-    g.fillStyle = grad; g.fillRect(0, 0, c.width, c.height)
-    g.fillStyle = 'rgba(6,18,46,.55)'; g.textAlign = 'center'
-    g.font = `${Math.round(c.width * 0.17)}px Surfquest, Impact, sans-serif`; g.fillText(label, c.width / 2, c.height / 2 + 10)
-  }, [label])
+    const k = still ? 1.5 : 2
+    c.width = Math.max(2, Math.round(r.width * k)); c.height = Math.max(2, Math.round(r.height * k))
+    paintFoil(c, label)
+  }, [label, still])
   const cleared = useCallback(() => {
     const c = cv.current; if (!c) return 0
-    const g = c.getContext('2d')!
-    const w = 40, h = 56
+    const w = 50, h = 70
     const t = document.createElement('canvas'); t.width = w; t.height = h
     const tg = t.getContext('2d')!; tg.drawImage(c, 0, 0, w, h)
     const d = tg.getImageData(0, 0, w, h).data
     let n = 0
     for (let i = 3; i < d.length; i += 4) if (d[i] < 128) n++
-    void g
     return n / (w * h)
   }, [])
+  const check = useCallback(() => {
+    if (done.current) return
+    const f = cleared()
+    onProgress?.(Math.min(1, f / REVEAL_AT))
+    if (f >= REVEAL_AT) { done.current = true; setGone(true); onReveal?.() }
+  }, [cleared, onProgress, onReveal])
   const scratch = (e: React.PointerEvent<HTMLCanvasElement>) => {
-    if (!down.current) return
+    if (still || !last.current || done.current) return
     const c = cv.current!; const r = c.getBoundingClientRect(); const g = c.getContext('2d')!
+    const px = (e.clientX - r.left) * (c.width / r.width), py = (e.clientY - r.top) * (c.height / r.height)
     g.globalCompositeOperation = 'destination-out'
-    g.beginPath(); g.arc((e.clientX - r.left) * 2, (e.clientY - r.top) * 2, 36, 0, Math.PI * 2); g.fill()
-    moves.current++
-    if (moves.current % 10 === 0 && cleared() > 0.4) onReveal()
+    g.lineCap = 'round'; g.lineJoin = 'round'; g.lineWidth = c.width * 0.17
+    g.beginPath(); g.moveTo(last.current.x, last.current.y); g.lineTo(px, py); g.stroke()
+    last.current = { x: px, y: py }
+    if (++moves.current % 4 === 0) check()
   }
+  if (still) return <canvas ref={cv} className="cdj-foil" style={{ pointerEvents: 'none' }} aria-hidden />
   return (
-    <canvas ref={cv} className="cdj-foil" aria-label={label}
-      onPointerDown={e => { down.current = true; (e.target as HTMLElement).setPointerCapture(e.pointerId); scratch(e) }}
+    <canvas ref={cv} className={`cdj-foil${gone ? ' gone' : ''}`} aria-label={label}
+      onPointerDown={e => {
+        (e.target as HTMLElement).setPointerCapture(e.pointerId)
+        const c = cv.current!; const r = c.getBoundingClientRect()
+        last.current = { x: (e.clientX - r.left) * (c.width / r.width), y: (e.clientY - r.top) * (c.height / r.height) }
+        scratch(e)
+      }}
       onPointerMove={scratch}
-      onPointerUp={() => { down.current = false; if (cleared() > 0.4) onReveal() }} />
+      onPointerUp={() => { last.current = null; check() }}
+      onPointerCancel={() => { last.current = null }} />
   )
 }
 
@@ -62,6 +90,8 @@ export default function CardOfTheDay() {
   const { lang } = useLang()
   const [pick, setPick] = useState<Pick | null>(null)
   const [revealed, setRevealed] = useState(false)
+  const [open, setOpen] = useState(false)
+  const [prog, setProg] = useState(0)
   const [, setTick] = useState(0)
   useEffect(() => {
     let cancelled = false
@@ -82,6 +112,14 @@ export default function CardOfTheDay() {
     }).catch(() => {})
     return () => { cancelled = true }
   }, [])
+  useEffect(() => {
+    if (!open) return
+    const prev = document.body.style.overflow
+    document.body.style.overflow = 'hidden'
+    const onKey = (e: KeyboardEvent) => { if (e.key === 'Escape') setOpen(false) }
+    window.addEventListener('keydown', onKey)
+    return () => { document.body.style.overflow = prev; window.removeEventListener('keydown', onKey) }
+  }, [open])
   if (!pick) return null
   const { card, day } = pick
   const reveal = () => {
@@ -122,11 +160,12 @@ export default function CardOfTheDay() {
           <img src={card.image} alt={[card.annee, card.marque, card.collection, card.variation, card.nom].filter(Boolean).join(' ')} loading="lazy" />
         </Link>
       ) : (
-        <div className="cdj-img cdj-scratch">
+        <button type="button" className="cdj-img cdj-scratch" onClick={() => { setProg(0); setOpen(true) }} aria-label={T.hint}>
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img src={card.image} alt="" loading="lazy" />
-          <ScratchFoil label={T.scratch} onReveal={reveal} />
-        </div>
+          <ScratchFoil label={T.scratch} still />
+          <span className="cdj-sheen" aria-hidden />
+        </button>
       )}
       <div className="cdj-info">
         <span className="cdj-eyebrow">{T.eyebrow}</span>
@@ -169,6 +208,26 @@ export default function CardOfTheDay() {
           )
         })}
       </div>
+      {open && createPortal(
+        <div className="cdj-ov" role="dialog" aria-modal="true" aria-label={T.eyebrow} onClick={e => { if (e.target === e.currentTarget) setOpen(false) }}>
+          <button type="button" className="cdj-ov-x" onClick={() => setOpen(false)} aria-label="Fermer">✕</button>
+          <div className="cdj-ov-card">
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img src={card.image} alt="" />
+            {!revealed && <ScratchFoil label={T.scratch} onReveal={reveal} onProgress={setProg} />}
+          </div>
+          {!revealed ? (
+            <div className="cdj-ov-bar" aria-hidden><i style={{ width: `${Math.round(prog * 100)}%` }} /></div>
+          ) : (
+            <div className="cdj-ov-done">
+              <b className="da-display">{card.nom}</b>
+              {meta && <span>{meta}</span>}
+              <Link href={href} className="cdj-btn">{T.cta}</Link>
+            </div>
+          )}
+        </div>,
+        document.body,
+      )}
     </section>
   )
 }

@@ -550,7 +550,25 @@ html[data-theme="light"] .cf-loader i, :root:not([data-theme="dark"]) .cf-loader
 .tcp-grid button.on { outline-color: var(--text, #121212); }
 
 /* Carte du jour : pellicule a gratter (devoilee une fois grattee dans la journee) */
-.cdj-scratch { position: relative; cursor: crosshair; touch-action: none; }
+.cdj-scratch { position: relative; cursor: pointer; background: none; border: 0; padding: 0; font: inherit; display: block; width: 100%; overflow: visible;
+  animation: cdj-float 4.2s ease-in-out infinite alternate, cdj-wiggle 5.5s ease-in-out 1.5s infinite; }
+.cdj-scratch:hover { animation-play-state: paused; scale: 1.03; transition: scale .2s; }
+@keyframes cdj-float { from { translate: 0 0; } to { translate: 0 -7px; } }
+@keyframes cdj-wiggle { 0%, 72%, 100% { rotate: 0deg; } 76% { rotate: -4deg; } 80% { rotate: 3deg; } 84% { rotate: -2deg; } 88% { rotate: 0deg; } }
+.cdj-sheen { position: absolute; inset: 0; pointer-events: none; overflow: hidden; }
+.cdj-sheen::after { content: ''; position: absolute; top: -20%; bottom: -20%; width: 40%; left: -60%; transform: skewX(-18deg); background: linear-gradient(90deg, transparent, rgba(255,255,255,.55), transparent); animation: cdj-sheen 3.6s ease-in-out 1s infinite; }
+@keyframes cdj-sheen { 0% { left: -60%; } 55%, 100% { left: 130%; } }
+@media (prefers-reduced-motion: reduce) { .cdj-scratch, .cdj-sheen::after { animation: none; } }
+/* plein ecran : on gratte en grand */
+.cdj-ov { position: fixed; inset: 0; z-index: 10000; background: rgba(3,8,22,.92); backdrop-filter: blur(6px); display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 18px; padding: 56px 16px 24px; }
+.cdj-ov, .cdj-ov * { color: #fff; }
+.cdj-ov-x { position: absolute; top: calc(12px + env(safe-area-inset-top)); right: 14px; width: 44px; height: 44px; background: transparent; border: 2px solid #fff; font-size: 18px; cursor: pointer; }
+.cdj-ov-card { position: relative; width: min(88vw, calc((100dvh - 190px) * 0.714), 520px); aspect-ratio: 2.5 / 3.5; box-shadow: 0 30px 80px rgba(0,0,0,.7); }
+.cdj-ov-card img { display: block; width: 100%; height: 100%; object-fit: cover; border-radius: 0; background: none !important; animation: none !important; }
+.cdj-ov-card .cdj-foil { cursor: crosshair; transition: opacity .6s; }
+.cdj-ov-card .cdj-foil.gone { opacity: 0; pointer-events: none; }
+.cdj-ov-bar { width: min(88vw, 360px); height: 8px; border: 2px solid #fff; } .cdj-ov-bar i { display: block; height: 100%; background: #fff; transition: width .15s; }
+.cdj-ov-done { display: flex; flex-direction: column; align-items: center; gap: 10px; text-align: center; } .cdj-ov-done b { font-size: clamp(28px, 7vw, 48px); line-height: .95; font-weight: 400; } .cdj-ov-done span { opacity: .8; font-size: 14px; }
 .cdj-scratch img { display: block; width: 100%; aspect-ratio: 2.5 / 3.5; object-fit: cover; border-radius: 0; box-shadow: 0 22px 46px rgba(0,0,0,.6); background: none !important; animation: none !important; }
 .cdj-foil { position: absolute; inset: 0; width: 100%; height: 100%; touch-action: none; }
 button.cdj-btn { cursor: pointer; }
