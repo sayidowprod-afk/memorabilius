@@ -1,4 +1,10 @@
 'use client'
+function numHint(min: number | null, max: number | null): string {
+  if (min != null && max != null) return min === max ? `/${min}` : `/${min} à /${max}`
+  if (max != null) return `≤ /${max}`
+  if (min != null) return `≥ /${min}`
+  return ''
+}
 import SelectionHand from '@/components/SelectionHand'
 import { numTier } from '@/lib/cardTags'
 import { toast } from '@/lib/toast'
@@ -480,13 +486,14 @@ export default function GalerieClient({ userId, initialCardUrl, initialCards, in
   const initialParsedSearch = parseNaturalQuery(searchParams.get('q') || '')
   const [activeFilters, setActiveFilters] = useState({ rc: initialParsedSearch.rc, auto: initialParsedSearch.auto, num: initialParsedSearch.num, patch: initialParsedSearch.patch })
   const [numMax, setNumMax] = useState<number | null>(initialParsedSearch.numMax)
+  const [numMin, setNumMin] = useState<number | null>(initialParsedSearch.numMin)
   const [nlpHint, setNlpHint] = useState<string[]>(() => {
     const hints: string[] = []
     if (initialParsedSearch.rc) hints.push('RC')
     if (initialParsedSearch.auto) hints.push('Auto')
     if (initialParsedSearch.patch) hints.push('Patch')
     if (initialParsedSearch.year) hints.push(initialParsedSearch.year)
-    if (initialParsedSearch.num) hints.push(initialParsedSearch.numMax != null ? `≤ /${initialParsedSearch.numMax}` : 'numérotée')
+    if (initialParsedSearch.num) hints.push(numHint(initialParsedSearch.numMin, initialParsedSearch.numMax) || 'numérotée')
     return hints
   })
   const [filterPrivate, setFilterPrivate] = useState(false)
@@ -1248,7 +1255,7 @@ export default function GalerieClient({ userId, initialCardUrl, initialCards, in
         (!activeFilters.auto || d.auto) &&
         (!activeFilters.patch || d.patch) &&
         (!activeFilters.num || d.num !== '') &&
-        (numMax == null || (() => { const m = (d.num || '').match(/\/(\d+)$/); return m ? parseInt(m[1]) <= numMax : false })()) &&
+        ((numMax == null && numMin == null) || (() => { const m = (d.num || '').match(/\/(\d+)$/); if (!m) return false; const v = parseInt(m[1]); return (numMax == null || v <= numMax) && (numMin == null || v >= numMin) })()) &&
         (!filterPrivate || privateCards.has(d.f)) &&
         (!filterVente || d.disponible_vente) &&
         (!filterMemo || (d.item_type && d.item_type !== 'card'))
@@ -1300,7 +1307,7 @@ export default function GalerieClient({ userId, initialCardUrl, initialCards, in
       if (primary !== 0 || sortBy2 === 'none') return primary
       return applySort(sortBy2, a, b)
     })
-  }, [cards, search, fSport, fTeamDebounced, fBrandDebounced, fYear, fCollectionTag, activeFilters, numMax, filterPrivate, filterVente, filterMemo, privateCards, isOwner, sortBy, sortBy2, pinTeam, cardValues, tabSettings])
+  }, [cards, search, fSport, fTeamDebounced, fBrandDebounced, fYear, fCollectionTag, activeFilters, numMax, numMin, filterPrivate, filterVente, filterMemo, privateCards, isOwner, sortBy, sortBy2, pinTeam, cardValues, tabSettings])
 
   const filteredStats = useMemo(() => ({
     rc:   filtered.filter(c => c.rc).length,
@@ -2674,8 +2681,8 @@ export default function GalerieClient({ userId, initialCardUrl, initialCards, in
                   if (parsed.auto) hints.push('Auto')
                   if (parsed.patch) hints.push('Patch')
                   setFYear(parsed.year || ''); if (parsed.year) hints.push(parsed.year)
-                  setNumMax(parsed.numMax)
-                  if (parsed.num) hints.push(parsed.numMax != null ? `≤ /${parsed.numMax}` : t('gallery_numbered_hint'))
+                  setNumMax(parsed.numMax); setNumMin(parsed.numMin)
+                  if (parsed.num) hints.push(numHint(parsed.numMin, parsed.numMax) || t('gallery_numbered_hint'))
                   setNlpHint(hints)
                   setSearch(parsed.text)
                 }, 200)
@@ -3523,7 +3530,7 @@ export default function GalerieClient({ userId, initialCardUrl, initialCards, in
                 <div style={{ fontSize: 40, marginBottom: 12 }}>🔍</div>
                 <p style={{ fontWeight: 800, fontSize: 15, marginBottom: 8 }}>{t('gallery_no_match_title')}</p>
                 <p style={{ color: '#999', fontSize: 13, marginBottom: 16 }}>{t('gallery_no_match_sub')}</p>
-                <button onClick={() => { setSearchInput(''); setSearch(''); setFTeam(''); setFBrand(''); setFYear(''); setFCollectionTag(''); setPinTeam(''); setActiveFilters({ rc: false, auto: false, num: false, patch: false }); setFilterVente(false); setNumMax(null); setNlpHint([]) }} style={{ background: '#003DA6', color: 'white', padding: '10px 20px', borderRadius: 50, fontWeight: 800, fontSize: 13, border: 'none', cursor: 'pointer' }}>
+                <button onClick={() => { setSearchInput(''); setSearch(''); setFTeam(''); setFBrand(''); setFYear(''); setFCollectionTag(''); setPinTeam(''); setActiveFilters({ rc: false, auto: false, num: false, patch: false }); setFilterVente(false); setNumMax(null); setNumMin(null); setNlpHint([]) }} style={{ background: '#003DA6', color: 'white', padding: '10px 20px', borderRadius: 50, fontWeight: 800, fontSize: 13, border: 'none', cursor: 'pointer' }}>
                   {t('gallery_clear_filters')}
                 </button>
               </div>

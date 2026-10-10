@@ -1,10 +1,10 @@
 'use client'
-import { useEffect, useRef } from 'react'
+import { useState } from 'react'
 import Link from 'next/link'
 
 // Idees visuelles pour pousser la nouvelle DA (Surfquest, marine -> bleu electrique, angles droits, doubles filets, metaux).
 // Page de TRAVAIL reservee aux admins : donnees d'exemple en dur, rien n'est lu ni ecrit.
-// Serie 6 : les series precedentes sont integrees au site ou ecartees. Tout le style est ici, prefixe .ix.
+// Serie 7. Tout le style est ici, prefixe .ix.
 
 const SB = 'https://snnrkzbevjhdtviizfyp.supabase.co/storage/v1/object/public/avatars/cartes/eb730dee-414e-4fcb-89d8-4a7b3448c218/'
 const C = {
@@ -18,12 +18,11 @@ const C = {
 const ALL = [C.mccain, C.edwards, C.mcw, C.maxey, C.hawkins, C.luwawu]
 
 const CSS = `
-.ix { --bl:#003da6; --el:#2f6bff; font-family: system-ui, sans-serif; color:#fff; min-height:100vh;
+.ix { --el:#2f6bff; font-family: system-ui, sans-serif; color:#fff; min-height:100vh;
   background: radial-gradient(circle at 15% -10%, rgba(91,141,239,.10), transparent 45%), linear-gradient(160deg,#050912 0%,#08153b 55%,#0a2468 100%); padding: 24px clamp(14px,3vw,44px) 90px; }
 .ix * { box-sizing: border-box; }
 .ix img { background: none !important; animation: none !important; }
 .ix .sf { font-family: 'Surfquest', Impact, 'Arial Narrow', sans-serif; font-weight: 400; text-transform: uppercase; letter-spacing: .02em; }
-/* le theme sombre global force la couleur du texte des div : sur les fonds clairs / fonces on la fixe explicitement */
 .ix .ink, .ix .ink * { color: #06122e !important; }
 .ix .wht, .ix .wht * { color: #fff !important; }
 .ix h1 { font-size: clamp(34px,6vw,60px); margin: 8px 0 6px; line-height: .95; }
@@ -41,97 +40,69 @@ const CSS = `
 .ix .tags a { color:#fff; text-decoration:none; border: 2px solid rgba(255,255,255,.4); padding: 5px 12px; font: 800 11px system-ui; letter-spacing:.12em; text-transform:uppercase; }
 .ix .tags a:hover { background:#fff; color:#06122e; }
 
-/* 01 · toploader */
-.ix .tlb { position:relative; width: 190px; padding: 16px 12px 22px; background: linear-gradient(135deg, rgba(255,255,255,.28), rgba(255,255,255,.08) 40%, rgba(255,255,255,.2)); border: 2px solid rgba(255,255,255,.55); box-shadow: 0 22px 44px rgba(0,0,0,.55), inset 0 0 0 5px rgba(255,255,255,.12); }
-.ix .tlb::before { content:''; position:absolute; left: 8px; right: 8px; top: 6px; height: 7px; background: rgba(255,255,255,.35); }
-.ix .tlb::after { content:''; position:absolute; inset:0; background: linear-gradient(115deg, transparent 30%, rgba(255,255,255,.35) 46%, transparent 58%); pointer-events:none; }
-.ix .tlb .card { box-shadow:none; }
-.ix .tlg { position:absolute; left: 50%; bottom: -12px; transform: translateX(-50%); background:#fff; padding: 3px 12px; font: 800 10px system-ui; letter-spacing:.12em; text-transform:uppercase; white-space:nowrap; z-index:2; }
+/* 01 recherche naturelle */
+.ix .sbar { display:flex; align-items:center; gap:10px; background:#0a1030; border: 3px solid #fff; padding: 12px 16px; max-width: 620px; font-size: 20px; }
+.ix .sbar i { font-style: normal; opacity:.6; } .ix .sbar b { font-weight: 700; }
+.ix .chips { display:flex; flex-wrap:wrap; gap: 8px; margin-top: 12px; }
+.ix .chips span { background: var(--c); padding: 6px 12px; font: 800 12px system-ui; letter-spacing:.1em; text-transform:uppercase; display:inline-flex; align-items:center; gap:8px; }
+.ix .chips span u { text-decoration:none; opacity:.7; cursor:pointer; }
+.ix .res { margin-top: 16px; display:flex; gap: 10px; } .ix .res .card { width: 74px; box-shadow:none; }
 
-/* 02 · tapis */
-.ix .mat { position:relative; height: 380px; background: radial-gradient(120% 120% at 50% 40%, #12306b, #091a3d 70%); border: 6px solid #0a1228; box-shadow: inset 0 0 60px rgba(0,0,0,.6); overflow:hidden; }
-.ix .mat::before { content:''; position:absolute; inset:0; background: repeating-linear-gradient(45deg, rgba(255,255,255,.025) 0 2px, transparent 2px 6px); }
-.ix .mat .scd { position:absolute; width: 96px; transition: transform .25s; box-shadow: 0 10px 20px rgba(0,0,0,.55); }
-.ix .mat .scd:hover { transform: translateY(-14px) rotate(0deg) scale(1.12) !important; z-index: 20 !important; }
-.ix .mat .scd .card { box-shadow:none; }
+/* 02 carte du jour : serie */
+.ix .week { display:grid; grid-template-columns: repeat(7, 1fr); gap: 8px; max-width: 700px; }
+.ix .wd { aspect-ratio: 2.5/3.5; position:relative; border: 2px solid rgba(255,255,255,.25); background: rgba(255,255,255,.05); display:flex; align-items:center; justify-content:center; }
+.ix .wd img { position:absolute; inset:0; height:100%; box-shadow:none; } .ix .wd.miss { border-style:dashed; } .ix .wd.today { border-color:#ffd54a; box-shadow: 0 0 16px rgba(255,213,74,.6); }
+.ix .wd small { position:absolute; left:0; right:0; bottom:-22px; text-align:center; font: 800 10px system-ui; letter-spacing:.14em; opacity:.7; }
+.ix .wd b { font-size: 34px; opacity:.4; }
 
-/* 03 · flamme */
-.ix .flame { display:flex; align-items:center; gap: 26px; flex-wrap:wrap; }
-.ix .flame svg { width: 150px; height: 190px; filter: drop-shadow(0 0 24px rgba(255,140,0,.75)); animation: ixflick 1.4s ease-in-out infinite; transform-origin: 50% 100%; }
-@keyframes ixflick { 0%,100% { transform: scale(1,1) rotate(0); } 25% { transform: scale(1.03,.97) rotate(-1.5deg); } 55% { transform: scale(.98,1.04) rotate(1.5deg); } 80% { transform: scale(1.02,.99) rotate(-.8deg); } }
-.ix .flame .n { font-size: 120px; line-height: .85; } .ix .flame .lb { font: 800 14px system-ui; letter-spacing:.24em; text-transform:uppercase; margin-top: 8px; }
-.ix .flame .rec { font: 700 12px system-ui; letter-spacing:.14em; text-transform:uppercase; opacity:.7; margin-top: 12px; }
-@media (prefers-reduced-motion: reduce) { .ix .flame svg { animation: none; } }
+/* 03 pochette de set */
+.ix .setcov { width: 230px; background: linear-gradient(160deg,#0a2468,#003da6 60%,#08153b); border: 3px solid #fff; padding: 16px 14px 18px; box-shadow: 0 24px 50px rgba(0,0,0,.55); }
+.ix .setcov .y { font: 800 11px system-ui; letter-spacing:.2em; text-transform:uppercase; } .ix .setcov h4 { margin: 6px 0 12px; font-size: 38px; line-height:.92; }
+.ix .setcov .pic { display:grid; grid-template-columns: repeat(3,1fr); gap: 5px; } .ix .setcov .pic .card { box-shadow:none; }
+.ix .setcov .bar { margin-top: 14px; height: 10px; background: rgba(255,255,255,.2); } .ix .setcov .bar i { display:block; height:100%; width: 34%; background:#fff; }
+.ix .setcov .nb { display:flex; justify-content:space-between; margin-top: 6px; font: 800 11px system-ui; letter-spacing:.12em; }
 
-/* 04 · autographes */
-.ix .sigs { display:grid; grid-template-columns: repeat(auto-fill, minmax(230px,1fr)); gap: 12px; }
-.ix .sig { position:relative; height: 96px; overflow:hidden; background:#ddd; border: 3px solid #fff; }
-.ix .sig img { position:absolute; left:0; width:100%; height: auto; bottom: -6%; transform: scale(1.7); transform-origin: 50% 82%; box-shadow:none; filter: contrast(1.15); }
-.ix .sig b { position:absolute; left: 0; bottom: 0; background:#06122e; padding: 3px 9px; font: 800 10px system-ui; letter-spacing:.12em; text-transform:uppercase; color:#fff !important; }
+/* 04 duel de cartes */
+.ix .duel { display:flex; align-items:center; gap: 0; flex-wrap:wrap; }
+.ix .duel .side { text-align:center; width: 170px; } .ix .duel .vs { width: 64px; height:64px; margin: 0 -10px; z-index:2; background:#fff; clip-path: polygon(50% 0,100% 50%,50% 100%,0 50%); display:flex; align-items:center; justify-content:center; font-size: 26px; color:#06122e !important; }
+.ix .duel ul { list-style:none; padding:0; margin: 10px 0 0; font: 800 11px system-ui; letter-spacing:.1em; text-transform:uppercase; } .ix .duel li { padding: 5px 0; border-top: 2px solid rgba(255,255,255,.18); display:flex; justify-content:space-between; }
+.ix .duel li.w { color:#ffd54a !important; }
 
-/* 05 · maillot */
-.ix .jersey { position:relative; width: 230px; height: 260px; display:flex; flex-direction:column; align-items:center; justify-content:center; text-align:center; background: linear-gradient(160deg, var(--c), color-mix(in srgb, var(--c) 55%, #000));
-  clip-path: polygon(0 12%, 22% 0, 36% 0, 42% 9%, 58% 9%, 64% 0, 78% 0, 100% 12%, 100% 28%, 84% 28%, 84% 100%, 16% 100%, 16% 28%, 0 28%); }
-.ix .jersey::before { content:''; position:absolute; inset:0; background: repeating-linear-gradient(90deg, rgba(255,255,255,.07) 0 3px, transparent 3px 8px); }
-.ix .jersey .nm { position:relative; font: 800 13px system-ui; letter-spacing:.2em; text-transform:uppercase; margin-top: 30px; }
-.ix .jersey .no { position:relative; font-size: 128px; line-height: .85; text-shadow: 0 4px 0 rgba(0,0,0,.25); }
-.ix .jersey .ct { position:relative; font: 800 11px system-ui; letter-spacing:.16em; text-transform:uppercase; opacity:.85; margin-top: 8px; }
+/* 05 barre de progression de collection */
+.ix .goal { max-width: 640px; }
+.ix .goal .top { display:flex; justify-content:space-between; align-items:flex-end; margin-bottom: 8px; } .ix .goal .big { font-size: 64px; line-height:.9; } .ix .goal .lb { font: 800 12px system-ui; letter-spacing:.16em; text-transform:uppercase; opacity:.8; }
+.ix .track { position:relative; height: 26px; background: rgba(255,255,255,.12); border: 3px solid #fff; padding: 3px; } .ix .track i { display:block; height:100%; background: repeating-linear-gradient(90deg, #2f6bff 0 14px, #1a47b8 14px 16px); width: 60%; }
+.ix .miles { position:relative; height: 34px; margin-top: 6px; } .ix .miles span { position:absolute; transform: translateX(-50%); font: 800 10px system-ui; letter-spacing:.1em; opacity:.75; text-align:center; }
+.ix .miles span::before { content:''; display:block; width:2px; height:8px; background:#fff; margin: 0 auto 3px; }
 
-/* 06 · box score */
-.ix .box { width:100%; max-width: 720px; border-collapse: collapse; font-variant-numeric: tabular-nums; }
-.ix .box th { text-align:right; padding: 8px 12px; font: 800 10px system-ui; letter-spacing:.16em; text-transform:uppercase; background:#fff !important; color:#06122e !important; }
-.ix .box th:first-child { text-align:left; }
-.ix .box td { text-align:right; padding: 9px 12px; font-size: 26px; line-height:1; border-bottom: 2px solid rgba(255,255,255,.14); }
-.ix .box td:first-child { text-align:left; font: 800 14px system-ui; letter-spacing:.1em; text-transform:uppercase; }
-.ix .box td i { display:inline-block; width: 12px; height: 12px; margin-right: 10px; background: var(--c); }
-.ix .box tr:nth-child(even) td { background: rgba(255,255,255,.05); } .ix .box td.top { color:#ffd54a !important; }
-.ix .box tfoot td { border-bottom: 0; border-top: 4px solid #fff; background: transparent !important; }
+/* 06 pop report */
+.ix .pop { display:grid; grid-template-columns: repeat(auto-fit, minmax(90px,1fr)); gap: 8px; max-width: 760px; align-items:end; height: 200px; }
+.ix .pop div { display:flex; flex-direction:column; justify-content:flex-end; align-items:center; height:100%; font: 800 11px system-ui; letter-spacing:.1em; }
+.ix .pop i { display:block; width: 100%; background: linear-gradient(180deg,#2f6bff,#0a2468); margin-bottom: 6px; border-top: 4px solid #fff; } .ix .pop b { font-size: 22px; line-height:1; margin-bottom: 4px; }
 
-/* 07 · gratter */
-.ix .scratch { position:relative; width: 230px; aspect-ratio: 2.5/3.5; touch-action:none; cursor: crosshair; }
-.ix .scratch .card { position:absolute; inset:0; height:100%; }
-.ix .scratch canvas { position:absolute; inset:0; width:100%; height:100%; }
+/* 07 carte de visite */
+.ix .biz { display:flex; width: 360px; max-width:100%; background:#fff; box-shadow: 0 22px 44px rgba(0,0,0,.55); aspect-ratio: 1.75/1; border-left: 12px solid #003da6; }
+.ix .biz .l { flex:1; padding: 14px 14px; display:flex; flex-direction:column; justify-content:space-between; } .ix .biz h4 { margin:0; font-size: 30px; line-height:.92; }
+.ix .biz small { font: 800 9px system-ui; letter-spacing:.16em; text-transform:uppercase; } .ix .biz .qr { width: 66px; height:66px; background: repeating-conic-gradient(#06122e 0 25%, #fff 0 50%) 0 0 / 11px 11px; border: 4px solid #06122e; }
+.ix .biz .cards { width: 92px; position:relative; margin-right: 10px; } .ix .biz .cards img { position:absolute; width: 62px; box-shadow: 0 6px 12px rgba(0,0,0,.4); }
 
-/* 08 · suivi d'envoi */
-.ix .steps { display:flex; max-width: 760px; }
-.ix .stp { flex:1; position:relative; padding: 16px 12px 14px 26px; background: rgba(255,255,255,.08); margin-right: -1px; clip-path: polygon(0 0, calc(100% - 18px) 0, 100% 50%, calc(100% - 18px) 100%, 0 100%, 18px 50%); text-align:center; }
-.ix .stp:first-child { clip-path: polygon(0 0, calc(100% - 18px) 0, 100% 50%, calc(100% - 18px) 100%, 0 100%); }
-.ix .stp.done { background: #1f9d55; } .ix .stp.now { background: #2f6bff; animation: ixpulse 1.6s ease-in-out infinite; }
-@keyframes ixpulse { 50% { filter: brightness(1.25); } }
-.ix .stp .ic { font-size: 26px; line-height:1; } .ix .stp b { display:block; font: 800 11px system-ui; letter-spacing:.12em; text-transform:uppercase; margin-top: 6px; } .ix .stp small { font: 600 10px system-ui; opacity:.8; }
-@media (prefers-reduced-motion: reduce) { .ix .stp.now { animation: none; } }
+/* 08 onglets en classeur tabs */
+.ix .stk { position:relative; height: 270px; max-width: 520px; }
+.ix .stk .pg { position:absolute; left:0; right:0; background: var(--c); border: 3px solid #fff; padding: 12px 16px; height: 230px; transition: transform .25s; }
+.ix .stk .pg b { position:absolute; top: -26px; left: var(--x); background: var(--c); border: 3px solid #fff; border-bottom: 0; padding: 4px 12px; font: 800 11px system-ui; letter-spacing:.14em; text-transform:uppercase; }
+.ix .stk .pg:hover { transform: translateY(-12px); }
 
-/* 09 · accreditation */
-.ix .lanyard { position:relative; width: 270px; padding-top: 60px; }
-.ix .lanyard::before { content:''; position:absolute; left: 50%; top: -400px; width: 26px; height: 460px; margin-left: -13px; background: repeating-linear-gradient(180deg, #2f6bff 0 14px, #1a47b8 14px 28px); }
-.ix .lanyard .clip { position:absolute; left: 50%; top: 40px; width: 46px; height: 26px; margin-left: -23px; background: linear-gradient(180deg,#e6ebf5,#8d97ad); z-index: 2; }
-.ix .pass { background:#fff; padding: 20px 18px 16px; text-align:center; box-shadow: 0 26px 50px rgba(0,0,0,.6); position:relative; border-top: 14px solid #08153b; }
-.ix .pass .lvl { display:inline-block; background:#08153b; padding: 3px 12px; font: 800 10px system-ui; letter-spacing:.2em; text-transform:uppercase; color:#fff !important; }
-.ix .pass .ph { width: 110px; height: 110px; margin: 12px auto 10px; border: 4px solid #06122e; background: linear-gradient(135deg,#0a2468,#2f6bff); display:flex; align-items:center; justify-content:center; font-size: 60px; color:#fff !important; }
-.ix .pass .nm { font-size: 34px; line-height: .95; } .ix .pass .ac { font: 800 11px system-ui; letter-spacing:.2em; text-transform:uppercase; margin: 6px 0 12px; }
-.ix .pass .qr { width: 86px; height: 86px; margin: 0 auto; background: repeating-conic-gradient(#06122e 0 25%, #fff 0 50%) 0 0 / 14px 14px; border: 6px solid #06122e; outline: 3px solid #fff; box-shadow: 0 0 0 5px #06122e; }
-.ix .pass .bar { margin-top: 14px; background:#06122e; padding: 5px; font: 800 10px system-ui; letter-spacing:.18em; text-transform:uppercase; color:#fff !important; }
+/* 09 jauge de rarete */
+.ix .rar { max-width: 560px; }
+.ix .rar .row2 { display:flex; align-items:center; gap: 12px; padding: 8px 0; border-bottom: 2px solid rgba(255,255,255,.14); }
+.ix .rar .nm { width: 130px; font: 800 12px system-ui; letter-spacing:.1em; text-transform:uppercase; } .ix .rar .bar { flex:1; height: 14px; background: rgba(255,255,255,.12); } .ix .rar .bar i { display:block; height:100%; background: var(--c); }
+.ix .rar .pc { width: 60px; text-align:right; font-size: 22px; }
 
-/* 10 · draft board */
-.ix .draft { display:grid; grid-template-columns: repeat(5, 1fr); gap: 6px; max-width: 760px; }
-.ix .pick { position:relative; padding: 8px 8px 8px 10px; background: var(--c); min-height: 96px; display:flex; flex-direction:column; justify-content:space-between; overflow:hidden; }
-.ix .pick .no { font-size: 38px; line-height:.9; opacity:.95; } .ix .pick .pl { font: 800 11px system-ui; letter-spacing:.06em; text-transform:uppercase; line-height:1.15; }
-.ix .pick .tm { font: 700 9px system-ui; letter-spacing:.14em; text-transform:uppercase; opacity:.85; }
-.ix .pick .card { position:absolute; right: -6px; bottom: -12px; width: 46px; transform: rotate(8deg); box-shadow: 0 6px 12px rgba(0,0,0,.5); }
-
-/* 11 · galons */
-.ix .ranks { display:grid; grid-template-columns: repeat(auto-fit, minmax(110px,1fr)); gap: 14px; max-width: 880px; }
-.ix .rk { text-align:center; padding: 14px 6px; background: rgba(255,255,255,.06); border: 2px solid rgba(255,255,255,.18); }
-.ix .rk .st { height: 74px; display:flex; flex-direction:column; align-items:center; justify-content:flex-end; gap: 3px; margin-bottom: 8px; }
-.ix .rk .st i { display:block; width: 54px; height: 14px; background: var(--c); clip-path: polygon(0 55%, 50% 0, 100% 55%, 100% 100%, 50% 45%, 0 100%); }
-.ix .rk b { display:block; font-size: 26px; line-height: 1; } .ix .rk small { font: 800 9px system-ui; letter-spacing:.16em; text-transform:uppercase; opacity:.7; }
-
-/* 12 · ruban de chantier */
-.ix .tape-card { position:relative; width: 180px; overflow:hidden; }
-.ix .tape-card .card { filter: blur(6px) brightness(.6); transform: scale(1.06); }
-.ix .tape { position:absolute; left: -30%; width: 160%; padding: 7px 0; background: repeating-linear-gradient(-45deg, #ffd54a 0 16px, #111 16px 32px); text-align:center; font: 800 13px system-ui; letter-spacing:.34em; text-transform:uppercase; box-shadow: 0 6px 14px rgba(0,0,0,.5); }
-.ix .tape span { background:#ffd54a; color:#111 !important; padding: 2px 14px; }
-.ix .tape.a { top: 34%; transform: rotate(-14deg); } .ix .tape.b { top: 58%; transform: rotate(10deg); }
+/* 10 calendrier de sorties */
+.ix .rel { display:grid; grid-template-columns: repeat(auto-fit, minmax(150px,1fr)); gap: 10px; max-width: 840px; }
+.ix .rl { background: rgba(255,255,255,.07); border: 2px solid rgba(255,255,255,.2); display:flex; gap: 10px; padding: 10px; align-items:center; }
+.ix .rl .dt { background:#fff; padding: 4px 8px; text-align:center; flex-shrink:0; } .ix .rl .dt, .ix .rl .dt * { color:#06122e !important; } .ix .rl .dt b { display:block; font-size: 28px; line-height:.9; } .ix .rl .dt small { font: 800 9px system-ui; letter-spacing:.14em; }
+.ix .rl .nm { font: 800 12px system-ui; letter-spacing:.06em; text-transform:uppercase; line-height:1.2; } .ix .rl .nm span { display:block; font-weight:600; opacity:.7; letter-spacing:.04em; text-transform:none; font-size:11px; }
 `
 
 function Bay({ id, n, title, desc, children }: { id: string; n: string; title: string; desc: string; children: React.ReactNode }) {
@@ -145,159 +116,77 @@ function Bay({ id, n, title, desc, children }: { id: string; n: string; title: s
   )
 }
 
-function Scratch({ src }: { src: string }) {
-  const cv = useRef<HTMLCanvasElement>(null)
-  const down = useRef(false)
-  useEffect(() => {
-    const c = cv.current; if (!c) return
-    const r = c.getBoundingClientRect()
-    c.width = Math.round(r.width * 2); c.height = Math.round(r.height * 2)
-    const g = c.getContext('2d')!
-    const grad = g.createLinearGradient(0, 0, c.width, c.height)
-    grad.addColorStop(0, '#9aa6bd'); grad.addColorStop(.35, '#e8edf7'); grad.addColorStop(.5, '#b9c4da'); grad.addColorStop(.75, '#f4f7fd'); grad.addColorStop(1, '#8895ae')
-    g.fillStyle = grad; g.fillRect(0, 0, c.width, c.height)
-    g.fillStyle = 'rgba(6,18,46,.55)'; g.font = `${Math.round(c.width * 0.16)}px Surfquest, Impact, sans-serif`; g.textAlign = 'center'
-    g.fillText('GRATTE', c.width / 2, c.height / 2 - 8); g.font = `${Math.round(c.width * 0.07)}px system-ui`; g.fillText('TA CARTE DU JOUR', c.width / 2, c.height / 2 + 40)
-  }, [])
-  const scratch = (e: React.PointerEvent<HTMLCanvasElement>) => {
-    if (!down.current) return
-    const c = cv.current!; const r = c.getBoundingClientRect(); const g = c.getContext('2d')!
-    g.globalCompositeOperation = 'destination-out'
-    g.beginPath(); g.arc((e.clientX - r.left) * 2, (e.clientY - r.top) * 2, 34, 0, Math.PI * 2); g.fill()
-  }
-  return (
-    <div className="scratch">
-      {/* eslint-disable-next-line @next/next/no-img-element */}
-      <img className="card" src={src} alt="" />
-      <canvas ref={cv} onPointerDown={e => { down.current = true; (e.target as HTMLElement).setPointerCapture(e.pointerId); scratch(e) }} onPointerMove={scratch} onPointerUp={() => { down.current = false }} />
-    </div>
-  )
-}
-
 export default function DaIdeas() {
+  const [q, setQ] = useState(0)
+  const queries = [
+    { t: 'num en dessous de 25', chips: [['≤ /25', '#7c3aed']] },
+    { t: 'iguodala rc auto 2005', chips: [['RC', '#e67e22'], ['AUTO', '#2e7d32'], ['2005', '#2f6bff']] },
+    { t: 'cartes à vendre plus de 50 €', chips: [['À vendre', '#1f9d55'], ['≥ 50 €', '#e9b44c']] },
+  ]
   return (
     <div className="ix">
       <style>{CSS}</style>
       <Link href="/admin" className="back">← Admin</Link>
-      <h1 className="sf">Idées visuelles · Série 6</h1>
-      <p className="lead">Douze nouvelles pistes, plus « objet » : toploader, tapis de table, flamme de série, mur d&apos;autographes, maillot, box score, carte à gratter, suivi d&apos;envoi, accréditation, draft board, galons, ruban de chantier. Chaque maquette est vivante : survole, gratte. Dis-moi les numéros à garder.</p>
+      <h1 className="sf">Idées visuelles · Série 7</h1>
+      <p className="lead">Dix nouvelles pistes, tournées vers l&apos;usage : recherche en phrases, série de cartes du jour, pochette de set, duel, objectif de collection, pop report, carte de visite, classeur en onglets, rareté, calendrier de sorties. Dis-moi les numéros à garder.</p>
       <nav className="tags">
-        {['01 Toploader', '02 Tapis', '03 Flamme', '04 Autographes', '05 Maillot', '06 Box score', '07 Gratter', '08 Suivi d’envoi', '09 Accréditation', '10 Draft board', '11 Galons', '12 Ruban de chantier'].map((t, i) => <a key={t} href={`#o${i + 1}`}>{t}</a>)}
+        {['01 Recherche en phrases', '02 Semaine de cartes', '03 Pochette de set', '04 Duel', '05 Objectif', '06 Pop report', '07 Carte de visite', '08 Pages empilées', '09 Rareté', '10 Sorties'].map((t, i) => <a key={t} href={`#p${i + 1}`}>{t}</a>)}
       </nav>
 
-      <Bay id="o1" n="01 — Toploader" title="La carte dans son toploader" desc="Pour les cartes protégées : un boîtier rigide transparent avec reflet, bord supérieur épais et une étiquette sur le bas (nom du set ou note perso). Un rendu « objet » plus réaliste qu'une simple image, sans toucher à la carte.">
-        <div className="row">
-          <div className="tlb">{/* eslint-disable-next-line @next/next/no-img-element */}<img className="card" src={C.mccain.img} alt="" /><span className="tlg ink">Contenders Optic</span></div>
-          <div className="tlb" style={{ width: 160 }}>{/* eslint-disable-next-line @next/next/no-img-element */}<img className="card" src={C.hawkins.img} alt="" /><span className="tlg ink">Prizm · Auto</span></div>
-        </div>
+      <Bay id="p1" n="01 — Recherche en phrases" title="Les filtres compris s'affichent en puces retirables" desc="Tu tapes une phrase (« num en dessous de 25 », « iguodala rc auto 2005 ») : chaque critère compris devient une puce colorée qu'on retire d'un clic, et les cartes correspondantes apparaissent dessous. On voit exactement ce que le site a compris.">
+        <div className="row" style={{ marginBottom: 12 }}>{queries.map((x, i) => <button key={x.t} onClick={() => setQ(i)} style={{ background: q === i ? '#fff' : 'transparent', color: q === i ? '#06122e' : '#fff', border: '2px solid #fff', padding: '6px 12px', font: '800 11px system-ui', letterSpacing: '.1em', textTransform: 'uppercase', cursor: 'pointer' }}>Exemple {i + 1}</button>)}</div>
+        <div className="sbar"><i>🔍</i><b>{queries[q].t}</b></div>
+        <div className="chips">{queries[q].chips.map(c => <span key={c[0]} style={{ ['--c' as string]: c[1] }}>{c[0]}<u>✕</u></span>)}</div>
+        <div className="res">{[C.mccain, C.hawkins, C.mcw, C.maxey].map((c, i) => <div key={i}>{/* eslint-disable-next-line @next/next/no-img-element */}<img className="card" src={c.img} alt="" /></div>)}</div>
       </Bay>
 
-      <Bay id="o2" n="02 — Tapis" title="Étaler sa collection sur un tapis de table" desc="Une vue « tapis » : les cartes éparpillées sur un feutre marine, légèrement penchées, qui se soulèvent et se redressent au survol. Pour feuilleter une sélection comme si on triait ses cartes à la main.">
-        <div className="mat">
-          {ALL.concat(ALL).slice(0, 9).map((c, i) => (
-            <div key={i} className="scd" style={{ left: `${6 + (i % 5) * 18 + (i > 4 ? 8 : 0)}%`, top: `${i > 4 ? 48 : 8}%`, transform: `rotate(${((i * 37) % 29) - 14}deg)`, zIndex: i }}>
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img className="card" src={c.img} alt="" />
-            </div>
-          ))}
-        </div>
-        <div className="cap">Survole les cartes</div>
-      </Bay>
-
-      <Bay id="o3" n="03 — Flamme" title="La série de jours avec une vraie flamme" desc="Le « 53 jours de suite » devient une flamme qui vacille, le nombre en géant dessous, et le record personnel en petit. Plus la série est longue, plus la flamme est grande. Très motivant, très reconnaissable.">
-        <div className="flame">
-          <svg viewBox="0 0 100 130" aria-hidden>
-            <defs><linearGradient id="fl1" x1="0" y1="1" x2="0" y2="0"><stop offset="0" stopColor="#ff3b00" /><stop offset=".55" stopColor="#ff9a00" /><stop offset="1" stopColor="#ffe26a" /></linearGradient></defs>
-            <path d="M50 4 C58 28 86 40 86 78 C86 108 68 126 50 126 C32 126 14 108 14 78 C14 58 26 50 30 34 C40 44 40 56 44 60 C50 44 46 24 50 4Z" fill="url(#fl1)" />
-            <path d="M50 52 C56 68 70 78 70 96 C70 112 60 122 50 122 C40 122 30 112 30 96 C30 82 42 76 44 62 C48 68 48 60 50 52Z" fill="#fff3b0" opacity=".85" />
-          </svg>
-          <div><div className="n sf">53</div><div className="lb">jours de suite</div><div className="rec">Record : 61 jours · prochain palier : 60</div></div>
-        </div>
-      </Bay>
-
-      <Bay id="o4" n="04 — Autographes" title="Un mur de signatures" desc="Pour les cartes dédicacées : on ne montre que le bas de la carte, zoomé sur la signature, en tuiles larges avec le nom du joueur. Un « livre d'or » des autographes de la collection, très différent de la grille de cartes.">
-        <div className="sigs">
-          {[C.hawkins, C.mccain, C.mcw, C.luwawu].map(c => (
-            <div className="sig" key={c.nom}>{/* eslint-disable-next-line @next/next/no-img-element */}<img className="card" src={c.img} alt="" /><b>{c.nom}</b></div>
-          ))}
-        </div>
-      </Bay>
-
-      <Bay id="o5" n="05 — Maillot" title="Le numéro de maillot en tête des pages joueur" desc="La fiche joueur s'ouvre sur un maillot aux couleurs de l'équipe : nom de famille en haut, gros numéro Surfquest, nombre de cartes en bas. Un repère immédiat, et un visuel fort pour le partage.">
-        <div className="row" style={{ alignItems: 'center' }}>
-          <div className="jersey wht" style={{ ['--c' as string]: '#006bb6' }}><div className="nm">Maxey</div><div className="no sf">0</div><div className="ct">75 cartes</div></div>
-          <div className="jersey wht" style={{ ['--c' as string]: '#7a3fbf' }}><div className="nm">Booker</div><div className="no sf">1</div><div className="ct">646 cartes</div></div>
-        </div>
-      </Bay>
-
-      <Bay id="o6" n="06 — Box score" title="Les stats par équipe façon feuille de match" desc="Un tableau « box score » : une ligne par équipe avec carré de couleur, colonnes cartes / RC / auto / patch, meilleur score de chaque colonne en doré, total en pied. Dense, lisible, très sport.">
-        <table className="box wht">
-          <thead><tr><th>Équipe</th><th>Cartes</th><th>RC</th><th>Auto</th><th>Patch</th></tr></thead>
-          <tbody>
-            {([['76ers', '#006bb6', 212, 41, 14, 9], ['Suns', '#7a3fbf', 96, 22, 8, 3], ['Celtics', '#1f9d55', 74, 12, 5, 4], ['Lakers', '#e9b44c', 58, 9, 3, 2]] as (string | number)[][]).map(r => (
-              <tr key={r[0] as string}><td><i style={{ ['--c' as string]: r[1] }} />{r[0]}</td>{[2, 3, 4, 5].map(k => <td key={k} className={(r[k] as number) === [212, 41, 14, 9][k - 2] ? 'top sf' : 'sf'}>{r[k]}</td>)}</tr>
-            ))}
-          </tbody>
-          <tfoot><tr><td>Total</td><td className="sf">440</td><td className="sf">84</td><td className="sf">30</td><td className="sf">18</td></tr></tfoot>
-        </table>
-      </Bay>
-
-      <Bay id="o7" n="07 — Gratter" title="Une carte à gratter pour les récompenses" desc="Quand on a une récompense (carte du jour, badge, bonus d'XP) : une pellicule argentée « GRATTE » à effacer du doigt pour révéler ce qu'il y a dessous. Interactif et ludique, sans gros développement.">
-        <Scratch src={C.maxey.img} />
-        <div className="cap">Gratte avec la souris ou le doigt</div>
-      </Bay>
-
-      <Bay id="o8" n="08 — Suivi d'envoi" title="Les échanges avec une barre d'étapes" desc="Un échange accepté se suit en quatre étapes fléchées : Accepté → Expédié → Reçu → Terminé, vert pour fait, bleu qui pulse pour l'étape en cours, gris pour la suite. On voit tout de suite où en est chaque trade.">
-        <div className="steps wht">
-          {[['✓', 'Accepté', '8 oct.', 'done'], ['📦', 'Expédié', '9 oct.', 'done'], ['📬', 'Reçu', 'en attente', 'now'], ['⭐', 'Terminé', '', '']].map(s => (
-            <div key={s[1]} className={`stp ${s[3]}`}><div className="ic">{s[0]}</div><b>{s[1]}</b><small>{s[2]}</small></div>
-          ))}
-        </div>
-      </Bay>
-
-      <Bay id="o9" n="09 — Accréditation" title="Le profil comme un badge d'accréditation" desc="Pour partager son profil : un badge à lanière façon accréditation de salon, avec photo, pseudo, niveau (« COLLECTIONNEUR · NIV. 5 »), QR vers la galerie et bandeau noir en pied. Un objet qu'on a envie de poster.">
-        <div className="lanyard">
-          <div className="clip" />
-          <div className="pass ink">
-            <span className="lvl">Accès · Collectionneur</span>
-            <div className="ph sf">G</div>
-            <div className="nm sf">GKNNN_Cards</div>
-            <div className="ac">Niveau 5 · 599 cartes</div>
-            <div className="qr" />
-            <div className="bar">memorabilius.fr</div>
-          </div>
-        </div>
-      </Bay>
-
-      <Bay id="o10" n="10 — Draft board" title="Une collection par équipe sur un tableau de draft" desc="Pour les sets et les équipes : cases numérotées (n° 1, 2, 3…), couleur de l'équipe, nom du joueur, mini-carte qui dépasse. Évoque la soirée de draft, idéal pour les rookies d'une année ou d'un set.">
-        <div className="draft wht">
-          {([['1', 'Wembanyama', 'Spurs', '#6b7380', C.maxey], ['2', 'Edwards', 'Wolves', '#0c4a8a', C.edwards], ['3', 'McCain', 'Sixers', '#006bb6', C.mccain], ['4', 'Carter-Williams', 'Sixers', '#006bb6', C.mcw], ['5', 'Maxey', 'Sixers', '#006bb6', C.hawkins]] as [string, string, string, string, { img: string }][]).map(p => (
-            <div className="pick" key={p[0]} style={{ ['--c' as string]: p[3] }}>
-              <div className="no sf">{p[0]}</div>
-              <div><div className="pl">{p[1]}</div><div className="tm">{p[2]}</div></div>
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img className="card" src={p[4].img} alt="" />
+      <Bay id="p2" n="02 — Semaine de cartes" title="Les cartes du jour de la semaine, d'un coup d'œil" desc="Sous la carte du jour : les sept derniers jours en petites cartes (celles que tu as grattées dévoilées, les autres en pointillés avec un point d'interrogation). Une raison de ne pas rater un jour.">
+        <div className="week" style={{ paddingBottom: 26 }}>
+          {['Lun', 'Mar', 'Mer', 'Jeu', 'Ven', 'Sam', 'Dim'].map((d, i) => (
+            <div key={d} className={`wd${[2, 5].includes(i) ? ' miss' : ''}${i === 6 ? ' today' : ''}`}>
+              {![2, 5].includes(i) ? <>{/* eslint-disable-next-line @next/next/no-img-element */}<img className="card" src={ALL[i % ALL.length].img} alt="" /></> : <b className="sf">?</b>}
+              <small>{d}</small>
             </div>
           ))}
         </div>
       </Bay>
 
-      <Bay id="o11" n="11 — Galons" title="Le niveau en galons militaires" desc="Le niveau du collectionneur s'affiche en chevrons empilés comme des galons (1 chevron au niveau 1, jusqu'à 5, puis couleur or, puis diamant) à côté de l'avatar. Lisible et collectionnable : on veut gagner ses galons.">
-        <div className="ranks wht">
-          {[{ n: 1, c: '#c47a3a', l: 'Recrue', lv: 1 }, { n: 3, c: '#9aa6bd', l: 'Habitué', lv: 4 }, { n: 5, c: '#e9b44c', l: 'Confirmé', lv: 8 }, { n: 5, c: '#58c8ff', l: 'Expert', lv: 12 }].map(r => (
-            <div className="rk" key={r.l}>
-              <div className="st" style={{ ['--c' as string]: r.c }}>{Array.from({ length: r.n }, (_, i) => <i key={i} />)}</div>
-              <b className="sf">Niv. {r.lv}</b><small>{r.l}</small>
-            </div>
-          ))}
+      <Bay id="p3" n="03 — Pochette de set" title="Chaque set a sa pochette" desc="La page d'un set s'ouvre sur une pochette : année, nom en grand, trois cartes du set, barre de complétion à segments et « 77 / 8 760 ». Plus joli et plus parlant qu'une simple ligne de titre.">
+        <div className="setcov wht"><div className="y">2023-24</div><h4 className="sf">Hoops Premium Stock</h4><div className="pic">{[C.maxey, C.edwards, C.mccain].map((c, i) => <div key={i}>{/* eslint-disable-next-line @next/next/no-img-element */}<img className="card" src={c.img} alt="" /></div>)}</div><div className="bar"><i /></div><div className="nb"><span>COMPLÉTION</span><span>77 / 8 760</span></div></div>
+      </Bay>
+
+      <Bay id="p4" n="04 — Duel" title="Comparer deux cartes face à face" desc="Deux cartes côte à côte, losange VS au centre, lignes de comparaison (année, tirage, valeur, grade) avec la meilleure en doré. Pour hésiter entre deux achats ou deux échanges.">
+        <div className="duel wht">
+          <div className="side">{/* eslint-disable-next-line @next/next/no-img-element */}<img className="card" src={C.edwards.img} alt="" /><ul><li><span>Année</span><span>2020</span></li><li className="w"><span>Tirage</span><span>/99</span></li><li><span>Valeur</span><span>42 €</span></li></ul></div>
+          <div className="vs sf">VS</div>
+          <div className="side">{/* eslint-disable-next-line @next/next/no-img-element */}<img className="card" src={C.maxey.img} alt="" /><ul><li><span>Année</span><span>2020</span></li><li><span>Tirage</span><span>/149</span></li><li className="w"><span>Valeur</span><span>95 €</span></li></ul></div>
         </div>
       </Bay>
 
-      <Bay id="o12" n="12 — Ruban de chantier" title="Les cartes privées derrière un ruban de chantier" desc="Pour le propriétaire : les cartes privées sont floutées et barrées de rubans jaune et noir « PRIVÉ ». Impossible de les confondre avec les publiques, plus parlant que la petite pastille rouge actuelle.">
-        <div className="row">
-          <div className="tape-card">{/* eslint-disable-next-line @next/next/no-img-element */}<img className="card" src={C.edwards.img} alt="" /><div className="tape a"><span>Privé</span></div><div className="tape b"><span>Privé</span></div></div>
-          <div style={{ width: 180 }}>{/* eslint-disable-next-line @next/next/no-img-element */}<img className="card" src={C.mcw.img} alt="" /><div className="cap">Carte publique</div></div>
+      <Bay id="p5" n="05 — Objectif" title="Un objectif de collection avec ses jalons" desc="Tu te fixes « 700 cartes » : barre à segments, gros « 599 », jalons marqués sur la règle (100, 250, 500, 700) et le nombre restant. Se met à jour tout seul à chaque ajout.">
+        <div className="goal wht"><div className="top"><div className="big sf">599</div><div className="lb">sur 700 cartes · 101 restantes</div></div><div className="track"><i style={{ width: '85.5%' }} /></div><div className="miles">{[[14, '100'], [36, '250'], [71, '500'], [100, '700']].map(m => <span key={m[1]} style={{ left: `${m[0]}%` }}>{m[1]}</span>)}</div></div>
+      </Bay>
+
+      <Bay id="p6" n="06 — Pop report" title="La répartition de ta collection en colonnes" desc="Un petit « pop report » façon société de gradation : colonnes par note (10, 9.5, 9…) ou par année, nombre au-dessus, la plus haute en tête. On voit la qualité de la collection, pas seulement la quantité.">
+        <div className="pop wht">{[['10', 4], ['9.5', 9], ['9', 21], ['8.5', 12], ['8', 7], ['7', 3], ['Raw', 100]].map(p => <div key={p[0] as string}><b className="sf">{p[1]}</b><i style={{ height: `${Math.max(8, (p[1] as number) * (p[0] === 'Raw' ? 1.4 : 5.5))}%` }} />{p[0]}</div>)}</div>
+      </Bay>
+
+      <Bay id="p7" n="07 — Carte de visite" title="Une carte de visite du collectionneur" desc="Un visuel horizontal : pseudo, niveau, quelques cartes en éventail, QR vers la galerie. À partager sur les réseaux ou à imprimer et glisser dans une enveloppe d'échange.">
+        <div className="biz ink"><div className="l"><div><small>Collectionneur · Niv. 5</small><h4 className="sf">GKNNN_Cards</h4></div><div style={{ display: 'flex', alignItems: 'flex-end', gap: 10 }}><div className="qr" /><small>memorabilius.fr/<br />galerie/gknnn-cards</small></div></div><div className="cards">{[C.mcw, C.mccain, C.hawkins].map((c, i) => <div key={i}>{/* eslint-disable-next-line @next/next/no-img-element */}<img className="card" src={c.img} alt="" style={{ left: i * 8, top: 14 + i * 22, transform: `rotate(${(i - 1) * 7}deg)` }} /></div>)}</div></div>
+      </Bay>
+
+      <Bay id="p8" n="08 — Pages empilées" title="Les collections comme des feuilles empilées" desc="Les collections de la galerie sont des feuilles décalées avec leur onglet en haut ; on survole une feuille et elle se soulève pour montrer ce qu'elle contient. Remplace la rangée de pastilles.">
+        <div className="stk wht" style={{ paddingTop: 30 }}>
+          {[['Philadelphia', '#006bb6', '0px', 0], ['Old School', '#1f9d55', '110px', 28], ['Rookies', '#e67e22', '210px', 56]].map(p => <div key={p[0] as string} className="pg" style={{ ['--c' as string]: p[1], ['--x' as string]: p[2], top: 30 + (p[3] as number) }}><b>{p[0]}</b></div>)}
         </div>
+      </Bay>
+
+      <Bay id="p9" n="09 — Rareté" title="Ta collection par niveau de rareté" desc="Une répartition simple : communes, numérotées, ≤ /99, ≤ /25, ≤ /10, 1/1, avec barre colorée (violet, bronze, argent, or) et pourcentage. Montre ce qui rend la collection spéciale.">
+        <div className="rar wht">{[['Communes', 62, '#5b6b8c'], ['Numérotées', 15, '#7c3aed'], ['≤ /25', 4, '#cd7f32'], ['≤ /10', 2, '#c0c0c0'], ['1/1', 1, '#ffd700']].map(r => <div className="row2" key={r[0] as string}><div className="nm">{r[0]}</div><div className="bar"><i style={{ width: `${r[1]}%`, ['--c' as string]: r[2] }} /></div><div className="pc sf">{r[1]}%</div></div>)}</div>
+      </Bay>
+
+      <Bay id="p10" n="10 — Sorties" title="Le calendrier des sorties de produits" desc="Les prochaines sorties (Prizm, Optic, Topps Chrome…) en petites cartes avec la date en gros : tu sais ce qui arrive et tu peux t'abonner à un set pour être prévenu quand sa checklist est en ligne.">
+        <div className="rel wht">{[['14', 'NOV', '2025-26 Prizm', 'Panini · NBA'], ['05', 'DÉC', 'Topps Chrome', 'Topps · NBA'], ['19', 'DÉC', 'Optic', 'Panini · NBA'], ['09', 'JAN', 'Select', 'Panini · NBA']].map(r => <div className="rl" key={r[2]}><div className="dt ink"><b className="sf">{r[0]}</b><small>{r[1]}</small></div><div className="nm">{r[2]}<span>{r[3]}</span></div></div>)}</div>
       </Bay>
     </div>
   )
