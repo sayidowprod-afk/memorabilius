@@ -1,4 +1,5 @@
 'use client'
+import TcdbImportPanel from '@/components/TcdbImportPanel'
 import { useEffect, useState, useCallback } from 'react'
 import { createPortal } from 'react-dom'
 import Link from 'next/link'
@@ -610,6 +611,7 @@ export default function SetlistPage() {
 
         {userId && (
           <div className="sl-actions">
+            <TcdbImportPanel onImported={() => loadSets()} />
             <button
               onClick={syncAll}
               disabled={syncing}

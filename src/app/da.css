@@ -646,3 +646,17 @@ button.cdj-btn { cursor: pointer; }
 .hof-empty.mine { cursor: pointer; border-color: #ffd54a; color: #ffd54a !important; }
 .hof-actions { display: flex; gap: 6px; justify-content: center; margin-top: 6px; }
 .hof-actions button { background: transparent; border: 2px solid #ffd54a; color: #ffd54a !important; font: 800 10px system-ui; letter-spacing: .08em; text-transform: uppercase; padding: 3px 8px; cursor: pointer; border-radius: 0; }
+
+/* Import TCDB (PDF) dans la setlist */
+.tcdb-imp-open { align-self: flex-start; padding: 9px 16px; border: 3px solid #fff; background: transparent; color: #fff; font: 800 12px system-ui; letter-spacing: .08em; text-transform: uppercase; cursor: pointer; border-radius: 0; }
+html[data-theme="light"] .tcdb-imp-open { border-color: #06122e; color: #06122e; }
+.tcdb-imp-body { margin-top: 10px; padding: 14px; border: 2px solid rgba(128,128,128,.4); display: flex; flex-direction: column; gap: 10px; font-size: 13px; }
+.tcdb-imp-help { margin: 0; opacity: .8; line-height: 1.45; }
+.tcdb-imp-err { margin: 0; color: #ff6b6f; font-weight: 700; }
+.tcdb-imp-res { display: flex; flex-direction: column; gap: 8px; }
+.tcdb-imp-list { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 4px; }
+.tcdb-imp-list span { border: 1px solid rgba(128,128,128,.5); padding: 2px 8px; font-size: 12px; }
+.tcdb-imp-warn { padding: 8px 10px; border-left: 4px solid #ffd54a; background: rgba(255,213,74,.1); }
+.tcdb-imp-ok { padding: 8px 10px; border-left: 4px solid #3ddc97; background: rgba(61,220,151,.12); font-weight: 800; }
+.tcdb-imp-go { align-self: flex-start; padding: 10px 18px; background: #fff; color: #06122e; border: 3px solid #fff; font: 800 13px system-ui; letter-spacing: .08em; text-transform: uppercase; cursor: pointer; border-radius: 0; }
+.tcdb-imp-go:disabled { opacity: .5; }
