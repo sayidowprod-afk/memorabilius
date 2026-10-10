@@ -704,13 +704,18 @@ html[data-theme="light"] .tcdb-imp-open { border-color: #06122e; color: #06122e;
   .sl-container .sl-sport-grid { grid-template-columns: repeat(4, 1fr) !important; }
 }
 @media (max-width: 767px) {
-  .sl-bar { grid-template-columns: 1fr; }
-  .sl-bar-btns { border-left: 0; border-top: 2px solid rgba(255,255,255,.22); }
-  .sl-bar-btns .sl-btn { flex: 1 1 0; padding: 10px 8px; }
-  .sl-bar-num { padding: 10px 14px; }
+  .sl-container .sl-sport-grid { grid-template-columns: repeat(4, minmax(0, 1fr)) !important; gap: 5px !important; }
+  .sl-container .sl-sport-btn { padding: 8px 2px !important; }
+  .sl-container .sl-sport-label { font-size: 11px !important; }
+  .sl-bar { grid-template-columns: minmax(0, 1fr); }
+  .sl-bar-stats { display: grid; grid-template-columns: 1fr 1fr; }
+  .sl-bar-num { padding: 10px 12px; min-width: 0; }
+  .sl-bar-num:nth-child(2) { border-right: 0; }
   .sl-bar-num b { font-size: 28px; }
-  .sl-bar-detail { padding: 8px 14px 10px; flex: 1 1 100%; }
-  .sl-container .sl-sport-grid { grid-template-columns: repeat(3, 1fr) !important; }
+  .sl-bar-num small { font-size: 9px; letter-spacing: .05em; overflow-wrap: anywhere; }
+  .sl-bar-detail { grid-column: 1 / -1; padding: 8px 12px 10px; border-top: 2px solid rgba(255,255,255,.22); }
+  .sl-bar-btns { border-left: 0; border-top: 2px solid rgba(255,255,255,.22); flex-wrap: wrap; padding: 10px 12px; }
+  .sl-bar-btns .sl-btn { flex: 1 1 140px; padding: 10px 6px; font-size: 11px; letter-spacing: .04em; white-space: normal; text-align: center; }
 }
 .sl-noscroll { scrollbar-width: none; }
 .sl-noscroll::-webkit-scrollbar { display: none; }
