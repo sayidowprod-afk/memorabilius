@@ -5,8 +5,7 @@ import Link from 'next/link'
 import { supabase } from '@/lib/supabase'
 import { useLang } from '@/lib/LangContext'
 import { useTheme } from '@/lib/ThemeContext'
-import { rootEntryIds } from '@/lib/setFamilies'
-import { candidatesForCard, pickEntry, norm as mNorm, type MSet, type MEntry } from '@/lib/setMatcher'
+import { candidatesForCard, pickEntry, setCouldMatchCard, norm as mNorm, type MSet, type MEntry } from '@/lib/setMatcher'
 
 interface CardSet {
   id: number
@@ -331,23 +330,41 @@ export default function SetlistPage() {
     const setsMap = new Map(allSetsData.map(s => [s.id, s]))
     setSyncProgress(15)
 
-    // 3. Entrées pour nos joueurs (par chunks de 30 noms)
-    const uniquePlayers = [...new Set(galleryCards.map(c => c.nom).filter(Boolean))]
-    const allEntries: { id: number; player_name: string; variation: string | null; set_id: number; card_number: string | null }[] = []
-    const PCHUNK = 30
-    for (let ci = 0; ci < uniquePlayers.length; ci += PCHUNK) {
-      setSyncProgress(15 + Math.round((ci / uniquePlayers.length) * 50))
-      const batch = uniquePlayers.slice(ci, ci + PCHUNK)
-      let from = 0
-      for (;;) {
-        const { data: page } = await supabase.from('card_set_entries')
-          .select('id, player_name, variation, set_id, card_number').in('player_name', batch).range(from, from + 999)
-        if (!page?.length) break
-        allEntries.push(...page)
-        if (page.length < 1000) break
-        from += 1000
+    // 3. Entrees : on ne charge QUE les entrees utiles -- pour chaque carte, les sets qui peuvent correspondre (annee, marque, produit :
+    //    test au niveau du set, sans entrees), et seulement pour les joueurs concernes. Avant, on chargeait toutes les entrees de tous les
+    //    sets de chaque joueur (des centaines de milliers de lignes) : synchro tres lente qui semblait bloquee a 15/25/33 %.
+    const wantedBySet = new Map<number, Set<string>>()
+    const addWanted = (sid: number, name: string) => { (wantedBySet.get(sid) || wantedBySet.set(sid, new Set()).get(sid)!).add(name) }
+    for (const card of galleryCards) {
+      if (!card.nom) continue
+      for (const st of allSetsData) {
+        // test strict (sync) ; test large pour les sets proposes en placement manuel
+        if (setCouldMatchCard(card, st as MSet, true)) addWanted(st.id, card.nom)
       }
     }
+    const allEntries: { id: number; player_name: string; variation: string | null; set_id: number; card_number: string | null }[] = []
+    const setJobs = [...wantedBySet.entries()]
+    let doneJobs = 0
+    const runJob = async ([sid, names]: [number, Set<string>]) => {
+      const list = [...names]
+      for (let i = 0; i < list.length; i += 40) {
+        const batch = list.slice(i, i + 40)
+        for (let from = 0; ; from += 1000) {
+          const { data: page } = await supabase.from('card_set_entries')
+            .select('id, player_name, variation, set_id, card_number').eq('set_id', sid).in('player_name', batch).range(from, from + 999)
+          if (!page?.length) break
+          allEntries.push(...page)
+          if (page.length < 1000) break
+        }
+      }
+      doneJobs++
+      setSyncProgress(15 + Math.round((doneJobs / Math.max(1, setJobs.length)) * 50))
+    }
+    // 6 requetes en parallele
+    let cursor = 0
+    await Promise.all(Array.from({ length: Math.min(6, setJobs.length) }, async () => {
+      while (cursor < setJobs.length) { const j = setJobs[cursor++]; await runJob(j) }
+    }))
     setSyncProgress(65)
 
     setSyncProgress(75)
@@ -356,18 +373,7 @@ export default function SetlistPage() {
     const matchedGalleryIdx = new Set<number>()
     const newRows: { user_id: string; entry_id: number; manually_checked: boolean }[] = []
 
-    // Entrees "racines" uniquement (une par carte, paralleles ecartes -- lib/setFamilies.ts), calculees PAR SET
-    const entriesBySet = new Map<number, typeof allEntries>()
-    for (const e of allEntries) {
-      if (!setsMap.has(e.set_id)) continue  // filtre sport : ignore les autres sports
-      const arr = entriesBySet.get(e.set_id) || []
-      arr.push(e); entriesBySet.set(e.set_id, arr)
-    }
-    const rootEntries: typeof allEntries = []
-    for (const arr of entriesBySet.values()) {
-      const roots = rootEntryIds(arr)
-      for (const e of arr) if (roots.has(e.id)) rootEntries.push(e)
-    }
+    const rootEntries = allEntries.filter(e => setsMap.has(e.set_id))   // filtre sport
     const entriesByPlayer = new Map<string, MEntry[]>()
     for (const e of rootEntries) {
       const key = mNorm(e.player_name)
@@ -447,13 +453,21 @@ export default function SetlistPage() {
     // 7. Nettoyage des anciens auto-matches pour ce sport (évite l'accumulation)
     // On supprime tous les auto-matches (manually_checked=false) pour les entrées du sport actif
     // afin de repartir d'un état propre et éviter que plusieurs syncs s'accumulent.
-    const currentSportEntryIds = allEntries.filter(e => setsMap.has(e.set_id)).map(e => e.id)
-    for (let i = 0; i < currentSportEntryIds.length; i += 500) {
-      await supabase.from('user_set_completion')
-        .delete()
-        .eq('user_id', userId)
-        .eq('manually_checked', false)
-        .in('entry_id', currentSportEntryIds.slice(i, i + 500))
+    // (les entrees ne sont plus toutes chargees : on relit les validations automatiques existantes du sport, avec leur set)
+    const staleIds: string[] = []
+    for (let from = 0; ; from += 1000) {
+      const { data: page } = await supabase.from('user_set_completion')
+        .select('id, manually_checked, matched_card_key, card_set_entries(set_id)')
+        .eq('user_id', userId).eq('manually_checked', false).range(from, from + 999)
+      if (!page?.length) break
+      for (const r of page as any[]) {
+        const sid = r.card_set_entries?.set_id
+        if (sid && setsMap.has(sid) && !r.matched_card_key) staleIds.push(r.id)
+      }
+      if (page.length < 1000) break
+    }
+    for (let i = 0; i < staleIds.length; i += 500) {
+      await supabase.from('user_set_completion').delete().eq('user_id', userId).in('id', staleIds.slice(i, i + 500))
     }
 
     // 8. Insertion des nouveaux matches

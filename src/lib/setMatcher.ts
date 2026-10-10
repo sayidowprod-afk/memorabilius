@@ -5,7 +5,7 @@
 // mauvais sets, avec les mauvaises images.
 //
 // Regles (strictes : mieux vaut laisser une carte "non placee" que valider la mauvaise) :
-//  - on ne compare qu'aux entrees "racines" (une par carte : les paralleles /150, Gold... sont la meme carte, voir setFamilies.ts) ;
+//  - TOUTES les entrees sont comparees (base ET paralleles : une carte Gold valide l'entree Gold, pas la base) ;
 //  - joueur identique ; annee compatible (OBLIGATOIRE si le set a une annee) ; marque compatible ;
 //  - collection : les mots "produit" de la carte (hors marque, annee, mots generiques) doivent etre EXACTEMENT ceux du set ;
 //  - numero de carte identique quand les deux sont renseignes ;
@@ -57,17 +57,19 @@ function productWords(text: string, brandWords: Set<string>): Set<string> {
 }
 const brandWordsOf = (set: MSet) => new Set([...wordsOf(set.brand || '').map(stem), ...wordsOf(BRAND_PARENT[norm(set.brand)] || '').map(stem), 'panini', 'topps', 'upper', 'deck', 'upperdeck'])
 
-// Les cartes de base/parallele partagent la meme entree racine ; entre plusieurs racines (base + inserts) on prefere la plus
-// specifique dont la variation est contenue dans celle de la carte.
-function narrowByVariation(cands: MEntry[], cardVariation: string): MEntry[] {
-  if (cands.length <= 1) return cands
-  const cw = new Set(wordsOf(cardVariation).map(w => EXPAND[w] ?? w))
-  const fit = cands.map(e => ({ e, w: wordsOf(e.variation).map(w => EXPAND[w] ?? w) })).filter(x => x.w.every(t => cw.has(t)))
-  const best = Math.max(-1, ...fit.map(x => x.w.length))
-  return fit.filter(x => x.w.length === best).map(x => x.e)
+// Variation : 0 = identique (memes mots), 1 = la carte decrit au moins la moitie des mots de l'entree (ex. "Gold" ~ "Gold Prizm"),
+// null = incompatible. Une carte SANS variation ne correspond qu'a une entree SANS variation (la base).
+function variationScore(cardVar: string, entryVar: string): number | null {
+  const cw = new Set(wordsOf(cardVar).map(w => EXPAND[w] ?? w)), ew = new Set(wordsOf(entryVar).map(w => EXPAND[w] ?? w))
+  if (cw.size === 0 && ew.size === 0) return 0
+  if (cw.size === 0 || ew.size === 0) return null
+  const same = cw.size === ew.size && [...cw].every(w => ew.has(w))
+  if (same) return 0
+  if ([...cw].every(w => ew.has(w)) && cw.size / ew.size >= 0.5) return 1
+  return null
 }
 
-/** Entrees (racines, deja filtrees sur le joueur) compatibles avec la carte, reduites a la plus plausible PAR SET. */
+/** Entrees (deja filtrees sur le joueur) compatibles avec la carte, reduites a la plus plausible PAR SET. */
 export function candidatesForCard(card: MCard, playerRoots: MEntry[], sets: Map<number, MSet>): MEntry[] {
   const coll = (card.collection || card.collection_tag || '').trim()
   if (!coll) return []                                    // sans collection on ne devine pas
@@ -95,8 +97,10 @@ export function candidatesForCard(card: MCard, playerRoots: MEntry[], sets: Map<
       const exact = c.filter(e => norm(e.card_number) === cn)
       c = exact.length ? exact : c.filter(e => !e.card_number)
     }
-    c = narrowByVariation(c, card.variation || '')
-    out.push(...c)
+    // variation : on garde les meilleures (score le plus bas)
+    const scored = c.map(e => ({ e, v: variationScore(card.variation || '', e.variation || '') })).filter(x => x.v !== null) as { e: MEntry; v: number }[]
+    const best = Math.min(Infinity, ...scored.map(x => x.v))
+    out.push(...scored.filter(x => x.v === best).map(x => x.e))
   }
   return out
 }
@@ -104,4 +108,20 @@ export function candidatesForCard(card: MCard, playerRoots: MEntry[], sets: Map<
 /** Entree choisie, ou null si ambigu (plusieurs possibilites a egalite) / introuvable. */
 export function pickEntry(cands: MEntry[]): MEntry | null {
   return cands.length === 1 ? cands[0] : null
+}
+
+/** Niveau SET seulement (sans entrees) : ce set peut-il correspondre a cette carte ? Sert a ne charger QUE les entrees utiles.
+ *  `loose` = test large pour proposer des sets en placement manuel (annee + au moins un mot produit en commun). */
+export function setCouldMatchCard(card: MCard, set: MSet, loose = false): boolean {
+  const coll = (card.collection || card.collection_tag || '').trim()
+  if (!coll) return false
+  if (set.year && !yearOk(card.annee || '', set.year)) return false
+  if (set.brand && card.marque) {
+    const nb = normBrand(card.marque), ns = normBrand(set.brand)
+    if (!nb.includes(ns) && !ns.includes(nb)) return false
+  }
+  const bw = brandWordsOf(set)
+  const a = productWords(coll, bw), b = productWords(set.name, bw)
+  if (loose) return [...a].some(w => b.has(w)) || (a.size === 0 && b.size === 0)
+  return a.size === b.size && [...a].every(w => b.has(w))
 }

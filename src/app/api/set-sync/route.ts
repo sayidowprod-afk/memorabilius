@@ -1,6 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { createClient } from '@supabase/supabase-js'
-import { rootEntryIds } from '@/lib/setFamilies'
 import { candidatesForCard, pickEntry, type MSet, type MEntry } from '@/lib/setMatcher'
 
 export const maxDuration = 30
@@ -195,10 +194,8 @@ export async function POST(req: NextRequest) {
     // moteur commun (lib/setMatcher.ts) : memes regles que la synchronisation de tous les sets
     const metaSet = new Map<number, MSet>([[setId, { id: setId, name: setName, year: setYear, brand: setBrand }]])
     const asEntries: MEntry[] = entries.map(e => ({ id: e.id, player_name: e.player_name, variation: e.variation, set_id: setId, card_number: e.card_number }))
-    const roots = rootEntryIds(asEntries)
     const byPlayer = new Map<string, MEntry[]>()
     for (const e of asEntries) {
-      if (!roots.has(e.id)) continue
       const k = norm(e.player_name)
       const arr = byPlayer.get(k) || []
       arr.push(e); byPlayer.set(k, arr)

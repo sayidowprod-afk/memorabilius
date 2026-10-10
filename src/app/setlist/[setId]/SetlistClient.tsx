@@ -160,25 +160,14 @@ export default function SetlistClient({ setId }: { setId: string }) {
     if (!setData) { setLoading(false); return }
     setSet(setData)
 
-    // Une carte = une entree : les paralleles (/150, Gold...) sont ecartes (voir lib/setFamilies.ts, /api/set-roots)
-    let roots: Set<number> | null = null
+    // Compte par variation (toutes les entrees, paralleles compris) via RPC (evite la limite max_rows)
+    const roots: Set<number> | null = null
     const counts = new Map<string, number>()
-    try {
-      const r = await fetch(`/api/set-roots?setId=${parseInt(setId)}`)
-      if (r.ok) {
-        const d = await r.json()
-        roots = new Set<number>(d.rootIds)
-        for (const v of d.variations as { variation: string; count: number }[]) counts.set(v.variation, v.count)
-      }
-    } catch { /* repli ci-dessous */ }
-    if (!roots) {
-      // repli : ancien comportement (toutes les entrees)
-      const { data: varData } = await supabase.rpc('get_set_variations', { p_set_id: parseInt(setId) })
-      if (!varData) { setLoading(false); return }
-      for (const row of varData) counts.set(row.variation ?? 'Base', Number(row.cnt))
-    }
+    const { data: varData } = await supabase.rpc('get_set_variations', { p_set_id: parseInt(setId) })
+    if (!varData) { setLoading(false); return }
+    for (const row of varData) counts.set(row.variation ?? 'Base', Number(row.cnt))
     rootsRef.current = roots
-    setRootTotal(roots ? roots.size : null)
+    setRootTotal(null)
 
     let completedEntryIds = new Set<number>()
     let completionDetails = new Map<number, { id: string; manually_checked: boolean; matched_card_key?: string | null }>()
