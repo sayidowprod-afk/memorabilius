@@ -18,14 +18,20 @@ function hash(s: string) {
 
 export async function GET() {
   const day = new Intl.DateTimeFormat('fr-CA', { timeZone: 'Europe/Paris' }).format(new Date()) // AAAA-MM-JJ
+  // minuit (Europe/Paris) du jour courant, en UTC
+  const parisNow = new Date(new Date().toLocaleString('en-US', { timeZone: 'Europe/Paris' }))
+  const offsetMs = parisNow.getTime() - new Date().getTime() + new Date().getMilliseconds() * 0
+  const startParis = new Date(Date.now() + offsetMs); startParis.setHours(0, 0, 0, 0)
+  const startOfDayParis = new Date(startParis.getTime() - offsetMs).toISOString()
   const since = new Date(Date.now() - 60 * 86400000).toISOString()
   const { data: recent } = await supabase
     .from('cartes_manuelles')
     .select('id, user_id, nom, annee, marque, collection, variation, num, rc, auto, patch, image_recto, is_horizontal, created_at')
     .not('image_recto', 'is', null)
     .gte('created_at', since)
+    .lt('created_at', startOfDayParis)   // jamais les cartes ajoutees AUJOURD'HUI : le lot de candidats ne bouge plus de la journee
     .order('created_at', { ascending: false })
-    .limit(800)
+    .limit(1500)
 
   let cands = (recent || []).filter((c: any) =>
     /^https?:\/\//.test(c.image_recto || '') && !c.is_horizontal && c.nom && (c.rc || c.auto || c.patch || c.num))
@@ -41,9 +47,10 @@ export async function GET() {
   cands = cands.filter((c: any) => !demo.has(c.user_id) && !hidden.has(`${c.user_id}|${c.image_recto}`))
   if (!cands.length) return NextResponse.json({ card: null })
 
-  // ordre stable (par identifiant) puis tirage deterministe sur la date
-  cands.sort((a: any, b: any) => String(a.id).localeCompare(String(b.id)))
-  const pick: any = cands[hash(day) % cands.length]
+  // tirage "au plus grand score" (hash date + id) : ajouter/retirer d'autres cartes ne change PAS la carte du jour, seule la
+  // suppression de la carte elle-meme la change (avant : index modulo la taille du lot, qui changeait quand le lot bougeait)
+  let pick: any = cands[0], top = -1
+  for (const c of cands as any[]) { const sc = hash(`${day}|${c.id}`); if (sc > top) { top = sc; pick = c } }
   const prof: any = (profiles || []).find((p: any) => p.id === pick.user_id)
   const [y, m, d] = day.split('-').map(Number)
   return NextResponse.json(
