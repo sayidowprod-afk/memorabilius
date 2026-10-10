@@ -625,21 +625,17 @@ export default function SetlistPage() {
             {/* Stats toujours visibles dès que les sets sont chargés */}
             {!loading && (
               <div className="sl-stats-box" style={{ background: dark ? '#1a2440' : '#f0f4ff', borderRadius: 12, padding: '12px 18px', fontSize: 14, display: 'flex', flexDirection: 'column', gap: 6 }}>
-                {syncDone && (
-                  <div style={{ fontWeight: 800, color: '#2ecc71', marginBottom: 2 }}>
-                    ✅ {newMatchCount} {t(newMatchCount !== 1 ? 'setlist_new_match_other' : 'setlist_new_match_one')}
+                {/* ticket de resultat : cartes inscrites au total + nouvelles de la derniere synchro, detail et cartes non placees */}
+                <div className="sl-ticket">
+                  <div className="sl-ticket-h">{syncDone ? 'Synchronisation terminée' : 'Mes setlists'}</div>
+                  <div className="sl-ticket-b">
+                    <div><b className="da-display">{totalOwnedAllSets.toLocaleString()}</b><small>{t('setlist_cards_synced')}</small></div>
+                    <div><b className="da-display">{syncDone ? `+${newMatchCount}` : setsWithCards}</b><small>{syncDone ? t(newMatchCount !== 1 ? 'setlist_new_match_other' : 'setlist_new_match_one') : `setlist${setsWithCards !== 1 ? 's' : ''}`}</small></div>
                   </div>
-                )}
-                <div style={{ fontWeight: 700, color: '#003DA6' }}>
-                  {totalOwnedAllSets.toLocaleString()} {t('setlist_cards_synced')}
-                </div>
-                {completionSplit && (
-                  <div style={{ color: '#666', fontSize: 12 }}>
-                    dont {completionSplit.auto.toLocaleString()} par synchronisation · {completionSplit.manual.toLocaleString()} cochées à la main
+                  <div className="sl-ticket-f">
+                    {completionSplit ? `dont ${completionSplit.auto.toLocaleString()} par synchronisation · ${completionSplit.manual.toLocaleString()} cochées à la main` : ''}
+                    {syncDone ? ` — ${t('setlist_in')} ${setsWithCards} setlist${setsWithCards !== 1 ? 's' : ''}` : ''}
                   </div>
-                )}
-                <div style={{ color: '#666', fontSize: 13 }}>
-                  {t('setlist_in')} {setsWithCards} setlist{setsWithCards !== 1 ? 's' : ''}
                 </div>
                 <button
                   onClick={async () => {
