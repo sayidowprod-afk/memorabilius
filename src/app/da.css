@@ -127,6 +127,8 @@ h1 { line-height: 1.02; }
   background: transparent !important; border-radius: 0 !important; padding: 0 !important; gap: 0 !important;
   border-bottom: 3px solid var(--border); margin-bottom: 18px !important;
 }
+.da-tabs { scrollbar-width: none; -ms-overflow-style: none; }
+.da-tabs::-webkit-scrollbar { display: none; }
 .da-tabs > div:first-child {
   top: auto !important; bottom: -3px !important; height: 6px !important; border-radius: 0 !important;
   background: var(--text) !important; box-shadow: none !important;
