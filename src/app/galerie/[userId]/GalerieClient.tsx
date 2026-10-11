@@ -1787,10 +1787,10 @@ export default function GalerieClient({ userId, initialCardUrl, initialCards, in
   }, [displayed, activeDragId])
 
   const getTags = (d: Card) => (
-    <div style={{ display: 'flex', gap: 4, flexWrap: 'wrap', alignItems: 'center', minHeight: 28 }}>
+    <div style={{ display: 'flex', gap: 4, flexWrap: 'wrap', alignItems: 'center' }}>
       {d.item_type && d.item_type !== 'card' && <span style={{ fontSize: 9, fontWeight: 900, padding: '3px 6px', borderRadius: 4, background: '#7b1fa2', color: 'white' }}>🏆 MÉMO</span>}
       <div style={{ flex: '1 1 0', minWidth: 0 }}>
-        <CardTagBadges rc={d.rc} auto={d.auto} patch={d.patch} num={!!d.num} numText={d.num} size="md" />
+        <CardTagBadges rc={d.rc} auto={d.auto} patch={d.patch} num={!!d.num} numText={d.num} size="sm" />
       </div>
       {d.printing_plate && <span style={{ fontSize: 9, fontWeight: 900, padding: '3px 6px', borderRadius: 4, background: '#111827', color: 'white' }}>PLATE</span>}
     </div>
@@ -3428,7 +3428,7 @@ export default function GalerieClient({ userId, initialCardUrl, initialCards, in
                   </div>
                 </div>
               )}
-              <div className={`holo-light${numTier(d.num) !== 'std' ? ` halo halo-${numTier(d.num)}` : ''}`} style={{ width: '100%', marginBottom: 8 }}>
+              <div className={`holo-light${numTier(d.num) !== 'std' ? ` halo halo-${numTier(d.num)}` : ''}`} style={{ width: '100%', marginBottom: 6 }}>
                 <CardLink slug={profile?.slug || userId} cardKey={d.f}>{renderCardImage(d)}</CardLink>
                 {(d.vendue || d.disponible_vente || (isOwner && privateCards.has(d.f))) && (
                   <div className="sash-clip" aria-hidden>
@@ -3440,7 +3440,6 @@ export default function GalerieClient({ userId, initialCardUrl, initialCards, in
                 )}
               </div>
               {(() => { const tm = getTeamByName(d.t); return tm ? <div className="gc-bar" style={{ background: tm.color }} /> : null })()}
-              {getTags(d)}
               <div style={{ display: 'flex', alignItems: 'flex-start', justifyContent: 'space-between', gap: 4, marginTop: 4 }}>
                 <div style={{ minWidth: 0 }}>
                   <p className="gc-name" style={{ margin: 0, whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis', display: 'flex', alignItems: 'center', gap: 6 }}>
@@ -3452,6 +3451,7 @@ export default function GalerieClient({ userId, initialCardUrl, initialCards, in
                     <span style={{ whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>{d.y} {d.br} {d.s}</span>
                     {d.card_number && <span style={{ flexShrink: 0, fontWeight: 800, color: '#555', background: '#f0f0f0', borderRadius: 4, padding: '1px 5px', fontSize: 9 }}>#{d.card_number}</span>}
                   </p>
+                  {(d.rc || d.auto || d.patch || d.num || (d.item_type && d.item_type !== 'card') || d.printing_plate) && <div style={{ marginTop: 6 }}>{getTags(d)}</div>}
                 </div>
                 {/* Boutons like + commentaires */}
                 {!editMode && (() => {

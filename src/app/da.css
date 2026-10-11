@@ -833,11 +833,17 @@ html[data-theme="light"] .tcdb-imp-open { border-color: #06122e; color: #06122e;
 @media (max-width: 640px) { .gf-panel { padding: 10px !important; } .gf-b { font-size: 10px !important; } }
 
 /* ── Galerie : vignettes (barre de couleur d'equipe + logo ; cadre selon la rarete du tirage) ── */
-.gc-bar { height: 6px; margin: 2px -8px 8px; }
+.gc-bar { height: 4px; margin: 0 -8px 8px; }
 .gc-logo { display: inline-flex; flex-shrink: 0; }
 .gc-name { min-width: 0; }
-.card-item.gc-rare { box-shadow: 0 0 0 1px var(--gcr), 0 0 20px var(--gcg); }
-.card-item.gc-rare::before { content: ''; position: absolute; top: -2px; left: -2px; right: -2px; height: 5px; z-index: 3; pointer-events: none; background: linear-gradient(90deg, var(--gcs1), var(--gcs2), var(--gcs1)); }
-.card-item.gc-gold { --gcr: #e3b53b; --gcg: rgba(255, 215, 0, .38); --gcs1: #b8860b; --gcs2: #fff2b8; }
-.card-item.gc-silver { --gcr: #c4ccd8; --gcg: rgba(220, 230, 245, .28); --gcs1: #8f98a8; --gcs2: #fbfcfe; }
-.card-item.gc-bronze { --gcr: #c27a3d; --gcg: rgba(194, 122, 61, .25); --gcs1: #8a4f1f; --gcs2: #f0b982; }
+/* cadre metallique a la place du liseré de collection : 3 px en degrade + lueur */
+.card-item.gc-rare { border-width: 3px !important; border-style: solid !important; border-image: linear-gradient(135deg, var(--gcs1), var(--gcs2) 45%, var(--gcs1) 100%) 1 !important; box-shadow: 0 0 18px var(--gcg); }
+.card-item.gc-gold { --gcg: rgba(255, 215, 0, .35); --gcs1: #a8770a; --gcs2: #fff2b8; }
+.card-item.gc-silver { --gcg: rgba(220, 230, 245, .25); --gcs1: #7f8898; --gcs2: #fbfcfe; }
+.card-item.gc-bronze { --gcg: rgba(194, 122, 61, .25); --gcs1: #7a4318; --gcs2: #f0b982; }
+
+/* noms de joueurs : jamais coupes, retour a la ligne sur 2 lignes (puis ...) */
+.card-item .gc-name { white-space: normal !important; overflow: visible !important; align-items: flex-start !important; }
+.card-item .gc-name .da-display { white-space: normal !important; display: -webkit-box !important; -webkit-box-orient: vertical; -webkit-line-clamp: 2; overflow: hidden; overflow-wrap: anywhere; line-height: 1.02 !important; }
+.card-item .gc-name .gc-logo { margin-top: 1px; }
+@media (max-width: 640px) { .card-item .gc-name .da-display { font-size: 15px !important; } .card-item .gc-name { gap: 4px !important; } .card-item .gc-name .gc-logo > * { transform: scale(.8); transform-origin: left top; } }
