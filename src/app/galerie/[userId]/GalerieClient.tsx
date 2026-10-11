@@ -3464,8 +3464,7 @@ export default function GalerieClient({ userId, initialCardUrl, initialCards, in
                 </div>
               )}
               {(() => {
-                const hasAts = !!(d.rc || d.patch || d.auto || d.num || d.printing_plate || (d.item_type && d.item_type !== 'card'))
-                return <div className={`holo-light${numTier(d.num) !== 'std' ? ` halo halo-${numTier(d.num)}` : ''}${hasAts ? '' : ' gs-bleed'}`} style={{ width: '100%', marginBottom: 6 }}>
+                return <div className={`holo-light${numTier(d.num) !== 'std' ? ` halo halo-${numTier(d.num)}` : ''}`} style={{ width: '100%', marginBottom: 6 }}>
                 <CardLink slug={profile?.slug || userId} cardKey={d.f}>{renderCardImage(d)}</CardLink>
                 {(d.vendue || d.disponible_vente || (isOwner && privateCards.has(d.f))) && (
                   <div className="sash-clip" aria-hidden>
@@ -3485,9 +3484,9 @@ export default function GalerieClient({ userId, initialCardUrl, initialCards, in
                 if (d.auto) ats.push({ k: 'auto', t: 'Auto', c: TAG_BASE.auto })
                 if (d.printing_plate) ats.push({ k: 'plate', t: 'Plate', c: '#9aa6bd' })
                 if (d.num) { const tr = numTier(d.num); ats.push({ k: 'num', t: numShort(d.num), c: tr === 'gold' ? '#ffd54a' : tr === 'silver' ? '#dfe6f2' : TAG_BASE.num }) }
-                if (!ats.length) return null
+                if (!ats.length) return <div className="gs-strip gs-empty" aria-hidden />
                 const unit = (key: string) => (
-                  <span key={key}>{[0, 1, 2].map(r => <Fragment key={r}>{ats.map(x => <Fragment key={x.k}><b style={{ color: mix(x.c, 0.5) }}>{x.t}</b><i>✦</i></Fragment>)}</Fragment>)}</span>
+                  <span key={key}>{Array.from({ length: Math.max(4, Math.ceil(20 / ats.length)) }, (_, r) => r).map(r => <Fragment key={r}>{ats.map(x => <Fragment key={x.k}><b style={{ color: mix(x.c, 0.5) }}>{x.t}</b><i>✦</i></Fragment>)}</Fragment>)}</span>
                 )
                 return (
                   <div className="gs-strip" aria-label={ats.map(x => x.t).join(' ')}>

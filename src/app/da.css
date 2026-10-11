@@ -886,21 +886,24 @@ html[data-theme="light"] .tcdb-imp-open { border-color: #06122e; color: #06122e;
 .gs-mq { display: flex; width: max-content; animation: gsmq var(--d, 10s) linear infinite; will-change: transform; }
 .gs-mq > span { display: flex; align-items: center; white-space: nowrap; font: 900 9px/1 system-ui, sans-serif; letter-spacing: .16em; text-transform: uppercase; color: #fff; }
 .gs-mq i { font-style: normal; margin: 0 8px; font-size: 9px; color: #fff; }
-/* sans atout : pas de barre, la carte s'agrandit a toute la largeur de la vignette */
-.gs-bleed { width: calc(100% + 16px) !important; margin: 0 -8px 6px !important; }
+/* sans atout : meme hauteur reservee (invisible), toutes les cartes ont le meme format */
+.gs-empty { visibility: hidden; }
+.gs-strip + .gc-bar { margin-top: 8px; }
 @media (prefers-reduced-motion: reduce) { .gs-mq { animation: none; } }
 
 /* Vignettes : bas centre et compact, degrade discret a la couleur de l'equipe vers le fond */
 .gc-bot { position: relative; display: block !important; margin: 0 -8px 0 !important; padding: 7px 8px 8px; }
 .gc-bot > div:first-child { text-align: center; padding: 0 2px; }
 .gc-bot > div:first-child p { justify-content: center !important; text-align: center; margin-left: 0; margin-right: 0; }
-.gc-bot > div:first-child .gc-name { padding: 0 22px; }
-.gc-bot .gc-name { gap: 5px !important; }
-.card-item .gc-bot .gc-name .da-display { font-size: 17px !important; }
-.gc-bot .gc-right { position: absolute; top: 7px; right: 8px; }
+.gc-bot > div:first-child > p:not(.gc-name) { font-size: 12px !important; }
+.gc-bot > div:first-child .gc-name { position: relative; padding: 0 30px; }
+.gc-bot .gc-name .gc-logo { position: absolute !important; left: 4px; top: 50%; transform: translateY(-50%); margin: 0 !important; }
+.gc-bot .gc-name { gap: 0 !important; }
+.card-item .gc-bot .gc-name .da-display { font-size: 21px !important; text-align: center; }
+.gc-bot .gc-right { position: absolute; top: 8px; right: 8px; }
 .gc-bot .gc-right button { padding: 0 !important; }
-.gc-bot .gc-right button span:first-child { font-size: 15px !important; }
-@media (max-width: 640px) { .card-item .gc-bot .gc-name .da-display { font-size: 14px !important; } .gc-bot > div:first-child .gc-name { padding: 0 18px; } }
+.gc-bot .gc-right button span:first-child { font-size: 17px !important; }
+@media (max-width: 640px) { .card-item .gc-bot .gc-name .da-display { font-size: 16px !important; } .gc-bot > div:first-child .gc-name { padding: 0 24px; } .gc-bot > div:first-child > p:not(.gc-name) { font-size: 11px !important; } .gc-bot .gc-name .gc-logo { left: 0; } }
 .gs-seg.gs-ghost { background: rgba(255, 255, 255, .06); color: rgba(255, 255, 255, .5); letter-spacing: .24em; box-shadow: inset 0 0 0 1px rgba(255, 255, 255, .12); text-shadow: none; }
 /* Vignettes : teinte de toute la carte, de la couleur de base vers la couleur de l'equipe en bas (aucun bord, le fondu commence derriere l'image) */
 .card-item { background-image: linear-gradient(180deg, transparent 50%, color-mix(in srgb, var(--gt, transparent) 22%, transparent) 100%); }
