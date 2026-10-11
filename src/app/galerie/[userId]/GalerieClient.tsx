@@ -626,6 +626,8 @@ export default function GalerieClient({ userId, initialCardUrl, initialCards, in
   const [csvVente, setCsvVente] = useState<Map<string, boolean>>(new Map())
   const [grailCards, setGrailCards] = useState<{ card_key: string; position: number }[]>([])
   const [grailSearch, setGrailSearch] = useState('')
+  const [grailIdx, setGrailIdx] = useState(0)   // mobile : cadre affiche (visionneuse)
+  const grailTouch = useRef<number | null>(null)
   const grailSearchDebounced = useDebouncedValue(grailSearch, 200)
   const [expandedCollections, setExpandedCollections] = useState<Set<string>>(new Set())
   const [grailPickerOpen, setGrailPickerOpen] = useState(false)
@@ -2462,7 +2464,7 @@ export default function GalerieClient({ userId, initialCardUrl, initialCards, in
             const card = !grailLoading ? grailItems[i] : undefined
             if (card) {
               return (
-                <div key={i} style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 6 }}>
+                <div key={i} className={`grail-slot${i === Math.min(grailIdx, grailItems.length - 1) ? ' on' : ''}`} style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 6 }}>
                   <div onClick={() => setPopup(card)} role="button" tabIndex={0} aria-label={card.n}
                     onKeyDown={e => { if ((e.key === 'Enter' || e.key === ' ') && e.target === e.currentTarget) { e.preventDefault(); setPopup(card) } }}
                     className="grail-wall-cursor grail-gold-glow" style={{
@@ -2511,12 +2513,25 @@ export default function GalerieClient({ userId, initialCardUrl, initialCards, in
                 <span style={{ fontSize: 11, color: dark ? '#9aa6c0' : '#5b6478', fontWeight: 600 }}>— {t('gallery_jewels')}</span>
               </div>
 
-              <div className="grail-museum">
+              <div className="grail-museum"
+                onTouchStart={e => { grailTouch.current = e.touches[0].clientX }}
+                onTouchEnd={e => {
+                  const x0 = grailTouch.current; grailTouch.current = null
+                  if (x0 == null || grailItems.length < 2) return
+                  const dx = e.changedTouches[0].clientX - x0
+                  if (Math.abs(dx) > 45) setGrailIdx(i => (i + (dx < 0 ? 1 : -1) + grailItems.length) % grailItems.length)
+                }}>
                 {podiumOrder.map(i => renderSlot(i))}
+                {grailItems.length > 1 && (
+                  <>
+                    <button type="button" className="grail-arr l" aria-label="Carte précédente" onClick={() => setGrailIdx(i => (i - 1 + grailItems.length) % grailItems.length)}>‹</button>
+                    <button type="button" className="grail-arr r" aria-label="Carte suivante" onClick={() => setGrailIdx(i => (i + 1) % grailItems.length)}>›</button>
+                    <div className="grail-count">{Math.min(grailIdx, grailItems.length - 1) + 1} / {grailItems.length}</div>
+                  </>
+                )}
                 {canAddGrail && (
-                  <button type="button" className="grail-add" onClick={() => { setGrailPickerOpen(true); setGrailSearch('') }}>
-                    <span className="da-display">+</span>
-                    {grailItems.length === 0 ? t('gallery_choose_card') : `${t('gallery_choose_card')} (${grailItems.length}/${GRAIL_MAX})`}
+                  <button type="button" className={`grail-add${grailItems.length === 0 ? ' solo' : ''}`} title={t('gallery_choose_card')} aria-label={t('gallery_choose_card')} onClick={() => { setGrailPickerOpen(true); setGrailSearch('') }}>
+                    + <span>{grailItems.length === 0 ? t('gallery_choose_card') : `${grailItems.length}/${GRAIL_MAX}`}</span>
                   </button>
                 )}
               </div>
