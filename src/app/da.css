@@ -894,7 +894,7 @@ html[data-theme="light"] .tcdb-imp-open { border-color: #06122e; color: #06122e;
 @media (prefers-reduced-motion: reduce) { .gs-mq { animation: none; } }
 
 /* Vignettes : bas centre et compact, degrade discret a la couleur de l'equipe vers le fond */
-.gc-bot { position: relative; display: block !important; margin: 0 -8px -8px !important; padding: 10px 8px 16px; background: linear-gradient(180deg, transparent 0%, color-mix(in srgb, var(--gt, transparent) 34%, transparent) 100%); }
+.gc-bot { position: relative; display: block !important; margin: 0 -8px -8px !important; padding: 10px 8px 16px; background: linear-gradient(180deg, transparent 0%, color-mix(in srgb, var(--gt, #1c2a5c) 34%, #0a1330) 100%); }
 .gc-bot > div:first-child { text-align: center; padding: 0 2px; }
 .gc-bot > div:first-child p { justify-content: center !important; text-align: center; margin-left: 0; margin-right: 0; }
 .gc-bot > div:first-child > p:not(.gc-name) { font-size: 12px !important; }
@@ -922,3 +922,7 @@ html[data-theme="light"] .tcdb-imp-open { border-color: #06122e; color: #06122e;
 /* Textes du bas : ombre legere + ligne du set claire sur fond sombre pour rester lisibles sur toutes les couleurs d'equipe */
 .gc-bot p, .gc-bot .da-display { text-shadow: 0 1px 2px rgba(0, 0, 0, .55); }
 :root[data-theme="dark"] .gc-bot > div:first-child > p:last-child { color: rgba(255, 255, 255, .82) !important; }
+/* Contraste garanti : le fondu finit toujours sombre (couleur d'equipe melangee au marine) et les textes du bas sont clairs, quelle que soit la couleur d'equipe ou de bordure */
+.gc-bot > div:first-child .gc-name .da-display { color: #fff !important; }
+.gc-bot > div:first-child > p:nth-child(2) { color: color-mix(in srgb, var(--gt, #fff) 35%, #fff) !important; }
+.gc-bot > div:first-child > p:last-child { color: rgba(255, 255, 255, .85) !important; }
