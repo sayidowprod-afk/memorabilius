@@ -94,6 +94,20 @@ const CSS = `
 .ix .gs.sv-star .s { gap: 6px; } .ix .gs.sv-star .s::before, .ix .gs.sv-star .s::after { content: '✦'; font-size: 8px; animation: tw41 2.4s ease-in-out infinite; } .ix .gs.sv-star .s::after { animation-delay: 1.2s; }
 .ix .gs.sv-glint .s { position: relative; overflow: hidden; } .ix .gs.sv-glint .s::after { content: ''; position: absolute; top: 0; bottom: 0; width: 40%; left: 0; background: linear-gradient(100deg, transparent, rgba(255,255,255,.55), transparent); transform: translateX(-120%); animation: gl41 3.6s ease-in-out infinite; } .ix .gs.sv-glint .s:nth-child(2)::after { animation-delay: .35s; } .ix .gs.sv-glint .s:nth-child(3)::after { animation-delay: .7s; } .ix .gs.sv-glint .s:nth-child(4)::after { animation-delay: 1.05s; }
 @media (prefers-reduced-motion: reduce) { .ix .mq, .ix .gs.sv-star .s::before, .ix .gs.sv-star .s::after, .ix .gs.sv-glint .s::after { animation: none; } }
+/* E : chaque atout est sa propre barre defilante (vitesses et sens independants) ; infos qui defilent pour les cartes sans atout */
+.ix .gs.sgs { gap: 2px; } .ix .gs.sgs.slim { height: 14px; }
+.ix .sgm { flex: 1 1 0; min-width: 0; overflow: hidden; display: flex; align-items: center; background: var(--g); box-shadow: inset 0 1px 0 rgba(255,255,255,.38), inset 0 -1px 0 rgba(0,0,0,.28); }
+.ix .sgm.flat { background: var(--c); box-shadow: none; }
+.ix .sgm.blue { background: var(--mb, #003DA6); }
+.ix .sgm .mq { animation-duration: var(--d, 8s); animation-direction: var(--dir, normal); }
+.ix .sgm .mq > span { color: var(--t); text-shadow: 0 1px 1px rgba(0,0,0,.3); }
+.ix .sgm.blue .mq > span { color: #fff; } .ix .sgm.blue .mq b { color: var(--l); }
+.ix .sgm .mq i { margin: 0 7px; }
+.ix .sgm.fixed { position: relative; } .ix .sgm.fixed .lab { position: absolute; left: 0; top: 0; bottom: 0; z-index: 2; display: flex; align-items: center; padding: 0 7px 0 6px; background: var(--c); font: 900 10px/1 system-ui; letter-spacing: .14em; text-transform: uppercase; color: var(--t); box-shadow: 6px 0 6px -2px rgba(0,0,0,.35); } .ix .sgm.fixed .mq { margin-left: 30px; }
+.ix .stk { position: absolute; left: 0; right: 0; top: 0; z-index: 3; display: flex; flex-direction: column; gap: 1px; } .ix .stk .sgm { height: 12px; }
+.ix .stk .mq > span { font-size: 8.5px; }
+.ix .gs.mqs.info { background: rgba(255,255,255,.07); box-shadow: inset 0 0 0 1px rgba(255,255,255,.14); } .ix .gs.mqs.info .mq > span { color: rgba(255,255,255,.78); } .ix .gs.mqs.info .mq i { color: rgba(255,255,255,.5); }
+.ix .gs.mqs.infob { background: color-mix(in srgb, #003DA6 70%, #0a1330); }
 @media (max-width: 900px) { .ix .v4-row { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
 `
 function Bay({ id, n, title, desc, children }: { id: string; n: string; title: string; desc: string; children: React.ReactNode }) {
@@ -137,7 +151,7 @@ const fillNode = (c: PC, f: Fill): React.ReactNode => {
   const t = f === 'year' ? c.y : f === 'brand' ? c.br : f === 'num' ? c.no : f === 'sport' ? 'Basketball' : c.v
   return <span className={`s ${f === 'insert' ? 'insert' : 'ghost'}`}>{t}</span>
 }
-const Cell = ({ c, sv = 1, fill = 'year', b = 1, strip, svc }: { c: PC; sv?: number; fill?: Fill; b?: number; strip?: React.ReactNode; svc?: string }) => {
+const Cell = ({ c, sv = 1, fill = 'year', b = 1, strip, svc, over }: { c: PC; sv?: number; fill?: Fill; b?: number; strip?: React.ReactNode; svc?: string; over?: React.ReactNode }) => {
   const segs = segsOf(c)
   return (
     <div className={`v4 b${b}`} style={{ ['--gt' as string]: c.tc, ['--tc' as string]: c.tc } as CSSProperties}>
@@ -146,7 +160,7 @@ const Cell = ({ c, sv = 1, fill = 'year', b = 1, strip, svc }: { c: PC; sv?: num
           {segs.length ? segs.map(s => <span key={s.k} className="s" style={segStyle(s)}>{s.t}</span>) : fillNode(c, fill)}
         </div>
       )}
-      <div className="ph"><img src={c.img} alt="" /></div>
+      <div className="ph" style={{ position: 'relative' }}><img src={c.img} alt="" />{over}</div>
       <div className="bar" />
       <div className="bt"><div className="nm"><img src={`/team-logos/nba-${c.tm}.png`} alt="" /><span>{c.n}</span></div>{c.v && <div className="vr">{c.v}</div>}<div className="st">{c.s}</div><Ic /></div>
     </div>
@@ -180,6 +194,56 @@ const MQ_DEFS: { title: string; desc: string; strip: (c: PC) => React.ReactNode;
   { title: 'Segments colorés avec reflet qui passe', desc: 'Segments actuels, avec un reflet de lumière diagonal qui traverse chacun toutes les 3,6 s, l\'un après l\'autre (décalés de 0,35 s), comme un badge métallique qu\'on incline. Aucune étoile, juste le mouvement.', strip: () => null, svc: 'sv-glint' },
 ]
 
+const SegMq = ({ c, o }: { c: PC; o: 'indep' | 'alt' | 'blue' | 'fixed' | 'flat' }) => {
+  const segs = segsOf(c)
+  return (
+    <div className="gs sgs">
+      {segs.map((s, i) => {
+        const unit = (
+          <span>
+            {[0, 1, 2, 3].map(r => <React.Fragment key={r}>{o === 'fixed' ? null : <b>{s.t}</b>}<i>✦</i>{o === 'fixed' ? null : null}</React.Fragment>)}
+          </span>
+        )
+        const dur = 5 + ((i * 3 + c.n.length) % 5) * 1.4
+        const st = { ...segStyle(s), ['--d' as string]: `${dur.toFixed(1)}s`, ['--dir' as string]: o === 'alt' && i % 2 ? 'reverse' : 'normal', ['--mb' as string]: '#003DA6' } as CSSProperties
+        return (
+          <div key={s.k} className={`sgm ${o === 'blue' ? 'blue' : o === 'flat' ? 'flat' : o === 'fixed' ? 'fixed' : ''}`} style={st}>
+            {o === 'fixed' && <span className="lab">{s.t}</span>}
+            <div className="mq">{unit}{unit}</div>
+          </div>
+        )
+      })}
+    </div>
+  )
+}
+const InfoMq = ({ c, blue }: { c: PC; blue?: boolean }) => {
+  const items = [c.n, c.v, c.y, c.br].filter(Boolean) as string[]
+  const unit = <span>{[0, 1].map(r => <React.Fragment key={r}>{items.map(x => <React.Fragment key={x}><b>{x}</b><i>✦</i></React.Fragment>)}</React.Fragment>)}</span>
+  return <div className={`gs mqs info${blue ? 'b' : ''}`}><div className="mq" style={{ ['--d' as string]: '16s' } as CSSProperties}>{unit}{unit}</div></div>
+}
+const StkMq = ({ c }: { c: PC }) => {
+  const segs = segsOf(c)
+  return (
+    <div className="stk">
+      {segs.map((s, i) => {
+        const unit = <span>{[0, 1, 2, 3].map(r => <React.Fragment key={r}><b>{s.t}</b><i>✦</i></React.Fragment>)}</span>
+        const st = { ...segStyle(s), ['--d' as string]: `${(5 + i * 1.7).toFixed(1)}s`, ['--dir' as string]: i % 2 ? 'reverse' : 'normal' } as CSSProperties
+        return <div key={s.k} className="sgm" style={st}><div className="mq">{unit}{unit}</div></div>
+      })}
+    </div>
+  )
+}
+type EDef = { title: string; desc: string; strip?: (c: PC) => React.ReactNode; over?: (c: PC) => React.ReactNode }
+const E_DEFS: EDef[] = [
+  { title: 'D1 + les infos qui défilent quand il n\'y a aucun atout', desc: 'La barre bleue défilante de D1 pour les cartes avec atouts (RC ✦ AUTO ✦ /25…), et pour les cartes sans atout une barre grise du même style qui fait défiler le nom, l\'insert, l\'année et le set (« ADEM BONA ✦ FRESH PAINT ✦ 2024-25 ✦ COURT KINGS »). Plus d\'année figée en en-tête.', strip: c => (segsOf(c).length ? <Mq c={c} /> : <InfoMq c={c} />) },
+  { title: 'Même chose, infos sans atout sur la barre bleue', desc: 'Idem, mais la barre d\'infos des cartes sans atout est bleue comme D1 (un peu plus sombre) : toutes les vignettes ont la même barre, on ne la distingue qu\'à son contenu.', strip: c => (segsOf(c).length ? <Mq c={c} /> : <InfoMq c={c} blue />) },
+  { title: 'Chaque atout est sa propre barre défilante (côte à côte, vitesses différentes)', desc: 'Les segments égaux sont conservés (RC, AUTO, PATCH, tirage chacun dans sa couleur), mais chaque segment fait défiler son propre texte (« AUTO ✦ AUTO ✦ AUTO ✦ ») à sa propre vitesse, de 5 à 11 secondes : ils ne bougent jamais à l\'unisson.', strip: c => (segsOf(c).length ? <SegMq c={c} o="indep" /> : <InfoMq c={c} />) },
+  { title: 'Chaque atout défile, sens alternés', desc: 'Même principe, mais un segment sur deux défile vers la droite : RC vers la gauche, AUTO vers la droite, PATCH vers la gauche… L\'effet est plus vivant, un peu plus agité.', strip: c => (segsOf(c).length ? <SegMq c={c} o="alt" /> : <InfoMq c={c} />) },
+  { title: 'Segments mats (sans relief) défilants', desc: 'Les segments défilants indépendants, en couleur unie sans dégradé ni relief : plus plat, plus proche de la barre de l\'accueil.', strip: c => (segsOf(c).length ? <SegMq c={c} o="flat" /> : <InfoMq c={c} />) },
+  { title: 'Segments bleus de la marque, seuls les mots gardent leur couleur', desc: 'Chaque segment est bleu comme la barre de l\'accueil et fait défiler son atout ; seule la couleur du mot change (RC orange, AUTO vert, PATCH bleu clair). Le bandeau reste uniformément bleu tout en gardant le code couleur.', strip: c => (segsOf(c).length ? <SegMq c={c} o="blue" /> : <InfoMq c={c} blue />) },
+  { title: 'Étiquette fixe à gauche, étoiles qui défilent derrière', desc: 'Chaque segment porte son nom immobile à gauche (RC, AUTO, /25) et, à sa droite, des étoiles ✦ qui défilent seules. L\'information reste lisible à tout instant et seul l\'ornement bouge.', strip: c => (segsOf(c).length ? <SegMq c={c} o="fixed" /> : <InfoMq c={c} />) },
+  { title: 'Barres empilées de 12 px, une par atout (par-dessus l\'image)', desc: 'Chaque atout est une barre pleine largeur de 12 px posée sur le haut de l\'image, empilées (sens alternés). Très proche de ta demande « chaque barre bouge indépendamment » mais elles couvrent de 12 à 50 px de l\'image selon le nombre d\'atouts : à voir si c\'est acceptable.', over: c => (segsOf(c).length ? <StkMq c={c} /> : null), strip: c => (segsOf(c).length ? <div className="gs none" /> : <InfoMq c={c} />) },
+]
 const STRIPS = [
   ['Actuel (dégradé fin, relief)', 'Le bandeau tel qu\'il est en ligne : 17 px, dégradé vertical, filet de relief, lettres espacées.'],
   ['Plat et ultra fin (14 px)', 'Couleur unie sans relief, 14 px de haut, texte de 8,5 px. Le plus discret et le plus net.'],
@@ -219,9 +283,10 @@ export default function DaIdeas() {
       <style>{CSS}</style>
       <Link href="/admin" className="back">← Admin</Link>
       <h1 className="sf">Idées · Série 41 · Bandeau, espace vide, dégradé</h1>
-      <p className="lead">Nouveau, en tête de page (D1 à D5) : le bandeau dans le style de la barre défilante de l&apos;accueil (police grasse espacée, étoiles ✦, mouvement). Puis trois chantiers sur les vignettes de la galerie, montrés sur 5 cartes (1, 2, 3 et 4 atouts, et une sans atout) avec des équipes de couleurs différentes : A. rendre le bandeau d&apos;atouts plus beau et plus fin (10 variantes) ; B. remplir la rangée quand il n&apos;y a aucun atout (8 façons) ; C. mieux intégrer le dégradé du bas à la couleur d&apos;équipe (8 façons).</p>
-      <nav className="tags">{MQ_DEFS.map((_, i) => <a key={`d${i}`} href={`#d${i + 1}`}>D{i + 1}</a>)}{STRIPS.map((_, i) => <a key={i} href={`#a${i + 1}`}>A{i + 1}</a>)}{FILLS.map((_, i) => <a key={i} href={`#b${i + 1}`}>B{i + 1}</a>)}{BOTS.map((_, i) => <a key={i} href={`#c${i + 1}`}>C{i + 1}</a>)}</nav>
+      <p className="lead">Tout en haut (E1 à E8) : chaque atout comme sa propre barre défilante, et des infos qui défilent pour les cartes sans atout. Ensuite (D1 à D5) : le bandeau dans le style de la barre défilante de l&apos;accueil (police grasse espacée, étoiles ✦, mouvement). Puis trois chantiers sur les vignettes de la galerie, montrés sur 5 cartes (1, 2, 3 et 4 atouts, et une sans atout) avec des équipes de couleurs différentes : A. rendre le bandeau d&apos;atouts plus beau et plus fin (10 variantes) ; B. remplir la rangée quand il n&apos;y a aucun atout (8 façons) ; C. mieux intégrer le dégradé du bas à la couleur d&apos;équipe (8 façons).</p>
+      <nav className="tags">{E_DEFS.map((_, i) => <a key={`e${i}`} href={`#e${i + 1}`}>E{i + 1}</a>)}{MQ_DEFS.map((_, i) => <a key={`d${i}`} href={`#d${i + 1}`}>D{i + 1}</a>)}{STRIPS.map((_, i) => <a key={i} href={`#a${i + 1}`}>A{i + 1}</a>)}{FILLS.map((_, i) => <a key={i} href={`#b${i + 1}`}>B{i + 1}</a>)}{BOTS.map((_, i) => <a key={i} href={`#c${i + 1}`}>C{i + 1}</a>)}</nav>
 
+      {E_DEFS.map((d, i) => <Bay key={d.title} id={`e${i + 1}`} n={`E${i + 1}`} title={d.title} desc={d.desc}><Row>{PCS.map(c => <Cell key={c.n} c={c} strip={d.strip ? d.strip(c) : undefined} over={d.over ? d.over(c) : undefined} />)}</Row></Bay>)}
       {MQ_DEFS.map((d, i) => <Bay key={d.title} id={`d${i + 1}`} n={`D${i + 1}`} title={d.title} desc={d.desc}><Row>{PCS.map(c => <Cell key={c.n} c={c} svc={d.svc} strip={i < 3 ? d.strip(c) : undefined} />)}</Row></Bay>)}
       {STRIPS.map((d, i) => <Bay key={d[0]} id={`a${i + 1}`} n={`A${i + 1}`} title={d[0]} desc={d[1]}><Row>{PCS.map(c => <Cell key={c.n} c={c} sv={i + 1} />)}</Row></Bay>)}
       {FILLS.map((d, i) => <Bay key={d[1]} id={`b${i + 1}`} n={`B${i + 1}`} title={d[1]} desc={d[2]}><Row>{PCS.map(c => <Cell key={c.n} c={c} fill={d[0]} />)}</Row></Bay>)}

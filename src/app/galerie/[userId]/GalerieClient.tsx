@@ -12,7 +12,7 @@ import { getTeamByName } from '@/lib/sportsTeams'
 import { teamInfo } from '@/lib/teamColors'
 import { historicLogo } from '@/lib/historicLogos'
 import { toast } from '@/lib/toast'
-import { useEffect, useLayoutEffect, useState, useRef, useMemo, useCallback } from 'react'
+import { Fragment, useEffect, useLayoutEffect, useState, useRef, useMemo, useCallback } from 'react'
 import { flushSync } from 'react-dom'
 import { updateGalleryWidget } from '@/lib/widgetBridge'
 import { createPortal } from 'react-dom'
@@ -3476,9 +3476,23 @@ export default function GalerieClient({ userId, initialCardUrl, initialCards, in
                   const gold = tier === 'gold', silver = tier === 'silver'
                   segs.push({ k: 'num', t: numShort(d.num), c: gold ? 'linear-gradient(180deg,#fff2b8,#e3b53b 55%,#9a6b08)' : silver ? 'linear-gradient(180deg,#fbfcfe,#b4bcc8 55%,#6c7585)' : grad(TAG_BASE.num), dark: gold || silver })
                 }
+                const unit = (txt: string, key: string) => (
+                  <span key={key}>{[0, 1, 2, 3].map(r => <Fragment key={r}><b>{txt}</b><i>✦</i></Fragment>)}</span>
+                )
+                const info = [d.n, d.v, d.y, d.br].filter(Boolean).join('  ✦  ')
                 return (
-                  <div className="gs-strip" aria-label={segs.map(x => x.t).join(' ')}>
-                    {segs.map(x => <span key={x.k} className={`gs-seg${x.dark ? ' dk' : ''}`} style={{ background: x.c }}>{x.t}</span>)}
+                  <div className="gs-strip" aria-label={segs.length ? segs.map(x => x.t).join(' ') : info}>
+                    {segs.length > 0 ? segs.map((x, i) => (
+                      <div key={x.k} className={`gs-seg${x.dark ? ' dk' : ''}`} style={{ background: x.c, ['--d' as string]: `${(5 + ((i * 3 + (d.n || '').length) % 5) * 1.4).toFixed(1)}s` }}>
+                        <div className="gs-mq">{unit(x.t, 'a')}{unit(x.t, 'b')}</div>
+                      </div>
+                    )) : (
+                      <div className="gs-seg gs-info" style={{ ['--d' as string]: '18s' }}>
+                        <div className="gs-mq">
+                          {['a', 'b'].map(k => <span key={k}>{[0, 1].map(r => <Fragment key={r}>{[d.n, d.v, d.y, d.br].filter(Boolean).map((x, j) => <Fragment key={j}><b>{x}</b><i>✦</i></Fragment>)}</Fragment>)}</span>)}
+                        </div>
+                      </div>
+                    )}
                   </div>
                 )
               })()}
@@ -3511,14 +3525,6 @@ export default function GalerieClient({ userId, initialCardUrl, initialCards, in
                   const likeInfo = cardLikes.get(d.f) || { count: 0, liked: false }
                   return (
                   <div style={{ display: 'flex', alignItems: 'center', flexShrink: 0 }}>
-                    <button
-                      onClick={e => { e.stopPropagation(); setCommentCard(d) }}
-                      title="Commenter"
-                      style={{ background: 'none', border: 'none', cursor: 'pointer', display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 1, padding: '2px 4px', flexShrink: 0 }}
-                    >
-                      <span style={{ fontSize: 16, lineHeight: 1 }}>💬</span>
-                      {(commentCounts.get(d.f) || 0) > 0 && <span style={{ fontSize: 9, fontWeight: 800, color: '#bbb' }}>{commentCounts.get(d.f)}</span>}
-                    </button>
                     <button
                       onClick={async (e) => {
                         e.stopPropagation()
