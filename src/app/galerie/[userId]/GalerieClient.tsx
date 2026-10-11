@@ -2119,7 +2119,8 @@ export default function GalerieClient({ userId, initialCardUrl, initialCards, in
   const visiblePrincipals = tagsExpanded ? principals : principals.slice(0, TAG_VISIBLE_LIMIT)
 
   const hasAdvancedActive = !!(fSport || fBrand || fYear || sortBy !== 'default')
-  const advancedVisible = showAdvancedFilters || hasAdvancedActive
+  // ferme par defaut et ferme tant qu'on ne l'ouvre pas : un filtre avance actif n'ouvre plus le volet de force (le point • sur le bouton le signale)
+  const advancedVisible = showAdvancedFilters
 
   return (
     <>
