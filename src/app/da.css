@@ -917,8 +917,8 @@ html[data-theme="light"] .tcdb-imp-open { border-color: #06122e; color: #06122e;
 .card-item .gc-bot { align-items: center !important; padding: 12px 8px 14px; }
 .card-item .gc-bot > div:first-child { flex: 1 1 auto; }
 /* Contraste : texte blanc cerne de sombre sur la barre d'atouts, lisible sur toutes les couleurs (or, argent, orange...) */
-.gs-mq b, .gs-mq i { color: #fff !important; paint-order: stroke fill; -webkit-text-stroke: 2.2px rgba(0, 0, 0, .55); }
-.gs-seg { text-shadow: 0 1px 2px rgba(0, 0, 0, .6); }
+.gs-mq b, .gs-mq i { color: #fff !important; }
+.gs-seg { text-shadow: 0 1px 2px rgba(0, 0, 0, .75), 0 0 4px rgba(0, 0, 0, .35); }
 /* Textes du bas : ombre legere + ligne du set claire sur fond sombre pour rester lisibles sur toutes les couleurs d'equipe */
 .gc-bot p, .gc-bot .da-display { text-shadow: 0 1px 2px rgba(0, 0, 0, .55); }
 :root[data-theme="dark"] .gc-bot > div:first-child > p:last-child { color: rgba(255, 255, 255, .82) !important; }
