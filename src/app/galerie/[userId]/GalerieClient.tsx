@@ -3484,7 +3484,7 @@ export default function GalerieClient({ userId, initialCardUrl, initialCards, in
                 if (d.patch) ats.push({ k: 'patch', t: 'Patch', c: TAG_BASE.patch })
                 if (d.auto) ats.push({ k: 'auto', t: 'Auto', c: TAG_BASE.auto })
                 if (d.printing_plate) ats.push({ k: 'plate', t: 'Plate', c: '#9aa6bd' })
-                if (d.num) { const tr = numTier(d.num); ats.push({ k: 'num', t: numShort(d.num), c: tr === 'gold' ? '#ffd54a' : tr === 'silver' ? '#dfe6f2' : TAG_BASE.num }) }
+                if (d.num) { const tr = numTier(d.num); ats.push({ k: 'num', t: numShort(d.num), c: tr === 'gold' ? '#ffd54a' : tr === 'silver' ? '#dfe6f2' : tr === 'bronze' ? '#e0925a' : TAG_BASE.num }) }
                 const barColor = teamBarColor(d.t)
                 const reps = Math.max(4, Math.ceil(20 / Math.max(1, ats.length)))
                 const unit = (key: string) => (
