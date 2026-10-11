@@ -2,7 +2,7 @@
 import React from 'react'
 import type { CSSProperties } from 'react'
 import Link from 'next/link'
-import { TAG_BASE, numTier, numShort } from '@/lib/cardTags'
+import { TAG_BASE, numTier, numShort, mix } from '@/lib/cardTags'
 
 // Idees visuelles pour pousser la nouvelle DA (Surfquest, marine -> bleu electrique, angles droits, doubles filets, metaux).
 // Page de TRAVAIL reservee aux admins : donnees d'exemple en dur, rien n'est lu ni ecrit.
@@ -43,38 +43,45 @@ const CSS = `
 .ix .tags a { color:#fff; text-decoration:none; border: 2px solid rgba(255,255,255,.4); padding: 5px 10px; font: 800 10px system-ui; letter-spacing:.1em; text-transform:uppercase; }
 .ix .tags a:hover { background:#fff; color:#06122e; }
 
-/* serie 40 : atouts en bannieres fines sur la carte, atouts en haut a gauche, tirage en bas a droite (prefixe bn-) */
-.ix .bn-row { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 18px; max-width: 900px; }
-.ix .bn-c { position: relative; background: #0a1330; border: 1px solid rgba(140,170,255,.35); padding: 7px 7px 0; min-width: 0; }
-.ix .bn-c .ph { position: relative; overflow: hidden; } .ix .bn-c img.im { display: block; width: 100%; aspect-ratio: 2.5/3.5; object-fit: cover; }
-.ix .bn-c .bar { height: 4px; margin: 8px -7px 0; background: var(--tc, #2f8bff); }
-.ix .bn-c .tx { padding: 8px 2px 9px; } .ix .bn-c .nm { display: flex; align-items: center; gap: 6px; font: 400 19px/1 'Surfquest', Impact, sans-serif; text-transform: uppercase; letter-spacing: .02em; } .ix .bn-c .nm .t { min-width: 0; flex: 1; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; } .ix .bn-c .vr { font: italic 600 10px system-ui; color: #5aa9ff !important; margin-top: 3px; } .ix .bn-c .st { font: 500 10px system-ui; color: rgba(255,255,255,.62) !important; margin-top: 2px; } .ix .bn-c .ic { display: inline-flex; gap: 6px; font-size: 14px; }
-.ix .bn-c .lg { width: 16px; height: 16px; object-fit: contain; filter: brightness(0) invert(1); flex-shrink: 0; }
+/* serie 41 : bandeau d'atouts plus beau, remplissage sans atout, degrade du bas (prefixe v4-) */
+.ix .v4-row { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 14px; max-width: 1000px; }
+.ix .v4 { position: relative; background: #0a1330; border: 1px solid rgba(140,170,255,.35); padding: 8px 8px 0; min-width: 0; }
+.ix .v4 .ph img { display: block; width: 100%; aspect-ratio: 2.5/3.5; object-fit: cover; }
+.ix .v4 .bar { height: 4px; margin: 6px -8px 0; background: var(--tc); }
+.ix .v4 .bt { position: relative; margin: 0 -8px; padding: 7px 8px 9px; text-align: center; background: var(--bg-b, none); box-shadow: var(--bs-b, none); border-bottom: var(--bb-b, 0); }
+.ix .v4 .nm { display: flex; align-items: center; justify-content: center; gap: 5px; font: 400 17px/1 'Surfquest', Impact, sans-serif; text-transform: uppercase; letter-spacing: .02em; } .ix .v4 .nm img { width: 15px; height: 15px; object-fit: contain; filter: brightness(0) invert(1); flex-shrink: 0; }
+.ix .v4 .vr { font: italic 600 10px system-ui; color: #5aa9ff !important; margin-top: 3px; } .ix .v4 .st { font: 500 10px system-ui; color: rgba(255,255,255,.7) !important; margin-top: 2px; padding: 0 30px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.ix .v4 .ic { position: absolute; right: 7px; bottom: 5px; display: inline-flex; gap: 5px; font-size: 13px; }
 .ix .sq { font-family: 'Surfquest', Impact, sans-serif; font-weight: 400; text-transform: uppercase; letter-spacing: .03em; }
-/* haut gauche */
-.ix .tp { position: absolute; top: 0; left: 0; z-index: 2; display: flex; flex-direction: column; align-items: flex-start; gap: 1px; } .ix .tp.row { flex-direction: row; }
-.ix .tp .b { height: var(--h, 17px); display: inline-flex; align-items: center; padding: 0 7px; font: 900 10px system-ui; letter-spacing: .1em; text-transform: uppercase; background: var(--b); color: #fff !important; white-space: nowrap; }
-.ix .tp .b.bevel { clip-path: polygon(0 0, calc(100% - 6px) 0, 100% 100%, 0 100%); padding-right: 12px; }
-.ix .tp .b.fish { clip-path: polygon(0 0, 100% 0, calc(100% - 6px) 50%, 100% 100%, 0 100%); padding-right: 13px; }
-.ix .tp .b.sqr { width: var(--h, 17px); padding: 0; justify-content: center; letter-spacing: 0; }
-.ix .tp .b.wht { background: #fff; color: #06122e !important; padding-left: 11px; box-shadow: inset 4px 0 0 var(--k); }
-.ix .tp .b.tab { margin-left: 9px; }
-.ix .tp .b.one { padding: 0 9px; }
-.ix .tp.vt { flex-direction: column; gap: 1px; } .ix .tp.vt .b { writing-mode: vertical-rl; transform: rotate(180deg); width: 16px; height: auto; padding: 7px 0; justify-content: center; font-size: 9px; letter-spacing: .14em; }
-.ix .stp { position: absolute; left: 0; right: 0; top: 0; z-index: 2; display: flex; } .ix .stp .b { flex: 1; text-align: center; height: 16px; line-height: 16px; font: 900 9px/16px system-ui; letter-spacing: .12em; text-transform: uppercase; background: var(--b); color: #fff !important; border-right: 1px solid rgba(5,9,18,.5); } .ix .stp .b:last-child { border-right: 0; }
-/* bas droite : tirage */
-.ix .bt { position: absolute; z-index: 2; right: 0; bottom: 0; font-size: 16px; line-height: 1; color: var(--ti) !important; }
-.ix .bt.flush { padding: 4px 9px 2px; background: var(--ti); color: #1a1000 !important; }
-.ix .bt.bevel { padding: 4px 9px 2px 15px; background: var(--ti); color: #1a1000 !important; clip-path: polygon(9px 0, 100% 0, 100% 100%, 0 100%); }
-.ix .bt.cart { right: 6px; bottom: 6px; padding: 3px 8px 1px; border: 2px solid var(--ti); background: rgba(5,9,18,.92); box-shadow: 0 0 12px var(--tg); }
-.ix .bt.strip { left: 0; padding: 3px 9px 1px; text-align: right; background: rgba(5,9,18,.9); border-top: 2px solid var(--ti); }
-.ix .bt.seal { right: 6px; bottom: 6px; width: 42px; height: 42px; border-radius: 50%; display: flex; align-items: center; justify-content: center; background: radial-gradient(circle at 35% 30%, #1a2a66, #060b22); border: 3px solid var(--ti); box-shadow: 0 0 0 2px #060b22, 0 0 12px var(--tg); font-size: 14px; }
-.ix .bt.wht { padding: 4px 9px 2px; background: #fff; color: #06122e !important; box-shadow: inset 0 -3px 0 var(--ti); padding-bottom: 5px; }
-.ix .bt.out { right: 4px; bottom: -3px; font-size: 46px; line-height: .8; color: transparent !important; -webkit-text-stroke: 2px var(--ti); filter: drop-shadow(0 0 8px var(--tg)); }
-.ix .bt.tilt { right: 6px; bottom: 8px; padding: 3px 9px 1px; background: var(--ti); color: #1a1000 !important; transform: rotate(-4deg); box-shadow: 2px 3px 0 rgba(0,0,0,.45); }
-/* telephone */
-.ix .bn-ph { width: 300px; border: 4px solid #fff; background: #050912; padding: 10px; } .ix .bn-ph .bn-row { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; } .ix .bn-ph .bn-c .nm { font-size: 15px; } .ix .bn-ph .tp .b { font-size: 9px; padding: 0 5px; } .ix .bn-ph .bt { font-size: 14px; }
-@media (max-width: 800px) { .ix .bn-row { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+/* bandeau */
+.ix .gs { display: flex; gap: 2px; height: 17px; margin: 0 0 6px; }
+.ix .gs .s { flex: 1 1 0; min-width: 0; display: flex; align-items: center; justify-content: center; font: 800 10px/1 system-ui; letter-spacing: .16em; text-transform: uppercase; color: var(--t) !important; white-space: nowrap; overflow: hidden; background: var(--g); box-shadow: inset 0 1px 0 rgba(255,255,255,.38), inset 0 -1px 0 rgba(0,0,0,.28); text-shadow: 0 1px 1px rgba(0,0,0,.35); }
+.ix .gs.sv-1 { }
+.ix .gs.sv-2 { height: 14px; } .ix .gs.sv-2 .s { font-size: 8.5px; background: var(--c); box-shadow: none; text-shadow: none; letter-spacing: .18em; }
+.ix .gs.sv-3 { gap: 0; } .ix .gs.sv-3 .s { background: var(--c); box-shadow: none; text-shadow: none; clip-path: polygon(7px 0, 100% 0, calc(100% - 7px) 100%, 0 100%); margin-left: -3px; } .ix .gs.sv-3 .s:first-child { margin-left: 0; clip-path: polygon(0 0, 100% 0, calc(100% - 7px) 100%, 0 100%); }
+.ix .gs.sv-4 .s { background: color-mix(in srgb, var(--c) 18%, transparent); color: var(--l) !important; border-top: 2px solid var(--c); box-shadow: none; text-shadow: none; }
+.ix .gs.sv-5 .s { background: var(--c); box-shadow: inset 0 0 0 1px rgba(255,255,255,.4), inset 0 0 0 2px rgba(0,0,0,.18); text-shadow: none; }
+.ix .gs.sv-6 .s { background: #fff; color: #06122e !important; border-bottom: 3px solid var(--c); box-shadow: none; text-shadow: none; }
+.ix .gs.sv-7 .s { background: rgba(5,9,18,.88); color: #fff !important; box-shadow: inset 4px 0 0 var(--c), inset 0 0 0 1px rgba(255,255,255,.14); text-shadow: none; padding-left: 4px; }
+.ix .gs.sv-8 .s { background: var(--c); box-shadow: none; text-shadow: none; clip-path: polygon(4px 0, calc(100% - 4px) 0, 100% 4px, 100% 100%, 0 100%, 0 4px); }
+.ix .gs.sv-9 { gap: 0; } .ix .gs.sv-9 .s { background: var(--c); box-shadow: none; text-shadow: none; border-right: 1px solid rgba(255,255,255,.5); } .ix .gs.sv-9 .s:last-child { border-right: 0; }
+.ix .gs.sv-10 { height: 13px; } .ix .gs.sv-10 .s { font-size: 8px; letter-spacing: .22em; background: color-mix(in srgb, var(--c) 88%, #0a1330); box-shadow: inset 0 -2px 0 rgba(0,0,0,.25); text-shadow: none; }
+/* remplissage sans atout */
+.ix .gs .ghost { background: rgba(255,255,255,.06); color: rgba(255,255,255,.55) !important; letter-spacing: .22em; box-shadow: inset 0 0 0 1px rgba(255,255,255,.12); text-shadow: none; }
+.ix .gs .team { background: linear-gradient(90deg, color-mix(in srgb, var(--tc) 55%, transparent), transparent 85%); color: rgba(255,255,255,.8) !important; letter-spacing: .2em; justify-content: flex-start; padding-left: 8px; box-shadow: none; text-shadow: none; }
+.ix .gs .stripe { background: repeating-linear-gradient(135deg, rgba(255,255,255,.08) 0 3px, transparent 3px 7px); box-shadow: inset 0 0 0 1px rgba(255,255,255,.1); text-shadow: none; }
+.ix .gs .insert { background: color-mix(in srgb, #5aa9ff 16%, transparent); color: #7fb8ff !important; letter-spacing: .14em; font-style: italic; box-shadow: inset 0 0 0 1px rgba(90,169,255,.3); text-shadow: none; }
+.ix .gs.none { height: 0; margin: 0; }
+/* degrades du bas */
+.ix .b1 { --bg-b: linear-gradient(180deg, transparent 0%, color-mix(in srgb, var(--gt) 30%, transparent) 100%); }
+.ix .b2 { --bg-b: linear-gradient(180deg, transparent 0%, color-mix(in srgb, var(--gt) 22%, transparent) 100%); --bb-b: 2px solid var(--gt); }
+.ix .b3 { --bs-b: inset 0 -18px 18px -14px color-mix(in srgb, var(--gt) 55%, transparent); }
+.ix .b4 { --bg-b: linear-gradient(160deg, transparent 35%, color-mix(in srgb, var(--gt) 28%, transparent) 100%); }
+.ix .b5 { border-image: linear-gradient(180deg, rgba(140,170,255,.35) 35%, var(--gt) 100%) 1; } .ix .b5 .bar { background: transparent; }
+.ix .b6 { --bg-b: radial-gradient(ellipse 85% 70% at 50% 45%, color-mix(in srgb, var(--gt) 28%, transparent), transparent 75%); }
+.ix .b7 { background: linear-gradient(180deg, #0a1330 52%, color-mix(in srgb, var(--gt) 24%, #0a1330) 100%); }
+.ix .b8 { background: linear-gradient(180deg, #0a1330 40%, color-mix(in srgb, var(--gt) 20%, #0a1330) 100%); } .ix .b8 .bar { order: 9; position: absolute; left: 0; right: 0; bottom: 0; margin: 0; height: 4px; }
+@media (max-width: 900px) { .ix .v4-row { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
 `
 function Bay({ id, n, title, desc, children }: { id: string; n: string; title: string; desc: string; children: React.ReactNode }) {
   return (
@@ -87,67 +94,82 @@ function Bay({ id, n, title, desc, children }: { id: string; n: string; title: s
   )
 }
 
-type PC = { n: string; v?: string; s: string; img: string; rc?: boolean; auto?: boolean; patch?: boolean; num?: string; tm: string; tc: string }
+type PC = { n: string; v?: string; s: string; img: string; y: string; br: string; no?: string; rc?: boolean; auto?: boolean; patch?: boolean; num?: string; tm: string; tc: string; ab: string }
 const PCS: PC[] = [
-  { n: 'Jared McCain', v: 'Team Card', s: '2010-11 Panini Donruss', img: C.mccain.img, rc: true, tm: 'PHI', tc: '#2f8bff' },
-  { n: 'Tyrese Maxey', v: 'Fresh Paint', s: '2024-25 Court Kings', img: C.maxey.img, auto: true, patch: true, num: '/25', tm: 'PHI', tc: '#2f8bff' },
-  { n: 'Hersey Hawkins', v: 'Power Brokers', s: '2006-07 Topps Bowman', img: C.hawkins.img, patch: true, num: '/99', tm: 'PHI', tc: '#2f8bff' },
-  { n: 'Anthony Edwards', v: 'Silver Prizm', s: '2023-24 Panini Prizm', img: C.edwards.img, rc: true, auto: true, num: '1/1', tm: 'MIN', tc: '#4aa3df' },
+  { n: 'Jared McCain', v: 'Team Card', s: '2010-11 Panini Donruss', y: '2010-11', br: 'Panini Donruss', no: '#64', img: C.mccain.img, rc: true, tm: 'PHI', tc: '#2f8bff', ab: 'PHI' },
+  { n: 'Anthony Edwards', v: 'Silver Prizm', s: '2023-24 Panini Prizm', y: '2023-24', br: 'Panini Prizm', no: '#12', img: C.edwards.img, rc: true, auto: true, tm: 'MIN', tc: '#4aa3df', ab: 'MIN' },
+  { n: 'Hersey Hawkins', v: 'Power Brokers', s: '2006-07 Topps Bowman', y: '2006-07', br: 'Topps Bowman', no: '#33', img: C.hawkins.img, patch: true, auto: true, num: '/35', tm: 'BOS', tc: '#1fb75a', ab: 'BOS' },
+  { n: 'Tyrese Maxey', v: 'Fresh Paint', s: '2024-25 Court Kings', y: '2024-25', br: 'Court Kings', no: '#FP-TM', img: C.maxey.img, rc: true, auto: true, patch: true, num: '/25', tm: 'LAL', tc: '#fdb927', ab: 'LAL' },
+  { n: 'Luwawu-Cabarrot', v: 'Gold Standard', s: '2023-24 Panini Select', y: '2023-24', br: 'Panini Select', no: '#5', img: C.luwawu.img, tm: 'DEN', tc: '#fec524', ab: 'DEN' },
 ]
-type K = 'rc' | 'auto' | 'patch'
-const ks = (c: PC) => ([c.rc && 'rc', c.auto && 'auto', c.patch && 'patch'].filter(Boolean) as K[])
-const lab = (k: K) => (k === 'rc' ? 'RC' : k === 'auto' ? 'Auto' : 'Patch')
-const ini = (k: K) => (k === 'rc' ? 'R' : k === 'auto' ? 'A' : 'P')
-const bgv = (k: K): CSSProperties => ({ ['--b' as string]: TAG_BASE[k], ['--k' as string]: TAG_BASE[k] } as CSSProperties)
-const TIERC: Record<string, string> = { gold: '#ffd54a', silver: '#dfe6f2', bronze: '#e0925a' }
-const TIERG: Record<string, string> = { gold: 'rgba(255,215,0,.5)', silver: 'rgba(220,230,245,.4)', bronze: 'rgba(224,146,90,.4)', std: 'rgba(108,151,255,.35)' }
-const tv = (c: PC): CSSProperties => { const t = numTier(c.num); return { ['--ti' as string]: t === 'std' ? '#8fb4ff' : TIERC[t], ['--tg' as string]: TIERG[t] } as CSSProperties }
+type K = 'rc' | 'patch' | 'auto' | 'num'
+const TIERC: Record<string, string> = { gold: '#ffd54a', silver: '#dfe6f2' }
+const segsOf = (c: PC) => {
+  const out: { k: K; t: string; c: string; dark?: boolean }[] = []
+  if (c.rc) out.push({ k: 'rc', t: 'RC', c: TAG_BASE.rc })
+  if (c.patch) out.push({ k: 'patch', t: 'Patch', c: TAG_BASE.patch })
+  if (c.auto) out.push({ k: 'auto', t: 'Auto', c: TAG_BASE.auto })
+  if (c.num) { const t = numTier(c.num); out.push({ k: 'num', t: numShort(c.num), c: t === 'gold' ? '#ffd54a' : t === 'silver' ? '#dfe6f2' : TAG_BASE.num, dark: t === 'gold' || t === 'silver' }) }
+  return out
+}
+const gradOf = (c: string) => `linear-gradient(180deg, ${mix(c, 0.22)} 0%, ${c} 55%, ${mix(c, -0.22)} 100%)`
+const segStyle = (s: { c: string; dark?: boolean }): CSSProperties => ({ ['--c' as string]: s.c, ['--g' as string]: gradOf(s.c), ['--l' as string]: mix(s.c, 0.55), ['--t' as string]: s.dark ? '#1a1000' : '#fff' } as CSSProperties)
 const Ic = () => <span className="ic"><i>💬</i><i>🤍</i></span>
 
-type Top = 'flush' | 'row' | 'one' | 'bevel' | 'fish' | 'ini' | 'vert' | 'white' | 'strip' | 'tab'
-type Bot = 'flush' | 'cart' | 'bevel' | 'strip' | 'seal' | 'white' | 'out' | 'tilt' | 'none'
-const TopEl = ({ c, t, h }: { c: PC; t: Top; h?: number }) => {
-  const list = ks(c); if (!list.length) return null
-  const st = h ? ({ ['--h' as string]: `${h}px` } as CSSProperties) : undefined
-  if (t === 'strip') return <div className="stp">{list.map(k => <span key={k} className="b" style={bgv(k)}>{lab(k)}</span>)}</div>
-  if (t === 'one') { const k = list.includes('auto') ? 'auto' : list.includes('patch') ? 'patch' : 'rc'; return <div className="tp" style={st}><span className="b one" style={bgv(k)}>{list.map(lab).join(' · ')}</span></div> }
-  if (t === 'vert') return <div className="tp vt">{list.map(k => <span key={k} className="b" style={bgv(k)}>{lab(k)}</span>)}</div>
-  const cls = t === 'bevel' ? 'bevel' : t === 'fish' ? 'fish' : t === 'ini' ? 'sqr' : t === 'white' ? 'wht' : t === 'tab' ? 'tab' : ''
-  return <div className={`tp${t === 'row' || t === 'ini' ? ' row' : ''}`} style={st}>{list.map(k => <span key={k} className={`b ${cls}`} style={bgv(k)}>{t === 'ini' ? ini(k) : lab(k)}</span>)}</div>
+type Fill = 'year' | 'brand' | 'num' | 'team' | 'sport' | 'stripe' | 'insert' | 'none'
+const fillNode = (c: PC, f: Fill): React.ReactNode => {
+  if (f === 'none') return null
+  if (f === 'stripe') return <span className="s stripe" />
+  if (f === 'team') return <span className="s team" style={{ ['--tc' as string]: c.tc } as CSSProperties}>{c.ab} · Basketball</span>
+  const t = f === 'year' ? c.y : f === 'brand' ? c.br : f === 'num' ? c.no : f === 'sport' ? 'Basketball' : c.v
+  return <span className={`s ${f === 'insert' ? 'insert' : 'ghost'}`}>{t}</span>
 }
-const BotEl = ({ c, b }: { c: PC; b: Bot }) => (c.num && b !== 'none' ? <div className={`bt sq ${b}`} style={tv(c)}>{numShort(c.num)}</div> : null)
-const Cell = ({ c, top, bot, h }: { c: PC; top: Top; bot: Bot; h?: number }) => (
-  <div className="bn-c">
-    <div className="ph"><img className="im" src={c.img} alt="" /><TopEl c={c} t={top} h={h} /><BotEl c={c} b={bot} /></div>
-    <div className="bar" style={{ ['--tc' as string]: c.tc }} />
-    <div className="tx"><div className="nm"><img className="lg" src={`/team-logos/nba-${c.tm}.png`} alt="" /><span className="t">{c.n}</span><Ic /></div>{c.v && <div className="vr">{c.v}</div>}<div className="st">{c.s}</div></div>
-  </div>
-)
-const Row = ({ children }: { children: React.ReactNode }) => <div className="bn-row">{children}</div>
+const Cell = ({ c, sv = 1, fill = 'year', b = 1 }: { c: PC; sv?: number; fill?: Fill; b?: number }) => {
+  const segs = segsOf(c)
+  return (
+    <div className={`v4 b${b}`} style={{ ['--gt' as string]: c.tc, ['--tc' as string]: c.tc } as CSSProperties}>
+      <div className={`gs sv-${sv}${!segs.length && fill === 'none' ? ' none' : ''}`}>
+        {segs.length ? segs.map(s => <span key={s.k} className="s" style={segStyle(s)}>{s.t}</span>) : fillNode(c, fill)}
+      </div>
+      <div className="ph"><img src={c.img} alt="" /></div>
+      <div className="bar" />
+      <div className="bt"><div className="nm"><img src={`/team-logos/nba-${c.tm}.png`} alt="" /><span>{c.n}</span></div>{c.v && <div className="vr">{c.v}</div>}<div className="st">{c.s}</div><Ic /></div>
+    </div>
+  )
+}
+const Row = ({ children }: { children: React.ReactNode }) => <div className="v4-row">{children}</div>
 
-type Idea = { title: string; desc: string; top: Top; bot: Bot; h?: number }
-const IDEAS: Idea[] = [
-  { title: 'Bannières fines collées au coin, empilées + tirage en bloc collé', desc: 'Les atouts sont des bandeaux pleins de 17 px de haut, collés au bord haut gauche et empilés avec 1 px d\'écart (RC orange, AUTO vert, PATCH bleu). Le tirage est un bloc plein collé au coin bas droit, aux couleurs de la rareté. Couvre environ 5 % de l\'image.', top: 'flush', bot: 'flush' },
-  { title: 'Une seule rangée de bannières côte à côte en haut à gauche', desc: 'Les atouts sont alignés sur une seule ligne (RC | AUTO | PATCH), blocs pleins accolés, au lieu d\'être empilés : ils ne descendent que de 17 px au lieu de 17 à 53. Le tirage reste en bas à droite, bloc collé.', top: 'row', bot: 'flush' },
-  { title: 'Une seule bannière combinée (« RC · AUTO · PATCH »)', desc: 'Un seul bloc, à la couleur de l\'atout le plus précieux, avec les atouts écrits dedans séparés par des points. C\'est la plus petite surface possible pour tout dire. Tirage en bloc collé bas droite.', top: 'one', bot: 'flush' },
-  { title: 'Bannières biseautées (bout coupé en biais) des deux côtés', desc: 'Le bout droit des atouts est coupé en biais, et le bloc du tirage a son bout gauche coupé en biais : ils se répondent en diagonale (haut gauche, bas droite). Une forme de ruban sans pli, sobre.', top: 'bevel', bot: 'bevel' },
-  { title: 'Bannières en queue d\'hirondelle + tirage biseauté', desc: 'Atouts avec le bout droit échancré en V comme un vrai ruban, tirage en bloc biseauté. Un peu plus décoratif, toujours plat et opaque.', top: 'fish', bot: 'bevel' },
-  { title: 'Initiales en carrés de 18 px (R · A · P) + tirage en cartouche', desc: 'Les atouts sont réduits à une lettre dans un carré plein de 18 px, alignés en rangée au coin haut gauche : la surface la plus petite (jusqu\'à 56 px de large). Le tirage dans un cartouche sombre à liseré de rareté, détaché du bord.', top: 'ini', bot: 'cart', h: 18 },
-  { title: 'Languette verticale sur le bord gauche', desc: 'Les atouts s\'écrivent à la verticale sur le bord gauche, 16 px de large : « RC », « AUTO », « PATCH » en blocs empilés qui descendent le long de l\'image. Ne prennent que le bord de l\'image. Tirage en bloc collé.', top: 'vert', bot: 'flush' },
-  { title: 'Bannières blanches avec un bloc de couleur à gauche', desc: 'Dans l\'esprit des repères blancs du site : bannière blanche pleine, texte marine, avec un bloc de 4 px de la couleur de l\'atout à gauche. Tirage en bloc blanc avec un soulignement de la couleur de rareté.', top: 'white', bot: 'white' },
-  { title: 'Bandes pleine largeur en haut et en bas de l\'image', desc: 'Une bande de 16 px sur le haut de l\'image, découpée en segments égaux (un par atout, couleur pleine), et une bande sombre de 16 px sur le bas avec le tirage aligné à droite et un liseré de rareté. Deux bandes nettes qui encadrent l\'image.', top: 'strip', bot: 'strip' },
-  { title: 'Onglets légèrement décalés du bord + cartouche', desc: 'Les atouts sont des languettes qui pendent du bord haut, décalées de 9 px du coin comme les onglets d\'un classeur, empilées en rangée. Tirage en cartouche sombre à liseré de rareté.', top: 'tab', bot: 'cart' },
-  { title: 'Bannières collées + cartouche sombre pour le tirage', desc: 'Atouts en bandeaux collés empilés (comme l\'idée 1), mais le tirage devient un cartouche sombre à double liseré, détaché du coin, avec un halo à la couleur de la rareté : plus discret qu\'un bloc plein, plus lumineux pour les tirages rares.', top: 'flush', bot: 'cart' },
-  { title: 'Rangée de bannières + tirage biseauté', desc: 'Atouts en une seule rangée (idée 2) et tirage dont le bout gauche est coupé en biais (idée 4) : la combinaison la plus compacte avec un peu de forme.', top: 'row', bot: 'bevel' },
-  { title: 'Bannières collées + médaillon rond pour le tirage', desc: 'Atouts en bandeaux collés (idée 1), tirage dans un petit médaillon rond de 42 px à anneau de la couleur de rareté, au coin bas droit. Seul élément arrondi : il attire l\'œil sur le tirage.', top: 'flush', bot: 'seal' },
-  { title: 'Bannières collées + chiffre du tirage en creux', desc: 'Atouts en bandeaux collés (idée 1), tirage en gros chiffre creux (46 px) qui déborde du coin bas droit, avec halo de rareté. Très lisible, presque pas de surface pleine.', top: 'flush', bot: 'out' },
-  { title: 'Bannières biseautées + cartouche', desc: 'Atouts biseautés (idée 4), tirage en cartouche à liseré (idée 6) : forme plus travaillée en haut, sobre en bas.', top: 'bevel', bot: 'cart' },
-  { title: 'Rangée ultra fine de 13 px', desc: 'Même rangée que l\'idée 2 mais à 13 px de haut (texte 9 px) : la plus petite bannière lisible. Tirage en bloc collé. À réserver aux écrans grands ; sur mobile le texte serait trop fin.', top: 'row', bot: 'flush', h: 13 },
-  { title: 'Une seule bannière blanche + tirage blanc', desc: 'Un seul bloc blanc plein (« RC · AUTO ») collé en haut à gauche, texte marine, et un bloc blanc collé en bas à droite avec le tirage et un soulignement coloré. Le plus calme et le plus DA : peu de couleurs, des blocs blancs comme sur le reste du site.', top: 'white', bot: 'white' },
-  { title: 'Initiales + tirage en bloc collé', desc: 'Carrés d\'initiales (idée 6) et bloc plein collé pour le tirage : très petit en haut, franc en bas.', top: 'ini', bot: 'flush', h: 18 },
-  { title: 'Bande haute segmentée + médaillon rond', desc: 'La bande de 16 px sur le haut (idée 9) et le médaillon rond pour le tirage en bas à droite : un cadre net en haut, un point d\'attention en bas.', top: 'strip', bot: 'seal' },
-  { title: 'Onglets + chiffre en creux', desc: 'Onglets décalés (idée 10) et gros chiffre creux du tirage (idée 14) : tout est léger, le tirage fait l\'effet.', top: 'tab', bot: 'out' },
-  { title: 'Bannières collées + étiquette de tirage légèrement penchée', desc: 'Atouts en bandeaux collés, tirage dans une étiquette pleine penchée de 4° avec une petite ombre, comme collée à la main. Une touche de vie sans surface supplémentaire.', top: 'flush', bot: 'tilt' },
+const STRIPS = [
+  ['Actuel (dégradé fin, relief)', 'Le bandeau tel qu\'il est en ligne : 17 px, dégradé vertical, filet de relief, lettres espacées.'],
+  ['Plat et ultra fin (14 px)', 'Couleur unie sans relief, 14 px de haut, texte de 8,5 px. Le plus discret et le plus net.'],
+  ['Segments inclinés', 'Les segments sont des parallélogrammes qui s\'emboîtent (bords inclinés de 7 px), sans espace entre eux : une bande dynamique, comme une pile de rubans.'],
+  ['Filet de couleur + fond teinté', 'Pas de plein : un fond teinté à 18 % de la couleur, un filet épais de 2 px en haut et le texte en version claire. Plus léger visuellement, la couleur est discrète.'],
+  ['Plein + double liseré intérieur', 'Couleur unie avec deux liserés intérieurs (un blanc, un sombre) comme un badge frappé. Plus soigné de près.'],
+  ['Blocs blancs soulignés de couleur', 'Blocs blancs pleins avec le texte marine et un trait de 3 px de la couleur de l\'atout dessous : le style des repères blancs du site.'],
+  ['Fond sombre + carré de couleur à gauche', 'Segments sombres à filet fin, un bloc de couleur de 4 px à gauche de chacun et le texte blanc. Très sobre ; les couleurs sont réduites à un repère.'],
+  ['Coins coupés', 'Couleur unie, les quatre coins coupés de 4 px (forme de badge à pans coupés). Net et un peu graphique.'],
+  ['Bande continue à séparateurs fins', 'Une seule bande sans espace, divisée par des filets blancs de 1 px. Se lit comme un seul objet qui change de largeur selon le nombre d\'atouts.'],
+  ['Ultra fin 13 px mat', 'Couleur légèrement assombrie (mélangée au fond), texte de 8 px très espacé, ombre intérieure basse. Le moins visible, le plus élégant.'],
+]
+const FILLS: [Fill, string, string][] = [
+  ['year', 'L\'année dans un segment gris (actuel)', 'Un segment gris discret avec l\'année de la carte.'],
+  ['brand', 'La marque / le set', 'Le nom de la marque (« PANINI SELECT ») en gris : on connaît la gamme d\'un coup d\'œil.'],
+  ['num', 'Le numéro de la carte', 'Le numéro (« #FP-TM ») dans le segment gris, à la place du bas de la vignette où tu ne voulais plus le voir.'],
+  ['team', 'Équipe + sport en dégradé', 'Un dégradé de la couleur de l\'équipe qui s\'efface vers la droite, avec « MIN · Basketball » : le haut se colore sans prétendre à un atout.'],
+  ['sport', 'Le sport', 'Un simple « BASKETBALL » en gris. Utile surtout pour les galeries multisports.'],
+  ['stripe', 'Rayures neutres sans texte', 'Une bande de fines rayures diagonales grises : on voit que la place est réservée volontairement, sans rien écrire.'],
+  ['insert', 'Le nom de l\'insert (ou de la variation) en bleu italique', 'L\'insert « Gold Standard » monte dans la bande, en bleu italique : même couleur que dans le bas, qui pourrait alors se raccourcir.'],
+  ['none', 'Rien : la rangée disparaît et l\'image remonte', 'Pas de bande pour les cartes sans atout ; l\'image commence plus haut, donc elle n\'est plus alignée avec ses voisines.'],
+]
+const BOTS = [
+  ['Actuel (30 % sur tout le bloc)', 'Dégradé vertical de la couleur de l\'équipe sur tout le bloc texte. Le fondu se voit surtout aux bords : c\'est ce qui paraît mal intégré.'],
+  ['Plus léger + trait d\'équipe en pied', 'Dégradé à 22 % qui se termine sur un trait de 2 px de la couleur de l\'équipe en bas : le dégradé a une « ligne d\'arrivée » nette qui l\'ancre dans le cadre.'],
+  ['Lueur de pied (sans remplissage)', 'Aucun fond : seulement une lueur de la couleur de l\'équipe qui monte de 18 px depuis le bord bas. Très naturel, comme un éclairage.'],
+  ['Dégradé diagonal', 'Le dégradé part du coin bas droit en diagonale (160°) au lieu de monter à la verticale : moins « bloc de couleur », plus lumière.'],
+  ['Dégradé dans le cadre (liseré qui se colore)', 'Le fond reste uni ; c\'est le liseré du cadre qui passe de bleu pâle en haut à la couleur de l\'équipe en bas (la barre de 4 px disparaît). L\'équipe se lit sur toute la hauteur.'],
+  ['Halo derrière le nom', 'Un halo elliptique de la couleur de l\'équipe, centré derrière le nom : le nom est mis en valeur et le reste du bas reste sombre.'],
+  ['Teinte de toute la carte', 'Le fond de la carte entière glisse de la couleur de base (en haut) vers une teinte de l\'équipe (en bas, 24 %), image et texte compris : le dégradé commence derrière l\'image, donc il n\'a plus de bord.'],
+  ['Teinte de la carte + barre en pied', 'Même teinte de toute la carte (20 %) et la barre d\'équipe passe au tout bas du cadre, comme une plinthe.'],
 ]
 
 export default function DaIdeas() {
@@ -155,17 +177,13 @@ export default function DaIdeas() {
     <div className="ix">
       <style>{CSS}</style>
       <Link href="/admin" className="back">← Admin</Link>
-      <h1 className="sf">Idées · Série 40 · Atouts en bannières sur la carte</h1>
-      <p className="lead">RC, AUTO et PATCH en haut à gauche, le tirage en bas à droite, en bannières pleines et opaques (pas de pastilles transparentes), avec la plus petite surface possible sur la carte : 13 à 18 px de haut, collées aux bords. Chaque idée est montrée sur 4 cartes types (une RC, une auto-patch /25, un patch /99, un RC-auto 1/1), avec le nom, l&apos;insert, le set, la barre et le logo d&apos;équipe. Les couleurs et l&apos;effet or / argent / bronze viennent de ceux du site.</p>
-      <nav className="tags">{IDEAS.map((t, i) => <a key={t.title} href={`#i${i + 1}`}>{String(i + 1).padStart(2, '0')}</a>)}<a href="#i99">Mobile</a></nav>
+      <h1 className="sf">Idées · Série 41 · Bandeau, espace vide, dégradé</h1>
+      <p className="lead">Trois chantiers sur les vignettes de la galerie, montrés sur 5 cartes (1, 2, 3 et 4 atouts, et une sans atout) avec des équipes de couleurs différentes : A. rendre le bandeau d&apos;atouts plus beau et plus fin (10 variantes) ; B. remplir la rangée quand il n&apos;y a aucun atout (8 façons) ; C. mieux intégrer le dégradé du bas à la couleur d&apos;équipe (8 façons).</p>
+      <nav className="tags">{STRIPS.map((_, i) => <a key={i} href={`#a${i + 1}`}>A{i + 1}</a>)}{FILLS.map((_, i) => <a key={i} href={`#b${i + 1}`}>B{i + 1}</a>)}{BOTS.map((_, i) => <a key={i} href={`#c${i + 1}`}>C{i + 1}</a>)}</nav>
 
-      {IDEAS.map((d, i) => (
-        <Bay key={d.title} id={`i${i + 1}`} n={String(i + 1).padStart(2, '0')} title={d.title} desc={d.desc}><Row>{PCS.map(c => <Cell key={c.n} c={c} top={d.top} bot={d.bot} h={d.h} />)}</Row></Bay>
-      ))}
-
-      <Bay id="i99" n="Mobile" title="Téléphone : les idées 1, 8 et 9 en 2 colonnes" desc="Trois des idées en vignettes de téléphone (2 colonnes) : bannières collées, blocs blancs, bandes haut et bas. Texte de 9 px dans les bannières, mais les blocs pleins restent lisibles."><div style={{ display: 'flex', gap: 18, flexWrap: 'wrap' }}>
-        {[0, 7, 8].map(i => <div key={i} className="bn-ph"><Row>{PCS.map(c => <Cell key={c.n} c={c} top={IDEAS[i].top} bot={IDEAS[i].bot} h={IDEAS[i].h} />)}</Row></div>)}
-      </div></Bay>
+      {STRIPS.map((d, i) => <Bay key={d[0]} id={`a${i + 1}`} n={`A${i + 1}`} title={d[0]} desc={d[1]}><Row>{PCS.map(c => <Cell key={c.n} c={c} sv={i + 1} />)}</Row></Bay>)}
+      {FILLS.map((d, i) => <Bay key={d[1]} id={`b${i + 1}`} n={`B${i + 1}`} title={d[1]} desc={d[2]}><Row>{PCS.map(c => <Cell key={c.n} c={c} fill={d[0]} />)}</Row></Bay>)}
+      {BOTS.map((d, i) => <Bay key={d[0]} id={`c${i + 1}`} n={`C${i + 1}`} title={d[0]} desc={d[1]}><Row>{PCS.map(c => <Cell key={c.n} c={c} b={i + 1} />)}</Row></Bay>)}
     </div>
   )
 }
