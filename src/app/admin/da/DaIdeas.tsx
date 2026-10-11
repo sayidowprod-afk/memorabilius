@@ -4,7 +4,7 @@ import Link from 'next/link'
 
 // Idees visuelles pour pousser la nouvelle DA (Surfquest, marine -> bleu electrique, angles droits, doubles filets, metaux).
 // Page de TRAVAIL reservee aux admins : donnees d'exemple en dur, rien n'est lu ni ecrit.
-// Serie 31 : recherche et filtres de la galerie.
+// Serie 32 : recherche et filtres de la galerie.
 
 const SB = 'https://snnrkzbevjhdtviizfyp.supabase.co/storage/v1/object/public/avatars/cartes/eb730dee-414e-4fcb-89d8-4a7b3448c218/'
 const C = {
@@ -100,6 +100,29 @@ const CSS = `
 .ix .fl-bar { border-width: 1px; padding-right: 6px; } .ix .fl-bar > span:first-child { color: rgba(255,255,255,.7); }
 .ix .fl-bar2 { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; margin-top: 10px; padding: 10px 0; border-top: 3px solid #fff; border-bottom: 1px solid rgba(255,255,255,.3); } .ix .fl-bar2 .n { font: 800 11px system-ui; letter-spacing: .12em; text-transform: uppercase; color: rgba(255,255,255,.65); } .ix .fl-bar2 .n b { font-size: 30px; font-weight: 400; color: #fff; margin-right: 4px; vertical-align: middle; }
 .ix .fl-sep { width: 1px; height: 22px; background: rgba(255,255,255,.4); }
+/* ---- serie 32 : style actuel + nouvelle DA (prefixe fq-) ---- */
+.ix .fq-pn { background: linear-gradient(180deg, #0d1840 0%, #0a1330 100%); border: 1px solid rgba(140,170,255,.22); padding: 18px; box-shadow: 0 10px 30px rgba(0,0,0,.35); } .ix .fq-pn.soft { } .ix .fq-pn.mob { border: 0; box-shadow: none; padding: 12px; }
+.ix .fq-h { margin: 14px 0 8px; font-size: 17px; line-height: 1; color: rgba(255,255,255,.85); letter-spacing: .06em; } .ix .fq-h:first-child { margin-top: 0; }
+.ix .fq-two { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+.ix .fq-in { height: 46px; display: flex; align-items: center; gap: 10px; padding: 0 14px; background: #112060; border: 1px solid rgba(140,170,255,.3); color: rgba(255,255,255,.65); font: 600 14px system-ui; min-width: 0; } .ix .fq-in i { margin-left: auto; font-style: normal; font-size: 11px; border: 1px solid rgba(255,255,255,.4); padding: 0 6px; }
+.ix .fq-g4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; } .ix .fq-g3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; } .ix .fq-g2 { display: grid; grid-template-columns: repeat(2, 1fr); gap: 8px; }
+.ix .fq-b { position: relative; height: 42px; display: flex; align-items: center; justify-content: center; gap: 6px; background: rgba(255,255,255,.07); border: 1px solid rgba(255,255,255,.14); font: 800 12px system-ui; letter-spacing: .08em; text-transform: uppercase; color: #fff; }
+.ix .fq-b.sm { height: 36px; font-size: 11px; letter-spacing: .04em; }
+.ix .fq-b.c1::before, .ix .fq-b.c2::before, .ix .fq-b.c3::before, .ix .fq-b.c4::before { content: ''; position: absolute; left: 0; right: 0; top: 0; height: 3px; }
+.ix .fq-b.c1::before { background: #ff9a3c; } .ix .fq-b.c2::before { background: #4cd37b; } .ix .fq-b.c3::before { background: #c77dff; } .ix .fq-b.c4::before { background: #5aa9ff; }
+.ix .fq-b.on { background: linear-gradient(180deg, #2f6bff, #1550e0); border-color: #6c97ff; box-shadow: 0 0 16px rgba(47,107,255,.45); }
+.ix .fq-big { height: 60px; flex-direction: row; gap: 8px; justify-content: flex-start; padding: 0 12px; } .ix .fq-big .ic { font-size: 16px; opacity: .85; } .ix .fq-big .tx { font-size: 11px; } .ix .fq-big b { margin-left: auto; font-size: 26px; font-weight: 400; line-height: 1; }
+.ix .fq-adv { display: flex; align-items: center; justify-content: center; gap: 8px; height: 42px; margin-top: 12px; background: rgba(255,255,255,.1); border: 1px solid rgba(255,255,255,.28); font: 800 12px system-ui; letter-spacing: .1em; text-transform: uppercase; } .ix .fq-adv em { font-style: normal; } .ix .fq-adv.sm { height: 38px; margin-top: 0; padding: 0 16px; }
+.ix .fq-chips { display: flex; gap: 6px; flex-wrap: wrap; } .ix .fq-chips.scroll { flex-wrap: nowrap; overflow: hidden; }
+.ix .fq-ch { height: 34px; padding: 0 14px; display: inline-flex; align-items: center; background: rgba(255,255,255,.07); border: 1px solid rgba(255,255,255,.16); font: 700 12px system-ui; white-space: nowrap; flex-shrink: 0; } .ix .fq-ch.on { background: #fff; color: #06122e !important; border-color: #fff; } .ix .fq-ch.plus { color: rgba(255,255,255,.6); }
+.ix .fq-foot { display: flex; align-items: center; justify-content: space-between; gap: 10px; flex-wrap: wrap; margin-top: 14px; }
+.ix .fq-seg { display: inline-flex; border: 1px solid rgba(255,255,255,.3); flex-shrink: 0; } .ix .fq-seg span { width: 36px; height: 34px; display: inline-flex; align-items: center; justify-content: center; border-right: 1px solid rgba(255,255,255,.2); font-size: 14px; } .ix .fq-seg span:last-child { border-right: 0; } .ix .fq-seg .on { background: #fff; color: #06122e !important; }
+.ix .fq-cols { display: grid; grid-template-columns: 1.1fr 1fr; gap: 24px; } .ix .fq-cols .r { border-left: 1px solid rgba(255,255,255,.15); padding-left: 24px; }
+.ix .fq-bar { display: flex; align-items: center; gap: 14px; padding: 12px 16px; border-bottom: 1px solid rgba(140,170,255,.25); background: rgba(255,255,255,.04); } .ix .fq-bar > .sf { font-size: 26px; line-height: 1; } .ix .fq-bar .n { margin-left: auto; font: 800 11px system-ui; letter-spacing: .12em; text-transform: uppercase; color: rgba(255,255,255,.7); } .ix .fq-bar .n b { font-size: 26px; font-weight: 400; color: #fff; margin-right: 4px; vertical-align: middle; } .ix .fq-bar i { font: 800 11px system-ui; letter-spacing: .1em; text-transform: uppercase; text-decoration: underline; font-style: normal; }
+.ix .fq-pull { display: flex; align-items: center; justify-content: center; height: 44px; border-top: 1px solid rgba(140,170,255,.25); background: rgba(255,255,255,.08); font: 800 12px system-ui; letter-spacing: .12em; text-transform: uppercase; } .ix .fq-pull.on { background: rgba(47,107,255,.25); }
+.ix .fq-advbox { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 10px; padding: 14px 16px 18px; background: rgba(0,0,0,.18); } .ix .fq-advbox label { font: 800 9px system-ui; letter-spacing: .16em; text-transform: uppercase; color: rgba(255,255,255,.6); } .ix .fq-advbox .fld { margin-top: 4px; height: 40px; display: flex; align-items: center; padding: 0 12px; background: #112060; border: 1px solid rgba(140,170,255,.3); font: 700 13px system-ui; letter-spacing: 0; text-transform: none; color: #fff; }
+.ix .soft .fq-in, .ix .soft .fq-b, .ix .soft .fq-adv, .ix .soft .fq-ch { border-radius: 4px; } .ix .soft .fq-b.c1::before, .ix .soft .fq-b.c2::before, .ix .soft .fq-b.c3::before, .ix .soft .fq-b.c4::before { border-radius: 4px 4px 0 0; }
+@media (max-width: 800px) { .ix .fq-cols { grid-template-columns: 1fr; } .ix .fq-cols .r { border-left: 0; padding-left: 0; border-top: 1px solid rgba(255,255,255,.15); padding-top: 14px; } .ix .fq-two { grid-template-columns: 1fr; } }
 `
 function Bay({ id, n, title, desc, children }: { id: string; n: string; title: string; desc: string; children: React.ReactNode }) {
   return (
@@ -122,65 +145,71 @@ export default function DaIdeas() {
     <div className="ix">
       <style>{CSS}</style>
       <Link href="/admin" className="back">← Admin</Link>
-      <h1 className="sf">Idées · Série 31 · Recherche et filtres</h1>
+      <h1 className="sf">Idées · Série 32 · Recherche et filtres</h1>
       <p className="lead">Le bloc au-dessus des cartes de la galerie : recherche joueur, équipe, boutons RC / AUTO / #NUM / PATCH, MÉMO / VENTE / PRIVÉ, filtres avancés, collections, et les 3 vues (Grille, Chronologie, Compact). Aujourd&apos;hui : une grosse boîte grise avec des pastilles arrondies. Les idées ci-dessous gardent toutes les options en angles droits, filets blancs, Surfquest et couleurs des atouts (orange, vert, violet, bleu), avec des versions pour le téléphone.</p>
-      <h2 className="sf" style={{ fontSize: 'clamp(26px,4vw,40px)', margin: '0 0 6px' }}>Série 31 · l&apos;interface actuelle, ajustée</h2>
-      <p className="lead" style={{ marginBottom: 14 }}>On part de la disposition d&apos;aujourd&apos;hui (recherche + équipe, boutons, collections, Filtres avancés, vues) sans nouveau concept. Seul le style suit la DA (angles droits, filets fins, aucune couleur criarde) et on joue sur la position et le regroupement des boutons. Les boutons sont sobres : filet blanc fin, plein blanc quand ils sont actifs.</p>
-      <nav className="tags">{['1 Aujourd’hui', '2 Une ligne, deux groupes', '3 Atouts avec la recherche', '4 Statuts avec les collections', '5 Atouts dans la barre', '6 Tout dans la barre des vues', '7 Boutons sous les collections', '8 Mobile A', '9 Mobile B'].map((t, i) => <a key={t} href={`#p${i + 1}`}>{t}</a>)}</nav>
+      <h2 className="sf" style={{ fontSize: 'clamp(26px,4vw,40px)', margin: '0 0 6px' }}>Série 32 · le style d&apos;aujourd&apos;hui, avec la nouvelle DA</h2>
+      <p className="lead" style={{ marginBottom: 14 }}>Même ambiance que l&apos;interface actuelle : un panneau bleu nuit, des champs bleutés remplis, des boutons pleins (plus de simples filets), de l&apos;air entre les éléments. La nouvelle DA apparaît par petites touches : angles droits, intitulés en Surfquest, bleu électrique pour l&apos;état actif, un trait de couleur pour chaque atout. Même disposition que maintenant : recherche + équipe, atouts, statuts, Filtres avancés, collections, vues.</p>
+      <nav className="tags">{['1 Panneau', '2 Avec icônes et compteurs', '3 Deux colonnes', '4 Titre et pied repliable', '5 Coins adoucis', '6 Mobile A', '7 Mobile B'].map((t, i) => <a key={t} href={`#q${i + 1}`}>{t}</a>)}</nav>
 
-      <Bay id="p1" n="1" title="Aujourd'hui" desc="Pour comparer : recherche et équipe, puis deux grilles de boutons pleine largeur (4 puis 3), « Filtres avancés », collections, et les vues alignées à droite plus bas."><div className="fl-w"><div className="fl-old">
-        <div style={{ display: 'flex', gap: 10 }}><div className="inp" style={{ flex: 1 }}>Joueur, variation…</div><div className="inp" style={{ flex: 1 }}>Équipe</div></div>
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4,1fr)', gap: 8, marginTop: 8 }}>{['RC', 'AUTO', '# NUM', 'PATCH'].map(x => <div key={x} className="tg">{x}</div>)}</div>
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3,1fr)', gap: 8, marginTop: 8 }}>{['🗒 MÉMO', '🏷 VENTE', '🔒 PRIVÉ'].map(x => <div key={x} className="tg">{x}</div>)}</div>
-        <div style={{ font: '700 12px system-ui', margin: '12px 0 8px', color: '#ccc' }}>▸ Filtres avancés</div>
-        <div style={{ display: 'flex', gap: 6, flexWrap: 'wrap' }}>{COLS.map(([n], i) => <span key={n} className={`pill${i === 0 ? ' on' : ''}`}>{n}</span>)}</div>
-        <div style={{ display: 'flex', gap: 6, justifyContent: 'flex-end', marginTop: 10 }}>{['Grille', 'Chronologie', 'Compact'].map((x, i) => <span key={x} className={`pill${i === 0 ? ' on' : ''}`}>{x}</span>)}</div>
+      <Bay id="q1" n="1" title="Le panneau actuel, remis au propre" desc="Un panneau bleu nuit à fin liseré, des intitulés en Surfquest (Recherche, Atouts, Statut, Collection), des champs bleutés pleins, les boutons en cases pleines translucides qui s'allument en bleu électrique. Les atouts ont un trait de couleur en haut (orange, vert, violet, bleu). « Filtres avancés » est un bouton plein large en bas du bloc."><div className="fl-w"><div className="fq-pn">
+        <div className="fq-h sf">Recherche</div>
+        <div className="fq-two"><div className="fq-in"><span>⌕</span>Joueur, variation…<i>/</i></div><div className="fq-in">Équipe</div></div>
+        <div className="fq-h sf">Atouts</div>
+        <div className="fq-g4">{[['RC', 'c1', true], ['Auto', 'c2', false], ['# Num', 'c3', false], ['Patch', 'c4', false]].map(([l, c, on]) => <span key={String(l)} className={`fq-b ${c}${on ? ' on' : ''}`}>{l}</span>)}</div>
+        <div className="fq-h sf">Statut</div>
+        <div className="fq-g3"><span className="fq-b">🗒 Mémo</span><span className="fq-b">🏷 Vente</span><span className="fq-b">🔒 Privé</span></div>
+        <span className="fq-adv">Filtres avancés <em>▾</em></span>
+        <div className="fq-h sf">Ma collection</div>
+        <div className="fq-chips">{COLS.map(([n], i) => <span key={n} className={`fq-ch${i === 0 ? ' on' : ''}`}>{n}</span>)}<span className="fq-ch plus">+</span></div>
       </div></div></Bay>
 
-      <Bay id="p2" n="2" title="Tous les boutons sur une seule ligne, en deux groupes" desc="Les 7 boutons quittent leurs deux grilles pleine largeur : sur une seule ligne, deux groupes à filets partagés (atouts | statuts), puis « Filtres avancés » poussé à droite. La recherche et l'équipe restent au-dessus, les collections dessous. Quatre rangées deviennent trois, et les boutons font enfin leur taille de texte."><div className="fl-w">
-        <div className="fl-row" style={{ marginTop: 0 }}><div className="fl-in"><span>⌕</span>Joueur, variation…<i>/</i></div><div className="fl-in">Équipe</div></div>
-        <div className="fl-row" style={{ gap: 14 }}><span className="fl-sg"><span className="on">RC</span><span>Auto</span><span># Num</span><span>Patch</span></span><span className="fl-sg"><span>Mémo</span><span>Vente</span><span>Privé</span></span><span style={{ flex: 1 }} /><span className="fl-s">Filtres avancés ▾</span></div>
-        <div className="fl-cap">Ma collection</div>
-        <div className="fl-sg" style={{ flexWrap: 'wrap' }}>{COLS.map(([n], i) => <span key={n} className={i === 0 ? 'on' : ''}>{n}</span>)}<span>+</span></div>
-      </div></Bay>
+      <Bay id="q2" n="2" title="Boutons avec icône et nombre de cartes" desc="Même grille, mais chaque bouton gagne une petite icône et le nombre de cartes concernées en Surfquest (RC 119, AUTO 29…). On sait avant de cliquer ce qu'il y a derrière ; l'état actif est plein bleu électrique. Plus riche et plus agréable à parcourir qu'une rangée de mots."><div className="fl-w"><div className="fq-pn">
+        <div className="fq-two"><div className="fq-in"><span>⌕</span>Joueur, variation…<i>/</i></div><div className="fq-in">Équipe</div></div>
+        <div className="fq-g4" style={{ marginTop: 12 }}>{[['★', 'RC', 119, 'c1', true], ['✍', 'Auto', 29, 'c2', false], ['#', 'Num', 91, 'c3', false], ['▣', 'Patch', 23, 'c4', false]].map(([ic, l, n, c, on]) => <span key={String(l)} className={`fq-b fq-big ${c}${on ? ' on' : ''}`}><span className="ic">{ic}</span><span className="tx">{l}</span><b className="sf">{n}</b></span>)}</div>
+        <div className="fq-g3" style={{ marginTop: 8 }}>{[['🗒', 'Mémo', 8], ['🏷', 'Vente', 12], ['🔒', 'Privé', 4]].map(([ic, l, n]) => <span key={String(l)} className="fq-b fq-big"><span className="ic">{ic}</span><span className="tx">{l}</span><b className="sf">{n}</b></span>)}</div>
+        <div className="fq-foot"><div className="fq-chips" style={{ margin: 0 }}>{COLS.map(([n], i) => <span key={n} className={`fq-ch${i === 0 ? ' on' : ''}`}>{n}</span>)}<span className="fq-ch plus">+</span></div><span className="fq-adv sm">Filtres avancés <em>▾</em></span></div>
+      </div></div></Bay>
 
-      <Bay id="p3" n="3" title="Les atouts à côté de la recherche, les statuts avec les collections" desc="On regroupe par sens : la recherche, l'équipe et les 4 atouts (RC, AUTO, # NUM, PATCH) sur une même ligne puisque ce sont des critères sur la carte ; les statuts (MÉMO, VENTE, PRIVÉ), qui concernent ma gestion, rejoignent les collections dessous, à droite. « Filtres avancés » est dans la ligne des collections."><div className="fl-w">
-        <div className="fl-row" style={{ marginTop: 0, flexWrap: 'nowrap' }}><div className="fl-in" style={{ flex: '2 1 220px' }}><span>⌕</span>Joueur, variation…<i>/</i></div><div className="fl-in" style={{ flex: '1 1 130px' }}>Équipe</div><span className="fl-sg"><span className="on">RC</span><span>Auto</span><span># Num</span><span>Patch</span></span></div>
-        <div className="fl-row" style={{ flexWrap: 'wrap' }}><span className="fl-sg">{COLS.slice(0, 5).map(([n], i) => <span key={n} className={i === 0 ? 'on' : ''}>{n}</span>)}<span>+</span></span><span style={{ flex: 1 }} /><span className="fl-sg"><span>🗒 Mémo</span><span>🏷 Vente</span><span>🔒 Privé</span></span><span className="fl-s">Avancés ▾</span></div>
-      </div></Bay>
+      <Bay id="q3" n="3" title="Deux colonnes : recherche et collections à gauche, boutons à droite" desc="Le panneau se coupe en deux : à gauche la recherche, l'équipe et les collections ; à droite les boutons (atouts en 2 × 2, statuts en dessous) et « Filtres avancés ». Moins de lignes, le regard va naturellement de gauche à droite, et rien ne s'étire sur toute la largeur."><div className="fl-w"><div className="fq-pn fq-cols">
+        <div className="l"><div className="fq-h sf">Recherche</div><div className="fq-in" style={{ marginBottom: 8 }}><span>⌕</span>Joueur, variation…<i>/</i></div><div className="fq-in">Équipe</div><div className="fq-h sf" style={{ marginTop: 14 }}>Ma collection</div><div className="fq-chips">{COLS.map(([n], i) => <span key={n} className={`fq-ch${i === 0 ? ' on' : ''}`}>{n}</span>)}<span className="fq-ch plus">+</span></div></div>
+        <div className="r"><div className="fq-h sf">Atouts</div><div className="fq-g2">{[['RC', 'c1', true], ['Auto', 'c2', false], ['# Num', 'c3', false], ['Patch', 'c4', false]].map(([l, c, on]) => <span key={String(l)} className={`fq-b ${c}${on ? ' on' : ''}`}>{l}</span>)}</div><div className="fq-h sf" style={{ marginTop: 12 }}>Statut</div><div className="fq-g3"><span className="fq-b">Mémo</span><span className="fq-b">Vente</span><span className="fq-b">Privé</span></div><span className="fq-adv" style={{ marginTop: 12 }}>Filtres avancés <em>▾</em></span></div>
+      </div></div></Bay>
 
-      <Bay id="p4" n="4" title="Les statuts avec les vues, les atouts avec la recherche" desc="Variante : la ligne du haut garde recherche, équipe et atouts ; la ligne du bas aligne les collections à gauche, puis, à droite et groupés, « Filtres avancés », les statuts et les 3 vues (Grille, Chronologie, Compact). Toutes les commandes de la page sont ainsi sur deux lignes seulement."><div className="fl-w">
-        <div className="fl-row" style={{ marginTop: 0, flexWrap: 'nowrap' }}><div className="fl-in" style={{ flex: '2 1 220px' }}><span>⌕</span>Joueur, variation…<i>/</i></div><div className="fl-in" style={{ flex: '1 1 130px' }}>Équipe</div><span className="fl-sg"><span>RC</span><span className="on">Auto</span><span># Num</span><span>Patch</span></span></div>
-        <div className="fl-row" style={{ flexWrap: 'wrap' }}><span className="fl-sg">{COLS.slice(0, 4).map(([n], i) => <span key={n} className={i === 0 ? 'on' : ''}>{n}</span>)}<span>+</span></span><span style={{ flex: 1 }} /><span className="fl-sg"><span>Mémo</span><span>Vente</span><span>Privé</span></span><span className="fl-s">Avancés ▾</span><span className="fl-sg"><span className="on">▦</span><span>⏱</span><span>▤</span></span></div>
-      </div></Bay>
+      <Bay id="q4" n="4" title="Barre de titre (résultat + réinitialiser) et pied « Filtres avancés » repliable" desc="Le panneau a un bandeau de titre en Surfquest « Filtrer » avec le nombre de résultats et « Réinitialiser » à droite ; en bas, un pied cliquable « Filtres avancés ▾ » qui se déplie (Sport, Collection, Année, Tri) à l'intérieur du panneau. Montré déplié. Les vues sont à droite des collections."><div className="fl-w"><div className="fq-pn" style={{ padding: 0 }}>
+        <div className="fq-bar"><span className="sf">Filtrer</span><span className="n"><b className="sf">14</b> cartes sur 599</span><i>Réinitialiser</i></div>
+        <div style={{ padding: 16 }}>
+          <div className="fq-two"><div className="fq-in"><span>⌕</span>Joueur, variation…<i>/</i></div><div className="fq-in">Équipe</div></div>
+          <div className="fq-g4" style={{ marginTop: 10 }}>{[['RC', 'c1', true], ['Auto', 'c2', true], ['# Num', 'c3', false], ['Patch', 'c4', false]].map(([l, c, on]) => <span key={String(l)} className={`fq-b ${c}${on ? ' on' : ''}`}>{l}</span>)}</div>
+          <div className="fq-g3" style={{ marginTop: 8 }}><span className="fq-b">🗒 Mémo</span><span className="fq-b">🏷 Vente</span><span className="fq-b">🔒 Privé</span></div>
+          <div className="fq-foot" style={{ marginTop: 14 }}><div className="fq-chips" style={{ margin: 0 }}>{COLS.slice(0, 5).map(([n], i) => <span key={n} className={`fq-ch${i === 1 ? ' on' : ''}`}>{n}</span>)}<span className="fq-ch plus">+</span></div><span className="fq-seg"><span className="on">▦</span><span>⏱</span><span>▤</span></span></div>
+        </div>
+        <div className="fq-pull on">Filtres avancés <em>▴</em><span className="fl-badge" style={{ position: 'static', marginLeft: 8 }}>2</span></div>
+        <div className="fq-advbox"><label>Sport<div className="fld">Basket ▾</div></label><label>Collection<div className="fld">Toutes</div></label><label>Année<div className="fld">2016-17 ▾</div></label><label>Trier par<div className="fld">Joueur A → Z ▾</div></label><label>Puis par<div className="fld">Année ▾</div></label></div>
+      </div></div></Bay>
 
-      <Bay id="p5" n="5" title="Les atouts rangés dans la barre de recherche" desc="Les 4 atouts deviennent de petits interrupteurs (RC, AUTO, NUM, PATCH) logés à droite à l'intérieur du champ de recherche, comme des filtres rapides ; l'équipe est à côté. Dessous : les statuts, les collections et « Filtres avancés ». Le champ devient le centre de contrôle et le bloc gagne une ligne."><div className="fl-w">
-        <div className="fl-row" style={{ marginTop: 0, flexWrap: 'nowrap' }}><div className="fl-in fl-bar"><span>⌕</span>Joueur, variation…<span className="fl-sg fl-mini" style={{ marginLeft: 'auto' }}><span className="on">RC</span><span>Auto</span><span>Num</span><span>Patch</span></span></div><div className="fl-in" style={{ flex: '0 1 200px' }}>Équipe</div><span className="fl-s">Avancés ▾</span></div>
-        <div className="fl-row" style={{ flexWrap: 'wrap' }}><span className="fl-sg">{COLS.slice(0, 5).map(([n], i) => <span key={n} className={i === 0 ? 'on' : ''}>{n}</span>)}<span>+</span></span><span style={{ flex: 1 }} /><span className="fl-sg"><span>Mémo</span><span>Vente</span><span>Privé</span></span></div>
-      </div></Bay>
+      <Bay id="q5" n="5" title="Version aux coins légèrement adoucis (4 px)" desc="Pour ceux qui trouvent les angles vifs trop durs : exactement le panneau 1, mais avec 4 px de rayon sur les champs et les boutons (au lieu de 0). On reste dans l'esprit « rectangle » de la DA sans le côté tranchant, et c'est plus proche de l'interface d'aujourd'hui."><div className="fl-w"><div className="fq-pn soft">
+        <div className="fq-two"><div className="fq-in"><span>⌕</span>Joueur, variation…<i>/</i></div><div className="fq-in">Équipe</div></div>
+        <div className="fq-g4" style={{ marginTop: 10 }}>{[['RC', 'c1', true], ['Auto', 'c2', false], ['# Num', 'c3', false], ['Patch', 'c4', false]].map(([l, c, on]) => <span key={String(l)} className={`fq-b ${c}${on ? ' on' : ''}`}>{l}</span>)}</div>
+        <div className="fq-g3" style={{ marginTop: 8 }}><span className="fq-b">🗒 Mémo</span><span className="fq-b">🏷 Vente</span><span className="fq-b">🔒 Privé</span></div>
+        <span className="fq-adv" style={{ marginTop: 10 }}>Filtres avancés <em>▾</em></span>
+        <div className="fq-chips" style={{ marginTop: 12 }}>{COLS.map(([n], i) => <span key={n} className={`fq-ch${i === 0 ? ' on' : ''}`}>{n}</span>)}<span className="fq-ch plus">+</span></div>
+      </div></div></Bay>
 
-      <Bay id="p6" n="6" title="Une seule barre horizontale : filtres à gauche, vues à droite" desc="Toutes les commandes de filtre en une barre à filet épais sous la recherche : atouts, statuts, « Filtres avancés » à gauche, et à droite le nombre de résultats et les 3 vues. Les collections sont juste au-dessus en onglets. La page ne montre plus aucune pile de boutons."><div className="fl-w">
-        <div className="fl-row" style={{ marginTop: 0 }}><div className="fl-in"><span>⌕</span>Joueur, variation…<i>/</i></div><div className="fl-in">Équipe</div></div>
-        <div className="fl-tabs" style={{ marginTop: 10 }}>{COLS.map(([n, c], i) => <span key={n} className={`sf${i === 0 ? ' on' : ''}`} style={{ fontSize: 17 }}>{n}<small>{c}</small></span>)}<span className="plus">+</span></div>
-        <div className="fl-bar2"><span className="fl-sg"><span className="on">RC</span><span>Auto</span><span># Num</span><span>Patch</span></span><span className="fl-sg"><span>Mémo</span><span>Vente</span><span>Privé</span></span><span className="fl-s">Avancés ▾</span><span style={{ flex: 1 }} /><span className="n"><b className="sf">599</b> cartes</span><span className="fl-sg"><span className="on">▦</span><span>⏱</span><span>▤</span></span></div>
-      </div></Bay>
+      <Bay id="q6" n="6" title="Téléphone A : le panneau empilé, boutons en grilles" desc="Sur mobile le panneau reste le même, empilé : recherche, équipe, atouts en grille 2 × 2 (cases hautes, faciles à toucher), statuts en 3 colonnes, « Filtres avancés » pleine largeur, puis collections qui défilent de côté."><div className="fl-ph"><div className="top sf">Collection</div><div className="fq-pn mob">
+        <div className="fq-in"><span>⌕</span>Joueur, variation…</div><div className="fq-in" style={{ marginTop: 8 }}>Équipe</div>
+        <div className="fq-g2" style={{ marginTop: 10 }}>{[['RC', 'c1', true], ['Auto', 'c2', false], ['# Num', 'c3', false], ['Patch', 'c4', false]].map(([l, c, on]) => <span key={String(l)} className={`fq-b ${c}${on ? ' on' : ''}`}>{l}</span>)}</div>
+        <div className="fq-g3" style={{ marginTop: 8 }}><span className="fq-b">Mémo</span><span className="fq-b">Vente</span><span className="fq-b">Privé</span></div>
+        <span className="fq-adv" style={{ marginTop: 10 }}>Filtres avancés <em>▾</em></span>
+        <div className="fq-chips scroll" style={{ marginTop: 10 }}>{COLS.map(([n], i) => <span key={n} className={`fq-ch${i === 0 ? ' on' : ''}`}>{n}</span>)}</div>
+      </div></div></Bay>
 
-      <Bay id="p7" n="7" title="Collections d'abord, puis une ligne de boutons sous la recherche" desc="Ordre logique « où → quoi » : les collections (pastilles carrées) en premier, puis recherche + équipe, puis une ligne de boutons où chaque groupe est séparé par un petit trait : atouts, statuts, Filtres avancés. Le bouton Filtres avancés déplié (ci-dessous) montre Sport, Collection, Année et Tri."><div className="fl-w">
-        <div className="fl-sg" style={{ flexWrap: 'wrap' }}>{COLS.map(([n], i) => <span key={n} className={i === 1 ? 'on' : ''}>{n}</span>)}<span>+</span></div>
-        <div className="fl-row"><div className="fl-in"><span>⌕</span>Joueur, variation…<i>/</i></div><div className="fl-in">Équipe</div></div>
-        <div className="fl-row" style={{ gap: 10 }}><span className="fl-sg"><span>RC</span><span className="on">Auto</span><span># Num</span><span>Patch</span></span><span className="fl-sep" /><span className="fl-sg"><span>Mémo</span><span>Vente</span><span>Privé</span></span><span className="fl-sep" /><span className="fl-s on">Filtres avancés ▴</span></div>
-        <div className="fl-adv"><label>Sport<div className="fld">Basket ▾</div></label><label>Collection<div className="fld">Toutes</div></label><label>Année<div className="fld">Toutes ▾</div></label><label>Trier par<div className="fld">Récentes ▾</div></label><label>Puis par<div className="fld">Aucun ▾</div></label></div>
-      </div></Bay>
-
-      <Bay id="p8" n="8" title="Téléphone A : recherche + équipe, une ligne de boutons qui défile, collections, avancés" desc="Recherche et équipe l'une sous l'autre ; puis une seule ligne horizontale qui défile avec tous les boutons groupés (atouts | statuts) ; les collections en défilement dessous ; « Filtres avancés » pleine largeur. Aucun bouton ne passe à la ligne."><div className="fl-ph"><div className="top sf">Collection</div><div className="pad"><div className="fl-in"><span>⌕</span>Joueur, variation…</div><div className="fl-in" style={{ marginTop: 8 }}>Équipe</div></div>
-        <div className="fl-scroll" style={{ gap: 10 }}><span className="fl-sg"><span className="on">RC</span><span>Auto</span><span>Num</span><span>Patch</span></span><span className="fl-sg"><span>Mémo</span><span>Vente</span><span>Privé</span></span></div>
-        <div className="fl-scroll" style={{ paddingTop: 0 }}><span className="fl-sg">{COLS.map(([n], i) => <span key={n} className={i === 0 ? 'on' : ''}>{n}</span>)}</span></div>
-        <div className="pad" style={{ paddingTop: 2 }}><span className="fl-s" style={{ width: '100%', justifyContent: 'center' }}>Filtres avancés ▾</span></div></div></Bay>
-
-      <Bay id="p9" n="9" title="Téléphone B : tout sur deux lignes, avancés en carré à côté de la recherche" desc="Ligne 1 : recherche + un petit carré « ☰ » (Filtres avancés) avec pastille du nombre de filtres actifs. Ligne 2 : équipe et atouts. Ligne 3 : statuts et vues. Ligne 4 : collections en défilement. Compact : on voit les cartes plus tôt."><div className="fl-ph"><div className="top sf">Collection</div><div className="pad" style={{ display: 'flex', gap: 8, alignItems: 'center' }}><div className="fl-in" style={{ flex: 1 }}><span>⌕</span>Joueur, variation…</div><span className="fl-ico on">☰<span className="fl-badge">2</span></span></div>
-        <div className="pad" style={{ paddingTop: 0, display: 'flex', gap: 8 }}><div className="fl-in" style={{ flex: '0 0 96px', height: 34 }}>Équipe</div><span className="fl-sg fl-mini" style={{ flex: 1 }}><span className="on">RC</span><span>Auto</span><span>Num</span><span>Patch</span></span></div>
-        <div className="pad" style={{ paddingTop: 0, display: 'flex', gap: 8 }}><span className="fl-sg fl-mini" style={{ flex: 1 }}><span>Mémo</span><span>Vente</span><span>Privé</span></span><span className="fl-sg fl-mini"><span className="on">▦</span><span>⏱</span><span>▤</span></span></div>
-        <div className="fl-scroll" style={{ paddingTop: 0 }}><span className="fl-sg">{COLS.map(([n], i) => <span key={n} className={i === 0 ? 'on' : ''}>{n}</span>)}</span></div></div></Bay>
+      <Bay id="q7" n="7" title="Téléphone B : plus compact, atouts en 4 colonnes" desc="Variante plus dense : recherche et équipe l'une sous l'autre, les 4 atouts sur une seule rangée de 4 petites cases pleines (avec leur trait de couleur), les 3 statuts en dessous, « Filtres avancés » et collections. Environ 40 % de hauteur en moins que l'interface actuelle."><div className="fl-ph"><div className="top sf">Collection</div><div className="fq-pn mob">
+        <div className="fq-in"><span>⌕</span>Joueur, variation…</div><div className="fq-in" style={{ marginTop: 8 }}>Équipe</div>
+        <div className="fq-g4" style={{ marginTop: 10, gap: 5 }}>{[['RC', 'c1', true], ['Auto', 'c2', false], ['Num', 'c3', false], ['Patch', 'c4', false]].map(([l, c, on]) => <span key={String(l)} className={`fq-b sm ${c}${on ? ' on' : ''}`}>{l}</span>)}</div>
+        <div className="fq-g3" style={{ marginTop: 6, gap: 5 }}><span className="fq-b sm">Mémo</span><span className="fq-b sm">Vente</span><span className="fq-b sm">Privé</span></div>
+        <div style={{ display: 'flex', gap: 6, marginTop: 8 }}><span className="fq-adv sm" style={{ flex: 1 }}>Avancés <em>▾</em></span><span className="fq-seg"><span className="on">▦</span><span>⏱</span><span>▤</span></span></div>
+        <div className="fq-chips scroll" style={{ marginTop: 8 }}>{COLS.map(([n], i) => <span key={n} className={`fq-ch${i === 0 ? ' on' : ''}`}>{n}</span>)}</div>
+      </div></div></Bay>
 
       <h2 className="sf" style={{ fontSize: 'clamp(26px,4vw,40px)', margin: '50px 0 6px' }}>Série 29 (21 idées, à garder)</h2>
       <nav className="tags">{names.map((t, i) => <a key={t} href={`#s${i + 1}`}>{String(i + 1).padStart(2, '0')} {t}</a>)}</nav>
