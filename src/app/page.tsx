@@ -213,6 +213,15 @@ export default async function Home() {
     fetchFeaturedGalleries(),
   ])
 
+  // equipe favorite (1ere) de chaque joueur du podium : liseré de couleur + logo
+  const podiumIds = [...new Set([...podium, ...podiumDay, ...podiumWeek].map((e: any) => e.userId))]
+  const favTeam = new Map<string, string>()
+  if (podiumIds.length) {
+    const { data: favs } = await supabase.from('profiles').select('id, favorite_teams').in('id', podiumIds)
+    for (const f of (favs || []) as any[]) { const t = (f.favorite_teams || [])[0]; if (t) favTeam.set(f.id, t) }
+  }
+  const withTeam = (list: any[]) => list.map(e => ({ ...e, favoriteTeam: favTeam.get(e.userId) || null }))
+
   const total = count ?? 0
   const totalCartes = totalCartesData ?? 0
   const totalBinders = bindersCount ?? 0
@@ -240,7 +249,7 @@ export default async function Home() {
       {/* Carte du jour : sous l'accueil / le tableau de bord, juste avant les pepites */}
       <CardOfTheDay />
       <PepitesSection cards={cards} />
-      <PodiumSection month={podium} week={podiumWeek} day={podiumDay} />
+      <PodiumSection month={withTeam(podium)} week={withTeam(podiumWeek)} day={withTeam(podiumDay)} />
       <PWAInstall />
     </div>
   )
