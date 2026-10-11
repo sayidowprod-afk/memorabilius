@@ -855,3 +855,16 @@ html[data-theme="light"] .tcdb-imp-open { border-color: #06122e; color: #06122e;
 [data-theme="light"] .gc-at { color: #06122e; }
 .gc-tir { margin-top: 2px; padding-right: 4px; font-size: 36px; line-height: .85; }
 @media (max-width: 640px) { .gc-ats { font-size: 10px; letter-spacing: .06em; gap: 3px 8px; } .gc-tir { font-size: 28px; } }
+
+/* Onglets de galerie : segments carres sur toute la largeur, onglet actif en bloc plein (proprietaire : 6 onglets avec Aimees) */
+.da-tabs { border: 2px solid var(--text) !important; border-bottom: 2px solid var(--text) !important; margin-bottom: 14px !important; overflow-x: visible !important; }
+.da-tabs > div:first-child { display: none !important; }
+.da-tabs button { flex: 1 1 0 !important; min-width: 0; text-align: center; padding: 12px 6px 10px !important; border-right: 2px solid var(--text) !important; font-family: 'Surfquest', Impact, 'Arial Narrow', sans-serif !important; font-weight: 400 !important; font-size: 17px !important; line-height: 1 !important; letter-spacing: .05em !important; color: var(--text) !important; white-space: nowrap; }
+.da-tabs button:last-child { border-right: 0 !important; }
+:root[data-theme="dark"] .da-tabs button.on { background: #fff !important; color: #06122e !important; }
+:root[data-theme="light"] .da-tabs button.on { background: #06122e !important; color: #fff !important; }
+@media (max-width: 640px) {
+  .da-tabs { display: grid !important; grid-template-columns: repeat(3, 1fr); border-width: 2px 0 0 2px !important; border-style: solid !important; border-color: var(--text) !important; }
+  .da-tabs button { border-right: 2px solid var(--text) !important; border-bottom: 2px solid var(--text) !important; font-size: 15px !important; padding: 11px 2px 9px !important; }
+  .da-tabs button:nth-of-type(5):last-of-type { grid-column: span 2; }
+}

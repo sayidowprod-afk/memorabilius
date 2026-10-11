@@ -10,6 +10,7 @@ import SelectionHand from '@/components/SelectionHand'
 import { numTier, numShort, TAG_BASE, mix } from '@/lib/cardTags'
 import { getTeamByName } from '@/lib/sportsTeams'
 import { teamInfo } from '@/lib/teamColors'
+import { historicLogo } from '@/lib/historicLogos'
 import { toast } from '@/lib/toast'
 import { useEffect, useLayoutEffect, useState, useRef, useMemo, useCallback } from 'react'
 import { flushSync } from 'react-dom'
@@ -1799,9 +1800,11 @@ export default function GalerieClient({ userId, initialCardUrl, initialCards, in
   const teamMark = (name?: string | null): React.ReactNode => {
     const tm = getTeamByName(name)
     if (tm) return <span className="gc-logo"><TeamBadge teamId={tm.id} size={17} /></span>
-    const ti = teamInfo(name)
-    if (!ti) return null
-    return <span className="gc-abbr" title={name || ''} style={{ background: ti.primary, color: ti.secondary, boxShadow: `inset 0 0 0 1px ${ti.secondary}66` }}>{ti.abbr}</span>
+    const h = historicLogo(name)
+    if (!h) return null
+    if (h.src) return <span className="gc-logo"><img src={h.src} alt={name || ''} title={name || ''} width={17} height={17} style={{ width: 17, height: 17, objectFit: 'contain', filter: 'drop-shadow(0 0 1px rgba(255,255,255,.55))' }} /></span>
+    if (h.franchise) return <span className="gc-logo" title={name || ''}><TeamBadge teamId={h.franchise} size={17} /></span>
+    return null
   }
 
   const getTags = (d: Card) => (
@@ -2631,14 +2634,14 @@ export default function GalerieClient({ userId, initialCardUrl, initialCards, in
             }} />
           )}
           {(['collection', 'library', 'objectifs', 'badges', 'comments', ...(isOwner ? ['likes'] as const : [])] as const).map(tab => (
-            <button key={tab} ref={el => { if (el) tabBtnRefs.current[tab] = el }} onClick={() => setActiveTab(tab as any)} style={{
+            <button key={tab} ref={el => { if (el) tabBtnRefs.current[tab] = el }} className={activeTab === tab ? 'on' : ''} onClick={() => setActiveTab(tab as any)} style={{
               position: 'relative', zIndex: 1,
               padding: '8px 16px', border: 'none', borderRadius: 8, cursor: 'pointer', background: 'transparent',
               fontWeight: 800, fontSize: 13, whiteSpace: 'nowrap', flexShrink: 0,
               color: activeTab === tab ? accent : '#999',
               transition: 'color 0.15s',
             }}>
-              {tab === 'collection' ? '🃏 Collection' : tab === 'library' ? t('gallery_tab_library') : tab === 'objectifs' ? t('gallery_tab_objectifs') : tab === 'badges' ? '🏅 Badges' : tab === 'comments' ? t('gallery_tab_comments') : t('gallery_tab_liked')}
+              {(tab === 'collection' ? 'Collection' : tab === 'library' ? t('gallery_tab_library') : tab === 'objectifs' ? t('gallery_tab_objectifs') : tab === 'badges' ? 'Badges' : tab === 'comments' ? t('gallery_tab_comments') : t('gallery_tab_liked')).replace(/^[^\p{L}\p{N}]+/u, '')}
             </button>
           ))}
         </div>

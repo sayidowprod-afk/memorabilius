@@ -37,6 +37,11 @@ export const TEAM_COLORS: Record<string, { primary: string; secondary: string; a
   'New Orleans Hornets': { primary: '#002B5C', secondary: '#00788C', abbr: 'NOH' },
   'Charlotte Bobcats': { primary: '#F26522', secondary: '#2D5DAA', abbr: 'BOB' },
   'New Orleans/Oklahoma City Hornets': { primary: '#002B5C', secondary: '#00788C', abbr: 'NOK' },
+  'Washington Bullets': { primary: '#002B5C', secondary: '#E31837', abbr: 'WSB' },
+  'Kansas City Kings': { primary: '#0B4EA2', secondary: '#E03A3E', abbr: 'KCK' },
+  'San Diego Clippers': { primary: '#1D428A', secondary: '#FF6B00', abbr: 'SDC' },
+  'Buffalo Braves': { primary: '#FF7518', secondary: '#1A1A1A', abbr: 'BUF' },
+  'New Orleans Jazz': { primary: '#4B2E83', secondary: '#FDB927', abbr: 'NOJ' },
   // ── NFL ──────────────────────────────────────────────────────────────────────
   'Arizona Cardinals': { primary: '#97233F', secondary: '#FFB612', abbr: 'ARI' },
   'Atlanta Falcons': { primary: '#A71930', secondary: '#000000', abbr: 'ATL' },
