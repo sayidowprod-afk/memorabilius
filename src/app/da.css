@@ -158,6 +158,12 @@ h1 { line-height: 1.02; }
 /* Profil : nom plus grand, boutons blancs a angles droits (comme l'apercu) */
 .da-profile h1 { font-size: clamp(44px, 6vw, 80px) !important; }
 .da-profile .header-row > div:first-child { align-items: flex-start !important; }
+/* pseudo tres long sur telephone : il reduit puis passe a la ligne au lieu de deborder de l'en-tete */
+@media (max-width: 640px) {
+  .da-profile h1 { font-size: clamp(28px, 9vw, 44px) !important; overflow-wrap: anywhere; max-width: 100%; }
+  .da-profile .header-row > div:first-child { min-width: 0 !important; max-width: 100%; }
+  .da-profile .header-row > div:first-child > div:last-child { min-width: 0 !important; max-width: 100%; }
+}
 .da-profile a[href^="/messages"],
 .da-profile .header-row button:not(.profile-avatar-halo):not([aria-label^="Copier"]):not([title^="Signaler"]) {
   border-radius: 0 !important; text-transform: uppercase; letter-spacing: 0.06em; font-weight: 800 !important;

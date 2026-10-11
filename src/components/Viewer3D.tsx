@@ -975,6 +975,11 @@ export default function Viewer3D({ popup, accent, onClose, onNext, onPrev, getTa
         .v3d-dk .v3d-btns > a, .v3d-dk .v3d-btns > button, .v3d-dk .v3d-btns > div > button:first-child { background: transparent !important; border: 1px solid rgba(255,255,255,.38) !important; color: #fff !important; }
         .v3d-dk .v3d-btns > a:first-child { background: var(--v3d-team, #003DA6) !important; border-color: var(--v3d-team, #003DA6) !important; color: var(--v3d-ht, #fff) !important; }
         .v3d-btns > button[style*="231, 76, 60"], .v3d-dk .v3d-btns > button[style*="231, 76, 60"] { background: transparent !important; border: 1px solid rgba(255,138,141,.65) !important; color: #ff8a8d !important; }
+        .v3d-trade button, .v3d-vrow button { border-radius: 0 !important; }
+        .v3d-trade button { border: 1px solid rgba(255,255,255,.38) !important; background: transparent !important; color: #fff !important; padding: 12px !important; text-transform: uppercase; letter-spacing: .08em; font-size: 13px !important; }
+        .v3d-dk .v3d-vrow button:not([style*="245, 158, 11"]):not([style*="229, 57, 53"]):not([style*="0, 61, 166"]) { border: 1px solid rgba(255,255,255,.38) !important; background: transparent !important; color: #fff !important; }
+        .v3d-vrow button[style*="0, 61, 166"] { background: var(--v3d-team, #003DA6) !important; color: var(--v3d-ht, #fff) !important; border: 1px solid var(--v3d-team, #003DA6) !important; }
+        .v3d-vrow button { min-height: 44px; }
         .v3d-btns > div > button[style*="13, 13, 31"] { background: #05080f !important; border: 1px solid rgba(255,255,255,.38) !important; }
         .v3d-dk .v3d-btns > a:hover, .v3d-dk .v3d-btns > button:hover { border-color: #fff !important; }
         .v3d-dk input { border-radius: 0 !important; background: transparent !important; border: 1px solid rgba(255,255,255,.4) !important; color: #fff !important; }
@@ -2142,7 +2147,7 @@ export default function Viewer3D({ popup, accent, onClose, onNext, onPrev, getTa
 
           {/* Proposer un échange — visiteur connecté seulement */}
           {!isOwner && onProposeTrade && (
-            <div style={{ marginTop: 10 }}>
+            <div className="v3d-trade" style={{ marginTop: 10 }}>
               <button
                 onClick={onProposeTrade}
                 style={{
@@ -2158,7 +2163,7 @@ export default function Viewer3D({ popup, accent, onClose, onNext, onPrev, getTa
 
           {/* J'ai cette carte + Wishlist + Like — visiteur connecté, sur une ligne */}
           {!isOwner && (onAddToMyGallery || currentUserId || (likeData && onLike)) && (
-            <div style={{ marginTop: 10, display: 'flex', gap: 6 }}>
+            <div className="v3d-vrow" style={{ marginTop: 10, display: 'flex', gap: 6 }}>
               {onAddToMyGallery && (
                 <button
                   disabled={addState === 'loading' || addState === 'added' || addState === 'duplicate'}
