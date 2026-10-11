@@ -3479,7 +3479,7 @@ export default function GalerieClient({ userId, initialCardUrl, initialCards, in
                     return (
                       <div className="gc-ats">
                         {parts.map((pt, i) => (
-                          <span key={pt.k}>{i > 0 && <i>·</i>}<b style={{ color: dark ? mix(pt.c, 0.5) : mix(pt.c, -0.25) }}>{pt.t}</b></span>
+                          <span key={pt.k} className="gc-at" style={{ ['--k' as string]: pt.c }}>{pt.t}</span>
                         ))}
                       </div>
                     )

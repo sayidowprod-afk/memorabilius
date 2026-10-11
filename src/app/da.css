@@ -848,10 +848,10 @@ html[data-theme="light"] .tcdb-imp-open { border-color: #06122e; color: #06122e;
 .card-item .gc-name .gc-logo { margin-top: 1px; }
 @media (max-width: 640px) { .card-item .gc-name .da-display { font-size: 15px !important; } .card-item .gc-name { gap: 4px !important; } .card-item .gc-name .gc-logo > * { transform: scale(.8); transform-origin: left top; } }
 
-/* Vignettes : atouts en capitales colorees sous le set (hauteur reservee), tirage en grand a droite sous les icones */
+/* Vignettes : atouts en blanc gras soulignes d'un trait colore (hauteur reservee), tirage geant a droite sous les icones */
 .gc-right { display: flex; flex-direction: column; align-items: flex-end; flex-shrink: 0; }
-.gc-ats { min-height: 16px; margin-top: 4px; font: 900 11px/1.35 system-ui, sans-serif; letter-spacing: .1em; text-transform: uppercase; }
-.gc-ats i { font-style: normal; opacity: .4; margin: 0 5px; }
-.gc-tir { margin-top: 3px; padding-right: 4px; font-size: 25px; line-height: .9; }
-@media (max-width: 640px) { .gc-ats { font-size: 10px; letter-spacing: .06em; } .gc-ats i { margin: 0 3px; } .gc-tir { font-size: 21px; } }
-.gc-abbr { display: inline-flex; align-items: center; justify-content: center; flex-shrink: 0; min-width: 24px; height: 17px; padding: 0 3px; font: 900 8.5px/1 system-ui, sans-serif; letter-spacing: .04em; margin-top: 1px; }
+.gc-ats { min-height: 18px; margin-top: 5px; display: flex; flex-wrap: wrap; align-items: center; gap: 3px 12px; font: 900 12px/1.3 system-ui, sans-serif; letter-spacing: .1em; text-transform: uppercase; }
+.gc-at { color: #fff; border-bottom: 3px solid var(--k); padding-bottom: 2px; }
+[data-theme="light"] .gc-at { color: #06122e; }
+.gc-tir { margin-top: 2px; padding-right: 4px; font-size: 36px; line-height: .85; }
+@media (max-width: 640px) { .gc-ats { font-size: 10px; letter-spacing: .06em; gap: 3px 8px; } .gc-tir { font-size: 28px; } }
