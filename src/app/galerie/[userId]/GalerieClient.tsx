@@ -3451,7 +3451,23 @@ export default function GalerieClient({ userId, initialCardUrl, initialCards, in
                     <span style={{ whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>{d.y} {d.br} {d.s}</span>
                     {d.card_number && <span style={{ flexShrink: 0, fontWeight: 800, color: '#555', background: '#f0f0f0', borderRadius: 4, padding: '1px 5px', fontSize: 9 }}>#{d.card_number}</span>}
                   </p>
+                  {(() => {
+                    const parts: { k: string; t: string; c: string }[] = []
+                    if (d.item_type && d.item_type !== 'card') parts.push({ k: 'memo', t: 'Mémo', c: '#c77dff' })
+                    if (d.rc) parts.push({ k: 'rc', t: 'RC', c: TAG_BASE.rc })
+                    if (d.auto) parts.push({ k: 'auto', t: 'Auto', c: TAG_BASE.auto })
+                    if (d.patch) parts.push({ k: 'patch', t: 'Patch', c: TAG_BASE.patch })
+                    if (d.printing_plate) parts.push({ k: 'plate', t: 'Plate', c: '#9aa6bd' })
+                    return (
+                      <div className="gc-ats">
+                        {parts.map((pt, i) => (
+                          <span key={pt.k}>{i > 0 && <i>·</i>}<b style={{ color: dark ? mix(pt.c, 0.5) : mix(pt.c, -0.25) }}>{pt.t}</b></span>
+                        ))}
+                      </div>
+                    )
+                  })()}
                 </div>
+                <div className="gc-right">
                 {/* Boutons like + commentaires */}
                 {!editMode && (() => {
                   const likeInfo = cardLikes.get(d.f) || { count: 0, liked: false }
@@ -3513,28 +3529,13 @@ export default function GalerieClient({ userId, initialCardUrl, initialCards, in
                   </div>
                   )
                 })()}
+                {d.num && (() => {
+                  const tier = numTier(d.num)
+                  const tierColor = tier === 'gold' ? '#ffd54a' : tier === 'silver' ? '#dfe6f2' : tier === 'bronze' ? '#e0925a' : (dark ? '#8fb4ff' : '#1a43b8')
+                  return <div className="gc-tir da-display" title={`Numérotation : ${d.num}`} style={{ color: tierColor, textShadow: tier !== 'std' ? `0 0 12px ${tierColor}66` : undefined }}>{numShort(d.num)}</div>
+                })()}
+                </div>
               </div>
-              {(() => {
-                const parts: { k: string; t: string; c: string }[] = []
-                if (d.item_type && d.item_type !== 'card') parts.push({ k: 'memo', t: 'Mémo', c: '#c77dff' })
-                if (d.rc) parts.push({ k: 'rc', t: 'RC', c: TAG_BASE.rc })
-                if (d.auto) parts.push({ k: 'auto', t: 'Auto', c: TAG_BASE.auto })
-                if (d.patch) parts.push({ k: 'patch', t: 'Patch', c: TAG_BASE.patch })
-                if (d.printing_plate) parts.push({ k: 'plate', t: 'Plate', c: '#9aa6bd' })
-                const tier = numTier(d.num)
-                const tierColor = tier === 'gold' ? '#ffd54a' : tier === 'silver' ? '#dfe6f2' : tier === 'bronze' ? '#e0925a' : (dark ? '#8fb4ff' : '#1a43b8')
-                const has = parts.length > 0 || !!d.num
-                return (
-                  <div className={`gc-foot${has ? ' on' : ''}`}>
-                    <div className="gc-ats">
-                      {parts.map((pt, i) => (
-                        <span key={pt.k}>{i > 0 && <i>·</i>}<b style={{ color: dark ? mix(pt.c, 0.5) : mix(pt.c, -0.25) }}>{pt.t}</b></span>
-                      ))}
-                    </div>
-                    {d.num && <div className="gc-tir da-display" title={`Numérotation : ${d.num}`} style={{ color: tierColor, textShadow: tier !== 'std' ? `0 0 12px ${tierColor}66` : undefined }}>{numShort(d.num)}</div>}
-                  </div>
-                )
-              })()}
           </SortableCard>
           ))}
           </div>
