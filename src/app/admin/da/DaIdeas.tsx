@@ -253,6 +253,19 @@ const F_DEFS: FDef[] = [
   { title: 'Segments statiques entre la carte et le texte', desc: 'Les segments colorés égaux (relief) mais immobiles, sous l\'image. La carte est rehaussée, aucun mouvement. Cartes sans atout : barre d\'infos qui défile (seul élément mobile).', strip: c => (segsOf(c).length ? <div className="gs sv-1">{segsOf(c).map(s => <span key={s.k} className="s" style={segStyle(s)}>{s.t}</span>)}</div> : <InfoMq c={c} />) },
   { title: 'Barres défilantes indépendantes, sens alternés, aux couleurs franches', desc: 'Sous l\'image, chaque atout défile à sa vitesse et un segment sur deux dans l\'autre sens, en couleur unie (sans relief) comme la barre de l\'accueil. Le plus animé.', strip: c => (segsOf(c).length ? <SegMq c={c} o="alt" /> : <InfoMq c={c} />) },
 ]
+const StSeg = ({ c, n }: { c: PC; n: number }) => (segsOf(c).length ? <div className={`gs sv-${n}`}>{segsOf(c).map(s => <span key={s.k} className="s" style={segStyle(s)}>{s.t}</span>)}</div> : <InfoMq c={c} />)
+const F_MORE: FDef[] = [
+  { title: 'Entre la carte et le texte : plat et ultra fin (14 px), segments fixes', desc: 'Couleur unie sans relief, 14 px, segments immobiles. Cartes sans atout : infos qui défilent.', strip: c => <StSeg c={c} n={2} /> },
+  { title: 'Entre la carte et le texte : segments inclinés', desc: 'Parallélogrammes qui s\'emboîtent, sous l\'image. Cartes sans atout : infos qui défilent.', strip: c => <StSeg c={c} n={3} /> },
+  { title: 'Entre la carte et le texte : fond teinté et filet de couleur', desc: 'Fond teinté à 18 % avec un filet de 2 px en haut, texte clair. Plus léger. Cartes sans atout : infos qui défilent.', strip: c => <StSeg c={c} n={4} /> },
+  { title: 'Entre la carte et le texte : blocs blancs soulignés de couleur', desc: 'Blocs blancs pleins texte marine, trait de 3 px de la couleur de l\'atout. Cartes sans atout : infos qui défilent.', strip: c => <StSeg c={c} n={6} /> },
+  { title: 'Entre la carte et le texte : fond sombre + carré de couleur à gauche', desc: 'Segments sombres avec un bloc de 4 px de la couleur de l\'atout, texte blanc. Cartes sans atout : infos qui défilent.', strip: c => <StSeg c={c} n={7} /> },
+  { title: 'Entre la carte et le texte : barre défilante bleue, mots dans leur couleur', desc: 'La barre bleue de l\'accueil (style D1) avec chaque mot dans la couleur de son atout. Cartes sans atout : infos qui défilent sur la barre bleue.', strip: c => (segsOf(c).length ? <Mq c={c} color /> : <InfoMq c={c} blue />) },
+  { title: 'Entre la carte et le texte : barre défilante fine aux couleurs de l\'équipe', desc: 'Barre défilante de 14 px au fond de la couleur de l\'équipe de la carte. Cartes sans atout : infos qui défilent.', strip: c => (segsOf(c).length ? <Mq c={c} slim team /> : <InfoMq c={c} />) },
+  { title: 'Entre la carte et le texte : barres indépendantes sur fond bleu, mots colorés', desc: 'Chaque atout est sa propre barre défilante bleue (comme l\'accueil), seul le mot garde sa couleur. Cartes sans atout : infos qui défilent.', strip: c => (segsOf(c).length ? <SegMq c={c} o="blue" /> : <InfoMq c={c} blue />) },
+  { title: 'Entre la carte et le texte : étiquette fixe + étoiles qui défilent', desc: 'Chaque segment porte son nom immobile à gauche et des étoiles ✦ qui défilent seules à sa droite. Cartes sans atout : infos qui défilent.', strip: c => (segsOf(c).length ? <SegMq c={c} o="fixed" /> : <InfoMq c={c} />) },
+]
+F_DEFS.push(...F_MORE)
 const STRIPS = [
   ['Actuel (dégradé fin, relief)', 'Le bandeau tel qu\'il est en ligne : 17 px, dégradé vertical, filet de relief, lettres espacées.'],
   ['Plat et ultra fin (14 px)', 'Couleur unie sans relief, 14 px de haut, texte de 8,5 px. Le plus discret et le plus net.'],
