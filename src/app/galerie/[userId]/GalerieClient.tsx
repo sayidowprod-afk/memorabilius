@@ -3477,6 +3477,7 @@ export default function GalerieClient({ userId, initialCardUrl, initialCards, in
               </div>
               })()}
               {(() => {
+                // Un seul emplacement sous l'image : la barre d'equipe seule, ou la barre d'atouts qui defile PAR-DESSUS la barre d'equipe
                 const ats: { k: string; t: string; c: string }[] = []
                 if (d.item_type && d.item_type !== 'card') ats.push({ k: 'memo', t: 'Mémo', c: '#c77dff' })
                 if (d.rc) ats.push({ k: 'rc', t: 'RC', c: TAG_BASE.rc })
@@ -3484,19 +3485,24 @@ export default function GalerieClient({ userId, initialCardUrl, initialCards, in
                 if (d.auto) ats.push({ k: 'auto', t: 'Auto', c: TAG_BASE.auto })
                 if (d.printing_plate) ats.push({ k: 'plate', t: 'Plate', c: '#9aa6bd' })
                 if (d.num) { const tr = numTier(d.num); ats.push({ k: 'num', t: numShort(d.num), c: tr === 'gold' ? '#ffd54a' : tr === 'silver' ? '#dfe6f2' : TAG_BASE.num }) }
-                if (!ats.length) return <div className="gs-strip gs-empty" aria-hidden />
+                const barColor = teamBarColor(d.t)
+                const reps = Math.max(4, Math.ceil(20 / Math.max(1, ats.length)))
                 const unit = (key: string) => (
-                  <span key={key}>{Array.from({ length: Math.max(4, Math.ceil(20 / ats.length)) }, (_, r) => r).map(r => <Fragment key={r}>{ats.map(x => <Fragment key={x.k}><b style={{ color: mix(x.c, 0.5) }}>{x.t}</b><i>✦</i></Fragment>)}</Fragment>)}</span>
+                  <span key={key}>{Array.from({ length: reps }, (_, r) => r).map(r => <Fragment key={r}>{ats.map(x => <Fragment key={x.k}><b style={{ color: mix(x.c, 0.5) }}>{x.t}</b><i>✦</i></Fragment>)}</Fragment>)}</span>
                 )
                 return (
-                  <div className="gs-strip" aria-label={ats.map(x => x.t).join(' ')}>
-                    <div className="gs-seg gs-blue" style={{ ['--d' as string]: `${8 + ats.length * 2}s` }}>
-                      <div className="gs-mq">{unit('a')}{unit('b')}</div>
-                    </div>
+                  <div className="gc-slot">
+                    {barColor && <div className="gc-bar" style={{ background: barColor }} />}
+                    {ats.length > 0 && (
+                      <div className="gs-strip" aria-label={ats.map(x => x.t).join(' ')}>
+                        <div className="gs-seg gs-blue" style={{ ['--d' as string]: `${30 + ats.length * 4}s` }}>
+                          <div className="gs-mq">{unit('a')}{unit('b')}</div>
+                        </div>
+                      </div>
+                    )}
                   </div>
                 )
               })()}
-              {(() => { const c = teamBarColor(d.t); return c ? <div className="gc-bar" style={{ background: c }} /> : null })()}
               <div className="gc-bot" style={{ display: 'flex', alignItems: 'flex-start', justifyContent: 'space-between', gap: 4, marginTop: 4, ['--gt' as string]: teamBarColor(d.t) || 'transparent' }}>
                 <div style={{ minWidth: 0 }}>
                   <p className="gc-name" style={{ margin: 0, whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis', display: 'flex', alignItems: 'center', gap: 6 }}>
