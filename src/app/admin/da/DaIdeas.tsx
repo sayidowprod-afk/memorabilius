@@ -151,16 +151,18 @@ const fillNode = (c: PC, f: Fill): React.ReactNode => {
   const t = f === 'year' ? c.y : f === 'brand' ? c.br : f === 'num' ? c.no : f === 'sport' ? 'Basketball' : c.v
   return <span className={`s ${f === 'insert' ? 'insert' : 'ghost'}`}>{t}</span>
 }
-const Cell = ({ c, sv = 1, fill = 'year', b = 1, strip, svc, over }: { c: PC; sv?: number; fill?: Fill; b?: number; strip?: React.ReactNode; svc?: string; over?: React.ReactNode }) => {
+const Cell = ({ c, sv = 1, fill = 'year', b = 1, strip, svc, over, below }: { c: PC; sv?: number; fill?: Fill; b?: number; strip?: React.ReactNode; svc?: string; over?: React.ReactNode; below?: boolean }) => {
   const segs = segsOf(c)
   return (
     <div className={`v4 b${b}`} style={{ ['--gt' as string]: c.tc, ['--tc' as string]: c.tc } as CSSProperties}>
-      {strip ?? (
+      {!below && (strip ?? (
         <div className={`gs sv-${sv}${svc ? ' ' + svc : ''}${!segs.length && fill === 'none' ? ' none' : ''}`}>
           {segs.length ? segs.map(s => <span key={s.k} className="s" style={segStyle(s)}>{s.t}</span>) : fillNode(c, fill)}
         </div>
-      )}
+      ))}
       <div className="ph" style={{ position: 'relative' }}><img src={c.img} alt="" />{over}</div>
+      {below && <div style={{ height: 6 }} />}
+      {below && strip}
       <div className="bar" />
       <div className="bt"><div className="nm"><img src={`/team-logos/nba-${c.tm}.png`} alt="" /><span>{c.n}</span></div>{c.v && <div className="vr">{c.v}</div>}<div className="st">{c.s}</div><Ic /></div>
     </div>
@@ -244,6 +246,13 @@ const E_DEFS: EDef[] = [
   { title: 'Étiquette fixe à gauche, étoiles qui défilent derrière', desc: 'Chaque segment porte son nom immobile à gauche (RC, AUTO, /25) et, à sa droite, des étoiles ✦ qui défilent seules. L\'information reste lisible à tout instant et seul l\'ornement bouge.', strip: c => (segsOf(c).length ? <SegMq c={c} o="fixed" /> : <InfoMq c={c} />) },
   { title: 'Barres empilées de 12 px, une par atout (par-dessus l\'image)', desc: 'Chaque atout est une barre pleine largeur de 12 px posée sur le haut de l\'image, empilées (sens alternés). Très proche de ta demande « chaque barre bouge indépendamment » mais elles couvrent de 12 à 50 px de l\'image selon le nombre d\'atouts : à voir si c\'est acceptable.', over: c => (segsOf(c).length ? <StkMq c={c} /> : null), strip: c => (segsOf(c).length ? <div className="gs none" /> : <InfoMq c={c} />) },
 ]
+type FDef = { title: string; desc: string; strip: (c: PC) => React.ReactNode }
+const F_DEFS: FDef[] = [
+  { title: 'Barres défilantes indépendantes, une couleur par atout, entre la carte et le texte', desc: 'Le même bandeau de 14 px (chaque atout sa propre barre défilante, sa couleur, sa vitesse) mais descendu sous l\'image, juste au-dessus du nom : la carte est « rehaussée » et commence tout en haut du cadre. Les cartes sans atout ont la barre d\'infos qui défile (nom, insert, année, set).', strip: c => <div style={{ marginBottom: 0 }}>{segsOf(c).length ? <SegMq c={c} o="indep" /> : <InfoMq c={c} />}</div> },
+  { title: 'Une seule barre bleue défilante (style D1) entre la carte et le texte', desc: 'La barre bleue de l\'accueil (tous les atouts à la suite : RC ✦ AUTO ✦ /25…) sous l\'image. Plus calme : une seule barre en mouvement. Cartes sans atout : barre d\'infos qui défile.', strip: c => (segsOf(c).length ? <Mq c={c} /> : <InfoMq c={c} blue />) },
+  { title: 'Segments statiques entre la carte et le texte', desc: 'Les segments colorés égaux (relief) mais immobiles, sous l\'image. La carte est rehaussée, aucun mouvement. Cartes sans atout : barre d\'infos qui défile (seul élément mobile).', strip: c => (segsOf(c).length ? <div className="gs sv-1">{segsOf(c).map(s => <span key={s.k} className="s" style={segStyle(s)}>{s.t}</span>)}</div> : <InfoMq c={c} />) },
+  { title: 'Barres défilantes indépendantes, sens alternés, aux couleurs franches', desc: 'Sous l\'image, chaque atout défile à sa vitesse et un segment sur deux dans l\'autre sens, en couleur unie (sans relief) comme la barre de l\'accueil. Le plus animé.', strip: c => (segsOf(c).length ? <SegMq c={c} o="alt" /> : <InfoMq c={c} />) },
+]
 const STRIPS = [
   ['Actuel (dégradé fin, relief)', 'Le bandeau tel qu\'il est en ligne : 17 px, dégradé vertical, filet de relief, lettres espacées.'],
   ['Plat et ultra fin (14 px)', 'Couleur unie sans relief, 14 px de haut, texte de 8,5 px. Le plus discret et le plus net.'],
@@ -283,9 +292,10 @@ export default function DaIdeas() {
       <style>{CSS}</style>
       <Link href="/admin" className="back">← Admin</Link>
       <h1 className="sf">Idées · Série 41 · Bandeau, espace vide, dégradé</h1>
-      <p className="lead">Tout en haut (E1 à E8) : chaque atout comme sa propre barre défilante, et des infos qui défilent pour les cartes sans atout. Ensuite (D1 à D5) : le bandeau dans le style de la barre défilante de l&apos;accueil (police grasse espacée, étoiles ✦, mouvement). Puis trois chantiers sur les vignettes de la galerie, montrés sur 5 cartes (1, 2, 3 et 4 atouts, et une sans atout) avec des équipes de couleurs différentes : A. rendre le bandeau d&apos;atouts plus beau et plus fin (10 variantes) ; B. remplir la rangée quand il n&apos;y a aucun atout (8 façons) ; C. mieux intégrer le dégradé du bas à la couleur d&apos;équipe (8 façons).</p>
-      <nav className="tags">{E_DEFS.map((_, i) => <a key={`e${i}`} href={`#e${i + 1}`}>E{i + 1}</a>)}{MQ_DEFS.map((_, i) => <a key={`d${i}`} href={`#d${i + 1}`}>D{i + 1}</a>)}{STRIPS.map((_, i) => <a key={i} href={`#a${i + 1}`}>A{i + 1}</a>)}{FILLS.map((_, i) => <a key={i} href={`#b${i + 1}`}>B{i + 1}</a>)}{BOTS.map((_, i) => <a key={i} href={`#c${i + 1}`}>C{i + 1}</a>)}</nav>
+      <p className="lead">Tout en haut (F1 à F4) : le bandeau descendu entre la carte et le texte du bas (carte rehaussée). Puis (E1 à E8) : chaque atout comme sa propre barre défilante, et des infos qui défilent pour les cartes sans atout. Ensuite (D1 à D5) : le bandeau dans le style de la barre défilante de l&apos;accueil (police grasse espacée, étoiles ✦, mouvement). Puis trois chantiers sur les vignettes de la galerie, montrés sur 5 cartes (1, 2, 3 et 4 atouts, et une sans atout) avec des équipes de couleurs différentes : A. rendre le bandeau d&apos;atouts plus beau et plus fin (10 variantes) ; B. remplir la rangée quand il n&apos;y a aucun atout (8 façons) ; C. mieux intégrer le dégradé du bas à la couleur d&apos;équipe (8 façons).</p>
+      <nav className="tags">{F_DEFS.map((_, i) => <a key={`f${i}`} href={`#f${i + 1}`}>F{i + 1}</a>)}{E_DEFS.map((_, i) => <a key={`e${i}`} href={`#e${i + 1}`}>E{i + 1}</a>)}{MQ_DEFS.map((_, i) => <a key={`d${i}`} href={`#d${i + 1}`}>D{i + 1}</a>)}{STRIPS.map((_, i) => <a key={i} href={`#a${i + 1}`}>A{i + 1}</a>)}{FILLS.map((_, i) => <a key={i} href={`#b${i + 1}`}>B{i + 1}</a>)}{BOTS.map((_, i) => <a key={i} href={`#c${i + 1}`}>C{i + 1}</a>)}</nav>
 
+      {F_DEFS.map((d, i) => <Bay key={d.title} id={`f${i + 1}`} n={`F${i + 1}`} title={d.title} desc={d.desc}><Row>{PCS.map(c => <Cell key={c.n} c={c} below strip={d.strip(c)} />)}</Row></Bay>)}
       {E_DEFS.map((d, i) => <Bay key={d.title} id={`e${i + 1}`} n={`E${i + 1}`} title={d.title} desc={d.desc}><Row>{PCS.map(c => <Cell key={c.n} c={c} strip={d.strip ? d.strip(c) : undefined} over={d.over ? d.over(c) : undefined} />)}</Row></Bay>)}
       {MQ_DEFS.map((d, i) => <Bay key={d.title} id={`d${i + 1}`} n={`D${i + 1}`} title={d.title} desc={d.desc}><Row>{PCS.map(c => <Cell key={c.n} c={c} svc={d.svc} strip={i < 3 ? d.strip(c) : undefined} />)}</Row></Bay>)}
       {STRIPS.map((d, i) => <Bay key={d[0]} id={`a${i + 1}`} n={`A${i + 1}`} title={d[0]} desc={d[1]}><Row>{PCS.map(c => <Cell key={c.n} c={c} sv={i + 1} />)}</Row></Bay>)}
