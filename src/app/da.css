@@ -854,3 +854,4 @@ html[data-theme="light"] .tcdb-imp-open { border-color: #06122e; color: #06122e;
 .gc-ats i { font-style: normal; opacity: .4; margin: 0 5px; }
 .gc-tir { margin-top: 3px; padding-right: 4px; font-size: 25px; line-height: .9; }
 @media (max-width: 640px) { .gc-ats { font-size: 10px; letter-spacing: .06em; } .gc-ats i { margin: 0 3px; } .gc-tir { font-size: 21px; } }
+.gc-abbr { display: inline-flex; align-items: center; justify-content: center; flex-shrink: 0; min-width: 24px; height: 17px; padding: 0 3px; font: 900 8.5px/1 system-ui, sans-serif; letter-spacing: .04em; margin-top: 1px; }

@@ -159,3 +159,15 @@ export function teamPalette(name?: string | null): { primary: string; secondary:
   const m = entries.filter(([k]) => norm(k).split(' ').slice(-1)[0] === last)
   return m.length === 1 ? { primary: m[0][1].primary, secondary: m[0][1].secondary } : null
 }
+
+/** Equipe (y compris disparue : Seattle SuperSonics, New Jersey Nets...) : couleurs + abreviation ; null si inconnue */
+export function teamInfo(name?: string | null): { primary: string; secondary: string; abbr: string } | null {
+  const n = norm(name || '')
+  if (!n) return null
+  const entries = Object.entries(TEAM_COLORS)
+  const exact = entries.find(([k]) => norm(k) === n)
+  if (exact) return exact[1]
+  const last = n.split(' ').slice(-1)[0]
+  const m = entries.filter(([k]) => norm(k).split(' ').slice(-1)[0] === last)
+  return m.length === 1 ? m[0][1] : null
+}

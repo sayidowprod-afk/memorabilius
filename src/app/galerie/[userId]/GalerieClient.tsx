@@ -9,6 +9,7 @@ import ConfirmDeleteCard from '@/components/ConfirmDeleteCard'
 import SelectionHand from '@/components/SelectionHand'
 import { numTier, numShort, TAG_BASE, mix } from '@/lib/cardTags'
 import { getTeamByName } from '@/lib/sportsTeams'
+import { teamInfo } from '@/lib/teamColors'
 import { toast } from '@/lib/toast'
 import { useEffect, useLayoutEffect, useState, useRef, useMemo, useCallback } from 'react'
 import { flushSync } from 'react-dom'
@@ -1786,6 +1787,23 @@ export default function GalerieClient({ userId, initialCardUrl, initialCards, in
     prevCardRectsRef.current = newRects
   }, [displayed, activeDragId])
 
+  // Equipe de la carte : logo si l'equipe existe encore ; sinon (Seattle SuperSonics, New Jersey Nets...) un monogramme aux couleurs de l'equipe
+  const teamBarColor = (name?: string | null): string | null => {
+    const tm = getTeamByName(name)
+    if (tm) return tm.color
+    const ti = teamInfo(name)
+    if (!ti) return null
+    const dark0 = (h: string) => { const n = parseInt(h.replace('#', '').slice(0, 6), 16); return ((n >> 16) & 255) + ((n >> 8) & 255) + (n & 255) < 120 }
+    return dark0(ti.primary) ? ti.secondary : ti.primary
+  }
+  const teamMark = (name?: string | null): React.ReactNode => {
+    const tm = getTeamByName(name)
+    if (tm) return <span className="gc-logo"><TeamBadge teamId={tm.id} size={17} /></span>
+    const ti = teamInfo(name)
+    if (!ti) return null
+    return <span className="gc-abbr" title={name || ''} style={{ background: ti.primary, color: ti.secondary, boxShadow: `inset 0 0 0 1px ${ti.secondary}66` }}>{ti.abbr}</span>
+  }
+
   const getTags = (d: Card) => (
     <div style={{ display: 'flex', gap: 4, flexWrap: 'wrap', alignItems: 'center' }}>
       {d.item_type && d.item_type !== 'card' && <span style={{ fontSize: 9, fontWeight: 900, padding: '3px 6px', borderRadius: 4, background: '#7b1fa2', color: 'white' }}>🏆 MÉMO</span>}
@@ -3439,11 +3457,11 @@ export default function GalerieClient({ userId, initialCardUrl, initialCards, in
                   </div>
                 )}
               </div>
-              {(() => { const tm = getTeamByName(d.t); return tm ? <div className="gc-bar" style={{ background: tm.color }} /> : null })()}
+              {(() => { const c = teamBarColor(d.t); return c ? <div className="gc-bar" style={{ background: c }} /> : null })()}
               <div style={{ display: 'flex', alignItems: 'flex-start', justifyContent: 'space-between', gap: 4, marginTop: 4 }}>
                 <div style={{ minWidth: 0 }}>
                   <p className="gc-name" style={{ margin: 0, whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis', display: 'flex', alignItems: 'center', gap: 6 }}>
-                    {(() => { const tm = getTeamByName(d.t); return tm ? <span className="gc-logo"><TeamBadge teamId={tm.id} size={17} /></span> : null })()}
+                    {teamMark(d.t)}
                     <span className="da-display" style={{ fontSize: 19, lineHeight: 1, overflow: 'hidden', textOverflow: 'ellipsis' }}>{d.n}</span>
                   </p>
                   <p style={{ fontSize: 10, color: accent, fontWeight: 700, margin: '2px 0', fontStyle: 'italic', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>{d.v}</p>
