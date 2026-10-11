@@ -771,3 +771,11 @@ html[data-theme="light"] .tcdb-imp-open { border-color: #06122e; color: #06122e;
 .sm-inline .sm-flags { gap: 4px; } .sm-inline .sm-fl { width: 36px; height: 24px; } .sm-inline .sm-flag { padding: 8px 2px; }
 .sm-inline-row { display: flex; align-items: center; justify-content: space-between; padding-top: 6px; }
 @media (max-width: 480px) { .sm-panel { position: fixed; top: 62px; left: 12px; right: 12px; width: auto; } }
+
+/* Annuaires (liste des teams, membres d'une team) : lignes a plat, survol discret, donateur dore */
+.dir-row td { transition: background-color .15s; }
+@media (hover: hover) and (pointer: fine) { .dir-row:hover td { background-color: rgba(120, 140, 200, 0.10); } }
+.dir-donor td:first-child { background: linear-gradient(90deg, rgba(255, 213, 74, 0.16), transparent 90%); box-shadow: inset 6px 0 0 #ffd54a; }
+.dir-sq { display: inline-block; border: 2px solid currentColor; padding: 3px 8px; font: 800 10px system-ui, sans-serif; letter-spacing: .12em; text-transform: uppercase; white-space: nowrap; }
+.dir-act { background: transparent; border: 2px solid currentColor; border-radius: 0; padding: 7px 14px; font: 800 11px system-ui, sans-serif; letter-spacing: .1em; text-transform: uppercase; cursor: pointer; white-space: nowrap; text-decoration: none; display: inline-block; }
+@media (max-width: 640px) { .dir-name { font-size: 20px !important; } .dir-num { font-size: 20px !important; } }

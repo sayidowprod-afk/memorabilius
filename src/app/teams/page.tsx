@@ -120,7 +120,7 @@ export default function Teams() {
         {userId && (
           <div style={{ display: 'flex', gap: 8, alignItems: 'center', flexWrap: 'wrap' }}>
             {[...userTeamIds].map(tid => (
-              <Link key={tid} href={`/teams/${tid}`} style={{ background: '#003DA6', color: 'white', padding: '8px 16px', borderRadius: 50, fontWeight: 700, fontSize: 13 }}>
+              <Link key={tid} href={`/teams/${tid}`} style={{ background: '#003DA6', color: 'white', padding: '8px 16px', borderRadius: 0, fontWeight: 800, fontSize: 12, letterSpacing: '0.08em', textTransform: 'uppercase' }}>
                 {teams.find(t => t.id === tid)?.name || t('teams_see_my_team')} →
               </Link>
             ))}
@@ -147,12 +147,12 @@ export default function Teams() {
         </div>
       )}
 
-      <div style={{ background: dark ? '#1e1e1e' : 'white', borderRadius: 16, overflow: 'hidden', boxShadow: '0 4px 20px rgba(0,0,0,0.08)' }}>
+      <div style={{ background: 'transparent', borderRadius: 0, overflow: 'hidden', border: `1px solid ${dark ? 'rgba(255,255,255,0.28)' : '#06122e'}` }}>
         <div style={{ overflowX: 'auto', WebkitOverflowScrolling: 'touch' }}>
         <table style={{ width: '100%', borderCollapse: 'collapse', minWidth: 480 }}>
           <thead><tr>
             {['#', 'Team', t('teams_members'), t('teams_total_cards_label'), t('teams_action')].map(h => (
-              <th key={h} style={{ background: dark ? '#252525' : '#fdfdfd', padding: '16px', textAlign: 'left', fontSize: 11, textTransform: 'uppercase', color: '#999', borderBottom: `2px solid ${dark ? '#333' : '#f0f0f0'}` }}>{h}</th>
+              <th key={h} style={{ background: 'transparent', padding: '16px', textAlign: 'left', fontSize: 11, letterSpacing: '0.12em', textTransform: 'uppercase', color: dark ? '#fff' : '#06122e', borderBottom: `2px solid ${dark ? '#fff' : '#06122e'}` }}>{h}</th>
             ))}
           </tr></thead>
           <tbody>
@@ -162,44 +162,42 @@ export default function Teams() {
               const isMyTeam = userTeamIds.has(team.id)
               const pending = hasCandidature.has(team.id)
               return (
-                <tr key={team.id}>
-                  <td style={{ padding: '14px 16px', borderBottom: `1px solid ${dark ? '#2a2a2a' : '#f5f5f5'}`, fontWeight: 900, color: i === 0 ? '#f39c12' : i === 1 ? '#95a5a6' : i === 2 ? '#cd7f32' : '#999', fontSize: 16 }}>
-                    {i === 0 ? '🥇' : i === 1 ? '🥈' : i === 2 ? '🥉' : i + 1}
+                <tr key={team.id} className="dir-row">
+                  <td style={{ padding: '14px 16px', borderBottom: `1px solid ${dark ? 'rgba(255,255,255,0.14)' : 'rgba(6,18,46,0.14)'}`, width: 56 }}>
+                    <span className="da-display" style={{ fontSize: 30, lineHeight: 1, color: i === 0 ? '#ffd54a' : i === 1 ? '#c9d1e0' : i === 2 ? '#e0925a' : (dark ? 'rgba(255,255,255,0.4)' : 'rgba(6,18,46,0.4)') }}>{i + 1}</span>
                   </td>
-                  <td style={{ padding: '14px 16px', borderBottom: `1px solid ${dark ? '#2a2a2a' : '#f5f5f5'}` }}>
-                    <div style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
+                  <td style={{ padding: '14px 16px', borderBottom: `1px solid ${dark ? 'rgba(255,255,255,0.14)' : 'rgba(6,18,46,0.14)'}` }}>
+                    <div style={{ display: 'flex', alignItems: 'center', gap: 14, minWidth: 0 }}>
                       {team.avatar_url ? (
-                        <img src={team.avatar_url} style={{ width: 36, height: 36, borderRadius: '50%', objectFit: 'cover', flexShrink: 0 }} alt={team.name} />
+                        <img src={team.avatar_url} style={{ width: 46, height: 46, borderRadius: '50%', objectFit: 'cover', flexShrink: 0 }} alt={team.name} />
                       ) : (
-                        <div style={{ width: 36, height: 36, borderRadius: '50%', background: '#003DA6', display: 'flex', alignItems: 'center', justifyContent: 'center', color: 'white', fontWeight: 900, fontSize: 14, flexShrink: 0 }}>
+                        <div className="da-display" style={{ width: 46, height: 46, borderRadius: '50%', background: '#003DA6', display: 'flex', alignItems: 'center', justifyContent: 'center', color: 'white', fontSize: 24, flexShrink: 0 }}>
                           {team.name.charAt(0).toUpperCase()}
                         </div>
                       )}
-                      <div>
-                        <Link href={`/teams/${team.id}`} style={{ fontWeight: 800, color: dark ? '#f0f0f0' : '#121212', display: 'block' }}>{team.name}</Link>
-                        {team.description && <p style={{ fontSize: 11, color: '#999', margin: 0 }}>{team.description}</p>}
+                      <div style={{ minWidth: 0 }}>
+                        <Link href={`/teams/${team.id}`} className="da-display dir-name" style={{ fontSize: 30, lineHeight: 1, color: dark ? '#fff' : '#06122e', display: 'block', overflowWrap: 'anywhere' }}>{team.name}</Link>
+                        {team.description && <p style={{ fontSize: 12, color: dark ? 'rgba(255,255,255,0.6)' : 'rgba(6,18,46,0.6)', margin: '4px 0 0' }}>{team.description}</p>}
                       </div>
                     </div>
                   </td>
-                  <td style={{ padding: '14px 16px', borderBottom: `1px solid ${dark ? '#2a2a2a' : '#f5f5f5'}` }}>
-                    <span style={{ background: dark ? '#333' : '#f0f0f0', color: dark ? '#eee' : '#333', padding: '4px 10px', borderRadius: 6, fontWeight: 700 }}>{memberCount}</span>
+                  <td style={{ padding: '14px 16px', borderBottom: `1px solid ${dark ? 'rgba(255,255,255,0.14)' : 'rgba(6,18,46,0.14)'}` }}>
+                    <span className="da-display dir-num" style={{ fontSize: 30, lineHeight: 1, color: dark ? '#fff' : '#06122e' }}>{memberCount}</span>
                   </td>
-                  <td style={{ padding: '14px 16px', borderBottom: `1px solid ${dark ? '#2a2a2a' : '#f5f5f5'}` }}>
-                    <span style={{ background: '#e3f2fd', color: '#1976d2', padding: '4px 10px', borderRadius: 6, fontWeight: 700 }}>
-                      {stats?.total ?? '...'}
-                    </span>
+                  <td style={{ padding: '14px 16px', borderBottom: `1px solid ${dark ? 'rgba(255,255,255,0.14)' : 'rgba(6,18,46,0.14)'}` }}>
+                    <span className="da-display dir-num" style={{ fontSize: 30, lineHeight: 1, color: dark ? '#5aa9ff' : '#1565c0' }}>{stats ? stats.total.toLocaleString('fr-FR') : '...'}</span>
                   </td>
-                  <td style={{ padding: '14px 16px', borderBottom: `1px solid ${dark ? '#2a2a2a' : '#f5f5f5'}` }}>
+                  <td style={{ padding: '14px 16px', borderBottom: `1px solid ${dark ? 'rgba(255,255,255,0.14)' : 'rgba(6,18,46,0.14)'}` }}>
                     {isMyTeam ? (
-                      <Link href={`/teams/${team.id}`} style={{ color: '#003DA6', fontWeight: 700, fontSize: 13 }}>{t('teams_my_team')}</Link>
+                      <Link href={`/teams/${team.id}`} className="dir-act" style={{ color: '#ffd54a' }}>{t('teams_my_team')}</Link>
                     ) : pending ? (
-                      <span style={{ color: '#e67e22', fontWeight: 700, fontSize: 13 }}>⏳ En attente</span>
+                      <span className="dir-sq" style={{ color: '#ff9a3c' }}>⏳ En attente</span>
                     ) : userId ? (
-                      <button onClick={() => joinTeam(team.id)} disabled={loading} aria-label={`${t('teams_join_aria')} ${team.name}`} style={{ background: '#e8f5e9', color: '#2e7d32', padding: '6px 14px', borderRadius: 6, border: 'none', cursor: 'pointer', fontSize: 12, fontWeight: 900 }}>
+                      <button onClick={() => joinTeam(team.id)} disabled={loading} aria-label={`${t('teams_join_aria')} ${team.name}`} className="dir-act" style={{ color: dark ? '#4cd37b' : '#1f8a45' }}>
                         {t('teams_join')}
                       </button>
                     ) : (
-                      <Link href={`/teams/${team.id}`} style={{ color: '#003DA6', fontWeight: 700, fontSize: 13 }}>Voir →</Link>
+                      <Link href={`/teams/${team.id}`} className="dir-act" style={{ color: dark ? '#fff' : '#06122e' }}>Voir →</Link>
                     )}
                   </td>
                 </tr>

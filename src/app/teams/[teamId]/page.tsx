@@ -16,6 +16,8 @@ import OnlineIndicator from '@/components/OnlineIndicator'
 const ACCENT = '#003DA6'
 const EMOJIS = ['👍', '❤️', '🔥', '😂', '😮', '🏀', '💎', '🐐']
 
+const DIR_BD = '1px solid rgba(120, 140, 200, 0.22)'
+
 export default function TeamPage({ params }: { params: Promise<{ teamId: string }> }) {
   const { teamId } = use(params)
   const router = useRouter()
@@ -872,7 +874,7 @@ export default function TeamPage({ params }: { params: Promise<{ teamId: string 
 
       {/* ── MEMBRES ── */}
       {activeTab === 'membres' && (
-        <div style={{ background: dark ? '#1e1e1e' : 'white', borderRadius: 16, overflow: 'hidden', boxShadow: '0 4px 20px rgba(0,0,0,0.06)' }}>
+        <div style={{ background: 'transparent', borderRadius: 0, overflow: 'hidden', border: `1px solid ${dark ? 'rgba(255,255,255,0.28)' : '#06122e'}` }}>
           {/* overflowX:auto sur ce wrapper interne — le tableau (9 colonnes) dépasse
               largement un écran mobile ; avant, l'overflow:hidden du conteneur externe
               rognait les colonnes de droite (RC/Auto/Num/Patch/Actions) au lieu de
@@ -881,7 +883,7 @@ export default function TeamPage({ params }: { params: Promise<{ teamId: string 
           <table style={{ width: '100%', borderCollapse: 'collapse', minWidth: 640 }}>
             <thead><tr>
               {['#', t('teams_collector'), t('teams_role'), 'Cartes', 'RC', 'Auto', 'Num', 'Patch', ...(isChef ? ['Actions'] : [])].map(h => (
-                <th key={h} style={{ padding: '14px 16px', textAlign: 'left', fontSize: 11, textTransform: 'uppercase', color: 'var(--text3, #999)', borderBottom: '2px solid var(--border, #f0f0f0)', background: 'var(--bg3, #fdfdfd)' }}>{h}</th>
+                <th key={h} style={{ padding: '14px 16px', textAlign: 'left', fontSize: 11, letterSpacing: '0.12em', textTransform: 'uppercase', color: dark ? '#fff' : '#06122e', borderBottom: `2px solid ${dark ? '#fff' : '#06122e'}`, background: 'transparent' }}>{h}</th>
               ))}
             </tr></thead>
             <tbody>
@@ -889,40 +891,40 @@ export default function TeamPage({ params }: { params: Promise<{ teamId: string 
                 const memberData = members.find((x: any) => x.user_id === m.id)
                 const role = m.id === team.created_by ? 'chef' : (memberData?.role || 'member')
                 return (
-                  <tr key={m.id}>
-                    <td style={{ padding: '12px 16px', borderBottom: '1px solid var(--border, #f5f5f5)', fontWeight: 900, fontSize: 16, color: i === 0 ? '#f39c12' : i === 1 ? '#95a5a6' : i === 2 ? '#cd7f32' : '#bbb' }}>
-                      {i === 0 ? '🥇' : i === 1 ? '🥈' : i === 2 ? '🥉' : i + 1}
+                  <tr key={m.id} className={m.is_donor ? 'dir-row dir-donor' : 'dir-row'}>
+                    <td style={{ padding: '12px 16px', borderBottom: DIR_BD, width: 52 }}>
+                      <span className="da-display" style={{ fontSize: 28, lineHeight: 1, color: i === 0 ? '#ffd54a' : i === 1 ? '#c9d1e0' : i === 2 ? '#e0925a' : (dark ? 'rgba(255,255,255,0.4)' : 'rgba(6,18,46,0.4)') }}>{i + 1}</span>
                     </td>
-                    <td style={{ padding: '12px 16px', borderBottom: '1px solid var(--border, #f5f5f5)' }}>
-                      <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
+                    <td style={{ padding: '12px 16px', borderBottom: DIR_BD }}>
+                      <div style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
                         <div style={{ position: 'relative', flexShrink: 0 }}>
                           <img loading="lazy" src={m.avatar_url || `https://ui-avatars.com/api/?name=${encodeURIComponent(m.display_name || 'U')}&background=003DA6&color=fff`}
-                            style={{ width: 34, height: 34, borderRadius: '50%', objectFit: 'cover', border: `2px solid ${m.couleur_bordure || ACCENT}` }} alt="" />
+                            style={{ width: 44, height: 44, borderRadius: '50%', objectFit: 'cover', border: `2px solid ${m.couleur_bordure || ACCENT}` }} alt="" />
                           <span style={{ position: 'absolute', bottom: -1, right: -1 }}><OnlineIndicator lastSeen={m.last_seen} size={11} /></span>
                         </div>
-                        <Link href={`/galerie/${m.id}`} className={m.is_donor ? 'holo-name' : ''} style={{ fontWeight: 800, color: m.is_donor ? undefined : 'var(--text, #111)', textDecoration: 'none' }}>{m.display_name}</Link>
-                        {m.is_donor && <span title="Donateur Ko-fi" style={{ fontSize: 14, lineHeight: 1 }}>☕</span>}
+                        <Link href={`/galerie/${m.id}`} className={m.is_donor ? 'da-display dir-name holo-name' : 'da-display dir-name'} style={{ fontSize: 28, lineHeight: 1, color: m.is_donor ? undefined : (dark ? '#fff' : '#06122e'), textDecoration: 'none', overflowWrap: 'anywhere' }}>{m.display_name}</Link>
+                        {m.is_donor && <span title="Donateur Ko-fi" style={{ fontSize: 16, lineHeight: 1, color: '#ffd54a' }}>☕</span>}
                       </div>
                     </td>
-                    <td style={{ padding: '12px 16px', borderBottom: '1px solid var(--border, #f5f5f5)' }}>
-                      {role === 'chef' && <span style={{ fontSize: 11, background: ACCENT, color: 'white', padding: '3px 8px', borderRadius: 4, fontWeight: 700, whiteSpace: 'nowrap' }}>👑 Chef</span>}
-                      {role === 'admin' && <span style={{ fontSize: 11, background: '#e8f5e9', color: '#2e7d32', padding: '3px 8px', borderRadius: 4, fontWeight: 700, whiteSpace: 'nowrap' }}>⭐ Admin</span>}
-                      {role === 'member' && <span style={{ fontSize: 11, background: 'var(--bg3, #f0f0f0)', color: 'var(--text2, #666)', padding: '3px 8px', borderRadius: 4, fontWeight: 700, whiteSpace: 'nowrap' }}>Membre</span>}
+                    <td style={{ padding: '12px 16px', borderBottom: DIR_BD }}>
+                      {role === 'chef' && <span className="dir-sq" style={{ color: '#ffd54a' }}>👑 Chef</span>}
+                      {role === 'admin' && <span className="dir-sq" style={{ color: dark ? '#4cd37b' : '#1f8a45' }}>⭐ Admin</span>}
+                      {role === 'member' && <span className="dir-sq" style={{ color: dark ? 'rgba(255,255,255,0.55)' : 'rgba(6,18,46,0.55)' }}>Membre</span>}
                     </td>
                     {[m.stats?.total, m.stats?.rc, m.stats?.auto, m.stats?.num, m.stats?.patch].map((val, vi) => (
-                      <td key={vi} style={{ padding: '12px 16px', borderBottom: '1px solid var(--border, #f5f5f5)' }}>
-                        <span style={{ background: ['#f0f0f0','#e67e22','#2e7d32','#7b1fa2','#1976d2'][vi], color: vi === 0 ? '#333' : 'white', padding: '3px 8px', borderRadius: 6, fontWeight: 700, fontSize: 12 }}>{val || 0}</span>
+                      <td key={vi} style={{ padding: '12px 16px', borderBottom: DIR_BD }}>
+                        <span className="da-display dir-num" style={{ fontSize: 28, lineHeight: 1, color: vi === 0 ? (dark ? '#fff' : '#06122e') : (dark ? ['', '#ff9a3c', '#4cd37b', '#c77dff', '#5aa9ff'] : ['', '#d9640a', '#1f8a45', '#7b1fa2', '#1565c0'])[vi] }}>{(val || 0).toLocaleString('fr-FR')}</span>
                       </td>
                     ))}
                     {isChef && (
-                      <td style={{ padding: '12px 16px', borderBottom: '1px solid var(--border, #f5f5f5)' }}>
+                      <td style={{ padding: '12px 16px', borderBottom: DIR_BD }}>
                         {role !== 'chef' && (
                           <div style={{ display: 'flex', gap: 6 }}>
                             <button onClick={async () => {
                               const newRole = role === 'admin' ? 'member' : 'admin'
                               await supabase.from('team_members').update({ role: newRole }).eq('team_id', parseInt(teamId)).eq('user_id', m.id)
                               init()
-                            }} style={{ background: role === 'admin' ? '#e74c3c' : '#e8f5e9', color: role === 'admin' ? 'white' : '#2e7d32', border: 'none', borderRadius: 6, padding: '5px 10px', fontWeight: 700, fontSize: 11, cursor: 'pointer' }}>
+                            }} className="dir-act" style={{ color: role === 'admin' ? '#ff8a8d' : (dark ? '#4cd37b' : '#1f8a45'), padding: '5px 10px', fontSize: 10 }}>
                               {role === 'admin' ? t('teams_demote') : t('teams_promote')}
                             </button>
                             {excludeConfirm === m.id ? (
@@ -931,11 +933,11 @@ export default function TeamPage({ params }: { params: Promise<{ teamId: string 
                                   await supabase.from('team_members').delete().eq('team_id', parseInt(teamId)).eq('user_id', m.id)
                                   setExcludeConfirm(null)
                                   init()
-                                }} style={{ background: '#e74c3c', color: 'white', border: 'none', borderRadius: 6, padding: '4px 8px', fontWeight: 700, fontSize: 11, cursor: 'pointer' }}>Oui</button>
-                                <button onClick={() => setExcludeConfirm(null)} style={{ background: 'var(--bg3, #f0f0f0)', color: 'var(--text2, #333)', border: 'none', borderRadius: 6, padding: '4px 8px', fontSize: 11, cursor: 'pointer' }}>Non</button>
+                                }} className="dir-act" style={{ color: '#ff8a8d', padding: '4px 8px', fontSize: 10 }}>Oui</button>
+                                <button onClick={() => setExcludeConfirm(null)} className="dir-act" style={{ color: dark ? '#fff' : '#06122e', padding: '4px 8px', fontSize: 10 }}>Non</button>
                               </div>
                             ) : (
-                              <button onClick={() => setExcludeConfirm(m.id)} style={{ background: '#fff5f5', color: '#e74c3c', border: 'none', borderRadius: 6, padding: '5px 10px', fontWeight: 700, fontSize: 11, cursor: 'pointer' }} title={`${t('teams_exclude_aria')} ${m.display_name}`}>🚫</button>
+                              <button onClick={() => setExcludeConfirm(m.id)} className="dir-act" style={{ color: '#ff8a8d', padding: '5px 10px', fontSize: 10 }} title={`${t('teams_exclude_aria')} ${m.display_name}`}>🚫</button>
                             )}
                           </div>
                         )}
