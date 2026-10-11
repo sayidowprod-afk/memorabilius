@@ -3465,6 +3465,26 @@ export default function GalerieClient({ userId, initialCardUrl, initialCards, in
               )}
               <div className={`holo-light${numTier(d.num) !== 'std' ? ` halo halo-${numTier(d.num)}` : ''}`} style={{ width: '100%', marginBottom: 6 }}>
                 <CardLink slug={profile?.slug || userId} cardKey={d.f}>{renderCardImage(d)}</CardLink>
+                {(() => {
+                  const bans: { k: string; t: string; c: string }[] = []
+                  if (d.item_type && d.item_type !== 'card') bans.push({ k: 'memo', t: 'Mémo', c: '#7b1fa2' })
+                  if (d.rc) bans.push({ k: 'rc', t: 'RC', c: TAG_BASE.rc })
+                  if (d.auto) bans.push({ k: 'auto', t: 'Auto', c: TAG_BASE.auto })
+                  if (d.patch) bans.push({ k: 'patch', t: 'Patch', c: TAG_BASE.patch })
+                  if (d.printing_plate) bans.push({ k: 'plate', t: 'Plate', c: '#374151' })
+                  const tier = numTier(d.num)
+                  const tc = tier === 'gold' ? '#ffd54a' : tier === 'silver' ? '#dfe6f2' : tier === 'bronze' ? '#e0925a' : '#8fb4ff'
+                  return (
+                    <>
+                      {bans.length > 0 && (
+                        <div className="gb-tp" aria-hidden>
+                          {bans.map(b => <span key={b.k} className="gb-b" style={{ background: b.c }}>{b.t}</span>)}
+                        </div>
+                      )}
+                      {d.num && <div className="gb-bt da-display" title={`Numérotation : ${d.num}`} style={{ background: tc, boxShadow: tier !== 'std' ? `0 0 14px ${tc}88` : undefined }}>{numShort(d.num)}</div>}
+                    </>
+                  )
+                })()}
                 {(d.vendue || d.disponible_vente || (isOwner && privateCards.has(d.f))) && (
                   <div className="sash-clip" aria-hidden>
                     {isOwner && privateCards.has(d.f) && <i className="sash sash-tl" style={{ background: '#c0392b' }}>{t('gallery_private')}</i>}
@@ -3475,7 +3495,6 @@ export default function GalerieClient({ userId, initialCardUrl, initialCards, in
                 )}
               </div>
               {(() => { const c = teamBarColor(d.t); return c ? <div className="gc-bar" style={{ background: c }} /> : null })()}
-              {getTags(d)}
               <div style={{ display: 'flex', alignItems: 'flex-start', justifyContent: 'space-between', gap: 4, marginTop: 4 }}>
                 <div style={{ minWidth: 0 }}>
                   <p className="gc-name" style={{ margin: 0, whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis', display: 'flex', alignItems: 'center', gap: 6 }}>
