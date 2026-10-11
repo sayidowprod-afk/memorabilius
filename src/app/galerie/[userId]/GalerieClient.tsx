@@ -462,16 +462,16 @@ function EmptyGalleryIllustration() {
 }
 
 // Ancien logo d'une equipe disparue : essaie les extensions possibles, disparait si aucun fichier n'existe
-function HistLogoImg({ base, src, name }: { base?: string; src?: string; name: string }) {
+function HistLogoImg({ base, src, name, size = 17 }: { base?: string; src?: string; name: string; size?: number }) {
   const exts = ['png', 'svg', 'webp', 'gif']
   const [i, setI] = useState(0)
   const url = src || (base && i < exts.length ? `${base}.${exts[i]}` : null)
   if (!url) return null
   return (
     // eslint-disable-next-line @next/next/no-img-element
-    <img src={url} alt={name} title={name} width={17} height={17}
+    <img src={url} alt={name} title={name} width={size} height={size}
       onError={() => { if (!src) setI(n => n + 1) }}
-      style={{ width: 17, height: 17, objectFit: 'contain', filter: 'drop-shadow(0 0 1px rgba(255,255,255,.55))' }} />
+      style={{ width: size, height: size, objectFit: 'contain', filter: 'drop-shadow(0 0 1px rgba(255,255,255,.55))' }} />
   )
 }
 
@@ -1811,13 +1811,13 @@ export default function GalerieClient({ userId, initialCardUrl, initialCards, in
     const dark0 = (h: string) => { const n = parseInt(h.replace('#', '').slice(0, 6), 16); return ((n >> 16) & 255) + ((n >> 8) & 255) + (n & 255) < 120 }
     return dark0(ti.primary) ? ti.secondary : ti.primary
   }
-  const teamMark = (name?: string | null): React.ReactNode => {
+  const teamMark = (name?: string | null, size = 17, cls = 'gc-logo'): React.ReactNode => {
     const tm = getTeamByName(name)
-    if (tm) return <span className="gc-logo"><TeamBadge teamId={tm.id} size={17} /></span>
+    if (tm) return <span className={cls}><TeamBadge teamId={tm.id} size={size} /></span>
     const h = historicLogo(name)
     if (!h) return null
-    if (h.src || h.base) return <span className="gc-logo"><HistLogoImg src={h.src} base={h.base} name={name || ''} /></span>
-    if (h.franchise) return <span className="gc-logo" title={name || ''}><TeamBadge teamId={h.franchise} size={17} /></span>
+    if (h.src || h.base) return <span className={cls}><HistLogoImg src={h.src} base={h.base} name={name || ''} size={size} /></span>
+    if (h.franchise) return <span className={cls} title={name || ''}><TeamBadge teamId={h.franchise} size={size} /></span>
     return null
   }
 
@@ -3488,14 +3488,15 @@ export default function GalerieClient({ userId, initialCardUrl, initialCards, in
                 const barColor = teamBarColor(d.t)
                 const reps = Math.max(4, Math.ceil(20 / Math.max(1, ats.length)))
                 const unit = (key: string) => (
-                  <span key={key}>{Array.from({ length: reps }, (_, r) => r).map(r => <Fragment key={r}>{ats.map(x => <Fragment key={x.k}><b style={{ color: mix(x.c, 0.5) }}>{x.t}</b><i>✦</i></Fragment>)}</Fragment>)}</span>
+                  <span key={key}>{Array.from({ length: reps }, (_, r) => r).map(r => <Fragment key={r}>{ats.map(x => <Fragment key={x.k}><b>{x.t}</b><i>✦</i></Fragment>)}</Fragment>)}</span>
                 )
                 return (
                   <div className="gc-slot">
                     {barColor && <div className="gc-bar" style={{ background: barColor }} />}
+                    {barColor && teamMark(d.t, 24, 'gc-med')}
                     {ats.length > 0 && (
                       <div className="gs-strip" aria-label={ats.map(x => x.t).join(' ')}>
-                        <div className="gs-seg gs-blue" style={{ ['--d' as string]: `${30 + ats.length * 4}s` }}>
+                        <div className="gs-seg" style={{ ['--d' as string]: `${30 + ats.length * 4}s`, background: ats.length === 1 ? `linear-gradient(180deg, ${mix(ats[0].c, 0.22)} 0%, ${ats[0].c} 55%, ${mix(ats[0].c, -0.22)} 100%)` : `linear-gradient(90deg, ${ats.map(x => x.c).join(', ')})` }}>
                           <div className="gs-mq">{unit('a')}{unit('b')}</div>
                         </div>
                       </div>
@@ -3506,7 +3507,6 @@ export default function GalerieClient({ userId, initialCardUrl, initialCards, in
               <div className="gc-bot" style={{ display: 'flex', alignItems: 'flex-start', justifyContent: 'space-between', gap: 4, marginTop: 4, ['--gt' as string]: teamBarColor(d.t) || 'transparent' }}>
                 <div style={{ minWidth: 0 }}>
                   <p className="gc-name" style={{ margin: 0, whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis', display: 'flex', alignItems: 'center', gap: 6 }}>
-                    {teamMark(d.t)}
                     <span className="da-display" style={{ fontSize: 19, lineHeight: 1, overflow: 'hidden', textOverflow: 'ellipsis' }}>{d.n}</span>
                   </p>
                   <p style={{ fontSize: 10, color: accent, fontWeight: 700, margin: '2px 0', fontStyle: 'italic', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>{d.v}</p>

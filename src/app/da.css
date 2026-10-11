@@ -883,6 +883,7 @@ html[data-theme="light"] .tcdb-imp-open { border-color: #06122e; color: #06122e;
 .gc-slot .gc-bar { position: absolute; left: 0; right: 0; top: 50%; margin: -2px 0 0 !important; height: 4px; }
 .gs-strip { position: absolute; inset: 0; display: flex; height: 14px; margin: 0; }
 .gs-seg { flex: 1 1 0; min-width: 0; position: relative; overflow: hidden; display: flex; align-items: center; color: #fff; }
+.gs-seg { text-shadow: 0 1px 2px rgba(0, 0, 0, .5); box-shadow: inset 0 1px 0 rgba(255, 255, 255, .3), inset 0 -1px 0 rgba(0, 0, 0, .3); }
 .gs-seg.gs-blue { background: linear-gradient(180deg, #1a55c4 0%, #003da6 55%, #002b78 100%); box-shadow: inset 0 1px 0 rgba(255, 255, 255, .3), inset 0 -1px 0 rgba(0, 0, 0, .3); }
 @keyframes gsmq { to { transform: translateX(-50%); } }
 .gs-mq { display: flex; width: max-content; animation: gsmq var(--d, 10s) linear infinite; will-change: transform; }
@@ -906,3 +907,9 @@ html[data-theme="light"] .tcdb-imp-open { border-color: #06122e; color: #06122e;
 .gc-bot .gc-right button span:first-child { font-size: 17px !important; }
 @media (max-width: 640px) { .card-item .gc-bot .gc-name .da-display { font-size: 16px !important; } .gc-bot > div:first-child .gc-name { padding: 0 24px; } .gc-bot > div:first-child > p:not(.gc-name) { font-size: 11px !important; } .gc-bot .gc-name .gc-logo { left: 6px; } }
 .gs-seg.gs-ghost { background: rgba(255, 255, 255, .06); color: rgba(255, 255, 255, .5); letter-spacing: .24em; box-shadow: inset 0 0 0 1px rgba(255, 255, 255, .12); text-shadow: none; }
+/* Vignettes : le bloc du bas remplit toute la hauteur de la vignette (pas de vide sous le degrade quand une voisine a une ligne de plus) */
+.card-item { display: flex; flex-direction: column; }
+.card-item .gc-bot { flex: 1 1 auto; }
+/* Medaillon du logo d'equipe, sur la barre d'equipe */
+.gc-med { position: absolute; left: 10px; top: 50%; transform: translateY(-50%); width: 36px; height: 36px; border-radius: 50%; background: #0e1530; border: 2px solid var(--gt, #fff); display: flex; align-items: center; justify-content: center; z-index: 4; box-shadow: 0 0 0 3px #0e1530; }
+@media (max-width: 640px) { .gc-med { width: 30px; height: 30px; left: 6px; } .gc-med img, .gc-med svg { max-width: 20px; max-height: 20px; } }
