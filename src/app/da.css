@@ -879,16 +879,16 @@ html[data-theme="light"] .tcdb-imp-open { border-color: #06122e; color: #06122e;
 @media (max-width: 640px) { .gb-tp { top: 6px; } .gb-b { height: 18px; font-size: 10px; padding: 0 13px 0 7px; } .gb-bt { font-size: 19px; padding: 4px 9px 1px 15px; } }
 
 /* Vignettes : bandeau d'atouts fin et soigne au-dessus de l'image, les segments se partagent toute la largeur (1, 2, 3 ou 4 atouts) ; hauteur toujours reservee */
-.gc-slot { position: relative; height: 14px; margin: 0 -8px; }
+.gc-slot { position: relative; height: 19px; margin: 0 -8px; }
 .gc-slot .gc-bar { position: absolute; left: 0; right: 0; top: 50%; margin: -2px 0 0 !important; height: 4px; }
-.gs-strip { position: absolute; inset: 0; display: flex; height: 14px; margin: 0; }
+.gs-strip { position: absolute; inset: 0; display: flex; height: 19px; margin: 0; }
 .gs-seg { flex: 1 1 0; min-width: 0; position: relative; overflow: hidden; display: flex; align-items: center; color: #fff; }
 .gs-seg { text-shadow: 0 1px 2px rgba(0, 0, 0, .5); box-shadow: inset 0 1px 0 rgba(255, 255, 255, .3), inset 0 -1px 0 rgba(0, 0, 0, .3); }
 .gs-seg.gs-blue { background: linear-gradient(180deg, #1a55c4 0%, #003da6 55%, #002b78 100%); box-shadow: inset 0 1px 0 rgba(255, 255, 255, .3), inset 0 -1px 0 rgba(0, 0, 0, .3); }
 @keyframes gsmq { to { transform: translateX(-50%); } }
 .gs-mq { display: flex; width: max-content; animation: gsmq var(--d, 10s) linear infinite; will-change: transform; }
-.gs-mq > span { display: flex; align-items: center; white-space: nowrap; font: 900 9px/1 system-ui, sans-serif; letter-spacing: .16em; text-transform: uppercase; color: #fff; }
-.gs-mq i { font-style: normal; margin: 0 8px; font-size: 9px; color: #fff; }
+.gs-mq > span { display: flex; align-items: center; white-space: nowrap; font: 900 11.5px/1 system-ui, sans-serif; letter-spacing: .14em; text-transform: uppercase; color: #fff; }
+.gs-mq i { font-style: normal; margin: 0 9px; font-size: 11px; color: #fff; }
 /* sans atout : meme hauteur reservee (invisible), toutes les cartes ont le meme format */
 
 @media (prefers-reduced-motion: reduce) { .gs-mq { animation: none; } }
@@ -913,3 +913,6 @@ html[data-theme="light"] .tcdb-imp-open { border-color: #06122e; color: #06122e;
 /* Medaillon du logo d'equipe, sur la barre d'equipe */
 .gc-med { position: absolute; left: 10px; top: 50%; transform: translateY(-50%); width: 36px; height: 36px; border-radius: 50%; background: #0e1530; border: 2px solid var(--gt, #fff); display: flex; align-items: center; justify-content: center; z-index: 4; box-shadow: 0 0 0 3px #0e1530; }
 @media (max-width: 640px) { .gc-med { width: 30px; height: 30px; left: 6px; } .gc-med img, .gc-med svg { max-width: 20px; max-height: 20px; } }
+/* Bas de vignette : le texte est centre verticalement dans toute la hauteur (plus de vide en dessous) */
+.card-item .gc-bot { align-items: center !important; padding: 12px 8px 14px; }
+.card-item .gc-bot > div:first-child { flex: 1 1 auto; }
