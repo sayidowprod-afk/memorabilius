@@ -127,7 +127,7 @@ async function fetchInitialPreview(userId: string): Promise<{ cards: PreviewCard
         .not('image_recto', 'is', null)
         .order('position', { ascending: true })
         .limit(80),
-      supabase.from('grail_cards').select('card_key').eq('user_id', userId).order('position').limit(3),
+      supabase.from('grail_cards').select('card_key').eq('user_id', userId).order('position').limit(5),
     ])
     const privateSet = new Set((privateRows || []).map((r: any) => r.card_key))
 

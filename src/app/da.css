@@ -779,3 +779,18 @@ html[data-theme="light"] .tcdb-imp-open { border-color: #06122e; color: #06122e;
 .dir-sq { display: inline-block; border: 2px solid currentColor; padding: 3px 8px; font: 800 10px system-ui, sans-serif; letter-spacing: .12em; text-transform: uppercase; white-space: nowrap; }
 .dir-act { background: transparent; border: 2px solid currentColor; border-radius: 0; padding: 7px 14px; font: 800 11px system-ui, sans-serif; letter-spacing: .1em; text-transform: uppercase; cursor: pointer; white-space: nowrap; text-decoration: none; display: inline-block; }
 @media (max-width: 640px) { .dir-name { font-size: 20px !important; } .dir-num { font-size: 20px !important; } }
+
+/* Grail Wall : bouton d'ajout (remplace les cadres vides) + mode clair */
+.grail-add { align-self: center; display: inline-flex; flex-direction: column; align-items: center; justify-content: center; gap: 4px; min-height: 64px; padding: 10px 22px; background: transparent; border: 2px dashed rgba(228, 196, 108, .7); border-radius: 0; color: #e4c46c; cursor: pointer; font: 800 11px system-ui, sans-serif; letter-spacing: .12em; text-transform: uppercase; }
+.grail-add .da-display { font-size: 30px; line-height: .8; }
+.grail-add:hover { background: rgba(228, 196, 108, .12); border-style: solid; }
+[data-theme="light"] .grail-museum { border-color: #06122e; background:
+    radial-gradient(70% 90% at 50% 0%, rgba(255, 238, 190, .7), transparent 62%),
+    repeating-linear-gradient(90deg, rgba(6, 18, 46, .035) 0 2px, transparent 2px 7px),
+    linear-gradient(180deg, #f4efe3 0%, #e4dcc8 100%); }
+[data-theme="light"] .grail-wall-cursor::before { background: #7b8091; }
+[data-theme="light"] .grail-wall-cursor::after { background: radial-gradient(ellipse at 50% 0%, rgba(255, 220, 140, .55), transparent 72%); mix-blend-mode: normal; opacity: .55; }
+[data-theme="light"] .grail-museum .grail-wall-cursor { filter: drop-shadow(0 10px 14px rgba(70, 48, 0, .35)); }
+[data-theme="light"] .grail-add { border-color: #8a6a1a; color: #6b5217; }
+[data-theme="light"] .grail-add:hover { background: rgba(138, 106, 26, .1); }
+@media (max-width: 640px) { .grail-museum { gap: 22px; padding: 36px 12px 40px; } }

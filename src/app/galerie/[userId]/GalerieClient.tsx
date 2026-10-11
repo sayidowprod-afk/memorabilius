@@ -2426,10 +2426,12 @@ export default function GalerieClient({ userId, initialCardUrl, initialCards, in
           <CollectionStats cards={cards} accent={accent} totalValeur={isOwner ? Array.from(cardValues.values()).reduce((a, b) => a + b, 0) : undefined} />
         )}
 
-        {/* Grail Wall — podium 3 places (or/argent/bronze) */}
+        {/* Grail Wall — jusqu'a 5 cadres ; les places vides ne s'affichent pas, les cadres se centrent */}
         {(isOwner || grailCards.length > 0) && (() => {
-          const GRAIL_MAX = 3
+          const GRAIL_MAX = 5
           const MEDALS = [
+            { emoji: '', color: '#E8C25A', glow: '#E8C25A88', width: 152 },
+            { emoji: '', color: '#E8C25A', glow: '#E8C25A88', width: 152 },
             { emoji: '', color: '#E8C25A', glow: '#E8C25A88', width: 152 },
             { emoji: '', color: '#E8C25A', glow: '#E8C25A88', width: 152 },
             { emoji: '', color: '#E8C25A', glow: '#E8C25A88', width: 152 },
@@ -2437,7 +2439,9 @@ export default function GalerieClient({ userId, initialCardUrl, initialCards, in
           const grailMap = new Map(cards.map(c => [c.f, c]))
           const grailItems = grailCards.map(g => grailMap.get(g.card_key)).filter(Boolean) as Card[]
           const grailLoading = grailCards.length > 0 && !cardsLoaded
-          const podiumOrder = [0, 1, 2] // trois cadres alignes, meme taille (plus de podium)
+          // uniquement les places occupees (ou en chargement) : pas de cadre vide, le reste se centre tout seul
+          const podiumOrder = Array.from({ length: grailLoading ? grailCards.length : grailItems.length }, (_, i) => i).filter(i => i < GRAIL_MAX)
+          const canAddGrail = isOwner && !grailLoading && grailItems.length < GRAIL_MAX
 
           const renderSlot = (i: number) => {
             const medal = MEDALS[i]
@@ -2496,29 +2500,7 @@ export default function GalerieClient({ userId, initialCardUrl, initialCards, in
               )
             }
 
-            // Slot vide
-            return (
-              <div key={`empty-${i}`} style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 6 }}>
-                {isOwner ? (
-                  <div
-                    onClick={() => { setGrailPickerOpen(true); setGrailSearch('') }}
-                    role="button" tabIndex={0} aria-label={t('gallery_choose_card')}
-                    onKeyDown={e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); setGrailPickerOpen(true); setGrailSearch('') } }}
-                    style={{
-                      width: medal.width, border: `2px dashed ${medal.color}66`, borderRadius: 12,
-                      display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center',
-                      gap: 6, cursor: 'pointer', transition: '0.15s', aspectRatio: '2.5/3.5',
-                    }}
-                    onMouseEnter={e => { (e.currentTarget as HTMLDivElement).style.borderColor = medal.color; (e.currentTarget as HTMLDivElement).style.background = medal.color + '11' }}
-                    onMouseLeave={e => { (e.currentTarget as HTMLDivElement).style.borderColor = medal.color + '66'; (e.currentTarget as HTMLDivElement).style.background = 'transparent' }}
-                  >
-                    <span style={{ fontSize: 24, opacity: 0.4 }}>+</span>
-                  </div>
-                ) : (
-                  <div style={{ width: medal.width, border: '2px dashed #eee', borderRadius: 12, aspectRatio: '2.5/3.5' }} />
-                )}
-              </div>
-            )
+            return null
           }
 
           return (
@@ -2526,11 +2508,17 @@ export default function GalerieClient({ userId, initialCardUrl, initialCards, in
               <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 12 }}>
                 <span style={{ fontSize: 18 }}>💎</span>
                 <span className="da-display" style={{ fontWeight: 900, fontSize: 24, color: dark ? '#eee' : '#121212', letterSpacing: 0.5 }}>Grail Wall</span>
-                <span style={{ fontSize: 11, color: '#bbb', fontWeight: 600 }}>— {t('gallery_jewels')}</span>
+                <span style={{ fontSize: 11, color: dark ? '#9aa6c0' : '#5b6478', fontWeight: 600 }}>— {t('gallery_jewels')}</span>
               </div>
 
               <div className="grail-museum">
                 {podiumOrder.map(i => renderSlot(i))}
+                {canAddGrail && (
+                  <button type="button" className="grail-add" onClick={() => { setGrailPickerOpen(true); setGrailSearch('') }}>
+                    <span className="da-display">+</span>
+                    {grailItems.length === 0 ? t('gallery_choose_card') : `${t('gallery_choose_card')} (${grailItems.length}/${GRAIL_MAX})`}
+                  </button>
+                )}
               </div>
 
               {/* Modal de recherche pour ajouter au grail */}
@@ -2568,7 +2556,7 @@ export default function GalerieClient({ userId, initialCardUrl, initialCards, in
                                 await supabase.from('grail_cards').upsert({ user_id: userId, card_key: card.f, position: pos }, { onConflict: 'user_id,card_key' })
                                 setGrailCards(prev => [...prev, { card_key: card.f, position: pos }])
                                 fireConfetti()
-                                if (grailCards.length + 1 >= 3) setGrailPickerOpen(false)
+                                if (grailCards.length + 1 >= 5) setGrailPickerOpen(false)
                                 setGrailSearch('')
                               }} style={{ cursor: 'pointer', ...coloredBorder(tabColor), borderRadius: 8, overflow: 'hidden', transition: '0.15s' }}
                                 onMouseEnter={e => { if (!isGradient(tabColor)) e.currentTarget.style.borderColor = tabColor }}
@@ -2925,7 +2913,7 @@ export default function GalerieClient({ userId, initialCardUrl, initialCards, in
             réel — voir fetchInitialPreview() dans page.tsx. Disparaît dès que `loaded`
             passe à true via le flux existant, inchangé, qui reste seul maître du jeu. */}
         {!loaded && initialGrailCards && initialGrailCards.length > 0 && (
-          <div style={{ display: 'flex', gap: 8, justifyContent: 'center', margin: '0 0 16px' }}>
+          <div style={{ display: 'flex', gap: 8, justifyContent: 'center', flexWrap: 'wrap', margin: '0 0 16px' }}>
             {initialGrailCards.map(c => (
               <div key={c.id} style={{ width: 90, borderRadius: 8, overflow: 'hidden', background: dark ? '#2a2a2a' : '#f0f0f0' }}>
                 <div style={{ width: '100%', aspectRatio: '2.5/3.5', overflow: 'hidden' }}>
