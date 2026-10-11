@@ -4,7 +4,7 @@ import Link from 'next/link'
 
 // Idees visuelles pour pousser la nouvelle DA (Surfquest, marine -> bleu electrique, angles droits, doubles filets, metaux).
 // Page de TRAVAIL reservee aux admins : donnees d'exemple en dur, rien n'est lu ni ecrit.
-// Serie 26 : annuaire des collectionneurs (liste, tuiles, mobile). Tout le style est ici, prefixe .ix.
+// Serie 27 : les 3 podiums de l'accueil (jour, semaine, mois).
 
 const SB = 'https://snnrkzbevjhdtviizfyp.supabase.co/storage/v1/object/public/avatars/cartes/eb730dee-414e-4fcb-89d8-4a7b3448c218/'
 const C = {
@@ -41,55 +41,40 @@ const CSS = `
 .ix .tags a { color:#fff; text-decoration:none; border: 2px solid rgba(255,255,255,.4); padding: 5px 10px; font: 800 10px system-ui; letter-spacing:.1em; text-transform:uppercase; }
 .ix .tags a:hover { background:#fff; color:#06122e; }
 
-/* serie 26 : annuaire (prefixe an-) */
-.ix .an-w { max-width: 940px; } .ix .an-cap { font: 700 11px system-ui; letter-spacing: .14em; text-transform: uppercase; color: rgba(255,255,255,.55); margin: 0 0 8px; }
-.ix .an-lg { display: inline-block; object-fit: contain; flex-shrink: 0; filter: brightness(0) invert(1); }
-.ix .an-av { object-fit: cover; object-position: 50% 18%; flex-shrink: 0; display: block; }
-.ix .an-tools { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 12px; } .ix .an-in { flex: 1 1 200px; height: 40px; border: 2px solid #fff; background: transparent; color: #fff; padding: 0 12px; font: 600 14px system-ui; display: flex; align-items: center; color: rgba(255,255,255,.6); }
-.ix .an-sel { flex: 0 1 190px; height: 40px; border: 2px solid #fff; display: flex; align-items: center; justify-content: space-between; padding: 0 12px; font: 800 12px system-ui; letter-spacing: .1em; text-transform: uppercase; }
-.ix .an-th, .ix .an-r { display: grid; align-items: center; column-gap: 10px; }
-.ix .an-th { padding: 8px 12px; border-bottom: 2px solid #fff; font: 800 10px system-ui; letter-spacing: .14em; text-transform: uppercase; color: rgba(255,255,255,.65); }
-.ix .an-th .on { color: #fff; }
-.ix .an-r { padding: 10px 12px; border-bottom: 1px solid rgba(255,255,255,.14); position: relative; }
-.ix .an-r:hover { background: rgba(255,255,255,.07); }
-.ix .an-nm { display: flex; align-items: center; gap: 10px; min-width: 0; } .ix .an-nm .p { min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
-.ix .an-lgs { display: inline-flex; gap: 6px; align-items: center; }
-.ix .an-n { text-align: center; } .ix .an-n.sf { font-size: 22px; line-height: 1; } .ix .an-n.dim { color: rgba(255,255,255,.55); }
-.ix .an-k { display: inline-block; min-width: 34px; padding: 3px 6px; text-align: center; font: 900 12px system-ui; border: 2px solid #fff; }
-.ix .an-k.rc { border-color: #ff9a3c; color: #ff9a3c; } .ix .an-k.au { border-color: #4cd37b; color: #4cd37b; } .ix .an-k.nu { border-color: #c77dff; color: #c77dff; } .ix .an-k.pa { border-color: #5aa9ff; color: #5aa9ff; } .ix .an-k.to { background: #fff; color: #06122e; }
-.ix .an-gold { color: #ffd54a !important; border-color: #ffd54a !important; }
-.ix .an-tag { display: inline-block; border: 1.5px solid #ffd54a; color: #ffd54a; padding: 1px 6px; font: 800 9px system-ui; letter-spacing: .14em; text-transform: uppercase; }
-/* 00 actuel */
-.ix .an-old { background: #1e1e1e; border-radius: 12px; overflow: hidden; } .ix .an-old .an-r { border-bottom: 1px solid #2a2a2a; padding: 15px; } .ix .an-old .an-th { background: #252525; border-bottom: 2px solid #333; color: #999; padding: 16px 15px; }
-.ix .an-old .bd { padding: 6px 12px; border-radius: 6px; font: 900 13px system-ui; display: inline-block; min-width: 40px; text-align: center; }
-/* 02 geant */
-.ix .an-big .an-r { padding: 14px 12px; } .ix .an-big .p { font-size: 40px; line-height: .95; } .ix .an-big .sf.t { font-size: 44px; line-height: .9; text-align: right; } .ix .an-big small { display: block; font: 700 9px system-ui; letter-spacing: .14em; color: rgba(255,255,255,.55); text-align: right; text-transform: uppercase; }
-.ix .an-rk { font-size: 20px; color: rgba(255,255,255,.4); width: 34px; text-align: center; }
-/* 03 podium */
-.ix .an-pod { display: grid; grid-template-columns: 1fr 1.25fr 1fr; gap: 10px; align-items: end; margin-bottom: 14px; } .ix .an-pod > div { border: 3px solid #fff; padding: 14px; text-align: center; background: rgba(255,255,255,.04); }
-.ix .an-pod .m { border-color: #ffd54a; background: rgba(255,213,74,.08); padding-top: 22px; padding-bottom: 22px; } .ix .an-pod .rk { font-size: 18px; color: rgba(255,255,255,.6); } .ix .an-pod .p { font-size: 28px; line-height: 1; margin: 8px 0 4px; word-break: break-word; } .ix .an-pod .m .p { font-size: 36px; } .ix .an-pod .t { font-size: 46px; line-height: 1; } .ix .an-pod .m .t { font-size: 62px; color: #ffd54a; }
-/* 04 cartes membres */
-.ix .an-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(210px, 1fr)); gap: 12px; } .ix .an-tile { border: 3px solid rgba(255,255,255,.85); padding: 12px; background: rgba(255,255,255,.03); }
-.ix .an-tile .hd { display: flex; align-items: center; gap: 10px; } .ix .an-tile .p { font-size: 24px; line-height: 1; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; min-width: 0; }
-.ix .an-st { display: grid; grid-template-columns: repeat(4, 1fr); border-top: 1px solid rgba(255,255,255,.25); margin-top: 12px; padding-top: 10px; text-align: center; } .ix .an-st b { display: block; font-size: 20px; line-height: 1; font-weight: 400; } .ix .an-st i { font: 800 9px system-ui; letter-spacing: .12em; color: rgba(255,255,255,.55); font-style: normal; }
-/* 05 barre */
-.ix .an-bar { position: absolute; left: 0; top: 0; bottom: 0; background: linear-gradient(90deg, rgba(91,141,239,.34), rgba(91,141,239,.05)); border-right: 2px solid rgba(255,255,255,.6); z-index: 0; } .ix .an-r > *:not(.an-bar) { position: relative; z-index: 1; }
-/* 07 apercu */
-.ix .an-prev { display: inline-flex; gap: 4px; } .ix .an-prev img { width: 32px; height: 45px; object-fit: cover; display: block; }
-/* 08 chips */
-.ix .an-chips { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 12px; } .ix .an-chip { width: 44px; height: 44px; border: 2px solid rgba(255,255,255,.45); display: flex; align-items: center; justify-content: center; } .ix .an-chip.on { border-color: #fff; background: rgba(255,255,255,.18); box-shadow: inset 0 0 0 2px #08153b, inset 0 0 0 3.5px #fff; } .ix .an-chip.all { font: 800 10px system-ui; letter-spacing: .1em; width: auto; padding: 0 12px; }
-/* 10 entete */
-.ix .an-hero { display: flex; align-items: flex-end; justify-content: space-between; gap: 16px; flex-wrap: wrap; margin-bottom: 16px; border-bottom: 3px solid #fff; padding-bottom: 12px; } .ix .an-hero .t { font-size: clamp(54px, 9vw, 96px); line-height: .85; } .ix .an-hero .c { text-align: right; } .ix .an-hero .c b { display: block; font-size: 48px; line-height: .9; font-weight: 400; } .ix .an-hero .c i { font: 800 10px system-ui; letter-spacing: .16em; font-style: normal; color: rgba(255,255,255,.6); text-transform: uppercase; }
-.ix .an-search { height: 56px; border: 3px solid #fff; box-shadow: inset 0 0 0 3px #08153b, inset 0 0 0 4.5px #fff; display: flex; align-items: center; padding: 0 18px; font-size: 26px; color: rgba(255,255,255,.55); margin-bottom: 10px; }
-/* 11 donateur */
-.ix .an-d1 .p { color: #ffd54a; } .ix .an-d2 { border-left: 6px solid #ffd54a; background: linear-gradient(90deg, rgba(255,213,74,.14), transparent 60%); } .ix .an-d3 .av { box-shadow: 0 0 0 2px #08153b, 0 0 0 4px #ffd54a; }
-.ix .holo { background: linear-gradient(90deg,#ff0080,#ff8c00,#ffee00,#00e676,#00b0ff,#e040fb,#ff0080); background-size: 300% 100%; -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; color: transparent !important; }
+/* serie 27 : podiums de l'accueil (prefixe pd-) */
+.ix .pd-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; } .ix .pd-col { min-width: 0; }
+.ix .pd-h { margin: 0 0 2px; } .ix .pd-sub { font: 700 11px system-ui; letter-spacing: .12em; text-transform: uppercase; color: rgba(255,255,255,.55); margin-bottom: 10px; }
+.ix .pd-r { display: grid; grid-template-columns: 30px 1fr auto; align-items: center; gap: 10px; padding: 7px 8px; border-bottom: 1px solid rgba(255,255,255,.14); position: relative; }
+.ix .pd-r:hover { background: rgba(255,255,255,.07); }
+.ix .pd-rk { text-align: center; font-size: 20px; line-height: 1; color: rgba(255,255,255,.4); }
+.ix .pd-rk.g { color: #ffd54a; } .ix .pd-rk.s { color: #c9d1e0; } .ix .pd-rk.b { color: #e0925a; }
+.ix .pd-who { display: flex; align-items: center; gap: 9px; min-width: 0; } .ix .pd-who .n { min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.ix .pd-av { border-radius: 50%; object-fit: cover; object-position: 50% 18%; flex-shrink: 0; display: block; } .ix .pd-ini { border-radius: 50%; background: rgba(255,255,255,.14); display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+.ix .pd-v { font-size: 20px; line-height: 1; color: #ffd54a; text-align: right; }
+.ix .pd-old { background: #0d0d0d; border-radius: 12px; padding: 8px; } .ix .pd-old .pd-r { grid-template-columns: 26px 1fr auto; border: 0; padding: 6px; font: 600 13px system-ui; } .ix .pd-old .pd-r.t1 { background: rgba(255,170,0,.14); border: 1px solid rgba(255,170,0,.5); border-radius: 8px; } .ix .pd-old .v { color: #ffa733; font: 800 12px system-ui; }
+.ix .pd-box { border: 3px solid #fff; padding: 14px; } .ix .pd-in { border: 1px solid rgba(255,255,255,.28); }
+/* 02 numero 1 geant */
+.ix .pd-hero { border: 3px solid #ffd54a; background: linear-gradient(135deg, rgba(255,213,74,.14), transparent 70%); padding: 14px; display: flex; align-items: center; gap: 12px; margin-bottom: 8px; position: relative; } .ix .pd-hero .k { position: absolute; top: -3px; left: -3px; background: #ffd54a; color: #06122e; font-size: 16px; padding: 3px 10px 2px; }
+.ix .pd-hero .n { font-size: 34px; line-height: .95; } .ix .pd-hero .v { margin-left: auto; font-size: 54px; line-height: .9; color: #ffd54a; } .ix .pd-hero small { display: block; font: 700 9px system-ui; letter-spacing: .14em; color: rgba(255,255,255,.55); text-transform: uppercase; margin-top: 4px; }
+/* 03 marches */
+.ix .pd-steps { display: grid; grid-template-columns: 1fr 1.15fr 1fr; align-items: end; gap: 6px; margin-bottom: 8px; } .ix .pd-st { border: 2px solid rgba(255,255,255,.85); text-align: center; padding: 10px 4px 8px; } .ix .pd-st.s1 { border-color: #ffd54a; background: rgba(255,213,74,.1); padding-top: 18px; } .ix .pd-st .nm { font-size: 17px; line-height: 1; margin: 6px 0 4px; word-break: break-word; } .ix .pd-st .vv { font-size: 24px; line-height: 1; color: #ffd54a; } .ix .pd-st .rr { font-size: 15px; color: rgba(255,255,255,.6); } .ix .pd-st.s1 .nm { font-size: 20px; }
+/* 04 onglets */
+.ix .pd-seg { display: inline-flex; border: 2px solid #fff; margin-bottom: 12px; } .ix .pd-seg span { padding: 0 16px; height: 36px; display: inline-flex; align-items: center; font: 800 12px system-ui; letter-spacing: .1em; text-transform: uppercase; border-right: 2px solid #fff; } .ix .pd-seg span:last-child { border-right: 0; } .ix .pd-seg .on { background: #fff; color: #06122e; }
+/* 05 barres */
+.ix .pd-bar { position: absolute; left: 0; top: 0; bottom: 0; background: linear-gradient(90deg, rgba(255,213,74,.28), rgba(255,213,74,.04)); border-right: 2px solid rgba(255,213,74,.8); } .ix .pd-r.bar > *:not(.pd-bar) { position: relative; }
+/* 06 resume */
+.ix .pd-sum { display: grid; grid-template-columns: repeat(3, 1fr); } .ix .pd-sum > div { padding: 16px; border-right: 2px solid rgba(255,255,255,.3); text-align: center; } .ix .pd-sum > div:last-child { border-right: 0; } .ix .pd-sum .t { font: 800 11px system-ui; letter-spacing: .16em; text-transform: uppercase; color: rgba(255,255,255,.65); } .ix .pd-sum .n { font-size: 30px; line-height: 1; margin: 10px 0 4px; } .ix .pd-sum .v { font-size: 44px; line-height: 1; color: #ffd54a; }
+.ix .pd-more { display: block; width: 100%; background: transparent; border: 0; border-top: 2px solid #fff; color: #fff; padding: 12px; font: 800 12px system-ui; letter-spacing: .14em; text-transform: uppercase; text-align: center; }
+/* 07 medailles carrees */
+.ix .pd-med { width: 26px; height: 26px; display: inline-flex; align-items: center; justify-content: center; font-size: 17px; line-height: 1; border: 2px solid; } .ix .pd-med.g { color: #06122e; background: #ffd54a; border-color: #ffd54a; } .ix .pd-med.s { color: #06122e; background: #c9d1e0; border-color: #c9d1e0; } .ix .pd-med.b { color: #06122e; background: #e0925a; border-color: #e0925a; }
+/* 10 equipe */
+.ix .pd-r.tm { border-left: 5px solid var(--tc); background: linear-gradient(90deg, color-mix(in srgb, var(--tc) 22%, transparent), transparent 60%); } .ix .pd-lg { width: 15px; height: 15px; object-fit: contain; filter: brightness(0) invert(1); flex-shrink: 0; }
+/* 11 progression */
+.ix .pd-up { font: 800 10px system-ui; color: #4cd37b; letter-spacing: .04em; } .ix .pd-dn { font: 800 10px system-ui; color: #ff8a8d; } .ix .pd-eq { font: 800 10px system-ui; color: rgba(255,255,255,.4); } .ix .pd-new { font: 800 9px system-ui; color: #06122e; background: #4cd37b; padding: 1px 4px; letter-spacing: .08em; }
 /* mobile */
-.ix .an-ph { width: 300px; border: 4px solid #fff; background: #050912; } .ix .an-ph .top { height: 46px; display: flex; align-items: center; padding: 0 12px; border-bottom: 1px solid rgba(255,255,255,.25); font-size: 17px; }
-.ix .an-ph .pr { padding: 9px 10px; border-bottom: 1px solid rgba(255,255,255,.14); } .ix .an-ph .l1 { display: flex; align-items: center; gap: 8px; } .ix .an-ph .l1 .p { font-size: 22px; line-height: 1; flex: 1; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; } .ix .an-ph .l2 { display: flex; gap: 5px; margin-top: 7px; padding-left: 44px; align-items: center; } .ix .an-ph .l2 .an-k { min-width: 0; padding: 2px 5px; font-size: 10px; flex: 1; }
-.ix .an-ph .gr { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; padding: 10px; } .ix .an-ph .gr .an-tile { padding: 8px; border-width: 2px; } .ix .an-ph .gr .p { font-size: 17px; } .ix .an-ph .gr .an-st b { font-size: 14px; } .ix .an-ph .gr .an-st i { font-size: 7px; letter-spacing: .05em; }
-.ix .an-ph .an-chips { padding: 8px 10px 0; margin: 0; flex-wrap: nowrap; overflow: hidden; } .ix .an-ph .an-chip { width: 36px; height: 36px; flex-shrink: 0; }
-@media (max-width: 700px) { .ix .an-pod { grid-template-columns: 1fr; } .ix .an-w { overflow-x: auto; } .ix .an-w > * { min-width: 560px; } .ix .an-ph { min-width: 0 !important; } }
+.ix .pd-ph { width: 300px; border: 4px solid #fff; background: #050912; } .ix .pd-ph .top { padding: 12px 12px 4px; font-size: 22px; } .ix .pd-ph .pd-seg { margin: 6px 10px; display: flex; } .ix .pd-ph .pd-seg span { flex: 1; justify-content: center; padding: 0 4px; font-size: 10px; height: 32px; } .ix .pd-ph .pd-r { padding: 8px 10px; }
+.ix .pd-snap { display: flex; gap: 10px; overflow-x: auto; padding: 10px; scroll-snap-type: x mandatory; } .ix .pd-snap .pd-card { flex: 0 0 82%; scroll-snap-align: start; border: 2px solid #fff; } .ix .pd-snap .pd-card .hd { padding: 8px 10px; background: #fff; color: #06122e; font-size: 20px; line-height: 1; } .ix .pd-dots { display: flex; gap: 6px; justify-content: center; padding-bottom: 10px; } .ix .pd-dots i { width: 18px; height: 4px; background: rgba(255,255,255,.3); } .ix .pd-dots i.on { background: #fff; }
+@media (max-width: 800px) { .ix .pd-3 { grid-template-columns: 1fr; } .ix .pd-sum { grid-template-columns: 1fr; } .ix .pd-sum > div { border-right: 0; border-bottom: 2px solid rgba(255,255,255,.3); } .ix .pd-hero .n { font-size: 26px; } .ix .pd-hero .v { font-size: 40px; } }
 `
 function Bay({ id, n, title, desc, children }: { id: string; n: string; title: string; desc: string; children: React.ReactNode }) {
   return (
@@ -102,106 +87,92 @@ function Bay({ id, n, title, desc, children }: { id: string; n: string; title: s
   )
 }
 
-type Mb = { n: string; a: string; t: string[]; tot: number; rc: number; au: number; nu: number; pa: number; d?: boolean; imgs: string[] }
-const M: Mb[] = [
-  { n: 'Gabriel_K', a: C.mccain.img, t: ['PHI', 'MIN', 'BOS'], tot: 2840, rc: 512, au: 301, nu: 644, pa: 188, d: true, imgs: [C.mccain.img, C.maxey.img, C.hawkins.img] },
-  { n: 'Dunkmaster', a: C.edwards.img, t: ['MIN', 'LAL'], tot: 2113, rc: 390, au: 244, nu: 501, pa: 142, imgs: [C.edwards.img, C.luwawu.img, C.mcw.img] },
-  { n: 'Sixers_Fan', a: C.maxey.img, t: ['PHI'], tot: 1760, rc: 301, au: 120, nu: 410, pa: 97, imgs: [C.maxey.img, C.mcw.img, C.mccain.img] },
-  { n: 'Lucie', a: C.hawkins.img, t: ['BOS', 'NYK', 'MIA'], tot: 1402, rc: 210, au: 88, nu: 305, pa: 61, imgs: [C.hawkins.img, C.edwards.img, C.maxey.img] },
-  { n: 'CardHunter', a: C.mcw.img, t: ['GSW', 'DEN'], tot: 987, rc: 150, au: 64, nu: 190, pa: 33, imgs: [C.mcw.img, C.luwawu.img, C.hawkins.img] },
-  { n: 'Nico', a: C.luwawu.img, t: ['NYK'], tot: 640, rc: 80, au: 21, nu: 97, pa: 12, imgs: [C.luwawu.img, C.mccain.img, C.edwards.img] },
-]
-const TC: Record<string, string> = { PHI: '#2f8bff', MIN: '#4aa3df', BOS: '#1fb75a', LAL: '#fdb927', GSW: '#ffc72c', NYK: '#f58426', MIA: '#e03a5e', DEN: '#fec524' }
-const fmt = (n: number) => n.toLocaleString('fr-FR')
-const Lg = ({ t, s = 18 }: { t: string; s?: number }) => <img className="an-lg" src={`/team-logos/nba-${t}.png`} width={s} height={s} alt={t} />
-const Lgs = ({ m, s = 18, max = 3 }: { m: Mb; s?: number; max?: number }) => <span className="an-lgs">{m.t.slice(0, max).map(t => <Lg key={t} t={t} s={s} />)}</span>
-const Av = ({ m, s = 40, round }: { m: Mb; s?: number; round?: boolean }) => <img className="an-av av" src={m.a} width={s} height={s} style={{ width: s, height: s, borderRadius: round ? '50%' : 0 }} alt="" />
-const Tools = () => (
-  <div className="an-tools"><div className="an-in">Rechercher un collectionneur…</div><div className="an-sel">Toutes les teams <span>▾</span></div><div className="an-sel">Équipes favorites <span>▾</span></div></div>
+type P = { n: string; img?: string; v: number; t?: string; d?: number }
+const AV = [C.mccain.img, undefined, C.maxey.img, C.edwards.img, undefined, C.hawkins.img, C.mcw.img, undefined, C.luwawu.img, undefined]
+const mk = (names: string[], vals: number[], teams: string[]): P[] => names.map((n, i) => ({ n, v: vals[i], img: AV[i], t: teams[i], d: [0, 2, -1, 0, 3, 0, -2, 5, -1, 0][i] }))
+const DAY = mk(['Zalandarr', 'Fracod59', 'Dams', 'Mahery12', 'Tched69', 'dune03', 'Nanorcards', 'Auré', 'geekennord', 'BastienC'], [49, 45, 43, 41, 37, 32, 32, 32, 25, 25], ['BKN', 'DEN', 'PHI', 'MIA', 'NYK', 'BOS', 'MIA', 'LAL', 'GSW', 'MIN'])
+const WEEK = mk(['Tched69', 'Dams', 'Mahery12', 'Benlou33', 'Nanorcards', 'Alf', 'PresseBasket', 'Francoiskun', 'Zalandarr', 'Jayssjoyss'], [623, 434, 426, 409, 380, 347, 266, 249, 224, 220], ['NYK', 'PHI', 'MIA', 'LAL', 'MIA', 'GSW', 'BOS', 'DEN', 'BKN', 'MIN'])
+const MONTH = mk(['Tched69', 'Alf', 'Mahery12', 'Benlou33', 'Dams', 'Nanorcards', 'Francoiskun', 'NikoNounours', 'ThymThym53', 'PresseBasket'], [885, 674, 592, 569, 481, 452, 338, 321, 266, 266], ['NYK', 'GSW', 'MIA', 'LAL', 'PHI', 'MIA', 'DEN', 'BOS', 'MIN', 'BOS'])
+const TC: Record<string, string> = { PHI: '#2f8bff', MIN: '#4aa3df', BOS: '#1fb75a', LAL: '#fdb927', GSW: '#ffc72c', NYK: '#f58426', MIA: '#e03a5e', DEN: '#fec524', BKN: '#9aa6bd' }
+const PER = [['Aujourd’hui', 'dimanche 11 octobre', DAY], ['Cette semaine', 'lun. 5 oct. — auj.', WEEK], ['Ce mois', 'octobre 2026', MONTH]] as const
+const rkc = (i: number) => (i === 0 ? 'g' : i === 1 ? 's' : i === 2 ? 'b' : '')
+const Ph = ({ p, s = 26 }: { p: P; s?: number }) => (p.img ? <img className="pd-av" src={p.img} width={s} height={s} style={{ width: s, height: s }} alt="" /> : <span className="pd-ini sf" style={{ width: s, height: s, fontSize: s * 0.5 }}>{p.n[0]}</span>)
+const Lg = ({ t }: { t?: string }) => (t && t !== 'BKN' ? <img className="pd-lg" src={`/team-logos/nba-${t}.png`} alt="" /> : null)
+const Rows = ({ list, nameSize = 20, extra, start = 0 }: { list: P[]; nameSize?: number; extra?: (p: P, i: number) => React.ReactNode; start?: number }) => (
+  <div>{list.map((p, i) => (
+    <div key={p.n} className="pd-r"><span className={`pd-rk sf ${rkc(i + start)}`}>{i + start + 1}</span><span className="pd-who"><Ph p={p} /><span className="n sf" style={{ fontSize: nameSize }}>{p.n}</span>{extra?.(p, i)}</span><span className="pd-v sf">+{p.v}</span></div>
+  ))}</div>
 )
-const Th = ({ cols, labels, on = 1 }: { cols: string; labels: string[]; on?: number }) => (
-  <div className="an-th" style={{ gridTemplateColumns: cols }}>{labels.map((l, i) => <span key={l + i} className={i === on ? 'on' : ''} style={{ textAlign: i === 0 ? 'left' : 'center' }}>{l}{i === on ? ' ↓' : ''}</span>)}</div>
-)
-const COLS = '1fr 70px 56px 56px 56px 56px'
 
 export default function DaIdeas() {
-  const names = ['Aujourd’hui', 'Tableau DA', 'Pseudo géant', 'Podium + liste', 'Cartes membres', 'Barre de total', 'Aperçu cartes', 'Logos en filtre', 'Liseré équipe', 'En-tête & recherche', 'Donateurs', 'Mobile liste', 'Mobile cartes']
+  const names = ['Aujourd’hui', 'Trois colonnes DA', 'N°1 géant', 'Marches du podium', 'Onglets', 'Barres', 'Résumé des 3 n°1', 'Médailles carrées', 'Liseré équipe', 'Progression', 'Mobile onglets', 'Mobile carrousel']
   return (
     <div className="ix">
       <style>{CSS}</style>
       <Link href="/admin" className="back">← Admin</Link>
-      <h1 className="sf">Idées · Série 26 · Annuaire</h1>
-      <p className="lead">La page des collectionneurs avec la nouvelle DA : pseudo en gros en Surfquest, chiffres en Surfquest, logos d&apos;équipes réduits, angles droits et filets blancs. Toutes les options actuelles sont conservées : recherche, filtre team, filtre équipe favorite, tri par colonne, aperçu au survol, badge donateur. Chaque version est aussi pensée pour le téléphone.</p>
+      <h1 className="sf">Idées · Série 27 · Les 3 podiums</h1>
+      <p className="lead">Les classements « Aujourd&apos;hui / Cette semaine / Ce mois » de l&apos;accueil : aujourd&apos;hui des cartes noires à coins arrondis avec des médailles emoji. Les versions suivantes passent en Surfquest, filets blancs et angles droits, avec l&apos;or pour le n°1 et les gains (+49…). Elles gardent les mêmes informations (rang, avatar, pseudo, gain) et sont pensées pour le téléphone.</p>
       <nav className="tags">{names.map((t, i) => <a key={t} href={`#s${i + 1}`}>{String(i + 1).padStart(2, '0')} {t}</a>)}</nav>
 
-      <Bay id="s1" n="00" title="Aujourd'hui, pour comparer" desc="Tableau clair à coins arrondis : avatar rond, pseudo en petit, logos d'équipes de 26 px, pastilles de couleur arrondies. Aucun lien avec la DA du reste du site."><div className="an-w"><div className="an-old">
-        <Th cols={COLS} labels={['COLLECTIONNEUR', 'TOTAL', 'RC', 'AUTO', '# NUM', 'PATCH']} />
-        {M.slice(0, 4).map(m => <div key={m.n} className="an-r" style={{ gridTemplateColumns: COLS }}><div className="an-nm"><Av m={m} s={42} round /><b style={{ fontSize: 14 }}>{m.n}</b><Lgs m={m} s={26} /></div>{[[m.tot, '#333', '#eee'], [m.rc, '#e67e22', '#fff'], [m.au, '#2e7d32', '#fff'], [m.nu, '#7b1fa2', '#fff'], [m.pa, '#1976d2', '#fff']].map(([v, b, c], i) => <span key={i} className="an-n"><span className="bd" style={{ background: b as string, color: c as string }}>{v as number}</span></span>)}</div>)}
-      </div></div></Bay>
-
-      <Bay id="s2" n="01" title="Tableau DA : pseudo en Surfquest, logos de 16 px, chiffres en Surfquest" desc="Même structure et mêmes colonnes triables, mais en angles droits : avatar carré, pseudo en Surfquest 26 px, logos d'équipes réduits à 16 px, filets fins. Les chiffres passent en Surfquest ; le total est en blanc, les autres colonnes gardent leur couleur."><div className="an-w">
-        <Tools /><Th cols={COLS} labels={['Collectionneur', 'Total', 'RC', 'Auto', '# Num', 'Patch']} />
-        {M.map(m => <div key={m.n} className="an-r" style={{ gridTemplateColumns: COLS }}><div className="an-nm"><Av m={m} s={40} /><span className="p sf" style={{ fontSize: 26 }}>{m.n}</span><Lgs m={m} s={16} />{m.d && <span className="an-tag">Soutien</span>}</div><span className="an-n sf">{fmt(m.tot)}</span><span className="an-n sf" style={{ color: '#ff9a3c' }}>{m.rc}</span><span className="an-n sf" style={{ color: '#4cd37b' }}>{m.au}</span><span className="an-n sf" style={{ color: '#c77dff' }}>{m.nu}</span><span className="an-n sf" style={{ color: '#5aa9ff' }}>{m.pa}</span></div>)}
+      <Bay id="s1" n="00" title="Aujourd'hui, pour comparer" desc="Trois cartes noires à coins arrondis, titre en gras, médailles emoji pour le top 3, la première ligne surlignée en orange. Aucun lien avec Surfquest ni les filets blancs du reste de la DA."><div className="pd-3">
+        {PER.map(([t, s, l]) => <div key={t} className="pd-col"><div style={{ font: '800 15px system-ui' }}>{t}</div><div className="pd-sub" style={{ textTransform: 'none', letterSpacing: 0, fontSize: 11 }}>{s}</div><div className="pd-old">{l.slice(0, 6).map((p, i) => <div key={p.n} className={`pd-r${i === 0 ? ' t1' : ''}`}><span style={{ textAlign: 'center' }}>{i < 3 ? ['🥇', '🥈', '🥉'][i] : i + 1}</span><span className="pd-who"><Ph p={p} /><span className="n">{p.n}</span></span><span className="v">+{p.v}</span></div>)}</div></div>)}
       </div></Bay>
 
-      <Bay id="s3" n="02" title="Pseudo géant : le nom est la star, le total en très gros" desc="Le pseudo passe à 40 px en Surfquest, avec un rang à gauche. Le total est énorme à droite (comme le compteur de l'accueil), les autres stats deviennent de simples pastilles à filet sous le nom. Moins de colonnes, beaucoup plus lisible."><div className="an-w">
-        <Tools />
-        {M.slice(0, 5).map((m, i) => <div key={m.n} className="an-r an-big" style={{ gridTemplateColumns: '34px 1fr 150px' }}><span className="an-rk sf">{i + 1}</span><div><div className="an-nm"><Av m={m} s={48} /><div style={{ minWidth: 0 }}><div className="p sf">{m.n}</div><div style={{ display: 'flex', gap: 6, marginTop: 8, alignItems: 'center', flexWrap: 'wrap' }}><Lgs m={m} s={16} /><span className="an-k rc">RC {m.rc}</span><span className="an-k au">AUTO {m.au}</span><span className="an-k nu">NUM {m.nu}</span><span className="an-k pa">PATCH {m.pa}</span></div></div></div></div><div><div className="sf t">{fmt(m.tot)}</div><small>cartes</small></div></div>)}
+      <Bay id="s2" n="01" title="Trois colonnes en DA : titres, pseudos et gains en Surfquest" desc="Même disposition, mais à plat : titre de période en Surfquest, filet blanc épais sous la liste, rang en Surfquest (or, argent, bronze pour le top 3 à la place des médailles), pseudo en Surfquest, gain en or. Plus de coins arrondis ni de fond noir."><div className="pd-3">
+        {PER.map(([t, s, l]) => <div key={t} className="pd-col"><h3 className="pd-h sf" style={{ fontSize: 30, lineHeight: 1 }}>{t}</h3><div className="pd-sub">{s}</div><div className="pd-in" style={{ borderTop: '3px solid #fff' }}><Rows list={l} /></div></div>)}
       </div></Bay>
 
-      <Bay id="s4" n="03" title="Podium + liste : les 3 plus gros collectionneurs en tête" desc="Quand le tri est « Total », les trois premiers sortent en blocs à double filet (le n°1 en or, plus grand), puis la liste continue en dessous. Un peu de gamification sans changer le contenu."><div className="an-w">
-        <div className="an-pod">{[M[1], M[0], M[2]].map((m, i) => <div key={m.n} className={i === 1 ? 'm' : ''}><div className="rk sf">{i === 1 ? '1er' : i === 0 ? '2e' : '3e'}</div><Av m={m} s={i === 1 ? 72 : 56} round /><div className="p sf">{m.n}</div><Lgs m={m} s={16} /><div className="t sf" style={{ marginTop: 8 }}>{fmt(m.tot)}</div></div>)}</div>
-        <Th cols={COLS} labels={['Collectionneur', 'Total', 'RC', 'Auto', '# Num', 'Patch']} />
-        {M.slice(3).map(m => <div key={m.n} className="an-r" style={{ gridTemplateColumns: COLS }}><div className="an-nm"><Av m={m} s={36} /><span className="p sf" style={{ fontSize: 22 }}>{m.n}</span><Lgs m={m} s={16} /></div><span className="an-n sf">{fmt(m.tot)}</span><span className="an-n dim sf">{m.rc}</span><span className="an-n dim sf">{m.au}</span><span className="an-n dim sf">{m.nu}</span><span className="an-n dim sf">{m.pa}</span></div>)}
+      <Bay id="s3" n="02" title="Le n°1 en grand bloc doré, les autres en liste" desc="Dans chaque période, le premier prend un bloc à filet doré avec son pseudo en 34 px et son gain en 54 px (comme les compteurs de l'accueil). Les places 2 à 10 restent en liste compacte dessous. On voit tout de suite qui domine."><div className="pd-3">
+        {PER.map(([t, s, l]) => <div key={t} className="pd-col"><h3 className="pd-h sf" style={{ fontSize: 26, lineHeight: 1 }}>{t}</h3><div className="pd-sub">{s}</div>
+          <div className="pd-hero"><span className="k sf">1er</span><Ph p={l[0]} s={52} /><div style={{ minWidth: 0 }}><div className="n sf">{l[0].n}</div></div><div className="v sf">+{l[0].v}<small>cartes</small></div></div>
+          <Rows list={l.slice(1)} nameSize={18} start={1} />
+        </div>)}
       </div></Bay>
 
-      <Bay id="s5" n="04" title="Cartes membres : une tuile par collectionneur" desc="Une grille de tuiles à filet blanc : avatar, pseudo en Surfquest, logos réduits, puis 4 chiffres (Total, RC, Auto, Num). Le tri devient un segment au-dessus de la grille. Très bien sur téléphone en 2 colonnes (voir 12)."><div className="an-w">
-        <div className="an-tools"><div className="an-in">Rechercher…</div><div className="an-sel">Toutes les teams ▾</div><div className="an-sel">Trier : Total ↓</div></div>
-        <div className="an-grid">{M.map(m => <div key={m.n} className="an-tile"><div className="hd"><Av m={m} s={46} /><div style={{ minWidth: 0 }}><div className="p sf">{m.n}</div><Lgs m={m} s={16} /></div></div><div className="an-st"><div><b className="sf">{fmt(m.tot)}</b><i>TOTAL</i></div><div><b className="sf" style={{ color: '#ff9a3c' }}>{m.rc}</b><i>RC</i></div><div><b className="sf" style={{ color: '#4cd37b' }}>{m.au}</b><i>AUTO</i></div><div><b className="sf" style={{ color: '#c77dff' }}>{m.nu}</b><i>NUM</i></div></div></div>)}</div>
+      <Bay id="s4" n="03" title="Les marches du podium (2 – 1 – 3), puis la liste" desc="Le top 3 de chaque période est dessiné comme un vrai podium : le n°1 au centre, plus grand et en or, le 2 à gauche et le 3 à droite. Les places 4 à 10 continuent en liste. Très visuel, un peu plus haut."><div className="pd-3">
+        {PER.map(([t, s, l]) => <div key={t} className="pd-col"><h3 className="pd-h sf" style={{ fontSize: 26, lineHeight: 1 }}>{t}</h3><div className="pd-sub">{s}</div>
+          <div className="pd-steps">{[l[1], l[0], l[2]].map((p, k) => { const i = k === 1 ? 0 : k === 0 ? 1 : 2; return <div key={p.n} className={`pd-st${i === 0 ? ' s1' : ''}`}><div className={`rr sf ${rkc(i)}`} style={{ color: i === 0 ? '#ffd54a' : i === 1 ? '#c9d1e0' : '#e0925a' }}>{i + 1}</div><Ph p={p} s={i === 0 ? 44 : 34} /><div className="nm sf">{p.n}</div><div className="vv sf">+{p.v}</div></div> })}</div>
+          <Rows list={l.slice(3)} nameSize={17} start={3} />
+        </div>)}
       </div></Bay>
 
-      <Bay id="s6" n="05" title="Barre de total : chaque ligne montre sa taille en un coup d'œil" desc="Derrière chaque ligne, une barre bleue proportionnelle au total (relative au plus gros collectionneur) avec un trait blanc au bout. On voit tout de suite les écarts sans lire les nombres."><div className="an-w">
-        <Th cols="1fr 80px 52px 52px 52px 52px" labels={['Collectionneur', 'Total', 'RC', 'Auto', 'Num', 'Patch']} />
-        {M.map(m => <div key={m.n} className="an-r" style={{ gridTemplateColumns: '1fr 80px 52px 52px 52px 52px' }}><span className="an-bar" style={{ width: `${(m.tot / M[0].tot) * 100}%` }} /><div className="an-nm"><Av m={m} s={36} /><span className="p sf" style={{ fontSize: 24 }}>{m.n}</span><Lgs m={m} s={16} /></div><span className="an-n sf">{fmt(m.tot)}</span><span className="an-n sf">{m.rc}</span><span className="an-n sf">{m.au}</span><span className="an-n sf">{m.nu}</span><span className="an-n sf">{m.pa}</span></div>)}
+      <Bay id="s5" n="04" title="Un seul classement avec onglets (Aujourd'hui · Semaine · Mois)" desc="Au lieu de trois colonnes (qui s'empilent sur téléphone et allongent la page), un seul panneau avec un sélecteur carré à trois segments. Le segment actif est plein blanc. Les 10 lignes en Surfquest, la liste prend toute la largeur donc les pseudos longs ne sont plus coupés."><div className="pd-box" style={{ maxWidth: 560 }}>
+        <div className="pd-seg"><span className="on">Aujourd’hui</span><span>Cette semaine</span><span>Ce mois</span></div>
+        <div className="pd-sub">dimanche 11 octobre</div>
+        <div className="pd-in" style={{ borderTop: '3px solid #fff' }}><Rows list={DAY} nameSize={22} /></div>
       </div></Bay>
 
-      <Bay id="s7" n="06" title="Aperçu des cartes dans la ligne (plus besoin du survol)" desc="Aujourd'hui l'aperçu de 3 cartes n'apparaît qu'au survol, donc jamais sur téléphone. Ici les 3 mini-cartes sont affichées à droite du pseudo (masquées sur petit écran). Le popup au survol reste possible pour les agrandir."><div className="an-w">
-        <Th cols="1fr 130px 70px 56px 56px" labels={['Collectionneur', 'Dernières cartes', 'Total', 'RC', 'Auto']} on={2} />
-        {M.slice(0, 5).map(m => <div key={m.n} className="an-r" style={{ gridTemplateColumns: '1fr 130px 70px 56px 56px', paddingTop: 8, paddingBottom: 8 }}><div className="an-nm"><Av m={m} s={40} /><span className="p sf" style={{ fontSize: 26 }}>{m.n}</span><Lgs m={m} s={16} /></div><span className="an-prev">{m.imgs.map((s, i) => <img key={i} src={s} alt="" />)}</span><span className="an-n sf">{fmt(m.tot)}</span><span className="an-n sf" style={{ color: '#ff9a3c' }}>{m.rc}</span><span className="an-n sf" style={{ color: '#4cd37b' }}>{m.au}</span></div>)}
+      <Bay id="s6" n="05" title="Barres de gain derrière chaque ligne" desc="Chaque ligne a une barre dorée proportionnelle à son gain (relative au n°1 de la période) avec un trait doré au bout. On voit l'écart entre les places sans lire les nombres, comme dans la maquette de l'annuaire."><div className="pd-3">
+        {PER.map(([t, s, l]) => <div key={t} className="pd-col"><h3 className="pd-h sf" style={{ fontSize: 26, lineHeight: 1 }}>{t}</h3><div className="pd-sub">{s}</div><div className="pd-in" style={{ borderTop: '3px solid #fff' }}>{l.map((p, i) => <div key={p.n} className="pd-r bar"><span className="pd-bar" style={{ width: `${(p.v / l[0].v) * 100}%` }} /><span className={`pd-rk sf ${rkc(i)}`}>{i + 1}</span><span className="pd-who"><Ph p={p} /><span className="n sf" style={{ fontSize: 19 }}>{p.n}</span></span><span className="pd-v sf" style={{ color: '#fff' }}>+{p.v}</span></div>)}</div></div>)}
       </div></Bay>
 
-      <Bay id="s8" n="07" title="Logos d'équipes cliquables à la place du menu « équipe favorite »" desc="Le menu déroulant « Toutes les équipes NBA/NFL… » est remplacé par une rangée de logos carrés (44 px) : un clic filtre, le logo actif reçoit le double filet. « Tous » remet à zéro. Plus visuel et plus rapide, le menu reste accessible via « + »."><div className="an-w">
-        <div className="an-tools"><div className="an-in">Rechercher un collectionneur…</div><div className="an-sel">Toutes les teams ▾</div></div>
-        <div className="an-chips"><span className="an-chip all">TOUS</span>{['PHI', 'BOS', 'LAL', 'MIN', 'GSW', 'NYK', 'MIA', 'DEN'].map((t, i) => <span key={t} className={`an-chip${i === 0 ? ' on' : ''}`}><Lg t={t} s={26} /></span>)}<span className="an-chip all">+ 94</span></div>
-        {M.slice(0, 3).map(m => <div key={m.n} className="an-r" style={{ gridTemplateColumns: COLS }}><div className="an-nm"><Av m={m} s={40} /><span className="p sf" style={{ fontSize: 26 }}>{m.n}</span><Lgs m={m} s={16} /></div><span className="an-n sf">{fmt(m.tot)}</span><span className="an-n sf">{m.rc}</span><span className="an-n sf">{m.au}</span><span className="an-n sf">{m.nu}</span><span className="an-n sf">{m.pa}</span></div>)}
+      <Bay id="s7" n="06" title="Résumé : les 3 n°1 côte à côte, le reste se déplie" desc="Le haut de l'accueil ne montre que les trois champions (jour, semaine, mois) dans un bandeau à trois cases séparées par des filets, avec le gain en très gros. Un bouton « Voir les classements » déplie les 10 lignes de chaque période. Gagne beaucoup de place sur l'accueil."><div className="pd-box" style={{ padding: 0 }}>
+        <div className="pd-sum">{PER.map(([t, , l]) => <div key={t}><div className="t">{t}</div><div style={{ display: 'flex', justifyContent: 'center', margin: '12px 0 0' }}><Ph p={l[0]} s={56} /></div><div className="n sf">{l[0].n}</div><div className="v sf">+{l[0].v}</div></div>)}</div>
+        <span className="pd-more">Voir les classements ▾</span>
       </div></Bay>
 
-      <Bay id="s9" n="08" title="Liseré de la couleur de l'équipe favorite" desc="Chaque ligne reçoit un liseré de 6 px et un léger dégradé dans la couleur de sa première équipe favorite (même logique que le visualiseur de cartes). Le logo suit, réduit. Ça donne de la vie sans alourdir."><div className="an-w">
-        {M.map(m => <div key={m.n} className="an-r" style={{ gridTemplateColumns: COLS, borderLeft: `6px solid ${TC[m.t[0]]}`, background: `linear-gradient(90deg, ${TC[m.t[0]]}26, transparent 55%)` }}><div className="an-nm"><Av m={m} s={40} /><span className="p sf" style={{ fontSize: 26 }}>{m.n}</span><Lgs m={m} s={16} /></div><span className="an-n sf">{fmt(m.tot)}</span><span className="an-n sf">{m.rc}</span><span className="an-n sf">{m.au}</span><span className="an-n sf">{m.nu}</span><span className="an-n sf">{m.pa}</span></div>)}
+      <Bay id="s8" n="07" title="Médailles carrées or / argent / bronze" desc="Le top 3 garde des médailles, mais en carrés pleins (or, argent, bronze) avec le chiffre en Surfquest dedans, au lieu des emojis. Les autres rangs restent en gris. Même rendu sur toutes les plateformes (les emojis varient selon le téléphone)."><div className="pd-3">
+        {PER.slice(0, 2).map(([t, s, l]) => <div key={t} className="pd-col"><h3 className="pd-h sf" style={{ fontSize: 26, lineHeight: 1 }}>{t}</h3><div className="pd-sub">{s}</div><div className="pd-in" style={{ borderTop: '3px solid #fff' }}>{l.slice(0, 6).map((p, i) => <div key={p.n} className="pd-r"><span style={{ textAlign: 'center' }}>{i < 3 ? <span className={`pd-med sf ${rkc(i)}`}>{i + 1}</span> : <span className="pd-rk sf">{i + 1}</span>}</span><span className="pd-who"><Ph p={p} /><span className="n sf" style={{ fontSize: 20 }}>{p.n}</span></span><span className="pd-v sf">+{p.v}</span></div>)}</div></div>)}
       </div></Bay>
 
-      <Bay id="s10" n="09" title="En-tête géant, compteur et recherche à double filet" desc="Le titre « Annuaire » passe en Surfquest énorme avec le nombre de collectionneurs à droite, comme les compteurs de l'accueil. La recherche devient une grande barre à double filet ; les deux menus restent dessous en carrés."><div className="an-w">
-        <div className="an-hero"><div className="t sf">Annuaire</div><div className="c"><b className="sf">1 284</b><i>collectionneurs</i></div></div>
-        <div className="an-search sf">Rechercher un pseudo…</div>
-        <div className="an-tools"><div className="an-sel">Toutes les teams ▾</div><div className="an-sel">Équipes favorites ▾</div><div className="an-sel">Trier : Total ↓</div></div>
-        {M.slice(0, 2).map(m => <div key={m.n} className="an-r" style={{ gridTemplateColumns: COLS }}><div className="an-nm"><Av m={m} s={40} /><span className="p sf" style={{ fontSize: 26 }}>{m.n}</span><Lgs m={m} s={16} /></div><span className="an-n sf">{fmt(m.tot)}</span><span className="an-n sf">{m.rc}</span><span className="an-n sf">{m.au}</span><span className="an-n sf">{m.nu}</span><span className="an-n sf">{m.pa}</span></div>)}
+      <Bay id="s9" n="08" title="Liseré de la couleur de l'équipe favorite + petit logo" desc="Comme dans l'annuaire : un liseré et un léger dégradé dans la couleur de l'équipe favorite de chaque joueur, et son logo (15 px) à côté du pseudo. Donne de la vie et de l'identité sans alourdir."><div className="pd-3">
+        {PER.slice(0, 2).map(([t, s, l]) => <div key={t} className="pd-col"><h3 className="pd-h sf" style={{ fontSize: 26, lineHeight: 1 }}>{t}</h3><div className="pd-sub">{s}</div><div className="pd-in" style={{ borderTop: '3px solid #fff' }}>{l.slice(0, 6).map((p, i) => <div key={p.n} className="pd-r tm" style={{ ['--tc' as string]: TC[p.t || 'BKN'] }}><span className={`pd-rk sf ${rkc(i)}`}>{i + 1}</span><span className="pd-who"><Ph p={p} /><span className="n sf" style={{ fontSize: 20 }}>{p.n}</span><Lg t={p.t} /></span><span className="pd-v sf">+{p.v}</span></div>)}</div></div>)}
       </div></Bay>
 
-      <Bay id="s11" n="10" title="Donateurs : trois façons de les distinguer" desc="Aujourd'hui : pseudo arc-en-ciel animé et une tasse ☕. Ici : A) pseudo doré + étiquette « Soutien », B) liseré et fond doré sur la ligne, C) avatar cerclé d'or. L'arc-en-ciel reste possible, c'est une option."><div className="an-w">
-        {[['A', 'an-d1'], ['B', 'an-d2'], ['C', 'an-d3']].map(([k, c]) => { const m = M[0]; return <div key={k} className={`an-r ${c}`} style={{ gridTemplateColumns: COLS }}><div className="an-nm"><span className="sf" style={{ color: 'rgba(255,255,255,.5)', width: 14 }}>{k}</span><Av m={m} s={40} /><span className="p sf holo" style={{ fontSize: 26, ...(k === 'A' ? {} : {}) }}>{m.n}</span><Lgs m={m} s={16} />{k === 'A' && <span className="an-tag">Soutien</span>}{k !== 'A' && <span style={{ color: '#ffd54a' }}>☕</span>}</div><span className="an-n sf">{fmt(m.tot)}</span><span className="an-n sf">{m.rc}</span><span className="an-n sf">{m.au}</span><span className="an-n sf">{m.nu}</span><span className="an-n sf">{m.pa}</span></div> })}
-        <div className="an-cap" style={{ marginTop: 10 }}>(pseudo en arc-en-ciel conservé ici ; en doré uni il suffirait de retirer le dégradé)</div>
+      <Bay id="s10" n="09" title="Progression : flèches ↑ ↓ et « Nouveau » (par rapport à la veille)" desc="À côté de chaque pseudo, une petite flèche verte (a gagné des places), rouge (en a perdu) ou un trait gris (stable), et une étiquette « Nouveau » pour qui entre dans le top 10. Donne envie de revenir voir son évolution."><div className="pd-3">
+        {PER.slice(0, 2).map(([t, s, l]) => <div key={t} className="pd-col"><h3 className="pd-h sf" style={{ fontSize: 26, lineHeight: 1 }}>{t}</h3><div className="pd-sub">{s}</div><div className="pd-in" style={{ borderTop: '3px solid #fff' }}><Rows list={l.slice(0, 8)} nameSize={19} extra={(p, i) => i === 7 ? <span className="pd-new">NEW</span> : (p.d || 0) > 0 ? <span className="pd-up">▲{p.d}</span> : (p.d || 0) < 0 ? <span className="pd-dn">▼{Math.abs(p.d || 0)}</span> : <span className="pd-eq">–</span>} /></div></div>)}
       </div></Bay>
 
-      <Bay id="s12" n="11" title="Téléphone : liste sur 2 lignes" desc="Sur mobile le tableau à 6 colonnes est trop serré. Chaque membre prend 2 lignes : avatar, pseudo en Surfquest 22 px et total à droite ; dessous, les 4 chiffres (RC, Auto, Num, Patch) en petites pastilles à filet de couleur, et les logos réduits."><div className="an-ph">
-        <div className="top sf">Annuaire</div>
-        <div className="an-chips"><span className="an-chip all" style={{ height: 36 }}>TOUS</span>{['PHI', 'BOS', 'LAL', 'MIN'].map((t, i) => <span key={t} className={`an-chip${i === 0 ? ' on' : ''}`}><Lg t={t} s={20} /></span>)}</div>
-        {M.slice(0, 4).map(m => <div key={m.n} className="pr"><div className="l1"><Av m={m} s={36} /><span className="p sf">{m.n}</span><Lgs m={m} s={14} max={2} /><span className="sf" style={{ fontSize: 22 }}>{fmt(m.tot)}</span></div><div className="l2"><span className="an-k rc">RC {m.rc}</span><span className="an-k au">A {m.au}</span><span className="an-k nu">N {m.nu}</span><span className="an-k pa">P {m.pa}</span></div></div>)}
+      <Bay id="s11" n="10" title="Téléphone : onglets + une seule liste" desc="Sur mobile les trois colonnes deviennent un sélecteur à trois segments pleine largeur et une liste unique, pseudos en Surfquest 20 px et gain à droite. Un seul écran de scroll au lieu de trois classements empilés."><div className="pd-ph">
+        <div className="top sf">Podium</div>
+        <div className="pd-seg"><span className="on">Jour</span><span>Semaine</span><span>Mois</span></div>
+        <Rows list={DAY.slice(0, 7)} nameSize={20} />
       </div></Bay>
 
-      <Bay id="s13" n="12" title="Téléphone : tuiles sur 2 colonnes" desc="La version 04 en 2 colonnes : avatar, pseudo, logos, puis 4 chiffres. Le tri passe dans un bouton carré à côté de la recherche. Plus de profils visibles d'un coup d'œil, les stats restent lisibles."><div className="an-ph">
-        <div className="top sf">Annuaire</div>
-        <div className="an-tools" style={{ padding: '10px 10px 0', marginBottom: 0 }}><div className="an-in" style={{ height: 34, fontSize: 12, flexBasis: 150 }}>Rechercher…</div><div className="an-sel" style={{ height: 34, flex: '0 0 44px', padding: 0, justifyContent: 'center' }}>⇅</div></div>
-        <div className="gr">{M.slice(0, 4).map(m => <div key={m.n} className="an-tile"><div className="hd"><Av m={m} s={30} /><div style={{ minWidth: 0 }}><div className="p sf">{m.n}</div><Lgs m={m} s={12} max={2} /></div></div><div className="an-st" style={{ marginTop: 8, paddingTop: 6 }}><div><b className="sf">{m.tot > 999 ? (m.tot / 1000).toFixed(1) + 'k' : m.tot}</b><i>TOT</i></div><div><b className="sf" style={{ color: '#ff9a3c' }}>{m.rc}</b><i>RC</i></div><div><b className="sf" style={{ color: '#4cd37b' }}>{m.au}</b><i>AUT</i></div><div><b className="sf" style={{ color: '#c77dff' }}>{m.nu}</b><i>NUM</i></div></div></div>)}</div>
+      <Bay id="s12" n="11" title="Téléphone : carrousel horizontal des 3 périodes" desc="Chaque période est une carte à bandeau blanc (titre en Surfquest) ; on les fait glisser de côté avec accroche, la suivante dépassant légèrement pour montrer qu'il y en a d'autres. Trois traits indiquent la position."><div className="pd-ph">
+        <div className="top sf">Podium</div>
+        <div className="pd-snap">{PER.map(([t, , l]) => <div key={t} className="pd-card"><div className="hd sf">{t}</div><Rows list={l.slice(0, 5)} nameSize={18} /></div>)}</div>
+        <div className="pd-dots"><i className="on" /><i /><i /></div>
       </div></Bay>
     </div>
   )
