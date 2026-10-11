@@ -8,6 +8,7 @@ function numHint(min: number | null, max: number | null): string {
 import ConfirmDeleteCard from '@/components/ConfirmDeleteCard'
 import SelectionHand from '@/components/SelectionHand'
 import { numTier } from '@/lib/cardTags'
+import { getTeamByName } from '@/lib/sportsTeams'
 import { toast } from '@/lib/toast'
 import { useEffect, useLayoutEffect, useState, useRef, useMemo, useCallback } from 'react'
 import { flushSync } from 'react-dom'
@@ -3359,7 +3360,7 @@ export default function GalerieClient({ userId, initialCardUrl, initialCards, in
               key={getCardId(d)}
               id={getCardId(d)}
               disabled={!editMode || !isOwner || sortBy !== 'default'}
-              className={`card-item${justAddedIds.has(getCardId(d)) ? ' card-just-added' : ''}${!initialCascadeDone && idx < 24 ? ' card-cascade-in' : ''}`}
+              className={`card-item${justAddedIds.has(getCardId(d)) ? ' card-just-added' : ''}${!initialCascadeDone && idx < 24 ? ' card-cascade-in' : ''}${numTier(d.num) !== 'std' ? ` gc-rare gc-${numTier(d.num)}` : ''}`}
               onLongPress={qrMode ? undefined : editMode && isOwner ? () => startPaintSelect(d) : () => shareCardNative(d)}
               onPaintMove={handlePaintMove}
               onPaintEnd={handlePaintEnd}
@@ -3438,10 +3439,14 @@ export default function GalerieClient({ userId, initialCardUrl, initialCards, in
                   </div>
                 )}
               </div>
+              {(() => { const tm = getTeamByName(d.t); return tm ? <div className="gc-bar" style={{ background: tm.color }} /> : null })()}
               {getTags(d)}
               <div style={{ display: 'flex', alignItems: 'flex-start', justifyContent: 'space-between', gap: 4, marginTop: 4 }}>
                 <div style={{ minWidth: 0 }}>
-                  <p style={{ fontWeight: 800, fontSize: 13, margin: 0, whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>{d.n}</p>
+                  <p className="gc-name" style={{ margin: 0, whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis', display: 'flex', alignItems: 'center', gap: 6 }}>
+                    {(() => { const tm = getTeamByName(d.t); return tm ? <span className="gc-logo"><TeamBadge teamId={tm.id} size={17} /></span> : null })()}
+                    <span className="da-display" style={{ fontSize: 19, lineHeight: 1, overflow: 'hidden', textOverflow: 'ellipsis' }}>{d.n}</span>
+                  </p>
                   <p style={{ fontSize: 10, color: accent, fontWeight: 700, margin: '2px 0', fontStyle: 'italic', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>{d.v}</p>
                   <p style={{ fontSize: 10, color: '#999', marginTop: 2, display: 'flex', alignItems: 'center', gap: 5, flexWrap: 'wrap' }}>
                     <span style={{ whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>{d.y} {d.br} {d.s}</span>

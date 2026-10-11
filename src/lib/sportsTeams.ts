@@ -410,6 +410,12 @@ export function inferSportFromTeamName(teamName: string | null | undefined): Spo
   return TEAM_NAME_TO_SPORT.get((teamName || '').trim().toLowerCase()) || null
 }
 
+// Equipe connue a partir de son nom (texte libre des cartes), pour logo et couleur dans les vignettes
+const TEAM_BY_NAME = new Map<string, SportsTeam>(SPORTS_TEAMS.map(team => [team.name.trim().toLowerCase(), team]))
+export function getTeamByName(teamName: string | null | undefined): SportsTeam | null {
+  return TEAM_BY_NAME.get((teamName || '').trim().toLowerCase()) || null
+}
+
 // Backward compat: find NBA team by abbr only
 export function getTeam(abbr: string): SportsTeam | null {
   return SPORTS_TEAMS.find(t => t.sport === 'nba' && t.abbr === abbr) || null
