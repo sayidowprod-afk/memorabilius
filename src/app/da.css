@@ -847,3 +847,12 @@ html[data-theme="light"] .tcdb-imp-open { border-color: #06122e; color: #06122e;
 .card-item .gc-name .da-display { white-space: normal !important; display: -webkit-box !important; -webkit-box-orient: vertical; -webkit-line-clamp: 2; overflow: hidden; overflow-wrap: anywhere; line-height: 1.02 !important; }
 .card-item .gc-name .gc-logo { margin-top: 1px; }
 @media (max-width: 640px) { .card-item .gc-name .da-display { font-size: 15px !important; } .card-item .gc-name { gap: 4px !important; } .card-item .gc-name .gc-logo > * { transform: scale(.8); transform-origin: left top; } }
+
+/* Vignettes : pied "atouts a gauche, tirage en grand a droite" ; hauteur toujours reservee pour que toutes les vignettes aient le meme cadre */
+.gc-foot { display: flex; align-items: flex-end; justify-content: space-between; gap: 8px; min-height: 28px; margin-top: 6px; padding-top: 6px; border-top: 1px solid transparent; }
+.gc-foot.on { border-top-color: rgba(255, 255, 255, .22); }
+[data-theme="light"] .gc-foot.on { border-top-color: rgba(6, 18, 46, .16); }
+.gc-ats { min-width: 0; font: 900 11px/1.2 system-ui, sans-serif; letter-spacing: .1em; text-transform: uppercase; }
+.gc-ats i { font-style: normal; opacity: .4; margin: 0 5px; }
+.gc-tir { flex-shrink: 0; font-size: 22px; line-height: .9; }
+@media (max-width: 640px) { .gc-ats { font-size: 10px; letter-spacing: .06em; } .gc-ats i { margin: 0 3px; } .gc-tir { font-size: 19px; } }
