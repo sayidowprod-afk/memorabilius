@@ -877,3 +877,9 @@ html[data-theme="light"] .tcdb-imp-open { border-color: #06122e; color: #06122e;
 .gb-bt { position: absolute; right: 0; bottom: 0; z-index: 3; padding: 5px 11px 2px 18px; font-size: 22px; line-height: 1; color: #1a1000;
   clip-path: polygon(10px 0, 100% 0, 100% 100%, 0 100%); pointer-events: none; }
 @media (max-width: 640px) { .gb-tp { top: 6px; } .gb-b { height: 18px; font-size: 10px; padding: 0 13px 0 7px; } .gb-bt { font-size: 19px; padding: 4px 9px 1px 15px; } }
+
+/* Vignettes : bandeau d'atouts au-dessus de l'image, les segments se partagent toute la largeur (1, 2, 3 ou 4 atouts) ; hauteur toujours reservee */
+.gs-strip { display: flex; gap: 3px; height: 22px; margin: 0 0 6px; }
+.gs-seg { flex: 1 1 0; min-width: 0; display: flex; align-items: center; justify-content: center; font: 900 11px/1 system-ui, sans-serif; letter-spacing: .12em; text-transform: uppercase; color: #fff; white-space: nowrap; overflow: hidden; }
+.gs-seg.dk { color: #1a1000; }
+@media (max-width: 640px) { .gs-strip { height: 19px; } .gs-seg { font-size: 9.5px; letter-spacing: .06em; } }

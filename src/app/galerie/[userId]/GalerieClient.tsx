@@ -3463,28 +3463,26 @@ export default function GalerieClient({ userId, initialCardUrl, initialCards, in
                   </div>
                 </div>
               )}
+              {(() => {
+                const segs: { k: string; t: string; c: string; dark?: boolean }[] = []
+                if (d.item_type && d.item_type !== 'card') segs.push({ k: 'memo', t: 'Mémo', c: '#7b1fa2' })
+                if (d.rc) segs.push({ k: 'rc', t: 'RC', c: TAG_BASE.rc })
+                if (d.patch) segs.push({ k: 'patch', t: 'Patch', c: TAG_BASE.patch })
+                if (d.auto) segs.push({ k: 'auto', t: 'Auto', c: TAG_BASE.auto })
+                if (d.printing_plate) segs.push({ k: 'plate', t: 'Plate', c: '#374151' })
+                if (d.num) {
+                  const tier = numTier(d.num)
+                  const gold = tier === 'gold', silver = tier === 'silver'
+                  segs.push({ k: 'num', t: numShort(d.num), c: gold ? '#ffd54a' : silver ? '#dfe6f2' : TAG_BASE.num, dark: gold || silver })
+                }
+                return (
+                  <div className="gs-strip" aria-label={segs.map(x => x.t).join(' ')}>
+                    {segs.map(x => <span key={x.k} className={`gs-seg${x.dark ? ' dk' : ''}`} style={{ background: x.c }}>{x.t}</span>)}
+                  </div>
+                )
+              })()}
               <div className={`holo-light${numTier(d.num) !== 'std' ? ` halo halo-${numTier(d.num)}` : ''}`} style={{ width: '100%', marginBottom: 6 }}>
                 <CardLink slug={profile?.slug || userId} cardKey={d.f}>{renderCardImage(d)}</CardLink>
-                {(() => {
-                  const bans: { k: string; t: string; c: string }[] = []
-                  if (d.item_type && d.item_type !== 'card') bans.push({ k: 'memo', t: 'Mémo', c: '#7b1fa2' })
-                  if (d.rc) bans.push({ k: 'rc', t: 'RC', c: TAG_BASE.rc })
-                  if (d.auto) bans.push({ k: 'auto', t: 'Auto', c: TAG_BASE.auto })
-                  if (d.patch) bans.push({ k: 'patch', t: 'Patch', c: TAG_BASE.patch })
-                  if (d.printing_plate) bans.push({ k: 'plate', t: 'Plate', c: '#374151' })
-                  const tier = numTier(d.num)
-                  const tc = tier === 'gold' ? '#ffd54a' : tier === 'silver' ? '#dfe6f2' : tier === 'bronze' ? '#e0925a' : '#d62839'
-                  return (
-                    <>
-                      {bans.length > 0 && (
-                        <div className="gb-tp" aria-hidden>
-                          {bans.map(b => <span key={b.k} className="gb-b" style={{ background: b.c }}>{b.t}</span>)}
-                        </div>
-                      )}
-                      {d.num && <div className="gb-bt da-display" title={`Numérotation : ${d.num}`} style={{ background: tc, color: tier === 'std' ? '#fff' : '#1a1000', boxShadow: `0 0 14px ${tc}88` }}>{numShort(d.num)}</div>}
-                    </>
-                  )
-                })()}
                 {(d.vendue || d.disponible_vente || (isOwner && privateCards.has(d.f))) && (
                   <div className="sash-clip" aria-hidden>
                     {isOwner && privateCards.has(d.f) && <i className="sash sash-tl" style={{ background: '#c0392b' }}>{t('gallery_private')}</i>}
