@@ -461,6 +461,20 @@ function EmptyGalleryIllustration() {
   )
 }
 
+// Ancien logo d'une equipe disparue : essaie les extensions possibles, disparait si aucun fichier n'existe
+function HistLogoImg({ base, src, name }: { base?: string; src?: string; name: string }) {
+  const exts = ['png', 'svg', 'webp', 'gif']
+  const [i, setI] = useState(0)
+  const url = src || (base && i < exts.length ? `${base}.${exts[i]}` : null)
+  if (!url) return null
+  return (
+    // eslint-disable-next-line @next/next/no-img-element
+    <img src={url} alt={name} title={name} width={17} height={17}
+      onError={() => { if (!src) setI(n => n + 1) }}
+      style={{ width: 17, height: 17, objectFit: 'contain', filter: 'drop-shadow(0 0 1px rgba(255,255,255,.55))' }} />
+  )
+}
+
 export default function GalerieClient({ userId, initialCardUrl, initialCards, initialGrailCards }: {
   userId: string; initialCardUrl?: string; initialCards?: PreviewCard[]; initialGrailCards?: PreviewCard[]
 }) {
@@ -1802,7 +1816,7 @@ export default function GalerieClient({ userId, initialCardUrl, initialCards, in
     if (tm) return <span className="gc-logo"><TeamBadge teamId={tm.id} size={17} /></span>
     const h = historicLogo(name)
     if (!h) return null
-    if (h.src) return <span className="gc-logo"><img src={h.src} alt={name || ''} title={name || ''} width={17} height={17} style={{ width: 17, height: 17, objectFit: 'contain', filter: 'drop-shadow(0 0 1px rgba(255,255,255,.55))' }} /></span>
+    if (h.src || h.base) return <span className="gc-logo"><HistLogoImg src={h.src} base={h.base} name={name || ''} /></span>
     if (h.franchise) return <span className="gc-logo" title={name || ''}><TeamBadge teamId={h.franchise} size={17} /></span>
     return null
   }

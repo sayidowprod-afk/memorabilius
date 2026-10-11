@@ -868,3 +868,4 @@ html[data-theme="light"] .tcdb-imp-open { border-color: #06122e; color: #06122e;
   .da-tabs button { border-right: 2px solid var(--text) !important; border-bottom: 2px solid var(--text) !important; font-size: 15px !important; padding: 11px 2px 9px !important; }
   .da-tabs button:nth-of-type(5):last-of-type { grid-column: span 2; }
 }
+.gc-logo:empty { display: none; }
