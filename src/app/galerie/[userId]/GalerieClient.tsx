@@ -3464,39 +3464,8 @@ export default function GalerieClient({ userId, initialCardUrl, initialCards, in
                 </div>
               )}
               {(() => {
-                const segs: { k: string; t: string; c: string; dark?: boolean }[] = []
-                const grad = (c: string) => `linear-gradient(180deg, ${mix(c, 0.22)} 0%, ${c} 55%, ${mix(c, -0.22)} 100%)`
-                if (d.item_type && d.item_type !== 'card') segs.push({ k: 'memo', t: 'Mémo', c: grad('#7b1fa2') })
-                if (d.rc) segs.push({ k: 'rc', t: 'RC', c: grad(TAG_BASE.rc) })
-                if (d.patch) segs.push({ k: 'patch', t: 'Patch', c: grad(TAG_BASE.patch) })
-                if (d.auto) segs.push({ k: 'auto', t: 'Auto', c: grad(TAG_BASE.auto) })
-                if (d.printing_plate) segs.push({ k: 'plate', t: 'Plate', c: grad('#374151') })
-                if (d.num) {
-                  const tier = numTier(d.num)
-                  const gold = tier === 'gold', silver = tier === 'silver'
-                  segs.push({ k: 'num', t: numShort(d.num), c: gold ? 'linear-gradient(180deg,#fff2b8,#e3b53b 55%,#9a6b08)' : silver ? 'linear-gradient(180deg,#fbfcfe,#b4bcc8 55%,#6c7585)' : grad(TAG_BASE.num), dark: gold || silver })
-                }
-                const unit = (txt: string, key: string) => (
-                  <span key={key}>{[0, 1, 2, 3].map(r => <Fragment key={r}><b>{txt}</b><i>✦</i></Fragment>)}</span>
-                )
-                const info = [d.n, d.v, d.y, d.br].filter(Boolean).join('  ✦  ')
-                return (
-                  <div className="gs-strip" aria-label={segs.length ? segs.map(x => x.t).join(' ') : info}>
-                    {segs.length > 0 ? segs.map((x, i) => (
-                      <div key={x.k} className={`gs-seg${x.dark ? ' dk' : ''}`} style={{ background: x.c, ['--d' as string]: `${(5 + ((i * 3 + (d.n || '').length) % 5) * 1.4).toFixed(1)}s` }}>
-                        <div className="gs-mq">{unit(x.t, 'a')}{unit(x.t, 'b')}</div>
-                      </div>
-                    )) : (
-                      <div className="gs-seg gs-info" style={{ ['--d' as string]: '18s' }}>
-                        <div className="gs-mq">
-                          {['a', 'b'].map(k => <span key={k}>{[0, 1].map(r => <Fragment key={r}>{[d.n, d.v, d.y, d.br].filter(Boolean).map((x, j) => <Fragment key={j}><b>{x}</b><i>✦</i></Fragment>)}</Fragment>)}</span>)}
-                        </div>
-                      </div>
-                    )}
-                  </div>
-                )
-              })()}
-              <div className={`holo-light${numTier(d.num) !== 'std' ? ` halo halo-${numTier(d.num)}` : ''}`} style={{ width: '100%', marginBottom: 6 }}>
+                const hasAts = !!(d.rc || d.patch || d.auto || d.num || d.printing_plate || (d.item_type && d.item_type !== 'card'))
+                return <div className={`holo-light${numTier(d.num) !== 'std' ? ` halo halo-${numTier(d.num)}` : ''}${hasAts ? '' : ' gs-bleed'}`} style={{ width: '100%', marginBottom: 6 }}>
                 <CardLink slug={profile?.slug || userId} cardKey={d.f}>{renderCardImage(d)}</CardLink>
                 {(d.vendue || d.disponible_vente || (isOwner && privateCards.has(d.f))) && (
                   <div className="sash-clip" aria-hidden>
@@ -3507,6 +3476,27 @@ export default function GalerieClient({ userId, initialCardUrl, initialCards, in
                   </div>
                 )}
               </div>
+              })()}
+              {(() => {
+                const ats: { k: string; t: string; c: string }[] = []
+                if (d.item_type && d.item_type !== 'card') ats.push({ k: 'memo', t: 'Mémo', c: '#c77dff' })
+                if (d.rc) ats.push({ k: 'rc', t: 'RC', c: TAG_BASE.rc })
+                if (d.patch) ats.push({ k: 'patch', t: 'Patch', c: TAG_BASE.patch })
+                if (d.auto) ats.push({ k: 'auto', t: 'Auto', c: TAG_BASE.auto })
+                if (d.printing_plate) ats.push({ k: 'plate', t: 'Plate', c: '#9aa6bd' })
+                if (d.num) { const tr = numTier(d.num); ats.push({ k: 'num', t: numShort(d.num), c: tr === 'gold' ? '#ffd54a' : tr === 'silver' ? '#dfe6f2' : TAG_BASE.num }) }
+                if (!ats.length) return null
+                const unit = (key: string) => (
+                  <span key={key}>{[0, 1, 2].map(r => <Fragment key={r}>{ats.map(x => <Fragment key={x.k}><b style={{ color: mix(x.c, 0.5) }}>{x.t}</b><i>✦</i></Fragment>)}</Fragment>)}</span>
+                )
+                return (
+                  <div className="gs-strip" aria-label={ats.map(x => x.t).join(' ')}>
+                    <div className="gs-seg gs-blue" style={{ ['--d' as string]: `${8 + ats.length * 2}s` }}>
+                      <div className="gs-mq">{unit('a')}{unit('b')}</div>
+                    </div>
+                  </div>
+                )
+              })()}
               {(() => { const c = teamBarColor(d.t); return c ? <div className="gc-bar" style={{ background: c }} /> : null })()}
               <div className="gc-bot" style={{ display: 'flex', alignItems: 'flex-start', justifyContent: 'space-between', gap: 4, marginTop: 4, ['--gt' as string]: teamBarColor(d.t) || 'transparent' }}>
                 <div style={{ minWidth: 0 }}>

@@ -449,10 +449,9 @@ body {
   text-rendering: optimizeSpeed;
 }
 
-/* Réduire les animations sur mobile */
+/* Transitions courtes sur mobile (les animations, elles, gardent leur duree : forcer animation-duration a 0.1s faisait boucler tous les defilements et pulsations en spasmes) */
 @media (max-width: 768px) {
   * {
-    animation-duration: 0.1s !important;
     transition-duration: 0.1s !important;
   }
   .btn-main:hover {
