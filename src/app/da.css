@@ -926,3 +926,7 @@ html[data-theme="light"] .tcdb-imp-open { border-color: #06122e; color: #06122e;
 .gc-bot > div:first-child .gc-name .da-display { color: #fff !important; }
 .gc-bot > div:first-child > p:nth-child(2) { color: color-mix(in srgb, var(--gt, #fff) 35%, #fff) !important; }
 .gc-bot > div:first-child > p:last-child { color: rgba(255, 255, 255, .85) !important; }
+
+/* Coins du bas : le fond du bloc suit l arrondi de la vignette (les cadres de rarete, eux, sont a angles droits) */
+.card-item .gc-bot { border-radius: 0 0 6px 6px; }
+.card-item.gc-rare .gc-bot { border-radius: 0; }
