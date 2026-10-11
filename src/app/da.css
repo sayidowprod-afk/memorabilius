@@ -878,8 +878,19 @@ html[data-theme="light"] .tcdb-imp-open { border-color: #06122e; color: #06122e;
   clip-path: polygon(10px 0, 100% 0, 100% 100%, 0 100%); pointer-events: none; }
 @media (max-width: 640px) { .gb-tp { top: 6px; } .gb-b { height: 18px; font-size: 10px; padding: 0 13px 0 7px; } .gb-bt { font-size: 19px; padding: 4px 9px 1px 15px; } }
 
-/* Vignettes : bandeau d'atouts au-dessus de l'image, les segments se partagent toute la largeur (1, 2, 3 ou 4 atouts) ; hauteur toujours reservee */
-.gs-strip { display: flex; gap: 3px; height: 22px; margin: 0 0 6px; }
-.gs-seg { flex: 1 1 0; min-width: 0; display: flex; align-items: center; justify-content: center; font: 900 11px/1 system-ui, sans-serif; letter-spacing: .12em; text-transform: uppercase; color: #fff; white-space: nowrap; overflow: hidden; }
-.gs-seg.dk { color: #1a1000; }
-@media (max-width: 640px) { .gs-strip { height: 19px; } .gs-seg { font-size: 9.5px; letter-spacing: .06em; } }
+/* Vignettes : bandeau d'atouts fin et soigne au-dessus de l'image, les segments se partagent toute la largeur (1, 2, 3 ou 4 atouts) ; hauteur toujours reservee */
+.gs-strip { display: flex; gap: 2px; height: 17px; margin: 0 0 6px; }
+.gs-seg { flex: 1 1 0; min-width: 0; display: flex; align-items: center; justify-content: center; font: 800 10px/1 system-ui, sans-serif; letter-spacing: .16em; text-transform: uppercase; color: #fff; white-space: nowrap; overflow: hidden;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, .38), inset 0 -1px 0 rgba(0, 0, 0, .28); text-shadow: 0 1px 1px rgba(0, 0, 0, .35); }
+.gs-seg.dk { color: #1a1000; text-shadow: 0 1px 0 rgba(255, 255, 255, .35); }
+@media (max-width: 640px) { .gs-strip { height: 16px; } .gs-seg { font-size: 9px; letter-spacing: .1em; } }
+
+/* Vignettes : bas centre et compact, degrade discret a la couleur de l'equipe vers le fond */
+.gc-bot { position: relative; display: block !important; margin: 0 -8px 0 !important; padding: 7px 8px 8px; background: linear-gradient(180deg, transparent 0%, color-mix(in srgb, var(--gt, transparent) 30%, transparent) 100%); }
+.gc-bot > div:first-child { text-align: center; padding: 0 42px; }
+.gc-bot > div:first-child p { justify-content: center !important; text-align: center; margin-left: 0; margin-right: 0; }
+.gc-bot .gc-name { gap: 5px !important; }
+.card-item .gc-bot .gc-name .da-display { font-size: 17px !important; }
+.gc-bot .gc-right { position: absolute; top: 5px; right: 4px; }
+.gc-bot .gc-right button span:first-child { font-size: 14px !important; }
+@media (max-width: 640px) { .gc-bot > div:first-child { padding: 0 34px; } .card-item .gc-bot .gc-name .da-display { font-size: 14px !important; } }

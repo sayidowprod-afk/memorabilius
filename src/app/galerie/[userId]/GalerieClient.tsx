@@ -3465,15 +3465,16 @@ export default function GalerieClient({ userId, initialCardUrl, initialCards, in
               )}
               {(() => {
                 const segs: { k: string; t: string; c: string; dark?: boolean }[] = []
-                if (d.item_type && d.item_type !== 'card') segs.push({ k: 'memo', t: 'Mémo', c: '#7b1fa2' })
-                if (d.rc) segs.push({ k: 'rc', t: 'RC', c: TAG_BASE.rc })
-                if (d.patch) segs.push({ k: 'patch', t: 'Patch', c: TAG_BASE.patch })
-                if (d.auto) segs.push({ k: 'auto', t: 'Auto', c: TAG_BASE.auto })
-                if (d.printing_plate) segs.push({ k: 'plate', t: 'Plate', c: '#374151' })
+                const grad = (c: string) => `linear-gradient(180deg, ${mix(c, 0.22)} 0%, ${c} 55%, ${mix(c, -0.22)} 100%)`
+                if (d.item_type && d.item_type !== 'card') segs.push({ k: 'memo', t: 'Mémo', c: grad('#7b1fa2') })
+                if (d.rc) segs.push({ k: 'rc', t: 'RC', c: grad(TAG_BASE.rc) })
+                if (d.patch) segs.push({ k: 'patch', t: 'Patch', c: grad(TAG_BASE.patch) })
+                if (d.auto) segs.push({ k: 'auto', t: 'Auto', c: grad(TAG_BASE.auto) })
+                if (d.printing_plate) segs.push({ k: 'plate', t: 'Plate', c: grad('#374151') })
                 if (d.num) {
                   const tier = numTier(d.num)
                   const gold = tier === 'gold', silver = tier === 'silver'
-                  segs.push({ k: 'num', t: numShort(d.num), c: gold ? '#ffd54a' : silver ? '#dfe6f2' : TAG_BASE.num, dark: gold || silver })
+                  segs.push({ k: 'num', t: numShort(d.num), c: gold ? 'linear-gradient(180deg,#fff2b8,#e3b53b 55%,#9a6b08)' : silver ? 'linear-gradient(180deg,#fbfcfe,#b4bcc8 55%,#6c7585)' : grad(TAG_BASE.num), dark: gold || silver })
                 }
                 return (
                   <div className="gs-strip" aria-label={segs.map(x => x.t).join(' ')}>
@@ -3493,7 +3494,7 @@ export default function GalerieClient({ userId, initialCardUrl, initialCards, in
                 )}
               </div>
               {(() => { const c = teamBarColor(d.t); return c ? <div className="gc-bar" style={{ background: c }} /> : null })()}
-              <div style={{ display: 'flex', alignItems: 'flex-start', justifyContent: 'space-between', gap: 4, marginTop: 4 }}>
+              <div className="gc-bot" style={{ display: 'flex', alignItems: 'flex-start', justifyContent: 'space-between', gap: 4, marginTop: 4, ['--gt' as string]: teamBarColor(d.t) || 'transparent' }}>
                 <div style={{ minWidth: 0 }}>
                   <p className="gc-name" style={{ margin: 0, whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis', display: 'flex', alignItems: 'center', gap: 6 }}>
                     {teamMark(d.t)}
@@ -3502,7 +3503,6 @@ export default function GalerieClient({ userId, initialCardUrl, initialCards, in
                   <p style={{ fontSize: 10, color: accent, fontWeight: 700, margin: '2px 0', fontStyle: 'italic', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>{d.v}</p>
                   <p style={{ fontSize: 10, color: '#999', marginTop: 2, display: 'flex', alignItems: 'center', gap: 5, flexWrap: 'wrap' }}>
                     <span style={{ whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>{d.y} {d.br} {d.s}</span>
-                    {d.card_number && <span style={{ flexShrink: 0, fontWeight: 800, color: '#555', background: '#f0f0f0', borderRadius: 4, padding: '1px 5px', fontSize: 9 }}>#{d.card_number}</span>}
                   </p>
                 </div>
                 <div className="gc-right">
