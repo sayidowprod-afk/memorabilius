@@ -1,8 +1,6 @@
 'use client'
 import React from 'react'
-import type { CSSProperties } from 'react'
 import Link from 'next/link'
-import { TAG_BASE, numTier, numShort, mix, rgba } from '@/lib/cardTags'
 
 // Idees visuelles pour pousser la nouvelle DA (Surfquest, marine -> bleu electrique, angles droits, doubles filets, metaux).
 // Page de TRAVAIL reservee aux admins : donnees d'exemple en dur, rien n'est lu ni ecrit.
@@ -43,38 +41,37 @@ const CSS = `
 .ix .tags a { color:#fff; text-decoration:none; border: 2px solid rgba(255,255,255,.4); padding: 5px 10px; font: 800 10px system-ui; letter-spacing:.1em; text-transform:uppercase; }
 .ix .tags a:hover { background:#fff; color:#06122e; }
 
-/* serie 38 : ameliorer la visibilite des atouts et du tirage sur la vignette actuelle (prefixe vq-) */
-.ix .vq-row { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 18px; max-width: 900px; }
-.ix .vq { position: relative; background: #0a1330; border: 1px solid rgba(140,170,255,.35); padding: 7px 7px 0; min-width: 0; overflow: hidden; }
-.ix .vq .ph { position: relative; overflow: hidden; } .ix .vq img.im { display: block; width: 100%; aspect-ratio: 2.5/3.5; object-fit: cover; }
-.ix .vq .bar { display: flex; height: 4px; margin: 8px -7px 0; } .ix .vq .bar > span { display: block; height: 100%; } .ix .vq .bar .tm { flex: 1; background: var(--tc, #2f8bff); } .ix .vq .bar .sg { flex: 0 0 38%; display: flex; } .ix .vq .bar .sg i { flex: 1; background: var(--k); }
-.ix .vq .bar.big { height: 7px; }
-.ix .vq .row2 { display: flex; justify-content: space-between; gap: 4px; padding: 6px 0 8px; align-items: flex-start; } .ix .vq .l { min-width: 0; flex: 1; } .ix .vq .r { display: flex; flex-direction: column; align-items: flex-end; flex-shrink: 0; }
-.ix .vq .nm { display: flex; align-items: center; gap: 6px; font: 400 19px/1 'Surfquest', Impact, sans-serif; text-transform: uppercase; letter-spacing: .02em; } .ix .vq .nm .t { min-width: 0; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-.ix .vq .lg { width: 16px; height: 16px; object-fit: contain; filter: brightness(0) invert(1); flex-shrink: 0; }
-.ix .vq .vr { font: italic 600 10px system-ui; color: #5aa9ff !important; margin-top: 3px; } .ix .vq .st { font: 500 10px system-ui; color: rgba(255,255,255,.62) !important; margin-top: 2px; }
-.ix .vq .ic { display: inline-flex; gap: 6px; font-size: 14px; }
+/* serie 39 : barre des onglets de la galerie (prefixe tb-) */
+.ix .tb-w { max-width: 940px; }
+.ix .tb-pn { margin-top: 0; border: 1px solid rgba(140,170,255,.25); background: linear-gradient(180deg, #0d1840, #0a1330); padding: 12px; display: grid; grid-template-columns: 1fr 1fr; gap: 8px; } .ix .tb-pn div { height: 34px; background: #112060; border: 1px solid rgba(140,170,255,.3); display: flex; align-items: center; padding: 0 10px; font: italic 600 12px system-ui; color: rgba(255,255,255,.55); }
+.ix .tb-bar { display: flex; }
+.ix .tb-t { cursor: default; white-space: nowrap; }
 .ix .sq { font-family: 'Surfquest', Impact, sans-serif; font-weight: 400; text-transform: uppercase; letter-spacing: .03em; }
-/* atouts */
-.ix .vq .ats { min-height: 18px; margin-top: 5px; display: flex; flex-wrap: wrap; align-items: center; gap: 4px 10px; }
-.ix .a-ref { font: 900 10px/1.3 system-ui; letter-spacing: .12em; text-transform: uppercase; } .ix .a-ref i { font-style: normal; opacity: .4; margin: 0 4px; }
-.ix .a-sqr { font: 900 12px/1.3 system-ui; letter-spacing: .1em; text-transform: uppercase; color: #fff !important; } .ix .a-sqr span { display: inline-flex; align-items: center; gap: 5px; } .ix .a-sqr span::before { content: ''; width: 9px; height: 9px; background: var(--k); }
-.ix .a-blk span { font: 900 11px/1 system-ui; letter-spacing: .1em; text-transform: uppercase; padding: 4px 7px 3px; background: var(--b); color: var(--t) !important; }
-.ix .a-ul { font: 900 12px/1.3 system-ui; letter-spacing: .1em; text-transform: uppercase; color: #fff !important; } .ix .a-ul span { border-bottom: 3px solid var(--k); padding-bottom: 2px; }
-.ix .a-big { font: 900 13px/1.3 system-ui; letter-spacing: .08em; text-transform: uppercase; } .ix .a-big i { font-style: normal; opacity: .4; margin: 0 4px; }
-/* tirage */
-.ix .tir { margin-top: 3px; font-size: 25px; line-height: .9; color: var(--cc) !important; text-shadow: 0 0 12px var(--cg); }
-.ix .tir.boxed { font-size: 19px; line-height: 1; padding: 4px 8px 2px; border: 2px solid var(--cc); background: rgba(5,9,18,.6); margin-top: 6px; text-shadow: none; box-shadow: 0 0 12px var(--cg); }
-.ix .tir.gold { font-size: 19px; line-height: 1; padding: 4px 9px 2px; background: var(--cc); color: #1a1000 !important; margin-top: 6px; text-shadow: none; box-shadow: 0 0 14px var(--cg); }
-.ix .tir.huge { font-size: 36px; text-shadow: 0 0 16px var(--cg); }
-/* variantes de cadre */
-.ix .vq.tint { background: linear-gradient(180deg, #0a1330 55%, var(--tt) 100%); }
-.ix .vq .edge { position: absolute; left: 0; right: 0; bottom: 0; height: 5px; display: flex; } .ix .vq .edge i { flex: 1; background: var(--k); }
-.ix .vq .corner { position: absolute; right: 0; bottom: 0; padding: 4px 9px 2px; font-size: 18px; line-height: 1; background: var(--cc); color: #1a1000 !important; }
-.ix .nmc { text-shadow: 0 0 12px var(--cg); }
+/* 0 actuel */
+.ix .tb-0 { gap: 26px; border-bottom: 3px solid rgba(255,255,255,.18); margin-bottom: 14px; } .ix .tb-0 .tb-t { position: relative; padding: 12px 4px 14px; font: 800 14px system-ui; letter-spacing: .14em; text-transform: uppercase; color: rgba(255,255,255,.7); } .ix .tb-0 .tb-t.on { color: #4d8dff; } .ix .tb-0 .tb-t.on::after { content: ''; position: absolute; left: 0; right: 0; bottom: -3px; height: 3px; background: #fff; }
+/* 1 surfquest */
+.ix .tb-1 { gap: 28px; border-bottom: 3px solid rgba(255,255,255,.22); margin-bottom: 14px; } .ix .tb-1 .tb-t { position: relative; padding: 6px 0 12px; font-size: 24px; line-height: 1; color: rgba(255,255,255,.55); } .ix .tb-1 .tb-t.on { color: #fff; } .ix .tb-1 .tb-t.on::after { content: ''; position: absolute; left: 0; right: 0; bottom: -6px; height: 6px; background: #fff; }
+/* 2 segments */
+.ix .tb-2 { border: 2px solid #fff; margin-bottom: 14px; } .ix .tb-2 .tb-t { flex: 1; text-align: center; padding: 11px 6px 9px; font-size: 17px; line-height: 1; border-right: 2px solid #fff; color: #fff; } .ix .tb-2 .tb-t:last-child { border-right: 0; } .ix .tb-2 .tb-t.on { background: #fff; color: #06122e !important; }
+/* 3 compteurs */
+.ix .tb-3 { gap: 26px; border-bottom: 3px solid rgba(255,255,255,.22); margin-bottom: 14px; } .ix .tb-3 .tb-t { position: relative; padding: 6px 0 12px; font-size: 22px; line-height: 1; color: rgba(255,255,255,.55); display: inline-flex; align-items: flex-start; gap: 6px; } .ix .tb-3 .tb-t small { font: 800 11px system-ui; letter-spacing: .04em; color: rgba(255,255,255,.5); background: rgba(255,255,255,.1); padding: 2px 5px; margin-top: -2px; } .ix .tb-3 .tb-t.on { color: #fff; } .ix .tb-3 .tb-t.on small { background: #fff; color: #06122e !important; } .ix .tb-3 .tb-t.on::after { content: ''; position: absolute; left: 0; right: 0; bottom: -6px; height: 6px; background: #fff; }
+/* 4 dossier */
+.ix .tb-4 { gap: 4px; margin-bottom: -1px; position: relative; z-index: 2; } .ix .tb-4 .tb-t { padding: 11px 18px 9px; font-size: 18px; line-height: 1; color: rgba(255,255,255,.6); border: 1px solid rgba(140,170,255,.25); border-bottom: 0; background: rgba(255,255,255,.04); } .ix .tb-4 .tb-t.on { color: #fff; background: #0d1840; border-color: rgba(140,170,255,.55); border-top: 4px solid #fff; padding-top: 8px; margin-bottom: -1px; }
+/* 5 bande */
+.ix .tb-5 { border-top: 2px solid #fff; border-bottom: 2px solid #fff; margin-bottom: 14px; background: rgba(255,255,255,.04); } .ix .tb-5 .tb-t { flex: 1; text-align: center; padding: 11px 6px 9px; font-size: 17px; line-height: 1; color: rgba(255,255,255,.75); } .ix .tb-5 .tb-t.on { background: #fff; color: #06122e !important; }
+/* 6 numerotes */
+.ix .tb-6 { gap: 30px; margin-bottom: 14px; } .ix .tb-6 .tb-t { padding: 4px 0 8px; border-top: 3px solid rgba(255,255,255,.2); } .ix .tb-6 .tb-t b { display: block; font: 800 11px system-ui; letter-spacing: .2em; color: rgba(255,255,255,.5); margin: 7px 0 3px; } .ix .tb-6 .tb-t span { font-size: 20px; line-height: 1; color: rgba(255,255,255,.65); } .ix .tb-6 .tb-t.on { border-top-color: #fff; } .ix .tb-6 .tb-t.on b { color: #fff; } .ix .tb-6 .tb-t.on span { color: #fff; }
+/* 7 accent */
+.ix .tb-7 { gap: 4px; margin-bottom: 14px; } .ix .tb-7 .tb-t { padding: 11px 18px 9px; font-size: 18px; line-height: 1; color: rgba(255,255,255,.75); background: rgba(255,255,255,.07); border: 1px solid rgba(255,255,255,.14); } .ix .tb-7 .tb-t.on { background: linear-gradient(180deg, #2f6bff, #1550e0); border-color: #6c97ff; color: #fff; box-shadow: 0 0 16px rgba(47,107,255,.4); }
+/* 8 grands chiffres */
+.ix .tb-8 { margin-bottom: 14px; border: 2px solid #fff; } .ix .tb-8 .tb-t { flex: 1; padding: 10px 6px 8px; text-align: center; border-right: 1px solid rgba(255,255,255,.3); } .ix .tb-8 .tb-t:last-child { border-right: 0; } .ix .tb-8 .tb-t b { display: block; font-size: 32px; line-height: 1; font-weight: 400; color: rgba(255,255,255,.65); font-family: 'Surfquest', Impact, sans-serif; } .ix .tb-8 .tb-t i { display: block; font: 800 9px system-ui; letter-spacing: .16em; text-transform: uppercase; font-style: normal; color: rgba(255,255,255,.6); margin-top: 4px; } .ix .tb-8 .tb-t.on { background: #fff; } .ix .tb-8 .tb-t.on b, .ix .tb-8 .tb-t.on i { color: #06122e !important; }
+/* 9 slashs */
+.ix .tb-9 { gap: 0; align-items: baseline; margin-bottom: 14px; flex-wrap: wrap; } .ix .tb-9 .tb-t { font-size: 22px; line-height: 1.2; color: rgba(255,255,255,.5); padding-bottom: 4px; } .ix .tb-9 .tb-t.on { color: #fff; border-bottom: 5px solid #fff; } .ix .tb-9 .sl { font-size: 22px; color: rgba(255,255,255,.3); margin: 0 14px; font-family: 'Surfquest', Impact, sans-serif; }
 /* telephone */
-.ix .vq-ph { width: 300px; border: 4px solid #fff; background: #050912; padding: 10px; } .ix .vq-ph .vq-row { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; } .ix .vq-ph .vq .nm { font-size: 15px; } .ix .vq-ph .a-ref, .ix .vq-ph .a-big, .ix .vq-ph .a-sqr, .ix .vq-ph .a-ul { font-size: 10px; } .ix .vq-ph .a-blk span { font-size: 9px; padding: 3px 5px 2px; } .ix .vq-ph .tir { font-size: 20px; } .ix .vq-ph .tir.boxed, .ix .vq-ph .tir.gold { font-size: 15px; }
-@media (max-width: 800px) { .ix .vq-row { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+.ix .tb-ph { width: 300px; border: 4px solid #fff; background: #050912; padding: 10px; } .ix .tb-ph .tb-pn { grid-template-columns: 1fr; }
+.ix .tb-g { display: grid; grid-template-columns: repeat(3, 1fr); gap: 4px; margin-bottom: 10px; } .ix .tb-g .tb-t { padding: 11px 4px 9px; text-align: center; font-size: 15px; line-height: 1; border: 1px solid rgba(255,255,255,.3); color: rgba(255,255,255,.85); } .ix .tb-g .tb-t.on { background: #fff; color: #06122e !important; border-color: #fff; }
+.ix .tb-sc { display: flex; gap: 20px; overflow: hidden; border-bottom: 3px solid rgba(255,255,255,.22); margin-bottom: 10px; -webkit-mask-image: linear-gradient(90deg, #000 78%, transparent); mask-image: linear-gradient(90deg, #000 78%, transparent); } .ix .tb-sc .tb-t { position: relative; padding: 6px 0 10px; font-size: 19px; line-height: 1; color: rgba(255,255,255,.55); flex-shrink: 0; } .ix .tb-sc .tb-t.on { color: #fff; } .ix .tb-sc .tb-t.on::after { content: ''; position: absolute; left: 0; right: 0; bottom: -5px; height: 5px; background: #fff; }
+.ix .tb-sg { display: flex; border: 2px solid #fff; margin-bottom: 10px; } .ix .tb-sg .tb-t { flex: 1; text-align: center; padding: 10px 2px 8px; font-size: 14px; line-height: 1; border-right: 1px solid rgba(255,255,255,.5); } .ix .tb-sg .tb-t:last-child { border-right: 0; } .ix .tb-sg .tb-t.on { background: #fff; color: #06122e !important; }
 `
 function Bay({ id, n, title, desc, children }: { id: string; n: string; title: string; desc: string; children: React.ReactNode }) {
   return (
@@ -87,69 +84,22 @@ function Bay({ id, n, title, desc, children }: { id: string; n: string; title: s
   )
 }
 
-type PC = { n: string; v?: string; s: string; img: string; rc?: boolean; auto?: boolean; patch?: boolean; num?: string; tm: string; tc: string }
-const PCS: PC[] = [
-  { n: 'Jared McCain', v: 'Team Card', s: '2010-11 Panini Donruss', img: C.mccain.img, rc: true, tm: 'PHI', tc: '#2f8bff' },
-  { n: 'Tyrese Maxey', v: 'Fresh Paint', s: '2024-25 Court Kings', img: C.maxey.img, auto: true, patch: true, num: '/25', tm: 'PHI', tc: '#2f8bff' },
-  { n: 'Hersey Hawkins', v: 'Power Brokers', s: '2006-07 Topps Bowman', img: C.hawkins.img, patch: true, num: '/99', tm: 'PHI', tc: '#2f8bff' },
-  { n: 'Anthony Edwards', v: 'Silver Prizm', s: '2023-24 Panini Prizm', img: C.edwards.img, rc: true, auto: true, num: '1/1', tm: 'MIN', tc: '#4aa3df' },
-]
-type K = 'rc' | 'auto' | 'num' | 'patch'
-const kinds = (c: PC) => ([c.rc && 'rc', c.auto && 'auto', c.patch && 'patch'].filter(Boolean) as K[])
-const TIERC: Record<string, string> = { gold: '#ffd54a', silver: '#dfe6f2', bronze: '#e0925a' }
-const TIERG: Record<string, string> = { gold: 'rgba(255,215,0,.55)', silver: 'rgba(220,230,245,.4)', bronze: 'rgba(224,146,90,.4)', std: 'rgba(108,151,255,.35)' }
-const lite = (k: K) => mix(TAG_BASE[k], 0.5)
-const short = (k: K) => (k === 'rc' ? 'RC' : k === 'auto' ? 'Auto' : k === 'patch' ? 'Patch' : 'Num')
-const kv = (k: K): CSSProperties => ({ ['--k' as string]: TAG_BASE[k] } as CSSProperties)
-const bt = (k: K): CSSProperties => ({ ['--b' as string]: TAG_BASE[k], ['--t' as string]: '#fff' } as CSSProperties)
-const tv = (c: PC): CSSProperties => { const t = numTier(c.num); return { ['--cc' as string]: t === 'std' ? '#8fb4ff' : TIERC[t], ['--cg' as string]: TIERG[t] } as CSSProperties }
-const Ic = () => <span className="ic"><i>💬</i><i>🤍</i></span>
-
-type O = { ats?: 'ref' | 'big' | 'sqr' | 'blk' | 'ul'; tir?: 'text' | 'boxed' | 'gold' | 'huge' | 'corner'; bar?: 'team' | 'split'; nameTier?: boolean; tint?: boolean; edge?: boolean }
-const Cell = ({ c, o }: { c: PC; o: O }) => {
-  const ks = kinds(c); const ats = o.ats || 'ref'; const tir = o.tir || 'text'; const t = numTier(c.num)
-  const topC = ks.length ? TAG_BASE[ks.includes('auto') ? 'auto' : ks.includes('patch') ? 'patch' : 'rc'] : 'transparent'
-  const atsNode = ks.length ? (
-    <div className={`ats a-${ats}`}>
-      {ats === 'ref' || ats === 'big' ? ks.map((k, i) => <span key={k}>{i > 0 && <i>·</i>}<b style={{ color: lite(k), fontWeight: 'inherit' }}>{short(k)}</b></span>)
-        : ats === 'blk' ? ks.map(k => <span key={k} style={bt(k)}>{short(k)}</span>)
-        : ks.map(k => <span key={k} style={kv(k)}>{short(k)}</span>)}
-    </div>
-  ) : <div className="ats" />
-  return (
-    <div className={`vq${o.tint ? ' tint' : ''}`} style={o.tint ? ({ ['--tt' as string]: topC === 'transparent' ? '#0a1330' : rgba(topC, 0.22) } as CSSProperties) : undefined}>
-      <div className="ph"><img className="im" src={c.img} alt="" />{tir === 'corner' && c.num && <div className="corner sq" style={tv(c)}>{numShort(c.num)}</div>}</div>
-      <div className={`bar${o.bar === 'split' ? ' big' : ''}`} style={{ ['--tc' as string]: c.tc }}>
-        <span className="tm" />{o.bar === 'split' && ks.length > 0 && <span className="sg">{ks.map(k => <i key={k} style={kv(k)} />)}</span>}
-      </div>
-      <div className="row2">
-        <div className="l">
-          <div className="nm"><img className="lg" src={`/team-logos/nba-${c.tm}.png`} alt="" /><span className={`t${o.nameTier && t !== 'std' ? ' nmc' : ''}`} style={o.nameTier && t !== 'std' ? ({ color: TIERC[t], ['--cg' as string]: TIERG[t] } as CSSProperties) : undefined}>{c.n}</span></div>
-          {c.v && <div className="vr">{c.v}</div>}
-          <div className="st">{c.s}</div>
-          {atsNode}
-        </div>
-        <div className="r"><Ic />{c.num && tir !== 'corner' && <div className={`tir sq ${tir === 'text' ? '' : tir}`} style={tv(c)}>{numShort(c.num)}</div>}</div>
-      </div>
-      {o.edge && ks.length > 0 && <div className="edge">{ks.map(k => <i key={k} style={kv(k)} />)}</div>}
-    </div>
-  )
-}
-const Row = ({ children }: { children: React.ReactNode }) => <div className="vq-row">{children}</div>
-
-type Idea = { title: string; desc: string; o: O }
-const IDEAS: Idea[] = [
-  { title: 'Actuel (pour comparer)', desc: 'Ce qui est en ligne : atouts en capitales colorées de 10 px sous le set, tirage en Surfquest 25 px sous les icônes. Complet mais peu visible : le texte est petit et les couleurs pâles sur le fond bleu nuit.', o: {} },
-  { title: 'Atouts en blocs pleins compacts + tirage en bloc doré plein', desc: 'Même place, mais les atouts deviennent de petits rectangles pleins de 11 px, couleur franche, texte blanc (angles droits, pas de pastille), et le tirage un bloc plein aux couleurs de la rareté, texte noir. Très visibles, sans toucher à l\'image ni à la hauteur.', o: { ats: 'blk', tir: 'gold' } },
-  { title: 'Carrés de couleur + texte blanc 12 px, tirage encadré', desc: 'Les atouts passent en blanc gras 12 px avec un carré plein de 9 px devant chacun, et le tirage est dans un cadre de 2 px à la couleur de rareté avec fond sombre. Le texte blanc ressort beaucoup mieux que le texte coloré.', o: { ats: 'sqr', tir: 'boxed' } },
-  { title: 'Barre sous l\'image partagée : équipe + segments d\'atouts', desc: 'La barre de couleur d\'équipe de 4 px devient une barre de 7 px : à gauche la couleur de l\'équipe, à droite un segment par atout (orange, vert, bleu). Aucune hauteur de texte en plus pour le code couleur ; les atouts restent écrits en 13 px blanc-teinté dessous.', o: { ats: 'big', bar: 'split' } },
-  { title: 'Soulignement coloré épais + tirage géant (36 px)', desc: 'Atouts en blanc gras 12 px, chacun souligné de 3 px dans sa couleur, et un tirage en Surfquest 36 px sous les icônes, avec halo de rareté. On voit le tirage de loin, le texte est blanc donc très lisible.', o: { ats: 'ul', tir: 'huge' } },
-  { title: 'Le nom prend la couleur de la rareté (or, argent, bronze)', desc: 'Pour les tirages rares (1/1, /10 et moins, /25 et moins), le nom du joueur lui-même devient doré, argenté ou bronze avec un léger halo, comme la pastille de numérotation du site. Ne coûte aucune place et repère les pièces d\'exception dans la grille.', o: { nameTier: true } },
-  { title: 'Zone texte teintée par l\'atout principal', desc: 'Le bas de la vignette prend un dégradé de la couleur de l\'atout principal (vert pour un auto, bleu patch, orange RC) de 22 % d\'intensité, avec les atouts à 13 px. L\'ensemble de la vignette « sent » l\'atout sans ajouter d\'élément.', o: { tint: true, ats: 'big' } },
-  { title: 'Tranche colorée sur le bord bas de la vignette', desc: 'Un trait de 5 px sur le bord inférieur de la vignette, découpé en un segment par atout. Zéro hauteur ajoutée (il est dans la marge), et cela fait un fil de couleur visible sur toute la grille. Atouts en blocs pleins.', o: { edge: true, ats: 'blk' } },
-  { title: 'Petit cartouche du tirage collé au coin de l\'image', desc: 'Le tirage quitte les icônes pour un petit cartouche plein (18 px) collé au coin bas droit de l\'image, aux couleurs de la rareté, comme un numéro de série. Une seule petite surface sur la carte, bien moins qu\'un ruban, et le chiffre se voit même sans lire le texte.', o: { tir: 'corner', ats: 'sqr' } },
-  { title: 'Combinaison complète', desc: 'Atouts en blocs pleins, barre partagée équipe + atouts, tirage encadré, nom coloré pour les tirages rares. Le plus lisible de tous, sans élément sur l\'image et sans hauteur en plus.', o: { ats: 'blk', bar: 'split', tir: 'boxed', nameTier: true } },
-  { title: 'Combinaison discrète mais nette', desc: 'Carrés de couleur + texte blanc, tirage géant en couleur, tranche colorée dans la marge basse. Plus sobre que la précédente, tout en gardant les trois repères : carrés, chiffre, trait.', o: { ats: 'sqr', tir: 'huge', edge: true } },
+const TABS = [['Collection', '599', '🃏'], ['Classeurs', '12', '📒'], ['Objectifs', '3/10', '🎯'], ['Badges', '8', '🏅'], ['Commentaires', '4', '💬']] as const
+const Panel = () => <div className="tb-pn"><div>Joueur, variation…</div><div>Équipe</div></div>
+const Bar = ({ cls, on = 0, render }: { cls: string; on?: number; render: (t: readonly [string, string, string], i: number) => React.ReactNode }) => (
+  <div className={`tb-bar ${cls}`}>{TABS.map((t, i) => <span key={t[0]} className={`tb-t${i === on ? ' on' : ''}`}>{render(t, i)}</span>)}</div>
+)
+const IDEAS: { title: string; desc: string; el: React.ReactNode }[] = [
+  { title: 'Aujourd\'hui, pour comparer', desc: 'Petites icônes emoji, lettres espacées en gras, onglet actif en bleu avec un trait blanc de 3 px. La barre est en dehors du style des titres de la DA (Surfquest) et les emoji varient selon le téléphone.', el: <><Bar cls="tb-0" render={t => <>{t[2]} {t[0]}</>} /></> },
+  { title: 'En Surfquest 24 px, sans emoji, trait blanc de 6 px', desc: 'Les mots passent en Surfquest 24 px (comme les titres du site), plus d\'emoji, l\'onglet actif en blanc avec un trait épais de 6 px qui rejoint le filet de la barre. Même logique que les onglets de la page d\'accueil.', el: <Bar cls="tb-1 sq" render={t => t[0]} /> },
+  { title: 'Segments carrés pleine largeur, onglet actif plein blanc', desc: 'Un contrôle segmenté à double filet qui occupe toute la largeur, chaque onglet de même largeur, l\'actif en bloc blanc plein texte marine. Très net, très DA, et déjà utilisé pour la langue et les vues.', el: <Bar cls="tb-2 sq" render={t => t[0]} /> },
+  { title: 'Onglets avec compteur en Surfquest', desc: 'Chaque onglet affiche le nombre d\'éléments (599 cartes, 12 classeurs, 3/10 objectifs, 8 badges, 4 commentaires) dans une petite étiquette ; celle de l\'onglet actif devient blanche. On voit le contenu sans cliquer.', el: <Bar cls="tb-3 sq" render={t => <>{t[0]}<small>{t[1]}</small></>} /> },
+  { title: 'Onglets « dossier » reliés au panneau de filtres', desc: 'Les onglets ressemblent à des intercalaires : l\'actif a un liseré blanc épais en haut et se fond dans le panneau en dessous (même fond, pas de filet entre eux). La barre et le panneau forment un seul objet au lieu de deux blocs séparés.', el: <><Bar cls="tb-4 sq" render={t => t[0]} /><Panel /></> },
+  { title: 'Bande pleine entre deux filets blancs', desc: 'Une bande sur toute la largeur, filets blancs en haut et en bas, les cinq onglets en parts égales, l\'actif en bloc blanc plein. Ressemble aux bandeaux du reste du site et marque bien la séparation avec le panneau.', el: <Bar cls="tb-5 sq" render={t => t[0]} /> },
+  { title: 'Onglets numérotés 01 · 02 · 03…', desc: 'Chaque onglet a un filet de 3 px au-dessus, un petit numéro « 01 » en capitales espacées puis le nom en Surfquest. L\'actif a le filet et le texte en blanc, les autres sont grisés. Ambiance éditoriale, très DA.', el: <Bar cls="tb-6 sq" render={(t, i) => <><b>{String(i + 1).padStart(2, '0')}</b><span>{t[0]}</span></>} /> },
+  { title: 'Onglets en cases pleines, l\'actif en bleu électrique', desc: 'Chaque onglet est une case à filet fin ; l\'actif passe en bleu électrique avec une légère lueur, comme les boutons de filtre actifs du panneau juste en dessous. Une seule couleur d\'état dans toute la page.', el: <Bar cls="tb-7 sq" render={t => t[0]} /> },
+  { title: 'Grands chiffres : les onglets sont des compteurs', desc: 'Cinq tuiles de même largeur avec le nombre en Surfquest 32 px et le libellé dessous, comme les compteurs de l\'accueil et du profil ; l\'actif en bloc blanc. Informe et navigue en même temps, mais prend 56 px de haut.', el: <Bar cls="tb-8" render={t => <><b>{t[1]}</b><i>{t[0]}</i></>} /> },
+  { title: 'Séparés par des barres obliques, l\'actif souligné', desc: 'Les noms en Surfquest 22 px séparés par de grandes barres obliques grises, l\'actif en blanc souligné de 5 px. Le plus léger et le plus typographique ; ne demande aucun cadre.', el: <div className="tb-bar tb-9 sq">{TABS.map((t, i) => <React.Fragment key={t[0]}>{i > 0 && <span className="sl">/</span>}<span className={`tb-t${i === 0 ? ' on' : ''}`}>{t[0]}</span></React.Fragment>)}</div> },
 ]
 
 export default function DaIdeas() {
@@ -157,16 +107,18 @@ export default function DaIdeas() {
     <div className="ix">
       <style>{CSS}</style>
       <Link href="/admin" className="back">← Admin</Link>
-      <h1 className="sf">Idées · Série 38 · Rendre les atouts plus visibles</h1>
-      <p className="lead">On part de la vignette actuelle en ligne (atouts sous le set, tirage en grand sous les icônes, rien sur la carte) et on cherche à la rendre plus visible sans la grandir : plus gros, texte blanc, fonds pleins, barre de couleur, rareté sur le nom, tranche colorée. Montré sur 4 cartes types avec insert (Fresh Paint, Power Brokers…), set, atouts et tirage.</p>
-      <nav className="tags">{IDEAS.map((t, i) => <a key={t.title} href={`#i${i + 1}`}>{String(i + 1).padStart(2, '0')}</a>)}<a href="#i99">Mobile</a></nav>
+      <h1 className="sf">Idées · Série 39 · La barre des onglets de la galerie</h1>
+      <p className="lead">La barre « Collection · Classeurs · Objectifs · Badges · Commentaires » au-dessus du panneau de filtres. Aujourd&apos;hui : emoji, lettres espacées, actif en bleu avec un trait blanc. Voici des versions plus proches de la DA (Surfquest, filets blancs, angles droits, blocs blancs pleins), avec leur lien visuel au panneau de filtres qui suit. Fait aussi pour le téléphone (5 onglets sur 390 px).</p>
+      <nav className="tags">{IDEAS.map((t, i) => <a key={t.title} href={`#i${i}`}>{String(i).padStart(2, '0')}</a>)}<a href="#i99">Mobile</a></nav>
 
       {IDEAS.map((d, i) => (
-        <Bay key={d.title} id={`i${i + 1}`} n={String(i + 1).padStart(2, '0')} title={d.title} desc={d.desc}><Row>{PCS.map(c => <Cell key={c.n} c={c} o={d.o} />)}</Row></Bay>
+        <Bay key={d.title} id={`i${i}`} n={String(i).padStart(2, '0')} title={d.title} desc={d.desc}><div className="tb-w">{d.el}{i !== 4 && <Panel />}</div></Bay>
       ))}
 
-      <Bay id="i99" n="Mobile" title="Téléphone : les idées 02, 04 et 10 en 2 colonnes" desc="Trois des idées en vignettes de téléphone (2 colonnes) : blocs pleins + tirage doré, barre partagée, combinaison complète. Les tailles de texte descendent à 9-10 px mais les fonds pleins et la barre gardent la lecture."><div style={{ display: 'flex', gap: 18, flexWrap: 'wrap' }}>
-        {[1, 3, 9].map(i => <div key={i} className="vq-ph"><Row>{PCS.map(c => <Cell key={c.n} c={c} o={IDEAS[i].o} />)}</Row></div>)}
+      <Bay id="i99" n="Mobile" title="Téléphone : 3 façons de loger 5 onglets" desc="À gauche : grille de 3 + 2 cases, tout visible, grandes zones tactiles. Au milieu : défilement horizontal avec dégradé de fondu à droite qui laisse deviner la suite, l'actif souligné. À droite : segments serrés en 5 colonnes (noms abrégés : Coll., Class., Obj., Badges, Comm.)."><div style={{ display: 'flex', gap: 18, flexWrap: 'wrap' }}>
+        <div className="tb-ph"><div className="tb-g sq">{TABS.map((t, i) => <span key={t[0]} className={`tb-t${i === 0 ? ' on' : ''}`}>{t[0]}</span>)}</div><Panel /></div>
+        <div className="tb-ph"><div className="tb-sc sq">{TABS.map((t, i) => <span key={t[0]} className={`tb-t${i === 0 ? ' on' : ''}`}>{t[0]}</span>)}</div><Panel /></div>
+        <div className="tb-ph"><div className="tb-sg sq">{['Coll.', 'Class.', 'Obj.', 'Badges', 'Comm.'].map((t, i) => <span key={t} className={`tb-t${i === 0 ? ' on' : ''}`}>{t}</span>)}</div><Panel /></div>
       </div></Bay>
     </div>
   )
