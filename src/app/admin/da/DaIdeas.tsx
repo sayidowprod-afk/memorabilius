@@ -81,6 +81,19 @@ const CSS = `
 .ix .b6 { --bg-b: radial-gradient(ellipse 85% 70% at 50% 45%, color-mix(in srgb, var(--gt) 28%, transparent), transparent 75%); }
 .ix .b7 { background: linear-gradient(180deg, #0a1330 52%, color-mix(in srgb, var(--gt) 24%, #0a1330) 100%); }
 .ix .b8 { background: linear-gradient(180deg, #0a1330 40%, color-mix(in srgb, var(--gt) 20%, #0a1330) 100%); } .ix .b8 .bar { order: 9; position: absolute; left: 0; right: 0; bottom: 0; margin: 0; height: 4px; }
+/* D : style de la barre defilante de l'accueil (police grasse espacee, etoiles, mouvement) */
+@keyframes mq41 { to { transform: translateX(-50%); } }
+@keyframes tw41 { 0%, 100% { opacity: .35; transform: scale(.8); } 50% { opacity: 1; transform: scale(1.15); } }
+@keyframes gl41 { 0% { transform: translateX(-120%); } 55%, 100% { transform: translateX(260%); } }
+.ix .gs.mqs { overflow: hidden; align-items: center; background: var(--mb, #003DA6); box-shadow: inset 0 1px 0 rgba(255,255,255,.3), inset 0 -1px 0 rgba(0,0,0,.3); }
+.ix .gs.mqs.slim { height: 14px; }
+.ix .mq { display: flex; width: max-content; animation: mq41 var(--d, 11s) linear infinite; }
+.ix .mq > span { display: flex; align-items: center; white-space: nowrap; font: 900 10px/1 system-ui; letter-spacing: .16em; text-transform: uppercase; color: #fff; padding-right: 0; }
+.ix .gs.slim .mq > span { font-size: 8.5px; }
+.ix .mq b { font-weight: 900; } .ix .mq i { font-style: normal; margin: 0 9px; font-size: 10px; color: #fff; }
+.ix .gs.sv-star .s { gap: 6px; } .ix .gs.sv-star .s::before, .ix .gs.sv-star .s::after { content: '✦'; font-size: 8px; animation: tw41 2.4s ease-in-out infinite; } .ix .gs.sv-star .s::after { animation-delay: 1.2s; }
+.ix .gs.sv-glint .s { position: relative; overflow: hidden; } .ix .gs.sv-glint .s::after { content: ''; position: absolute; top: 0; bottom: 0; width: 40%; left: 0; background: linear-gradient(100deg, transparent, rgba(255,255,255,.55), transparent); transform: translateX(-120%); animation: gl41 3.6s ease-in-out infinite; } .ix .gs.sv-glint .s:nth-child(2)::after { animation-delay: .35s; } .ix .gs.sv-glint .s:nth-child(3)::after { animation-delay: .7s; } .ix .gs.sv-glint .s:nth-child(4)::after { animation-delay: 1.05s; }
+@media (prefers-reduced-motion: reduce) { .ix .mq, .ix .gs.sv-star .s::before, .ix .gs.sv-star .s::after, .ix .gs.sv-glint .s::after { animation: none; } }
 @media (max-width: 900px) { .ix .v4-row { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
 `
 function Bay({ id, n, title, desc, children }: { id: string; n: string; title: string; desc: string; children: React.ReactNode }) {
@@ -124,13 +137,15 @@ const fillNode = (c: PC, f: Fill): React.ReactNode => {
   const t = f === 'year' ? c.y : f === 'brand' ? c.br : f === 'num' ? c.no : f === 'sport' ? 'Basketball' : c.v
   return <span className={`s ${f === 'insert' ? 'insert' : 'ghost'}`}>{t}</span>
 }
-const Cell = ({ c, sv = 1, fill = 'year', b = 1 }: { c: PC; sv?: number; fill?: Fill; b?: number }) => {
+const Cell = ({ c, sv = 1, fill = 'year', b = 1, strip, svc }: { c: PC; sv?: number; fill?: Fill; b?: number; strip?: React.ReactNode; svc?: string }) => {
   const segs = segsOf(c)
   return (
     <div className={`v4 b${b}`} style={{ ['--gt' as string]: c.tc, ['--tc' as string]: c.tc } as CSSProperties}>
-      <div className={`gs sv-${sv}${!segs.length && fill === 'none' ? ' none' : ''}`}>
-        {segs.length ? segs.map(s => <span key={s.k} className="s" style={segStyle(s)}>{s.t}</span>) : fillNode(c, fill)}
-      </div>
+      {strip ?? (
+        <div className={`gs sv-${sv}${svc ? ' ' + svc : ''}${!segs.length && fill === 'none' ? ' none' : ''}`}>
+          {segs.length ? segs.map(s => <span key={s.k} className="s" style={segStyle(s)}>{s.t}</span>) : fillNode(c, fill)}
+        </div>
+      )}
       <div className="ph"><img src={c.img} alt="" /></div>
       <div className="bar" />
       <div className="bt"><div className="nm"><img src={`/team-logos/nba-${c.tm}.png`} alt="" /><span>{c.n}</span></div>{c.v && <div className="vr">{c.v}</div>}<div className="st">{c.s}</div><Ic /></div>
@@ -138,6 +153,32 @@ const Cell = ({ c, sv = 1, fill = 'year', b = 1 }: { c: PC; sv?: number; fill?: 
   )
 }
 const Row = ({ children }: { children: React.ReactNode }) => <div className="v4-row">{children}</div>
+
+const Mq = ({ c, slim, team, color }: { c: PC; slim?: boolean; team?: boolean; color?: boolean }) => {
+  const segs = segsOf(c)
+  if (!segs.length) return <div className="gs"><span className="s ghost">{c.y}</span></div>
+  const unit = (
+    <span>
+      {[0, 1, 2].map(r => (
+        <React.Fragment key={r}>
+          {segs.map(s => <React.Fragment key={s.k}><b style={color ? { color: mix(s.c, 0.45) } : undefined}>{s.t}</b><i>✦</i></React.Fragment>)}
+        </React.Fragment>
+      ))}
+    </span>
+  )
+  return (
+    <div className={`gs mqs${slim ? ' slim' : ''}`} style={team ? ({ ['--mb' as string]: `color-mix(in srgb, ${c.tc} 60%, #0a1330)` } as CSSProperties) : undefined}>
+      <div className="mq" style={{ ['--d' as string]: `${8 + segs.length * 2}s` } as CSSProperties}>{unit}{unit}</div>
+    </div>
+  )
+}
+const MQ_DEFS: { title: string; desc: string; strip: (c: PC) => React.ReactNode; svc?: string; sv?: number }[] = [
+  { title: 'Barre défilante bleue de l\'accueil, atouts en blanc', desc: 'La même barre que sur l\'accueil : fond bleu de la marque, police grasse en capitales très espacées, étoiles à quatre branches (✦) entre chaque mot, et le texte défile en boucle. Les atouts s\'écrivent « RC ✦ AUTO ✦ /25 ✦ RC ✦ AUTO… » : un seul atout suffit à remplir la barre.', strip: c => <Mq c={c} /> },
+  { title: 'Barre défilante, mots dans leur couleur', desc: 'Même barre bleue, mais chaque atout garde sa couleur (RC orange, AUTO vert, PATCH bleu clair, tirage violet ou doré) avec les étoiles blanches. On garde le code couleur sans plein de couleur : le bandeau reste uniformément bleu.', strip: c => <Mq c={c} color /> },
+  { title: 'Barre défilante fine (14 px), aux couleurs de l\'équipe', desc: 'Version plus fine de 14 px dont le fond reprend la couleur de l\'équipe de la carte (mélangée au bleu de base). Le bandeau et le dégradé du bas parlent alors de la même équipe.', strip: c => <Mq c={c} slim team /> },
+  { title: 'Segments colorés avec étoiles qui scintillent', desc: 'On garde les segments égaux de la version actuelle (un par atout), mais chacun est encadré de deux étoiles ✦ qui scintillent doucement en alternance (2,4 s). Pas de défilement : seulement un peu de vie.', strip: () => null, svc: 'sv-star' },
+  { title: 'Segments colorés avec reflet qui passe', desc: 'Segments actuels, avec un reflet de lumière diagonal qui traverse chacun toutes les 3,6 s, l\'un après l\'autre (décalés de 0,35 s), comme un badge métallique qu\'on incline. Aucune étoile, juste le mouvement.', strip: () => null, svc: 'sv-glint' },
+]
 
 const STRIPS = [
   ['Actuel (dégradé fin, relief)', 'Le bandeau tel qu\'il est en ligne : 17 px, dégradé vertical, filet de relief, lettres espacées.'],
@@ -178,9 +219,10 @@ export default function DaIdeas() {
       <style>{CSS}</style>
       <Link href="/admin" className="back">← Admin</Link>
       <h1 className="sf">Idées · Série 41 · Bandeau, espace vide, dégradé</h1>
-      <p className="lead">Trois chantiers sur les vignettes de la galerie, montrés sur 5 cartes (1, 2, 3 et 4 atouts, et une sans atout) avec des équipes de couleurs différentes : A. rendre le bandeau d&apos;atouts plus beau et plus fin (10 variantes) ; B. remplir la rangée quand il n&apos;y a aucun atout (8 façons) ; C. mieux intégrer le dégradé du bas à la couleur d&apos;équipe (8 façons).</p>
-      <nav className="tags">{STRIPS.map((_, i) => <a key={i} href={`#a${i + 1}`}>A{i + 1}</a>)}{FILLS.map((_, i) => <a key={i} href={`#b${i + 1}`}>B{i + 1}</a>)}{BOTS.map((_, i) => <a key={i} href={`#c${i + 1}`}>C{i + 1}</a>)}</nav>
+      <p className="lead">Nouveau, en tête de page (D1 à D5) : le bandeau dans le style de la barre défilante de l&apos;accueil (police grasse espacée, étoiles ✦, mouvement). Puis trois chantiers sur les vignettes de la galerie, montrés sur 5 cartes (1, 2, 3 et 4 atouts, et une sans atout) avec des équipes de couleurs différentes : A. rendre le bandeau d&apos;atouts plus beau et plus fin (10 variantes) ; B. remplir la rangée quand il n&apos;y a aucun atout (8 façons) ; C. mieux intégrer le dégradé du bas à la couleur d&apos;équipe (8 façons).</p>
+      <nav className="tags">{MQ_DEFS.map((_, i) => <a key={`d${i}`} href={`#d${i + 1}`}>D{i + 1}</a>)}{STRIPS.map((_, i) => <a key={i} href={`#a${i + 1}`}>A{i + 1}</a>)}{FILLS.map((_, i) => <a key={i} href={`#b${i + 1}`}>B{i + 1}</a>)}{BOTS.map((_, i) => <a key={i} href={`#c${i + 1}`}>C{i + 1}</a>)}</nav>
 
+      {MQ_DEFS.map((d, i) => <Bay key={d.title} id={`d${i + 1}`} n={`D${i + 1}`} title={d.title} desc={d.desc}><Row>{PCS.map(c => <Cell key={c.n} c={c} svc={d.svc} strip={i < 3 ? d.strip(c) : undefined} />)}</Row></Bay>)}
       {STRIPS.map((d, i) => <Bay key={d[0]} id={`a${i + 1}`} n={`A${i + 1}`} title={d[0]} desc={d[1]}><Row>{PCS.map(c => <Cell key={c.n} c={c} sv={i + 1} />)}</Row></Bay>)}
       {FILLS.map((d, i) => <Bay key={d[1]} id={`b${i + 1}`} n={`B${i + 1}`} title={d[1]} desc={d[2]}><Row>{PCS.map(c => <Cell key={c.n} c={c} fill={d[0]} />)}</Row></Bay>)}
       {BOTS.map((d, i) => <Bay key={d[0]} id={`c${i + 1}`} n={`C${i + 1}`} title={d[0]} desc={d[1]}><Row>{PCS.map(c => <Cell key={c.n} c={c} b={i + 1} />)}</Row></Bay>)}
