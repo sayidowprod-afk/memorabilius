@@ -1893,6 +1893,7 @@ export default function GalerieClient({ userId, initialCardUrl, initialCards, in
       <div key={tag}>
         <div style={{ position: 'relative', display: 'inline-flex', alignItems: 'center', gap: 3 }}>
           <button
+            className={highlighted ? 'gf-ch on' : 'gf-ch'}
             onClick={(e) => {
               e.stopPropagation()
               setFCollectionTag(isActive ? '' : tag)
@@ -1920,6 +1921,7 @@ export default function GalerieClient({ userId, initialCardUrl, initialCards, in
             )}
             {isOwner && (
               <span
+                className="gf-edit"
                 onClick={(e) => {
                   e.stopPropagation()
                   const r = (e.currentTarget as HTMLElement).getBoundingClientRect()
@@ -2670,8 +2672,8 @@ export default function GalerieClient({ userId, initialCardUrl, initialCards, in
             espace vide) sans pouvoir les déboguer en direct (natif only).
             Retour à un bloc simple et fiable — le gain de confort du sticky ne
             valait pas l'instabilité que ça causait. */}
-        <div style={{ background: dark ? '#1e1e1e' : '#fff', padding: 10, borderRadius: 8, marginBottom: 15, border: dark ? '1px solid #333' : '1px solid #eee' }}>
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2,1fr)', gap: 8, marginBottom: 10 }}>
+        <div className="gf-panel" style={{ background: dark ? '#1e1e1e' : '#fff', padding: 10, borderRadius: 8, marginBottom: 15, border: dark ? '1px solid #333' : '1px solid #eee' }}>
+          <div className="gf-two" style={{ display: 'grid', gridTemplateColumns: 'repeat(2,1fr)', gap: 8, marginBottom: 10 }}>
             <div>
             <div style={{ position: 'relative' }}>
               <input ref={searchInputRef} value={searchInput} onChange={e => {
@@ -2712,32 +2714,32 @@ export default function GalerieClient({ userId, initialCardUrl, initialCards, in
             </div>
           </div>
 
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4,1fr)', gap: 5, marginBottom: 10 }}>
+          <div className="gf-g4" style={{ display: 'grid', gridTemplateColumns: 'repeat(4,1fr)', gap: 5, marginBottom: 10 }}>
             {(['rc', 'auto', 'num', 'patch'] as const).map(k => (
-              <button key={k} onClick={() => toggleFilter(k)} style={{
+              <button key={k} className={activeFilters[k] ? 'gf-b on' : 'gf-b'} data-k={k} onClick={() => toggleFilter(k)} style={{
                 padding: '8px 2px', border: 'none', borderRadius: 6, cursor: 'pointer', fontSize: 9, fontWeight: 800, textTransform: 'uppercase',
                 background: activeFilters[k] ? TAG_COLORS[k] : (dark ? '#2a2a2a' : '#f0f0f0'), color: activeFilters[k] ? 'white' : (dark ? '#bbb' : '#333')
               }}>{activeFilters[k] && <span className="selection-check-pop">✓ </span>}{k === 'num' ? '# NUM' : k.toUpperCase()}</button>
             ))}
           </div>
-          <div style={{ display: 'grid', gridTemplateColumns: isOwner ? 'repeat(3,1fr)' : 'repeat(2,1fr)', gap: 5, marginBottom: 10 }}>
-            <button onClick={() => setFilterMemo(p => !p)} style={{
+          <div className="gf-g3" style={{ display: 'grid', gridTemplateColumns: isOwner ? 'repeat(3,1fr)' : 'repeat(2,1fr)', gap: 5, marginBottom: 10 }}>
+            <button className={filterMemo ? 'gf-b on' : 'gf-b'} onClick={() => setFilterMemo(p => !p)} style={{
               padding: '8px 2px', border: 'none', borderRadius: 6, cursor: 'pointer', fontSize: 9, fontWeight: 800, textTransform: 'uppercase',
               background: filterMemo ? '#7b1fa2' : (dark ? '#2a2a2a' : '#f0f0f0'), color: filterMemo ? 'white' : (dark ? '#bbb' : '#333')
             }}>{filterMemo && <span className="selection-check-pop">✓ </span>}🏆 {t('gallery_filter_memo')}</button>
-            <button onClick={() => setFilterVente(p => !p)} style={{
+            <button className={filterVente ? 'gf-b on' : 'gf-b'} onClick={() => setFilterVente(p => !p)} style={{
               padding: '8px 2px', border: 'none', borderRadius: 6, cursor: 'pointer', fontSize: 9, fontWeight: 800, textTransform: 'uppercase',
               background: filterVente ? '#2e7d32' : (dark ? '#2a2a2a' : '#f0f0f0'), color: filterVente ? 'white' : (dark ? '#bbb' : '#333')
             }}>{filterVente && <span className="selection-check-pop">✓ </span>}🏷️ {t('gallery_filter_sale')}</button>
             {isOwner && (
-              <button onClick={() => setFilterPrivate(p => !p)} style={{
+              <button className={filterPrivate ? 'gf-b on' : 'gf-b'} onClick={() => setFilterPrivate(p => !p)} style={{
                 padding: '8px 2px', border: 'none', borderRadius: 6, cursor: 'pointer', fontSize: 9, fontWeight: 800, textTransform: 'uppercase',
                 background: filterPrivate ? '#555' : (dark ? '#2a2a2a' : '#f0f0f0'), color: filterPrivate ? 'white' : (dark ? '#bbb' : '#333')
               }}>{filterPrivate && <span className="selection-check-pop">✓ </span>}🔒 {t('gallery_filter_private')}</button>
             )}
           </div>
 
-          <button type="button" onClick={() => setShowAdvancedFilters(v => !v)} style={{
+          <button type="button" className={advancedVisible ? 'gf-adv open' : 'gf-adv'} onClick={() => setShowAdvancedFilters(v => !v)} style={{
             display: 'flex', alignItems: 'center', gap: 6, background: 'none', border: 'none', cursor: 'pointer',
             fontSize: 11, fontWeight: 800, color: dark ? '#aaa' : '#666', padding: '4px 0', marginBottom: advancedVisible ? 10 : 0,
           }}>
@@ -2858,15 +2860,15 @@ export default function GalerieClient({ userId, initialCardUrl, initialCards, in
           </div>
           </>}
           {allDefinedTags.length > 0 && (
-            <div style={{ marginTop: 8 }} onClick={() => colorPickerTag && setColorPickerTag(null)}>
-              <label style={{ fontSize: 9, fontWeight: 800, textTransform: 'uppercase', color: '#888', display: 'block', marginBottom: 5 }}>
+            <div className="gf-cols" style={{ marginTop: 8 }} onClick={() => colorPickerTag && setColorPickerTag(null)}>
+              <label className="gf-lbl" style={{ fontSize: 9, fontWeight: 800, textTransform: 'uppercase', color: '#888', display: 'block', marginBottom: 5 }}>
                 {t('gallery_my_collection')}
                 {isOwner && <span style={{ fontSize: 8, color: '#bbb', marginLeft: 6, fontWeight: 600 }}>
                   {t('gallery_drag_reorder')}
                 </span>}
               </label>
               <div style={{ display: 'flex', gap: 6, flexWrap: 'wrap', alignItems: 'center' }}>
-                <button onClick={() => setFCollectionTag('')} style={{
+                <button className={!fCollectionTag ? 'gf-ch on' : 'gf-ch'} onClick={() => setFCollectionTag('')} style={{
                   padding: '5px 12px', border: 'none', borderRadius: 20, cursor: 'pointer',
                   fontSize: 11, fontWeight: 700,
                   background: !fCollectionTag ? accent : (dark ? '#2a2a2a' : '#f0f0f0'),
@@ -2876,7 +2878,7 @@ export default function GalerieClient({ userId, initialCardUrl, initialCards, in
                 </button>
                 {visiblePrincipals.map(tag => renderTagPill(tag, 0))}
                 {hiddenTagsCount > 0 && !activeTagIsHidden && (
-                  <button onClick={() => setShowAllCollectionTags(v => !v)} style={{
+                  <button className="gf-ch" onClick={() => setShowAllCollectionTags(v => !v)} style={{
                     padding: '5px 12px', border: 'none', borderRadius: 20, cursor: 'pointer',
                     fontSize: 11, fontWeight: 700, background: dark ? '#2a2a2a' : '#f0f0f0', color: dark ? '#ccc' : '#555',
                   }}>
@@ -2885,6 +2887,7 @@ export default function GalerieClient({ userId, initialCardUrl, initialCards, in
                 )}
                 {isOwner && (
                   <button
+                    className="gf-add"
                     onClick={async () => {
                       const name = prompt(t('gallery_new_collection_prompt'))?.trim()
                       if (!name || collectionTags.includes(name)) return
@@ -2905,7 +2908,7 @@ export default function GalerieClient({ userId, initialCardUrl, initialCards, in
                 )}
               </div>
               {activeChildren.length > 0 && (
-                <div style={{ marginTop: 6, paddingLeft: 10, borderLeft: `3px solid ${activeParentColor}`, display: 'flex', gap: 6, flexWrap: 'wrap', alignItems: 'center' }}>
+                <div className="gf-sub" style={{ marginTop: 6, paddingLeft: 10, borderLeft: `3px solid ${activeParentColor}`, display: 'flex', gap: 6, flexWrap: 'wrap', alignItems: 'center' }}>
                   <button
                     onClick={() => setFCollectionTag(activeParent!)}
                     style={{
