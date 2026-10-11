@@ -3473,7 +3473,7 @@ export default function GalerieClient({ userId, initialCardUrl, initialCards, in
                   if (d.patch) bans.push({ k: 'patch', t: 'Patch', c: TAG_BASE.patch })
                   if (d.printing_plate) bans.push({ k: 'plate', t: 'Plate', c: '#374151' })
                   const tier = numTier(d.num)
-                  const tc = tier === 'gold' ? '#ffd54a' : tier === 'silver' ? '#dfe6f2' : tier === 'bronze' ? '#e0925a' : '#8fb4ff'
+                  const tc = tier === 'gold' ? '#ffd54a' : tier === 'silver' ? '#dfe6f2' : tier === 'bronze' ? '#e0925a' : '#d62839'
                   return (
                     <>
                       {bans.length > 0 && (
@@ -3481,7 +3481,7 @@ export default function GalerieClient({ userId, initialCardUrl, initialCards, in
                           {bans.map(b => <span key={b.k} className="gb-b" style={{ background: b.c }}>{b.t}</span>)}
                         </div>
                       )}
-                      {d.num && <div className="gb-bt da-display" title={`Numérotation : ${d.num}`} style={{ background: tc, boxShadow: tier !== 'std' ? `0 0 14px ${tc}88` : undefined }}>{numShort(d.num)}</div>}
+                      {d.num && <div className="gb-bt da-display" title={`Numérotation : ${d.num}`} style={{ background: tc, color: tier === 'std' ? '#fff' : '#1a1000', boxShadow: `0 0 14px ${tc}88` }}>{numShort(d.num)}</div>}
                     </>
                   )
                 })()}
