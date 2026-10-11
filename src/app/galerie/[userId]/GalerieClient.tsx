@@ -3496,7 +3496,7 @@ export default function GalerieClient({ userId, initialCardUrl, initialCards, in
                     {barColor && teamMark(d.t, 24, 'gc-med')}
                     {ats.length > 0 && (
                       <div className="gs-strip" aria-label={ats.map(x => x.t).join(' ')}>
-                        <div className="gs-seg" style={{ ['--d' as string]: `${30 + ats.length * 4}s`, background: ats.length === 1 ? `linear-gradient(180deg, ${mix(ats[0].c, 0.22)} 0%, ${ats[0].c} 55%, ${mix(ats[0].c, -0.22)} 100%)` : `linear-gradient(90deg, ${ats.map(x => x.c).join(', ')})` }}>
+                        <div className="gs-seg" style={{ ['--d' as string]: `${30 + ats.length * 4}s`, background: ats.length === 1 ? `linear-gradient(180deg, ${mix(ats[0].c, -0.08)} 0%, ${mix(ats[0].c, -0.28)} 55%, ${mix(ats[0].c, -0.42)} 100%)` : `linear-gradient(90deg, ${ats.map(x => mix(x.c, -0.3)).join(', ')})` }}>
                           <div className="gs-mq">{unit('a')}{unit('b')}</div>
                         </div>
                       </div>
