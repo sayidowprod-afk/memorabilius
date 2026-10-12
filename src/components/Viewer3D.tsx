@@ -986,6 +986,10 @@ export default function Viewer3D({ popup, accent, onClose, onNext, onPrev, getTa
         .viewer-info h2.v3d-name { font-size: clamp(3rem, 5.2vw, 4.6rem) !important; line-height: 0.92; letter-spacing: 0.01em; margin: 6px 0 8px !important; }
         @media (max-width: 600px) { .viewer-info h2.v3d-name { font-size: 2.5rem !important; } .v3d-var { font-size: 1.25rem; } .v3d-grid .viewer-info-value { font-size: 17px !important; } }
         .v3d-btns { grid-template-columns: repeat(3, 1fr) !important; gap: 6px !important; }
+        /* Visiteur : 1, 2 ou 4 boutons seulement -> ils se partagent toute la largeur au lieu de laisser une colonne vide */
+        .v3d-btns:not(:has(> :nth-child(2))) { grid-template-columns: 1fr !important; }
+        .v3d-btns:has(> :nth-child(2)):not(:has(> :nth-child(3))) { grid-template-columns: repeat(2, 1fr) !important; }
+        .v3d-btns:has(> :nth-child(4)):not(:has(> :nth-child(5))) { grid-template-columns: repeat(2, 1fr) !important; }
         .v3d-btns > a, .v3d-btns > button, .v3d-btns > div > button:first-child { border-radius: 0 !important; padding: 11px 4px !important; font-size: 12px !important; white-space: normal !important; line-height: 1.15; min-height: 44px; text-align: center; }
         .v3d-btns > div { display: flex; flex-direction: column; } .v3d-btns > div > button:first-child { flex: 1; }
         .v3d-fold { display: flex; align-items: center; gap: 10px; width: 100%; background: none; border: 0; padding: 4px 0; cursor: pointer; font: inherit; text-align: left; }
