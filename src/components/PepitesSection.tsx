@@ -11,23 +11,19 @@ interface Card {
   num: string; collector: string; userId: string; isHorizontal: boolean
 }
 
-function PepiteCard({ card, eager, dark }: { card: Card; eager: boolean; dark: boolean }) {
+function PepiteCard({ card, eager }: { card: Card; eager: boolean; dark?: boolean }) {
   return (
-    <Link href={`/galerie/${card.userId}?card=${encodeURIComponent(card.img)}`} draggable={false} className="pepite-tilt" style={{
-      flex: '0 0 auto', width: 'clamp(118px, 15vw, 190px)',
-      background: dark ? '#1e1e1e' : 'white', borderRadius: 10, overflow: 'hidden',
-      border: dark ? '1px solid #2a2a2a' : '1px solid #eee', textDecoration: 'none', display: 'block',
+    <Link href={`/galerie/${card.userId}?card=${encodeURIComponent(card.img)}`} draggable={false} className="pepite-tilt pepite-card" style={{
+      flex: '0 0 auto', width: 'clamp(118px, 15vw, 190px)', textDecoration: 'none', display: 'block',
     }}>
       <div style={{ aspectRatio: '2.5/3.5', overflow: 'hidden', position: 'relative' }}>
         <img src={card.img} alt={card.name} loading={eager ? 'eager' : 'lazy'} fetchPriority={eager ? 'high' : 'auto'} draggable={false}
-          style={card.isHorizontal ? { position: 'absolute', width: '140%', height: '71.43%', left: '-20%', top: '14.286%', transform: 'rotate(90deg)', objectFit: 'cover' } : { width: '100%', height: '100%', objectFit: 'cover' }} />
+          style={card.isHorizontal ? { position: 'absolute', width: '140%', height: '71.43%', left: '-20%', top: '14.286%', transform: 'rotate(90deg)', objectFit: 'cover' } : { width: '100%', height: '100%', objectFit: 'cover', display: 'block' }} />
       </div>
-      <div style={{ padding: '7px 8px' }}>
-        <div style={{ display: 'flex', gap: 3, flexWrap: 'wrap', marginBottom: 4 }}>
-          <CardTagBadges rc={card.rc} auto={card.auto} patch={card.patch} num={card.num} size="xs" />
-        </div>
-        <p style={{ fontWeight: 800, fontSize: 11, margin: 0, whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis', color: dark ? '#fff' : '#121212' }}>{card.name}</p>
-        <p style={{ fontSize: 9, color: '#999', margin: '2px 0 0', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>{card.year} {card.brand}</p>
+      <div className="pc-foot">
+        <div className="pc-tags"><CardTagBadges rc={card.rc} auto={card.auto} patch={card.patch} num={card.num} size="xs" /></div>
+        <p className="pc-name da-display">{card.name}</p>
+        <p className="pc-sub">{card.year} {card.brand}</p>
       </div>
     </Link>
   )
@@ -56,22 +52,34 @@ export default function PepitesSection({ cards }: { cards: Card[] }) {
     if (!track) return
     let raf: number | null = null
     let visible = true
+    // scrollLeft est arrondi a l'entier par certains navigateurs (zoom 100 %, ecrans non Retina) : ajouter 0.5 a chaque image etait aussitot perdu et la
+    // rangee ne bougeait plus. On garde donc la position en flottant et on avance selon le temps ecoule (30 px/s).
+    let pos = track.scrollLeft
+    let lastSet = pos
+    let last = performance.now()
 
-    const step = () => {
+    const step = (now: number) => {
+      const dt = Math.min(50, now - last)
+      last = now
       if (!pausedRef.current) {
         const singleSetWidth = track.scrollWidth / 2
         if (singleSetWidth > 0) {
-          let next = track.scrollLeft + 0.5
-          if (next >= singleSetWidth) next -= singleSetWidth
-          track.scrollLeft = next
+          if (Math.abs(track.scrollLeft - lastSet) > 1.5) pos = track.scrollLeft // l'utilisateur a fait glisser : on repart de la ou il est
+          pos += dt * 0.03
+          if (pos >= singleSetWidth) pos -= singleSetWidth
+          track.scrollLeft = pos
+          lastSet = track.scrollLeft
         }
+      } else {
+        pos = track.scrollLeft
+        lastSet = pos
       }
       raf = visible ? requestAnimationFrame(step) : null
     }
 
     const observer = new IntersectionObserver(([entry]) => {
       visible = entry.isIntersecting
-      if (visible && raf === null) raf = requestAnimationFrame(step)
+      if (visible && raf === null) { last = performance.now(); raf = requestAnimationFrame(step) }
     }, { threshold: 0 })
     observer.observe(track)
 
@@ -158,8 +166,8 @@ export default function PepitesSection({ cards }: { cards: Card[] }) {
           padding: '10px 16px 16px',
         }}
       >
-        {cards.map((card, i) => <PepiteCard key={`a-${i}`} card={card} eager={i === 0} dark={dark} />)}
-        {cards.map((card, i) => <PepiteCard key={`b-${i}`} card={card} eager={false} dark={dark} />)}
+        {cards.map((card, i) => <PepiteCard key={`a-${i}`} card={card} eager={i === 0} />)}
+        {cards.map((card, i) => <PepiteCard key={`b-${i}`} card={card} eager={false} />)}
       </div>
     </section>
   )

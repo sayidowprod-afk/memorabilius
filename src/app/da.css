@@ -969,3 +969,11 @@ html[data-theme="light"] .tcdb-imp-open { border-color: #06122e; color: #06122e;
 .gs-w { position: relative; padding: 0 18px 1px 17px; margin-right: -1px; text-shadow: 0 1px 1px rgba(0, 0, 0, .35); }
 /* margin-right -1px : les blocs se chevauchent d'un pixel, sinon un trait sombre vertical apparait entre deux blocs quand leur largeur tombe sur un demi-pixel */
 .gs-w i { position: absolute; right: 0; top: 50%; transform: translate(50%, calc(-50% - .5px)); z-index: 2; margin: 0; font-style: normal; font-size: 10px; line-height: 1; color: inherit !important; }
+
+/* Dernieres pepites : cartes dans la nouvelle DA (angles droits, cadre fin, nom en Surfquest) */
+.pepite-card { border: 2px solid var(--text); background: var(--card-bg); border-radius: 0 !important; overflow: hidden; }
+.pepite-card .pc-foot { padding: 8px 9px 9px; border-top: 2px solid var(--text); display: flex; flex-direction: column; gap: 4px; min-height: 70px; }
+.pepite-card .pc-tags { display: flex; gap: 3px; flex-wrap: wrap; min-height: 18px; align-items: center; }
+.pepite-card .pc-name { margin: 0; font-size: 16px; line-height: 1; letter-spacing: .02em; color: var(--text); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.pepite-card .pc-sub { margin: 0; font: 600 10px system-ui, sans-serif; color: var(--text2); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.pepite-card.pepite-tilt:hover { transform: translateY(-4px); box-shadow: 0 10px 24px rgba(0, 0, 0, .35); }
