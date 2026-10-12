@@ -2,7 +2,7 @@
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import { useEffect, useState } from 'react'
-import { useIsNative } from '@/lib/useIsNative'
+import { useIsAppUI } from '@/lib/useIsNative'
 import { useAuth } from '@/lib/AuthContext'
 import { supabase } from '@/lib/supabase'
 import { useLang } from '@/lib/LangContext'
@@ -40,7 +40,7 @@ function IconButton({ href, badge, children, alignRight, ariaLabel }: { href: st
 }
 
 export default function MobileTopBar() {
-  const isNative = useIsNative()
+  const isApp = useIsAppUI()
   const { user } = useAuth()
   const { t } = useLang()
   const pathname = usePathname()
@@ -55,29 +55,29 @@ export default function MobileTopBar() {
   }
 
   useEffect(() => {
-    if (!user || !isNative) { setNotifCount(0); setChatCount(0); return }
+    if (!user || !isApp) { setNotifCount(0); setChatCount(0); return }
     loadCounts(user.id)
-  }, [user?.id, isNative])
+  }, [user?.id, isApp])
 
   // Re-vérifie à chaque changement de page (ex: retour de /messages après avoir
   // lu ses messages) — sans ça le badge de la barre du haut restait figé sur
   // le nombre au lancement de l'app jusqu'à un redémarrage complet, qu'on ait
   // lu les messages/notifs ou qu'il en arrive de nouveaux entre-temps.
   useEffect(() => {
-    if (!user || !isNative) return
+    if (!user || !isApp) return
     loadCounts(user.id)
-  }, [pathname, user?.id, isNative])
+  }, [pathname, user?.id, isApp])
 
   useEffect(() => {
-    if (!user || !isNative) return
+    if (!user || !isApp) return
     const channel = supabase.channel(`top-bar-badges-${user.id}`)
       .on('postgres_changes', { event: '*', schema: 'public', table: 'messages', filter: `to_user_id=eq.${user.id}` }, () => loadCounts(user.id))
       .on('postgres_changes', { event: '*', schema: 'public', table: 'notifications', filter: `user_id=eq.${user.id}` }, () => loadCounts(user.id))
       .subscribe()
     return () => { supabase.removeChannel(channel) }
-  }, [user?.id, isNative])
+  }, [user?.id, isApp])
 
-  if (!isNative) return null
+  if (!isApp) return null
 
   const scrollsAway = GALLERY_ROOT.test(pathname)
 

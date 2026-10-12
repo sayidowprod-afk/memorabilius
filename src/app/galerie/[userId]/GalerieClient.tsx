@@ -35,7 +35,7 @@ import { InstagramIcon, XIcon, DiscordIcon } from '@/components/SocialIcons'
 const CollectorCard = dynamic(() => import('@/components/CollectorCard'), { ssr: false })
 import { hapticTap } from '@/lib/haptics'
 import { saveOrShareFile } from '@/lib/saveOrShare'
-import { useIsNative } from '@/lib/useIsNative'
+import { useIsNative, useIsAppUI } from '@/lib/useIsNative'
 import { NAV_TOTAL_HEIGHT_CSS } from '@/lib/nativeLayout'
 import { getCsvCardSharePath } from '@/lib/csvCardShortLink'
 import { useDebouncedValue } from '@/lib/useDebouncedValue'
@@ -676,6 +676,7 @@ export default function GalerieClient({ userId, initialCardUrl, initialCards, in
   const { t, lang } = useLang()
   const { dark } = useTheme()
   const isNative = useIsNative()
+  const isApp = useIsAppUI()
   const cardParam = searchParams.get('card')
   // Bouton flottant "re-randomiser" : visible seulement si on arrive ici via
   // le bouton "Carte aleatoire" d'une page d'equipe (voir teams/[teamId]/page.tsx),
@@ -2747,9 +2748,9 @@ export default function GalerieClient({ userId, initialCardUrl, initialCards, in
                   setNlpHint(hints)
                   setSearch(parsed.text)
                 }, 200)
-              }} placeholder={t('gallery_search')} aria-label={t('gallery_search_label')} style={{ width: '100%', boxSizing: 'border-box', paddingRight: !isNative && !searchInput ? 26 : undefined }} />
+              }} placeholder={t('gallery_search')} aria-label={t('gallery_search_label')} style={{ width: '100%', boxSizing: 'border-box', paddingRight: !isApp && !searchInput ? 26 : undefined }} />
               {/* Indice de raccourci clavier "/" — desktop web uniquement, aucun sens sur natif (pas de clavier physique) */}
-              {!isNative && !searchInput && (
+              {!isApp && !searchInput && (
                 <kbd aria-hidden="true" style={{
                   position: 'absolute', right: 8, top: '50%', transform: 'translateY(-50%)', pointerEvents: 'none',
                   fontSize: 11, fontWeight: 700, color: dark ? '#777' : '#aaa', background: dark ? '#2a2a2a' : '#f0f0f0',
@@ -3783,7 +3784,7 @@ export default function GalerieClient({ userId, initialCardUrl, initialCards, in
         <button
           onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
           style={{
-            position: 'fixed', bottom: `calc(88px + ${isNative ? NAV_TOTAL_HEIGHT_CSS : '0px'})`, right: 24, zIndex: 9000,
+            position: 'fixed', bottom: `calc(88px + ${isApp ? NAV_TOTAL_HEIGHT_CSS : '0px'})`, right: 24, zIndex: 9000,
             width: 44, height: 44, borderRadius: '50%',
             background: accent, color: 'white', border: 'none',
             fontSize: 20, cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center',

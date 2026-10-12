@@ -7,7 +7,7 @@ import { unsubscribeAllPush } from '@/lib/pushUnsubscribe'
 import { useAuth } from '@/lib/AuthContext'
 import { useTheme } from '@/lib/ThemeContext'
 import { useLang } from '@/lib/LangContext'
-import { useIsNative } from '@/lib/useIsNative'
+import { useIsNative, useIsAppUI } from '@/lib/useIsNative'
 import { hapticTap } from '@/lib/haptics'
 import BottomSheet from '@/components/BottomSheet'
 import { NAV_CONTENT_HEIGHT, NAV_SAFE_AREA_BOTTOM, NAV_TOTAL_HEIGHT_CSS } from '@/lib/nativeLayout'
@@ -32,6 +32,7 @@ const ToolIcon = () => (
 
 export default function MobileBottomNav() {
   const isNative = useIsNative()
+  const isApp = useIsAppUI()
   const { user } = useAuth()
   const { dark } = useTheme()
   const { t } = useLang()
@@ -78,9 +79,9 @@ export default function MobileBottomNav() {
   }, [user?.id, pathname])
 
   useEffect(() => {
-    document.body.classList.toggle('native-bottom-nav', isNative)
+    document.body.classList.toggle('native-bottom-nav', isApp)
     return () => { document.body.classList.remove('native-bottom-nav') }
-  }, [isNative])
+  }, [isApp])
 
   // L'icone carte flottante (marginTop:-20, depasse au-dessus de la barre) se
   // retrouvait par-dessus le champ de saisie quand le clavier remonte le
@@ -97,7 +98,17 @@ export default function MobileBottomNav() {
     return () => { removeShow?.(); removeHide?.() }
   }, [isNative])
 
-  if (!isNative || keyboardOpen) return null
+  // PWA installee : pas de plugin clavier, on detecte le clavier virtuel par la reduction de la zone visible
+  useEffect(() => {
+    if (!isApp || isNative) return
+    const vv = window.visualViewport
+    if (!vv) return
+    const onResize = () => setKeyboardOpen(window.innerHeight - vv.height > 150)
+    vv.addEventListener('resize', onResize)
+    return () => vv.removeEventListener('resize', onResize)
+  }, [isApp, isNative])
+
+  if (!isApp || keyboardOpen) return null
 
   const toggle = (name: 'communaute' | 'outils') => {
     hapticTap()

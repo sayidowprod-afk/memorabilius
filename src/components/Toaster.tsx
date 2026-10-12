@@ -1,7 +1,7 @@
 'use client'
 import { useEffect, useState } from 'react'
 import { NAV_TOTAL_HEIGHT_CSS } from '@/lib/nativeLayout'
-import { useIsNative } from '@/lib/useIsNative'
+import { useIsAppUI } from '@/lib/useIsNative'
 
 type ToastItem = { id: number; message: string; type: 'error' | 'success' | 'info'; leaving?: boolean }
 
@@ -10,11 +10,11 @@ const ICON: Record<ToastItem['type'], string> = { error: '✕', success: '✓', 
 
 export default function Toaster() {
   const [toasts, setToasts] = useState<ToastItem[]>([])
-  const isNative = useIsNative()
+  const isApp = useIsAppUI()
   // Sur l'app native, la bottom bar prend la place du bas d'écran -- un toast
   // fixe à bottom:24 se retrouvait affiché par-dessus/dans la nav (ex: un
   // badge débloqué qui apparaissait dans la zone "Ma galerie").
-  const bottomOffset = isNative ? `calc(${NAV_TOTAL_HEIGHT_CSS} + 12px)` : 24
+  const bottomOffset = isApp ? `calc(${NAV_TOTAL_HEIGHT_CSS} + 12px)` : 24
 
   useEffect(() => {
     const handler = (e: Event) => {

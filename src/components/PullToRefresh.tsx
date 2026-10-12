@@ -1,12 +1,12 @@
 'use client'
 import { useEffect, useRef, useState } from 'react'
-import { useIsNative } from '@/lib/useIsNative'
+import { useIsAppUI } from '@/lib/useIsNative'
 import { hapticTap } from '@/lib/haptics'
 
 const THRESHOLD = 70
 
 export default function PullToRefresh() {
-  const isNative = useIsNative()
+  const isApp = useIsAppUI()
   const [pull, setPull] = useState(0)
   const [refreshing, setRefreshing] = useState(false)
   const startY = useRef(0)
@@ -15,7 +15,7 @@ export default function PullToRefresh() {
   const refreshingRef = useRef(false)
 
   useEffect(() => {
-    if (!isNative) return
+    if (!isApp) return
 
     const onTouchStart = (e: TouchEvent) => {
       // Écouteur global sur tout le document — sans cette exclusion, glisser un
@@ -65,9 +65,9 @@ export default function PullToRefresh() {
       document.removeEventListener('touchmove', onTouchMove)
       document.removeEventListener('touchend', onTouchEnd)
     }
-  }, [isNative])
+  }, [isApp])
 
-  if (!isNative) return null
+  if (!isApp) return null
 
   return (
     <div style={{

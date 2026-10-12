@@ -1,8 +1,8 @@
 'use client'
-import { useIsNative } from '@/lib/useIsNative'
+import { useIsAppUI } from '@/lib/useIsNative'
 
 export default function WebOnly({ children }: { children: React.ReactNode }) {
-  const isNative = useIsNative()
-  if (isNative) return null
+  const isApp = useIsAppUI()
+  if (isApp) return null
   return <>{children}</>
 }

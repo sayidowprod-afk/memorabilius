@@ -6,7 +6,7 @@ import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import { supabase } from '@/lib/supabase'
 import { useTheme } from '@/lib/ThemeContext'
-import { useIsNative } from '@/lib/useIsNative'
+import { useIsAppUI } from '@/lib/useIsNative'
 import { NAV_TOTAL_HEIGHT_CSS } from '@/lib/nativeLayout'
 import { useLang, localeFor } from '@/lib/LangContext'
 import { fireConfetti } from '@/components/Confetti'
@@ -32,7 +32,7 @@ export default function ChatBubble() {
     cancelled: t('chat_status_cancelled'),
   }
   const { dark } = useTheme()
-  const isNative = useIsNative()
+  const isApp = useIsAppUI()
   // La page /messages a deja sa propre UI complete (et son propre canal
   // Realtime) pour la meme donnee -- pas besoin du widget flottant en plus
   // dessus, ca evite un abonnement Realtime + refetch redondant a chaque
@@ -40,7 +40,7 @@ export default function ChatBubble() {
   const pathname = usePathname()
   const onMessagesPage = pathname === '/messages'
   // Sur l'app native, la bottom bar prend la place du bas d'écran.
-  const navOffset = isNative ? NAV_TOTAL_HEIGHT_CSS : '0px'
+  const navOffset = isApp ? NAV_TOTAL_HEIGHT_CSS : '0px'
   const [userId, setUserId] = useState<string | null>(null)
   const [open, setOpen] = useState(false)
   const [unread, setUnread] = useState(0)
@@ -255,7 +255,7 @@ export default function ChatBubble() {
 
   // Sur l'app native, l'accès au chat passe par l'icône de la topbar → /messages,
   // pas par la bulle flottante (qui reste pour le web/PWA).
-  if (!userId || isNative || onMessagesPage) return null
+  if (!userId || isApp || onMessagesPage) return null
 
   return (
     <>

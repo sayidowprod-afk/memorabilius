@@ -12,7 +12,7 @@ import LinkifiedText from '@/components/LinkifiedText'
 import OnlineIndicator from '@/components/OnlineIndicator'
 import ReportButton from '@/components/ReportButton'
 import { onlineStatusColor } from '@/lib/onlineStatus'
-import { useIsNative } from '@/lib/useIsNative'
+import { useIsNative, useIsAppUI } from '@/lib/useIsNative'
 import { NAV_TOTAL_HEIGHT_CSS } from '@/lib/nativeLayout'
 import { takeStagedShare, updateShareTargets } from '@/lib/shareBridge'
 import { fireConfetti } from '@/components/Confetti'
@@ -72,6 +72,7 @@ function MessagesContent() {
   const { t, lang } = useLang()
   const { dark } = useTheme()
   const isNative = useIsNative()
+  const isApp = useIsAppUI()
   const router = useRouter()
   const searchParams = useSearchParams()
   const toParam = searchParams.get('to')
@@ -303,10 +304,10 @@ function MessagesContent() {
   // Chat bord à bord façon Insta sur l'app native : on retire le padding du
   // <main> autour, la topbar et la bottom bar (hors de <main>) restent visibles.
   useEffect(() => {
-    if (!isNative) return
+    if (!isApp) return
     document.body.classList.add('msg-fullscreen')
     return () => { document.body.classList.remove('msg-fullscreen') }
-  }, [isNative])
+  }, [isApp])
 
   // .msg-page reservait toujours la hauteur de la bottom nav (NAV_TOTAL_HEIGHT_CSS)
   // dans son calc(100dvh - ...) -- or MobileBottomNav se cache des que le clavier
@@ -569,7 +570,7 @@ function MessagesContent() {
           .msg-chat { display: ${activeConv ? 'flex' : 'none'} !important; border-radius: 0 0 12px 12px !important; }
           .msg-avatar-ring { width: 52px !important; height: 52px !important; }
         }
-        ${isNative ? `
+        ${isApp ? `
           /* App native : chat bord à bord, topbar/bottombar restent visibles au-dessus/dessous.
              Clavier ouvert -> MobileBottomNav se cache, donc on ne soustrait plus sa hauteur
              (sinon un vide correspondant a la nav desormais absente apparaissait). */

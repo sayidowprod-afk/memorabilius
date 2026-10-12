@@ -14,7 +14,7 @@ import CommentsModal from './CommentsModal'
 import { toast } from '@/lib/toast'
 import FolderIconPicker from './FolderIconPicker'
 import { getTeamById, teamLogoUrl } from '@/lib/sportsTeams'
-import { useIsNative } from '@/lib/useIsNative'
+import { useIsAppUI } from '@/lib/useIsNative'
 import { NAV_SAFE_AREA_BOTTOM, NAV_TOTAL_HEIGHT_CSS } from '@/lib/nativeLayout'
 const GalerieExport = dynamic(() => import('./GalerieExport'), { ssr: false })
 
@@ -140,7 +140,7 @@ export default function BinderLibrary({ userId, isOwner, accent, pendingCard, on
 }) {
   const { dark } = useTheme()
   const { t, lang } = useLang()
-  const isNative = useIsNative()
+  const isApp = useIsAppUI()
   const router = useRouter()
   const pathname = usePathname()
   const searchParams = useSearchParams()
@@ -1293,9 +1293,9 @@ export default function BinderLibrary({ userId, isOwner, accent, pendingCard, on
       // globale, voir MobileBottomNav.tsx) -- sans cette marge, le bas de la
       // modale (bouton Creer/Enregistrer) se retrouvait sous elle, invisible
       // et inaccessible sur l'app native (bouton "cache", signale en prod).
-      paddingBottom: isNative ? `calc(16px + ${NAV_TOTAL_HEIGHT_CSS})` : 16,
+      paddingBottom: isApp ? `calc(16px + ${NAV_TOTAL_HEIGHT_CSS})` : 16,
     }}>
-      <div onClick={e => e.stopPropagation()} style={{ background: 'var(--card-bg, #fff)', borderRadius: 16, padding: 24, width: '100%', maxWidth: 380, boxSizing: 'border-box', maxHeight: isNative ? '78vh' : '88vh', overflowY: 'auto', display: 'flex', flexDirection: 'column', gap: 14 }}>
+      <div onClick={e => e.stopPropagation()} style={{ background: 'var(--card-bg, #fff)', borderRadius: 16, padding: 24, width: '100%', maxWidth: 380, boxSizing: 'border-box', maxHeight: isApp ? '78vh' : '88vh', overflowY: 'auto', display: 'flex', flexDirection: 'column', gap: 14 }}>
         <h3 style={{ margin: 0, fontWeight: 900, fontSize: 16 }}>📔 {formOpen === 'create' ? t('binder_new') : t('binder_edit_title')}</h3>
 
         {/* Aperçu couverture */}
@@ -1803,7 +1803,7 @@ export default function BinderLibrary({ userId, isOwner, accent, pendingCard, on
       // La nav globale est masquee en plein ecran (voir 'binder-fullscreen-active'
       // dans globals.css) -- seule la zone de securite systeme (encoche/geste)
       // reste a degager ici, pas la hauteur de la nav elle-meme (qui n'est plus la).
-      paddingBottom: isNative ? NAV_SAFE_AREA_BOTTOM : 0,
+      paddingBottom: isApp ? NAV_SAFE_AREA_BOTTOM : 0,
     } : {}}>
 
       {/* ── FULLSCREEN OVERLAY : nom + quitter flottants, sans barre ── */}
@@ -1962,7 +1962,7 @@ export default function BinderLibrary({ userId, isOwner, accent, pendingCard, on
                         position: 'fixed', zIndex: 99999,
                         ...(ownerMenuUp
                           ? { bottom: window.innerHeight - ownerMenuRect.top + 6, maxHeight: ownerMenuRect.top - 18 }
-                          : { top: ownerMenuRect.bottom + 6, maxHeight: `calc(100vh - ${ownerMenuRect.bottom + 6}px - ${isNative ? NAV_TOTAL_HEIGHT_CSS : '0px'} - 12px)` }),
+                          : { top: ownerMenuRect.bottom + 6, maxHeight: `calc(100vh - ${ownerMenuRect.bottom + 6}px - ${isApp ? NAV_TOTAL_HEIGHT_CSS : '0px'} - 12px)` }),
                         right: ownerMenuRect.right,
                         background: dark ? '#1e1e1e' : 'white', border: `1px solid ${dark ? '#333' : '#e8e8e8'}`, borderRadius: 14, boxShadow: '0 8px 32px rgba(0,0,0,0.18)', minWidth: 220, padding: 6,
                         overflowY: 'auto',

@@ -1,7 +1,7 @@
 'use client'
 import { ReactNode } from 'react'
 import { useAuth } from '@/lib/AuthContext'
-import { useIsNative } from '@/lib/useIsNative'
+import { useIsAppUI } from '@/lib/useIsNative'
 import NativeHomeDashboard from '@/components/NativeHomeDashboard'
 
 interface SiteStats { total: number; totalCartes: number; totalBinders: number; totalTrade: number }
@@ -16,7 +16,7 @@ interface SiteStats { total: number; totalCartes: number; totalBinders: number; 
 // bref du hero est visible le temps que useAuth résolve.
 export default function NativeHomeGate({ hero, siteStats, cardOfTheDay }: { hero: ReactNode; siteStats: SiteStats; cardOfTheDay?: ReactNode }) {
   const { user, loading } = useAuth()
-  const isNative = useIsNative()
+  const isApp = useIsAppUI()
 
   if (!loading && user) return <NativeHomeDashboard siteStats={siteStats} cardOfTheDay={cardOfTheDay} />
 
@@ -25,7 +25,7 @@ export default function NativeHomeGate({ hero, siteStats, cardOfTheDay }: { hero
   // Basculer sur le hero public pendant ce temps donne l'impression d'être
   // déconnecté (carrousel seul, pas de panel) : mieux vaut un simple
   // indicateur de chargement le temps que loading passe à false.
-  if (isNative && loading) {
+  if (isApp && loading) {
     return (
       <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', minHeight: '50vh' }}>
         <div style={{ width: 36, height: 36, border: '3px solid #ccc', borderTopColor: '#003DA6', borderRadius: '50%', animation: 'nativeHomeSpin 0.8s linear infinite' }} />

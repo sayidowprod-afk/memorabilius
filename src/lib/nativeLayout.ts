@@ -11,7 +11,7 @@ export const NAV_CONTENT_HEIGHT = 56
 // jugé trop haut/imposant ailleurs) -> re-signale coupe sur un appareil en
 // navigation 3 boutons -> 56px, compromis entre les deux. A rehausser encore si
 // le meme souci de libelle coupe revient.
-export const NAV_SAFE_AREA_BOTTOM = 'max(var(--safe-area-inset-bottom, env(safe-area-inset-bottom)), 56px)'
+export const NAV_SAFE_AREA_BOTTOM = 'max(var(--safe-area-inset-bottom, env(safe-area-inset-bottom)), var(--nav-min-bottom, 56px))'
 
 // Hauteur totale réelle de la bottom bar (contenu + zone de sécurité) —
 // à utiliser partout où un élément doit se positionner juste au-dessus.
