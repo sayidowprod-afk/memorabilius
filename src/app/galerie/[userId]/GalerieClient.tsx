@@ -2331,10 +2331,10 @@ export default function GalerieClient({ userId, initialCardUrl, initialCards, in
               <div style={{ display: 'flex', gap: 16, justifyContent: 'flex-end', width: '100%' }}>
                 {[
                   { val: totalCount, label: t('gallery_cards'), flash: totalFlash },
-                  { val: rcCount, label: 'RC', color: '#e67e22', flash: rcFlash },
-                  { val: autoCount, label: 'Auto', color: '#2e7d32', flash: autoFlash },
-                  { val: numCount, label: 'Num', color: '#7b1fa2', flash: numFlash },
-                  { val: patchCount, label: 'Patch', color: '#1976d2', flash: patchFlash },
+                  { val: rcCount, label: 'RC', color: '#F97316', flash: rcFlash },
+                  { val: autoCount, label: 'Auto', color: '#10B981', flash: autoFlash },
+                  { val: numCount, label: 'Num', color: '#D946EF', flash: numFlash },
+                  { val: patchCount, label: 'Patch', color: '#2563EB', flash: patchFlash },
                 ].map(s => (
                   <div key={s.label} style={{ textAlign: 'center', minWidth: 45 }}>
                     <div className={`da-num${s.flash ? ' stat-flash' : ''}`} style={{ fontSize: 30, fontWeight: 900, color: s.color || accent }}>{s.val}</div>

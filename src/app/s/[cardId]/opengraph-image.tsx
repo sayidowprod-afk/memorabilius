@@ -50,15 +50,15 @@ export default async function OGImage({ params }: { params: Promise<{ cardId: st
 
   // Etiquettes "teintees" (meme style que le site) : fond de la couleur a faible opacite, bordure et texte de la couleur
   const tags: { label: string; color: string; fx?: { bg: string; fg: string } }[] = []
-  if (card.rc) tags.push({ label: 'RC', color: '#e67e22' })
-  if (card.auto) tags.push({ label: 'AUTO', color: '#2e7d32' })
+  if (card.rc) tags.push({ label: 'RC', color: '#F97316' })
+  if (card.auto) tags.push({ label: 'AUTO', color: '#10B981' })
   if (card.num) {
     const m = String(card.num).trim().match(/\/\s*(\d+)\s*$/)
     const n = m ? parseInt(m[1], 10) : null
     const fx = n === 1 ? { bg: 'linear-gradient(135deg,#b8860b,#ffd700,#fffacd,#ffd700,#b8860b)', fg: '#3d2800' }
       : n !== null && n <= 10 ? { bg: 'linear-gradient(135deg,#555555,#c0c0c0,#ffffff,#c0c0c0,#555555)', fg: '#111111' }
       : n !== null && n <= 25 ? { bg: 'linear-gradient(135deg,#6d3a00,#cd7f32,#f5cba7,#cd7f32,#6d3a00)', fg: '#ffffff' } : undefined
-    tags.push({ label: n === 1 ? '1/1' : n !== null ? `/${n}` : 'NUM', color: '#7b1fa2', fx })
+    tags.push({ label: n === 1 ? '1/1' : n !== null ? `/${n}` : 'NUM', color: '#D946EF', fx })
   }
   if (card.patch) tags.push({ label: 'PATCH', color: '#1976d2' })
   const hexToRgba = (hex: string, a: number) => { const v = parseInt(hex.slice(1), 16); return `rgba(${(v >> 16) & 255},${(v >> 8) & 255},${v & 255},${a})` }

@@ -143,15 +143,15 @@ export default function CommunityCardsSection({ cards, totalCollectors }: { card
 
       {/* Toolbar */}
       <div style={{ background: 'var(--jp-surface)', border: '1px solid var(--jp-border)', borderRadius: 10, padding: '10px 12px', marginBottom: 14, display: 'flex', flexWrap: 'wrap', gap: 8, alignItems: 'center' }}>
-        <button onClick={() => setFRc(v => !v)} style={chip(fRc, '#e67e22')}>RC</button>
+        <button onClick={() => setFRc(v => !v)} style={chip(fRc, '#F97316')}>RC</button>
         {hasAuto && (
-          <button onClick={() => setFAuto(v => !v)} style={chip(fAuto, '#2e7d32')}>AUTO</button>
+          <button onClick={() => setFAuto(v => !v)} style={chip(fAuto, '#10B981')}>AUTO</button>
         )}
         {hasNum && (
-          <button onClick={() => setFNum(v => !v)} style={chip(fNum, '#7b1fa2')}># Num</button>
+          <button onClick={() => setFNum(v => !v)} style={chip(fNum, '#D946EF')}># Num</button>
         )}
         {hasPatch && (
-          <button onClick={() => setFPatch(v => !v)} style={chip(fPatch, '#1976d2')}>PATCH</button>
+          <button onClick={() => setFPatch(v => !v)} style={chip(fPatch, '#2563EB')}>PATCH</button>
         )}
         {hasVente && (
           <button onClick={() => setFVente(v => !v)} style={chip(fVente, '#2e7d32')}>🏷️ Trade</button>

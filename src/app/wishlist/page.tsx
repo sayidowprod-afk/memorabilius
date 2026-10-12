@@ -64,10 +64,10 @@ export default function WishlistPage() {
   }
 
   const tags = (item: WishItem) => [
-    item.rc && { label: 'RC', bg: '#e67e22' },
-    item.auto && { label: 'AUTO', bg: '#2e7d32' },
-    item.patch && { label: 'PATCH', bg: '#1976d2' },
-    item.num && { label: item.num, bg: '#7b1fa2' },
+    item.rc && { label: 'RC', bg: '#F97316' },
+    item.auto && { label: 'AUTO', bg: '#10B981' },
+    item.patch && { label: 'PATCH', bg: '#2563EB' },
+    item.num && { label: item.num, bg: '#D946EF' },
   ].filter(Boolean) as { label: string; bg: string }[]
 
   return (
@@ -123,7 +123,7 @@ export default function WishlistPage() {
                 <button type="button" key={k} onClick={() => setForm(p => ({ ...p, [k]: !p[k] }))} style={{
                   padding: '6px 14px', border: 'none', borderRadius: 6, cursor: 'pointer',
                   fontSize: 11, fontWeight: 800, textTransform: 'uppercase',
-                  background: form[k] ? (k === 'rc' ? '#e67e22' : k === 'auto' ? '#2e7d32' : '#1976d2') : '#f0f0f0',
+                  background: form[k] ? (k === 'rc' ? '#F97316' : k === 'auto' ? '#10B981' : '#2563EB') : '#f0f0f0',
                   color: form[k] ? 'white' : '#333',
                 }}>{k}</button>
               ))}

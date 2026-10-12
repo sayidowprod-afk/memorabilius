@@ -194,9 +194,9 @@ function FilterBar({ cards, filters, onChange }: { cards: CardInfo[]; filters: F
           {équipes.map(eq => <option key={eq} value={eq}>{eq}</option>)}
         </select>
       )}
-      <Tag label="RC" key2="rc" bg="#e67e22" />
-      <Tag label="Auto" key2="auto" bg="#2e7d32" />
-      <Tag label="Patch" key2="patch" bg="#1976d2" />
+      <Tag label="RC" key2="rc" bg="#F97316" />
+      <Tag label="Auto" key2="auto" bg="#10B981" />
+      <Tag label="Patch" key2="patch" bg="#2563EB" />
       {hasActive && (
         <button onClick={() => onChange(emptyFilters())}
           style={{ border: 'none', background: 'none', fontSize: 11, color: '#aaa', cursor: 'pointer', padding: '5px 4px' }}>

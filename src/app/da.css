@@ -815,7 +815,7 @@ html[data-theme="light"] .tcdb-imp-open { border-color: #06122e; color: #06122e;
 .gf-g4, .gf-g3 { gap: 4px !important; margin-bottom: 4px !important; }
 .gf-b { position: relative; border-radius: 0 !important; padding: 10px 2px !important; font-size: 11px !important; letter-spacing: .08em; transition: background .15s, box-shadow .15s; }
 .gf-b[data-k]::before { content: ''; position: absolute; left: 0; right: 0; top: 0; height: 3px; background: var(--gfk, transparent); }
-.gf-b[data-k="rc"] { --gfk: #ff9a3c; } .gf-b[data-k="auto"] { --gfk: #4cd37b; } .gf-b[data-k="num"] { --gfk: #c77dff; } .gf-b[data-k="patch"] { --gfk: #5aa9ff; }
+.gf-b[data-k="rc"] { --gfk: #F97316; } .gf-b[data-k="auto"] { --gfk: #10B981; } .gf-b[data-k="num"] { --gfk: #D946EF; } .gf-b[data-k="patch"] { --gfk: #2563EB; }
 .gf-adv { height: 28px; padding: 0 12px !important; margin: 8px 0 10px !important; border: 1px solid rgba(255,255,255,.28) !important; border-radius: 0 !important; font-size: 10px !important; letter-spacing: .1em; text-transform: uppercase; }
 .gf-adv.open { margin-bottom: 10px !important; }
 .gf-lbl { font-family: 'Surfquest', Impact, sans-serif !important; font-weight: 400 !important; font-size: 15px !important; letter-spacing: .06em !important; color: rgba(255,255,255,.85) !important; }

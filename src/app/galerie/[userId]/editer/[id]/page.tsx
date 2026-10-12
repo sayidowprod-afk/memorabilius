@@ -932,9 +932,9 @@ export default function EditerCarte({ params }: { params: Promise<{ userId: stri
             <label style={{ fontSize: 12, fontWeight: 700, textTransform: 'uppercase', color: '#888', display: 'block', marginBottom: 10 }}>{t('addcard_features')}</label>
             <div style={{ display: 'flex', flexWrap: 'wrap', gap: 10 }}>
               {[
-                { key: 'rc', label: 'RC', activeBg: '#e67e22' },
-                { key: 'auto', label: 'AUTO', activeBg: '#2e7d32' },
-                { key: 'patch', label: 'PATCH', activeBg: '#1976d2' },
+                { key: 'rc', label: 'RC', activeBg: '#F97316' },
+                { key: 'auto', label: 'AUTO', activeBg: '#10B981' },
+                { key: 'patch', label: 'PATCH', activeBg: '#2563EB' },
                 { key: 'printing_plate', label: 'PRINTING PLATE', activeBg: '#111827' },
                 { key: 'booklet', label: '📖 BOOKLET', activeBg: '#7b1fa2' },
               ].map(tag => (

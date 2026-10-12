@@ -43,10 +43,10 @@ export function getSpeciality(stats: { total: number; rc: number; auto: number; 
   if (team) return { label: `${team.name.split(' ').pop()} Fan`, color: team.color }
   if (total >= 1000)   return { label: '🏆 Légende',          color: '#f39c12' }
   if (total >= 300)    return { label: '🎖️ Grand Collectionneur', color: '#e67e22' }
-  if (rc / total > 0.35)    return { label: '🌟 RC Hunter',       color: '#e67e22' }
-  if (auto / total > 0.25)  return { label: '✍️ Auto Collector',  color: '#2e7d32' }
-  if (patch / total > 0.12) return { label: '🧩 Patch Master',    color: '#1976d2' }
-  if (num / total > 0.55)   return { label: '🔢 Serial #',        color: '#7b1fa2' }
+  if (rc / total > 0.35)    return { label: '🌟 RC Hunter',       color: '#F97316' }
+  if (auto / total > 0.25)  return { label: '✍️ Auto Collector',  color: '#10B981' }
+  if (patch / total > 0.12) return { label: '🧩 Patch Master',    color: '#2563EB' }
+  if (num / total > 0.55)   return { label: '🔢 Serial #',        color: '#D946EF' }
   if (total >= 100)    return { label: '📦 Collectionneur',    color: '#003DA6' }
   return null
 }

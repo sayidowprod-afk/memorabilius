@@ -133,9 +133,9 @@ export default function CollectionStats({ cards, accent, totalValeur }: Props) {
         {[
           { val: stats.total,  label: t('gallery_cards'),  color: accent },
           { val: stats.graded, label: t('stats_graded'), color: '#7b1fa2' },
-          { val: stats.rc,     label: 'RC',      color: '#e67e22' },
-          { val: stats.auto,   label: 'Auto',    color: '#2e7d32' },
-          { val: stats.num,    label: t('stats_num_short'),color: '#1976d2' },
+          { val: stats.rc,     label: 'RC',      color: '#F97316' },
+          { val: stats.auto,   label: 'Auto',    color: '#10B981' },
+          { val: stats.num,    label: t('stats_num_short'),color: '#D946EF' },
           { val: stats.patch,  label: 'Patch',   color: '#0097a7' },
         ].map(s => (
           <div key={s.label} style={{ textAlign: 'center', minWidth: 50 }}>

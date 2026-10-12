@@ -4,7 +4,7 @@ export type TagKind = 'rc' | 'auto' | 'patch' | 'num'
 export type NumTier = 'std' | 'gold' | 'silver' | 'bronze'
 
 // Couleurs historiques des pastilles (chaque categorie a sa couleur fixe)
-export const TAG_BASE: Record<TagKind, string> = { rc: '#e67e22', auto: '#2e7d32', patch: '#1976d2', num: '#7b1fa2' }
+export const TAG_BASE: Record<TagKind, string> = { rc: '#F97316', auto: '#10B981', patch: '#2563EB', num: '#D946EF' }
 export const TAG_LABEL: Record<Exclude<TagKind, 'num'>, string> = { rc: 'RC', auto: 'AUTO', patch: 'PATCH' }
 
 // "038/125" -> 125 ; "/125" -> 125 ; "1/1" -> 1 ; sinon null

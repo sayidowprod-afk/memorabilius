@@ -73,10 +73,10 @@ export default function CardSharePage({ cardId }: { cardId: string }) {
   const galLink  = `/galerie/${profile?.slug || card.user_id}`
 
   const tags: { label: string; bg: string }[] = []
-  if (card.rc)    tags.push({ label: 'RC',    bg: '#e67e22' })
-  if (card.auto)  tags.push({ label: 'AUTO',  bg: '#2e7d32' })
-  if (card.patch) tags.push({ label: 'PATCH', bg: '#1976d2' })
-  if (card.num)   tags.push({ label: card.num, bg: '#7b1fa2' })
+  if (card.rc)    tags.push({ label: 'RC',    bg: '#F97316' })
+  if (card.auto)  tags.push({ label: 'AUTO',  bg: '#10B981' })
+  if (card.patch) tags.push({ label: 'PATCH', bg: '#2563EB' })
+  if (card.num)   tags.push({ label: card.num, bg: '#D946EF' })
 
   const infoRows = [
     ['Année',         card.annee],

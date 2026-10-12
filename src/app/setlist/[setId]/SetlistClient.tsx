@@ -593,7 +593,7 @@ export default function SetlistClient({ setId }: { setId: string }) {
           </div>
         )}
         <button onClick={() => setFilterRc(v => !v)}
-          style={{ padding: '10px 16px', border: `1.5px solid ${filterRc ? '#e67e22' : (dark ? '#444' : '#e0e0e0')}`, borderRadius: 8, fontSize: 13, fontWeight: 700, cursor: 'pointer', background: filterRc ? '#e67e22' : (dark ? '#2a2a2a' : 'white'), color: filterRc ? 'white' : (dark ? '#eee' : '#333'), whiteSpace: 'nowrap' }}>
+          style={{ padding: '10px 16px', border: `1.5px solid ${filterRc ? '#F97316' : (dark ? '#444' : '#e0e0e0')}`, borderRadius: 8, fontSize: 13, fontWeight: 700, cursor: 'pointer', background: filterRc ? '#F97316' : (dark ? '#2a2a2a' : 'white'), color: filterRc ? 'white' : (dark ? '#eee' : '#333'), whiteSpace: 'nowrap' }}>
           RC
         </button>
         {userId && filter === 'missing' && (

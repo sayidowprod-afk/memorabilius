@@ -913,7 +913,7 @@ export default function TeamPage({ params }: { params: Promise<{ teamId: string 
                     </td>
                     {[m.stats?.total, m.stats?.rc, m.stats?.auto, m.stats?.num, m.stats?.patch].map((val, vi) => (
                       <td key={vi} style={{ padding: '12px 16px', borderBottom: DIR_BD }}>
-                        <span className="da-display dir-num" style={{ fontSize: 28, lineHeight: 1, color: vi === 0 ? (dark ? '#fff' : '#06122e') : (dark ? ['', '#ff9a3c', '#4cd37b', '#c77dff', '#5aa9ff'] : ['', '#d9640a', '#1f8a45', '#7b1fa2', '#1565c0'])[vi] }}>{(val || 0).toLocaleString('fr-FR')}</span>
+                        <span className="da-display dir-num" style={{ fontSize: 28, lineHeight: 1, color: vi === 0 ? (dark ? '#fff' : '#06122e') : (dark ? ['', '#F97316', '#10B981', '#D946EF', '#2563EB'] : ['', '#ea580c', '#059669', '#c026d3', '#1d4ed8'])[vi] }}>{(val || 0).toLocaleString('fr-FR')}</span>
                       </td>
                     ))}
                     {isChef && (

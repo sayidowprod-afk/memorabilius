@@ -28,7 +28,7 @@ function NumTag({ num }: { num: string }) {
   if (v === 1) return <span style={{ fontSize: 9, fontWeight: 900, padding: '2px 5px', borderRadius: 3, background: 'linear-gradient(135deg,#b8860b,#ffd700,#fffacd,#ffd700,#b8860b)', color: '#3d2800' }}>{num}</span>
   if (v !== null && v <= 10) return <span style={{ fontSize: 9, fontWeight: 900, padding: '2px 5px', borderRadius: 3, background: 'linear-gradient(135deg,#555,#c0c0c0,#fff,#c0c0c0,#555)', color: '#111' }}>{num}</span>
   if (v !== null && v <= 25) return <span style={{ fontSize: 9, fontWeight: 900, padding: '2px 5px', borderRadius: 3, background: 'linear-gradient(135deg,#6d3a00,#cd7f32,#f5cba7,#cd7f32,#6d3a00)', color: 'white' }}>{num}</span>
-  return <span style={{ fontSize: 9, fontWeight: 900, padding: '2px 5px', borderRadius: 3, background: '#7b1fa2', color: 'white' }}>{num}</span>
+  return <span style={{ fontSize: 9, fontWeight: 900, padding: '2px 5px', borderRadius: 3, background: '#D946EF', color: 'white' }}>{num}</span>
 }
 
 export default function Recherche() {
@@ -528,7 +528,7 @@ export default function Recherche() {
                 {(['rc', 'auto', 'num', 'patch'] as const).map(k => {
                   const active = k === 'rc' ? fRc : k === 'auto' ? fAuto : k === 'num' ? fNum : fPatch
                   const setter = k === 'rc' ? setFRc : k === 'auto' ? setFAuto : k === 'num' ? setFNum : setFPatch
-                  const color = k === 'rc' ? '#e67e22' : k === 'auto' ? '#2e7d32' : k === 'num' ? '#7b1fa2' : '#1976d2'
+                  const color = k === 'rc' ? '#F97316' : k === 'auto' ? '#10B981' : k === 'num' ? '#D946EF' : '#2563EB'
                   return (
                     <button key={k} onClick={() => setter(v => !v)} style={chipStyle(active, color)}>
                       {k === 'num' ? '# Num' : k.toUpperCase()}

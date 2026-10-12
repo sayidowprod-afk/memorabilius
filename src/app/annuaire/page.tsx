@@ -438,10 +438,10 @@ function AnnuaireContent() {
                     </div>
                   </td>
                   <td style={{ padding: isMobile ? '10px 4px' : 15, borderBottom: `1px solid ${dark ? '#2a2a2a' : '#f5f5f5'}`, textAlign: 'center' }}>{badge(c.stats?.total ?? 0, 'total', '')}</td>
-                  <td style={{ padding: isMobile ? '10px 4px' : 15, borderBottom: `1px solid ${dark ? '#2a2a2a' : '#f5f5f5'}`, textAlign: 'center' }}>{badge(c.stats?.rc ?? 0, '', dark ? '#ff9a3c' : '#d9640a')}</td>
-                  <td style={{ padding: isMobile ? '10px 4px' : 15, borderBottom: `1px solid ${dark ? '#2a2a2a' : '#f5f5f5'}`, textAlign: 'center' }}>{badge(c.stats?.auto ?? 0, '', dark ? '#4cd37b' : '#1f8a45')}</td>
-                  <td style={{ padding: isMobile ? '10px 4px' : 15, borderBottom: `1px solid ${dark ? '#2a2a2a' : '#f5f5f5'}`, textAlign: 'center' }}>{badge(c.stats?.num ?? 0, '', dark ? '#c77dff' : '#7b1fa2')}</td>
-                  <td style={{ padding: isMobile ? '10px 4px' : 15, borderBottom: `1px solid ${dark ? '#2a2a2a' : '#f5f5f5'}`, textAlign: 'center' }}>{badge(c.stats?.patch ?? 0, '', dark ? '#5aa9ff' : '#1565c0')}</td>
+                  <td style={{ padding: isMobile ? '10px 4px' : 15, borderBottom: `1px solid ${dark ? '#2a2a2a' : '#f5f5f5'}`, textAlign: 'center' }}>{badge(c.stats?.rc ?? 0, '', dark ? '#F97316' : '#ea580c')}</td>
+                  <td style={{ padding: isMobile ? '10px 4px' : 15, borderBottom: `1px solid ${dark ? '#2a2a2a' : '#f5f5f5'}`, textAlign: 'center' }}>{badge(c.stats?.auto ?? 0, '', dark ? '#10B981' : '#059669')}</td>
+                  <td style={{ padding: isMobile ? '10px 4px' : 15, borderBottom: `1px solid ${dark ? '#2a2a2a' : '#f5f5f5'}`, textAlign: 'center' }}>{badge(c.stats?.num ?? 0, '', dark ? '#D946EF' : '#c026d3')}</td>
+                  <td style={{ padding: isMobile ? '10px 4px' : 15, borderBottom: `1px solid ${dark ? '#2a2a2a' : '#f5f5f5'}`, textAlign: 'center' }}>{badge(c.stats?.patch ?? 0, '', dark ? '#2563EB' : '#1d4ed8')}</td>
                 </tr>
               ))}
               {renderLimit < sorted.length && (

@@ -149,10 +149,10 @@ function buildEmail(opts: {
 
     <div class="section-title">📊 Détail des ajouts</div>
     <div class="breakdown">
-      <div class="bd-item"><div class="bd-dot" style="background:#e67e22"></div><div class="bd-label">Rookies</div><div class="bd-value">${rcCount}</div></div>
-      <div class="bd-item"><div class="bd-dot" style="background:#2e7d32"></div><div class="bd-label">Autos</div><div class="bd-value">${autoCount}</div></div>
-      <div class="bd-item"><div class="bd-dot" style="background:#1976d2"></div><div class="bd-label">Patch</div><div class="bd-value">${patchCount}</div></div>
-      <div class="bd-item"><div class="bd-dot" style="background:#7b1fa2"></div><div class="bd-label">Numérotées</div><div class="bd-value">${numCount}</div></div>
+      <div class="bd-item"><div class="bd-dot" style="background:#F97316"></div><div class="bd-label">Rookies</div><div class="bd-value">${rcCount}</div></div>
+      <div class="bd-item"><div class="bd-dot" style="background:#10B981"></div><div class="bd-label">Autos</div><div class="bd-value">${autoCount}</div></div>
+      <div class="bd-item"><div class="bd-dot" style="background:#2563EB"></div><div class="bd-label">Patch</div><div class="bd-value">${patchCount}</div></div>
+      <div class="bd-item"><div class="bd-dot" style="background:#D946EF"></div><div class="bd-label">Numérotées</div><div class="bd-value">${numCount}</div></div>
     </div>
 
     ${highlights.length > 0 ? `
