@@ -115,25 +115,8 @@ export async function renderCardSpinGif(frontUrl: string, backUrl: string | null
     // Carte
     ctx.drawImage(face as any, cx - cardW / 2, cy - cardH / 2, cardW, cardH)
 
-    // Liseré + reflet diagonal pour donner du volume
-    ctx.strokeStyle = 'rgba(255,255,255,0.18)'
-    ctx.lineWidth = 1.5
-    ctx.strokeRect(cx - cardW / 2, cy - cardH / 2, cardW, cardH)
-
-    if (cardW > 6) {
-      const gloss = ctx.createLinearGradient(cx - cardW / 2, cy - cardH / 2, cx + cardW / 2, cy + cardH / 2)
-      gloss.addColorStop(0, 'rgba(255,255,255,0)')
-      gloss.addColorStop(0.5, 'rgba(255,255,255,0.14)')
-      gloss.addColorStop(1, 'rgba(255,255,255,0)')
-      ctx.fillStyle = gloss
-      ctx.fillRect(cx - cardW / 2, cy - cardH / 2, cardW, cardH)
-    }
-
-    // Éclat de tranche au moment du flip (carte vue de profil)
-    if (Math.abs(scaleX) < 0.12) {
-      ctx.fillStyle = `rgba(255,255,255,${0.5 * (1 - Math.abs(scaleX) / 0.12)})`
-      ctx.fillRect(cx - 2, cy - cardH / 2, 4, cardH)
-    }
+    // Aucun liseré, reflet ni éclat par-dessus la carte : ils s'ajoutaient à l'image, creaient un voile blanc qui se déplaçait pendant la rotation
+    // et, avec une palette de 256 couleurs, un effet de bandes. La carte reste nette, bords francs.
 
     return showBack
   }
