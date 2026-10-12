@@ -867,6 +867,7 @@ html[data-theme="light"] .tcdb-imp-open { border-color: #06122e; color: #06122e;
   .da-tabs { display: grid !important; grid-template-columns: repeat(3, 1fr); border-width: 2px 0 0 2px !important; border-style: solid !important; border-color: var(--text) !important; }
   .da-tabs button { border-right: 2px solid var(--text) !important; border-bottom: 2px solid var(--text) !important; font-size: 15px !important; padding: 11px 2px 9px !important; }
   .da-tabs button:nth-of-type(5):last-of-type { grid-column: span 2; }
+  .da-tabs button:last-child { border-right: 2px solid var(--text) !important; }
 }
 .gc-logo:empty { display: none; }
 

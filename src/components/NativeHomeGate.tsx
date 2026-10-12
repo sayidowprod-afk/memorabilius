@@ -14,11 +14,11 @@ interface SiteStats { total: number; totalCartes: number; totalBinders: number; 
 // points forts (activité de la communauté), pas du remplissage marketing.
 // Bascule client-side (l'auth n'est connue qu'après hydratation) : un flash
 // bref du hero est visible le temps que useAuth résolve.
-export default function NativeHomeGate({ hero, siteStats }: { hero: ReactNode; siteStats: SiteStats }) {
+export default function NativeHomeGate({ hero, siteStats, cardOfTheDay }: { hero: ReactNode; siteStats: SiteStats; cardOfTheDay?: ReactNode }) {
   const { user, loading } = useAuth()
   const isNative = useIsNative()
 
-  if (!loading && user) return <NativeHomeDashboard siteStats={siteStats} />
+  if (!loading && user) return <NativeHomeDashboard siteStats={siteStats} cardOfTheDay={cardOfTheDay} />
 
   // Sur l'app, la résolution de l'auth au cold start peut prendre plusieurs
   // secondes (voir AuthContext.tsx) -- largement au-delà d'un "flash bref".
@@ -34,5 +34,5 @@ export default function NativeHomeGate({ hero, siteStats }: { hero: ReactNode; s
     )
   }
 
-  return <>{hero}</>
+  return <>{hero}{cardOfTheDay}</>
 }

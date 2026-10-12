@@ -245,9 +245,8 @@ export default async function Home() {
       <NativeHomeGate
         hero={<HomeHero total={total} totalCartes={totalCartes} totalBinders={totalBinders} totalTrade={totalTrade} featuredGalleries={featuredGalleries} />}
         siteStats={{ total, totalCartes, totalBinders, totalTrade }}
+        cardOfTheDay={<CardOfTheDay />}
       />
-      {/* Carte du jour : sous l'accueil / le tableau de bord, juste avant les pepites */}
-      <CardOfTheDay />
       <PepitesSection cards={cards} />
       <PodiumSection month={withTeam(podium)} week={withTeam(podiumWeek)} day={withTeam(podiumDay)} />
       <PWAInstall />

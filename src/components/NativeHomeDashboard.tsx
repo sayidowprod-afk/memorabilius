@@ -2,6 +2,8 @@
 import StreakFlame from '@/components/StreakFlame'
 import { useEffect, useState } from 'react'
 import Link from 'next/link'
+import { useRouter } from 'next/navigation'
+import type { ReactNode } from 'react'
 import { supabase } from '@/lib/supabase'
 import { useAuth } from '@/lib/AuthContext'
 import { useLang, type TranslationKey } from '@/lib/LangContext'
@@ -64,7 +66,9 @@ function formatCountdown(msLeft: number, t: (k: TranslationKey) => string): stri
   return t('dashboard_challenge_less_than_hour')
 }
 
-export default function NativeHomeDashboard({ siteStats }: { siteStats: SiteStats }) {
+export default function NativeHomeDashboard({ siteStats, cardOfTheDay }: { siteStats: SiteStats; cardOfTheDay?: ReactNode }) {
+  const router = useRouter()
+  const [gq, setGq] = useState('')
   // orientation reelle de chaque carte de l'eventail (lue sur l'image chargee)
   const [heroLandscape, setHeroLandscape] = useState<Record<number, boolean>>({})
   const { user } = useAuth()
@@ -457,7 +461,7 @@ export default function NativeHomeDashboard({ siteStats }: { siteStats: SiteStat
             {data.lastCards.slice(0, 24).map((c, i) => <img key={i} src={heroThumb(c.image, 220)} alt="" loading="lazy" decoding="async" />)}
           </div>
         )}
-        <div className="dd-hero-r holo-light holo-tilt">
+        <div className="dd-hero-r">
           {(data.lastCards || []).length
             // pile des 5 dernieres cartes ajoutees : de l'arriere (la plus ancienne) vers l'avant (la plus recente)
             ? [...(data.lastCards || [])].slice(0, 5).map((c, i) => ({ c, i })).reverse().map(({ c, i }) => (
@@ -486,6 +490,10 @@ export default function NativeHomeDashboard({ siteStats }: { siteStats: SiteStat
           return <Link key={k} href={href} onClick={hapticTap} className="dd-act">{d.label(t, L)}</Link>
         })}
       </div>
+      <form className="dd-search" role="search" onSubmit={e => { e.preventDefault(); const q = gq.trim(); if (q) { hapticTap(); router.push(`/recherche?q=${encodeURIComponent(q)}`) } }}>
+        <input type="search" value={gq} onChange={e => setGq(e.target.value)} placeholder={L.globalSearch} aria-label={L.globalSearch} enterKeyHint="search" />
+        <button type="submit" aria-label={L.globalSearch}>⌕</button>
+      </form>
       {editMode && (
         <div className="dd-edit">
           <div className="dd-edit-h">{L.shortcutsHelp}</div>
@@ -499,11 +507,13 @@ export default function NativeHomeDashboard({ siteStats }: { siteStats: SiteStat
 
       {layout.order.map(id => {
         const hidden = layout.hidden.includes(id)
-        if (hidden && !editMode) return null
+        if (id === 'site' && cardOfTheDay) { /* carte du jour juste avant « en chiffres » */ }
+        if (hidden && !editMode) return id === 'site' && cardOfTheDay ? <div key="cotd">{cardOfTheDay}</div> : null
         if (id === 'activity' && activityItems.length === 0 && !editMode) return null
         const body = id === 'activity' ? renderActivity() : id === 'progress' ? renderProgress() : renderSite()
         return (
           <div key={id} className={'dd-blk' + (hidden ? ' dd-blk--off' : '')}>
+            {id === 'site' && cardOfTheDay}
             {editMode && (
               <div className="dd-blk-bar">
                 <span>{id === 'activity' ? L.blkActivity : id === 'progress' ? L.blkProgress : L.blkSite}</span>
@@ -545,11 +555,11 @@ const SHORTCUT_DEFS: Record<string, { href: string; label: (t: (k: TranslationKe
   expo: { href: '{g}/expo', label: (_t, L) => L.expo },
 }
 const DD_TEXT2 = {
-  fr: { thisWeek: 'ajoutées cette semaine', customize: 'Personnaliser', done: 'OK', shortcutsHelp: 'Choisis jusqu’à 4 raccourcis', wishlist2: 'Wishlist', expo: 'Mode expo', blkActivity: 'Activité', blkProgress: 'Niveau, badge, défi', blkSite: 'Le site en chiffres', up: 'Monter', down: 'Descendre', show: 'Afficher', hide: 'Masquer' },
-  en: { thisWeek: 'added this week', customize: 'Customize', done: 'Done', shortcutsHelp: 'Pick up to 4 shortcuts', wishlist2: 'Wishlist', expo: 'Expo mode', blkActivity: 'Activity', blkProgress: 'Level, badge, challenge', blkSite: 'Site in numbers', up: 'Move up', down: 'Move down', show: 'Show', hide: 'Hide' },
-  de: { thisWeek: 'diese Woche hinzugefügt', customize: 'Anpassen', done: 'OK', shortcutsHelp: 'Wähle bis zu 4 Kürzel', wishlist2: 'Wunschliste', expo: 'Expo-Modus', blkActivity: 'Aktivität', blkProgress: 'Level, Badge, Challenge', blkSite: 'Die Seite in Zahlen', up: 'Nach oben', down: 'Nach unten', show: 'Anzeigen', hide: 'Ausblenden' },
-  es: { thisWeek: 'añadidas esta semana', customize: 'Personalizar', done: 'OK', shortcutsHelp: 'Elige hasta 4 atajos', wishlist2: 'Lista de deseos', expo: 'Modo expo', blkActivity: 'Actividad', blkProgress: 'Nivel, insignia, reto', blkSite: 'El sitio en cifras', up: 'Subir', down: 'Bajar', show: 'Mostrar', hide: 'Ocultar' },
-  it: { thisWeek: 'aggiunte questa settimana', customize: 'Personalizza', done: 'OK', shortcutsHelp: 'Scegli fino a 4 scorciatoie', wishlist2: 'Wishlist', expo: 'Modalità expo', blkActivity: 'Attività', blkProgress: 'Livello, badge, sfida', blkSite: 'Il sito in numeri', up: 'Su', down: 'Giù', show: 'Mostra', hide: 'Nascondi' },
+  fr: { globalSearch: 'Rechercher une carte, un joueur, un set, un collectionneur…', thisWeek: 'ajoutées cette semaine', customize: 'Personnaliser', done: 'OK', shortcutsHelp: 'Choisis jusqu’à 4 raccourcis', wishlist2: 'Wishlist', expo: 'Mode expo', blkActivity: 'Activité', blkProgress: 'Niveau, badge, défi', blkSite: 'Le site en chiffres', up: 'Monter', down: 'Descendre', show: 'Afficher', hide: 'Masquer' },
+  en: { globalSearch: 'Search cards, players, sets, collectors…', thisWeek: 'added this week', customize: 'Customize', done: 'Done', shortcutsHelp: 'Pick up to 4 shortcuts', wishlist2: 'Wishlist', expo: 'Expo mode', blkActivity: 'Activity', blkProgress: 'Level, badge, challenge', blkSite: 'Site in numbers', up: 'Move up', down: 'Move down', show: 'Show', hide: 'Hide' },
+  de: { globalSearch: 'Karten, Spieler, Sets, Sammler suchen…', thisWeek: 'diese Woche hinzugefügt', customize: 'Anpassen', done: 'OK', shortcutsHelp: 'Wähle bis zu 4 Kürzel', wishlist2: 'Wunschliste', expo: 'Expo-Modus', blkActivity: 'Aktivität', blkProgress: 'Level, Badge, Challenge', blkSite: 'Die Seite in Zahlen', up: 'Nach oben', down: 'Nach unten', show: 'Anzeigen', hide: 'Ausblenden' },
+  es: { globalSearch: 'Buscar cartas, jugadores, sets, coleccionistas…', thisWeek: 'añadidas esta semana', customize: 'Personalizar', done: 'OK', shortcutsHelp: 'Elige hasta 4 atajos', wishlist2: 'Lista de deseos', expo: 'Modo expo', blkActivity: 'Actividad', blkProgress: 'Nivel, insignia, reto', blkSite: 'El sitio en cifras', up: 'Subir', down: 'Bajar', show: 'Mostrar', hide: 'Ocultar' },
+  it: { globalSearch: 'Cerca carte, giocatori, set, collezionisti…', thisWeek: 'aggiunte questa settimana', customize: 'Personalizza', done: 'OK', shortcutsHelp: 'Scegli fino a 4 scorciatoie', wishlist2: 'Wishlist', expo: 'Modalità expo', blkActivity: 'Attività', blkProgress: 'Livello, badge, sfida', blkSite: 'Il sito in numeri', up: 'Su', down: 'Giù', show: 'Mostra', hide: 'Nascondi' },
 }
 
 // Style du tableau de bord (nouvelle DA) : pose directement sur le fond de la
@@ -607,12 +617,18 @@ export const DD_CSS = `
 .dd-hero-card { transform-origin: 50% 100%; }
 /* pile des 5 dernieres cartes : la plus recente devant, les autres decalees et inclinees, qui debordent du cadre par le bas */
 .dd-hero-card { bottom: clamp(-30px, -2vw, -14px); }
-.dd-pile-0 { transform: rotate(7deg); z-index: 5; }
-.dd-pile-1 { transform: translateX(-42%) rotate(-3deg); z-index: 4; }
-.dd-pile-2 { transform: translateX(-84%) rotate(-12deg); z-index: 3; }
-.dd-pile-3 { transform: translateX(-126%) rotate(-20deg); z-index: 2; }
-.dd-pile-4 { transform: translateX(-168%) rotate(-28deg); z-index: 1; }
-@media (max-width: 560px) { .dd-pile-1 { transform: translateX(-30%) rotate(-3deg); } .dd-pile-2 { transform: translateX(-60%) rotate(-12deg); } .dd-pile-3, .dd-pile-4 { display: none; } }
+.dd-hero-card { --tx: 0%; --rot: 7deg; --ty: 0px; --sp: 0deg; transform: translateX(var(--tx)) translateY(var(--ty)) rotate(calc(var(--rot) + var(--sp))); transition: transform .45s cubic-bezier(.2,.8,.2,1), box-shadow .3s; }
+.dd-pile-0 { --tx: 0%; --rot: 7deg; z-index: 5; }
+.dd-pile-1 { --tx: -42%; --rot: -3deg; z-index: 4; }
+.dd-pile-2 { --tx: -84%; --rot: -12deg; z-index: 3; }
+.dd-pile-3 { --tx: -126%; --rot: -20deg; z-index: 2; }
+.dd-pile-4 { --tx: -168%; --rot: -28deg; z-index: 1; }
+@media (max-width: 560px) { .dd-pile-1 { --tx: -30%; } .dd-pile-2 { --tx: -60%; } .dd-pile-3, .dd-pile-4 { display: none; } }
+/* survol : chaque carte reagit seule (l'eventail s'ouvre un peu, la carte survolee se souleve), plus de bloc qui bouge d'un coup */
+@media (hover: hover) {
+  .dd-hero:hover .dd-pile-0 { --sp: 3deg; } .dd-hero:hover .dd-pile-1 { --sp: -2deg; } .dd-hero:hover .dd-pile-2 { --sp: -3deg; } .dd-hero:hover .dd-pile-3 { --sp: -4deg; } .dd-hero:hover .dd-pile-4 { --sp: -5deg; }
+  .dd-hero .dd-hero-card:hover { --ty: -16px; --sp: 0deg; z-index: 8; box-shadow: 0 34px 60px rgba(0,0,0,.65); }
+}
 /* mosaique de fond : fixe (aucune animation), fondue vers la gauche pour garder le chiffre lisible */
 .dd-hero { position: relative; }
 .dd-hero:before { content: ''; position: absolute; inset: 0; z-index: 1; pointer-events: none; background: linear-gradient(90deg, #050912 0%, rgba(5,9,18,.92) 30%, rgba(5,9,18,.45) 60%, rgba(5,9,18,.2) 100%); }
@@ -634,6 +650,10 @@ export const DD_CSS = `
   font: 800 14px system-ui, sans-serif; letter-spacing: .08em; text-transform: uppercase; transition: transform .15s; }
 :root:not([data-theme="dark"]) .dd-act { background: #003da6; border-color: #003da6; color: #fff !important; }
 .dd-act:hover { transform: translateY(-3px); }
+.dd-search { display: flex; margin: 0 16px 14px; border: 3px solid var(--text); background: var(--card-bg); }
+.dd-search input { flex: 1; min-width: 0; padding: 13px 14px; background: transparent; border: 0; outline: 0; color: var(--text); font: 600 15px system-ui, sans-serif; }
+.dd-search input::placeholder { color: var(--text2); font-weight: 500; }
+.dd-search button { padding: 0 18px; border: 0; border-left: 3px solid var(--text); background: var(--text); color: var(--bg, #06122e); font-size: 22px; line-height: 1; cursor: pointer; }
 .dd-box { margin: 0 16px 14px; border: 3px solid var(--text); background: var(--card-bg); padding: 4px 16px 6px; }
 .dd-h { font: 800 13px system-ui, sans-serif; letter-spacing: .16em; text-transform: uppercase; color: var(--text2); margin: 14px 0 6px; }
 .dd-h--site { margin: 26px 16px 10px; text-align: center; }
