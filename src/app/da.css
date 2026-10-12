@@ -945,3 +945,17 @@ html[data-theme="light"] .tcdb-imp-open { border-color: #06122e; color: #06122e;
   .dd .cdj-meta { font-size: 17px; }
   .dd .cdj-owner { max-width: 520px; }
 }
+
+/* Setlist : tuiles de collection « album » (couleur selon l'avancement, gros pourcentage, barre en 20 blocs) */
+.sl-tile { height: 100%; display: flex; flex-direction: column; border: 2px solid var(--text); background: var(--card-bg); color: var(--text); transition: transform .15s; }
+.sl-tile:hover { transform: translateY(-3px); }
+.sl-tile-h { display: flex; justify-content: space-between; align-items: baseline; gap: 8px; padding: 6px 10px; background: var(--c); color: #fff; font: 800 10px system-ui, sans-serif; letter-spacing: .14em; text-transform: uppercase; text-shadow: 0 1px 2px rgba(0, 0, 0, .45); }
+.sl-tile-h span:last-child { text-align: right; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.sl-tile-b { padding: 10px 12px 12px; display: flex; flex-direction: column; gap: 6px; flex: 1; }
+.sl-tile-n { font: 400 21px/1.05 'Surfquest', Impact, 'Arial Narrow', sans-serif; text-transform: uppercase; letter-spacing: .02em; color: var(--text); overflow-wrap: anywhere; }
+.sl-tile-p { font-size: 44px; line-height: .9; color: var(--c); margin-top: auto; }
+.sl-tile-p small { font-size: 18px; }
+.sl-tile-seg { display: grid; grid-template-columns: repeat(20, 1fr); gap: 2px; height: 8px; }
+.sl-tile-seg i { background: var(--border, rgba(128, 128, 128, .3)); }
+.sl-tile-seg i.on { background: var(--c); }
+.sl-tile-f { font: 700 11px system-ui, sans-serif; color: var(--text2); }

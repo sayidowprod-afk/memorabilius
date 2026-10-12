@@ -982,42 +982,34 @@ export default function SetlistPage() {
         <div style={{ textAlign: 'center', padding: 60, color: '#888' }}>{t('setlist_no_match_search')}</div>
       ) : (
         <div className="sl-sets-grid">
-          {displayedSets.map(set => (
-            <Link key={set.id} href={`/setlist/${set.id}`} style={{ textDecoration: 'none' }}>
-              <div
-                style={{ background: dark ? '#1e1e1e' : 'white', borderRadius: 14, padding: '18px 20px', border: `1.5px solid ${dark ? '#2a2a2a' : '#f0f0f0'}`, cursor: 'pointer', transition: 'box-shadow 0.15s, border-color 0.15s', height: '100%', boxSizing: 'border-box' }}
-                onMouseEnter={e => { (e.currentTarget as HTMLDivElement).style.boxShadow = '0 4px 18px rgba(0,0,0,0.10)'; (e.currentTarget as HTMLDivElement).style.borderColor = '#003DA6' }}
-                onMouseLeave={e => { (e.currentTarget as HTMLDivElement).style.boxShadow = 'none'; (e.currentTarget as HTMLDivElement).style.borderColor = dark ? '#2a2a2a' : '#f0f0f0' }}
-              >
-                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: 6 }}>
-                  <div style={{ fontWeight: 800, fontSize: 15, color: dark ? '#eee' : '#111', lineHeight: 1.3, flex: 1, marginRight: 8 }}>
-                    {set.name}
+          {displayedSets.map(set => {
+            // Tuile « album » : couleur selon l'avancement (gris vide, bleu, orange, vert, or a 100 %), gros pourcentage, barre en 20 blocs
+            const p = set.pct || 0
+            const tint = p >= 100 ? '#ffd54a' : p >= 80 ? '#3ddc97' : p >= 40 ? '#ff9d3d' : p > 0 ? '#4aa3ff' : '#6b7794'
+            const missing = Math.max(0, set.total_cards - (set.owned || 0))
+            return (
+              <Link key={set.id} href={`/setlist/${set.id}`} style={{ textDecoration: 'none' }}>
+                <div className="sl-tile" style={{ ['--c' as string]: tint }}>
+                  <div className="sl-tile-h">
+                    <span>{set.year ? seasonLabel(set.year, activeSport) : ''}</span>
+                    <span>{userId && p >= 100 ? '★ ' + t('setlist_completed') : (set.brand || '')}</span>
                   </div>
-                  {set.pct !== undefined && set.pct > 0 && (
-                    <span style={{ fontSize: 14, fontWeight: 900, color: set.pct === 100 ? '#2ecc71' : '#003DA6', whiteSpace: 'nowrap' }}>
-                      {set.pct}%
-                    </span>
-                  )}
+                  <div className="sl-tile-b">
+                    <div className="sl-tile-n">{set.name}</div>
+                    {userId ? (
+                      <>
+                        <div className="sl-tile-p da-display">{p}<small>%</small></div>
+                        <div className="sl-tile-seg">{Array.from({ length: 20 }, (_, i) => <i key={i} className={i < Math.round(p / 5) ? 'on' : ''} />)}</div>
+                        <div className="sl-tile-f">{(set.owned || 0).toLocaleString()} / {set.total_cards.toLocaleString()} {t('setlist_owned')}{missing > 0 && p > 0 ? ` · -${missing.toLocaleString()}` : ''}</div>
+                      </>
+                    ) : (
+                      <div className="sl-tile-f">{set.total_cards.toLocaleString()} {t('setlist_cards')}</div>
+                    )}
+                  </div>
                 </div>
-                <div style={{ display: 'flex', gap: 6, flexWrap: 'wrap', marginBottom: 8 }}>
-                  {set.brand && (
-                    <span style={{ fontSize: 11, color: dark ? '#7eb8ff' : '#003DA6', fontWeight: 700, background: dark ? '#1a2440' : '#f0f4ff', borderRadius: 4, padding: '2px 7px' }}>
-                      {set.brand}
-                    </span>
-                  )}
-                  <span style={{ fontSize: 11, color: '#aaa' }}>{set.total_cards.toLocaleString()} {t('setlist_cards')}</span>
-                </div>
-                {userId && (
-                  <>
-                    <CompletionBar pct={set.pct || 0} dark={dark} />
-                    <div style={{ fontSize: 11, color: '#999', marginTop: 4 }}>
-                      {(set.owned || 0).toLocaleString()} / {set.total_cards.toLocaleString()} {t('setlist_owned')}
-                    </div>
-                  </>
-                )}
-              </div>
-            </Link>
-          ))}
+              </Link>
+            )
+          })}
         </div>
       )}
       <SetlistRequest defaultSport={activeSport} />
