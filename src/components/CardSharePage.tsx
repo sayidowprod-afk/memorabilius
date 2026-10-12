@@ -74,9 +74,9 @@ export default function CardSharePage({ cardId }: { cardId: string }) {
 
   const tags: { label: string; bg: string }[] = []
   if (card.rc)    tags.push({ label: 'RC',    bg: '#F97316' })
-  if (card.auto)  tags.push({ label: 'AUTO',  bg: '#10B981' })
-  if (card.patch) tags.push({ label: 'PATCH', bg: '#2563EB' })
-  if (card.num)   tags.push({ label: card.num, bg: '#D946EF' })
+  if (card.auto)  tags.push({ label: 'AUTO',  bg: '#3B82F6' })
+  if (card.patch) tags.push({ label: 'PATCH', bg: '#EF4444' })
+  if (card.num)   tags.push({ label: card.num, bg: '#A855F7' })
 
   const infoRows = [
     ['Année',         card.annee],

@@ -2332,9 +2332,9 @@ export default function GalerieClient({ userId, initialCardUrl, initialCards, in
                 {[
                   { val: totalCount, label: t('gallery_cards'), flash: totalFlash },
                   { val: rcCount, label: 'RC', color: '#F97316', flash: rcFlash },
-                  { val: autoCount, label: 'Auto', color: '#10B981', flash: autoFlash },
-                  { val: numCount, label: 'Num', color: '#D946EF', flash: numFlash },
-                  { val: patchCount, label: 'Patch', color: '#2563EB', flash: patchFlash },
+                  { val: autoCount, label: 'Auto', color: '#3B82F6', flash: autoFlash },
+                  { val: patchCount, label: 'Patch', color: '#EF4444', flash: patchFlash },
+                  { val: numCount, label: 'Num', color: '#A855F7', flash: numFlash },
                 ].map(s => (
                   <div key={s.label} style={{ textAlign: 'center', minWidth: 45 }}>
                     <div className={`da-num${s.flash ? ' stat-flash' : ''}`} style={{ fontSize: 30, fontWeight: 900, color: s.color || accent }}>{s.val}</div>
@@ -2771,7 +2771,7 @@ export default function GalerieClient({ userId, initialCardUrl, initialCards, in
           </div>
 
           <div className="gf-g4" style={{ display: 'grid', gridTemplateColumns: 'repeat(4,1fr)', gap: 5, marginBottom: 10 }}>
-            {(['rc', 'auto', 'num', 'patch'] as const).map(k => (
+            {(['rc', 'auto', 'patch', 'num'] as const).map(k => (
               <button key={k} className={activeFilters[k] ? 'gf-b on' : 'gf-b'} data-k={k} onClick={() => toggleFilter(k)} style={{
                 padding: '8px 2px', border: 'none', borderRadius: 6, cursor: 'pointer', fontSize: 9, fontWeight: 800, textTransform: 'uppercase',
                 background: activeFilters[k] ? TAG_COLORS[k] : (dark ? '#2a2a2a' : '#f0f0f0'), color: activeFilters[k] ? 'white' : (dark ? '#bbb' : '#333')
@@ -3500,8 +3500,8 @@ export default function GalerieClient({ userId, initialCardUrl, initialCards, in
                 const ats: { k: string; t: string; c: string }[] = []
                 if (d.item_type && d.item_type !== 'card') ats.push({ k: 'memo', t: 'Mémo', c: '#c77dff' })
                 if (d.rc) ats.push({ k: 'rc', t: 'RC', c: TAG_BASE.rc })
-                if (d.patch) ats.push({ k: 'patch', t: 'Patch', c: TAG_BASE.patch })
                 if (d.auto) ats.push({ k: 'auto', t: 'Auto', c: TAG_BASE.auto })
+                if (d.patch) ats.push({ k: 'patch', t: 'Patch', c: TAG_BASE.patch })
                 if (d.printing_plate) ats.push({ k: 'plate', t: 'Plate', c: '#9aa6bd' })
                 if (d.num) { const tr = numTier(d.num); ats.push({ k: 'num', t: numShort(d.num), c: tr === 'gold' ? '#ffd54a' : tr === 'silver' ? '#dfe6f2' : tr === 'bronze' ? '#e0925a' : TAG_BASE.num }) }
                 const barColor = teamBarColor(d.t)

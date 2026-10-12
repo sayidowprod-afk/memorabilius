@@ -10,8 +10,8 @@ export function cardTagDrawItems(card: { rc?: boolean; auto?: boolean; patch?: b
   const items: TagDrawItem[] = []
   if (card.rc) items.push({ kind: 'rc', text: 'RC' })
   if (card.auto) items.push({ kind: 'auto', text: 'AUTO' })
-  if (card.num) items.push({ kind: 'num', text: numShort(card.num) || 'NUM', num: card.num })
   if (card.patch) items.push({ kind: 'patch', text: 'PATCH' })
+  if (card.num) items.push({ kind: 'num', text: numShort(card.num) || 'NUM', num: card.num })
   if (extraColor && card.g && card.g !== 'Raw') items.push({ kind: 'extra', text: card.g, color: extraColor })
   return items
 }

@@ -19,7 +19,7 @@ const SAMPLES: Sample[] = [
 ]
 
 type Kind = 'rc' | 'auto' | 'patch' | 'num'
-const BASE: Record<Kind, string> = { rc: '#F97316', auto: '#10B981', patch: '#2563EB', num: '#D946EF' }
+const BASE: Record<Kind, string> = { rc: '#F97316', auto: '#3B82F6', patch: '#EF4444', num: '#A855F7' }
 
 // melange d'une couleur hex avec du blanc (t>0) ou du noir (t<0)
 function mix(hex: string, t: number) {

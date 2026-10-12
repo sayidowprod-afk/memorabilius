@@ -715,7 +715,7 @@ export default function GalerieExport({ cards: allCards, profileName, avatarUrl,
                 </select>
               </div>
               <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4,1fr)', gap: 5 }}>
-                {([['RC', fRc, setFRc, '#F97316'], ['AUTO', fAuto, setFAuto, '#10B981'], ['PATCH', fPatch, setFPatch, '#2563EB'], ['# NUM', fNum, setFNum, '#D946EF']] as const).map(([label, val, setter, color]) => (
+                {([['RC', fRc, setFRc, '#F97316'], ['AUTO', fAuto, setFAuto, '#3B82F6'], ['PATCH', fPatch, setFPatch, '#EF4444'], ['# NUM', fNum, setFNum, '#A855F7']] as const).map(([label, val, setter, color]) => (
                   <button key={label} onClick={() => (setter as any)(!val)}
                     style={{ padding: '7px 2px', border: 'none', borderRadius: 6, cursor: 'pointer', fontSize: 10, fontWeight: 800, textTransform: 'uppercase', background: val ? color : '#f0f0f0', color: val ? 'white' : '#555', transition: '0.15s' }}>
                     {label}

@@ -610,7 +610,7 @@ export default function Trades() {
                 )
               })}
               <span style={{ fontSize: 12, fontWeight: 700, color: 'var(--text3, #888)', marginLeft: 8 }}>Tags :</span>
-              {(['rc', 'auto', 'num', 'patch'] as const).map(k => (
+              {(['rc', 'auto', 'patch', 'num'] as const).map(k => (
                 <button key={k} onClick={() => setFTags(prev => ({ ...prev, [k]: !prev[k] }))} style={{
                   padding: '5px 12px', border: 'none', borderRadius: 20, cursor: 'pointer', fontWeight: 900, fontSize: 12, textTransform: 'uppercase',
                   background: fTags[k] ? '#003DA6' : 'var(--bg3, #f0f0f0)',

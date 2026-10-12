@@ -111,8 +111,8 @@ function MemoLinkPreview({ url }: { url: string }) {
   if (data.kind === 'carte') {
     const badges = [
       data.rc && { label: 'RC', bg: '#F97316' },
-      data.auto && { label: 'AUTO', bg: '#10B981' },
-      data.patch && { label: 'PATCH', bg: '#2563EB' },
+      data.auto && { label: 'AUTO', bg: '#3B82F6' },
+      data.patch && { label: 'PATCH', bg: '#EF4444' },
     ].filter(Boolean) as { label: string; bg: string }[]
 
     return (

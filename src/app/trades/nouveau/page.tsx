@@ -135,15 +135,15 @@ export default function NouveauTrade() {
             </div>
           </div>
 
-          {/* Tags RC / Auto / Num / Patch */}
+          {/* Tags RC / Auto / Patch / Num */}
           <div>
             <label style={{ fontSize: 12, fontWeight: 700, textTransform: 'uppercase', color: 'var(--text3, #888)', display: 'block', marginBottom: 8 }}>{t('trades_form_caracteristiques_label')}</label>
             <div style={{ display: 'flex', gap: 10, flexWrap: 'wrap' }}>
               {[
                 { key: 'rc', label: 'RC', bg: '#fff3e0', color: '#F97316', activeBg: '#F97316' },
-                { key: 'auto', label: 'AUTO', bg: '#e8f5e9', color: '#10B981', activeBg: '#10B981' },
+                { key: 'auto', label: 'AUTO', bg: '#e8f5e9', color: '#3B82F6', activeBg: '#3B82F6' },
+                { key: 'patch', label: 'PATCH', bg: '#e3f2fd', color: '#EF4444', activeBg: '#EF4444' },
                 { key: 'num', label: '# NUM', bg: '#f5f5f5', color: '#444', activeBg: '#444' },
-                { key: 'patch', label: 'PATCH', bg: '#e3f2fd', color: '#2563EB', activeBg: '#2563EB' },
               ].map(tag => (
                 <button key={tag.key} type="button" onClick={() => setForm({ ...form, [tag.key]: !(form as any)[tag.key] })} style={{
                   padding: '8px 16px', border: 'none', borderRadius: 20, cursor: 'pointer',

@@ -1797,10 +1797,10 @@ export default function AdminStats() {
           <div style={{ display: 'grid', gridTemplateColumns: isMobile ? '1fr 1fr' : 'repeat(5, 1fr)', gap: 16 }}>
             {[
               { label: 'Avec photo',  value: stats.cards_with_photo ?? 0,  color: '#0ea5e9' },
-              { label: 'RC',          value: stats.cards_with_rc    ?? 0,  color: '#f59e0b' },
-              { label: 'Auto',        value: stats.cards_with_auto  ?? 0,  color: '#8b5cf6' },
-              { label: 'Patch',       value: stats.cards_with_patch ?? 0,  color: '#ec4899' },
-              { label: 'Numérotées',  value: stats.cards_with_num   ?? 0,  color: '#059669' },
+              { label: 'RC',          value: stats.cards_with_rc    ?? 0,  color: '#F97316' },
+              { label: 'Auto',        value: stats.cards_with_auto  ?? 0,  color: '#3B82F6' },
+              { label: 'Patch',       value: stats.cards_with_patch ?? 0,  color: '#EF4444' },
+              { label: 'Numérotées',  value: stats.cards_with_num   ?? 0,  color: '#A855F7' },
             ].map(({ label, value, color }) => {
               const total = stats.total_cards_manual ?? 1
               const pct   = total > 0 ? ((value / total) * 100).toFixed(1) : '0'

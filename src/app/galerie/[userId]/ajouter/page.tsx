@@ -1311,8 +1311,8 @@ export default function AjouterCarte({ params }: { params: Promise<{ userId: str
             <div style={{ display: 'flex', flexWrap: 'wrap', gap: 10 }}>
               {[
                 { key: 'rc', label: 'RC', activeBg: '#F97316' },
-                { key: 'auto', label: 'AUTO', activeBg: '#10B981' },
-                { key: 'patch', label: 'PATCH', activeBg: '#2563EB' },
+                { key: 'auto', label: 'AUTO', activeBg: '#3B82F6' },
+                { key: 'patch', label: 'PATCH', activeBg: '#EF4444' },
                 { key: 'printing_plate', label: 'PRINTING PLATE', activeBg: '#111827' },
               ].map(tag => (
                 <button key={tag.key} type="button" onClick={() => setForm({ ...form, [tag.key]: !(form as any)[tag.key] })}

@@ -48,9 +48,9 @@ function WishCard({ item, accent, isOwner, onRemove }: {
 
   const tags = [
     item.rc && { label: 'RC', bg: '#F97316' },
-    item.auto && { label: 'AUTO', bg: '#10B981' },
-    item.patch && { label: 'PATCH', bg: '#2563EB' },
-    item.num && { label: item.num, bg: '#D946EF' },
+    item.auto && { label: 'AUTO', bg: '#3B82F6' },
+    item.patch && { label: 'PATCH', bg: '#EF4444' },
+    item.num && { label: item.num, bg: '#A855F7' },
   ].filter(Boolean) as { label: string; bg: string }[]
 
   const isSupabase = cardImg?.includes('supabase.co')
@@ -225,7 +225,7 @@ export default function PublicWishlist({ userId, accent, isOwner }: { userId: st
                 <button key={k} onClick={() => setForm(p => ({ ...p, [k]: !p[k] }))} style={{
                   padding: '6px 14px', border: 'none', borderRadius: 6, cursor: 'pointer',
                   fontSize: 11, fontWeight: 800, textTransform: 'uppercase',
-                  background: form[k] ? (k === 'rc' ? '#F97316' : k === 'auto' ? '#10B981' : '#2563EB') : 'var(--bg3, #f0f0f0)',
+                  background: form[k] ? (k === 'rc' ? '#F97316' : k === 'auto' ? '#3B82F6' : '#EF4444') : 'var(--bg3, #f0f0f0)',
                   color: form[k] ? 'white' : 'var(--text2, #333)',
                 }}>{k}</button>
               ))}

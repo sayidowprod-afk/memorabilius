@@ -57,8 +57,8 @@ export default function CardTags({ rc, auto, patch, num, numText, size = 'md' }:
   const items: { kind: TagKind; num?: string | null }[] = []
   if (rc) items.push({ kind: 'rc' })
   if (auto) items.push({ kind: 'auto' })
-  if (num) items.push({ kind: 'num', num: numValue })
   if (patch) items.push({ kind: 'patch' })
+  if (num) items.push({ kind: 'num', num: numValue })
   if (!items.length) return null
   const base = SIZES[size].base
   return (

@@ -27,9 +27,9 @@ export interface PickableCard {
 const ACCENT = '#003DA6'
 const TAGS = [
   { key: 'rc', label: 'RC', bg: '#F97316' },
-  { key: 'auto', label: 'AUTO', bg: '#10B981' },
-  { key: 'patch', label: 'PATCH', bg: '#2563EB' },
-  { key: 'num', label: '# NUM', bg: '#D946EF' },
+  { key: 'auto', label: 'AUTO', bg: '#3B82F6' },
+  { key: 'patch', label: 'PATCH', bg: '#EF4444' },
+  { key: 'num', label: '# NUM', bg: '#A855F7' },
 ] as const
 
 // Sélecteur de carte parmi la collection du user (manuelles + CSV), dédupliquées par image.

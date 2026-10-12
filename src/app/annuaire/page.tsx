@@ -409,8 +409,8 @@ function AnnuaireContent() {
               {th('total', isMobile ? 'Tot.' : t('directory_total'))}
               {th('rc', 'RC')}
               {th('auto', 'Auto')}
-              {th('num', isMobile ? '#' : '# Num')}
               {th('patch', isMobile ? 'Pat.' : 'Patch')}
+              {th('num', isMobile ? '#' : '# Num')}
             </tr></thead>
             <tbody>
               {sorted.length === 0 && (
@@ -439,9 +439,9 @@ function AnnuaireContent() {
                   </td>
                   <td style={{ padding: isMobile ? '10px 4px' : 15, borderBottom: `1px solid ${dark ? '#2a2a2a' : '#f5f5f5'}`, textAlign: 'center' }}>{badge(c.stats?.total ?? 0, 'total', '')}</td>
                   <td style={{ padding: isMobile ? '10px 4px' : 15, borderBottom: `1px solid ${dark ? '#2a2a2a' : '#f5f5f5'}`, textAlign: 'center' }}>{badge(c.stats?.rc ?? 0, '', dark ? '#F97316' : '#ea580c')}</td>
-                  <td style={{ padding: isMobile ? '10px 4px' : 15, borderBottom: `1px solid ${dark ? '#2a2a2a' : '#f5f5f5'}`, textAlign: 'center' }}>{badge(c.stats?.auto ?? 0, '', dark ? '#10B981' : '#059669')}</td>
-                  <td style={{ padding: isMobile ? '10px 4px' : 15, borderBottom: `1px solid ${dark ? '#2a2a2a' : '#f5f5f5'}`, textAlign: 'center' }}>{badge(c.stats?.num ?? 0, '', dark ? '#D946EF' : '#c026d3')}</td>
-                  <td style={{ padding: isMobile ? '10px 4px' : 15, borderBottom: `1px solid ${dark ? '#2a2a2a' : '#f5f5f5'}`, textAlign: 'center' }}>{badge(c.stats?.patch ?? 0, '', dark ? '#2563EB' : '#1d4ed8')}</td>
+                  <td style={{ padding: isMobile ? '10px 4px' : 15, borderBottom: `1px solid ${dark ? '#2a2a2a' : '#f5f5f5'}`, textAlign: 'center' }}>{badge(c.stats?.auto ?? 0, '', dark ? '#3B82F6' : '#2563eb')}</td>
+                  <td style={{ padding: isMobile ? '10px 4px' : 15, borderBottom: `1px solid ${dark ? '#2a2a2a' : '#f5f5f5'}`, textAlign: 'center' }}>{badge(c.stats?.patch ?? 0, '', dark ? '#EF4444' : '#dc2626')}</td>
+                  <td style={{ padding: isMobile ? '10px 4px' : 15, borderBottom: `1px solid ${dark ? '#2a2a2a' : '#f5f5f5'}`, textAlign: 'center' }}>{badge(c.stats?.num ?? 0, '', dark ? '#A855F7' : '#9333ea')}</td>
                 </tr>
               ))}
               {renderLimit < sorted.length && (

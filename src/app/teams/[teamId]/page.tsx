@@ -877,12 +877,12 @@ export default function TeamPage({ params }: { params: Promise<{ teamId: string 
         <div style={{ background: 'transparent', borderRadius: 0, overflow: 'hidden', border: `1px solid ${dark ? 'rgba(255,255,255,0.28)' : '#06122e'}` }}>
           {/* overflowX:auto sur ce wrapper interne — le tableau (9 colonnes) dépasse
               largement un écran mobile ; avant, l'overflow:hidden du conteneur externe
-              rognait les colonnes de droite (RC/Auto/Num/Patch/Actions) au lieu de
+              rognait les colonnes de droite (RC/Auto/Patch/Num/Actions) au lieu de
               permettre le scroll horizontal. */}
           <div style={{ overflowX: 'auto', WebkitOverflowScrolling: 'touch' }}>
           <table style={{ width: '100%', borderCollapse: 'collapse', minWidth: 640 }}>
             <thead><tr>
-              {['#', t('teams_collector'), t('teams_role'), 'Cartes', 'RC', 'Auto', 'Num', 'Patch', ...(isChef ? ['Actions'] : [])].map(h => (
+              {['#', t('teams_collector'), t('teams_role'), 'Cartes', 'RC', 'Auto', 'Patch', 'Num', ...(isChef ? ['Actions'] : [])].map(h => (
                 <th key={h} style={{ padding: '14px 16px', textAlign: 'left', fontSize: 11, letterSpacing: '0.12em', textTransform: 'uppercase', color: dark ? '#fff' : '#06122e', borderBottom: `2px solid ${dark ? '#fff' : '#06122e'}`, background: 'transparent' }}>{h}</th>
               ))}
             </tr></thead>
@@ -911,9 +911,9 @@ export default function TeamPage({ params }: { params: Promise<{ teamId: string 
                       {role === 'admin' && <span className="dir-sq" style={{ color: dark ? '#4cd37b' : '#1f8a45' }}>⭐ Admin</span>}
                       {role === 'member' && <span className="dir-sq" style={{ color: dark ? 'rgba(255,255,255,0.55)' : 'rgba(6,18,46,0.55)' }}>Membre</span>}
                     </td>
-                    {[m.stats?.total, m.stats?.rc, m.stats?.auto, m.stats?.num, m.stats?.patch].map((val, vi) => (
+                    {[m.stats?.total, m.stats?.rc, m.stats?.auto, m.stats?.patch, m.stats?.num].map((val, vi) => (
                       <td key={vi} style={{ padding: '12px 16px', borderBottom: DIR_BD }}>
-                        <span className="da-display dir-num" style={{ fontSize: 28, lineHeight: 1, color: vi === 0 ? (dark ? '#fff' : '#06122e') : (dark ? ['', '#F97316', '#10B981', '#D946EF', '#2563EB'] : ['', '#ea580c', '#059669', '#c026d3', '#1d4ed8'])[vi] }}>{(val || 0).toLocaleString('fr-FR')}</span>
+                        <span className="da-display dir-num" style={{ fontSize: 28, lineHeight: 1, color: vi === 0 ? (dark ? '#fff' : '#06122e') : (dark ? ['', '#F97316', '#3B82F6', '#EF4444', '#A855F7'] : ['', '#ea580c', '#2563eb', '#dc2626', '#9333ea'])[vi] }}>{(val || 0).toLocaleString('fr-FR')}</span>
                       </td>
                     ))}
                     {isChef && (

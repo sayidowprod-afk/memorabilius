@@ -195,8 +195,8 @@ function FilterBar({ cards, filters, onChange }: { cards: CardInfo[]; filters: F
         </select>
       )}
       <Tag label="RC" key2="rc" bg="#F97316" />
-      <Tag label="Auto" key2="auto" bg="#10B981" />
-      <Tag label="Patch" key2="patch" bg="#2563EB" />
+      <Tag label="Auto" key2="auto" bg="#3B82F6" />
+      <Tag label="Patch" key2="patch" bg="#EF4444" />
       {hasActive && (
         <button onClick={() => onChange(emptyFilters())}
           style={{ border: 'none', background: 'none', fontSize: 11, color: '#aaa', cursor: 'pointer', padding: '5px 4px' }}>

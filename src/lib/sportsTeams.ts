@@ -436,9 +436,9 @@ export function getSpeciality(
 
   // Badges ratio (cumulables)
   if (rc / total > 0.35)    result.push({ label: '🌟 RC Hunter',      color: '#F97316' })
-  if (auto / total > 0.25)  result.push({ label: '✍️ Auto Collector',  color: '#10B981' })
-  if (patch / total > 0.12) result.push({ label: '🧩 Patch Master',    color: '#2563EB' })
-  if (num / total > 0.55)   result.push({ label: '🔢 Serial #',        color: '#D946EF' })
+  if (auto / total > 0.25)  result.push({ label: '✍️ Auto Collector',  color: '#3B82F6' })
+  if (patch / total > 0.12) result.push({ label: '🧩 Patch Master',    color: '#EF4444' })
+  if (num / total > 0.55)   result.push({ label: '🔢 Serial #',        color: '#A855F7' })
 
   return result
 }
