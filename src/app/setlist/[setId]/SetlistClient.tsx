@@ -73,6 +73,9 @@ export default function SetlistClient({ setId }: { setId: string }) {
   }, [])
   const playerToImgRef = useRef<Map<string, string>>(new Map())
   const matchedCardImagesRef = useRef<Map<number, string>>(new Map())
+  // completions de l'utilisateur pour ce set : les variations ouvertes plus tard (autres que Base) doivent les retrouver
+  const completedIdsRef = useRef<Set<number>>(new Set())
+  const completionDetsRef = useRef<Map<number, { id: string; manually_checked: boolean; matched_card_key?: string | null }>>(new Map())
   const rootsRef = useRef<Set<number> | null>(null)   // entrees racines (une par carte) ; null = pas d'info -> tout afficher
   const [rootTotal, setRootTotal] = useState<number | null>(null)
 
@@ -266,6 +269,8 @@ export default function SetlistClient({ setId }: { setId: string }) {
     setVariations(varMetas)
     setLoading(false)
 
+    completedIdsRef.current = completedEntryIds
+    completionDetsRef.current = completionDetails
     // Charger la variation Base immédiatement
     loadVariation('Base', varMetas, setData, completedEntryIds, completionDetails)
   }
@@ -298,8 +303,8 @@ export default function SetlistClient({ setId }: { setId: string }) {
 
     if (!finalData.length && !isBase) return
 
-    const usedIds = completedIds || new Set<number>()
-    const usedDets = completionDets || new Map<number, { id: string; manually_checked: boolean }>()
+    const usedIds = completedIds || completedIdsRef.current
+    const usedDets = completionDets || completionDetsRef.current
 
     const entries: Entry[] = finalData
       .sort((a, b) => {
