@@ -935,3 +935,13 @@ html[data-theme="light"] .tcdb-imp-open { border-color: #06122e; color: #06122e;
 /* Carte du jour dans le tableau de bord : meme largeur et memes marges que les autres blocs, carte plus grande */
 .dd .cdj { margin: 0 16px 14px; grid-template-columns: 280px 1fr; }
 @media (max-width: 700px) { .dd .cdj { grid-template-columns: 158px 1fr; gap: 16px; padding: 26px 14px 26px 14px; } }
+/* Desktop : la semaine passe a droite (2 rangees) pour remplir le bloc au lieu de laisser un grand vide */
+@media (min-width: 1000px) {
+  .dd .cdj { grid-template-columns: 300px minmax(0, 1fr) minmax(320px, 440px); gap: 44px; padding: 40px 44px 40px 40px; }
+  .dd .cdj-week { grid-column: 3; grid-row: 1; grid-template-columns: repeat(4, 1fr); max-width: none; gap: 14px 12px; margin-top: 0; padding-bottom: 0; align-self: center; }
+  .dd .cdj-wd small { bottom: -18px; }
+  .dd .cdj-week .cdj-wd:nth-child(n+5) { margin-top: 18px; }
+  .dd .cdj h3 { font-size: clamp(56px, 5.5vw, 92px); }
+  .dd .cdj-meta { font-size: 17px; }
+  .dd .cdj-owner { max-width: 520px; }
+}
