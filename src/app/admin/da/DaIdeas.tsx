@@ -57,8 +57,9 @@ const CSS = `
 .ix .s4 .gs-mq .sep { align-self: center; width: 1px; height: 8px; background: rgba(255,255,255,.7); }
 /* variantes */
 .ix .s4 .vz-chips .w { background: var(--a); border-right: 1px solid rgba(255,255,255,.75); }
-.ix .s4 .vz-out .gs-seg { box-shadow: inset 0 0 0 1px #fff; }
-.ix .s4 .vz-fil .gs-seg { box-shadow: inset 0 1px 0 #fff, inset 0 -1px 0 #fff; }
+.ix .s4 .vz-out .gs-seg::after, .ix .s4 .vz-fil .gs-seg::after, .ix .s4 .vz-dbl .gs-seg::after { content: ''; position: absolute; inset: 0; z-index: 3; pointer-events: none; }
+.ix .s4 .vz-out .gs-seg::after { box-shadow: inset 0 0 0 1.5px #fff; }
+.ix .s4 .vz-fil .gs-seg::after { box-shadow: inset 0 1.5px 0 #fff, inset 0 -1.5px 0 #fff; }
 .ix .s4 .vz-gloss .w::after { content: ''; position: absolute; left: 0; right: 0; top: 0; height: 50%; background: linear-gradient(rgba(255,255,255,.42), rgba(255,255,255,.04)); pointer-events: none; }
 .ix .s4 .vz-haz .w { background: repeating-linear-gradient(-45deg, var(--a) 0 6px, color-mix(in srgb, var(--a) 62%, #000) 6px 12px); text-shadow: 0 1px 2px rgba(0,0,0,.6); }
 .ix .s4 .vz-under .gs-seg { background: #0b1230; box-shadow: inset 0 0 0 1px rgba(255,255,255,.16); }
@@ -70,12 +71,11 @@ const CSS = `
 .ix .s4 .vz-cap .gs-seg::before, .ix .s4 .vz-cap .gs-seg::after { content: ''; position: absolute; top: 0; bottom: 0; width: 4px; background: var(--gt); z-index: 3; }
 .ix .s4 .vz-cap .gs-seg::before { left: 0; } .ix .s4 .vz-cap .gs-seg::after { right: 0; }
 .ix .s4 .vz-two .w { background: linear-gradient(180deg, var(--a) 0 50%, color-mix(in srgb, var(--a) 68%, #000) 50% 100%); }
-.ix .s4 .vz-light .gs-seg { background: #fff; box-shadow: inset 0 0 0 1px #fff; }
+.ix .s4 .vz-light .gs-seg { background: #fff; }
 .ix .s4 .vz-light .w { background: none; color: var(--a) !important; box-shadow: inset 0 -2px 0 var(--a); }
 .ix .s4 .vz-sheen .gs-seg::after { content: ''; position: absolute; top: 0; bottom: 0; width: 28%; left: -40%; z-index: 3; background: linear-gradient(90deg, transparent, rgba(255,255,255,.6), transparent); animation: s4sheen 6s ease-in-out infinite; }
 @keyframes s4sheen { 0%, 55% { left: -40%; } 100% { left: 120%; } }
-.ix .s4 .vz-dbl .gs-seg { box-shadow: inset 0 1px 0 #fff, inset 0 -1px 0 #fff, inset 1px 0 0 #fff, inset -1px 0 0 #fff; }
-.ix .s4 .vz-dbl .w { box-shadow: inset 0 2px 0 rgba(8,21,59,.9), inset 0 -2px 0 rgba(8,21,59,.9); }
+.ix .s4 .vz-dbl .gs-seg::after { box-shadow: inset 0 0 0 1px #fff, inset 0 0 0 2px #08153b; }
 .ix .s4 .vz-glass .w { background: linear-gradient(180deg, color-mix(in srgb, var(--a) 70%, #fff) 0%, var(--a) 45%, color-mix(in srgb, var(--a) 70%, #000) 100%); box-shadow: inset 0 1px 0 rgba(255,255,255,.6), inset 0 -1px 0 rgba(0,0,0,.4); }
 @media (prefers-reduced-motion: reduce) { .ix .s4 .vz-sheen .gs-seg::after { animation: none; } }
 `
