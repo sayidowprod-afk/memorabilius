@@ -1,14 +1,11 @@
 'use client'
-import React, { Fragment } from 'react'
+import React from 'react'
 import type { CSSProperties } from 'react'
 import Link from 'next/link'
-import TeamBadge from '@/components/TeamBadge'
-import { getTeamByName } from '@/lib/sportsTeams'
-import { TAG_BASE, numTier, numShort, mix } from '@/lib/cardTags'
 
 // Idees visuelles pour pousser la nouvelle DA (Surfquest, marine -> bleu electrique, angles droits, doubles filets, metaux).
 // Page de TRAVAIL reservee aux admins : donnees d'exemple en dur, rien n'est lu ni ecrit.
-// Serie 42 : vraie vignette de la galerie (logo, couleurs de barre, fond du bas).
+// Serie 43 : pages /setlist (liste et detail).
 
 const SB = 'https://snnrkzbevjhdtviizfyp.supabase.co/storage/v1/object/public/avatars/cartes/eb730dee-414e-4fcb-89d8-4a7b3448c218/'
 const C = {
@@ -45,192 +42,210 @@ const CSS = `
 .ix .tags a { color:#fff; text-decoration:none; border: 2px solid rgba(255,255,255,.4); padding: 5px 10px; font: 800 10px system-ui; letter-spacing:.1em; text-transform:uppercase; }
 .ix .tags a:hover { background:#fff; color:#06122e; }
 
-/* serie 42 : vraie vignette de la galerie (memes classes que le site), seules les variantes (mk-*) changent */
-.ix .mk-grid { display: flex; flex-wrap: wrap; justify-content: center; gap: 10px; max-width: 1000px; }
-.ix .mk-grid .card-item { flex: 0 0 calc(20% - 8px); max-width: calc(20% - 8px); }
-@media (max-width: 900px) { .ix .mk-grid .card-item { flex: 0 0 calc(50% - 5px); max-width: calc(50% - 5px); } }
-.ix .mk-note { font: 700 11px system-ui; letter-spacing: .12em; text-transform: uppercase; color: rgba(255,255,255,.55); margin: 0 0 10px; }
-.ix .mk-lg { display: inline-flex; flex-shrink: 0; }
-/* logos : variantes */
-.ix .mk-g1 .gc-bot .gc-name .gc-logo { left: 8px; top: 9px; transform: none; }
-.ix .mk-g2 .gc-slot { overflow: visible; }
-.ix .mk-med { position: absolute; left: 10px; top: 50%; transform: translateY(-50%); width: 36px; height: 36px; border-radius: 50%; background: #0e1530; border: 2px solid var(--gt); display: flex; align-items: center; justify-content: center; z-index: 4; box-shadow: 0 0 0 3px #0e1530; }
-.ix .mk-g3 .gc-bot .gc-name .gc-logo { left: 10px; padding-right: 9px; border-right: 1px solid rgba(255,255,255,.32); }
-.ix .mk-g3 .gc-bot > div:first-child .gc-name { padding: 0 34px 0 50px; }
-.ix .mk-g3 .gc-bot > div:first-child > p:not(.gc-name) { padding-left: 40px; }
-.ix .mk-g4 .mk-above { display: flex; justify-content: center; margin-bottom: 3px; }
-.ix .mk-g5 .gc-bot { overflow: hidden; }
-.ix .mk-g5 .gc-bot .gc-name .gc-logo { left: -8px; opacity: .15; }
-.ix .mk-g5 .gc-bot > div:first-child .gc-name { padding: 0 34px; }
-.ix .mk-g6 .gc-bot .gc-name { padding: 0 !important; }
-.ix .mk-g6 .mk-set { display: inline-flex; align-items: center; gap: 5px; }
-.ix .mk-g7 .mk-corner { position: absolute; left: 6px; top: 6px; z-index: 3; padding: 4px; background: rgba(8,15,40,.82); border: 1px solid rgba(255,255,255,.4); display: flex; }
-.ix .mk-g8 .mk-rt { position: absolute; top: 8px; right: 8px; display: flex; }
-.ix .mk-g8 .gc-bot .gc-right { top: auto; bottom: 8px; }
-.ix .mk-g8 .gc-bot > div:first-child .gc-name { padding: 0 30px; }
-.ix .mk-g9 .mk-ft { position: absolute; left: 10px; bottom: 8px; display: flex; }
-.ix .mk-g9 .gc-bot > div:first-child .gc-name { padding: 0 34px; }
-/* barre d'atouts : variantes */
-.ix .mk-bw .gs-mq b { color: var(--tc, #fff) !important; }
-.ix .mk-bw .gs-mq i { color: var(--tc, #fff) !important; }
-.ix .mk-dk .gs-seg { background: #0b1230 !important; box-shadow: inset 0 0 0 1px rgba(255,255,255,.16) !important; }
-.ix .mk-dk .gs-mq i { color: var(--ic) !important; }
-.ix .mk-ch .gs-seg { background: #0b1230 !important; box-shadow: inset 0 0 0 1px rgba(255,255,255,.16) !important; }
-.ix .mk-ch .gs-mq b.ch { padding: 2px 6px 1px; color: var(--tc) !important; background: var(--k); }
-.ix .mk-ch .gs-mq i { color: var(--ic) !important; }
-/* bas de vignette : variantes du fond */
-.ix .mk-d1 .gc-bot { background: linear-gradient(180deg, transparent 0%, color-mix(in srgb, var(--gt) 72%, transparent) 100%) !important; }
-.ix .mk-d2 .gc-bot { background: linear-gradient(180deg, color-mix(in srgb, var(--gt) 50%, transparent) 0%, color-mix(in srgb, var(--gt) 16%, transparent) 100%) !important; }
-.ix .mk-d3 .gc-bot { background: linear-gradient(180deg, transparent 0%, var(--gt) 100%) !important; text-shadow: 0 1px 3px rgba(0,0,0,.55); }
-.ix .mk-d4 .gc-bot { background: radial-gradient(120% 95% at 50% 100%, color-mix(in srgb, var(--gt) 80%, transparent), transparent 72%) !important; }
-.ix .mk-d5 .gc-bot { background: linear-gradient(165deg, color-mix(in srgb, var(--gt) 58%, transparent) 0%, color-mix(in srgb, var(--gt) 10%, transparent) 55%, color-mix(in srgb, var(--gt) 42%, transparent) 100%) !important; box-shadow: inset 0 1px 0 rgba(255,255,255,.22); }
-.ix .mk-d6.card-item { background: linear-gradient(180deg, #0e1a44 0%, color-mix(in srgb, var(--gt) 48%, #0e1a44) 100%) !important; }
-.ix .mk-d6 .gc-bot { background: none !important; }
-.ix .mk-d7 .gc-bot { background: linear-gradient(180deg, transparent 0%, color-mix(in srgb, var(--gt) 34%, transparent) 100%) !important; }
-.ix .mk-d7 .gc-bot::after { content: ''; position: absolute; left: 0; right: 0; bottom: 0; height: 4px; background: var(--gt); }
+/* serie 43 : ameliorations de /setlist (liste L1-L9) et d'une setlist (detail D1-D8), prefixe s3- */
+.ix .s3 { max-width: 1000px; }
+.ix .s3 * { box-sizing: border-box; }
+.ix .s3 .box { border: 3px solid rgba(255,255,255,.85); background: linear-gradient(135deg,#050912 0%,#08153b 60%,#0a2468 100%); }
+.ix .s3 .sec { font: 800 11px system-ui; letter-spacing: .18em; text-transform: uppercase; color: rgba(255,255,255,.6); margin: 0 0 8px; }
+.ix .s3 .sf2 { font-family: 'Surfquest', Impact, sans-serif; font-weight: 400; text-transform: uppercase; letter-spacing: .02em; }
+.ix .s3 .grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 12px; }
+@media (max-width: 900px) { .ix .s3 .grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+.ix .s3 .tile { border: 2px solid rgba(255,255,255,.7); background: #0a1330; display: flex; flex-direction: column; min-width: 0; }
+.ix .s3 .tile .th { display: flex; justify-content: space-between; align-items: baseline; padding: 6px 10px; background: var(--c); color: #fff; font: 800 10px system-ui; letter-spacing: .14em; text-transform: uppercase; text-shadow: 0 1px 2px rgba(0,0,0,.45); }
+.ix .s3 .tile .tb { padding: 10px 10px 12px; display: flex; flex-direction: column; gap: 6px; }
+.ix .s3 .tile .nm { font: 400 22px/1 'Surfquest', Impact, sans-serif; text-transform: uppercase; }
+.ix .s3 .tile .pc { font: 400 44px/.9 'Surfquest', Impact, sans-serif; color: var(--c); }
+.ix .s3 .tile .pc small { font-size: 18px; }
+.ix .s3 .tile .ft { font: 700 11px system-ui; opacity: .75; }
+.ix .s3 .seg { display: grid; grid-template-columns: repeat(20, 1fr); gap: 2px; height: 8px; }
+.ix .s3 .seg i { background: rgba(255,255,255,.14); } .ix .s3 .seg i.on { background: var(--c); }
+.ix .s3 .bar { height: 8px; background: rgba(255,255,255,.14); } .ix .s3 .bar i { display: block; height: 100%; background: var(--c); }
+.ix .s3 .chips { display: flex; flex-wrap: wrap; gap: 8px; }
+.ix .s3 .chip { padding: 8px 14px; border: 2px solid rgba(255,255,255,.55); font: 800 12px system-ui; letter-spacing: .08em; text-transform: uppercase; background: transparent; color: #fff; }
+.ix .s3 .chip.on { background: #fff; color: #06122e; } .ix .s3 .chip em { font-style: normal; opacity: .65; margin-left: 6px; }
+.ix .s3 .btn2 { display: inline-block; padding: 10px 16px; background: #fff; color: #06122e; border: 3px solid #fff; font: 800 12px system-ui; letter-spacing: .1em; text-transform: uppercase; }
+.ix .s3 .btn2.o { background: transparent; color: #fff; }
+.ix .s3 .hero { display: grid; grid-template-columns: auto 1fr; gap: 26px; align-items: center; padding: 22px 26px; }
+.ix .s3 .ring { width: 150px; height: 150px; border-radius: 50%; background: conic-gradient(#3ddc97 calc(var(--p) * 1%), rgba(255,255,255,.14) 0); display: grid; place-items: center; }
+.ix .s3 .ring > div { width: 118px; height: 118px; border-radius: 50%; background: #08153b; display: grid; place-items: center; text-align: center; }
+.ix .s3 .ring b { font: 400 40px/1 'Surfquest', Impact, sans-serif; } .ix .s3 .ring small { display: block; font: 700 10px system-ui; letter-spacing: .14em; opacity: .7; }
+.ix .s3 .sp { display: grid; gap: 8px; } .ix .s3 .sp > div { display: grid; grid-template-columns: 70px 1fr 44px; gap: 10px; align-items: center; font: 800 11px system-ui; letter-spacing: .1em; text-transform: uppercase; }
+@media (max-width: 700px) { .ix .s3 .hero { grid-template-columns: 1fr; justify-items: center; } .ix .s3 .sp { width: 100%; } }
+.ix .s3 .years { display: flex; gap: 6px; align-items: flex-end; height: 120px; overflow-x: auto; padding: 4px 2px 0; }
+.ix .s3 .yr { flex: 0 0 46px; display: flex; flex-direction: column; justify-content: flex-end; align-items: center; height: 100%; gap: 4px; font: 800 10px system-ui; }
+.ix .s3 .yr .col { width: 100%; background: var(--c); height: calc(var(--p) * 1% + 6px); } .ix .s3 .yr.on .col { outline: 3px solid #fff; outline-offset: 2px; }
+.ix .s3 .heat { display: grid; grid-template-columns: repeat(16, 1fr); gap: 4px; } .ix .s3 .heat i { aspect-ratio: 1; background: var(--c); opacity: var(--o, 1); border: 1px solid rgba(255,255,255,.2); }
+.ix .s3 .next { display: grid; gap: 10px; } .ix .s3 .nx { display: grid; grid-template-columns: 1fr auto; gap: 12px; align-items: center; padding: 12px 14px; border: 2px solid rgba(255,255,255,.5); background: rgba(255,255,255,.04); }
+.ix .s3 .nx b { font: 400 22px/1 'Surfquest', Impact, sans-serif; text-transform: uppercase; } .ix .s3 .nx span.t { font: 700 12px system-ui; opacity: .75; }
+.ix .s3 table { width: 100%; border-collapse: collapse; } .ix .s3 th { text-align: left; font: 800 10px system-ui; letter-spacing: .14em; text-transform: uppercase; opacity: .6; padding: 8px 10px; border-bottom: 2px solid rgba(255,255,255,.3); }
+.ix .s3 td { padding: 9px 10px; border-bottom: 1px solid rgba(255,255,255,.14); font: 600 13px system-ui; vertical-align: middle; } .ix .s3 td.n { font: 400 18px 'Surfquest', Impact, sans-serif; text-transform: uppercase; }
+.ix .s3 td .bar { min-width: 90px; }
+.ix .s3 .steps { display: grid; grid-template-columns: repeat(3, 1fr); } .ix .s3 .steps > div { padding: 14px 16px; border-right: 2px solid rgba(255,255,255,.25); } .ix .s3 .steps > div:last-child { border-right: 0; }
+.ix .s3 .steps b { display: block; font: 400 44px/.9 'Surfquest', Impact, sans-serif; } .ix .s3 .steps small { font: 800 10px system-ui; letter-spacing: .12em; text-transform: uppercase; opacity: .8; } .ix .s3 .steps .k { font: 800 10px system-ui; letter-spacing: .16em; color: #3ddc97; margin-bottom: 4px; }
+@media (max-width: 700px) { .ix .s3 .steps { grid-template-columns: 1fr; } .ix .s3 .steps > div { border-right: 0; border-bottom: 2px solid rgba(255,255,255,.25); } }
+.ix .s3 .dh { display: grid; grid-template-columns: 1fr auto; gap: 16px; align-items: stretch; }
+@media (max-width: 700px) { .ix .s3 .dh { grid-template-columns: 1fr; } }
+.ix .s3 .dh .big { padding: 18px 22px; } .ix .s3 .dh h4 { margin: 0; font: 400 clamp(34px,5vw,56px)/.95 'Surfquest', Impact, sans-serif; text-transform: uppercase; }
+.ix .s3 .kp { display: flex; flex-wrap: wrap; margin-top: 12px; } .ix .s3 .kp > div { padding: 6px 18px 6px 0; margin-right: 18px; border-right: 2px solid rgba(255,255,255,.25); } .ix .s3 .kp > div:last-child { border-right: 0; }
+.ix .s3 .kp b { display: block; font: 400 30px/1 'Surfquest', Impact, sans-serif; } .ix .s3 .kp small { font: 800 10px system-ui; letter-spacing: .12em; text-transform: uppercase; opacity: .7; }
+.ix .s3 .cells { display: grid; grid-template-columns: repeat(auto-fill, minmax(44px, 1fr)); gap: 5px; }
+.ix .s3 .cell { aspect-ratio: 1; display: grid; place-items: center; font: 800 12px system-ui; border: 2px solid rgba(255,255,255,.35); position: relative; }
+.ix .s3 .cell.own { background: #3ddc97; border-color: #3ddc97; color: #04230f; } .ix .s3 .cell.rc::after { content: 'RC'; position: absolute; right: -2px; top: -2px; background: #ff9d3d; color: #1a0e00; font: 900 7px system-ui; padding: 1px 3px; }
+.ix .s3 .rows { display: grid; } .ix .s3 .row { display: grid; grid-template-columns: 56px 1fr auto; gap: 14px; align-items: center; padding: 10px 14px; border-bottom: 1px solid rgba(255,255,255,.16); }
+.ix .s3 .row.nt { grid-template-columns: 1fr auto; }
+.ix .s3 .row .th2 { width: 56px; aspect-ratio: 2.5/3.5; background: rgba(255,255,255,.06); border: 2px dashed rgba(255,255,255,.35); display: grid; place-items: center; font: 400 22px 'Surfquest', Impact, sans-serif; opacity: .8; overflow: hidden; } .ix .s3 .row .th2 img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.ix .s3 .row.own .th2 { border: 2px solid #3ddc97; opacity: 1; } .ix .s3 .row b { font: 400 22px/1 'Surfquest', Impact, sans-serif; text-transform: uppercase; display: block; } .ix .s3 .row span.t { font: 600 12px system-ui; opacity: .7; }
+.ix .s3 .pill { display: inline-block; padding: 5px 10px; border: 2px solid rgba(255,255,255,.6); font: 800 10px system-ui; letter-spacing: .1em; text-transform: uppercase; } .ix .s3 .pill.g { background: #3ddc97; border-color: #3ddc97; color: #04230f; }
+.ix .s3 .sticky { display: flex; justify-content: space-between; gap: 12px; align-items: center; padding: 12px 16px; background: #fff; color: #06122e; margin-top: 12px; font: 800 13px system-ui; flex-wrap: wrap; }
+.ix .s3 .sticky .btn2 { background: #06122e; border-color: #06122e; color: #fff; }
+.ix .s3 .grp { font: 400 20px 'Surfquest', Impact, sans-serif; text-transform: uppercase; padding: 8px 14px; background: rgba(255,255,255,.1); display: flex; justify-content: space-between; align-items: baseline; } .ix .s3 .grp small { font: 800 10px system-ui; letter-spacing: .12em; opacity: .7; }
+.ix .s3 .ms { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; } .ix .s3 .m { border: 2px solid rgba(255,255,255,.4); padding: 14px 10px; text-align: center; opacity: .55; } .ix .s3 .m.on { opacity: 1; border-color: #ffd54a; box-shadow: 0 0 16px rgba(255,213,74,.35); }
+.ix .s3 .m b { display: block; font: 400 34px/1 'Surfquest', Impact, sans-serif; } .ix .s3 .m small { font: 800 10px system-ui; letter-spacing: .12em; text-transform: uppercase; }
+@media (max-width: 700px) { .ix .s3 .ms { grid-template-columns: repeat(2, 1fr); } }
+.ix .s3 .poster { max-width: 420px; padding: 20px; text-align: center; border: 3px solid #fff; background: linear-gradient(160deg,#050912,#003da6); } .ix .s3 .poster h5 { margin: 0 0 4px; font: 400 36px/1 'Surfquest', Impact, sans-serif; text-transform: uppercase; } .ix .s3 .poster ul { list-style: none; padding: 0; margin: 14px 0; text-align: left; font: 700 13px system-ui; } .ix .s3 .poster li { padding: 5px 0; border-bottom: 1px solid rgba(255,255,255,.2); display: flex; justify-content: space-between; }
 `
-const DaBay = ({ id, n, title, desc, children }: { id: string; n: string; title: string; desc: string; children: React.ReactNode }) => (
+const Bay43 = ({ id, n, title, desc, children }: { id: string; n: string; title: string; desc: string; children: React.ReactNode }) => (
   <section className="bay" id={id}>
     <span className="eyebrow">{n}</span>
     <h2 className="sf">{title}</h2>
     <p className="d">{desc}</p>
-    <div className="stage">{children}</div>
+    <div className="stage"><div className="s3">{children}</div></div>
   </section>
 )
-
-type PC = { n: string; v: string; s: string; img: string; team: string; rc?: boolean; auto?: boolean; patch?: boolean; num?: string }
-const PCS: PC[] = [
-  { n: 'Jared McCain', v: 'Team Card', s: '2010-11 Panini Donruss', img: C.mccain.img, rc: true, team: 'Philadelphia 76ers' },
-  { n: 'Anthony Edwards', v: 'Silver Prizm', s: '2023-24 Panini Prizm', img: C.edwards.img, rc: true, auto: true, num: '1/1', team: 'Minnesota Timberwolves' },
-  { n: 'Hersey Hawkins', v: 'Power Brokers', s: '2006-07 Topps Bowman', img: C.hawkins.img, patch: true, num: '/99', team: 'Boston Celtics' },
-  { n: 'Tyrese Maxey', v: 'Fresh Paint', s: '2024-25 Court Kings', img: C.maxey.img, auto: true, patch: true, num: '/25', team: 'Los Angeles Lakers' },
-  { n: 'Luwawu-Cabarrot', v: 'Gold Standard', s: '2023-24 Panini Select', img: C.luwawu.img, team: 'Denver Nuggets' },
+type SS = { n: string; y: string; b: string; t: number; o: number }
+const SETS: SS[] = [
+  { n: 'Prizm', y: '2023-24', b: 'Panini', t: 750, o: 612 },
+  { n: 'Hoops', y: '2023-24', b: 'Panini', t: 300, o: 288 },
+  { n: 'Donruss Optic', y: '2022-23', b: 'Panini', t: 200, o: 91 },
+  { n: 'Topps Chrome', y: '2021-22', b: 'Topps', t: 150, o: 150 },
+  { n: 'Select', y: '2020-21', b: 'Panini', t: 300, o: 47 },
+  { n: 'Skybox', y: '1995-96', b: 'Fleer/Skybox', t: 331, o: 12 },
+  { n: 'Upper Deck', y: '1991-92', b: 'Upper Deck', t: 500, o: 0 },
+  { n: 'Fleer', y: '1988-89', b: 'Fleer', t: 132, o: 121 },
 ]
-type At = { k: string; t: string; c: string }
-const atsOf = (c: PC): At[] => {
-  const a: At[] = []
-  if (c.rc) a.push({ k: 'rc', t: 'RC', c: TAG_BASE.rc })
-  if (c.patch) a.push({ k: 'patch', t: 'Patch', c: TAG_BASE.patch })
-  if (c.auto) a.push({ k: 'auto', t: 'Auto', c: TAG_BASE.auto })
-  if (c.num) { const tr = numTier(c.num); a.push({ k: 'num', t: numShort(c.num), c: tr === 'gold' ? '#ffd54a' : tr === 'silver' ? '#dfe6f2' : TAG_BASE.num }) }
-  return a
-}
-const lum = (h: string) => { const n = parseInt(h.replace('#', '').slice(0, 6), 16); return (0.299 * ((n >> 16) & 255) + 0.587 * ((n >> 8) & 255) + 0.114 * (n & 255)) / 255 }
-const onC = (h: string) => (lum(h) > 0.62 ? '#1a1200' : '#fff')
-const topOf = (a: At[]) => a.find(x => x.k === 'num' && (x.c === '#ffd54a' || x.c === '#dfe6f2')) || a.find(x => x.k === 'auto') || a.find(x => x.k === 'patch') || a.find(x => x.k === 'rc') || a[a.length - 1]
-const gl = (c: string) => `linear-gradient(180deg, ${mix(c, 0.22)} 0%, ${c} 55%, ${mix(c, -0.22)} 100%)`
-
-type Bar = 'blue' | 'top' | 'metal' | 'span' | 'indep' | 'dark' | 'frame' | 'chips'
-// Reproduit exactement le markup de la vignette de GalerieClient.tsx ; seuls les parametres de variante changent
-function Real({ c, lg = 0, bar = 'blue', cls = '' }: { c: PC; lg?: number; bar?: Bar; cls?: string }) {
-  const tm = getTeamByName(c.team)
-  const color = tm?.color || 'transparent'
-  const ats = atsOf(c)
-  const reps = Math.max(4, Math.ceil(20 / Math.max(1, ats.length)))
-  const top = ats.length ? topOf(ats) : null
-  const logoSz = lg === 3 ? 30 : lg === 5 ? 96 : lg === 2 ? 24 : lg === 4 ? 24 : lg === 6 ? 14 : lg === 7 ? 20 : lg === 8 ? 22 : lg === 9 ? 20 : 17
-  const mark = tm ? <span className="gc-logo"><TeamBadge teamId={tm.id} size={logoSz} /></span> : null
-  const free = tm ? <span className="mk-lg"><TeamBadge teamId={tm.id} size={logoSz} /></span> : null
-  const unitFor = (list: At[], key: string, o?: { stars?: boolean; chips?: boolean; txt?: string }) => (
-    <span key={key}>{Array.from({ length: reps }, (_, r) => r).map(r => (
-      <Fragment key={r}>{list.map(x => (
-        <Fragment key={x.k}>
-          {o?.chips ? <b className="ch" style={{ ['--k' as string]: x.c, ['--tc' as string]: onC(x.c) } as CSSProperties}>{x.t}</b> : <b style={{ color: o?.txt || mix(x.c, 0.5) }}>{x.t}</b>}
-          <i style={o?.stars ? { ['--ic' as string]: x.c } as CSSProperties : undefined}>✦</i>
-        </Fragment>))}</Fragment>))}</span>
-  )
-  const seg = (list: At[], bg: string, d: string, o?: { stars?: boolean; chips?: boolean; txt?: string }, extra?: CSSProperties) => (
-    <div className="gs-seg" style={{ background: bg, ['--d' as string]: d, ...extra } as CSSProperties}><div className="gs-mq">{unitFor(list, 'a', o)}{unitFor(list, 'b', o)}</div></div>
-  )
-  let strip: React.ReactNode = null
-  let barCls = ''
-  if (ats.length && top) {
-    const d = `${30 + ats.length * 4}s`
-    if (bar === 'blue') strip = seg(ats, 'linear-gradient(180deg,#1a55c4,#003da6 55%,#002b78)', d)
-    else if (bar === 'top') { strip = seg(ats, gl(top.c), d, { txt: onC(top.c) }) }
-    else if (bar === 'metal') {
-      const tr = c.num ? numTier(c.num) : 'std'
-      const mc = tr === 'gold' ? '#ffd54a' : tr === 'silver' ? '#dfe6f2' : tr === 'bronze' ? '#e0925a' : top.c
-      strip = seg(ats, gl(mc), d, { txt: onC(mc) })
-    }
-    else if (bar === 'span') strip = seg(ats, ats.length === 1 ? gl(ats[0].c) : `linear-gradient(90deg, ${ats.map(a => a.c).join(', ')})`, d, { txt: '#fff' }, { textShadow: '0 1px 2px rgba(0,0,0,.45)' })
-    else if (bar === 'indep') strip = ats.map((a, i) => <Fragment key={a.k}>{seg([a], gl(a.c), `${26 + i * 7}s`, { txt: onC(a.c) })}</Fragment>)
-    else if (bar === 'dark') { strip = seg(ats, '#0b1230', d, { stars: true }); barCls = 'mk-dk' }
-    else if (bar === 'frame') strip = seg(ats, 'linear-gradient(180deg,#1a55c4,#003da6 55%,#002b78)', d, undefined, { boxShadow: `inset 0 2px 0 ${top.c}, inset 0 -2px 0 ${top.c}` })
-    else if (bar === 'chips') { strip = seg(ats, '#0b1230', d, { chips: true, stars: true }); barCls = 'mk-ch' }
-  }
+const pc = (s: SS) => Math.round((s.o / s.t) * 100)
+const colOf = (p: number) => (p >= 100 ? '#ffd54a' : p >= 80 ? '#3ddc97' : p >= 40 ? '#ff9d3d' : p > 0 ? '#4aa3ff' : '#6b7794')
+const cv = (c: string) => ({ ['--c' as string]: c }) as CSSProperties
+const Seg = ({ p }: { p: number }) => <div className="seg">{Array.from({ length: 20 }, (_, i) => <i key={i} className={i < Math.round(p / 5) ? 'on' : ''} />)}</div>
+const Tile = ({ s, mode = 'seg' }: { s: SS; mode?: 'seg' | 'bar' }) => {
+  const p = pc(s); const c = colOf(p)
   return (
-    <div className={`card-item${c.num && numTier(c.num) !== 'std' ? ` gc-rare gc-${numTier(c.num)}` : ''} mk-g${lg} ${barCls} ${cls}`}
-      style={{ borderRadius: 8, padding: 8, background: 'white', border: '2px solid #003DA6', boxSizing: 'border-box', position: 'relative', overflow: 'visible', ['--gt' as string]: color } as CSSProperties}>
-      <div className={`holo-light${c.num && numTier(c.num) !== 'std' ? ` halo halo-${numTier(c.num)}` : ''}`} style={{ width: '100%', marginBottom: 6, position: 'relative' }}>
-        <div style={{ aspectRatio: '2.5/3.5', overflow: 'hidden', position: 'relative' }}>
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img src={c.img} alt={c.n} style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover' }} />
-        </div>
-        {lg === 7 && <span className="mk-corner">{free}</span>}
-      </div>
-      <div className="gc-slot">
-        {tm && <div className="gc-bar" style={{ background: color }} />}
-        {strip && <div className="gs-strip">{strip}</div>}
-        {lg === 2 && <span className="mk-med">{free}</span>}
-      </div>
-      <div className="gc-bot" style={{ display: 'flex', alignItems: 'flex-start', justifyContent: 'space-between', gap: 4, marginTop: 4 }}>
-        <div style={{ minWidth: 0 }}>
-          {lg === 4 && <div className="mk-above">{free}</div>}
-          <p className="gc-name" style={{ margin: 0, whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis', display: 'flex', alignItems: 'center', gap: 6 }}>
-            {(lg === 0 || lg === 1 || lg === 3 || lg === 5) && mark}
-            <span className="da-display" style={{ fontSize: 19, lineHeight: 1, overflow: 'hidden', textOverflow: 'ellipsis' }}>{c.n}</span>
-          </p>
-          <p style={{ fontSize: 10, color: '#003DA6', fontWeight: 700, margin: '2px 0', fontStyle: 'italic', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>{c.v}</p>
-          <p style={{ fontSize: 10, color: '#999', marginTop: 2, display: 'flex', alignItems: 'center', gap: 5, flexWrap: 'wrap' }}>
-            {lg === 6 ? <span className="mk-set">{free}<span>{c.s}</span></span> : <span style={{ whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>{c.s}</span>}
-          </p>
-        </div>
-        {lg === 8 && <span className="mk-rt">{free}</span>}
-        {lg === 9 && <span className="mk-ft">{free}</span>}
-        <div className="gc-right">
-          <div style={{ display: 'flex', alignItems: 'center', flexShrink: 0 }}>
-            <button style={{ background: 'none', border: 'none', display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 1, padding: '2px 4px', flexShrink: 0 }}>
-              <span style={{ fontSize: 16, lineHeight: 1 }}>🤍</span>
-            </button>
-          </div>
-        </div>
+    <div className="tile" style={cv(c)}>
+      <div className="th"><span>{s.y}</span><span>{p >= 100 ? '★ Complète' : s.b}</span></div>
+      <div className="tb">
+        <div className="nm">{s.n}</div>
+        <div className="pc">{p}<small>%</small></div>
+        {mode === 'seg' ? <Seg p={p} /> : <div className="bar"><i style={{ width: p + '%' }} /></div>}
+        <div className="ft">{s.o} / {s.t} · {s.t - s.o === 0 ? 'rien à chercher' : `il en manque ${s.t - s.o}`}</div>
       </div>
     </div>
   )
 }
-const Grid = ({ children }: { children: React.ReactNode }) => <div className="mk-grid">{children}</div>
+const Grid43 = ({ list, mode }: { list: SS[]; mode?: 'seg' | 'bar' }) => <div className="grid">{list.map(s => <Tile key={s.n} s={s} mode={mode} />)}</div>
+const Chips = ({ items }: { items: [string, number | string, boolean][] }) => <div className="chips" style={{ marginBottom: 14 }}>{items.map(x => <span key={x[0]} className={'chip' + (x[2] ? ' on' : '')}>{x[0]}<em>{x[1]}</em></span>)}</div>
 
-const LOGOS: [string, string][] = [
-  ['Le logo comme sur le site aujourd\'hui (référence)', 'Pour comparer : exactement la vignette en ligne, logo 17 px à gauche, centré dans le bloc du bas.'],
-  ['Logo dans le coin haut gauche du bloc, symétrique du cœur', 'Le logo est rangé en haut à gauche du bloc, à la même hauteur et à la même marge que le cœur en haut à droite. Le nom reste parfaitement centré.'],
-  ['Médaillon rond sur la barre d\'équipe', 'Le logo (24 px) est dans un médaillon rond à liseré de la couleur de l\'équipe, posé à gauche sur la barre d\'équipe, à cheval entre l\'image et le bloc. Il se rattache à la barre d\'où il vient.'],
-  ['Logo plus grand en colonne à gauche, filet vertical', 'Logo de 30 px centré sur la hauteur du bloc, séparé du texte par un filet vertical. Une vraie colonne « équipe » ; le texte est décalé à droite.'],
-  ['Logo centré au-dessus du nom', 'Un écusson de 24 px centré au-dessus du nom. Tout est sur l\'axe central ; le bloc gagne environ 26 px de hauteur.'],
-  ['Logo géant en filigrane derrière le texte', 'Logo de 96 px à 15 % d\'opacité à gauche derrière le texte, coupé par le bord : on devine l\'équipe sans encombrement.'],
-  ['Petit logo devant la ligne du set', 'Le logo (14 px) passe devant « année + set », le nom est enfin parfaitement centré et seul.'],
-  ['Logo en pastille dans le coin haut gauche de l\'image', 'Le logo (20 px) dans un petit carré sombre à liseré blanc dans le coin haut gauche de l\'image. Le bloc du bas est libéré.'],
-  ['Logo à droite en haut, cœur en bas à droite', 'Le logo (22 px) prend la place du cœur en haut à droite, le cœur descend en bas à droite.'],
-  ['Logo en bas à gauche du bloc, aligné sur le cœur', 'Le logo (20 px) en bas à gauche, à la hauteur de la ligne du set ; le cœur est en haut à droite : les deux coins sont occupés, le texte reste centré.'],
+const HEAT = [0, 4, 12, 20, 33, 52, 70, 91, 100, 45, 82, 61]
+const SPORTS: [string, number, string][] = [['NBA', 62, '#3ddc97'], ['NFL', 31, '#ff9d3d'], ['Baseball', 12, '#4aa3ff'], ['Hockey', 0, '#6b7794']]
+const YEARS: [string, number][] = [['91', 0], ['92', 4], ['95', 12], ['96', 20], ['00', 33], ['09', 52], ['15', 70], ['20', 16], ['21', 100], ['22', 45], ['23', 82], ['24', 61]]
+
+const LIST: [string, string, React.ReactNode][] = [
+  ['Tuile « album » : gros pourcentage et barre en 20 blocs', 'Chaque collection devient une tuile : bandeau de couleur (selon l\'avancement) avec l\'année et la marque, nom en Surfquest, gros pourcentage, barre découpée en 20 blocs de 5 % et phrase « il en manque N ». Plus lisible que la fine barre actuelle ; la couleur change avec la progression et passe à l\'or à 100 %.', <Grid43 list={SETS} />],
+  ['Bandeau de synthèse : anneau de progression et avancement par sport', 'En tête de page, un bandeau avec un anneau de progression globale, le nombre de cartes validées, et une barre par sport. On voit tout de suite où l\'on en est avant de choisir une collection.', (
+    <div className="box hero">
+      <div className="ring" style={{ ['--p' as string]: 54 } as CSSProperties}><div><span><b>54%</b><small>GLOBAL</small></span></div></div>
+      <div>
+        <div className="sec">2 468 cartes validées · 8 setlists commencées</div>
+        <div className="sp">{SPORTS.map(x => <div key={x[0]} style={cv(x[2])}><span>{x[0]}</span><div className="bar"><i style={{ width: x[1] + '%' }} /></div><b className="sf2" style={{ fontSize: 16 }}>{x[1]}%</b></div>)}</div>
+      </div>
+    </div>)],
+  ['Raccourcis intelligents : presque complètes, en cours, à démarrer', 'Des onglets avec compteur au-dessus de la grille : « Presque finies (80 % et plus) », « En cours », « Pas commencées », « Complètes ». Un clic isole les collections utiles, sans passer par le tri.', (
+    <>
+      <Chips items={[['Toutes', 8, true], ['Presque finies', 2, false], ['En cours', 3, false], ['Pas commencées', 2, false], ['Complètes', 1, false]]} />
+      <Grid43 list={SETS.filter(s => pc(s) >= 80)} mode="bar" />
+    </>)],
+  ['Frise des saisons : une colonne par année avec son avancement', 'Remplace la liste d\'années par une frise horizontale : chaque année est une colonne dont la hauteur et la couleur reflètent l\'avancement moyen. On repère d\'un coup d\'œil les saisons à compléter ; la saison choisie est entourée.', (
+    <>
+      <div className="years">{YEARS.map((x, i) => <div key={i} className={'yr' + (i === 10 ? ' on' : '')} style={cv(colOf(x[1]))}><div className="col" style={{ ['--p' as string]: x[1] } as CSSProperties} /><span>{x[0]}</span></div>)}</div>
+      <p className="sec" style={{ marginTop: 14 }}>Saison 2023-24 · 2 collections · 82 % complétées</p>
+      <Grid43 list={SETS.slice(0, 2)} mode="bar" />
+    </>)],
+  ['Carte thermique : toutes les collections d\'un coup d\'œil', 'Une mosaïque de petits carrés, un par collection, colorés selon l\'avancement (gris vide, bleu début, orange à mi-chemin, vert presque fini, or complet). Idéal pour les gros collectionneurs avec des centaines de sets ; survol = nom, clic = ouverture.', (
+    <>
+      <div className="heat">{Array.from({ length: 96 }, (_, i) => { const p = HEAT[(i * 7) % 12]; return <i key={i} style={{ ['--c' as string]: colOf(p), ['--o' as string]: p === 0 ? 0.4 : 1 } as CSSProperties} /> })}</div>
+      <div className="chips" style={{ marginTop: 12 }}>{([['Vide', 0], ['moins de 40 %', 12], ['40 à 79 %', 52], ['80 % et plus', 90], ['100 %', 100]] as [string, number][]).map(x => <span key={x[0]} className="chip" style={{ borderColor: colOf(x[1]) }}>{x[0]}</span>)}</div>
+    </>)],
+  ['Bloc « Prochaines à finir » avec bouton wishlist', 'En haut de la page, les 3 collections les plus proches de la complétion avec le nombre de cartes manquantes et deux actions : voir les manquantes ou les ajouter d\'un coup à la wishlist. Motive à finir ce qui est presque fait.', (
+    <div className="next">{SETS.filter(s => pc(s) < 100).sort((a, b) => (b.o / b.t) - (a.o / a.t)).slice(0, 3).map(s => <div key={s.n} className="nx" style={cv(colOf(pc(s)))}>
+      <div><b>{s.y} {s.n}</b><div className="bar" style={{ margin: '8px 0 6px' }}><i style={{ width: pc(s) + '%' }} /></div><span className="t">{pc(s)} % · il manque {s.t - s.o} cartes</span></div>
+      <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap' }}><span className="btn2 o" style={{ padding: '8px 12px' }}>Voir</span><span className="btn2" style={{ padding: '8px 12px' }}>+ Wishlist</span></div>
+    </div>)}</div>)],
+  ['Filtre par marque en pastilles avec compteur', 'Une rangée de pastilles Panini, Topps, Upper Deck, Fleer… avec le nombre de collections. Plus rapide que la recherche texte pour naviguer par éditeur.', (
+    <>
+      <Chips items={[['Toutes', 8, false], ['Panini', 4, true], ['Topps', 1, false], ['Upper Deck', 1, false], ['Fleer', 2, false]]} />
+      <Grid43 list={SETS.filter(s => s.b === 'Panini')} mode="bar" />
+    </>)],
+  ['Vue liste compacte (tableau) en alternative à la grille', 'Un bouton Grille / Liste. En liste : année, collection, barre, possédées / total et manquantes. Parfait pour trier et comparer des dizaines de collections.', (
+    <>
+      <div className="chips" style={{ marginBottom: 12 }}><span className="chip">Grille</span><span className="chip on">Liste</span></div>
+      <table><thead><tr><th>Année</th><th>Collection</th><th>Avancement</th><th>Possédées</th><th>Manque</th></tr></thead>
+        <tbody>{SETS.map(s => <tr key={s.n} style={cv(colOf(pc(s)))}><td>{s.y}</td><td className="n">{s.n}</td><td><div className="bar"><i style={{ width: pc(s) + '%' }} /></div></td><td>{s.o}/{s.t}</td><td>{s.t - s.o}</td></tr>)}</tbody></table>
+    </>)],
+  ['Synchronisation en 3 étapes lisibles', 'Remplace la barre de synchro par trois blocs : (1) Synchroniser, (2) nouvelles cartes validées, (3) cartes à placer. Chaque étape indique son état et son action.', (
+    <div className="box steps">
+      <div><div className="k">ÉTAPE 1</div><b>2 468</b><small>cartes validées</small><div style={{ marginTop: 10 }}><span className="btn2" style={{ padding: '8px 12px' }}>Synchroniser</span></div></div>
+      <div><div className="k">ÉTAPE 2</div><b>+14</b><small>nouvelles cartes placées</small></div>
+      <div><div className="k">ÉTAPE 3</div><b>9</b><small>cartes à placer à la main</small><div style={{ marginTop: 10 }}><span className="btn2 o" style={{ padding: '8px 12px' }}>Les placer →</span></div></div>
+    </div>)],
 ]
-const BARS: [Bar, string, string][] = [
-  ['blue', 'Barre bleue actuelle (référence)', 'Comme en ligne : fond bleu, mots dans leur couleur. Le bleu domine et toutes les barres se ressemblent.'],
-  ['top', 'Barre à la couleur de l\'atout principal', 'Toute la barre prend la couleur de l\'atout principal (auto vert, patch bleu, RC orange, numéroté bas doré/argenté). Texte clair ou foncé selon la couleur.'],
-  ['metal', 'Couleur de l\'atout, métal pour les tirages bas', 'Un tirage bas (or, argent, bronze) rend la barre métallique ; sinon la couleur de l\'atout principal. Les pièces rares ressortent.'],
-  ['span', 'Dégradé horizontal qui traverse les couleurs de tous les atouts', 'Dégradé de gauche à droite : orange, vert, bleu, violet… selon les atouts de la carte. Plus d\'atouts, plus de couleurs.'],
-  ['indep', 'Un segment défilant par atout, chacun de sa couleur', 'La barre est découpée en segments égaux, un par atout, chacun de sa couleur et à sa vitesse.'],
-  ['dark', 'Barre sombre : mots ET étoiles dans la couleur de chaque atout', 'Fond marine à filet fin ; chaque mot et chaque étoile ✦ prend la couleur de son atout. Discret mais coloré.'],
-  ['frame', 'Barre bleue avec liserés haut et bas aux couleurs de l\'atout principal', 'On garde le bleu de la marque, encadré de deux filets de 2 px dans la couleur de l\'atout principal.'],
-  ['chips', 'Chaque mot dans une étiquette colorée qui défile', 'Sur fond sombre, chaque atout est une petite étiquette pleine de sa couleur, suivie d\'une étoile de la même couleur.'],
-]
-const BGS: [string, string][] = [
-  ['d1', 'Fondu plus vif de l\'équipe vers le bas (72 %)'],
-  ['d2', 'Fondu inversé : couleur d\'équipe en haut sous la barre, qui s\'éteint vers le bas'],
-  ['d3', 'Fondu jusqu\'à la couleur pleine de l\'équipe en bas'],
-  ['d4', 'Halo de la couleur de l\'équipe derrière le nom'],
-  ['d5', 'Fondu diagonal à deux tons avec filet clair en haut'],
-  ['d6', 'Toute la vignette teintée (haut marine, bas couleur de l\'équipe)'],
-  ['d7', 'Fondu actuel + filet plein de la couleur d\'équipe tout en bas'],
+
+const NAMES = ['Michael Jordan', 'Scottie Pippen', 'Hakeem Olajuwon', 'Charles Barkley', 'Shaquille O\'Neal', 'Kobe Bryant']
+const TEAMS = ['Bulls', 'Bulls', 'Rockets', 'Suns', 'Magic', 'Lakers']
+const IMGS = [C.mccain.img, C.edwards.img, C.hawkins.img, C.maxey.img, C.luwawu.img, C.mcw.img]
+const Cells = ({ n, mod = 7, rc = 11 }: { n: number; mod?: number; rc?: number }) => <div className="cells">{Array.from({ length: n }, (_, i) => <span key={i} className={'cell' + ((i * 37) % mod < mod - 2 ? ' own' : '') + (i % rc === 3 ? ' rc' : '')}>{i + 1}</span>)}</div>
+const DET: [string, string, React.ReactNode][] = [
+  ['En-tête de setlist : pourcentage géant et indicateurs', 'Un grand titre en Surfquest, un anneau de pourcentage et des indicateurs : possédées, manquantes, RC, auto. Boutons d\'action directement dessous : ajouter les manquantes à la wishlist, copier la liste, imprimer.', (
+    <div className="dh">
+      <div className="box big">
+        <div className="sec">2023-24 · Panini</div>
+        <h4>Prizm</h4>
+        <div className="kp"><div><b>612</b><small>possédées</small></div><div><b>138</b><small>manquantes</small></div><div><b>41</b><small>RC</small></div><div><b>12</b><small>auto</small></div></div>
+        <div className="seg" style={{ ...cv('#3ddc97'), marginTop: 14, height: 10 }}>{Array.from({ length: 20 }, (_, i) => <i key={i} className={i < 16 ? 'on' : ''} />)}</div>
+        <div style={{ display: 'flex', gap: 8, marginTop: 14, flexWrap: 'wrap' }}><span className="btn2">+ Manquantes en wishlist</span><span className="btn2 o">Copier</span><span className="btn2 o">Imprimer</span></div>
+      </div>
+      <div className="box" style={{ display: 'grid', placeItems: 'center', padding: '0 26px' }}><div className="ring" style={{ ['--p' as string]: 82 } as CSSProperties}><div><span><b>82%</b><small>COMPLÈTE</small></span></div></div></div>
+    </div>)],
+  ['Grille de cases numérotées : un carré par carte de la checklist', 'Au lieu d\'une longue liste, une grille de cases numérotées : pleine et verte si possédée, vide si manquante, pastille RC orange. On voit les trous d\'un regard ; un clic sur une case ouvre la carte ou l\'ajoute à la wishlist.', <Cells n={100} />],
+  ['Onglets de variations avec avancement propre', 'Les variations (Base, Silver, Gold, Red /149…) deviennent des onglets avec leur pourcentage. La variation la plus avancée est mise en avant et les vides sont grisés.', (
+    <>
+      <Chips items={[['Base', '96%', true], ['Silver', '48%', false], ['Gold /10', '10%', false], ['Red /149', '3%', false], ['Black 1/1', '0%', false]]} />
+      <Cells n={60} mod={12} />
+    </>)],
+  ['Manquantes regroupées par équipe avec barre d\'action collante', 'Mode « manquantes » : cartes regroupées par équipe avec leur nombre, et une barre fixe en bas : « 138 cartes manquantes · Tout ajouter à la wishlist ». Utile en convention ou chez un vendeur.', (
+    <>
+      <div className="grp"><span>Bulls</span><small>2 MANQUANTES</small></div>
+      <div className="rows">{[0, 1].map(i => <div key={i} className="row nt"><div><b>{NAMES[i]}</b><span className="t">#{12 + i * 9} · Base</span></div><span className="pill">☆ Wishlist</span></div>)}</div>
+      <div className="grp"><span>Lakers</span><small>1 MANQUANTE</small></div>
+      <div className="rows"><div className="row nt"><div><b>{NAMES[5]}</b><span className="t">#8 · Silver</span></div><span className="pill">☆ Wishlist</span></div></div>
+      <div className="sticky"><span>138 cartes manquantes</span><span className="btn2">Tout ajouter à la wishlist</span></div>
+    </>)],
+  ['Lignes avec vignette : votre carte si possédée, silhouette sinon', 'Chaque ligne affiche à gauche la vignette de VOTRE carte (cadre vert) si vous l\'avez, ou une case en pointillé avec un ? sinon. Le joueur, l\'équipe, le numéro et une action (wishlist ou voir ma carte) complètent la ligne.', (
+    <div className="rows">{NAMES.slice(0, 5).map((n, i) => { const own = i % 3 !== 1; return (
+      <div key={n} className={'row' + (own ? ' own' : '')}>
+        <div className="th2">{own ? <img src={IMGS[i]} alt="" /> : '?'}</div>
+        <div><b>{n}</b><span className="t">#{i + 1} · {TEAMS[i]}{i === 2 ? ' · RC' : ''}</span></div>
+        {own ? <span className="pill g">Possédée ✓</span> : <span className="pill">☆ Wishlist</span>}
+      </div>) })}</div>)],
+  ['Paliers de progression : 25, 50, 75 et 100 %', 'Quatre paliers au-dessus de la liste, qui s\'allument à mesure qu\'on avance, avec le nombre de cartes restantes jusqu\'au suivant. Donne un objectif concret et se rattache au système de badges.', (
+    <div className="ms">{([['25%', true, 'Débutant'], ['50%', true, 'À mi-chemin'], ['75%', true, 'Presque'], ['100%', false, 'Complète']] as [string, boolean, string][]).map(x => <div key={x[0]} className={'m' + (x[1] ? ' on' : '')}><b>{x[0]}</b><small>{x[2]}{x[1] ? ' ✓' : ' · encore 138'}</small></div>)}</div>)],
+  ['Filtre par équipe en pastilles avec nombre de manquantes', 'Le menu déroulant des équipes devient une rangée de pastilles (Bulls, Lakers, Spurs…) avec le nombre de cartes manquantes pour chacune. Un clic filtre, on voit tout de suite quelle équipe est à compléter.', (
+    <>
+      <Chips items={[['Toutes', 138, true], ['Bulls', 12, false], ['Lakers', 9, false], ['Spurs', 7, false], ['Rockets', 5, false], ['Suns', 4, false], ['Magic', 3, false]]} />
+      <Cells n={40} mod={4} />
+    </>)],
+  ['Affiche « il me manque » à partager', 'Génère une affiche propre (collection, pourcentage, liste des manquantes) à envoyer à un ami, poster sur un groupe ou garder dans le téléphone en convention. Bouton Partager / Enregistrer en image.', (
+    <div className="poster"><div className="sec">Il me manque</div><h5>2023-24 Prizm</h5><div className="sf2" style={{ fontSize: 15, opacity: 0.8 }}>82 % · 138 cartes</div>
+      <ul>{NAMES.slice(0, 5).map((n, i) => <li key={n}><span>#{12 + i * 7} {n}</span><span style={{ opacity: 0.7 }}>{TEAMS[i]}</span></li>)}</ul>
+      <span className="btn2">Partager l&apos;affiche</span></div>)],
 ]
 
 export default function DaIdeas() {
@@ -238,12 +253,11 @@ export default function DaIdeas() {
     <div className="ix">
       <style>{CSS}</style>
       <Link href="/admin" className="back">← Admin</Link>
-      <h1 className="sf">Idées · Série 42 · Logo, couleurs de barre et fond du bas</h1>
-      <p className="lead">Cette fois les maquettes utilisent exactement le balisage et les styles de la vignette de la galerie (mêmes classes que le site : barre d&apos;équipe, barre d&apos;atouts qui défile par-dessus, bloc du bas, cœur). Seule la variante change. G = placement du logo d&apos;équipe, B = couleurs de la barre d&apos;atouts, F = fond du bas de vignette. Les variantes B et F gardent le logo actuel.</p>
-      <nav className="tags">{LOGOS.map((_, i) => <a key={i} href={`#g${i}`}>G{i}</a>)}{BARS.map((_, i) => <a key={i} href={`#b${i}`}>B{i}</a>)}{BGS.map((_, i) => <a key={i} href={`#f${i + 1}`}>F{i + 1}</a>)}</nav>
-      {LOGOS.map((d, i) => <DaBay key={d[0]} id={`g${i}`} n={`G${i}`} title={d[0]} desc={d[1]}><Grid>{PCS.map(c => <Real key={c.n} c={c} lg={i} />)}</Grid></DaBay>)}
-      {BARS.map((d, i) => <DaBay key={d[1]} id={`b${i}`} n={`B${i}`} title={d[1]} desc={d[2]}><Grid>{PCS.map(c => <Real key={c.n} c={c} bar={d[0]} />)}</Grid></DaBay>)}
-      {BGS.map((d, i) => <DaBay key={d[1]} id={`f${i + 1}`} n={`F${i + 1}`} title={d[1]} desc="Même vignette que le site, seul le fond du bloc du bas change."><Grid>{PCS.map(c => <Real key={c.n} c={c} cls={`mk-${d[0]}`} />)}</Grid></DaBay>)}
+      <h1 className="sf">Idées · Série 43 · Pages setlist</h1>
+      <p className="lead">Idées pour améliorer la page /setlist (liste des collections, L1 à L9) et la page d&apos;une setlist (liste des cartes, D1 à D8). Données d&apos;exemple, rien n&apos;est lu ni écrit. Dis-moi les numéros à garder ou à combiner.</p>
+      <nav className="tags">{LIST.map((_, i) => <a key={i} href={`#l${i + 1}`}>L{i + 1}</a>)}{DET.map((_, i) => <a key={i} href={`#d${i + 1}`}>D{i + 1}</a>)}</nav>
+      {LIST.map((d, i) => <Bay43 key={d[0]} id={`l${i + 1}`} n={`L${i + 1}`} title={d[0]} desc={d[1]}>{d[2]}</Bay43>)}
+      {DET.map((d, i) => <Bay43 key={d[0]} id={`d${i + 1}`} n={`D${i + 1}`} title={d[0]} desc={d[1]}>{d[2]}</Bay43>)}
     </div>
   )
 }
