@@ -972,8 +972,8 @@ html[data-theme="light"] .tcdb-imp-open { border-color: #06122e; color: #06122e;
 
 /* Dernieres pepites : cartes dans la nouvelle DA (angles droits, cadre fin, nom en Surfquest) */
 .pepite-card { border: 2px solid var(--text); background: var(--card-bg); border-radius: 0 !important; overflow: hidden; }
-.pepite-card .pc-foot { padding: 8px 9px 9px; border-top: 2px solid var(--text); display: flex; flex-direction: column; gap: 4px; min-height: 70px; }
-.pepite-card .pc-tags { display: flex; gap: 3px; flex-wrap: wrap; min-height: 18px; align-items: center; }
+.pepite-card .gc-slot { margin: 0; }
+.pepite-card .pc-foot { padding: 8px 9px 9px; display: flex; flex-direction: column; gap: 4px; }
 .pepite-card .pc-name { margin: 0; font-size: 16px; line-height: 1; letter-spacing: .02em; color: var(--text); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 .pepite-card .pc-sub { margin: 0; font: 600 10px system-ui, sans-serif; color: var(--text2); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 .pepite-card.pepite-tilt:hover { transform: translateY(-4px); box-shadow: 0 10px 24px rgba(0, 0, 0, .35); }

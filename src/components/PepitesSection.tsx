@@ -3,7 +3,7 @@ import Link from 'next/link'
 import { useEffect, useRef } from 'react'
 import { useLang } from '@/lib/LangContext'
 import { useTheme } from '@/lib/ThemeContext'
-import CardTagBadges from '@/components/CardTagBadges'
+import AtoutsStrip from '@/components/AtoutsStrip'
 
 interface Card {
   img: string; name: string; variant: string; year: string
@@ -20,8 +20,8 @@ function PepiteCard({ card, eager }: { card: Card; eager: boolean; dark?: boolea
         <img src={card.img} alt={card.name} loading={eager ? 'eager' : 'lazy'} fetchPriority={eager ? 'high' : 'auto'} draggable={false}
           style={card.isHorizontal ? { position: 'absolute', width: '140%', height: '71.43%', left: '-20%', top: '14.286%', transform: 'rotate(90deg)', objectFit: 'cover' } : { width: '100%', height: '100%', objectFit: 'cover', display: 'block' }} />
       </div>
+      <div className="gc-slot"><AtoutsStrip rc={card.rc} auto={card.auto} patch={card.patch} num={card.num} /></div>
       <div className="pc-foot">
-        <div className="pc-tags"><CardTagBadges rc={card.rc} auto={card.auto} patch={card.patch} num={card.num} size="xs" /></div>
         <p className="pc-name da-display">{card.name}</p>
         <p className="pc-sub">{card.year} {card.brand}</p>
       </div>

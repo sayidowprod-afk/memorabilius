@@ -44,6 +44,7 @@ import { useFlashOnChange } from '@/lib/useFlashOnChange'
 import { useCountUp } from '@/lib/useCountUp'
 import { useScrollReveal } from '@/lib/useScrollReveal'
 import CardTagBadges, { TAG_COLORS } from '@/components/CardTagBadges'
+import AtoutsStrip from '@/components/AtoutsStrip'
 import ModalCloseButton from '@/components/ModalCloseButton'
 import EmptyState from '@/components/EmptyState'
 const CommentsModal = dynamic(() => import('@/components/CommentsModal'), { ssr: false })
@@ -3497,36 +3498,12 @@ export default function GalerieClient({ userId, initialCardUrl, initialCards, in
               })()}
               {(() => {
                 // Un seul emplacement sous l'image : la barre d'equipe seule, ou la barre d'atouts qui defile PAR-DESSUS la barre d'equipe
-                const ats: { k: string; t: string; c: string }[] = []
-                if (d.item_type && d.item_type !== 'card') ats.push({ k: 'memo', t: 'Mémo', c: '#c77dff' })
-                if (d.rc) ats.push({ k: 'rc', t: 'RC', c: TAG_BASE.rc })
-                if (d.auto) ats.push({ k: 'auto', t: 'Auto', c: TAG_BASE.auto })
-                if (d.patch) ats.push({ k: 'patch', t: 'Patch', c: TAG_BASE.patch })
-                if (d.printing_plate) ats.push({ k: 'plate', t: 'Plate', c: '#9aa6bd' })
-                if (d.num) { const tr = numTier(d.num); ats.push({ k: 'num', t: numShort(d.num), c: tr === 'gold' ? '#ffd54a' : tr === 'silver' ? '#dfe6f2' : tr === 'bronze' ? '#e0925a' : TAG_BASE.num }) }
                 const barColor = teamBarColor(d.t)
-                const reps = Math.max(4, Math.ceil(20 / Math.max(1, ats.length)))
-                // Le fond defile avec les mots : chaque atout a SA couleur derriere lui, fondu vers celle de ses voisins ; texte fonce sur les couleurs claires (or, argent)
-                const seq = Array.from({ length: reps }, () => ats).flat()
-                const lumOf = (h: string) => { const n = parseInt(h.replace('#', '').slice(0, 6), 16); return (0.299 * ((n >> 16) & 255) + 0.587 * ((n >> 8) & 255) + 0.114 * (n & 255)) / 255 }
-                const unit = (key: string) => (
-                  <span key={key}>{seq.map((x, i) => {
-                    const pv = seq[(i - 1 + seq.length) % seq.length], nx = seq[(i + 1) % seq.length]
-                    const a0 = x.c
-                    return <em key={i} className="gs-w" style={{ ['--a' as string]: a0, ['--p' as string]: pv.c, ['--n' as string]: nx.c, ['--t' as string]: lumOf(a0) > 0.7 ? '#1a1200' : '#fff' }}>{x.t}<i>✦</i></em>
-                  })}</span>
-                )
                 return (
                   <div className="gc-slot">
                     {barColor && <div className="gc-bar" style={{ background: barColor }} />}
                     {barColor && teamMark(d.t, 24, 'gc-med')}
-                    {ats.length > 0 && (
-                      <div className="gs-strip" aria-label={ats.map(x => x.t).join(' ')}>
-                        <div className="gs-seg" style={{ ['--d' as string]: `${30 + ats.length * 4}s` }}>
-                          <div className="gs-mq">{unit('a')}{unit('b')}</div>
-                        </div>
-                      </div>
-                    )}
+                    <AtoutsStrip rc={d.rc} auto={d.auto} patch={d.patch} num={d.num} memo={!!(d.item_type && d.item_type !== 'card')} plate={!!d.printing_plate} />
                   </div>
                 )
               })()}
