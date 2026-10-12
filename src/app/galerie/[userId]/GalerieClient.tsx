@@ -3505,8 +3505,15 @@ export default function GalerieClient({ userId, initialCardUrl, initialCards, in
                 if (d.num) { const tr = numTier(d.num); ats.push({ k: 'num', t: numShort(d.num), c: tr === 'gold' ? '#ffd54a' : tr === 'silver' ? '#dfe6f2' : tr === 'bronze' ? '#e0925a' : TAG_BASE.num }) }
                 const barColor = teamBarColor(d.t)
                 const reps = Math.max(4, Math.ceil(20 / Math.max(1, ats.length)))
+                // Le fond defile avec les mots : chaque atout a SA couleur derriere lui, fondu vers celle de ses voisins ; texte fonce sur les couleurs claires (or, argent)
+                const seq = Array.from({ length: reps }, () => ats).flat()
+                const lumOf = (h: string) => { const n = parseInt(h.replace('#', '').slice(0, 6), 16); return (0.299 * ((n >> 16) & 255) + 0.587 * ((n >> 8) & 255) + 0.114 * (n & 255)) / 255 }
                 const unit = (key: string) => (
-                  <span key={key}>{Array.from({ length: reps }, (_, r) => r).map(r => <Fragment key={r}>{ats.map(x => <Fragment key={x.k}><b>{x.t}</b><i>✦</i></Fragment>)}</Fragment>)}</span>
+                  <span key={key}>{seq.map((x, i) => {
+                    const pv = seq[(i - 1 + seq.length) % seq.length], nx = seq[(i + 1) % seq.length]
+                    const a0 = mix(x.c, -0.3)
+                    return <em key={i} className="gs-w" style={{ ['--a' as string]: a0, ['--p' as string]: mix(pv.c, -0.3), ['--n' as string]: mix(nx.c, -0.3), ['--t' as string]: lumOf(a0) > 0.62 ? '#1a1200' : '#fff' }}>{x.t}</em>
+                  })}</span>
                 )
                 return (
                   <div className="gc-slot">
@@ -3514,7 +3521,7 @@ export default function GalerieClient({ userId, initialCardUrl, initialCards, in
                     {barColor && teamMark(d.t, 24, 'gc-med')}
                     {ats.length > 0 && (
                       <div className="gs-strip" aria-label={ats.map(x => x.t).join(' ')}>
-                        <div className="gs-seg" style={{ ['--d' as string]: `${30 + ats.length * 4}s`, background: ats.length === 1 ? `linear-gradient(180deg, ${mix(ats[0].c, -0.08)} 0%, ${mix(ats[0].c, -0.28)} 55%, ${mix(ats[0].c, -0.42)} 100%)` : `linear-gradient(90deg, ${ats.map(x => mix(x.c, -0.3)).join(', ')})` }}>
+                        <div className="gs-seg" style={{ ['--d' as string]: `${30 + ats.length * 4}s` }}>
                           <div className="gs-mq">{unit('a')}{unit('b')}</div>
                         </div>
                       </div>
