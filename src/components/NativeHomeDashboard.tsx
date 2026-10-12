@@ -3,6 +3,7 @@ import StreakFlame from '@/components/StreakFlame'
 import { useEffect, useState } from 'react'
 import Link from 'next/link'
 import { useRouter } from 'next/navigation'
+import { playerSlug } from '@/lib/playerSlug'
 import type { ReactNode } from 'react'
 import { supabase } from '@/lib/supabase'
 import { useAuth } from '@/lib/AuthContext'
@@ -69,6 +70,21 @@ function formatCountdown(msLeft: number, t: (k: TranslationKey) => string): stri
 export default function NativeHomeDashboard({ siteStats, cardOfTheDay }: { siteStats: SiteStats; cardOfTheDay?: ReactNode }) {
   const router = useRouter()
   const [gq, setGq] = useState('')
+  const [sugg, setSugg] = useState<{ users: { id: string; display_name: string; avatar_url: string | null }[]; players: { name: string; photo: string | null }[] }>({ users: [], players: [] })
+  const [suggOpen, setSuggOpen] = useState(false)
+  useEffect(() => {
+    const q = gq.trim()
+    if (q.length < 2) { setSugg({ users: [], players: [] }); return }
+    const ctl = new AbortController()
+    const timer = setTimeout(async () => {
+      try {
+        const r = await fetch(`/api/recherche?q=${encodeURIComponent(q)}`, { signal: ctl.signal })
+        const d = await r.json()
+        setSugg({ users: (d.users || []).slice(0, 3), players: (d.players || []).slice(0, 4) })
+      } catch { /* abandon / reseau : pas de suggestions */ }
+    }, 250)
+    return () => { clearTimeout(timer); ctl.abort() }
+  }, [gq])
   // orientation reelle de chaque carte de l'eventail (lue sur l'image chargee)
   const [heroLandscape, setHeroLandscape] = useState<Record<number, boolean>>({})
   const { user } = useAuth()
@@ -490,10 +506,27 @@ export default function NativeHomeDashboard({ siteStats, cardOfTheDay }: { siteS
           return <Link key={k} href={href} onClick={hapticTap} className="dd-act">{d.label(t, L)}</Link>
         })}
       </div>
+      <div className="dd-search-wrap" onBlur={e => { if (!e.currentTarget.contains(e.relatedTarget as Node | null)) setSuggOpen(false) }}>
       <form className="dd-search" role="search" onSubmit={e => { e.preventDefault(); const q = gq.trim(); if (q) { hapticTap(); router.push(`/recherche?q=${encodeURIComponent(q)}`) } }}>
-        <input type="search" value={gq} onChange={e => setGq(e.target.value)} placeholder={L.globalSearch} aria-label={L.globalSearch} enterKeyHint="search" />
+        <input type="search" value={gq} onChange={e => { setGq(e.target.value); setSuggOpen(true) }} onFocus={() => setSuggOpen(true)} onKeyDown={e => { if (e.key === 'Escape') setSuggOpen(false) }} placeholder={L.globalSearch} aria-label={L.globalSearch} enterKeyHint="search" />
         <button type="submit" aria-label={L.globalSearch}>⌕</button>
       </form>
+      {suggOpen && gq.trim().length >= 2 && (
+        <div className="dd-sugg">
+          {sugg.players.map(p => (
+            <Link key={'p' + p.name} href={`/joueur/${playerSlug(p.name)}`} onClick={hapticTap} className="dd-sg">
+              {p.photo ? <img src={p.photo} alt="" loading="lazy" /> : <i>🏀</i>}<span>{p.name}</span><em>{L.sgPlayer}</em>
+            </Link>
+          ))}
+          {sugg.users.map(u => (
+            <Link key={'u' + u.id} href={`/galerie/${u.id}`} onClick={hapticTap} className="dd-sg">
+              <img src={u.avatar_url || `https://ui-avatars.com/api/?name=${encodeURIComponent(u.display_name || 'U')}&background=003DA6&color=fff&size=64`} alt="" loading="lazy" /><span>{u.display_name}</span><em>{L.sgUser}</em>
+            </Link>
+          ))}
+          <Link href={`/recherche?q=${encodeURIComponent(gq.trim())}`} onClick={hapticTap} className="dd-sg dd-sg--all"><span>{L.sgAll} « {gq.trim()} »</span><em>→</em></Link>
+        </div>
+      )}
+      </div>
       {editMode && (
         <div className="dd-edit">
           <div className="dd-edit-h">{L.shortcutsHelp}</div>
@@ -555,11 +588,11 @@ const SHORTCUT_DEFS: Record<string, { href: string; label: (t: (k: TranslationKe
   expo: { href: '{g}/expo', label: (_t, L) => L.expo },
 }
 const DD_TEXT2 = {
-  fr: { globalSearch: 'Rechercher une carte, un joueur, un set, un collectionneur…', thisWeek: 'ajoutées cette semaine', customize: 'Personnaliser', done: 'OK', shortcutsHelp: 'Choisis jusqu’à 4 raccourcis', wishlist2: 'Wishlist', expo: 'Mode expo', blkActivity: 'Activité', blkProgress: 'Niveau, badge, défi', blkSite: 'Le site en chiffres', up: 'Monter', down: 'Descendre', show: 'Afficher', hide: 'Masquer' },
-  en: { globalSearch: 'Search cards, players, sets, collectors…', thisWeek: 'added this week', customize: 'Customize', done: 'Done', shortcutsHelp: 'Pick up to 4 shortcuts', wishlist2: 'Wishlist', expo: 'Expo mode', blkActivity: 'Activity', blkProgress: 'Level, badge, challenge', blkSite: 'Site in numbers', up: 'Move up', down: 'Move down', show: 'Show', hide: 'Hide' },
-  de: { globalSearch: 'Karten, Spieler, Sets, Sammler suchen…', thisWeek: 'diese Woche hinzugefügt', customize: 'Anpassen', done: 'OK', shortcutsHelp: 'Wähle bis zu 4 Kürzel', wishlist2: 'Wunschliste', expo: 'Expo-Modus', blkActivity: 'Aktivität', blkProgress: 'Level, Badge, Challenge', blkSite: 'Die Seite in Zahlen', up: 'Nach oben', down: 'Nach unten', show: 'Anzeigen', hide: 'Ausblenden' },
-  es: { globalSearch: 'Buscar cartas, jugadores, sets, coleccionistas…', thisWeek: 'añadidas esta semana', customize: 'Personalizar', done: 'OK', shortcutsHelp: 'Elige hasta 4 atajos', wishlist2: 'Lista de deseos', expo: 'Modo expo', blkActivity: 'Actividad', blkProgress: 'Nivel, insignia, reto', blkSite: 'El sitio en cifras', up: 'Subir', down: 'Bajar', show: 'Mostrar', hide: 'Ocultar' },
-  it: { globalSearch: 'Cerca carte, giocatori, set, collezionisti…', thisWeek: 'aggiunte questa settimana', customize: 'Personalizza', done: 'OK', shortcutsHelp: 'Scegli fino a 4 scorciatoie', wishlist2: 'Wishlist', expo: 'Modalità expo', blkActivity: 'Attività', blkProgress: 'Livello, badge, sfida', blkSite: 'Il sito in numeri', up: 'Su', down: 'Giù', show: 'Mostra', hide: 'Nascondi' },
+  fr: { sgPlayer: 'Joueur', sgUser: 'Collectionneur', sgAll: 'Voir tous les résultats pour', globalSearch: 'Rechercher une carte, un joueur, un set, un collectionneur…', thisWeek: 'ajoutées cette semaine', customize: 'Personnaliser', done: 'OK', shortcutsHelp: 'Choisis jusqu’à 4 raccourcis', wishlist2: 'Wishlist', expo: 'Mode expo', blkActivity: 'Activité', blkProgress: 'Niveau, badge, défi', blkSite: 'Le site en chiffres', up: 'Monter', down: 'Descendre', show: 'Afficher', hide: 'Masquer' },
+  en: { sgPlayer: 'Player', sgUser: 'Collector', sgAll: 'See all results for', globalSearch: 'Search cards, players, sets, collectors…', thisWeek: 'added this week', customize: 'Customize', done: 'Done', shortcutsHelp: 'Pick up to 4 shortcuts', wishlist2: 'Wishlist', expo: 'Expo mode', blkActivity: 'Activity', blkProgress: 'Level, badge, challenge', blkSite: 'Site in numbers', up: 'Move up', down: 'Move down', show: 'Show', hide: 'Hide' },
+  de: { sgPlayer: 'Spieler', sgUser: 'Sammler', sgAll: 'Alle Ergebnisse für', globalSearch: 'Karten, Spieler, Sets, Sammler suchen…', thisWeek: 'diese Woche hinzugefügt', customize: 'Anpassen', done: 'OK', shortcutsHelp: 'Wähle bis zu 4 Kürzel', wishlist2: 'Wunschliste', expo: 'Expo-Modus', blkActivity: 'Aktivität', blkProgress: 'Level, Badge, Challenge', blkSite: 'Die Seite in Zahlen', up: 'Nach oben', down: 'Nach unten', show: 'Anzeigen', hide: 'Ausblenden' },
+  es: { sgPlayer: 'Jugador', sgUser: 'Coleccionista', sgAll: 'Ver todos los resultados de', globalSearch: 'Buscar cartas, jugadores, sets, coleccionistas…', thisWeek: 'añadidas esta semana', customize: 'Personalizar', done: 'OK', shortcutsHelp: 'Elige hasta 4 atajos', wishlist2: 'Lista de deseos', expo: 'Modo expo', blkActivity: 'Actividad', blkProgress: 'Nivel, insignia, reto', blkSite: 'El sitio en cifras', up: 'Subir', down: 'Bajar', show: 'Mostrar', hide: 'Ocultar' },
+  it: { sgPlayer: 'Giocatore', sgUser: 'Collezionista', sgAll: 'Vedi tutti i risultati per', globalSearch: 'Cerca carte, giocatori, set, collezionisti…', thisWeek: 'aggiunte questa settimana', customize: 'Personalizza', done: 'OK', shortcutsHelp: 'Scegli fino a 4 scorciatoie', wishlist2: 'Wishlist', expo: 'Modalità expo', blkActivity: 'Attività', blkProgress: 'Livello, badge, sfida', blkSite: 'Il sito in numeri', up: 'Su', down: 'Giù', show: 'Mostra', hide: 'Nascondi' },
 }
 
 // Style du tableau de bord (nouvelle DA) : pose directement sur le fond de la
@@ -650,6 +683,16 @@ export const DD_CSS = `
   font: 800 14px system-ui, sans-serif; letter-spacing: .08em; text-transform: uppercase; transition: transform .15s; }
 :root:not([data-theme="dark"]) .dd-act { background: #003da6; border-color: #003da6; color: #fff !important; }
 .dd-act:hover { transform: translateY(-3px); }
+.dd-search-wrap { position: relative; margin: 0 16px 14px; }
+.dd-search-wrap .dd-search { margin: 0; }
+.dd-sugg { position: absolute; left: 0; right: 0; top: 100%; z-index: 30; background: var(--card-bg); border: 3px solid var(--text); border-top: 0; box-shadow: 0 14px 30px rgba(0,0,0,.35); }
+.dd-sg { display: flex; align-items: center; gap: 10px; padding: 9px 12px; border-top: 1px solid var(--border); color: var(--text) !important; text-decoration: none; font: 700 14px system-ui, sans-serif; }
+.dd-sg:first-child { border-top: 0; }
+.dd-sg:hover, .dd-sg:focus-visible { background: var(--bg3); outline: 0; }
+.dd-sg img, .dd-sg i { width: 28px; height: 28px; border-radius: 50%; object-fit: cover; object-position: top; flex-shrink: 0; display: grid; place-items: center; font-style: normal; background: var(--bg3); }
+.dd-sg span { flex: 1; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.dd-sg em { font: 700 10px system-ui, sans-serif; letter-spacing: .12em; text-transform: uppercase; color: var(--text2); font-style: normal; }
+.dd-sg--all span { font-weight: 600; color: var(--text2); }
 .dd-search { display: flex; margin: 0 16px 14px; border: 3px solid var(--text); background: var(--card-bg); }
 .dd-search input { flex: 1; min-width: 0; padding: 13px 14px; background: transparent; border: 0; outline: 0; color: var(--text); font: 600 15px system-ui, sans-serif; }
 .dd-search input::placeholder { color: var(--text2); font-weight: 500; }
