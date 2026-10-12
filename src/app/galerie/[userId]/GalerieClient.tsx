@@ -10,6 +10,7 @@ import SelectionHand from '@/components/SelectionHand'
 import { numTier, numShort, TAG_BASE, mix } from '@/lib/cardTags'
 import { getTeamByName } from '@/lib/sportsTeams'
 import { teamInfo } from '@/lib/teamColors'
+import { nationalTeam, raceTeam, flagUrl } from '@/lib/nationalTeams'
 import { historicLogo } from '@/lib/historicLogos'
 import { toast } from '@/lib/toast'
 import { Fragment, useEffect, useLayoutEffect, useState, useRef, useMemo, useCallback } from 'react'
@@ -462,6 +463,17 @@ function EmptyGalleryIllustration() {
 }
 
 // Ancien logo d'une equipe disparue : essaie les extensions possibles, disparait si aucun fichier n'existe
+// Ecurie de F1 : logo depose dans public/team-logos/f1-<slug>.(png|svg|webp) s'il existe, sinon l'abreviation de l'ecurie dans sa couleur
+function RaceLogo({ team, size }: { team: { slug: string; abbr: string; color: string }; size: number }) {
+  const exts = ['png', 'svg', 'webp']
+  const [i, setI] = useState(0)
+  if (i < exts.length) {
+    // eslint-disable-next-line @next/next/no-img-element
+    return <img src={`/team-logos/f1-${team.slug}.${exts[i]}`} alt={team.abbr} title={team.abbr} width={size} height={size} onError={() => setI(n => n + 1)} style={{ width: size, height: size, objectFit: 'contain' }} />
+  }
+  return <span title={team.abbr} style={{ width: size, height: size, display: 'inline-flex', alignItems: 'center', justifyContent: 'center', font: `900 ${Math.round(size * (team.abbr.length > 3 ? 0.34 : 0.4))}px/1 system-ui, sans-serif`, letterSpacing: '.02em', color: team.color }}>{team.abbr}</span>
+}
+
 function HistLogoImg({ base, src, name, size = 17 }: { base?: string; src?: string; name: string; size?: number }) {
   const exts = ['png', 'svg', 'webp', 'gif']
   const [i, setI] = useState(0)
@@ -1806,6 +1818,8 @@ export default function GalerieClient({ userId, initialCardUrl, initialCards, in
   const teamBarColor = (name?: string | null): string | null => {
     const tm = getTeamByName(name)
     if (tm) return tm.color
+    const nt = nationalTeam(name); if (nt) return nt.color
+    const rt = raceTeam(name); if (rt) return rt.color
     const ti = teamInfo(name)
     if (!ti) return null
     const dark0 = (h: string) => { const n = parseInt(h.replace('#', '').slice(0, 6), 16); return ((n >> 16) & 255) + ((n >> 8) & 255) + (n & 255) < 120 }
@@ -1814,6 +1828,10 @@ export default function GalerieClient({ userId, initialCardUrl, initialCards, in
   const teamMark = (name?: string | null, size = 17, cls = 'gc-logo'): React.ReactNode => {
     const tm = getTeamByName(name)
     if (tm) return <span className={cls}><TeamBadge teamId={tm.id} size={size} /></span>
+    const nt = nationalTeam(name)
+    if (nt) return <span className={cls} title={nt.name}>{/* eslint-disable-next-line @next/next/no-img-element */}<img src={flagUrl(nt.code)} alt={nt.name} width={size} height={size} loading="lazy" style={{ width: size, height: size, objectFit: 'cover', borderRadius: '50%', display: 'block' }} /></span>
+    const rt = raceTeam(name)
+    if (rt) return <span className={cls} title={rt.name}><RaceLogo team={rt} size={size} /></span>
     const h = historicLogo(name)
     if (!h) return null
     if (h.src || h.base) return <span className={cls}><HistLogoImg src={h.src} base={h.base} name={name || ''} size={size} /></span>
