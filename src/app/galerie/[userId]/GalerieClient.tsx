@@ -3512,7 +3512,7 @@ export default function GalerieClient({ userId, initialCardUrl, initialCards, in
                   <span key={key}>{seq.map((x, i) => {
                     const pv = seq[(i - 1 + seq.length) % seq.length], nx = seq[(i + 1) % seq.length]
                     const a0 = x.c
-                    return <em key={i} className="gs-w" style={{ ['--a' as string]: a0, ['--p' as string]: pv.c, ['--n' as string]: nx.c, ['--t' as string]: lumOf(a0) > 0.5 ? '#1a1200' : '#fff' }}>{x.t}<i>✦</i></em>
+                    return <em key={i} className="gs-w" style={{ ['--a' as string]: a0, ['--p' as string]: pv.c, ['--n' as string]: nx.c, ['--t' as string]: lumOf(a0) > 0.7 ? '#1a1200' : '#fff' }}>{x.t}<i>✦</i></em>
                   })}</span>
                 )
                 return (

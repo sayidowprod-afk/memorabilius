@@ -1,6 +1,6 @@
 'use client'
 import StreakFlame from '@/components/StreakFlame'
-import { useEffect, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import Link from 'next/link'
 import { useRouter } from 'next/navigation'
 import { playerSlug } from '@/lib/playerSlug'
@@ -72,18 +72,33 @@ export default function NativeHomeDashboard({ siteStats, cardOfTheDay }: { siteS
   const [gq, setGq] = useState('')
   const [sugg, setSugg] = useState<{ users: { id: string; display_name: string; avatar_url: string | null }[]; players: { name: string; photo: string | null }[] }>({ users: [], players: [] })
   const [suggOpen, setSuggOpen] = useState(false)
+  // Suggestions en direct : aucune attente avant l'appel, cache par saisie, et affichage immediat en filtrant les resultats precedents pendant que la reponse arrive
+  const suggCache = useRef(new Map<string, typeof sugg>())
+  const suggPrev = useRef<{ q: string; v: typeof sugg }>({ q: '', v: { users: [], players: [] } })
   useEffect(() => {
     const q = gq.trim()
     if (q.length < 2) { setSugg({ users: [], players: [] }); return }
+    const key = q.toLowerCase()
+    const cached = suggCache.current.get(key)
+    if (cached) { setSugg(cached); suggPrev.current = { q: key, v: cached }; return }
+    const prev = suggPrev.current
+    if (prev.q && key.startsWith(prev.q)) {
+      setSugg({
+        users: prev.v.users.filter(u => (u.display_name || '').toLowerCase().includes(key)),
+        players: prev.v.players.filter(p => p.name.toLowerCase().includes(key)),
+      })
+    }
     const ctl = new AbortController()
-    const timer = setTimeout(async () => {
-      try {
-        const r = await fetch(`/api/recherche?q=${encodeURIComponent(q)}`, { signal: ctl.signal })
-        const d = await r.json()
-        setSugg({ users: (d.users || []).slice(0, 3), players: (d.players || []).slice(0, 4) })
-      } catch { /* abandon / reseau : pas de suggestions */ }
-    }, 250)
-    return () => { clearTimeout(timer); ctl.abort() }
+    fetch(`/api/suggest?q=${encodeURIComponent(q)}`, { signal: ctl.signal })
+      .then(r => r.json())
+      .then(d => {
+        const v = { users: (d.users || []).slice(0, 3), players: (d.players || []).slice(0, 4) }
+        suggCache.current.set(key, v)
+        suggPrev.current = { q: key, v }
+        setSugg(v)
+      })
+      .catch(() => { /* abandon / reseau : on garde ce qui est affiche */ })
+    return () => ctl.abort()
   }, [gq])
   // orientation reelle de chaque carte de l'eventail (lue sur l'image chargee)
   const [heroLandscape, setHeroLandscape] = useState<Record<number, boolean>>({})
