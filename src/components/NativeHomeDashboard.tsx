@@ -67,10 +67,21 @@ function formatCountdown(msLeft: number, t: (k: TranslationKey) => string): stri
   return t('dashboard_challenge_less_than_hour')
 }
 
+const sportIcon = (s?: string | null) => {
+  const k = (s || '').toLowerCase()
+  if (k === 'nfl') return '🏈'
+  if (k === 'nhl' || k.includes('hockey')) return '🏒'
+  if (k === 'mlb' || k.includes('baseball')) return '⚾'
+  if (k.includes('soccer') || k === 'football') return '⚽'
+  if (k === 'mma') return '🥊'
+  if (k === 'racing') return '🏎️'
+  return '🏀'
+}
+
 export default function NativeHomeDashboard({ siteStats, cardOfTheDay }: { siteStats: SiteStats; cardOfTheDay?: ReactNode }) {
   const router = useRouter()
   const [gq, setGq] = useState('')
-  const [sugg, setSugg] = useState<{ users: { id: string; display_name: string; avatar_url: string | null }[]; players: { name: string; photo: string | null }[] }>({ users: [], players: [] })
+  const [sugg, setSugg] = useState<{ users: { id: string; display_name: string; avatar_url: string | null }[]; players: { name: string; photo: string | null; sport?: string | null }[] }>({ users: [], players: [] })
   const [suggOpen, setSuggOpen] = useState(false)
   // Suggestions en direct : aucune attente avant l'appel, cache par saisie, et affichage immediat en filtrant les resultats precedents pendant que la reponse arrive
   const suggCache = useRef(new Map<string, typeof sugg>())
@@ -92,7 +103,7 @@ export default function NativeHomeDashboard({ siteStats, cardOfTheDay }: { siteS
     fetch(`/api/suggest?q=${encodeURIComponent(q)}`, { signal: ctl.signal })
       .then(r => r.json())
       .then(d => {
-        const v = { users: (d.users || []).slice(0, 3), players: (d.players || []).slice(0, 4) }
+        const v = { users: (d.users || []).slice(0, 3), players: (d.players || []).slice(0, 5) }
         suggCache.current.set(key, v)
         suggPrev.current = { q: key, v }
         setSugg(v)
@@ -530,7 +541,7 @@ export default function NativeHomeDashboard({ siteStats, cardOfTheDay }: { siteS
         <div className="dd-sugg">
           {sugg.players.map(p => (
             <Link key={'p' + p.name} href={`/joueur/${playerSlug(p.name)}`} onClick={hapticTap} className="dd-sg">
-              {p.photo ? <img src={p.photo} alt="" loading="lazy" /> : <i>🏀</i>}<span>{p.name}</span><em>{L.sgPlayer}</em>
+              {p.photo ? <img src={p.photo} alt="" loading="lazy" /> : <i>{sportIcon(p.sport)}</i>}<span>{p.name}</span><em>{L.sgPlayer}</em>
             </Link>
           ))}
           {sugg.users.map(u => (

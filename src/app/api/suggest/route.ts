@@ -31,17 +31,21 @@ export async function GET(req: NextRequest) {
   const safeQ = query.replace(/[%_\\,()]/g, ' ').trim()
   if (!safeQ) return NextResponse.json({ users: [], players: [] })
 
-  // ESPN en renfort (photos, anciens joueurs) : delai dur de 600 ms quoi qu'il arrive, jamais bloquant pour le reste
+  // ESPN en renfort (photos, anciens joueurs, tous les sports) : delai dur de 600 ms quoi qu'il arrive, jamais bloquant pour le reste
+  const SPORTS: [string, string | null][] = [['basketball', 'nba'], ['football', 'nfl'], ['hockey', 'nhl'], ['baseball', 'mlb'], ['soccer', null]]
   const ctl = new AbortController()
-  const espn: Promise<any> = Promise.race([
-    fetch(`https://site.api.espn.com/apis/search/v2?query=${encodeURIComponent(query)}&limit=6&type=player&sport=basketball`, { signal: ctl.signal, cache: 'no-store' })
-      .then(r => (r.ok ? r.json() : null)).catch(() => null),
-    new Promise<null>(resolve => setTimeout(() => { ctl.abort(); resolve(null) }, 600)),
+  const espn: Promise<{ league: string | null; data: any }[]> = Promise.race([
+    Promise.all(SPORTS.map(([sport, league]) =>
+      fetch(`https://site.api.espn.com/apis/search/v2?query=${encodeURIComponent(query)}&limit=6&type=player&sport=${sport}`, { signal: ctl.signal, cache: 'no-store' })
+        .then(r => (r.ok ? r.json() : null)).catch(() => null)
+        .then(data => ({ league, data }))
+    )),
+    new Promise<{ league: string | null; data: any }[]>(resolve => setTimeout(() => { ctl.abort(); resolve([]) }, 600)),
   ])
 
   const [{ data: profiles }, { data: entries }, espnData] = await Promise.all([
     supabase.from('profiles').select('id, display_name, avatar_url').eq('is_demo', false).ilike('display_name', `%${safeQ}%`).limit(3),
-    supabase.from('card_set_entries').select('player_name').ilike('player_name', `%${safeQ}%`).limit(80),
+    supabase.from('card_set_entries').select('player_name, card_sets(sport)').ilike('player_name', `%${safeQ}%`).limit(80),
     espn,
   ])
 
@@ -54,18 +58,26 @@ export async function GET(req: NextRequest) {
   }
   const photos = new Map<string, string>()
   const names = new Set<string>((entries || []).map(e => e.player_name).filter(Boolean) as string[])
-  for (const section of espnData?.results || []) {
-    for (const a of section.contents || []) {
-      if (!a.displayName) continue
-      if (a.defaultLeagueSlug && a.defaultLeagueSlug !== 'nba') continue
-      if (a.image?.default) photos.set(normStr(a.displayName), a.image.default)
-      if (![...names].some(n => normStr(n) === normStr(a.displayName))) names.add(a.displayName)
+  const sportOf = new Map<string, string>()
+  for (const e of (entries || []) as any[]) { const sp = Array.isArray(e.card_sets) ? e.card_sets[0]?.sport : e.card_sets?.sport; if (e.player_name && sp) sportOf.set(normStr(e.player_name), sp) }
+  const normNames = new Set<string>([...names].map(normStr))
+  for (const { league, data } of espnData) {
+    for (const section of data?.results || []) {
+      for (const a of section.contents || []) {
+        if (!a.displayName) continue
+        // ecarte les homonymes d'une autre ligue que celle cherchee (le foot / soccer n'a pas de filtre : ligues multiples)
+        if (league && a.defaultLeagueSlug && a.defaultLeagueSlug !== league) continue
+        const k = normStr(a.displayName)
+        if (a.image?.default && !photos.has(k)) photos.set(k, a.image.default)
+        if (!sportOf.has(k) && a.sport) sportOf.set(k, a.sport === 'soccer' ? 'football' : league || a.sport)
+        if (!normNames.has(k)) { normNames.add(k); names.add(a.displayName) }
+      }
     }
   }
   const players = [...names]
     .sort((a, b) => rank(a) - rank(b) || a.localeCompare(b))
-    .slice(0, 4)
-    .map(name => ({ name, photo: photos.get(normStr(name)) || null }))
+    .slice(0, 5)
+    .map(name => ({ name, photo: photos.get(normStr(name)) || null, sport: sportOf.get(normStr(name)) || null }))
 
   const body = { users: (profiles || []).map(p => ({ id: p.id, display_name: p.display_name, avatar_url: p.avatar_url })), players }
   if (CACHE.size > 500) CACHE.clear()
