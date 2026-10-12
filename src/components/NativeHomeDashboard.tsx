@@ -660,7 +660,7 @@ export const DD_CSS = `
 /* survol : chaque carte reagit seule (l'eventail s'ouvre un peu, la carte survolee se souleve), plus de bloc qui bouge d'un coup */
 @media (hover: hover) {
   .dd-hero:hover .dd-pile-0 { --sp: 3deg; } .dd-hero:hover .dd-pile-1 { --sp: -2deg; } .dd-hero:hover .dd-pile-2 { --sp: -3deg; } .dd-hero:hover .dd-pile-3 { --sp: -4deg; } .dd-hero:hover .dd-pile-4 { --sp: -5deg; }
-  .dd-hero .dd-hero-card:hover { --ty: -16px; --sp: 0deg; z-index: 8; box-shadow: 0 34px 60px rgba(0,0,0,.65); }
+  .dd-hero .dd-hero-card:hover { --ty: -16px; --sp: 0deg; box-shadow: 0 34px 60px rgba(0,0,0,.65); }
 }
 /* mosaique de fond : fixe (aucune animation), fondue vers la gauche pour garder le chiffre lisible */
 .dd-hero { position: relative; }
