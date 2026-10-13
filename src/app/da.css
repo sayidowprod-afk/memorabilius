@@ -985,3 +985,17 @@ html[data-theme="light"] .tcdb-imp-open { border-color: #06122e; color: #06122e;
   .gs-w { text-box: trim-both cap alphabetic; padding-bottom: 0; }
   .gs-w i { top: 50%; transform: translate(50%, -50%); }
 }
+
+/* Badge case sur mobile : le nom de la categorie passe au-dessus de sa rangee de tampons (plus de colonne de 74 px qui mange la largeur), tampons en grille de 5 par ligne */
+@media (max-width: 640px) {
+  .passport { padding: 12px 10px 16px; border-width: 2px; }
+  .pp-head b { font-size: 24px; }
+  .pp-row { flex-direction: column; align-items: stretch; gap: 8px; padding: 12px 0; }
+  .pp-cat { width: auto; flex-direction: row; align-items: center; gap: 8px; font-size: 11px; }
+  .pp-cat span { font-size: 18px; }
+  .pp-cat i { margin-left: auto; }
+  .pp-stamps { display: grid; grid-template-columns: repeat(5, 1fr); gap: 8px 7px; }
+  .pp-st { width: 100%; height: auto; aspect-ratio: 1; border-width: 3px; }
+  .pp-st b { font-size: 19px; }
+  .pp-st small { font-size: 6.5px; letter-spacing: .06em; margin-top: 2px; }
+}
