@@ -81,13 +81,13 @@ function printRunOf(cards: UserCard[]): string {
   return best ? `/${best[0]}` : ''
 }
 
-const isAuto = (n: string) => /auto|signature|signed|graphs?|script/i.test(n)
+const isAuto = (n: string) => /auto|sign|graphs?|script/i.test(n)
 const isMemo = (n: string) => /jersey|patch|relic|memorabilia|swatch|material|fabric|prime\b|logoman|laundry/i.test(n)
 
 async function entriesOf(setId: number, variation: string) {
-  const rows: { card_number: string | null; player_name: string; team: string | null }[] = []
+  const rows: { card_number: string | null; player_name: string; team: string | null; is_auto: boolean | null }[] = []
   for (let from = 0; ; from += 1000) {
-    const { data } = await supabase.from('card_set_entries').select('card_number, player_name, team').eq('set_id', setId).eq('variation', variation).order('card_number').range(from, from + 999)
+    const { data } = await supabase.from('card_set_entries').select('card_number, player_name, team, is_auto').eq('set_id', setId).eq('variation', variation).order('card_number').range(from, from + 999)
     if (!data?.length) break
     rows.push(...data)
     if (data.length < 1000) break
@@ -156,6 +156,7 @@ export async function generateGuideFromSet(setId: number): Promise<GeneratedGuid
     const arr = byKey.get(k) || []
     arr.push(c); byKey.set(k, arr)
   }
+  const autoShare = new Map<string, number>() // part de cartes marquees « autographe » dans la checklist, par famille
   const load = async (list: string[]) => {
     const out = new Map<string, string[]>()
     let i = 0
@@ -163,6 +164,7 @@ export async function generateGuideFromSet(setId: number): Promise<GeneratedGuid
       while (i < list.length) {
         const v = list[i++]
         const rows = await entriesOf(setId, v)
+        autoShare.set(v, rows.length ? rows.filter(r => r.is_auto).length / rows.length : 0)
         const lines = rows
           .sort((a, b) => cardOrder(a.card_number || '', b.card_number || ''))
           .map(e => `${e.card_number ? e.card_number + ' ' : ''}${e.player_name}${e.team ? ` (${e.team})` : ''}`)
@@ -181,6 +183,14 @@ export async function generateGuideFromSet(setId: number): Promise<GeneratedGuid
       players: players.get(v)?.length ? players.get(v)! : ['Coming Soon.'],
     }))
   const [insP, autoP, memoP] = await Promise.all([load(inserts), load(autos), load(memos)])
+  const players = new Map<string, string[]>([...insP, ...autoP, ...memoP])
+  // une famille dont la checklist marque la majorite des cartes comme autographes en est une (« Rookie Signs », « Colorgraphs »...), meme si son nom ne le dit pas
+  for (const list of [inserts, memos]) {
+    for (const v of [...list]) {
+      if ((autoShare.get(v) ?? 0) >= 0.5) { list.splice(list.indexOf(v), 1); autos.push(v) }
+    }
+  }
+  autos.sort()
 
   let runsFound = 0
   let parallelImages = 0
@@ -203,9 +213,9 @@ export async function generateGuideFromSet(setId: number): Promise<GeneratedGuid
   const h = (t: string): GuideBlock => ({ type: 'text', html: `<h2 style="text-align: center;">${t}</h2><p></p>` })
   const blocks: GuideBlock[] = []
   if (rows.length) blocks.push(h('PARALLELS'), { type: 'pyramid', rows, layout: 'auto' })
-  if (inserts.length) blocks.push(h('INSERTS'), ...gridsFor(inserts, insP))
-  if (memos.length) blocks.push(h('MEMORABILIA'), ...gridsFor(memos, memoP))
-  if (autos.length) blocks.push(h('AUTOGRAPHS'), ...gridsFor(autos, autoP))
+  if (inserts.length) blocks.push(h('INSERTS'), ...gridsFor(inserts, players))
+  if (memos.length) blocks.push(h('MEMORABILIA'), ...gridsFor(memos, players))
+  if (autos.length) blocks.push(h('AUTOGRAPHS'), ...gridsFor(autos, players))
   blocks.push(h('Checklist &amp; Team Sets'), { type: 'setlist_embed', setId })
   for (const b of blocks) (b as { id?: string }).id = Math.random().toString(36).slice(2) + Date.now().toString(36)
 
