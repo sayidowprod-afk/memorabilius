@@ -58,29 +58,17 @@ function tokensOf(v: string, product: Set<string>): string[] {
 }
 const keyOf = (v: string, product: Set<string>) => tokensOf(v, product).sort().join(' ')
 
+// Passe par une route serveur reservee aux admins : la RLS de cartes_manuelles limite chaque utilisateur (admin compris) a SES propres cartes
+// dans le navigateur, on ne verrait donc presque aucune photo ni aucun tirage.
 async function loadUserCards(set: SetRow, productWords: string[]): Promise<UserCard[]> {
   if (!set.year || !productWords.length) return []
-  const rows: (UserCard & { user_id: string; collection: string | null })[] = []
-  const pattern = `%${productWords.join('%')}%`
-  for (let from = 0; ; from += 1000) {
-    const { data } = await supabase.from('cartes_manuelles').select('user_id, collection, variation, num, image_recto')
-      .ilike('collection', pattern).ilike('annee', `%${set.year}%`).not('image_recto', 'is', null).order('id').range(from, from + 999)
-    if (!data?.length) break
-    rows.push(...(data as typeof rows))
-    if (data.length < 1000 || rows.length >= 6000) break
-  }
-  // sport : « Mosaic Football » ne doit pas alimenter le guide d'un set de basket
-  const other = /football|baseball|soccer|hockey|wnba/i
-  const mine = new RegExp(set.sport === 'nba' ? 'basketball' : set.sport, 'i')
-  const kept = rows.filter(c => !(c.collection && other.test(c.collection) && !mine.test(c.collection)))
-  // cartes privees exclues : jamais de photo d'une carte que son proprietaire a masquee
-  const priv = new Set<string>()
-  const users = [...new Set(kept.map(c => c.user_id))]
-  for (let i = 0; i < users.length; i += 40) {
-    const { data } = await supabase.from('cartes_privees').select('card_key').in('user_id', users.slice(i, i + 40)).limit(5000)
-    for (const p of data || []) priv.add(p.card_key)
-  }
-  return kept.filter(c => c.image_recto && !priv.has(c.image_recto))
+  const { data: { session } } = await supabase.auth.getSession()
+  if (!session) return []
+  const qs = new URLSearchParams({ year: String(set.year), pattern: productWords.join(' '), sport: set.sport })
+  const r = await fetch(`/api/admin/guide-cards?${qs}`, { headers: { Authorization: `Bearer ${session.access_token}` } })
+  if (!r.ok) throw new Error('Recherche des cartes des galeries impossible (' + r.status + ')')
+  const { cards } = await r.json() as { cards: UserCard[] }
+  return cards
 }
 // tirage le plus frequent parmi des numeros « 038/125 » -> « /125 » (en cas d'egalite, le plus petit)
 function printRunOf(cards: UserCard[]): string {
@@ -158,7 +146,8 @@ export async function generateGuideFromSet(setId: number): Promise<GeneratedGuid
   const productWords: string[] = (set.name as string).replace(/^\d{4}(?:-\d{2,4})?\s+/, '').split(/\s+/).filter((w: string) => w && !/^(panini|topps|upper|deck|leaf)$/i.test(w))
   const prodSet = new Set<string>(productWords.map((w: string) => w.toLowerCase()))
   // le champ « collection » saisi par les collectionneurs peut ne contenir que le dernier mot du produit (« Optic » pour « Donruss Optic »)
-  const userCards = await loadUserCards(set, productWords.slice(-1)).catch(() => [] as UserCard[])
+  let userCards: UserCard[] = []
+  try { userCards = await loadUserCards(set, productWords.slice(-1)) } catch (e) { warnings.push(e instanceof Error ? e.message : 'Cartes des galeries indisponibles') }
   const byKey = new Map<string, UserCard[]>()
   for (const c of userCards) {
     if (!c.variation || !c.variation.trim()) continue
