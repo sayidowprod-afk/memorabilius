@@ -887,4 +887,8 @@ body {
    rendant la carte figee sur place au lieu de bouger avec la souris. */
 .card-item-dragging { box-shadow: 0 16px 32px rgba(0,0,0,0.35); }
 
-
+/* Jamais de defilement horizontal de la page (accueil de l'app Android : on pouvait la faire glisser vers la gauche / la droite). `clip` plutot que
+   `hidden` : ne cree pas de conteneur de defilement, donc position: sticky continue de fonctionner. Les rangees qui defilent a l'horizontale
+   (pepites, filtres...) gardent leur propre defilement. */
+html, body { overflow-x: clip; max-width: 100%; }
+body { overscroll-behavior-x: none; }
