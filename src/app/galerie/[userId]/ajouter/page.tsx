@@ -3,6 +3,7 @@ import PackReveal from '@/components/PackReveal'
 import { toast } from '@/lib/toast'
 import { useState, use, useRef, useEffect, useCallback } from 'react'
 import { createPortal } from 'react-dom'
+import { useHideBottomNav } from '@/lib/useHideBottomNav'
 import { useRouter } from 'next/navigation'
 import Link from 'next/link'
 import { supabase } from '@/lib/supabase'
@@ -308,6 +309,7 @@ export default function AjouterCarte({ params }: { params: Promise<{ userId: str
   const [scannerModal, setScannerModal] = useState<{ side: Side; src: string; frameRect?: { x: number; y: number; w: number; h: number } } | null>(null)
   const [cameraModal, setCameraModal] = useState<Side | null>(null)
   const [cropModal, setCropModal] = useState<{ side: Side; src: string } | null>(null)
+  useHideBottomNav(!!cropModal || !!scannerModal)
   const [rotation, setRotation] = useState(0)
 
   // Image pan/zoom state (image moves under fixed frame)

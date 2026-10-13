@@ -161,7 +161,7 @@ export default function OnboardingTooltip() {
 
   return (
     <div style={{
-      position: 'fixed', bottom: 24, right: 24, zIndex: 9999, width: 'min(300px, calc(100vw - 48px))',
+      position: 'fixed', bottom: 'calc(var(--bottom-nav-h, 0px) + 24px)', right: 24, zIndex: 9999, width: 'min(300px, calc(100vw - 48px))',
       background: 'var(--bg2)', border: '1px solid var(--border)',
       borderRadius: 16, boxShadow: '0 8px 32px rgba(0,0,0,0.18)',
       overflow: 'hidden',

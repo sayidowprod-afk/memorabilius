@@ -118,7 +118,7 @@ export default function PWAInstall() {
 
   return (
     <div style={{
-      position: 'fixed', bottom: 20, left: '50%', transform: 'translateX(-50%)',
+      position: 'fixed', bottom: 'calc(var(--bottom-nav-h, 0px) + 20px)', left: '50%', transform: 'translateX(-50%)',
       background: '#003DA6', color: 'white', borderRadius: 16,
       padding: '14px 20px', display: 'flex', alignItems: 'center', gap: 14,
       boxShadow: '0 8px 30px rgba(0,61,166,0.4)', zIndex: 9999,

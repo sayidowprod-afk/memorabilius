@@ -105,8 +105,8 @@ a { color: inherit; text-decoration: none; }
    du telephone se dessinent PAR-DESSUS l'appli ; --bottom-nav-h = hauteur de notre propre nav du bas). */
 :root { --safe-top: var(--safe-area-inset-top, env(safe-area-inset-top, 0px)); --safe-bottom: var(--safe-area-inset-bottom, env(safe-area-inset-bottom, 0px)); }
 body.native-app { --safe-top: max(var(--safe-area-inset-top, env(safe-area-inset-top, 0px)), 28px); --safe-bottom: max(var(--safe-area-inset-bottom, env(safe-area-inset-bottom, 0px)), 48px); }
-body.native-bottom-nav { --bottom-nav-h: calc(56px + max(var(--safe-area-inset-bottom, env(safe-area-inset-bottom)), 56px)); }
-body.native-bottom-nav { padding-bottom: calc(56px + max(var(--safe-area-inset-bottom, env(safe-area-inset-bottom)), 48px)); }
+body.native-bottom-nav { --bottom-nav-h: calc(56px + max(var(--safe-area-inset-bottom, env(safe-area-inset-bottom)), var(--nav-min-bottom, 56px))); }
+body.native-bottom-nav { padding-bottom: calc(56px + max(var(--safe-area-inset-bottom, env(safe-area-inset-bottom)), var(--nav-min-bottom, 48px))); }
 
 /* Le classeur/la camera en plein ecran sont censes etre des vues immersives
    -- la nav globale (zIndex 99999) restait visible par-dessus, dessinee
@@ -114,7 +114,8 @@ body.native-bottom-nav { padding-bottom: calc(56px + max(var(--safe-area-inset-b
    !important necessaire : la nav fixe son display:'flex' en style inline
    (React), qui gagne toujours face a une regle de feuille de style normale. */
 body.binder-fullscreen-active .mobile-bottom-nav-bar,
-body.camera-fullscreen-active .mobile-bottom-nav-bar { display: none !important; }
+body.camera-fullscreen-active .mobile-bottom-nav-bar,
+body.modal-fullscreen-active .mobile-bottom-nav-bar { display: none !important; }
 
 /* Le chat natif va bord à bord (comme Insta) : plus de marge/padding du <main> autour de lui,
    mais topbar et bottom bar restent visibles par-dessus (elles ne sont pas dans <main>). */

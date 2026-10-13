@@ -3791,7 +3791,7 @@ export default function GalerieClient({ userId, initialCardUrl, initialCards, in
       {tradeSent && (
         <div
           onClick={() => setTradeSent(false)}
-          style={{ position: 'fixed', bottom: 24, left: '50%', transform: 'translateX(-50%)', background: '#003DA6', color: '#fff', borderRadius: 50, padding: '12px 24px', fontWeight: 700, fontSize: 14, zIndex: 9999, cursor: 'pointer', boxShadow: '0 4px 20px rgba(0,0,61,0.3)' }}
+          style={{ position: 'fixed', bottom: 'calc(var(--bottom-nav-h, 0px) + 24px)', left: '50%', transform: 'translateX(-50%)', background: '#003DA6', color: '#fff', borderRadius: 50, padding: '12px 24px', fontWeight: 700, fontSize: 14, zIndex: 9999, cursor: 'pointer', boxShadow: '0 4px 20px rgba(0,0,61,0.3)' }}
         >
           🔄 Offre d&apos;échange envoyée !
         </div>
@@ -3799,7 +3799,7 @@ export default function GalerieClient({ userId, initialCardUrl, initialCards, in
 
       {showConversionBanner && loaded && !currentUser && (
         <div style={{
-          position: 'fixed', bottom: 0, left: 0, right: 0, zIndex: 8500,
+          position: 'fixed', bottom: 'var(--bottom-nav-h, 0px)', left: 0, right: 0, zIndex: 8500,
           background: dark ? '#0d1432' : 'white',
           borderTop: dark ? '1px solid rgba(0,120,255,0.2)' : '1px solid rgba(0,61,166,0.12)',
           padding: '14px 20px', paddingBottom: 'max(14px, var(--safe-area-inset-bottom, env(safe-area-inset-bottom)), 40px)',

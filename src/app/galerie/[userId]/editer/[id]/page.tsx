@@ -2,6 +2,7 @@
 import { toast } from '@/lib/toast'
 import { useState, use, useRef, useEffect, useCallback } from 'react'
 import { createPortal } from 'react-dom'
+import { useHideBottomNav } from '@/lib/useHideBottomNav'
 import { useRouter, useSearchParams } from 'next/navigation'
 import Link from 'next/link'
 import { supabase } from '@/lib/supabase'
@@ -163,6 +164,7 @@ export default function EditerCarte({ params }: { params: Promise<{ userId: stri
 
   const [scannerModal, setScannerModal] = useState<{ side: 'recto' | 'verso'; src: string } | null>(null)
   const [cropModal, setCropModal] = useState<{ side: 'recto' | 'verso'; src: string } | null>(null)
+  useHideBottomNav(!!cropModal || !!scannerModal)
   const [rotation, setRotation] = useState(0)
   const [imgTransform, setImgTransform] = useState({ x: 0, y: 0, scale: 1 })
   const containerRef = useRef<HTMLDivElement | null>(null)
