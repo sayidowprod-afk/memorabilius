@@ -977,3 +977,11 @@ html[data-theme="light"] .tcdb-imp-open { border-color: #06122e; color: #06122e;
 .pepite-card .pc-name { margin: 0; font-size: 16px; line-height: 1; letter-spacing: .02em; color: var(--text); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 .pepite-card .pc-sub { margin: 0; font: 600 10px system-ui, sans-serif; color: var(--text2); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 .pepite-card.pepite-tilt:hover { transform: translateY(-4px); box-shadow: 0 10px 24px rgba(0, 0, 0, .35); }
+
+/* Centrage vertical exact du texte de la barre d'atouts, quelle que soit la police du telephone (Roboto sur Android, San Francisco sur iPhone, Segoe sur
+   Windows : leur hauteur de capitales ne tombe pas au meme endroit dans la ligne). text-box rogne la boite du texte sur la hauteur des capitales : le
+   texte est alors centre sur ses lettres, pas sur sa ligne. */
+@supports (text-box: trim-both cap alphabetic) {
+  .gs-w { text-box: trim-both cap alphabetic; padding-bottom: 0; }
+  .gs-w i { top: 50%; transform: translate(50%, -50%); }
+}
