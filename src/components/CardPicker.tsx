@@ -25,6 +25,27 @@ export interface PickableCard {
 }
 
 const ACCENT = '#003DA6'
+
+// Ordre dans lequel les cartes choisies sont ajoutees (classeur) : l'ordre de selection, ou un tri automatique
+type Order = 'pick' | 'year_asc' | 'year_desc' | 'name' | 'brand' | 'team'
+const ORDER_LABELS: [Order, string][] = [
+  ['pick', 'Ordre de sélection'], ['year_asc', 'Année croissante'], ['year_desc', 'Année décroissante'],
+  ['name', 'Joueur A → Z'], ['brand', 'Marque A → Z'], ['team', 'Équipe A → Z'],
+]
+const byText = (a?: string, b?: string) => (a || '').localeCompare(b || '', 'fr', { numeric: true, sensitivity: 'base' })
+// cartes sans la donnee triee : a la fin ; a egalite, joueur puis variation (ex. tous les Maxey d'une meme annee restent regroupes)
+function makeCmp(order: Order): ((a: PickableCard, b: PickableCard) => number) | null {
+  const missingLast = (fa: string | undefined, fb: string | undefined, dir: 1 | -1) => (!fa && !fb ? 0 : !fa ? 1 : !fb ? -1 : dir * byText(fa, fb))
+  const tie = (a: PickableCard, b: PickableCard) => byText(a.nom, b.nom) || byText(a.variant, b.variant)
+  switch (order) {
+    case 'year_asc': return (a, b) => missingLast(a.year, b.year, 1) || tie(a, b)
+    case 'year_desc': return (a, b) => missingLast(a.year, b.year, -1) || tie(a, b)
+    case 'name': return (a, b) => byText(a.nom, b.nom) || byText(a.year, b.year) || byText(a.variant, b.variant)
+    case 'brand': return (a, b) => missingLast(a.brand, b.brand, 1) || byText(a.year, b.year) || tie(a, b)
+    case 'team': return (a, b) => missingLast(a.team, b.team, 1) || tie(a, b)
+    default: return null
+  }
+}
 const TAGS = [
   { key: 'rc', label: 'RC', bg: '#F97316' },
   { key: 'auto', label: 'AUTO', bg: '#3B82F6' },
@@ -52,6 +73,8 @@ export default function CardPicker({ userId, onSelect, onSelectMany, onClose, ex
   const [fTags, setFTags] = useState({ rc: false, auto: false, patch: false, num: false })
   const [fCategory, setFCategory] = useState('')
   const [picked, setPicked] = useState<PickableCard[]>([])
+  const [order, setOrder] = useState<Order>('pick')
+  const cmp = makeCmp(order)
   const pickedKeys = new Set(picked.map(p => p.key))
 
   useEffect(() => {
@@ -113,7 +136,7 @@ export default function CardPicker({ userId, onSelect, onSelectMany, onClose, ex
   const brands = useMemo(() => [...new Set(cards.map(c => c.brand).filter(Boolean) as string[])].sort(), [cards])
   const categories = useMemo(() => [...new Set(cards.map(c => c.category).filter(Boolean) as string[])].sort(), [cards])
 
-  const filtered = cards
+  const filteredRaw = cards
     .filter(c => !excludeKeys?.has(c.key))
     .filter(c => !search || c.nom.toLowerCase().includes(search.toLowerCase()) || (c.variant || '').toLowerCase().includes(search.toLowerCase()))
     .filter(c => !fTeam || c.team === fTeam)
@@ -124,6 +147,8 @@ export default function CardPicker({ userId, onSelect, onSelectMany, onClose, ex
     .filter(c => !fTags.auto || c.auto)
     .filter(c => !fTags.patch || c.patch)
     .filter(c => !fTags.num || c.num)
+  // la grille suit l'ordre choisi : on voit dans quel ordre les cartes seront rangees
+  const filtered = cmp ? [...filteredRaw].sort(cmp) : filteredRaw
 
   const selectStyle: React.CSSProperties = { padding: '7px 10px', borderRadius: 8, border: '1.5px solid var(--border, #e0e0e0)', fontSize: 12, background: 'var(--card-bg, #fff)', color: 'var(--text, #121212)', cursor: 'pointer' }
 
@@ -175,6 +200,14 @@ export default function CardPicker({ userId, onSelect, onSelectMany, onClose, ex
           )}
         </div>
 
+        {multi && (
+          <label style={{ display: 'flex', alignItems: 'center', gap: 8, fontSize: 11, fontWeight: 800, color: 'var(--text3, #999)', textTransform: 'uppercase', letterSpacing: .4 }}>
+            Ranger dans le classeur par
+            <select value={order} onChange={e => setOrder(e.target.value as Order)} style={{ ...selectStyle, borderColor: order !== 'pick' ? ACCENT : '#e0e0e0', flex: 1 }}>
+              {ORDER_LABELS.map(([k, l]) => <option key={k} value={k}>{l}</option>)}
+            </select>
+          </label>
+        )}
         <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: 8 }}>
           <span style={{ fontSize: 11, color: 'var(--text3, #999)' }}>{filtered.length} {filtered.length > 1 ? t('picker_card_plural') : t('picker_card_singular')}{multi && picked.length ? ` · ${picked.length} ${picked.length > 1 ? t('picker_selected_plural') : t('picker_selected')}` : ''}</span>
           {multi && filtered.length > 0 && (() => {
@@ -224,7 +257,7 @@ export default function CardPicker({ userId, onSelect, onSelectMany, onClose, ex
         </div>
 
         {multi && (
-          <button onClick={() => { if (picked.length) onSelectMany?.(picked) }} disabled={!picked.length}
+          <button onClick={() => { if (picked.length) onSelectMany?.(cmp ? [...picked].sort(cmp) : picked) }} disabled={!picked.length}
             className="btn-main btn-primary" style={{ opacity: picked.length ? 1 : 0.5 }}>
             {t('gallery_add')} {picked.length > 0 ? `(${picked.length})` : ''}
           </button>
