@@ -8,6 +8,7 @@ import { useLang } from '@/lib/LangContext'
 import { toast } from '@/lib/toast'
 import { uploadGuideImage } from '@/lib/guideUpload'
 import { normalizeGuideBlocks, type GuideBlock } from '@/lib/guideBlockTypes'
+import { generateGuideFromSet, type SetRow } from '@/lib/guideGenerator'
 
 const GuideBlocksEditor = dynamic(() => import('@/components/GuideBlocksEditor'), { ssr: false })
 
@@ -40,6 +41,42 @@ export default function AdminGuideEditPage({ params }: { params: Promise<{ id: s
   const [translations, setTranslations] = useState<{ lang: string; translated_at: string; cover_image: string | null }[]>([])
   const [translating, setTranslating] = useState(false)
   const [uploadingCoverLang, setUploadingCoverLang] = useState<string | null>(null)
+
+  // Generation automatique du brouillon depuis la checklist d'un set (voir src/lib/guideGenerator.ts)
+  const [genOpen, setGenOpen] = useState(false)
+  const [genQuery, setGenQuery] = useState('')
+  const [genResults, setGenResults] = useState<SetRow[]>([])
+  const [genBusy, setGenBusy] = useState(false)
+  const [genReport, setGenReport] = useState<{ title: string; lines: string[]; warnings: string[] } | null>(null)
+  useEffect(() => {
+    const q = genQuery.trim()
+    if (!genOpen || q.length < 2) { setGenResults([]); return }
+    const timer = setTimeout(async () => {
+      const { data } = await supabase.from('card_sets').select('id, name, year, brand, sport, total_cards').ilike('name', `%${q.replace(/[%_,()]/g, ' ')}%`).order('total_cards', { ascending: false }).limit(10)
+      setGenResults((data || []) as SetRow[])
+    }, 250)
+    return () => clearTimeout(timer)
+  }, [genQuery, genOpen])
+  const generate = async (set: SetRow) => {
+    if (blocks.length > 0 && !window.confirm('Ce guide contient déjà du contenu : le remplacer par le brouillon généré ?')) return
+    setGenBusy(true)
+    try {
+      const g = await generateGuideFromSet(set.id)
+      setBlocks(g.blocks)
+      if (!title.trim()) setTitle(g.title)
+      if (!slugTouched && !slug.trim()) setSlug(g.slug)
+      if (!category.trim()) setCategory(g.category)
+      setGenReport({
+        title: g.title,
+        lines: [`${g.stats.base} cartes de base`, `${g.stats.parallels} parallèles`, `${g.stats.inserts} inserts`, ...(g.stats.memo ? [`${g.stats.memo} memorabilia`] : []), `${g.stats.autos} familles d’autographes`],
+        warnings: g.warnings,
+      })
+      toast.success('Brouillon généré : ajoute les visuels, les tirages et les odds')
+    } catch (e) {
+      toast.error(e instanceof Error ? e.message : 'Erreur de génération')
+    }
+    setGenBusy(false)
+  }
 
   useEffect(() => {
     supabase.auth.getSession().then(async ({ data: { session } }) => {
@@ -191,6 +228,39 @@ export default function AdminGuideEditPage({ params }: { params: Promise<{ id: s
             {coverImage && <img src={coverImage} alt="" style={{ width: '100%', maxWidth: 320, borderRadius: 8, display: 'block', marginBottom: 8 }} />}
             <input type="file" accept="image/*" disabled={uploadingCover}
               onChange={e => { const f = e.target.files?.[0]; if (f) uploadCover(f) }} />
+          </div>
+          <div style={{ background: dark ? '#161616' : '#f0f5ff', border: `1px solid ${dark ? '#2a2a2a' : '#cfdcf7'}`, borderRadius: 10, padding: 16 }}>
+            <button type="button" onClick={() => setGenOpen(o => !o)}
+              style={{ padding: '9px 16px', borderRadius: 8, border: 'none', background: '#003DA6', color: 'white', fontWeight: 800, fontSize: 13, cursor: 'pointer' }}>
+              ✨ Générer le guide depuis une collection
+            </button>
+            {genOpen && (
+              <div style={{ marginTop: 12 }}>
+                <p style={{ fontSize: 12, color: sub, margin: '0 0 8px' }}>
+                  Cherche le set : le brouillon reprend les parallèles, les inserts, les autographes et leurs listes de joueurs depuis la checklist. Tu n’as plus qu’à ajouter les visuels, les tirages et les odds.
+                </p>
+                <input value={genQuery} onChange={e => setGenQuery(e.target.value)} placeholder="Ex : Mosaic 2024-25, Prizm 2023…" style={inp} autoFocus />
+                {genResults.length > 0 && (
+                  <div style={{ display: 'flex', flexDirection: 'column', gap: 6, marginTop: 8 }}>
+                    {genResults.map(r => (
+                      <button key={r.id} type="button" disabled={genBusy} onClick={() => generate(r)}
+                        style={{ textAlign: 'left', padding: '9px 12px', borderRadius: 8, border: `1px solid ${border}`, background: card, color: text, fontSize: 13, fontWeight: 700, cursor: genBusy ? 'default' : 'pointer' }}>
+                        {r.name} <span style={{ color: sub, fontWeight: 600 }}>· {r.sport.toUpperCase()} · {r.total_cards.toLocaleString('fr-FR')} cartes</span>
+                      </button>
+                    ))}
+                  </div>
+                )}
+                {genBusy && <p style={{ fontSize: 13, color: sub, margin: '10px 0 0' }}>Génération en cours (quelques secondes)…</p>}
+                {genReport && (
+                  <div style={{ marginTop: 12, fontSize: 13, color: text }}>
+                    <b>{genReport.title}</b> : {genReport.lines.join(' · ')}
+                    <ul style={{ margin: '8px 0 0', paddingLeft: 18, color: sub }}>
+                      {genReport.warnings.map((w, i) => <li key={i}>{w}</li>)}
+                    </ul>
+                  </div>
+                )}
+              </div>
+            )}
           </div>
           <div>
             <label style={label}>{t('admin_guides_field_content')}</label>

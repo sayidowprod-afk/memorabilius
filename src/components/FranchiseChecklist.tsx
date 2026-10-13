@@ -26,6 +26,7 @@ export default function FranchiseChecklist({ team, players, color, ownedNames, o
   const [filter, setFilter] = useState<'all' | 'have' | 'miss'>('all')
   const [q, setQ] = useState('')
   const [limit, setLimit] = useState(120)
+  const [order, setOrder] = useState<'alpha' | 'chrono'>('alpha')
   // filtre par type de carte : 0 = ignore, 1 = j'en ai, 2 = il me manque (un clic fait tourner)
   const [tf, setTf] = useState<Record<TagKind, 0 | 1 | 2>>({ rc: 0, auto: 0, patch: 0, num: 0 })
   const [photos, setPhotos] = useState<Record<string, string | null>>({})
@@ -50,7 +51,19 @@ export default function FranchiseChecklist({ team, players, color, ownedNames, o
     return () => { cancelled = true }
   }, [ownedNames])
 
-  const rows = useMemo(() => players.map(p => ({ name: p[0], y0: p[1], y1: p[2], n: p[3], key: normalizeName(p[0]) })), [players])
+  // ordre alphabetique par nom de famille (les suffixes Jr / Sr / II... ne comptent pas), ou chronologique (premiere saison)
+  const rows = useMemo(() => {
+    const SUFFIX = new Set(['jr', 'sr', 'ii', 'iii', 'iv', 'v'])
+    const sortKey = (name: string) => {
+      const w = normalizeName(name).split(' ').filter(Boolean)
+      while (w.length > 1 && SUFFIX.has(w[w.length - 1])) w.pop()
+      return `${w[w.length - 1] || ''} ${w.slice(0, -1).join(' ')}`
+    }
+    const r = players.map(p => ({ name: p[0], y0: p[1], y1: p[2], n: p[3], key: normalizeName(p[0]), sk: sortKey(p[0]) }))
+    if (order === 'alpha') r.sort((a, b) => a.sk.localeCompare(b.sk, 'fr'))
+    else r.sort((a, b) => (a.y0 || 9999) - (b.y0 || 9999) || a.sk.localeCompare(b.sk, 'fr'))
+    return r
+  }, [players, order])
   const autoHas = (key: string) => !!(owned && owned.has(key))
   const hasOf = (key: string) => (overrides && key in overrides ? overrides[key] : autoHas(key))
   const haveCount = owned ? rows.filter(r => hasOf(r.key)).length : 0
@@ -128,6 +141,11 @@ export default function FranchiseChecklist({ team, players, color, ownedNames, o
           ))}
         </div>
       )}
+      <div className="fr-tools">
+        <span className="fr-tools-l">Tri :</span>
+        <button type="button" className={'fr-chip' + (order === 'alpha' ? ' on' : '')} onClick={() => { setOrder('alpha'); setLimit(120) }}>A → Z</button>
+        <button type="button" className={'fr-chip' + (order === 'chrono' ? ' on' : '')} onClick={() => { setOrder('chrono'); setLimit(120) }}>Chronologique</button>
+      </div>
       <div className="fr-tools">
         <button type="button" className={'fr-chip' + (decade == null ? ' on' : '')} onClick={() => { setDecade(null); setLimit(120) }}>Toutes époques</button>
         {presentDecades.map(d => (

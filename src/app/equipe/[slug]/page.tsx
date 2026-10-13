@@ -6,6 +6,7 @@ import { teamSlug, playerSlug } from '@/lib/playerSlug'
 import { fetchCsvCardsForProfiles } from '@/lib/csvCards'
 import TagIcon from '@/components/TagIcon'
 import FranchiseChecklist, { type FranchisePlayer } from '@/components/FranchiseChecklist'
+import { cleanFranchise } from '@/lib/franchiseExclude'
 
 export const revalidate = 3600
 
@@ -119,7 +120,7 @@ const ACCENT = '#003DA6'
 
 // Liste complete des joueurs de la franchise (generee par scripts/build-franchise.js)
 async function loadFranchise(slug: string): Promise<FranchisePlayer[]> {
-  try { return (await import(`@/data/franchise/${slug}.json`)).default as FranchisePlayer[] } catch { return [] }
+  try { return cleanFranchise(slug, (await import(`@/data/franchise/${slug}.json`)).default as FranchisePlayer[]) } catch { return [] }
 }
 
 export default async function EquipePage({ params }: { params: Promise<{ slug: string }> }) {

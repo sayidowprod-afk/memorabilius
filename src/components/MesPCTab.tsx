@@ -5,6 +5,7 @@ import { supabase } from '@/lib/supabase'
 import TagIcon from '@/components/TagIcon'
 import CardTagBadges from '@/components/CardTagBadges'
 import FranchiseChecklist, { type FranchisePlayer } from '@/components/FranchiseChecklist'
+import { cleanFranchise } from '@/lib/franchiseExclude'
 import { SPORTS_TEAMS } from '@/lib/sportsTeams'
 import { teamSlug, normalizeName } from '@/lib/playerSlug'
 
@@ -307,7 +308,7 @@ export default function MesPCTab({ cards, cardsLoaded = true, userId, accent, da
       if (!team) continue
       const slug = teamSlug(team.name)
       if (franchise[slug]) continue
-      import(`@/data/franchise/${slug}.json`).then(m => setFranchise(prev => ({ ...prev, [slug]: m.default as FranchisePlayer[] }))).catch(() => {})
+      import(`@/data/franchise/${slug}.json`).then(m => setFranchise(prev => ({ ...prev, [slug]: cleanFranchise(slug, m.default as FranchisePlayer[]) }))).catch(() => {})
     }
   }, [pcs, franchise])
 
@@ -677,7 +678,8 @@ export default function MesPCTab({ cards, cardsLoaded = true, userId, accent, da
                       const team = findFranchiseTeam(pc.name)
                       const list = team ? franchise[teamSlug(team.name)] : undefined
                       if (!team || !list) return null
-                      const have = list.filter(p => ownedKeys.has(normalizeName(p[0]))).length
+                      // meme calcul que la liste de la franchise : cases cochees / decochees a la main par-dessus la detection automatique
+                      const have = list.filter(p => { const k = normalizeName(p[0]); return pc.manualChecks && k in pc.manualChecks ? pc.manualChecks[k] : ownedKeys.has(k) }).length
                       return (
                         <button onClick={e => { e.stopPropagation(); setFrOpen(pc) }} title="Tous les joueurs de la franchise" style={{
                           alignSelf: 'flex-start', padding: '2px 8px', background: `${TYPE_COLOR.team}1f`, color: TYPE_COLOR.team,
