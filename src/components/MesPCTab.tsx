@@ -285,6 +285,20 @@ export default function MesPCTab({ cards, cardsLoaded = true, userId, accent, da
   const [franchise, setFranchise] = useState<Record<string, FranchisePlayer[]>>({})
   const [frOpen, setFrOpen] = useState<PCEntry | null>(null)
   const ownedNames = useMemo(() => cards.map(c => c.n).filter(Boolean), [cards])
+  // ce que j'ai de chaque joueur dans ma galerie : au moins une carte RC / auto / patch / numerotee
+  const ownedFlags = useMemo(() => {
+    const m: Record<string, { rc: boolean; auto: boolean; patch: boolean; num: boolean }> = {}
+    for (const c of cards) {
+      if (!c.n) continue
+      const k = normalizeName(c.n)
+      const f = m[k] || (m[k] = { rc: false, auto: false, patch: false, num: false })
+      if (c.rc) f.rc = true
+      if (c.auto) f.auto = true
+      if (c.patch) f.patch = true
+      if (c.num && String(c.num).trim()) f.num = true
+    }
+    return m
+  }, [cards])
   const ownedKeys = useMemo(() => new Set(ownedNames.map(n => normalizeName(n))), [ownedNames])
   useEffect(() => {
     for (const pc of pcs) {
@@ -475,7 +489,7 @@ export default function MesPCTab({ cards, cardsLoaded = true, userId, accent, da
         <div onClick={() => setFrOpen(null)} style={{ position: 'fixed', inset: 0, background: 'rgba(0,0,0,0.6)', zIndex: 3000, display: 'flex', alignItems: 'flex-start', justifyContent: 'center', padding: '4vh 12px', overflowY: 'auto' }}>
           <div onClick={e => e.stopPropagation()} style={{ position: 'relative', width: '100%', maxWidth: 980, background: dark ? '#10162b' : '#ffffff', border: `3px solid ${dark ? '#ffffff55' : '#111'}`, padding: '22px 20px 26px' }}>
             <button onClick={() => setFrOpen(null)} aria-label="Fermer" style={{ position: 'absolute', top: 8, right: 10, background: 'none', border: 'none', fontSize: 26, cursor: 'pointer', color: muted, lineHeight: 1 }}>×</button>
-            <FranchiseChecklist team={frTeam.name} players={frList} color={frTeam.color} ownedNames={ownedNames} sport={frTeam.sport}
+            <FranchiseChecklist team={frTeam.name} players={frList} color={frTeam.color} ownedNames={ownedNames} ownedFlags={ownedFlags} sport={frTeam.sport}
               overrides={frOpen.manualChecks || {}}
               onToggle={isOwner ? (key, value) => {
                 const cur = { ...(frOpen.manualChecks || {}) }

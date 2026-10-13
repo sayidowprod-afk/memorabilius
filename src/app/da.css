@@ -1011,3 +1011,13 @@ html[data-theme="light"] .tcdb-imp-open { border-color: #06122e; color: #06122e;
   .pp-st b { font-size: 19px; }
   .pp-st small { font-size: 6.5px; letter-spacing: .06em; margin-top: 2px; }
 }
+/* Liste de la franchise : filtre par type de carte et rappel de ce qu'on possede de chaque joueur (RC / Auto / Patch / Num) */
+.fr-tools-l { font: 800 11px system-ui, sans-serif; letter-spacing: .12em; text-transform: uppercase; color: var(--text3, #888); align-self: center; margin-right: 2px; }
+.fr-chip.fr-tf { border-color: var(--tk); }
+.fr-chip.fr-tf.on { background: var(--tk); border-color: var(--tk); color: #fff; }
+.fr-chip.fr-tf.no { background: transparent; border-style: dashed; text-decoration: line-through; opacity: .85; }
+.fr-kinds { display: flex; gap: 3px; margin-top: 3px; }
+.fr-kinds i { font-style: normal; font: 900 8px/1 system-ui, sans-serif; padding: 2px 3px; min-width: 14px; text-align: center; border: 1px solid rgba(128, 128, 128, .4); color: var(--text3, #888); opacity: .55; }
+.fr-kinds i.on { background: var(--tk); border-color: var(--tk); color: #fff; opacity: 1; }
+.fr-cell.have .fr-kinds i { border-color: rgba(255, 255, 255, .55); color: rgba(255, 255, 255, .8); }
+.fr-cell.have .fr-kinds i.on { border-color: #fff; color: #fff; }

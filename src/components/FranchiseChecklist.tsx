@@ -3,17 +3,21 @@ import { useEffect, useMemo, useRef, useState } from 'react'
 import Link from 'next/link'
 import { supabase } from '@/lib/supabase'
 import { playerSlug, normalizeName } from '@/lib/playerSlug'
+import { TAG_BASE, type TagKind } from '@/lib/cardTags'
 
 // [nom, premiere saison, derniere saison, nb d'entrees de checklist]
 export type FranchisePlayer = [string, number, number, number]
+// Ce que le collectionneur possede d'un joueur dans sa galerie : au moins une carte RC / auto / patch / numerotee
+export type OwnedFlags = Record<TagKind, boolean>
+const KINDS: { k: TagKind; l: string }[] = [{ k: 'rc', l: 'RC' }, { k: 'auto', l: 'Auto' }, { k: 'patch', l: 'Patch' }, { k: 'num', l: 'Num' }]
 
 const DECADES = [2020, 2010, 2000, 1990, 1980, 1970, 1960, 1950]
 const decadeOf = (y: number) => Math.floor(y / 10) * 10
 
 // overrides / onToggle (proprietaire uniquement) : case cochee ou decochee a la main, par-dessus le calcul automatique depuis la galerie.
 // overrides[cle] = true -> force « je l'ai » ; false -> force « il me manque » ; absent -> automatique. sport : pour retrouver les photos des joueurs.
-export default function FranchiseChecklist({ team, players, color, ownedNames, overrides, onToggle, sport }: {
-  team: string; players: FranchisePlayer[]; color: string; ownedNames?: string[]
+export default function FranchiseChecklist({ team, players, color, ownedNames, ownedFlags, overrides, onToggle, sport }: {
+  team: string; players: FranchisePlayer[]; color: string; ownedNames?: string[]; ownedFlags?: Record<string, OwnedFlags>
   overrides?: Record<string, boolean>; onToggle?: (key: string, value: boolean | undefined) => void; sport?: string
 }) {
   const [owned, setOwned] = useState<Set<string> | null>(null) // null = non connecte / en chargement
@@ -22,6 +26,8 @@ export default function FranchiseChecklist({ team, players, color, ownedNames, o
   const [filter, setFilter] = useState<'all' | 'have' | 'miss'>('all')
   const [q, setQ] = useState('')
   const [limit, setLimit] = useState(120)
+  // filtre par type de carte : 0 = ignore, 1 = j'en ai, 2 = il me manque (un clic fait tourner)
+  const [tf, setTf] = useState<Record<TagKind, 0 | 1 | 2>>({ rc: 0, auto: 0, patch: 0, num: 0 })
   const [photos, setPhotos] = useState<Record<string, string | null>>({})
   const askedRef = useRef<Set<string>>(new Set())
 
@@ -55,6 +61,13 @@ export default function FranchiseChecklist({ team, players, color, ownedNames, o
     if (filter === 'have' && !hasOf(r.key)) return false
     if (filter === 'miss' && owned && hasOf(r.key)) return false
     if (nq && !r.key.includes(nq)) return false
+    if (ownedFlags) {
+      const fl = ownedFlags[r.key]
+      for (const { k } of KINDS) {
+        if (tf[k] === 1 && !(fl && fl[k])) return false
+        if (tf[k] === 2 && fl && fl[k]) return false
+      }
+    }
     return true
   })
   // photos des joueurs affiches (par lots de 40, a mesure qu'ils apparaissent) : remplacent le « ? »
@@ -103,6 +116,18 @@ export default function FranchiseChecklist({ team, players, color, ownedNames, o
           </button>
         ))}
       </div>
+      {ownedFlags && (
+        <div className="fr-tools">
+          <span className="fr-tools-l">Mes cartes :</span>
+          {KINDS.map(({ k, l }) => (
+            <button key={k} type="button" className={'fr-chip fr-tf' + (tf[k] === 1 ? ' on' : tf[k] === 2 ? ' no' : '')} style={{ ['--tk' as string]: TAG_BASE[k] }}
+              title={tf[k] === 0 ? `Afficher les joueurs dont j’ai une carte ${l}` : tf[k] === 1 ? `Afficher les joueurs dont il me manque une carte ${l}` : 'Retirer ce filtre'}
+              onClick={() => { setTf(prev => ({ ...prev, [k]: ((prev[k] + 1) % 3) as 0 | 1 | 2 })); setLimit(120) }}>
+              {l}{tf[k] === 1 ? ' ✓' : tf[k] === 2 ? ' ✗' : ''}
+            </button>
+          ))}
+        </div>
+      )}
       <div className="fr-tools">
         <button type="button" className={'fr-chip' + (decade == null ? ' on' : '')} onClick={() => { setDecade(null); setLimit(120) }}>Toutes époques</button>
         {presentDecades.map(d => (
@@ -126,6 +151,13 @@ export default function FranchiseChecklist({ team, players, color, ownedNames, o
                 <span className="fr-txt">
                   <span className="fr-name">{r.name}</span>
                   <span className="fr-years">{r.y0 ? (r.y1 && r.y1 !== r.y0 ? `${r.y0} – ${r.y1}` : r.y0) : ''}</span>
+                  {ownedFlags && ownedFlags[r.key] && (
+                    <span className="fr-kinds" aria-label="Mes cartes de ce joueur">
+                      {KINDS.map(({ k, l }) => (
+                        <i key={k} className={ownedFlags[r.key][k] ? 'on' : ''} style={{ ['--tk' as string]: TAG_BASE[k] }} title={ownedFlags[r.key][k] ? `J’ai une carte ${l}` : `Pas de carte ${l}`}>{k === 'num' ? 'N' : k === 'auto' ? 'A' : k === 'patch' ? 'P' : 'RC'}</i>
+                      ))}
+                    </span>
+                  )}
                 </span>
               </Link>
               {onToggle ? (
