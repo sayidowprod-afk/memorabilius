@@ -75,6 +75,8 @@ export default function CardPicker({ userId, onSelect, onSelectMany, onClose, ex
   const [picked, setPicked] = useState<PickableCard[]>([])
   const [order, setOrder] = useState<Order>('pick')
   const cmp = makeCmp(order)
+  // rang final de chaque carte choisie dans le classeur (1, 2, 3...) : celui de la selection, ou celui du tri automatique choisi
+  const rankOf = new Map<string, number>((cmp ? [...picked].sort(cmp) : picked).map((c, i) => [c.key, i + 1]))
   const pickedKeys = new Set(picked.map(p => p.key))
 
   useEffect(() => {
@@ -248,7 +250,7 @@ export default function CardPicker({ userId, onSelect, onSelectMany, onClose, ex
                   </div>
                 )}
                 {multi && sel && (
-                  <div style={{ position: 'absolute', top: 3, right: 3, width: 20, height: 20, borderRadius: '50%', background: ACCENT, color: 'white', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 12, fontWeight: 900 }}>✓</div>
+                  <div style={{ position: 'absolute', top: 3, right: 3, width: 22, height: 22, borderRadius: '50%', background: ACCENT, color: 'white', boxShadow: '0 1px 4px rgba(0,0,0,.4)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: rankOf.get(c.key)! > 99 ? 9 : rankOf.get(c.key)! > 9 ? 11 : 12, fontWeight: 900 }}>{rankOf.get(c.key)}</div>
                 )}
                 <div style={{ padding: '4px 6px', fontSize: 10, fontWeight: 700, whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>{c.nom}</div>
               </div>
