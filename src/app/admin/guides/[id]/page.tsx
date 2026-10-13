@@ -9,6 +9,7 @@ import { toast } from '@/lib/toast'
 import { uploadGuideImage } from '@/lib/guideUpload'
 import { normalizeGuideBlocks, type GuideBlock } from '@/lib/guideBlockTypes'
 import { generateGuideFromSet, rehostGuideImages, type SetRow } from '@/lib/guideGenerator'
+import GuideCoverMaker from '@/components/GuideCoverMaker'
 
 const GuideBlocksEditor = dynamic(() => import('@/components/GuideBlocksEditor'), { ssr: false })
 
@@ -238,6 +239,16 @@ export default function AdminGuideEditPage({ params }: { params: Promise<{ id: s
             {coverImage && <img src={coverImage} alt="" style={{ width: '100%', maxWidth: 320, borderRadius: 8, display: 'block', marginBottom: 8 }} />}
             <input type="file" accept="image/*" disabled={uploadingCover}
               onChange={e => { const f = e.target.files?.[0]; if (f) uploadCover(f) }} />
+            <GuideCoverMaker dark={dark} onDone={setCoverImage}
+              defaultName={genSet?.name || title.replace(/\s*(Basketball\s+)?Guide\s*(and|&)\s*Checklist\s*$/i, '').trim()}
+              cardPool={(() => {
+                const ins: string[] = [], par: string[] = []
+                for (const b of blocks) {
+                  if (b.type === 'insert_grid') b.cards.forEach(c => { if (c.image) ins.push(c.image) })
+                  else if (b.type === 'pyramid') b.rows.forEach(r => { if (r.cardImage) par.push(r.cardImage) })
+                }
+                return [...new Set([...ins, ...par])]
+              })()} />
           </div>
           <div style={{ background: dark ? '#161616' : '#f0f5ff', border: `1px solid ${dark ? '#2a2a2a' : '#cfdcf7'}`, borderRadius: 10, padding: 16 }}>
             <button type="button" onClick={() => setGenOpen(o => !o)}
