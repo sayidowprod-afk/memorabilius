@@ -77,7 +77,7 @@ export default function InsertGridBlock({ title, cards, oddsTable, players }: Pr
                       <tr key={ri} style={{ background: ri % 2 === 1 ? 'var(--bg3, #fafafa)' : 'transparent', borderTop: '1px solid var(--border, #eee)' }}>
                         <td className="insert-odds-cell" style={{ fontWeight: 700, color: 'var(--text2, #555)', whiteSpace: 'nowrap' }}>{row.label}</td>
                         {oddsTable.columns.map((_, ci) => (
-                          <td key={ci} className="insert-odds-cell" style={{ textAlign: 'center', fontWeight: 800, color: '#003DA6', whiteSpace: 'nowrap' }}>{row.values[ci] || '—'}</td>
+                          <td key={ci} className="insert-odds-cell sle-accent" style={{ textAlign: 'center', fontWeight: 800, whiteSpace: 'nowrap' }}>{row.values[ci] || '—'}</td>
                         ))}
                       </tr>
                     ))}

@@ -1021,3 +1021,8 @@ html[data-theme="light"] .tcdb-imp-open { border-color: #06122e; color: #06122e;
 .fr-kinds i.on { background: var(--tk); border-color: var(--tk); color: #fff; opacity: 1; }
 .fr-cell.have .fr-kinds i { border-color: rgba(255, 255, 255, .55); color: rgba(255, 255, 255, .8); }
 .fr-cell.have .fr-kinds i.on { border-color: #fff; color: #fff; }
+
+/* Setlist integree aux guides : liens, titres de famille et « Team Sets » en bleu fonce sur le fond marine du theme sombre etaient illisibles */
+.sle-accent { color: #003DA6; }
+:root[data-theme="dark"] .sle-accent { color: #8db6ff; }
+:root[data-theme="dark"] .sle-accent:hover { color: #fff; }
