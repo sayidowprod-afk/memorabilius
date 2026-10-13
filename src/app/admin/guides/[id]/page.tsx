@@ -48,6 +48,8 @@ export default function AdminGuideEditPage({ params }: { params: Promise<{ id: s
   const [genResults, setGenResults] = useState<SetRow[]>([])
   const [genBusy, setGenBusy] = useState(false)
   const [genProgress, setGenProgress] = useState('')
+  const [genSet, setGenSet] = useState<SetRow | null>(null)
+  const [genForeign, setGenForeign] = useState<string[]>([])
   const [genReport, setGenReport] = useState<{ title: string; lines: string[]; warnings: string[] } | null>(null)
   useEffect(() => {
     const q = genQuery.trim()
@@ -58,11 +60,13 @@ export default function AdminGuideEditPage({ params }: { params: Promise<{ id: s
     }, 250)
     return () => clearTimeout(timer)
   }, [genQuery, genOpen])
-  const generate = async (set: SetRow) => {
-    if (blocks.length > 0 && !window.confirm('Ce guide contient déjà du contenu : le remplacer par le brouillon généré ?')) return
+  const generate = async (set: SetRow, skip?: string[]) => {
+    if (!skip && blocks.length > 0 && !window.confirm('Ce guide contient déjà du contenu : le remplacer par le brouillon généré ?')) return
     setGenBusy(true)
     try {
-      const g = await generateGuideFromSet(set.id)
+      const g = await generateGuideFromSet(set.id, { skip })
+      setGenSet(set)
+      setGenForeign(g.foreign)
       setBlocks(g.blocks)
       // copie des photos trouvees dans le stockage des guides (en tache de fond : le brouillon est deja affiche)
       setGenProgress('Copie des photos…')
@@ -264,6 +268,12 @@ export default function AdminGuideEditPage({ params }: { params: Promise<{ id: s
                     <ul style={{ margin: '8px 0 0', paddingLeft: 18, color: sub }}>
                       {genReport.warnings.map((w, i) => <li key={i}>{w}</li>)}
                     </ul>
+                    {genForeign.length > 0 && genSet && (
+                      <button type="button" disabled={genBusy} onClick={() => generate(genSet, genForeign)}
+                        style={{ marginTop: 10, padding: '7px 14px', borderRadius: 8, border: `1.5px solid ${border}`, background: 'transparent', color: text, fontWeight: 700, fontSize: 12, cursor: genBusy ? 'default' : 'pointer' }}>
+                        Retirer ces {genForeign.length} famille(s) et régénérer
+                      </button>
+                    )}
                   </div>
                 )}
               </div>

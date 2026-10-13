@@ -15,6 +15,7 @@ export interface GeneratedGuide {
   blocks: GuideBlock[]
   stats: { base: number; parallels: number; inserts: number; autos: number; memo: number; photos: number; runs: number }
   warnings: string[]
+  foreign: string[]   // familles dont le nom porte une autre annee (« 1980-81 Topps Basketball ») : incluses, a retirer sur demande
 }
 
 const SPORT_LABEL: Record<string, string> = { nba: 'Basketball', nfl: 'Football', mlb: 'Baseball', nhl: 'Hockey', football: 'Soccer', wnba: 'Basketball', ncaa: 'College Football' }
@@ -60,11 +61,11 @@ const keyOf = (v: string, product: Set<string>) => tokensOf(v, product).sort().j
 
 // Passe par une route serveur reservee aux admins : la RLS de cartes_manuelles limite chaque utilisateur (admin compris) a SES propres cartes
 // dans le navigateur, on ne verrait donc presque aucune photo ni aucun tirage.
-async function loadUserCards(set: SetRow, productWords: string[]): Promise<UserCard[]> {
+async function loadUserCards(set: SetRow, productWords: string[], exact: boolean): Promise<UserCard[]> {
   if (!set.year || !productWords.length) return []
   const { data: { session } } = await supabase.auth.getSession()
   if (!session) return []
-  const qs = new URLSearchParams({ year: String(set.year), pattern: productWords.join(' '), sport: set.sport })
+  const qs = new URLSearchParams({ year: String(set.year), pattern: productWords.join(' '), sport: set.sport, ...(exact ? { exact: '1' } : {}) })
   const r = await fetch(`/api/admin/guide-cards?${qs}`, { headers: { Authorization: `Bearer ${session.access_token}` } })
   if (!r.ok) throw new Error('Recherche des cartes des galeries impossible (' + r.status + ')')
   const { cards } = await r.json() as { cards: UserCard[] }
@@ -102,7 +103,9 @@ function cardOrder(a: string, b: string) {
   return a.localeCompare(b)
 }
 
-export async function generateGuideFromSet(setId: number): Promise<GeneratedGuide> {
+// opts.skip : familles a laisser de cote (jamais ecartees sans que l'admin l'ait demande)
+export async function generateGuideFromSet(setId: number, opts: { skip?: string[] } = {}): Promise<GeneratedGuide> {
+  const skip = new Set(opts.skip || [])
   const { data: set } = await supabase.from('card_sets').select('id, name, year, brand, sport, total_cards').eq('id', setId).single()
   if (!set) throw new Error('Set introuvable')
   const { data: varData } = await supabase.rpc('get_set_variations', { p_set_id: setId })
@@ -125,11 +128,15 @@ export async function generateGuideFromSet(setId: number): Promise<GeneratedGuid
   const foreign: string[] = []
   for (const r of roots) {
     if (r === 'Base') continue
-    // « 2024-25 Panini Origins Update II: ... » : variations d'un AUTRE produit melangees a la checklist, ignorees
-    if (/^\d{4}/.test(r)) { foreign.push(r); continue }
+    if (skip.has(r)) continue
+    // Nom portant une annee (« 1980-81 Topps Basketball », « 2024-25 Panini Origins Update II: ... ») : souvent une vraie partie de la collection
+    // (hommages, cartes retro) mais parfois les variations d'un autre produit melangees a la checklist. Incluse, et jamais classee en parallele ;
+    // l'admin voit la liste et peut la retirer.
+    const yearNamed = /^\d{4}/.test(r)
+    if (yearNamed) foreign.push(r)
     if (isAuto(r)) autos.push(r)
     else if (isMemo(r)) memos.push(r)
-    else if (base > 0 && (counts.get(r) ?? 0) >= baseThreshold) parallels.push(r)
+    else if (!yearNamed && base > 0 && (counts.get(r) ?? 0) >= baseThreshold) parallels.push(r)
     else inserts.push(r)
   }
 
@@ -143,11 +150,15 @@ export async function generateGuideFromSet(setId: number): Promise<GeneratedGuid
   const warnings: string[] = []
 
   // mots du produit (« 2024-25 Panini Mosaic » -> mosaic) pour comparer les noms de variation, et cartes des galeries correspondantes
-  const productWords: string[] = (set.name as string).replace(/^\d{4}(?:-\d{2,4})?\s+/, '').split(/\s+/).filter((w: string) => w && !/^(panini|topps|upper|deck|leaf)$/i.test(w))
-  const prodSet = new Set<string>(productWords.map((w: string) => w.toLowerCase()))
+  const nameWords: string[] = (set.name as string).replace(/^\d{4}(?:-\d{2,4})?\s+/, '').split(/\s+/).filter(Boolean)
+  const productWords: string[] = nameWords.filter((w: string) => !/^(panini|topps|upper|deck|leaf)$/i.test(w))
+  // produit reduit a la marque (« 2025-26 Topps ») : on cherche la collection « Topps » exactement, pas « Topps Chrome » ni « Topps Flagship »
+  const exact = productWords.length === 0
+  const queryWords = exact ? nameWords.slice(-1) : productWords.slice(-1)
+  const prodSet = new Set<string>((exact ? nameWords : productWords).map((w: string) => w.toLowerCase()))
   // le champ « collection » saisi par les collectionneurs peut ne contenir que le dernier mot du produit (« Optic » pour « Donruss Optic »)
   let userCards: UserCard[] = []
-  try { userCards = await loadUserCards(set, productWords.slice(-1)) } catch (e) { warnings.push(e instanceof Error ? e.message : 'Cartes des galeries indisponibles') }
+  try { userCards = await loadUserCards(set, queryWords, exact) } catch (e) { warnings.push(e instanceof Error ? e.message : 'Cartes des galeries indisponibles') }
   const byKey = new Map<string, UserCard[]>()
   for (const c of userCards) {
     if (!c.variation || !c.variation.trim()) continue
@@ -225,7 +236,7 @@ export async function generateGuideFromSet(setId: number): Promise<GeneratedGuid
   const sport = SPORT_LABEL[set.sport] || ''
   const title = `${label}${sport ? ' ' + sport : ''} Guide and Checklist`
   const unknown = rows.filter(r => !r.patternColor && !r.patternGradient).length
-  if (foreign.length) warnings.push(`${foreign.length} famille(s) d’un autre produit ignorée(s) : ${foreign.join(', ')}`)
+  if (foreign.length) warnings.push(`${foreign.length} famille(s) dont le nom porte une autre année ont été incluses : ${foreign.join(', ')} (tu peux les retirer ci-dessous)`)
   const nIns = inserts.length + autos.length + memos.length
   warnings.push(`Photos trouvées dans les galeries : ${parallelImages}/${rows.length} parallèles, ${imagesFound - parallelImages}/${nIns} inserts et autographes (à compléter à la main pour les autres)`)
   if (rows.length) warnings.push(`Tirages trouvés : ${runsFound}/${rows.length} parallèles (les autres sont à renseigner à la main${unknown ? `, ${unknown} sans couleur reconnue` : ''})`)
@@ -234,7 +245,7 @@ export async function generateGuideFromSet(setId: number): Promise<GeneratedGuid
   return {
     title, slug: slugify(label), excerpt: '', category: 'Collection Guide & Checklist', blocks,
     stats: { base, parallels: parallels.length, inserts: inserts.length, autos: autos.length, memo: memos.length, photos: imagesFound, runs: runsFound },
-    warnings,
+    warnings, foreign,
   }
 }
 

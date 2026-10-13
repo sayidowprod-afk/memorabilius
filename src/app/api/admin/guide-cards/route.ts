@@ -19,13 +19,19 @@ export async function GET(req: NextRequest) {
   const year = Number(req.nextUrl.searchParams.get('year'))
   const pattern = (req.nextUrl.searchParams.get('pattern') || '').replace(/[%_\\,()]/g, ' ').trim()
   const sport = (req.nextUrl.searchParams.get('sport') || '').toLowerCase()
+  const exact = req.nextUrl.searchParams.get('exact') === '1'
   if (!year || !pattern) return NextResponse.json({ cards: [] })
 
   type Row = { user_id: string; collection: string | null; variation: string | null; num: string | null; image_recto: string | null }
   const rows: Row[] = []
   for (let from = 0; ; from += 1000) {
-    const { data } = await supabase.from('cartes_manuelles').select('user_id, collection, variation, num, image_recto')
-      .ilike('collection', `%${pattern}%`).ilike('annee', `%${year}%`).not('image_recto', 'is', null).order('id').range(from, from + 999)
+    // exact : produit reduit a la marque (« Topps ») -> collection « Topps » ou « Topps Basketball », pas « Topps Chrome »
+    const sportWord = ({ nba: 'Basketball', wnba: 'Basketball', nfl: 'Football', mlb: 'Baseball', nhl: 'Hockey', football: 'Soccer' } as Record<string, string>)[sport] || ''
+    let q = supabase.from('cartes_manuelles').select('user_id, collection, variation, num, image_recto')
+    q = exact
+      ? q.or(`collection.ilike.${pattern},collection.ilike.${pattern} ${sportWord || 'zzzz'}`)
+      : q.ilike('collection', `%${pattern}%`)
+    const { data } = await q.ilike('annee', `%${year}%`).not('image_recto', 'is', null).order('id').range(from, from + 999)
     if (!data?.length) break
     rows.push(...(data as Row[]))
     if (data.length < 1000 || rows.length >= 8000) break
