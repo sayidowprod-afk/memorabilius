@@ -35,6 +35,7 @@ type Filter = 'all' | 'owned' | 'missing'
 
 interface PCEntry {
   id: string; type: PCType; name: string
+  manualChecks?: Record<string, boolean>   // PC equipe : joueurs coches / decoches a la main dans la liste de la franchise
   firstName?: string; lastName?: string; addedAt: number
 }
 
@@ -474,7 +475,16 @@ export default function MesPCTab({ cards, cardsLoaded = true, userId, accent, da
         <div onClick={() => setFrOpen(null)} style={{ position: 'fixed', inset: 0, background: 'rgba(0,0,0,0.6)', zIndex: 3000, display: 'flex', alignItems: 'flex-start', justifyContent: 'center', padding: '4vh 12px', overflowY: 'auto' }}>
           <div onClick={e => e.stopPropagation()} style={{ position: 'relative', width: '100%', maxWidth: 980, background: dark ? '#10162b' : '#ffffff', border: `3px solid ${dark ? '#ffffff55' : '#111'}`, padding: '22px 20px 26px' }}>
             <button onClick={() => setFrOpen(null)} aria-label="Fermer" style={{ position: 'absolute', top: 8, right: 10, background: 'none', border: 'none', fontSize: 26, cursor: 'pointer', color: muted, lineHeight: 1 }}>×</button>
-            <FranchiseChecklist team={frTeam.name} players={frList} color={frTeam.color} ownedNames={ownedNames} />
+            <FranchiseChecklist team={frTeam.name} players={frList} color={frTeam.color} ownedNames={ownedNames} sport={frTeam.sport}
+              overrides={frOpen.manualChecks || {}}
+              onToggle={isOwner ? (key, value) => {
+                const cur = { ...(frOpen.manualChecks || {}) }
+                if (value === undefined) delete cur[key]
+                else cur[key] = value
+                const updated = { ...frOpen, manualChecks: cur }
+                savePCs(pcs.map(p => (p.id === frOpen.id ? updated : p)))
+                setFrOpen(updated)
+              } : undefined} />
           </div>
         </div>
       )}

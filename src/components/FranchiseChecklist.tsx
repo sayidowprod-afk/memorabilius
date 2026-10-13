@@ -1,5 +1,5 @@
 'use client'
-import { useEffect, useMemo, useState } from 'react'
+import { useEffect, useMemo, useRef, useState } from 'react'
 import Link from 'next/link'
 import { supabase } from '@/lib/supabase'
 import { playerSlug, normalizeName } from '@/lib/playerSlug'
@@ -10,13 +10,20 @@ export type FranchisePlayer = [string, number, number, number]
 const DECADES = [2020, 2010, 2000, 1990, 1980, 1970, 1960, 1950]
 const decadeOf = (y: number) => Math.floor(y / 10) * 10
 
-export default function FranchiseChecklist({ team, players, color, ownedNames }: { team: string; players: FranchisePlayer[]; color: string; ownedNames?: string[] }) {
+// overrides / onToggle (proprietaire uniquement) : case cochee ou decochee a la main, par-dessus le calcul automatique depuis la galerie.
+// overrides[cle] = true -> force « je l'ai » ; false -> force « il me manque » ; absent -> automatique. sport : pour retrouver les photos des joueurs.
+export default function FranchiseChecklist({ team, players, color, ownedNames, overrides, onToggle, sport }: {
+  team: string; players: FranchisePlayer[]; color: string; ownedNames?: string[]
+  overrides?: Record<string, boolean>; onToggle?: (key: string, value: boolean | undefined) => void; sport?: string
+}) {
   const [owned, setOwned] = useState<Set<string> | null>(null) // null = non connecte / en chargement
   const [loggedIn, setLoggedIn] = useState(false)
   const [decade, setDecade] = useState<number | null>(null)
   const [filter, setFilter] = useState<'all' | 'have' | 'miss'>('all')
   const [q, setQ] = useState('')
   const [limit, setLimit] = useState(120)
+  const [photos, setPhotos] = useState<Record<string, string | null>>({})
+  const askedRef = useRef<Set<string>>(new Set())
 
   useEffect(() => {
     // collection deja connue de l'appelant (ex. galerie d'un utilisateur, CSV compris) : pas besoin de la relire
@@ -38,16 +45,43 @@ export default function FranchiseChecklist({ team, players, color, ownedNames }:
   }, [ownedNames])
 
   const rows = useMemo(() => players.map(p => ({ name: p[0], y0: p[1], y1: p[2], n: p[3], key: normalizeName(p[0]) })), [players])
-  const haveCount = owned ? rows.filter(r => owned.has(r.key)).length : 0
+  const autoHas = (key: string) => !!(owned && owned.has(key))
+  const hasOf = (key: string) => (overrides && key in overrides ? overrides[key] : autoHas(key))
+  const haveCount = owned ? rows.filter(r => hasOf(r.key)).length : 0
   const pct = rows.length ? Math.round((haveCount / rows.length) * 100) : 0
   const nq = normalizeName(q)
   const list = rows.filter(r => {
     if (decade != null && !(r.y0 && decadeOf(r.y0) <= decade && decadeOf(r.y1 || r.y0) >= decade)) return false
-    if (filter === 'have' && !(owned && owned.has(r.key))) return false
-    if (filter === 'miss' && owned && owned.has(r.key)) return false
+    if (filter === 'have' && !hasOf(r.key)) return false
+    if (filter === 'miss' && owned && hasOf(r.key)) return false
     if (nq && !r.key.includes(nq)) return false
     return true
   })
+  // photos des joueurs affiches (par lots de 40, a mesure qu'ils apparaissent) : remplacent le « ? »
+  const visibleKey = list.slice(0, limit).map(r => r.name).join('|')
+  useEffect(() => {
+    if (!sport) return
+    const need = list.slice(0, limit).map(r => r.name).filter(n => !askedRef.current.has(n))
+    if (need.length === 0) return
+    let cancelled = false
+    ;(async () => {
+      for (let i = 0; i < need.length && !cancelled; i += 40) {
+        const chunk = need.slice(i, i + 40)
+        chunk.forEach(n => askedRef.current.add(n))
+        try {
+          const r = await fetch('/api/player-photos', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ names: chunk, sport }) })
+          if (!r.ok) continue
+          const d = await r.json() as { photos: Record<string, string | null> }
+          if (!cancelled) setPhotos(prev => ({ ...prev, ...d.photos }))
+          // les joueurs que le serveur n'a pas eu le temps de traiter seront redemandes au prochain affichage
+          chunk.forEach(n => { if (!(n in d.photos)) askedRef.current.delete(n) })
+        } catch { chunk.forEach(n => askedRef.current.delete(n)) }
+      }
+    })()
+    return () => { cancelled = true }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [visibleKey, sport])
+
   const presentDecades = DECADES.filter(d => rows.some(r => r.y0 && decadeOf(r.y0) <= d && decadeOf(r.y1 || r.y0) >= d))
 
   return (
@@ -77,13 +111,31 @@ export default function FranchiseChecklist({ team, players, color, ownedNames }:
       </div>
       <div className="fr-grid">
         {list.slice(0, limit).map(r => {
-          const has = !!(owned && owned.has(r.key))
+          const has = hasOf(r.key)
+          const manual = !!(overrides && r.key in overrides)
+          const photo = photos[r.name]
           return (
-            <Link key={r.name} href={`/joueur/${playerSlug(r.name)}`} className={'fr-cell' + (has ? ' have' : '')} title={r.name}>
-              <span className="fr-mark">{has ? '✓' : owned ? '?' : ''}</span>
-              <span className="fr-name">{r.name}</span>
-              <span className="fr-years">{r.y0 ? (r.y1 && r.y1 !== r.y0 ? `${r.y0} – ${r.y1}` : r.y0) : ''}</span>
-            </Link>
+            <div key={r.name} className={'fr-cell' + (has ? ' have' : '') + (onToggle ? ' can-toggle' : '')}>
+              <Link href={`/joueur/${playerSlug(r.name)}`} className="fr-link" title={r.name}>
+                <span className="fr-photo">
+                  {photo
+                    // eslint-disable-next-line @next/next/no-img-element
+                    ? <img src={photo} alt="" loading="lazy" referrerPolicy="no-referrer" />
+                    : <b>{r.name.split(' ').slice(0, 2).map(w => w[0]).join('')}</b>}
+                </span>
+                <span className="fr-txt">
+                  <span className="fr-name">{r.name}</span>
+                  <span className="fr-years">{r.y0 ? (r.y1 && r.y1 !== r.y0 ? `${r.y0} – ${r.y1}` : r.y0) : ''}</span>
+                </span>
+              </Link>
+              {onToggle ? (
+                <button type="button" className={'fr-chk' + (has ? ' on' : '') + (manual ? ' manual' : '')} aria-pressed={has}
+                  title={has ? 'Décocher (je ne l’ai pas)' : 'Cocher (je l’ai)'}
+                  onClick={() => { const next = !has; onToggle(r.key, next === autoHas(r.key) ? undefined : next) }}>{has ? '✓' : ''}</button>
+              ) : (
+                has && <span className="fr-chk on static">✓</span>
+              )}
+            </div>
           )
         })}
       </div>

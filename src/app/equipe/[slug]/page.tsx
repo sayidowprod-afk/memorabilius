@@ -161,7 +161,7 @@ export default async function EquipePage({ params }: { params: Promise<{ slug: s
         </div>
       </div>
 
-      {franchise.length > 0 && <FranchiseChecklist team={team.name} players={franchise} color={teamColor} />}
+      {franchise.length > 0 && <FranchiseChecklist team={team.name} players={franchise} color={teamColor} sport={team.sport} />}
 
       {/* Joueurs */}
       {players.length > 0 && (

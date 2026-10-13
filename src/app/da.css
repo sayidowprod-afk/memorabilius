@@ -660,12 +660,24 @@ button.cdj-btn { cursor: pointer; }
 .fr-chip { padding: 6px 12px; border: 2px solid var(--fr-c, #003DA6); background: transparent; color: var(--text, #111); font: 800 12px system-ui; letter-spacing: .06em; text-transform: uppercase; cursor: pointer; border-radius: 0; }
 .fr-chip.on { background: var(--fr-c, #003DA6); color: #fff; }
 .fr-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 8px; margin-top: 6px; }
-.fr-cell { position: relative; display: flex; flex-direction: column; gap: 2px; padding: 9px 10px 9px 30px; border: 2px solid var(--border, rgba(128,128,128,.35)); background: var(--card-bg, transparent); text-decoration: none; min-height: 52px; border-radius: 0; }
+.fr-cell { position: relative; display: flex; border: 2px solid var(--border, rgba(128,128,128,.35)); background: var(--card-bg, transparent); min-height: 58px; border-radius: 0; }
 .fr-cell.have { border-color: var(--fr-c, #003DA6); background: var(--fr-c, #003DA6); }
-.fr-mark { position: absolute; left: 9px; top: 9px; font-weight: 900; font-size: 14px; color: var(--text3, #999); }
+.fr-link { flex: 1; min-width: 0; display: flex; align-items: center; gap: 9px; padding: 7px 8px; text-decoration: none; }
+.fr-cell.have .fr-link, .fr-cell.can-toggle .fr-link { padding-right: 34px; }
+.fr-photo { width: 40px; height: 40px; flex-shrink: 0; border-radius: 50%; overflow: hidden; background: rgba(128, 128, 128, .22); display: grid; place-items: center; border: 2px solid rgba(128, 128, 128, .35); }
+.fr-photo img { width: 100%; height: 100%; object-fit: cover; object-position: top; display: block; }
+.fr-photo b { font-size: 12px; letter-spacing: .02em; color: var(--text3, #888); font-weight: 800; }
+.fr-cell.have .fr-photo { border-color: rgba(255, 255, 255, .85); background: rgba(255, 255, 255, .18); }
+.fr-cell.have .fr-photo b { color: #fff; }
+.fr-txt { display: flex; flex-direction: column; gap: 2px; min-width: 0; }
+.fr-chk { position: absolute; right: 7px; top: 50%; transform: translateY(-50%); width: 22px; height: 22px; display: grid; place-items: center; padding: 0; border: 2px solid var(--text3, #999); background: transparent; color: var(--text3, #999); font-weight: 900; font-size: 14px; line-height: 1; border-radius: 0; cursor: pointer; }
+.fr-chk.static { cursor: default; border-color: transparent; }
+.fr-chk.on { background: #fff; border-color: #fff; color: var(--fr-c, #003DA6); }
+.fr-chk.manual::after { content: ''; position: absolute; right: -5px; top: -5px; width: 7px; height: 7px; border-radius: 50%; background: #ffd54a; }
+.fr-cell.can-toggle .fr-chk:hover { border-color: var(--text, #111); }
 .fr-name { font-weight: 800; font-size: 13px; line-height: 1.15; color: var(--text, #111); word-break: break-word; }
 .fr-years { font-size: 11px; color: var(--text3, #888); }
-.fr-cell.have .fr-mark, .fr-cell.have .fr-name, .fr-cell.have .fr-years { color: #fff; }
+.fr-cell.have .fr-name, .fr-cell.have .fr-years { color: #fff; }
 .hof-help { font-size: 13px; color: rgba(255,255,255,.7) !important; margin: 0 0 14px; }
 .hof-err { font-size: 13px; color: #ff6b6f !important; margin: 0 0 10px; }
 .hof-slot { display: flex; flex-direction: column; align-items: stretch; }
