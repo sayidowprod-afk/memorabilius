@@ -8,7 +8,7 @@ import { useLang } from '@/lib/LangContext'
 import { toast } from '@/lib/toast'
 import { uploadGuideImage } from '@/lib/guideUpload'
 import { normalizeGuideBlocks, type GuideBlock } from '@/lib/guideBlockTypes'
-import { generateGuideFromSet, type SetRow } from '@/lib/guideGenerator'
+import { generateGuideFromSet, rehostGuideImages, type SetRow } from '@/lib/guideGenerator'
 
 const GuideBlocksEditor = dynamic(() => import('@/components/GuideBlocksEditor'), { ssr: false })
 
@@ -47,6 +47,7 @@ export default function AdminGuideEditPage({ params }: { params: Promise<{ id: s
   const [genQuery, setGenQuery] = useState('')
   const [genResults, setGenResults] = useState<SetRow[]>([])
   const [genBusy, setGenBusy] = useState(false)
+  const [genProgress, setGenProgress] = useState('')
   const [genReport, setGenReport] = useState<{ title: string; lines: string[]; warnings: string[] } | null>(null)
   useEffect(() => {
     const q = genQuery.trim()
@@ -63,12 +64,17 @@ export default function AdminGuideEditPage({ params }: { params: Promise<{ id: s
     try {
       const g = await generateGuideFromSet(set.id)
       setBlocks(g.blocks)
+      // copie des photos trouvees dans le stockage des guides (en tache de fond : le brouillon est deja affiche)
+      setGenProgress('Copie des photos…')
+      rehostGuideImages(g.blocks, (d, t) => setGenProgress(`Copie des photos ${d}/${t}…`))
+        .then(nb => { setBlocks(prev => (prev === g.blocks ? nb : prev)); setGenProgress('') })
+        .catch(() => setGenProgress(''))
       if (!title.trim()) setTitle(g.title)
       if (!slugTouched && !slug.trim()) setSlug(g.slug)
       if (!category.trim()) setCategory(g.category)
       setGenReport({
         title: g.title,
-        lines: [`${g.stats.base} cartes de base`, `${g.stats.parallels} parallèles`, `${g.stats.inserts} inserts`, ...(g.stats.memo ? [`${g.stats.memo} memorabilia`] : []), `${g.stats.autos} familles d’autographes`],
+        lines: [`${g.stats.base} cartes de base`, `${g.stats.photos} photos`, `${g.stats.runs} tirages`, `${g.stats.parallels} parallèles`, `${g.stats.inserts} inserts`, ...(g.stats.memo ? [`${g.stats.memo} memorabilia`] : []), `${g.stats.autos} familles d’autographes`],
         warnings: g.warnings,
       })
       toast.success('Brouillon généré : ajoute les visuels, les tirages et les odds')
@@ -251,6 +257,7 @@ export default function AdminGuideEditPage({ params }: { params: Promise<{ id: s
                   </div>
                 )}
                 {genBusy && <p style={{ fontSize: 13, color: sub, margin: '10px 0 0' }}>Génération en cours (quelques secondes)…</p>}
+                {genProgress && <p style={{ fontSize: 13, color: sub, margin: '10px 0 0' }}>{genProgress}</p>}
                 {genReport && (
                   <div style={{ marginTop: 12, fontSize: 13, color: text }}>
                     <b>{genReport.title}</b> : {genReport.lines.join(' · ')}
