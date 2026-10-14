@@ -567,7 +567,11 @@ html[data-theme="light"] .cf-loader i, :root:not([data-theme="dark"]) .cf-loader
 .cdj-sheen::after { content: ''; position: absolute; top: -20%; bottom: -20%; width: 40%; left: -60%; transform: skewX(-18deg); background: linear-gradient(90deg, transparent, rgba(255,255,255,.55), transparent); animation: cdj-sheen 7s ease-in-out 1.5s infinite; }
 @keyframes cdj-sheen { 0% { left: -60%; } 55%, 100% { left: 130%; } }
 @media (max-width: 700px) { .cdj-scratch { animation: cdj-float 8s ease-in-out infinite alternate; } .cdj-scratch:hover { scale: 1; } }
-@media (prefers-reduced-motion: reduce) { .cdj-scratch, .cdj-sheen::after { animation: none; } }
+@media (prefers-reduced-motion: reduce) { .cdj-scratch, .cdj-sheen::after, .cdj-sp { animation: none; } }
+/* N10 : carte du jour revelee, meme reflet + etoiles dorees */
+.cdj-img { position: relative; }
+.cdj .cdj-sp { position: absolute; z-index: 3; pointer-events: none; font-style: normal; font-size: 16px; color: #ffd54a !important; text-shadow: 0 0 8px rgba(255,213,74,.9); opacity: 0; animation: cdj-spark 2.6s ease-in-out infinite; }
+@keyframes cdj-spark { 0%, 100% { opacity: 0; transform: scale(.4) rotate(0); } 50% { opacity: 1; transform: scale(1.1) rotate(30deg); } }
 /* plein ecran : on gratte en grand */
 .cdj-ov { position: fixed; inset: 0; z-index: 10000030; background: rgba(3,8,22,.92); backdrop-filter: blur(6px); display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 18px; padding: 56px 16px 24px; }
 .cdj-ov, .cdj-ov * { color: #fff; }

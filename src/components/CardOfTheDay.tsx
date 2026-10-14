@@ -86,6 +86,11 @@ function ScratchFoil({ label, still, onReveal, onProgress }: { label: string; st
 }
 
 // Carte du jour (voir /api/card-of-the-day) : meme carte pour tous, toute la journee. Placee sur l'accueil, juste avant les pepites.
+// N10 : petites etoiles dorees qui scintillent autour de la carte
+function Sparks() {
+  return <>{[['-14px', '10%', '0s'], ['calc(100% - 4px)', '22%', '.8s'], ['-10px', '70%', '1.5s'], ['calc(100% - 8px)', '82%', '2s']].map((p, i) => <i key={i} className="cdj-sp" aria-hidden style={{ left: p[0], top: p[1], animationDelay: p[2] }}>✦</i>)}</>
+}
+
 export default function CardOfTheDay() {
   const { lang } = useLang()
   const [pick, setPick] = useState<Pick | null>(null)
@@ -158,6 +163,8 @@ export default function CardOfTheDay() {
         <Link href={href} className="cdj-img" aria-label={card.nom}>
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img src={card.image} alt={[card.annee, card.marque, card.collection, card.variation, card.nom].filter(Boolean).join(' ')} loading="lazy" />
+          <span className="cdj-sheen" aria-hidden />
+          <Sparks />
         </Link>
       ) : (
         <button type="button" className="cdj-img cdj-scratch" onClick={() => { setProg(0); setOpen(true) }} aria-label={T.hint}>
@@ -165,6 +172,7 @@ export default function CardOfTheDay() {
           <img src={card.image} alt="" loading="lazy" />
           <ScratchFoil label={T.scratch} still />
           <span className="cdj-sheen" aria-hidden />
+          <Sparks />
         </button>
       )}
       <div className="cdj-info">

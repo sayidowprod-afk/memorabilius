@@ -78,6 +78,67 @@ const sportIcon = (s?: string | null) => {
   return '🏀'
 }
 
+// N7 : le champ de recherche « tape » des exemples tout seul tant qu'il est vide et sans focus (texte fixe si « reduire les animations »)
+const TYPED: Record<string, { pre: string; words: string[] }> = {
+  fr: { pre: 'Rechercher ', words: ['un joueur…', 'un set…', 'un collectionneur…', 'une carte…'] },
+  en: { pre: 'Search ', words: ['a player…', 'a set…', 'a collector…', 'a card…'] },
+  de: { pre: 'Suche ', words: ['einen Spieler…', 'ein Set…', 'einen Sammler…', 'eine Karte…'] },
+  es: { pre: 'Buscar ', words: ['un jugador…', 'un set…', 'un coleccionista…', 'una carta…'] },
+  it: { pre: 'Cerca ', words: ['un giocatore…', 'un set…', 'un collezionista…', 'una carta…'] },
+}
+function SearchField({ value, onChange, onFocus, onKeyDown, fallback, lang }: { value: string; onChange: (v: string) => void; onFocus: () => void; onKeyDown: (e: React.KeyboardEvent<HTMLInputElement>) => void; fallback: string; lang: string }) {
+  const tp = TYPED[lang] || TYPED.en
+  const [focus, setFocus] = useState(false)
+  const [calm, setCalm] = useState(true)
+  const [i, setI] = useState(0)
+  const [n, setN] = useState(0)
+  const [del, setDel] = useState(false)
+  useEffect(() => { try { setCalm(window.matchMedia('(prefers-reduced-motion: reduce)').matches) } catch { /* ignore */ } }, [])
+  const active = !calm && !focus && !value
+  useEffect(() => {
+    if (!active) return
+    const w = tp.words[i % tp.words.length]
+    const t = setTimeout(() => {
+      if (!del && n < w.length) setN(n + 1)
+      else if (!del) setDel(true)
+      else if (n > 0) setN(n - 1)
+      else { setDel(false); setI(x => (x + 1) % tp.words.length) }
+    }, del ? 35 : n === w.length ? 1200 : 75)
+    return () => clearTimeout(t)
+  }, [active, i, n, del, tp])
+  const ph = active ? tp.pre + tp.words[i % tp.words.length].slice(0, n) + (n % 2 === 0 || del ? '' : '') : fallback
+  return <input type="search" value={value} onChange={e => onChange(e.target.value)} onFocus={() => { setFocus(true); onFocus() }} onBlur={() => setFocus(false)} onKeyDown={onKeyDown} placeholder={ph} aria-label={fallback} enterKeyHint="search" />
+}
+
+// N8 : un bloc apparait en montant doucement quand il entre dans l'ecran (une seule fois)
+function Reveal({ children, className = '', delay = 0 }: { children: ReactNode; className?: string; delay?: number }) {
+  const ref = useRef<HTMLDivElement>(null)
+  const [on, setOn] = useState(false)
+  useEffect(() => {
+    const el = ref.current
+    if (!el || typeof IntersectionObserver === 'undefined') { setOn(true); return }
+    const io = new IntersectionObserver(es => { if (es.some(e => e.isIntersecting)) { setOn(true); io.disconnect() } }, { threshold: 0.12 })
+    io.observe(el)
+    return () => io.disconnect()
+  }, [])
+  return <div ref={ref} className={`dd-rv${on ? ' on' : ''} ${className}`.trim()} style={delay ? { transitionDelay: `${delay}ms` } : undefined}>{children}</div>
+}
+
+// N17 : squelette de l'accueil pendant le chargement
+function HomeSkeleton() {
+  return (
+    <div className="dd" aria-busy="true">
+      <style>{DD_CSS}</style>
+      <div className="dd-head"><div className="dd-who"><div className="dd-sk" style={{ width: 56, height: 56, borderRadius: '50%' }} /><div><div className="dd-sk" style={{ width: 120, height: 12 }} /><div className="dd-sk" style={{ width: 220, height: 38, marginTop: 8 }} /></div></div></div>
+      <div className="dd-sk dd-sk-hero" />
+      <div className="dd-score">{[0, 1, 2, 3].map(i => <div key={i}><div className="dd-sk" style={{ width: '60%', height: 40, margin: '0 auto' }} /><div className="dd-sk" style={{ width: '40%', height: 10, margin: '8px auto 0' }} /></div>)}</div>
+      <div className="dd-actions" style={{ ['--n' as string]: 3 }}>{[0, 1, 2].map(i => <div key={i} className="dd-sk" style={{ height: 52 }} />)}</div>
+      <div className="dd-sk" style={{ height: 50, margin: '0 16px 14px' }} />
+      <div className="dd-box" style={{ padding: '16px' }}>{[0, 1, 2].map(i => <div key={i} style={{ display: 'flex', gap: 14, alignItems: 'center', padding: '10px 0' }}><div className="dd-sk" style={{ width: 46, height: 46 }} /><div style={{ flex: 1 }}><div className="dd-sk" style={{ width: '70%', height: 12 }} /><div className="dd-sk" style={{ height: 12, marginTop: 10 }} /></div></div>)}</div>
+    </div>
+  )
+}
+
 export default function NativeHomeDashboard({ siteStats, cardOfTheDay }: { siteStats: SiteStats; cardOfTheDay?: ReactNode }) {
   const router = useRouter()
   const [gq, setGq] = useState('')
@@ -337,6 +398,19 @@ export default function NativeHomeDashboard({ siteStats, cardOfTheDay }: { siteS
     })
   }, [user, data?.challenge.id, data && data.challengeProgress >= data.challenge.target])
 
+  // N12 : le carre du niveau « saute » quand le niveau a augmente depuis la derniere visite
+  const [lvlPop, setLvlPop] = useState(false)
+  const lvlNow = data?.level.level
+  useEffect(() => {
+    if (!user || lvlNow == null) return
+    const key = `dd-level-${user.id}`
+    try {
+      const prev = Number(localStorage.getItem(key) || 0)
+      if (prev && lvlNow > prev) setLvlPop(true)
+      localStorage.setItem(key, String(lvlNow))
+    } catch { /* ignore */ }
+  }, [user, lvlNow])
+
   if (!data) {
     // Sans filet visible ici, un échec réseau réel (pas juste un cold start)
     // laissait l'utilisateur bloqué sur une boîte vide indéfiniment, sans
@@ -352,16 +426,7 @@ export default function NativeHomeDashboard({ siteStats, cardOfTheDay }: { siteS
         </div>
       )
     }
-    return (
-      <div style={{ background: 'var(--bg, #f8f9fa)', minHeight: 420, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-        <div style={{
-          width: 30, height: 30, borderRadius: '50%',
-          border: '3px solid var(--border, #e0e0e0)', borderTopColor: '#003DA6',
-          animation: 'spin 0.8s linear infinite',
-        }} />
-        <style>{`@keyframes spin { to { transform: rotate(360deg); } }`}</style>
-      </div>
-    )
+    return <HomeSkeleton />
   }
 
   // chaque tuile ouvre la galerie deja filtree (le champ de recherche comprend "rc", "auto", "patch", "num")
@@ -411,8 +476,8 @@ export default function NativeHomeDashboard({ siteStats, cardOfTheDay }: { siteS
   const renderProgress = () => (
       <section className="dd-box">
         <div className="dd-prog dd-prog--first">
-          <button type="button" className="dd-prog-ico dd-lvl-ico" onClick={() => setShowXpInfo(v => !v)} aria-label="XP">
-            <b className="da-num">{data.level.level}</b>
+          <button type="button" className={'dd-prog-ico dd-lvl-ico' + (lvlPop ? ' dd-lvl-pop' : '')} onClick={() => setShowXpInfo(v => !v)} aria-label="XP">
+            <b className="da-num">{data.level.level}</b>{lvlPop && <span className="dd-lvl-ring" aria-hidden />}
           </button>
           <div className="dd-prog-b">
             <div className="dd-lvl-row"><span>{t('word_level')} {data.level.level}</span><span>{data.level.xpIntoLevel}/{data.level.xpForNextLevel} XP</span></div>
@@ -424,10 +489,10 @@ export default function NativeHomeDashboard({ siteStats, cardOfTheDay }: { siteS
 
         {data.nextBadge && (
           <Link href={`${galleryHref}?tab=badges`} onClick={hapticTap} className="dd-prog">
-            <span className="dd-prog-ico">{data.nextBadge.cat.emoji}</span>
+            <span className={'dd-prog-ico' + (data.nextBadge.pct >= 0.9 ? ' dd-hop' : '')}>{data.nextBadge.cat.emoji}</span>
             <div className="dd-prog-b">
               <div className="dd-lvl-row"><span>{`${t('dashboard_next_badge_prefix')} ${data.nextBadge.tier.label} ${data.nextBadge.cat.unit}`}</span><span>{data.nextBadge.value}/{data.nextBadge.tier.threshold}</span></div>
-              <div className="dd-bar dd-bar--gold"><i style={{ width: `${Math.min(100, Math.round(data.nextBadge.pct * 100))}%` }} /></div>
+              <div className={'dd-bar dd-bar--gold' + (data.nextBadge.pct >= 0.9 ? ' dd-bar--near' : '')}><i style={{ width: `${Math.min(100, Math.round(data.nextBadge.pct * 100))}%` }} /></div>
             </div>
           </Link>
         )}
@@ -471,7 +536,7 @@ export default function NativeHomeDashboard({ siteStats, cardOfTheDay }: { siteS
           <div style={{ minWidth: 0 }}>
             <div className="dd-kicker">{t('dashboard_greeting')}</div>
             <div className="dd-name-row">
-              <h1 className="dd-name">{data.displayName}</h1>
+              <h1 className="dd-name" aria-label={data.displayName}>{Array.from(data.displayName).map((ch, ci) => <span key={ci} aria-hidden="true" className="dd-ch" style={{ ['--i' as string]: Math.min(ci, 16) } as React.CSSProperties}>{ch === ' ' ? '\u00A0' : ch}</span>)}</h1>
               <button type="button" className={'dd-edit-btn' + (editMode ? ' on' : '')} onClick={() => setEditMode(v => !v)} aria-label={L.customize} title={L.customize}>
                 {editMode
                   ? L.done
@@ -519,8 +584,8 @@ export default function NativeHomeDashboard({ siteStats, cardOfTheDay }: { siteS
       </Link>
 
       <div className="dd-score">
-        {galleryStats.map(s => (
-          <Link key={s.label} href={`${galleryHref}?q=${s.q}`} onClick={hapticTap} className="dd-score-tile">
+        {galleryStats.map((s, si) => (
+          <Link key={s.label} href={`${galleryHref}?q=${s.q}`} onClick={hapticTap} className="dd-score-tile" style={{ ['--i' as string]: si, ['--c' as string]: ({ RC: '#F97316', AUTO: '#3B82F6', PATCH: '#EF4444', NUM: '#A855F7' } as Record<string, string>)[s.label] } as React.CSSProperties}>
             <b className="da-num">{s.val}</b>
             <span>{s.label}</span>
             <i title={L.thisWeek}>{s.week > 0 ? `+${s.week}` : ''}</i>
@@ -537,7 +602,7 @@ export default function NativeHomeDashboard({ siteStats, cardOfTheDay }: { siteS
       </div>
       <div className="dd-search-wrap" onBlur={e => { if (!e.currentTarget.contains(e.relatedTarget as Node | null)) setSuggOpen(false) }}>
       <form className="dd-search" role="search" onSubmit={e => { e.preventDefault(); const q = gq.trim(); if (q) { hapticTap(); router.push(`/recherche?q=${encodeURIComponent(q)}`) } }}>
-        <input type="search" value={gq} onChange={e => { setGq(e.target.value); setSuggOpen(true) }} onFocus={() => setSuggOpen(true)} onKeyDown={e => { if (e.key === 'Escape') setSuggOpen(false) }} placeholder={L.globalSearch} aria-label={L.globalSearch} enterKeyHint="search" />
+        <SearchField value={gq} onChange={v => { setGq(v); setSuggOpen(true) }} onFocus={() => setSuggOpen(true)} onKeyDown={e => { if (e.key === 'Escape') setSuggOpen(false) }} fallback={L.globalSearch} lang={lang} />
         <button type="submit" aria-label={L.globalSearch}>⌕</button>
       </form>
       {suggOpen && gq.trim().length >= 2 && (
@@ -570,11 +635,11 @@ export default function NativeHomeDashboard({ siteStats, cardOfTheDay }: { siteS
       {layout.order.map(id => {
         const hidden = layout.hidden.includes(id)
         if (id === 'site' && cardOfTheDay) { /* carte du jour juste avant « en chiffres » */ }
-        if (hidden && !editMode) return id === 'site' && cardOfTheDay ? <div key="cotd">{cardOfTheDay}</div> : null
+        if (hidden && !editMode) return id === 'site' && cardOfTheDay ? <Reveal key="cotd">{cardOfTheDay}</Reveal> : null
         if (id === 'activity' && activityItems.length === 0 && !editMode) return null
         const body = id === 'activity' ? renderActivity() : id === 'progress' ? renderProgress() : renderSite()
         return (
-          <div key={id} className={'dd-blk' + (hidden ? ' dd-blk--off' : '')}>
+          <Reveal key={id} className={'dd-blk' + (hidden ? ' dd-blk--off' : '')}>
             {id === 'site' && cardOfTheDay}
             {editMode && (
               <div className="dd-blk-bar">
@@ -585,7 +650,7 @@ export default function NativeHomeDashboard({ siteStats, cardOfTheDay }: { siteS
               </div>
             )}
             {body}
-          </div>
+          </Reveal>
         )
       })}
     </div>
@@ -642,7 +707,7 @@ export const DD_CSS = `
 .dd-streak span { display: inline-flex; align-items: baseline; gap: 6px; line-height: 1; }
 .dd-streak b { font-size: 24px; line-height: 1; letter-spacing: 0; }
 .flame-ic { filter: drop-shadow(0 0 10px rgba(255,140,0,.7)); animation: flameFlick 1.4s ease-in-out infinite; transform-origin: 50% 100%; flex-shrink: 0; }
-@keyframes flameFlick { 0%,100% { transform: scale(1,1) rotate(0); } 25% { transform: scale(1.04,.97) rotate(-2deg); } 55% { transform: scale(.98,1.05) rotate(2deg); } 80% { transform: scale(1.02,.99) rotate(-1deg); } }
+@keyframes flameFlick { 0%,100% { transform: scale(1,1) rotate(0); filter: drop-shadow(0 0 8px rgba(255,140,0,.55)); } 25% { transform: scale(1.06,.96) rotate(-3deg); } 50% { transform: scale(.95,1.12) rotate(2.5deg); filter: drop-shadow(0 0 16px rgba(255,150,0,.95)); } 78% { transform: scale(1.03,1.04) rotate(-2deg); } }
 @media (prefers-reduced-motion: reduce) { .flame-ic { animation: none; } }
 .dd-score-tile { position: relative; display: flex; flex-direction: column; align-items: center; justify-content: center; text-decoration: none; color: inherit; }
 .dd-score-tile i { font-style: normal; font: 800 12px system-ui, sans-serif; color: #3ddc97; min-height: 16px; margin-top: 2px; }
@@ -741,6 +806,61 @@ export const DD_CSS = `
 .dd-bar i { display: block; height: 100%; background: #2f6bff; }
 .dd-bar--gold i { background: #e0a526; }
 .dd-bar--ok i { background: #2fd072; }
+/* ---- petites animations de l'accueil ---- */
+/* N2 : barres qui se remplissent avec un reflet */
+.dd-bar i { position: relative; overflow: hidden; animation: ddFill 1.4s cubic-bezier(.2,.8,.2,1) both; }
+.dd-bar i::after { content: ''; position: absolute; top: 0; bottom: 0; width: 36px; left: -60px; background: linear-gradient(90deg, transparent, rgba(255,255,255,.65), transparent); animation: ddShine 3.2s 1.2s ease-in-out infinite; }
+@keyframes ddFill { from { width: 0; } }
+@keyframes ddShine { 0% { left: -60px; } 45%, 100% { left: 120%; } }
+/* N11 : badge presque debloque */
+.dd-hop { animation: ddHop 2.4s ease-in-out infinite; }
+@keyframes ddHop { 0%, 55%, 100% { transform: translateY(0); } 65% { transform: translateY(-8px); } 75% { transform: translateY(0); } 83% { transform: translateY(-3px); } 90% { transform: translateY(0); } }
+.dd-bar--near i { overflow: visible; }
+.dd-bar--near i::before { content: ''; position: absolute; right: -2px; top: -3px; bottom: -3px; width: 5px; background: #fff; box-shadow: 0 0 12px #ffd54a; animation: ddBlink 1.2s ease-in-out infinite; }
+@keyframes ddBlink { 50% { opacity: .3; } }
+/* N12 : gain de niveau */
+.dd-lvl-ico { position: relative; }
+.dd-lvl-pop { animation: ddPop .7s cubic-bezier(.2,.9,.3,1.3) .4s both; }
+.dd-lvl-ring { position: absolute; inset: -3px; border: 3px solid #ffd54a; pointer-events: none; animation: ddRing .9s ease-out .4s both; }
+@keyframes ddPop { 0% { transform: scale(1); } 40% { transform: scale(1.25) rotate(-4deg); } 100% { transform: scale(1); } }
+@keyframes ddRing { from { opacity: .9; transform: scale(1); } to { opacity: 0; transform: scale(2.1); } }
+/* N13 : pseudo lettre par lettre */
+.dd-ch { display: inline-block; animation: ddLetter .5s cubic-bezier(.2,.9,.3,1.2) both; animation-delay: calc(var(--i) * 45ms + 100ms); }
+@keyframes ddLetter { from { opacity: 0; transform: translateY(-26px) rotate(-8deg); } }
+/* N6 : tuiles en cascade, trait de couleur qui se dessine, +1 qui pulse */
+.dd-score-tile { animation: ddUp .6s cubic-bezier(.2,.8,.2,1) both; animation-delay: calc(var(--i) * 110ms); }
+.dd-score-tile::before { content: ''; position: absolute; left: 0; right: 0; top: 0; height: 3px; background: var(--c, transparent); transform-origin: left; animation: ddDraw .6s ease both; animation-delay: calc(var(--i) * 110ms + 350ms); }
+.dd-score-tile i:not(:empty) { display: inline-block; animation: ddPulse 1.5s 1.2s ease-in-out infinite; }
+@keyframes ddUp { from { opacity: 0; transform: translateY(18px); } }
+@keyframes ddDraw { from { transform: scaleX(0); } }
+@keyframes ddPulse { 50% { transform: scale(1.35); } }
+/* N5 : boutons blancs, reflet au survol */
+.dd-act { position: relative; overflow: hidden; }
+.dd-act::after { content: ''; position: absolute; top: -20%; bottom: -20%; width: 40%; left: -60%; transform: skewX(-20deg); pointer-events: none; background: linear-gradient(90deg, transparent, rgba(0,61,166,.28), transparent); }
+:root:not([data-theme="dark"]) .dd-act::after { background: linear-gradient(90deg, transparent, rgba(255,255,255,.4), transparent); }
+.dd-act:active { transform: translateY(0) scale(.97); }
+@media (hover: hover) { .dd-act:hover::after { animation: ddSweep .7s ease; } }
+@keyframes ddSweep { to { left: 130%; } }
+/* N7 : loupe */
+.dd-search button { animation: ddLoupe 3s ease-in-out infinite; }
+@keyframes ddLoupe { 0%, 70%, 100% { transform: scale(1); } 80% { transform: scale(1.18) rotate(-8deg); } }
+/* N4 : l'eventail se deploie puis flotte */
+.dd-pile-0 { --i: 0; } .dd-pile-1 { --i: 1; } .dd-pile-2 { --i: 2; } .dd-pile-3 { --i: 3; } .dd-pile-4 { --i: 4; }
+.dd-hero-card { animation: ddFan .9s cubic-bezier(.2,.9,.3,1.1) backwards, ddFloat 4.5s ease-in-out infinite alternate; animation-delay: calc(var(--i) * 90ms), calc(1.2s + var(--i) * 200ms); }
+@keyframes ddFan { from { transform: translateX(0) translateY(0) rotate(7deg); } }
+@keyframes ddFloat { from { translate: 0 0; } to { translate: 0 -7px; } }
+.dd-hero-card--empty { animation: none; }
+/* N8 : blocs qui montent en fondu */
+.dd-rv { opacity: 0; transform: translateY(24px); transition: opacity .6s ease, transform .6s cubic-bezier(.2,.8,.2,1); }
+.dd-rv.on { opacity: 1; transform: none; }
+/* N17 : squelette */
+.dd-sk { background: linear-gradient(90deg, rgba(128,128,128,.14) 25%, rgba(128,128,128,.3) 50%, rgba(128,128,128,.14) 75%); background-size: 200% 100%; animation: ddSk 1.3s linear infinite; }
+.dd-sk-hero { height: 190px; margin: 0 16px 14px; }
+@keyframes ddSk { to { background-position: -200% 0; } }
+@media (prefers-reduced-motion: reduce) {
+  .dd-bar i, .dd-bar i::after, .dd-bar i::before, .dd-hop, .dd-lvl-pop, .dd-lvl-ring, .dd-ch, .dd-score-tile, .dd-score-tile::before, .dd-score-tile i, .dd-act::after, .dd-search button, .dd-hero-card, .dd-sk { animation: none !important; }
+  .dd-rv { opacity: 1; transform: none; transition: none; }
+}
 .dd-info { font-size: 12px; color: var(--text2); line-height: 1.6; padding-bottom: 10px; }
 .dd-prog { display: flex; align-items: center; gap: 14px; padding: 14px 0; border-top: 2px solid var(--border); }
 .dd-lvl-ico { background: transparent; color: var(--text); cursor: pointer; padding: 0; }
