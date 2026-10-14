@@ -1278,12 +1278,16 @@ export default function GalerieClient({ userId, initialCardUrl, initialCards, in
     }
     const f = cards.filter(d => {
       if (!isOwner && privateCards.has(d.f)) return false
+      // Le texte libre ne cherchait que dans le nom/variation -- une collection ("Bazooka"...) ou une marque
+      // ("Topps"...) tapee dans la recherche intelligente ne matchait donc jamais, meme si la carte l'avait bien.
+      const qLower = search.toLowerCase()
       return (
-        (d.n.toLowerCase().includes(search.toLowerCase()) || d.v.toLowerCase().includes(search.toLowerCase())) &&
+        (!qLower || d.n.toLowerCase().includes(qLower) || d.v.toLowerCase().includes(qLower) || d.s.toLowerCase().includes(qLower) || d.br.toLowerCase().includes(qLower)) &&
         (!fSport || inferSportFromTeamName(d.t) === fSport) &&
         (!fTeamDebounced || d.t.toLowerCase().includes(fTeamDebounced.toLowerCase())) &&
         (!fBrandDebounced || d.s.toLowerCase().includes(fBrandDebounced.toLowerCase())) &&
-        (!fYear || d.y === fYear) &&
+        // "2023" doit aussi matcher une annee de saison stockee "2023-24" (pas seulement une egalite stricte)
+        (!fYear || d.y === fYear || d.y.startsWith(fYear)) &&
         (!fCollectionTag || (d.collections || []).some(c => matchCols.has(c))) &&
         (!activeFilters.rc || d.rc) &&
         (!activeFilters.auto || d.auto) &&

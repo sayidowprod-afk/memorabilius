@@ -82,7 +82,7 @@ export async function GET(req: NextRequest) {
       .limit(500),
     supabase.from('cartes_manuelles')
       .select('id, nom, equipe, annee, marque, collection, variation, num, auto, rc, patch, image_recto, is_horizontal, disponible_vente, user_id')
-      .or(`nom.ilike.%${safeQ}%,equipe.ilike.%${safeQ}%,variation.ilike.%${safeQ}%,marque.ilike.%${safeQ}%`)
+      .or(`nom.ilike.%${safeQ}%,equipe.ilike.%${safeQ}%,variation.ilike.%${safeQ}%,marque.ilike.%${safeQ}%,collection.ilike.%${safeQ}%`)
       .limit(500),
   ])
   if (!profiles) return NextResponse.json([])
