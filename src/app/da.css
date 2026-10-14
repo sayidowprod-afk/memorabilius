@@ -518,22 +518,39 @@ html[data-theme="light"] .cf-loader i, :root:not([data-theme="dark"]) .cf-loader
 .pr { position: fixed; inset: 0; z-index: 10000015; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 18px; cursor: pointer;
   background: radial-gradient(circle at 50% 45%, rgba(8, 21, 59, .96), rgba(5, 9, 18, .98)); animation: lvlIn .3s ease both; }
 .pr, .pr * { color: #fff !important; }
-.pr-stage { position: relative; width: min(260px, 62vw); aspect-ratio: 2.5 / 3.9; }
+/* overflow hidden : rien (carte tournee/mise a l'echelle, ou encore sous sa position de depart) ne doit deborder de la
+   scene avant l'heure -- sans ca on voyait la carte poindre de travers sur les cotes pendant que le paquet se formait encore */
+.pr-stage { position: relative; width: min(260px, 62vw); aspect-ratio: 2.5 / 3.9; overflow: hidden; }
+/* la carte : DERRIERE le dos du paquet (z-index le plus bas). Tant qu'elle est encore "a l'interieur" (sous le bord du dos,
+   a 28% du haut), le dos opaque la cache completement -- aucun fondu, juste de la vraie occlusion -- et elle ne devient
+   visible qu'en montant au-dessus de ce bord, comme tiree hors de la pochette. Le fondu du dos (prGone, plus bas) ne fait
+   que dissoudre ce qu'il en reste une fois la carte presque sortie. Depart a .7s, une fois le paquet pose (prPack, .7s) --
+   sinon elle se met a bouger (et depasser) pendant que le paquet lui-meme est encore en train de rebondir en place. */
 .pr-card { position: absolute; left: 0; right: 0; bottom: 6%; width: 100%; aspect-ratio: 2.5 / 3.5; object-fit: cover; border-radius: 0; z-index: 1; box-shadow: 0 0 60px rgba(47,107,255,.7), 0 24px 50px rgba(0,0,0,.7);
-  background: none !important; animation: prCard 1.5s cubic-bezier(.2, .8, .3, 1) .9s both !important; }
-.pr-pack { position: absolute; left: 4%; right: 4%; bottom: 0; height: 72%; z-index: 2; animation: prPack .9s ease both, prGone .5s ease 1.7s forwards; }
-.pr-top { position: absolute; left: 0; right: 0; top: 0; height: 14%; background: linear-gradient(135deg, #0a2468, #2f6bff 50%, #9db8ff); transform-origin: 0 100%;
-  clip-path: polygon(0 6px, 6% 0, 12% 6px, 18% 0, 24% 6px, 30% 0, 36% 6px, 42% 0, 48% 6px, 54% 0, 60% 6px, 66% 0, 72% 6px, 78% 0, 84% 6px, 90% 0, 96% 6px, 100% 0, 100% 100%, 0 100%); animation: prTear .6s ease .8s forwards; }
-.pr-body { position: absolute; left: 0; right: 0; top: 14%; bottom: 0; background: linear-gradient(135deg, #0a2468, #2f6bff 45%, #9db8ff 52%, #2f6bff 58%, #0a2468); display: flex; align-items: center; justify-content: center; border-bottom: 4px solid #fff; }
+  background: none !important; animation: prCard 1.6s cubic-bezier(.22, .7, .25, 1) .7s both !important; }
+/* dos du paquet (bas de la pile) : apparait, puis s'efface une fois que la carte a (presque) fini de sortir.
+   Meme largeur que la carte (legerement plus large : -1%/-1% au lieu de la carte 0/0) -- avant, le paquet etait
+   inseré de 4% de chaque cote alors que la carte faisait 100% de large, donc ses bords depassaient TOUJOURS du
+   paquet, meme a l'arret. Hauteur relevee a 85% (etait 72%, ce qui donnait un paquet presque carre) pour un
+   vrai format de paquet, proche de celui de la carte qu'il contient. */
+.pr-body { position: absolute; left: -1%; right: -1%; bottom: 0; height: 85%; z-index: 2;
+  background: linear-gradient(135deg, #0a2468, #2f6bff 45%, #9db8ff 52%, #2f6bff 58%, #0a2468); display: flex; align-items: center; justify-content: center; border-bottom: 4px solid #fff;
+  animation: prPack .7s ease both, prGone .6s ease 1.9s forwards; }
 .pr-body span { font-size: 30px; line-height: .9; text-align: center; }
-.pr-txt { text-align: center; opacity: 0; animation: lvlIn .5s ease 2.3s forwards; }
+/* rabat du dessus : au bord superieur du dos (15% du haut de la scene) -- se dechire en premier, avant que le dos ne s'efface */
+.pr-top { position: absolute; left: -1%; right: -1%; top: 15%; height: 8%; z-index: 3; background: linear-gradient(135deg, #0a2468, #2f6bff 50%, #9db8ff); transform-origin: 0 100%;
+  clip-path: polygon(0 6px, 6% 0, 12% 6px, 18% 0, 24% 6px, 30% 0, 36% 6px, 42% 0, 48% 6px, 54% 0, 60% 6px, 66% 0, 72% 6px, 78% 0, 84% 6px, 90% 0, 96% 6px, 100% 0, 100% 100%, 0 100%);
+  animation: prPack .7s ease both, prTear .5s ease .6s forwards; }
+.pr-txt { text-align: center; opacity: 0; animation: lvlIn .5s ease 2.5s forwards; }
 .pr-plus { font-size: 58px; line-height: .9; } .pr-sub { margin-top: 8px; font: 800 12px system-ui, sans-serif; letter-spacing: .22em; text-transform: uppercase; }
 .pr-hint { margin-top: 12px; font: 700 10px system-ui, sans-serif; letter-spacing: .2em; text-transform: uppercase; opacity: .55; }
 @keyframes prPack { 0% { transform: translateY(50px) scale(.9); opacity: 0; } 55% { transform: translateY(0) scale(1); opacity: 1; } 70% { transform: rotate(-3deg); } 85% { transform: rotate(3deg); } 100% { transform: rotate(0); opacity: 1; } }
-@keyframes prTear { to { transform: translate(-40px, -90px) rotate(-26deg); opacity: 0; } }
-@keyframes prCard { 0% { transform: translateY(46%) scale(.82); opacity: 0; } 25% { opacity: 1; } 100% { transform: translateY(-4%) scale(1.04); opacity: 1; } }
+@keyframes prTear { from { opacity: 1; } to { transform: translate(-40px, -90px) rotate(-26deg); opacity: 0; } }
+/* part masquee par le dos (opaque, tant que la carte est "dedans"), monte progressivement au-dessus de son bord, avec un
+   leger roulis comme une carte qu'on tire d'une pochette */
+@keyframes prCard { 0% { transform: translateY(55%) scale(.85) rotate(-7deg); opacity: 0; } 12% { opacity: 1; } 100% { transform: translateY(-14%) scale(1.02) rotate(0deg); opacity: 1; } }
 @keyframes prGone { to { opacity: 0; transform: translateY(40px); } }
-@media (prefers-reduced-motion: reduce) { .pr-pack, .pr-top, .pr-card { animation-duration: .01s !important; animation-delay: 0s !important; } .pr-txt { animation-delay: 0s; } }
+@media (prefers-reduced-motion: reduce) { .pr-body, .pr-top, .pr-card { animation-duration: .01s !important; animation-delay: 0s !important; } .pr-txt { animation-delay: 0s; } }
 
 /* ── Compte a rebours (shot clock) ── */
 .sc-wrap { display: flex; justify-content: center; margin: 0 0 26px; }
