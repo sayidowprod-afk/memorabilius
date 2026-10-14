@@ -547,8 +547,10 @@ html[data-theme="light"] .cf-loader i, :root:not([data-theme="dark"]) .cf-loader
 @keyframes prPack { 0% { transform: translateY(50px) scale(.9); opacity: 0; } 55% { transform: translateY(0) scale(1); opacity: 1; } 70% { transform: rotate(-3deg); } 85% { transform: rotate(3deg); } 100% { transform: rotate(0); opacity: 1; } }
 @keyframes prTear { from { opacity: 1; } to { transform: translate(-40px, -90px) rotate(-26deg); opacity: 0; } }
 /* part masquee par le dos (opaque, tant que la carte est "dedans"), monte progressivement au-dessus de son bord, avec un
-   leger roulis comme une carte qu'on tire d'une pochette */
-@keyframes prCard { 0% { transform: translateY(55%) scale(.85) rotate(-7deg); opacity: 0; } 12% { opacity: 1; } 100% { transform: translateY(-14%) scale(1.02) rotate(0deg); opacity: 1; } }
+   leger roulis comme une carte qu'on tire d'une pochette. Fin a -4% (pas plus) : la scene est en overflow:hidden
+   (voir .pr-stage) et la carte occupe deja ~90% de sa hauteur -- une arrivee plus haute (ex -14%) poussait son
+   sommet hors de la scene et le faisait rogner. */
+@keyframes prCard { 0% { transform: translateY(55%) scale(.85) rotate(-7deg); opacity: 0; } 12% { opacity: 1; } 100% { transform: translateY(-4%) scale(1.02) rotate(0deg); opacity: 1; } }
 @keyframes prGone { to { opacity: 0; transform: translateY(40px); } }
 @media (prefers-reduced-motion: reduce) { .pr-body, .pr-top, .pr-card { animation-duration: .01s !important; animation-delay: 0s !important; } .pr-txt { animation-delay: 0s; } }
 
