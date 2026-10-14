@@ -877,79 +877,61 @@ async function warpCard(img: HTMLImageElement, corners: Pt[]): Promise<Blob> {
   const dst: Pt[] = [{ x: 0, y: 0 }, { x: OUT_W, y: 0 }, { x: OUT_W, y: OUT_H }, { x: 0, y: OUT_H }]
 
   // Source limitée à 2400px (avant : 1000px, ce qui détruisait le détail avant même le redressement).
-  // Pour ne pas saturer la mémoire du mobile, on ne copie PAS toute l'image en pixels : on garde le canvas
-  // réduit et on ne lit (getImageData) que la bande utile pour chaque tranche de lignes de sortie.
   const MAX_SRC = 2400
   const srcScale = Math.min(1, MAX_SRC / Math.max(img.naturalWidth, img.naturalHeight))
   const IW = Math.round(img.naturalWidth * srcScale)
   const IH = Math.round(img.naturalHeight * srcScale)
   const srcC = document.createElement('canvas')
   srcC.width = IW; srcC.height = IH
-  const srcCtx = srcC.getContext('2d', { willReadFrequently: true })!
+  const srcCtx = srcC.getContext('2d')!
   srcCtx.drawImage(img, 0, 0, IW, IH)
   // Homographie inverse sur les coins à l'échelle réduite
   const scaledCorners = corners.map(p => ({ x: p.x * srcScale, y: p.y * srcScale }))
   const [h0, h1, h2, h3, h4, h5, h6, h7] = computeHomography(dst, scaledCorners)
   if ([h0, h1, h2, h3, h4, h5, h6, h7].some(v => !Number.isFinite(v))) { srcC.width = 0; throw new Error('degenerate homography — coins invalides') }
 
+  // Une SEULE lecture de toute la source (au lieu d'un getImageData/putImageData par bande de 120 lignes,
+  // ~14 fois chacun) : ces appels ont un coût fixe important sur mobile (conversion de l'espace colorimétrique,
+  // copie de sécurité...), indépendant du nombre de pixels lus -- les multiplier était la vraie dépense, pas le
+  // calcul par pixel lui-même. La source est deja plafonnée a 2400px (max ~23 Mo de pixels), ce qui tient
+  // largement en mémoire pour une action ponctuelle déclenchée par l'utilisateur.
+  const srcPx = srcCtx.getImageData(0, 0, IW, IH).data
+  srcC.width = 0 // libère le backing store du canvas, les pixels sont désormais en mémoire dans srcPx
+
+  const outImg = new ImageData(OUT_W, OUT_H)
+  const od = outImg.data
+  const YIELD_EVERY = 160 // lignes -- garde l'UI réactive pendant le calcul, sans appel canvas superflu
+
+  for (let dy = 0; dy < OUT_H; dy++) {
+    if (dy > 0 && dy % YIELD_EVERY === 0) await yieldThread()
+    for (let dx = 0; dx < OUT_W; dx++) {
+      const denom = h6 * dx + h7 * dy + 1
+      const sx    = (h0 * dx + h1 * dy + h2) / denom
+      const sy    = (h3 * dx + h4 * dy + h5) / denom
+      const oi    = (dy * OUT_W + dx) * 4
+      od[oi + 3] = 255
+
+      const x0 = Math.floor(sx), y0 = Math.floor(sy)
+      if (x0 < 0 || y0 < 0 || x0 >= IW - 1 || y0 >= IH - 1) {
+        od[oi] = od[oi + 1] = od[oi + 2] = 255
+        continue
+      }
+
+      // Interpolation bilinéaire
+      const fx = sx - x0, fy = sy - y0
+      const i00 = (y0 * IW + x0) * 4,       i10 = i00 + 4
+      const i01 = ((y0 + 1) * IW + x0) * 4, i11 = i01 + 4
+      const w00 = (1 - fx) * (1 - fy), w10 = fx * (1 - fy)
+      const w01 = (1 - fx) * fy,       w11 = fx * fy
+      od[oi]     = w00 * srcPx[i00]     + w10 * srcPx[i10]     + w01 * srcPx[i01]     + w11 * srcPx[i11]
+      od[oi + 1] = w00 * srcPx[i00 + 1] + w10 * srcPx[i10 + 1] + w01 * srcPx[i01 + 1] + w11 * srcPx[i11 + 1]
+      od[oi + 2] = w00 * srcPx[i00 + 2] + w10 * srcPx[i10 + 2] + w01 * srcPx[i01 + 2] + w11 * srcPx[i11 + 2]
+    }
+  }
+
   const outC = document.createElement('canvas')
   outC.width = OUT_W; outC.height = OUT_H
-  const ctx  = outC.getContext('2d')!
-  const BAND = 120
-  const mapPt = (dx: number, dy: number) => {
-    const d = h6 * dx + h7 * dy + 1
-    return { x: (h0 * dx + h1 * dy + h2) / d, y: (h3 * dx + h4 * dy + h5) / d }
-  }
-
-  for (let y0 = 0; y0 < OUT_H; y0 += BAND) {
-    // Yield à chaque bande pour ne pas bloquer le main thread (UI devient non-réactive sinon)
-    if (y0 > 0) await yieldThread()
-    const bh = Math.min(BAND, OUT_H - y0)
-    // Boîte englobante de la bande dans la source (l'homographie conserve la convexité : les 4 coins suffisent)
-    const pts = [mapPt(0, y0), mapPt(OUT_W, y0), mapPt(0, y0 + bh), mapPt(OUT_W, y0 + bh)]
-    let minX = Math.floor(Math.min(...pts.map(q => q.x))) - 2
-    let maxX = Math.ceil(Math.max(...pts.map(q => q.x))) + 2
-    let minY = Math.floor(Math.min(...pts.map(q => q.y))) - 2
-    let maxY = Math.ceil(Math.max(...pts.map(q => q.y))) + 2
-    if (![minX, maxX, minY, maxY].every(Number.isFinite)) { minX = 0; minY = 0; maxX = IW; maxY = IH }
-    minX = Math.max(0, minX); minY = Math.max(0, minY)
-    maxX = Math.min(IW, maxX); maxY = Math.min(IH, maxY)
-    const bw = maxX - minX, bhs = maxY - minY
-    const band = ctx.createImageData(OUT_W, bh)
-    const bd = band.data
-    const srcPx = bw > 1 && bhs > 1 ? srcCtx.getImageData(minX, minY, bw, bhs).data : null
-
-    for (let ry = 0; ry < bh; ry++) {
-      const dy = y0 + ry
-      for (let dx = 0; dx < OUT_W; dx++) {
-        const denom = h6 * dx + h7 * dy + 1
-        const sx    = (h0 * dx + h1 * dy + h2) / denom
-        const sy    = (h3 * dx + h4 * dy + h5) / denom
-        const oi    = (ry * OUT_W + dx) * 4
-        bd[oi + 3] = 255
-
-        const x0 = Math.floor(sx), y0s = Math.floor(sy)
-        const lx = x0 - minX, ly = y0s - minY
-        if (!srcPx || x0 < 0 || y0s < 0 || x0 >= IW - 1 || y0s >= IH - 1 || lx < 0 || ly < 0 || lx >= bw - 1 || ly >= bhs - 1) {
-          bd[oi] = bd[oi + 1] = bd[oi + 2] = 255
-          continue
-        }
-
-        // Interpolation bilinéaire
-        const fx = sx - x0, fy = sy - y0s
-        const i00 = (ly * bw + lx) * 4,         i10 = i00 + 4
-        const i01 = ((ly + 1) * bw + lx) * 4,   i11 = i01 + 4
-        const w00 = (1 - fx) * (1 - fy), w10 = fx * (1 - fy)
-        const w01 = (1 - fx) * fy,       w11 = fx * fy
-        bd[oi]     = w00 * srcPx[i00]     + w10 * srcPx[i10]     + w01 * srcPx[i01]     + w11 * srcPx[i11]
-        bd[oi + 1] = w00 * srcPx[i00 + 1] + w10 * srcPx[i10 + 1] + w01 * srcPx[i01 + 1] + w11 * srcPx[i11 + 1]
-        bd[oi + 2] = w00 * srcPx[i00 + 2] + w10 * srcPx[i10 + 2] + w01 * srcPx[i01 + 2] + w11 * srcPx[i11 + 2]
-      }
-    }
-    ctx.putImageData(band, 0, y0)
-  }
-
-  srcC.width = 0 // libère le backing store
+  outC.getContext('2d')!.putImageData(outImg, 0, 0)
   return new Promise((res, rej) => outC.toBlob(b => { outC.width = 0; b ? res(b) : rej(new Error('toBlob')) }, 'image/jpeg', 0.92))
 }
 
