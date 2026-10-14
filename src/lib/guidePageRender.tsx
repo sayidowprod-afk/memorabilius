@@ -1,5 +1,6 @@
 import sanitizeHtml from 'sanitize-html'
 import { supabase } from '@/lib/supabase'
+import { fetchSetPreview } from '@/lib/setEntriesFetch'
 import type { GuideBlock } from '@/lib/guideBlockTypes'
 import PyramidBlock from '@/components/guide-blocks/PyramidBlock'
 import InsertGridBlock from '@/components/guide-blocks/InsertGridBlock'
@@ -120,32 +121,10 @@ export interface SetlistEmbedData {
   entries: { card_number: string | null; player_name: string; team: string | null; variation: string | null; is_rc: boolean }[]
 }
 
-// PostgREST plafonne chaque requête à 1000 lignes par défaut — un simple .limit(2000)
-// ne suffisait pas pour les gros sets (Topps Chrome Update fait 19 000+ cartes avec
-// tous les parallèles), ce qui coupait silencieusement la checklist embarquée. On
-// pagine donc par blocs de 1000 jusqu'à tout récupérer. Tri par `id` (clé primaire
-// indexée) — SetlistEmbedBlock re-trie déjà tout côté client.
-async function fetchAllSetEntries(setId: number) {
-  const entries: SetlistEmbedData['entries'] = []
-  const pageSize = 1000
-  for (let from = 0; from < 60000; from += pageSize) {
-    const { data, error } = await supabase
-      .from('card_set_entries')
-      .select('card_number, player_name, team, variation, is_rc')
-      .eq('set_id', setId)
-      .order('id', { ascending: true })
-      .range(from, from + pageSize - 1)
-    if (error || !data || data.length === 0) break
-    entries.push(...data)
-    if (data.length < pageSize) break
-  }
-  return entries
-}
-
 async function fetchSetlistEmbed(setId: number): Promise<SetlistEmbedData | null> {
   const { data: set } = await supabase.from('card_sets').select('name, total_cards, sport').eq('id', setId).single()
   if (!set) return null
-  const entries = await fetchAllSetEntries(setId)
+  const entries = await fetchSetPreview(setId)
   return { setId, setName: set.name, totalCards: set.total_cards, sport: set.sport, entries }
 }
 

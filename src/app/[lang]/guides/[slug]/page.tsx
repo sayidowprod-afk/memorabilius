@@ -62,13 +62,13 @@ async function fetchAvailableLangs(guideId: number): Promise<string[]> {
 
 export async function generateMetadata({ params }: { params: Promise<{ lang: string; slug: string }> }): Promise<Metadata> {
   const { lang, slug } = await params
-  if (!SUPPORTED_LANGS.includes(lang as TransLang)) return { title: 'Guide | Memorabilius' }
+  if (!SUPPORTED_LANGS.includes(lang as TransLang)) return { title: "Guide" }
   const meta = await fetchGuideMeta(slug)
-  if (!meta) return { title: 'Guide | Memorabilius' }
+  if (!meta) return { title: "Guide" }
   const translation = await fetchTranslation(meta.id, lang as TransLang)
-  if (!translation) return { title: 'Guide | Memorabilius' }
+  if (!translation) return { title: "Guide" }
 
-  const title = `${translation.title} | Memorabilius`
+  const title = translation.title
   const description = translation.excerpt || undefined
   const image = translation.cover_image || meta.cover_image
   const langs = await fetchAvailableLangs(meta.id)

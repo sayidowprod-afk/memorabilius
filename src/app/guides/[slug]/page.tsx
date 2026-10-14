@@ -42,8 +42,8 @@ async function fetchAvailableLangs(guideId: number): Promise<string[]> {
 export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
   const { slug } = await params
   const guide = await fetchGuide(slug)
-  if (!guide) return { title: 'Guide | Memorabilius' }
-  const title = `${guide.title} | Memorabilius`
+  if (!guide) return { title: 'Guide' }
+  const title = guide.title
   const description = guide.excerpt || undefined
   const langs = await fetchAvailableLangs(guide.id)
   const languages: Record<string, string> = { fr: `https://www.memorabilius.fr/guides/${slug}` }
