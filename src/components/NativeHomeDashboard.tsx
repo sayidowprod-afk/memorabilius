@@ -815,8 +815,8 @@ export const DD_CSS = `
 /* N11 : badge presque debloque */
 .dd-hop { animation: ddHop 2.4s ease-in-out infinite; }
 @keyframes ddHop { 0%, 55%, 100% { transform: translateY(0); } 65% { transform: translateY(-8px); } 75% { transform: translateY(0); } 83% { transform: translateY(-3px); } 90% { transform: translateY(0); } }
-.dd-bar--near i { overflow: visible; }
-.dd-bar--near i::before { content: ''; position: absolute; right: -2px; top: -3px; bottom: -3px; width: 5px; background: #fff; box-shadow: 0 0 12px #ffd54a; animation: ddBlink 1.2s ease-in-out infinite; }
+/* repere reste DANS la barre (overflow:hidden conserve) -- une lueur qui depassait du cadre, trop visible/large */
+.dd-bar--near i::before { content: ''; position: absolute; right: 0; top: 0; bottom: 0; width: 5px; background: #fff; box-shadow: 0 0 5px #ffd54a; animation: ddBlink 1.2s ease-in-out infinite; }
 @keyframes ddBlink { 50% { opacity: .3; } }
 /* N12 : gain de niveau */
 .dd-lvl-ico { position: relative; }
