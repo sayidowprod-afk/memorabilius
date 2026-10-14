@@ -1,14 +1,12 @@
 'use client'
-import React, { Fragment } from 'react'
+/* eslint-disable react/jsx-key, @next/next/no-img-element */
+import React, { useEffect, useRef, useState } from 'react'
 import type { CSSProperties } from 'react'
 import Link from 'next/link'
-import TeamBadge from '@/components/TeamBadge'
-import { getTeamByName } from '@/lib/sportsTeams'
-import { TAG_BASE, numTier, numShort, mix } from '@/lib/cardTags'
 
 // Idees visuelles pour pousser la nouvelle DA (Surfquest, marine -> bleu electrique, angles droits, doubles filets, metaux).
 // Page de TRAVAIL reservee aux admins : donnees d'exemple en dur, rien n'est lu ni ecrit.
-// Serie 44 : la barre d'atouts des vignettes de la galerie.
+// Serie 45 : petites animations pour l'accueil.
 
 const SB = 'https://snnrkzbevjhdtviizfyp.supabase.co/storage/v1/object/public/avatars/cartes/eb730dee-414e-4fcb-89d8-4a7b3448c218/'
 const C = {
@@ -24,7 +22,7 @@ const CSS = `
 .ix { font-family: system-ui, sans-serif; color:#fff; min-height:100vh;
   background: radial-gradient(circle at 15% -10%, rgba(91,141,239,.10), transparent 45%), linear-gradient(160deg,#050912 0%,#08153b 55%,#0a2468 100%); padding: 24px clamp(14px,3vw,44px) 90px; }
 .ix * { box-sizing: border-box; }
-.ix img { background: none !important; animation: none !important; }
+.ix img:not(.fc):not(.mi) { background: none !important; animation: none !important; }
 .ix .sf { font-family: 'Surfquest', Impact, 'Arial Narrow', sans-serif; font-weight: 400; text-transform: uppercase; letter-spacing: .02em; }
 .ix .ink, .ix .ink * { color: #06122e !important; }
 .ix .wht, .ix .wht * { color: #fff !important; }
@@ -78,106 +76,227 @@ const CSS = `
 .ix .s4 .vz-dbl .gs-seg::after { box-shadow: inset 0 0 0 1px #fff, inset 0 0 0 2px #08153b; }
 .ix .s4 .vz-glass .w { background: linear-gradient(180deg, color-mix(in srgb, var(--a) 70%, #fff) 0%, var(--a) 45%, color-mix(in srgb, var(--a) 70%, #000) 100%); box-shadow: inset 0 1px 0 rgba(255,255,255,.6), inset 0 -1px 0 rgba(0,0,0,.4); }
 @media (prefers-reduced-motion: reduce) { .ix .s4 .vz-sheen .gs-seg::after { animation: none; } }
+/* serie 45 : petites animations pour l'accueil (prefixe a4) */
+.ix .a4 { max-width: 920px; }
+.ix .a4 * { box-sizing: border-box; }
+.ix .a4 .box { border: 3px solid rgba(255,255,255,.85); background: linear-gradient(135deg,#050912 0%,#08153b 60%,#0a2468 100%); padding: 18px; position: relative; overflow: hidden; }
+.ix .a4 .row { display: flex; gap: 14px; flex-wrap: wrap; align-items: center; }
+.ix .a4 .rp { margin-top: 12px; padding: 7px 14px; background: transparent; border: 2px solid rgba(255,255,255,.6); color: #fff; font: 800 11px system-ui; letter-spacing: .12em; text-transform: uppercase; cursor: pointer; }
+.ix .a4 .rp:hover { background: #fff; color: #06122e; }
+.ix .a4 .big { font: 400 96px/.9 'Surfquest', Impact, sans-serif; color: #fff; }
+.ix .a4 .lab { font: 800 12px system-ui; letter-spacing: .16em; text-transform: uppercase; color: rgba(255,255,255,.75); }
+.ix .a4 .tiles { display: grid; grid-template-columns: repeat(4, 1fr); border: 3px solid #fff; }
+.ix .a4 .tile { padding: 16px 8px; text-align: center; border-right: 2px solid rgba(255,255,255,.25); position: relative; background: #0b1740; }
+.ix .a4 .tile:last-child { border-right: 0; }
+.ix .a4 .tile b { display: block; font: 400 52px/1 'Surfquest', Impact, sans-serif; color: #fff; }
+.ix .a4 .tile i { position: absolute; left: 0; top: 0; height: 3px; background: var(--c); width: 100%; transform-origin: left; }
+.ix .a4 .tile u { font: 800 10px system-ui; letter-spacing: .14em; text-decoration: none; opacity: .8; color: #fff; }
+.ix .a4 .tile s { display: block; font: 800 11px system-ui; color: #3ddc97; text-decoration: none; min-height: 14px; }
+/* A1 compteur : rien en CSS */
+/* A2 barre XP */
+.ix .a4 .xpb { height: 14px; background: rgba(255,255,255,.14); position: relative; overflow: hidden; }
+.ix .a4 .xpb i { display: block; height: 100%; background: #2f6bff; width: 0; animation: a4fill 1.6s cubic-bezier(.2,.8,.2,1) forwards; position: relative; overflow: hidden; }
+.ix .a4 .xpb i::after { content: ''; position: absolute; top: 0; bottom: 0; width: 40px; left: -60px; background: linear-gradient(90deg, transparent, rgba(255,255,255,.7), transparent); animation: a4shine 1.6s .3s ease-in-out infinite; }
+@keyframes a4fill { to { width: var(--w); } }
+@keyframes a4shine { to { left: 120%; } }
+/* A3 flamme */
+.ix .a4 .flame { display: inline-block; font-size: 44px; transform-origin: 50% 90%; animation: a4flame 1.1s ease-in-out infinite alternate; filter: drop-shadow(0 0 10px rgba(255,140,0,.6)); }
+@keyframes a4flame { 0% { transform: scale(1) rotate(-3deg); } 40% { transform: scale(1.08, 1.14) rotate(2deg); } 100% { transform: scale(.96, 1.06) rotate(-2deg); } }
+/* A4 eventail */
+.ix .a4 .fanw { position: relative; height: 230px; }
+.ix .a4 .fc { position: absolute; left: 50%; bottom: 0; width: 120px; aspect-ratio: 2.5/3.5; object-fit: cover; transform-origin: 50% 100%; box-shadow: 0 14px 26px rgba(0,0,0,.55); transform: translateX(-50%) rotate(0); animation: a4fan .9s cubic-bezier(.2,.9,.3,1.1) forwards, a4float 4.5s 1.2s ease-in-out infinite alternate; animation-delay: calc(var(--i) * 90ms), calc(1.2s + var(--i) * 200ms); }
+@keyframes a4fan { to { transform: translateX(calc(-50% + var(--dx))) rotate(var(--r)); } }
+@keyframes a4float { from { translate: 0 0; } to { translate: 0 -8px; } }
+/* A5 boutons */
+.ix .a4 .wb { position: relative; overflow: hidden; display: inline-block; padding: 16px 30px; background: #fff; color: #06122e; border: 3px solid #fff; font: 800 13px system-ui; letter-spacing: .12em; text-transform: uppercase; transition: transform .15s; cursor: pointer; }
+.ix .a4 .wb::after { content: ''; position: absolute; top: -20%; bottom: -20%; width: 40%; left: -60%; transform: skewX(-20deg); background: linear-gradient(90deg, transparent, rgba(0,61,166,.28), transparent); }
+.ix .a4 .wb:hover::after { animation: a4sweep .7s ease; }
+.ix .a4 .wb:hover { transform: translateY(-3px); } .ix .a4 .wb:active { transform: translateY(0) scale(.97); }
+@keyframes a4sweep { to { left: 130%; } }
+/* A6 tuiles en cascade */
+.ix .a4 .tile.in { opacity: 0; animation: a4up .6s cubic-bezier(.2,.8,.2,1) forwards; animation-delay: calc(var(--i) * 120ms); }
+.ix .a4 .tile.in i { transform: scaleX(0); animation: a4draw .6s ease forwards; animation-delay: calc(var(--i) * 120ms + 350ms); }
+.ix .a4 .tile.in s { animation: a4pulse 1.4s 1.2s ease-in-out infinite; }
+@keyframes a4up { from { opacity: 0; transform: translateY(18px); } to { opacity: 1; transform: none; } }
+@keyframes a4draw { to { transform: scaleX(1); } }
+@keyframes a4pulse { 50% { transform: scale(1.35); } }
+/* A7 recherche */
+.ix .a4 .sb { display: flex; border: 3px solid #fff; background: #0b1740; }
+.ix .a4 .sb span.t { flex: 1; padding: 14px; font: 500 15px system-ui; font-style: italic; color: rgba(255,255,255,.7); }
+.ix .a4 .sb .caret { display: inline-block; width: 2px; height: 1em; background: #fff; margin-left: 2px; vertical-align: -2px; animation: a4blink 1s steps(1) infinite; }
+.ix .a4 .sb b { width: 52px; display: grid; place-items: center; background: #fff; color: #06122e; font-size: 20px; animation: a4loupe 2.4s ease-in-out infinite; }
+@keyframes a4blink { 50% { opacity: 0; } }
+@keyframes a4loupe { 0%, 70%, 100% { transform: scale(1); } 80% { transform: scale(1.18) rotate(-8deg); } }
+/* A8 apparition au defilement */
+.ix .a4 .rv { opacity: 0; transform: translateY(26px); transition: opacity .6s ease, transform .6s cubic-bezier(.2,.8,.2,1); }
+.ix .a4 .rv.on { opacity: 1; transform: none; }
+.ix .a4 .blk { padding: 20px; border: 3px solid rgba(255,255,255,.8); background: #0b1740; margin-bottom: 12px; font: 800 14px system-ui; letter-spacing: .1em; text-transform: uppercase; color: #fff; }
+/* A9 podium */
+.ix .a4 .pod { display: flex; align-items: flex-end; gap: 12px; height: 190px; justify-content: center; }
+.ix .a4 .pb { width: 110px; background: linear-gradient(180deg,#2f6bff,#14307d); border: 3px solid #fff; display: grid; place-items: start center; padding-top: 8px; font: 400 40px/1 'Surfquest', Impact, sans-serif; color: #fff; height: 0; animation: a4rise .9s cubic-bezier(.2,.8,.2,1) forwards; animation-delay: calc(var(--i) * 160ms); }
+.ix .a4 .pb.gold { background: linear-gradient(180deg,#ffd54a,#a8770a); animation: a4rise .9s cubic-bezier(.2,.8,.2,1) forwards, a4gold 2.2s 1.2s ease-in-out infinite; animation-delay: calc(var(--i) * 160ms), 1.2s; }
+@keyframes a4rise { to { height: var(--h); } }
+@keyframes a4gold { 50% { box-shadow: 0 0 26px rgba(255,213,74,.75); } }
+/* A10 carte du jour */
+.ix .a4 .cdj { position: relative; width: 150px; aspect-ratio: 2.5/3.5; margin: 6px auto; animation: a4breath 4s ease-in-out infinite; }
+.ix .a4 .cdj img { width: 100%; height: 100%; object-fit: cover; display: block; box-shadow: 0 18px 34px rgba(0,0,0,.6); }
+.ix .a4 .cdj .sh { position: absolute; inset: 0; overflow: hidden; pointer-events: none; }
+.ix .a4 .cdj .sh::after { content: ''; position: absolute; top: -20%; bottom: -20%; width: 40%; left: -60%; transform: skewX(-18deg); background: linear-gradient(90deg, transparent, rgba(255,255,255,.55), transparent); animation: a4sweep 5s 1s ease-in-out infinite; }
+.ix .a4 .sp { position: absolute; color: #ffd54a; font-size: 16px; animation: a4spark 2.6s ease-in-out infinite; animation-delay: var(--d); opacity: 0; text-shadow: 0 0 8px rgba(255,213,74,.9); }
+@keyframes a4breath { 50% { transform: translateY(-6px) rotate(.6deg); } }
+@keyframes a4spark { 0%, 100% { opacity: 0; transform: scale(.4) rotate(0); } 50% { opacity: 1; transform: scale(1.1) rotate(30deg); } }
+/* A11 badge presque debloque */
+.ix .a4 .pill { display: inline-grid; place-items: center; width: 54px; height: 54px; border: 3px solid #fff; font-size: 26px; animation: a4bounce 1.8s ease-in-out infinite; }
+.ix .a4 .gb { height: 14px; background: rgba(255,255,255,.14); position: relative; flex: 1; min-width: 220px; }
+.ix .a4 .gb i { display: block; height: 100%; width: 92%; background: #e0a526; position: relative; }
+.ix .a4 .gb i::after { content: ''; position: absolute; right: -3px; top: -3px; bottom: -3px; width: 6px; background: #fff; box-shadow: 0 0 12px #ffd54a; animation: a4pulse2 1.2s ease-in-out infinite; }
+@keyframes a4bounce { 0%, 60%, 100% { transform: translateY(0); } 70% { transform: translateY(-9px); } 80% { transform: translateY(0); } 88% { transform: translateY(-4px); } }
+@keyframes a4pulse2 { 50% { opacity: .35; } }
+/* A12 niveau */
+.ix .a4 .lv { position: relative; width: 70px; height: 70px; border: 3px solid #fff; display: grid; place-items: center; font: 400 38px 'Surfquest', Impact, sans-serif; color: #fff; }
+.ix .a4 .lv.pop { animation: a4pop .6s cubic-bezier(.2,.9,.3,1.3); }
+.ix .a4 .lv .ring { position: absolute; inset: -3px; border: 3px solid #ffd54a; opacity: 0; }
+.ix .a4 .lv.pop .ring { animation: a4ring .8s ease-out; }
+@keyframes a4pop { 0% { transform: scale(1); } 40% { transform: scale(1.25) rotate(-4deg); } 100% { transform: scale(1); } }
+@keyframes a4ring { from { opacity: .9; transform: scale(1); } to { opacity: 0; transform: scale(2); } }
+/* A13 pseudo */
+.ix .a4 .nm { font: 400 64px/1 'Surfquest', Impact, sans-serif; color: #fff; text-transform: uppercase; display: inline-flex; }
+.ix .a4 .nm span { display: inline-block; opacity: 0; transform: translateY(-30px) rotate(-8deg); animation: a4letter .5s cubic-bezier(.2,.9,.3,1.2) forwards; animation-delay: calc(var(--i) * 55ms); }
+@keyframes a4letter { to { opacity: 1; transform: none; } }
+/* A14 mosaique a la derive */
+.ix .a4 .mos { position: relative; height: 220px; overflow: hidden; background: #050912; }
+.ix .a4 .mos img { position: absolute; width: 90px; aspect-ratio: 2.5/3.5; object-fit: cover; opacity: .55; animation: a4drift var(--t) ease-in-out infinite alternate; left: var(--x); top: var(--y); }
+@keyframes a4drift { from { transform: translate(0, 0) rotate(var(--r)); } to { transform: translate(var(--dx), var(--dy)) rotate(calc(var(--r) + 4deg)); } }
+.ix .a4 .mos::after { content: ''; position: absolute; inset: 0; background: linear-gradient(90deg, #050912 0%, rgba(5,9,18,.5) 55%, transparent 100%); }
+.ix .a4 .mos h4 { position: absolute; z-index: 2; left: 20px; top: 50%; transform: translateY(-50%); margin: 0; font: 400 70px/.9 'Surfquest', Impact, sans-serif; color: #fff; }
+/* A15 confettis */
+.ix .a4 .bz { position: relative; display: inline-block; }
+.ix .a4 .cf { position: absolute; left: 50%; top: 50%; width: 8px; height: 8px; background: var(--c); animation: a4burst .9s cubic-bezier(.1,.7,.3,1) forwards; }
+@keyframes a4burst { from { transform: translate(-50%, -50%) rotate(0); opacity: 1; } to { transform: translate(calc(-50% + var(--x)), calc(-50% + var(--y))) rotate(var(--r)); opacity: 0; } }
+/* A16 tilt */
+.ix .a4 .tiltw { perspective: 700px; display: grid; place-items: center; height: 250px; }
+.ix .a4 .tiltc { width: 150px; aspect-ratio: 2.5/3.5; transition: transform .12s ease-out; transform-style: preserve-3d; position: relative; }
+.ix .a4 .tiltc img { width: 100%; height: 100%; object-fit: cover; display: block; box-shadow: 0 20px 36px rgba(0,0,0,.6); }
+.ix .a4 .tiltc .gl { position: absolute; inset: 0; background: radial-gradient(circle at var(--gx, 50%) var(--gy, 50%), rgba(255,255,255,.4), transparent 55%); mix-blend-mode: overlay; pointer-events: none; }
+/* A17 squelette */
+.ix .a4 .sk { height: 18px; background: linear-gradient(90deg, rgba(255,255,255,.07) 25%, rgba(255,255,255,.2) 50%, rgba(255,255,255,.07) 75%); background-size: 200% 100%; animation: a4sk 1.3s linear infinite; margin-bottom: 10px; }
+@keyframes a4sk { to { background-position: -200% 0; } }
+@media (prefers-reduced-motion: reduce) { .ix .a4 * { animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; } }
 `
-const Bay44 = ({ id, n, title, desc, children }: { id: string; n: string; title: string; desc: string; children: React.ReactNode }) => (
+const Bay45 = ({ id, n, title, desc, children }: { id: string; n: string; title: string; desc: string; children: React.ReactNode }) => (
   <section className="bay" id={id}>
     <span className="eyebrow">{n}</span>
     <h2 className="sf">{title}</h2>
     <p className="d">{desc}</p>
-    <div className="stage"><div className="s4">{children}</div></div>
+    <div className="stage"><div className="a4">{children}</div></div>
   </section>
 )
-
-type PC = { n: string; v: string; s: string; img: string; team: string; rc?: boolean; auto?: boolean; patch?: boolean; num?: string }
-const PCS: PC[] = [
-  { n: 'Jared McCain', v: 'Team Card', s: '2010-11 Panini Donruss', img: C.mccain.img, rc: true, team: 'Philadelphia 76ers' },
-  { n: 'Anthony Edwards', v: 'Silver Prizm', s: '2023-24 Panini Prizm', img: C.edwards.img, rc: true, auto: true, num: '1/1', team: 'Minnesota Timberwolves' },
-  { n: 'Michael Carter-Williams', v: 'Fresh Paint', s: '2024-25 Court Kings', img: C.mcw.img, rc: true, auto: true, num: '/125', team: 'Philadelphia 76ers' },
-  { n: 'Tyrese Maxey', v: 'Fresh Paint', s: '2024-25 Court Kings', img: C.maxey.img, auto: true, patch: true, num: '/25', team: 'Los Angeles Lakers' },
-  { n: 'Luwawu-Cabarrot', v: 'Gold Standard', s: '2023-24 Panini Select', img: C.luwawu.img, team: 'Denver Nuggets' },
-]
-type At = { k: string; t: string; c: string }
-const atsOf = (c: PC): At[] => {
-  const a: At[] = []
-  if (c.rc) a.push({ k: 'rc', t: 'RC', c: TAG_BASE.rc })
-  if (c.patch) a.push({ k: 'patch', t: 'Patch', c: TAG_BASE.patch })
-  if (c.auto) a.push({ k: 'auto', t: 'Auto', c: TAG_BASE.auto })
-  if (c.num) { const tr = numTier(c.num); a.push({ k: 'num', t: numShort(c.num), c: tr === 'gold' ? '#ffd54a' : tr === 'silver' ? '#dfe6f2' : tr === 'bronze' ? '#e0925a' : TAG_BASE.num }) }
-  return a
+// remonte l'animation : un compteur « Rejouer » change la cle du contenu
+function Replay({ children, label = 'Rejouer' }: { children: (k: number) => React.ReactNode; label?: string }) {
+  const [k, setK] = useState(0)
+  return (<>{children(k)}<button type="button" className="rp" onClick={() => setK(x => x + 1)}>↻ {label}</button></>)
 }
-const lum = (h: string) => { const n = parseInt(h.replace('#', '').slice(0, 6), 16); return (0.299 * ((n >> 16) & 255) + 0.587 * ((n >> 8) & 255) + 0.114 * (n & 255)) / 255 }
-const dk = (c: string) => mix(c, -0.3)
-
-type V44 = { id: string; cls: string; title: string; desc: string; sep?: 'star' | 'tick' | 'sq' | 'none'; wp?: number; dark?: boolean }
-// Une barre : memes classes que le site (gc-slot / gs-strip / gs-seg / gs-mq), seul le contenu des mots change
-function Card44({ c, v }: { c: PC; v: V44 }) {
-  const tm = getTeamByName(c.team)
-  const color = tm?.color || 'transparent'
-  const ats = atsOf(c)
-  const reps = Math.max(4, Math.ceil(20 / Math.max(1, ats.length)))
-  const seq: At[] = Array.from({ length: reps }, () => ats).flat()
-  const unit = (key: string) => (
-    <span key={key}>{seq.map((x, i) => {
-      const p = seq[(i - 1 + seq.length) % seq.length], n = seq[(i + 1) % seq.length]
-      const base = v.dark ? x.c : dk(x.c)
-      const st = { ['--a' as string]: v.dark ? x.c : dk(x.c), ['--p' as string]: v.dark ? p.c : dk(p.c), ['--n' as string]: v.dark ? n.c : dk(n.c), ['--al' as string]: mix(x.c, 0.45), ['--t' as string]: lum(base) > 0.62 ? '#1a1200' : '#fff', ['--wp' as string]: (v.wp ?? 16) + 'px' } as CSSProperties
-      return (
-        <Fragment key={i}>
-          <em className="w" style={st}><span>{x.t}</span></em>
-          {v.sep === 'tick' && <i className="sep" />}
-          {v.sep === 'sq' && <i style={{ alignSelf: 'center', width: 5, height: 5, background: color, margin: '0 2px' }} />}
-        </Fragment>
-      )
-    })}</span>
-  )
-  return (
-    <div className={`card-item${c.num && numTier(c.num) !== 'std' ? ` gc-rare gc-${numTier(c.num)}` : ''} ${v.cls}`}
-      style={{ borderRadius: 8, padding: 8, background: 'white', border: '2px solid #003DA6', boxSizing: 'border-box', position: 'relative', overflow: 'visible', ['--gt' as string]: color } as CSSProperties}>
-      <div className={`holo-light${c.num && numTier(c.num) !== 'std' ? ` halo halo-${numTier(c.num)}` : ''}`} style={{ width: '100%', marginBottom: 6, position: 'relative' }}>
-        <div style={{ aspectRatio: '2.5/3.5', overflow: 'hidden', position: 'relative' }}>
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img src={c.img} alt={c.n} style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover' }} />
-        </div>
-      </div>
-      <div className="gc-slot">
-        {tm && <div className="gc-bar" style={{ background: color }} />}
-        {ats.length > 0 && <div className="gs-strip"><div className="gs-seg" style={{ ['--d' as string]: `${30 + ats.length * 4}s` } as CSSProperties}><div className="gs-mq">{unit('a')}{unit('b')}</div></div></div>}
-        {tm && <span className="gc-med"><TeamBadge teamId={tm.id} size={24} /></span>}
-      </div>
-      <div className="gc-bot" style={{ display: 'flex', alignItems: 'flex-start', justifyContent: 'space-between', gap: 4, marginTop: 4 }}>
-        <div style={{ minWidth: 0 }}>
-          <p className="gc-name" style={{ margin: 0, whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis', display: 'flex', alignItems: 'center', gap: 6 }}>
-            <span className="da-display" style={{ fontSize: 19, lineHeight: 1, overflow: 'hidden', textOverflow: 'ellipsis' }}>{c.n}</span>
-          </p>
-          <p style={{ fontSize: 10, color: '#003DA6', fontWeight: 700, margin: '2px 0', fontStyle: 'italic', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>{c.v}</p>
-          <p style={{ fontSize: 10, color: '#999', marginTop: 2, display: 'flex', alignItems: 'center', gap: 5, flexWrap: 'wrap' }}><span style={{ whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>{c.s}</span></p>
-        </div>
-        <div className="gc-right"><div style={{ display: 'flex', alignItems: 'center', flexShrink: 0 }}><button style={{ background: 'none', border: 'none', display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 1, padding: '2px 4px', flexShrink: 0 }}><span style={{ fontSize: 16, lineHeight: 1 }}>🤍</span></button></div></div>
-      </div>
-    </div>
-  )
+function useCount(to: number, ms: number, k: number) {
+  const [v, setV] = useState(0)
+  useEffect(() => {
+    let raf = 0; const t0 = performance.now()
+    const f = (t: number) => { const p = Math.min(1, (t - t0) / ms); setV(Math.round(to * (1 - Math.pow(1 - p, 3)))); if (p < 1) raf = requestAnimationFrame(f) }
+    raf = requestAnimationFrame(f); return () => cancelAnimationFrame(raf)
+  }, [to, ms, k])
+  return v
 }
-const Grid44 = ({ v }: { v: V44 }) => <div className="mk-grid">{PCS.map(c => <Card44 key={c.n} c={c} v={v} />)}</div>
+const CountBig = ({ k }: { k: number }) => { const v = useCount(602, 1500, k); return <span className="big">{v}</span> }
+const CountTile = ({ k, to, label, c, plus }: { k: number; to: number; label: string; c: string; plus?: string }) => { const v = useCount(to, 1300, k); return <div className="tile" style={{ ['--c' as string]: c } as CSSProperties}><i /><b>{v}</b><u>{label}</u><s>{plus || ''}</s></div> }
+const FAN = [C.mccain.img, C.edwards.img, C.mcw.img, C.maxey.img, C.hawkins.img]
+const FanDeploy = ({ k }: { k: number }) => (
+  <div className="fanw" key={k}>{FAN.map((u, i) => <img key={i} className="fc" src={u} alt="" style={{ ['--i' as string]: i, ['--dx' as string]: `${(i - 2) * 62}px`, ['--r' as string]: `${(i - 2) * 9}deg`, zIndex: i === 2 ? 9 : 5 - Math.abs(i - 2) } as CSSProperties} />)}</div>
+)
+const Typer = () => {
+  const words = ['un joueur…', 'un set…', 'un collectionneur…', 'une carte…']
+  const [i, setI] = useState(0); const [n, setN] = useState(0); const [del, setDel] = useState(false)
+  useEffect(() => {
+    const w = words[i]
+    const t = setTimeout(() => {
+      if (!del && n < w.length) setN(n + 1)
+      else if (!del) setDel(true)
+      else if (n > 0) setN(n - 1)
+      else { setDel(false); setI((i + 1) % words.length) }
+    }, del ? 35 : n === w.length ? 1100 : 70)
+    return () => clearTimeout(t)
+  }, [i, n, del])
+  return <div className="sb"><span className="t">Rechercher {words[i].slice(0, n)}<span className="caret" /></span><b>⌕</b></div>
+}
+const RevealDemo = ({ k }: { k: number }) => {
+  const ref = useRef<HTMLDivElement>(null)
+  useEffect(() => {
+    const root = ref.current; if (!root) return
+    const els = [...root.querySelectorAll('.rv')]
+    els.forEach(e => e.classList.remove('on'))
+    const io = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) { (e.target as HTMLElement).classList.add('on'); io.unobserve(e.target) } }), { threshold: 0.35 })
+    const t = setTimeout(() => els.forEach((e, i) => setTimeout(() => io.observe(e), i * 0)), 150)
+    return () => { clearTimeout(t); io.disconnect() }
+  }, [k])
+  return <div ref={ref}>{['Niveau et XP', 'Prochain badge', 'Défi de la semaine'].map((t, i) => <div key={t} className="blk rv" style={{ transitionDelay: `${i * 90}ms` }}>{t}</div>)}</div>
+}
+const LevelDemo = () => {
+  const [pop, setPop] = useState(0)
+  return (<div className="row"><div key={pop} className={'lv' + (pop ? ' pop' : '')}><span className="ring" />{5 + pop}</div><button type="button" className="rp" style={{ marginTop: 0 }} onClick={() => setPop(x => x + 1)}>+ Gagner un niveau</button></div>)
+}
+const Burst = () => {
+  const [b, setB] = useState(0)
+  const parts = Array.from({ length: 22 }, (_, i) => ({ x: Math.cos(i * 0.9) * (50 + (i % 5) * 18), y: Math.sin(i * 0.9) * (40 + (i % 4) * 16) - 20, r: i * 47, c: ['#ffd54a', '#ff9d3d', '#3B82F6', '#fff', '#A855F7'][i % 5] }))
+  return (<div className="row"><span className="bz"><span className="flame">🔥</span>{b > 0 && parts.map((p, i) => <i key={b + '-' + i} className="cf" style={{ ['--x' as string]: p.x + 'px', ['--y' as string]: p.y + 'px', ['--r' as string]: p.r + 'deg', ['--c' as string]: p.c } as CSSProperties} />)}</span>
+    <button type="button" className="rp" style={{ marginTop: 0 }} onClick={() => setB(x => x + 1)}>🎉 Nouveau record de série</button></div>)
+}
+const TiltDemo = () => {
+  const ref = useRef<HTMLDivElement>(null)
+  const move = (e: React.MouseEvent) => {
+    const el = ref.current; if (!el) return
+    const r = el.getBoundingClientRect(); const x = (e.clientX - r.left) / r.width, y = (e.clientY - r.top) / r.height
+    el.style.transform = `rotateY(${(x - 0.5) * 26}deg) rotateX(${(0.5 - y) * 22}deg)`
+    el.style.setProperty('--gx', x * 100 + '%'); el.style.setProperty('--gy', y * 100 + '%')
+  }
+  const leave = () => { if (ref.current) ref.current.style.transform = '' }
+  return <div className="tiltw" onMouseMove={move} onMouseLeave={leave}><div className="tiltc" ref={ref}><img src={C.maxey.img} alt="" /><span className="gl" /></div></div>
+}
+const Letters = ({ k }: { k: number }) => <div key={k} className="nm">{'GKNNN_CARDS'.split('').map((c, i) => <span key={i} style={{ ['--i' as string]: i } as CSSProperties}>{c}</span>)}</div>
 
-const VARS: V44[] = [
-  { id: 's0', cls: '', title: 'Dégradé qui suit la barre : la bonne couleur sous chaque atout', desc: 'Le fond défile avec les mots : chaque atout a SA couleur derrière lui (orange sous RC, vert sous AUTO, bleu sous PATCH, doré sous 1/1, bronze sous /25), avec un fondu vers la couleur du voisin. Le texte passe en foncé sur les couleurs claires (or, argent). Fini les barres qui se ressemblent toutes.', sep: 'none' },
-  { id: 's1', cls: 'vz-chips', title: 'Blocs de couleur nets séparés par un filet blanc', desc: 'Chaque atout est un bloc plein de sa couleur, séparé du suivant par un filet blanc fin. Très lisible, plus graphique.', sep: 'none' },
-  { id: 's2', cls: 'vz-out', title: 'Dégradé qui suit + contour blanc fin', desc: 'Le même fond qui suit les mots, entouré d\'un liseré blanc de 1 px sur tout le pourtour, comme les cadres de la nouvelle DA.', sep: 'none' },
-  { id: 's3', cls: 'vz-fil', title: 'Dégradé qui suit + filets blancs en haut et en bas', desc: 'Deux filets blancs fins (haut et bas) qui encadrent la barre sans fermer les côtés : effet bandeau.', sep: 'none' },
-  { id: 's4', cls: 'vz-dbl', title: 'Double filet : blanc extérieur, marine intérieur', desc: 'Contour blanc fin puis filet marine, comme le double cadre de la nouvelle DA. Le filet marine sépare la couleur du blanc.', sep: 'none' },
-  { id: 's5', cls: 'vz-gloss', title: 'Reflet brillant sur la moitié haute', desc: 'Dégradé qui suit les mots avec un reflet clair sur la moitié haute de chaque bloc : effet verre / métal.', sep: 'none' },
-  { id: 's6', cls: 'vz-glass', title: 'Relief métal : clair en haut, sombre en bas', desc: 'Chaque bloc a un dégradé vertical clair vers sombre de sa couleur, avec filets de lumière : relief type étiquette métallique.', sep: 'none' },
-  { id: 's7', cls: 'vz-two', title: 'Deux tons : moitié haute franche, moitié basse plus sombre', desc: 'Chaque bloc est coupé en deux bandes horizontales de ton différent. Style plat, très DA.', sep: 'none' },
-  { id: 's8', cls: 'vz-haz', title: 'Rayures diagonales de la couleur de l\'atout', desc: 'Fond rayé en diagonale (comme une bande de circuit) à la couleur de chaque atout, texte avec ombre. Plus dynamique.', sep: 'none' },
-  { id: 's9', cls: 'vz-skew', title: 'Blocs inclinés en parallélogrammes', desc: 'Les blocs sont inclinés, avec un petit espace entre eux, comme les rubans des maillots. Chaque atout reste dans sa couleur.', sep: 'none', wp: 18 },
-  { id: 's10', cls: 'vz-chev', title: 'Chevrons qui s\'emboîtent', desc: 'Chaque atout est une flèche (chevron) qui s\'emboîte dans la suivante, comme une frise de navigation. Direction de lecture claire.', sep: 'none' },
-  { id: 's11', cls: 'vz-under', title: 'Barre sombre, mots clairs soulignés de leur couleur', desc: 'Fond marine, mots dans leur couleur éclaircie et un soulignement épais de la couleur exacte. Plus sobre : la couleur est dans le trait.', sep: 'none', dark: true },
-  { id: 's12', cls: 'vz-neon', title: 'Néon : mots lumineux et filets de la couleur de l\'atout', desc: 'Barre très sombre, mots qui rayonnent dans leur couleur, filet fin haut et bas en couleur. Effet enseigne lumineuse.', sep: 'none', dark: true },
-  { id: 's13', cls: 'vz-light', title: 'Barre blanche : mots colorés soulignés', desc: 'Fond blanc, texte de chaque atout dans sa couleur (assombrie pour rester lisible), trait de soulignement de la même couleur. Contraste maximal avec le bloc sombre du dessous.', sep: 'none' },
-  { id: 's14', cls: 'vz-cap', title: 'Dégradé qui suit + embouts de la couleur de l\'équipe', desc: 'Le fond qui suit les mots, avec deux embouts de 4 px à chaque extrémité à la couleur de l\'équipe (liée à la barre d\'équipe et au médaillon).', sep: 'none' },
-  { id: 's15', cls: 'vz-sheen', title: 'Dégradé qui suit + reflet lumineux qui passe', desc: 'Même fond, avec un reflet blanc qui traverse la barre lentement toutes les 6 secondes (animation très douce, désactivée si le téléphone limite les animations).', sep: 'none' },
-  { id: 's16', cls: '', title: 'Dégradé qui suit + séparateurs en filets verticaux', desc: 'Le fond qui suit les mots, mais les étoiles sont remplacées par de fins filets blancs verticaux. Plus sobre, plus net.', sep: 'tick', wp: 12 },
-  { id: 's17', cls: '', title: 'Dégradé qui suit + petits carrés de la couleur de l\'équipe', desc: 'Les étoiles sont remplacées par de petits carrés de la couleur de l\'équipe (rappel de la barre du dessous).', sep: 'sq', wp: 12 },
+const IDEAS: [string, string, React.ReactNode][] = [
+  ['Compteurs qui montent à l\'arrivée', 'Le gros nombre de cartes et les 4 tuiles RC / Auto / Patch / Num comptent de 0 à leur valeur en 1,5 seconde, en ralentissant à la fin. Donne de la vie dès l\'ouverture.', (
+    <Replay>{k => (<div className="box"><div className="row" style={{ marginBottom: 14 }}><div><CountBig key={'b' + k} k={k} /><div className="lab">Cartes</div></div></div>
+      <div className="tiles"><CountTile k={k} to={120} label="RC" c="#F97316" plus="+1" /><CountTile k={k} to={29} label="Auto" c="#3B82F6" /><CountTile k={k} to={23} label="Patch" c="#EF4444" /><CountTile k={k} to={92} label="Num" c="#A855F7" plus="+1" /></div></div>)}</Replay>)],
+  ['Barre d\'XP qui se remplit avec un reflet', 'Les barres de niveau, de badge et de défi se remplissent en douceur au chargement, avec un reflet blanc qui les parcourt.', (
+    <Replay>{k => (<div className="box" key={k}><div className="lab" style={{ marginBottom: 8 }}>Niveau 5 · 347/360 XP</div><div className="xpb"><i style={{ ['--w' as string]: '96%' } as CSSProperties} /></div><div className="lab" style={{ margin: '16px 0 8px' }}>Prochain badge : 25 patches · 23/25</div><div className="xpb"><i style={{ ['--w' as string]: '92%', background: '#e0a526' } as CSSProperties} /></div></div>)}</Replay>)],
+  ['Flamme de la série qui vacille', 'La flamme à côté de « 58 jours de suite » respire en continu : elle s\'étire et penche légèrement, avec une lueur orange. Discret mais vivant.', (
+    <div className="box"><div className="row"><span className="flame">🔥</span><div><div className="big" style={{ fontSize: 56 }}>58</div><div className="lab">Jours de suite</div></div></div></div>)],
+  ['Éventail qui se déploie puis flotte', 'Les 5 dernières cartes sont empilées puis s\'ouvrent en éventail en cascade, et elles flottent ensuite de quelques pixels, chacune à son rythme.', (
+    <Replay>{k => <div className="box"><FanDeploy k={k} /></div>}</Replay>)],
+  ['Boutons blancs avec reflet au survol', 'Passage de la souris (ou toucher) : un reflet bleuté traverse le bouton, qui se soulève de 3 px ; au clic il s\'enfonce légèrement.', (
+    <div className="box"><div className="row"><span className="wb">Scanner de prix</span><span className="wb">Ajouter une carte</span><span className="wb">Trades</span></div></div>)],
+  ['Tuiles en cascade avec trait de couleur qui se dessine', 'Les 4 tuiles montent l\'une après l\'autre ; le trait de couleur de chaque atout se dessine de gauche à droite, et le « +1 » de la semaine pulse.', (
+    <Replay>{k => <div className="box" key={k}><div className="tiles">{[['120', 'RC', '#F97316', '+1'], ['29', 'Auto', '#3B82F6', ''], ['23', 'Patch', '#EF4444', ''], ['92', 'Num', '#A855F7', '+1']].map((x, i) => <div key={x[1]} className="tile in" style={{ ['--c' as string]: x[2], ['--i' as string]: i } as CSSProperties}><i /><b>{x[0]}</b><u>{x[1]}</u><s>{x[3]}</s></div>)}</div></div>}</Replay>)],
+  ['Recherche qui suggère en tapant toute seule', 'Le texte de la barre change tout seul (un joueur…, un set…, un collectionneur…) avec un curseur clignotant, et la loupe fait un petit mouvement régulier. Montre à quoi sert la barre.', (
+    <div className="box"><Typer /></div>)],
+  ['Blocs qui apparaissent en glissant quand on scrolle', 'Chaque bloc de l\'accueil (niveau, badge, défi, carte du jour, podium) monte en fondu quand il entre dans l\'écran, légèrement décalé du précédent. Une seule fois, pas à chaque passage.', (
+    <Replay>{k => <div className="box" style={{ paddingBottom: 6 }}><RevealDemo k={k} /></div>}</Replay>)],
+  ['Podium dont les marches montent, première en or lumineux', 'Les trois marches montent l\'une après l\'autre ; la première pulse d\'une lueur dorée en boucle lente.', (
+    <Replay>{k => <div className="box" key={k}><div className="pod">{[['2', 120], ['1', 170], ['3', 90]].map((x, i) => <div key={x[0]} className={'pb' + (x[0] === '1' ? ' gold' : '')} style={{ ['--h' as string]: x[1] + 'px', ['--i' as string]: i } as CSSProperties}>{x[0]}</div>)}</div></div>}</Replay>)],
+  ['Carte du jour qui respire avec reflet et étincelles', 'La carte à gratter flotte doucement ; un reflet blanc la traverse toutes les 5 secondes et de petites étoiles dorées scintillent autour.', (
+    <div className="box"><div className="cdj"><img src={C.edwards.img} alt="" /><span className="sh" />{[['-14px', '10%', '0s'], ['92%', '22%', '.8s'], ['-10px', '70%', '1.5s'], ['96%', '82%', '2s']].map((p, i) => <span key={i} className="sp" style={{ left: p[0], top: p[1], ['--d' as string]: p[2] } as CSSProperties}>✦</span>)}</div></div>)],
+  ['Badge presque débloqué : l\'icône rebondit', 'Quand il reste moins de 10 % pour le prochain badge, l\'icône fait un double rebond de temps en temps et le bout de la barre clignote d\'une lueur dorée.', (
+    <div className="box"><div className="row"><span className="pill">🩹</span><div style={{ flex: 1 }}><div className="lab" style={{ marginBottom: 8 }}>Prochain badge : 25 patches · 23/25</div><div className="gb"><i /></div></div></div></div>)],
+  ['Gain de niveau : le carré saute avec un anneau doré', 'Quand l\'XP fait passer un niveau, le carré du niveau « pop » (il grossit en s\'inclinant) et un anneau doré s\'en échappe.', (
+    <div className="box"><LevelDemo /></div>)],
+  ['Pseudo qui tombe lettre par lettre', 'Au chargement, le pseudo en Surfquest apparaît lettre par lettre (chute légère + rotation), comme une mise en place de typographie.', (
+    <Replay>{k => <div className="box"><div className="lab" style={{ marginBottom: 6 }}>Content de te revoir</div><Letters k={k} /></div>}</Replay>)],
+  ['Mosaïque de fond qui dérive lentement', 'Derrière le gros nombre, les cartes de la mosaïque glissent de quelques pixels en sens différents, très lentement (profondeur sans bouger l\'ensemble).', (
+    <div className="mos">{[...FAN, ...FAN, ...FAN].map((u, i) => <img key={i} className="mi" src={u} alt="" style={{ ['--x' as string]: `${28 + (i % 8) * 9}%`, ['--y' as string]: `${(i % 3) * 38 - 12}%`, ['--r' as string]: `${(i % 5) * 3 - 6}deg`, ['--t' as string]: `${7 + (i % 4) * 2}s`, ['--dx' as string]: `${(i % 2 ? 1 : -1) * 14}px`, ['--dy' as string]: `${(i % 3 - 1) * 10}px` } as CSSProperties} />)}<h4>602<br /><span style={{ fontSize: 24, letterSpacing: '.16em' }}>CARTES</span></h4></div>)],
+  ['Confettis quand la série bat un record', 'Quand la série de jours atteint un nouveau record personnel, une petite explosion de confettis (carrés de couleur, pas de cercles) part de la flamme. Une seule fois.', (
+    <div className="box" style={{ overflow: 'visible' }}><Burst /></div>)],
+  ['Carte qui s\'incline avec la souris (3D) et reflet qui suit', 'Sur ordinateur, la carte principale s\'incline vers le curseur avec un reflet lumineux qui le suit. Sur mobile, désactivé.', (
+    <div className="box"><TiltDemo /></div>)],
+  ['Squelettes qui brillent pendant le chargement', 'À la place d\'un vide ou d\'un cercle qui tourne, des blocs gris au dégradé qui défile aux formes des vrais blocs (nombre, tuiles, barre) : l\'accueil semble déjà là.', (
+    <div className="box"><div className="sk" style={{ width: '30%', height: 60 }} /><div className="row" style={{ gap: 8, marginBottom: 12 }}>{[0, 1, 2, 3].map(i => <div key={i} className="sk" style={{ flex: 1, height: 70, margin: 0 }} />)}</div><div className="sk" style={{ width: '100%' }} /><div className="sk" style={{ width: '70%' }} /></div>)],
 ]
 
 export default function DaIdeas() {
@@ -185,10 +304,10 @@ export default function DaIdeas() {
     <div className="ix">
       <style>{CSS}</style>
       <Link href="/admin" className="back">← Admin</Link>
-      <h1 className="sf">Idées · Série 44 · La barre d&apos;atouts</h1>
-      <p className="lead">18 idées pour la barre d&apos;atouts, sur la vraie vignette de la galerie (mêmes classes que le site : image, médaillon d&apos;équipe, barre d&apos;équipe, bloc du bas, cœur). Cinq cartes : 1 RC, RC + auto + 1/1 doré, RC + auto /125, auto + patch /25 bronze, et une sans atout. Le point commun de presque toutes : le fond défile avec les mots, avec la bonne couleur sous chaque atout, et le texte s&apos;adapte (foncé sur or/argent). Dis-moi les numéros.</p>
-      <nav className="tags">{VARS.map((_, i) => <a key={i} href={`#${VARS[i].id}`}>S{i}</a>)}</nav>
-      {VARS.map((v, i) => <Bay44 key={v.id} id={v.id} n={`S${i}`} title={v.title} desc={v.desc}><Grid44 v={v} /></Bay44>)}
+      <h1 className="sf">Idées · Série 45 · Animations de l&apos;accueil</h1>
+      <p className="lead">17 petites animations pour l&apos;accueil, toutes vivantes ici (bouton « Rejouer » ou à survoler). Elles respectent « réduire les animations » du téléphone, restent sobres (angles droits, pas de bruit) et ne jouent qu&apos;une fois à l&apos;arrivée quand c&apos;est une mise en place. Dis-moi les numéros à garder.</p>
+      <nav className="tags">{IDEAS.map((_, i) => <a key={i} href={`#n${i + 1}`}>N{i + 1}</a>)}</nav>
+      {IDEAS.map((d, i) => <Bay45 key={d[0]} id={`n${i + 1}`} n={`N${i + 1}`} title={d[0]} desc={d[1]}>{d[2]}</Bay45>)}
     </div>
   )
 }
