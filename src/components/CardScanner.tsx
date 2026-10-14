@@ -906,9 +906,14 @@ async function warpCardCV(cv: any, img: HTMLImageElement, corners: Pt[]): Promis
 
 async function warpCard(img: HTMLImageElement, corners: Pt[]): Promise<Blob> {
   // OpenCV d'abord (rapide, voir warpCardCV ci-dessus) ; repli sur la boucle JS pure (warpCardJS,
-  // identique a l'ancien comportement) si le WASM n'a pas pu charger (CDN inaccessible, timeout...).
+  // identique a l'ancien comportement) seulement si le WASM echoue vraiment a charger.
+  // Pas de timeout court ici : au recto (1ere carte de la session), c'est precisement le moment
+  // ou OpenCV peut encore etre en train de charger (deja lance par la detection des coins, cf.
+  // loadOpenCV plus haut, meme promesse partagee) -- un timeout de quelques secondes y faisait
+  // systematiquement basculer sur la boucle JS lente, annulant le gain pile pour ce cas-la.
+  // loadOpenCV() a deja son propre filet de secours (echoue au bout de 20s si le CDN est injoignable).
   try {
-    const cv = await Promise.race([loadOpenCV(), new Promise<null>(r => setTimeout(() => r(null), 3000))])
+    const cv = await loadOpenCV()
     if (cv) {
       const blob = await warpCardCV(cv, img, corners)
       if (blob) return blob
