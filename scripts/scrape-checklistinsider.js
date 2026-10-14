@@ -140,31 +140,91 @@ function parsePage(html, url) {
   return { year, name, brand, sport, xlsx, cat, sections, title: h1 }
 }
 
-const stripBase = v => { const s = v.replace(/^Base\s+/i, '').trim(); return /^base$/i.test(v.trim()) ? null : s }
+// « BASE », « BASE CARDS » (le format sans colonne CARD SET, voir plus bas, nomme le checklist de base ainsi,
+// pas juste « Base ») -> variation null (checklist de base, pas un parallele).
+const stripBase = v => {
+  const s = v.replace(/^Base(\s+Cards?)?\s+/i, '').trim()
+  return /^base(\s+cards?)?$/i.test(v.trim()) ? null : s
+}
 function catOf(setName, cat) {
   let best = null
   for (const k of Object.keys(cat)) if ((setName === k || setName.startsWith(k + ' ')) && (!best || k.length > best.length)) best = k
   return best ? cat[best] : null
 }
 
+// L'ordre ET la PRESENCE des colonnes de l'Excel « Downloads » ne sont pas les memes sur toutes les pages de
+// checklistinsider.com -- deux formats constates :
+//  - Type A (ex. Court Kings) : ligne d'en-tete « CARD SET / CARD # / ATHLETE / TEAM / SEQ » (ordre variable
+//    selon les pages), donnees juste apres ;
+//  - Type B (ex. Topps Flagship) : pas d'en-tete du tout -- des lignes a UNE SEULE cellule (colonne A) servent
+//    de titre de section (nom du set/parallele, ex. « BASE CARDS », « 1981 82 TOPPS BASKETBALL AUTOGRAPHS »),
+//    suivies de lignes de donnees a 3 colonnes (numero, joueur, equipe), jusqu'a la section suivante.
+// Lire par POSITION FIXE (A/B/C/D) sans détecter le format reel melangeait numero de carte, joueur, equipe et
+// nom de set au hasard selon la page -- see feedback_ai_scan_no_changes memory, incident du 2026-10-14.
+function xlsxColMap(headerRow) {
+  const map = {}
+  for (const [letter, label] of Object.entries(headerRow)) {
+    const l = String(label || '').trim().toLowerCase()
+    if (l === 'card set') map.set = letter
+    else if (l === 'card #' || l === 'card number') map.num = letter
+    else if (l === 'athlete' || l === 'player') map.player = letter
+    else if (l === 'team') map.team = letter
+  }
+  return map
+}
+
+function buildCardsTypeA(rows, headerIdx, page) {
+  const col = xlsxColMap(rows[headerIdx])
+  const out = []
+  for (const r of rows.slice(headerIdx + 1)) {
+    if (!r[col.set] || !r[col.player]) continue
+    const setName = r[col.set].trim()
+    const c = catOf(setName, page.cat)
+    out.push({
+      card_number: String(r[col.num] ?? '').trim() || null,
+      player_name: r[col.player].trim(),
+      team: (r[col.team] || '').trim() || null,
+      variation: stripBase(setName),
+      is_rc: /^(Base\s+)?Rookies\b/i.test(setName),
+      is_auto: c === 'auto' || /\bautograph/i.test(setName),
+    })
+  }
+  return out
+}
+
+function buildCardsTypeB(rows) {
+  const out = []
+  let section = null
+  for (const r of rows) {
+    const keys = Object.keys(r).filter(k => (r[k] || '').trim())
+    // ligne a une seule cellule remplie (colonne A) : titre de section -- s'applique a toutes les lignes de
+    // donnees suivantes jusqu'a la prochaine section. Les toutes premieres (titre de page, disclaimer...)
+    // sont ecrasees des qu'une vraie section de checklist apparait, donc sans consequence.
+    if (keys.length === 1 && keys[0] === 'A') { section = r.A.trim(); continue }
+    if (!r.A || !r.B) continue // ligne de donnees incomplete (numero + joueur minimum)
+    out.push({
+      card_number: r.A.trim() || null,
+      player_name: r.B.trim(),
+      team: (r.C || '').trim() || null,
+      variation: section ? stripBase(section) : null,
+      is_rc: /^(Base\s+)?Rookies\b/i.test(section || '') || /^rookie$/i.test((r.D || '').trim()),
+      is_auto: /\bautograph/i.test(section || ''),
+    })
+  }
+  return out
+}
+
 function buildCards(page, rows) {
   const out = []
   if (rows && rows.length > 1) {
-    for (const r of rows.slice(1)) {
-      if (!r.A || !r.C) continue
-      const setName = r.A.trim()
-      const c = catOf(setName, page.cat)
-      const variation = stripBase(setName)
-      out.push({
-        card_number: String(r.B ?? '').trim() || null,
-        player_name: r.C.trim(),
-        team: (r.D || '').trim() || null,
-        variation,
-        is_rc: /^(Base\s+)?Rookies\b/i.test(setName),
-        is_auto: c === 'auto' || /\bautograph/i.test(setName),
-      })
+    // En-tete Type A cherchee dans les 10 premieres lignes (pas forcement la toute premiere -- certaines pages
+    // ont un titre/disclaimer avant). Sinon, Type B (sections en lignes a une seule cellule).
+    let headerIdx = -1
+    for (let i = 0; i < Math.min(10, rows.length); i++) {
+      const col = xlsxColMap(rows[i])
+      if (col.set && col.player) { headerIdx = i; break }
     }
-    return out
+    return headerIdx >= 0 ? buildCardsTypeA(rows, headerIdx, page) : buildCardsTypeB(rows)
   }
   for (const s of page.sections) {
     const variation = stripBase(s.name)
