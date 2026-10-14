@@ -889,26 +889,36 @@ export default function AjouterCarte({ params }: { params: Promise<{ userId: str
         ? Object.keys(finalOut).filter(k => JSON.stringify((finalOut as any)[k] ?? '') !== JSON.stringify(geminiOut[k] ?? ''))
         : []
 
+      // Pas attendu : l'upload de la photo originale (HD) + l'insert training_data n'ont aucune incidence sur la
+      // suite (confirmation, animation de paquet) -- en await ici, l'utilisateur patientait pour un enrichissement
+      // de dataset dont il ne voit jamais le resultat. Reste sequentiel PAR face (l'insert a besoin du chemin
+      // renvoye par l'upload), juste plus bloquant pour le reste de doInsert.
       for (const [side, scan] of Object.entries(scannerCornersRef.current)) {
-        if (!scan?.originalBlob) continue
-        let imageOriginal: string | null = null
-        const { data } = await supabase.storage
-          .from('training-originals')
-          .upload(`${uid}/${newCard.id}_${side}.jpg`, scan.originalBlob, { contentType: 'image/jpeg' })
-        if (data) imageOriginal = data.path
-        if (!geminiOut || !finalOut) continue // pas d'identification Gemini sur cette carte -- rien a inserer (NOT NULL)
-        supabase.from('training_data').insert({
-          user_id: uid, carte_id: newCard.id,
-          image_original: imageOriginal,
-          gemini_corners: scan.gemini ?? null,
-          final_corners: scan.final ?? null,
-          corners_adjusted: scan.adjusted ?? false,
-          gemini_output: geminiOut,
-          final_output: finalOut,
-          corrected: correctedFields.length > 0,
-          corrected_fields: correctedFields,
-          source: 'galerie',
-        }).then(({ error }) => { if (error) console.error('[training_data]', error) })
+        const originalBlob = scan?.originalBlob
+        if (!originalBlob) continue
+        ;(async () => {
+          let imageOriginal: string | null = null
+          try {
+            const { data } = await supabase.storage
+              .from('training-originals')
+              .upload(`${uid}/${newCard.id}_${side}.jpg`, originalBlob, { contentType: 'image/jpeg' })
+            if (data) imageOriginal = data.path
+          } catch (e) { console.error('[training-originals]', e); return }
+          if (!geminiOut || !finalOut) return // pas d'identification Gemini sur cette carte -- rien a inserer (NOT NULL)
+          const { error } = await supabase.from('training_data').insert({
+            user_id: uid, carte_id: newCard.id,
+            image_original: imageOriginal,
+            gemini_corners: scan.gemini ?? null,
+            final_corners: scan.final ?? null,
+            corners_adjusted: scan.adjusted ?? false,
+            gemini_output: geminiOut,
+            final_output: finalOut,
+            corrected: correctedFields.length > 0,
+            corrected_fields: correctedFields,
+            source: 'galerie',
+          })
+          if (error) console.error('[training_data]', error)
+        })()
       }
     }
     const { data: { session } } = await supabase.auth.getSession()
