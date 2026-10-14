@@ -11,7 +11,15 @@
  *   node scripts/scrape-checklistinsider.js --season-url=https://www.checklistinsider.com/basketball-cards/2025-26-basketball-cards
  *   node scripts/scrape-checklistinsider.js --sport=basketball --from=2025 --to=2020      (annees de depart de saison)
  *   node scripts/scrape-checklistinsider.js --sport=football --from=2025 --to=2015
- *   options : --dry-run (rien n'est ecrit), --force (retraite meme les pages deja faites), --all (inclut Euroleague, NBL...)
+ *   node scripts/scrape-checklistinsider.js --all-seasons                                  (toutes les saisons listees sur le site, tous sports)
+ *   node scripts/scrape-checklistinsider.js --all-seasons --sport=basketball               (toutes les saisons listees, un seul sport)
+ *   options : --dry-run (rien n'est ecrit), --force / --gaps (retraite meme les pages deja faites, sans tout re-ecrire : voir regles d'import),
+ *             --all (inclut Euroleague, NBL...)
+ *
+ * Suivi en direct (checkpoint + avancement) :
+ *   - scripts/checkpoint-checklistinsider.json liste chaque page de set deja traitee (reprise automatique apres interruption) ;
+ *   - chaque page affiche son resultat au fur et a mesure (section/compte de cartes, nouvelles vs deja en base) ;
+ *   - en fin de run : total de pages traitees, erreurs, et cartes ajoutees.
  *
  * Regles d'import (jamais destructif, comme import-tcdb.js) :
  *   - set deja present (meme annee + sport + nom) : on AJOUTE seulement les cartes (numero + joueur) absentes du set, avec tous leurs
@@ -30,8 +38,9 @@ const args = Object.fromEntries(process.argv.slice(2).filter(a => a.startsWith('
   const i = a.indexOf('='); return i < 0 ? [a.slice(2), true] : [a.slice(2, i), a.slice(i + 1)]
 }))
 const DRY = !!args['dry-run']
-const FORCE = !!args.force
+const FORCE = !!args.force || !!args.gaps
 const ALL = !!args.all
+const ALL_SEASONS = !!args['all-seasons']
 const CHECKPOINT = path.join(__dirname, 'checkpoint-checklistinsider.json')
 const CI = 'https://www.checklistinsider.com'
 
@@ -278,20 +287,48 @@ function seasonUrlFor(sport, y) {
   return `${CI}/${sport}-cards/${y}-${sport}-cards`
 }
 
+// ── Decouverte automatique des saisons listees sur le site (categories = sports deja suivis sur Memorabilius) ────────────
+const CATEGORIES = ['basketball-cards', 'football-cards', 'baseball-cards', 'hockey-cards', 'soccer-cards', 'racing-cards', 'wrestling-cards', 'mma-cards', 'tennis-cards']
+async function discoverSeasons(catSlug) {
+  const html = await getText(`${CI}/${catSlug}`)
+  const $ = cheerio.load(html)
+  const seasons = new Set()
+  $('a[href]').each((_, a) => {
+    const m = new RegExp(`^https://www\\.checklistinsider\\.com/${catSlug}/([a-z0-9-]+)/?$`).exec($(a).attr('href') || '')
+    if (m) seasons.add(`${CI}/${catSlug}/${m[1]}`)
+  })
+  return [...seasons]
+}
+
 async function main() {
   const cp = loadCp()
+  let seasonUrls = []
   let urls = []
   if (args.url) urls = [args.url]
-  else if (args['season-url']) urls = await seasonSets(args['season-url'])
-  else if (args.sport) {
-    const from = parseInt(args.from || new Date().getFullYear()), to = parseInt(args.to || from)
-    for (let y = from; y >= to; y--) {
-      console.log(`📅 Liste ${args.sport} ${y}…`)
-      urls.push(...await seasonSets(seasonUrlFor(args.sport, y)))
+  else if (args['season-url']) seasonUrls = [args['season-url']]
+  else if (ALL_SEASONS) {
+    const cats = args.sport ? [`${args.sport}-cards`] : CATEGORIES
+    for (const cat of cats) {
+      console.log(`📅 Saisons listées pour ${cat}…`)
+      seasonUrls.push(...await discoverSeasons(cat))
+      await sleep(rand(1000, 2000))
     }
-  } else { console.error('Usage : --url=<page de set> | --season-url=<page de saison> | --sport=basketball --from=2025 --to=2020  [--dry-run] [--force] [--all]'); process.exit(1) }
+  } else if (args.sport) {
+    const from = parseInt(args.from || new Date().getFullYear()), to = parseInt(args.to || from)
+    for (let y = from; y >= to; y--) seasonUrls.push(seasonUrlFor(args.sport, y))
+  } else {
+    console.error('Usage : --url=<page de set> | --season-url=<page de saison> | --sport=basketball --from=2025 --to=2020 | --all-seasons [--sport=basketball]  [--dry-run] [--force/--gaps] [--all]')
+    process.exit(1)
+  }
+  if (seasonUrls.length) {
+    console.log(`\n${seasonUrls.length} page(s) de saison :\n${seasonUrls.join('\n')}\n`)
+    for (const su of seasonUrls) {
+      console.log(`\n── ${su} ──`)
+      urls.push(...await seasonSets(su))
+    }
+  }
   urls = [...new Set(urls)]
-  console.log(`\n${DRY ? '🔍 DRY-RUN — ' : ''}${urls.length} page(s) de set\n`)
+  console.log(`\n${DRY ? '🔍 DRY-RUN — ' : ''}${urls.length} page(s) de set au total\n`)
   let ok = 0, err = 0
   for (let i = 0; i < urls.length; i++) {
     console.log(`[${i + 1}/${urls.length}] ${urls[i]}`)
