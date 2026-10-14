@@ -860,7 +860,64 @@ function gaussElim(A: number[][], b: number[]): number[] {
   return x
 }
 
+// Redressement par OpenCV (WASM, deja charge pour la detection des coins) : meme transformation
+// geometrique (homographie a partir des 4 coins), meme taille de sortie, meme interpolation bilineaire
+// et meme remplissage blanc hors cadre que warpCardJS plus bas -- juste calcule par une routine native
+// compilee au lieu d'une boucle JS pixel par pixel, ce qui evite le gel de quelques secondes observe
+// (toujours au recto : premiere carte de la session, le moteur JS n'a pas encore "chauffe" cette boucle).
+async function warpCardCV(cv: any, img: HTMLImageElement, corners: Pt[]): Promise<Blob | null> {
+  const [tl, tr, br, bl] = corners
+  const avgW = (Math.hypot(tr.x - tl.x, tr.y - tl.y) + Math.hypot(br.x - bl.x, br.y - bl.y)) / 2
+  const avgH = (Math.hypot(bl.x - tl.x, bl.y - tl.y) + Math.hypot(br.x - tr.x, br.y - tr.y)) / 2
+  const isLandscape = avgW > avgH
+  const OUT_W = isLandscape ? 1680 : 1200
+  const OUT_H = isLandscape ? 1200 : 1680
+
+  const MAX_SRC = 2400
+  const srcScale = Math.min(1, MAX_SRC / Math.max(img.naturalWidth, img.naturalHeight))
+  const IW = Math.round(img.naturalWidth * srcScale)
+  const IH = Math.round(img.naturalHeight * srcScale)
+  const srcC = document.createElement('canvas')
+  srcC.width = IW; srcC.height = IH
+  srcC.getContext('2d')!.drawImage(img, 0, 0, IW, IH)
+  const scaledCorners = corners.map(p => ({ x: p.x * srcScale, y: p.y * srcScale }))
+
+  let srcMat: any, dstMat: any, M: any, srcPts: any, dstPts: any
+  try {
+    srcMat = cv.imread(srcC)
+    dstMat = new cv.Mat()
+    srcPts = cv.matFromArray(4, 1, cv.CV_32FC2, [
+      scaledCorners[0].x, scaledCorners[0].y, scaledCorners[1].x, scaledCorners[1].y,
+      scaledCorners[2].x, scaledCorners[2].y, scaledCorners[3].x, scaledCorners[3].y,
+    ])
+    dstPts = cv.matFromArray(4, 1, cv.CV_32FC2, [0, 0, OUT_W, 0, OUT_W, OUT_H, 0, OUT_H])
+    M = cv.getPerspectiveTransform(srcPts, dstPts)
+    cv.warpPerspective(srcMat, dstMat, M, new cv.Size(OUT_W, OUT_H), cv.INTER_LINEAR, cv.BORDER_CONSTANT, new cv.Scalar(255, 255, 255, 255))
+    const outC = document.createElement('canvas')
+    outC.width = OUT_W; outC.height = OUT_H
+    cv.imshow(outC, dstMat)
+    const blob = await new Promise<Blob | null>(res => outC.toBlob(b => { outC.width = 0; res(b) }, 'image/jpeg', 0.92))
+    return blob
+  } finally {
+    srcMat?.delete(); dstMat?.delete(); M?.delete(); srcPts?.delete(); dstPts?.delete()
+    srcC.width = 0
+  }
+}
+
 async function warpCard(img: HTMLImageElement, corners: Pt[]): Promise<Blob> {
+  // OpenCV d'abord (rapide, voir warpCardCV ci-dessus) ; repli sur la boucle JS pure (warpCardJS,
+  // identique a l'ancien comportement) si le WASM n'a pas pu charger (CDN inaccessible, timeout...).
+  try {
+    const cv = await Promise.race([loadOpenCV(), new Promise<null>(r => setTimeout(() => r(null), 3000))])
+    if (cv) {
+      const blob = await warpCardCV(cv, img, corners)
+      if (blob) return blob
+    }
+  } catch { /* bascule sur le JS pur ci-dessous */ }
+  return warpCardJS(img, corners)
+}
+
+async function warpCardJS(img: HTMLImageElement, corners: Pt[]): Promise<Blob> {
   // Vraie correction perspective par homographie inverse + interpolation bilinéaire.
   // Remplace l'ancienne approche rotation/scale qui ne corrigeait pas la déformation
   // d'une carte photographiée en biais.
