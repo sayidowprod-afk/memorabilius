@@ -507,8 +507,11 @@ export default function NativeHomeDashboard({ siteStats, cardOfTheDay }: { siteS
           {(data.lastCards || []).length
             // pile des 5 dernieres cartes ajoutees : de l'arriere (la plus ancienne) vers l'avant (la plus recente)
             ? [...(data.lastCards || [])].slice(0, 5).map((c, i) => ({ c, i })).reverse().map(({ c, i }) => (
-                <img key={i} src={heroThumb(c.image, 440)} alt="" className={`dd-hero-card dd-pile-${i}${heroLandscape[i] ? ' dd-hero-card--h' : ''}`}
-                  onLoad={e => { const land = e.currentTarget.naturalWidth > e.currentTarget.naturalHeight; setHeroLandscape(p => p[i] === land ? p : { ...p, [i]: land }) }} />
+                // toutes les cartes de l'eventail ont la MEME case portrait (espacement regulier) ; une carte horizontale y est tournee de 90 degres, comme dans la galerie
+                <span key={i} className={`dd-hero-card dd-pile-${i}`}>
+                  <img src={heroThumb(c.image, 440)} alt="" className={heroLandscape[i] ? 'h' : undefined}
+                    onLoad={e => { const land = e.currentTarget.naturalWidth > e.currentTarget.naturalHeight; setHeroLandscape(p => p[i] === land ? p : { ...p, [i]: land }) }} />
+                </span>
               ))
             : <div className="dd-hero-card dd-hero-card--empty" />}
           <span className="dd-hero-go"><ChevronIcon /></span>
@@ -669,9 +672,10 @@ export const DD_CSS = `
 .dd-hero-last strong { color: #fff; }
 .dd-hero-r { position: relative; width: clamp(130px, 24vw, 280px); flex-shrink: 0; }
 .dd-hero-card { position: absolute; right: clamp(14px, 3vw, 40px); bottom: clamp(14px, 3vw, 30px); width: clamp(84px, 14vw, 170px); aspect-ratio: 2.5/3.5;
-  object-fit: cover; transform: rotate(5deg); box-shadow: 0 24px 50px rgba(0,0,0,.55); border: 0; border-radius: 0; }
-/* carte horizontale : ratio inverse (sinon elle est rognee en vertical) et un peu plus large pour rester lisible */
-.dd-hero-card--h { aspect-ratio: 3.5/2.5; width: clamp(120px, 20vw, 250px); }
+  display: block; overflow: hidden; transform: rotate(5deg); box-shadow: 0 24px 50px rgba(0,0,0,.55); border: 0; border-radius: 0; }
+.dd-hero-card > img { display: block; width: 100%; height: 100%; object-fit: cover; background: none; }
+/* carte horizontale : tournee de 90 degres dans la case portrait (meme rendu que les vignettes de la galerie) */
+.dd-hero-card > img.h { position: absolute; width: 140%; height: 71.43%; left: -20%; top: 14.286%; transform: rotate(90deg); }
 /* eventail des 3 dernieres cartes : la plus recente devant (a droite), les autres decalees vers la gauche */
 .dd-hero-card { transform-origin: 50% 100%; }
 /* pile des 5 dernieres cartes : la plus recente devant, les autres decalees et inclinees, qui debordent du cadre par le bas */
