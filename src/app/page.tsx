@@ -6,8 +6,10 @@ import PodiumSection from '@/components/PodiumSection'
 import PWAInstall from '@/components/PWAInstall'
 import NativeHomeGate from '@/components/NativeHomeGate'
 
-// ISR : rebuild en arrière-plan toutes les 5 min, instantané pour les visiteurs
-export const revalidate = 300
+// ISR : rebuild en arrière-plan toutes les 15 min, instantané pour les visiteurs
+// (etait 5 min -- contenu "derniers ajouts"/podium, pas besoin d'etre aussi frequent,
+// coute en ecritures ISR facturees ; voir audit couts Vercel)
+export const revalidate = 900
 
 interface Card {
   img: string; name: string; variant: string; year: string

@@ -4,7 +4,9 @@ import { supabase } from '@/lib/supabase'
 import { normalizeGuideBlocks, type GuideBlock } from '@/lib/guideBlockTypes'
 import { GuideArticle } from '@/lib/guidePageRender'
 
-export const revalidate = 300
+// 1h (etait 5 min) : le contenu d'un guide change rarement une fois publie,
+// inutile de le regenerer aussi souvent -- coute en ecritures ISR facturees (voir audit Vercel)
+export const revalidate = 3600
 
 const SUPPORTED_LANGS = ['en', 'de'] as const
 type TransLang = typeof SUPPORTED_LANGS[number]

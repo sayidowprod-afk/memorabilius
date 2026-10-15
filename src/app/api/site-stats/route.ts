@@ -1,12 +1,15 @@
 import { NextResponse } from 'next/server'
 import { supabase } from '@/lib/supabase'
 
-// Alimente le compteur "en direct" de la page d'accueil (voir LiveStat.tsx) --
-// mêmes requêtes que le rendu serveur de la home, exposées ici pour un
-// polling client léger. Cache court côté CDN : avec potentiellement des
-// centaines de visiteurs qui pollent toutes les ~20s, sans cache chaque
-// visiteur redéclenche les mêmes agrégations Supabase.
-export const revalidate = 15
+// Alimente le compteur "en direct" de la page d'accueil (voir HomeHero.tsx,
+// polling client toutes les ~20s) -- mêmes requêtes que le rendu serveur de
+// la home, exposées ici pour un polling client léger. Cache côté CDN : avec
+// potentiellement des centaines de visiteurs qui pollent toutes les ~20s,
+// sans cache chaque visiteur redéclenche les mêmes agrégations Supabase.
+// 60s (pas 15s) : une regeneration ISR a un coup, et personne ne remarque un
+// compteur "en direct" qui bouge toutes les minutes plutot que toutes les 15s
+// -- coute 4x moins cher en écritures ISR pour un gain visuel nul.
+export const revalidate = 60
 
 export async function GET() {
   const [
