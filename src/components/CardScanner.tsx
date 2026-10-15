@@ -10,7 +10,7 @@ import { toast } from '@/lib/toast'
 // les temps de warpCard à l'écran que pour le compte admin, jamais aux autres
 // utilisateurs. Activé dès que ce compte ouvre un CardScanner. À retirer une fois
 // le diagnostic terminé.
-const DEBUG_EMAIL = 'kikibajkiki@gmail.com'
+const DEBUG_EMAIL = 'killianbajoni@hotmail.com'
 let scannerDebugEnabled = false
 supabase.auth.getUser().then(({ data }) => { if (data.user?.email === DEBUG_EMAIL) scannerDebugEnabled = true })
 
