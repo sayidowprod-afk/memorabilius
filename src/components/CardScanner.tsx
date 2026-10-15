@@ -845,6 +845,7 @@ function gaussElim(A: number[][], b: number[]): number[] {
 }
 
 async function warpCard(img: HTMLImageElement, corners: Pt[]): Promise<Blob> {
+  const _t0 = performance.now()
   // Vraie correction perspective par homographie inverse + interpolation bilinéaire.
   // Remplace l'ancienne approche rotation/scale qui ne corrigeait pas la déformation
   // d'une carte photographiée en biais.
@@ -879,8 +880,10 @@ async function warpCard(img: HTMLImageElement, corners: Pt[]): Promise<Blob> {
   // copie de sécurité...), indépendant du nombre de pixels lus -- les multiplier était la vraie dépense, pas le
   // calcul par pixel lui-même. La source est deja plafonnée a 2400px (max ~23 Mo de pixels), ce qui tient
   // largement en mémoire pour une action ponctuelle déclenchée par l'utilisateur.
+  console.log('[scanner] warpCard: avant getImageData', (performance.now() - _t0).toFixed(0), 'ms, src', IW + 'x' + IH)
   const srcPx = srcCtx.getImageData(0, 0, IW, IH).data
   srcC.width = 0 // libère le backing store du canvas, les pixels sont désormais en mémoire dans srcPx
+  console.log('[scanner] warpCard: apres getImageData', (performance.now() - _t0).toFixed(0), 'ms')
 
   const outImg = new ImageData(OUT_W, OUT_H)
   const od = outImg.data
@@ -913,10 +916,16 @@ async function warpCard(img: HTMLImageElement, corners: Pt[]): Promise<Blob> {
     }
   }
 
+  console.log('[scanner] warpCard: apres boucle homographie', (performance.now() - _t0).toFixed(0), 'ms')
+
   const outC = document.createElement('canvas')
   outC.width = OUT_W; outC.height = OUT_H
   outC.getContext('2d')!.putImageData(outImg, 0, 0)
-  return new Promise((res, rej) => outC.toBlob(b => { outC.width = 0; b ? res(b) : rej(new Error('toBlob')) }, 'image/jpeg', 0.92))
+  return new Promise((res, rej) => outC.toBlob(b => {
+    outC.width = 0
+    console.log('[scanner] warpCard: termine (toBlob)', (performance.now() - _t0).toFixed(0), 'ms')
+    b ? res(b) : rej(new Error('toBlob'))
+  }, 'image/jpeg', 0.92))
 }
 
 // ── Composant ────────────────────────────────────────────────────────────
@@ -1427,13 +1436,16 @@ export default function CardScanner({ src, onResult, onFallback, onClose, frameR
 
   // ── Warp ───────────────────────────────────────────────────────────────
   const applyWarp = async () => {
+    const _t0 = performance.now()
     const img = imgRef.current
     if (!img || corners.length < 4 || applying) return
     setApplying(true)
     const s = scaleRef.current
     const naturalCorners = corners.map(c => ({ x: c.x / s, y: c.y / s }))
     try {
+      console.log('[scanner] applyWarp: debut warpCard', (performance.now() - _t0).toFixed(0), 'ms apres clic')
       const blob = await warpCard(img, naturalCorners)
+      console.log('[scanner] applyWarp: onResult', (performance.now() - _t0).toFixed(0), 'ms apres clic')
       onResult(blob)
     } catch {
       setApplying(false)
