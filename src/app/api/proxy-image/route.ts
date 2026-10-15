@@ -83,7 +83,11 @@ export async function GET(req: NextRequest) {
   return new NextResponse(res.body, {
     headers: {
       'Content-Type': contentType || 'image/jpeg',
-      'Cache-Control': 'private, max-age=60',
+      // Cacheable publiquement par le CDN : l'image renvoyee ne depend que de l'URL (query param),
+      // jamais d'une session/utilisateur precis -- "private" empechait tout cache CDN et faisait
+      // retelecharger l'image (depuis nous OU la source externe) a chaque vue, meme pour la meme
+      // URL vue par 2 visiteurs differents (coute en transfert sortant + invocations facturees).
+      'Cache-Control': 'public, max-age=3600, s-maxage=86400, stale-while-revalidate=604800',
     },
   })
 }
