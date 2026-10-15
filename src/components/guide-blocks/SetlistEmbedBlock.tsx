@@ -102,17 +102,20 @@ export default function SetlistEmbedBlock({ title, setId, setName, totalCards, s
   // "Fortune 15") puis on ne garde qu'une seule entrée par (numéro de carte,
   // joueur, variation canonique) — les doublons de couleur disparaissent. Fait ici
   // (avant classify/tri) pour que TOUS les onglets (Base, Team Sets, Full
-  // Checklist...) en bénéficient d'un coup. Les variations restantes (parallèles non
-  // reconnus par le vocabulaire couleur -- "Optic Red Cracked Ice", "Seismic"...) sont
-  // carrément exclues d'un guide : trop de bruit (chaque couleur répète le même roster),
-  // la checklist complète reste sur la page /setlist dédiée.
+  // Checklist...) en bénéficient d'un coup. Les parallèles couleur non reconnus par ce
+  // vocabulaire (ex: "Optic Red Cracked Ice", "Seismic"...) sont regroupés plus bas
+  // par la logique de familles (prefixe de nom), qui les range sous leur insert de
+  // base ("Optic") -- on ne les exclut JAMAIS en bloc par categorie : une premiere
+  // version de ce filtre excluait toute la categorie "variations", ce qui supprimait
+  // aussi de VRAIS inserts a part entiere sans mot-cle auto/memorabilia reconnu (ex.
+  // "Archetype", "Crusade", "Color Burst" sur Panini Phoenix 2023-24 -- une quarantaine
+  // d'inserts disparaissaient alors que seule la redondance des couleurs devait l'etre).
   const entriesToShow = useMemo(() => {
     const seen = new Set<string>()
     const out: Entry[] = []
     for (const e of entries) {
       const variation = colorVocab && colorVocab.size ? canonicalVariation(e.variation, colorVocab) : e.variation
       const merged = variation === e.variation ? e : { ...e, variation }
-      if (classify(merged) === 'variations') continue
       const key = `${e.card_number || ''} ${e.player_name} ${variation || ''}`
       if (seen.has(key)) continue
       seen.add(key)
