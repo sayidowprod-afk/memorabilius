@@ -932,14 +932,45 @@ async function warpCard(img: HTMLImageElement, corners: Pt[], timings?: string[]
 
   mark('apres boucle homographie')
 
-  const outC = document.createElement('canvas')
-  outC.width = OUT_W; outC.height = OUT_H
-  outC.getContext('2d')!.putImageData(outImg, 0, 0)
-  return new Promise((res, rej) => outC.toBlob(b => {
-    outC.width = 0
-    mark('termine (toBlob)')
-    b ? res(b) : rej(new Error('toBlob'))
-  }, 'image/jpeg', 0.92))
+  const blob = await encodeJpeg(outImg, OUT_W, OUT_H, 0.92)
+  mark('termine (encodage)')
+  return blob
+}
+
+// Worker dédié (voir warpEncodeWorker.ts) -- singleton réutilisé d'un scan à l'autre.
+let warpWorker: Worker | null | undefined
+function getWarpWorker(): Worker | null {
+  if (typeof window === 'undefined' || typeof OffscreenCanvas === 'undefined' || typeof Worker === 'undefined') return null
+  if (warpWorker === undefined) {
+    try { warpWorker = new Worker(new URL('../lib/warpEncodeWorker.ts', import.meta.url)) }
+    catch { warpWorker = null }
+  }
+  return warpWorker
+}
+
+async function encodeJpeg(imgData: ImageData, w: number, h: number, quality: number): Promise<Blob> {
+  const worker = getWarpWorker()
+  if (worker) {
+    try {
+      return await new Promise<Blob>((resolve, reject) => {
+        const timeout = setTimeout(() => reject(new Error('worker encode timeout')), 10000)
+        const onMessage = (e: MessageEvent) => {
+          clearTimeout(timeout)
+          worker.removeEventListener('message', onMessage)
+          if (e.data?.blob) resolve(e.data.blob)
+          else reject(new Error(e.data?.error || 'worker encode failed'))
+        }
+        worker.addEventListener('message', onMessage)
+        // Pas de transfert (pas de 2e argument postMessage) : imgData.data reste
+        // utilisable côté principal en cas d'échec/timeout, pour le repli ci-dessous.
+        worker.postMessage({ width: w, height: h, buffer: imgData.data.buffer, quality })
+      })
+    } catch { /* repli ci-dessous (navigateur sans OffscreenCanvas, erreur worker...) */ }
+  }
+  const c = document.createElement('canvas')
+  c.width = w; c.height = h
+  c.getContext('2d')!.putImageData(imgData, 0, 0)
+  return new Promise((res, rej) => c.toBlob(b => { c.width = 0; b ? res(b) : rej(new Error('toBlob')) }, 'image/jpeg', quality))
 }
 
 // ── Composant ────────────────────────────────────────────────────────────
