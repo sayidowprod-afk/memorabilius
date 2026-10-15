@@ -867,7 +867,13 @@ async function warpCard(img: HTMLImageElement, corners: Pt[]): Promise<Blob> {
   const IH = Math.round(img.naturalHeight * srcScale)
   const srcC = document.createElement('canvas')
   srcC.width = IW; srcC.height = IH
-  const srcCtx = srcC.getContext('2d')!
+  // willReadFrequently : force un canvas CPU (pas accéléré GPU). Sans ça, le navigateur
+  // peut garder ce canvas en mémoire GPU puisqu'on y dessine (drawImage) -- getImageData
+  // juste après doit alors rapatrier tous les pixels du GPU vers le CPU, un aller-retour
+  // dont la latence varie fortement selon ce que fait le compositeur à cet instant precis
+  // (c'est le candidat le plus probable pour expliquer la lenteur aleatoire du warp, le
+  // meme calcul prenant tantot <1s tantot >10s sur le meme appareil).
+  const srcCtx = srcC.getContext('2d', { willReadFrequently: true })!
   srcCtx.drawImage(img, 0, 0, IW, IH)
   // Homographie inverse sur les coins à l'échelle réduite
   const scaledCorners = corners.map(p => ({ x: p.x * srcScale, y: p.y * srcScale }))
@@ -913,44 +919,15 @@ async function warpCard(img: HTMLImageElement, corners: Pt[]): Promise<Blob> {
     }
   }
 
-  const blob = await encodeJpeg(outImg, OUT_W, OUT_H, 0.92)
-  return blob
-}
-
-// Worker dédié (voir warpEncodeWorker.ts) -- singleton réutilisé d'un scan à l'autre.
-let warpWorker: Worker | null | undefined
-function getWarpWorker(): Worker | null {
-  if (typeof window === 'undefined' || typeof OffscreenCanvas === 'undefined' || typeof Worker === 'undefined') return null
-  if (warpWorker === undefined) {
-    try { warpWorker = new Worker(new URL('../lib/warpEncodeWorker.ts', import.meta.url)) }
-    catch { warpWorker = null }
-  }
-  return warpWorker
-}
-
-async function encodeJpeg(imgData: ImageData, w: number, h: number, quality: number): Promise<Blob> {
-  const worker = getWarpWorker()
-  if (worker) {
-    try {
-      return await new Promise<Blob>((resolve, reject) => {
-        const timeout = setTimeout(() => reject(new Error('worker encode timeout')), 10000)
-        const onMessage = (e: MessageEvent) => {
-          clearTimeout(timeout)
-          worker.removeEventListener('message', onMessage)
-          if (e.data?.blob) resolve(e.data.blob)
-          else reject(new Error(e.data?.error || 'worker encode failed'))
-        }
-        worker.addEventListener('message', onMessage)
-        // Pas de transfert (pas de 2e argument postMessage) : imgData.data reste
-        // utilisable côté principal en cas d'échec/timeout, pour le repli ci-dessous.
-        worker.postMessage({ width: w, height: h, buffer: imgData.data.buffer, quality })
-      })
-    } catch { /* repli ci-dessous (navigateur sans OffscreenCanvas, erreur worker...) */ }
-  }
-  const c = document.createElement('canvas')
-  c.width = w; c.height = h
-  c.getContext('2d')!.putImageData(imgData, 0, 0)
-  return new Promise((res, rej) => c.toBlob(b => { c.width = 0; b ? res(b) : rej(new Error('toBlob')) }, 'image/jpeg', quality))
+  const outC = document.createElement('canvas')
+  outC.width = OUT_W; outC.height = OUT_H
+  // Même raison que srcCtx ci-dessus : toBlob() doit lire les pixels du canvas pour
+  // encoder le JPEG, un canvas accéléré GPU impose le même aller-retour coûteux/variable.
+  outC.getContext('2d', { willReadFrequently: true })!.putImageData(outImg, 0, 0)
+  return new Promise((res, rej) => outC.toBlob(b => {
+    outC.width = 0
+    b ? res(b) : rej(new Error('toBlob'))
+  }, 'image/jpeg', 0.92))
 }
 
 // ── Composant ────────────────────────────────────────────────────────────
