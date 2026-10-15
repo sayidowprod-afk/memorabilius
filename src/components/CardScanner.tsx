@@ -15,11 +15,18 @@ type CornerData = {
   originalBlob: Blob  // photo avant recadrage — nécessaire pour entraîner un modèle de détection de coins
 }
 
+// Sert uniquement au dataset d'entrainement des coins (jamais a la carte affichee/stockee sur le site --
+// ca, c'est warpCard, deja plafonne a 2400px cote source). Sans plafond ici, une photo 12+ Mpx (telephone
+// recent) encodait en JPEG a pleine resolution EN PARALLELE de warpCard (Promise.all) -- vu que les deux
+// tournent en meme temps, c'est le plus lent des deux qui determine la duree du "Traitement" au clic sur
+// "Utiliser". 2400px (meme plafond que warpCard) reste largement suffisant pour l'entrainement.
+const TRAINING_MAX_SRC = 2400
 function imgToBlob(img: HTMLImageElement, quality = 0.88): Promise<Blob> {
   return new Promise((resolve, reject) => {
+    const scale = Math.min(1, TRAINING_MAX_SRC / Math.max(img.naturalWidth, img.naturalHeight))
     const c = document.createElement('canvas')
-    c.width = img.naturalWidth; c.height = img.naturalHeight
-    c.getContext('2d')!.drawImage(img, 0, 0)
+    c.width = Math.round(img.naturalWidth * scale); c.height = Math.round(img.naturalHeight * scale)
+    c.getContext('2d')!.drawImage(img, 0, 0, c.width, c.height)
     c.toBlob(b => { c.width = 0; b ? resolve(b) : reject(new Error('toBlob')) }, 'image/jpeg', quality)
   })
 }
