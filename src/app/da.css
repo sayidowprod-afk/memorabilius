@@ -431,7 +431,7 @@ html[data-theme="light"] .cf-loader i, :root:not([data-theme="dark"]) .cf-loader
 .pp-st.slam { animation: ppSlam .6s cubic-bezier(.2, .9, .3, 1.1) both; }
 
 /* ── Carte du jour ── */
-.cdj { position: relative; overflow: hidden; display: grid; grid-template-columns: 230px 1fr; gap: 40px; align-items: center; border: 3px solid #fff; padding: 34px 36px 34px 34px; margin: 0 0 44px;
+.cdj { position: relative; overflow: hidden; display: grid; grid-template-columns: 230px minmax(0, 1fr); gap: 40px; align-items: center; border: 3px solid #fff; padding: 34px 36px 34px 34px; margin: 0 0 44px;
   background: linear-gradient(135deg, #050912 0%, #08153b 45%, #003da6 100%); }
 .cdj, .cdj * { color: #fff !important; }
 .cdj-wm { position: absolute; right: 18px; bottom: -34px; font-size: clamp(180px, 30vw, 330px); line-height: .8; font-weight: 400; color: transparent !important; -webkit-text-stroke: 3px rgba(255,255,255,.14); pointer-events: none; user-select: none; }
@@ -440,21 +440,22 @@ html[data-theme="light"] .cf-loader i, :root:not([data-theme="dark"]) .cf-loader
 .cdj-day b { display: block; font-size: 46px; line-height: .9; font-weight: 400; } .cdj-day small { font: 800 9px system-ui, sans-serif; letter-spacing: .18em; text-transform: uppercase; }
 .cdj-img { position: relative; z-index: 1; display: block; transform: rotate(-3deg); margin-top: 18px; }
 .cdj-img img { display: block; width: 100%; aspect-ratio: 2.5 / 3.5; object-fit: cover; border-radius: 0; box-shadow: 0 22px 46px rgba(0,0,0,.6); background: none !important; animation: none !important; }
-.cdj-info { position: relative; z-index: 1; display: flex; flex-direction: column; align-items: flex-start; gap: 14px; }
+.cdj-info { position: relative; z-index: 1; display: flex; flex-direction: column; align-items: flex-start; gap: 14px; min-width: 0; width: 100%; }
 .cdj h3 { margin: 0; font-size: clamp(40px, 6vw, 72px); line-height: .9; font-weight: 400; }
 .cdj-meta { margin: 0; opacity: .85; font-size: 15px; line-height: 1.4; max-width: 520px; }
 .cdj-chips { display: flex; flex-wrap: wrap; gap: 8px; }
 .cdj-chips span { border: 2px solid rgba(255,255,255,.7); padding: 4px 10px; font: 800 11px system-ui, sans-serif; letter-spacing: .1em; text-transform: uppercase; }
-.cdj-owner { display: flex; align-items: center; gap: 12px; text-decoration: none; border-top: 2px solid rgba(255,255,255,.28); padding-top: 14px; width: 100%; max-width: 460px; }
+.cdj-owner { display: flex; align-items: center; gap: 12px; text-decoration: none; border-top: 2px solid rgba(255,255,255,.28); padding-top: 14px; width: 100%; max-width: 460px; min-width: 0; }
 .cdj-owner img { width: 44px; height: 44px; border-radius: 50%; object-fit: cover; border: 2px solid #fff; flex-shrink: 0; background: none !important; animation: none !important; }
-.cdj-owner span { display: flex; flex-direction: column; line-height: 1.15; } .cdj-owner small { font: 700 10px system-ui, sans-serif; letter-spacing: .14em; text-transform: uppercase; opacity: .7; }
-.cdj-owner b { font: 800 16px system-ui, sans-serif; } .cdj-owner i { font: 600 12px system-ui, sans-serif; font-style: normal; opacity: .75; }
+.cdj-owner span { display: flex; flex-direction: column; line-height: 1.15; min-width: 0; } .cdj-owner small { font: 700 10px system-ui, sans-serif; letter-spacing: .14em; text-transform: uppercase; opacity: .7; }
+/* pseudo tronque proprement (…) si trop long pour la place disponible, au lieu d'etre coupe net par le bord de l'ecran */
+.cdj-owner b { font: 800 16px system-ui, sans-serif; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; max-width: 100%; } .cdj-owner i { font: 600 12px system-ui, sans-serif; font-style: normal; opacity: .75; }
 .cdj-actions { display: flex; gap: 10px; flex-wrap: wrap; }
 .cdj-btn { display: inline-block; background: #fff; padding: 10px 20px; font: 800 12px system-ui, sans-serif; letter-spacing: .1em; text-transform: uppercase; text-decoration: none; border: 3px solid #fff; }
 .cdj-btn, .cdj-btn * { color: #06122e !important; } .cdj-btn:hover { background: transparent; } .cdj-btn:hover, .cdj-btn:hover * { color: #fff !important; }
 .cdj-btn.alt { background: transparent; } .cdj-btn.alt, .cdj-btn.alt * { color: #fff !important; } .cdj-btn.alt:hover { background: #fff; } .cdj-btn.alt:hover, .cdj-btn.alt:hover * { color: #06122e !important; }
 .cdj-eyebrow { display: inline-block; padding: 5px 14px; border: 3px solid #fff; box-shadow: inset 0 0 0 3px #08153b, inset 0 0 0 4.5px #fff; font: 800 12px system-ui, sans-serif; letter-spacing: .18em; text-transform: uppercase; }
-@media (max-width: 700px) { .cdj { grid-template-columns: 130px 1fr; gap: 20px; padding: 26px 18px 26px 18px; } .cdj h3 { font-size: 34px; } .cdj-meta { font-size: 12.5px; } .cdj-wm { font-size: 170px; } .cdj-btn { padding: 8px 14px; } }
+@media (max-width: 700px) { .cdj { grid-template-columns: 130px minmax(0, 1fr); gap: 20px; padding: 26px 18px 26px 18px; } .cdj h3 { font-size: 34px; } .cdj-meta { font-size: 12.5px; } .cdj-wm { font-size: 170px; } .cdj-btn { padding: 8px 14px; } }
 
 /* ── Affiche "Recherche" (wishlist publique) ── */
 .wanted-poster { --pp: #eee3c8; --ink: #3a2a0a; --ink2: #6a5630; background: var(--pp); border: 5px double var(--ink); box-shadow: 0 10px 24px rgba(0,0,0,.4); display: flex; flex-direction: column; position: relative;
@@ -968,8 +969,8 @@ html[data-theme="light"] .tcdb-imp-open { border-color: #06122e; color: #06122e;
 .card-item.gc-rare .gc-bot { border-radius: 0; }
 
 /* Carte du jour dans le tableau de bord : meme largeur et memes marges que les autres blocs, carte plus grande */
-.dd .cdj { margin: 0 16px 14px; grid-template-columns: 280px 1fr; }
-@media (max-width: 700px) { .dd .cdj { grid-template-columns: 158px 1fr; gap: 16px; padding: 26px 14px 26px 14px; } }
+.dd .cdj { margin: 0 16px 14px; grid-template-columns: 280px minmax(0, 1fr); }
+@media (max-width: 700px) { .dd .cdj { grid-template-columns: 158px minmax(0, 1fr); gap: 16px; padding: 26px 14px 26px 14px; } }
 /* Desktop : la semaine passe a droite (2 rangees) pour remplir le bloc au lieu de laisser un grand vide */
 @media (min-width: 1000px) {
   .dd .cdj { grid-template-columns: 300px minmax(0, 1fr) minmax(320px, 440px); gap: 44px; padding: 40px 44px 40px 40px; }
