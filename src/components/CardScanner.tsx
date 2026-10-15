@@ -5,6 +5,14 @@ import { supabase } from '@/lib/supabase'
 import { detectCornersYOLO, warmupYOLO, isYOLOReady, waitForYOLO } from '@/lib/cornerDetectorYolo'
 import { useLang } from '@/lib/LangContext'
 import { toast } from '@/lib/toast'
+import jpeg from 'jpeg-js'
+import { Buffer } from 'buffer'
+
+// jpeg-js (encodeur JPEG pur JS utilisé par warpCard ci-dessous) appelle Buffer.from()
+// en interne -- absent par defaut cote navigateur (seul Node l'expose globalement).
+if (typeof window !== 'undefined' && !(window as unknown as { Buffer?: unknown }).Buffer) {
+  (window as unknown as { Buffer: typeof Buffer }).Buffer = Buffer
+}
 
 // Diagnostic temporaire (lenteur persistante au recto) : toast de timing visible
 // uniquement pour le compte admin.
@@ -933,17 +941,16 @@ async function warpCard(img: HTMLImageElement, corners: Pt[], timings?: string[]
 
   mark('apres boucle homographie')
 
-  const outC = document.createElement('canvas')
-  outC.width = OUT_W; outC.height = OUT_H
-  // Même raison que srcCtx ci-dessus : toBlob() doit lire les pixels du canvas pour
-  // encoder le JPEG, un canvas accéléré GPU impose le même aller-retour coûteux/variable.
-  outC.getContext('2d', { willReadFrequently: true })!.putImageData(outImg, 0, 0)
-  mark('apres putImageData')
-  return new Promise((res, rej) => outC.toBlob(b => {
-    outC.width = 0
-    mark('termine (toBlob)')
-    b ? res(b) : rej(new Error('toBlob'))
-  }, 'image/jpeg', 0.92))
+  // Encodeur JPEG en JS pur (jpeg-js), plutôt que canvas.toBlob() -- sur certains
+  // WebView Android, toBlob() a été mesuré entre 4 et 13 secondes de façon totalement
+  // imprévisible pour un même calcul/une même taille (confirmé stable même avec un
+  // canvas CPU via willReadFrequently) : un vrai bug/une vraie contention de l'encodeur
+  // natif sur cet appareil, pas quelque chose que notre code peut corriger côté canvas.
+  // jpeg-js n'appelle plus du tout cette API native -- performance prévisible au prix
+  // d'un encodage un peu plus lent dans le meilleur des cas.
+  const encoded = jpeg.encode({ data: od, width: OUT_W, height: OUT_H }, 92)
+  mark('termine (encodage JS)')
+  return new Blob([new Uint8Array(encoded.data)], { type: 'image/jpeg' })
 }
 
 // ── Composant ────────────────────────────────────────────────────────────
