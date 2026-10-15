@@ -4,7 +4,6 @@ import { createPortal } from 'react-dom'
 import { supabase } from '@/lib/supabase'
 import { detectCornersYOLO, warmupYOLO, isYOLOReady, waitForYOLO } from '@/lib/cornerDetectorYolo'
 import { useLang } from '@/lib/LangContext'
-import { toast } from '@/lib/toast'
 import jpeg from 'jpeg-js'
 import { Buffer } from 'buffer'
 
@@ -13,12 +12,6 @@ import { Buffer } from 'buffer'
 if (typeof window !== 'undefined' && !(window as unknown as { Buffer?: unknown }).Buffer) {
   (window as unknown as { Buffer: typeof Buffer }).Buffer = Buffer
 }
-
-// Diagnostic temporaire (lenteur persistante au recto) : toast de timing visible
-// uniquement pour le compte admin.
-const DEBUG_EMAIL = 'killianbajoni@hotmail.com'
-let scannerDebugEnabled = false
-supabase.auth.getUser().then(({ data }) => { if (data.user?.email === DEBUG_EMAIL) scannerDebugEnabled = true })
 
 type Pt = { x: number; y: number }
 type Status = 'detecting' | 'found' | 'notfound'
@@ -859,9 +852,7 @@ function gaussElim(A: number[][], b: number[]): number[] {
   return x
 }
 
-async function warpCard(img: HTMLImageElement, corners: Pt[], timings?: string[]): Promise<Blob> {
-  const _t0 = performance.now()
-  const mark = (label: string) => { timings?.push(`${label}: ${(performance.now() - _t0).toFixed(0)}ms`) }
+async function warpCard(img: HTMLImageElement, corners: Pt[]): Promise<Blob> {
   // Vraie correction perspective par homographie inverse + interpolation bilinéaire.
   // Remplace l'ancienne approche rotation/scale qui ne corrigeait pas la déformation
   // d'une carte photographiée en biais.
@@ -890,10 +881,8 @@ async function warpCard(img: HTMLImageElement, corners: Pt[], timings?: string[]
   // dont la latence varie fortement selon ce que fait le compositeur à cet instant precis
   // (c'est le candidat le plus probable pour expliquer la lenteur aleatoire du warp, le
   // meme calcul prenant tantot <1s tantot >10s sur le meme appareil).
-  mark(`debut (img ${img.naturalWidth}x${img.naturalHeight} -> src ${IW}x${IH})`)
   const srcCtx = srcC.getContext('2d', { willReadFrequently: true })!
   srcCtx.drawImage(img, 0, 0, IW, IH)
-  mark('apres drawImage')
   // Homographie inverse sur les coins à l'échelle réduite
   const scaledCorners = corners.map(p => ({ x: p.x * srcScale, y: p.y * srcScale }))
   const [h0, h1, h2, h3, h4, h5, h6, h7] = computeHomography(dst, scaledCorners)
@@ -906,7 +895,6 @@ async function warpCard(img: HTMLImageElement, corners: Pt[], timings?: string[]
   // largement en mémoire pour une action ponctuelle déclenchée par l'utilisateur.
   const srcPx = srcCtx.getImageData(0, 0, IW, IH).data
   srcC.width = 0 // libère le backing store du canvas, les pixels sont désormais en mémoire dans srcPx
-  mark('apres getImageData')
 
   const outImg = new ImageData(OUT_W, OUT_H)
   const od = outImg.data
@@ -939,8 +927,6 @@ async function warpCard(img: HTMLImageElement, corners: Pt[], timings?: string[]
     }
   }
 
-  mark('apres boucle homographie')
-
   // Encodeur JPEG en JS pur (jpeg-js), plutôt que canvas.toBlob() -- sur certains
   // WebView Android, toBlob() a été mesuré entre 4 et 13 secondes de façon totalement
   // imprévisible pour un même calcul/une même taille (confirmé stable même avec un
@@ -949,7 +935,6 @@ async function warpCard(img: HTMLImageElement, corners: Pt[], timings?: string[]
   // jpeg-js n'appelle plus du tout cette API native -- performance prévisible au prix
   // d'un encodage un peu plus lent dans le meilleur des cas.
   const encoded = jpeg.encode({ data: od, width: OUT_W, height: OUT_H }, 92)
-  mark('termine (encodage JS)')
   return new Blob([new Uint8Array(encoded.data)], { type: 'image/jpeg' })
 }
 
@@ -1461,16 +1446,13 @@ export default function CardScanner({ src, onResult, onFallback, onClose, frameR
 
   // ── Warp ───────────────────────────────────────────────────────────────
   const applyWarp = async () => {
-    const _t0 = performance.now()
     const img = imgRef.current
     if (!img || corners.length < 4 || applying) return
     setApplying(true)
     const s = scaleRef.current
     const naturalCorners = corners.map(c => ({ x: c.x / s, y: c.y / s }))
-    const timings: string[] = []
     try {
-      const blob = await warpCard(img, naturalCorners, timings)
-      if (scannerDebugEnabled) toast.info(`[debug scan] total ${(performance.now() - _t0).toFixed(0)}ms · ` + timings.join(' · '))
+      const blob = await warpCard(img, naturalCorners)
       onResult(blob)
     } catch {
       setApplying(false)
