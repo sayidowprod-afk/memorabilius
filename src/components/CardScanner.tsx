@@ -4,6 +4,15 @@ import { createPortal } from 'react-dom'
 import { supabase } from '@/lib/supabase'
 import { detectCornersYOLO, warmupYOLO, isYOLOReady, waitForYOLO } from '@/lib/cornerDetectorYolo'
 import { useLang } from '@/lib/LangContext'
+import { toast } from '@/lib/toast'
+
+// Diagnostic temporaire (lenteurs aléatoires au recto, signalées en prod) : n'affiche
+// les temps de warpCard à l'écran que pour le compte admin, jamais aux autres
+// utilisateurs. Activé dès que ce compte ouvre un CardScanner. À retirer une fois
+// le diagnostic terminé.
+const DEBUG_EMAIL = 'kikibajkiki@gmail.com'
+let scannerDebugEnabled = false
+supabase.auth.getUser().then(({ data }) => { if (data.user?.email === DEBUG_EMAIL) scannerDebugEnabled = true })
 
 type Pt = { x: number; y: number }
 type Status = 'detecting' | 'found' | 'notfound'
@@ -844,8 +853,13 @@ function gaussElim(A: number[][], b: number[]): number[] {
   return x
 }
 
-async function warpCard(img: HTMLImageElement, corners: Pt[]): Promise<Blob> {
+async function warpCard(img: HTMLImageElement, corners: Pt[], timings?: string[]): Promise<Blob> {
   const _t0 = performance.now()
+  const mark = (label: string) => {
+    const ms = (performance.now() - _t0).toFixed(0)
+    console.log('[scanner] warpCard:', label, ms, 'ms')
+    timings?.push(`${label}: ${ms}ms`)
+  }
   // Vraie correction perspective par homographie inverse + interpolation bilinéaire.
   // Remplace l'ancienne approche rotation/scale qui ne corrigeait pas la déformation
   // d'une carte photographiée en biais.
@@ -880,10 +894,10 @@ async function warpCard(img: HTMLImageElement, corners: Pt[]): Promise<Blob> {
   // copie de sécurité...), indépendant du nombre de pixels lus -- les multiplier était la vraie dépense, pas le
   // calcul par pixel lui-même. La source est deja plafonnée a 2400px (max ~23 Mo de pixels), ce qui tient
   // largement en mémoire pour une action ponctuelle déclenchée par l'utilisateur.
-  console.log('[scanner] warpCard: avant getImageData', (performance.now() - _t0).toFixed(0), 'ms, src', IW + 'x' + IH)
+  mark(`avant getImageData (src ${IW}x${IH})`)
   const srcPx = srcCtx.getImageData(0, 0, IW, IH).data
   srcC.width = 0 // libère le backing store du canvas, les pixels sont désormais en mémoire dans srcPx
-  console.log('[scanner] warpCard: apres getImageData', (performance.now() - _t0).toFixed(0), 'ms')
+  mark('apres getImageData')
 
   const outImg = new ImageData(OUT_W, OUT_H)
   const od = outImg.data
@@ -916,14 +930,14 @@ async function warpCard(img: HTMLImageElement, corners: Pt[]): Promise<Blob> {
     }
   }
 
-  console.log('[scanner] warpCard: apres boucle homographie', (performance.now() - _t0).toFixed(0), 'ms')
+  mark('apres boucle homographie')
 
   const outC = document.createElement('canvas')
   outC.width = OUT_W; outC.height = OUT_H
   outC.getContext('2d')!.putImageData(outImg, 0, 0)
   return new Promise((res, rej) => outC.toBlob(b => {
     outC.width = 0
-    console.log('[scanner] warpCard: termine (toBlob)', (performance.now() - _t0).toFixed(0), 'ms')
+    mark('termine (toBlob)')
     b ? res(b) : rej(new Error('toBlob'))
   }, 'image/jpeg', 0.92))
 }
@@ -1442,10 +1456,11 @@ export default function CardScanner({ src, onResult, onFallback, onClose, frameR
     setApplying(true)
     const s = scaleRef.current
     const naturalCorners = corners.map(c => ({ x: c.x / s, y: c.y / s }))
+    const timings: string[] = []
     try {
-      console.log('[scanner] applyWarp: debut warpCard', (performance.now() - _t0).toFixed(0), 'ms apres clic')
-      const blob = await warpCard(img, naturalCorners)
-      console.log('[scanner] applyWarp: onResult', (performance.now() - _t0).toFixed(0), 'ms apres clic')
+      const blob = await warpCard(img, naturalCorners, timings)
+      const totalMs = (performance.now() - _t0).toFixed(0)
+      if (scannerDebugEnabled) toast.info(`[debug scan] total ${totalMs}ms · ` + timings.join(' · '))
       onResult(blob)
     } catch {
       setApplying(false)
