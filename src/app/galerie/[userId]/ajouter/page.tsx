@@ -15,7 +15,6 @@ import { hapticSuccess } from '@/lib/haptics'
 import CameraCapture from '@/components/CameraCapture'
 import CollectionTagSelect from '@/components/CollectionTagSelect'
 import { SELECTABLE_FORMATS, getFormat } from '@/lib/cardFormats'
-import { cropFrameToOriginalCorners } from '@/lib/cropToCorners'
 const CardScanner = dynamic(() => import('@/components/CardScanner'), { ssr: false })
 const BinderLibrary = dynamic(() => import('@/components/BinderLibrary'), { ssr: false })
 
@@ -472,7 +471,6 @@ export default function AjouterCarte({ params }: { params: Promise<{ userId: str
   // plus jamais ensuite").
   const ebayHintsGenRef   = useRef(0)
   const [waitingForVerso, setWaitingForVerso] = useState(false)
-  const scannerCornersRef = useRef<Record<string, { gemini: any; final: any; adjusted: boolean; originalBlob: Blob | null }>>({})
   // Après l'insertion : propose de ranger la carte dans un classeur de la bibliothèque
   const [binderPrompt, setBinderPrompt] = useState<{ userId: string; img: string; back?: string; nom: string } | null>(null)
   const [showBinderPicker, setShowBinderPicker] = useState(false)
@@ -769,25 +767,6 @@ export default function AjouterCarte({ params }: { params: Promise<{ userId: str
     const finalCtx = finalCanvas.getContext('2d')!
     finalCtx.drawImage(outCanvas, 0, 0, finalCanvas.width, finalCanvas.height)
 
-    // Capture pour le dataset d'entraînement des coins -- jusqu'ici seul le scanner
-    // avec détection auto alimentait ce dataset (voir scannerCornersRef plus bas) ;
-    // un recadrage 100% manuel (échec de détection, ou formats qui la sautent) ne
-    // laissait donc jamais de trace, alors que ce sont les cas les plus utiles à
-    // apprendre. On calcule ici les coins finaux sur la photo d'origine à partir
-    // du cadre de recadrage (voir lib/cropToCorners.ts), comme si l'utilisateur
-    // les avait retouchés à la main -- ce qui est litteralement le cas.
-    if (side === 'recto' || side === 'verso') {
-      try {
-        const finalCorners = cropFrameToOriginalCorners({
-          outCanvasW: outCanvas.width, outCanvasH: outCanvas.height,
-          frameX, frameY, cw, ch, imgTransform, pixelScale, angleRad,
-          naturalWidth: img.naturalWidth, naturalHeight: img.naturalHeight,
-        })
-        const originalBlob = await fetch(cropModal.src).then(r => r.blob())
-        scannerCornersRef.current[side] = { gemini: null, final: finalCorners, adjusted: true, originalBlob }
-      } catch { /* pas grave si ça échoue -- ça ne doit jamais bloquer l'upload de la carte */ }
-    }
-
     setCropModal(null)
 
     // HD (pour le Viewer3D uniquement) seulement pour recto/verso -- inutile pour les
@@ -837,7 +816,7 @@ export default function AjouterCarte({ params }: { params: Promise<{ userId: str
     setPreviewRecto(null); setPreviewVerso(null); setPreviewIL(null); setPreviewIR(null)
     setBinderPrompt(null); setShowBinderPicker(false)
     setDesignation(''); setDesignationDone(false); setShowDesignation(false)
-    setScanError(null); setWaitingForVerso(false); rectoBase64Ref.current = null; ebayHintsRef.current = []; ebayHintsGenRef.current++; geminiPrediction.current = null; scannerCornersRef.current = {}
+    setScanError(null); setWaitingForVerso(false); rectoBase64Ref.current = null; ebayHintsRef.current = []; ebayHintsGenRef.current++; geminiPrediction.current = null
     // Sans ce clear, un champ corrige a la main sur une carte precedente
     // (ex: "équipe") restait marque "touché" pour toujours -> le résultat
     // Gemini de TOUTES les cartes suivantes de la session était ignoré pour
@@ -850,7 +829,7 @@ export default function AjouterCarte({ params }: { params: Promise<{ userId: str
   }
 
   const doInsert = async (uid: string) => {
-    const { data: newCard, error } = await supabase.from('cartes_manuelles').insert({
+    const { error } = await supabase.from('cartes_manuelles').insert({
       user_id: uid, nom: form.nom, equipe: form.equipe || null, annee: form.annee || null,
       marque: form.marque || null, collection: form.collection || null, variation: form.variation || null,
       notes_perso: form.notes_perso || null, notes_perso_public: form.notes_perso_public, grade: form.grade,
@@ -868,59 +847,8 @@ export default function AjouterCarte({ params }: { params: Promise<{ userId: str
       lien_vinted: form.lien_vinted || null,
       lien_ebay: form.lien_ebay || null,
       item_type: form.item_type || 'card',
-    }).select('id').single()
+    })
     if (error) { toast.error('Erreur : ' + error.message); setSaving(false); return }
-    // Upload photos originales pour dataset coins YOLO — une par face scannée
-    if (newCard) {
-      // gemini_output/final_output sont NOT NULL en base -- l'insert plus bas
-      // echouait silencieusement sur CHAQUE carte (l'erreur n'etait que
-      // loguee en console) car ces deux champs n'etaient jamais fournis,
-      // alors que la table a ete concue pour les recevoir (voir migration
-      // 20260729_training_data.sql). On ne peut donc inserer que si une
-      // identification Gemini a bien eu lieu pour cette carte -- sinon ces
-      // champs resteraient indefinissables et l'insert continuerait d'echouer.
-      const geminiOut = geminiPrediction.current
-      const finalOut = geminiOut ? {
-        nom: form.nom, equipe: form.equipe, annee: form.annee, marque: form.marque,
-        collection: form.collection, variation: form.variation, num: form.num,
-        card_number: form.card_number, grade: form.grade, rc: form.rc, auto: form.auto, patch: form.patch,
-      } : null
-      const correctedFields = geminiOut && finalOut
-        ? Object.keys(finalOut).filter(k => JSON.stringify((finalOut as any)[k] ?? '') !== JSON.stringify(geminiOut[k] ?? ''))
-        : []
-
-      // Pas attendu : l'upload de la photo originale (HD) + l'insert training_data n'ont aucune incidence sur la
-      // suite (confirmation, animation de paquet) -- en await ici, l'utilisateur patientait pour un enrichissement
-      // de dataset dont il ne voit jamais le resultat. Reste sequentiel PAR face (l'insert a besoin du chemin
-      // renvoye par l'upload), juste plus bloquant pour le reste de doInsert.
-      for (const [side, scan] of Object.entries(scannerCornersRef.current)) {
-        const originalBlob = scan?.originalBlob
-        if (!originalBlob) continue
-        ;(async () => {
-          let imageOriginal: string | null = null
-          try {
-            const { data } = await supabase.storage
-              .from('training-originals')
-              .upload(`${uid}/${newCard.id}_${side}.jpg`, originalBlob, { contentType: 'image/jpeg' })
-            if (data) imageOriginal = data.path
-          } catch (e) { console.error('[training-originals]', e); return }
-          if (!geminiOut || !finalOut) return // pas d'identification Gemini sur cette carte -- rien a inserer (NOT NULL)
-          const { error } = await supabase.from('training_data').insert({
-            user_id: uid, carte_id: newCard.id,
-            image_original: imageOriginal,
-            gemini_corners: scan.gemini ?? null,
-            final_corners: scan.final ?? null,
-            corners_adjusted: scan.adjusted ?? false,
-            gemini_output: geminiOut,
-            final_output: finalOut,
-            corrected: correctedFields.length > 0,
-            corrected_fields: correctedFields,
-            source: 'galerie',
-          })
-          if (error) console.error('[training_data]', error)
-        })()
-      }
-    }
     const { data: { session } } = await supabase.auth.getSession()
     fetch('/api/wishlist-notify', {
       method: 'PUT',
@@ -1496,15 +1424,7 @@ export default function AjouterCarte({ params }: { params: Promise<{ userId: str
         <CardScanner
           src={scannerModal.src}
           frameRect={scannerModal.frameRect}
-          onResult={(blob, cornerData) => {
-            if (cornerData) scannerCornersRef.current[scannerModal.side] = {
-              gemini: cornerData.gemini,
-              final: cornerData.final,
-              adjusted: cornerData.adjusted,
-              originalBlob: cornerData.originalBlob,
-            }
-            uploadBlob(blob, scannerModal.side)
-          }}
+          onResult={blob => uploadBlob(blob, scannerModal.side)}
           onFallback={() => {
             setCropModal({ side: scannerModal.side, src: scannerModal.src })
             setRotation(0)

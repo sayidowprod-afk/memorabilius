@@ -8,34 +8,11 @@ import { useLang } from '@/lib/LangContext'
 type Pt = { x: number; y: number }
 type Status = 'detecting' | 'found' | 'notfound'
 
-type CornerData = {
-  gemini: { x: number; y: number }[] | null  // fractions 0-1 prédites par Gemini, null si échec
-  final: { x: number; y: number }[]          // fractions 0-1 après ajustement utilisateur
-  adjusted: boolean
-  originalBlob: Blob  // photo avant recadrage — nécessaire pour entraîner un modèle de détection de coins
-}
-
-// Sert uniquement au dataset d'entrainement des coins (jamais a la carte affichee/stockee sur le site --
-// ca, c'est warpCard, deja plafonne a 2400px cote source). Sans plafond ici, une photo 12+ Mpx (telephone
-// recent) encodait en JPEG a pleine resolution EN PARALLELE de warpCard (Promise.all) -- vu que les deux
-// tournent en meme temps, c'est le plus lent des deux qui determine la duree du "Traitement" au clic sur
-// "Utiliser". 2400px (meme plafond que warpCard) reste largement suffisant pour l'entrainement.
-const TRAINING_MAX_SRC = 2400
-function imgToBlob(img: HTMLImageElement, quality = 0.88): Promise<Blob> {
-  return new Promise((resolve, reject) => {
-    const scale = Math.min(1, TRAINING_MAX_SRC / Math.max(img.naturalWidth, img.naturalHeight))
-    const c = document.createElement('canvas')
-    c.width = Math.round(img.naturalWidth * scale); c.height = Math.round(img.naturalHeight * scale)
-    c.getContext('2d')!.drawImage(img, 0, 0, c.width, c.height)
-    c.toBlob(b => { c.width = 0; b ? resolve(b) : reject(new Error('toBlob')) }, 'image/jpeg', quality)
-  })
-}
-
 interface FrameRect { x: number; y: number; w: number; h: number }
 
 interface Props {
   src: string
-  onResult: (blob: Blob, cornerData?: CornerData) => void
+  onResult: (blob: Blob) => void
   onFallback: () => void
   onClose: () => void
   frameRect?: FrameRect // zone cadre caméra → détection IA ciblée
@@ -971,8 +948,6 @@ export default function CardScanner({ src, onResult, onFallback, onClose, frameR
   // ou rotation pendant qu'une détection précédente tournait encore, jusqu'à 15-25s)
   // de détecter qu'il n'est plus le dernier et de ne pas écraser les coins affichés.
   const initTokenRef      = useRef(0)
-  const hasAdjusted       = useRef(false) // true dès que l'utilisateur bouge un coin
-  const geminiCornersRef  = useRef<{ x: number; y: number }[] | null>(null) // fractions 0-1 retournées par Gemini
 
   const [status, setStatus]     = useState<Status>('detecting')
   const [corners, setCorners]   = useState<Pt[]>([])
@@ -1051,8 +1026,6 @@ export default function CardScanner({ src, onResult, onFallback, onClose, frameR
     canvas.getContext('2d')!.drawImage(img, 0, 0, canvas.width, canvas.height)
     buildCache(img)
 
-    hasAdjusted.current = false
-    geminiCornersRef.current = null
     setStatus('detecting')
 
     // ── Détection de coins ───────────────────────────────────────────────────
@@ -1122,7 +1095,6 @@ export default function CardScanner({ src, onResult, onFallback, onClose, frameR
       ])
     } catch { /* déjà EMPTY */ }
 
-    geminiCornersRef.current = detected.geminiRaw
     const detectedCorners = detected.corners
 
     // On ne fait confiance à une détection que si les coins sont réellement
@@ -1347,7 +1319,6 @@ export default function CardScanner({ src, onResult, onFallback, onClose, frameR
     const pos = screenToCanvasCoord(e.clientX, e.clientY)
     const idx = nearestCorner(pos)
     if (idx >= 0) {
-      hasAdjusted.current = true
       setDragging(idx)
       e.currentTarget.setPointerCapture(e.pointerId)
     } else {
@@ -1392,7 +1363,7 @@ export default function CardScanner({ src, onResult, onFallback, onClose, frameR
       const t = e.touches[0]
       const pos = screenToCanvasCoord(t.clientX, t.clientY)
       const idx = nearestCorner(pos)
-      if (idx >= 0) { hasAdjusted.current = true; setDragging(idx); setTouchPoint({ x: t.clientX, y: t.clientY }) }
+      if (idx >= 0) { setDragging(idx); setTouchPoint({ x: t.clientX, y: t.clientY }) }
       else { isPanning.current = true; lastPanPt.current = { x: t.clientX, y: t.clientY } }
     } else if (e.touches.length === 2) {
       setDragging(null); isPanning.current = false
@@ -1460,19 +1431,10 @@ export default function CardScanner({ src, onResult, onFallback, onClose, frameR
     if (!img || corners.length < 4 || applying) return
     setApplying(true)
     const s = scaleRef.current
-    const W = img.naturalWidth, H = img.naturalHeight
     const naturalCorners = corners.map(c => ({ x: c.x / s, y: c.y / s }))
     try {
-      const [blob, originalBlob] = await Promise.all([
-        warpCard(img, naturalCorners),
-        imgToBlob(img),
-      ])
-      onResult(blob, {
-        gemini: geminiCornersRef.current,
-        final: naturalCorners.map(p => ({ x: p.x / W, y: p.y / H })),
-        adjusted: hasAdjusted.current,
-        originalBlob,
-      })
+      const blob = await warpCard(img, naturalCorners)
+      onResult(blob)
     } catch {
       setApplying(false)
       onFallback()
@@ -1570,7 +1532,6 @@ export default function CardScanner({ src, onResult, onFallback, onClose, frameR
             // de recadrage pan/zoom où l'on n'arrivait pas à cadrer la carte.
             const canvas = canvasRef.current
             if (canvas) { setCorners(defaultCorners(canvas)); resetZoom() }
-            hasAdjusted.current = true
             setStatus('notfound')
           }} disabled={applying}
           style={{ flex: 1, padding: '13px 0', background: 'rgba(255,255,255,0.14)', border: 'none', borderRadius: 12, color: 'white', fontWeight: 700, cursor: 'pointer', fontSize: 14 }}>
