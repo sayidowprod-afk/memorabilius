@@ -1152,9 +1152,10 @@ const translations = {
     events_zoom_in: 'Cliquer pour zoomer',
 
     // Add/Edit card
-    addcard_click_add: 'Cliquer pour ajouter',
+    addcard_click_add: 'Cliquer pour prendre une photo',
     addcard_click_change: 'Cliquer pour changer',
     addcard_take_photo: '📸 Prendre une photo',
+    addcard_import_gallery: '🖼️ Importer depuis la galerie',
     addcard_recrop: '✂️ Recadrer',
     addcard_remove: '🗑️ Supprimer',
     addcard_err_image_unreadable: 'Image illisible, réessayez.',
@@ -2682,9 +2683,10 @@ const translations = {
     events_zoom_in: 'Click to zoom in',
 
     // Add/Edit card
-    addcard_click_add: 'Click to add',
+    addcard_click_add: 'Click to take a photo',
     addcard_click_change: 'Click to change',
     addcard_take_photo: '📸 Take a photo',
+    addcard_import_gallery: '🖼️ Import from gallery',
     addcard_recrop: '✂️ Recrop',
     addcard_remove: '🗑️ Remove',
     addcard_err_image_unreadable: 'Unreadable image, please retry.',
@@ -4212,9 +4214,10 @@ const translations = {
     events_zoom_in: 'Klicken zum Vergrößern',
 
     // Add/Edit card
-    addcard_click_add: 'Zum Hinzufügen klicken',
+    addcard_click_add: 'Klicken, um ein Foto aufzunehmen',
     addcard_click_change: 'Zum Ändern klicken',
     addcard_take_photo: '📸 Foto aufnehmen',
+    addcard_import_gallery: '🖼️ Aus der Galerie importieren',
     addcard_recrop: '✂️ Zuschnitt anpassen',
     addcard_remove: '🗑️ Entfernen',
     addcard_err_image_unreadable: 'Bild nicht lesbar, bitte erneut versuchen.',

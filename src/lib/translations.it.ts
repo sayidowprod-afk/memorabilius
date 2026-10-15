@@ -1100,9 +1100,10 @@ export const it = {
   events_zoom_in: 'Clicca per ingrandire',
 
   // Add/Edit card
-  addcard_click_add: 'Clicca per aggiungere',
+  addcard_click_add: 'Clicca per scattare una foto',
   addcard_click_change: 'Clicca per cambiare',
   addcard_take_photo: '📸 Scatta una foto',
+  addcard_import_gallery: '🖼️ Importa dalla galleria',
   addcard_recrop: '✂️ Ritaglia',
   addcard_remove: '🗑️ Rimuovi',
   addcard_err_image_unreadable: 'Immagine illeggibile, riprova.',

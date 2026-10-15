@@ -600,7 +600,7 @@ export default function EditerCarte({ params }: { params: Promise<{ userId: stri
       <div>
         <label style={{ fontSize: 12, fontWeight: 700, textTransform: 'uppercase', color: '#888', display: 'block', marginBottom: 8 }}>{label}</label>
         <div style={{ border: '2px dashed #ddd', borderRadius: 12, overflow: 'hidden', aspectRatio: aspect || '2.5/3.5', position: 'relative', cursor: 'pointer', background: '#fafafa', display: 'flex', alignItems: 'center', justifyContent: 'center' }}
-          onClick={() => document.getElementById(`upload-${side}`)?.click()}>
+          onClick={() => document.getElementById(`camera-${side}`)?.click()}>
           {preview ? <img src={preview} style={{ width: '100%', height: '100%', objectFit: 'cover' }} alt={label} /> : (
             <div style={{ textAlign: 'center', color: '#bbb' }}>
               <div style={{ fontSize: 40, marginBottom: 8 }}>📷</div>
@@ -616,9 +616,9 @@ export default function EditerCarte({ params }: { params: Promise<{ userId: stri
         <input id={`upload-${side}`} type="file" accept="image/*" style={{ display: 'none' }} onChange={e => handleFileChange(e, side)} />
         <input id={`camera-${side}`} type="file" accept="image/*" capture="environment" style={{ display: 'none' }} onChange={e => handleFileChange(e, side)} />
         {!uploading && (
-          <button type="button" onClick={() => document.getElementById(`camera-${side}`)?.click()}
+          <button type="button" onClick={() => document.getElementById(`upload-${side}`)?.click()}
             style={{ marginTop: 6, width: '100%', background: '#f0f4ff', color: '#003DA6', border: 'none', borderRadius: 6, padding: '8px', fontSize: 12, fontWeight: 700, cursor: 'pointer' }}>
-            {t('addcard_take_photo')}
+            {t('addcard_import_gallery')}
           </button>
         )}
         {preview && !uploading && (side === 'recto' || side === 'verso') && (

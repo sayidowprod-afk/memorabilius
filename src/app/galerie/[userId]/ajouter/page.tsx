@@ -225,7 +225,7 @@ function ImageUploader({ side, label, preview, uploading, aspect, lang, onClear,
       <label style={{ fontSize: 12, fontWeight: 700, textTransform: 'uppercase', color: '#888', display: 'block', marginBottom: 8 }}>{label}</label>
       <div
         style={{ border: '2px dashed #ddd', borderRadius: 12, overflow: 'hidden', aspectRatio: aspect || '2.5/3.5', position: 'relative', cursor: 'pointer', background: '#fafafa', display: 'flex', alignItems: 'center', justifyContent: 'center' }}
-        onClick={() => document.getElementById(`upload-${side}`)?.click()}
+        onClick={() => onCameraClick(side)}
       >
         {src && !loadFailed ? (
           <img src={src} style={{ width: '100%', height: '100%', objectFit: 'cover' }} alt={label} onError={handleImgError} />
@@ -249,9 +249,9 @@ function ImageUploader({ side, label, preview, uploading, aspect, lang, onClear,
       <input id={`upload-${side}`} type="file" accept="image/*" style={{ display: 'none' }} onChange={e => onFileChange(e, side)} />
       {!preview && !uploading && (
         <button type="button"
-          onClick={() => onCameraClick(side)}
+          onClick={() => document.getElementById(`upload-${side}`)?.click()}
           style={{ marginTop: 6, width: '100%', background: '#f0f4ff', color: '#003DA6', border: 'none', borderRadius: 6, padding: '8px', fontSize: 12, fontWeight: 700, cursor: 'pointer' }}>
-          {t('addcard_take_photo')}
+          {t('addcard_import_gallery')}
         </button>
       )}
       {preview && (
