@@ -107,8 +107,27 @@ export default function CameraCapture({ onCapture, onClose, ratio }: Props) {
           ? new (window as any).ImageCapture(track) : null
       } catch { imageCaptureRef.current = null }
       if (videoRef.current) {
-        videoRef.current.srcObject = stream
-        videoRef.current.onloadedmetadata = () => setReady(true)
+        const v = videoRef.current
+        const myStream = stream
+        v.srcObject = stream
+        const markReady = () => { if (streamRef.current === myStream) setReady(true) }
+        v.onloadedmetadata = markReady
+        v.oncanplay = markReady
+        // play() explicite : sur iOS/Safari, l'attribut autoPlay seul ne suffit pas
+        // toujours a demarrer reellement le flux, et aucun des evenements ci-dessus
+        // ne se declenche alors -- l'ecran restait bloque sur "Chargement..."
+        // indefiniment (signale sur iOS, jamais reproduit sur Android/Chromium).
+        v.play().catch(() => {})
+        // Filet de securite : si malgre tout aucun evenement ne se declenche, on
+        // debloque quand meme des que la video a de vraies dimensions (signe que le
+        // flux tourne reellement), plutot que de laisser l'utilisateur bloque.
+        let tries = 0
+        const poll = () => {
+          if (streamRef.current !== myStream) return // flux change entre temps (switchCamera)
+          if (v.videoWidth > 0) { markReady(); return }
+          if (++tries < 40) setTimeout(poll, 150) // ~6s max
+        }
+        setTimeout(poll, 150)
       }
     }
     const handleError = (err: unknown) => {
