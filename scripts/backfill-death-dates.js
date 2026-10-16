@@ -79,13 +79,27 @@ async function fetchWikidataDeathDate(name) {
   } catch { return null }
 }
 
-async function main() {
-  let q = supabase.from('sports_birthdays').select('id, player_name, sport').is('death_date', null)
-  if (SPORT) q = q.eq('sport', SPORT)
-  const { data: rows, error } = await q
-  if (error) { console.error('Erreur lecture:', error.message); process.exit(1) }
+// PostgREST plafonne a 1000 lignes par requete par defaut -- la table depasse
+// largement ca (6000+ lignes tous sports confondus), une seule requete sans
+// pagination n'aurait silencieusement traite qu'une fraction des joueurs.
+async function fetchAllRows() {
+  const PAGE = 1000
+  let rows = []
+  let from = 0
+  while (true) {
+    let q = supabase.from('sports_birthdays').select('id, player_name, sport').is('death_date', null).range(from, from + PAGE - 1)
+    if (SPORT) q = q.eq('sport', SPORT)
+    const { data, error } = await q
+    if (error) { console.error('Erreur lecture:', error.message); process.exit(1) }
+    rows = rows.concat(data || [])
+    if (!data || data.length < PAGE) break
+    from += PAGE
+  }
+  return rows
+}
 
-  let players = rows || []
+async function main() {
+  let players = await fetchAllRows()
   if (LIMIT) players = players.slice(0, LIMIT)
   console.log(`${players.length} joueur(s) sans death_date a verifier${SPORT ? ` (sport=${SPORT})` : ''}.`)
 
