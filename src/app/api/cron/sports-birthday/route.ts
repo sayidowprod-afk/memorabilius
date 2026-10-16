@@ -46,7 +46,7 @@ export async function GET(req: NextRequest) {
 
   const { data: candidates } = await supabase
     .from('sports_birthdays')
-    .select('id, player_name, birth_date, headshot_url, sport')
+    .select('id, player_name, birth_date, death_date, headshot_url, sport')
     .eq('birth_month', month)
     .eq('birth_day', day)
     .not('headshot_url', 'is', null) // une annonce sans photo n'a pas d'interet ici

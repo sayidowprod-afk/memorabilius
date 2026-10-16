@@ -374,28 +374,38 @@ async function fetchWikipediaHeadshot(name) {
   } catch { return null }
 }
 
-async function fetchWikidataBirthDate(name) {
+// P569 = date de naissance, P570 = date de deces (absente du tout si en vie).
+// Un seul appel Wikidata recupere les deux -- evite de dupliquer la resolution
+// du QID (titre Wikipedia -> pageprops -> entite) pour chaque champ.
+function parseWikidataTime(time) {
+  if (!time) return null
+  const m = /^\+(\d{4})-(\d{2})-(\d{2})/.exec(time)
+  if (!m || m[2] === '00' || m[3] === '00') return null
+  return `${m[1]}-${m[2]}-${m[3]}`
+}
+
+async function fetchWikidataDates(name) {
   try {
     const title = encodeURIComponent(name.trim())
     const r = await nodeFetch(`https://en.wikipedia.org/w/api.php?action=query&titles=${title}&prop=pageprops&ppprop=wikibase_item&format=json`, {
       headers: { 'User-Agent': UA }, timeout: 8000,
     })
-    if (!r.ok) return null
+    if (!r.ok) return { birthDate: null, deathDate: null }
     const data = await r.json()
     const page = Object.values(data.query?.pages || {})[0]
     const qid = page?.pageprops?.wikibase_item
-    if (!qid) return null
+    if (!qid) return { birthDate: null, deathDate: null }
     const r2 = await nodeFetch(`https://www.wikidata.org/wiki/Special:EntityData/${qid}.json`, {
       headers: { 'User-Agent': UA }, timeout: 8000,
     })
-    if (!r2.ok) return null
+    if (!r2.ok) return { birthDate: null, deathDate: null }
     const wd = await r2.json()
-    const time = wd.entities?.[qid]?.claims?.P569?.[0]?.mainsnak?.datavalue?.value?.time
-    if (!time) return null
-    const m = /^\+(\d{4})-(\d{2})-(\d{2})/.exec(time)
-    if (!m || m[2] === '00' || m[3] === '00') return null
-    return `${m[1]}-${m[2]}-${m[3]}`
-  } catch { return null }
+    const claims = wd.entities?.[qid]?.claims || {}
+    return {
+      birthDate: parseWikidataTime(claims.P569?.[0]?.mainsnak?.datavalue?.value?.time),
+      deathDate: parseWikidataTime(claims.P570?.[0]?.mainsnak?.datavalue?.value?.time),
+    }
+  } catch { return { birthDate: null, deathDate: null } }
 }
 
 async function backfillOne(name) {
@@ -416,10 +426,25 @@ async function backfillOne(name) {
 
   if (!headshot) headshot = await fetchWikipediaHeadshot(name)
   if (!headshot && canonical) headshot = await fetchWikipediaHeadshot(canonical)
-  if (!birthDate) birthDate = await fetchWikidataBirthDate(name)
-  if (!birthDate && canonical) birthDate = await fetchWikidataBirthDate(canonical)
+  let deathDate = null
+  if (!birthDate) {
+    const wd = await fetchWikidataDates(name)
+    birthDate = wd.birthDate
+    deathDate = wd.deathDate
+  }
+  if (!birthDate && canonical) {
+    const wd = await fetchWikidataDates(canonical)
+    birthDate = wd.birthDate
+    deathDate = deathDate || wd.deathDate
+  }
+  // birthDate deja trouve via ESPN (date de deces absente de cette source) :
+  // un appel Wikidata dedie, juste pour le champ deces.
+  if (!deathDate) {
+    const wd = await fetchWikidataDates(canonical || name)
+    deathDate = wd.deathDate
+  }
 
-  return { birthDate, headshot }
+  return { birthDate, headshot, deathDate }
 }
 
 function mergeSources(lists) {
@@ -450,7 +475,7 @@ async function main() {
 
   let existingByName = new Map()
   if (!FORCE) {
-    const { data: existing } = await supabase.from('sports_birthdays').select('player_name, birth_date, headshot_url').eq('sport', SPORT)
+    const { data: existing } = await supabase.from('sports_birthdays').select('player_name, birth_date, headshot_url, death_date').eq('sport', SPORT)
     existingByName = new Map((existing || []).map(r => [r.player_name, r]))
     const before = players.length
     players = players.filter(p => {
@@ -469,28 +494,35 @@ async function main() {
 
     let birthDate = p.birthDate || null
     let headshot = p.headshot || null
+    let deathDate = null
     // Roster actuel fournit deja les 2 -- le repli complet (lent, plusieurs
-    // appels HTTP) ne sert que pour les entrees HOF sans ces champs.
+    // appels HTTP) ne sert que pour les entrees HOF sans ces champs. La date de
+    // deces (absente des sources roster actuel/ESPN) vient uniquement de
+    // backfillOne -- voir scripts/backfill-death-dates.js pour completer les
+    // lignes deja presentes en base, non retouchees par cette boucle.
     if (!birthDate || !headshot) {
       const filled = await backfillOne(p.name)
       birthDate = birthDate || filled.birthDate
       headshot = headshot || filled.headshot
+      deathDate = filled.deathDate
       await sleep(700) // courtoisie ESPN/Wikipedia -- uniquement quand on appelle vraiment ces API
     }
 
     const finalBirthDate = birthDate || existingRow?.birth_date || null
     const finalHeadshot = headshot || existingRow?.headshot_url || null
+    const finalDeathDate = deathDate || existingRow?.death_date || null
     if (!finalBirthDate) {
       missing.push(p.name)
       console.log('SANS date de naissance trouvee (skip)')
     } else {
       const [y, m, d] = finalBirthDate.split('-').map(Number)
-      console.log(`OK (${finalBirthDate}${finalHeadshot ? ', photo trouvee' : ', SANS photo'})`)
+      console.log(`OK (${finalBirthDate}${finalHeadshot ? ', photo trouvee' : ', SANS photo'}${finalDeathDate ? ', decede ' + finalDeathDate : ''})`)
       if (!DRY_RUN) {
         const { error } = await supabase.from('sports_birthdays').upsert({
           player_name: p.name,
           sport: SPORT,
           birth_date: finalBirthDate,
+          death_date: finalDeathDate,
           birth_month: m,
           birth_day: d,
           all_star_count: p.selections,

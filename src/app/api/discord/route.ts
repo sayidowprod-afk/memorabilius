@@ -447,7 +447,7 @@ async function handleBirthdayComponent(customId: string, selectedIds?: string[])
   const threadId: string | null = claimed[0].thread_id
 
   const { data: players } = await supabase.from('sports_birthdays')
-    .select('id, player_name, birth_date, headshot_url, sport').in('id', ids)
+    .select('id, player_name, birth_date, death_date, headshot_url, sport').in('id', ids)
   if (!players?.length) return reply({ content: '❌ Joueur introuvable.', flags: 64 })
 
   // Publication + suppression du thread en arriere-plan (waitUntil) : l'ACK
@@ -474,7 +474,7 @@ async function handleBirthdayTestComponent(customId: string, threadId: string, s
   const ids = selectedIds && selectedIds.length ? selectedIds : [buttonPlayerId]
 
   const { data: players } = await supabase.from('sports_birthdays')
-    .select('id, player_name, birth_date, headshot_url, sport').in('id', ids)
+    .select('id, player_name, birth_date, death_date, headshot_url, sport').in('id', ids)
   if (!players?.length) return reply({ content: '❌ Joueur introuvable.', flags: 64 })
 
   const { dateStr } = parisToday()

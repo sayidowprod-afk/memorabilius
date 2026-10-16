@@ -19,6 +19,7 @@ export interface BirthdayPlayer {
   id: string
   player_name: string
   birth_date: string
+  death_date: string | null
   headshot_url: string | null
   sport: string
 }
@@ -47,7 +48,7 @@ export function groupCandidatesBySport(candidates: BirthdayPlayer[]): string {
   return sports.map(sport => {
     const emoji = SPORT_EMOJI[sport] || '🎉'
     const label = SPORT_LABEL[sport] || sport
-    const names = bySport.get(sport)!.map(p => `- ${p.player_name}`).join('\n')
+    const names = bySport.get(sport)!.map(p => `- ${p.player_name}${p.death_date ? ' 🕊️' : ''}`).join('\n')
     return `${emoji} **${label}**\n${names}`
   }).join('\n\n')
 }
@@ -62,9 +63,16 @@ function age(player: BirthdayPlayer, dateStr: string): number | null {
 export function birthdayEmbed(player: BirthdayPlayer, dateStr: string) {
   const a = age(player, dateStr)
   const emoji = SPORT_EMOJI[player.sport] || '🎉'
+  // Joueur decede : pas de "bon anniversaire" (sujet qui ne se felicite pas a
+  // quelqu'un qui n'est plus la) -- message au conditionnel, sans l'emoji sport
+  // festif, remplace par une colombe. L'age reste calcule pareil (annee
+  // courante - annee de naissance), seul le phrasing change.
+  const content = player.death_date
+    ? `🕊️ **${player.player_name}** aurait eu${a ? ` ${a} ans` : ' son anniversaire'} aujourd'hui. Une pensée pour lui, et une carte pour s'en souvenir.`
+    : `🎂 Aujourd'hui c'est l'anniversaire de **${player.player_name}**${a ? ` (${a} ans)` : ''} ! Alors postons une carte pour lui souhaiter un bon anniversaire ${emoji}`
   return {
-    content: `🎂 Aujourd'hui c'est l'anniversaire de **${player.player_name}**${a ? ` (${a} ans)` : ''} ! Alors postons une carte pour lui souhaiter un bon anniversaire ${emoji}`,
-    embeds: player.headshot_url ? [{ image: { url: player.headshot_url }, color: 0xf39c12 }] : [],
+    content,
+    embeds: player.headshot_url ? [{ image: { url: player.headshot_url }, color: player.death_date ? 0x7f8c8d : 0xf39c12 }] : [],
   }
 }
 
@@ -157,7 +165,7 @@ export function birthdaySelectMenu(customId: string, candidates: BirthdayPlayer[
       min_values: 1,
       max_values: sorted.length,
       options: sorted.map(p => ({
-        label: `${SPORT_EMOJI[p.sport] || ''} ${p.player_name}`.trim().slice(0, 100),
+        label: `${SPORT_EMOJI[p.sport] || ''} ${p.player_name}${p.death_date ? ' 🕊️' : ''}`.trim().slice(0, 100),
         description: (SPORT_LABEL[p.sport] || p.sport).slice(0, 100),
         value: p.id,
       })),
