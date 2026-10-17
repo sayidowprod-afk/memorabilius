@@ -2,9 +2,9 @@
 import { useState, useEffect, useCallback, useMemo, useRef } from 'react'
 import Link from 'next/link'
 import { supabase } from '@/lib/supabase'
-import TagIcon from '@/components/TagIcon'
 import CardTagBadges from '@/components/CardTagBadges'
 import FranchiseChecklist, { type FranchisePlayer } from '@/components/FranchiseChecklist'
+import PlayerCardPopup from '@/components/PlayerCardPopup'
 import { cleanFranchise } from '@/lib/franchiseExclude'
 import { SPORTS_TEAMS } from '@/lib/sportsTeams'
 import { teamSlug, normalizeName } from '@/lib/playerSlug'
@@ -24,15 +24,7 @@ interface Card {
   br: string; v: string; num: string; auto: boolean; rc: boolean; patch: boolean
 }
 
-interface EntryWithSet {
-  id: number; set_id: number; card_number: string | null; variation: string | null; is_rc: boolean
-  card_sets: { id: number; name: string; year: number | null; brand: string | null; sport: string } | null
-}
-
-interface CompletionRow { id: string; manually_checked: boolean }
-
 type PCType = 'player' | 'team' | 'collection'
-type Filter = 'all' | 'owned' | 'missing'
 
 interface PCEntry {
   id: string; type: PCType; name: string
@@ -58,214 +50,6 @@ function getBestCard(pool: Card[]): Card | undefined {
   return [...withImg].sort((a, b) => score(b) - score(a))[0]
 }
 
-// ── Inline checklist — explicit colors, no CSS vars ───────────────────────────
-function PlayerChecklist({ pc, userId, bg, bg2, border, text, muted, accent }: {
-  pc: PCEntry; userId: string; bg: string; bg2: string; border: string; text: string; muted: string; accent: string
-}) {
-  const [loading, setLoading] = useState(true)
-  const [entries, setEntries] = useState<EntryWithSet[]>([])
-  const [completions, setCompletions] = useState<Map<number, CompletionRow>>(new Map())
-  const [saving, setSaving] = useState<number | null>(null)
-  const [filter, setFilter] = useState<Filter>('all')
-  const [openSets, setOpenSets] = useState<Set<number>>(new Set())
-
-  useEffect(() => {
-    let cancelled = false
-    async function load() {
-      setLoading(true)
-      setEntries([]); setCompletions(new Map()); setOpenSets(new Set())
-      try {
-        const res = await fetch(
-          `/api/player-checklist?firstName=${encodeURIComponent(pc.firstName || '')}&lastName=${encodeURIComponent(pc.lastName || '')}`
-        )
-        if (!res.ok) throw new Error()
-        const { entries: all } = await res.json() as { entries: EntryWithSet[] }
-        if (cancelled) return
-        setEntries(all)
-        if (all[0]?.set_id) setOpenSets(new Set([all[0].set_id]))
-        if (userId && all.length > 0) {
-          const ids = all.map(e => e.id)
-          const allComp: { id: string; entry_id: number; manually_checked: boolean }[] = []
-          for (let i = 0; i < ids.length; i += 500) {
-            const { data } = await supabase.from('user_set_completion')
-              .select('id, entry_id, manually_checked')
-              .eq('user_id', userId).in('entry_id', ids.slice(i, i + 500))
-            if (data) allComp.push(...data)
-          }
-          if (cancelled) return
-          const map = new Map<number, CompletionRow>()
-          for (const c of allComp) map.set(c.entry_id, { id: c.id, manually_checked: c.manually_checked })
-          setCompletions(map)
-        }
-      } catch { /* silent */ } finally {
-        if (!cancelled) setLoading(false)
-      }
-    }
-    load()
-    return () => { cancelled = true }
-  }, [pc.firstName, pc.lastName, userId])
-
-  async function toggleEntry(entryId: number) {
-    const existing = completions.get(entryId)
-    setSaving(entryId)
-    try {
-      if (existing) {
-        await supabase.from('user_set_completion').delete().eq('id', existing.id)
-        setCompletions(prev => { const n = new Map(prev); n.delete(entryId); return n })
-      } else {
-        const { data } = await supabase.from('user_set_completion')
-          .upsert({ user_id: userId, entry_id: entryId, manually_checked: true }, { onConflict: 'user_id,entry_id' })
-          .select('id, manually_checked').single()
-        if (data) setCompletions(prev => new Map(prev).set(entryId, { id: data.id, manually_checked: data.manually_checked }))
-      }
-    } finally { setSaving(null) }
-  }
-
-  function toggleSet(setId: number) {
-    setOpenSets(prev => { const n = new Set(prev); if (n.has(setId)) n.delete(setId); else n.add(setId); return n })
-  }
-
-  const setGroups = useMemo(() => {
-    const groups: { setId: number; setName: string; setYear: number | null; setBrand: string | null; entries: EntryWithSet[] }[] = []
-    const seen = new Map<number, typeof groups[0]>()
-    for (const e of entries) {
-      const cs = e.card_sets; if (!cs) continue
-      if (!seen.has(e.set_id)) {
-        const g = { setId: e.set_id, setName: cs.name, setYear: cs.year, setBrand: cs.brand, entries: [] as EntryWithSet[] }
-        seen.set(e.set_id, g); groups.push(g)
-      }
-      seen.get(e.set_id)!.entries.push(e)
-    }
-    return groups.sort((a, b) => (b.setYear || 0) - (a.setYear || 0))
-  }, [entries])
-
-  const totalOwned = completions.size
-  const totalCards = entries.length
-  const pct = totalCards > 0 ? (totalOwned / totalCards) * 100 : 0
-
-  return (
-    <div>
-      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: 16, flexWrap: 'wrap', gap: 8 }}>
-        <div>
-          <h2 style={{ fontSize: 20, fontWeight: 900, color: text, margin: 0 }}>Checklist — {pc.name}</h2>
-          {!loading && totalCards > 0 && (
-            <p style={{ fontSize: 13, color: muted, margin: '4px 0 0', fontWeight: 600 }}>
-              {totalOwned} / {totalCards} cartes ({Math.round(pct)}%)
-            </p>
-          )}
-        </div>
-        {!loading && totalCards > 0 && (
-          <div style={{ display: 'flex', gap: 4 }}>
-            {(['all', 'owned', 'missing'] as Filter[]).map(f => (
-              <button key={f} onClick={() => setFilter(f)} style={{
-                background: filter === f ? accent : bg2, color: filter === f ? 'white' : muted,
-                border: `1.5px solid ${filter === f ? accent : border}`,
-                borderRadius: 6, padding: '5px 12px', fontSize: 12, fontWeight: 700, cursor: 'pointer',
-              }}>
-                {f === 'all' ? 'Tout' : f === 'owned' ? 'Possédé' : 'Manquant'}
-              </button>
-            ))}
-          </div>
-        )}
-      </div>
-
-      {loading && <div style={{ textAlign: 'center', padding: 40, color: muted, fontSize: 14 }}>Chargement de la checklist…</div>}
-      {!loading && totalCards === 0 && (
-        <div style={{ textAlign: 'center', padding: 32, color: muted, background: bg2, borderRadius: 12, border: `1.5px solid ${border}`, fontSize: 14 }}>
-          Aucune carte répertoriée pour ce joueur.
-        </div>
-      )}
-      {!loading && totalCards > 0 && (
-        <div style={{ display: 'flex', flexDirection: 'column', gap: 6 }}>
-          <div style={{ height: 6, background: border, borderRadius: 3, overflow: 'hidden', marginBottom: 2 }}>
-            <div style={{ height: '100%', width: `${pct}%`, background: pct === 100 ? '#27ae60' : accent, borderRadius: 3, transition: 'width 0.4s' }} />
-          </div>
-          {setGroups.length > 8 && (
-            <p style={{ fontSize: 11, color: muted, margin: '0 0 4px' }}>{setGroups.length} sets · cliquer pour développer</p>
-          )}
-          <div style={{ maxHeight: 560, overflowY: 'auto', display: 'flex', flexDirection: 'column', gap: 4, paddingRight: 4 }}>
-            {setGroups.map(group => {
-              const ownedInSet = group.entries.filter(e => completions.has(e.id)).length
-              const isOpen = openSets.has(group.setId)
-              const visibleEntries = group.entries.filter(e => {
-                const owned = completions.has(e.id)
-                if (filter === 'owned') return owned
-                if (filter === 'missing') return !owned
-                return true
-              })
-              if (filter !== 'all' && visibleEntries.length === 0) return null
-              return (
-                <div key={group.setId} style={{ background: bg2, borderRadius: 8, border: `1.5px solid ${border}`, overflow: 'hidden', flexShrink: 0 }}>
-                  <button onClick={() => toggleSet(group.setId)} style={{
-                    width: '100%', display: 'flex', justifyContent: 'space-between', alignItems: 'center',
-                    padding: '8px 12px', background: 'none', border: 'none', cursor: 'pointer', textAlign: 'left', gap: 8,
-                    color: text,
-                  }}>
-                    <div style={{ flex: 1, minWidth: 0, fontWeight: 700, fontSize: 12, color: text, lineHeight: 1.3 }}>
-                      {group.setYear ? `${group.setYear} ` : ''}{group.setName}
-                      {group.setBrand && <span style={{ fontSize: 10, color: accent, fontWeight: 700, marginLeft: 6 }}>{group.setBrand}</span>}
-                    </div>
-                    <div style={{ display: 'flex', alignItems: 'center', gap: 6, flexShrink: 0 }}>
-                      <span style={{
-                        fontSize: 11, fontWeight: 800, padding: '2px 8px', borderRadius: 10,
-                        color: ownedInSet === group.entries.length ? '#27ae60' : muted,
-                        background: ownedInSet === group.entries.length ? 'rgba(39,174,96,0.12)' : bg,
-                      }}>{ownedInSet}/{group.entries.length}</span>
-                      <Link href={`/setlist/${group.setId}`} onClick={e => e.stopPropagation()}
-                        style={{ fontSize: 11, color: accent, fontWeight: 700, textDecoration: 'none', whiteSpace: 'nowrap' }}>
-                        Voir →
-                      </Link>
-                      <span style={{ color: muted, fontSize: 11 }}>{isOpen ? '▲' : '▼'}</span>
-                    </div>
-                  </button>
-                  {isOpen && (
-                    <div style={{ borderTop: `1px solid ${border}` }}>
-                      {visibleEntries.map(entry => {
-                        const owned = completions.has(entry.id)
-                        return (
-                          <div key={entry.id} onClick={() => toggleEntry(entry.id)} style={{
-                            display: 'flex', alignItems: 'center', gap: 8, padding: '5px 12px',
-                            borderBottom: `1px solid ${border}`, cursor: 'pointer',
-                            background: owned ? 'rgba(39,174,96,0.08)' : 'transparent',
-                          }}>
-                            <div style={{
-                              width: 24, height: 24, borderRadius: 6, flexShrink: 0,
-                              border: owned ? '2px solid #27ae60' : `2px solid ${border}`,
-                              background: owned ? '#27ae60' : 'transparent',
-                              display: 'flex', alignItems: 'center', justifyContent: 'center',
-                              opacity: saving === entry.id ? 0.5 : 1, transition: 'all 0.15s',
-                            }}>
-                              {owned && <span style={{ color: 'white', fontSize: 12, lineHeight: 1 }}>✓</span>}
-                            </div>
-                            {entry.card_number && (
-                              <span style={{ fontSize: 11, fontWeight: 800, color: muted, minWidth: 32 }}>#{entry.card_number}</span>
-                            )}
-                            <span style={{ fontSize: 12, color: owned ? text : muted, flex: 1, fontWeight: owned ? 700 : 400 }}>
-                              {entry.variation || 'Base'}
-                            </span>
-                            {entry.is_rc && (
-                              <TagIcon kind="rc" h={20} />
-                            )}
-                          </div>
-                        )
-                      })}
-                      {visibleEntries.length === 0 && (
-                        <div style={{ padding: '10px 14px', color: muted, fontSize: 12, textAlign: 'center' }}>
-                          Aucune carte {filter === 'owned' ? 'possédée' : 'manquante'} dans ce set.
-                        </div>
-                      )}
-                    </div>
-                  )}
-                </div>
-              )
-            })}
-          </div>
-        </div>
-      )}
-    </div>
-  )
-}
-
 // ── Main component ────────────────────────────────────────────────────────────
 export default function MesPCTab({ cards, cardsLoaded = true, userId, accent, dark, isOwner, initialPCs }: {
   cards: Card[]; cardsLoaded?: boolean; userId: string; accent: string; dark: boolean; isOwner: boolean; initialPCs?: PCEntry[]
@@ -285,6 +69,9 @@ export default function MesPCTab({ cards, cardsLoaded = true, userId, accent, da
   // Franchise complete des PC "equipe" (liste de tous les joueurs de la franchise, chargee a la demande)
   const [franchise, setFranchise] = useState<Record<string, FranchisePlayer[]>>({})
   const [frOpen, setFrOpen] = useState<PCEntry | null>(null)
+  // Popup checklist complete d'un joueur (pastille bleue, voir PlayerCardPopup.tsx) --
+  // meme mecanisme que frOpen ci-dessus pour les equipes.
+  const [playerPopupOpen, setPlayerPopupOpen] = useState<PCEntry | null>(null)
   const ownedNames = useMemo(() => cards.map(c => c.n).filter(Boolean), [cards])
   // ce que j'ai de chaque joueur dans ma galerie : au moins une carte RC / auto / patch / numerotee
   const ownedFlags = useMemo(() => {
@@ -447,36 +234,32 @@ export default function MesPCTab({ cards, cardsLoaded = true, userId, accent, da
           fontSize: 13, fontWeight: 700, cursor: 'pointer', marginBottom: 16,
         }}>← Retour aux PCs</button>
 
-        {selected.type === 'player' ? (
-          <PlayerChecklist pc={selected} userId={userId} accent={accent} bg={bg} bg2={bg2} border={border} text={text} muted={muted} />
-        ) : (
-          <div>
-            <div style={{ marginBottom: 16 }}>
-              <h2 style={{ fontSize: 18, fontWeight: 900, color: text, margin: '0 0 2px' }}>{selected.name}</h2>
-              <p style={{ fontSize: 12, color: muted, margin: 0 }}>{count} carte{count > 1 ? 's' : ''} dans ta collection</p>
-            </div>
-            {pool.length === 0 ? (
-              <div style={{ textAlign: 'center', padding: 32, background: bg2, borderRadius: 12, border: `1.5px solid ${border}`, color: muted, fontSize: 14 }}>
-                Aucune carte dans ta collection
-              </div>
-            ) : (
-              <div style={{ display: 'flex', flexDirection: 'column', gap: 3, maxHeight: 600, overflowY: 'auto' }}>
-                {pool.map((card, i) => (
-                  <div key={i} style={{ display: 'flex', alignItems: 'center', gap: 10, padding: '7px 12px', background: bg, borderRadius: 8, border: `1px solid ${border}` }}>
-                    {card.f && <img src={card.f} alt="" style={{ width: 28, height: 40, objectFit: 'cover', borderRadius: 4, flexShrink: 0 }} />}
-                    <div style={{ flex: 1, minWidth: 0 }}>
-                      <div style={{ fontSize: 12, fontWeight: 700, color: text, whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>{card.n}</div>
-                      <div style={{ fontSize: 11, color: muted }}>{card.y && `${card.y} `}{card.s}{card.v ? ` · ${card.v}` : ''}</div>
-                    </div>
-                    <div style={{ display: 'flex', gap: 3, flexShrink: 0 }}>
-                      <CardTagBadges rc={card.rc} auto={card.auto} patch={card.patch} size="xs" />
-                    </div>
-                  </div>
-                ))}
-              </div>
-            )}
+        <div>
+          <div style={{ marginBottom: 16 }}>
+            <h2 style={{ fontSize: 18, fontWeight: 900, color: text, margin: '0 0 2px' }}>{selected.name}</h2>
+            <p style={{ fontSize: 12, color: muted, margin: 0 }}>{count} carte{count > 1 ? 's' : ''} dans ta collection</p>
           </div>
-        )}
+          {pool.length === 0 ? (
+            <div style={{ textAlign: 'center', padding: 32, background: bg2, borderRadius: 12, border: `1.5px solid ${border}`, color: muted, fontSize: 14 }}>
+              Aucune carte dans ta collection
+            </div>
+          ) : (
+            <div style={{ display: 'flex', flexDirection: 'column', gap: 3, maxHeight: 600, overflowY: 'auto' }}>
+              {pool.map((card, i) => (
+                <div key={i} style={{ display: 'flex', alignItems: 'center', gap: 10, padding: '7px 12px', background: bg, borderRadius: 8, border: `1px solid ${border}` }}>
+                  {card.f && <img src={card.f} alt="" style={{ width: 28, height: 40, objectFit: 'cover', borderRadius: 4, flexShrink: 0 }} />}
+                  <div style={{ flex: 1, minWidth: 0 }}>
+                    <div style={{ fontSize: 12, fontWeight: 700, color: text, whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>{card.n}</div>
+                    <div style={{ fontSize: 11, color: muted }}>{card.y && `${card.y} `}{card.s}{card.v ? ` · ${card.v}` : ''}</div>
+                  </div>
+                  <div style={{ display: 'flex', gap: 3, flexShrink: 0 }}>
+                    <CardTagBadges rc={card.rc} auto={card.auto} patch={card.patch} size="xs" />
+                  </div>
+                </div>
+              ))}
+            </div>
+          )}
+        </div>
       </div>
     )
   }
@@ -500,6 +283,14 @@ export default function MesPCTab({ cards, cardsLoaded = true, userId, accent, da
                 savePCs(pcs.map(p => (p.id === frOpen.id ? updated : p)))
                 setFrOpen(updated)
               } : undefined} />
+          </div>
+        </div>
+      )}
+      {playerPopupOpen && (
+        <div onClick={() => setPlayerPopupOpen(null)} style={{ position: 'fixed', inset: 0, background: 'rgba(0,0,0,0.6)', zIndex: 3000, display: 'flex', alignItems: 'flex-start', justifyContent: 'center', padding: '4vh 12px', overflowY: 'auto' }}>
+          <div onClick={e => e.stopPropagation()} style={{ position: 'relative', width: '100%', maxWidth: 980, background: dark ? '#10162b' : '#ffffff', border: `3px solid ${dark ? '#ffffff55' : '#111'}`, padding: '22px 20px 26px' }}>
+            <button onClick={() => setPlayerPopupOpen(null)} aria-label="Fermer" style={{ position: 'absolute', top: 8, right: 10, background: 'none', border: 'none', fontSize: 26, cursor: 'pointer', color: muted, lineHeight: 1 }}>×</button>
+            <PlayerCardPopup playerName={playerPopupOpen.name} userId={userId} color={TYPE_COLOR.player} />
           </div>
         </div>
       )}
@@ -687,14 +478,22 @@ export default function MesPCTab({ cards, cardsLoaded = true, userId, accent, da
                         }}>🏛 {have} / {list.length} joueurs ›</button>
                       )
                     })()}
-                    <button onClick={() => setSelected(pc)} style={{
-                      width: '100%', padding: '7px 0', background: 'transparent',
-                      color: accent, border: `1.5px solid ${accent}`, borderRadius: 8,
-                      cursor: 'pointer', fontWeight: 800, fontSize: 12, marginTop: 'auto',
-                    }}
-                      onMouseEnter={e => { (e.currentTarget as HTMLButtonElement).style.background = `${accent}18` }}
-                      onMouseLeave={e => { (e.currentTarget as HTMLButtonElement).style.background = 'transparent' }}
-                    >Voir →</button>
+                    {pc.type === 'player' && s && !s.loading && s.total > 0 && (
+                      <button onClick={e => { e.stopPropagation(); setPlayerPopupOpen(pc) }} title="Checklist complète du joueur" style={{
+                        alignSelf: 'flex-start', padding: '2px 8px', background: `${TYPE_COLOR.player}1f`, color: TYPE_COLOR.player,
+                        border: `1px solid ${TYPE_COLOR.player}66`, borderRadius: 10, cursor: 'pointer', fontWeight: 800, fontSize: 11,
+                      }}>✓ {count} / {s.total} cartes ›</button>
+                    )}
+                    {pc.type !== 'player' && (
+                      <button onClick={() => setSelected(pc)} style={{
+                        width: '100%', padding: '7px 0', background: 'transparent',
+                        color: accent, border: `1.5px solid ${accent}`, borderRadius: 8,
+                        cursor: 'pointer', fontWeight: 800, fontSize: 12, marginTop: 'auto',
+                      }}
+                        onMouseEnter={e => { (e.currentTarget as HTMLButtonElement).style.background = `${accent}18` }}
+                        onMouseLeave={e => { (e.currentTarget as HTMLButtonElement).style.background = 'transparent' }}
+                      >Voir →</button>
+                    )}
                   </div>
                 </div>
               )
