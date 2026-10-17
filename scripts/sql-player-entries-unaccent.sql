@@ -43,6 +43,14 @@ CREATE INDEX CONCURRENTLY IF NOT EXISTS idx_cse_player_name_unaccent
 --    fusionnant la checklist du joueur au lieu de la fragmenter. Inclut le
 --    jointure vers card_sets directement (evite un aller-retour supplementaire
 --    cote app).
+--
+--    IMPORTANT : le filtre prefixe utilise >= / < (recherche par intervalle),
+--    PAS LIKE prefixe || '%'. Postgres ne sait extraire un prefixe fixe d'un
+--    LIKE que si le motif est un LITTERAL ecrit en dur dans la requete -- des
+--    qu'il est construit dynamiquement (ici via ||), l'optimisation saute et
+--    l'index fonctionnel n'est plus utilise du tout -> scan complet des 14M+
+--    lignes -> timeout (constate en prod). >= / < sur l'expression indexee
+--    fonctionne nativement avec un index B-tree, parametre ou pas.
 CREATE OR REPLACE FUNCTION search_player_entries_unaccent(p_first text, p_last text)
 RETURNS TABLE (
   id int, set_id int, card_number text, variation text, is_rc boolean, is_auto boolean, image_url text,
@@ -54,7 +62,8 @@ AS $$
          s.name, s.year, s.brand, s.sport
   FROM card_set_entries e
   JOIN card_sets s ON s.id = e.set_id
-  WHERE immutable_unaccent(lower(e.player_name)) LIKE immutable_unaccent(lower(p_first)) || '%'
+  WHERE immutable_unaccent(lower(e.player_name)) >= immutable_unaccent(lower(p_first))
+    AND immutable_unaccent(lower(e.player_name)) <  immutable_unaccent(lower(p_first)) || chr(1114111)
     AND immutable_unaccent(lower(e.player_name)) LIKE '%' || immutable_unaccent(lower(p_last)) || '%'
   ORDER BY e.set_id, e.card_number;
 $$;
@@ -78,7 +87,8 @@ AS $$
          array_agg(DISTINCT e.variation) FILTER (WHERE e.variation IS NOT NULL) AS variations
   FROM card_set_entries e
   JOIN card_sets s ON s.id = e.set_id
-  WHERE immutable_unaccent(lower(e.player_name)) LIKE immutable_unaccent(lower(p_first)) || '%'
+  WHERE immutable_unaccent(lower(e.player_name)) >= immutable_unaccent(lower(p_first))
+    AND immutable_unaccent(lower(e.player_name)) <  immutable_unaccent(lower(p_first)) || chr(1114111)
     AND immutable_unaccent(lower(e.player_name)) LIKE '%' || immutable_unaccent(lower(p_last)) || '%'
   GROUP BY s.id, s.name, s.year, s.brand, s.sport;
 $$;
