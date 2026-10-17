@@ -16,6 +16,15 @@ export function normalizeName(s: string): string {
     .trim()
 }
 
+// Retire les diacritiques d'un nom sans toucher à la casse ("Dončić" -> "Doncic"),
+// contrairement à normalizeName/playerSlug qui mettent tout en minuscules. La police
+// d'affichage des gros titres (Surfquest, voir da.css) ne contient pas les glyphes
+// accentués (č, ć, š...) -- plutôt que de les afficher cassés/manquants, on les
+// remplace par leur équivalent latin le plus proche.
+export function stripDiacritics(s: string): string {
+  return s.normalize('NFD').replace(/[̀-ͯ]/g, '')
+}
+
 // Slug SEO d'une carte : nom + année + marque + set, pour un mot-clé riche dans l'URL
 // (ex: "michael-jordan-1993-94-upper-deck"). Utilisé pour /galerie/[userId]/[cardSlug].
 export function cardSlug(nom: string, annee?: string, marque?: string, collection?: string): string {

@@ -3,7 +3,7 @@ import type { Metadata } from 'next'
 import Link from 'next/link'
 import { fetchCsvCardsForProfiles } from '@/lib/csvCards'
 import { fetchEspnHeadshot, fetchEspnPlayerBio } from '@/lib/espnHeadshot'
-import { normalizeName, cardPageUrl } from '@/lib/playerSlug'
+import { normalizeName, cardPageUrl, stripDiacritics } from '@/lib/playerSlug'
 import CommunityCardsSection from './CommunityCardsSection'
 import PlayerChecklistSection from './PlayerChecklistSection'
 import ScrollTopButton from '@/components/ScrollTopButton'
@@ -572,7 +572,7 @@ export default async function JoueurPage({ params }: { params: Promise<{ slug: s
   if (sets.length === 0 && communityCards.length === 0) {
     return (
       <div style={{ maxWidth: 700, margin: '0 auto', padding: '80px 16px', textAlign: 'center', fontFamily: 'Inter, sans-serif' }}>
-        <h1 style={{ fontSize: 28, fontWeight: 900, marginBottom: 12 }}>{playerName}</h1>
+        <h1 style={{ fontSize: 28, fontWeight: 900, marginBottom: 12 }}>{stripDiacritics(playerName)}</h1>
         <p style={{ color: '#999', fontSize: 15, marginBottom: 24 }}>Aucune carte trouvée pour ce joueur dans notre base.</p>
         <Link href="/setlist" style={{ color: '#003DA6', fontWeight: 700, textDecoration: 'none' }}>← Voir le Setlist</Link>
       </div>
@@ -726,7 +726,7 @@ export default async function JoueurPage({ params }: { params: Promise<{ slug: s
                   ))}
                 </div>
 
-                <h1 className="jp-hero-h1" style={{ fontWeight: 900, margin: '0 0 10px', lineHeight: 1.05, letterSpacing: '-0.025em', textWrap: 'balance' as any }}>{playerName}</h1>
+                <h1 className="jp-hero-h1" style={{ fontWeight: 900, margin: '0 0 10px', lineHeight: 1.05, letterSpacing: '-0.025em', textWrap: 'balance' as any }}>{stripDiacritics(playerName)}</h1>
 
                 {/* Bio: position · jersey · height · weight */}
                 {bio && (bio.position || bio.jersey || bio.height || bio.weight) && (
