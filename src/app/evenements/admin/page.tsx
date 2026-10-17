@@ -94,8 +94,13 @@ export default function AdminEvenements() {
 
   const deleteEvent = async (id: number) => {
     if (!confirm(t('evadmin_confirm_delete_event'))) return
-    await supabase.from('event_attendees').delete().eq('event_id', id)
-    await supabase.from('events').delete().eq('id', id)
+    // Avant : erreurs ignorees en silence (ni RLS ni contrainte verifiees) --
+    // un admin cliquait "Supprimer", rien ne se passait, aucun message pour
+    // comprendre pourquoi. On remonte maintenant la vraie erreur Postgres.
+    const { error: attErr } = await supabase.from('event_attendees').delete().eq('event_id', id)
+    if (attErr) { toast.error('Erreur suppression participants : ' + attErr.message); return }
+    const { error: evErr } = await supabase.from('events').delete().eq('id', id)
+    if (evErr) { toast.error('Erreur suppression événement : ' + evErr.message); return }
     loadAll()
   }
 
