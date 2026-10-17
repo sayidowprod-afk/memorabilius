@@ -24,7 +24,7 @@ export async function GET(req: NextRequest) {
   while (true) {
     const { data, error } = await admin
       .from('card_set_entries')
-      .select('id, set_id, card_number, variation, is_rc, card_sets(id, name, year, brand, sport)')
+      .select('id, set_id, card_number, variation, is_rc, is_auto, image_url, card_sets(id, name, year, brand, sport)')
       .ilike('player_name', `${firstName}%`)
       .ilike('player_name', `%${lastName}%`)
       .order('set_id')

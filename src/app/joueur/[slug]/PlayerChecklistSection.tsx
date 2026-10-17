@@ -10,12 +10,15 @@ interface EntryWithSet {
   card_number: string | null
   variation: string | null
   is_rc: boolean
+  is_auto: boolean
+  image_url: string | null
   card_sets: { id: number; name: string; year: number | null; brand: string | null; sport: string } | null
 }
 
 interface CompletionRow {
   id: string
   manually_checked: boolean
+  wishlist: boolean
 }
 
 interface SetGroup {
@@ -27,16 +30,19 @@ interface SetGroup {
   entries: EntryWithSet[]
 }
 
-type Filter = 'all' | 'owned' | 'missing'
+type Filter = 'all' | 'owned' | 'missing' | 'wishlist'
 
 export default function PlayerChecklistSection({ playerName }: { playerName: string }) {
   const [userId, setUserId] = useState<string | null | undefined>(undefined)
   const [loading, setLoading] = useState(true)
   const [entries, setEntries] = useState<EntryWithSet[]>([])
+  const [communityImages, setCommunityImages] = useState<Map<number, string>>(new Map())
   const [completions, setCompletions] = useState<Map<number, CompletionRow>>(new Map())
   const [saving, setSaving] = useState<number | null>(null)
   const [filter, setFilter] = useState<Filter>('all')
+  const [autosOnly, setAutosOnly] = useState(false)
   const [openSets, setOpenSets] = useState<Set<number>>(new Set())
+  const [imageQueriedSets, setImageQueriedSets] = useState<Set<number>>(new Set())
 
   const nameParts = playerName.split(' ')
   const firstName = nameParts[0]
@@ -60,17 +66,17 @@ export default function PlayerChecklistSection({ playerName }: { playerName: str
       if (uid && allEntries.length > 0) {
         const entryIds = allEntries.map(e => e.id)
         const CHUNK = 500
-        const allCompletions: { id: string; entry_id: number; manually_checked: boolean }[] = []
+        const allCompletions: { id: string; entry_id: number; manually_checked: boolean; wishlist: boolean }[] = []
         for (let i = 0; i < entryIds.length; i += CHUNK) {
           const { data: chunk } = await supabase
             .from('user_set_completion')
-            .select('id, entry_id, manually_checked')
+            .select('id, entry_id, manually_checked, wishlist')
             .eq('user_id', uid)
             .in('entry_id', entryIds.slice(i, i + CHUNK))
           if (chunk) allCompletions.push(...chunk)
         }
         const map = new Map<number, CompletionRow>()
-        for (const c of allCompletions) map.set(c.entry_id, { id: c.id, manually_checked: c.manually_checked })
+        for (const c of allCompletions) map.set(c.entry_id, { id: c.id, manually_checked: c.manually_checked, wishlist: c.wishlist })
         setCompletions(map)
       }
     } catch {
@@ -85,21 +91,34 @@ export default function PlayerChecklistSection({ playerName }: { playerName: str
     loadData(userId)
   }, [userId, loadData])
 
-  async function toggleEntry(entryId: number) {
+  // Statut d'une entree : 'owned' prime sur 'wishlist' (on ne liste pas en
+  // wishlist ce qu'on a deja -- set-sync insere aussi des lignes auto-matchees
+  // avec wishlist=false par defaut, jamais en conflit).
+  function statusOf(entryId: number): 'owned' | 'wishlist' | 'none' {
+    const c = completions.get(entryId)
+    if (!c) return 'none'
+    if (c.wishlist) return 'wishlist'
+    return 'owned'
+  }
+
+  async function setEntryStatus(entryId: number, next: 'owned' | 'wishlist' | 'none') {
     if (!userId) return
     const existing = completions.get(entryId)
     setSaving(entryId)
     try {
-      if (existing) {
-        await supabase.from('user_set_completion').delete().eq('id', existing.id)
-        setCompletions(prev => { const n = new Map(prev); n.delete(entryId); return n })
+      if (next === 'none') {
+        if (existing) {
+          await supabase.from('user_set_completion').delete().eq('id', existing.id)
+          setCompletions(prev => { const n = new Map(prev); n.delete(entryId); return n })
+        }
       } else {
+        const wishlist = next === 'wishlist'
         const { data } = await supabase
           .from('user_set_completion')
-          .upsert({ user_id: userId, entry_id: entryId, manually_checked: true }, { onConflict: 'user_id,entry_id' })
-          .select('id, manually_checked')
+          .upsert({ user_id: userId, entry_id: entryId, manually_checked: !wishlist, wishlist }, { onConflict: 'user_id,entry_id' })
+          .select('id, manually_checked, wishlist')
           .single()
-        if (data) setCompletions(prev => new Map(prev).set(entryId, { id: data.id, manually_checked: data.manually_checked }))
+        if (data) setCompletions(prev => new Map(prev).set(entryId, { id: data.id, manually_checked: data.manually_checked, wishlist: data.wishlist }))
       }
     } finally {
       setSaving(null)
@@ -129,8 +148,42 @@ export default function PlayerChecklistSection({ playerName }: { playerName: str
   }
   setGroups.sort((a, b) => (b.setYear || 0) - (a.setYear || 0))
 
-  const totalOwned = completions.size
+  // Photos communaute (table card_set_entries.image_url ou fuzzy-match via
+  // /api/setlist-images, meme mecanisme que la page setlist d'un set) --
+  // chargees uniquement pour le set ouvert, aux entrees sans image deja
+  // en cache, pour ne pas interroger tous les sets d'un coup pour un joueur
+  // avec une longue carriere.
+  useEffect(() => {
+    if (!userId) return
+    for (const group of setGroups) {
+      if (!openSets.has(group.setId) || imageQueriedSets.has(group.setId)) continue
+      const missing = group.entries.filter(e => !e.image_url && !communityImages.has(e.id))
+      setImageQueriedSets(prev => new Set(prev).add(group.setId))
+      if (missing.length === 0) continue
+      supabase.auth.getSession().then(({ data: { session } }) => {
+        if (!session?.access_token) return
+        fetch('/api/setlist-images', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${session.access_token}` },
+          body: JSON.stringify({
+            setId: group.setId, setYear: group.setYear, setBrand: group.setBrand, setName: group.setName,
+            entryIds: missing.map(e => e.id),
+          }),
+        })
+          .then(r => r.ok ? r.json() : [])
+          .then((rows: { entry_id: number; image_url: string }[]) => {
+            if (rows.length > 0) setCommunityImages(prev => { const n = new Map(prev); for (const r of rows) n.set(r.entry_id, r.image_url); return n })
+          })
+          .catch(() => {})
+      })
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [openSets, entries, userId])
+
+  const totalOwned = [...completions.values()].filter(c => !c.wishlist).length
+  const totalWishlist = [...completions.values()].filter(c => c.wishlist).length
   const totalCards = entries.length
+  const totalAutos = entries.filter(e => e.is_auto).length
 
   if (userId === undefined) return null
 
@@ -144,27 +197,43 @@ export default function PlayerChecklistSection({ playerName }: { playerName: str
           {!loading && totalCards > 0 && (
             <p style={{ fontSize: 13, color: 'var(--jp-muted)', margin: '4px 0 0', fontWeight: 600 }}>
               {userId
-                ? `${totalOwned} / ${totalCards} carte${totalCards > 1 ? 's' : ''} dans ta collection`
+                ? `${totalOwned} / ${totalCards} carte${totalCards > 1 ? 's' : ''} dans ta collection${totalWishlist ? ` · ${totalWishlist} en wishlist` : ''}`
                 : `${totalCards} carte${totalCards > 1 ? 's' : ''} répertoriées`}
             </p>
           )}
         </div>
         {!loading && totalCards > 0 && (
-          <div style={{ display: 'flex', gap: 4 }}>
-            {(['all', 'owned', 'missing'] as Filter[]).map(f => (
+          <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap' }}>
+            <div style={{ display: 'flex', gap: 4 }}>
+              {(['all', 'owned', 'missing', 'wishlist'] as Filter[]).map(f => (
+                <button
+                  key={f}
+                  onClick={() => setFilter(f)}
+                  style={{
+                    background: filter === f ? 'var(--jp-accent)' : 'var(--jp-surface)',
+                    color: filter === f ? 'white' : 'var(--jp-text2)',
+                    border: '1.5px solid ' + (filter === f ? 'var(--jp-accent)' : 'var(--jp-border)'),
+                    borderRadius: 6, padding: '5px 12px', fontSize: 12, fontWeight: 700, cursor: 'pointer',
+                  }}
+                >
+                  {f === 'all' ? 'Tout' : f === 'owned' ? 'Possédé' : f === 'missing' ? 'Manquant' : 'Wishlist'}
+                </button>
+              ))}
+            </div>
+            {totalAutos > 0 && (
               <button
-                key={f}
-                onClick={() => setFilter(f)}
+                onClick={() => setAutosOnly(v => !v)}
+                title="N'afficher que les autographes"
                 style={{
-                  background: filter === f ? 'var(--jp-accent)' : 'var(--jp-surface)',
-                  color: filter === f ? 'white' : 'var(--jp-text2)',
-                  border: '1.5px solid ' + (filter === f ? 'var(--jp-accent)' : 'var(--jp-border)'),
+                  background: autosOnly ? '#3B82F6' : 'var(--jp-surface)',
+                  color: autosOnly ? 'white' : 'var(--jp-text2)',
+                  border: '1.5px solid ' + (autosOnly ? '#3B82F6' : 'var(--jp-border)'),
                   borderRadius: 6, padding: '5px 12px', fontSize: 12, fontWeight: 700, cursor: 'pointer',
                 }}
               >
-                {f === 'all' ? 'Tout' : f === 'owned' ? 'Possédé' : 'Manquant'}
+                ✒️ Autos ({totalAutos})
               </button>
-            ))}
+            )}
           </div>
         )}
       </div>
@@ -183,7 +252,7 @@ export default function PlayerChecklistSection({ playerName }: { playerName: str
 
       {!loading && !userId && totalCards > 0 && (
         <div style={{ marginBottom: 12, padding: '10px 16px', background: 'var(--jp-surface)', borderRadius: 10, border: '1.5px solid var(--jp-border)', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-          <span style={{ color: 'var(--jp-muted)', fontSize: 13 }}>Connecte-toi pour cocher tes cartes.</span>
+          <span style={{ color: 'var(--jp-muted)', fontSize: 13 }}>Connecte-toi pour cocher tes cartes et gérer ta wishlist.</span>
           <Link href="/connexion" style={{ color: 'var(--jp-accent)', fontWeight: 800, fontSize: 13, textDecoration: 'none' }}>Se connecter →</Link>
         </div>
       )}
@@ -208,17 +277,19 @@ export default function PlayerChecklistSection({ playerName }: { playerName: str
               {setGroups.length} sets · cliquer pour développer
             </p>
           )}
-          <div style={{ maxHeight: 520, overflowY: 'auto', display: 'flex', flexDirection: 'column', gap: 4, paddingRight: 4 }}>
+          <div style={{ maxHeight: 640, overflowY: 'auto', display: 'flex', flexDirection: 'column', gap: 4, paddingRight: 4 }}>
             {setGroups.map(group => {
-              const ownedInSet = group.entries.filter(e => completions.has(e.id)).length
+              const ownedInSet = group.entries.filter(e => statusOf(e.id) === 'owned').length
               const isOpen = openSets.has(group.setId)
               const visibleEntries = group.entries.filter(e => {
-                const owned = completions.has(e.id)
-                if (filter === 'owned') return owned
-                if (filter === 'missing') return !owned
+                if (autosOnly && !e.is_auto) return false
+                const st = statusOf(e.id)
+                if (filter === 'owned') return st === 'owned'
+                if (filter === 'missing') return st === 'none'
+                if (filter === 'wishlist') return st === 'wishlist'
                 return true
               })
-              if (filter !== 'all' && visibleEntries.length === 0) return null
+              if ((filter !== 'all' || autosOnly) && visibleEntries.length === 0) return null
               return (
                 <div key={group.setId} style={{ background: 'var(--jp-surface)', borderRadius: 8, border: '1.5px solid var(--jp-border)', overflow: 'hidden', flexShrink: 0 }}>
                   <button
@@ -253,49 +324,59 @@ export default function PlayerChecklistSection({ playerName }: { playerName: str
                     </div>
                   </button>
                   {isOpen && (
-                    <div style={{ borderTop: '1px solid var(--jp-border)' }}>
-                      {visibleEntries.map(entry => {
-                        const owned = completions.has(entry.id)
-                        const isSaving = saving === entry.id
-                        return (
-                          <div
-                            key={entry.id}
-                            onClick={() => userId && toggleEntry(entry.id)}
-                            style={{
-                              display: 'flex', alignItems: 'center', gap: 8,
-                              padding: '5px 12px', borderBottom: '1px solid var(--jp-border)',
-                              cursor: userId ? 'pointer' : 'default',
-                              background: owned ? 'rgba(39,174,96,0.06)' : 'transparent',
-                            }}
-                          >
-                            {userId && (
-                              <div style={{
-                                width: 16, height: 16, borderRadius: 4, flexShrink: 0,
-                                border: owned ? '2px solid #27ae60' : '2px solid var(--jp-border)',
-                                background: owned ? '#27ae60' : 'transparent',
-                                display: 'flex', alignItems: 'center', justifyContent: 'center',
-                                opacity: isSaving ? 0.5 : 1,
-                              }}>
-                                {owned && <span style={{ color: 'white', fontSize: 10, lineHeight: 1 }}>✓</span>}
+                    <div style={{ borderTop: '1px solid var(--jp-border)', padding: 10 }}>
+                      <div className="pc-grid">
+                        {visibleEntries.map(entry => {
+                          const status = statusOf(entry.id)
+                          const isSaving = saving === entry.id
+                          const photo = entry.image_url || communityImages.get(entry.id) || null
+                          return (
+                            <div key={entry.id} className={`pc-cell${status === 'owned' ? ' owned' : status === 'wishlist' ? ' wishlist' : ''}`}>
+                              <div className="pc-photo">
+                                {photo
+                                  // eslint-disable-next-line @next/next/no-img-element
+                                  ? <img src={photo} alt="" loading="lazy" referrerPolicy="no-referrer" />
+                                  : <b>{entry.card_number ? `#${entry.card_number}` : (entry.variation || 'Base')}</b>}
                               </div>
-                            )}
-                            {entry.card_number && (
-                              <span style={{ fontSize: 11, fontWeight: 800, color: 'var(--jp-muted)', minWidth: 32, fontVariantNumeric: 'tabular-nums' }}>
-                                #{entry.card_number}
-                              </span>
-                            )}
-                            <span style={{ fontSize: 12, color: owned ? 'var(--jp-text)' : 'var(--jp-text2)', flex: 1, fontWeight: owned ? 700 : 400 }}>
-                              {entry.variation || 'Base'}
-                            </span>
-                            {entry.is_rc && (
-                              <TagIcon kind="rc" h={20} />
-                            )}
-                          </div>
-                        )
-                      })}
+                              {(entry.is_rc || entry.is_auto) && (
+                                <div className="pc-badges">
+                                  {entry.is_rc && <TagIcon kind="rc" h={18} />}
+                                  {entry.is_auto && <span className="pc-badge" style={{ background: '#3B82F6' }}>AUTO</span>}
+                                </div>
+                              )}
+                              {userId && (
+                                <div className="pc-toggles">
+                                  <button
+                                    type="button"
+                                    className={`pc-tbtn own${status === 'owned' ? ' on' : ''}`}
+                                    title={status === 'owned' ? "Retirer de ma collection" : "Je l'ai"}
+                                    disabled={isSaving}
+                                    onClick={() => setEntryStatus(entry.id, status === 'owned' ? 'none' : 'owned')}
+                                  >
+                                    ✓
+                                  </button>
+                                  <button
+                                    type="button"
+                                    className={`pc-tbtn wish${status === 'wishlist' ? ' on' : ''}`}
+                                    title={status === 'wishlist' ? 'Retirer de la wishlist' : 'Ajouter à ma wishlist'}
+                                    disabled={isSaving}
+                                    onClick={() => setEntryStatus(entry.id, status === 'wishlist' ? 'none' : 'wishlist')}
+                                  >
+                                    ★
+                                  </button>
+                                </div>
+                              )}
+                              <div className="pc-info">
+                                {entry.card_number && <span className="pc-num">#{entry.card_number} </span>}
+                                <span className="pc-var">{entry.variation || 'Base'}</span>
+                              </div>
+                            </div>
+                          )
+                        })}
+                      </div>
                       {visibleEntries.length === 0 && (
                         <div style={{ padding: '10px 14px', color: 'var(--jp-muted)', fontSize: 12, textAlign: 'center' }}>
-                          Aucune carte {filter === 'owned' ? 'possédée' : 'manquante'} dans ce set.
+                          Aucune carte {filter === 'owned' ? 'possédée' : filter === 'wishlist' ? 'en wishlist' : autosOnly ? 'auto' : 'manquante'} dans ce set.
                         </div>
                       )}
                     </div>
