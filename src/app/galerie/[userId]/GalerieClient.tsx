@@ -569,9 +569,16 @@ export default function GalerieClient({ userId, initialCardUrl, initialCards, in
   // Retourne les styles de bordure corrects pour couleur unie ou dégradé
   const coloredBorder = (color: string, width = 2): React.CSSProperties => {
     if (!color) return { border: `${width}px solid ${accent}` }
-    if (isGradient(color)) return {
-      background: color,
-      border: 'none',
+    if (isGradient(color)) {
+      // Glow en plus du cadre (box-shadow ne prend pas de place, ne touche pas
+      // la mise en page de la grille) -- accentue le degrade couleur d'equipe,
+      // qui paraissait trop discret rien qu'avec le padding comme "bordure".
+      const firstColor = color.match(/#[0-9a-fA-F]{3,6}/)?.[0] || accent
+      return {
+        background: color,
+        border: 'none',
+        boxShadow: `0 0 0 1px ${firstColor}aa, 0 3px 14px ${firstColor}66`,
+      }
     }
     return { border: `${width}px solid ${color}` }
   }
