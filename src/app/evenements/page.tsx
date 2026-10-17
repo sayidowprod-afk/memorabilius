@@ -14,6 +14,8 @@ type Event = {
   title: string
   description: string | null
   date: string
+  time: string | null
+  end_date: string | null
   city: string
   country: string
   location_name: string | null
@@ -23,24 +25,41 @@ type Event = {
   going?: boolean
 }
 
-const emptyForm = { title: '', description: '', date: '', city: '', country: 'France', location_name: '', website: '', image_url: '' }
+const emptyForm = { title: '', description: '', date: '', time: '', end_date: '', city: '', country: 'France', location_name: '', website: '', image_url: '' }
 
 // Echappement RFC5545 (virgule, point-virgule, retour a la ligne, antislash).
 const escapeICS = (s: string) => s.replace(/\\/g, '\\\\').replace(/,/g, '\\,').replace(/;/g, '\\;').replace(/\n/g, '\\n')
 
-// Evenement sur une seule date (pas d'heure en base) : DTSTART;VALUE=DATE
-// suffit, pas besoin de fuseau horaire -- s'affiche comme un evenement
-// "journee entiere" dans tous les agendas (Google/Apple/Outlook).
+// Sans heure renseignee : DTSTART;VALUE=DATE suffit, pas besoin de fuseau
+// horaire -- s'affiche comme un evenement "journee entiere" dans tous les
+// agendas (Google/Apple/Outlook). Avec heure : horaire local flottant (sans
+// Z ni TZID) -- approximation suffisante, l'organisateur et les participants
+// d'un meme evenement physique sont presque toujours dans le meme fuseau.
 async function downloadEventICS(ev: Event) {
   const dt = ev.date.replace(/-/g, '')
   const stamp = new Date().toISOString().replace(/[-:]/g, '').split('.')[0] + 'Z'
   const location = [ev.location_name, ev.city, ev.country].filter(Boolean).join(', ')
+  const dtStartLine = ev.time
+    ? `DTSTART:${dt}T${ev.time.replace(':', '')}00`
+    : `DTSTART;VALUE=DATE:${dt}`
+  // DTEND : uniquement pour un evenement multi-jours (end_date renseigne et
+  // different de date). VALUE=DATE est EXCLUSIF en iCal (le jour de fin ne
+  // compte pas) -- on ajoute donc un jour a end_date pour que le dernier
+  // jour reel de l'evenement soit bien inclus dans tous les agendas.
+  let dtEndLine: string | false = false
+  if (ev.end_date && ev.end_date !== ev.date) {
+    const endPlus1 = new Date(`${ev.end_date}T00:00:00`)
+    endPlus1.setDate(endPlus1.getDate() + 1)
+    const endDt = `${endPlus1.getFullYear()}${String(endPlus1.getMonth() + 1).padStart(2, '0')}${String(endPlus1.getDate()).padStart(2, '0')}`
+    dtEndLine = `DTEND;VALUE=DATE:${endDt}`
+  }
   const lines = [
     'BEGIN:VCALENDAR', 'VERSION:2.0', 'PRODID:-//Memorabilius//FR',
     'BEGIN:VEVENT',
     `UID:event-${ev.id}@memorabilius.fr`,
     `DTSTAMP:${stamp}`,
-    `DTSTART;VALUE=DATE:${dt}`,
+    dtStartLine,
+    dtEndLine,
     `SUMMARY:${escapeICS(ev.title)}`,
     location && `LOCATION:${escapeICS(location)}`,
     ev.description && `DESCRIPTION:${escapeICS(ev.description)}`,
@@ -133,9 +152,26 @@ export default function Evenements() {
   }
 
   const formatDate = (d: string) => new Date(d).toLocaleDateString(lang === 'en' ? 'en-US' : 'fr-FR', { weekday: 'long', day: 'numeric', month: 'long', year: 'numeric' })
+  // Plage "18 - 20 octobre 2026" pour un evenement multi-jours (end_date renseigne
+  // et different de date) -- sinon simple date complete comme avant.
+  const formatDateRange = (ev: Event) => {
+    if (!ev.end_date || ev.end_date === ev.date) return formatDate(ev.date)
+    const locale = lang === 'en' ? 'en-US' : 'fr-FR'
+    const start = new Date(ev.date), end = new Date(ev.end_date)
+    const sameMonth = start.getFullYear() === end.getFullYear() && start.getMonth() === end.getMonth()
+    const startStr = sameMonth
+      ? start.toLocaleDateString(locale, { day: 'numeric' })
+      : start.toLocaleDateString(locale, { day: 'numeric', month: 'long' })
+    const endStr = end.toLocaleDateString(locale, { day: 'numeric', month: 'long', year: 'numeric' })
+    return `${startStr} – ${endStr}`
+  }
 
-  const upcoming = events.filter(e => new Date(e.date) >= new Date(new Date().toDateString()))
-  const past = events.filter(e => new Date(e.date) < new Date(new Date().toDateString()))
+  // Un evenement multi-jours reste "a venir" tant que sa DERNIERE journee n'est
+  // pas passee (pas juste son premier jour) -- sinon un salon de 3 jours bascule
+  // dans "Passes" des le lendemain du premier jour alors qu'il est encore en cours.
+  const endOf = (e: Event) => new Date(e.end_date || e.date)
+  const upcoming = events.filter(e => endOf(e) >= new Date(new Date().toDateString()))
+  const past = events.filter(e => endOf(e) < new Date(new Date().toDateString()))
 
   const bg = dark ? '#121212' : '#f7f8fa'
   const card = dark ? '#1e1e1e' : 'white'
@@ -183,10 +219,10 @@ export default function Evenements() {
 
         {upcoming.length > 0 && (
           <>
-            <EventClock title={upcoming[0].title} date={upcoming[0].date} />
+            <EventClock title={upcoming[0].title} date={upcoming[0].date} time={upcoming[0].time} />
             <h2 style={{ color: text, fontSize: 16, fontWeight: 700, marginBottom: 16 }}>{t('events_upcoming')}</h2>
             <div style={{ display: 'flex', flexDirection: 'column', gap: 16, marginBottom: 40 }}>
-              {upcoming.map(ev => <EventCard key={ev.id} ev={ev} dark={dark} text={text} sub={sub} card={card} border={border} onToggle={() => toggleAttend(ev)} userId={userId} formatDate={formatDate} />)}
+              {upcoming.map(ev => <EventCard key={ev.id} ev={ev} dark={dark} text={text} sub={sub} card={card} border={border} onToggle={() => toggleAttend(ev)} userId={userId} formatDate={formatDateRange} />)}
             </div>
           </>
         )}
@@ -195,7 +231,7 @@ export default function Evenements() {
           <>
             <h2 style={{ color: sub, fontSize: 16, fontWeight: 700, marginBottom: 16 }}>{t('events_past')}</h2>
             <div style={{ display: 'flex', flexDirection: 'column', gap: 16, opacity: 0.6 }}>
-              {past.map(ev => <EventCard key={ev.id} ev={ev} dark={dark} text={text} sub={sub} card={card} border={border} onToggle={null} userId={null} formatDate={formatDate} />)}
+              {past.map(ev => <EventCard key={ev.id} ev={ev} dark={dark} text={text} sub={sub} card={card} border={border} onToggle={null} userId={null} formatDate={formatDateRange} />)}
             </div>
           </>
         )}
@@ -215,7 +251,14 @@ export default function Evenements() {
               <div style={{ display: 'flex', flexDirection: 'column', gap: 14 }}>
                 <input style={inp} placeholder={t('events_event_name')} value={form.title} onChange={e => setForm(f => ({ ...f, title: e.target.value }))} />
                 <textarea style={{ ...inp, minHeight: 80, resize: 'vertical' }} placeholder={t('events_description')} value={form.description} onChange={e => setForm(f => ({ ...f, description: e.target.value }))} />
-                <input style={inp} type="date" value={form.date} onChange={e => setForm(f => ({ ...f, date: e.target.value }))} />
+                <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 10 }}>
+                  <input style={inp} type="date" value={form.date} onChange={e => setForm(f => ({ ...f, date: e.target.value }))} />
+                  <input style={inp} type="time" value={form.time} onChange={e => setForm(f => ({ ...f, time: e.target.value }))} title={t('events_time')} />
+                </div>
+                <div>
+                  <input style={inp} type="date" value={form.end_date} min={form.date || undefined} onChange={e => setForm(f => ({ ...f, end_date: e.target.value }))} title={t('events_end_date')} />
+                  <p style={{ fontSize: 11, color: sub, margin: '4px 0 0' }}>{t('events_end_date_hint')}</p>
+                </div>
                 <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 10 }}>
                   <input style={inp} placeholder={t('events_city')} value={form.city} onChange={e => setForm(f => ({ ...f, city: e.target.value }))} />
                   <input style={inp} placeholder={t('events_country')} value={form.country} onChange={e => setForm(f => ({ ...f, country: e.target.value }))} />
@@ -230,7 +273,9 @@ export default function Evenements() {
                   }} />
                   {form.image_url ? (
                     <div style={{ position: 'relative', borderRadius: 8, overflow: 'hidden' }}>
-                      <img src={form.image_url} alt="" style={{ width: '100%', maxHeight: 160, objectFit: 'cover', display: 'block' }} />
+                      <div style={{ width: '100%', maxHeight: 160, background: dark ? '#0c0c14' : '#f0f0f0', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                        <img src={form.image_url} alt="" style={{ width: '100%', maxHeight: 160, objectFit: 'contain', display: 'block' }} />
+                      </div>
                       <button type="button" onClick={() => setForm(f => ({ ...f, image_url: '' }))} style={{ position: 'absolute', top: 6, right: 6, background: 'rgba(0,0,0,0.6)', border: 'none', borderRadius: '50%', width: 26, height: 26, color: 'white', cursor: 'pointer', fontWeight: 700 }}>✕</button>
                     </div>
                   ) : (
@@ -279,7 +324,15 @@ function EventCard({ ev, dark, text, sub, card, border, onToggle, userId, format
 
   return (
     <div style={{ background: card, border: `1px solid ${border}`, borderRadius: 14, overflow: 'hidden' }}>
-      {ev.image_url && <img src={ev.image_url} alt={ev.title} style={{ width: '100%', maxHeight: 200, objectFit: 'cover', display: 'block' }} />}
+      {/* object-fit: contain (pas cover) -- les images d'evenements sont des affiches/flyers
+          de formats tres varies (portrait, carre, bandeau...), un cover avec hauteur fixe
+          coupait regulierement du texte important (titre, infos) selon le format d'origine.
+          max-height generreuse + fond uni pour les formats qui laissent des bandes. */}
+      {ev.image_url && (
+        <div style={{ width: '100%', maxHeight: 320, background: dark ? '#0c0c14' : '#f0f0f0', display: 'flex', alignItems: 'center', justifyContent: 'center', overflow: 'hidden' }}>
+          <img src={ev.image_url} alt={ev.title} style={{ width: '100%', maxHeight: 320, objectFit: 'contain', display: 'block' }} />
+        </div>
+      )}
       <div style={{ padding: '20px 22px' }}>
       <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', gap: 12, flexWrap: 'wrap' }}>
         <div style={{ flex: 1, display: 'flex', gap: 14, alignItems: 'flex-start' }}>
@@ -298,7 +351,7 @@ function EventCard({ ev, dark, text, sub, card, border, onToggle, userId, format
           )}
           <div style={{ flex: 1 }}>
           <h3 style={{ color: text, margin: '0 0 6px', fontSize: 17, fontWeight: 800 }}>{ev.title}</h3>
-          <p style={{ color: '#003DA6', margin: '0 0 4px', fontSize: 13, fontWeight: 700 }}>📅 {formatDate(ev.date)}</p>
+          <p style={{ color: '#003DA6', margin: '0 0 4px', fontSize: 13, fontWeight: 700 }}>📅 {formatDate(ev)}</p>
           <p style={{ color: sub, margin: '0 0 4px', fontSize: 13 }}>📍 {ev.location_name ? `${ev.location_name}, ` : ''}{ev.city}{ev.country !== 'France' ? `, ${ev.country}` : ''}</p>
           {ev.description && <p style={{ color: sub, margin: '6px 0 0', fontSize: 13, lineHeight: 1.5 }}>{ev.description}</p>}
           {/* website est un texte libre saisi par l'utilisateur qui propose l'événement,

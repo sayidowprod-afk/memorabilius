@@ -1,9 +1,11 @@
 'use client'
 import { useEffect, useState } from 'react'
 
-// Compte a rebours "shot clock" du prochain evenement (les evenements n'ont qu'une date, sans heure : on compte jusqu'a 00:00 ce jour-la).
-export default function EventClock({ title, date }: { title: string; date: string }) {
-  const target = new Date(`${date}T00:00:00`).getTime()
+// Compte a rebours "shot clock" du prochain evenement. L'heure est optionnelle
+// (anciens evenements / heure non renseignee) -- sans elle on vise minuit ce
+// jour-la, comme avant.
+export default function EventClock({ title, date, time }: { title: string; date: string; time?: string | null }) {
+  const target = new Date(`${date}T${time || '00:00'}:00`).getTime()
   const [now, setNow] = useState<number | null>(null)
   useEffect(() => {
     setNow(Date.now())

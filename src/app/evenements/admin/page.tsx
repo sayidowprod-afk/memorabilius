@@ -12,6 +12,8 @@ type Request = {
   title: string
   description: string | null
   date: string
+  time: string | null
+  end_date: string | null
   city: string
   country: string
   location_name: string | null
@@ -27,6 +29,8 @@ type Event = {
   title: string
   description: string | null
   date: string
+  time?: string | null
+  end_date?: string | null
   city: string
   country: string
   location_name: string | null
@@ -42,7 +46,7 @@ export default function AdminEvenements() {
   const [events, setEvents] = useState<Event[]>([])
   const [loading, setLoading] = useState(true)
   const [showAddManual, setShowAddManual] = useState(false)
-  const [manualForm, setManualForm] = useState({ title: '', description: '', date: '', city: '', country: 'France', location_name: '', website: '', image_url: '' })
+  const [manualForm, setManualForm] = useState({ title: '', description: '', date: '', time: '', end_date: '', city: '', country: 'France', location_name: '', website: '', image_url: '' })
   const [editingEvent, setEditingEvent] = useState<Event | null>(null)
   const [saving, setSaving] = useState(false)
   const [uploadingImg, setUploadingImg] = useState(false)
@@ -76,7 +80,7 @@ export default function AdminEvenements() {
 
   const approve = async (req: Request) => {
     await supabase.from('events').insert({
-      title: req.title, description: req.description, date: req.date,
+      title: req.title, description: req.description, date: req.date, time: req.time, end_date: req.end_date,
       city: req.city, country: req.country, location_name: req.location_name, website: req.website
     })
     await supabase.from('event_requests').update({ status: 'approved' }).eq('id', req.id)
@@ -109,6 +113,7 @@ export default function AdminEvenements() {
     setSaving(true)
     await supabase.from('events').update({
       title: editingEvent.title, description: editingEvent.description, date: editingEvent.date,
+      time: editingEvent.time, end_date: editingEvent.end_date,
       city: editingEvent.city, country: editingEvent.country, location_name: editingEvent.location_name,
       website: editingEvent.website, image_url: editingEvent.image_url
     }).eq('id', editingEvent.id)
@@ -123,7 +128,7 @@ export default function AdminEvenements() {
     await supabase.from('events').insert({ ...manualForm })
     setSaving(false)
     setShowAddManual(false)
-    setManualForm({ title: '', description: '', date: '', city: '', country: 'France', location_name: '', website: '', image_url: '' })
+    setManualForm({ title: '', description: '', date: '', time: '', end_date: '', city: '', country: 'France', location_name: '', website: '', image_url: '' })
     loadAll()
   }
 
@@ -241,7 +246,14 @@ export default function AdminEvenements() {
             <div style={{ display: 'flex', flexDirection: 'column', gap: 12 }}>
               <input style={inp} placeholder={t('evadmin_ph_name')} value={editingEvent.title} onChange={e => setEditingEvent(ev => ev ? { ...ev, title: e.target.value } : ev)} />
               <textarea style={{ ...inp, minHeight: 70, resize: 'vertical' }} placeholder={t('evadmin_ph_description')} value={editingEvent.description || ''} onChange={e => setEditingEvent(ev => ev ? { ...ev, description: e.target.value } : ev)} />
-              <input style={inp} type="date" value={editingEvent.date} onChange={e => setEditingEvent(ev => ev ? { ...ev, date: e.target.value } : ev)} />
+              <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 10 }}>
+                <input style={inp} type="date" value={editingEvent.date} onChange={e => setEditingEvent(ev => ev ? { ...ev, date: e.target.value } : ev)} />
+                <input style={inp} type="time" value={editingEvent.time || ''} onChange={e => setEditingEvent(ev => ev ? { ...ev, time: e.target.value } : ev)} title={t('events_time')} />
+              </div>
+              <div>
+                <input style={inp} type="date" value={editingEvent.end_date || ''} min={editingEvent.date || undefined} onChange={e => setEditingEvent(ev => ev ? { ...ev, end_date: e.target.value } : ev)} title={t('events_end_date')} />
+                <p style={{ fontSize: 11, color: sub, margin: '4px 0 0' }}>{t('events_end_date_hint')}</p>
+              </div>
               <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 10 }}>
                 <input style={inp} placeholder={t('evadmin_ph_city')} value={editingEvent.city} onChange={e => setEditingEvent(ev => ev ? { ...ev, city: e.target.value } : ev)} />
                 <input style={inp} placeholder={t('evadmin_ph_country')} value={editingEvent.country} onChange={e => setEditingEvent(ev => ev ? { ...ev, country: e.target.value } : ev)} />
@@ -255,8 +267,8 @@ export default function AdminEvenements() {
                   if (url) setEditingEvent(ev => ev ? { ...ev, image_url: url } : ev)
                 }} />
                 {editingEvent.image_url ? (
-                  <div style={{ position: 'relative', borderRadius: 8, overflow: 'hidden' }}>
-                    <img src={editingEvent.image_url} alt="" style={{ width: '100%', maxHeight: 160, objectFit: 'cover', display: 'block' }} />
+                  <div style={{ position: 'relative', borderRadius: 8, overflow: 'hidden', background: dark ? '#0c0c14' : '#f0f0f0', display: 'flex', alignItems: 'center', justifyContent: 'center', maxHeight: 160 }}>
+                    <img src={editingEvent.image_url} alt="" style={{ width: '100%', maxHeight: 160, objectFit: 'contain', display: 'block' }} />
                     <button type="button" onClick={() => setEditingEvent(ev => ev ? { ...ev, image_url: undefined } : ev)} style={{ position: 'absolute', top: 6, right: 6, background: 'rgba(0,0,0,0.6)', border: 'none', borderRadius: '50%', width: 26, height: 26, color: 'white', cursor: 'pointer', fontWeight: 700 }}>✕</button>
                     <button type="button" onClick={() => editImgInputRef.current?.click()} style={{ position: 'absolute', bottom: 6, right: 6, background: 'rgba(0,0,0,0.6)', border: 'none', borderRadius: 8, padding: '4px 10px', color: 'white', cursor: 'pointer', fontSize: 12, fontWeight: 600 }}>{t('evadmin_change')}</button>
                   </div>
@@ -286,7 +298,14 @@ export default function AdminEvenements() {
             <div style={{ display: 'flex', flexDirection: 'column', gap: 12 }}>
               <input style={inp} placeholder={t('evadmin_ph_name')} value={manualForm.title} onChange={e => setManualForm(f => ({ ...f, title: e.target.value }))} />
               <textarea style={{ ...inp, minHeight: 70, resize: 'vertical' }} placeholder={t('evadmin_ph_description')} value={manualForm.description} onChange={e => setManualForm(f => ({ ...f, description: e.target.value }))} />
-              <input style={inp} type="date" value={manualForm.date} onChange={e => setManualForm(f => ({ ...f, date: e.target.value }))} />
+              <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 10 }}>
+                <input style={inp} type="date" value={manualForm.date} onChange={e => setManualForm(f => ({ ...f, date: e.target.value }))} />
+                <input style={inp} type="time" value={manualForm.time} onChange={e => setManualForm(f => ({ ...f, time: e.target.value }))} title={t('events_time')} />
+              </div>
+              <div>
+                <input style={inp} type="date" value={manualForm.end_date} min={manualForm.date || undefined} onChange={e => setManualForm(f => ({ ...f, end_date: e.target.value }))} title={t('events_end_date')} />
+                <p style={{ fontSize: 11, color: sub, margin: '4px 0 0' }}>{t('events_end_date_hint')}</p>
+              </div>
               <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 10 }}>
                 <input style={inp} placeholder={t('evadmin_ph_city')} value={manualForm.city} onChange={e => setManualForm(f => ({ ...f, city: e.target.value }))} />
                 <input style={inp} placeholder={t('evadmin_ph_country')} value={manualForm.country} onChange={e => setManualForm(f => ({ ...f, country: e.target.value }))} />
@@ -300,8 +319,8 @@ export default function AdminEvenements() {
                   if (url) setManualForm(f => ({ ...f, image_url: url }))
                 }} />
                 {manualForm.image_url ? (
-                  <div style={{ position: 'relative', borderRadius: 8, overflow: 'hidden' }}>
-                    <img src={manualForm.image_url} alt="" style={{ width: '100%', maxHeight: 160, objectFit: 'cover', display: 'block' }} />
+                  <div style={{ position: 'relative', borderRadius: 8, overflow: 'hidden', background: dark ? '#0c0c14' : '#f0f0f0', display: 'flex', alignItems: 'center', justifyContent: 'center', maxHeight: 160 }}>
+                    <img src={manualForm.image_url} alt="" style={{ width: '100%', maxHeight: 160, objectFit: 'contain', display: 'block' }} />
                     <button type="button" onClick={() => setManualForm(f => ({ ...f, image_url: '' }))} style={{ position: 'absolute', top: 6, right: 6, background: 'rgba(0,0,0,0.6)', border: 'none', borderRadius: '50%', width: 26, height: 26, color: 'white', cursor: 'pointer', fontWeight: 700 }}>✕</button>
                   </div>
                 ) : (
