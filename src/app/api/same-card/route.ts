@@ -22,7 +22,11 @@ export async function GET(req: NextRequest) {
   const excludeUserId = UUID_RE.test(excludeRaw) ? excludeRaw : ''
   if (!name || name.length < 2) return NextResponse.json([])
 
-  const normalize = (s: string) => s.toLowerCase().replace(/[^a-z0-9]/g, '')
+  // Incoherent avec les ~15 autres normalisations du site : sans le passage NFD +
+  // retrait des diacritiques, un nom accentue ("José", "Dončić") se faisait juste
+  // tronquer aux lettres non-accentuees au lieu d'etre translittere -- deux cartes
+  // du meme joueur accentue pouvaient ne pas etre detectees comme "la meme carte".
+  const normalize = (s: string) => s.toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g, '').replace(/[^a-z0-9]/g, '')
   // Pour la numérotation : garde seulement le tirage (/99), ignore le numéro individuel (23/99 → 99)
   const normNum = (s: string) => { const m = s.match(/\/(\d+)/); return m ? m[1] : normalize(s) }
 

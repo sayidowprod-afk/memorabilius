@@ -74,23 +74,30 @@ export async function GET(req: NextRequest) {
 
   // Échappe les wildcards SQL pour éviter un match total (% → \%, _ → \_)
   const safeQ = query.replace(/%/g, '\\%').replace(/_/g, '\\_')
+  // Normalise un texte pour comparaison insensible aux accents/ponctuation (matching
+  // en JS, ex: cartes CSV ci-dessous -- pas de DB a interroger pour ces donnees).
+  const normStr = (s: string) => s.toLowerCase()
+    .normalize('NFD').replace(/[̀-ͯ]/g, '')
+    .replace(/[^a-z0-9 ]/g, ' ').replace(/\s+/g, ' ').trim()
+  const normQuery = normStr(query)
 
-  // Profils + manuelles en parallèle
+  // Profils + manuelles en parallèle. Profils : liste complète (nécessaire pour
+  // associer chaque carte à son collectionneur ensuite), pas de filtre texte ici.
+  // Manuelles : recherche insensible aux accents via RPC (unaccent cote Postgres --
+  // un simple .ilike() direct est sensible aux accents, "jokic" ne trouvait pas
+  // "Jokić"), voir scripts/sql-search-unaccent.sql.
   const [{ data: profiles }, { data: manuelles }] = await Promise.all([
     supabase.from('profiles')
       .select('id, display_name, avatar_url, lien_csv, couleur_bordure')
       .limit(500),
-    supabase.from('cartes_manuelles')
-      .select('id, nom, equipe, annee, marque, collection, variation, num, auto, rc, patch, image_recto, is_horizontal, disponible_vente, user_id')
-      .or(`nom.ilike.%${safeQ}%,equipe.ilike.%${safeQ}%,variation.ilike.%${safeQ}%,marque.ilike.%${safeQ}%,collection.ilike.%${safeQ}%`)
-      .limit(500),
+    supabase.rpc('search_cartes_manuelles_unaccent', { q: safeQ, max_rows: 500 }),
   ])
   if (!profiles) return NextResponse.json([])
 
   const results: any[] = []
 
   // Cartes privées scoped aux user_ids pertinents — évite le scan de 5000 lignes
-  const manuellesUserIds = new Set((manuelles || []).map(m => m.user_id))
+  const manuellesUserIds = new Set((manuelles || []).map((m: any) => m.user_id))
   const csvUserIds = new Set(profiles.filter(p => p.lien_csv).map(p => p.id))
   const relevantUserIds = [...new Set([...manuellesUserIds, ...csvUserIds])]
   const { data: privees } = relevantUserIds.length > 0
@@ -101,7 +108,7 @@ export async function GET(req: NextRequest) {
 
   const profileMap = new Map(profiles.map(p => [p.id, p]))
 
-  ;(manuelles || []).forEach(m => {
+  ;(manuelles || []).forEach((m: any) => {
     const p = profileMap.get(m.user_id)
     if (!p || isPrivate(m.user_id, m.image_recto)) return
     results.push({
@@ -120,30 +127,22 @@ export async function GET(req: NextRequest) {
   await Promise.all(profiles.filter(p => p.lien_csv).map(async (p) => {
     const cards = await getProfileCsvCards(p.id, p.lien_csv)
     cards.forEach(c => {
-      const name = c.name.toLowerCase()
-      const team = c.team.toLowerCase()
-      const variant = c.variant.toLowerCase()
-      const brand = c.brand.toLowerCase()
-      if (!(name.includes(query) || team.includes(query) || variant.includes(query) || brand.includes(query))) return
+      const name = normStr(c.name)
+      const team = normStr(c.team)
+      const variant = normStr(c.variant)
+      const brand = normStr(c.brand)
+      if (!(name.includes(normQuery) || team.includes(normQuery) || variant.includes(normQuery) || brand.includes(normQuery))) return
       if (isPrivate(p.id, c.img)) return
       results.push({ ...c, collector: p.display_name, collectorId: p.id, collectorAvatar: p.avatar_url, accent: p.couleur_bordure || '#003DA6' })
     })
   }))
 
-  // Collectionneurs — filtre côté DB au lieu de scanner les 500 profils en JS
+  // Collectionneurs — filtre côté DB, insensible aux accents (voir RPC plus haut)
   const { data: matchingProfiles } = await supabase
-    .from('profiles')
-    .select('id, display_name, avatar_url, couleur_bordure')
-    .ilike('display_name', `%${safeQ}%`)
-    .limit(10)
-  const users = (matchingProfiles || []).map(p => ({ id: p.id, display_name: p.display_name, avatar_url: p.avatar_url, accent: p.couleur_bordure || '#003DA6' }))
+    .rpc('search_profiles_unaccent', { q: safeQ, max_rows: 10 })
+  const users = (matchingProfiles || []).map((p: any) => ({ id: p.id, display_name: p.display_name, avatar_url: p.avatar_url, accent: p.couleur_bordure || '#003DA6' }))
 
   // ── Joueurs ────────────────────────────────────────────────────────────────
-  // Normalise un nom pour comparaison insensible aux accents/ponctuation
-  const normStr = (s: string) => s.toLowerCase()
-    .normalize('NFD').replace(/[̀-ͯ]/g, '')
-    .replace(/[^a-z0-9 ]/g, ' ').replace(/\s+/g, ' ').trim()
-
   // Source 1 : card_set_entries (joueurs avec sets dans la DB)
   // Source 2 : ESPN search (tous les joueurs, anciens inclus) — en parallèle
   const ESPN_SPORTS = ['basketball', 'football', 'hockey', 'baseball']

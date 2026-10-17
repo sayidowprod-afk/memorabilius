@@ -21,7 +21,11 @@ function checkRate(ip: string): boolean {
   e.count++; return true
 }
 
-const normalize = (s: string) => s.toLowerCase().replace(/[^a-z0-9]/g, '')
+// Incoherent avec les ~15 autres normalisations du site (recherche, matching joueurs/
+// sets...) : sans le passage NFD + retrait des diacritiques, un nom accentue ("José",
+// "Dončić") se faisait juste tronquer aux lettres non-accentuees au lieu d'etre
+// translittere -- cassait le matching de titre eBay pour ces joueurs.
+const normalize = (s: string) => s.toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g, '').replace(/[^a-z0-9]/g, '')
 const GRADE_KEYWORDS = ['psa', 'bgs', 'sgc', 'cgc', 'beckett', 'graded', 'grade', 'gem', 'mint']
 
 function titleMatchesCard(title: string, mustTerms: string[], isGraded: boolean): boolean {
