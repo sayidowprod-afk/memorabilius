@@ -25,11 +25,17 @@ CREATE EXTENSION IF NOT EXISTS unaccent;
 --    regdictionary dans ce contexte : "function unaccent(unknown, text) does
 --    not exist", constate a l'usage malgre une creation sans erreur -- les
 --    fonctions SQL ne sont pas verifiees en profondeur a la creation).
+--    public.unaccent (schema qualifie explicitement) : CREATE INDEX
+--    CONCURRENTLY tourne dans une connexion separee (obligatoire, ne peut pas
+--    partager la transaction de la session courante) dont le search_path ne
+--    contient pas forcement "public" -- sans qualification, "function
+--    unaccent(text) does not exist" malgre une resolution reussie en session
+--    normale (constate en prod).
 CREATE OR REPLACE FUNCTION immutable_unaccent(text)
 RETURNS text
 LANGUAGE sql IMMUTABLE PARALLEL SAFE STRICT
 AS $$
-  SELECT unaccent($1)
+  SELECT public.unaccent($1)
 $$;
 
 -- 3) Index fonctionnel sur le nom normalise (minuscule + sans accents).
