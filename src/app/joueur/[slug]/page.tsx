@@ -331,11 +331,15 @@ async function _fetchPlayer(slug: string) {
   const firstName = nameParts[0]
   const lastName = nameParts[nameParts.length - 1]
 
-  // RPC get_player_sets + manuelles + profiles en parallèle
+  // RPC get_player_sets_unaccent + manuelles + profiles en parallèle
   // La RPC fait le JOIN + GROUP BY côté Postgres — aucune pagination OFFSET nécessaire
-  // Nécessite l'index trigram sur card_set_entries.player_name pour être rapide
-  const [setsRpcRes, manuRes, profilesRes] = await Promise.all([
-    supabase.rpc('get_player_sets', { p_first: firstName, p_last: lastName }),
+  // Nécessite l'index trigram/fonctionnel sur card_set_entries.player_name pour être rapide
+  // get_player_sets_unaccent (voir scripts/sql-player-entries-unaccent.sql) fusionne les
+  // variantes orthographiques d'un même joueur ("Doncic"/"Dončić") -- avant, chaque graphie
+  // avait sa propre liste de sets, incomplète. Repli sur l'ancienne get_player_sets
+  // (sensible aux accents) si la migration SQL n'a pas encore été exécutée.
+  const [setsRpcRes0, manuRes, profilesRes] = await Promise.all([
+    supabase.rpc('get_player_sets_unaccent', { p_first: firstName, p_last: lastName }),
     supabase
       .from('cartes_manuelles')
       .select('id, nom, annee, rc, auto, num, patch, marque, collection, variation, image_recto, is_horizontal, disponible_vente, created_at, user_id, profiles(display_name, avatar_url, couleur_bordure)')
@@ -352,6 +356,12 @@ async function _fetchPlayer(slug: string) {
   ])
 
   const matchedManu = (manuRes.data || []).filter((m: any) => normalizeName(m.nom || '').includes(normTarget))
+
+  // Migration pas encore exécutée (fonction absente) : repli sur l'ancienne RPC
+  // (sensible aux accents, comportement historique) plutôt que de planter.
+  const setsRpcRes = (setsRpcRes0.error && /function .* does not exist/i.test(setsRpcRes0.error.message || ''))
+    ? await supabase.rpc('get_player_sets', { p_first: firstName, p_last: lastName })
+    : setsRpcRes0
 
   let rawSets: any[] = setsRpcRes.data || []
 
