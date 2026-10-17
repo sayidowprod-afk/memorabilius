@@ -19,12 +19,17 @@ CREATE EXTENSION IF NOT EXISTS unaccent;
 
 -- 2) Wrapper IMMUTABLE : unaccent() de base est seulement STABLE (depend du
 --    dictionnaire de recherche courant), ce qui empeche Postgres de l'indexer
---    directement -- ce wrapper fige le dictionnaire 'unaccent' utilise.
+--    directement. unaccent($1) (1 argument, dictionnaire par defaut) plutot
+--    que unaccent('unaccent', $1) -- cette 2e forme a 2 arguments echouait a
+--    la resolution de type ('unaccent' ne se convertit pas implicitement en
+--    regdictionary dans ce contexte : "function unaccent(unknown, text) does
+--    not exist", constate a l'usage malgre une creation sans erreur -- les
+--    fonctions SQL ne sont pas verifiees en profondeur a la creation).
 CREATE OR REPLACE FUNCTION immutable_unaccent(text)
 RETURNS text
 LANGUAGE sql IMMUTABLE PARALLEL SAFE STRICT
 AS $$
-  SELECT unaccent('unaccent', $1)
+  SELECT unaccent($1)
 $$;
 
 -- 3) Index fonctionnel sur le nom normalise (minuscule + sans accents).
