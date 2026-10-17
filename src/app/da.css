@@ -1054,8 +1054,7 @@ html[data-theme="light"] .tcdb-imp-open { border-color: #06122e; color: #06122e;
 .pcg-cell { position: relative; display: flex; border: 2px solid var(--border, rgba(128,128,128,.35)); background: var(--card-bg, transparent); min-height: 58px; }
 .pcg-cell.owned { border-color: #27ae60; background: #27ae60; }
 .pcg-cell.wishlist { border-color: #f1c40f; background: #f1c40f; }
-.pcg-link { flex: 1; min-width: 0; display: flex; align-items: center; gap: 9px; padding: 7px 8px; }
-.pcg-cell.owned .pcg-link, .pcg-cell.wishlist .pcg-link { padding-right: 56px; }
+.pcg-link { flex: 1; min-width: 0; display: flex; align-items: center; gap: 9px; padding: 7px 62px 7px 8px; }
 .pcg-photo { width: 34px; height: 46px; flex-shrink: 0; border-radius: 4px; overflow: hidden; background: rgba(128,128,128,.22); display: grid; place-items: center; border: 2px solid rgba(128,128,128,.35); }
 .pcg-photo img { width: 100%; height: 100%; object-fit: cover; display: block; }
 .pcg-photo b { font-size: 9px; letter-spacing: .02em; color: var(--text3, #888); font-weight: 800; text-align: center; line-height: 1.2; }
@@ -1066,10 +1065,18 @@ html[data-theme="light"] .tcdb-imp-open { border-color: #06122e; color: #06122e;
 .pcg-sub { font-size: 10px; color: var(--text3, #999); }
 .pcg-cell.owned .pcg-name, .pcg-cell.owned .pcg-sub, .pcg-cell.wishlist .pcg-name, .pcg-cell.wishlist .pcg-sub { color: #fff; }
 .pcg-toggles { position: absolute; right: 7px; top: 50%; transform: translateY(-50%); display: flex; gap: 4px; }
-.pcg-chk { width: 22px; height: 22px; display: grid; place-items: center; padding: 0; border: 2px solid var(--text3, #999); background: transparent; color: var(--text3, #999); font-weight: 900; font-size: 12px; line-height: 1; border-radius: 0; cursor: pointer; }
-.pcg-cell.owned .pcg-chk, .pcg-cell.wishlist .pcg-chk { border-color: rgba(255,255,255,.6); color: rgba(255,255,255,.6); }
-.pcg-chk.on.own { background: #fff; border-color: #fff; color: #27ae60; }
-.pcg-chk.on.wish { background: #fff; border-color: #fff; color: #caa300; }
+/* Contour colore meme a l'etat inactif (vert = possede, or = wishlist) pour distinguer
+   les 2 boutons d'un coup d'oeil -- avant, les deux etaient des carres gris identiques
+   tant qu'on ne cliquait pas, aucun moyen de savoir lequel est lequel. */
+.pcg-chk { width: 24px; height: 24px; display: grid; place-items: center; padding: 0; border-radius: 6px; font-weight: 900; font-size: 13px; line-height: 1; cursor: pointer; background: rgba(0,0,0,0.35); }
+.pcg-chk.own { border: 2px solid #27ae60; color: #27ae60; }
+.pcg-chk.wish { border: 2px solid #f1c40f; color: #f1c40f; }
+.pcg-cell.owned .pcg-chk.own, .pcg-cell.wishlist .pcg-chk.wish { background: rgba(0,0,0,0.25); }
+.pcg-chk.on.own { background: #27ae60; border-color: #27ae60; color: #fff; }
+.pcg-chk.on.wish { background: #f1c40f; border-color: #f1c40f; color: #3a2e00; }
+.pcg-chk:not(.on) { opacity: 0.6; }
+.pcg-chk.on { opacity: 1; }
+.pcg-chk[disabled] { cursor: default; opacity: 0.4; }
 
 /* Setlist integree aux guides : liens, titres de famille et « Team Sets » en bleu fonce sur le fond marine du theme sombre etaient illisibles */
 .sle-accent { color: #003DA6; }
@@ -1096,7 +1103,9 @@ html[data-theme="light"] .tcdb-imp-open { border-color: #06122e; color: #06122e;
 .pc-badges { position: absolute; top: 4px; left: 4px; display: flex; gap: 3px; z-index: 1; }
 .pc-badge { font: 900 8px/1 system-ui, sans-serif; padding: 2px 4px; border-radius: 4px; color: #fff; }
 .pc-toggles { position: absolute; top: 4px; right: 4px; display: flex; gap: 3px; z-index: 1; }
-.pc-tbtn { width: 22px; height: 22px; border-radius: 50%; border: none; display: flex; align-items: center; justify-content: center; font-size: 12px; cursor: pointer; background: rgba(0,0,0,0.55); color: rgba(255,255,255,0.75); line-height: 1; }
+.pc-tbtn { width: 22px; height: 22px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 12px; cursor: pointer; background: rgba(0,0,0,0.55); line-height: 1; }
+.pc-tbtn.own { border: 2px solid #27ae60; color: #27ae60; }
+.pc-tbtn.wish { border: 2px solid #f1c40f; color: #f1c40f; }
 .pc-tbtn.on.own { background: #27ae60; color: #fff; }
 .pc-tbtn.on.wish { background: #f1c40f; color: #3a2e00; }
 .pc-tbtn[disabled] { opacity: 0.5; cursor: default; }

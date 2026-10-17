@@ -218,14 +218,14 @@ export default function PlayerCardPopup({ playerName, userId, color }: {
                 </div>
                 <div className="pcg-toggles">
                   <button type="button" className={'pcg-chk own' + (status === 'owned' ? ' on' : '')} disabled={isSaving}
-                    title={status === 'owned' ? 'Décocher (je ne l’ai pas)' : "Cocher (je l'ai)"}
+                    title={status === 'owned' ? 'Décocher (je ne l’ai pas)' : "Je l'ai"}
                     onClick={() => setEntryStatus(e.id, status === 'owned' ? 'none' : 'owned')}>
-                    {status === 'owned' ? '✓' : ''}
+                    ✓
                   </button>
                   <button type="button" className={'pcg-chk wish' + (status === 'wishlist' ? ' on' : '')} disabled={isSaving}
                     title={status === 'wishlist' ? 'Retirer de la wishlist' : 'Ajouter à ma wishlist'}
                     onClick={() => setEntryStatus(e.id, status === 'wishlist' ? 'none' : 'wishlist')}>
-                    {status === 'wishlist' ? '★' : ''}
+                    ★
                   </button>
                 </div>
               </div>
