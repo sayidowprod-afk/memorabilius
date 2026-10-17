@@ -154,9 +154,19 @@ export default function ScannerPage() {
     try {
       const stream = await navigator.mediaDevices.getUserMedia({ video: { facingMode: 'environment' } })
       qrStreamRef.current = stream
+      // Le <video> ne se monte qu'une fois qrMode=true effectivement rendu -- au cas
+      // (rare) ou ce point serait atteint avant, on attend quelques frames.
+      let mountTries = 0
+      while (!videoRef.current && mountTries < 30) { await new Promise(r => requestAnimationFrame(r)); mountTries++ }
       if (videoRef.current) {
         videoRef.current.srcObject = stream
-        await videoRef.current.play()
+        // iOS/Safari : .play() peut rejeter (promesse interrompue, politique autoplay)
+        // sans empecher la lecture de demarrer reellement malgre tout -- ne pas
+        // laisser cette erreur remonter au catch global ci-dessous, qui fermait tout
+        // le mode QR immediatement ("impossible de scanner" signale : le flux video
+        // ne demarrait jamais vraiment, readyState restait bloque, la boucle de scan
+        // tournait dans le vide indefiniment).
+        try { await videoRef.current.play() } catch { /* on continue quand meme */ }
       }
 
       // Detecteur natif si disponible ; sinon (WebView Android, Firefox, Safari...) decodage en JavaScript pur (jsQR).
@@ -646,6 +656,7 @@ export default function ScannerPage() {
           <div style={{ position: 'fixed', inset: 0, background: '#000', zIndex: 1000, display: 'flex', flexDirection: 'column' }}>
             <video
               ref={videoRef}
+              autoPlay
               playsInline
               muted
               style={{ width: '100%', height: '100%', objectFit: 'cover' }}
