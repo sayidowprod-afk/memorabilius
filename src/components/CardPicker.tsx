@@ -6,6 +6,7 @@ import { fetchCsvCardsForProfiles } from '@/lib/csvCards'
 import { useLang } from '@/lib/LangContext'
 import ModalCloseButton from '@/components/ModalCloseButton'
 import CardTagBadges from '@/components/CardTagBadges'
+import { useHideBottomNav } from '@/lib/useHideBottomNav'
 
 export interface PickableCard {
   key: string
@@ -64,6 +65,12 @@ export default function CardPicker({ userId, onSelect, onSelectMany, onClose, ex
   multi?: boolean
 }) {
   const { t } = useLang()
+  // La barre de navigation globale (zIndex tres eleve) se dessinait par-dessus
+  // le bouton "Ajouter" en bas de ce picker sur mobile -- signale comme
+  // "bouton toujours cache dans l'interface du bas". Ce picker est toujours
+  // monte en overlay plein ecran par son parent (pickerTarget/multiPicker
+  // conditionnels dans BinderLibrary), donc actif tant qu'il existe.
+  useHideBottomNav(true)
   const [cards, setCards] = useState<PickableCard[]>([])
   const [loading, setLoading] = useState(true)
   const [search, setSearch] = useState('')
