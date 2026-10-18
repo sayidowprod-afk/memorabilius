@@ -208,11 +208,20 @@ export default function SetlistEmbedBlock({ title, setId, setName, totalCards, s
       return byTab[k].length > 0
     })
 
+    // e.team peut contenir plusieurs equipes brutes concatenees par le scraping
+    // ("Denver Nuggets/Toronto Raptors/Miami Heat" pour une carte liee a un
+    // trade, parfois avec des doublons litteraux "Detroit Pistons/Detroit
+    // Pistons/...") -- on eclate sur "/", on deduplique, et la carte rejoint
+    // CHAQUE equipe distincte comme une entree a part entiere plutot qu'une
+    // seule "equipe" artificielle qui concatene les noms.
     const teams = new Map<string, Entry[]>()
     for (const e of entriesToShow) {
-      const key = e.team || 'Autres'
-      if (!teams.has(key)) teams.set(key, [])
-      teams.get(key)!.push(e)
+      const rawTeams = e.team ? [...new Set(e.team.split('/').map(t => t.trim()).filter(Boolean))] : []
+      const keys = rawTeams.length > 0 ? rawTeams : ['Autres']
+      for (const key of keys) {
+        if (!teams.has(key)) teams.set(key, [])
+        teams.get(key)!.push(e)
+      }
     }
     for (const items of teams.values()) items.sort(teamEntryCompare)
     if (teams.size > 1) available.push('teams')

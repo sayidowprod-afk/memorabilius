@@ -7,9 +7,7 @@ const ORT_CDN = 'https://cdn.jsdelivr.net/npm/onnxruntime-web@1.27.0/dist/'
 // validation uniquement, jamais branche sur le scanner (CardScanner.tsx
 // n'est pas touche).
 const MODEL_URL = '/models/diecut.onnx'
-const MASK_SIZE = 160 // resolution des prototypes de masque YOLOv8-seg
 const CONF_THRESHOLD = 0.4
-const MASK_THRESHOLD = 0.5
 
 function letterbox(img: HTMLImageElement) {
   const scale = Math.min(IMGSZ / img.naturalWidth, IMGSZ / img.naturalHeight)
@@ -44,8 +42,10 @@ type DetectResult = {
   found: boolean
   conf: number
   ms: number
-  // Masque binaire 640x640 (espace letterbox), 1 octet par pixel
-  mask640: Uint8Array | null
+  // Masque de probabilite 640x640 (espace letterbox), 0..1 par pixel --
+  // interpole (pas nearest-neighbor) pour un contour lisse plutot qu'en
+  // escalier quand on l'agrandit depuis les prototypes 160x160.
+  mask640: Float32Array | null
 }
 
 async function detect(ort: typeof import('onnxruntime-web'), img: HTMLImageElement): Promise<DetectResult> {
@@ -88,26 +88,38 @@ async function detect(ort: typeof import('onnxruntime-web'), img: HTMLImageEleme
     maskProto[p] = sigmoid(sum)
   }
 
-  // bbox en espace prototype (160x160, soit /4 de 640)
+  // bbox en espace prototype (160x160, soit /4 de 640), marge de securite pour
+  // ne pas trancher le contour pile au bord de la bbox brute du detecteur
   const protoScale = PW / IMGSZ
-  const x0 = Math.max(0, Math.round((cx - bw / 2) * protoScale))
-  const y0 = Math.max(0, Math.round((cy - bh / 2) * protoScale))
-  const x1 = Math.min(PW, Math.round((cx + bw / 2) * protoScale))
-  const y1 = Math.min(PH, Math.round((cy + bh / 2) * protoScale))
+  const margin = 2
+  const x0 = Math.max(0, Math.round((cx - bw / 2) * protoScale) - margin)
+  const y0 = Math.max(0, Math.round((cy - bh / 2) * protoScale) - margin)
+  const x1 = Math.min(PW, Math.round((cx + bw / 2) * protoScale) + margin)
+  const y1 = Math.min(PH, Math.round((cy + bh / 2) * protoScale) + margin)
 
-  // upscale nearest 160x160 -> 640x640, mais seulement a l'interieur de la bbox
-  const mask640 = new Uint8Array(IMGSZ * IMGSZ)
-  const up = IMGSZ / PW
-  for (let py = y0; py < y1; py++) {
-    for (let px = x0; px < x1; px++) {
-      if (maskProto[py * PW + px] <= MASK_THRESHOLD) continue
-      const sx0 = Math.round(px * up), sx1 = Math.round((px + 1) * up)
-      const sy0 = Math.round(py * up), sy1 = Math.round((py + 1) * up)
-      for (let yy = sy0; yy < sy1; yy++) {
-        for (let xx = sx0; xx < sx1; xx++) {
-          mask640[yy * IMGSZ + xx] = 1
-        }
-      }
+  // upscale bilineaire 160x160 -> 640x640 (pas nearest-neighbor) : le
+  // prototype est une probabilite continue, l'interpolation donne un
+  // contour qui suit une vraie courbe au lieu de blocs en escalier
+  const mask640 = new Float32Array(IMGSZ * IMGSZ)
+  const down = PW / IMGSZ
+  for (let yy = 0; yy < IMGSZ; yy++) {
+    const py = yy * down
+    const py0 = Math.max(y0, Math.min(PH - 1, Math.floor(py)))
+    const py1 = Math.min(PH - 1, py0 + 1)
+    const fy = py - py0
+    for (let xx = 0; xx < IMGSZ; xx++) {
+      const px = xx * down
+      if (px < x0 || px >= x1 || py < y0 || py >= y1) continue
+      const px0 = Math.max(x0, Math.min(PW - 1, Math.floor(px)))
+      const px1 = Math.min(PW - 1, px0 + 1)
+      const fx = px - px0
+      const v00 = maskProto[py0 * PW + px0]
+      const v10 = maskProto[py0 * PW + px1]
+      const v01 = maskProto[py1 * PW + px0]
+      const v11 = maskProto[py1 * PW + px1]
+      const v0 = v00 + (v10 - v00) * fx
+      const v1 = v01 + (v11 - v01) * fx
+      mask640[yy * IMGSZ + xx] = v0 + (v1 - v0) * fy
     }
   }
 
@@ -130,16 +142,23 @@ function draw(canvas: HTMLCanvasElement, img: HTMLImageElement, result: DetectRe
   maskCanvas.width = maskCanvas.height = IMGSZ
   const mctx = maskCanvas.getContext('2d')!
   const imgData = mctx.createImageData(IMGSZ, IMGSZ)
+  // Bande de transition autour de 0.5 (pas un seuil dur) : avec le masque
+  // deja interpole bilineairement, ca donne un contour net mais anti-aliase
+  // au lieu d'un bord en escalier.
+  const LO = 0.35, HI = 0.65
   for (let i = 0; i < result.mask640.length; i++) {
-    if (result.mask640[i]) {
-      imgData.data[i * 4] = 0
-      imgData.data[i * 4 + 1] = 255
-      imgData.data[i * 4 + 2] = 120
-      imgData.data[i * 4 + 3] = 120
-    }
+    const p = result.mask640[i]
+    if (p <= LO) continue
+    const a = Math.min(1, (p - LO) / (HI - LO))
+    imgData.data[i * 4] = 0
+    imgData.data[i * 4 + 1] = 255
+    imgData.data[i * 4 + 2] = 120
+    imgData.data[i * 4 + 3] = Math.round(a * 140)
   }
   mctx.putImageData(imgData, 0, 0)
 
+  ctx.imageSmoothingEnabled = true
+  ctx.imageSmoothingQuality = 'high'
   ctx.drawImage(maskCanvas, padX, padY, newW, newH, 0, 0, img.naturalWidth, img.naturalHeight)
 }
 
