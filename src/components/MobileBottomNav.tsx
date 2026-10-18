@@ -240,7 +240,7 @@ export default function MobileBottomNav() {
         <Link href="/scanner" style={dropItemStyle} onClick={() => setSheet(null)}>📷 {t('nav_scanner')}</Link>
         <Link href="/gradation" style={dropItemStyle} onClick={() => setSheet(null)}>🔍 {t('nav_gradation')}</Link>
         <Link href="/setlist" style={dropItemStyle} onClick={() => setSheet(null)}>📋 {t('nav_setlist')}</Link>
-        {isAdmin && <Link href="/guides" style={dropItemStyle} onClick={() => setSheet(null)}>📖 {t('nav_guides')}</Link>}
+        <Link href="/guides" style={dropItemStyle} onClick={() => setSheet(null)}>📖 {t('nav_guides')}</Link>
         <Link href="/recherche" style={dropItemStyle} onClick={() => setSheet(null)}>{t('nav_recherche')}</Link>
         {isAdmin && (
           <Link href="/admin" style={{ ...dropItemStyle, color: '#003DA6' }} onClick={() => setSheet(null)}>🛠️ Admin</Link>
