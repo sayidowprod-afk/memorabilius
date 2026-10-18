@@ -128,52 +128,102 @@ async function detect(ort: typeof import('onnxruntime-web'), img: HTMLImageEleme
 
 type Pt = { x: number; y: number }
 
-// Centre de masse du masque (pondere par la probabilite), espace 640 letterbox.
-function maskCentroid(mask640: Float32Array): Pt {
-  let sx = 0, sy = 0, sw = 0
-  for (let y = 0; y < IMGSZ; y++) {
-    for (let x = 0; x < IMGSZ; x++) {
-      const p = mask640[y * IMGSZ + x]
-      if (p < 0.5) continue
-      sx += x * p; sy += y * p; sw += p
+// Suivi de contour par pixel (Moore-neighbor tracing) : un echantillonnage
+// polaire (un rayon par angle depuis le centre) ne peut pas representer une
+// forme CONCAVE -- une encoche qui "rentre" vers le centre entre deux
+// "oreilles" d'une die-cut partage son angle avec le bord exterieur, donc un
+// seul rayon par angle lissait/coupait ces encoches. Valide hors-ligne
+// (ml/test_contour.js) sur un masque synthetique avant d'etre branche ici.
+const MOORE_DIRS: [number, number][] = [
+  [-1, 0], [-1, -1], [0, -1], [1, -1], [1, 0], [1, 1], [0, 1], [-1, 1],
+] // W, NW, N, NE, E, SE, S, SW (sens horaire a partir de l'Ouest)
+
+function traceMooreBoundary(bin: Uint8Array, w: number, h: number, start: Pt): Pt[] {
+  const at = (x: number, y: number) => x >= 0 && x < w && y >= 0 && y < h && bin[y * w + x] === 1
+  const boundary: Pt[] = [start]
+  let curr = start
+  // start trouve en balayant vers la droite depuis un point interieur ->
+  // le pixel Est est hors-forme, backtrack initial = Est
+  let backDirIdx = 4
+  let firstNeighbor: Pt | null = null
+  const maxIter = w * h * 4
+  for (let iter = 0; iter < maxIter; iter++) {
+    let foundIdx = -1
+    for (let i = 1; i <= 8; i++) {
+      const idx = (backDirIdx + i) % 8
+      const [dx, dy] = MOORE_DIRS[idx]
+      if (at(curr.x + dx, curr.y + dy)) { foundIdx = idx; break }
     }
+    if (foundIdx < 0) break // pixel isole
+    const [dx, dy] = MOORE_DIRS[foundIdx]
+    const next = { x: curr.x + dx, y: curr.y + dy }
+    if (firstNeighbor === null) {
+      firstNeighbor = next
+    } else if (curr.x === start.x && curr.y === start.y && next.x === firstNeighbor.x && next.y === firstNeighbor.y) {
+      // critere d'arret de Jacob : on est revenu au point de depart ET sur
+      // le point d'en sortir par la MEME premiere transition qu'au debut --
+      // verifier juste "curr === start" est insuffisant (faux positif
+      // possible pres d'un coin convexe, teste et confirme en local)
+      break
+    }
+    boundary.push(next)
+    backDirIdx = (foundIdx + 4) % 8
+    curr = next
   }
-  return sw > 0 ? { x: sx / sw, y: sy / sw } : { x: IMGSZ / 2, y: IMGSZ / 2 }
+  return boundary
 }
 
-// Echantillonne le contour du masque par rayons depuis le centre (coordonnees
-// polaires) : pour la plupart des formes die-cut (encoches proches du centre,
-// silhouette globalement "en etoile" autour du centre de la carte), c'est
-// suffisant pour suivre les decrochages sans un vrai traceur de contour.
-function sampleContourPolar(mask640: Float32Array, centroid: Pt, nAngles: number): Pt[] {
-  const pts: Pt[] = []
-  const maxR = IMGSZ * 0.75
-  for (let a = 0; a < nAngles; a++) {
-    const theta = (a / nAngles) * Math.PI * 2
-    const dx = Math.cos(theta), dy = Math.sin(theta)
-    let prevR = 0, prevP = 1
-    let found: Pt | null = null
-    for (let r = 1; r <= maxR; r += 1.5) {
-      const x = centroid.x + dx * r, y = centroid.y + dy * r
-      if (x < 0 || x >= IMGSZ || y < 0 || y >= IMGSZ) break
-      const p = mask640[Math.round(y) * IMGSZ + Math.round(x)]
-      if (p < 0.5 && prevP >= 0.5) {
-        // interpolation sous-pixel entre le dernier point "dedans" et celui-ci
-        const t = (0.5 - prevP) / (p - prevP)
-        const rr = prevR + (r - prevR) * t
-        found = { x: centroid.x + dx * rr, y: centroid.y + dy * rr }
-        break
-      }
-      prevR = r; prevP = p
-    }
-    pts.push(found || { x: centroid.x + dx * prevR, y: centroid.y + dy * prevR })
-  }
-  return pts
+// Point de depart garanti a l'interieur de la forme principale (pixel de
+// plus forte probabilite), puis premier pixel de bord trouve en balayant
+// vers la droite -- evite de partir sur un petit artefact isole du masque.
+function findBoundaryStart(mask640: Float32Array, bin: Uint8Array, w: number, h: number): Pt | null {
+  let best = -1, bi = 0
+  for (let i = 0; i < mask640.length; i++) if (mask640[i] > best) { best = mask640[i]; bi = i }
+  if (best < 0.5) return null
+  const sy = Math.floor(bi / w)
+  let x = bi % w
+  while (x < w && bin[sy * w + x] === 1) x++
+  return { x: x - 1, y: sy }
 }
 
-// Lissage leger (moyenne glissante, contour ferme) -- attenue le bruit du
-// masque avant d'en deduire les normales locales, sans gommer les vrais
-// coins (fenetre petite).
+function perpDist(p: Pt, a: Pt, b: Pt): number {
+  const dx = b.x - a.x, dy = b.y - a.y
+  const len = Math.hypot(dx, dy)
+  if (len < 1e-9) return Math.hypot(p.x - a.x, p.y - a.y)
+  return Math.abs((p.x - a.x) * dy - (p.y - a.y) * dx) / len
+}
+
+function douglasPeucker(pts: Pt[], epsilon: number): Pt[] {
+  if (pts.length < 3) return pts
+  let maxDist = 0, idx = 0
+  const a = pts[0], b = pts[pts.length - 1]
+  for (let i = 1; i < pts.length - 1; i++) {
+    const d = perpDist(pts[i], a, b)
+    if (d > maxDist) { maxDist = d; idx = i }
+  }
+  if (maxDist > epsilon) {
+    const left = douglasPeucker(pts.slice(0, idx + 1), epsilon)
+    const right = douglasPeucker(pts.slice(idx), epsilon)
+    return [...left.slice(0, -1), ...right]
+  }
+  return [a, b]
+}
+
+// Simplifie un contour FERME : coupe la boucle en 2 chaines a des points
+// opposes, simplifie chaque chaine independamment, recolle.
+function simplifyClosed(pts: Pt[], epsilon: number): Pt[] {
+  if (pts.length < 8) return pts
+  const n = pts.length
+  const mid = Math.floor(n / 2)
+  const chain1 = pts.slice(0, mid + 1)
+  const chain2 = [...pts.slice(mid), ...pts.slice(0, 1)]
+  const s1 = douglasPeucker(chain1, epsilon)
+  const s2 = douglasPeucker(chain2, epsilon)
+  return [...s1.slice(0, -1), ...s2.slice(0, -1)]
+}
+
+// Lissage leger (moyenne glissante, contour ferme) -- attenue le bruit
+// pixel-a-pixel du trace sans gommer les vrais coins (fenetre petite).
 function smoothContour(pts: Pt[], radius: number): Pt[] {
   const n = pts.length
   return pts.map((_, i) => {
@@ -186,56 +236,6 @@ function smoothContour(pts: Pt[], radius: number): Pt[] {
   })
 }
 
-// Normale locale au point i, deduite de la tangente (points voisins) plutot
-// que de la direction radiale depuis le centre -- la direction radiale est
-// une mauvaise approximation du bord reel la ou le contour tourne vite
-// (coins, encoches), la tangente locale donne la vraie normale.
-function localNormals(pts: Pt[], centroid: Pt): Pt[] {
-  const n = pts.length
-  return pts.map((p, i) => {
-    const prev = pts[(i - 1 + n) % n], next = pts[(i + 1) % n]
-    const tx = next.x - prev.x, ty = next.y - prev.y
-    const len = Math.hypot(tx, ty) || 1
-    let nx = -ty / len, ny = tx / len
-    // oriente vers l'exterieur (s'eloigne du centre)
-    if ((p.x - centroid.x) * nx + (p.y - centroid.y) * ny < 0) { nx = -nx; ny = -ny }
-    return { x: nx, y: ny }
-  })
-}
-
-// Affine un point de contour en cherchant le plus fort ecart de couleur (par
-// canal, comme pour les coins) le long de la normale locale -- recale sur le
-// vrai bord physique de la carte plutot que sur le flou du masque de
-// segmentation.
-const EDGE_MIN_CONTRAST = 18
-
-function snapToColorEdge(
-  data: Uint8ClampedArray, w: number, h: number,
-  pt: Pt, normal: Pt, searchPx: number,
-): Pt {
-  const sample = (x: number, y: number, c: number) => {
-    const xi = Math.min(w - 1, Math.max(0, Math.round(x)))
-    const yi = Math.min(h - 1, Math.max(0, Math.round(y)))
-    return data[(yi * w + xi) * 4 + c]
-  }
-  const scoreAt = (t: number) => {
-    const x = pt.x + normal.x * t, y = pt.y + normal.y * t
-    const x1 = x - normal.x, y1 = y - normal.y, x2 = x + normal.x, y2 = y + normal.y
-    let score = 0
-    for (let c = 0; c < 3; c++) score = Math.max(score, Math.abs(sample(x2, y2, c) - sample(x1, y1, c)))
-    return score
-  }
-  // Point qualifiant (contraste > seuil) le plus proche de t=0, en partant du
-  // centre et en s'eloignant symetriquement -- pas le contraste le plus fort
-  // absolu, pour ne pas sauter sur un bord voisin (meme logique que les coins).
-  for (let d = 0; d <= searchPx; d += 0.5) {
-    for (const t of d === 0 ? [0] : [-d, d]) {
-      if (scoreAt(t) > EDGE_MIN_CONTRAST) return { x: pt.x + normal.x * t, y: pt.y + normal.y * t }
-    }
-  }
-  return pt
-}
-
 function draw(canvas: HTMLCanvasElement, img: HTMLImageElement, result: DetectResult) {
   canvas.width = img.naturalWidth
   canvas.height = img.naturalHeight
@@ -246,45 +246,14 @@ function draw(canvas: HTMLCanvasElement, img: HTMLImageElement, result: DetectRe
   const { padX, padY, newW, newH, scale } = letterbox(img)
   const toImg = (p: Pt): Pt => ({ x: (p.x - padX) / scale, y: (p.y - padY) / scale })
 
-  const centroid = maskCentroid(result.mask640)
-  const contour640raw = sampleContourPolar(result.mask640, centroid, 360)
-  const contour640 = smoothContour(contour640raw, 2)
-  let contourImg = contour640.map(toImg)
-
-  // Recalage par contraste sur l'image d'origine, a pleine resolution --
-  // seulement sur la zone utile (bbox du contour + marge), comme le
-  // raffinement des coins qui ne travaille jamais sur l'image entiere.
-  const xs = contourImg.map(p => p.x), ys = contourImg.map(p => p.y)
-  const margin = 14
-  const left = Math.max(0, Math.floor(Math.min(...xs) - margin))
-  const top = Math.max(0, Math.floor(Math.min(...ys) - margin))
-  const right = Math.min(img.naturalWidth, Math.ceil(Math.max(...xs) + margin))
-  const bottom = Math.min(img.naturalHeight, Math.ceil(Math.max(...ys) + margin))
-  const cw = right - left, ch = bottom - top
-
-  if (cw > 0 && ch > 0) {
-    const cropCanvas = document.createElement('canvas')
-    cropCanvas.width = cw; cropCanvas.height = ch
-    const cctx = cropCanvas.getContext('2d', { willReadFrequently: true })!
-    cctx.imageSmoothingEnabled = false
-    cctx.drawImage(img, left, top, cw, ch, 0, 0, cw, ch)
-    const { data } = cctx.getImageData(0, 0, cw, ch)
-
-    // normale par tangente locale (pas radiale) : bien plus fiable aux
-    // coins et encoches, la ou le contour change vite de direction
-    const normalsImg = localNormals(contourImg, toImg(centroid))
-    const searchPx = Math.max(4, Math.round(Math.min(cw, ch) * 0.02))
-    contourImg = contourImg.map((p, i) => {
-      const normal = normalsImg[i]
-      const local = { x: p.x - left, y: p.y - top }
-      const snapped = snapToColorEdge(data, cw, ch, local, normal, searchPx)
-      return { x: snapped.x + left, y: snapped.y + top }
-    })
-    // 2e lissage leger apres recalage : le recalage par contraste peut etre
-    // bruyant point a point (chaque point cherche independamment), un leger
-    // lissage final enleve le residuel en dents de scie sans perdre les coins.
-    contourImg = smoothContour(contourImg, 1)
-  }
+  const bin = new Uint8Array(IMGSZ * IMGSZ)
+  for (let i = 0; i < result.mask640.length; i++) bin[i] = result.mask640[i] >= 0.5 ? 1 : 0
+  const start = findBoundaryStart(result.mask640, bin, IMGSZ, IMGSZ)
+  if (!start) return
+  const traced = traceMooreBoundary(bin, IMGSZ, IMGSZ, start)
+  const simplified = simplifyClosed(traced, 1.2)
+  const contour640 = smoothContour(simplified, 1)
+  const contourImg = contour640.map(toImg)
 
   ctx.beginPath()
   contourImg.forEach((p, i) => (i === 0 ? ctx.moveTo(p.x, p.y) : ctx.lineTo(p.x, p.y)))
