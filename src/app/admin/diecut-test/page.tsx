@@ -3,10 +3,9 @@ import { useRef, useState } from 'react'
 
 const IMGSZ = 640
 const ORT_CDN = 'https://cdn.jsdelivr.net/npm/onnxruntime-web@1.27.0/dist/'
-// Premier modele die-cut (YOLOv8m-seg, 138 images annotees) -- test de
+// Premier modele die-cut (YOLOv8s-seg, 138 images annotees) -- test de
 // validation uniquement, jamais branche sur le scanner (CardScanner.tsx
-// n'est pas touche). 109MB (modele medium) : lent a charger, normal pour
-// une page de test admin, pas destine a tourner tel quel en prod.
+// n'est pas touche).
 const MODEL_URL = '/models/diecut.onnx'
 const MASK_SIZE = 160 // resolution des prototypes de masque YOLOv8-seg
 const CONF_THRESHOLD = 0.4
@@ -186,7 +185,7 @@ export default function DiecutTestPage() {
         Modèle expérimental (138 images annotées) — jamais branché sur le scanner, test uniquement.
       </p>
       <p style={{ fontSize: 12, color: '#e67e22', marginBottom: 16 }}>
-        ⚠️ Modèle lourd (109 Mo) — premier chargement lent, normal pour cette page de test.
+        ⚠️ Modèle de 45 Mo — premier chargement un peu lent, normal pour cette page de test.
       </p>
 
       <input
