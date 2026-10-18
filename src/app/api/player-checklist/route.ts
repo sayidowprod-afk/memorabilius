@@ -41,15 +41,17 @@ export async function GET(req: NextRequest) {
   // avant, la checklist d'un joueur accentue etait fragmentee entre ses 2 graphies,
   // chacune incomplete. Repli sur l'ancien double .ilike() (sensible aux accents,
   // comportement historique) si la migration SQL n'a pas encore ete executee.
+  // N'importe quelle erreur ici (fonction absente, timeout le temps que l'index
+  // associe finisse de se construire, etc.) bascule sur le repli ci-dessous plutot
+  // que de renvoyer une 500 -- une 500 cassait TOUTE la checklist joueur (pas
+  // seulement les noms accentues) le temps que l'index soit pret, constate en prod.
+  let rpcFailed = false
   while (true) {
     const { data, error } = await admin
       .rpc('search_player_entries_unaccent', { p_first: firstName, p_last: lastName })
       .range(from, from + PAGE - 1)
-    if (error) {
-      if (error.code === 'PGRST202' || /function .* does not exist/i.test(error.message)) break // repli ci-dessous
-      return NextResponse.json({ error: error.message }, { status: 500 })
-    }
-    if (!data || data.length === 0) { if (from === 0) { /* fonction OK mais aucun resultat */ } break }
+    if (error) { rpcFailed = true; all.length = 0; break }
+    if (!data || data.length === 0) break
     all.push(...(data as RpcRow[]).map(fromRpcRow))
     if (data.length < PAGE) break
     from += PAGE

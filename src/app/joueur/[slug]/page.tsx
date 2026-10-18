@@ -357,9 +357,11 @@ async function _fetchPlayer(slug: string) {
 
   const matchedManu = (manuRes.data || []).filter((m: any) => normalizeName(m.nom || '').includes(normTarget))
 
-  // Migration pas encore exécutée (fonction absente) : repli sur l'ancienne RPC
-  // (sensible aux accents, comportement historique) plutôt que de planter.
-  const setsRpcRes = (setsRpcRes0.error && /function .* does not exist/i.test(setsRpcRes0.error.message || ''))
+  // N'importe quelle erreur (fonction absente, timeout le temps que l'index associe
+  // finisse de se construire...) : repli sur l'ancienne RPC (sensible aux accents,
+  // comportement historique, son propre index deja en place) plutot que de planter
+  // la section "Sets" pour TOUS les joueurs le temps que le nouvel index soit pret.
+  const setsRpcRes = setsRpcRes0.error
     ? await supabase.rpc('get_player_sets', { p_first: firstName, p_last: lastName })
     : setsRpcRes0
 
