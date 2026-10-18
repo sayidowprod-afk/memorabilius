@@ -8,11 +8,16 @@ const supabase = createClient(process.env.NEXT_PUBLIC_SUPABASE_URL!, process.env
 const CACHE = new Map<string, { at: number; body: unknown }>()
 const TTL = 60_000
 const RATE = new Map<string, { n: number; reset: number }>()
+// 240/min etait tres genereux pour une route qui scanne card_set_entries (14M+
+// lignes, motif %terme% sans index utilisable) -- resserre en attendant le vrai
+// fix (index trigram pg_trgm, voir memoire du projet) le temps que la base se
+// stabilise. Le debounce cote client (NativeHomeDashboard.tsx) absorbe deja
+// l'essentiel du trafic normal, cette limite ne vise qu'un usage legitime.
 function allowed(ip: string) {
   const now = Date.now()
   const e = RATE.get(ip)
   if (!e || now > e.reset) { RATE.set(ip, { n: 1, reset: now + 60_000 }); return true }
-  if (e.n >= 240) return false
+  if (e.n >= 60) return false
   e.n++; return true
 }
 

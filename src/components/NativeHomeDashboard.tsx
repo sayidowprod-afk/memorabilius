@@ -160,17 +160,24 @@ export default function NativeHomeDashboard({ siteStats, cardOfTheDay }: { siteS
         players: prev.v.players.filter(p => p.name.toLowerCase().includes(key)),
       })
     }
+    // Debounce 250ms : sans ca, chaque frappe declenchait un fetch immediat vers
+    // /api/suggest (recherche sur card_set_entries, 14M+ lignes) -- un typiste
+    // rapide pouvait envoyer plusieurs requetes par seconde. Le cache/prefixe
+    // ci-dessus reste affiche instantanement pendant le delai, aucune perte de
+    // reactivite percue.
     const ctl = new AbortController()
-    fetch(`/api/suggest?q=${encodeURIComponent(q)}`, { signal: ctl.signal })
-      .then(r => r.json())
-      .then(d => {
-        const v = { users: (d.users || []).slice(0, 3), players: (d.players || []).slice(0, 5) }
-        suggCache.current.set(key, v)
-        suggPrev.current = { q: key, v }
-        setSugg(v)
-      })
-      .catch(() => { /* abandon / reseau : on garde ce qui est affiche */ })
-    return () => ctl.abort()
+    const t = setTimeout(() => {
+      fetch(`/api/suggest?q=${encodeURIComponent(q)}`, { signal: ctl.signal })
+        .then(r => r.json())
+        .then(d => {
+          const v = { users: (d.users || []).slice(0, 3), players: (d.players || []).slice(0, 5) }
+          suggCache.current.set(key, v)
+          suggPrev.current = { q: key, v }
+          setSugg(v)
+        })
+        .catch(() => { /* abandon / reseau : on garde ce qui est affiche */ })
+    }, 250)
+    return () => { clearTimeout(t); ctl.abort() }
   }, [gq])
   // orientation reelle de chaque carte de l'eventail (lue sur l'image chargee)
   const [heroLandscape, setHeroLandscape] = useState<Record<number, boolean>>({})

@@ -194,10 +194,10 @@ async function fetchPodiumWeek() {
 
 export default async function Home() {
   const [
-    { count },
-    { data: totalCartesData },
-    { count: bindersCount },
-    { count: tradeCount },
+    profilesRes,
+    totalCartesRes,
+    bindersRes,
+    tradeRes,
     cards,
     podium,
     podiumDay,
@@ -214,6 +214,22 @@ export default async function Home() {
     fetchPodiumWeek(),
     fetchFeaturedGalleries(),
   ])
+
+  // Un hoquet Supabase passager (deja observe plusieurs fois en prod) pendant
+  // la regeneration ISR de cette page ne doit JAMAIS figer des "0" a la place
+  // des vrais chiffres -- l'ancien code retombait silencieusement sur 0 via
+  // `?? 0` des qu'une requete echouait, et ce "0 collectionneurs / 0 cartes"
+  // restait affiche jusqu'a 15 minutes (revalidate=900) le temps de la
+  // prochaine regeneration reussie. En cas d'erreur ici, on fait planter la
+  // regeneration : Next.js garde alors la DERNIERE version generee avec
+  // succes au lieu de la remplacer par des stats visiblement fausses.
+  const { count } = profilesRes
+  const { data: totalCartesData } = totalCartesRes
+  const { count: bindersCount } = bindersRes
+  const { count: tradeCount } = tradeRes
+  for (const r of [profilesRes, totalCartesRes, bindersRes, tradeRes]) {
+    if (r.error) throw new Error(`Home stats indisponibles (Supabase) : ${r.error.message}`)
+  }
 
   // equipe favorite (1ere) de chaque joueur du podium : liseré de couleur + logo
   const podiumIds = [...new Set([...podium, ...podiumDay, ...podiumWeek].map((e: any) => e.userId))]
