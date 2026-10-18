@@ -236,6 +236,90 @@ function smoothContour(pts: Pt[], radius: number): Pt[] {
   })
 }
 
+// ── Contrainte geometrique : une carte, c'est un RECTANGLE dans lequel on
+// decoupe des morceaux -- pas une forme libre. Une simplification generique
+// (Douglas-Peucker seul) n'a aucune notion de "ceci doit etre un bord droit
+// du rectangle" : elle traite le bruit du masque et une vraie encoche de la
+// meme facon, avec un seul epsilon global qui ne peut pas convenir a la
+// fois a une carte a grosses encoches et une carte a petites encoches.
+//
+// Ici : on detecte le rectangle de base (englobant minimal, eventuellement
+// tourne si la photo n'est pas parfaitement droite), puis CHAQUE point du
+// contour est accroche exactement sur ce rectangle SAUF s'il s'en ecarte
+// assez pour etre une vraie encoche -- le bord reste droit par construction
+// la ou il n'y a pas de decoupe, au lieu de dependre d'un lissage qui
+// devine.
+
+function convexHull(points: Pt[]): Pt[] {
+  const pts = [...points].sort((a, b) => a.x - b.x || a.y - b.y)
+  const cross = (o: Pt, a: Pt, b: Pt) => (a.x - o.x) * (b.y - o.y) - (a.y - o.y) * (b.x - o.x)
+  const lower: Pt[] = []
+  for (const p of pts) {
+    while (lower.length >= 2 && cross(lower[lower.length - 2], lower[lower.length - 1], p) <= 0) lower.pop()
+    lower.push(p)
+  }
+  const upper: Pt[] = []
+  for (let i = pts.length - 1; i >= 0; i--) {
+    const p = pts[i]
+    while (upper.length >= 2 && cross(upper[upper.length - 2], upper[upper.length - 1], p) <= 0) upper.pop()
+    upper.push(p)
+  }
+  lower.pop(); upper.pop()
+  return [...lower, ...upper]
+}
+
+// Rectangle englobant d'aire minimale (rotating calipers) : teste chaque
+// orientation donnee par une arete de l'enveloppe convexe -- le rectangle
+// minimal d'un nuage de points a toujours un cote aligne avec une arete de
+// son enveloppe convexe.
+function minAreaRect(hull: Pt[]): Pt[] {
+  if (hull.length < 3) return hull
+  let best: { area: number; c: number; s: number; minU: number; maxU: number; minV: number; maxV: number } | null = null
+  for (let i = 0; i < hull.length; i++) {
+    const p1 = hull[i], p2 = hull[(i + 1) % hull.length]
+    const angle = Math.atan2(p2.y - p1.y, p2.x - p1.x)
+    const c = Math.cos(angle), s = Math.sin(angle)
+    let minU = Infinity, maxU = -Infinity, minV = Infinity, maxV = -Infinity
+    for (const p of hull) {
+      const u = p.x * c + p.y * s
+      const v = -p.x * s + p.y * c
+      if (u < minU) minU = u
+      if (u > maxU) maxU = u
+      if (v < minV) minV = v
+      if (v > maxV) maxV = v
+    }
+    const area = (maxU - minU) * (maxV - minV)
+    if (!best || area < best.area) best = { area, c, s, minU, maxU, minV, maxV }
+  }
+  const { c, s, minU, maxU, minV, maxV } = best!
+  const corner = (u: number, v: number): Pt => ({ x: u * c - v * s, y: u * s + v * c })
+  return [corner(minU, minV), corner(maxU, minV), corner(maxU, maxV), corner(minU, maxV)]
+}
+
+function pointToSegment(p: Pt, a: Pt, b: Pt): { dist: number; proj: Pt } {
+  const dx = b.x - a.x, dy = b.y - a.y
+  const len2 = dx * dx + dy * dy
+  let t = len2 > 1e-9 ? ((p.x - a.x) * dx + (p.y - a.y) * dy) / len2 : 0
+  t = Math.max(0, Math.min(1, t))
+  const proj = { x: a.x + dx * t, y: a.y + dy * t }
+  return { dist: Math.hypot(p.x - proj.x, p.y - proj.y), proj }
+}
+
+// Accroche chaque point du contour sur le bord du rectangle le plus proche
+// s'il en est a moins de notchThreshold (bruit du masque, pas une vraie
+// decoupe) -- sinon garde le point tel quel (vraie encoche, preservee).
+function snapToRect(pts: Pt[], rect: Pt[], notchThreshold: number): Pt[] {
+  const sides: [Pt, Pt][] = [[rect[0], rect[1]], [rect[1], rect[2]], [rect[2], rect[3]], [rect[3], rect[0]]]
+  return pts.map(p => {
+    let best: { dist: number; proj: Pt } | null = null
+    for (const [a, b] of sides) {
+      const r = pointToSegment(p, a, b)
+      if (!best || r.dist < best.dist) best = r
+    }
+    return best && best.dist < notchThreshold ? best.proj : p
+  })
+}
+
 function draw(canvas: HTMLCanvasElement, img: HTMLImageElement, result: DetectResult) {
   canvas.width = img.naturalWidth
   canvas.height = img.naturalHeight
@@ -252,7 +336,14 @@ function draw(canvas: HTMLCanvasElement, img: HTMLImageElement, result: DetectRe
   if (!start) return
   const traced = traceMooreBoundary(bin, IMGSZ, IMGSZ, start)
   const simplified = simplifyClosed(traced, 1.2)
-  const contour640 = smoothContour(simplified, 1)
+
+  // Rectangle de base de la carte + accroche : un bord sans vraie encoche
+  // colle exactement au rectangle (droit par construction), une vraie
+  // encoche (deviation > seuil) est preservee telle quelle.
+  const rect = minAreaRect(convexHull(simplified))
+  const NOTCH_THRESHOLD_640 = 8
+  const snapped = snapToRect(simplified, rect, NOTCH_THRESHOLD_640)
+  const contour640 = smoothContour(snapped, 1)
   const contourImg = contour640.map(toImg)
 
   ctx.beginPath()
