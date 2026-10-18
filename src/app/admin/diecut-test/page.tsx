@@ -141,34 +141,94 @@ function maskCentroid(mask640: Float32Array): Pt {
   return sw > 0 ? { x: sx / sw, y: sy / sw } : { x: IMGSZ / 2, y: IMGSZ / 2 }
 }
 
-// Echantillonne le contour du masque par rayons depuis le centre (coordonnees
-// polaires) : pour la plupart des formes die-cut (encoches proches du centre,
-// silhouette globalement "en etoile" autour du centre de la carte), c'est
-// suffisant pour suivre les decrochages sans un vrai traceur de contour.
-function sampleContourPolar(mask640: Float32Array, centroid: Pt, nAngles: number): Pt[] {
-  const pts: Pt[] = []
-  const maxR = IMGSZ * 0.75
-  for (let a = 0; a < nAngles; a++) {
-    const theta = (a / nAngles) * Math.PI * 2
-    const dx = Math.cos(theta), dy = Math.sin(theta)
-    let prevR = 0, prevP = 1
-    let found: Pt | null = null
-    for (let r = 1; r <= maxR; r += 1.5) {
-      const x = centroid.x + dx * r, y = centroid.y + dy * r
-      if (x < 0 || x >= IMGSZ || y < 0 || y >= IMGSZ) break
-      const p = mask640[Math.round(y) * IMGSZ + Math.round(x)]
-      if (p < 0.5 && prevP >= 0.5) {
-        // interpolation sous-pixel entre le dernier point "dedans" et celui-ci
-        const t = (0.5 - prevP) / (p - prevP)
-        const rr = prevR + (r - prevR) * t
-        found = { x: centroid.x + dx * rr, y: centroid.y + dy * rr }
-        break
-      }
-      prevR = r; prevP = p
+// Suivi de contour par pixel (Moore-neighbor tracing) : contrairement a un
+// echantillonnage polaire (un rayon par angle depuis le centre), ca suit
+// correctement une forme CONCAVE -- une encoche qui "rentre" vers le centre
+// (frequent entre deux "oreilles" d'une die-cut) fait que plusieurs rayons
+// partageraient le meme angle, ce qu'un seul rayon par angle ne peut pas
+// representer : le contour polaire lissait/coupait ces encoches.
+const MOORE_DIRS: [number, number][] = [
+  [-1, 0], [-1, -1], [0, -1], [1, -1], [1, 0], [1, 1], [0, 1], [-1, 1],
+] // W, NW, N, NE, E, SE, S, SW (sens horaire a partir de l'Ouest)
+
+function traceMooreBoundary(bin: Uint8Array, w: number, h: number, start: Pt): Pt[] {
+  const at = (x: number, y: number) => x >= 0 && x < w && y >= 0 && y < h && bin[y * w + x] === 1
+
+  const boundary: Pt[] = [start]
+  let curr = start
+  // le pixel de depart est trouve en balayant vers la droite depuis un point
+  // interieur -- le pixel juste a l'Est est donc hors-forme, backtrack = Est
+  let backDirIdx = 4
+
+  let second: Pt | null = null
+  const maxIter = w * h
+  for (let iter = 0; iter < maxIter; iter++) {
+    let foundIdx = -1
+    for (let i = 1; i <= 8; i++) {
+      const idx = (backDirIdx + i) % 8
+      const [dx, dy] = MOORE_DIRS[idx]
+      if (at(curr.x + dx, curr.y + dy)) { foundIdx = idx; break }
     }
-    pts.push(found || { x: centroid.x + dx * prevR, y: centroid.y + dy * prevR })
+    if (foundIdx < 0) break // pixel isole
+    const [dx, dy] = MOORE_DIRS[foundIdx]
+    const next = { x: curr.x + dx, y: curr.y + dy }
+    boundary.push(next)
+    backDirIdx = (foundIdx + 4) % 8
+    curr = next
+    if (!second) second = next
+    else if (curr.x === start.x && curr.y === start.y) break
   }
-  return pts
+  return boundary
+}
+
+// Point de depart garanti a l'interieur de la forme principale (le pixel de
+// plus forte probabilite), puis premier pixel de bord trouve en balayant
+// vers la droite -- evite de partir sur un petit artefact isole du masque.
+function findBoundaryStart(mask640: Float32Array, bin: Uint8Array, w: number, h: number): Pt | null {
+  let best = -1, bi = 0
+  for (let i = 0; i < mask640.length; i++) if (mask640[i] > best) { best = mask640[i]; bi = i }
+  if (best < 0.5) return null
+  const sy = Math.floor(bi / w)
+  let x = bi % w
+  while (x < w && bin[sy * w + x] === 1) x++
+  return { x: x - 1, y: sy }
+}
+
+function perpDist(p: Pt, a: Pt, b: Pt): number {
+  const dx = b.x - a.x, dy = b.y - a.y
+  const len = Math.hypot(dx, dy)
+  if (len < 1e-9) return Math.hypot(p.x - a.x, p.y - a.y)
+  return Math.abs((p.x - a.x) * dy - (p.y - a.y) * dx) / len
+}
+
+function douglasPeucker(pts: Pt[], epsilon: number): Pt[] {
+  if (pts.length < 3) return pts
+  let maxDist = 0, idx = 0
+  const a = pts[0], b = pts[pts.length - 1]
+  for (let i = 1; i < pts.length - 1; i++) {
+    const d = perpDist(pts[i], a, b)
+    if (d > maxDist) { maxDist = d; idx = i }
+  }
+  if (maxDist > epsilon) {
+    const left = douglasPeucker(pts.slice(0, idx + 1), epsilon)
+    const right = douglasPeucker(pts.slice(idx), epsilon)
+    return [...left.slice(0, -1), ...right]
+  }
+  return [a, b]
+}
+
+// Simplifie un contour FERME (pas juste un segment ouvert) : coupe la boucle
+// en 2 chaines a des points opposes, simplifie chaque chaine independamment,
+// recolle -- evite d'avoir a gerer un cas "ferme" special dans Douglas-Peucker.
+function simplifyClosed(pts: Pt[], epsilon: number): Pt[] {
+  if (pts.length < 8) return pts
+  const n = pts.length
+  const mid = Math.floor(n / 2)
+  const chain1 = pts.slice(0, mid + 1)
+  const chain2 = [...pts.slice(mid), ...pts.slice(0, 1)]
+  const s1 = douglasPeucker(chain1, epsilon)
+  const s2 = douglasPeucker(chain2, epsilon)
+  return [...s1.slice(0, -1), ...s2.slice(0, -1)]
 }
 
 // Lissage leger (moyenne glissante, contour ferme) -- attenue le bruit du
@@ -247,8 +307,16 @@ function draw(canvas: HTMLCanvasElement, img: HTMLImageElement, result: DetectRe
   const toImg = (p: Pt): Pt => ({ x: (p.x - padX) / scale, y: (p.y - padY) / scale })
 
   const centroid = maskCentroid(result.mask640)
-  const contour640raw = sampleContourPolar(result.mask640, centroid, 360)
-  const contour640 = smoothContour(contour640raw, 2)
+  const bin = new Uint8Array(IMGSZ * IMGSZ)
+  for (let i = 0; i < result.mask640.length; i++) bin[i] = result.mask640[i] >= 0.5 ? 1 : 0
+  const start = findBoundaryStart(result.mask640, bin, IMGSZ, IMGSZ)
+  if (!start) return
+  const traced = traceMooreBoundary(bin, IMGSZ, IMGSZ, start)
+  // epsilon ~1.2px : enleve le bruit pixel-a-pixel du trace sans gommer les
+  // vrais coins/encoches (contrairement au lissage polaire precedent, qui
+  // moyennait sur un rayon entier)
+  const simplified = simplifyClosed(traced, 1.2)
+  const contour640 = smoothContour(simplified, 1)
   let contourImg = contour640.map(toImg)
 
   // Recalage par contraste sur l'image d'origine, a pleine resolution --
