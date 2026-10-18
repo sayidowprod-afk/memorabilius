@@ -88,15 +88,15 @@ async function detect(ort: typeof import('onnxruntime-web'), img: HTMLImageEleme
     maskProto[p] = sigmoid(sum)
   }
 
-  // bbox en espace prototype (160x160, soit /4 de 640), marge de securite pour
-  // ne pas trancher le contour pile au bord de la bbox brute du detecteur
-  const protoScale = PW / IMGSZ
-  const margin = 2
-  const x0 = Math.max(0, Math.round((cx - bw / 2) * protoScale) - margin)
-  const y0 = Math.max(0, Math.round((cy - bh / 2) * protoScale) - margin)
-  const x1 = Math.min(PW, Math.round((cx + bw / 2) * protoScale) + margin)
-  const y1 = Math.min(PH, Math.round((cy + bh / 2) * protoScale) + margin)
-
+  // PAS de restriction a la bbox brute du detecteur ici -- cette bbox
+  // (cx,cy,bw,bh) est juste l'estimation du detecteur, pas la verite
+  // terrain, et peut etre legerement plus petite que la vraie carte
+  // (constate : contour nettement en retrait du vrai bord sur une photo ou
+  // la bbox etait a peine trop juste). Avec une marge fixe de quelques
+  // pixels, le masque etait carrement tronque avant meme d'atteindre le
+  // vrai bord. Le masque de segmentation (prototypes) est fiable sur toute
+  // l'image, pas besoin de le limiter a la bbox pour le nettoyer.
+  //
   // upscale bilineaire 160x160 -> 640x640 (pas nearest-neighbor) : le
   // prototype est une probabilite continue, l'interpolation donne un
   // contour qui suit une vraie courbe au lieu de blocs en escalier
@@ -104,13 +104,12 @@ async function detect(ort: typeof import('onnxruntime-web'), img: HTMLImageEleme
   const down = PW / IMGSZ
   for (let yy = 0; yy < IMGSZ; yy++) {
     const py = yy * down
-    const py0 = Math.max(y0, Math.min(PH - 1, Math.floor(py)))
+    const py0 = Math.min(PH - 1, Math.floor(py))
     const py1 = Math.min(PH - 1, py0 + 1)
     const fy = py - py0
     for (let xx = 0; xx < IMGSZ; xx++) {
       const px = xx * down
-      if (px < x0 || px >= x1 || py < y0 || py >= y1) continue
-      const px0 = Math.max(x0, Math.min(PW - 1, Math.floor(px)))
+      const px0 = Math.min(PW - 1, Math.floor(px))
       const px1 = Math.min(PW - 1, px0 + 1)
       const fx = px - px0
       const v00 = maskProto[py0 * PW + px0]
