@@ -38,6 +38,12 @@ const GROUPS: { title: string; links: AdminLink[] }[] = [
     ],
   },
   {
+    title: 'IA / ML',
+    links: [
+      { href: '/admin/diecut-test', icon: '✂️', title: 'Test DieCut', desc: 'Modèle expérimental de détection de forme die-cut — test uniquement' },
+    ],
+  },
+  {
     title: 'Design',
     links: [
       { href: '/admin/da', icon: '🎨', title: 'Idées visuelles — nouvelle DA', desc: '11 pistes pour renforcer la DA, en maquettes vivantes — page de travail, rien n\'est modifié sur le site' },
