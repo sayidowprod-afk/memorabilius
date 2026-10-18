@@ -171,10 +171,42 @@ function sampleContourPolar(mask640: Float32Array, centroid: Pt, nAngles: number
   return pts
 }
 
+// Lissage leger (moyenne glissante, contour ferme) -- attenue le bruit du
+// masque avant d'en deduire les normales locales, sans gommer les vrais
+// coins (fenetre petite).
+function smoothContour(pts: Pt[], radius: number): Pt[] {
+  const n = pts.length
+  return pts.map((_, i) => {
+    let sx = 0, sy = 0, c = 0
+    for (let k = -radius; k <= radius; k++) {
+      const p = pts[(i + k + n) % n]
+      sx += p.x; sy += p.y; c++
+    }
+    return { x: sx / c, y: sy / c }
+  })
+}
+
+// Normale locale au point i, deduite de la tangente (points voisins) plutot
+// que de la direction radiale depuis le centre -- la direction radiale est
+// une mauvaise approximation du bord reel la ou le contour tourne vite
+// (coins, encoches), la tangente locale donne la vraie normale.
+function localNormals(pts: Pt[], centroid: Pt): Pt[] {
+  const n = pts.length
+  return pts.map((p, i) => {
+    const prev = pts[(i - 1 + n) % n], next = pts[(i + 1) % n]
+    const tx = next.x - prev.x, ty = next.y - prev.y
+    const len = Math.hypot(tx, ty) || 1
+    let nx = -ty / len, ny = tx / len
+    // oriente vers l'exterieur (s'eloigne du centre)
+    if ((p.x - centroid.x) * nx + (p.y - centroid.y) * ny < 0) { nx = -nx; ny = -ny }
+    return { x: nx, y: ny }
+  })
+}
+
 // Affine un point de contour en cherchant le plus fort ecart de couleur (par
-// canal, comme pour les coins) le long de la normale locale (radiale) --
-// recale sur le vrai bord physique de la carte plutot que sur le flou du
-// masque de segmentation.
+// canal, comme pour les coins) le long de la normale locale -- recale sur le
+// vrai bord physique de la carte plutot que sur le flou du masque de
+// segmentation.
 const EDGE_MIN_CONTRAST = 18
 
 function snapToColorEdge(
@@ -215,8 +247,8 @@ function draw(canvas: HTMLCanvasElement, img: HTMLImageElement, result: DetectRe
   const toImg = (p: Pt): Pt => ({ x: (p.x - padX) / scale, y: (p.y - padY) / scale })
 
   const centroid = maskCentroid(result.mask640)
-  const contour640 = sampleContourPolar(result.mask640, centroid, 180)
-  const centroidImg = toImg(centroid)
+  const contour640raw = sampleContourPolar(result.mask640, centroid, 360)
+  const contour640 = smoothContour(contour640raw, 2)
   let contourImg = contour640.map(toImg)
 
   // Recalage par contraste sur l'image d'origine, a pleine resolution --
@@ -238,15 +270,20 @@ function draw(canvas: HTMLCanvasElement, img: HTMLImageElement, result: DetectRe
     cctx.drawImage(img, left, top, cw, ch, 0, 0, cw, ch)
     const { data } = cctx.getImageData(0, 0, cw, ch)
 
+    // normale par tangente locale (pas radiale) : bien plus fiable aux
+    // coins et encoches, la ou le contour change vite de direction
+    const normalsImg = localNormals(contourImg, toImg(centroid))
     const searchPx = Math.max(4, Math.round(Math.min(cw, ch) * 0.02))
-    contourImg = contourImg.map(p => {
-      const dx = p.x - centroidImg.x, dy = p.y - centroidImg.y
-      const len = Math.hypot(dx, dy) || 1
-      const normal = { x: dx / len, y: dy / len }
+    contourImg = contourImg.map((p, i) => {
+      const normal = normalsImg[i]
       const local = { x: p.x - left, y: p.y - top }
       const snapped = snapToColorEdge(data, cw, ch, local, normal, searchPx)
       return { x: snapped.x + left, y: snapped.y + top }
     })
+    // 2e lissage leger apres recalage : le recalage par contraste peut etre
+    // bruyant point a point (chaque point cherche independamment), un leger
+    // lissage final enleve le residuel en dents de scie sans perdre les coins.
+    contourImg = smoothContour(contourImg, 1)
   }
 
   ctx.beginPath()
