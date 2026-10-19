@@ -589,6 +589,87 @@ function smoothCurve(pts: Pt[], onRect: boolean[], iterations: number): Pt[] {
   return cur
 }
 
+// Meme logique que le raffinement de bord du detecteur de coins en prod
+// (cornerDetectorYolo.ts, detectEdgeLineV4/findEdgeCrossingV4) -- recherche
+// directe de la transition de contraste la plus nette (multi-canal RGB,
+// interpolation sous-pixel parabolique), perpendiculairement a la direction
+// locale du contour. Beaucoup plus precis que la grille de pixels du masque
+// binaire pour "toucher" exactement une vraie pointe d'encoche, puisqu'elle
+// lit directement le signal de l'image au lieu de dependre d'une
+// classification region par region. Logique reecrite ici (jamais
+// d'import/modif du fichier de prod), adaptee a N points au lieu de 4 coins
+// fixes : chaque point est affine independamment, pas par intersection de
+// droites (un segment de die-cut n'est pas forcement une longue droite).
+function sobelGrayFromRGBA(data: Uint8ClampedArray, w: number, h: number): Float32Array {
+  const gray = new Float32Array(w * h)
+  for (let i = 0; i < w * h; i++) {
+    const o = i * 4
+    gray[i] = 0.299 * data[o] + 0.587 * data[o + 1] + 0.114 * data[o + 2]
+  }
+  return gray
+}
+function sampleGrayAt(gray: Float32Array, w: number, h: number, x: number, y: number): number {
+  const xi = Math.min(w - 1, Math.max(0, Math.round(x)))
+  const yi = Math.min(h - 1, Math.max(0, Math.round(y)))
+  return gray[yi * w + xi]
+}
+function sampleChannelAt(data: Uint8ClampedArray, w: number, h: number, c: number, x: number, y: number): number {
+  const xi = Math.min(w - 1, Math.max(0, Math.round(x)))
+  const yi = Math.min(h - 1, Math.max(0, Math.round(y)))
+  return data[(yi * w + xi) * 4 + c]
+}
+const EDGE_PERP_SEARCH = 10
+const EDGE_MIN_SCORE = 14
+function refineContourPoints(
+  pts: Pt[], onRect: boolean[], data: Uint8ClampedArray, gray: Float32Array,
+  cw: number, ch: number, left: number, top: number,
+): Pt[] {
+  const n = pts.length
+  return pts.map((p, i) => {
+    if (onRect[i]) return p
+    const prev = pts[(i - 1 + n) % n], next = pts[(i + 1) % n]
+    const dx = next.x - prev.x, dy = next.y - prev.y
+    const len = Math.hypot(dx, dy)
+    if (len < 1) return p
+    const perp = { x: -dy / len, y: dx / len }
+    const lx = p.x - left, ly = p.y - top
+    const scores: number[] = []
+    let maxScore = 0
+    for (let t = -EDGE_PERP_SEARCH; t <= EDGE_PERP_SEARCH; t++) {
+      const x = lx + perp.x * t, y = ly + perp.y * t
+      const x1 = x - perp.x, y1 = y - perp.y, x2 = x + perp.x, y2 = y + perp.y
+      let s = Math.abs(sampleGrayAt(gray, cw, ch, x2, y2) - sampleGrayAt(gray, cw, ch, x1, y1))
+      for (let c = 0; c < 3; c++) {
+        const d = Math.abs(sampleChannelAt(data, cw, ch, c, x2, y2) - sampleChannelAt(data, cw, ch, c, x1, y1))
+        if (d > s) s = d
+      }
+      scores.push(s)
+      if (s > maxScore) maxScore = s
+    }
+    if (maxScore <= EDGE_MIN_SCORE) return p
+    // Croisement le plus proche du centre qui depasse un seuil RELATIF au
+    // meilleur score du profil -- pas le plus fort absolu -- pour ne pas
+    // sauter sur un bord plus contraste mais sans rapport (ex: un motif de
+    // la photo) juste a cote du vrai bord du masque.
+    const threshold = Math.max(EDGE_MIN_SCORE, maxScore * 0.6)
+    let chosenIdx = -1
+    for (let d = 0; d < scores.length; d++) {
+      const idxUp = EDGE_PERP_SEARCH + d, idxDown = EDGE_PERP_SEARCH - d
+      if (idxDown >= 0 && scores[idxDown] >= threshold) { chosenIdx = idxDown; break }
+      if (idxUp < scores.length && scores[idxUp] >= threshold) { chosenIdx = idxUp; break }
+    }
+    if (chosenIdx < 0) return p
+    let dt = 0
+    if (chosenIdx > 0 && chosenIdx < scores.length - 1) {
+      const gm1 = scores[chosenIdx - 1], g0 = scores[chosenIdx], gp1 = scores[chosenIdx + 1]
+      const denom = gm1 - 2 * g0 + gp1
+      if (Math.abs(denom) > 1e-6) dt = 0.5 * (gm1 - gp1) / denom
+    }
+    const tFinal = (chosenIdx - EDGE_PERP_SEARCH) + dt
+    return { x: left + lx + perp.x * tFinal, y: top + ly + perp.y * tFinal }
+  })
+}
+
 function polygonArea(pts: Pt[]): number {
   let area = 0
   for (let i = 0; i < pts.length; i++) {
@@ -745,7 +826,15 @@ function computeContour(img: HTMLImageElement, result: DetectResult, cornerRect:
   // que le masque ML) fournit la vraie forme des decoupes.
   const NOTCH_THRESHOLD = Math.max(rw, rh) * 0.012
   const { pts: snapped, onRect } = snapToRect(simplified, cornerRect, NOTCH_THRESHOLD)
-  const smoothed = smoothCurve(snapped, onRect, 2)
+
+  // Raffinement par bord net (meme technique que le detecteur de coins en
+  // prod, voir le commentaire de refineContourPoints) : chaque point de
+  // vraie encoche est replace exactement sur la transition de contraste
+  // reelle de l'image, pas sur la grille de pixels du masque.
+  const gray = sobelGrayFromRGBA(data, cw, ch)
+  const refinedPts = refineContourPoints(snapped, onRect, data, gray, cw, ch, left, top)
+
+  const smoothed = smoothCurve(refinedPts, onRect, 2)
 
   // Filet de securite : si une photo imprimee touche le vrai bord de la
   // carte (visages, foule, mains...), la segmentation par couleur peut se
