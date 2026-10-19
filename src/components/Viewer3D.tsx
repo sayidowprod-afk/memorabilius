@@ -21,6 +21,7 @@ import { supabase } from '@/lib/supabase'
 import { getCsvCardSharePath } from '@/lib/csvCardShortLink'
 import TagIcon from '@/components/TagIcon'
 import LoupeOverlay from '@/components/LoupeOverlay'
+import { candidatesForCard, type MSet, type MEntry, type MCard } from '@/lib/setMatcher'
 
 interface SetPlacementData {
   entry_id: number; set_id: number; set_name: string
@@ -222,37 +223,41 @@ export default function Viewer3D({ popup, accent, onClose, onNext, onPrev, getTa
     setSetPlacement('loading')
 
     const lookupViaCompletion = async () => {
+      // Matcher STRICT partage avec la sync de set (setMatcher.ts) : annee,
+      // marque et mots de la collection doivent correspondre -- avant, ce
+      // lookup prenait N'IMPORTE QUELLE entree du joueur deja cochee ailleurs
+      // (ex. dans le pokedex de franchise), sans verifier la marque/collection,
+      // et retombait sur la 1ere venue si l'annee ne correspondait pas. Une
+      // carte Flawless 2016-17 pouvait ainsi s'afficher comme "Hoops 2017-18"
+      // juste parce que cette entree-la avait ete cochee ailleurs.
       const { data: entries } = await supabase
-        .from('card_set_entries').select('id, set_id, variation')
+        .from('card_set_entries').select('id, set_id, variation, player_name, card_number')
         .ilike('player_name', popup.n).limit(500)
       if (cancelled) return
       if (!entries?.length) { setSetPlacement(null); return }
-      // chunk .in() queries to avoid URL length limits (max 200 IDs per batch)
-      const allIds = entries.map(e => e.id)
-      let completions: { entry_id: number }[] = []
-      for (let i = 0; i < allIds.length; i += 200) {
-        const { data: chunk } = await supabase
-          .from('user_set_completion').select('entry_id')
-          .eq('user_id', userId).in('entry_id', allIds.slice(i, i + 200))
-        if (cancelled) return
-        if (chunk?.length) completions = completions.concat(chunk as { entry_id: number }[])
-      }
-      if (cancelled) return
-      if (!completions.length) { setSetPlacement(null); return }
-      const completedIds = new Set(completions.map(c => c.entry_id))
-      const matched = entries.filter(e => completedIds.has(e.id))
-      if (!matched.length) { setSetPlacement(null); return }
-      const setIds = [...new Set(matched.map(e => e.set_id))]
+      const setIds = [...new Set(entries.map(e => e.set_id))]
       const { data: sets } = await supabase.from('card_sets').select('id, name, year, brand, sport').in('id', setIds)
       if (cancelled) return
       if (!sets?.length) { setSetPlacement(null); return }
-      const setMap = new Map(sets.map(s => [s.id, s]))
-      const yearNum = popup.y ? parseInt(popup.y.slice(0, 4)) : null
-      let best = matched[0]
-      if (yearNum) {
-        const ym = matched.find(e => { const s = setMap.get(e.set_id); return s && (s.year === yearNum || s.year === yearNum - 1) })
-        if (ym) best = ym
+      const setMap = new Map<number, MSet & { sport: string }>(sets.map(s => [s.id, s]))
+      const card: MCard = { nom: popup.n, annee: popup.y, marque: popup.br, collection: popup.s, collection_tag: popup.collection_tag, variation: popup.v, card_number: popup.card_number }
+      const cands = candidatesForCard(card, entries as MEntry[], setMap)
+      if (!cands.length) { setSetPlacement(null); return }
+
+      // Parmi les candidats STRICTEMENT compatibles, priorite a celui deja
+      // coche par l'utilisateur ailleurs (signal de confiance supplementaire,
+      // jamais le seul critere) ; sinon le premier candidat strict.
+      const candIds = cands.map(e => e.id)
+      let completedIds = new Set<number>()
+      for (let i = 0; i < candIds.length; i += 200) {
+        const { data: chunk } = await supabase
+          .from('user_set_completion').select('entry_id')
+          .eq('user_id', userId).in('entry_id', candIds.slice(i, i + 200))
+        if (cancelled) return
+        if (chunk?.length) chunk.forEach(c => completedIds.add(c.entry_id as number))
       }
+      if (cancelled) return
+      const best = cands.find(e => completedIds.has(e.id)) || cands[0]
       const cs = setMap.get(best.set_id)
       if (!cs) { setSetPlacement(null); return }
       setSetPlacement({ entry_id: best.id, set_id: cs.id, set_name: cs.name, set_year: cs.year, set_brand: cs.brand, set_sport: cs.sport })
