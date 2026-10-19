@@ -1,8 +1,8 @@
 import { normalizeName } from '@/lib/playerSlug'
 import exclusions from '@/data/franchise-exclude.json'
 
-// [nom, premiere saison, derniere saison, nb d'entrees de checklist]
-type Row = [string, number, number, number]
+// [nom, premiere saison, derniere saison, nb d'entrees de checklist, au moins une carte auto]
+type Row = [string, number, number, number, boolean?]
 
 // Liste d'une franchise nettoyee :
 //  - retire les noms listes dans src/data/franchise-exclude.json (joueurs qui n'ont jamais joue pour l'equipe, titres de cartes, trophees...
@@ -19,7 +19,7 @@ export function cleanFranchise(slug: string, rows: Row[]): Row[] {
     const nice = (n: string) => (/^[A-Z]/.test(n) ? 1 : 0)
     const name = nice(r[0]) > nice(cur[0]) || (nice(r[0]) === nice(cur[0]) && r[3] > cur[3]) ? r[0] : cur[0]
     const y0 = cur[1] && r[1] ? Math.min(cur[1], r[1]) : cur[1] || r[1]
-    merged.set(k, [name, y0, Math.max(cur[2], r[2]), cur[3] + r[3]])
+    merged.set(k, [name, y0, Math.max(cur[2], r[2]), cur[3] + r[3], !!cur[4] || !!r[4]])
   }
   return [...merged.values()]
 }

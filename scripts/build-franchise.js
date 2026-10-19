@@ -1,6 +1,7 @@
 // Genere src/data/franchise/<team-slug>.json : tous les joueurs ayant une carte recensee pour chaque franchise
-// (nom, premiere/derniere saison, nombre d'entrees). La table card_set_entries est trop grosse pour un DISTINCT en direct
-// (timeout), donc on la parcourt une fois par plages d'id (pagination par curseur) et on ecrit des JSON statiques.
+// (nom, premiere/derniere saison, nombre d'entrees, au moins une carte auto). La table card_set_entries est trop
+// grosse pour un DISTINCT en direct (timeout), donc on la parcourt une fois par plages d'id (pagination par
+// curseur) et on ecrit des JSON statiques.
 // Usage : node scripts/build-franchise.js   (lit .env.local, cle service-role)
 const fs = require('fs')
 const path = require('path')
@@ -39,15 +40,19 @@ async function main() {
     let cur = min + w * step - 1
     const end = Math.min(max, min + (w + 1) * step - 1)
     while (cur < end) {
-      const { data } = await retry(() => sb.from('card_set_entries').select('id,player_name,team,set_id').gt('id', cur).lte('id', end).order('id').limit(1000))
+      const { data } = await retry(() => sb.from('card_set_entries').select('id,player_name,team,set_id,is_auto').gt('id', cur).lte('id', end).order('id').limit(1000))
       if (!data.length) break
       for (const e of data) {
         cur = e.id
-        if (!e.team || !e.player_name) continue
+        // Certaines lignes ont un champ team corrompu (plusieurs noms d'equipe concatenes) --
+        // aucune vraie franchise ne depasse ~60 caracteres, on les ignore plutot que de
+        // planter sur un nom de fichier invalide (Windows limite la longueur du chemin).
+        if (!e.team || !e.player_name || e.team.length > 60) continue
         const s = setYear.get(e.set_id)
         let t = agg.get(e.team); if (!t) agg.set(e.team, t = new Map())
-        let p = t.get(e.player_name); if (!p) t.set(e.player_name, p = { y0: 9999, y1: 0, n: 0, sport: s?.sport || '' })
+        let p = t.get(e.player_name); if (!p) t.set(e.player_name, p = { y0: 9999, y1: 0, n: 0, sport: s?.sport || '', auto: false })
         p.n++
+        if (e.is_auto) p.auto = true
         if (s?.year) { p.y0 = Math.min(p.y0, s.year); p.y1 = Math.max(p.y1, s.year) }
       }
       scanned += data.length
@@ -58,7 +63,7 @@ async function main() {
   fs.mkdirSync(dir, { recursive: true })
   let files = 0
   for (const [team, players] of agg) {
-    const rows = [...players.entries()].map(([name, p]) => [name, p.y0 === 9999 ? 0 : p.y0, p.y1, p.n]).sort((a, b) => (a[1] || 9999) - (b[1] || 9999) || a[0].localeCompare(b[0]))
+    const rows = [...players.entries()].map(([name, p]) => [name, p.y0 === 9999 ? 0 : p.y0, p.y1, p.n, p.auto]).sort((a, b) => (a[1] || 9999) - (b[1] || 9999) || a[0].localeCompare(b[0]))
     fs.writeFileSync(path.join(dir, slugify(team) + '.json'), JSON.stringify(rows))
     files++
   }

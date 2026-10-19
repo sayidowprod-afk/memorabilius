@@ -5,8 +5,8 @@ import { supabase } from '@/lib/supabase'
 import { playerSlug, normalizeName } from '@/lib/playerSlug'
 import { TAG_BASE, type TagKind } from '@/lib/cardTags'
 
-// [nom, premiere saison, derniere saison, nb d'entrees de checklist]
-export type FranchisePlayer = [string, number, number, number]
+// [nom, premiere saison, derniere saison, nb d'entrees de checklist, au moins une carte auto existe (toutes checklists, pas seulement ma collection)]
+export type FranchisePlayer = [string, number, number, number, boolean?]
 // Ce que le collectionneur possede d'un joueur dans sa galerie : au moins une carte RC / auto / patch / numerotee
 export type OwnedFlags = Record<TagKind, boolean>
 const KINDS: { k: TagKind; l: string }[] = [{ k: 'rc', l: 'RC' }, { k: 'auto', l: 'Auto' }, { k: 'patch', l: 'Patch' }, { k: 'num', l: 'Num' }]
@@ -27,8 +27,10 @@ export default function FranchiseChecklist({ team, players, color, ownedNames, o
   const [q, setQ] = useState('')
   const [limit, setLimit] = useState(120)
   const [order, setOrder] = useState<'alpha' | 'chrono'>('alpha')
-  // filtre par type de carte : 0 = ignore, 1 = j'en ai, 2 = il me manque (un clic fait tourner)
+  // filtre par type de carte (MA collection) : 0 = ignore, 1 = j'en ai, 2 = il me manque (un clic fait tourner)
   const [tf, setTf] = useState<Record<TagKind, 0 | 1 | 2>>({ rc: 0, auto: 0, patch: 0, num: 0 })
+  // filtre independant : joueurs ayant au moins une carte auto QUELCONQUE recensee pour cette franchise, meme si je ne l'ai pas
+  const [autoOnly, setAutoOnly] = useState(false)
   const [photos, setPhotos] = useState<Record<string, string | null>>({})
   const askedRef = useRef<Set<string>>(new Set())
 
@@ -59,7 +61,7 @@ export default function FranchiseChecklist({ team, players, color, ownedNames, o
       while (w.length > 1 && SUFFIX.has(w[w.length - 1])) w.pop()
       return `${w[w.length - 1] || ''} ${w.slice(0, -1).join(' ')}`
     }
-    const r = players.map(p => ({ name: p[0], y0: p[1], y1: p[2], n: p[3], key: normalizeName(p[0]), sk: sortKey(p[0]) }))
+    const r = players.map(p => ({ name: p[0], y0: p[1], y1: p[2], n: p[3], hasAuto: !!p[4], key: normalizeName(p[0]), sk: sortKey(p[0]) }))
     if (order === 'alpha') r.sort((a, b) => a.sk.localeCompare(b.sk, 'fr'))
     else r.sort((a, b) => (a.y0 || 9999) - (b.y0 || 9999) || a.sk.localeCompare(b.sk, 'fr'))
     return r
@@ -70,6 +72,7 @@ export default function FranchiseChecklist({ team, players, color, ownedNames, o
   const pct = rows.length ? Math.round((haveCount / rows.length) * 100) : 0
   const nq = normalizeName(q)
   const list = rows.filter(r => {
+    if (autoOnly && !r.hasAuto) return false
     if (decade != null && !(r.y0 && decadeOf(r.y0) <= decade && decadeOf(r.y1 || r.y0) >= decade)) return false
     if (filter === 'have' && !hasOf(r.key)) return false
     if (filter === 'miss' && owned && hasOf(r.key)) return false
@@ -128,6 +131,11 @@ export default function FranchiseChecklist({ team, players, color, ownedNames, o
             {f === 'all' ? 'Tous' : f === 'have' ? 'Je les ai' : 'Il me manque'}
           </button>
         ))}
+        <button type="button" className={'fr-chip fr-tf' + (autoOnly ? ' on' : '')} style={{ ['--tk' as string]: TAG_BASE.auto }}
+          title="N'afficher que les joueurs ayant au moins une carte auto recensee avec cette franchise, meme si je ne l'ai pas"
+          onClick={() => { setAutoOnly(v => !v); setLimit(120) }}>
+          Auto existante{autoOnly ? ' ✓' : ''}
+        </button>
       </div>
       {ownedFlags && (
         <div className="fr-tools">
