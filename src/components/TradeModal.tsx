@@ -301,6 +301,15 @@ export default function TradeModal({ targetCard, initialTargetSelected, initialM
 
   const submit = async () => {
     if (targetSelected.size === 0) { setError(t('trademodal_err_select_target')); return }
+    // Garde-fou defensif : les cartes pre-selectionnees (ex. match wishlist)
+    // existent des l'ouverture de la modale via initialTargetSelected/
+    // initialMySelected, AVANT que targetCards/myCards (charges en async)
+    // soient prets -- un envoi a ce moment-la traitait silencieusement toute
+    // carte "pas encore trouvee" comme une carte manuelle (id errone envoye
+    // pour une carte CSV), echouant cote serveur sans que l'utilisateur
+    // comprenne pourquoi. Le bouton est deja desactive pendant le chargement,
+    // ce garde-fou protege aussi un appel direct a submit().
+    if (myLoading || targetLoading) { setError(t('trademodal_err_still_loading')); return }
     setSending(true); setError('')
     const { data: { session } } = await supabase.auth.getSession()
     if (!session) { setError(t('trademodal_err_session')); setSending(false); return }
@@ -403,11 +412,11 @@ export default function TradeModal({ targetCard, initialTargetSelected, initialM
           </div>
         )}
 
-        <button onClick={submit} disabled={sending || justSent || targetSelected.size === 0}
+        <button onClick={submit} disabled={sending || justSent || targetSelected.size === 0 || myLoading || targetLoading}
           style={{
-            background: (sending || justSent || targetSelected.size === 0) ? '#ccc' : '#003DA6',
+            background: (sending || justSent || targetSelected.size === 0 || myLoading || targetLoading) ? '#ccc' : '#003DA6',
             color: '#fff', border: 'none', borderRadius: 50, padding: '13px 24px',
-            fontWeight: 800, fontSize: 15, cursor: (sending || justSent || targetSelected.size === 0) ? 'default' : 'pointer',
+            fontWeight: 800, fontSize: 15, cursor: (sending || justSent || targetSelected.size === 0 || myLoading || targetLoading) ? 'default' : 'pointer',
             position: 'relative', overflow: 'hidden',
           }}
         >

@@ -737,6 +737,7 @@ export const it = {
   trademodal_my_empty: 'La tua collezione è vuota',
   trademodal_message_placeholder: 'Messaggio (opzionale)',
   trademodal_err_select_target: 'Seleziona almeno una carta da richiedere',
+  trademodal_err_still_loading: 'Le carte sono ancora in fase di caricamento, riprova tra un istante',
   trademodal_err_csv_target: 'Impossibile caricare le carte CSV del destinatario (il link Google Sheets potrebbe non essere più pubblico)',
   trademodal_err_csv_mine: 'Impossibile caricare le tue carte CSV — verifica che il tuo link Google Sheets sia condiviso pubblicamente',
   trademodal_err_session: 'Sessione scaduta',
