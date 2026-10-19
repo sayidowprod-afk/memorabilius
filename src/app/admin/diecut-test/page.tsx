@@ -850,7 +850,23 @@ function computeContour(img: HTMLImageElement, result: DetectResult, cornerRect:
   // rectangle n'a besoin que de ses 2 coins comme poignees, pas d'un point
   // tous les quelques pixels. Epsilon minuscule : ne retire que les points
   // vraiment redondants, aucune vraie courbe/encoche n'est affectee.
-  return simplifyClosed(contourImg, 2.5)
+  const collinearMerged = simplifyClosed(contourImg, 1.5)
+
+  // Le raffinement par bord (refineContourPoints) deplace chaque point
+  // independamment vers le bord net le plus proche -- 2 points a l'origine
+  // distincts peuvent converger presque au meme endroit si le vrai bord est
+  // proche des deux. Retire les quasi-doublons (poignees superposees,
+  // inutiles et source de confusion dans l'editeur).
+  const MIN_POINT_DIST = Math.max(3, Math.min(rw, rh) * 0.004)
+  const deduped: Pt[] = []
+  for (const p of collinearMerged) {
+    const last = deduped[deduped.length - 1]
+    if (!last || Math.hypot(p.x - last.x, p.y - last.y) >= MIN_POINT_DIST) deduped.push(p)
+  }
+  if (deduped.length > 1 && Math.hypot(deduped[0].x - deduped[deduped.length - 1].x, deduped[0].y - deduped[deduped.length - 1].y) < MIN_POINT_DIST) {
+    deduped.pop()
+  }
+  return deduped
 }
 
 export default function DiecutTestPage() {
