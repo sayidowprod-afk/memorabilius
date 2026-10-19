@@ -563,6 +563,7 @@ function morphOpenClose(bin: Uint8Array, w: number, h: number, radius: number): 
 // portion nominalement lisse) sont moyennes. Ca efface le bruit sans
 // arrondir les vrais coins.
 const ANCHOR_ANGLE_DEG = 35
+const ANCHOR_MIN_AMPLITUDE_PX = 2.5
 function smoothCurve(pts: Pt[], onRect: boolean[], iterations: number): Pt[] {
   let cur = pts.map(p => ({ ...p }))
   const n = pts.length
@@ -578,7 +579,21 @@ function smoothCurve(pts: Pt[], onRect: boolean[], iterations: number): Pt[] {
       if (len1 < 1e-6 || len2 < 1e-6) continue
       const dot = Math.max(-1, Math.min(1, (v1x * v2x + v1y * v2y) / (len1 * len2)))
       const turnDeg = (Math.acos(dot) * 180) / Math.PI
-      if (turnDeg > ANCHOR_ANGLE_DEG) continue
+      if (turnDeg > ANCHOR_ANGLE_DEG) {
+        // Un angle marque seul ne suffit pas a prouver un vrai coin : une
+        // ombre fine quasi parallele au vrai bord (coin de carte legerement
+        // souleve) fait hesiter le raffinement entre les deux lignes point
+        // par point, ce qui cree un zigzag a angles marques mais a tres
+        // faible amplitude spatiale -- pas un vrai coin. On exige donc EN
+        // PLUS un ecart perpendiculaire significatif par rapport a la corde
+        // prev->next pour vraiment ancrer le point (sinon on le lisse comme
+        // le reste, ce qui efface le zigzag d'ambiguite).
+        const chordLen = Math.hypot(nxt.x - prev.x, nxt.y - prev.y)
+        const amplitude = chordLen > 1e-6
+          ? Math.abs((cur[i].x - prev.x) * (nxt.y - prev.y) - (cur[i].y - prev.y) * (nxt.x - prev.x)) / chordLen
+          : 0
+        if (amplitude > ANCHOR_MIN_AMPLITUDE_PX) continue
+      }
       next[i] = {
         x: cur[i].x * 0.5 + prev.x * 0.25 + nxt.x * 0.25,
         y: cur[i].y * 0.5 + prev.y * 0.25 + nxt.y * 0.25,
@@ -618,55 +633,84 @@ function sampleChannelAt(data: Uint8ClampedArray, w: number, h: number, c: numbe
   const yi = Math.min(h - 1, Math.max(0, Math.round(y)))
   return data[(yi * w + xi) * 4 + c]
 }
-const EDGE_PERP_SEARCH = 10
-const EDGE_MIN_SCORE = 14
+// Rayon et seuil volontairement prudents : sur un fond texture (tissu,
+// tapis...), une recherche trop large/trop sensible saute sur le motif de
+// la texture (plein de petits contrastes locaux rapproches) au lieu du
+// vrai bord carte/fond, et produit un paquet de points erratiques au lieu
+// d'une correction fine -- constate sur une vraie photo a fond tisse.
+const EDGE_PERP_SEARCH = 5
+const EDGE_MIN_SCORE = 26
+// Calcule, pour un point, le decalage perpendiculaire (le long de `perp`)
+// vers la transition de contraste la plus proche du centre qui depasse un
+// seuil relatif au meilleur score du profil -- ou null si rien d'assez net.
+function findPerpOffset(
+  lx: number, ly: number, perp: Pt, data: Uint8ClampedArray, gray: Float32Array, cw: number, ch: number,
+): number | null {
+  const scores: number[] = []
+  let maxScore = 0
+  for (let t = -EDGE_PERP_SEARCH; t <= EDGE_PERP_SEARCH; t++) {
+    const x = lx + perp.x * t, y = ly + perp.y * t
+    const x1 = x - perp.x, y1 = y - perp.y, x2 = x + perp.x, y2 = y + perp.y
+    let s = Math.abs(sampleGrayAt(gray, cw, ch, x2, y2) - sampleGrayAt(gray, cw, ch, x1, y1))
+    for (let c = 0; c < 3; c++) {
+      const d = Math.abs(sampleChannelAt(data, cw, ch, c, x2, y2) - sampleChannelAt(data, cw, ch, c, x1, y1))
+      if (d > s) s = d
+    }
+    scores.push(s)
+    if (s > maxScore) maxScore = s
+  }
+  if (maxScore <= EDGE_MIN_SCORE) return null
+  const threshold = Math.max(EDGE_MIN_SCORE, maxScore * 0.6)
+  let chosenIdx = -1
+  for (let d = 0; d < scores.length; d++) {
+    const idxUp = EDGE_PERP_SEARCH + d, idxDown = EDGE_PERP_SEARCH - d
+    if (idxDown >= 0 && scores[idxDown] >= threshold) { chosenIdx = idxDown; break }
+    if (idxUp < scores.length && scores[idxUp] >= threshold) { chosenIdx = idxUp; break }
+  }
+  if (chosenIdx < 0) return null
+  let dt = 0
+  if (chosenIdx > 0 && chosenIdx < scores.length - 1) {
+    const gm1 = scores[chosenIdx - 1], g0 = scores[chosenIdx], gp1 = scores[chosenIdx + 1]
+    const denom = gm1 - 2 * g0 + gp1
+    if (Math.abs(denom) > 1e-6) dt = 0.5 * (gm1 - gp1) / denom
+  }
+  return (chosenIdx - EDGE_PERP_SEARCH) + dt
+}
+
 function refineContourPoints(
   pts: Pt[], onRect: boolean[], data: Uint8ClampedArray, gray: Float32Array,
   cw: number, ch: number, left: number, top: number,
 ): Pt[] {
   const n = pts.length
-  return pts.map((p, i) => {
-    if (onRect[i]) return p
+  const perps: (Pt | null)[] = pts.map((p, i) => {
+    if (onRect[i]) return null
     const prev = pts[(i - 1 + n) % n], next = pts[(i + 1) % n]
     const dx = next.x - prev.x, dy = next.y - prev.y
     const len = Math.hypot(dx, dy)
-    if (len < 1) return p
-    const perp = { x: -dy / len, y: dx / len }
-    const lx = p.x - left, ly = p.y - top
-    const scores: number[] = []
-    let maxScore = 0
-    for (let t = -EDGE_PERP_SEARCH; t <= EDGE_PERP_SEARCH; t++) {
-      const x = lx + perp.x * t, y = ly + perp.y * t
-      const x1 = x - perp.x, y1 = y - perp.y, x2 = x + perp.x, y2 = y + perp.y
-      let s = Math.abs(sampleGrayAt(gray, cw, ch, x2, y2) - sampleGrayAt(gray, cw, ch, x1, y1))
-      for (let c = 0; c < 3; c++) {
-        const d = Math.abs(sampleChannelAt(data, cw, ch, c, x2, y2) - sampleChannelAt(data, cw, ch, c, x1, y1))
-        if (d > s) s = d
-      }
-      scores.push(s)
-      if (s > maxScore) maxScore = s
-    }
-    if (maxScore <= EDGE_MIN_SCORE) return p
-    // Croisement le plus proche du centre qui depasse un seuil RELATIF au
-    // meilleur score du profil -- pas le plus fort absolu -- pour ne pas
-    // sauter sur un bord plus contraste mais sans rapport (ex: un motif de
-    // la photo) juste a cote du vrai bord du masque.
-    const threshold = Math.max(EDGE_MIN_SCORE, maxScore * 0.6)
-    let chosenIdx = -1
-    for (let d = 0; d < scores.length; d++) {
-      const idxUp = EDGE_PERP_SEARCH + d, idxDown = EDGE_PERP_SEARCH - d
-      if (idxDown >= 0 && scores[idxDown] >= threshold) { chosenIdx = idxDown; break }
-      if (idxUp < scores.length && scores[idxUp] >= threshold) { chosenIdx = idxUp; break }
-    }
-    if (chosenIdx < 0) return p
-    let dt = 0
-    if (chosenIdx > 0 && chosenIdx < scores.length - 1) {
-      const gm1 = scores[chosenIdx - 1], g0 = scores[chosenIdx], gp1 = scores[chosenIdx + 1]
-      const denom = gm1 - 2 * g0 + gp1
-      if (Math.abs(denom) > 1e-6) dt = 0.5 * (gm1 - gp1) / denom
-    }
-    const tFinal = (chosenIdx - EDGE_PERP_SEARCH) + dt
-    return { x: left + lx + perp.x * tFinal, y: top + ly + perp.y * tFinal }
+    return len < 1 ? null : { x: -dy / len, y: dx / len }
+  })
+  const offsets: (number | null)[] = pts.map((p, i) => {
+    const perp = perps[i]
+    if (!perp) return null
+    return findPerpOffset(p.x - left, p.y - top, perp, data, gray, cw, ch)
+  })
+  // Filtre median (fenetre 3) sur les decalages AVANT de les appliquer : une
+  // ombre fine quasi parallele au vrai bord (coin de carte souleve) fait
+  // "hesiter" des points voisins entre 2 bords proches, choisis
+  // independamment -- un filtre median absorbe cette oscillation isolee
+  // (contrairement a une moyenne, il ne se laisse pas entrainer par un seul
+  // point aberrant) sans affecter un vrai decalage qui persiste sur
+  // plusieurs points consecutifs.
+  const smoothedOffsets = offsets.map((o, i) => {
+    if (o === null) return null
+    const vals = [offsets[(i - 1 + n) % n], o, offsets[(i + 1) % n]].filter((v): v is number => v !== null)
+    vals.sort((a, b) => a - b)
+    return vals[Math.floor(vals.length / 2)]
+  })
+  return pts.map((p, i) => {
+    const perp = perps[i], t = smoothedOffsets[i]
+    if (!perp || t === null || t === undefined) return p
+    return { x: p.x + perp.x * t, y: p.y + perp.y * t }
   })
 }
 
