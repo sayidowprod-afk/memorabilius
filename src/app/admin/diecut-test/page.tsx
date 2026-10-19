@@ -1,11 +1,13 @@
 'use client'
-import { useRef, useState } from 'react'
+import { useEffect, useRef, useState, type PointerEvent as ReactPointerEvent } from 'react'
+import { detectCornersYOLO } from '@/lib/cornerDetectorYolo'
 
 const IMGSZ = 640
 const ORT_CDN = 'https://cdn.jsdelivr.net/npm/onnxruntime-web@1.27.0/dist/'
 // Premier modele die-cut (YOLOv8s-seg, 138 images annotees) -- test de
 // validation uniquement, jamais branche sur le scanner (CardScanner.tsx
-// n'est pas touche).
+// n'est pas touche). On importe seulement detectCornersYOLO (lecture) du
+// detecteur de coins deja en prod, aucun fichier existant n'est modifie.
 const MODEL_URL = '/models/diecut.onnx'
 const CONF_THRESHOLD = 0.4
 
@@ -37,6 +39,18 @@ function toTensor(canvas: HTMLCanvasElement): Float32Array {
 }
 
 const sigmoid = (x: number) => 1 / (1 + Math.exp(-x))
+
+// Echantillonne le masque ML (espace letterbox 640x640) a des coordonnees
+// de l'image ORIGINALE -- recalcule le meme transform (echelle + marges)
+// que letterbox() pour l'inference.
+function sampleMask640(mask640: Float32Array, imgW: number, imgH: number, x: number, y: number): number {
+  const scale = Math.min(IMGSZ / imgW, IMGSZ / imgH)
+  const padX = Math.round((IMGSZ - Math.round(imgW * scale)) / 2)
+  const padY = Math.round((IMGSZ - Math.round(imgH * scale)) / 2)
+  const mx = Math.max(0, Math.min(IMGSZ - 1, Math.round(x * scale + padX)))
+  const my = Math.max(0, Math.min(IMGSZ - 1, Math.round(y * scale + padY)))
+  return mask640[my * IMGSZ + mx]
+}
 
 type DetectResult = {
   found: boolean
@@ -172,18 +186,6 @@ function traceMooreBoundary(bin: Uint8Array, w: number, h: number, start: Pt): P
   return boundary
 }
 
-// Point de depart garanti a l'interieur de la forme principale (pixel de
-// plus forte probabilite), puis premier pixel de bord trouve en balayant
-// vers la droite -- evite de partir sur un petit artefact isole du masque.
-function findBoundaryStart(mask640: Float32Array, bin: Uint8Array, w: number, h: number): Pt | null {
-  let best = -1, bi = 0
-  for (let i = 0; i < mask640.length; i++) if (mask640[i] > best) { best = mask640[i]; bi = i }
-  if (best < 0.5) return null
-  const sy = Math.floor(bi / w)
-  let x = bi % w
-  while (x < w && bin[sy * w + x] === 1) x++
-  return { x: x - 1, y: sy }
-}
 
 function perpDist(p: Pt, a: Pt, b: Pt): number {
   const dx = b.x - a.x, dy = b.y - a.y
@@ -219,20 +221,6 @@ function simplifyClosed(pts: Pt[], epsilon: number): Pt[] {
   const s1 = douglasPeucker(chain1, epsilon)
   const s2 = douglasPeucker(chain2, epsilon)
   return [...s1.slice(0, -1), ...s2.slice(0, -1)]
-}
-
-// Lissage leger (moyenne glissante, contour ferme) -- attenue le bruit
-// pixel-a-pixel du trace sans gommer les vrais coins (fenetre petite).
-function smoothContour(pts: Pt[], radius: number): Pt[] {
-  const n = pts.length
-  return pts.map((_, i) => {
-    let sx = 0, sy = 0, c = 0
-    for (let k = -radius; k <= radius; k++) {
-      const p = pts[(i + k + n) % n]
-      sx += p.x; sy += p.y; c++
-    }
-    return { x: sx / c, y: sy / c }
-  })
 }
 
 // ── Contrainte geometrique : une carte, c'est un RECTANGLE dans lequel on
@@ -304,55 +292,476 @@ function pointToSegment(p: Pt, a: Pt, b: Pt): { dist: number; proj: Pt } {
   return { dist: Math.hypot(p.x - proj.x, p.y - proj.y), proj }
 }
 
-// Accroche chaque point du contour sur le bord du rectangle le plus proche
-// s'il en est a moins de notchThreshold (bruit du masque, pas une vraie
-// decoupe) -- sinon garde le point tel quel (vraie encoche, preservee).
-function snapToRect(pts: Pt[], rect: Pt[], notchThreshold: number): Pt[] {
+// Accroche sur le bord du rectangle, mais par SEGMENT continu, jamais point
+// par point : un accrochage point par point (1ere version) attrapait au
+// hasard certains points d'une courbe arrondie (ceux tombes pres du
+// rectangle) tout en laissant les autres points de la MEME courbe tels
+// quels -- le trace alternait alors entre "colle au rectangle" et "suit la
+// courbe" sur quelques pixels, un resultat pire que les deux approches
+// separement (constate : "absolument tous les bords" avaient ce zigzag).
+//
+// Ici : chaque point est assigne au cote du rectangle le plus proche, ce qui
+// decoupe le contour en segments continus (un par cote, dans l'ordre du
+// trace). Un segment entier n'est redresse en ligne droite QUE SI TOUS ses
+// points sont proches du rectangle (vrai bord droit bruite) -- des qu'un
+// seul point du segment est loin (vraie encoche ou vraie courbe), tout le
+// segment est laisse intact, forme d'origine preservee en bloc.
+function snapToRect(pts: Pt[], rect: Pt[], notchThreshold: number): { pts: Pt[]; onRect: boolean[] } {
   const sides: [Pt, Pt][] = [[rect[0], rect[1]], [rect[1], rect[2]], [rect[2], rect[3]], [rect[3], rect[0]]]
-  return pts.map(p => {
+  const n = pts.length
+  const info = pts.map(p => {
     let best: { dist: number; proj: Pt } | null = null
-    for (const [a, b] of sides) {
+    let bestSide = -1
+    sides.forEach(([a, b], i) => {
       const r = pointToSegment(p, a, b)
-      if (!best || r.dist < best.dist) best = r
-    }
-    return best && best.dist < notchThreshold ? best.proj : p
+      if (!best || r.dist < best.dist) { best = r; bestSide = i }
+    })
+    return { dist: best!.dist, proj: best!.proj, side: bestSide }
   })
+
+  let start = 0
+  for (let k = 0; k < n; k++) {
+    if (info[k].side !== info[(k - 1 + n) % n].side) { start = k; break }
+  }
+
+  const result = [...pts]
+  const onRect = new Array(n).fill(false)
+  let idx = start, processed = 0
+  while (processed < n) {
+    const side = info[idx].side
+    let runLen = 0
+    while (processed + runLen < n && info[(idx + runLen) % n].side === side) runLen++
+    const allNear = Array.from({ length: runLen }, (_, k) => info[(idx + k) % n].dist).every(d => d < notchThreshold)
+    if (allNear) {
+      for (let k = 0; k < runLen; k++) {
+        const j = (idx + k) % n
+        result[j] = info[j].proj
+        onRect[j] = true
+      }
+    }
+    idx = (idx + runLen) % n
+    processed += runLen
+  }
+  return { pts: result, onRect }
 }
 
-function draw(canvas: HTMLCanvasElement, img: HTMLImageElement, result: DetectResult) {
+
+// ── Segmentation par COULEUR directe (pas le masque du modele ML) -- idee :
+// le modele die-cut (138 images) est intrinsequement limite en precision
+// (mask 160x160 remonte, erreurs/trous constates). Les photos de test sont
+// prises sur un fond raisonnablement uniforme (tapis/table) -- un simple
+// ecart de couleur au fond (meme principe qu'un fond vert) donne un masque
+// a la resolution PLEINE de la photo, sans dependre d'un modele entraine
+// sur peu de donnees. Le detecteur de coins (deja fiable) sert seulement a
+// cadrer la zone de recherche, pas a dessiner le contour.
+function sampleBackgroundColor(data: Uint8ClampedArray, w: number, h: number): { r: number; g: number; b: number } {
+  const patch = Math.max(6, Math.round(Math.min(w, h) * 0.04))
+  const corners = [[0, 0], [w - patch, 0], [0, h - patch], [w - patch, h - patch]]
+  let r = 0, g = 0, b = 0, n = 0
+  for (const [cx, cy] of corners) {
+    for (let y = Math.max(0, cy); y < Math.min(h, cy + patch); y++) {
+      for (let x = Math.max(0, cx); x < Math.min(w, cx + patch); x++) {
+        const i = (y * w + x) * 4
+        r += data[i]; g += data[i + 1]; b += data[i + 2]; n++
+      }
+    }
+  }
+  return { r: r / n, g: g / n, b: b / n }
+}
+
+function rgbToHsv(r: number, g: number, b: number): { h: number; s: number; v: number } {
+  r /= 255; g /= 255; b /= 255
+  const max = Math.max(r, g, b), min = Math.min(r, g, b)
+  const d = max - min
+  let h = 0
+  if (d !== 0) {
+    if (max === r) h = ((g - b) / d) % 6
+    else if (max === g) h = (b - r) / d + 2
+    else h = (r - g) / d + 4
+    h *= 60
+    if (h < 0) h += 360
+  }
+  const s = max === 0 ? 0 : d / max
+  return { h, s, v: max }
+}
+
+// Combine PLUSIEURS indices independants au lieu d'un seul : teinte, saturation
+// ET luminosite comptent toutes les 3 -- un poids ecrase sur un seul critere
+// casse des qu'une carte differe du fond surtout par ce critere-la (ex. carte
+// bleu marine sur fond bleu tres clair : meme teinte, ecart uniquement en
+// luminosite). La luminosite utilise un "genou" doux : un petit ecart (plage
+// d'une ombre portee typique) est tres peu compte, mais un GRAND ecart (vraie
+// difference de materiau/couleur) compte presque a plein -- on garde la
+// tolerance a l'ombre sans ignorer les cas ou la luminosite EST le signal.
+function colorDistanceMap(data: Uint8ClampedArray, w: number, h: number, bg: { r: number; g: number; b: number }): Float32Array {
+  const bgHsv = rgbToHsv(bg.r, bg.g, bg.b)
+  const dist = new Float32Array(w * h)
+  for (let i = 0; i < w * h; i++) {
+    const r = data[i * 4], g = data[i * 4 + 1], b = data[i * 4 + 2]
+    const hsv = rgbToHsv(r, g, b)
+    const rawHueDiff = Math.abs(hsv.h - bgHsv.h)
+    const hueDist = (Math.min(rawHueDiff, 360 - rawHueDiff) / 180) * (bgHsv.s > 0.08 && hsv.s > 0.08 ? 1 : 0.3)
+    const satDist = Math.abs(hsv.s - bgHsv.s)
+    const rawValDist = Math.abs(hsv.v - bgHsv.v)
+    const SHADOW_KNEE = 0.35
+    const valDist = rawValDist <= SHADOW_KNEE
+      ? rawValDist * 0.2
+      : SHADOW_KNEE * 0.2 + (rawValDist - SHADOW_KNEE)
+    dist[i] = hueDist * 0.4 + satDist * 0.3 + valDist * 0.4
+  }
+  return dist
+}
+
+// Seuil ADAPTATIF (Otsu) plutot qu'une constante fixe -- un seuil fixe tune
+// sur une photo (fond tres contraste, ex. teal vs carte blanche) echoue
+// completement sur une autre (fond proche en couleur, ex. fond texture
+// beige vs carte blanche) : soit toute la carte est ratee, soit le fond
+// deborde. Otsu choisit, PAR IMAGE, le seuil qui separe le mieux les deux
+// pics (fond / carte) de l'histogramme reel des distances observees.
+function otsuThreshold(dist: Float32Array): number {
+  let maxVal = 0
+  for (let i = 0; i < dist.length; i++) if (dist[i] > maxVal) maxVal = dist[i]
+  if (maxVal <= 0) return 0.1
+  const BINS = 256
+  const hist = new Array(BINS).fill(0)
+  for (let i = 0; i < dist.length; i++) {
+    const b = Math.min(BINS - 1, Math.floor((dist[i] / maxVal) * BINS))
+    hist[b]++
+  }
+  const total = dist.length
+  let sum = 0
+  for (let i = 0; i < BINS; i++) sum += i * hist[i]
+  let sumB = 0, wB = 0, best = 0, bestVar = -1
+  for (let i = 0; i < BINS; i++) {
+    wB += hist[i]
+    if (wB === 0) continue
+    const wF = total - wB
+    if (wF === 0) break
+    sumB += i * hist[i]
+    const mB = sumB / wB
+    const mF = (sum - sumB) / wF
+    const varBetween = wB * wF * (mB - mF) * (mB - mF)
+    if (varBetween > bestVar) { bestVar = varBetween; best = i }
+  }
+  // Plancher pour eviter un seuil degenere (quasi 0) quand fond et carte
+  // sont presque identiques -- mieux vaut rater un peu de bord que faire
+  // deborder tout le masque dans le fond.
+  return Math.max(0.05, (best / BINS) * maxVal)
+}
+
+// Contrainte geometrique forte : une vraie decoupe die-cut n'existe JAMAIS
+// loin a l'interieur de la carte, seulement pres du bord (encoches). Donc,
+// peu importe sa couleur, tout pixel significativement a l'interieur du
+// rectangle des vrais coins est FORCE "carte" -- ca empeche une photo
+// imprimee dessus (zones claires ressemblant au fond) de creer de fausses
+// intrusions profondes dans le trace, sans jamais toucher les encoches
+// reelles qui restent pres du bord.
+function forceInteriorAsCard(bin: Uint8Array, w: number, h: number, cropLeft: number, cropTop: number, cornerRect: Pt[], marginFrac: number): Uint8Array {
+  const sides: [Pt, Pt][] = [[cornerRect[0], cornerRect[1]], [cornerRect[1], cornerRect[2]], [cornerRect[2], cornerRect[3]], [cornerRect[3], cornerRect[0]]]
+  const rxs = cornerRect.map(p => p.x), rys = cornerRect.map(p => p.y)
+  const rw = Math.max(...rxs) - Math.min(...rxs), rh = Math.max(...rys) - Math.min(...rys)
+  const margin = Math.min(rw, rh) * marginFrac
+  const out = new Uint8Array(bin)
+  for (let y = 0; y < h; y++) {
+    for (let x = 0; x < w; x++) {
+      const px = x + cropLeft, py = y + cropTop
+      if (!pointInQuad(px, py, cornerRect)) continue
+      let minDist = Infinity
+      for (const [a, b] of sides) {
+        const d = pointToSegment({ x: px, y: py }, a, b).dist
+        if (d < minDist) minDist = d
+      }
+      if (minDist > margin) out[y * w + x] = 1
+    }
+  }
+  return out
+}
+
+function colorMaskFromBackground(dist: Float32Array, threshold: number): Uint8Array {
+  const bin = new Uint8Array(dist.length)
+  for (let i = 0; i < dist.length; i++) bin[i] = dist[i] > threshold ? 1 : 0
+  return bin
+}
+
+// Une photo imprimee sur la carte peut contenir des zones (maillot blanc,
+// ciel clair...) de couleur proche du FOND, classees a tort comme fond en
+// plein milieu de la carte -- le traceur de contour suit alors ces "trous"
+// et produit un tracé qui plonge dans la photo. On comble tout pixel fond
+// qui n'est PAS relie au bord du crop (donc enferme par de la carte tout
+// autour) : un vrai fond est toujours relie a l'exterieur de la zone de
+// recherche, un faux positif au milieu de la carte ne l'est jamais.
+function fillEnclosedHoles(bin: Uint8Array, w: number, h: number): Uint8Array {
+  const reachable = new Uint8Array(w * h)
+  const stack = new Int32Array(w * h)
+  let sp = 0
+  const tryPush = (idx: number) => { if (bin[idx] === 0 && !reachable[idx]) { reachable[idx] = 1; stack[sp++] = idx } }
+  for (let x = 0; x < w; x++) { tryPush(x); tryPush((h - 1) * w + x) }
+  for (let y = 0; y < h; y++) { tryPush(y * w); tryPush(y * w + w - 1) }
+  while (sp > 0) {
+    const cur = stack[--sp]
+    const cx = cur % w, cy = (cur / w) | 0
+    if (cx > 0) tryPush(cur - 1)
+    if (cx < w - 1) tryPush(cur + 1)
+    if (cy > 0) tryPush(cur - w)
+    if (cy < h - 1) tryPush(cur + w)
+  }
+  const out = new Uint8Array(w * h)
+  for (let i = 0; i < w * h; i++) out[i] = bin[i] === 1 || !reachable[i] ? 1 : 0
+  return out
+}
+
+// Morphologie simple (ouverture puis fermeture) -- enleve le bruit poivre-et-
+// sel (pixels isoles mal classes) et comble les petits trous, sans quoi le
+// traceur de contour peut s'accrocher sur des artefacts d'un seul pixel.
+// Erosion/dilatation separable (passe horizontale puis verticale) -- bien
+// plus rapide qu'un noyau carre complet, permet un rayon plus grand sans
+// cout prohibitif.
+function erodeDilate(bin: Uint8Array, w: number, h: number, radius: number, erode: boolean): Uint8Array {
+  const temp = new Uint8Array(w * h)
+  for (let y = 0; y < h; y++) {
+    for (let x = 0; x < w; x++) {
+      let v = erode ? 1 : 0
+      for (let dx = -radius; dx <= radius; dx++) {
+        const xx = x + dx
+        const val = xx >= 0 && xx < w ? bin[y * w + xx] : 0
+        v = erode ? v & val : v | val
+      }
+      temp[y * w + x] = v
+    }
+  }
+  const out = new Uint8Array(w * h)
+  for (let x = 0; x < w; x++) {
+    for (let y = 0; y < h; y++) {
+      let v = erode ? 1 : 0
+      for (let dy = -radius; dy <= radius; dy++) {
+        const yy = y + dy
+        const val = yy >= 0 && yy < h ? temp[yy * w + x] : 0
+        v = erode ? v & val : v | val
+      }
+      out[y * w + x] = v
+    }
+  }
+  return out
+}
+
+// Ouverture puis fermeture morphologique. Un rayon plus grand enleve des
+// intrusions bien plus larges (ex. le detail d'une photo -- doigts, visages,
+// foule en arriere-plan -- qui ressemble par endroits au fond) sans toucher
+// les vraies encoches d'une die-cut, nettement plus grandes.
+function morphOpenClose(bin: Uint8Array, w: number, h: number, radius: number): Uint8Array {
+  const eroded = erodeDilate(bin, w, h, radius, true)
+  const opened = erodeDilate(eroded, w, h, radius, false)
+  const dilated = erodeDilate(opened, w, h, radius, false)
+  return erodeDilate(dilated, w, h, radius, true)
+}
+
+// Lissage par moyenne glissante, mais CONSCIENT DES ANGLES : les points deja
+// sur le rectangle restent des ancres fixes (bords droits intacts), ET tout
+// point formant un virage prononce (> ANCHOR_ANGLE_DEG, une vraie pointe
+// d'encoche comme un V) est aussi laisse intact. Seuls les points formant un
+// virage leger (l'escalier pixel-par-pixel du masque couleur le long d'une
+// portion nominalement lisse) sont moyennes. Ca efface le bruit sans
+// arrondir les vrais coins.
+const ANCHOR_ANGLE_DEG = 35
+function smoothCurve(pts: Pt[], onRect: boolean[], iterations: number): Pt[] {
+  let cur = pts.map(p => ({ ...p }))
+  const n = pts.length
+  for (let it = 0; it < iterations; it++) {
+    const next = cur.map(p => ({ ...p }))
+    for (let i = 0; i < n; i++) {
+      if (onRect[i]) continue
+      const prev = cur[(i - 1 + n) % n]
+      const nxt = cur[(i + 1) % n]
+      const v1x = cur[i].x - prev.x, v1y = cur[i].y - prev.y
+      const v2x = nxt.x - cur[i].x, v2y = nxt.y - cur[i].y
+      const len1 = Math.hypot(v1x, v1y), len2 = Math.hypot(v2x, v2y)
+      if (len1 < 1e-6 || len2 < 1e-6) continue
+      const dot = Math.max(-1, Math.min(1, (v1x * v2x + v1y * v2y) / (len1 * len2)))
+      const turnDeg = (Math.acos(dot) * 180) / Math.PI
+      if (turnDeg > ANCHOR_ANGLE_DEG) continue
+      next[i] = {
+        x: cur[i].x * 0.5 + prev.x * 0.25 + nxt.x * 0.25,
+        y: cur[i].y * 0.5 + prev.y * 0.25 + nxt.y * 0.25,
+      }
+    }
+    cur = next
+  }
+  return cur
+}
+
+function polygonArea(pts: Pt[]): number {
+  let area = 0
+  for (let i = 0; i < pts.length; i++) {
+    const a = pts[i], b = pts[(i + 1) % pts.length]
+    area += a.x * b.y - b.x * a.y
+  }
+  return Math.abs(area) / 2
+}
+
+function pointInQuad(px: number, py: number, quad: Pt[]): boolean {
+  let inside = false
+  for (let i = 0, j = quad.length - 1; i < quad.length; j = i++) {
+    const xi = quad[i].x, yi = quad[i].y
+    const xj = quad[j].x, yj = quad[j].y
+    const intersect = (yi > py) !== (yj > py) && px < ((xj - xi) * (py - yi)) / (yj - yi) + xi
+    if (intersect) inside = !inside
+  }
+  return inside
+}
+
+// Le centre du rectangle des coins n'est pas un point de depart fiable : un
+// design de carte peut avoir une bande claire (tableau de stats, texte) pile
+// au centre, de couleur proche du fond, OU un petit ilot isole (une lettre,
+// un point) tout pres du centre qui n'est PAS relie au corps principal de la
+// carte apres la morphologie. Plutot que de partir d'un seul pixel, on
+// etiquette TOUTES les composantes connexes du masque et on choisit celle
+// qui recouvre le plus le vrai rectangle des coins (le corps de la carte,
+// par definition, occupe la quasi-totalite de ce rectangle) -- independant
+// du point de depart exact.
+function findStartFromSeed(bin: Uint8Array, w: number, h: number, cropLeft: number, cropTop: number, cornerRect: Pt[]): Pt | null {
+  const visited = new Uint8Array(w * h)
+  let bestFirst: Pt | null = null
+  let bestScore = -1
+  const stack = new Int32Array(w * h)
+  for (let y = 0; y < h; y++) {
+    for (let x = 0; x < w; x++) {
+      const start = y * w + x
+      if (bin[start] !== 1 || visited[start]) continue
+      let sp = 0
+      stack[sp++] = start
+      visited[start] = 1
+      const firstX = x, firstY = y
+      let insideCount = 0
+      while (sp > 0) {
+        const cur = stack[--sp]
+        const cx = cur % w, cy = (cur / w) | 0
+        if (pointInQuad(cx + cropLeft, cy + cropTop, cornerRect)) insideCount++
+        if (cx > 0) { const n = cur - 1; if (bin[n] === 1 && !visited[n]) { visited[n] = 1; stack[sp++] = n } }
+        if (cx < w - 1) { const n = cur + 1; if (bin[n] === 1 && !visited[n]) { visited[n] = 1; stack[sp++] = n } }
+        if (cy > 0) { const n = cur - w; if (bin[n] === 1 && !visited[n]) { visited[n] = 1; stack[sp++] = n } }
+        if (cy < h - 1) { const n = cur + w; if (bin[n] === 1 && !visited[n]) { visited[n] = 1; stack[sp++] = n } }
+      }
+      if (insideCount > bestScore) { bestScore = insideCount; bestFirst = { x: firstX, y: firstY } }
+    }
+  }
+  if (!bestFirst) return null
+  let x = bestFirst.x
+  while (x < w && bin[bestFirst.y * w + x] === 1) x++
+  return { x: x - 1, y: bestFirst.y }
+}
+
+function drawBase(canvas: HTMLCanvasElement, img: HTMLImageElement) {
   canvas.width = img.naturalWidth
   canvas.height = img.naturalHeight
   const ctx = canvas.getContext('2d')!
   ctx.drawImage(img, 0, 0)
-  if (!result.found || !result.mask640) return
+}
 
-  const { padX, padY, newW, newH, scale } = letterbox(img)
-  const toImg = (p: Pt): Pt => ({ x: (p.x - padX) / scale, y: (p.y - padY) / scale })
+// Calcule le contour detecte (sans rien dessiner) -- separe du rendu pour
+// que l'edition manuelle (points glissables, voir le composant) puisse
+// reutiliser/remplacer ces points sans refaire toute la detection couleur.
+function computeContour(img: HTMLImageElement, result: DetectResult, cornerRect: Pt[] | null): Pt[] | null {
+  if (!cornerRect) return null
 
-  const bin = new Uint8Array(IMGSZ * IMGSZ)
-  for (let i = 0; i < result.mask640.length; i++) bin[i] = result.mask640[i] >= 0.5 ? 1 : 0
-  const start = findBoundaryStart(result.mask640, bin, IMGSZ, IMGSZ)
-  if (!start) return
-  const traced = traceMooreBoundary(bin, IMGSZ, IMGSZ, start)
-  const simplified = simplifyClosed(traced, 1.2)
+  // Zone de recherche : bbox du rectangle des vrais coins, elargie (les
+  // encoches/oreilles d'une die-cut peuvent sortir un peu du rectangle).
+  const rxs = cornerRect.map(p => p.x), rys = cornerRect.map(p => p.y)
+  const rw = Math.max(...rxs) - Math.min(...rxs), rh = Math.max(...rys) - Math.min(...rys)
+  const marginX = rw * 0.18, marginY = rh * 0.18
+  const left = Math.max(0, Math.floor(Math.min(...rxs) - marginX))
+  const top = Math.max(0, Math.floor(Math.min(...rys) - marginY))
+  const right = Math.min(img.naturalWidth, Math.ceil(Math.max(...rxs) + marginX))
+  const bottom = Math.min(img.naturalHeight, Math.ceil(Math.max(...rys) + marginY))
+  const cw = right - left, ch = bottom - top
+  if (cw <= 0 || ch <= 0) return null
 
-  // Rectangle de base de la carte + accroche : un bord sans vraie encoche
-  // colle exactement au rectangle (droit par construction), une vraie
-  // encoche (deviation > seuil) est preservee telle quelle.
-  const rect = minAreaRect(convexHull(simplified))
-  const NOTCH_THRESHOLD_640 = 8
-  const snapped = snapToRect(simplified, rect, NOTCH_THRESHOLD_640)
-  const contour640 = smoothContour(snapped, 1)
-  const contourImg = contour640.map(toImg)
+  const cropCanvas = document.createElement('canvas')
+  cropCanvas.width = cw; cropCanvas.height = ch
+  const cctx = cropCanvas.getContext('2d', { willReadFrequently: true })!
+  cctx.imageSmoothingEnabled = false
+  cctx.drawImage(img, left, top, cw, ch, 0, 0, cw, ch)
+  const { data } = cctx.getImageData(0, 0, cw, ch)
 
-  ctx.beginPath()
-  contourImg.forEach((p, i) => (i === 0 ? ctx.moveTo(p.x, p.y) : ctx.lineTo(p.x, p.y)))
-  ctx.closePath()
-  ctx.fillStyle = 'rgba(0,255,120,0.22)'
-  ctx.fill()
-  ctx.lineWidth = Math.max(2, img.naturalWidth / 300)
-  ctx.strokeStyle = '#00e676'
-  ctx.stroke()
+  // Segmentation par couleur (pas le masque ML) : ecart au fond echantillonne
+  // dans les 4 coins de la zone de recherche (hors de la carte, meme marge
+  // large). Seuil choisi automatiquement par Otsu sur l'histogramme reel de
+  // CETTE photo -- un seuil fixe ne generalise pas (fonctionne sur un fond
+  // tres contraste, echoue totalement sur un fond proche de la carte).
+  const bg = sampleBackgroundColor(data, cw, ch)
+  const dist = colorDistanceMap(data, cw, ch, bg)
+  const threshold = otsuThreshold(dist)
+  let bin = colorMaskFromBackground(dist, threshold)
+
+  // Validation par le masque ML (deja entraine sur de vraies die-cut, pas
+  // retouche ici) : un pixel classe "fond" par la seule couleur reste
+  // "carte" si le modele est tres confiant que c'est de la carte -- ca
+  // filtre les faux positifs de couleur dans une photo (mains, visages,
+  // foule) que le modele n'a jamais appris a traiter comme une decoupe.
+  if (result.mask640) {
+    const mask640 = result.mask640
+    for (let y = 0; y < ch; y++) {
+      for (let x = 0; x < cw; x++) {
+        const i = y * cw + x
+        if (bin[i] === 0 && sampleMask640(mask640, img.naturalWidth, img.naturalHeight, x + left, y + top) > 0.6) {
+          bin[i] = 1
+        }
+      }
+    }
+  }
+
+  // Un seul rayon de morphologie ne peut pas satisfaire deux besoins
+  // opposes : les vraies encoches qui ENTAMENT la carte (interieur du
+  // rectangle) ont parfois une pointe fine qu'un rayon large rognerait
+  // avant meme le tracage -- alors qu'EN DEHORS du rectangle (marge de
+  // recherche), on peut trouver un support, un reflet ou un objet du decor
+  // qui ont besoin d'un nettoyage bien plus agressif pour ne pas polluer le
+  // trace. On calcule donc 2 versions et on les fusionne selon la position
+  // par rapport au vrai rectangle des coins.
+  const binFine = morphOpenClose(bin, cw, ch, 1)
+  const binClean = morphOpenClose(bin, cw, ch, 8)
+  const merged = new Uint8Array(cw * ch)
+  for (let y = 0; y < ch; y++) {
+    for (let x = 0; x < cw; x++) {
+      const i = y * cw + x
+      merged[i] = pointInQuad(x + left, y + top, cornerRect) ? binFine[i] : binClean[i]
+    }
+  }
+  bin = merged
+  bin = fillEnclosedHoles(bin, cw, ch)
+  bin = forceInteriorAsCard(bin, cw, ch, left, top, cornerRect, 0.22)
+
+  const start = findStartFromSeed(bin, cw, ch, left, top, cornerRect)
+  if (!start) return null
+  const traced = traceMooreBoundary(bin, cw, ch, start)
+  // Epsilon plus bas que precedemment : la morphologie a rayon plus large
+  // (+validation ML) nettoie deja le bruit pixel-par-pixel en amont, donc
+  // la simplification n'a plus besoin d'etre agressive -- un epsilon plus
+  // bas preserve les angles droits des petites encoches rectangulaires
+  // (coupees en diagonale avec un epsilon trop eleve).
+  const simplified = simplifyClosed(traced, 2).map(p => ({ x: p.x + left, y: p.y + top }))
+
+  // Les vrais coins (deja fiables en prod) forcent les bords sans vraie
+  // encoche a rester parfaitement droits ; le masque couleur (bien plus fin
+  // que le masque ML) fournit la vraie forme des decoupes.
+  const NOTCH_THRESHOLD = Math.max(rw, rh) * 0.012
+  const { pts: snapped, onRect } = snapToRect(simplified, cornerRect, NOTCH_THRESHOLD)
+  const smoothed = smoothCurve(snapped, onRect, 2)
+
+  // Filet de securite : si une photo imprimee touche le vrai bord de la
+  // carte (visages, foule, mains...), la segmentation par couleur peut se
+  // mettre a decouper des morceaux entiers de la photo -- un vrai die-cut
+  // n'enleve jamais une fraction enorme de la surface du rectangle. Si
+  // l'aire tracee s'effondre trop par rapport au rectangle, mieux vaut
+  // afficher le simple rectangle (fiable) qu'un trace faux et chaotique.
+  const tracedArea = polygonArea(snapped)
+  const rectArea = polygonArea(cornerRect)
+  const contourImg = rectArea > 0 && tracedArea / rectArea < 0.75 ? cornerRect : smoothed
+
+  // Fusionne les points parfaitement (ou quasi) alignes -- un bord droit du
+  // rectangle n'a besoin que de ses 2 coins comme poignees, pas d'un point
+  // tous les quelques pixels. Epsilon minuscule : ne retire que les points
+  // vraiment redondants, aucune vraie courbe/encoche n'est affectee.
+  return simplifyClosed(contourImg, 2.5)
 }
 
 export default function DiecutTestPage() {
@@ -360,35 +769,132 @@ export default function DiecutTestPage() {
   const [error, setError] = useState('')
   const [info, setInfo] = useState<{ found: boolean; conf: number; ms: number } | null>(null)
   const canvasRef = useRef<HTMLCanvasElement | null>(null)
+  const svgRef = useRef<SVGSVGElement | null>(null)
 
-  const onFile = async (file: File) => {
+  // Contour editable a la main (poignees glissables) -- initialise par la
+  // detection auto, mais l'utilisateur peut corriger chaque point si le
+  // resultat automatique n'est pas parfait.
+  const [polygon, setPolygon] = useState<Pt[] | null>(null)
+  const autoPolygonRef = useRef<Pt[] | null>(null)
+  const [imgSize, setImgSize] = useState<{ w: number; h: number } | null>(null)
+  const draggingRef = useRef<number | null>(null)
+
+  const runOn = async (imgSrc: string, revoke: boolean) => {
     setBusy(true)
     setError('')
     setInfo(null)
+    setPolygon(null)
     try {
-      const url = URL.createObjectURL(file)
       const img = new Image()
       await new Promise<void>((resolve, reject) => {
         img.onload = () => resolve()
         img.onerror = () => reject(new Error('image invalide'))
-        img.src = url
+        img.src = imgSrc
       })
 
       const ort = await import('onnxruntime-web')
       ort.env.wasm.wasmPaths = ORT_CDN
       ort.env.wasm.numThreads = 1
 
-      const result = await detect(ort, img)
+      const [result, corners] = await Promise.all([
+        detect(ort, img),
+        detectCornersYOLO(img),
+      ])
       setInfo({ found: result.found, conf: result.conf, ms: result.ms })
-      if (canvasRef.current) draw(canvasRef.current, img, result)
+      if (canvasRef.current) drawBase(canvasRef.current, img)
+      setImgSize({ w: img.naturalWidth, h: img.naturalHeight })
+      const contour = computeContour(img, result, corners)
+      autoPolygonRef.current = contour
+      setPolygon(contour)
 
-      URL.revokeObjectURL(url)
+      if (revoke) URL.revokeObjectURL(imgSrc)
     } catch (e: any) {
       setError(e?.message || String(e))
     } finally {
       setBusy(false)
     }
   }
+
+  // Convertit les coordonnees ecran (souris/tactile) en coordonnees image
+  // (le SVG a un viewBox cale sur la resolution naturelle de l'image, donc
+  // ca marche quelle que soit la taille d'affichage -- mobile compris).
+  const toImagePoint = (clientX: number, clientY: number): Pt | null => {
+    const svg = svgRef.current
+    if (!svg) return null
+    const ctm = svg.getScreenCTM()
+    if (!ctm) return null
+    const pt = svg.createSVGPoint()
+    pt.x = clientX
+    pt.y = clientY
+    const p = pt.matrixTransform(ctm.inverse())
+    return { x: p.x, y: p.y }
+  }
+
+  const lastTapRef = useRef<{ index: number; time: number } | null>(null)
+
+  const onHandlePointerDown = (i: number) => (e: ReactPointerEvent) => {
+    e.preventDefault()
+    e.stopPropagation()
+    const now = Date.now()
+    const last = lastTapRef.current
+    if (last && last.index === i && now - last.time < 400) {
+      // double tap/clic sur le meme point -> suppression (jamais sous 3
+      // points, un contour a besoin d'un minimum de forme).
+      lastTapRef.current = null
+      setPolygon(prev => (prev && prev.length > 3 ? prev.filter((_, idx) => idx !== i) : prev))
+      return
+    }
+    lastTapRef.current = { index: i, time: now }
+    ;(e.target as Element).setPointerCapture(e.pointerId)
+    draggingRef.current = i
+  }
+
+  // Tap/clic sur un SEGMENT (pas sur un point) -> insere un nouveau point
+  // deplacable a cet endroit precis, entre les 2 points de ce segment.
+  const onSegmentClick = (i: number) => (e: ReactPointerEvent) => {
+    e.stopPropagation()
+    const p = toImagePoint(e.clientX, e.clientY)
+    if (!p) return
+    setPolygon(prev => {
+      if (!prev) return prev
+      const next = prev.slice()
+      next.splice(i + 1, 0, p)
+      return next
+    })
+  }
+
+  const onSvgPointerMove = (e: ReactPointerEvent) => {
+    const i = draggingRef.current
+    if (i === null) return
+    const p = toImagePoint(e.clientX, e.clientY)
+    if (!p || !imgSize) return
+    const x = Math.max(0, Math.min(imgSize.w, p.x))
+    const y = Math.max(0, Math.min(imgSize.h, p.y))
+    setPolygon(prev => {
+      if (!prev) return prev
+      const next = prev.slice()
+      next[i] = { x, y }
+      return next
+    })
+  }
+
+  const onSvgPointerUp = () => {
+    draggingRef.current = null
+  }
+
+  const resetPolygon = () => setPolygon(autoPolygonRef.current)
+
+  const onFile = (file: File) => {
+    const url = URL.createObjectURL(file)
+    runOn(url, true)
+  }
+
+  useEffect(() => {
+    if (new URLSearchParams(window.location.search).get('auto') === '1') {
+      runOn('/_test-diecut-sample.jpg', false)
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [])
 
   return (
     <div style={{ maxWidth: 700, margin: '0 auto', padding: '20px 14px 60px', fontFamily: 'Inter, sans-serif' }}>
@@ -415,8 +921,73 @@ export default function DiecutTestPage() {
           {info.found ? `Die-cut détectée — conf ${info.conf.toFixed(3)} — ${info.ms.toFixed(0)}ms` : `Aucune détection — ${info.ms.toFixed(0)}ms`}
         </p>
       )}
+      {polygon && (
+        <p style={{ fontSize: 12, color: '#888', marginTop: 4 }}>
+          Glissez un point pour le déplacer • double-tap/double-clic dessus pour le supprimer • tap/clic sur une ligne pour ajouter un point.
+        </p>
+      )}
 
-      <canvas ref={canvasRef} style={{ width: '100%', maxWidth: '100%', borderRadius: 8, background: '#eee', marginTop: 12 }} />
+      <div style={{ position: 'relative', marginTop: 12, lineHeight: 0 }}>
+        <canvas ref={canvasRef} style={{ width: '100%', maxWidth: '100%', borderRadius: 8, background: '#eee', display: 'block' }} />
+        {polygon && imgSize && (
+          <svg
+            ref={svgRef}
+            viewBox={`0 0 ${imgSize.w} ${imgSize.h}`}
+            style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', touchAction: 'none' }}
+            onPointerMove={onSvgPointerMove}
+            onPointerUp={onSvgPointerUp}
+            onPointerCancel={onSvgPointerUp}
+          >
+            <polygon
+              points={polygon.map(p => `${p.x},${p.y}`).join(' ')}
+              fill="rgba(0,255,120,0.18)"
+              stroke="#00e676"
+              strokeWidth={Math.max(2, imgSize.w / 300)}
+            />
+            {/* Zone cliquable invisible sur chaque segment -- tap/clic ajoute
+                un point deplacable a cet endroit. Rendue AVANT les poignees
+                pour qu'un clic pile sur un point touche d'abord le cercle. */}
+            {polygon.map((p, i) => {
+              const q = polygon[(i + 1) % polygon.length]
+              return (
+                <line
+                  key={`seg-${i}`}
+                  x1={p.x}
+                  y1={p.y}
+                  x2={q.x}
+                  y2={q.y}
+                  stroke="transparent"
+                  strokeWidth={Math.max(16, imgSize.w * 0.025)}
+                  style={{ cursor: 'copy', touchAction: 'none' }}
+                  onPointerDown={onSegmentClick(i)}
+                />
+              )
+            })}
+            {polygon.map((p, i) => (
+              <circle
+                key={i}
+                cx={p.x}
+                cy={p.y}
+                r={Math.max(7, imgSize.w * 0.013)}
+                fill="#00e676"
+                stroke="#fff"
+                strokeWidth={Math.max(1.5, imgSize.w / 500)}
+                style={{ cursor: 'grab', touchAction: 'none' }}
+                onPointerDown={onHandlePointerDown(i)}
+              />
+            ))}
+          </svg>
+        )}
+      </div>
+
+      {polygon && (
+        <button
+          onClick={resetPolygon}
+          style={{ marginTop: 10, padding: '10px 16px', fontSize: 13, fontWeight: 700, borderRadius: 8, border: '1px solid #ccc', background: '#fff', cursor: 'pointer' }}
+        >
+          ↺ Réinitialiser (détection auto)
+        </button>
+      )}
     </div>
   )
 }
