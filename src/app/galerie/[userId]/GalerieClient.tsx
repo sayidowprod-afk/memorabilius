@@ -1186,13 +1186,39 @@ export default function GalerieClient({ userId, initialCardUrl, initialCards, in
       // et NativeHomeDashboard : timeout court + peu de tentatives, pour
       // atteindre vite un état stable (donnees ou repli) plutot que de
       // laisser la page paraitre figee pendant ~40s avant de reagir.
+      // card_collections : PostgREST plafonne chaque reponse a 1000 lignes
+      // (max_rows), meme en service role -- une carte peut appartenir a
+      // plusieurs collections, donc un collectionneur actif depasse vite les
+      // 1000 lignes (ex: 1200+ pour 770 cartes). Sans pagination, les lignes
+      // au-dela du plafond (les plus recentes en pratique) etaient absentes
+      // de la reponse : un tag tout juste ajoute semblait "disparaitre au F5"
+      // alors qu'il etait bien enregistre en base -- meme piege deja corrige
+      // dans /api/set-sync/route.ts, jamais applique ici.
+      const fetchAllCardCollections = async (uid: string) => {
+        const PAGE = 1000
+        const { data: first, count } = await supabase
+          .from('card_collections').select('card_key, collection', { count: 'exact' }).eq('user_id', uid).range(0, PAGE - 1)
+        const all = [...(first || [])]
+        const total = count || 0
+        if (total > PAGE) {
+          const pageCount = Math.ceil(total / PAGE)
+          const rest = await Promise.all(
+            Array.from({ length: pageCount - 1 }, (_, i) =>
+              supabase.from('card_collections').select('card_key, collection').eq('user_id', uid)
+                .range((i + 1) * PAGE, (i + 2) * PAGE - 1).then(r => r.data || [])
+            )
+          )
+          all.push(...rest.flat())
+        }
+        return all
+      }
       const fetchFirstBatch = async (attempt: number): Promise<any> => {
         const timeout = new Promise<never>((_, reject) => setTimeout(() => reject(new Error('timeout')), 6000))
         try {
           return await Promise.race([
             Promise.all([
               supabase.from('cartes_manuelles').select('*', { count: 'exact' }).eq('user_id', uid).order('created_at', { ascending: true }).range(0, 999),
-              supabase.from('card_collections').select('card_key, collection').eq('user_id', uid),
+              fetchAllCardCollections(uid),
             ]),
             timeout,
           ])
@@ -1202,11 +1228,11 @@ export default function GalerieClient({ userId, initialCardUrl, initialCards, in
           return fetchFirstBatch(attempt + 1)
         }
       }
-      const [firstResult, ccResult] = await fetchFirstBatch(1)
+      const [firstResult, ccRows] = await fetchFirstBatch(1)
       const firstBatch = firstResult.data || []
       const totalCount = firstResult.count || 0
       const ccMap = new Map<string, string[]>()
-      for (const r of ccResult.data || []) {
+      for (const r of ccRows || []) {
         const arr = ccMap.get(r.card_key) || []; arr.push(r.collection); ccMap.set(r.card_key, arr)
       }
 
