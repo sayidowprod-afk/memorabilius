@@ -64,6 +64,9 @@ function AnnuaireContent() {
   const hoverCardsCache = useRef<Map<string, string[]>>(new Map())
   const [hoverCards, setHoverCards] = useState<string[] | null>(null)
   const hoverTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null)
+  // true juste avant qu'on ecrive nous-memes l'URL (recherche/filtres) -- voir
+  // l'effet de resynchronisation plus bas, qui s'en sert pour ignorer l'echo.
+  const selfNavRef = useRef(false)
 
   const scheduleHoverPreview = (id: string, x: number, y: number) => {
     setHoverPos({ x, y })
@@ -89,8 +92,14 @@ function AnnuaireContent() {
 
   // Resynchronise l'état des filtres avec l'URL à chaque changement (y compris
   // navigation arrière/avant), pour ne pas perdre la recherche/team en revenant
-  // de la page d'un collectionneur.
+  // de la page d'un collectionneur. MAIS : updateUrlParams() ci-dessous écrit
+  // aussi l'URL depuis `search` (debounced) -- sans garde, taper vite créait un
+  // aller-retour qui perdait des lettres (la 2e lettre tapée arrivait pendant
+  // que l'echo de l'URL, encore sur la 1ere lettre, re-ecrasait `search`).
+  // selfNavRef distingue "on vient d'ecrire nous-memes l'URL" (ignorer l'echo)
+  // de "l'URL a change de l'exterieur" (vrai retour arriere -> resynchroniser).
   useEffect(() => {
+    if (selfNavRef.current) { selfNavRef.current = false; return }
     setTeamFilter(searchParams.get('team_id') || '')
     setSearch(searchParams.get('q') || '')
     setNbaFilter(searchParams.get('nba') || '')
@@ -176,6 +185,7 @@ function AnnuaireContent() {
       if (value) params.set(key, value)
       else params.delete(key)
     }
+    selfNavRef.current = true
     router.replace(`?${params.toString()}`, { scroll: false })
   }
 
@@ -200,8 +210,13 @@ function AnnuaireContent() {
     updateUrlParams({ team_id: '', q: '', nba: '' })
   }
 
+  // Recherche insensible aux accents ("alacarte" doit trouver "àlacarte") --
+  // decompose les caracteres accentues (NFD) puis retire les marques
+  // diacritiques, meme principe que lib/setMatcher.ts.
+  const normSearch = (s: string) => s.normalize('NFD').replace(/\p{M}/gu, '').toLowerCase()
+  const normalizedSearch = normSearch(debouncedSearch)
   const sorted = [...collectors].filter(c =>
-    (!debouncedSearch || (c.display_name || '').toLowerCase().includes(debouncedSearch.toLowerCase())) &&
+    (!normalizedSearch || normSearch(c.display_name || '').includes(normalizedSearch)) &&
     (!nbaFilter || (c.favorite_teams || []).includes(nbaFilter)) &&
     (!teamMemberIds || teamMemberIds.has(c.id))
   ).sort((a, b) => {
