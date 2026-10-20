@@ -6,6 +6,7 @@ import { supabase } from '@/lib/supabase'
 import { useTheme } from '@/lib/ThemeContext'
 import { useLang, localeFor } from '@/lib/LangContext'
 import CameraCapture from '@/components/CameraCapture'
+import { forceStopCameraStream } from '@/lib/cameraStreamPool'
 import { fireConfetti } from '@/components/Confetti'
 import { NAV_TOTAL_HEIGHT_CSS } from '@/lib/nativeLayout'
 
@@ -100,6 +101,13 @@ export default function ScannerPage() {
   const muted  = dark ? '#666'    : '#888'
   const border = dark ? '#252525' : '#e8eaed'
   const blue   = '#0046D1'
+
+  // Defense en profondeur : si on quitte /scanner par une navigation SPA
+  // (pas forcement un pagehide), on coupe vraiment la camera au lieu de la
+  // laisser en periode de grace (voir cameraStreamPool.ts).
+  useEffect(() => {
+    return () => { forceStopCameraStream() }
+  }, [])
 
   useEffect(() => {
     supabase.auth.getSession().then(async ({ data: { session } }) => {

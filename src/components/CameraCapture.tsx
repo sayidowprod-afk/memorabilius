@@ -2,6 +2,7 @@
 import { useEffect, useRef, useState } from 'react'
 import { createPortal } from 'react-dom'
 import { Capacitor } from '@capacitor/core'
+import { acquireCameraStream, releaseCameraStream } from '@/lib/cameraStreamPool'
 
 interface FrameRect { x: number; y: number; w: number; h: number }
 
@@ -65,8 +66,10 @@ export default function CameraCapture({ onCapture, onClose, ratio }: Props) {
   const startCamera = (forceId?: string | null) => {
     setError(null)
     setReady(false)
-    // Changement de capteur : libere l'ancien flux avant d'ouvrir le nouveau.
-    streamRef.current?.getTracks().forEach(t => t.stop())
+    // Changement de capteur : acquireCameraStream() (pool partage) arrete
+    // l'ancien flux et en ouvre un nouveau si le deviceId demande differe --
+    // pas besoin de le faire ici (evite une reference obsolete cote pool,
+    // voir cameraStreamPool.ts).
     const attach = (stream: MediaStream) => {
       streamRef.current = stream
       const track = stream.getVideoTracks()[0]
@@ -145,10 +148,17 @@ export default function CameraCapture({ onCapture, onClose, ratio }: Props) {
     // photo finale (sinon le cadre est decale sur l'axe vertical), et la
     // definition est plus haute que l'ancien 1920x1080 pour le zoom numerique.
     const size = { width: { ideal: 2560 }, height: { ideal: 1920 } }
-    const get = (video: MediaTrackConstraints | boolean) => navigator.mediaDevices.getUserMedia({ video, audio: false })
+    // Passe par le pool partage (cameraStreamPool.ts) plutot que getUserMedia
+    // direct : reutilise le flux existant si c'est le meme capteur et qu'il
+    // est encore vivant, au lieu de couper/rouvrir la camera materielle a
+    // chaque carte scannee (voir le commentaire du pool pour le bug iOS que
+    // ca evite). poolKey identifie le "meme capteur demande" indépendamment
+    // des contraintes exactes (resolution...) passees a getUserMedia.
+    const get = (video: MediaTrackConstraints | boolean, poolKey: string | null) =>
+      acquireCameraStream({ video, audio: false }, poolKey)
     const wantedId = forceId !== undefined ? forceId : readSavedCamera()
-    const byFacing = () => get({ facingMode: 'environment', ...size })
-    const first = wantedId ? get({ deviceId: { exact: wantedId }, ...size }) : byFacing()
+    const byFacing = () => get({ facingMode: 'environment', ...size }, 'environment')
+    const first = wantedId ? get({ deviceId: { exact: wantedId }, ...size }, wantedId) : byFacing()
     first
       .catch(() => {
         // Capteur memorise introuvable (autre appareil, debranche) : on l'oublie.
@@ -158,7 +168,7 @@ export default function CameraCapture({ onCapture, onClose, ratio }: Props) {
       .then(attach)
       .catch(() =>
         // Fallback sans contrainte facingMode (desktop / webcam)
-        get(true).then(attach).catch(handleError)
+        get(true, 'default').then(attach).catch(handleError)
       )
   }
 
@@ -243,7 +253,10 @@ export default function CameraCapture({ onCapture, onClose, ratio }: Props) {
 
   useEffect(() => {
     startCamera()
-    return () => { streamRef.current?.getTracks().forEach(t => t.stop()) }
+    // Liberation differee (pool partage) : si l'utilisateur rouvre la camera
+    // pour la carte suivante dans les secondes qui suivent, le meme flux est
+    // reutilise au lieu de renegocier avec le materiel.
+    return () => { releaseCameraStream() }
   }, [])
 
   const toggleTorch = async () => {
@@ -482,7 +495,9 @@ export default function CameraCapture({ onCapture, onClose, ratio }: Props) {
       } catch { /* on garde la photo complete */ }
     }
 
-    streamRef.current?.getTracks().forEach(t => t.stop())
+    // Le flux n'est plus coupe ici : onCapture demonte ce composant juste
+    // apres, ce qui declenche releaseCameraStream() (voir le useEffect plus
+    // haut) et garde la camera chaude pour la prochaine carte.
     if (blob) onCapture(blob, frameRect)
   }
 
