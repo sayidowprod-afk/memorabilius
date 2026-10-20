@@ -9,7 +9,7 @@ import PlayerChecklistSection from './PlayerChecklistSection'
 import ScrollTopButton from '@/components/ScrollTopButton'
 import TagIcon from '@/components/TagIcon'
 
-export const revalidate = 3600
+export const revalidate = 86400 // 24h (etait 1h -- contenu quasi statique, cf. reduction couts Vercel ISR)
 
 // ── Couleurs par équipe (NBA + NFL + NHL + MLB) ───────────────────────────────
 const NBA_COLORS: Record<string, { primary: string; secondary: string; abbr: string }> = {

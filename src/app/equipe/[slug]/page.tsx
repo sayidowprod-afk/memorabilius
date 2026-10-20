@@ -8,7 +8,7 @@ import TagIcon from '@/components/TagIcon'
 import FranchiseChecklist, { type FranchisePlayer } from '@/components/FranchiseChecklist'
 import { cleanFranchise } from '@/lib/franchiseExclude'
 
-export const revalidate = 3600
+export const revalidate = 86400 // 24h (etait 1h -- contenu quasi statique, cf. reduction couts Vercel ISR)
 
 const supabase = createClient(
   process.env.NEXT_PUBLIC_SUPABASE_URL!,

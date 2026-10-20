@@ -12,7 +12,7 @@ const supabase = createClient(
 // progression de checklist par utilisateur est chargée côté client dans
 // SetlistClient, donc pas concernée par ce cache). ISR 1h : gros volume
 // d'appels (8K/jour) pour un contenu qui ne justifie pas un recalcul par visite.
-export const revalidate = 3600
+export const revalidate = 86400 // 24h (etait 1h -- contenu quasi statique, cf. reduction couts Vercel ISR)
 
 const SPORT_LABELS: Record<string, string> = {
   nba: 'NBA', nfl: 'NFL', baseball: 'Baseball', hockey: 'Hockey', pokemon: 'Pokémon', mtg: 'MTG',

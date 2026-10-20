@@ -5,7 +5,7 @@ import { cardPageUrl } from '@/lib/playerSlug'
 // Sitemap de TOUTES les fiches carte (+ sitemap d'images pour Google Images), decoupe en tranches :
 // une tranche = CHUNK cartes, servie sur /cartes/sitemap/<id>.xml (limite Google : 50 000 URLs / fichier).
 // Le sitemap racine (src/app/sitemap.ts) ne contient plus les cartes ; robots.ts liste ces tranches.
-export const revalidate = 3600
+export const revalidate = 86400 // 24h (etait 1h -- contenu quasi statique, cf. reduction couts Vercel ISR)
 
 const supabase = createClient(
   process.env.NEXT_PUBLIC_SUPABASE_URL!,
