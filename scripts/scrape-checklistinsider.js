@@ -13,8 +13,9 @@
  *   node scripts/scrape-checklistinsider.js --sport=football --from=2025 --to=2015
  *   node scripts/scrape-checklistinsider.js --all-seasons                                  (toutes les saisons listees sur le site, tous sports)
  *   node scripts/scrape-checklistinsider.js --all-seasons --sport=basketball               (toutes les saisons listees, un seul sport)
+ *   node scripts/scrape-checklistinsider.js --season-url=https://www.checklistinsider.com/non-sport-cards/2025-non-sport-cards --filter="disney|star.wars|marvel"
  *   options : --dry-run (rien n'est ecrit), --force / --gaps (retraite meme les pages deja faites, sans tout re-ecrire : voir regles d'import),
- *             --all (inclut Euroleague, NBL...)
+ *             --all (inclut Euroleague, NBL...), --filter=<regex insensible a la casse> (ne garde que les URLs de set dont le slug matche)
  *
  * Suivi en direct (checkpoint + avancement) :
  *   - scripts/checkpoint-checklistinsider.json liste chaque page de set deja traitee (reprise automatique apres interruption) ;
@@ -388,6 +389,16 @@ async function main() {
     }
   }
   urls = [...new Set(urls)]
+  // --filter=<regex> : ne garde que les URLs de set correspondant (ex: pour une page de
+  // saison "non-sport-cards" qui melange Disney/Star Wars/Marvel avec Minecraft, Scooby-Doo...).
+  // Teste sur le slug de l'URL (ex: "2025-topps-chrome-star-wars"), pas sur le titre -- pas
+  // besoin de telecharger chaque page juste pour filtrer.
+  if (args.filter) {
+    const re = new RegExp(args.filter, 'i')
+    const before = urls.length
+    urls = urls.filter(u => re.test(u))
+    console.log(`Filtre "${args.filter}" : ${before} → ${urls.length} page(s)`)
+  }
   console.log(`\n${DRY ? '🔍 DRY-RUN — ' : ''}${urls.length} page(s) de set au total\n`)
   let ok = 0, err = 0
   for (let i = 0; i < urls.length; i++) {
