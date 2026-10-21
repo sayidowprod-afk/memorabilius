@@ -933,7 +933,7 @@ html[data-theme="light"] .tcdb-imp-open { border-color: #06122e; color: #06122e;
 /* Vignettes : bas centre et compact, degrade a la couleur de l'equipe vers le fond -- diagonal et
    sur 2 couleurs (--gt/--gt2, la 2e retombe sur la 1ere si la carte n'a qu'une seule equipe) pour
    les cartes multi-equipes (trade, college teammates...). */
-.gc-bot { position: relative; display: block !important; margin: 0 -8px -8px !important; padding: 10px 8px 16px; background: linear-gradient(150deg, transparent 0%, color-mix(in srgb, var(--gt, #1c2a5c) 58%, #0a1330) 38%, color-mix(in srgb, var(--gt2, var(--gt, #1c2a5c)) 58%, #0a1330) 100%); }
+.gc-bot { position: relative; display: block !important; margin: 0 -8px -8px !important; padding: 10px 8px 16px; background: linear-gradient(165deg, transparent 0%, color-mix(in srgb, var(--gt, #1c2a5c) 46%, #0a1330) 70%, color-mix(in srgb, var(--gt2, var(--gt, #1c2a5c)) 46%, #0a1330) 100%); }
 .gc-bot > div:first-child { text-align: center; padding: 0 2px; }
 .gc-bot > div:first-child p { justify-content: center !important; text-align: center; margin-left: 0; margin-right: 0; }
 .gc-bot > div:first-child > p:not(.gc-name) { font-size: 12px !important; }
