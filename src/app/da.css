@@ -930,9 +930,20 @@ html[data-theme="light"] .tcdb-imp-open { border-color: #06122e; color: #06122e;
 
 @media (prefers-reduced-motion: reduce) { .gs-mq { animation: none; } }
 
-/* Vignettes : bas centre et compact, degrade a la couleur de l'equipe vers le fond -- vertical,
-   bas (couleur) vers haut (transparent). */
-.gc-bot { position: relative; display: block !important; margin: 0 -8px -8px !important; padding: 10px 8px 16px; background: linear-gradient(to top, color-mix(in srgb, var(--gt, #1c2a5c) 52%, #0a1330) 0%, transparent 100%); }
+/* Vignettes : bas centre et compact, degrade a la couleur de l'equipe vers le fond -- horizontal
+   equipe 1 (gauche) -> equipe 2 (droite, ou la 1ere en boucle si une seule equipe) EN PLUS d'un
+   fondu vertical vers le haut totalement transparent. Un seul linear-gradient ne peut pas faire les
+   deux a la fois (axe different) : le degrade horizontal est pose sur ::before (couleur), et c'est
+   ::before qui est fondu verticalement via mask-image -- le contenu de .gc-bot (nom, badges...)
+   n'est lui jamais touche par ce mask, seul le calque de couleur derriere l'est. */
+.gc-bot { position: relative; display: block !important; margin: 0 -8px -8px !important; padding: 10px 8px 16px; background: none; isolation: isolate; }
+.gc-bot::before {
+  content: ''; position: absolute; inset: 0; z-index: 0; border-radius: inherit; pointer-events: none;
+  background: linear-gradient(90deg, color-mix(in srgb, var(--gt, #1c2a5c) 52%, #0a1330) 0%, color-mix(in srgb, var(--gt2, var(--gt, #1c2a5c)) 52%, #0a1330) 100%);
+  -webkit-mask-image: linear-gradient(to top, #000 0%, transparent 100%);
+  mask-image: linear-gradient(to top, #000 0%, transparent 100%);
+}
+.gc-bot > * { position: relative; z-index: 1; }
 .gc-bot > div:first-child { text-align: center; padding: 0 2px; }
 .gc-bot > div:first-child p { justify-content: center !important; text-align: center; margin-left: 0; margin-right: 0; }
 .gc-bot > div:first-child > p:not(.gc-name) { font-size: 12px !important; }
