@@ -5,7 +5,7 @@ import { toast } from '@/lib/toast'
 
 const SPORTS: [string, string][] = [
   ['nba', 'NBA'], ['euro-basketball', 'Basketball Europe'], ['wnba', 'WNBA'], ['nfl', 'NFL'], ['baseball', 'Baseball'], ['hockey', 'Hockey'],
-  ['soccer-international', 'Football'], ['racing', 'Racing'], ['tennis', 'Tennis'], ['wrestling', 'Wrestling'], ['mma', 'MMA'], ['pokemon', 'Pokémon'], ['mtg', 'MTG'], ['autre', 'Autre'],
+  ['soccer-international', 'Football'], ['racing', 'Racing'], ['tennis', 'Tennis'], ['wrestling', 'Wrestling'], ['mma', 'MMA'], ['pokemon', 'Pokémon'], ['mtg', 'MTG'], ['non-sport', 'Non-Sport'], ['autre', 'Autre'],
 ]
 
 // Demande d'ajout d'une setlist manquante : part dans le meme circuit que les retours utilisateurs (admin > signalements + e-mail).
