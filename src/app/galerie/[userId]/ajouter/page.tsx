@@ -305,6 +305,14 @@ export default function AjouterCarte({ params }: { params: Promise<{ userId: str
 
   type Side = 'recto' | 'verso' | 'il' | 'ir'
   const [packReveal, setPackReveal] = useState<{ image: string; total?: number } | null>(null)
+  // Lors d'une session de scan (plusieurs cartes ajoutees a la suite), l'ouverture
+  // de paquet (4,1s, plein ecran) ne doit se jouer qu'UNE fois, a la fin de la
+  // session -- pas apres chaque carte, ce qui interrompait le scan en rafale.
+  // Debounce : chaque ajout repousse l'affichage ; il ne se declenche vraiment
+  // que quand aucune nouvelle carte n'a ete ajoutee depuis un petit moment (la
+  // session est "finie"), avec la DERNIERE carte/le DERNIER total.
+  const packRevealTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null)
+  useEffect(() => () => { if (packRevealTimerRef.current) clearTimeout(packRevealTimerRef.current) }, [])
   const [scannerModal, setScannerModal] = useState<{ side: Side; src: string; frameRect?: { x: number; y: number; w: number; h: number } } | null>(null)
   const [cameraModal, setCameraModal] = useState<Side | null>(null)
   const [cropModal, setCropModal] = useState<{ side: Side; src: string } | null>(null)
@@ -898,8 +906,13 @@ export default function AjouterCarte({ params }: { params: Promise<{ userId: str
       // classeur quelques secondes apres son ajout (signale : dos absent dans
       // les classeurs pour les cartes "nouvellement saisies" uniquement).
       setBinderPrompt({ userId: uid, img: form.image_recto, back: form.image_verso || undefined, nom: form.nom })
-      // ouverture de paquet : la carte qui vient d'etre ajoutee sort d'un paquet (toucher pour passer)
-      setPackReveal({ image: form.image_recto, total: cardAddedTotal })
+      // ouverture de paquet : la carte qui vient d'etre ajoutee sort d'un paquet (toucher pour passer) --
+      // debounced (voir packRevealTimerRef) pour ne jouer qu'une fois a la fin d'une session de scan.
+      if (packRevealTimerRef.current) clearTimeout(packRevealTimerRef.current)
+      const revealImage = form.image_recto
+      packRevealTimerRef.current = setTimeout(() => {
+        setPackReveal({ image: revealImage, total: cardAddedTotal })
+      }, 2500)
     } else {
       router.push(`/galerie/${userId}`)
     }
