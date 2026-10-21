@@ -930,8 +930,10 @@ html[data-theme="light"] .tcdb-imp-open { border-color: #06122e; color: #06122e;
 
 @media (prefers-reduced-motion: reduce) { .gs-mq { animation: none; } }
 
-/* Vignettes : bas centre et compact, degrade discret a la couleur de l'equipe vers le fond */
-.gc-bot { position: relative; display: block !important; margin: 0 -8px -8px !important; padding: 10px 8px 16px; background: linear-gradient(180deg, transparent 0%, color-mix(in srgb, var(--gt, #1c2a5c) 34%, #0a1330) 100%); }
+/* Vignettes : bas centre et compact, degrade a la couleur de l'equipe vers le fond -- diagonal et
+   sur 2 couleurs (--gt/--gt2, la 2e retombe sur la 1ere si la carte n'a qu'une seule equipe) pour
+   les cartes multi-equipes (trade, college teammates...). */
+.gc-bot { position: relative; display: block !important; margin: 0 -8px -8px !important; padding: 10px 8px 16px; background: linear-gradient(150deg, transparent 0%, color-mix(in srgb, var(--gt, #1c2a5c) 58%, #0a1330) 38%, color-mix(in srgb, var(--gt2, var(--gt, #1c2a5c)) 58%, #0a1330) 100%); }
 .gc-bot > div:first-child { text-align: center; padding: 0 2px; }
 .gc-bot > div:first-child p { justify-content: center !important; text-align: center; margin-left: 0; margin-right: 0; }
 .gc-bot > div:first-child > p:not(.gc-name) { font-size: 12px !important; }
@@ -947,9 +949,12 @@ html[data-theme="light"] .tcdb-imp-open { border-color: #06122e; color: #06122e;
 /* Vignettes : le bloc du bas remplit toute la hauteur de la vignette (pas de vide sous le degrade quand une voisine a une ligne de plus) */
 .card-item { display: flex; flex-direction: column; }
 .card-item .gc-bot { flex: 1 1 auto; }
-/* Medaillon du logo d'equipe, sur la barre d'equipe */
-.gc-med { position: absolute; left: 10px; top: 50%; transform: translateY(-50%); width: 36px; height: 36px; border-radius: 50%; background: #0e1530; border: 2px solid var(--gt, #fff); display: flex; align-items: center; justify-content: center; z-index: 4; box-shadow: 0 0 0 3px #0e1530; }
-@media (max-width: 640px) { .gc-med { width: 30px; height: 30px; left: 6px; } .gc-med img, .gc-med svg { max-width: 20px; max-height: 20px; } }
+/* Medaillon du logo d'equipe, sur la barre d'equipe -- fond de la couleur de l'equipe (pas juste
+   un liseré) pour que le logo se detache mieux. .gc-med-r : variante miroir a droite, pour la 2e
+   equipe d'une carte multi-equipes (trade, college teammates...) -- --gt2 porte sa couleur. */
+.gc-med { position: absolute; left: 10px; top: 50%; transform: translateY(-50%); width: 36px; height: 36px; border-radius: 50%; background: color-mix(in srgb, var(--gt, #0e1530) 82%, #0e1530); border: 2px solid rgba(255, 255, 255, .55); display: flex; align-items: center; justify-content: center; z-index: 4; box-shadow: 0 0 0 3px #0e1530; }
+.gc-med-r { left: auto; right: 10px; background: color-mix(in srgb, var(--gt2, var(--gt, #0e1530)) 82%, #0e1530); }
+@media (max-width: 640px) { .gc-med { width: 30px; height: 30px; left: 6px; } .gc-med-r { left: auto; right: 6px; } .gc-med img, .gc-med svg { max-width: 20px; max-height: 20px; } }
 /* Bas de vignette : le texte est centre verticalement dans toute la hauteur (plus de vide en dessous) */
 .card-item .gc-bot { align-items: center !important; padding: 12px 8px 14px; }
 .card-item .gc-bot > div:first-child { flex: 1 1 auto; }

@@ -3534,17 +3534,28 @@ export default function GalerieClient({ userId, initialCardUrl, initialCards, in
               </div>
               })()}
               {(() => {
-                // Un seul emplacement sous l'image : la barre d'equipe seule, ou la barre d'atouts qui defile PAR-DESSUS la barre d'equipe
-                const barColor = teamBarColor(d.t)
+                // Carte multi-equipes (trade, college teammates...) : "Team A/Team B" --
+                // meme separateur que guide-blocks/SetlistEmbedBlock.tsx. Medaillon de
+                // chaque equipe (gauche/droite) + degrade des 2 couleurs au lieu d'une
+                // seule (voir .gc-bot / .gc-med-r dans da.css).
+                const cardTeams = [...new Set((d.t || '').split('/').map(s => s.trim()).filter(Boolean))]
+                const barColor = teamBarColor(cardTeams[0] || null)
+                const barColor2 = cardTeams[1] ? teamBarColor(cardTeams[1]) : null
                 return (
                   <div className="gc-slot">
-                    {barColor && <div className="gc-bar" style={{ background: barColor }} />}
-                    {barColor && teamMark(d.t, 24, 'gc-med')}
+                    {barColor && <div className="gc-bar" style={{ background: barColor2 ? `linear-gradient(90deg, ${barColor}, ${barColor2})` : barColor }} />}
+                    {barColor && teamMark(cardTeams[0], 24, 'gc-med')}
+                    {barColor2 && teamMark(cardTeams[1], 24, 'gc-med gc-med-r')}
                     <AtoutsStrip rc={d.rc} auto={d.auto} patch={d.patch} num={d.num} memo={!!(d.item_type && d.item_type !== 'card')} plate={!!d.printing_plate} />
                   </div>
                 )
               })()}
-              <div className="gc-bot" style={{ display: 'flex', alignItems: 'flex-start', justifyContent: 'space-between', gap: 4, marginTop: 4, ['--gt' as string]: teamBarColor(d.t) || 'transparent' }}>
+              {(() => {
+                const cardTeams = [...new Set((d.t || '').split('/').map(s => s.trim()).filter(Boolean))]
+                const gt = teamBarColor(cardTeams[0] || null) || 'transparent'
+                const gt2 = cardTeams[1] ? (teamBarColor(cardTeams[1]) || gt) : gt
+                return (
+              <div className="gc-bot" style={{ display: 'flex', alignItems: 'flex-start', justifyContent: 'space-between', gap: 4, marginTop: 4, ['--gt' as string]: gt, ['--gt2' as string]: gt2 }}>
                 <div style={{ minWidth: 0 }}>
                   <p className="gc-name" style={{ margin: 0, whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis', display: 'flex', alignItems: 'center', gap: 6 }}>
                     <span className="da-display" style={{ fontSize: 19, lineHeight: 1, overflow: 'hidden', textOverflow: 'ellipsis' }}>{d.n}</span>
@@ -3610,6 +3621,8 @@ export default function GalerieClient({ userId, initialCardUrl, initialCards, in
                 })()}
                 </div>
               </div>
+                )
+              })()}
           </SortableCard>
           ))}
           </div>
