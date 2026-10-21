@@ -12,11 +12,21 @@
  *   node scripts/scrape-tcdb-nonsport.js --year=2026 --dry-run
  *   node scripts/scrape-tcdb-nonsport.js --year=2026 --limit=3
  *   node scripts/scrape-tcdb-nonsport.js --year=2026 --name="Topps Chrome"
+ *   node scripts/scrape-tcdb-nonsport.js --year=2026 --no-inserts     (bases seulement, rapide)
+ *   node scripts/scrape-tcdb-nonsport.js --year=2026 --max-inserts=10 (plafonne par set, pour tester)
  *
  * Avec --from/--to : un fichier scraped-data-nonsport-<annee>.json est ecrit
  * des qu'une annee est terminee (pas attendu que tout le intervalle finisse) --
  * on peut lancer l'import au fur et a mesure, et interrompre (Ctrl+C) sans
  * perdre les annees deja faites.
+ *
+ * Inserts/parallèles : sur TCDB, un insert ou un parallele de couleur NON-SPORT
+ * est un set A PART ENTIERE (pas une section embarquee dans le checklist de
+ * base comme pour les sets sport) -- un gros set comme "Topps Chrome Star Wars"
+ * peut avoir 150+ inserts/parallèles, chacun avec son propre sid et son propre
+ * mini-checklist. Scrapes par defaut (1:1 avec TCDB, donc BEAUCOUP plus de
+ * requetes et de temps qu'un simple scrape des bases) ; --no-inserts pour
+ * desactiver.
  */
 require('dotenv').config({ path: require('path').join(__dirname, '../.env.local') })
 require('dns').setDefaultResultOrder('ipv4first')
@@ -51,6 +61,13 @@ const DRY_RUN = !!args['dry-run']
 const SKIP_EXISTING = !args['force']
 const NAME_FILTER = args.name ? args.name.toLowerCase() : null
 const SLOT = args.slot ? parseInt(args.slot) : 1
+// Sur TCDB, un insert/parallele non-sport est un SET A PART (pas une section
+// embarquee dans le checklist de base comme pour les sets sport) -- ex: "2026
+// Topps Chrome Star Wars" a 159 inserts/parallels, chacun avec son propre sid
+// et son propre mini-checklist. Scrapes par defaut (1:1 avec TCDB) ; --no-inserts
+// pour ne garder que les bases (plus rapide, utile pour tester).
+const SCRAPE_INSERTS = !args['no-inserts']
+const MAX_INSERTS = args['max-inserts'] ? parseInt(args['max-inserts']) : null
 
 // Themes demandes explicitement -- jamais la totalite des sets Non-Sport.
 const THEME_RE = /disney|star wars|marvel/i
@@ -153,7 +170,56 @@ async function fetchFullChecklist(page, set) {
   return all
 }
 
+// /Inserts.cfm/sid/<id>/<slug> liste chaque insert ET chaque couleur de parallele
+// comme un lien direct vers SON PROPRE /Checklist.cfm/sid/<autre-id>/... -- deux
+// <a> par ligne (vignette + nom texte), seul le 2e a un texte non-vide.
+async function fetchInsertSets(page, baseSid, baseSlug) {
+  const url = `${TCDB}/Inserts.cfm/sid/${baseSid}/${baseSlug}`
+  await waitCF(page, url)
+  await sleep(1000)
+
+  return await page.evaluate((baseSid) => {
+    const links = Array.from(document.querySelectorAll('a[href*="Checklist.cfm/sid/"]'))
+    const seen = new Set()
+    const results = []
+    for (const a of links) {
+      const text = a.textContent?.trim()
+      if (!text) continue // vignette image, pas le lien texte
+      const href = a.getAttribute('href') || ''
+      const m = href.match(/sid\/(\d+)/)
+      if (!m || m[1] === baseSid || seen.has(m[1])) continue
+      seen.add(m[1])
+      results.push({ tcdb_id: parseInt(m[1]), name: text, href })
+    }
+    return results
+  }, baseSid)
+}
+
 const BRAND_RE = /(Topps Chrome Sapphire|Topps Chrome|Topps Now|Topps Mint|Topps|Panini|Upper Deck|Epoch|Lego)/i
+
+// Scrape UN set (base ou insert) et retourne l'entree prete pour le JSON, ou
+// null si deja en base / 0 carte / erreur. `indent` sert juste a l'affichage.
+async function scrapeOneSet(page, set, indent = '  ') {
+  if (SKIP_EXISTING) {
+    const { data: existing } = await supabase.from('card_sets').select('id, total_cards').eq('tcdb_id', set.tcdb_id).single()
+    if (existing && existing.total_cards > 0) { console.log(`${indent}⏭️  Déjà en base (${existing.total_cards} cartes) — ignoré`); return null }
+  }
+
+  const cards = await retry(() => fetchFullChecklist(page, set))
+  console.log(`${indent}📊 ${cards.length} cartes scrappées`)
+  if (!cards.length) { console.log(`${indent}⚠️  0 carte — ignoré`); return null }
+
+  const seen = new Set()
+  const unique = cards.filter(c => {
+    const k = `${c.card_number}|${c.player_name}`
+    if (seen.has(k)) return false
+    seen.add(k); return true
+  }).map(c => ({ card_number: c.card_number, player_name: c.player_name, team: null, variation: null, is_rc: false, is_auto: false }))
+
+  const brandMatch = set.name.match(BRAND_RE)
+  const brand = brandMatch ? brandMatch[1] : null
+  return { set: { tcdb_id: set.tcdb_id, name: set.name }, unique, brand }
+}
 
 async function scrapeYear(getPage, year) {
   console.log(`\n${'='.repeat(60)}\n📅 Année ${year}\n${'='.repeat(60)}`)
@@ -174,38 +240,46 @@ async function scrapeYear(getPage, year) {
   console.log()
 
   const scraped = []
+  let pageLoadsSinceRestart = 0
+  const maybeRestart = async () => {
+    pageLoadsSinceRestart++
+    if (pageLoadsSinceRestart >= 25) { page = await getPage(true); pageLoadsSinceRestart = 0 }
+  }
+
   for (let si = 0; si < sets.length; si++) {
     const set = sets[si]
     console.log(`\n[${si + 1}/${sets.length}] ${set.name} (sid:${set.tcdb_id})`)
-    if (si > 0 && si % 8 === 0) { page = await getPage(true) }
+    await maybeRestart()
 
     try {
-      if (SKIP_EXISTING) {
-        const { data: existing } = await supabase.from('card_sets').select('id, total_cards').eq('tcdb_id', set.tcdb_id).single()
-        if (existing && existing.total_cards > 0) { console.log(`  ⏭️  Déjà en base (${existing.total_cards} cartes) — ignoré`); scraped.push(null); continue }
+      const entry = await scrapeOneSet(page, set)
+      if (entry) scraped.push(entry)
+
+      if (!SCRAPE_INSERTS) continue
+      const baseSlug = set.href.split('/').pop()
+      const inserts = await retry(() => fetchInsertSets(page, String(set.tcdb_id), baseSlug))
+      if (!inserts.length) continue
+      const capped = MAX_INSERTS ? inserts.slice(0, MAX_INSERTS) : inserts
+      console.log(`  🧩 ${inserts.length} inserts/parallèles${MAX_INSERTS && inserts.length > MAX_INSERTS ? ` (limité à ${MAX_INSERTS})` : ''}`)
+
+      for (let ii = 0; ii < capped.length; ii++) {
+        const insertSet = capped[ii]
+        console.log(`  ↳ [${ii + 1}/${capped.length}] ${insertSet.name} (sid:${insertSet.tcdb_id})`)
+        await maybeRestart()
+        try {
+          const entry = await scrapeOneSet(page, insertSet, '    ')
+          if (entry) scraped.push(entry)
+        } catch (e) {
+          console.log(`    ❌ Scraping insert: ${e.message}`)
+        }
+        await sleep(DELAY)
       }
-
-      const cards = await retry(() => fetchFullChecklist(page, set))
-      console.log(`  📊 ${cards.length} cartes scrappées`)
-      if (!cards.length) { console.log('  ⚠️  0 cartes — ignoré'); scraped.push(null); continue }
-
-      const seen = new Set()
-      const unique = cards.filter(c => {
-        const k = `${c.card_number}|${c.player_name}`
-        if (seen.has(k)) return false
-        seen.add(k); return true
-      }).map(c => ({ card_number: c.card_number, player_name: c.player_name, team: null, variation: null, is_rc: false, is_auto: false }))
-
-      const brandMatch = set.name.match(BRAND_RE)
-      const brand = brandMatch ? brandMatch[1] : null
-      scraped.push({ set: { tcdb_id: set.tcdb_id, name: set.name }, unique, brand })
     } catch (e) {
       console.log(`  ❌ Scraping: ${e.message}`)
-      scraped.push(null)
     }
   }
 
-  return scraped.filter(Boolean)
+  return scraped
 }
 
 async function main() {
