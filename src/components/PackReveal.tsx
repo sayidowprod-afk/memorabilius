@@ -2,12 +2,12 @@
 import { useEffect } from 'react'
 import { useLang } from '@/lib/LangContext'
 
-const TXT: Record<string, { plus: string; coll: string; hint: string }> = {
-  fr: { plus: '+1 carte', coll: 'Ta collection', hint: 'Touche pour continuer' },
-  en: { plus: '+1 card', coll: 'Your collection', hint: 'Tap to continue' },
-  de: { plus: '+1 Karte', coll: 'Deine Sammlung', hint: 'Tippen zum Fortfahren' },
-  es: { plus: '+1 carta', coll: 'Tu colección', hint: 'Toca para continuar' },
-  it: { plus: '+1 carta', coll: 'La tua collezione', hint: 'Tocca per continuare' },
+const TXT: Record<string, { plus: (n: number) => string; coll: string; hint: string }> = {
+  fr: { plus: n => n > 1 ? `+${n} cartes` : '+1 carte', coll: 'Ta collection', hint: 'Touche pour continuer' },
+  en: { plus: n => n > 1 ? `+${n} cards` : '+1 card', coll: 'Your collection', hint: 'Tap to continue' },
+  de: { plus: n => n > 1 ? `+${n} Karten` : '+1 Karte', coll: 'Deine Sammlung', hint: 'Tippen zum Fortfahren' },
+  es: { plus: n => n > 1 ? `+${n} cartas` : '+1 carta', coll: 'Tu colección', hint: 'Toca para continuar' },
+  it: { plus: n => n > 1 ? `+${n} carte` : '+1 carta', coll: 'La tua collezione', hint: 'Tocca per continuare' },
 }
 
 // Ouverture de paquet : apres l'ajout d'une carte, un paquet scelle se dechire et la carte en sort VRAIMENT de sa pochette
@@ -16,7 +16,9 @@ const TXT: Record<string, { plus: string; coll: string; hint: string }> = {
 // pile -- tant qu'elle est encore "dans" le paquet (sous le bord du dos), le dos opaque la cache reellement (occlusion, pas
 // opacite) ; elle ne devient visible qu'en montant au-dessus de ce bord, comme tiree hors d'une pochette. Le rabat du dessus
 // se dechire en premier (flourish), puis le dos se dissout une fois la carte presque sortie pour finir la revelation.
-export default function PackReveal({ image, total, onClose }: { image: string; total?: number; onClose: () => void }) {
+// `count` : nombre de cartes ajoutees depuis la derniere ouverture (session de scan debounced
+// cote appelant, voir ajouter/page.tsx) -- affiche "+1 carte" seulement si une seule l'a ete.
+export default function PackReveal({ image, total, count = 1, onClose }: { image: string; total?: number; count?: number; onClose: () => void }) {
   const { lang } = useLang()
   const T = TXT[lang] || TXT.en
   useEffect(() => {
@@ -24,7 +26,7 @@ export default function PackReveal({ image, total, onClose }: { image: string; t
     return () => clearTimeout(id)
   }, [onClose])
   return (
-    <div className="pr" onClick={onClose} role="dialog" aria-label={T.plus}>
+    <div className="pr" onClick={onClose} role="dialog" aria-label={T.plus(count)}>
       <div className="pr-stage">
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img className="pr-card" src={image} alt="" />
@@ -32,7 +34,7 @@ export default function PackReveal({ image, total, onClose }: { image: string; t
         <div className="pr-top" />
       </div>
       <div className="pr-txt">
-        <div className="da-display pr-plus">{T.plus}</div>
+        <div className="da-display pr-plus">{T.plus(count)}</div>
         {total !== undefined && <div className="pr-sub">{T.coll} : {total}</div>}
         <div className="pr-hint">{T.hint}</div>
       </div>
