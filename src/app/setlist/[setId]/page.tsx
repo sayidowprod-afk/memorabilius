@@ -15,7 +15,7 @@ const supabase = createClient(
 export const revalidate = 86400 // 24h (etait 1h -- contenu quasi statique, cf. reduction couts Vercel ISR)
 
 const SPORT_LABELS: Record<string, string> = {
-  nba: 'NBA', nfl: 'NFL', baseball: 'Baseball', hockey: 'Hockey', pokemon: 'Pokémon', mtg: 'MTG',
+  nba: 'NBA', nfl: 'NFL', baseball: 'Baseball', hockey: 'Hockey', pokemon: 'Pokémon', mtg: 'MTG', 'non-sport': 'Non-Sport',
 }
 
 export async function generateMetadata({ params }: { params: Promise<{ setId: string }> }): Promise<Metadata> {
