@@ -3542,7 +3542,7 @@ export default function GalerieClient({ userId, initialCardUrl, initialCards, in
                 const barColor = teamBarColor(cardTeams[0] || null)
                 const barColor2 = cardTeams[1] ? teamBarColor(cardTeams[1]) : null
                 return (
-                  <div className="gc-slot">
+                  <div className="gc-slot" style={{ ['--gt' as string]: barColor || 'transparent', ['--gt2' as string]: barColor2 || barColor || 'transparent' }}>
                     {barColor && <div className="gc-bar" style={{ background: barColor2 ? `linear-gradient(90deg, ${barColor}, ${barColor2})` : barColor }} />}
                     {barColor && teamMark(cardTeams[0], 24, 'gc-med')}
                     {barColor2 && teamMark(cardTeams[1], 24, 'gc-med gc-med-r')}
