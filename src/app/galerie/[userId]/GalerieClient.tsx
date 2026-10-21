@@ -381,6 +381,22 @@ function cardThumb(url: string): string {
 // ibb.co, Google Drive, eBay...) est morte ou temporairement indisponible :
 // mieux vaut une image de remplacement propre qu'une icône cassée.
 const BROKEN_IMAGE_FALLBACK = 'https://placehold.co/300x420?text=Image+indisponible'
+// Nom du cache images du service worker (voir public/sw.js, IMAGE_CACHE_NAME) --
+// duplique volontairement la constante plutot que de l'importer (fichier public/
+// hors du bundle JS de l'app).
+const SW_IMAGE_CACHE = 'memorabilius-images-v1'
+
+// Une image qui echoue a charger reste cassee POUR TOUJOURS sur cet appareil si le
+// SW en a deja mis une reponse corrompue en cache (ex: fetch interrompu en cours de
+// mise en cache -- strategie cache-first, jamais revalidee) : meme avec le vrai
+// fichier intact cote serveur, chaque chargement de page re-sert la meme reponse
+// cassee depuis le Cache Storage local, sans jamais retenter le reseau. On purge
+// donc cette entree au premier echec constate, pour qu'un prochain chargement de
+// page retelecharge pour de vrai au lieu de rejouer indefiniment le meme echec.
+function handleBrokenImg(src: string) {
+  if (typeof caches === 'undefined') return
+  caches.open(SW_IMAGE_CACHE).then(c => c.delete(src)).catch(() => {})
+}
 
 function renderCardImage(card: { f: string; n: string; format?: string; is_horizontal?: boolean }) {
   const src = cardThumb(card.f)
@@ -403,7 +419,7 @@ function renderCardImage(card: { f: string; n: string; format?: string; is_horiz
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
           src={src} alt={card.n}
-          onError={e => { const img = e.currentTarget; if (img.src !== BROKEN_IMAGE_FALLBACK) img.src = BROKEN_IMAGE_FALLBACK }}
+          onError={e => { const img = e.currentTarget; if (img.src !== BROKEN_IMAGE_FALLBACK) { handleBrokenImg(img.src); img.src = BROKEN_IMAGE_FALLBACK } }}
           style={horiz
             ? { position: 'absolute', width: '140%', height: '71.43%', left: '-20%', top: '14.286%', transform: 'rotate(90deg)', objectFit: 'cover' }
             : { position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover' }
@@ -419,7 +435,7 @@ function renderCardImage(card: { f: string; n: string; format?: string; is_horiz
         sizes="(max-width: 640px) 150px, 220px"
         style={{ objectFit: 'cover' }}
         unoptimized
-        onError={e => { const img = e.currentTarget; if (img.src !== BROKEN_IMAGE_FALLBACK) img.src = BROKEN_IMAGE_FALLBACK }}
+        onError={e => { const img = e.currentTarget; if (img.src !== BROKEN_IMAGE_FALLBACK) { handleBrokenImg(img.src); img.src = BROKEN_IMAGE_FALLBACK } }}
       />
     </div>
   )
