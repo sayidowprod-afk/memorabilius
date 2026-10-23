@@ -1,5 +1,6 @@
 import { ImageResponse } from 'next/og'
 import { createClient } from '@supabase/supabase-js'
+import sharp from 'sharp'
 
 export const runtime = 'nodejs'
 export const alt = 'Carte Memorabilius'
@@ -16,6 +17,21 @@ const supabase = createClient(
 const LOGO_DATA_URL = 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAUAAAABHCAMAAABBPG6UAAAASFBMVEX///////////////////////////9MaXH+/v7////////////////////////////////////////////////////////////xg/UrAAAAF3RSTlP+FOeiAvWhAPz7BjFWDIbadcYmQWawmm9OClAAAAAJcEhZcwAAA+gAAAPoAbV7UmsAAAj7SURBVHja7ZzbtqMgDEBti1VRa73//59OAIEEwaq1M1NXOQ9nKQ2EbbgGiKJfeC+M4xilv7ArSHjjL7wVIvirhvsv7AhDJfFl4y1hyS9sDiy5jekEkF9sKBNmAong5Mn/loeFGeNJUjrSZZJw55dIRMQxIcfKWRwTcqVfTuZeBnS0KtK3nCCg4kIJ5mrPEcBLddUhflh7ZEkXm4hrnjT2Z+htbh/iDgs/rHDVgBJJ27sJVIOMKK6eUD0uMjWInsnVIo4lz9gjVz/FZ0G5Q+aFeYgLrSJHb68tKkb8dMWZ+HO0qC4YYKx7E2gROTLSHn6iIwBV7HQ68AQ5R/ptOtbIxHmthaMxbkCnLpr1WdEIqkNJPJ0ZDBDg64jCPuaxoKZI8QHae5r1+gJxwxQnMy+sKghgp8XF2zybssnGB8TdrbjU4tITLUA5F6AJrc6BJc3VvE8ngO4oqJU566e4scK5/bF4L6Sz2SgqG+FLivJ5RljZWJeymOlMLs3GHizw4UlRxN0UQJt5oR9SB6BWsLDFMAC1uAB4qceM5DUHOKEV4oZBZwxwlQXCrzsr/EDWKwD2PnOR+XktEMQySC4pK2+kIOG3QBjXglaHWqC15wULtBXAV4NdgFE2BQdgb+t/TQEKa7bCKN2aVOEUxcnkWhuH5YTaGCDIReSjHAkQIiPdxqWq3FEYoKrzgt/lipRfY4Hyu+ganOI0GwHCPo847uJaoI2rSloLsAXWbhsYEfCHAjS1yXAMWiA8PzXAwupOAYL2RafCBQO0+kEPiQuuAJq8H8V99AKEohddj3q0i00Hnp5FjzosBDAah6KrSWd2KEBdm+Dp9lQFL8oAQFMN1UDRC1DloU0twsKD1q8OAUxlK6tLSwGKr2dbPQpQtnqmUrgAIa5B3/dYgDrXCImTgTQGCAYiu1Jag12AQ8JVYI4FQqVTHThJkgJ8JqVpXucAObPfm1og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'
 
 const LEFT_W = 440
+
+// Satori (next/og) ne decode pas le webp -- les avatars Supabase le sont
+// souvent, ce qui faisait planter le rendu entier (voir meme fix sur
+// galerie/[userId]/opengraph-image.tsx).
+async function normalizeAvatar(url: string, fallback: string): Promise<string> {
+  try {
+    const res = await fetch(url, { signal: AbortSignal.timeout(1500) })
+    if (!res.ok) return fallback
+    const buf = Buffer.from(await res.arrayBuffer())
+    const png = await sharp(buf).resize(120, 120, { fit: 'cover' }).png().toBuffer()
+    return `data:image/png;base64,${png.toString('base64')}`
+  } catch {
+    return fallback
+  }
+}
 
 export default async function OGImage({ params }: { params: Promise<{ cardId: string }> }) {
   const { cardId } = await params
@@ -45,8 +61,8 @@ export default async function OGImage({ params }: { params: Promise<{ cardId: st
 
   const accent = profile?.couleur_bordure || '#003DA6'
   const collectorName = profile?.display_name || 'Collector'
-  const avatarUrl = profile?.avatar_url
-    || `https://ui-avatars.com/api/?name=${encodeURIComponent(collectorName)}&background=0c1942&color=ffffff&size=200`
+  const fallbackAvatar = `https://ui-avatars.com/api/?name=${encodeURIComponent(collectorName)}&background=0c1942&color=ffffff&size=200`
+  const avatarUrl = profile?.avatar_url ? await normalizeAvatar(profile.avatar_url, fallbackAvatar) : fallbackAvatar
 
   // Etiquettes "teintees" (meme style que le site) : fond de la couleur a faible opacite, bordure et texte de la couleur
   const tags: { label: string; color: string; fx?: { bg: string; fg: string } }[] = []

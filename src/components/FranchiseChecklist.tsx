@@ -180,7 +180,7 @@ export default function FranchiseChecklist({ team, players, color, ownedNames, o
           const photo = photos[r.name]
           return (
             <div key={r.name} className={'fr-cell' + (has ? ' have' : '') + (onToggle ? ' can-toggle' : '')}>
-              <Link href={`/joueur/${playerSlug(r.name)}`} className="fr-link" title={r.name}>
+              <Link href={`/joueur/${playerSlug(r.name)}`} prefetch={false} className="fr-link" title={r.name}>
                 <span className="fr-photo">
                   {photo
                     // eslint-disable-next-line @next/next/no-img-element

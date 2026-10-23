@@ -44,6 +44,22 @@ async function normalizeCard(url: string): Promise<string> {
   }
 }
 
+// Satori (next/og) ne decode pas le webp -- les avatars Supabase le sont
+// souvent (compression a l'upload), ce qui faisait planter le rendu entier
+// (erreur "Unsupported image type") et consommait du compute pour rien a
+// chaque partage/scraper. On repasse toujours par sharp -> PNG.
+async function normalizeAvatar(url: string, fallback: string): Promise<string> {
+  try {
+    const res = await fetch(url, { signal: AbortSignal.timeout(1500) })
+    if (!res.ok) return fallback
+    const buf = Buffer.from(await res.arrayBuffer())
+    const png = await sharp(buf).resize(120, 120, { fit: 'cover' }).png().toBuffer()
+    return `data:image/png;base64,${png.toString('base64')}`
+  } catch {
+    return fallback
+  }
+}
+
 // ── Layout : panneau gauche solide (texte propre) + grille 3×2 à droite ──
 // Panneau gauche : 0→420px, #04091a opaque — texte toujours lisible
 // Section cartes : 420→1200px (780px), grille 3 colonnes × 2 rangées
@@ -94,8 +110,8 @@ export default async function OGImage({ params }: { params: Promise<{ userId: st
 
   const accent    = profile?.couleur_bordure || '#003DA6'
   const name      = profile?.display_name    || 'Collector'
-  const avatarUrl = profile?.avatar_url
-    || `https://ui-avatars.com/api/?name=${encodeURIComponent(name)}&background=0c1942&color=ffffff&size=200`
+  const fallbackAvatar = `https://ui-avatars.com/api/?name=${encodeURIComponent(name)}&background=0c1942&color=ffffff&size=200`
+  const avatarUrl = profile?.avatar_url ? await normalizeAvatar(profile.avatar_url, fallbackAvatar) : fallbackAvatar
 
   // Une carte marquée privée par son propriétaire ne doit jamais apparaître
   // dans l'aperçu public (partagé sur les réseaux sociaux) — même filtrage que
