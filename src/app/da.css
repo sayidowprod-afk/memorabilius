@@ -679,6 +679,7 @@ button.cdj-btn { cursor: pointer; }
 .fr-prog-l { font-size: 14px; margin-bottom: 6px; color: var(--text, #111); }
 .fr-bar { height: 14px; background: var(--bg3, rgba(128,128,128,.25)); }
 .fr-bar i { display: block; height: 100%; background: var(--fr-c, #003DA6); }
+.fr-prog-auto .fr-bar i { background: var(--tk, var(--fr-c, #003DA6)); }
 .fr-tools { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 10px; align-items: center; }
 .fr-search { padding: 8px 12px; border: 2px solid var(--border, #ccc); background: var(--card-bg, #fff); color: var(--text, #111); font-size: 14px; min-width: 200px; border-radius: 0; }
 .fr-chip { padding: 6px 12px; border: 2px solid var(--fr-c, #003DA6); background: transparent; color: var(--text, #111); font: 800 12px system-ui; letter-spacing: .06em; text-transform: uppercase; cursor: pointer; border-radius: 0; }

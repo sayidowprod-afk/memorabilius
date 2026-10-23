@@ -21,6 +21,7 @@ export default function FranchiseChecklist({ team, players, color, ownedNames, o
   overrides?: Record<string, boolean>; onToggle?: (key: string, value: boolean | undefined) => void; sport?: string
 }) {
   const [owned, setOwned] = useState<Set<string> | null>(null) // null = non connecte / en chargement
+  const [autoOwned, setAutoOwned] = useState<Set<string> | null>(null) // noms (normalises) pour qui j'ai au moins une carte auto -- utilise seulement si ownedFlags n'est pas fourni par l'appelant
   const [loggedIn, setLoggedIn] = useState(false)
   const [decade, setDecade] = useState<number | null>(null)
   const [filter, setFilter] = useState<'all' | 'have' | 'miss'>('all')
@@ -43,12 +44,13 @@ export default function FranchiseChecklist({ team, players, color, ownedNames, o
       if (!user || cancelled) return
       setLoggedIn(true)
       const names = new Set<string>()
+      const autoNames = new Set<string>()
       for (let from = 0; ; from += 1000) {
-        const { data } = await supabase.from('cartes_manuelles').select('nom').eq('user_id', user.id).order('id').range(from, from + 999)
-        for (const c of data || []) if (c.nom) names.add(normalizeName(c.nom))
+        const { data } = await supabase.from('cartes_manuelles').select('nom, auto').eq('user_id', user.id).order('id').range(from, from + 999)
+        for (const c of data || []) if (c.nom) { const k = normalizeName(c.nom); names.add(k); if (c.auto) autoNames.add(k) }
         if (!data || data.length < 1000) break
       }
-      if (!cancelled) setOwned(names)
+      if (!cancelled) { setOwned(names); setAutoOwned(autoNames) }
     })()
     return () => { cancelled = true }
   }, [ownedNames])
@@ -70,6 +72,11 @@ export default function FranchiseChecklist({ team, players, color, ownedNames, o
   const hasOf = (key: string) => (overrides && key in overrides ? overrides[key] : autoHas(key))
   const haveCount = owned ? rows.filter(r => hasOf(r.key)).length : 0
   const pct = rows.length ? Math.round((haveCount / rows.length) * 100) : 0
+  // parmi les joueurs ayant au moins une carte auto recensee (toutes checklists), combien j'en possede une (MA collection)
+  const autoRows = rows.filter(r => r.hasAuto)
+  const hasAutoOf = (key: string) => (ownedFlags ? !!ownedFlags[key]?.auto : !!(autoOwned && autoOwned.has(key)))
+  const autoHaveCount = (ownedFlags || autoOwned) ? autoRows.filter(r => hasAutoOf(r.key)).length : 0
+  const autoPct = autoRows.length ? Math.round((autoHaveCount / autoRows.length) * 100) : 0
   const nq = normalizeName(q)
   const list = rows.filter(r => {
     if (autoOnly && !r.hasAuto) return false
@@ -121,6 +128,12 @@ export default function FranchiseChecklist({ team, players, color, ownedNames, o
         <div className="fr-prog">
           <div className="fr-prog-l"><b>{haveCount} / {rows.length}</b> joueurs · {pct} %</div>
           <div className="fr-bar"><i style={{ width: `${pct}%` }} /></div>
+        </div>
+      )}
+      {loggedIn && owned && (ownedFlags || autoOwned) && autoRows.length > 0 && (
+        <div className="fr-prog fr-prog-auto" style={{ ['--tk' as string]: TAG_BASE.auto }}>
+          <div className="fr-prog-l"><b>{autoHaveCount} / {autoRows.length}</b> autos · {autoPct} %</div>
+          <div className="fr-bar"><i style={{ width: `${autoPct}%` }} /></div>
         </div>
       )}
       {!loggedIn && <p className="fr-sub"><Link href="/connexion">Connecte-toi</Link> pour voir ceux dont tu as déjà une carte.</p>}
