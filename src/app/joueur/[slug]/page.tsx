@@ -2,13 +2,13 @@ import { createClient } from '@supabase/supabase-js'
 import type { Metadata } from 'next'
 import Link from 'next/link'
 import { Suspense, cache } from 'react'
-import { fetchCsvCardsForProfiles } from '@/lib/csvCards'
+import { fetchCsvCardsForProfilesCached } from '@/lib/csvCardsCache'
 import { getCachedHeadshot, fetchEspnPlayerBio } from '@/lib/espnHeadshot'
 import { normalizeName, cardPageUrl, stripDiacritics } from '@/lib/playerSlug'
 import CommunityCardsSection from './CommunityCardsSection'
+import PlayerSetsSection from './PlayerSetsSection'
 import PlayerChecklistSection from './PlayerChecklistSection'
 import ScrollTopButton from '@/components/ScrollTopButton'
-import TagIcon from '@/components/TagIcon'
 
 // La fiche ESPN (findAthleteId -> bio/stats/awards -> noms d'equipes -> numeros
 // de maillot par equipe) enchaine plusieurs allers-retours reseau et peut
@@ -305,12 +305,6 @@ function seasonLabel(startYear: number, endYear: number, sport = 'nba') {
     : `${startYear}–${String(endYear + 1).slice(2)}`
 }
 
-function seasonLabelSingle(year: number, sport = 'nba') {
-  return ['nfl', 'baseball', 'pokemon', 'mtg'].includes(sport)
-    ? String(year)
-    : `${year}-${String(year + 1).slice(2)}`
-}
-
 function buildCareerTimeline(career: { year: number; teamName: string }[]) {
   const sorted = [...career].filter(e => e.year > 0).sort((a, b) => a.year - b.year)
   const runs: { teamName: string; startYear: number; endYear: number }[] = []
@@ -465,7 +459,7 @@ async function _fetchPlayer(slug: string) {
   const primarySport = [...sportCounts.entries()].sort((a, b) => b[1] - a[1])[0]?.[0] || 'nba'
   const [headshot, csvAll] = await Promise.all([
     getCachedHeadshot(playerName, primarySport),
-    fetchCsvCardsForProfiles(profilesData),
+    fetchCsvCardsForProfilesCached(profilesData),
   ])
 
   const manuellesCards = matchedManu.map((m: any) => ({
@@ -574,15 +568,7 @@ async function _fetchPlayer(slug: string) {
   }))
   const allSets = [...sets, ...extraSets].sort((a: any, b: any) => (b.year || 0) - (a.year || 0))
 
-  const setsByYear = new Map<number, typeof allSets>()
-  for (const s of allSets) {
-    const y = s.year || 0
-    if (!setsByYear.has(y)) setsByYear.set(y, [])
-    setsByYear.get(y)!.push(s)
-  }
-  const sortedYears = [...setsByYear.keys()].sort((a, b) => b - a)
-
-  return { playerName, sets: allSets, setsByYear, sortedYears, communityCards, rcYear, headshot, uniqueCollectors, topVariations, primarySport }
+  return { playerName, sets: allSets, communityCards, rcYear, headshot, uniqueCollectors, topVariations, primarySport }
 }
 
 export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
@@ -716,7 +702,7 @@ async function BioCareer({ playerName, sportHint }: { playerName: string; sportH
 
 export default async function JoueurPage({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params
-  const { playerName, sets, setsByYear, sortedYears, communityCards, rcYear, headshot, uniqueCollectors, topVariations, primarySport } = await fetchPlayer(slug)
+  const { playerName, sets, communityCards, rcYear, headshot, uniqueCollectors, topVariations, primarySport } = await fetchPlayer(slug)
 
   const sportsFromSets = [...new Set(sets.map((s: any) => s.sport).filter(Boolean))] as string[]
   const sports = sportsFromSets.length > 0 ? sportsFromSets : (primarySport ? [primarySport] : [])
@@ -959,61 +945,16 @@ export default async function JoueurPage({ params }: { params: Promise<{ slug: s
           <PlayerChecklistSection playerName={playerName} />
           <ScrollTopButton />
 
-          {/* Sets groupés par année */}
-          {sets.length > 0 && (
-            <section>
-              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'baseline', marginBottom: 20, flexWrap: 'wrap', gap: 8 }}>
-                <h2 style={{ fontSize: 20, fontWeight: 900, color: 'var(--jp-text)', margin: 0 }}>
-                  Sets ({sets.length})
-                </h2>
-                <Link href={`/setlist?q=${encodeURIComponent(playerName)}`} style={{ fontSize: 13, color: 'var(--jp-accent)', fontWeight: 700, textDecoration: 'none' }}>
-                  Voir dans le Setlist →
-                </Link>
-              </div>
-
-              <div style={{ display: 'flex', flexDirection: 'column', gap: 24 }}>
-                {sortedYears.map((year: number) => {
-                  const yearSets = setsByYear.get(year) || []
-                  const sport = yearSets[0]?.sport || primarySport
-                  return (
-                    <div key={year}>
-                      <div style={{ fontSize: 12, fontWeight: 800, color: 'var(--jp-muted)', textTransform: 'uppercase', letterSpacing: '0.08em', marginBottom: 10, display: 'flex', alignItems: 'center', gap: 10 }}>
-                        <span>{year > 0 ? seasonLabelSingle(year, sport) : 'Année inconnue'}</span>
-                        <span style={{ color: 'var(--jp-border)', fontSize: 10 }}>— {yearSets.length} set{yearSets.length > 1 ? 's' : ''}</span>
-                      </div>
-                      <div className="jp-sets-grid" style={{ display: 'grid', gap: 8 }}>
-                        {yearSets.map((set: any) => (
-                          <Link key={set.id} href={set.id > 0 ? `/setlist/${set.id}` : `/setlist?q=${encodeURIComponent(set.name)}`} style={{ textDecoration: 'none' }}>
-                            <div className="jp-set-hover" style={{ background: 'var(--jp-surface)', borderRadius: 10, padding: '12px 16px', border: '1.5px solid var(--jp-border)', transition: '0.15s', cursor: 'pointer' }}>
-                              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', gap: 8 }}>
-                                <div style={{ fontWeight: 800, fontSize: 13, color: 'var(--jp-text)', lineHeight: 1.3, flex: 1 }}>{set.name}</div>
-                                {set.isRc && (
-                                  <TagIcon kind="rc" h={22} />
-                                )}
-                              </div>
-                              {set.brand && (
-                                <div style={{ fontSize: 10, color: 'var(--jp-accent)', fontWeight: 700, marginTop: 4 }}>{set.brand}</div>
-                              )}
-                              {set.variations.filter((v: string) => v !== 'Base').length > 0 && (
-                                <div style={{ marginTop: 7, display: 'flex', gap: 4, flexWrap: 'wrap' }}>
-                                  {set.variations.filter((v: string) => v !== 'Base').slice(0, 4).map((v: string) => (
-                                    <span key={v} style={{ fontSize: 9, background: 'rgba(0,61,166,0.07)', color: 'var(--jp-accent)', padding: '2px 6px', borderRadius: 3, fontWeight: 700 }}>{v}</span>
-                                  ))}
-                                  {set.variations.filter((v: string) => v !== 'Base').length > 4 && (
-                                    <span style={{ fontSize: 9, color: 'var(--jp-muted)', padding: '2px 4px' }}>+{set.variations.filter((v: string) => v !== 'Base').length - 4}</span>
-                                  )}
-                                </div>
-                              )}
-                            </div>
-                          </Link>
-                        ))}
-                      </div>
-                    </div>
-                  )
-                })}
-              </div>
-            </section>
-          )}
+          {/* Sets groupés par année -- pagine au defilement (voir PlayerSetsSection),
+              un joueur peut avoir des centaines/milliers de sets meme sans etre
+              tres collectionne (catalogue historique independant des cartes
+              communaute), et les rendre tous d'un coup cote serveur etait lent. */}
+          <PlayerSetsSection
+            playerName={playerName}
+            initialSets={(sets as any[]).slice(0, 40)}
+            totalCount={sets.length}
+            primarySport={primarySport}
+          />
 
         </div>
       </div>

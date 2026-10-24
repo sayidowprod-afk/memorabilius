@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { createClient } from '@supabase/supabase-js'
-import { fetchCsvCardsForProfiles } from '@/lib/csvCards'
+import { fetchCsvCardsForProfilesCached } from '@/lib/csvCardsCache'
 import { normalizeName, cardPageUrl } from '@/lib/playerSlug'
 
 // Pagination des "cartes communaute" d'un joueur, appelee par
@@ -130,7 +130,7 @@ export async function GET(req: NextRequest) {
     profilesData.push(...data)
     if (data.length < 1000) break
   }
-  const csvAll = await fetchCsvCardsForProfiles(profilesData)
+  const csvAll = await fetchCsvCardsForProfilesCached(profilesData)
   const csvCards: Card[] = csvAll
     .filter(c => normalizeName(c.name).includes(normTarget))
     .map(c => ({
