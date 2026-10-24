@@ -159,24 +159,13 @@ export default function Navbar() {
         {/* Desktop */}
         <div style={{ display: 'flex', gap: 4, alignItems: 'center' }} className="nav-desktop">
 
-          {/* Communauté + Outils glissent vers la gauche (translateX, largeur qui
-              se retracte) pendant que la recherche s'etend a cote -- pas de fondu
-              en opacite : ils doivent rester visibles en train de glisser, pas
-              disparaitre d'un coup (seul le bord de la boite qui se retracte les
-              coupe progressivement, via overflow). pointerEvents coupe pour ne
-              pas rester cliquable, sous sa propre largeur, pendant la transition.
-              overflow:hidden SEULEMENT pendant la retraction (searchOpen) --
-              sinon, au repos, il coupait aussi les menus deroulants Communauté/
-              Outils (position:absolute, plus hauts que cette ligne de nav) : ils
-              s'ouvraient toujours en state, juste invisibles/non cliquables,
-              d'ou "ne s'ouvre plus". */}
-          <div style={{
-            display: 'flex', alignItems: 'center', gap: 4, overflow: searchOpen ? 'hidden' : 'visible',
-            maxWidth: searchOpen ? 0 : 400,
-            transform: searchOpen ? 'translateX(-40px)' : 'translateX(0)',
-            transition: 'max-width 0.4s cubic-bezier(.4,0,.2,1), transform 0.4s cubic-bezier(.4,0,.2,1)',
-            pointerEvents: searchOpen ? 'none' : 'auto',
-          }}>
+          {/* Communauté + Outils restent affiches, fixes, a gauche -- seule la
+              recherche (plus loin dans la rangee) grandit et pousse ce qui vient
+              apres elle (Ma Galerie, notifs...) vers la droite. Pas de
+              retraction/glissement ici : demande explicite de l'utilisateur
+              apres deux essais ("je veux que les menus restent affiches a
+              gauche de la barre"). */}
+          <div style={{ display: 'flex', alignItems: 'center', gap: 4 }}>
           {/* Dropdown Communauté */}
           <div ref={communauteRef} style={{ position: 'relative' }}>
             <div style={{ padding: '0 12px', height: 60, display: 'flex', alignItems: 'center', ...navUnderline(communauteActive) }}>
