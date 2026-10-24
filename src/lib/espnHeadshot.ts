@@ -1,4 +1,16 @@
+import { createClient } from '@supabase/supabase-js'
 import { espnCitizenshipToCode } from '@/lib/nbaCountries'
+
+// Cache persistant (table player_photo_cache) des photos de joueurs --
+// service role, car ce module n'est importe que depuis des Route Handlers /
+// Server Components (jamais de composant client, voir les call sites). Role
+// service pour ne pas dependre de policies RLS sur une simple table de cache
+// technique, sans donnees utilisateur.
+const cacheDb = createClient(
+  process.env.NEXT_PUBLIC_SUPABASE_URL!,
+  process.env.SUPABASE_SERVICE_ROLE_KEY!
+)
+const PHOTO_CACHE_TTL_MS = 24 * 3600_000
 
 // ── NBA CDN (tous les joueurs, actifs + retraités) ────────────────────────────
 // stats.nba.com peut être bloqué en dev local mais fonctionne sur Vercel
@@ -299,6 +311,49 @@ export async function fetchEspnHeadshot(name: string, sport = 'nba'): Promise<st
   if (wiki) return wiki
 
   return null
+}
+
+// ── Cache persistant (table player_photo_cache) ───────────────────────────────
+// A utiliser a la place de fetchEspnHeadshot() partout où le resultat doit
+// "tenir" dans le temps (page joueur, recherche, checklist, objectifs...) :
+// lit la table d'abord (quelques ms), ne retombe sur ESPN/NBA/Wikipedia que si
+// absent ou perime (24h) -- y compris les echecs (photo_url NULL), pour ne
+// pas re-tenter en boucle un joueur introuvable a chaque visite.
+export async function getCachedHeadshot(name: string, sport = 'nba'): Promise<string | null> {
+  const { data } = await cacheDb.from('player_photo_cache').select('photo_url, fetched_at').eq('sport', sport).eq('player_name', name).maybeSingle()
+  if (data && Date.now() - new Date(data.fetched_at).getTime() < PHOTO_CACHE_TTL_MS) return data.photo_url
+  const url = await fetchEspnHeadshot(name, sport)
+  cacheDb.from('player_photo_cache').upsert({ sport, player_name: name, photo_url: url, fetched_at: new Date().toISOString() }).then(() => {})
+  return url
+}
+
+// Variante par lots : une seule lecture pour tous les noms, puis ne va chercher
+// en direct que les manquants/perimes (en parallele, par petits groupes pour ne
+// pas saturer ESPN), puis une seule ecriture groupee. Mêmes garanties que
+// getCachedHeadshot, pensee pour /api/player-photos (grilles de 10-48 joueurs).
+export async function getCachedHeadshots(names: string[], sport = 'nba', deadline = Date.now() + 14_000): Promise<Record<string, string | null>> {
+  const uniqueNames = [...new Set(names)]
+  const result: Record<string, string | null> = {}
+  if (uniqueNames.length === 0) return result
+
+  const { data: cached } = await cacheDb.from('player_photo_cache').select('player_name, photo_url, fetched_at').eq('sport', sport).in('player_name', uniqueNames)
+  const fresh = new Map((cached || []).filter(r => Date.now() - new Date(r.fetched_at).getTime() < PHOTO_CACHE_TTL_MS).map(r => [r.player_name, r.photo_url]))
+  const todo = uniqueNames.filter(n => !fresh.has(n))
+  for (const n of uniqueNames) if (fresh.has(n)) result[n] = fresh.get(n)!
+
+  const toUpsert: { sport: string; player_name: string; photo_url: string | null; fetched_at: string }[] = []
+  let i = 0
+  await Promise.all(Array.from({ length: 6 }, async () => {
+    while (i < todo.length && Date.now() < deadline) {
+      const name = todo[i++]
+      let url: string | null = null
+      try { url = await fetchEspnHeadshot(name, sport) } catch { url = null }
+      result[name] = url
+      toUpsert.push({ sport, player_name: name, photo_url: url, fetched_at: new Date().toISOString() })
+    }
+  }))
+  if (toUpsert.length > 0) cacheDb.from('player_photo_cache').upsert(toUpsert).then(() => {})
+  return result
 }
 
 // ── Bio ESPN (date de naissance, lieu, historique d'équipes) ──────────────────

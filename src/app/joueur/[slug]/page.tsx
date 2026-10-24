@@ -2,7 +2,7 @@ import { createClient } from '@supabase/supabase-js'
 import type { Metadata } from 'next'
 import Link from 'next/link'
 import { fetchCsvCardsForProfiles } from '@/lib/csvCards'
-import { fetchEspnHeadshot, fetchEspnPlayerBio } from '@/lib/espnHeadshot'
+import { getCachedHeadshot, fetchEspnPlayerBio } from '@/lib/espnHeadshot'
 import { normalizeName, cardPageUrl, stripDiacritics } from '@/lib/playerSlug'
 import CommunityCardsSection from './CommunityCardsSection'
 import PlayerChecklistSection from './PlayerChecklistSection'
@@ -417,7 +417,7 @@ async function _fetchPlayer(slug: string) {
     fetchCsvCardsForProfiles(profilesRes.data || []),
   ])
   const primarySport = bio?.sport ?? setsBasedSport
-  const headshot = await fetchEspnHeadshot(playerName, primarySport)
+  const headshot = await getCachedHeadshot(playerName, primarySport)
 
   const manuellesCards = matchedManu.map((m: any) => ({
     id: m.id,
