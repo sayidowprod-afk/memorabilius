@@ -438,7 +438,17 @@ async function _fetchPlayer(slug: string) {
   // de la page). photo + csv restent eager : la photo est en cache DB
   // (rapide, voir getCachedHeadshot), le csv est une donnee communaute, pas
   // une dependance ESPN lente.
-  const primarySport = sets[0]?.sport || 'nba'
+  // sets[0] (set le plus RECENT) n'est pas fiable pour un joueur multi-sport
+  // (ex: Michael Jordan a des sets "non-sport"/croisement NFL plus recents
+  // que ses sets NBA) -- ca faisait chercher la photo ESPN dans le mauvais
+  // sport et renvoyait un athlete homonyme different. On prend plutot le
+  // sport le PLUS REPRESENTE parmi ses sets, en ignorant "non-sport" qui
+  // n'est jamais une vraie categorie ESPN.
+  const sportCounts = new Map<string, number>()
+  for (const s of sets as any[]) {
+    if (s.sport && s.sport !== 'non-sport') sportCounts.set(s.sport, (sportCounts.get(s.sport) || 0) + 1)
+  }
+  const primarySport = [...sportCounts.entries()].sort((a, b) => b[1] - a[1])[0]?.[0] || 'nba'
   const [headshot, csvAll] = await Promise.all([
     getCachedHeadshot(playerName, primarySport),
     fetchCsvCardsForProfiles(profilesRes.data || []),
@@ -919,7 +929,16 @@ export default async function JoueurPage({ params }: { params: Promise<{ slug: s
 
           {/* Cartes de la communauté */}
           {communityCards.length > 0 && (
-            <CommunityCardsSection cards={communityCards as any} totalCollectors={uniqueCollectors} />
+            <CommunityCardsSection
+              playerName={playerName}
+              initialCards={communityCards.slice(0, 48) as any}
+              totalCount={communityCards.length}
+              totalCollectors={uniqueCollectors}
+              hasAuto={communityCards.some((c: any) => c.auto)}
+              hasPatch={communityCards.some((c: any) => c.patch)}
+              hasNum={communityCards.some((c: any) => !!c.num)}
+              hasVente={communityCards.some((c: any) => c.disponible_vente)}
+            />
           )}
 
           {/* Checklist personnelle */}

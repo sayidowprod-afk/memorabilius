@@ -1,5 +1,5 @@
 'use client'
-import { useState, useEffect, useRef, useMemo } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import Link from 'next/link'
 import { supabase } from '@/lib/supabase'
 import TagIcon from '@/components/TagIcon'
@@ -28,31 +28,18 @@ type Card = {
 }
 
 type SortKey = 'default' | 'y_desc' | 'y_asc' | 'name' | 'date_desc' | 'num_asc' | 'rare'
-
-function parseNumDenom(num: string): number {
-  if (!num) return Infinity
-  const m = num.match(/\/(\d+)/)
-  if (m) return parseInt(m[1])
-  const n = parseInt(num.replace(/\D/g, ''))
-  return isNaN(n) ? Infinity : n
-}
-
-function rareScore(c: Card): number {
-  // lower = rarer
-  if (parseNumDenom(c.num) === 1) return 0
-  if (c.auto && c.patch) return 1
-  if (c.auto && !!c.num) return 2
-  if (c.patch && !!c.num) return 3
-  if (c.auto) return 4
-  if (c.patch) return 5
-  if (c.rc && !!c.num) return 6
-  if (!!c.num) return 7
-  if (c.rc) return 8
-  return 9
-}
 type MyMode = 'all' | 'only' | 'exclude'
 
-export default function CommunityCardsSection({ cards, totalCollectors }: { cards: Card[]; totalCollectors: number }) {
+// Pagine via /api/player-cards (defilement + filtres/tri) plutot que de
+// recevoir TOUTES les cartes d'un coup -- pour un joueur tres collectionne
+// (ex: Michael Jordan, 2148 cartes), le payload initial de la page faisait
+// 4.5 Mo et 6-7s a charger en entier. Seule la premiere page (48 cartes,
+// deja calculee cote serveur) arrive avec la page ; le reste se charge a la
+// demande, exactement comme l'utilisateur le voit defiler.
+export default function CommunityCardsSection({ playerName, initialCards, totalCount, totalCollectors, hasAuto, hasPatch, hasNum, hasVente }: {
+  playerName: string; initialCards: Card[]; totalCount: number; totalCollectors: number
+  hasAuto: boolean; hasPatch: boolean; hasNum: boolean; hasVente: boolean
+}) {
   const [myId, setMyId] = useState<string | null>(null)
   const [fRc, setFRc] = useState(false)
   const [fAuto, setFAuto] = useState(false)
@@ -61,51 +48,58 @@ export default function CommunityCardsSection({ cards, totalCollectors }: { card
   const [fVente, setFVente] = useState(false)
   const [myMode, setMyMode] = useState<MyMode>('all')
   const [sort, setSort] = useState<SortKey>('default')
-  const [visibleCount, setVisibleCount] = useState(48)
   // Joueurs avec des centaines de cartes : on peut replier la liste pour atteindre les sets / la checklist
   const [collapsed, setCollapsed] = useState(false)
+
+  const [cards, setCards] = useState<Card[]>(initialCards)
+  const [filteredTotal, setFilteredTotal] = useState(totalCount)
+  const [hasMore, setHasMore] = useState(totalCount > initialCards.length)
+  const [loading, setLoading] = useState(false)
   const sentinelRef = useRef<HTMLDivElement>(null)
+  const isDefault = !fRc && !fAuto && !fPatch && !fNum && !fVente && myMode === 'all' && sort === 'default'
 
   useEffect(() => {
     supabase.auth.getSession().then(({ data: { session } }) => setMyId(session?.user?.id || null))
   }, [])
 
+  const loadPage = async (reset: boolean) => {
+    setLoading(true)
+    const offset = reset ? 0 : cards.length
+    const params = new URLSearchParams({
+      name: playerName, offset: String(offset), limit: '48', sort,
+      rc: fRc ? '1' : '0', auto: fAuto ? '1' : '0', patch: fPatch ? '1' : '0', num: fNum ? '1' : '0', vente: fVente ? '1' : '0',
+      myMode,
+    })
+    if (myId) params.set('myId', myId)
+    try {
+      const r = await fetch(`/api/player-cards?${params.toString()}`)
+      if (r.ok) {
+        const j = await r.json()
+        setCards(prev => reset ? j.cards : [...prev, ...j.cards])
+        setFilteredTotal(j.total)
+        setHasMore(j.hasMore)
+      }
+    } catch {}
+    setLoading(false)
+  }
+
+  // Filtre/tri change : repart de la premiere page deja fournie par le
+  // serveur si on revient aux reglages par defaut (pas de requete reseau),
+  // sinon redemande la page 1 avec les nouveaux reglages.
   useEffect(() => {
-    setVisibleCount(48)
-  }, [fRc, fAuto, fPatch, fNum, fVente, myMode, sort])
-
-  const filtered = useMemo(() => {
-    let result = cards.filter(c =>
-      (!fRc || c.rc) &&
-      (!fAuto || c.auto) &&
-      (!fPatch || c.patch) &&
-      (!fNum || !!c.num) &&
-      (!fVente || c.disponible_vente) &&
-      (myMode === 'all' ||
-        (myMode === 'only' ? c.user_id === myId : c.user_id !== myId))
-    )
-    if (sort === 'y_desc') result = [...result].sort((a, b) => (b.annee || '').localeCompare(a.annee || ''))
-    else if (sort === 'y_asc') result = [...result].sort((a, b) => (a.annee || '').localeCompare(b.annee || ''))
-    else if (sort === 'name') result = [...result].sort((a, b) => (a.nom || '').localeCompare(b.nom || ''))
-    else if (sort === 'date_desc') result = [...result].sort((a, b) => (b.created_at || '').localeCompare(a.created_at || ''))
-    else if (sort === 'num_asc') result = [...result].sort((a, b) => parseNumDenom(a.num) - parseNumDenom(b.num))
-    else if (sort === 'rare') result = [...result].sort((a, b) => rareScore(a) - rareScore(b) || parseNumDenom(a.num) - parseNumDenom(b.num))
-    return result
-  }, [cards, fRc, fAuto, fPatch, fNum, fVente, myMode, myId, sort])
-
-  const hasVente = useMemo(() => cards.some(c => c.disponible_vente), [cards])
-  const hasNum = useMemo(() => cards.some(c => !!c.num), [cards])
-  const hasAuto = useMemo(() => cards.some(c => c.auto), [cards])
-  const hasPatch = useMemo(() => cards.some(c => c.patch), [cards])
-  const hasActive = fRc || fAuto || fPatch || fNum || fVente || myMode !== 'all' || sort !== 'default'
+    if (isDefault) { setCards(initialCards); setFilteredTotal(totalCount); setHasMore(totalCount > initialCards.length); return }
+    loadPage(true)
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [fRc, fAuto, fPatch, fNum, fVente, myMode, sort, myId])
 
   useEffect(() => {
     const el = sentinelRef.current
     if (!el) return
-    const obs = new IntersectionObserver(e => { if (e[0].isIntersecting) setVisibleCount(c => c + 48) }, { threshold: 0.1 })
+    const obs = new IntersectionObserver(e => { if (e[0].isIntersecting && hasMore && !loading) loadPage(false) }, { threshold: 0.1 })
     obs.observe(el)
     return () => obs.disconnect()
-  }, [filtered.length])
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [hasMore, loading, cards.length])
 
   const chip = (active: boolean, color: string) => ({
     padding: '5px 11px', border: `1.5px solid ${active ? color : 'var(--jp-border)'}`,
@@ -115,6 +109,7 @@ export default function CommunityCardsSection({ cards, totalCollectors }: { card
     color: active ? 'white' : 'var(--jp-muted)',
   })
 
+  const hasActive = fRc || fAuto || fPatch || fNum || fVente || myMode !== 'all' || sort !== 'default'
   const clearAll = () => { setFRc(false); setFAuto(false); setFPatch(false); setFNum(false); setFVente(false); setMyMode('all'); setSort('default') }
 
   return (
@@ -122,9 +117,9 @@ export default function CommunityCardsSection({ cards, totalCollectors }: { card
       <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'baseline', marginBottom: 12, flexWrap: 'wrap', gap: 8 }}>
         <h2 style={{ fontSize: 20, fontWeight: 900, color: 'var(--jp-text)', margin: 0 }}>Dans les collections</h2>
         <span style={{ fontSize: 13, color: 'var(--jp-muted)', fontWeight: 600 }}>
-          {filtered.length !== cards.length
-            ? `${filtered.length} / ${cards.length} cartes`
-            : `${cards.length} carte${cards.length > 1 ? 's' : ''}`
+          {filteredTotal !== totalCount
+            ? `${filteredTotal} / ${totalCount} cartes`
+            : `${totalCount} carte${totalCount > 1 ? 's' : ''}`
           }
           {' · '}{totalCollectors} collectionneur{totalCollectors > 1 ? 's' : ''}
         </span>
@@ -196,7 +191,7 @@ export default function CommunityCardsSection({ cards, totalCollectors }: { card
         )}
       </div>
 
-      {filtered.length === 0 ? (
+      {cards.length === 0 && !loading ? (
         <div style={{ textAlign: 'center', padding: '40px', color: 'var(--jp-muted)' }}>
           <div style={{ fontSize: 36, marginBottom: 10 }}>🔍</div>
           <p style={{ fontWeight: 800, color: 'var(--jp-text)', marginBottom: 6 }}>Aucune carte</p>
@@ -209,7 +204,7 @@ export default function CommunityCardsSection({ cards, totalCollectors }: { card
       ) : (
         <>
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(148px, 1fr))', gap: 12 }}>
-            {filtered.slice(0, visibleCount).map((card) => (
+            {cards.map((card) => (
               <Link key={card.id} href={card.source === 'manuel' ? card.cardUrl : `/galerie/${card.user_id}`} style={{ textDecoration: 'none' }}>
                 <div className="jp-card-hover" style={{ borderRadius: 12, overflow: 'hidden', background: 'var(--jp-surface)', border: `1.5px solid ${card.user_id === myId ? 'var(--jp-accent)' : 'var(--jp-border)'}`, height: '100%' }}>
                   <div className="holo-light" style={{ aspectRatio: '2.5/3.5', overflow: 'hidden', position: 'relative', background: '#111' }}>
@@ -259,8 +254,10 @@ export default function CommunityCardsSection({ cards, totalCollectors }: { card
             ))}
           </div>
 
-          {filtered.length > visibleCount && (
-            <div ref={sentinelRef} style={{ height: 40, marginTop: 16 }} />
+          {hasMore && (
+            <div ref={sentinelRef} style={{ height: 40, marginTop: 16, display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 12, color: 'var(--jp-muted)' }}>
+              {loading ? 'Chargement…' : ''}
+            </div>
           )}
         </>
       )}
