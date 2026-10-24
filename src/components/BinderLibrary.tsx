@@ -1,5 +1,5 @@
 'use client'
-import { useEffect, useRef, useState } from 'react'
+import { useEffect, useMemo, useRef, useState } from 'react'
 import { useRouter, usePathname, useSearchParams } from 'next/navigation'
 import { useTheme } from '@/lib/ThemeContext'
 import { useLang } from '@/lib/LangContext'
@@ -110,11 +110,33 @@ function slotKey(page: number, idx: number) { return `${page}:${idx}` }
 // Effet feuille plastique : léger reflet diagonal, comme les vraies pochettes brillantes
 function PlasticSheen() {
   return (
-    <div style={{
-      position: 'absolute', inset: 0, pointerEvents: 'none', borderRadius: 'inherit',
-      background: 'linear-gradient(115deg, rgba(255,255,255,0.18) 0%, rgba(255,255,255,0) 20%, rgba(255,255,255,0) 82%, rgba(255,255,255,0.08) 100%)',
-    }} />
+    <>
+      <div style={{
+        position: 'absolute', inset: 0, pointerEvents: 'none', borderRadius: 'inherit',
+        background: 'linear-gradient(115deg, rgba(255,255,255,0.18) 0%, rgba(255,255,255,0) 20%, rgba(255,255,255,0) 82%, rgba(255,255,255,0.08) 100%)',
+      }} />
+      {/* N27 : reflet plastique glossy qui glisse au survol (en plus du voile statique ci-dessus) */}
+      <div className="binder-plastic-sheen" style={{
+        position: 'absolute', top: '-30%', bottom: '-30%', width: '40%', left: '-60%', pointerEvents: 'none',
+        background: 'linear-gradient(100deg, transparent, rgba(255,255,255,0.5), transparent)',
+      }} />
+    </>
   )
+}
+
+// N19 : une rangee de l'etagere apparait en fondu/glissement la premiere fois
+// qu'elle entre dans l'ecran (bibliotheques a beaucoup de classeurs) -- une
+// seule fois, pas a chaque passage (unobserve des qu'elle est revelee).
+function RevealRow({ children }: { children: React.ReactNode }) {
+  const ref = useRef<HTMLDivElement>(null)
+  useEffect(() => {
+    const el = ref.current
+    if (!el) return
+    const io = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) { el.classList.add('on'); io.disconnect() } }), { threshold: 0.2 })
+    io.observe(el)
+    return () => io.disconnect()
+  }, [])
+  return <div ref={ref} className="binder-row-reveal">{children}</div>
 }
 
 interface ExportCard {
@@ -200,6 +222,53 @@ export default function BinderLibrary({ userId, isOwner, accent, pendingCard, on
   const binderColorInputRef = useRef<HTMLInputElement>(null)
 
   const [cardCounts, setCardCounts] = useState<Record<number, number>>({})
+
+  // N34 : le classeur le plus rempli de la bibliotheque est mis en valeur sous un
+  // spot visuel -- uniquement s'il y a plusieurs classeurs et au moins une carte
+  // rangee quelque part, sinon la mise en avant n'a pas de sens.
+  const featuredBinderId = useMemo(() => {
+    if (binders.length < 2) return null
+    let best: number | null = null, bestCount = 0
+    for (const b of binders) {
+      const c = cardCounts[b.id] || 0
+      if (c > bestCount) { best = b.id; bestCount = c }
+    }
+    return bestCount > 0 ? best : null
+  }, [binders, cardCounts])
+
+  // N31 : petit retour sonore (tres discret) au feuilletage d'une page, desactive
+  // par defaut -- preference memorisee localement, jamais imposee a l'utilisateur.
+  const [pageSoundOn, setPageSoundOn] = useState(false)
+  useEffect(() => {
+    try { setPageSoundOn(localStorage.getItem('binder-page-sound') === '1') } catch {}
+  }, [])
+  const togglePageSound = () => {
+    setPageSoundOn(v => {
+      const next = !v
+      try { localStorage.setItem('binder-page-sound', next ? '1' : '0') } catch {}
+      return next
+    })
+  }
+  // Bruit de page synthetise (pas de fichier audio a heberger) : un court souffle
+  // filtre, volume tres bas -- pense pour etre discret, jamais pour "sonner" un jeu.
+  const playPageTurnSound = () => {
+    if (!pageSoundOn) return
+    try {
+      const Ctx = window.AudioContext || (window as any).webkitAudioContext
+      if (!Ctx) return
+      const ctx = new Ctx()
+      const dur = 0.22
+      const buf = ctx.createBuffer(1, ctx.sampleRate * dur, ctx.sampleRate)
+      const data = buf.getChannelData(0)
+      for (let i = 0; i < data.length; i++) data[i] = (Math.random() * 2 - 1) * (1 - i / data.length)
+      const src = ctx.createBufferSource(); src.buffer = buf
+      const filter = ctx.createBiquadFilter(); filter.type = 'highpass'; filter.frequency.value = 1200
+      const gain = ctx.createGain(); gain.gain.setValueAtTime(0.05, ctx.currentTime); gain.gain.linearRampToValueAtTime(0, ctx.currentTime + dur)
+      src.connect(filter).connect(gain).connect(ctx.destination)
+      src.start()
+      src.onended = () => ctx.close()
+    } catch {}
+  }
 
   // Taille initiale adaptee a l'ecran (avant : 620px fixes = enorme sur mobile tant que la mesure n'avait pas tourne)
   const [pageW, setPageW] = useState(() => (typeof window === 'undefined' ? PAGE_MAX_W : Math.max(120, Math.min(PAGE_MAX_W, Math.floor((window.innerWidth - 32) / 2)))))
@@ -1046,6 +1115,25 @@ export default function BinderLibrary({ userId, isOwner, accent, pendingCard, on
   const canNext = selected ? (isRings ? pageIndex / 2 + 1 <= selected.page_count : pageIndex + 2 <= selected.page_count) : false
   const canPrev = pageIndex > 0
 
+  // N21 : prechauffe le cache navigateur des DEUX feuillets voisins (precedent et
+  // suivant) des l'ouverture ou tout changement de page -- jamais rendus tant
+  // qu'on n'y est pas (la grille reste limitee au feuillet affiche, voir
+  // renderStaticSide/renderFlipFace), seulement leurs images sont chargees en
+  // avance pour que le feuilletage paraisse instantane plutot que de declencher
+  // le chargement "lazy" au moment meme de l'animation.
+  useEffect(() => {
+    if (!selected || !isOpen) return
+    const warm = new Set<string>()
+    for (const pi of [pageIndex - 2, pageIndex + 2]) {
+      if (pi < 0) continue
+      for (const desc of [leftFace(pi), rightFace(pi)]) {
+        if (!desc) continue
+        for (const s of slots.values()) if (s.page_number === desc.page) warm.add(s.img)
+      }
+    }
+    warm.forEach(src => { const img = new Image(); img.src = src })
+  }, [selected, isOpen, pageIndex, slots])
+
   // Termine le feuilletage : rotation continue jusqu'à ±180° puis validation
   const finishFlip = (dir: 'next' | 'prev') => {
     setFlip(s => ({ dir, angle: dir === 'next' ? -180 : 180, anim: true, ...(s ? {} : {}) }))
@@ -1068,6 +1156,7 @@ export default function BinderLibrary({ userId, isOwner, accent, pendingCard, on
     // carte de la page révélée dessous en cours de feuilletage)
     suppressClickUntil.current = Date.now() + FLIP_MS + 150
     setFlip({ dir, angle: 0, anim: false })
+    playPageTurnSound()
     requestAnimationFrame(() => finishFlip(dir))
   }
 
@@ -1120,20 +1209,26 @@ export default function BinderLibrary({ userId, isOwner, accent, pendingCard, on
     swipeRef.current = null
     if (!s || !s.active || !s.dir) return // simple tap → laisse le clic ouvrir la carte
     suppressClickUntil.current = Date.now() + 400
-    if (Math.abs(s.angle) > 45) finishFlip(s.dir)
+    if (Math.abs(s.angle) > 45) { playPageTurnSound(); finishFlip(s.dir) }
     else cancelFlip()
   }
 
-  // Bande de reliure perforée (façon pochette Ultra Pro), sur le bord intérieur
+  // Bande de reliure perforée (façon pochette Ultra Pro), sur le bord intérieur.
+  // N15/N25 : pour un classeur "anneaux", chaque trou metallique a un reflet qui
+  // le traverse -- les delais echelonnes (--ring-d) font que les 3 trous
+  // s'allument l'un apres l'autre plutot que simultanement (effet cascade).
   const BindingStrip = () => {
     const small = pageW < 180
-    const hole = (oval: boolean) => (
-      <div style={{
-        width: small ? 6 : 8, height: oval ? (small ? 14 : 18) : (small ? 6 : 8),
-        borderRadius: oval ? (small ? 3 : 4) : '50%',
-        background: 'radial-gradient(circle at 40% 35%, #cfd6dd, #aeb7c0)',
-        boxShadow: 'inset 0 1px 2px rgba(0,0,0,0.35)',
-      }} />
+    const hole = (oval: boolean, i: number) => (
+      <div
+        className={isRings ? 'binder-ring-hole' : undefined}
+        style={{
+          width: small ? 6 : 8, height: oval ? (small ? 14 : 18) : (small ? 6 : 8),
+          borderRadius: oval ? (small ? 3 : 4) : '50%',
+          background: 'radial-gradient(circle at 40% 35%, #cfd6dd, #aeb7c0)',
+          boxShadow: 'inset 0 1px 2px rgba(0,0,0,0.35)',
+          ...(isRings ? ({ ['--ring-d' as string]: `${i * 0.3}s` } as React.CSSProperties) : {}),
+        }} />
     )
     return (
       <div style={{
@@ -1142,7 +1237,7 @@ export default function BinderLibrary({ userId, isOwner, accent, pendingCard, on
         display: 'flex', flexDirection: 'column', justifyContent: 'space-around', alignItems: 'center',
         padding: '10px 0',
       }}>
-        {hole(true)}{hole(false)}{hole(true)}
+        {hole(true, 0)}{hole(false, 1)}{hole(true, 2)}
       </div>
     )
   }
@@ -1234,9 +1329,12 @@ export default function BinderLibrary({ userId, isOwner, accent, pendingCard, on
               </div>
             )
           }
-          // Pochette plastique vide : cellule translucide avec soudure
+          // Pochette plastique vide : cellule translucide avec soudure.
+          // N12 : respire doucement, le "+" grossit nettement au survol pour
+          // confirmer qu'on peut cliquer (voir .binder-slot-empty/.binder-slot-plus).
           return (
             <div key={idx} data-pocket data-page={page} data-idx={idx}
+              className="binder-slot-empty"
               onClick={async () => {
                 if (!isOwner) return
                 if (flip || clickSuppressed()) return
@@ -1244,13 +1342,14 @@ export default function BinderLibrary({ userId, isOwner, accent, pendingCard, on
                 else setPickerTarget({ page, idx })
               }}
               style={{
-                aspectRatio: '2.5/3.5', background: 'rgba(255,255,255,0.35)',
+                aspectRatio: '2.5/3.5', background: 'rgba(255,255,255,0.35)', position: 'relative', overflow: 'hidden',
                 boxShadow: 'inset 0 0 0 1px rgba(255,255,255,0.8), 0 0 0 1px rgba(150,165,180,0.45)',
                 display: 'flex', alignItems: 'center', justifyContent: 'center',
                 cursor: isOwner ? 'pointer' : 'default', color: 'rgba(90,110,130,0.5)', fontSize: 18,
               }}
             >
-              {isOwner ? '+' : ''}
+              <PlasticSheen />
+              {isOwner ? <span className="binder-slot-plus">+</span> : ''}
             </div>
           )
         })}
@@ -1460,25 +1559,36 @@ export default function BinderLibrary({ userId, isOwner, accent, pendingCard, on
       }}>+</div>
     ) : null
 
+    // N24/N26 : ombre portee + reflet specifique qui suivent le curseur sur la tranche
+    // (variables CSS lues par .binder-spine-lit::after et .binder-spine-spec en inline)
+    const spineLightMove = (e: React.MouseEvent<HTMLDivElement>) => {
+      const el = e.currentTarget; const r = el.getBoundingClientRect()
+      const fx = (e.clientX - r.left) / r.width
+      el.style.setProperty('--sx', `${(fx - 0.5) * 20}px`)
+      el.style.setProperty('--mx', `${fx * 100}%`)
+      el.style.setProperty('--my', `${((e.clientY - r.top) / r.height) * 100}%`)
+    }
+
     const renderSpine = (b: Binder) => (
       <div key={b.id} data-binder-spine={b.id}
+        className={'binder-spine-pull binder-spine-lit' + (b.id === featuredBinderId ? ' binder-spine-featured' : '')}
         onClick={() => { if (clickSuppressed()) return; openBinder(b) }}
         onPointerDown={shelfPointerDown(b)}
         onPointerMove={shelfPointerMove}
         onPointerUp={shelfPointerUp}
         onPointerCancel={() => { const r = reorderRef.current; if (r) { clearTimeout(r.timer); reorderRef.current = null } setReorderDrag(null); setReorderingId(null) }}
+        onMouseMove={spineLightMove}
         title={isOwner ? `${b.name} — appui long pour réorganiser` : b.name}
         style={{
           width: 40, height: 184, cursor: isOwner ? 'grab' : 'pointer', flexShrink: 0,
           background: b.color || accent, borderRadius: '4px 4px 0 0',
           boxShadow: 'inset 4px 0 0 rgba(255,255,255,0.2), inset -4px 0 0 rgba(0,0,0,0.28), 2px 2px 5px rgba(0,0,0,0.4)',
           display: 'flex', flexDirection: 'column', alignItems: 'center', touchAction: 'pan-x',
-          transition: 'transform 0.15s', position: 'relative', overflow: 'hidden',
+          overflow: 'hidden',
           opacity: reorderingId === b.id ? 0.4 : 1,
         }}
-        onMouseEnter={e => { if (!reorderingId) e.currentTarget.style.transform = 'translateY(-12px)' }}
-        onMouseLeave={e => (e.currentTarget.style.transform = 'translateY(0)')}
       >
+        <span className="binder-spine-spec" />
         {b.cover_img && (
           <div style={{ width: '100%', height: 46, flexShrink: 0, overflow: 'hidden', borderBottom: '1px solid rgba(0,0,0,0.2)' }}>
             <img loading="lazy" src={b.cover_img} alt="" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
@@ -1527,7 +1637,7 @@ export default function BinderLibrary({ userId, isOwner, accent, pendingCard, on
           </div>
         )}
 
-        <div ref={shelfContainerRef} style={{ background: 'linear-gradient(180deg, #1a2638, #0d1824)', borderRadius: 16, boxShadow: '0 6px 28px rgba(0,0,0,0.28)', padding: '14px 14px 4px' }}>
+        <div ref={shelfContainerRef} className="binder-shelf-ambient" style={{ background: 'linear-gradient(180deg, #1a2638, #0d1824)', borderRadius: 16, boxShadow: '0 6px 28px rgba(0,0,0,0.28)', padding: '14px 14px 4px' }}>
           {sections.map((section, si) => {
             const rows: Binder[][] = []
             for (let i = 0; i < section.binderItems.length; i += shelfRowSize) rows.push(section.binderItems.slice(i, i + shelfRowSize))
@@ -1610,17 +1720,21 @@ export default function BinderLibrary({ userId, isOwner, accent, pendingCard, on
                 {rows.map((row, ri) => {
                   const isLastRow = ri === rows.length - 1
                   return (
-                    <div key={ri} style={{ marginBottom: 4 }}>
+                    <RevealRow key={ri}>
+                    <div style={{ marginBottom: 4 }}>
                       <div style={{
                         display: 'flex', alignItems: 'flex-end', gap: 4, padding: '0 6px 10px',
                         overflowX: 'auto', WebkitOverflowScrolling: 'touch', minHeight: 190,
                       }}>
                         {row.map(renderSpine)}
+                        {/* N8 : section sans classeur -- silhouettes en pointillés plutôt qu'un vide */}
+                        {row.length === 0 && [0, 1, 2].map(i => <div key={`ghost-${i}`} className="binder-ghost-spine">+</div>)}
                         {/* Bouton + à la fin de chaque ligne (si la ligne n'est pas complète ou si c'est la dernière) */}
                         {isOwner && (row.length < shelfRowSize || isLastRow) && renderAddBtn(section.folder?.id ?? null)}
                       </div>
-                      <div style={{ height: 12, background: section.folder ? shelfColor : 'linear-gradient(180deg, #0d1824, #060f1a)', borderRadius: 2, boxShadow: '0 4px 10px rgba(0,0,0,0.5)' }} />
+                      <div className="binder-board-grain" style={{ height: 12, borderRadius: 2, boxShadow: '0 4px 10px rgba(0,0,0,0.5)', ['--board-c' as string]: section.folder ? shelfColor : '#0d1824' } as React.CSSProperties} />
                     </div>
+                    </RevealRow>
                   )
                 })}
               </div>
@@ -1634,7 +1748,7 @@ export default function BinderLibrary({ userId, isOwner, accent, pendingCard, on
 
         {/* Aperçu flottant de la tranche pendant la réorganisation */}
         {reorderDrag && createPortal(
-          <div style={{
+          <div className="binder-reorder-ghost" style={{
             position: 'fixed', left: reorderDrag.x, top: reorderDrag.y, width: 40, height: 150,
             transform: 'translate(-50%, -50%) rotate(-3deg)', zIndex: 3000, pointerEvents: 'none',
             background: reorderDrag.binder.color || accent, borderRadius: '4px 4px 0 0',
@@ -1718,7 +1832,7 @@ export default function BinderLibrary({ userId, isOwner, accent, pendingCard, on
   const renderStaticSide = (pi: number, side: 'left' | 'right') => {
     const desc = side === 'left' ? leftFace(pi) : rightFace(pi)
     if (!desc) return <div style={{ zIndex: 2 }}>{insideCoverFace(side)}</div>
-    return <div style={{ ...pageShellStyle(side), zIndex: 2 }}>{renderPocketGrid(desc.page, side, desc.face)}</div>
+    return <div className={side === 'right' ? 'binder-page-corner-r' : 'binder-page-corner-l'} style={{ ...pageShellStyle(side), zIndex: 2 }}>{renderPocketGrid(desc.page, side, desc.face)}</div>
   }
 
   // Contenu d'une face du feuillet qui tourne (recto/dos selon le mode)
@@ -1840,6 +1954,10 @@ export default function BinderLibrary({ userId, isOwner, accent, pendingCard, on
           {/* Desktop : toutes les actions en ligne */}
           {!isMobile && (
             <div style={{ display: 'flex', alignItems: 'center', gap: 12, flexShrink: 0 }}>
+              <button onClick={togglePageSound} title={pageSoundOn ? t('binder_sound_on_title') : t('binder_sound_off_title')}
+                style={{ background: 'none', border: `1px solid ${dark ? '#444' : '#ddd'}`, borderRadius: 8, padding: '6px 10px', cursor: 'pointer', fontSize: 16, lineHeight: 1, color: dark ? '#ccc' : '#555' }}>
+                {pageSoundOn ? '🔈' : '🔇'}
+              </button>
               <button onClick={toggleFullscreen} title={t('binder_fullscreen_title')}
                 style={{ background: 'none', border: `1px solid ${dark ? '#444' : '#ddd'}`, borderRadius: 8, padding: '6px 10px', cursor: 'pointer', fontSize: 16, lineHeight: 1, color: dark ? '#ccc' : '#555' }}>
                 ⛶
@@ -1909,6 +2027,10 @@ export default function BinderLibrary({ userId, isOwner, accent, pendingCard, on
             // la page horizontalement -- signale en prod, "il faut aller vers la droite").
             // overflowX:'auto' fait defiler seulement cette rangee, en contenu.
             <div style={{ display: 'flex', alignItems: 'center', gap: 6, flex: '1 1 auto', minWidth: 0, overflowX: 'auto', WebkitOverflowScrolling: 'touch' as any }}>
+              <button onClick={togglePageSound} title={pageSoundOn ? t('binder_sound_on_title') : t('binder_sound_off_title')} aria-label={pageSoundOn ? t('binder_sound_on_title') : t('binder_sound_off_title')}
+                style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 2, background: 'none', border: `1px solid ${dark ? '#444' : '#ddd'}`, borderRadius: 8, padding: '6px 8px', cursor: 'pointer', fontSize: 16, lineHeight: 1, color: dark ? '#ccc' : '#555', flexShrink: 0 }}>
+                {pageSoundOn ? '🔈' : '🔇'}
+              </button>
               <button onClick={toggleFullscreen} title={binderFullscreen ? t('binder_exit_fullscreen_title') : t('binder_fullscreen_title')} aria-label={binderFullscreen ? t('binder_exit_fullscreen_title') : t('binder_fullscreen_title')}
                 style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 2, background: 'none', border: `1px solid ${dark ? '#444' : '#ddd'}`, borderRadius: 8, padding: '6px 8px', cursor: 'pointer', fontSize: 16, lineHeight: 1, color: dark ? '#ccc' : '#555' }}>
                 {binderFullscreen ? '⊡' : '⛶'}
@@ -2057,7 +2179,13 @@ export default function BinderLibrary({ userId, isOwner, accent, pendingCard, on
             <div style={{ position: 'absolute', left: 2 * pageW - 8, top: -6, bottom: -6, width: wing + 8, background: `linear-gradient(90deg, rgba(0,0,0,0.25), ${coverColor})`, borderRadius: '0 8px 8px 0', zIndex: 1 }} />
 
             {renderStaticSide(flippingLeft ? pageIndex - 2 : pageIndex, 'left')}
-            {renderStaticSide(flippingRight ? pageIndex + 2 : pageIndex, 'right')}
+            {/* N35 : la page de droite se desolidarise tres legerement en eventail
+                pendant que la couverture pivote au-dessus, au lieu de rester plate
+                comme un simple decor -- gate sur coverAnimating uniquement (jamais
+                vrai pendant un feuilletage normal, qui utilise `flip` a part). */}
+            <div style={coverAnimating ? { transformStyle: 'preserve-3d', transformOrigin: 'left center', transform: `rotateY(${-coverAngle / 30}deg) translateZ(-2px)`, transition: 'transform 0.66s cubic-bezier(0.4,0,0.2,1)' } : undefined}>
+              {renderStaticSide(flippingRight ? pageIndex + 2 : pageIndex, 'right')}
+            </div>
 
             {/* creux central */}
             <div style={{ position: 'absolute', left: pageW - 3, top: 0, bottom: 0, width: 6, background: 'linear-gradient(90deg, rgba(0,0,0,0.14), transparent, rgba(0,0,0,0.14))', zIndex: 14, pointerEvents: 'none' }} />
@@ -2089,8 +2217,12 @@ export default function BinderLibrary({ userId, isOwner, accent, pendingCard, on
             {/* Couverture qui s'ouvre : posée sur la page de droite, pivote autour de
                 la reliure (centre) et se retourne en 2e de couverture à gauche. */}
             {coverAnimating && (
+              // N41 : zoom cinematique bref (wrapper separe, l'enfant garde seul la
+              // rotation pilotee par coverAngle -- combiner les deux transforms sur
+              // le meme element ferait sauter l'animation de rotation).
+              <div className="binder-cover-zoom" style={{ position: 'absolute', top: 0, left: pageW, width: pageW, height: pageH, transformStyle: 'preserve-3d' }}>
               <div style={{
-                position: 'absolute', top: 0, left: pageW, width: pageW, height: pageH,
+                position: 'absolute', inset: 0,
                 transformStyle: 'preserve-3d', transformOrigin: 'left center',
                 transform: `rotateY(${coverAngle}deg)`,
                 transition: 'transform 0.66s cubic-bezier(0.4,0,0.2,1)',
@@ -2102,6 +2234,7 @@ export default function BinderLibrary({ userId, isOwner, accent, pendingCard, on
                 <div style={{ position: 'absolute', inset: 0, backfaceVisibility: 'hidden', transform: 'rotateY(180deg)' }}>
                   {insideCoverFace('left')}
                 </div>
+              </div>
               </div>
             )}
           </div>

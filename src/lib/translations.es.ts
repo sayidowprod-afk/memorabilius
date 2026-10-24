@@ -937,6 +937,8 @@ export const es = {
   binder_back_to_library: 'Volver a la biblioteca',
   binder_fullscreen_title: 'Pantalla completa',
   binder_exit_fullscreen_title: 'Salir de pantalla completa',
+  binder_sound_on_title: 'Desactivar el sonido de las páginas',
+  binder_sound_off_title: 'Activar el sonido de las páginas (discreto)',
   binder_title_prefix: 'Clasificador',
   binder_on_memorabilius_suffix: ' en Memorabilius',
   binder_qrcode: 'Código QR',

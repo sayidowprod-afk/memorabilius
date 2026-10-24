@@ -937,6 +937,8 @@ export const it = {
   binder_back_to_library: 'Torna alla libreria',
   binder_fullscreen_title: 'Schermo intero',
   binder_exit_fullscreen_title: 'Esci dallo schermo intero',
+  binder_sound_on_title: 'Disattiva il suono delle pagine',
+  binder_sound_off_title: 'Attiva il suono delle pagine (discreto)',
   binder_title_prefix: 'Raccoglitore',
   binder_on_memorabilius_suffix: ' su Memorabilius',
   binder_qrcode: 'QR Code',

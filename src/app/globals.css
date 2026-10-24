@@ -493,6 +493,63 @@ section { contain: layout style; }
 @keyframes binderCardIn { 0% { transform: translateY(-130%) rotate(-3deg); opacity: 0; } 70% { transform: translateY(4%) rotate(0deg); opacity: 1; } 100% { transform: translateY(0) rotate(0deg); opacity: 1; } }
 .binder-slot-card-enter { animation: binderCardIn 0.5s cubic-bezier(0.22,0.61,0.36,1); }
 
+/* Bibliothèque de classeurs — vague d'améliorations réalisme/mise en scène (admin/da séries 46/47) */
+/* N2 : le classeur s'incline en sortant de l'étagère, ombre qui grandit avec */
+.binder-spine-pull { transition: transform 0.22s cubic-bezier(0.3,1.5,0.4,1), box-shadow 0.22s; }
+.binder-spine-pull:hover, .binder-spine-pull:focus-visible { transform: translateY(-14px) rotate(-3deg); box-shadow: 2px 18px 28px rgba(0,0,0,0.55); z-index: 3; }
+/* N6 : rayon de lumière ambiant qui balaie le fond de l'étagère */
+.binder-shelf-ambient { position: relative; overflow: hidden; }
+.binder-shelf-ambient::after { content: ''; position: absolute; top: -40%; bottom: -40%; width: 22%; left: -40%; background: linear-gradient(100deg, transparent, rgba(255,255,255,0.055), transparent); animation: binderAmbientSweep 11s ease-in-out infinite; pointer-events: none; }
+@keyframes binderAmbientSweep { 0%, 62% { left: -40%; } 100% { left: 140%; } }
+/* N8 : étagère vide illustrée (silhouettes en pointillés) plutôt qu'un vide */
+.binder-ghost-spine { width: 40px; height: 184px; flex-shrink: 0; border: 2px dashed rgba(255,255,255,0.22); border-radius: 4px 4px 0 0; display: flex; align-items: center; justify-content: center; color: rgba(255,255,255,0.22); font-size: 18px; }
+/* N9 : planche d'étagère en bois, teintée par la couleur de la section */
+.binder-board-grain { position: relative; background: linear-gradient(180deg, var(--board-c, #0d1824), color-mix(in srgb, var(--board-c, #0d1824) 55%, #000)); }
+.binder-board-grain::after { content: ''; position: absolute; inset: 0; background: repeating-linear-gradient(90deg, rgba(0,0,0,0.12) 0 2px, transparent 2px 8px); pointer-events: none; }
+/* N10 : classeur saisi pendant le glisser-déposer, léger wobble physique */
+@keyframes binderGhostWobble { 0%, 100% { transform: translate(-50%, -50%) rotate(-3deg) scale(1.04); } 50% { transform: translate(-50%, -50%) rotate(3deg) scale(1.07); } }
+.binder-reorder-ghost { animation: binderGhostWobble 0.7s ease-in-out infinite; }
+/* N12 : pochette vide qui respire, le "+" grossit au survol */
+@keyframes binderSlotBreathe { 50% { box-shadow: inset 0 0 0 1px rgba(255,255,255,0.95), 0 0 0 1px rgba(150,165,180,0.45); } }
+.binder-slot-empty { animation: binderSlotBreathe 2.6s ease-in-out infinite; }
+.binder-slot-plus { display: inline-block; transition: transform 0.18s ease, color 0.18s ease; }
+.binder-slot-empty:hover .binder-slot-plus { transform: scale(1.4); color: rgba(60,80,100,0.75); }
+/* N15 : reflet métallique animé sur les anneaux (classeur type "anneaux") */
+.binder-ring-hole { position: relative; overflow: hidden; }
+.binder-ring-hole::after { content: ''; position: absolute; inset: 0; background: linear-gradient(120deg, transparent 40%, rgba(255,255,255,0.95) 50%, transparent 60%); transform: translateX(-140%); animation: binderRingShine 3.8s ease-in-out infinite; animation-delay: var(--ring-d, 0s); }
+@keyframes binderRingShine { 0%, 70% { transform: translateX(-140%); } 100% { transform: translateX(140%); } }
+.binder-ring-hole.binder-ring-cascade::after { animation: binderRingCascade 0.9s ease-out 1; animation-delay: var(--ring-d, 0s); animation-fill-mode: both; }
+@keyframes binderRingCascade { from { transform: translateX(-140%); } to { transform: translateX(140%); } }
+/* N16 : le coin de la page se "décolle" visuellement au survol, invite à tourner.
+   -r = coin bas-droit (tourner vers la page suivante), -l = coin bas-gauche (precedente). */
+.binder-page-corner-r, .binder-page-corner-l { position: relative; }
+.binder-page-corner-r::after, .binder-page-corner-l::after { content: ''; position: absolute; bottom: 0; width: 0; height: 0; border-style: solid; transition: border-width 0.2s ease; pointer-events: none; z-index: 5; }
+.binder-page-corner-r::after { right: 0; border-width: 0 0 16px 16px; border-color: transparent transparent rgba(0,0,0,0.12) transparent; }
+.binder-page-corner-l::after { left: 0; border-width: 0 16px 16px 0; border-color: transparent transparent transparent rgba(0,0,0,0.12); }
+.binder-page-corner-r:hover::after { border-width: 0 0 30px 30px; border-color: transparent transparent rgba(0,0,0,0.22) transparent; }
+.binder-page-corner-l:hover::after { border-width: 0 30px 30px 0; border-color: transparent transparent transparent rgba(0,0,0,0.22); }
+/* N19 : les rangées de l'étagère apparaissent en fondu au défilement */
+.binder-row-reveal { opacity: 0; transform: translateY(18px); transition: opacity 0.5s ease, transform 0.5s cubic-bezier(0.2,0.8,0.2,1); }
+.binder-row-reveal.on { opacity: 1; transform: none; }
+/* N24 : ombre portée du classeur qui suit le curseur (source de lumière) */
+.binder-spine-lit { position: relative; }
+.binder-spine-lit::after { content: ''; position: absolute; left: 4px; right: 4px; bottom: -8px; height: 8px; background: rgba(0,0,0,0.5); filter: blur(5px); border-radius: 50%; transform: translateX(var(--sx, 0px)); transition: transform 0.08s linear; pointer-events: none; }
+/* N26 : reflet spéculaire qui suit la souris sur la couverture (effet matière) */
+.binder-spine-spec { position: absolute; inset: 0; background: radial-gradient(circle at var(--mx, 50%) var(--my, 50%), rgba(255,255,255,0.28), transparent 50%); opacity: 0; transition: opacity 0.15s ease; pointer-events: none; z-index: 1; }
+.binder-spine-pull:hover .binder-spine-spec { opacity: 1; }
+/* N27 : le reflet plastique des pochettes glisse au survol plutôt que d'être figé */
+.binder-plastic-sheen { transition: left 0.5s ease; }
+.binder-slot-card:hover .binder-plastic-sheen, .binder-slot-empty:hover .binder-plastic-sheen { left: 120%; }
+/* N34 : le classeur le plus rempli de la bibliothèque, mis en valeur sous un spot */
+.binder-spine-featured { position: relative; }
+.binder-spine-featured::before { content: ''; position: absolute; left: 50%; top: -30px; width: 90px; height: 90px; transform: translateX(-50%); background: radial-gradient(ellipse at top, rgba(255,255,255,0.22), transparent 70%); pointer-events: none; z-index: 0; }
+/* N41 : léger zoom cinématique juste avant que la couverture ne pivote à l'ouverture */
+@keyframes binderCoverZoomIn { 0% { transform: scale(1); } 100% { transform: scale(1.015); } }
+.binder-cover-zoom { animation: binderCoverZoomIn 0.22s ease-out forwards; }
+@media (prefers-reduced-motion: reduce) {
+  .binder-shelf-ambient::after, .binder-ring-hole::after, .binder-reorder-ghost, .binder-slot-empty, .binder-cover-zoom { animation: none !important; }
+}
+
 /* Éviter le FOUC sur les images — effet shimmer pendant le chargement,
    invisible une fois l'image peinte par-dessus (opaque). Anime bien
    background-position (pas opacity : opacity s'appliquerait a l'image
