@@ -8,6 +8,7 @@ import { useAuth } from '@/lib/AuthContext'
 import { useTheme } from '@/lib/ThemeContext'
 import { useLang } from '@/lib/LangContext'
 import ThemeToggleButton from '@/components/ThemeToggleButton'
+import HeaderSearch from '@/components/HeaderSearch'
 import SettingsMenu, { SettingsInline } from '@/components/SettingsMenu'
 import type { User } from '@supabase/supabase-js'
 
@@ -137,10 +138,9 @@ export default function Navbar() {
   // Indicateur de section active — soulignement anime (transition color) plutot
   // qu'un changement instantane, comme un onglet actif.
   const COMMUNAUTE_PATHS = ['/annuaire', '/teams', '/trades', '/evenements', '/activite']
-  const OUTILS_PATHS = ['/scanner', '/gradation', '/setlist', '/guides', '/recherche']
+  const OUTILS_PATHS = ['/scanner', '/gradation', '/setlist', '/guides', '/recherche', '/tuto']
   const communauteActive = COMMUNAUTE_PATHS.some(p => pathname.startsWith(p))
   const outilsActive = OUTILS_PATHS.some(p => pathname.startsWith(p))
-  const tutoActive = pathname.startsWith('/tuto')
   const navUnderline = (active: boolean): React.CSSProperties => ({
     borderBottom: `2px solid ${active ? '#003DA6' : 'transparent'}`,
     transition: 'border-color 0.2s ease',
@@ -186,6 +186,7 @@ export default function Navbar() {
                 <Link href="/setlist" style={dropItemStyle} onClick={closeDrop}>📋 {t('nav_setlist')}</Link>
                 <Link href="/guides" style={dropItemStyle} onClick={closeDrop}>📖 {t('nav_guides')}</Link>
                 <Link href="/recherche" style={dropItemStyle} onClick={closeDrop}>{t('nav_recherche')}</Link>
+                <Link href="/tuto" style={dropItemStyle} onClick={closeDrop}>🎓 {t('nav_tuto')}</Link>
                 {isAdmin && (
                   <>
                     <div style={{ margin: '4px 8px', borderTop: `1px solid ${dropBorder}` }} />
@@ -196,9 +197,7 @@ export default function Navbar() {
             )}
           </div>
 
-          <div style={{ padding: '0 12px', height: 60, display: 'flex', alignItems: 'center', ...navUnderline(tutoActive) }}>
-            <Link href="/tuto" style={linkStyle}>{t('nav_tuto')}</Link>
-          </div>
+          <HeaderSearch />
 
           {user && (
             <Link href={`/galerie/${user.id}`}

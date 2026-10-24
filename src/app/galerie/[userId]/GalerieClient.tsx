@@ -1514,6 +1514,18 @@ export default function GalerieClient({ userId, initialCardUrl, initialCards, in
   useEffect(() => {
     if (!loaded) return
     const sp = new URLSearchParams()
+    // tab/binder ne sont pas geres par cet effet (lui ne connait que les filtres
+    // de la collection) -- sans les reporter explicitement, ce replace() les
+    // effacait de l'URL des le premier filtre/tri touche apres avoir ouvert un
+    // classeur. Au F5 suivant, plus aucune trace du classeur ouvert : retour
+    // silencieux sur l'onglet Collection (signale "ca nous ramene sur Ma
+    // galerie"). tab vient de l'etat (source de verite cote GalerieClient) ;
+    // binder vient de l'URL courante, que BinderLibrary maintient lui-meme
+    // via syncBinderUrl.
+    if (activeTab === 'objectifs') sp.set('tab', objectifsSubTab)
+    else if (activeTab !== 'collection') sp.set('tab', activeTab)
+    const binderParam = searchParams.get('binder')
+    if (binderParam) sp.set('binder', binderParam)
     if (search) sp.set('q', search)
     if (fTeamDebounced) sp.set('team', fTeamDebounced)
     if (fBrandDebounced) sp.set('brand', fBrandDebounced)
@@ -1531,7 +1543,7 @@ export default function GalerieClient({ userId, initialCardUrl, initialCards, in
     if (popup?.f) sp.set('card', popup.f)
     const str = sp.toString()
     router.replace(str ? `?${str}` : window.location.pathname, { scroll: false })
-  }, [loaded, search, fTeamDebounced, fBrandDebounced, fYear, fCollectionTag, sortBy, sortBy2, pinTeam, filterVente, popup])
+  }, [loaded, search, fTeamDebounced, fBrandDebounced, fYear, fCollectionTag, sortBy, sortBy2, pinTeam, filterVente, popup, activeTab, objectifsSubTab])
 
   useEffect(() => {
     const handler = (e: KeyboardEvent) => {

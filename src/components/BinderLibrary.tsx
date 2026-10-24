@@ -257,15 +257,39 @@ export default function BinderLibrary({ userId, isOwner, accent, pendingCard, on
       const Ctx = window.AudioContext || (window as any).webkitAudioContext
       if (!Ctx) return
       const ctx = new Ctx()
-      const dur = 0.22
+      const t0 = ctx.currentTime
+      const dur = 0.26
+      // Bruit blanc brut -- toute la forme (enveloppe + "whoosh") vient des noeuds
+      // qui suivent, pas du buffer lui-meme (plus precis qu'un fondu fige dedans).
       const buf = ctx.createBuffer(1, ctx.sampleRate * dur, ctx.sampleRate)
       const data = buf.getChannelData(0)
-      for (let i = 0; i < data.length; i++) data[i] = (Math.random() * 2 - 1) * (1 - i / data.length)
+      for (let i = 0; i < data.length; i++) data[i] = Math.random() * 2 - 1
       const src = ctx.createBufferSource(); src.buffer = buf
-      const filter = ctx.createBiquadFilter(); filter.type = 'highpass'; filter.frequency.value = 1200
-      const gain = ctx.createGain(); gain.gain.setValueAtTime(0.05, ctx.currentTime); gain.gain.linearRampToValueAtTime(0, ctx.currentTime + dur)
-      src.connect(filter).connect(gain).connect(ctx.destination)
-      src.start()
+
+      // Filtre passe-bande dont le centre balaie vers l'aigu puis redescend --
+      // c'est ce balayage de frequence qui donne l'impression de "whoosh" d'une
+      // page qui s'envole, plutot qu'un simple souffle statique.
+      const band = ctx.createBiquadFilter(); band.type = 'bandpass'; band.Q.value = 0.9
+      band.frequency.setValueAtTime(500, t0)
+      band.frequency.exponentialRampToValueAtTime(3200, t0 + dur * 0.45)
+      band.frequency.exponentialRampToValueAtTime(900, t0 + dur)
+
+      // Petit "clic" de depart (la page qui se decolle) : transitoire tres bref et aigu.
+      const click = ctx.createBiquadFilter(); click.type = 'highpass'; click.frequency.value = 3500
+      const clickGain = ctx.createGain()
+      clickGain.gain.setValueAtTime(0.03, t0)
+      clickGain.gain.exponentialRampToValueAtTime(0.0001, t0 + 0.025)
+      src.connect(click).connect(clickGain).connect(ctx.destination)
+
+      // Enveloppe du souffle principal : attaque rapide puis decroissance douce.
+      const gain = ctx.createGain()
+      gain.gain.setValueAtTime(0.0001, t0)
+      gain.gain.exponentialRampToValueAtTime(0.045, t0 + 0.02)
+      gain.gain.exponentialRampToValueAtTime(0.0001, t0 + dur)
+      src.connect(band).connect(gain).connect(ctx.destination)
+
+      src.start(t0)
+      src.stop(t0 + dur)
       src.onended = () => ctx.close()
     } catch {}
   }
@@ -1637,7 +1661,7 @@ export default function BinderLibrary({ userId, isOwner, accent, pendingCard, on
           </div>
         )}
 
-        <div ref={shelfContainerRef} className="binder-shelf-ambient" style={{ background: 'linear-gradient(180deg, #1a2638, #0d1824)', borderRadius: 16, boxShadow: '0 6px 28px rgba(0,0,0,0.28)', padding: '14px 14px 4px' }}>
+        <div ref={shelfContainerRef} className="binder-shelf-ambient" style={{ borderRadius: 16, boxShadow: '0 6px 28px rgba(0,0,0,0.28)', padding: '14px 14px 4px' }}>
           {sections.map((section, si) => {
             const rows: Binder[][] = []
             for (let i = 0; i < section.binderItems.length; i += shelfRowSize) rows.push(section.binderItems.slice(i, i + shelfRowSize))
@@ -1723,7 +1747,12 @@ export default function BinderLibrary({ userId, isOwner, accent, pendingCard, on
                     <RevealRow key={ri}>
                     <div style={{ marginBottom: 4 }}>
                       <div style={{
-                        display: 'flex', alignItems: 'flex-end', gap: 4, padding: '0 6px 10px',
+                        display: 'flex', alignItems: 'flex-end', gap: 4, padding: '18px 6px 10px',
+                        // Des qu'overflow-x n'est pas 'visible', la specif CSS force overflow-y a
+                        // 'auto' aussi (impossible a eviter en ne fixant que overflow-x) -- la
+                        // zone de clip est le bord de la PADDING box, donc 18px de marge en haut
+                        // (> les 14px de soulevement au survol, voir N2) suffit a ce que rien ne
+                        // soit jamais rogne, plutot que d'essayer de desactiver ce clip.
                         overflowX: 'auto', WebkitOverflowScrolling: 'touch', minHeight: 190,
                       }}>
                         {row.map(renderSpine)}

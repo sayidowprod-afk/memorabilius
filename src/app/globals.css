@@ -497,10 +497,17 @@ section { contain: layout style; }
 /* N2 : le classeur s'incline en sortant de l'étagère, ombre qui grandit avec */
 .binder-spine-pull { transition: transform 0.22s cubic-bezier(0.3,1.5,0.4,1), box-shadow 0.22s; }
 .binder-spine-pull:hover, .binder-spine-pull:focus-visible { transform: translateY(-14px) rotate(-3deg); box-shadow: 2px 18px 28px rgba(0,0,0,0.55); z-index: 3; }
-/* N6 : rayon de lumière ambiant qui balaie le fond de l'étagère */
-.binder-shelf-ambient { position: relative; overflow: hidden; }
-.binder-shelf-ambient::after { content: ''; position: absolute; top: -40%; bottom: -40%; width: 22%; left: -40%; background: linear-gradient(100deg, transparent, rgba(255,255,255,0.055), transparent); animation: binderAmbientSweep 11s ease-in-out infinite; pointer-events: none; }
-@keyframes binderAmbientSweep { 0%, 62% { left: -40%; } 100% { left: 140%; } }
+/* N6 : rayon de lumière ambiant qui balaie le fond de l'étagère -- anime le
+   FOND lui-meme (background-position), jamais un calque ou pseudo-element
+   superpose : evite tout souci d'empilement/overflow avec les classeurs qui
+   se soulevent au survol (N2), un fond reste toujours derriere le contenu. */
+.binder-shelf-ambient {
+  background-image: linear-gradient(100deg, transparent 42%, rgba(255,255,255,0.06) 50%, transparent 58%), linear-gradient(180deg, #1a2638, #0d1824);
+  background-size: 300% 100%, 100% 100%;
+  background-repeat: no-repeat;
+  animation: binderAmbientSweep 11s ease-in-out infinite;
+}
+@keyframes binderAmbientSweep { 0%, 62% { background-position: -100% 0, 0 0; } 100% { background-position: 200% 0, 0 0; } }
 /* N8 : étagère vide illustrée (silhouettes en pointillés) plutôt qu'un vide */
 .binder-ghost-spine { width: 40px; height: 184px; flex-shrink: 0; border: 2px dashed rgba(255,255,255,0.22); border-radius: 4px 4px 0 0; display: flex; align-items: center; justify-content: center; color: rgba(255,255,255,0.22); font-size: 18px; }
 /* N9 : planche d'étagère en bois, teintée par la couleur de la section */
@@ -547,7 +554,7 @@ section { contain: layout style; }
 @keyframes binderCoverZoomIn { 0% { transform: scale(1); } 100% { transform: scale(1.015); } }
 .binder-cover-zoom { animation: binderCoverZoomIn 0.22s ease-out forwards; }
 @media (prefers-reduced-motion: reduce) {
-  .binder-shelf-ambient::after, .binder-ring-hole::after, .binder-reorder-ghost, .binder-slot-empty, .binder-cover-zoom { animation: none !important; }
+  .binder-shelf-ambient, .binder-ring-hole::after, .binder-reorder-ghost, .binder-slot-empty, .binder-cover-zoom { animation: none !important; }
 }
 
 /* Éviter le FOUC sur les images — effet shimmer pendant le chargement,
