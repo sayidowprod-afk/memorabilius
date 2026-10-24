@@ -183,6 +183,81 @@ const CSS = `
 .ix .b6 .tk.good { background: #3ddc97; height: 34px; }
 .ix .b6 .brace { font-size: 11px; color: rgba(255,255,255,.55); margin-top: 4px; }
 @media (prefers-reduced-motion: reduce) { .ix .b6 * { animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; } }
+
+/* ── Serie 47 : classeurs, le realisme (prefixe b7, memes blocs .b6) ─── */
+/* N24 ombre portee qui suit une source de lumiere */
+.ix .b6 .spine.lit { box-shadow: inset 4px 0 0 rgba(255,255,255,.2), inset -4px 0 0 rgba(0,0,0,.28), 2px 2px 5px rgba(0,0,0,.4); }
+.ix .b6 .spine.lit::after { content:''; position:absolute; left:4px; right:4px; bottom:-9px; height:9px; background: rgba(0,0,0,.55); filter: blur(5px); border-radius:50%; transform: translateX(var(--sx,0px)); transition: transform .08s linear; }
+/* N25 anneaux spirale, reflet en cascade au scroll */
+.ix .b6 .spiralrow { display:flex; gap:6px; }
+.ix .b6 .spiralring { width:14px; height:14px; border-radius:50%; background: radial-gradient(circle at 35% 30%,#eee,#888 55%,#333); position:relative; overflow:hidden; }
+.ix .b6 .spiralring.go::after { content:''; position:absolute; inset:0; background: linear-gradient(120deg, transparent 40%, rgba(255,255,255,.95) 50%, transparent 60%); transform: translateX(-130%); animation: b7ringgo .8s ease forwards; animation-delay: calc(var(--i) * 80ms); }
+@keyframes b7ringgo { to { transform: translateX(130%); } }
+/* N26 cuir qui reagit au tilt (reflet specifique suit la souris) */
+.ix .b6 .covertilt { width:124px; height:172px; border-radius:3px; position:relative; margin:0 auto; background: linear-gradient(145deg,#7a3b2e,#4a2016 55%,#2c130d); overflow:hidden; cursor:pointer; box-shadow: 0 14px 28px rgba(0,0,0,.5); }
+.ix .b6 .covertilt::before { content:''; position:absolute; inset:0; background: repeating-linear-gradient(115deg, transparent 0 3px, rgba(0,0,0,.14) 3px 4px); mix-blend-mode: multiply; }
+.ix .b6 .covertilt .spec { position:absolute; inset:0; background: radial-gradient(circle at var(--mx,50%) var(--my,50%), rgba(255,255,255,.4), transparent 45%); pointer-events:none; }
+/* N27 reflet plastique glossy sur les pochettes */
+.ix .b6 .sleeve { position:relative; width:74px; aspect-ratio:2.5/3.5; overflow:hidden; box-shadow:0 8px 16px rgba(0,0,0,.4); border-radius: 2px; }
+.ix .b6 .sleeve::after { content:''; position:absolute; top:-30%; bottom:-30%; width:40%; left:-60%; background: linear-gradient(100deg, transparent, rgba(255,255,255,.55), transparent); transition: left .5s ease; pointer-events:none; }
+.ix .b6 .sleeve:hover::after { left:120%; }
+/* N28 etagere en pseudo-3D */
+.ix .b6 .shelf.persp { perspective: 900px; }
+.ix .b6 .shelf.persp .srow { transform-style: preserve-3d; }
+.ix .b6 .shelf.persp .spine { transition: transform .25s; }
+/* N29 classeur "use" / abime par l'usage */
+.ix .b6 .spine.worn { filter: saturate(.78) brightness(.9); border-radius: 7px 7px 1px 1px; }
+.ix .b6 .spine.worn::before { content:''; position:absolute; inset:0; background: radial-gradient(circle at 18% 92%, rgba(0,0,0,.4), transparent 42%), radial-gradient(circle at 88% 12%, rgba(0,0,0,.3), transparent 36%); mix-blend-mode:multiply; pointer-events:none; }
+/* N30 poussiere flottante dans la lumiere */
+.ix .b6 .shelf.dust { position:relative; }
+.ix .b6 .mote { position:absolute; width:2px; height:2px; background:rgba(255,255,255,.55); border-radius:50%; animation: b7dust var(--t,7s) linear infinite; animation-delay: var(--d,0s); opacity:0; pointer-events:none; }
+@keyframes b7dust { 0% { opacity:0; transform: translateY(0); } 12% { opacity:.6; } 88% { opacity:.25; } 100% { opacity:0; transform: translateY(-70px); } }
+/* N31 retour sonore optionnel (mockup d'interrupteur, pas de son joue ici) */
+.ix .b6 .swrow { display:flex; align-items:center; gap:12px; }
+.ix .b6 .sw { width:42px; height:24px; border-radius:12px; background: rgba(255,255,255,.18); position:relative; cursor:pointer; transition: background .2s; flex-shrink:0; }
+.ix .b6 .sw.on { background:#3ddc97; }
+.ix .b6 .sw i { position:absolute; top:2px; left:2px; width:20px; height:20px; border-radius:50%; background:#fff; transition: transform .2s; }
+.ix .b6 .sw.on i { transform: translateX(18px); }
+/* N32 reflet de vitrine en verre sur toute la bibliotheque */
+.ix .b6 .shelf.glass { position:relative; }
+.ix .b6 .shelf.glass::before { content:''; position:absolute; inset:0; background: linear-gradient(115deg, rgba(255,255,255,.09) 0%, transparent 20%, transparent 80%, rgba(255,255,255,.05) 100%); pointer-events:none; }
+/* N33 matiere differente selon le type de classeur */
+.ix .b6 .spine.fabric { background-image: repeating-linear-gradient(0deg, rgba(255,255,255,.035) 0 2px, transparent 2px 4px), repeating-linear-gradient(90deg, rgba(255,255,255,.035) 0 2px, transparent 2px 4px); }
+.ix .b6 .spine.rigid { box-shadow: inset 0 0 0 1px rgba(255,255,255,.3), inset 5px 0 0 rgba(255,255,255,.35), inset -5px 0 0 rgba(0,0,0,.4), 2px 2px 5px rgba(0,0,0,.4); }
+/* N34 classeur vedette, sous spot */
+.ix .b6 .spotwrap { position:relative; display:inline-block; padding-top: 26px; }
+.ix .b6 .spotwrap::before { content:''; position:absolute; left:50%; top:-34px; width:150px; height:170px; transform:translateX(-50%); background: radial-gradient(ellipse at top, rgba(255,255,255,.2), transparent 70%); pointer-events:none; }
+/* N35 ouverture complete en eventail */
+.ix .b6 .openstage { perspective:1200px; display:flex; justify-content:center; padding: 10px 0; }
+.ix .b6 .openbook { position:relative; width:220px; height:190px; }
+.ix .b6 .obp { position:absolute; top:0; width:110px; height:190px; background: linear-gradient(135deg,#0f1b3d,#142a5c); border:2px solid rgba(255,255,255,.3); transition: transform .55s cubic-bezier(.2,.8,.2,1); }
+.ix .b6 .obp.l { right:50%; transform-origin: right center; }
+.ix .b6 .obp.r { left:50%; transform-origin: left center; }
+.ix .b6 .openbook.open .obp.l { transform: rotateY(24deg); }
+.ix .b6 .openbook.open .obp.r { transform: rotateY(-24deg); }
+/* N36 anneaux qui "cliquent" a l'ouverture */
+.ix .b6 .ringhole.clickpulse { animation: b7click .4s ease; }
+@keyframes b7click { 0% { transform: scale(1); } 40% { transform: scale(1.32) translateY(-2px); } 100% { transform: scale(1); } }
+/* N37 pochette avec relief interne (volume du plastique) */
+.ix .b6 .pocket { width:74px; aspect-ratio:2.5/3.5; position:relative; box-shadow: inset 0 0 0 1px rgba(255,255,255,.22), inset 2px 2px 7px rgba(0,0,0,.4), inset -1px -1px 3px rgba(255,255,255,.18); border-radius:2px; overflow:hidden; }
+.ix .b6 .pocket img { width:100%; height:100%; object-fit:cover; }
+/* N38 mode vitrine musee : spot sur le classeur ouvert */
+.ix .b6 .museumwrap { position:relative; padding: 34px 10px; }
+.ix .b6 .museumwrap::before { content:''; position:absolute; inset:0; background: radial-gradient(ellipse at center, transparent 32%, rgba(0,0,0,.8) 85%); pointer-events:none; }
+/* N39 logo du sport embosse sur la tranche */
+.ix .b6 .spine .emboss { position:absolute; top:7px; left:50%; transform:translateX(-50%); width:18px; height:18px; border-radius:50%; background: rgba(255,255,255,.92); box-shadow: 0 1px 2px rgba(0,0,0,.4); }
+/* N40 separateurs façon languette carton */
+.ix .b6 .tab { position:relative; display:inline-block; background: var(--fc); border-radius: 3px 3px 0 0; padding: 5px 16px 5px 12px; font:800 10px system-ui; letter-spacing:.1em; text-transform:uppercase; color:#fff; margin-left: 10px; box-shadow: 0 -2px 6px rgba(0,0,0,.3); clip-path: polygon(0 0, 100% 0, 92% 100%, 8% 100%); }
+/* N41 transition cinematique a l'ouverture */
+.ix .b6 .cinestage { position:relative; height:220px; display:grid; place-items:center; overflow:hidden; }
+.ix .b6 .cinecover { width:120px; height:170px; background: linear-gradient(145deg,#1f3a5f,#0d1824); border:2px solid rgba(255,255,255,.3); transition: transform .9s cubic-bezier(.3,.1,.2,1), opacity .5s ease .4s; }
+.ix .b6 .cinecover.zoom { transform: scale(3.6); opacity:0; }
+/* N42 effet "sous verre" pour les cartes precieuses */
+.ix .b6 .underglass { position:relative; width:92px; aspect-ratio:2.5/3.5; margin:0 auto; }
+.ix .b6 .underglass img { width:100%; height:100%; object-fit:cover; display:block; box-shadow: 0 0 0 2px #ffd54a, 0 0 18px rgba(255,213,74,.55); }
+.ix .b6 .underglass::after { content:''; position:absolute; top:-20%; left:-40%; width:45%; height:140%; background: linear-gradient(100deg, transparent, rgba(255,255,255,.5), transparent); transform: translateX(-40%) rotate(8deg); animation: b7glass 4s ease-in-out infinite; pointer-events:none; }
+@keyframes b7glass { 0%,70% { transform: translateX(-120%) rotate(8deg); } 100% { transform: translateX(260%) rotate(8deg); } }
+@media (prefers-reduced-motion: reduce) { .ix .b6 .mote, .ix .b6 .underglass::after, .ix .b6 .spiralring.go::after { animation: none !important; } }
 `
 
 const Bay = ({ id, n, title, desc, kind, children }: { id: string; n: string; title: string; desc: string; kind?: 'tech'; children: React.ReactNode }) => (
@@ -199,10 +274,10 @@ function Replay({ children, label = 'Rejouer' }: { children: (k: number) => Reac
   return (<>{children(k)}<button type="button" className="rp" onClick={() => setK(x => x + 1)}>↻ {label}</button></>)
 }
 
-const Spine = ({ color, title, pages, locked, cover, cls = '', ghost, glintLock }: {
-  color?: string; title?: string; pages?: number; locked?: boolean; cover?: string; cls?: string; ghost?: boolean; glintLock?: boolean
+const Spine = ({ color, title, pages, locked, cover, cls = '', ghost, glintLock, style }: {
+  color?: string; title?: string; pages?: number; locked?: boolean; cover?: string; cls?: string; ghost?: boolean; glintLock?: boolean; style?: CSSProperties
 }) => (
-  <div className={'spine ' + cls} style={ghost ? undefined : { background: color }}>
+  <div className={'spine ' + cls} style={ghost ? style : { background: color, ...style }}>
     {ghost ? '+' : (
       <>
         {cover && <div className="cov"><img src={cover} alt="" /></div>}
@@ -353,6 +428,113 @@ function GrabWrap() {
   )
 }
 
+// ── Serie 47 : classeurs, le realisme ──────────────────────────────────
+const LitShadowDemo = () => {
+  const ref = useRef<HTMLDivElement>(null)
+  const move = (e: React.MouseEvent) => {
+    const el = ref.current; if (!el) return
+    const r = el.getBoundingClientRect(); const x = (e.clientX - r.left) / r.width
+    el.querySelectorAll<HTMLElement>('.spine.lit').forEach(s => s.style.setProperty('--sx', `${(x - 0.5) * 22}px`))
+  }
+  return (
+    <div className="shelf" ref={ref} onMouseMove={move}>
+      <div className="srow"><Spine cls="lit" color={BC[0]} title={C.mccain.nom} pages={3} /><Spine cls="lit" color={BC[3]} title={C.edwards.nom} pages={2} /><Spine cls="lit" color={BC[4]} title={C.mcw.nom} pages={4} /><Spine cls="lit" color={BC[1]} title={C.maxey.nom} pages={1} /></div>
+      <div className="board" />
+    </div>
+  )
+}
+
+const SpiralCascade = ({ k }: { k: number }) => {
+  const ref = useRef<HTMLDivElement>(null)
+  useEffect(() => {
+    const root = ref.current; if (!root) return
+    const rings = [...root.querySelectorAll('.spiralring')]
+    rings.forEach(r => r.classList.remove('go'))
+    const io = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) { (e.target as HTMLElement).classList.add('go'); io.unobserve(e.target) } }), { threshold: 0.4 })
+    const t = setTimeout(() => rings.forEach(r => io.observe(r)), 150)
+    return () => { clearTimeout(t); io.disconnect() }
+  }, [k])
+  return <div className="box" ref={ref} key={k}><div className="spiralrow">{Array.from({ length: 10 }, (_, i) => <div key={i} className="spiralring" style={{ ['--i' as string]: i } as CSSProperties} />)}</div></div>
+}
+
+const CoverTiltDemo = () => {
+  const move = (e: React.MouseEvent<HTMLDivElement>) => {
+    const el = e.currentTarget; const r = el.getBoundingClientRect()
+    el.style.setProperty('--mx', `${((e.clientX - r.left) / r.width) * 100}%`)
+    el.style.setProperty('--my', `${((e.clientY - r.top) / r.height) * 100}%`)
+  }
+  return <div className="covertilt" onMouseMove={move}><span className="spec" /></div>
+}
+
+const SoundToggle = () => {
+  const [on, setOn] = useState(false)
+  return (
+    <div className="swrow">
+      <div className={'sw' + (on ? ' on' : '')} onClick={() => setOn(v => !v)}><i /></div>
+      <span className="lab" style={{ margin: 0 }}>🔈 Son des pages {on ? 'activé' : 'désactivé (par défaut)'}</span>
+    </div>
+  )
+}
+
+const OpenBookDemo = () => {
+  const [open, setOpen] = useState(false)
+  return (
+    <div>
+      <div className="openstage"><div className={'openbook' + (open ? ' open' : '')}><div className="obp l" /><div className="obp r" /></div></div>
+      <button type="button" className="rp" onClick={() => setOpen(v => !v)}>{open ? '↺ Fermer' : '📖 Ouvrir'}</button>
+    </div>
+  )
+}
+
+const CineZoomDemo = ({ k }: { k: number }) => {
+  const [zoom, setZoom] = useState(false)
+  useEffect(() => { setZoom(false); const t = setTimeout(() => setZoom(true), 500); return () => clearTimeout(t) }, [k])
+  return <div className="cinestage" key={k}><div className={'cinecover' + (zoom ? ' zoom' : '')} /></div>
+}
+
+const MOTES = Array.from({ length: 14 }, (_, i) => ({ l: (i * 37) % 100, t: 6 + (i * 13) % 6, d: (i * 0.41) % 4 }))
+
+const IDEAS2: [string, string, React.ReactNode][] = [
+  ['Ombre portée qui suit une source de lumière', 'L\'ombre de chaque classeur sur le bois se décale légèrement selon la position du curseur (qui joue le rôle d\'une lumière) — déplace la souris au-dessus de l\'étagère.', (
+    <LitShadowDemo />)],
+  ['Anneaux de reliure spirale, reflet en cascade au scroll', 'Pour un classeur "spirale", chaque anneau métallique s\'allume d\'un reflet l\'un après l\'autre dès que la rangée entre dans l\'écran — un détail qui donne tout de suite envie de zoomer.', (
+    <Replay>{k => <SpiralCascade k={k} />}</Replay>)],
+  ['Le cuir réagit au mouvement de la souris', 'La couverture en cuir a un reflet spéculaire qui suit le curseur, comme une vraie matière sous la lumière — déplace la souris sur la couverture.', (
+    <CoverTiltDemo />)],
+  ['Reflet plastique glossy sur les pochettes au survol', 'Chaque pochette a le reflet diagonal typique du plastique rigide des protège-cartes, qui glisse au survol — un détail minuscule mais hyper reconnaissable pour un collectionneur.', (
+    <div className="row">{[C.mccain, C.edwards, C.mcw].map(c => <div key={c.nom} className="sleeve"><img src={c.img} alt="" style={{ width: '100%', height: '100%', objectFit: 'cover' }} /></div>)}</div>)],
+  ['Étagère en légère perspective 3D', 'Les classeurs aux extrémités de la rangée s\'inclinent très légèrement, comme si on regardait une vraie étagère depuis le centre — donne une sensation de profondeur sans gadget.', (
+    <div className="shelf persp"><div className="srow">{[0, 1, 2, 3, 4].map(i => <Spine key={i} color={BC[i]} title={`Classeur ${i + 1}`} pages={i} style={{ transform: `rotateY(${(i - 2) * -8}deg)` } as CSSProperties} />)}</div><div className="board" /></div>)],
+  ['Classeurs "usés" par une grande collection', 'Un classeur très rempli (beaucoup de pages, ancien) gagne une légère patine — coins arrondis, teinte un peu passée — pour distinguer d\'un coup d\'œil les classeurs vécus des tout nouveaux.', (
+    <div className="shelf"><div className="srow"><Spine cls="worn" color={BC[2]} title="Collection 2015-2019" pages={38} /><Spine color={BC[0]} title="2027 Prizm" pages={2} /></div><div className="board" /></div>)],
+  ['Poussière qui flotte doucement dans la lumière de l\'étagère', 'Quelques particules à peine visibles dérivent lentement devant le fond de la bibliothèque — pur détail d\'ambiance, comme la lumière dans une pièce.', (
+    <div className="shelf dust"><div className="srow">{[0, 1, 2].map(i => <Spine key={i} color={BC[i]} title={`Classeur ${i + 1}`} pages={i + 1} />)}</div><div className="board" />{MOTES.map((m, i) => <span key={i} className="mote" style={{ left: `${m.l}%`, bottom: 20, ['--t' as string]: `${m.t}s`, ['--d' as string]: `${m.d}s` } as CSSProperties} />)}</div>)],
+  ['Petit bruit de page qui tourne, désactivé par défaut', 'Un retour sonore très discret (un léger "swish" de papier) à chaque tournage de page, uniquement si le collectionneur l\'active lui-même — jamais imposé.', (
+    <div className="box"><SoundToggle /></div>)],
+  ['Reflet de vitrine en verre sur toute la bibliothèque', 'Un voile de lumière diagonal très subtil traverse toute l\'étagère, comme si elle était exposée derrière une vitre — renforce le sentiment de "collection exposée" plutôt que de simple liste.', (
+    <div className="shelf glass"><div className="srow">{[0, 1, 2, 3].map(i => <Spine key={i} color={BC[i]} title={`Classeur ${i + 1}`} pages={i} />)}</div><div className="board" /></div>)],
+  ['Une matière différente selon le type de classeur', 'Un classeur "portfolio" a un grain toilé discret, un classeur "anneaux" un plastique plus rigide et brillant sur les bords — le matériau raconte le type sans avoir à le lire.', (
+    <div className="shelf"><div className="srow"><Spine cls="fabric" color={BC[4]} title="Portfolio" pages={3} /><Spine cls="rigid" color={BC[3]} title="Anneaux" pages={5} /></div><div className="board" /></div>)],
+  ['Le classeur vedette mis en valeur sous un spot', 'Le classeur le plus rempli (ou épinglé par le collectionneur) peut être mis en avant en haut de la bibliothèque, sous un halo de lumière façon vitrine de musée.', (
+    <div className="spotwrap"><Spine color={BC[1]} title="Ma collection signature" pages={62} /></div>)],
+  ['Ouverture complète en éventail autour de la reliure', 'Au lieu d\'un simple flip plat, les deux pages s\'écartent légèrement en 3D autour de la reliure centrale à l\'ouverture — plus proche d\'un vrai classeur qu\'on ouvre entre les mains.', (
+    <OpenBookDemo />)],
+  ['Les anneaux "cliquent" visuellement à l\'ouverture', 'Au moment d\'ouvrir un classeur à anneaux, chaque anneau a un micro-rebond métallique en cascade — vend le mécanisme sans avoir besoin de son.', (
+    <div className="box"><div className="ringsRow">{[0, 1, 2, 3, 4].map(i => <div key={i} className="ringhole clickpulse" style={{ animationDelay: `${i * 70}ms` }} />)}</div></div>)],
+  ['Pochettes avec un vrai volume (relief intérieur)', 'Un léger jeu d\'ombre et de lumière à l\'intérieur de chaque pochette donne l\'impression d\'un vrai plastique creux plutôt qu\'un cadre plat — un détail qui se voit surtout sur les cases vides.', (
+    <div className="row">{[C.hawkins, C.maxey].map(c => <div key={c.nom} className="pocket"><img src={c.img} alt="" /></div>)}</div>)],
+  ['Mode "vitrine musée" à l\'ouverture d\'un classeur', 'À l\'ouverture, le reste de l\'écran s\'assombrit légèrement en vignette autour du classeur, comme un objet mis en lumière dans une vitrine — concentre l\'attention sans un vrai mode plein écran.', (
+    <div className="museumwrap"><div className="shelf"><div className="srow"><Spine color={BC[3]} title={C.mccain.nom} pages={4} /></div><div className="board" /></div></div>)],
+  ['Logo du sport discrètement embossé sur la tranche', 'Un tout petit médaillon (logo de l\'équipe ou de la ligue) en haut de la tranche, en relief plutôt qu\'en gros badge — personnalise sans surcharger le dos du classeur.', (
+    <div className="shelf"><div className="srow"><div style={{ position: 'relative' }}><Spine color={BC[3]} title={C.mccain.nom} pages={4} /><span className="emboss" /></div></div><div className="board" /></div>)],
+  ['Séparateurs façon languette de bibliothèque physique', 'Chaque section a une vraie languette en carton découpé au-dessus de l\'étagère plutôt qu\'un simple bandeau coloré plat — plus proche d\'un classeur de collection réel qu\'un intercalaire numérique.', (
+    <div><span className="tab" style={{ ['--fc' as string]: FC[1] } as CSSProperties}>Lakers</span><div className="shelf"><div className="srow"><Spine color={BC[3]} title={C.mccain.nom} pages={2} /></div><div className="board" /></div></div>)],
+  ['Transition cinématique de zoom à l\'ouverture', 'Au clic sur un classeur, la couverture grossit doucement vers l\'écran avant de laisser place aux pages — comme l\'ouverture d\'une appli de lecture, plutôt qu\'un changement de page sec.', (
+    <Replay>{k => <CineZoomDemo k={k} />}</Replay>)],
+  ['Effet "sous verre" pour les cartes les plus précieuses', 'Une carte numérotée /1 ou gradée 10 dans sa pochette gagne un halo doré et un reflet de verre qui la traverse lentement — la distingue immédiatement des autres cases sans avoir à lire l\'étiquette.', (
+    <div className="underglass"><img src={C.edwards.img} alt="" /></div>)],
+]
+
 export default function DaIdeas() {
   return (
     <div className="ix">
@@ -362,6 +544,11 @@ export default function DaIdeas() {
       <p className="lead">23 pistes pour les classeurs et la bibliothèque de classeurs de la galerie — visuel, animations, et 3 pistes purement techniques/perf (repérées "technique"), toutes vivantes ici (survol ou bouton « Rejouer »). Respectent « réduire les animations » du téléphone. Dis-moi les numéros à garder.</p>
       <nav className="tags">{IDEAS.map((d, i) => <a key={i} href={`#n${i + 1}`} className={d[3] === 'tech' ? 'k' : ''}>N{i + 1}</a>)}</nav>
       {IDEAS.map((d, i) => <Bay key={d[0]} id={`n${i + 1}`} n={`N${i + 1}`} title={d[0]} desc={d[1]} kind={d[3]}>{d[2]}</Bay>)}
+
+      <h1 className="sf" style={{ marginTop: 50 }}>Idées · Série 47 · Classeurs, le réalisme</h1>
+      <p className="lead">19 pistes en plus des précédentes, plus fantaisistes, centrées sur le rendu matière et la mise en scène — cuir qui réagit à la souris, ombres qui suivent une lumière, poussière, vitrine musée, ouverture en éventail... Toutes vivantes ici (survol, clic ou bouton « Rejouer »).</p>
+      <nav className="tags">{IDEAS2.map((_, i) => <a key={i} href={`#m${i + 1}`}>N{IDEAS.length + i + 1}</a>)}</nav>
+      {IDEAS2.map((d, i) => <Bay key={d[0]} id={`m${i + 1}`} n={`N${IDEAS.length + i + 1}`} title={d[0]} desc={d[1]}>{d[2]}</Bay>)}
     </div>
   )
 }
