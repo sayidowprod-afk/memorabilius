@@ -2342,9 +2342,9 @@ export default function GalerieClient({ userId, initialCardUrl, initialCards, in
               <FollowCounts userId={userId} onOpenList={setFollowModalTab} />
 
               {profile?.bio && (
-                <p title={profile.bio} style={{
+                <p style={{
                   fontSize: 13, color: dark ? '#aaa' : '#555', margin: '0 0 10px', lineHeight: 1.5, maxWidth: 400,
-                  display: '-webkit-box', WebkitLineClamp: 2, WebkitBoxOrient: 'vertical', overflow: 'hidden',
+                  whiteSpace: 'pre-wrap',
                 }}>{profile.bio}</p>
               )}
 
