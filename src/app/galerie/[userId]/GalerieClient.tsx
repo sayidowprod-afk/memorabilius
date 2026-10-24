@@ -1526,6 +1526,8 @@ export default function GalerieClient({ userId, initialCardUrl, initialCards, in
     else if (activeTab !== 'collection') sp.set('tab', activeTab)
     const binderParam = searchParams.get('binder')
     if (binderParam) sp.set('binder', binderParam)
+    const pageParam = searchParams.get('page')
+    if (pageParam) sp.set('page', pageParam)
     if (search) sp.set('q', search)
     if (fTeamDebounced) sp.set('team', fTeamDebounced)
     if (fBrandDebounced) sp.set('brand', fBrandDebounced)

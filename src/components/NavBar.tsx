@@ -28,6 +28,7 @@ export default function Navbar() {
   const prevNotifsRef = useRef(0)
   const [menuOpen, setMenuOpen] = useState(false)
   const [openDrop, setOpenDrop] = useState<'communaute' | 'outils' | 'lang' | null>(null)
+  const [searchOpen, setSearchOpen] = useState(false)
   const communauteRef = useRef<HTMLDivElement>(null)
   const outilsRef = useRef<HTMLDivElement>(null)
   const langRef = useRef<HTMLDivElement>(null)
@@ -158,6 +159,17 @@ export default function Navbar() {
         {/* Desktop */}
         <div style={{ display: 'flex', gap: 4, alignItems: 'center' }} className="nav-desktop">
 
+          {/* Communauté + Outils se retractent vers la gauche (largeur -> 0) pendant
+              que la recherche s'etend a cote -- cf. demande "balaye Communauté et
+              Outils vers la gauche". pointerEvents coupe pour ne pas rester
+              cliquable, sous sa propre largeur, pendant la transition. */}
+          <div style={{
+            display: 'flex', alignItems: 'center', gap: 4, overflow: 'hidden',
+            maxWidth: searchOpen ? 0 : 400, opacity: searchOpen ? 0 : 1,
+            transform: searchOpen ? 'translateX(-16px)' : 'translateX(0)',
+            transition: 'max-width 0.35s cubic-bezier(.4,0,.2,1), opacity 0.2s ease, transform 0.35s cubic-bezier(.4,0,.2,1)',
+            pointerEvents: searchOpen ? 'none' : 'auto',
+          }}>
           {/* Dropdown Communauté */}
           <div ref={communauteRef} style={{ position: 'relative' }}>
             <div style={{ padding: '0 12px', height: 60, display: 'flex', alignItems: 'center', ...navUnderline(communauteActive) }}>
@@ -185,7 +197,8 @@ export default function Navbar() {
                 <Link href="/gradation" style={dropItemStyle} onClick={closeDrop}>🔍 {t('nav_gradation')}</Link>
                 <Link href="/setlist" style={dropItemStyle} onClick={closeDrop}>📋 {t('nav_setlist')}</Link>
                 <Link href="/guides" style={dropItemStyle} onClick={closeDrop}>📖 {t('nav_guides')}</Link>
-                <Link href="/recherche" style={dropItemStyle} onClick={closeDrop}>{t('nav_recherche')}</Link>
+                {/* Pas de lien Recherche ici en desktop : la loupe du header le remplace.
+                    Reste present dans le menu mobile (plus bas) -- pas de loupe dediee la-bas. */}
                 <Link href="/tuto" style={dropItemStyle} onClick={closeDrop}>🎓 {t('nav_tuto')}</Link>
                 {isAdmin && (
                   <>
@@ -196,8 +209,9 @@ export default function Navbar() {
               </div>
             )}
           </div>
+          </div>
 
-          <HeaderSearch />
+          <HeaderSearch open={searchOpen} onToggle={v => { setSearchOpen(v); if (v) closeDrop() }} />
 
           {user && (
             <Link href={`/galerie/${user.id}`}

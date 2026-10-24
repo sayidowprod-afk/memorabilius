@@ -369,11 +369,22 @@ export default function BinderLibrary({ userId, isOwner, accent, pendingCard, on
 
   useEffect(() => { loadBinders() }, [userId])
 
-  // Ouverture directe d'un classeur partagé via lien (?binder=<id>)
+  // Ouverture directe d'un classeur partagé via lien (?binder=<id>), a la bonne
+  // page (?page=<n>) si presente -- sinon un F5 en pleine lecture renvoyait
+  // toujours a la couverture fermee, page 0 (signale "faudrait que ca nous
+  // remette sur le bon classeur a la bonne page"). openBinder() remet
+  // pageIndex/isOpen a leurs valeurs par defaut en synchrone avant son travail
+  // asynchrone (chargement des pochettes) -- on les corrige juste apres, une
+  // fois sa promesse resolue, sans rejouer l'animation d'ouverture.
   useEffect(() => {
     if (!initialBinderId || !binders.length || selected) return
     const b = binders.find(bi => bi.id === initialBinderId)
-    if (b) openBinder(b)
+    if (!b) return
+    const pageStr = searchParams.get('page')
+    const page = pageStr ? parseInt(pageStr, 10) : null
+    openBinder(b).then(() => {
+      if (page && page > 0) { setPageIndex(page); setIsOpen(true) }
+    })
   }, [initialBinderId, binders])
 
   // Filet de sécurité : si un pointeur est relâché/annulé n'importe où et que le
@@ -488,10 +499,20 @@ export default function BinderLibrary({ userId, isOwner, accent, pendingCard, on
     setCommentCount(count || 0)
   }
 
-  const syncBinderUrl = (binderId: number | null) => {
+  // binder + page geres ensemble, dans le MEME replace() : deux effets separes
+  // qui relisent chacun searchParams.toString() se marchent dessus (le second
+  // lit encore l'ancienne URL, pas celle que le premier vient d'ecrire dans le
+  // meme cycle de rendu, et efface donc son changement). page n'est ecrit que
+  // si on sait deja qu'on est au-dela de la couverture (voir finishFlip, seul
+  // endroit ou pageIndex change reellement) -- jamais via un effet reactif.
+  const syncBinderUrl = (binderId: number | null, page = 0) => {
     const params = new URLSearchParams(searchParams.toString())
-    if (binderId) params.set('binder', String(binderId))
-    else params.delete('binder')
+    if (binderId) {
+      params.set('binder', String(binderId))
+      if (page > 0) params.set('page', String(page)); else params.delete('page')
+    } else {
+      params.delete('binder'); params.delete('page')
+    }
     router.replace(`${pathname}?${params.toString()}`, { scroll: false })
   }
 
@@ -1162,7 +1183,11 @@ export default function BinderLibrary({ userId, isOwner, accent, pendingCard, on
   const finishFlip = (dir: 'next' | 'prev') => {
     setFlip(s => ({ dir, angle: dir === 'next' ? -180 : 180, anim: true, ...(s ? {} : {}) }))
     setTimeout(() => {
-      setPageIndex(p => dir === 'next' ? p + 2 : Math.max(0, p - 2))
+      setPageIndex(p => {
+        const next = dir === 'next' ? p + 2 : Math.max(0, p - 2)
+        if (selected) syncBinderUrl(selected.id, next)
+        return next
+      })
       setFlip(null)
     }, FLIP_MS)
   }
