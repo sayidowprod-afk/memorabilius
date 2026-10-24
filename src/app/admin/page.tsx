@@ -46,7 +46,7 @@ const GROUPS: { title: string; links: AdminLink[] }[] = [
   {
     title: 'Design',
     links: [
-      { href: '/admin/da', icon: '🎨', title: 'Idées visuelles — nouvelle DA', desc: '11 pistes pour renforcer la DA, en maquettes vivantes — page de travail, rien n\'est modifié sur le site' },
+      { href: '/admin/da', icon: '🎨', title: 'Idées visuelles — classeurs & bibliothèque', desc: '23 pistes (visuel, animations, technique/perf) pour les classeurs et la bibliothèque de la galerie, en maquettes vivantes — page de travail, rien n\'est modifié sur le site' },
       { href: '/design-preview/tags', icon: '🏷️', title: 'Comparaison des icônes', desc: 'RC / AUTO / PATCH / NUM : 4 styles comparés sur de vraies cartes' },
     ],
   },

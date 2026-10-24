@@ -4,9 +4,10 @@ import React, { useEffect, useRef, useState } from 'react'
 import type { CSSProperties } from 'react'
 import Link from 'next/link'
 
-// Idees visuelles pour pousser la nouvelle DA (Surfquest, marine -> bleu electrique, angles droits, doubles filets, metaux).
-// Page de TRAVAIL reservee aux admins : donnees d'exemple en dur, rien n'est lu ni ecrit.
-// Serie 45 : petites animations pour l'accueil.
+// Idees visuelles + techniques pour les classeurs et la bibliotheque de classeurs
+// (galerie). Page de TRAVAIL reservee aux admins : donnees d'exemple en dur,
+// rien n'est lu ni ecrit sur le vrai compte.
+// Serie 46 : classeurs & bibliotheque de classeurs.
 
 const SB = 'https://snnrkzbevjhdtviizfyp.supabase.co/storage/v1/object/public/avatars/cartes/eb730dee-414e-4fcb-89d8-4a7b3448c218/'
 const C = {
@@ -17,6 +18,9 @@ const C = {
   hawkins: { nom: 'Hersey Hawkins', img: SB + '1781534889963_recto.jpg' },
   luwawu: { nom: 'Luwawu-Cabarrot', img: SB + 'csv_1790632470730_4f41x1.jpg' },
 }
+// memes couleurs que BINDER_COLORS / FOLDER_SHELF_COLORS du vrai composant
+const BC = ['#c0392b', '#e2b13c', '#1a1a1a', '#1f3a5f', '#6b2737', '#3d5a3d']
+const FC = ['#4a6741', '#1f3a5f', '#6b2737']
 
 const CSS = `
 .ix { font-family: system-ui, sans-serif; color:#fff; min-height:100vh;
@@ -24,171 +28,169 @@ const CSS = `
 .ix * { box-sizing: border-box; }
 .ix img:not(.fc):not(.mi) { background: none !important; animation: none !important; }
 .ix .sf { font-family: 'Surfquest', Impact, 'Arial Narrow', sans-serif; font-weight: 400; text-transform: uppercase; letter-spacing: .02em; }
-.ix .ink, .ix .ink * { color: #06122e !important; }
-.ix .wht, .ix .wht * { color: #fff !important; }
 .ix h1 { font-size: clamp(34px,6vw,60px); margin: 8px 0 6px; line-height: .95; }
-.ix .lead { max-width: 740px; color: rgba(255,255,255,.72); font-size: 15px; line-height: 1.5; margin: 0 0 30px; }
+.ix .lead { max-width: 760px; color: rgba(255,255,255,.72); font-size: 15px; line-height: 1.5; margin: 0 0 30px; }
 .ix .back { color:#fff; text-decoration:none; font-weight:800; font-size:13px; letter-spacing:.08em; text-transform:uppercase; }
 .ix .bay { margin: 0 0 46px; max-width: 1180px; }
 .ix .eyebrow { display:inline-block; padding:5px 14px; border:3px solid #fff; box-shadow: inset 0 0 0 3px #08153b, inset 0 0 0 4.5px #fff; font: 800 12px system-ui; letter-spacing:.18em; text-transform:uppercase; }
-.ix .bay h2 { font-size: clamp(26px,4vw,40px); margin: 12px 0 6px; line-height: 1; }
-.ix .bay p.d { color: rgba(255,255,255,.7); max-width: 700px; margin: 0 0 16px; font-size: 14px; line-height: 1.5; }
+.ix .eyebrow.k { border-color: #e0a526; box-shadow: inset 0 0 0 3px #08153b, inset 0 0 0 4.5px #e0a526; color: #ffd98a; }
+.ix .bay h2 { font-size: clamp(24px,3.6vw,36px); margin: 12px 0 6px; line-height: 1.1; }
+.ix .bay p.d { color: rgba(255,255,255,.7); max-width: 720px; margin: 0 0 16px; font-size: 14px; line-height: 1.5; }
 .ix .stage { border: 3px solid rgba(255,255,255,.22); background: linear-gradient(135deg,#050912 0%,#08153b 55%,#0a2468 100%); padding: clamp(16px,3vw,30px); position:relative; overflow:hidden; }
-.ix .row { display:flex; gap: 24px; flex-wrap: wrap; align-items: flex-end; }
-.ix .cap { font: 700 11px system-ui; letter-spacing:.14em; text-transform:uppercase; color: rgba(255,255,255,.55); margin-top: 10px; }
-.ix .card { display:block; aspect-ratio: 2.5/3.5; object-fit: cover; border-radius: 0; box-shadow: 0 14px 30px rgba(0,0,0,.5); width:100%; }
-.ix .btn { background:#fff; color:#06122e !important; border:3px solid #fff; padding: 8px 16px; font: 800 12px system-ui; letter-spacing:.1em; text-transform:uppercase; cursor:pointer; }
-.ix .btn.o { background: transparent; color:#fff !important; }
 .ix .tags { display:flex; flex-wrap:wrap; gap: 8px; margin: 0 0 30px; }
 .ix .tags a { color:#fff; text-decoration:none; border: 2px solid rgba(255,255,255,.4); padding: 5px 10px; font: 800 10px system-ui; letter-spacing:.1em; text-transform:uppercase; }
 .ix .tags a:hover { background:#fff; color:#06122e; }
+.ix .tags a.k { border-color: #e0a526; color: #ffd98a; }
 
-/* serie 44 : barre d'atouts de la vignette de la galerie, memes classes que le site, seule la barre change (prefixe s4) */
-.ix .mk-grid { display: flex; flex-wrap: wrap; justify-content: center; gap: 10px; max-width: 1000px; }
-.ix .mk-grid .card-item { flex: 0 0 calc(20% - 8px); max-width: calc(20% - 8px); }
-@media (max-width: 900px) { .ix .mk-grid .card-item { flex: 0 0 calc(50% - 5px); max-width: calc(50% - 5px); } }
-.ix .s4 .gs-mq { align-items: stretch; }
-.ix .s4 .gs-seg { align-items: stretch; text-shadow: none; box-shadow: none; background: transparent; }
-.ix .s4 .gs-mq > span { align-items: stretch; }
-.ix .s4 .w { position: relative; display: flex; align-items: center; padding: 0 var(--wp, 16px); font: 900 11.5px/1 system-ui, sans-serif; letter-spacing: .14em; text-transform: uppercase; white-space: nowrap; color: var(--t, #fff) !important; background: linear-gradient(90deg, color-mix(in srgb, var(--p), var(--a)) 0%, var(--a) 30%, var(--a) 70%, color-mix(in srgb, var(--n), var(--a)) 100%); }
-.ix .s4 .w > span { display: inline-block; }
-.ix .s4 .gs-mq .sep { align-self: center; width: 1px; height: 8px; background: rgba(255,255,255,.7); }
-/* variantes */
-.ix .s4 .vz-chips .w { background: var(--a); border-right: 1px solid rgba(255,255,255,.75); }
-.ix .s4 .vz-out .gs-seg::after, .ix .s4 .vz-fil .gs-seg::after, .ix .s4 .vz-dbl .gs-seg::after { content: ''; position: absolute; inset: 0; z-index: 3; pointer-events: none; }
-.ix .s4 .vz-out .gs-seg::after { box-shadow: inset 0 0 0 1.5px #fff; }
-.ix .s4 .vz-fil .gs-seg::after { box-shadow: inset 0 1.5px 0 #fff, inset 0 -1.5px 0 #fff; }
-.ix .s4 .vz-gloss .w::after { content: ''; position: absolute; left: 0; right: 0; top: 0; height: 50%; background: linear-gradient(rgba(255,255,255,.42), rgba(255,255,255,.04)); pointer-events: none; }
-.ix .s4 .vz-haz .w { background: repeating-linear-gradient(-45deg, var(--a) 0 6px, color-mix(in srgb, var(--a) 62%, #000) 6px 12px); text-shadow: 0 1px 2px rgba(0,0,0,.6); }
-.ix .s4 .vz-under .gs-seg { background: #0b1230; box-shadow: inset 0 0 0 1px rgba(255,255,255,.16); }
-.ix .s4 .vz-under .w { background: none; color: var(--al) !important; box-shadow: inset 0 -3px 0 var(--a); }
-.ix .s4 .vz-neon .gs-seg { background: #070d24; }
-.ix .s4 .vz-neon .w { background: none; color: var(--al) !important; text-shadow: 0 0 5px var(--a), 0 0 11px var(--a); box-shadow: inset 0 1px 0 var(--a), inset 0 -1px 0 var(--a); }
-.ix .s4 .vz-chev .w { margin-left: -6px; padding: 0 20px 0 16px; clip-path: polygon(0 0, calc(100% - 7px) 0, 100% 50%, calc(100% - 7px) 100%, 0 100%, 7px 50%); background: var(--a); }
-.ix .s4 .vz-skew .w { transform: skewX(-18deg); margin: 0 2px; background: var(--a); } .ix .s4 .vz-skew .w > span { transform: skewX(18deg); }
-.ix .s4 .vz-cap .gs-seg::before, .ix .s4 .vz-cap .gs-seg::after { content: ''; position: absolute; top: 0; bottom: 0; width: 4px; background: var(--gt); z-index: 3; }
-.ix .s4 .vz-cap .gs-seg::before { left: 0; } .ix .s4 .vz-cap .gs-seg::after { right: 0; }
-.ix .s4 .vz-two .w { background: linear-gradient(180deg, var(--a) 0 50%, color-mix(in srgb, var(--a) 68%, #000) 50% 100%); }
-.ix .s4 .vz-light .gs-seg { background: #fff; }
-.ix .s4 .vz-light .w { background: none; color: var(--a) !important; box-shadow: inset 0 -2px 0 var(--a); }
-.ix .s4 .vz-sheen .gs-seg::after { content: ''; position: absolute; top: 0; bottom: 0; width: 28%; left: -40%; z-index: 3; background: linear-gradient(90deg, transparent, rgba(255,255,255,.6), transparent); animation: s4sheen 6s ease-in-out infinite; }
-@keyframes s4sheen { 0%, 55% { left: -40%; } 100% { left: 120%; } }
-.ix .s4 .vz-dbl .gs-seg::after { box-shadow: inset 0 0 0 1px #fff, inset 0 0 0 2px #08153b; }
-.ix .s4 .vz-glass .w { background: linear-gradient(180deg, color-mix(in srgb, var(--a) 70%, #fff) 0%, var(--a) 45%, color-mix(in srgb, var(--a) 70%, #000) 100%); box-shadow: inset 0 1px 0 rgba(255,255,255,.6), inset 0 -1px 0 rgba(0,0,0,.4); }
-@media (prefers-reduced-motion: reduce) { .ix .s4 .vz-sheen .gs-seg::after { animation: none; } }
-/* serie 45 : petites animations pour l'accueil (prefixe a4) */
-.ix .a4 { max-width: 920px; }
-.ix .a4 * { box-sizing: border-box; }
-.ix .a4 .box { border: 3px solid rgba(255,255,255,.85); background: linear-gradient(135deg,#050912 0%,#08153b 60%,#0a2468 100%); padding: 18px; position: relative; overflow: hidden; }
-.ix .a4 .row { display: flex; gap: 14px; flex-wrap: wrap; align-items: center; }
-.ix .a4 .rp { margin-top: 12px; padding: 7px 14px; background: transparent; border: 2px solid rgba(255,255,255,.6); color: #fff; font: 800 11px system-ui; letter-spacing: .12em; text-transform: uppercase; cursor: pointer; }
-.ix .a4 .rp:hover { background: #fff; color: #06122e; }
-.ix .a4 .big { font: 400 96px/.9 'Surfquest', Impact, sans-serif; color: #fff; }
-.ix .a4 .lab { font: 800 12px system-ui; letter-spacing: .16em; text-transform: uppercase; color: rgba(255,255,255,.75); }
-.ix .a4 .tiles { display: grid; grid-template-columns: repeat(4, 1fr); border: 3px solid #fff; }
-.ix .a4 .tile { padding: 16px 8px; text-align: center; border-right: 2px solid rgba(255,255,255,.25); position: relative; background: #0b1740; }
-.ix .a4 .tile:last-child { border-right: 0; }
-.ix .a4 .tile b { display: block; font: 400 52px/1 'Surfquest', Impact, sans-serif; color: #fff; }
-.ix .a4 .tile i { position: absolute; left: 0; top: 0; height: 3px; background: var(--c); width: 100%; transform-origin: left; }
-.ix .a4 .tile u { font: 800 10px system-ui; letter-spacing: .14em; text-decoration: none; opacity: .8; color: #fff; }
-.ix .a4 .tile s { display: block; font: 800 11px system-ui; color: #3ddc97; text-decoration: none; min-height: 14px; }
-/* A1 compteur : rien en CSS */
-/* A2 barre XP */
-.ix .a4 .xpb { height: 14px; background: rgba(255,255,255,.14); position: relative; overflow: hidden; }
-.ix .a4 .xpb i { display: block; height: 100%; background: #2f6bff; width: 0; animation: a4fill 1.6s cubic-bezier(.2,.8,.2,1) forwards; position: relative; overflow: hidden; }
-.ix .a4 .xpb i::after { content: ''; position: absolute; top: 0; bottom: 0; width: 40px; left: -60px; background: linear-gradient(90deg, transparent, rgba(255,255,255,.7), transparent); animation: a4shine 1.6s .3s ease-in-out infinite; }
-@keyframes a4fill { to { width: var(--w); } }
-@keyframes a4shine { to { left: 120%; } }
-/* A3 flamme */
-.ix .a4 .flame { display: inline-block; font-size: 44px; transform-origin: 50% 90%; animation: a4flame 1.1s ease-in-out infinite alternate; filter: drop-shadow(0 0 10px rgba(255,140,0,.6)); }
-@keyframes a4flame { 0% { transform: scale(1) rotate(-3deg); } 40% { transform: scale(1.08, 1.14) rotate(2deg); } 100% { transform: scale(.96, 1.06) rotate(-2deg); } }
-/* A4 eventail */
-.ix .a4 .fanw { position: relative; height: 230px; }
-.ix .a4 .fc { position: absolute; left: 50%; bottom: 0; width: 120px; aspect-ratio: 2.5/3.5; object-fit: cover; transform-origin: 50% 100%; box-shadow: 0 14px 26px rgba(0,0,0,.55); transform: translateX(-50%) rotate(0); animation: a4fan .9s cubic-bezier(.2,.9,.3,1.1) forwards, a4float 4.5s 1.2s ease-in-out infinite alternate; animation-delay: calc(var(--i) * 90ms), calc(1.2s + var(--i) * 200ms); }
-@keyframes a4fan { to { transform: translateX(calc(-50% + var(--dx))) rotate(var(--r)); } }
-@keyframes a4float { from { translate: 0 0; } to { translate: 0 -8px; } }
-/* A5 boutons */
-.ix .a4 .wb { position: relative; overflow: hidden; display: inline-block; padding: 16px 30px; background: #fff; color: #06122e; border: 3px solid #fff; font: 800 13px system-ui; letter-spacing: .12em; text-transform: uppercase; transition: transform .15s; cursor: pointer; }
-.ix .a4 .wb::after { content: ''; position: absolute; top: -20%; bottom: -20%; width: 40%; left: -60%; transform: skewX(-20deg); background: linear-gradient(90deg, transparent, rgba(0,61,166,.28), transparent); }
-.ix .a4 .wb:hover::after { animation: a4sweep .7s ease; }
-.ix .a4 .wb:hover { transform: translateY(-3px); } .ix .a4 .wb:active { transform: translateY(0) scale(.97); }
-@keyframes a4sweep { to { left: 130%; } }
-/* A6 tuiles en cascade */
-.ix .a4 .tile.in { opacity: 0; animation: a4up .6s cubic-bezier(.2,.8,.2,1) forwards; animation-delay: calc(var(--i) * 120ms); }
-.ix .a4 .tile.in i { transform: scaleX(0); animation: a4draw .6s ease forwards; animation-delay: calc(var(--i) * 120ms + 350ms); }
-.ix .a4 .tile.in s { animation: a4pulse 1.4s 1.2s ease-in-out infinite; }
-@keyframes a4up { from { opacity: 0; transform: translateY(18px); } to { opacity: 1; transform: none; } }
-@keyframes a4draw { to { transform: scaleX(1); } }
-@keyframes a4pulse { 50% { transform: scale(1.35); } }
-/* A7 recherche */
-.ix .a4 .sb { display: flex; border: 3px solid #fff; background: #0b1740; }
-.ix .a4 .sb span.t { flex: 1; padding: 14px; font: 500 15px system-ui; font-style: italic; color: rgba(255,255,255,.7); }
-.ix .a4 .sb .caret { display: inline-block; width: 2px; height: 1em; background: #fff; margin-left: 2px; vertical-align: -2px; animation: a4blink 1s steps(1) infinite; }
-.ix .a4 .sb b { width: 52px; display: grid; place-items: center; background: #fff; color: #06122e; font-size: 20px; animation: a4loupe 2.4s ease-in-out infinite; }
-@keyframes a4blink { 50% { opacity: 0; } }
-@keyframes a4loupe { 0%, 70%, 100% { transform: scale(1); } 80% { transform: scale(1.18) rotate(-8deg); } }
-/* A8 apparition au defilement */
-.ix .a4 .rv { opacity: 0; transform: translateY(26px); transition: opacity .6s ease, transform .6s cubic-bezier(.2,.8,.2,1); }
-.ix .a4 .rv.on { opacity: 1; transform: none; }
-.ix .a4 .blk { padding: 20px; border: 3px solid rgba(255,255,255,.8); background: #0b1740; margin-bottom: 12px; font: 800 14px system-ui; letter-spacing: .1em; text-transform: uppercase; color: #fff; }
-/* A9 podium */
-.ix .a4 .pod { display: flex; align-items: flex-end; gap: 12px; height: 190px; justify-content: center; }
-.ix .a4 .pb { width: 110px; background: linear-gradient(180deg,#2f6bff,#14307d); border: 3px solid #fff; display: grid; place-items: start center; padding-top: 8px; font: 400 40px/1 'Surfquest', Impact, sans-serif; color: #fff; height: 0; animation: a4rise .9s cubic-bezier(.2,.8,.2,1) forwards; animation-delay: calc(var(--i) * 160ms); }
-.ix .a4 .pb.gold { background: linear-gradient(180deg,#ffd54a,#a8770a); animation: a4rise .9s cubic-bezier(.2,.8,.2,1) forwards, a4gold 2.2s 1.2s ease-in-out infinite; animation-delay: calc(var(--i) * 160ms), 1.2s; }
-@keyframes a4rise { to { height: var(--h); } }
-@keyframes a4gold { 50% { box-shadow: 0 0 26px rgba(255,213,74,.75); } }
-/* A10 carte du jour */
-.ix .a4 .cdj { position: relative; width: 150px; aspect-ratio: 2.5/3.5; margin: 6px auto; animation: a4breath 4s ease-in-out infinite; }
-.ix .a4 .cdj img { width: 100%; height: 100%; object-fit: cover; display: block; box-shadow: 0 18px 34px rgba(0,0,0,.6); }
-.ix .a4 .cdj .sh { position: absolute; inset: 0; overflow: hidden; pointer-events: none; }
-.ix .a4 .cdj .sh::after { content: ''; position: absolute; top: -20%; bottom: -20%; width: 40%; left: -60%; transform: skewX(-18deg); background: linear-gradient(90deg, transparent, rgba(255,255,255,.55), transparent); animation: a4sweep 5s 1s ease-in-out infinite; }
-.ix .a4 .sp { position: absolute; color: #ffd54a; font-size: 16px; animation: a4spark 2.6s ease-in-out infinite; animation-delay: var(--d); opacity: 0; text-shadow: 0 0 8px rgba(255,213,74,.9); }
-@keyframes a4breath { 50% { transform: translateY(-6px) rotate(.6deg); } }
-@keyframes a4spark { 0%, 100% { opacity: 0; transform: scale(.4) rotate(0); } 50% { opacity: 1; transform: scale(1.1) rotate(30deg); } }
-/* A11 badge presque debloque */
-.ix .a4 .pill { display: inline-grid; place-items: center; width: 54px; height: 54px; border: 3px solid #fff; font-size: 26px; animation: a4bounce 1.8s ease-in-out infinite; }
-.ix .a4 .gb { height: 14px; background: rgba(255,255,255,.14); position: relative; flex: 1; min-width: 220px; }
-.ix .a4 .gb i { display: block; height: 100%; width: 92%; background: #e0a526; position: relative; }
-.ix .a4 .gb i::after { content: ''; position: absolute; right: -3px; top: -3px; bottom: -3px; width: 6px; background: #fff; box-shadow: 0 0 12px #ffd54a; animation: a4pulse2 1.2s ease-in-out infinite; }
-@keyframes a4bounce { 0%, 60%, 100% { transform: translateY(0); } 70% { transform: translateY(-9px); } 80% { transform: translateY(0); } 88% { transform: translateY(-4px); } }
-@keyframes a4pulse2 { 50% { opacity: .35; } }
-/* A12 niveau */
-.ix .a4 .lv { position: relative; width: 70px; height: 70px; border: 3px solid #fff; display: grid; place-items: center; font: 400 38px 'Surfquest', Impact, sans-serif; color: #fff; }
-.ix .a4 .lv.pop { animation: a4pop .6s cubic-bezier(.2,.9,.3,1.3); }
-.ix .a4 .lv .ring { position: absolute; inset: -3px; border: 3px solid #ffd54a; opacity: 0; }
-.ix .a4 .lv.pop .ring { animation: a4ring .8s ease-out; }
-@keyframes a4pop { 0% { transform: scale(1); } 40% { transform: scale(1.25) rotate(-4deg); } 100% { transform: scale(1); } }
-@keyframes a4ring { from { opacity: .9; transform: scale(1); } to { opacity: 0; transform: scale(2); } }
-/* A13 pseudo */
-.ix .a4 .nm { font: 400 64px/1 'Surfquest', Impact, sans-serif; color: #fff; text-transform: uppercase; display: inline-flex; }
-.ix .a4 .nm span { display: inline-block; opacity: 0; transform: translateY(-30px) rotate(-8deg); animation: a4letter .5s cubic-bezier(.2,.9,.3,1.2) forwards; animation-delay: calc(var(--i) * 55ms); }
-@keyframes a4letter { to { opacity: 1; transform: none; } }
-/* A14 mosaique a la derive */
-.ix .a4 .mos { position: relative; height: 220px; overflow: hidden; background: #050912; }
-.ix .a4 .mos img { position: absolute; width: 90px; aspect-ratio: 2.5/3.5; object-fit: cover; opacity: .55; animation: a4drift var(--t) ease-in-out infinite alternate; left: var(--x); top: var(--y); }
-@keyframes a4drift { from { transform: translate(0, 0) rotate(var(--r)); } to { transform: translate(var(--dx), var(--dy)) rotate(calc(var(--r) + 4deg)); } }
-.ix .a4 .mos::after { content: ''; position: absolute; inset: 0; background: linear-gradient(90deg, #050912 0%, rgba(5,9,18,.5) 55%, transparent 100%); }
-.ix .a4 .mos h4 { position: absolute; z-index: 2; left: 20px; top: 50%; transform: translateY(-50%); margin: 0; font: 400 70px/.9 'Surfquest', Impact, sans-serif; color: #fff; }
-/* A15 confettis */
-.ix .a4 .bz { position: relative; display: inline-block; }
-.ix .a4 .cf { position: absolute; left: 50%; top: 50%; width: 8px; height: 8px; background: var(--c); animation: a4burst .9s cubic-bezier(.1,.7,.3,1) forwards; }
-@keyframes a4burst { from { transform: translate(-50%, -50%) rotate(0); opacity: 1; } to { transform: translate(calc(-50% + var(--x)), calc(-50% + var(--y))) rotate(var(--r)); opacity: 0; } }
-/* A16 tilt */
-.ix .a4 .tiltw { perspective: 700px; display: grid; place-items: center; height: 250px; }
-.ix .a4 .tiltc { width: 150px; aspect-ratio: 2.5/3.5; transition: transform .12s ease-out; transform-style: preserve-3d; position: relative; }
-.ix .a4 .tiltc img { width: 100%; height: 100%; object-fit: cover; display: block; box-shadow: 0 20px 36px rgba(0,0,0,.6); }
-.ix .a4 .tiltc .gl { position: absolute; inset: 0; background: radial-gradient(circle at var(--gx, 50%) var(--gy, 50%), rgba(255,255,255,.4), transparent 55%); mix-blend-mode: overlay; pointer-events: none; }
-/* A17 squelette */
-.ix .a4 .sk { height: 18px; background: linear-gradient(90deg, rgba(255,255,255,.07) 25%, rgba(255,255,255,.2) 50%, rgba(255,255,255,.07) 75%); background-size: 200% 100%; animation: a4sk 1.3s linear infinite; margin-bottom: 10px; }
-@keyframes a4sk { to { background-position: -200% 0; } }
-@media (prefers-reduced-motion: reduce) { .ix .a4 * { animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; } }
+/* ── Serie 46 : classeurs & bibliotheque (prefixe b6) ───────────────── */
+.ix .b6 { max-width: 980px; }
+.ix .b6 * { box-sizing: border-box; }
+.ix .b6 .box { border: 3px solid rgba(255,255,255,.85); background: linear-gradient(135deg,#050912 0%,#08153b 60%,#0a2468 100%); padding: 18px; position: relative; overflow: hidden; }
+.ix .b6 .rp { margin-top: 14px; padding: 7px 14px; background: transparent; border: 2px solid rgba(255,255,255,.6); color: #fff; font: 800 11px system-ui; letter-spacing: .12em; text-transform: uppercase; cursor: pointer; }
+.ix .b6 .rp:hover { background: #fff; color: #06122e; }
+.ix .b6 .lab { font: 800 11px system-ui; letter-spacing: .12em; text-transform: uppercase; color: rgba(255,255,255,.7); margin-bottom: 10px; }
+.ix .b6 .row { display:flex; gap: 14px; align-items: center; flex-wrap: wrap; }
+
+/* etagere + dos de classeurs, fidele au vrai rendu (largeur 40px, coins hauts arrondis, ombres internes) */
+.ix .b6 .shelf { background: linear-gradient(180deg, #1a2638, #0d1824); border-radius: 14px; padding: 20px 18px 10px; position: relative; overflow: hidden; }
+.ix .b6 .srow { display: flex; align-items: flex-end; gap: 5px; padding-bottom: 10px; }
+.ix .b6 .board { height: 11px; border-radius: 2px; background: #2f6bff; box-shadow: 0 4px 10px rgba(0,0,0,.5); margin-bottom: 16px; opacity: .9; }
+.ix .b6 .spine { position: relative; width: 40px; height: 150px; border-radius: 4px 4px 0 0; flex-shrink: 0; cursor: pointer;
+  box-shadow: inset 4px 0 0 rgba(255,255,255,.2), inset -4px 0 0 rgba(0,0,0,.28), 2px 2px 5px rgba(0,0,0,.4);
+  transition: transform .22s cubic-bezier(.3,1.5,.4,1), box-shadow .22s; display:flex; flex-direction:column; align-items:center; overflow:hidden; }
+.ix .b6 .spine .ttl { margin: auto 0 10px; background: rgba(0,0,0,.38); border-radius: 2px; padding: 8px 2px; writing-mode: vertical-rl; transform: rotate(180deg);
+  font: 600 9px system-ui; letter-spacing: .06em; color: rgba(255,255,255,.92); max-height: 118px; overflow: hidden; white-space: nowrap; }
+.ix .b6 .spine .lock { position: absolute; top: 6px; right: 4px; font-size: 9px; }
+.ix .b6 .spine .cov { width: 100%; height: 46px; flex-shrink: 0; overflow: hidden; border-bottom: 1px solid rgba(0,0,0,.2); }
+.ix .b6 .spine .cov img { width: 100%; height: 100%; object-fit: cover; }
+
+/* N1 cuir + titre dore */
+.ix .b6 .spine.leather { background: linear-gradient(145deg,#7a3b2e,#4a2016 55%,#2c130d); }
+.ix .b6 .spine.leather::before { content:''; position:absolute; inset:0; background: repeating-linear-gradient(115deg, transparent 0 3px, rgba(0,0,0,.14) 3px 4px); mix-blend-mode: multiply; pointer-events:none; }
+.ix .b6 .spine.leather .ttl { background: none; color:#e8c468; text-shadow: 0 1px 0 rgba(0,0,0,.65), 0 0 7px rgba(232,196,104,.3); }
+
+/* N2 sortie au survol */
+.ix .b6 .spine.pull:hover { transform: translateY(-18px) rotate(-3deg); box-shadow: 0 18px 28px rgba(0,0,0,.55); z-index: 3; }
+
+/* N3 etagere qui s'affaisse + classeur qui tombe */
+.ix .b6 .board.sag { animation: b6sag .55s ease .3s; }
+@keyframes b6sag { 32% { transform: scaleY(2.1) translateY(2px); } 100% { transform: none; } }
+.ix .b6 .spine.drop { animation: b6drop .55s cubic-bezier(.22,.61,.36,1); }
+@keyframes b6drop { 0% { transform: translateY(-140%) rotate(-5deg); opacity:0; } 70% { transform: translateY(5%) rotate(0); opacity:1; } 100% { transform:none; opacity:1; } }
+
+/* N4 anneau de progression */
+.ix .b6 .ringwrap { position:relative; width:72px; height:72px; }
+.ix .b6 .ringwrap svg { transform: rotate(-90deg); }
+.ix .b6 .ringwrap .bgc { stroke: rgba(255,255,255,.15); fill:none; }
+.ix .b6 .ringwrap .fgc { stroke: #3ddc97; fill:none; stroke-linecap: round; stroke-dasharray: 194; stroke-dashoffset: 194; animation: b6ring 1.3s cubic-bezier(.2,.8,.2,1) forwards; }
+@keyframes b6ring { to { stroke-dashoffset: var(--off); } }
+.ix .b6 .ringwrap .pct { position:absolute; inset:0; display:grid; place-items:center; font:800 14px system-ui; }
+
+/* N5 badge nouveau */
+.ix .b6 .newb { position:absolute; top:-7px; right:-7px; min-width:18px; height:18px; padding: 0 4px; background:#3ddc97; border-radius:9px; display:grid; place-items:center; font:900 9px system-ui; color:#06122e; box-shadow:0 0 0 2px #0d1824; animation: b6pulse 1.6s ease-in-out infinite; z-index: 2; }
+@keyframes b6pulse { 50% { transform: scale(1.16); box-shadow: 0 0 0 2px #0d1824, 0 0 10px rgba(61,220,151,.7); } }
+
+/* N6 rayon de lumiere ambiant */
+.ix .b6 .shelf.amb::after { content:''; position:absolute; top:-40%; bottom:-40%; width:22%; left:-40%; background: linear-gradient(100deg, transparent, rgba(255,255,255,.06), transparent); animation: b6sweeplight 9s ease-in-out infinite; pointer-events:none; }
+@keyframes b6sweeplight { 0%,62% { left:-40%; } 100% { left:140%; } }
+
+/* N7 cadenas qui scintille */
+.ix .b6 .spine .lock.glint { position:relative; }
+.ix .b6 .spine .lock.glint::after { content:''; position:absolute; inset:-5px; background: radial-gradient(circle, rgba(255,255,255,.95), transparent 60%); opacity:0; animation: b6glint 3.2s ease-in-out infinite; }
+@keyframes b6glint { 0%,82%,100% { opacity:0; } 88% { opacity:1; } }
+
+/* N8 etagere vide illustree */
+.ix .b6 .spine.ghost { background: transparent; box-shadow: none; border: 2px dashed rgba(255,255,255,.28); display:grid; place-items:center; color: rgba(255,255,255,.32); font-size: 20px; }
+
+/* N9 planche bois teintee */
+.ix .b6 .board.grain { position:relative; background: linear-gradient(180deg, var(--fc), color-mix(in srgb, var(--fc) 55%, #000)); }
+.ix .b6 .board.grain::after { content:''; position:absolute; inset:0; background: repeating-linear-gradient(90deg, rgba(0,0,0,.1) 0 2px, transparent 2px 8px); }
+
+/* N10 drag avec wobble */
+.ix .b6 .spine.grabbed { transform: translateY(-22px) scale(1.07) rotate(var(--w,-4deg)); box-shadow: 0 24px 32px rgba(0,0,0,.6); z-index: 4; }
+
+/* N11 flip de page avec ombre de poids */
+.ix .b6 .flipstage { perspective: 1400px; width: 170px; height: 230px; margin: 0 auto; position:relative; }
+.ix .b6 .fpage { position:absolute; inset:0; background: linear-gradient(135deg,#0f1b3d,#142a5c); border:2px solid rgba(255,255,255,.3); border-radius: 2px; }
+.ix .b6 .fpage.r.go { transform-origin: left center; animation: b6flip 1.15s cubic-bezier(.4,0,.2,1) forwards; backface-visibility:hidden; }
+@keyframes b6flip { to { transform: rotateY(-172deg); } }
+.ix .b6 .fpage.r.go::after { content:''; position:absolute; inset:0; background: linear-gradient(90deg, rgba(0,0,0,0), rgba(0,0,0,.55)); opacity:0; animation: b6flipshadow 1.15s ease forwards; }
+@keyframes b6flipshadow { 38% { opacity:0; } 50% { opacity:.75; } 62% { opacity:0; } }
+
+/* N12 case vide qui respire */
+.ix .b6 .eslot { width:72px; aspect-ratio:2.5/3.5; border:2px dashed rgba(255,255,255,.35); display:grid; place-items:center; animation: b6breathe 2.6s ease-in-out infinite; cursor:pointer; }
+@keyframes b6breathe { 50% { border-color: rgba(255,255,255,.7); } }
+.ix .b6 .eslot span { font-size:22px; color: rgba(255,255,255,.5); transition: transform .18s, color .18s; display:block; }
+.ix .b6 .eslot:hover span { transform: scale(1.4); color:#fff; }
+
+/* N13 carte qui vole vers sa case */
+.ix .b6 .flywrap { position:relative; height: 180px; }
+.ix .b6 .flyer { position:absolute; width:50px; aspect-ratio:2.5/3.5; object-fit:cover; box-shadow:0 10px 20px rgba(0,0,0,.5); animation: b6fly 1s cubic-bezier(.2,.8,.2,1) forwards; }
+@keyframes b6fly { 0% { left:6px; top:118px; transform: scale(1) rotate(-10deg); } 55% { left:150px; top:10px; transform: scale(1.12) rotate(5deg); } 100% { left:260px; top:34px; transform: scale(.82) rotate(0); } }
+.ix .b6 .landslot { position:absolute; left: 254px; top: 28px; width: 56px; aspect-ratio: 2.5/3.5; border: 2px dashed rgba(255,255,255,.4); }
+.ix .b6 .landslot.hit { animation: b6landflash .5s ease; }
+@keyframes b6landflash { 40% { box-shadow: 0 0 0 4px rgba(61,220,151,.5); border-color: #3ddc97; } }
+
+/* N14 reordonnancement magnetique */
+.ix .b6 .reorderRow { display:flex; gap:6px; align-items:flex-end; }
+.ix .b6 .reorderRow .gapx { width:0; transition: width .28s cubic-bezier(.3,1.4,.4,1); }
+.ix .b6 .reorderRow:hover .gapx { width:58px; }
+
+/* N15 reflet metallique des anneaux */
+.ix .b6 .ringsRow { display:flex; gap:12px; padding: 14px 10px; }
+.ix .b6 .ringhole { width:18px; height:18px; border-radius:50%; background: radial-gradient(circle at 35% 30%, #eee, #888 55%, #333 100%); position:relative; overflow:hidden; }
+.ix .b6 .ringhole::after { content:''; position:absolute; inset:0; background: linear-gradient(120deg, transparent 40%, rgba(255,255,255,.95) 50%, transparent 60%); transform: translateX(-130%); animation: b6ringshine 3.6s ease-in-out infinite; }
+@keyframes b6ringshine { 0%,68% { transform: translateX(-130%); } 100% { transform: translateX(130%); } }
+
+/* N16 coin de page qui se souleve */
+.ix .b6 .peelpage { position:relative; width:170px; height:220px; background: linear-gradient(135deg,#0f1b3d,#142a5c); border:2px solid rgba(255,255,255,.3); overflow:hidden; margin: 0 auto; }
+.ix .b6 .peelpage::after { content:''; position:absolute; right:0; bottom:0; width:0; height:0; border-style:solid; border-width:0 0 34px 34px; border-color: transparent transparent rgba(255,255,255,.88) transparent; filter: drop-shadow(-2px -2px 4px rgba(0,0,0,.4)); transition: border-width .2s ease; }
+.ix .b6 .peelpage:hover::after { border-width: 0 0 58px 58px; }
+
+/* N17 aperçu plein ecran "shared element" */
+.ix .b6 .lbwrap { position:relative; height:230px; }
+.ix .b6 .lbthumb { width:70px; aspect-ratio:2.5/3.5; object-fit:cover; cursor:zoom-in; box-shadow:0 8px 16px rgba(0,0,0,.4); }
+.ix .b6 .lbdim { position:absolute; inset:0; background:rgba(0,0,0,.65); opacity:0; transition:opacity .3s; pointer-events:none; }
+.ix .b6 .lbdim.on { opacity:1; }
+.ix .b6 .lbbig { position:absolute; left:50%; top:50%; width:70px; aspect-ratio:2.5/3.5; object-fit:cover; transform: translate(-50%,-50%); box-shadow:0 24px 44px rgba(0,0,0,.65); transition: width .35s cubic-bezier(.2,.8,.2,1); cursor: zoom-out; }
+.ix .b6 .lbbig.on { width:190px; }
+
+/* N18 squelettes dos de classeur */
+.ix .b6 .spine.sk { box-shadow:none; background: linear-gradient(90deg, rgba(255,255,255,.07) 25%, rgba(255,255,255,.2) 50%, rgba(255,255,255,.07) 75%); background-size:200% 100%; animation: b6sk 1.3s linear infinite; }
+@keyframes b6sk { to { background-position: -200% 0; } }
+
+/* N19 apparition en cascade des rangees */
+.ix .b6 .rv { opacity: 0; transform: translateY(22px); transition: opacity .5s ease, transform .5s cubic-bezier(.2,.8,.2,1); }
+.ix .b6 .rv.on { opacity: 1; transform: none; }
+
+/* N20 chargement progressif (blur-up) */
+.ix .b6 .bu { position:relative; width:94px; aspect-ratio:2.5/3.5; overflow:hidden; }
+.ix .b6 .bu img { position:absolute; inset:0; width:100%; height:100%; object-fit:cover; }
+.ix .b6 .bu .ph { filter: blur(16px) saturate(1.3) brightness(1.1); transform: scale(1.15); transition: opacity .5s ease; }
+.ix .b6 .bu .sharp { opacity:0; transition: opacity .5s ease .08s; }
+.ix .b6 .bu.loaded .ph { opacity:0; }
+.ix .b6 .bu.loaded .sharp { opacity:1; }
+
+/* N21-23 schemas technique */
+.ix .b6 .pgstrip { display:flex; gap:6px; flex-wrap: wrap; }
+.ix .b6 .pg { width:36px; height:48px; border-radius:3px; display:grid; place-items:center; font:800 10px system-ui; color:rgba(255,255,255,.5); background: rgba(255,255,255,.06); border:1.5px solid rgba(255,255,255,.14); }
+.ix .b6 .pg.on { background:#2f6bff; border-color:#2f6bff; color:#fff; }
+.ix .b6 .pg.dom { background: rgba(61,220,151,.18); border-color:#3ddc97; color:#fff; }
+.ix .b6 .pg.off { background: repeating-linear-gradient(45deg, rgba(255,255,255,.03) 0 4px, transparent 4px 8px); }
+.ix .b6 .tl { display:flex; align-items:flex-end; gap:3px; height: 50px; }
+.ix .b6 .tk { width:6px; border-radius: 2px 2px 0 0; }
+.ix .b6 .tk.bad { background: #e74c3c; height: 14px; }
+.ix .b6 .tk.good { background: #3ddc97; height: 34px; }
+.ix .b6 .brace { font-size: 11px; color: rgba(255,255,255,.55); margin-top: 4px; }
+@media (prefers-reduced-motion: reduce) { .ix .b6 * { animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; } }
 `
-const Bay45 = ({ id, n, title, desc, children }: { id: string; n: string; title: string; desc: string; children: React.ReactNode }) => (
+
+const Bay = ({ id, n, title, desc, kind, children }: { id: string; n: string; title: string; desc: string; kind?: 'tech'; children: React.ReactNode }) => (
   <section className="bay" id={id}>
-    <span className="eyebrow">{n}</span>
+    <span className={'eyebrow' + (kind === 'tech' ? ' k' : '')}>{n}{kind === 'tech' ? ' · technique' : ''}</span>
     <h2 className="sf">{title}</h2>
     <p className="d">{desc}</p>
-    <div className="stage"><div className="a4">{children}</div></div>
+    <div className="stage"><div className="b6">{children}</div></div>
   </section>
 )
 // remonte l'animation : un compteur « Rejouer » change la cle du contenu
@@ -196,118 +198,170 @@ function Replay({ children, label = 'Rejouer' }: { children: (k: number) => Reac
   const [k, setK] = useState(0)
   return (<>{children(k)}<button type="button" className="rp" onClick={() => setK(x => x + 1)}>↻ {label}</button></>)
 }
-function useCount(to: number, ms: number, k: number) {
-  const [v, setV] = useState(0)
-  useEffect(() => {
-    let raf = 0; const t0 = performance.now()
-    const f = (t: number) => { const p = Math.min(1, (t - t0) / ms); setV(Math.round(to * (1 - Math.pow(1 - p, 3)))); if (p < 1) raf = requestAnimationFrame(f) }
-    raf = requestAnimationFrame(f); return () => cancelAnimationFrame(raf)
-  }, [to, ms, k])
-  return v
-}
-const CountBig = ({ k }: { k: number }) => { const v = useCount(602, 1500, k); return <span className="big">{v}</span> }
-const CountTile = ({ k, to, label, c, plus }: { k: number; to: number; label: string; c: string; plus?: string }) => { const v = useCount(to, 1300, k); return <div className="tile" style={{ ['--c' as string]: c } as CSSProperties}><i /><b>{v}</b><u>{label}</u><s>{plus || ''}</s></div> }
-const FAN = [C.mccain.img, C.edwards.img, C.mcw.img, C.maxey.img, C.hawkins.img]
-const FanDeploy = ({ k }: { k: number }) => (
-  <div className="fanw" key={k}>{FAN.map((u, i) => <img key={i} className="fc" src={u} alt="" style={{ ['--i' as string]: i, ['--dx' as string]: `${(i - 2) * 62}px`, ['--r' as string]: `${(i - 2) * 9}deg`, zIndex: i === 2 ? 9 : 5 - Math.abs(i - 2) } as CSSProperties} />)}</div>
+
+const Spine = ({ color, title, pages, locked, cover, cls = '', ghost, glintLock }: {
+  color?: string; title?: string; pages?: number; locked?: boolean; cover?: string; cls?: string; ghost?: boolean; glintLock?: boolean
+}) => (
+  <div className={'spine ' + cls} style={ghost ? undefined : { background: color }}>
+    {ghost ? '+' : (
+      <>
+        {cover && <div className="cov"><img src={cover} alt="" /></div>}
+        {locked && <span className={'lock' + (glintLock ? ' glint' : '')}>🔒</span>}
+        <span className="ttl">{title}{pages ? ` · ${pages}` : ''}</span>
+      </>
+    )}
+  </div>
 )
-const Typer = () => {
-  const words = ['un joueur…', 'un set…', 'un collectionneur…', 'une carte…']
-  const [i, setI] = useState(0); const [n, setN] = useState(0); const [del, setDel] = useState(false)
-  useEffect(() => {
-    const w = words[i]
-    const t = setTimeout(() => {
-      if (!del && n < w.length) setN(n + 1)
-      else if (!del) setDel(true)
-      else if (n > 0) setN(n - 1)
-      else { setDel(false); setI((i + 1) % words.length) }
-    }, del ? 35 : n === w.length ? 1100 : 70)
-    return () => clearTimeout(t)
-  }, [i, n, del])
-  return <div className="sb"><span className="t">Rechercher {words[i].slice(0, n)}<span className="caret" /></span><b>⌕</b></div>
+
+const Ring = ({ pct, k }: { pct: number; k: number }) => {
+  const r = 31, c = 2 * Math.PI * r
+  return (
+    <div className="ringwrap" key={k}>
+      <svg width={72} height={72}><circle className="bgc" cx={36} cy={36} r={r} strokeWidth={6} /><circle className="fgc" cx={36} cy={36} r={r} strokeWidth={6} style={{ ['--off' as string]: c - (pct / 100) * c }} /></svg>
+      <span className="pct">{pct}%</span>
+    </div>
+  )
 }
-const RevealDemo = ({ k }: { k: number }) => {
+
+const FlyDemo = ({ k }: { k: number }) => {
+  const [hit, setHit] = useState(false)
+  useEffect(() => { setHit(false); const t = setTimeout(() => setHit(true), 1000); return () => clearTimeout(t) }, [k])
+  return (
+    <div className="flywrap" key={k}>
+      <img className="flyer" src={C.maxey.img} alt="" />
+      <div className={'landslot' + (hit ? ' hit' : '')} />
+    </div>
+  )
+}
+
+const FlipDemo = ({ k }: { k: number }) => (
+  <div className="flipstage" key={k}>
+    <div className="fpage" />
+    <div className="fpage r go" />
+  </div>
+)
+
+const BlurUpDemo = ({ k }: { k: number }) => {
+  const [loaded, setLoaded] = useState(false)
+  useEffect(() => { setLoaded(false); const t = setTimeout(() => setLoaded(true), 900); return () => clearTimeout(t) }, [k])
+  return (
+    <div className={'bu' + (loaded ? ' loaded' : '')} key={k}>
+      <img className="ph" src={C.hawkins.img} alt="" />
+      <img className="sharp" src={C.hawkins.img} alt="" />
+    </div>
+  )
+}
+
+const LightboxDemo = () => {
+  const [on, setOn] = useState(false)
+  return (
+    <div className="lbwrap">
+      <div className="row" style={{ marginBottom: 14 }}>
+        {[C.mccain, C.edwards, C.mcw, C.maxey].map(c => <img key={c.nom} className="lbthumb" src={c.img} alt="" onClick={() => setOn(true)} />)}
+      </div>
+      <div className={'lbdim' + (on ? ' on' : '')} onClick={() => setOn(false)} />
+      <img className={'lbbig' + (on ? ' on' : '')} src={C.mccain.img} alt="" onClick={() => setOn(false)} />
+    </div>
+  )
+}
+
+const CascadeShelfDemo = ({ k }: { k: number }) => {
   const ref = useRef<HTMLDivElement>(null)
   useEffect(() => {
     const root = ref.current; if (!root) return
-    const els = [...root.querySelectorAll('.rv')]
-    els.forEach(e => e.classList.remove('on'))
-    const io = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) { (e.target as HTMLElement).classList.add('on'); io.unobserve(e.target) } }), { threshold: 0.35 })
-    const t = setTimeout(() => els.forEach((e, i) => setTimeout(() => io.observe(e), i * 0)), 150)
+    const rows = [...root.querySelectorAll('.rv')]
+    rows.forEach(e => e.classList.remove('on'))
+    const io = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) { (e.target as HTMLElement).classList.add('on'); io.unobserve(e.target) } }), { threshold: 0.3 })
+    const t = setTimeout(() => rows.forEach(e => io.observe(e)), 150)
     return () => { clearTimeout(t); io.disconnect() }
   }, [k])
-  return <div ref={ref}>{['Niveau et XP', 'Prochain badge', 'Défi de la semaine'].map((t, i) => <div key={t} className="blk rv" style={{ transitionDelay: `${i * 90}ms` }}>{t}</div>)}</div>
+  return (
+    <div className="shelf" ref={ref} key={k}>
+      {[0, 1, 2].map(row => (
+        <div className="rv" key={row} style={{ transitionDelay: `${row * 110}ms` }}>
+          <div className="srow">{[0, 1, 2, 3].map(i => <Spine key={i} color={BC[(row * 4 + i) % BC.length]} title={`Set ${row * 4 + i + 1}`} pages={2} />)}</div>
+          <div className="board" />
+        </div>
+      ))}
+    </div>
+  )
 }
-const LevelDemo = () => {
-  const [pop, setPop] = useState(0)
-  return (<div className="row"><div key={pop} className={'lv' + (pop ? ' pop' : '')}><span className="ring" />{5 + pop}</div><button type="button" className="rp" style={{ marginTop: 0 }} onClick={() => setPop(x => x + 1)}>+ Gagner un niveau</button></div>)
-}
-const Burst = () => {
-  const [b, setB] = useState(0)
-  const parts = Array.from({ length: 22 }, (_, i) => ({ x: Math.cos(i * 0.9) * (50 + (i % 5) * 18), y: Math.sin(i * 0.9) * (40 + (i % 4) * 16) - 20, r: i * 47, c: ['#ffd54a', '#ff9d3d', '#3B82F6', '#fff', '#A855F7'][i % 5] }))
-  return (<div className="row"><span className="bz"><span className="flame">🔥</span>{b > 0 && parts.map((p, i) => <i key={b + '-' + i} className="cf" style={{ ['--x' as string]: p.x + 'px', ['--y' as string]: p.y + 'px', ['--r' as string]: p.r + 'deg', ['--c' as string]: p.c } as CSSProperties} />)}</span>
-    <button type="button" className="rp" style={{ marginTop: 0 }} onClick={() => setB(x => x + 1)}>🎉 Nouveau record de série</button></div>)
-}
-const TiltDemo = () => {
-  const ref = useRef<HTMLDivElement>(null)
-  const move = (e: React.MouseEvent) => {
-    const el = ref.current; if (!el) return
-    const r = el.getBoundingClientRect(); const x = (e.clientX - r.left) / r.width, y = (e.clientY - r.top) / r.height
-    el.style.transform = `rotateY(${(x - 0.5) * 26}deg) rotateX(${(0.5 - y) * 22}deg)`
-    el.style.setProperty('--gx', x * 100 + '%'); el.style.setProperty('--gy', y * 100 + '%')
-  }
-  const leave = () => { if (ref.current) ref.current.style.transform = '' }
-  return <div className="tiltw" onMouseMove={move} onMouseLeave={leave}><div className="tiltc" ref={ref}><img src={C.maxey.img} alt="" /><span className="gl" /></div></div>
-}
-const Letters = ({ k }: { k: number }) => <div key={k} className="nm">{'GKNNN_CARDS'.split('').map((c, i) => <span key={i} style={{ ['--i' as string]: i } as CSSProperties}>{c}</span>)}</div>
 
-const IDEAS: [string, string, React.ReactNode][] = [
-  ['Compteurs qui montent à l\'arrivée', 'Le gros nombre de cartes et les 4 tuiles RC / Auto / Patch / Num comptent de 0 à leur valeur en 1,5 seconde, en ralentissant à la fin. Donne de la vie dès l\'ouverture.', (
-    <Replay>{k => (<div className="box"><div className="row" style={{ marginBottom: 14 }}><div><CountBig key={'b' + k} k={k} /><div className="lab">Cartes</div></div></div>
-      <div className="tiles"><CountTile k={k} to={120} label="RC" c="#F97316" plus="+1" /><CountTile k={k} to={29} label="Auto" c="#3B82F6" /><CountTile k={k} to={23} label="Patch" c="#EF4444" /><CountTile k={k} to={92} label="Num" c="#A855F7" plus="+1" /></div></div>)}</Replay>)],
-  ['Barre d\'XP qui se remplit avec un reflet', 'Les barres de niveau, de badge et de défi se remplissent en douceur au chargement, avec un reflet blanc qui les parcourt.', (
-    <Replay>{k => (<div className="box" key={k}><div className="lab" style={{ marginBottom: 8 }}>Niveau 5 · 347/360 XP</div><div className="xpb"><i style={{ ['--w' as string]: '96%' } as CSSProperties} /></div><div className="lab" style={{ margin: '16px 0 8px' }}>Prochain badge : 25 patches · 23/25</div><div className="xpb"><i style={{ ['--w' as string]: '92%', background: '#e0a526' } as CSSProperties} /></div></div>)}</Replay>)],
-  ['Flamme de la série qui vacille', 'La flamme à côté de « 58 jours de suite » respire en continu : elle s\'étire et penche légèrement, avec une lueur orange. Discret mais vivant.', (
-    <div className="box"><div className="row"><span className="flame">🔥</span><div><div className="big" style={{ fontSize: 56 }}>58</div><div className="lab">Jours de suite</div></div></div></div>)],
-  ['Éventail qui se déploie puis flotte', 'Les 5 dernières cartes sont empilées puis s\'ouvrent en éventail en cascade, et elles flottent ensuite de quelques pixels, chacune à son rythme.', (
-    <Replay>{k => <div className="box"><FanDeploy k={k} /></div>}</Replay>)],
-  ['Boutons blancs avec reflet au survol', 'Passage de la souris (ou toucher) : un reflet bleuté traverse le bouton, qui se soulève de 3 px ; au clic il s\'enfonce légèrement.', (
-    <div className="box"><div className="row"><span className="wb">Scanner de prix</span><span className="wb">Ajouter une carte</span><span className="wb">Trades</span></div></div>)],
-  ['Tuiles en cascade avec trait de couleur qui se dessine', 'Les 4 tuiles montent l\'une après l\'autre ; le trait de couleur de chaque atout se dessine de gauche à droite, et le « +1 » de la semaine pulse.', (
-    <Replay>{k => <div className="box" key={k}><div className="tiles">{[['120', 'RC', '#F97316', '+1'], ['29', 'Auto', '#3B82F6', ''], ['23', 'Patch', '#EF4444', ''], ['92', 'Num', '#A855F7', '+1']].map((x, i) => <div key={x[1]} className="tile in" style={{ ['--c' as string]: x[2], ['--i' as string]: i } as CSSProperties}><i /><b>{x[0]}</b><u>{x[1]}</u><s>{x[3]}</s></div>)}</div></div>}</Replay>)],
-  ['Recherche qui suggère en tapant toute seule', 'Le texte de la barre change tout seul (un joueur…, un set…, un collectionneur…) avec un curseur clignotant, et la loupe fait un petit mouvement régulier. Montre à quoi sert la barre.', (
-    <div className="box"><Typer /></div>)],
-  ['Blocs qui apparaissent en glissant quand on scrolle', 'Chaque bloc de l\'accueil (niveau, badge, défi, carte du jour, podium) monte en fondu quand il entre dans l\'écran, légèrement décalé du précédent. Une seule fois, pas à chaque passage.', (
-    <Replay>{k => <div className="box" style={{ paddingBottom: 6 }}><RevealDemo k={k} /></div>}</Replay>)],
-  ['Podium dont les marches montent, première en or lumineux', 'Les trois marches montent l\'une après l\'autre ; la première pulse d\'une lueur dorée en boucle lente.', (
-    <Replay>{k => <div className="box" key={k}><div className="pod">{[['2', 120], ['1', 170], ['3', 90]].map((x, i) => <div key={x[0]} className={'pb' + (x[0] === '1' ? ' gold' : '')} style={{ ['--h' as string]: x[1] + 'px', ['--i' as string]: i } as CSSProperties}>{x[0]}</div>)}</div></div>}</Replay>)],
-  ['Carte du jour qui respire avec reflet et étincelles', 'La carte à gratter flotte doucement ; un reflet blanc la traverse toutes les 5 secondes et de petites étoiles dorées scintillent autour.', (
-    <div className="box"><div className="cdj"><img src={C.edwards.img} alt="" /><span className="sh" />{[['-14px', '10%', '0s'], ['92%', '22%', '.8s'], ['-10px', '70%', '1.5s'], ['96%', '82%', '2s']].map((p, i) => <span key={i} className="sp" style={{ left: p[0], top: p[1], ['--d' as string]: p[2] } as CSSProperties}>✦</span>)}</div></div>)],
-  ['Badge presque débloqué : l\'icône rebondit', 'Quand il reste moins de 10 % pour le prochain badge, l\'icône fait un double rebond de temps en temps et le bout de la barre clignote d\'une lueur dorée.', (
-    <div className="box"><div className="row"><span className="pill">🩹</span><div style={{ flex: 1 }}><div className="lab" style={{ marginBottom: 8 }}>Prochain badge : 25 patches · 23/25</div><div className="gb"><i /></div></div></div></div>)],
-  ['Gain de niveau : le carré saute avec un anneau doré', 'Quand l\'XP fait passer un niveau, le carré du niveau « pop » (il grossit en s\'inclinant) et un anneau doré s\'en échappe.', (
-    <div className="box"><LevelDemo /></div>)],
-  ['Pseudo qui tombe lettre par lettre', 'Au chargement, le pseudo en Surfquest apparaît lettre par lettre (chute légère + rotation), comme une mise en place de typographie.', (
-    <Replay>{k => <div className="box"><div className="lab" style={{ marginBottom: 6 }}>Content de te revoir</div><Letters k={k} /></div>}</Replay>)],
-  ['Mosaïque de fond qui dérive lentement', 'Derrière le gros nombre, les cartes de la mosaïque glissent de quelques pixels en sens différents, très lentement (profondeur sans bouger l\'ensemble).', (
-    <div className="mos">{[...FAN, ...FAN, ...FAN].map((u, i) => <img key={i} className="mi" src={u} alt="" style={{ ['--x' as string]: `${28 + (i % 8) * 9}%`, ['--y' as string]: `${(i % 3) * 38 - 12}%`, ['--r' as string]: `${(i % 5) * 3 - 6}deg`, ['--t' as string]: `${7 + (i % 4) * 2}s`, ['--dx' as string]: `${(i % 2 ? 1 : -1) * 14}px`, ['--dy' as string]: `${(i % 3 - 1) * 10}px` } as CSSProperties} />)}<h4>602<br /><span style={{ fontSize: 24, letterSpacing: '.16em' }}>CARTES</span></h4></div>)],
-  ['Confettis quand la série bat un record', 'Quand la série de jours atteint un nouveau record personnel, une petite explosion de confettis (carrés de couleur, pas de cercles) part de la flamme. Une seule fois.', (
-    <div className="box" style={{ overflow: 'visible' }}><Burst /></div>)],
-  ['Carte qui s\'incline avec la souris (3D) et reflet qui suit', 'Sur ordinateur, la carte principale s\'incline vers le curseur avec un reflet lumineux qui le suit. Sur mobile, désactivé.', (
-    <div className="box"><TiltDemo /></div>)],
-  ['Squelettes qui brillent pendant le chargement', 'À la place d\'un vide ou d\'un cercle qui tourne, des blocs gris au dégradé qui défile aux formes des vrais blocs (nombre, tuiles, barre) : l\'accueil semble déjà là.', (
-    <div className="box"><div className="sk" style={{ width: '30%', height: 60 }} /><div className="row" style={{ gap: 8, marginBottom: 12 }}>{[0, 1, 2, 3].map(i => <div key={i} className="sk" style={{ flex: 1, height: 70, margin: 0 }} />)}</div><div className="sk" style={{ width: '100%' }} /><div className="sk" style={{ width: '70%' }} /></div>)],
+const IDEAS: [string, string, React.ReactNode, ('tech' | undefined)?][] = [
+  ['Dos de classeur en cuir avec titre doré embossé', 'Les classeurs premium (ou juste une variante de couleur) adoptent un grain de cuir subtil et un titre en lettres dorées légèrement gravées, au lieu d\'un simple aplat de couleur.', (
+    <div className="shelf"><div className="srow"><Spine cls="leather" title={C.mccain.nom} pages={4} /><Spine color={BC[3]} title={C.edwards.nom} pages={2} /><Spine color={BC[4]} title={C.mcw.nom} pages={3} /></div><div className="board" /></div>)],
+  ['Le classeur sort de l\'étagère au survol', 'Au lieu d\'un simple décalage vers le haut, le classeur s\'incline légèrement comme si on le tirait du doigt — l\'ombre grandit en même temps pour renforcer l\'effet de profondeur.', (
+    <div className="shelf"><div className="srow">{[0, 1, 2, 3].map(i => <Spine key={i} cls="pull" color={BC[i]} title={[C.mccain, C.edwards, C.mcw, C.maxey][i].nom} pages={i + 1} />)}</div><div className="board" /></div>)],
+  ['L\'étagère s\'affaisse quand on range un nouveau classeur', 'La planche de l\'étagère "encaisse" visuellement le poids : un léger tassement au moment où le classeur tombe et se pose, avec un petit rebond.', (
+    <Replay>{k => <div className="shelf" key={k}><div className="srow"><Spine color={BC[0]} title={C.mccain.nom} pages={3} /><Spine color={BC[1]} title={C.edwards.nom} pages={2} /><Spine cls="drop" color={BC[3]} title="Nouveau" pages={0} /></div><div className="board sag" /></div>}</Replay>)],
+  ['Anneau de progression du classeur', 'Un petit anneau coloré (plutôt qu\'un texte "12/16") entoure le cadenas ou le coin du classeur et montre d\'un coup d\'œil son taux de remplissage, en se dessinant à l\'ouverture de la bibliothèque.', (
+    <Replay>{k => <div className="row"><Ring pct={75} k={k} /><Ring pct={32} k={k} /><Ring pct={100} k={k} /></div>}</Replay>)],
+  ['Pastille "nouveau" sur un classeur fraîchement créé', 'Un petit badge vert qui pulse doucement sur le coin du classeur pendant quelques jours après sa création, pour le repérer tout de suite dans une grande bibliothèque.', (
+    <div className="shelf"><div className="srow"><Spine color={BC[0]} title={C.mccain.nom} pages={1} /><div style={{ position: 'relative' }}><Spine color={BC[2]} title="2027 Prizm" pages={0} /><span className="newb">N</span></div></div><div className="board" /></div>)],
+  ['Rayon de lumière ambiant qui balaie l\'étagère', 'Un très léger reflet diagonal traverse lentement le fond de la bibliothèque en continu, comme une vitrine éclairée — à peine perceptible, juste assez pour que l\'ensemble ne soit pas statique.', (
+    <div className="shelf amb"><div className="srow">{[0, 1, 2, 3, 4].map(i => <Spine key={i} color={BC[i % BC.length]} title={`Classeur ${i + 1}`} pages={i} />)}</div><div className="board" /></div>)],
+  ['Le cadenas scintille au lieu d\'être figé', 'Sur les classeurs privés, le petit 🔒 a un bref reflet lumineux toutes les quelques secondes — un détail qui signale "protégé" sans avoir besoin de le lire.', (
+    <div className="shelf"><div className="srow"><Spine color={BC[4]} title={C.mcw.nom} pages={2} locked glintLock /><Spine color={BC[1]} title={C.maxey.nom} pages={3} locked glintLock /></div><div className="board" /></div>)],
+  ['Étagère vide illustrée plutôt qu\'un bloc gris', 'Une section sans classeur affiche des silhouettes en pointillés avec un "+" au centre, plus accueillant qu\'un simple espace vide — invite clairement à ajouter le premier classeur.', (
+    <div className="shelf"><div className="srow">{[0, 1, 2].map(i => <Spine key={i} ghost cls="ghost" />)}</div><div className="board" /></div>)],
+  ['Planche d\'étagère en bois, teintée par la section', 'Chaque section (dossier) a déjà sa couleur sur le libellé — la planche en dessous reprend cette teinte avec un léger grain de bois, pour unifier visuellement toute la rangée.', (
+    <div className="shelf"><div className="srow">{[0, 1, 2].map(i => <Spine key={i} color={FC[0]} title={`Lakers ${i + 1}`} pages={i + 2} />)}</div><div className="board grain" style={{ ['--fc' as string]: FC[0] } as CSSProperties} /></div>)],
+  ['Glisser-déposer avec un léger "wobble" physique', 'Pendant la réorganisation, le classeur saisi se soulève, grossit très légèrement et s\'incline un peu au lieu de rester rigide — rend le geste plus satisfaisant qu\'un simple déplacement linéaire.', (
+    <GrabWrap />)],
+  ['Tourner une page avec le poids du papier', 'La page se retourne avec une ombre qui traverse la tranche au moment précis où elle passe à la verticale — donne une sensation de matière plutôt qu\'une simple rotation plate.', (
+    <Replay>{k => <FlipDemo k={k} />}</Replay>)],
+  ['Case vide qui respire, "+" qui grossit au survol', 'Une pochette vide a un contour en pointillés qui pulse doucement pour attirer l\'œil sans être criard ; le "+" au centre grossit nettement au survol pour confirmer qu\'on peut cliquer.', (
+    <div className="row"><div className="eslot"><span>+</span></div><div className="eslot"><span>+</span></div></div>)],
+  ['La carte "vole" du picker jusqu\'à sa case', 'Au lieu d\'apparaître instantanément, la carte choisie dans le picker parcourt une petite trajectoire courbe jusqu\'à sa pochette, qui flashe brièvement en vert à l\'arrivée pour confirmer le rangement.', (
+    <Replay>{k => <FlyDemo k={k} />}</Replay>)],
+  ['Réordonner les cartes d\'une page avec un espace magnétique', 'En glissant une carte sur sa page, un espace s\'ouvre en douceur entre ses voisines pour montrer où elle va atterrir, plutôt qu\'un déplacement sec.', (
+    <div className="box"><div className="reorderRow"><img className="card" src={C.mccain.img} alt="" style={{ width: 50 }} /><span className="gapx" /><img className="card" src={C.edwards.img} alt="" style={{ width: 50 }} /><img className="card" src={C.mcw.img} alt="" style={{ width: 50 }} /></div><p style={{ fontSize: 11, color: 'rgba(255,255,255,.5)', marginTop: 10 }}>Survole la rangée pour voir l&apos;espace s&apos;ouvrir.</p></div>)],
+  ['Reflet métallique animé sur les anneaux (classeur à anneaux)', 'Pour les classeurs de type "anneaux", chaque trou métallique a un bref reflet qui le traverse de temps en temps — un détail qui vend le matériau sans effort.', (
+    <div className="box"><div className="ringsRow">{[0, 1, 2, 3, 4, 5].map(i => <div key={i} className="ringhole" style={{ animationDelay: `${i * 0.3}s` }} />)}</div></div>)],
+  ['Le coin de la page se soulève au survol', 'Un petit coin de page qui se "décolle" visuellement quand le pointeur approche du bord — un indice discret et skeuomorphe qu\'on peut tourner la page à cet endroit.', (
+    <div className="peelpage" />)],
+  ['Aperçu plein cadre avec transition "élément partagé"', 'Cliquer sur une carte dans sa pochette l\'agrandit en partant exactement de sa position d\'origine (pas un fondu générique) puis elle revient à sa place en cliquant ailleurs — cohérent avec le reste du site.', (
+    <LightboxDemo />)],
+  ['Squelettes brillants en forme de dos de classeur', 'Pendant le chargement de la bibliothèque, des silhouettes de classeurs avec un dégradé qui défile remplacent le vide — la forme de l\'étagère est déjà là avant même les données.', (
+    <div className="shelf"><div className="srow">{[0, 1, 2, 3].map(i => <Spine key={i} ghost={false} cls="sk" />)}</div><div className="board" /></div>)],
+  ['Les rangées de l\'étagère apparaissent en cascade au défilement', 'Dans une grande bibliothèque, chaque rangée (section) monte en fondu à son tour quand elle entre dans l\'écran, légèrement décalée de la précédente — une seule fois, pas à chaque passage.', (
+    <Replay>{k => <CascadeShelfDemo k={k} />}</Replay>)],
+  ['Couvertures et cases en chargement progressif (flou → net)', 'Une version minuscule et floue de l\'image s\'affiche immédiatement, puis la vraie image prend le relais en fondu dès qu\'elle est prête — plus de saut brutal ni de case grise qui clignote.', (
+    <Replay>{k => <BlurUpDemo k={k} />}</Replay>)],
+  ['Ne précharger que les pages voisines, pas tout le classeur', 'Un classeur de 40 pages n\'a besoin de charger que la page affichée et ses deux voisines immédiates ; le reste se charge seulement quand on s\'en approche en tournant les pages. Évite de télécharger des dizaines d\'images jamais vues.', (
+    <div className="pgstrip">{Array.from({ length: 12 }, (_, i) => <div key={i} className={'pg' + (Math.abs(i - 5) <= 1 ? ' on' : '')}>{i + 1}</div>)}</div>
+  ), 'tech'],
+  ['Rendu virtualisé des pages d\'un gros classeur', 'Pour un classeur à 50+ pages, seules les 2-3 pages visibles sont réellement montées dans le DOM ; les autres ne réservent que leur hauteur de défilement. Le classeur reste fluide à faire défiler quelle que soit sa taille, au lieu de ralentir avec le nombre de pages.', (
+    <div className="pgstrip">{Array.from({ length: 12 }, (_, i) => <div key={i} className={'pg' + (Math.abs(i - 5) <= 1 ? ' dom' : ' off')}>{Math.abs(i - 5) <= 1 ? 'DOM' : ''}</div>)}</div>
+  ), 'tech'],
+  ['Regrouper les écritures de réorganisation plutôt qu\'une par case déplacée', 'Glisser 6 cartes pour réorganiser une page ne doit pas écrire 6 fois en base pendant le geste : on attend la fin du glisser-déposer (ou un court délai d\'inactivité) pour n\'envoyer qu\'une seule écriture groupée avec l\'ordre final.', (
+    <div><div className="lab">Avant · une écriture par pixel déplacé</div><div className="tl">{Array.from({ length: 14 }, (_, i) => <div key={i} className="tk bad" />)}</div><div className="lab" style={{ marginTop: 16 }}>Après · une écriture groupée à la fin du geste</div><div className="tl"><div className="tk good" /></div></div>
+  ), 'tech'],
 ]
+
+function GrabWrap() {
+  const [g, setG] = useState(false)
+  return (
+    <div>
+      <div className="shelf"><div className="srow">
+        <Spine color={BC[0]} title={C.mccain.nom} pages={3} />
+        <Spine color={BC[1]} title={C.edwards.nom} pages={2} cls={g ? 'grabbed' : ''} />
+        <Spine color={BC[2]} title={C.mcw.nom} pages={4} />
+      </div><div className="board" /></div>
+      <button type="button" className="rp" onClick={() => setG(v => !v)}>{g ? '↓ Reposer' : '✋ Saisir'}</button>
+    </div>
+  )
+}
 
 export default function DaIdeas() {
   return (
     <div className="ix">
       <style>{CSS}</style>
       <Link href="/admin" className="back">← Admin</Link>
-      <h1 className="sf">Idées · Série 45 · Animations de l&apos;accueil</h1>
-      <p className="lead">17 petites animations pour l&apos;accueil, toutes vivantes ici (bouton « Rejouer » ou à survoler). Elles respectent « réduire les animations » du téléphone, restent sobres (angles droits, pas de bruit) et ne jouent qu&apos;une fois à l&apos;arrivée quand c&apos;est une mise en place. Dis-moi les numéros à garder.</p>
-      <nav className="tags">{IDEAS.map((_, i) => <a key={i} href={`#n${i + 1}`}>N{i + 1}</a>)}</nav>
-      {IDEAS.map((d, i) => <Bay45 key={d[0]} id={`n${i + 1}`} n={`N${i + 1}`} title={d[0]} desc={d[1]}>{d[2]}</Bay45>)}
+      <h1 className="sf">Idées · Série 46 · Classeurs &amp; bibliothèque</h1>
+      <p className="lead">23 pistes pour les classeurs et la bibliothèque de classeurs de la galerie — visuel, animations, et 3 pistes purement techniques/perf (repérées "technique"), toutes vivantes ici (survol ou bouton « Rejouer »). Respectent « réduire les animations » du téléphone. Dis-moi les numéros à garder.</p>
+      <nav className="tags">{IDEAS.map((d, i) => <a key={i} href={`#n${i + 1}`} className={d[3] === 'tech' ? 'k' : ''}>N{i + 1}</a>)}</nav>
+      {IDEAS.map((d, i) => <Bay key={d[0]} id={`n${i + 1}`} n={`N${i + 1}`} title={d[0]} desc={d[1]} kind={d[3]}>{d[2]}</Bay>)}
     </div>
   )
 }
