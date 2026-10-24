@@ -371,14 +371,28 @@ async function _fetchPlayer(slug: string) {
     return all
   }
 
-  const [setsRpcRes0, manuData, profilesRes] = await Promise.all([
+  // .limit(200) laissait de cote les profils CSV au-dela des 200 premiers
+  // (498 profils ont un lien_csv) -- cartes manquantes pour ~60% des
+  // collectionneurs. Meme pagination .range() que fetchAllManuellesForPlayer.
+  const fetchAllCsvProfiles = async () => {
+    const all: any[] = []
+    for (let from = 0; ; from += 1000) {
+      const { data, error } = await supabase
+        .from('profiles')
+        .select('id, display_name, avatar_url, lien_csv, couleur_bordure')
+        .not('lien_csv', 'is', null)
+        .range(from, from + 999)
+      if (error || !data || data.length === 0) break
+      all.push(...data)
+      if (data.length < 1000) break
+    }
+    return all
+  }
+
+  const [setsRpcRes0, manuData, profilesData] = await Promise.all([
     supabase.rpc('get_player_sets_unaccent', { p_first: firstName, p_last: lastName }),
     fetchAllManuellesForPlayer(),
-    supabase
-      .from('profiles')
-      .select('id, display_name, avatar_url, lien_csv, couleur_bordure')
-      .not('lien_csv', 'is', null)
-      .limit(200),
+    fetchAllCsvProfiles(),
   ])
 
   const matchedManu = manuData.filter((m: any) => normalizeName(m.nom || '').includes(normTarget))
@@ -451,7 +465,7 @@ async function _fetchPlayer(slug: string) {
   const primarySport = [...sportCounts.entries()].sort((a, b) => b[1] - a[1])[0]?.[0] || 'nba'
   const [headshot, csvAll] = await Promise.all([
     getCachedHeadshot(playerName, primarySport),
-    fetchCsvCardsForProfiles(profilesRes.data || []),
+    fetchCsvCardsForProfiles(profilesData),
   ])
 
   const manuellesCards = matchedManu.map((m: any) => ({

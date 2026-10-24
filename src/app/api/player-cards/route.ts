@@ -117,8 +117,20 @@ export async function GET(req: NextRequest) {
     cardUrl: cardPageUrl(m.user_id, { nom: m.nom, annee: m.annee, marque: m.marque, collection: m.collection, image_recto: m.image_recto }),
   }))
 
-  const { data: profilesData } = await supabase.from('profiles').select('id, display_name, avatar_url, lien_csv, couleur_bordure').not('lien_csv', 'is', null).limit(200)
-  const csvAll = await fetchCsvCardsForProfiles(profilesData || [])
+  // .limit(200) laissait de cote les profils CSV au-dela des 200 premiers
+  // (498 profils ont un lien_csv) -- meme bug/fix que dans page.tsx.
+  const profilesData: any[] = []
+  for (let from = 0; ; from += 1000) {
+    const { data, error } = await supabase
+      .from('profiles')
+      .select('id, display_name, avatar_url, lien_csv, couleur_bordure')
+      .not('lien_csv', 'is', null)
+      .range(from, from + 999)
+    if (error || !data || data.length === 0) break
+    profilesData.push(...data)
+    if (data.length < 1000) break
+  }
+  const csvAll = await fetchCsvCardsForProfiles(profilesData)
   const csvCards: Card[] = csvAll
     .filter(c => normalizeName(c.name).includes(normTarget))
     .map(c => ({
