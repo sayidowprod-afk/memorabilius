@@ -35,11 +35,15 @@ export async function GET(req: NextRequest) {
   const safeQ = q.replace(/%/g, '\\%').replace(/_/g, '\\_')
 
   const [{ data: playerRows }, { data: profileRows }] = await Promise.all([
-    supabase.from('card_set_entries').select('player_name').ilike('player_name', `%${safeQ}%`).limit(30),
+    // Tries par nombre de cartes recensees sur le site (table precalculee,
+    // voir migration 20261024_search_players_by_count.sql -- un GROUP BY en
+    // direct sur card_set_entries, 14.8M+ lignes, depasse le statement_timeout
+    // des qu'une sous-chaine courante matche beaucoup de lignes).
+    supabase.rpc('search_players_by_count', { q: safeQ, max_rows: 6 }),
     supabase.rpc('search_profiles_unaccent', { q: safeQ, max_rows: 5 }),
   ])
 
-  const players = [...new Set((playerRows || []).map((r: any) => r.player_name).filter(Boolean))].slice(0, 6)
+  const players = (playerRows || []).map((r: any) => r.player_name).filter(Boolean)
   const collectors = (profileRows || []).map((p: any) => ({ id: p.id, display_name: p.display_name, avatar_url: p.avatar_url }))
 
   return NextResponse.json({ players, collectors })
