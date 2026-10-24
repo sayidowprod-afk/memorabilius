@@ -1,6 +1,7 @@
 import { createClient } from '@supabase/supabase-js'
 import type { Metadata } from 'next'
 import Link from 'next/link'
+import { Suspense, cache } from 'react'
 import { fetchCsvCardsForProfiles } from '@/lib/csvCards'
 import { getCachedHeadshot, fetchEspnPlayerBio } from '@/lib/espnHeadshot'
 import { normalizeName, cardPageUrl, stripDiacritics } from '@/lib/playerSlug'
@@ -8,6 +9,15 @@ import CommunityCardsSection from './CommunityCardsSection'
 import PlayerChecklistSection from './PlayerChecklistSection'
 import ScrollTopButton from '@/components/ScrollTopButton'
 import TagIcon from '@/components/TagIcon'
+
+// La fiche ESPN (findAthleteId -> bio/stats/awards -> noms d'equipes -> numeros
+// de maillot par equipe) enchaine plusieurs allers-retours reseau et peut
+// prendre plusieurs secondes -- avant, elle bloquait TOUTE la page (rien ne
+// s'affichait tant qu'elle n'etait pas finie, "super lent"). Deux composants
+// Suspense (BioMeta/BioCareer plus bas) la streament une fois le reste de la
+// page deja affiche. cache() dedup le fetch : les deux composants demandent
+// la meme bio pour le meme joueur, un seul appel reseau reel.
+const getCachedBio = cache((name: string, sport: string) => fetchEspnPlayerBio(name, sport))
 
 export const revalidate = 86400 // 24h (etait 1h -- contenu quasi statique, cf. reduction couts Vercel ISR)
 
@@ -338,16 +348,32 @@ async function _fetchPlayer(slug: string) {
   // variantes orthographiques d'un même joueur ("Doncic"/"Dončić") -- avant, chaque graphie
   // avait sa propre liste de sets, incomplète. Repli sur l'ancienne get_player_sets
   // (sensible aux accents) si la migration SQL n'a pas encore été exécutée.
-  const [setsRpcRes0, manuRes, profilesRes] = await Promise.all([
+  // .limit(5000) ne suffisait pas a lui seul : PostgREST plafonne chaque
+  // reponse a 1000 lignes (max_rows) quel que soit le .limit() demande, deja
+  // rencontre ailleurs sur le site (voir bcc3a8f0) -- un joueur avec plus de
+  // 1000 cartes communaute en perdait silencieusement le reste. Pagination
+  // reelle via .range(), sans plafond ("jamais de limites").
+  const fetchAllManuellesForPlayer = async () => {
+    const all: any[] = []
+    for (let from = 0; ; from += 1000) {
+      const { data, error } = await supabase
+        .from('cartes_manuelles')
+        .select('id, nom, annee, rc, auto, num, patch, marque, collection, variation, image_recto, is_horizontal, disponible_vente, created_at, user_id, profiles(display_name, avatar_url, couleur_bordure)')
+        .ilike('nom', `%${firstName}%`)
+        .ilike('nom', `%${lastName}%`)
+        .not('image_recto', 'is', null)
+        .order('created_at', { ascending: false })
+        .range(from, from + 999)
+      if (error || !data || data.length === 0) break
+      all.push(...data)
+      if (data.length < 1000) break
+    }
+    return all
+  }
+
+  const [setsRpcRes0, manuData, profilesRes] = await Promise.all([
     supabase.rpc('get_player_sets_unaccent', { p_first: firstName, p_last: lastName }),
-    supabase
-      .from('cartes_manuelles')
-      .select('id, nom, annee, rc, auto, num, patch, marque, collection, variation, image_recto, is_horizontal, disponible_vente, created_at, user_id, profiles(display_name, avatar_url, couleur_bordure)')
-      .ilike('nom', `%${firstName}%`)
-      .ilike('nom', `%${lastName}%`)
-      .not('image_recto', 'is', null)
-      .order('created_at', { ascending: false })
-      .limit(5000),
+    fetchAllManuellesForPlayer(),
     supabase
       .from('profiles')
       .select('id, display_name, avatar_url, lien_csv, couleur_bordure')
@@ -355,7 +381,7 @@ async function _fetchPlayer(slug: string) {
       .limit(200),
   ])
 
-  const matchedManu = (manuRes.data || []).filter((m: any) => normalizeName(m.nom || '').includes(normTarget))
+  const matchedManu = manuData.filter((m: any) => normalizeName(m.nom || '').includes(normTarget))
 
   // N'importe quelle erreur (fonction absente, timeout le temps que l'index associe
   // finisse de se construire...) : repli sur l'ancienne RPC (sensible aux accents,
@@ -406,18 +432,17 @@ async function _fetchPlayer(slug: string) {
   const rcFromManuelles = manuRcYears.length > 0 ? Math.min(...manuRcYears) : undefined
   const rcYear = rcFromSets && rcFromManuelles ? Math.min(rcFromSets, rcFromManuelles) : rcFromSets ?? rcFromManuelles
 
-  // ESPN détecte le sport via defaultLeagueSlug.
-  // Le sport des sets sert de hint pour la recherche ESPN (guide vers le bon joueur),
-  // mais c'est bio.sport (retourné par ESPN) qui gagne — sauf si ESPN ne peut pas détecter.
-  const setsBasedSport = sets[0]?.sport || 'nba'
-
-  // bio + csvAll en parallèle — gagne ~1s vs bio séquentiel
-  const [bio, csvAll] = await Promise.all([
-    fetchEspnPlayerBio(playerName, setsBasedSport),
+  // Le sport des sets sert de hint -- bio.sport (ESPN) est plus precis mais
+  // bio n'est plus recupere ici (voir getCachedBio plus haut : deplace dans
+  // les composants Suspense BioMeta/BioCareer pour ne plus bloquer le reste
+  // de la page). photo + csv restent eager : la photo est en cache DB
+  // (rapide, voir getCachedHeadshot), le csv est une donnee communaute, pas
+  // une dependance ESPN lente.
+  const primarySport = sets[0]?.sport || 'nba'
+  const [headshot, csvAll] = await Promise.all([
+    getCachedHeadshot(playerName, primarySport),
     fetchCsvCardsForProfiles(profilesRes.data || []),
   ])
-  const primarySport = bio?.sport ?? setsBasedSport
-  const headshot = await getCachedHeadshot(playerName, primarySport)
 
   const manuellesCards = matchedManu.map((m: any) => ({
     id: m.id,
@@ -533,7 +558,7 @@ async function _fetchPlayer(slug: string) {
   }
   const sortedYears = [...setsByYear.keys()].sort((a, b) => b - a)
 
-  return { playerName, sets: allSets, setsByYear, sortedYears, communityCards, rcYear, headshot, bio, uniqueCollectors, topVariations, primarySport }
+  return { playerName, sets: allSets, setsByYear, sortedYears, communityCards, rcYear, headshot, uniqueCollectors, topVariations, primarySport }
 }
 
 export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
@@ -549,18 +574,131 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   }
 }
 
+// ── Composants Suspense : fiche ESPN (bio) streamee apres le reste de la page ──
+// Les 3 composants ci-dessous appellent getCachedBio() pour le meme joueur --
+// cache() (React) dedup, un seul fetch ESPN reel pour les trois.
+
+async function BioTeamLogo({ playerName, sportHint }: { playerName: string; sportHint: string }) {
+  const bio = await getCachedBio(playerName, sportHint)
+  if (!bio?.currentTeamLogo) return null
+  const teamLogoUrl = `/api/team-logo?url=${encodeURIComponent(bio.currentTeamLogo)}`
+  return (
+    <img
+      src={teamLogoUrl}
+      alt=""
+      aria-hidden="true"
+      style={{
+        position: 'absolute',
+        right: '-20px',
+        top: '50%',
+        transform: 'translateY(-50%)',
+        width: '340px',
+        height: '340px',
+        objectFit: 'contain',
+        opacity: 0.18,
+        WebkitMaskImage: 'linear-gradient(to right, transparent 0%, white 45%)',
+        maskImage: 'linear-gradient(to right, transparent 0%, white 45%)',
+        pointerEvents: 'none',
+      }}
+    />
+  )
+}
+
+async function BioMeta({ playerName, sportHint }: { playerName: string; sportHint: string }) {
+  const bio = await getCachedBio(playerName, sportHint)
+  if (!bio) return null
+  return (
+    <>
+      {(bio.position || bio.jersey || bio.height || bio.weight) && (
+        <div style={{ fontSize: 14, color: 'rgba(255,255,255,0.75)', marginBottom: 10, display: 'flex', gap: 12, flexWrap: 'wrap', alignItems: 'center' }}>
+          {bio.jersey && <span style={{ fontWeight: 800, fontSize: 16 }}>#{bio.jersey}</span>}
+          {bio.position && <span>{bio.position}</span>}
+          {(bio.position && (bio.height || bio.weight)) && <span style={{ opacity: 0.35 }}>·</span>}
+          {bio.height && <span>{bio.height}</span>}
+          {bio.weight && <span style={{ color: 'rgba(255,255,255,0.55)' }}>{bio.weight}</span>}
+          {bio.nationality && <><span style={{ opacity: 0.35 }}>·</span><span>{bio.nationality}</span></>}
+        </div>
+      )}
+      {(bio.birthDate || bio.birthPlace) && (
+        <div style={{ fontSize: 12.5, color: 'rgba(255,255,255,0.6)', marginBottom: 16 }}>
+          🎂 {bio.birthDate && new Date(bio.birthDate).toLocaleDateString('fr-FR', { day: 'numeric', month: 'long', year: 'numeric' })}
+          {bio.birthPlace ? ` · ${bio.birthPlace}` : ''}
+          {bio.age ? ` (${bio.age} ans)` : ''}
+        </div>
+      )}
+    </>
+  )
+}
+
+async function BioCareer({ playerName, sportHint }: { playerName: string; sportHint: string }) {
+  const bio = await getCachedBio(playerName, sportHint)
+  const careerTimeline = bio?.career ? buildCareerTimeline(bio.career) : []
+  if (!((bio?.honors && bio.honors.length > 0) || careerTimeline.length > 0)) return null
+  return (
+    <div style={{ marginTop: 28, paddingTop: 22, borderTop: '1px solid rgba(255,255,255,0.12)' }}>
+      {/* Honors/Awards pills */}
+      {bio?.honors && bio.honors.length > 0 && (
+        <div style={{ display: 'flex', flexWrap: 'wrap', gap: 6, marginBottom: 16 }}>
+          {bio.honors.map((honor: string, i: number) => {
+            const isGold = /champion|most valuable|finals mvp|hall of fame|scoring title|75th|anniversary|finalist|roy|rookie of the year|defensive player/i.test(honor) &&
+              !/all.?star|all.?nba|all.?defensive|all.?rookie/i.test(honor)
+            return (
+              <span key={i} style={{
+                display: 'inline-block',
+                fontSize: 11,
+                fontWeight: 700,
+                background: isGold ? 'rgba(255,199,44,0.22)' : 'rgba(255,255,255,0.12)',
+                color: isGold ? '#FFC72C' : 'rgba(255,255,255,0.85)',
+                border: `1px solid ${isGold ? 'rgba(255,199,44,0.35)' : 'rgba(255,255,255,0.18)'}`,
+                padding: '4px 10px',
+                borderRadius: 4,
+                letterSpacing: '0.02em',
+                whiteSpace: 'nowrap',
+              }}>{honor}</span>
+            )
+          })}
+        </div>
+      )}
+      {/* Jersey icons timeline */}
+      {careerTimeline.length > 0 && (
+        <div style={{ display: 'flex', flexWrap: 'wrap', gap: 16, alignItems: 'flex-start' }}>
+          {careerTimeline.map((run, i) => {
+            const colors = getTeamColors(run.teamName)
+            const label = seasonLabel(run.startYear, run.endYear, sportHint)
+            const jerseyNumber =
+              bio?.jerseyHistory?.find((h: { teamName: string; startYear: number; jersey: string }) => h.teamName === run.teamName && h.startYear === run.startYear)?.jersey
+              ?? bio?.jersey ?? undefined
+            return (
+              <div
+                key={`${run.teamName}-${run.startYear}-${i}`}
+                title={`${run.teamName} · ${label}`}
+                style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 3, cursor: 'default' }}
+              >
+                <JerseyIcon primary={colors.primary} secondary={colors.secondary} abbr={colors.abbr} number={jerseyNumber} sport={sportHint} />
+                <div style={{ fontSize: 9.5, fontWeight: 700, color: 'rgba(255,255,255,0.75)', textAlign: 'center', lineHeight: 1.2 }}>
+                  {colors.abbr}
+                </div>
+                <div style={{ fontSize: 8.5, color: 'rgba(255,255,255,0.5)', textAlign: 'center', whiteSpace: 'nowrap' }}>
+                  {label}
+                </div>
+              </div>
+            )
+          })}
+        </div>
+      )}
+    </div>
+  )
+}
+
 export default async function JoueurPage({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params
-  const { playerName, sets, setsByYear, sortedYears, communityCards, rcYear, headshot, bio, uniqueCollectors, topVariations, primarySport } = await fetchPlayer(slug)
+  const { playerName, sets, setsByYear, sortedYears, communityCards, rcYear, headshot, uniqueCollectors, topVariations, primarySport } = await fetchPlayer(slug)
 
   const sportsFromSets = [...new Set(sets.map((s: any) => s.sport).filter(Boolean))] as string[]
   const sports = sportsFromSets.length > 0 ? sportsFromSets : (primarySport ? [primarySport] : [])
-  const careerTimeline = bio?.career ? buildCareerTimeline(bio.career) : []
-  const careerMaxEndYear = careerTimeline.length > 0 ? Math.max(...careerTimeline.map(r => r.endYear)) : 0
-  const teamLogoUrl = bio?.currentTeamLogo
-    ? `/api/team-logo?url=${encodeURIComponent(bio.currentTeamLogo)}`
-    : null
-
+  // bio (ESPN) n'est plus recupere ici -- voir BioMeta/BioCareer plus bas,
+  // qui la chargent eux-memes en stream (Suspense). Le JSON-LD se passe donc
+  // de birthDate/birthPlace (minime pour le SEO) plutot que d'attendre ESPN.
   const personJsonLd = {
     '@context': 'https://schema.org',
     '@type': 'Person',
@@ -568,8 +706,6 @@ export default async function JoueurPage({ params }: { params: Promise<{ slug: s
     url: `https://www.memorabilius.fr/joueur/${slug}`,
     description: `${sets.length} sets de cartes · ${communityCards.length} cartes en communauté`,
     ...(headshot ? { image: headshot } : {}),
-    ...(bio?.birthDate ? { birthDate: bio.birthDate } : {}),
-    ...(bio?.birthPlace ? { birthPlace: bio.birthPlace } : {}),
   }
 
   const breadcrumbJsonLd = {
@@ -677,27 +813,10 @@ export default async function JoueurPage({ params }: { params: Promise<{ slug: s
           position: 'relative',
           overflow: 'hidden',
         }}>
-          {/* Team logo watermark */}
-          {teamLogoUrl && (
-            <img
-              src={teamLogoUrl}
-              alt=""
-              aria-hidden="true"
-              style={{
-                position: 'absolute',
-                right: '-20px',
-                top: '50%',
-                transform: 'translateY(-50%)',
-                width: '340px',
-                height: '340px',
-                objectFit: 'contain',
-                opacity: 0.18,
-                WebkitMaskImage: 'linear-gradient(to right, transparent 0%, white 45%)',
-                maskImage: 'linear-gradient(to right, transparent 0%, white 45%)',
-                pointerEvents: 'none',
-              }}
-            />
-          )}
+          {/* Team logo watermark -- depend de bio (ESPN), voir BioTeamLogo plus bas */}
+          <Suspense fallback={null}>
+            <BioTeamLogo playerName={playerName} sportHint={primarySport} />
+          </Suspense>
 
           <div style={{ maxWidth: 1200, margin: '0 auto', position: 'relative' }}>
             {/* Breadcrumb */}
@@ -740,26 +859,10 @@ export default async function JoueurPage({ params }: { params: Promise<{ slug: s
 
                 <h1 className="jp-hero-h1" style={{ fontWeight: 900, margin: '0 0 10px', lineHeight: 1.05, letterSpacing: '-0.025em', textWrap: 'balance' as any }}>{stripDiacritics(playerName)}</h1>
 
-                {/* Bio: position · jersey · height · weight */}
-                {bio && (bio.position || bio.jersey || bio.height || bio.weight) && (
-                  <div style={{ fontSize: 14, color: 'rgba(255,255,255,0.75)', marginBottom: 10, display: 'flex', gap: 12, flexWrap: 'wrap', alignItems: 'center' }}>
-                    {bio.jersey && <span style={{ fontWeight: 800, fontSize: 16 }}>#{bio.jersey}</span>}
-                    {bio.position && <span>{bio.position}</span>}
-                    {(bio.position && (bio.height || bio.weight)) && <span style={{ opacity: 0.35 }}>·</span>}
-                    {bio.height && <span>{bio.height}</span>}
-                    {bio.weight && <span style={{ color: 'rgba(255,255,255,0.55)' }}>{bio.weight}</span>}
-                    {bio.nationality && <><span style={{ opacity: 0.35 }}>·</span><span>{bio.nationality}</span></>}
-                  </div>
-                )}
-
-                {/* Birth + current team */}
-                {bio && (bio.birthDate || bio.birthPlace) && (
-                  <div style={{ fontSize: 12.5, color: 'rgba(255,255,255,0.6)', marginBottom: 16 }}>
-                    🎂 {bio.birthDate && new Date(bio.birthDate).toLocaleDateString('fr-FR', { day: 'numeric', month: 'long', year: 'numeric' })}
-                    {bio.birthPlace ? ` · ${bio.birthPlace}` : ''}
-                    {bio.age ? ` (${bio.age} ans)` : ''}
-                  </div>
-                )}
+                {/* Position/taille/poids + naissance -- depend de bio (ESPN), voir BioMeta plus bas */}
+                <Suspense fallback={null}>
+                  <BioMeta playerName={playerName} sportHint={primarySport} />
+                </Suspense>
 
                 {/* Stats pills */}
                 <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap' }}>
@@ -787,61 +890,10 @@ export default async function JoueurPage({ params }: { params: Promise<{ slug: s
               </div>
             </div>
 
-            {/* ── CARRIÈRE dans le hero (BBRef style) ── */}
-            {((bio?.honors && bio.honors.length > 0) || careerTimeline.length > 0) && (
-              <div style={{ marginTop: 28, paddingTop: 22, borderTop: '1px solid rgba(255,255,255,0.12)' }}>
-                {/* Honors/Awards pills */}
-                {bio?.honors && bio.honors.length > 0 && (
-                  <div style={{ display: 'flex', flexWrap: 'wrap', gap: 6, marginBottom: 16 }}>
-                    {bio.honors.map((honor: string, i: number) => {
-                      const isGold = /champion|most valuable|finals mvp|hall of fame|scoring title|75th|anniversary|finalist|roy|rookie of the year|defensive player/i.test(honor) &&
-                        !/all.?star|all.?nba|all.?defensive|all.?rookie/i.test(honor)
-                      return (
-                        <span key={i} style={{
-                          display: 'inline-block',
-                          fontSize: 11,
-                          fontWeight: 700,
-                          background: isGold ? 'rgba(255,199,44,0.22)' : 'rgba(255,255,255,0.12)',
-                          color: isGold ? '#FFC72C' : 'rgba(255,255,255,0.85)',
-                          border: `1px solid ${isGold ? 'rgba(255,199,44,0.35)' : 'rgba(255,255,255,0.18)'}`,
-                          padding: '4px 10px',
-                          borderRadius: 4,
-                          letterSpacing: '0.02em',
-                          whiteSpace: 'nowrap',
-                        }}>{honor}</span>
-                      )
-                    })}
-                  </div>
-                )}
-                {/* Jersey icons timeline */}
-                {careerTimeline.length > 0 && (
-                    <div style={{ display: 'flex', flexWrap: 'wrap', gap: 16, alignItems: 'flex-start' }}>
-                      {careerTimeline.map((run, i) => {
-                        const colors = getTeamColors(run.teamName)
-                        const label = seasonLabel(run.startYear, run.endYear, primarySport)
-                        const jerseyNumber =
-                          bio?.jerseyHistory?.find((h: { teamName: string; startYear: number; jersey: string }) => h.teamName === run.teamName && h.startYear === run.startYear)?.jersey
-                          ?? bio?.jersey ?? undefined
-                        return (
-                          <div
-                            key={`${run.teamName}-${run.startYear}-${i}`}
-                            title={`${run.teamName} · ${label}`}
-                            style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 3, cursor: 'default' }}
-                          >
-                            <JerseyIcon primary={colors.primary} secondary={colors.secondary} abbr={colors.abbr} number={jerseyNumber} sport={primarySport} />
-                            <div style={{ fontSize: 9.5, fontWeight: 700, color: 'rgba(255,255,255,0.75)', textAlign: 'center', lineHeight: 1.2 }}>
-                              {colors.abbr}
-                            </div>
-                            <div style={{ fontSize: 8.5, color: 'rgba(255,255,255,0.5)', textAlign: 'center', whiteSpace: 'nowrap' }}>
-                              {label}
-                            </div>
-                          </div>
-                        )
-                      })}
-                    </div>
-                )}
-              </div>
-            )}
+            {/* ── CARRIÈRE dans le hero (BBRef style) -- depend de bio (ESPN), voir BioCareer plus bas ── */}
+            <Suspense fallback={null}>
+              <BioCareer playerName={playerName} sportHint={primarySport} />
+            </Suspense>
           </div>
         </div>
 
