@@ -3,10 +3,12 @@ import type { Metadata } from 'next'
 import Link from 'next/link'
 import { SPORTS_TEAMS, teamLogoUrl, SportsTeam } from '@/lib/sportsTeams'
 import { teamSlug, playerSlug } from '@/lib/playerSlug'
-import { fetchCsvCardsForProfiles } from '@/lib/csvCards'
+import { fetchCsvCardsForProfilesCached } from '@/lib/csvCardsCache'
 import TagIcon from '@/components/TagIcon'
 import FranchiseChecklist, { type FranchisePlayer } from '@/components/FranchiseChecklist'
 import { cleanFranchise } from '@/lib/franchiseExclude'
+import TeamCardsSection from './TeamCardsSection'
+import TeamSetsSection from './TeamSetsSection'
 
 export const revalidate = 86400 // 24h (etait 1h -- contenu quasi statique, cf. reduction couts Vercel ISR)
 
@@ -19,30 +21,39 @@ function findTeam(slug: string): SportsTeam | null {
   return SPORTS_TEAMS.find(t => teamSlug(t.name) === slug) || null
 }
 
-function seasonLabel(year: number, sport = 'nba') {
-  return ['nfl', 'baseball', 'pokemon', 'mtg'].includes(sport)
-    ? String(year)
-    : `${year}-${String(year + 1).slice(2)}`
-}
-
 async function fetchTeamData(slug: string) {
   const team = findTeam(slug)
   if (!team) return { team: null, sets: [], communityCards: [], players: [] }
 
   const teamLastWord = team.name.split(' ').slice(-1)[0]
 
-  const [entriesRes, manuRes, profilesRes] = await Promise.all([
+  // .limit(5000) ne suffit pas a lui seul : PostgREST plafonne chaque reponse
+  // a 1000 lignes (max_rows) quel que soit le .limit() demande (meme bug que
+  // la page joueur, voir bcc3a8f0) -- une franchise avec plus de 1000 cartes
+  // communaute en perdait silencieusement le reste. Pagination reelle.
+  const fetchAllManuellesForTeam = async () => {
+    const all: any[] = []
+    for (let from = 0; ; from += 1000) {
+      const { data, error } = await supabase
+        .from('cartes_manuelles')
+        .select('id, nom, annee, marque, image_recto, is_horizontal, user_id, profiles(display_name, avatar_url, couleur_bordure)')
+        .ilike('equipe', `%${teamLastWord}%`)
+        .not('image_recto', 'is', null)
+        .order('created_at', { ascending: false })
+        .range(from, from + 999)
+      if (error || !data || data.length === 0) break
+      all.push(...data)
+      if (data.length < 1000) break
+    }
+    return all
+  }
+
+  const [entriesRes, manuData, profilesRes] = await Promise.all([
     supabase
       .from('card_set_entries')
       .select('set_id, player_name, is_rc, card_sets(id, name, year, brand, sport)')
       .ilike('team', `%${teamLastWord}%`),
-    supabase
-      .from('cartes_manuelles')
-      .select('id, nom, annee, marque, image_recto, is_horizontal, user_id, profiles(display_name, avatar_url, couleur_bordure)')
-      .ilike('equipe', `%${teamLastWord}%`)
-      .not('image_recto', 'is', null)
-      .order('created_at', { ascending: false })
-      .limit(5000),
+    fetchAllManuellesForTeam(),
     supabase
       .from('profiles')
       .select('id, display_name, avatar_url, lien_csv, couleur_bordure')
@@ -65,7 +76,7 @@ async function fetchTeamData(slug: string) {
   const players = [...playersMap.values()].slice(0, 30)
 
   // Cartes manuelles
-  const manuellesCards = (manuRes.data || []).map((m: any) => ({
+  const manuellesCards = manuData.map((m: any) => ({
     id: m.id,
     img: m.image_recto,
     nom: m.nom,
@@ -79,7 +90,7 @@ async function fetchTeamData(slug: string) {
   }))
 
   // Cartes CSV
-  const csvAll = await fetchCsvCardsForProfiles(profilesRes.data || [])
+  const csvAll = await fetchCsvCardsForProfilesCached(profilesRes.data || [])
   const lowerTeam = teamLastWord.toLowerCase()
   const csvCards = csvAll
     .filter(c => c.team.toLowerCase().includes(lowerTeam))
@@ -181,49 +192,11 @@ export default async function EquipePage({ params }: { params: Promise<{ slug: s
         </section>
       )}
 
-      {/* Cartes communauté */}
-      {communityCards.length > 0 && (
-        <section style={{ marginBottom: 40 }}>
-          <h2 style={{ fontSize: 18, fontWeight: 800, marginBottom: 14, color: 'var(--text, #111)' }}>Dans les collections ({communityCards.length})</h2>
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(150px, 1fr))', gap: 12 }}>
-            {communityCards.map((card: any) => (
-              <Link key={card.id} href={`/galerie/${card.user_id}`} style={{ textDecoration: 'none' }}>
-                <div style={{ borderRadius: 10, overflow: 'hidden', background: 'var(--card-bg, #fff)', border: '1px solid var(--border, #eee)' }}>
-                  <div style={{ aspectRatio: '2.5/3.5', overflow: 'hidden', position: 'relative' }}>
-                    <img src={card.img} alt={card.nom} style={card.is_horizontal ? {
-                      position: 'absolute', width: '140%', height: '71.43%',
-                      left: '-20%', top: '14.286%', transform: 'rotate(90deg)', objectFit: 'cover',
-                    } : { width: '100%', height: '100%', objectFit: 'cover', display: 'block' }} />
-                  </div>
-                  <div style={{ padding: '8px 10px' }}>
-                    <div style={{ fontSize: 11, fontWeight: 800, color: 'var(--text, #111)', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>{card.nom}</div>
-                    <div style={{ fontSize: 10, color: 'var(--text3, #999)', marginTop: 2 }}>{card.display_name}</div>
-                  </div>
-                </div>
-              </Link>
-            ))}
-          </div>
-        </section>
-      )}
-
-      {/* Sets */}
-      {sets.length > 0 && (
-        <section>
-          <h2 style={{ fontSize: 18, fontWeight: 800, marginBottom: 14, color: 'var(--text, #111)' }}>Sets ({sets.length})</h2>
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(280px, 1fr))', gap: 8 }}>
-            {sets.map((set: any) => (
-              <Link key={set.id} href={`/setlist/${set.id}`} style={{ textDecoration: 'none' }}>
-                <div style={{ background: 'var(--card-bg, #fff)', borderRadius: 10, padding: '12px 16px', border: '1px solid var(--border, #eee)' }}>
-                  <div style={{ fontWeight: 800, fontSize: 13, color: 'var(--text, #111)', marginBottom: 3 }}>{set.name}</div>
-                  <div style={{ fontSize: 11, color: 'var(--text3, #999)' }}>
-                    {set.year ? seasonLabel(set.year, set.sport) : ''}{set.brand ? ` · ${set.brand}` : ''} · {(set.sport || '').toUpperCase()}
-                  </div>
-                </div>
-              </Link>
-            ))}
-          </div>
-        </section>
-      )}
+      {/* Cartes communauté + Sets -- pagines au defilement (voir TeamCardsSection/
+          TeamSetsSection), une franchise historique pouvait depasser 10 Mo de
+          HTML a tout rendre d'un coup cote serveur. */}
+      <TeamCardsSection slug={slug} initialCards={communityCards.slice(0, 48) as any} totalCount={communityCards.length} />
+      <TeamSetsSection slug={slug} initialSets={sets.slice(0, 40) as any} totalCount={sets.length} />
     </div>
   )
 }

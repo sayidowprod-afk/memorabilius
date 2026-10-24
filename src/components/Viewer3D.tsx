@@ -230,9 +230,19 @@ export default function Viewer3D({ popup, accent, onClose, onNext, onPrev, getTa
       // et retombait sur la 1ere venue si l'annee ne correspondait pas. Une
       // carte Flawless 2016-17 pouvait ainsi s'afficher comme "Hoops 2017-18"
       // juste parce que cette entree-la avait ete cochee ailleurs.
-      const { data: entries } = await supabase
-        .from('card_set_entries').select('id, set_id, variation, player_name, card_number')
-        .ilike('player_name', popup.n).limit(500)
+      // Pagination complete (sans plafond) -- .limit(500) pouvait couper
+      // silencieusement les entrees d'un joueur tres prolifique (ex. Michael
+      // Jordan) avant d'avoir atteint la bonne, meme bug que vu ailleurs sur
+      // la page joueur (voir bcc3a8f0).
+      const entries: any[] = []
+      for (let from = 0; ; from += 1000) {
+        const { data, error } = await supabase
+          .from('card_set_entries').select('id, set_id, variation, player_name, card_number')
+          .ilike('player_name', popup.n).range(from, from + 999)
+        if (error || !data || data.length === 0) break
+        entries.push(...data)
+        if (data.length < 1000) break
+      }
       if (cancelled) return
       if (!entries?.length) { setSetPlacement(null); return }
       const setIds = [...new Set(entries.map(e => e.set_id))]

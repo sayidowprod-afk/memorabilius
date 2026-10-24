@@ -1,55 +1,12 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { createClient } from '@supabase/supabase-js'
-import { fetchEspnHeadshots } from '@/lib/espnHeadshot'
-import { isAllowedCsvUrl } from '@/lib/csvParse'
+import { getCachedHeadshots } from '@/lib/espnHeadshot'
+import { fetchCsvCardsForProfilesCached } from '@/lib/csvCardsCache'
 
 const supabase = createClient(
   process.env.NEXT_PUBLIC_SUPABASE_URL!,
   process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!
 )
-
-// Cache mémoire des cartes CSV parsées, par profileId — survit entre les requêtes dans le même process Node.js
-const CSV_TTL = 60 * 60 * 1000 // 1h
-interface CsvEntry { cards: any[]; expiry: number; url: string }
-const csvCache = new Map<string, CsvEntry>()
-
-async function getProfileCsvCards(profileId: string, csvUrl: string): Promise<any[]> {
-  if (!isAllowedCsvUrl(csvUrl)) return []
-  const cached = csvCache.get(profileId)
-  // Retourne le cache si valide ET si l'URL n'a pas changé
-  if (cached && cached.expiry > Date.now() && cached.url === csvUrl) return cached.cards
-
-  try {
-    const r = await fetch(csvUrl, { signal: AbortSignal.timeout(3000) })
-    if (!r.ok) return []
-    const text = await r.text()
-    const rows = text.split(/\r?\n/).slice(4)
-
-    const cards: any[] = []
-    rows.forEach(row => {
-      const c = row.split(/,(?=(?:(?:[^"]*"){2})*[^"]*$)/)
-      if (!c[0]?.includes('http')) return
-      cards.push({
-        img:    c[0]?.trim(),
-        name:   (c[2] || '').replace(/^"|"$/g, ''),
-        team:   (c[3] || '').replace(/^"|"$/g, ''),
-        year:   (c[4] || '').replace(/^"|"$/g, ''),
-        brand:  (c[5] || '').replace(/^"|"$/g, ''),
-        serie:  (c[6] || '').replace(/^"|"$/g, ''),
-        variant:(c[7] || '').replace(/^"|"$/g, ''),
-        num:    (c[8] || '').replace(/^"|"$/g, ''),
-        auto:   (c[9] || '').toLowerCase().includes('oui'),
-        rc:     (c[10] || '').toLowerCase().includes('oui'),
-        patch:  (c[11] || '').toLowerCase().includes('oui'),
-      })
-    })
-
-    csvCache.set(profileId, { cards, expiry: Date.now() + CSV_TTL, url: csvUrl })
-    return cards
-  } catch {
-    return []
-  }
-}
 
 // Rate limiter : 20 req/min par IP
 const RATE_MAP = new Map<string, { count: number; reset: number }>()
@@ -82,14 +39,28 @@ export async function GET(req: NextRequest) {
   const normQuery = normStr(query)
 
   // Profils + manuelles en parallèle. Profils : liste complète (nécessaire pour
-  // associer chaque carte à son collectionneur ensuite), pas de filtre texte ici.
+  // associer chaque carte à son collectionneur ensuite), pas de filtre texte ici
+  // -- .limit(500) coupait silencieusement les profils au-dela (775 au total),
+  // perdant leur attribution ET leurs cartes CSV dans les resultats (meme bug
+  // que .limit(200) sur la page joueur). Pagination reelle.
   // Manuelles : recherche insensible aux accents via RPC (unaccent cote Postgres --
   // un simple .ilike() direct est sensible aux accents, "jokic" ne trouvait pas
   // "Jokić"), voir scripts/sql-search-unaccent.sql.
-  const [{ data: profiles }, { data: manuelles }] = await Promise.all([
-    supabase.from('profiles')
-      .select('id, display_name, avatar_url, lien_csv, couleur_bordure')
-      .limit(500),
+  const fetchAllProfiles = async () => {
+    const all: any[] = []
+    for (let from = 0; ; from += 1000) {
+      const { data, error } = await supabase
+        .from('profiles')
+        .select('id, display_name, avatar_url, lien_csv, couleur_bordure')
+        .range(from, from + 999)
+      if (error || !data || data.length === 0) break
+      all.push(...data)
+      if (data.length < 1000) break
+    }
+    return all
+  }
+  const [profiles, { data: manuelles }] = await Promise.all([
+    fetchAllProfiles(),
     supabase.rpc('search_cartes_manuelles_unaccent', { q: safeQ, max_rows: 500 }),
   ])
   if (!profiles) return NextResponse.json([])
@@ -123,19 +94,18 @@ export async function GET(req: NextRequest) {
     })
   })
 
-  // Cartes CSV — utilise le cache mémoire, parallèle
-  await Promise.all(profiles.filter(p => p.lien_csv).map(async (p) => {
-    const cards = await getProfileCsvCards(p.id, p.lien_csv)
-    cards.forEach(c => {
-      const name = normStr(c.name)
-      const team = normStr(c.team)
-      const variant = normStr(c.variant)
-      const brand = normStr(c.brand)
-      if (!(name.includes(normQuery) || team.includes(normQuery) || variant.includes(normQuery) || brand.includes(normQuery))) return
-      if (isPrivate(p.id, c.img)) return
-      results.push({ ...c, collector: p.display_name, collectorId: p.id, collectorAvatar: p.avatar_url, accent: p.couleur_bordure || '#003DA6' })
-    })
-  }))
+  // Cartes CSV — cache persistant (table csv_cards_cache), survit aux cold
+  // starts serverless contrairement a l'ancien cache memoire par process.
+  const csvAll = await fetchCsvCardsForProfilesCached(profiles)
+  csvAll.forEach(c => {
+    const name = normStr(c.name)
+    const team = normStr(c.team)
+    const variant = normStr(c.variant)
+    const brand = normStr(c.brand)
+    if (!(name.includes(normQuery) || team.includes(normQuery) || variant.includes(normQuery) || brand.includes(normQuery))) return
+    if (isPrivate(c.user_id, c.img)) return
+    results.push({ ...c, collector: c.display_name, collectorId: c.user_id, collectorAvatar: c.avatar_url, accent: c.accent })
+  })
 
   // Collectionneurs — filtre côté DB, insensible aux accents (voir RPC plus haut)
   const { data: matchingProfiles } = await supabase
@@ -155,6 +125,7 @@ export async function GET(req: NextRequest) {
       .from('card_set_entries')
       .select('player_name, is_rc, card_sets(sport)')
       .ilike('player_name', `%${safeQ}%`)
+      .order('player_name')
       .limit(200),
     ...ESPN_SPORTS.map(sport =>
       fetch(
@@ -222,16 +193,23 @@ export async function GET(req: NextRequest) {
     .slice(0, 20)
     .map(p => ({ name: p.name, isRc: p.isRc, sports: [...p.sports], photo: p.photo }))
 
-  // Pour les joueurs encore sans photo, fallback complet par joueur
-  // (CDN NBA pour les retraités NBA, puis Wikipedia pour les très vieux
-  // joueurs de tout sport) — ciblé, donc peu coûteux même en toutes ligues
+  // Pour les joueurs encore sans photo, fallback complet par joueur (CDN NBA
+  // pour les retraités NBA, puis Wikipedia pour les très vieux joueurs de
+  // tout sport) — cache persistant (table player_photo_cache) au lieu d'un
+  // appel ESPN en direct a CHAQUE recherche pour le meme joueur.
   const stillMissingPhoto = players.filter(p => !p.photo)
   if (stillMissingPhoto.length > 0) {
-    const { fetchEspnHeadshot } = await import('@/lib/espnHeadshot')
-    const resolved = await Promise.all(
-      stillMissingPhoto.map(p => fetchEspnHeadshot(p.name, p.sports[0] || 'nba'))
-    )
-    const photoByName = new Map(stillMissingPhoto.map((p, i) => [p.name, resolved[i]]))
+    const bySport = new Map<string, string[]>()
+    for (const p of stillMissingPhoto) {
+      const sport = p.sports[0] || 'nba'
+      if (!bySport.has(sport)) bySport.set(sport, [])
+      bySport.get(sport)!.push(p.name)
+    }
+    const photoByName = new Map<string, string | null>()
+    await Promise.all([...bySport.entries()].map(async ([sport, names]) => {
+      const resolved = await getCachedHeadshots(names, sport)
+      for (const n of names) photoByName.set(n, resolved[n] ?? null)
+    }))
     players = players.map(p => p.photo ? p : { ...p, photo: photoByName.get(p.name) || null })
   }
 

@@ -30,16 +30,25 @@ export async function GET(req: NextRequest) {
   // Pour la numérotation : garde seulement le tirage (/99), ignore le numéro individuel (23/99 → 99)
   const normNum = (s: string) => { const m = s.match(/\/(\d+)/); return m ? m[1] : normalize(s) }
 
-  // Cartes manuelles — filtrées côté DB par nom pour réduire les candidats
+  // Cartes manuelles — filtrées côté DB par nom pour réduire les candidats.
+  // Pagination complete (sans plafond) -- .limit(500) pouvait exclure la
+  // carte identique cherchee pour un joueur tres collectionne avant meme
+  // d'atteindre le matching exact plus bas (meme bug que vu ailleurs).
   const safeQ = name.replace(/%/g, '\\%').replace(/_/g, '\\_')
-  const { data: manuelles } = await supabase.from('cartes_manuelles')
-    .select('user_id, nom, image_recto, annee, marque, collection, variation, num, rc, auto, patch')
-    .ilike('nom', `%${safeQ}%`)
-    .neq('user_id', excludeUserId || '00000000-0000-0000-0000-000000000000')
-    .limit(500)
+  const manuelles: any[] = []
+  for (let from = 0; ; from += 1000) {
+    const { data, error } = await supabase.from('cartes_manuelles')
+      .select('user_id, nom, image_recto, annee, marque, collection, variation, num, rc, auto, patch')
+      .ilike('nom', `%${safeQ}%`)
+      .neq('user_id', excludeUserId || '00000000-0000-0000-0000-000000000000')
+      .range(from, from + 999)
+    if (error || !data || data.length === 0) break
+    manuelles.push(...data)
+    if (data.length < 1000) break
+  }
 
   // Cartes privées scoped aux user_ids des cartes candidates — évite le scan de 2000 lignes
-  const candidateUserIds = [...new Set((manuelles || []).map((m: any) => m.user_id))]
+  const candidateUserIds = [...new Set(manuelles.map((m: any) => m.user_id))]
   const { data: privees } = candidateUserIds.length > 0
     ? await supabase.from('cartes_privees').select('user_id, card_key').in('user_id', candidateUserIds)
     : { data: null }
@@ -48,7 +57,7 @@ export async function GET(req: NextRequest) {
   const matchIds = new Set<string>()
   const cardsByUser = new Map<string, any>()
 
-  ;(manuelles || []).forEach(m => {
+  manuelles.forEach(m => {
     if (privateSet.has(`${m.user_id}::${m.image_recto}`)) return
     const sameName    = normalize(m.nom || '') === normalize(name)
     const sameYear    = !year    || normalize(m.annee || '')      === normalize(year)
