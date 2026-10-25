@@ -1,8 +1,8 @@
 import { NextRequest, NextResponse } from 'next/server'
-import { createClient } from '@supabase/supabase-js'
 import { z } from 'zod'
 import { awardXP, checkAndAwardBadgeXP, xpForCard } from '@/lib/xp'
 import { recalcAndSaveUserStats } from '@/lib/recalcStats'
+import { createServerServiceClient } from '@/lib/supabaseServer'
 
 const cardAddedPostSchema = z.object({
   userId: z.string().uuid(),
@@ -17,10 +17,7 @@ const cardAddedDeleteSchema = z.object({
   createdAt: z.string().nullable().optional(),
 })
 
-const supabase = createClient(
-  process.env.NEXT_PUBLIC_SUPABASE_URL!,
-  process.env.SUPABASE_SERVICE_ROLE_KEY!
-)
+const supabase = createServerServiceClient()
 
 // POST : incrémente lors d'un ajout manuel
 // DELETE : décrémente lors d'une suppression (uniquement si la carte a été ajoutée ce mois-ci)

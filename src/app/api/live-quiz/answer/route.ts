@@ -1,10 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server'
-import { createClient } from '@supabase/supabase-js'
+import { createServerServiceClient } from '@/lib/supabaseServer'
 
-const admin = createClient(
-  process.env.NEXT_PUBLIC_SUPABASE_URL!,
-  process.env.SUPABASE_SERVICE_ROLE_KEY!
-)
+const admin = createServerServiceClient()
 
 // Vote d'un spectateur (pas de compte -- participantId généré et gardé côté
 // client en localStorage). is_correct est calculé ici, côté serveur, à partir

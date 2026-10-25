@@ -1,10 +1,8 @@
-import { createClient } from '@supabase/supabase-js'
-import type { Metadata } from 'next'
 
-const supabase = createClient(
-  process.env.NEXT_PUBLIC_SUPABASE_URL!,
-  process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!
-)
+import type { Metadata } from 'next'
+import { createServerClient } from '@/lib/supabaseServer'
+
+const supabase = createServerClient()
 
 function seasonLabel(year: number, sport = 'nba') {
   return ['nfl', 'baseball', 'pokemon', 'mtg'].includes(sport)

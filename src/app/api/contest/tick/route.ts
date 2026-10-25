@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server'
-import { createClient } from '@supabase/supabase-js'
 import { discordFetch, contestChannelId, parisWeekStart, parisNow, pickThemes, themeVoteButtons, entryVoteButton } from '@/lib/discordContest'
+import { createServerServiceClient } from '@/lib/supabaseServer'
 
 export const dynamic = 'force-dynamic'
 export const runtime = 'nodejs'
@@ -9,10 +9,7 @@ export const runtime = 'nodejs'
 // la limite par defaut plutot que de risquer un timeout sur une grosse semaine.
 export const maxDuration = 120
 
-const supabase = createClient(
-  process.env.NEXT_PUBLIC_SUPABASE_URL!,
-  process.env.SUPABASE_SERVICE_ROLE_KEY!
-)
+const supabase = createServerServiceClient()
 
 // Appele par Vercel Cron (voir vercel.json, header Authorization injecte
 // automatiquement avec CRON_SECRET) toutes les heures -- chaque etape est

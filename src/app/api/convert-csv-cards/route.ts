@@ -1,8 +1,8 @@
 import { NextRequest, NextResponse } from 'next/server'
-import { createClient } from '@supabase/supabase-js'
 import { waitUntil } from '@vercel/functions'
 import { fetchCsvCardsForProfiles } from '@/lib/csvCards'
 import { fetchExternalImage, extFromContentType } from '@/lib/safeFetchImage'
+import { createServerServiceClient } from '@/lib/supabaseServer'
 
 export const maxDuration = 60
 
@@ -12,10 +12,7 @@ export const maxDuration = 60
 // (fiches joueurs, pages equipe/joueur, bot Discord...), puisqu'elles
 // existeraient alors a la fois comme carte CSV virtuelle et comme carte reelle.
 // Reservee au proprietaire du profil (verifie via le token, comme /api/update-stats).
-const admin = createClient(
-  process.env.NEXT_PUBLIC_SUPABASE_URL!,
-  process.env.SUPABASE_SERVICE_ROLE_KEY!
-)
+const admin = createServerServiceClient()
 
 const REHOST_CONCURRENCY = 6
 

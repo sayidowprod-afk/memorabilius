@@ -1,16 +1,13 @@
 import { NextRequest, NextResponse } from 'next/server'
-import { createClient } from '@supabase/supabase-js'
 import { discordFetch } from '@/lib/discordContest'
 import { birthdayChannelId, parisToday, postPublicBirthday, postTestBirthday, birthdaySelectMenu, groupCandidatesBySport, type BirthdayPlayer } from '@/lib/discordBirthday'
+import { createServerServiceClient } from '@/lib/supabaseServer'
 
 export const dynamic = 'force-dynamic'
 export const runtime = 'nodejs'
 export const maxDuration = 30
 
-const supabase = createClient(
-  process.env.NEXT_PUBLIC_SUPABASE_URL!,
-  process.env.SUPABASE_SERVICE_ROLE_KEY!
-)
+const supabase = createServerServiceClient()
 
 // Appele par Vercel Cron une fois par jour (voir vercel.json). Idempotent via
 // nba_birthday_posts.post_date (cle primaire) -- un appel repete le meme jour

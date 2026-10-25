@@ -1,13 +1,10 @@
 import { NextRequest, NextResponse } from 'next/server'
-import { createClient } from '@supabase/supabase-js'
 import { notifyTradeEvent } from '@/lib/tradeNotify'
+import { createServerServiceClient } from '@/lib/supabaseServer'
 
 export const maxDuration = 60
 
-const supabase = createClient(
-  process.env.NEXT_PUBLIC_SUPABASE_URL!,
-  process.env.SUPABASE_SERVICE_ROLE_KEY!
-)
+const supabase = createServerServiceClient()
 
 // Quotidien : cycle de vie des offres d'echange (colonnes de la migration
 // 20260924_trades_v2.sql) --

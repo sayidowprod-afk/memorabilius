@@ -1,12 +1,10 @@
 import { NextRequest, NextResponse } from 'next/server'
-import { createClient } from '@supabase/supabase-js'
+
 import { getCachedHeadshots } from '@/lib/espnHeadshot'
 import { fetchCsvCardsForProfilesCached } from '@/lib/csvCardsCache'
+import { createServerClient } from '@/lib/supabaseServer'
 
-const supabase = createClient(
-  process.env.NEXT_PUBLIC_SUPABASE_URL!,
-  process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!
-)
+const supabase = createServerClient()
 
 // Rate limiter : 20 req/min par IP
 const RATE_MAP = new Map<string, { count: number; reset: number }>()

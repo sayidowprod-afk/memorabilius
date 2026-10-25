@@ -1,10 +1,7 @@
 import { NextResponse } from 'next/server'
-import { createClient } from '@supabase/supabase-js'
+import { createServerServiceClient } from '@/lib/supabaseServer'
 
-const supabaseAdmin = createClient(
-  process.env.NEXT_PUBLIC_SUPABASE_URL!,
-  process.env.SUPABASE_SERVICE_ROLE_KEY!
-)
+const supabaseAdmin = createServerServiceClient()
 
 // Verification live (pas d'historique d'incidents persiste -- inutile vu la
 // taille du site, ca aurait demande sa propre table + cron de sondage

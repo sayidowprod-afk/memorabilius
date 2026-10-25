@@ -1,12 +1,9 @@
 import { NextRequest, NextResponse } from 'next/server'
-import { createClient } from '@supabase/supabase-js'
 import { sendPushToUser } from '@/lib/pushNotify'
 import { streakWarningPush, normalizePushLang } from '@/lib/pushTranslations'
+import { createServerServiceClient } from '@/lib/supabaseServer'
 
-const supabase = createClient(
-  process.env.NEXT_PUBLIC_SUPABASE_URL!,
-  process.env.SUPABASE_SERVICE_ROLE_KEY!
-)
+const supabase = createServerServiceClient()
 
 // Quotidien en soirée : prévient les utilisateurs avec une série en cours qui
 // n'ont pas encore été actifs aujourd'hui, avant qu'ils ne la perdent à minuit.

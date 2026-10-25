@@ -1,11 +1,8 @@
 import { NextRequest, NextResponse } from 'next/server'
-import { createClient } from '@supabase/supabase-js'
 import { requireAdmin } from '@/lib/adminAuth'
+import { createServerServiceClient } from '@/lib/supabaseServer'
 
-const admin = createClient(
-  process.env.NEXT_PUBLIC_SUPABASE_URL!,
-  process.env.SUPABASE_SERVICE_ROLE_KEY!
-)
+const admin = createServerServiceClient()
 
 function validateChoices(choices: unknown, correctIndex: unknown): choices is string[] {
   return Array.isArray(choices) && choices.length >= 2 && typeof correctIndex === 'number' && correctIndex >= 0 && correctIndex < choices.length

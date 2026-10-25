@@ -1,12 +1,9 @@
 import { NextRequest, NextResponse } from 'next/server'
-import { createClient } from '@supabase/supabase-js'
 import { Resend } from 'resend'
 import { signWrapUrl } from '@/lib/wrapSign'
+import { createServerServiceClient } from '@/lib/supabaseServer'
 
-const supabase = createClient(
-  process.env.NEXT_PUBLIC_SUPABASE_URL!,
-  process.env.SUPABASE_SERVICE_ROLE_KEY!
-)
+const supabase = createServerServiceClient()
 
 // Instantiated inside the handler to avoid build-time env var resolution
 function getResend() { return new Resend(process.env.RESEND_API_KEY!) }

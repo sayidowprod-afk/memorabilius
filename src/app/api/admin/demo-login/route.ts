@@ -1,12 +1,9 @@
 import { NextRequest, NextResponse } from 'next/server'
-import { createClient } from '@supabase/supabase-js'
 import { requireAdmin } from '@/lib/adminAuth'
 import { DEMO_ACCOUNT_EMAIL } from '@/lib/demoAccount'
+import { createServerServiceClient } from '@/lib/supabaseServer'
 
-const admin = createClient(
-  process.env.NEXT_PUBLIC_SUPABASE_URL!,
-  process.env.SUPABASE_SERVICE_ROLE_KEY!
-)
+const admin = createServerServiceClient()
 
 // Genere un token de connexion a usage unique vers le compte demo (salons de
 // cartes) -- le mot de passe du compte demo n'est jamais transmis au client,

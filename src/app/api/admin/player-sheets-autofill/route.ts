@@ -1,14 +1,11 @@
 import { NextRequest, NextResponse } from 'next/server'
-import { createClient } from '@supabase/supabase-js'
 import { requireAdmin } from '@/lib/adminAuth'
 import { fetchEspnPlayerAutofill } from '@/lib/espnHeadshot'
+import { createServerServiceClient } from '@/lib/supabaseServer'
 
 export const maxDuration = 20
 
-const admin = createClient(
-  process.env.NEXT_PUBLIC_SUPABASE_URL!,
-  process.env.SUPABASE_SERVICE_ROLE_KEY!
-)
+const admin = createServerServiceClient()
 
 export async function GET(req: NextRequest) {
   const user = await requireAdmin(admin, req.headers.get('authorization'))

@@ -1,17 +1,14 @@
 import { NextRequest, NextResponse } from 'next/server'
-import { createClient } from '@supabase/supabase-js'
 import { requireAdmin } from '@/lib/adminAuth'
 import { fetchCsvCardsForProfiles } from '@/lib/csvCards'
+import { createServerServiceClient } from '@/lib/supabaseServer'
 
 export const maxDuration = 20
 
 // Service role -- doit pouvoir chercher les cartes de TOUS les utilisateurs
 // (cartes_manuelles restreint SELECT a son propre user_id via RLS), meme
 // logique que les autres routes admin/service qui contournent RLS.
-const admin = createClient(
-  process.env.NEXT_PUBLIC_SUPABASE_URL!,
-  process.env.SUPABASE_SERVICE_ROLE_KEY!
-)
+const admin = createServerServiceClient()
 
 export interface CardMeta {
   brand: string | null

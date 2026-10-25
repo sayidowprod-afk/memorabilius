@@ -1,12 +1,9 @@
 import { NextRequest, NextResponse } from 'next/server'
-import { createClient } from '@supabase/supabase-js'
 import { z } from 'zod'
 import { notifyTradeEvent } from '@/lib/tradeNotify'
+import { createServerServiceClient } from '@/lib/supabaseServer'
 
-const supabaseAdmin = createClient(
-  process.env.NEXT_PUBLIC_SUPABASE_URL!,
-  process.env.SUPABASE_SERVICE_ROLE_KEY!
-)
+const supabaseAdmin = createServerServiceClient()
 
 const reviewSchema = z.object({
   rating: z.number().int().min(1).max(5),

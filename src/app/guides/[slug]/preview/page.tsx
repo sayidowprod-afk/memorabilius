@@ -1,14 +1,11 @@
 import { notFound } from 'next/navigation'
 import type { Metadata } from 'next'
-import { createClient } from '@supabase/supabase-js'
 import { normalizeGuideBlocks } from '@/lib/guideBlockTypes'
 import { GuideArticle } from '@/lib/guidePageRender'
 import { verifyPreviewToken } from '@/lib/guidePreviewToken'
+import { createServerServiceClient } from '@/lib/supabaseServer'
 
-const supabase = createClient(
-  process.env.NEXT_PUBLIC_SUPABASE_URL!,
-  process.env.SUPABASE_SERVICE_ROLE_KEY!
-)
+const supabase = createServerServiceClient()
 
 // Aperçu de la page finale d'un guide, sans avoir à cocher "publié" — même rendu
 // pixel pour pixel que /guides/[slug] (réutilise GuideArticle), mais bypasse le

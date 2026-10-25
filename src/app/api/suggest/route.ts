@@ -1,9 +1,9 @@
 import { NextRequest, NextResponse } from 'next/server'
-import { createClient } from '@supabase/supabase-js'
+import { createServerClient } from '@/lib/supabaseServer'
 
 // Suggestions de recherche en direct (accueil) : version LEGERE de /api/recherche, qui scanne les galeries CSV et interroge 4 sports ESPN
 // (plusieurs secondes). Ici : 3 collectionneurs + 4 joueurs, bases de donnees en parallele (~100 ms), ESPN en renfort avec un delai court.
-const supabase = createClient(process.env.NEXT_PUBLIC_SUPABASE_URL!, process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!)
+const supabase = createServerClient()
 
 const CACHE = new Map<string, { at: number; body: unknown }>()
 const TTL = 60_000

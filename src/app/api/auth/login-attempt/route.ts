@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server'
-import { createClient } from '@supabase/supabase-js'
+import { createServerServiceClient } from '@/lib/supabaseServer'
 
 // Anti-bruteforce sur /connexion. Le login lui-meme reste un appel client
 // direct a supabase.auth.signInWithPassword (inchange, pour ne pas toucher
@@ -8,10 +8,7 @@ import { createClient } from '@supabase/supabase-js'
 // Contournable en appelant Supabase directement (cle anon publique), mais ca
 // releve le niveau pour un script cible sur le formulaire du site, ce qui est
 // le scope demande.
-const supabaseAdmin = createClient(
-  process.env.NEXT_PUBLIC_SUPABASE_URL!,
-  process.env.SUPABASE_SERVICE_ROLE_KEY!
-)
+const supabaseAdmin = createServerServiceClient()
 
 const WINDOW_MINUTES = 15
 const MAX_ATTEMPTS = 5

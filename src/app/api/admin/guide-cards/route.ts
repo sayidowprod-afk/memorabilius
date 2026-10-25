@@ -1,12 +1,12 @@
 import { NextRequest, NextResponse } from 'next/server'
-import { createClient } from '@supabase/supabase-js'
+import { createServerServiceClient } from '@/lib/supabaseServer'
 
 // Cartes des galeries correspondant a un set (annee + mot du produit), pour le generateur de guides (tirages et photos des parallèles / inserts).
 // Cote serveur (cle service-role) : la RLS de cartes_manuelles limite chaque utilisateur, admin compris, a SES propres cartes dans le navigateur.
 // Reserve aux admins. Les cartes privees (cartes_privees) et celles d'un autre sport sont exclues ici, pour qu'aucune photo masquee ne sorte.
 export const maxDuration = 30
 
-const supabase = createClient(process.env.NEXT_PUBLIC_SUPABASE_URL!, process.env.SUPABASE_SERVICE_ROLE_KEY!)
+const supabase = createServerServiceClient()
 
 export async function GET(req: NextRequest) {
   const token = req.headers.get('authorization')?.replace('Bearer ', '')

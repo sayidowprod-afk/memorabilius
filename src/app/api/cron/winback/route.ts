@@ -1,12 +1,9 @@
 import { NextRequest, NextResponse } from 'next/server'
-import { createClient } from '@supabase/supabase-js'
 import { sendPushToUser } from '@/lib/pushNotify'
 import { winbackPush, normalizePushLang } from '@/lib/pushTranslations'
+import { createServerServiceClient } from '@/lib/supabaseServer'
 
-const supabase = createClient(
-  process.env.NEXT_PUBLIC_SUPABASE_URL!,
-  process.env.SUPABASE_SERVICE_ROLE_KEY!
-)
+const supabase = createServerServiceClient()
 
 const INACTIVE_AFTER_DAYS = 12
 const RESEND_AFTER_DAYS = 30

@@ -1,12 +1,9 @@
-import { createClient } from '@supabase/supabase-js'
 import type { Metadata } from 'next'
 import { redirect } from 'next/navigation'
 import { canonicalProfileSlug } from '@/lib/resolveProfileSlug'
+import { createServerClient } from '@/lib/supabaseServer'
 
-const supabase = createClient(
-  process.env.NEXT_PUBLIC_SUPABASE_URL!,
-  process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!
-)
+const supabase = createServerClient()
 
 async function loadLink(id: string) {
   const { data } = await supabase

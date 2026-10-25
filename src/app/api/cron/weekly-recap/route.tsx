@@ -1,18 +1,15 @@
 import { ImageResponse } from 'next/og'
 import { NextRequest, NextResponse } from 'next/server'
-import { createClient } from '@supabase/supabase-js'
 import { Resend } from 'resend'
 import fs from 'fs'
 import path from 'path'
 import { computeWeeklyRecap } from '@/lib/weeklyRecap'
 import { isSafeExternalUrl } from '@/lib/safeUrl'
+import { createServerServiceClient } from '@/lib/supabaseServer'
 
 export const runtime = 'nodejs'
 
-const supabase = createClient(
-  process.env.NEXT_PUBLIC_SUPABASE_URL!,
-  process.env.SUPABASE_SERVICE_ROLE_KEY!
-)
+const supabase = createServerServiceClient()
 
 function getResend() { return new Resend(process.env.RESEND_API_KEY!) }
 

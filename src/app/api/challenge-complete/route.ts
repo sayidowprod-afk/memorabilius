@@ -1,12 +1,9 @@
 import { NextRequest, NextResponse } from 'next/server'
-import { createClient } from '@supabase/supabase-js'
 import { awardChallengeXPIfNeeded } from '@/lib/xp'
 import { currentChallenge, startOfWeekISO, currentWeekKey } from '@/lib/weeklyChallenge'
+import { createServerServiceClient } from '@/lib/supabaseServer'
 
-const supabase = createClient(
-  process.env.NEXT_PUBLIC_SUPABASE_URL!,
-  process.env.SUPABASE_SERVICE_ROLE_KEY!
-)
+const supabase = createServerServiceClient()
 
 // Verse la récompense du défi hebdomadaire — la progression est recalculée
 // ici depuis cartes_manuelles (jamais confiée au client) pour ne pas pouvoir

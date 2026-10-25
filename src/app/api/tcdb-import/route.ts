@@ -1,12 +1,12 @@
 import { NextRequest, NextResponse } from 'next/server'
-import { createClient } from '@supabase/supabase-js'
+import { createServerServiceClient } from '@/lib/supabaseServer'
 import { parseTcdbPdf } from '@/lib/tcdbPdf'
 import { resolveCollectionLine, findEntry, sameName, sportsForTcdb, type ISet, type IEntry } from '@/lib/tcdbImport'
 import { norm } from '@/lib/setMatcher'
 
 export const maxDuration = 60
 
-const supabase = createClient(process.env.NEXT_PUBLIC_SUPABASE_URL!, process.env.SUPABASE_SERVICE_ROLE_KEY!)
+const supabase = createServerServiceClient()
 
 const SPORT_WORDS = /\b(basketball|football|baseball|hockey|soccer)\b/gi
 const setKey = (s: string) => norm(s.replace(SPORT_WORDS, ''))

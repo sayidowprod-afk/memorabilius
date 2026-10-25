@@ -1,13 +1,10 @@
 import { NextRequest, NextResponse } from 'next/server'
-import { createClient } from '@supabase/supabase-js'
 import { candidatesForCard, pickEntry, type MSet, type MEntry } from '@/lib/setMatcher'
+import { createServerServiceClient } from '@/lib/supabaseServer'
 
 export const maxDuration = 30
 
-const supabase = createClient(
-  process.env.NEXT_PUBLIC_SUPABASE_URL!,
-  process.env.SUPABASE_SERVICE_ROLE_KEY!
-)
+const supabase = createServerServiceClient()
 
 interface GalleryCard {
   id?: string   // cartes_manuelles UUID (absent pour les cartes CSV)

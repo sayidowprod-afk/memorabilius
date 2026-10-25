@@ -25,3 +25,13 @@ export function createServerClient(timeoutMs = 15000) {
     { global: { fetch: fetchWithTimeout(timeoutMs) } }
   )
 }
+
+// Variante service role (contourne RLS) -- memes garanties de timeout, pour
+// les Route Handlers qui ecrivent/lisent avec des privileges eleves.
+export function createServerServiceClient(timeoutMs = 15000) {
+  return createClient(
+    process.env.NEXT_PUBLIC_SUPABASE_URL!,
+    process.env.SUPABASE_SERVICE_ROLE_KEY!,
+    { global: { fetch: fetchWithTimeout(timeoutMs) } }
+  )
+}

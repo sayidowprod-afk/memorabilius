@@ -1,14 +1,11 @@
 import { NextRequest, NextResponse } from 'next/server'
-import { createClient } from '@supabase/supabase-js'
 import { requireAdmin } from '@/lib/adminAuth'
 import { fetchEspnPlayerAutofill } from '@/lib/espnHeadshot'
+import { createServerServiceClient } from '@/lib/supabaseServer'
 
 export const maxDuration = 30
 
-const admin = createClient(
-  process.env.NEXT_PUBLIC_SUPABASE_URL!,
-  process.env.SUPABASE_SERVICE_ROLE_KEY!
-)
+const admin = createServerServiceClient()
 
 // Nombre de fiches traitees par appel : les requetes ESPN sont lentes (2 par
 // joueur) -- le client rappelle tant qu'il en reste ("remaining").

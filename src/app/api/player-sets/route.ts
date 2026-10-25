@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server'
-import { createClient } from '@supabase/supabase-js'
+import { createServerClient } from '@/lib/supabaseServer'
 
 // Pagination de la section "Sets" d'un joueur, appelee par
 // PlayerSetsSection.tsx (defilement). Duplique volontairement l'appel RPC
@@ -7,10 +7,7 @@ import { createClient } from '@supabase/supabase-js'
 // DB -- c'etait le RENDU react/HTML de TOUS les sets d'un coup qui etait
 // lent, pas la requete) plutot que de le factoriser -- page.tsx garde son
 // fetch initial complet (deja teste, necessaire pour rcYear/sports pills).
-const supabase = createClient(
-  process.env.NEXT_PUBLIC_SUPABASE_URL!,
-  process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!
-)
+const supabase = createServerClient()
 
 const RATE = new Map<string, { n: number; reset: number }>()
 function allowed(ip: string) {

@@ -1,16 +1,14 @@
 import { ImageResponse } from 'next/og'
-import { createClient } from '@supabase/supabase-js'
+
 import { NextRequest } from 'next/server'
 import fs from 'fs'
 import path from 'path'
 import { isSafeExternalUrl } from '@/lib/safeUrl'
+import { createServerClient } from '@/lib/supabaseServer'
 
 export const runtime = 'nodejs'
 
-const supabase = createClient(
-  process.env.NEXT_PUBLIC_SUPABASE_URL!,
-  process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!
-)
+const supabase = createServerClient()
 
 const W = 900
 const H = 300

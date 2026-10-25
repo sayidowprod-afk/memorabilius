@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server'
-import { createClient } from '@supabase/supabase-js'
 import { S3Client, PutObjectCommand, HeadObjectCommand } from '@aws-sdk/client-s3'
+import { createServerServiceClient } from '@/lib/supabaseServer'
 
 // Rattrapage ponctuel (a appeler a la main, pas un cron planifie) : le backup
 // quotidien (/api/cron/backup) ne regardait que les dernieres 26h et a eu un
@@ -32,10 +32,7 @@ const PAGE_SIZE = 500
 // retry avec un delai plus long.
 const CONCURRENCY = 5
 
-const supabase = createClient(
-  process.env.NEXT_PUBLIC_SUPABASE_URL!,
-  process.env.SUPABASE_SERVICE_ROLE_KEY!
-)
+const supabase = createServerServiceClient()
 
 function r2Client() {
   return new S3Client({

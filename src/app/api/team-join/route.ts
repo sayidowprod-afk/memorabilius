@@ -1,17 +1,14 @@
 import { NextRequest, NextResponse } from 'next/server'
-import { createClient } from '@supabase/supabase-js'
 import { z } from 'zod'
 import { sendPushToUser } from '@/lib/pushNotify'
 import { teamJoinRequestPush, genericCollectorName, normalizePushLang } from '@/lib/pushTranslations'
+import { createServerServiceClient } from '@/lib/supabaseServer'
 
 const teamJoinSchema = z.object({
   teamId: z.union([z.string(), z.number()]),
 })
 
-const supabase = createClient(
-  process.env.NEXT_PUBLIC_SUPABASE_URL!,
-  process.env.SUPABASE_SERVICE_ROLE_KEY!
-)
+const supabase = createServerServiceClient()
 
 // Postuler à une team se fait ici (service role), pas côté client comme avant :
 // un candidat qui avait déjà été refusé (ou avait rejoint puis quitté) laisse une

@@ -1,4 +1,3 @@
-import { createClient } from '@supabase/supabase-js'
 import type { Metadata } from 'next'
 import Link from 'next/link'
 import { SPORTS_TEAMS, teamLogoUrl, SportsTeam } from '@/lib/sportsTeams'
@@ -9,13 +8,11 @@ import FranchiseChecklist, { type FranchisePlayer } from '@/components/Franchise
 import { cleanFranchise } from '@/lib/franchiseExclude'
 import TeamCardsSection from './TeamCardsSection'
 import TeamSetsSection from './TeamSetsSection'
+import { createServerClient } from '@/lib/supabaseServer'
 
 export const revalidate = 86400 // 24h (etait 1h -- contenu quasi statique, cf. reduction couts Vercel ISR)
 
-const supabase = createClient(
-  process.env.NEXT_PUBLIC_SUPABASE_URL!,
-  process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!
-)
+const supabase = createServerClient()
 
 function findTeam(slug: string): SportsTeam | null {
   return SPORTS_TEAMS.find(t => teamSlug(t.name) === slug) || null

@@ -1,17 +1,14 @@
 import { ImageResponse } from 'next/og'
-import { createClient } from '@supabase/supabase-js'
 import { NextRequest } from 'next/server'
 import fs from 'fs'
 import path from 'path'
 import { verifyWrapSig } from '@/lib/wrapSign'
 import { isSafeExternalUrl } from '@/lib/safeUrl'
+import { createServerServiceClient } from '@/lib/supabaseServer'
 
 export const runtime = 'nodejs'
 
-const supabase = createClient(
-  process.env.NEXT_PUBLIC_SUPABASE_URL!,
-  process.env.SUPABASE_SERVICE_ROLE_KEY!
-)
+const supabase = createServerServiceClient()
 
 let LOGO_B64: string | null = null
 try {

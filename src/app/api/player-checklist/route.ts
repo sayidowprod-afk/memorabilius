@@ -1,13 +1,10 @@
 import { NextRequest, NextResponse } from 'next/server'
-import { createClient } from '@supabase/supabase-js'
+import { createServerServiceClient } from '@/lib/supabaseServer'
 
 export const maxDuration = 30
 
 // Service role bypasses RLS on card_set_entries (anon key is blocked by RLS policy)
-const admin = createClient(
-  process.env.NEXT_PUBLIC_SUPABASE_URL!,
-  process.env.SUPABASE_SERVICE_ROLE_KEY!
-)
+const admin = createServerServiceClient()
 
 interface RpcRow {
   id: number; set_id: number; card_number: string | null; variation: string | null

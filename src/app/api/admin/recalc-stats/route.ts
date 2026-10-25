@@ -1,14 +1,11 @@
 import { NextRequest, NextResponse } from 'next/server'
-import { createClient } from '@supabase/supabase-js'
 import { requireAdmin } from '@/lib/adminAuth'
 import { recalcAndSaveUserStats } from '@/lib/recalcStats'
+import { createServerServiceClient } from '@/lib/supabaseServer'
 
 export const maxDuration = 300
 
-const admin = createClient(
-  process.env.NEXT_PUBLIC_SUPABASE_URL!,
-  process.env.SUPABASE_SERVICE_ROLE_KEY!
-)
+const admin = createServerServiceClient()
 
 // Bouton "Recalculer les stats" du panel admin -- recompte TOUT LE MONDE
 // immediatement (contrairement au cron nightly qui ne retouche que les

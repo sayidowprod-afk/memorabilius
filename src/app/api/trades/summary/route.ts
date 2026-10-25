@@ -1,13 +1,10 @@
 import { NextRequest, NextResponse } from 'next/server'
-import { createClient } from '@supabase/supabase-js'
 import { computeMatches } from '@/lib/tradeMatches'
+import { createServerServiceClient } from '@/lib/supabaseServer'
 
 export const maxDuration = 20
 
-const supabase = createClient(
-  process.env.NEXT_PUBLIC_SUPABASE_URL!,
-  process.env.SUPABASE_SERVICE_ROLE_KEY!
-)
+const supabase = createServerServiceClient()
 
 // GET /api/trades/summary -- pour l'encart de l'accueil : offres recues en
 // attente + nombre de matches wishlist. Volontairement separe du chargement

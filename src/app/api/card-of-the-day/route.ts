@@ -1,5 +1,5 @@
 import { NextResponse } from 'next/server'
-import { createClient } from '@supabase/supabase-js'
+import { createServerServiceClient } from '@/lib/supabaseServer'
 import { printRunOf, specialNum } from '@/lib/cardTags'
 
 // CARTE DU JOUR : une carte de la communaute, la meme pour tout le monde toute la journee (fuseau de Paris), qui change a minuit.
@@ -9,7 +9,7 @@ import { printRunOf, specialNum } from '@/lib/cardTags'
 // Reponse mise en cache au CDN au plus 1 h, et jamais au-dela de minuit (Paris).
 export const dynamic = 'force-dynamic'
 
-const supabase = createClient(process.env.NEXT_PUBLIC_SUPABASE_URL!, process.env.SUPABASE_SERVICE_ROLE_KEY!)
+const supabase = createServerServiceClient()
 
 function hash(s: string) {
   let h = 2166136261

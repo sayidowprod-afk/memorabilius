@@ -1,15 +1,12 @@
 import { NextRequest, NextResponse } from 'next/server'
-import { createClient } from '@supabase/supabase-js'
 import { SPORTS_TEAMS, type SportsTeam } from '@/lib/sportsTeams'
 import { teamSlug } from '@/lib/playerSlug'
 import { fetchCsvCardsForProfilesCached } from '@/lib/csvCardsCache'
+import { createServerClient } from '@/lib/supabaseServer'
 
 // Pagination de la section "Dans les collections" d'une page equipe
 // (defilement), meme principe que /api/player-cards.
-const supabase = createClient(
-  process.env.NEXT_PUBLIC_SUPABASE_URL!,
-  process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!
-)
+const supabase = createServerClient()
 
 function findTeam(slug: string): SportsTeam | null {
   return SPORTS_TEAMS.find(t => teamSlug(t.name) === slug) || null

@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server'
-import { createClient } from '@supabase/supabase-js'
+import { createServerServiceClient } from '@/lib/supabaseServer'
 import { isSafeExternalUrl } from '@/lib/safeUrl'
 
 export const maxDuration = 30
@@ -35,13 +35,11 @@ function respCacheSet(k: string, data: object) {
 
 // ── Cache Supabase (persistant — partagé entre toutes les instances Lambda) ──
 const SB_TTL_H = 24  // heures
-let _sb: ReturnType<typeof createClient> | null = null
+let _sb: ReturnType<typeof createServerServiceClient> | null = null
 function getSb() {
   if (_sb) return _sb
-  const url = process.env.NEXT_PUBLIC_SUPABASE_URL
-  const key = process.env.SUPABASE_SERVICE_ROLE_KEY
-  if (!url || !key) return null
-  _sb = createClient(url, key, { auth: { persistSession: false } })
+  if (!process.env.NEXT_PUBLIC_SUPABASE_URL || !process.env.SUPABASE_SERVICE_ROLE_KEY) return null
+  _sb = createServerServiceClient()
   return _sb
 }
 async function sbGet(k: string): Promise<object | null> {

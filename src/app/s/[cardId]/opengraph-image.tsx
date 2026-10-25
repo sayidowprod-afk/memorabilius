@@ -1,16 +1,13 @@
 import { ImageResponse } from 'next/og'
-import { createClient } from '@supabase/supabase-js'
 import sharp from 'sharp'
+import { createServerClient } from '@/lib/supabaseServer'
 
 export const runtime = 'nodejs'
 export const alt = 'Carte Memorabilius'
 export const size = { width: 1200, height: 630 }
 export const contentType = 'image/png'
 
-const supabase = createClient(
-  process.env.NEXT_PUBLIC_SUPABASE_URL!,
-  process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!
-)
+const supabase = createServerClient()
 
 // Même logo que galerie/[userId]/opengraph-image.tsx — hardcodé en base64,
 // pas de dépendance filesystem sur Vercel.

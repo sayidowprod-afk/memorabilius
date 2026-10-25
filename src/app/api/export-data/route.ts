@@ -1,14 +1,11 @@
 import { NextRequest, NextResponse } from 'next/server'
-import { createClient } from '@supabase/supabase-js'
+import { createServerServiceClient } from '@/lib/supabaseServer'
 
 // Export RGPD (droit a la portabilite) : renvoie un JSON de toutes les
 // donnees personnelles de l'utilisateur connecte. Service role car certaines
 // tables (messages recus) referencent l'utilisateur sans que ses propres
 // policies RLS ne couvrent la lecture "recu par moi" dans tous les cas.
-const supabaseAdmin = createClient(
-  process.env.NEXT_PUBLIC_SUPABASE_URL!,
-  process.env.SUPABASE_SERVICE_ROLE_KEY!
-)
+const supabaseAdmin = createServerServiceClient()
 
 export async function GET(req: NextRequest) {
   const token = req.headers.get('authorization')?.replace('Bearer ', '')

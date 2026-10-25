@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server'
-import { createClient } from '@supabase/supabase-js'
+import { createServerClient } from '@/lib/supabaseServer'
 
 // Suggestions legeres pour la recherche du header (icone loupe, voir
 // HeaderSearch.tsx) -- volontairement separee de /api/recherche, qui elle
@@ -8,10 +8,7 @@ import { createClient } from '@supabase/supabase-js'
 // clavier depuis n'importe quelle page du site). Ici : juste joueurs +
 // collectionneurs, sur colonnes deja indexees en trigram (voir migration
 // 20260828_search_trigram_indexes.sql), limites a quelques lignes chacun.
-const supabase = createClient(
-  process.env.NEXT_PUBLIC_SUPABASE_URL!,
-  process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!
-)
+const supabase = createServerClient()
 
 const RATE_MAP = new Map<string, { count: number; reset: number }>()
 setInterval(() => {

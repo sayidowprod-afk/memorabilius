@@ -1,5 +1,4 @@
 import { NextRequest, NextResponse } from 'next/server'
-import { createClient } from '@supabase/supabase-js'
 import { createPublicKey, verify as cryptoVerify } from 'crypto'
 import sharp from 'sharp'
 import { isAllowedCsvUrl } from '@/lib/csvParse'
@@ -8,6 +7,7 @@ import { renderCardSpinGif } from '@/lib/discordCardGif'
 import { resolveProfileBySlugParam } from '@/lib/resolveProfileSlug'
 import { discordFetch, contestChannelId, parisWeekStart } from '@/lib/discordContest'
 import { postPublicBirthdays, postTestBirthdays, parisToday, type BirthdayPlayer } from '@/lib/discordBirthday'
+import { createServerServiceClient } from '@/lib/supabaseServer'
 
 // ── Concours hebdomadaire ─────────────────────────────────────────────────────
 
@@ -496,10 +496,7 @@ export const runtime = 'nodejs'
 // after 60 seconds", aucun message poste dans le salon).
 export const maxDuration = 120
 
-const supabase = createClient(
-  process.env.NEXT_PUBLIC_SUPABASE_URL!,
-  process.env.SUPABASE_SERVICE_ROLE_KEY!
-)
+const supabase = createServerServiceClient()
 
 function verifyDiscord(req: NextRequest, body: string): boolean {
   const sig = req.headers.get('x-signature-ed25519') || ''

@@ -1,13 +1,10 @@
 import { NextResponse } from 'next/server'
-import { createClient } from '@supabase/supabase-js'
 import { fetchCsvCapped, isAllowedCsvUrl } from '@/lib/csvParse'
+import { createServerServiceClient } from '@/lib/supabaseServer'
 
 export const dynamic = 'force-dynamic'
 
-const supabaseAdmin = createClient(
-  process.env.NEXT_PUBLIC_SUPABASE_URL!,
-  process.env.SUPABASE_SERVICE_ROLE_KEY!
-)
+const supabaseAdmin = createServerServiceClient()
 
 // Module-level CSV cache — survives across requests in the same Node.js process (same as recherche)
 const CSV_TTL = 10 * 60 * 1000 // 10 min

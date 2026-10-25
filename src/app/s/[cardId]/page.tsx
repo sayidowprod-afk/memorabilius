@@ -1,11 +1,8 @@
-import { createClient } from '@supabase/supabase-js'
 import type { Metadata } from 'next'
 import CardSharePage from '@/components/CardSharePage'
+import { createServerClient } from '@/lib/supabaseServer'
 
-const supabase = createClient(
-  process.env.NEXT_PUBLIC_SUPABASE_URL!,
-  process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!
-)
+const supabase = createServerClient()
 
 export async function generateMetadata(
   { params }: { params: Promise<{ cardId: string }> }

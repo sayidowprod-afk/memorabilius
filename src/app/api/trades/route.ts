@@ -1,9 +1,9 @@
 import { NextRequest, NextResponse } from 'next/server'
-import { createClient } from '@supabase/supabase-js'
 import { z } from 'zod'
 import { sendPushToUser } from '@/lib/pushNotify'
 import { tradeOfferPush, someoneNameFallback, normalizePushLang } from '@/lib/pushTranslations'
 import { notifyTradeEvent, TRADE_OFFER_TTL_DAYS } from '@/lib/tradeNotify'
+import { createServerServiceClient } from '@/lib/supabaseServer'
 
 const cardInputSchema = z.object({
   id: z.string().min(1).max(2000),
@@ -27,10 +27,7 @@ const tradePostSchema = z.object({
   counterOf: z.string().uuid().optional(),
 })
 
-const supabaseAdmin = createClient(
-  process.env.NEXT_PUBLIC_SUPABASE_URL!,
-  process.env.SUPABASE_SERVICE_ROLE_KEY!
-)
+const supabaseAdmin = createServerServiceClient()
 
 function auth(req: NextRequest) {
   return req.headers.get('authorization')?.replace('Bearer ', '') || ''

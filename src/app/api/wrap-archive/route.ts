@@ -1,11 +1,8 @@
 import { NextRequest, NextResponse } from 'next/server'
-import { createClient } from '@supabase/supabase-js'
 import { signWrapUrl } from '@/lib/wrapSign'
+import { createServerServiceClient } from '@/lib/supabaseServer'
 
-const supabase = createClient(
-  process.env.NEXT_PUBLIC_SUPABASE_URL!,
-  process.env.SUPABASE_SERVICE_ROLE_KEY!
-)
+const supabase = createServerServiceClient()
 
 // Liste les Wraps mensuels passés d'un utilisateur, avec leurs URLs signées
 // (memes que celles envoyees par email/cron -- signWrapUrl n'a pas de date

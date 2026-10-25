@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server'
-import { createClient } from '@supabase/supabase-js'
 import { fetchCsvCardsForProfilesCached } from '@/lib/csvCardsCache'
 import { normalizeName, cardPageUrl } from '@/lib/playerSlug'
+import { createServerClient } from '@/lib/supabaseServer'
 
 // Pagination des "cartes communaute" d'un joueur, appelee par
 // CommunityCardsSection.tsx (defilement + changement de filtre/tri).
@@ -12,10 +12,7 @@ import { normalizeName, cardPageUrl } from '@/lib/playerSlug'
 // COMPLETE pour la checklist/RC/sets derives, donc son fetch initial reste
 // inchange (deja teste, fonctionne) ; cette route ne sert que les pages
 // suivantes demandees au defilement ou apres un filtre, independamment.
-const supabase = createClient(
-  process.env.NEXT_PUBLIC_SUPABASE_URL!,
-  process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!
-)
+const supabase = createServerClient()
 
 interface Card {
   id: string | number

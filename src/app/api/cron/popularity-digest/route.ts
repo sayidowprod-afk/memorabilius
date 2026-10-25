@@ -1,12 +1,9 @@
 import { NextRequest, NextResponse } from 'next/server'
-import { createClient } from '@supabase/supabase-js'
 import { sendPushToUser } from '@/lib/pushNotify'
 import { popularityDigestPush, normalizePushLang } from '@/lib/pushTranslations'
+import { createServerServiceClient } from '@/lib/supabaseServer'
 
-const supabase = createClient(
-  process.env.NEXT_PUBLIC_SUPABASE_URL!,
-  process.env.SUPABASE_SERVICE_ROLE_KEY!
-)
+const supabase = createServerServiceClient()
 
 // Hebdo (dimanche soir) : ne notifie que s'il y a vraiment quelque chose à
 // montrer (vues ou likes cette semaine) — pas d'intérêt à relancer avec un

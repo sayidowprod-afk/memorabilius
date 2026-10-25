@@ -1,4 +1,3 @@
-import { createClient } from '@supabase/supabase-js'
 import type { Metadata } from 'next'
 import Link from 'next/link'
 import { Suspense, cache } from 'react'
@@ -9,6 +8,7 @@ import CommunityCardsSection from './CommunityCardsSection'
 import PlayerSetsSection from './PlayerSetsSection'
 import PlayerChecklistSection from './PlayerChecklistSection'
 import ScrollTopButton from '@/components/ScrollTopButton'
+import { createServerClient } from '@/lib/supabaseServer'
 
 // La fiche ESPN (findAthleteId -> bio/stats/awards -> noms d'equipes -> numeros
 // de maillot par equipe) enchaine plusieurs allers-retours reseau et peut
@@ -287,10 +287,7 @@ function fetchPlayerOnce(slug: string, fn: () => Promise<any>) {
   return p
 }
 
-const supabase = createClient(
-  process.env.NEXT_PUBLIC_SUPABASE_URL!,
-  process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!
-)
+const supabase = createServerClient()
 
 function slugToName(slug: string) {
   return slug.split('-').map(w => w.charAt(0).toUpperCase() + w.slice(1)).join(' ')
