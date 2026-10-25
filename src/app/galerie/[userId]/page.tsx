@@ -1,14 +1,17 @@
-import { createClient } from '@supabase/supabase-js'
 import type { Metadata } from 'next'
 import { cache, Suspense } from 'react'
 import { redirect } from 'next/navigation'
 import GalerieClient from './GalerieClient'
 import { resolveProfileBySlugParam, canonicalProfileSlug } from '@/lib/resolveProfileSlug'
+import { createServerClient } from '@/lib/supabaseServer'
 
-const supabase = createClient(
-  process.env.NEXT_PUBLIC_SUPABASE_URL!,
-  process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!
-)
+// Sans timeout sur ce client, un hang Supabase (incident externe ou
+// connexion coupee sans RST) bloquait le rendu de CETTE page jusqu'au kill
+// dur de la fonction serverless Vercel a 300s -- observe en prod les
+// 2026-10-24/25 : 5959 "Task timed out after 300 seconds" en 16h sur
+// /galerie/[userId], le point le plus chaud de tout le site. Voir
+// src/lib/supabaseServer.ts.
+const supabase = createServerClient()
 
 const UUID_RE = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i
 
