@@ -1,15 +1,16 @@
-import { createClient } from '@supabase/supabase-js'
 import { espnCitizenshipToCode } from '@/lib/nbaCountries'
+import { createServerServiceClient } from '@/lib/supabaseServer'
 
 // Cache persistant (table player_photo_cache) des photos de joueurs --
 // service role, car ce module n'est importe que depuis des Route Handlers /
 // Server Components (jamais de composant client, voir les call sites). Role
 // service pour ne pas dependre de policies RLS sur une simple table de cache
-// technique, sans donnees utilisateur.
-const cacheDb = createClient(
-  process.env.NEXT_PUBLIC_SUPABASE_URL!,
-  process.env.SUPABASE_SERVICE_ROLE_KEY!
-)
+// technique, sans donnees utilisateur. Timeout (voir supabaseServer.ts) :
+// sans ca, un hang Supabase bloquait la page joueur jusqu'au kill dur
+// Vercel a 300s (meme classe de bug que /galerie/[userId] -- ce fichier
+// n'avait pas ete couvert par le rollout initial, qui ne ciblait que
+// page.tsx/route.ts, pas les modules lib/ partages).
+const cacheDb = createServerServiceClient()
 const PHOTO_CACHE_TTL_MS = 24 * 3600_000
 
 // ── NBA CDN (tous les joueurs, actifs + retraités) ────────────────────────────

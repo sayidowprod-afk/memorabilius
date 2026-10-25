@@ -1,6 +1,6 @@
-import { createClient } from '@supabase/supabase-js'
 import { after } from 'next/server'
 import { parseCsv, type CsvCard, type RawCsvCard } from '@/lib/csvCards'
+import { createServerServiceClient } from '@/lib/supabaseServer'
 
 // Cache persistant (table csv_cards_cache) -- voir player_photo_cache dans
 // espnHeadshot.ts pour le meme principe. Sans ca, une page joueur retelecharge
@@ -8,10 +8,9 @@ import { parseCsv, type CsvCard, type RawCsvCard } from '@/lib/csvCards'
 // le joueur regarde : cause de lenteur des pages joueur/recherche/checklist.
 // Fichier server-only (service role + after()) -- csvCards.ts reste le
 // module cote client (CardPicker.tsx) sans secret ni dependance serveur.
-const cacheDb = createClient(
-  process.env.NEXT_PUBLIC_SUPABASE_URL!,
-  process.env.SUPABASE_SERVICE_ROLE_KEY!
-)
+// Timeout (voir supabaseServer.ts) : non couvert par le rollout initial,
+// qui ne ciblait que page.tsx/route.ts, pas les modules lib/ partages.
+const cacheDb = createServerServiceClient()
 const CSV_CACHE_TTL_MS = 3600_000
 
 async function fetchAndCacheCsv(profileId: string, url: string): Promise<RawCsvCard[]> {
