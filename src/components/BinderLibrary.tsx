@@ -1,5 +1,5 @@
 'use client'
-import { useEffect, useMemo, useRef, useState } from 'react'
+import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import { useRouter, usePathname, useSearchParams } from 'next/navigation'
 import { useTheme } from '@/lib/ThemeContext'
 import { useLang } from '@/lib/LangContext'
@@ -296,7 +296,17 @@ export default function BinderLibrary({ userId, isOwner, accent, pendingCard, on
 
   // Taille initiale adaptee a l'ecran (avant : 620px fixes = enorme sur mobile tant que la mesure n'avait pas tourne)
   const [pageW, setPageW] = useState(() => (typeof window === 'undefined' ? PAGE_MAX_W : Math.max(120, Math.min(PAGE_MAX_W, Math.floor((window.innerWidth - 32) / 2)))))
-  const stageRef = useRef<HTMLDivElement>(null)
+  // Callback ref (pas useRef) : le stage ne se monte que dans la branche JSX
+  // "selected" (early return a part pour la grille "pas de classeur
+  // selectionne"), et le commit ou `selected` devient truthy ne correspond
+  // pas toujours au commit ou ce div se monte reellement (observe en prod :
+  // l'effet de mesure dependant de [selected, ...] tournait AVANT que la ref
+  // soit attachee -- stageRef.current valait null a chaque fois, la mesure
+  // ne se faisait jamais, et les pages restaient bloquees sur l'estimation
+  // initiale, trop large -> debordement hors du fond). Un callback ref +
+  // state se declenche exactement au bon moment, quel que soit le commit.
+  const [stageEl, setStageEl] = useState<HTMLDivElement | null>(null)
+  const stageRef = useCallback((el: HTMLDivElement | null) => setStageEl(el), [])
   const pageH = Math.round(pageW * PAGE_RATIO)
   const [binderFullscreen, setBinderFullscreen] = useState(false)
   const binderFullscreenRef = useRef(false)
@@ -329,10 +339,16 @@ export default function BinderLibrary({ userId, isOwner, accent, pendingCard, on
   }, [selected, loading])
 
   useEffect(() => {
-    const el = stageRef.current
+    const el = stageEl
     if (!el) return
     const measure = () => {
-      const avail = (el.clientWidth || window.innerWidth) - 32
+      // Si la mesure arrive avant que le stage ait sa largeur finale, clientWidth
+      // vaut 0 -- l'ancien repli sur window.innerWidth ignorait le padding/les
+      // marges propres au stage et calculait des pages trop larges, qui
+      // debordaient ensuite du fond. On attend simplement le prochain appel
+      // (raf / timeout / ResizeObserver) plutot que de deviner.
+      if (!el.clientWidth) return
+      const avail = el.clientWidth - 32
       const byWidth = Math.floor(avail / 2)                       // deux pages côte à côte
       const byHeight = binderFullscreenRef.current
         ? Math.floor((window.innerHeight - 16) / PAGE_RATIO)    // stage padding(8) + marge(8) — bottom bar flotte en absolu
@@ -356,7 +372,7 @@ export default function BinderLibrary({ userId, isOwner, accent, pendingCard, on
     }
     window.addEventListener('keydown', onKey)
     return () => { cancelAnimationFrame(raf); clearTimeout(t1); ro.disconnect(); window.removeEventListener('resize', measure); window.removeEventListener('keydown', onKey) }
-  }, [selected, binderFullscreen])
+  }, [stageEl, binderFullscreen])
 
   // Feuilletage à deux faces : la feuille tourne en continu de 0 à ±180°.
   // Face avant = page qui part, face arrière (pré-retournée) = page qui arrive.
@@ -2370,16 +2386,21 @@ export default function BinderLibrary({ userId, isOwner, accent, pendingCard, on
                 pour partager une ligne avec les boutons sans un retour a la
                 ligne imprevisible (constate sur mobile). */}
             <div style={{ textAlign: 'center', fontSize: 12, color: 'var(--text3, #999)' }}>{pageLabel}</div>
-            <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: isMobile ? 6 : 8, flexWrap: 'wrap' }}>
+            {/* nowrap + scroll horizontal (jamais de retour a la ligne) : avec le
+                bouton "premiere page" et le menu deroulant en plus, 5-6
+                controles ne tiennent plus toujours sur une ligne en largeur
+                mobile -- un wrap faisait flotter le bouton "suivant" seul sur
+                sa propre ligne, hors de la barre (signale par l'utilisateur). */}
+            <div style={{ display: 'flex', alignItems: 'center', justifyContent: isMobile ? 'flex-start' : 'center', gap: isMobile ? 6 : 8, flexWrap: 'nowrap', overflowX: isMobile ? 'auto' : 'visible', WebkitOverflowScrolling: 'touch', padding: isMobile ? '2px 1px' : 0 }}>
               <button
                 onClick={() => canPrev ? clickFlip('prev') : setIsOpen(false)}
                 disabled={!!flip} className="btn-main btn-secondary"
-                style={{ padding: isMobile ? '12px 14px' : '8px 14px', fontSize: 13 }} aria-label={canPrev ? t('binder_prev_page') : t('binder_close')}>
+                style={{ padding: isMobile ? '12px 14px' : '8px 14px', fontSize: 13, flexShrink: 0 }} aria-label={canPrev ? t('binder_prev_page') : t('binder_close')}>
                 ←<span className="binder-nav-label"> {canPrev ? t('binder_prev_page') : t('binder_close')}</span>
               </button>
               {canPrev && (
                 <button onClick={goToFirstPage} disabled={!!flip} className="btn-main btn-secondary"
-                  style={{ padding: isMobile ? '12px 14px' : '8px 12px', fontSize: 13 }} aria-label={t('binder_first_page')} title={t('binder_first_page')}>
+                  style={{ padding: isMobile ? '12px 14px' : '8px 12px', fontSize: 13, flexShrink: 0 }} aria-label={t('binder_first_page')} title={t('binder_first_page')}>
                   ⏮
                 </button>
               )}
@@ -2390,22 +2411,22 @@ export default function BinderLibrary({ userId, isOwner, accent, pendingCard, on
                   disabled={!!flip}
                   aria-label={t('binder_goto_page')}
                   title={t('binder_goto_page')}
-                  style={{ padding: isMobile ? '10px 6px' : '7px 8px', fontSize: 12, borderRadius: 8, border: '1px solid var(--border, #ccc)', background: 'var(--surface, #fff)', color: 'var(--text, #111)', maxWidth: isMobile ? 110 : 160 }}>
+                  style={{ padding: isMobile ? '10px 4px' : '7px 8px', fontSize: 12, borderRadius: 8, border: '1px solid var(--border, #ccc)', background: 'var(--surface, #fff)', color: 'var(--text, #111)', width: isMobile ? 90 : 160, flexShrink: 0 }}>
                   {pageOptions.map(o => <option key={o.value} value={o.value}>{o.label}</option>)}
                 </select>
               )}
               {canNext && (
                 <button onClick={goToLastPage} disabled={!!flip} className="btn-main btn-secondary"
-                  style={{ padding: isMobile ? '12px 14px' : '8px 12px', fontSize: 13 }} aria-label={t('binder_last_page')} title={t('binder_last_page')}>
+                  style={{ padding: isMobile ? '12px 14px' : '8px 12px', fontSize: 13, flexShrink: 0 }} aria-label={t('binder_last_page')} title={t('binder_last_page')}>
                   ⏭
                 </button>
               )}
               <button onClick={() => clickFlip('next')} disabled={!canNext || !!flip} className="btn-main btn-primary"
-                style={{ padding: isMobile ? '12px 18px' : '8px 14px', fontSize: 13, opacity: !canNext ? 0.4 : 1 }} aria-label={t('binder_next_page')}>
+                style={{ padding: isMobile ? '12px 18px' : '8px 14px', fontSize: 13, opacity: !canNext ? 0.4 : 1, flexShrink: 0 }} aria-label={t('binder_next_page')}>
                 <span className="binder-nav-label">{t('binder_next_page')} </span>→
               </button>
               {isOwner && !canNext && (
-                <button onClick={addPage} className="btn-main btn-secondary" style={{ padding: isMobile ? '12px 16px' : '8px 12px', fontSize: 12 }} aria-label={t('binder_add_page')}>
+                <button onClick={addPage} className="btn-main btn-secondary" style={{ padding: isMobile ? '12px 16px' : '8px 12px', fontSize: 12, flexShrink: 0 }} aria-label={t('binder_add_page')}>
                   +<span className="binder-nav-label"> Ajouter une page</span>
                 </button>
               )}
