@@ -32,9 +32,14 @@ export async function GET(req: NextRequest) {
   const firstName = nameParts[0]
   const lastName = nameParts[nameParts.length - 1]
 
-  const setsRpcRes0 = await supabase.rpc('get_player_sets_unaccent', { p_first: firstName, p_last: lastName })
+  // get_player_sets (indexee, cf idx_card_set_entries_player_name_trgm) essayee
+  // en premier -- get_player_sets_unaccent n'a pas encore l'index equivalent sur
+  // la colonne sans accents (echec de build recurrent, incident Supabase Management
+  // API en cours depuis le 2026-10-23) et peut timeout sur un prenom courant.
+  // Repli temporaire le temps que cet index puisse enfin etre construit.
+  const setsRpcRes0 = await supabase.rpc('get_player_sets', { p_first: firstName, p_last: lastName })
   const setsRpcRes = setsRpcRes0.error
-    ? await supabase.rpc('get_player_sets', { p_first: firstName, p_last: lastName })
+    ? await supabase.rpc('get_player_sets_unaccent', { p_first: firstName, p_last: lastName })
     : setsRpcRes0
   const rawSets: any[] = setsRpcRes.data || []
 

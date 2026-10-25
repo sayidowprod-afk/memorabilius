@@ -380,20 +380,25 @@ async function _fetchPlayer(slug: string) {
     return all
   }
 
+  // get_player_sets (indexee, cf idx_card_set_entries_player_name_trgm) essayee
+  // en premier -- get_player_sets_unaccent n'a pas encore l'index equivalent sur
+  // la colonne sans accents (echec de build recurrent, incident Supabase Management
+  // API en cours depuis le 2026-10-23) et peut timeout sur un prenom courant.
+  // Repli temporaire sur get_player_sets_unaccent (sensible aux accents en moins bon,
+  // mais fusionne mieux les variantes orthographiques) le temps que l'index puisse
+  // enfin etre construit.
   const [setsRpcRes0, manuData, profilesData] = await Promise.all([
-    supabase.rpc('get_player_sets_unaccent', { p_first: firstName, p_last: lastName }),
+    supabase.rpc('get_player_sets', { p_first: firstName, p_last: lastName }),
     fetchAllManuellesForPlayer(),
     fetchAllCsvProfiles(),
   ])
 
   const matchedManu = manuData.filter((m: any) => normalizeName(m.nom || '').includes(normTarget))
 
-  // N'importe quelle erreur (fonction absente, timeout le temps que l'index associe
-  // finisse de se construire...) : repli sur l'ancienne RPC (sensible aux accents,
-  // comportement historique, son propre index deja en place) plutot que de planter
-  // la section "Sets" pour TOUS les joueurs le temps que le nouvel index soit pret.
+  // N'importe quelle erreur : repli sur get_player_sets_unaccent plutot que de
+  // planter la section "Sets" pour TOUS les joueurs.
   const setsRpcRes = setsRpcRes0.error
-    ? await supabase.rpc('get_player_sets', { p_first: firstName, p_last: lastName })
+    ? await supabase.rpc('get_player_sets_unaccent', { p_first: firstName, p_last: lastName })
     : setsRpcRes0
 
   let rawSets: any[] = setsRpcRes.data || []
