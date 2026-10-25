@@ -119,11 +119,17 @@ export async function GET(req: NextRequest) {
   // aussi renvoyer un joueur de football universitaire du même nom)
   const ESPN_LEAGUES = ['nba', 'nfl', 'nhl', 'mlb']
   const [playerEntriesRes, ...espnSearchResults] = await Promise.all([
+    // Pas de .order('player_name') ici : le classement affiche vient de
+    // rankMatch() plus bas (JS), ce order() DB etait donc inutile -- et
+    // forcait le planner a parcourir l'index BTREE deja trie plutot que
+    // l'index trigramme, filtrant jusqu'a 270k+ lignes avant de trouver 200
+    // resultats (8.5s mesure sur une recherche a 2 caracteres, declenchee a
+    // CHAQUE frappe dans la barre de recherche). Sans order(), Postgres
+    // s'arrete des que 200 lignes correspondent (6ms mesure).
     supabase
       .from('card_set_entries')
       .select('player_name, is_rc, card_sets(sport)')
       .ilike('player_name', `%${safeQ}%`)
-      .order('player_name')
       .limit(200),
     ...ESPN_SPORTS.map(sport =>
       fetch(
