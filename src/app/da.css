@@ -901,9 +901,20 @@ html[data-theme="light"] .tcdb-imp-open { border-color: #06122e; color: #06122e;
 :root[data-theme="dark"] .da-tabs button.on { background: #fff !important; color: #06122e !important; }
 :root[data-theme="light"] .da-tabs button.on { background: #06122e !important; color: #fff !important; }
 @media (max-width: 640px) {
-  .da-tabs { display: grid !important; grid-template-columns: repeat(3, 1fr); border-width: 2px 0 0 2px !important; border-style: solid !important; border-color: var(--text) !important; }
-  .da-tabs button { border-right: 2px solid var(--text) !important; border-bottom: 2px solid var(--text) !important; font-size: 15px !important; padding: 11px 2px 9px !important; }
-  .da-tabs button:nth-of-type(5):last-of-type { grid-column: span 2; }
+  /* Grille a 6 colonnes (plutot que 3) pour pouvoir doser des largeurs
+     differentes par ligne : normalement 3 onglets/ligne (span 2 = 1/3
+     chacun) -- mais sans "Aimees" (visiteur, pas le proprietaire : 5
+     onglets seulement), la 2e ligne n'aurait que 2 boutons sur une grille a
+     3 colonnes, desequilibree. Dans ce cas precis (exactement 5 onglets) :
+     Collection + Classeurs se partagent la 1ere ligne moitie-moitie (span
+     3 chacun), Objectifs/Badges/Commentaires occupent la 2e ligne en tiers
+     (span 2, comportement par defaut). Le cas a 6 onglets (proprietaire)
+     n'est touche par aucune des deux regles ci-dessous et garde sa grille
+     3x2 habituelle. */
+  .da-tabs { display: grid !important; grid-template-columns: repeat(6, 1fr); border-width: 2px 0 0 2px !important; border-style: solid !important; border-color: var(--text) !important; }
+  .da-tabs button { grid-column: span 2; border-right: 2px solid var(--text) !important; border-bottom: 2px solid var(--text) !important; font-size: 15px !important; padding: 11px 2px 9px !important; }
+  .da-tabs button:nth-of-type(1):nth-last-of-type(5),
+  .da-tabs button:nth-of-type(2):nth-last-of-type(4) { grid-column: span 3; }
   .da-tabs button:last-child { border-right: 2px solid var(--text) !important; }
 }
 .gc-logo:empty { display: none; }
