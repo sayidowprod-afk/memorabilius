@@ -42,35 +42,45 @@ export async function GET(req: NextRequest) {
   // associe finisse de se construire, etc.) bascule sur le repli ci-dessous plutot
   // que de renvoyer une 500 -- une 500 cassait TOUTE la checklist joueur (pas
   // seulement les noms accentues) le temps que l'index soit pret, constate en prod.
+  // search_player_entries_unaccent a besoin d'un index trigram sur la colonne
+  // SANS accents de card_set_entries pour son filtre '%lastname%' -- cet
+  // index n'a pas pu etre construit (bloque par l'incident Management API
+  // Supabase, cf memoire du projet) : la RPC time out systematiquement pour
+  // un prenom courant (8s+ mesure en prod avant meme d'echouer). Requete
+  // indexee (idx_card_set_entries_player_name_trgm) essayee en premier --
+  // nom de famille exige en debut de mot (comme get_player_sets) pour eviter
+  // qu'un fragment court/courant ne fasse exploser le nombre de lignes
+  // matchees. Repli sur la RPC unaccent seulement si celle-ci echoue (couvre
+  // les variantes orthographiques accentuees qu'elle fusionne en plus).
   let rpcFailed = false
   while (true) {
     const { data, error } = await admin
-      .rpc('search_player_entries_unaccent', { p_first: firstName, p_last: lastName })
+      .from('card_set_entries')
+      .select('id, set_id, card_number, variation, is_rc, is_auto, image_url, card_sets(id, name, year, brand, sport)')
+      .ilike('player_name', `${firstName}%`)
+      .or(`player_name.ilike.${lastName}%,player_name.ilike.% ${lastName}%`)
+      .order('set_id')
+      .order('card_number')
       .range(from, from + PAGE - 1)
     if (error) { rpcFailed = true; all.length = 0; break }
     if (!data || data.length === 0) break
-    all.push(...(data as RpcRow[]).map(fromRpcRow))
+    all.push(...data)
     if (data.length < PAGE) break
     from += PAGE
   }
 
   if (all.length === 0) {
-    // Repli : migration SQL pas encore executee, ou vraiment aucune carte pour ce joueur.
-    // On ne peut pas distinguer les deux cas sans un 2e aller-retour -- celui-ci est sans
-    // risque (ancien comportement exact) et ne coute rien quand il confirme juste "aucune carte".
+    // Repli : nom avec accents fusionnes differemment par la RPC, ou vraiment
+    // aucune carte pour ce joueur. On ne peut pas distinguer les deux cas
+    // sans un 2e aller-retour.
     from = 0
     while (true) {
       const { data, error } = await admin
-        .from('card_set_entries')
-        .select('id, set_id, card_number, variation, is_rc, is_auto, image_url, card_sets(id, name, year, brand, sport)')
-        .ilike('player_name', `${firstName}%`)
-        .ilike('player_name', `%${lastName}%`)
-        .order('set_id')
-        .order('card_number')
+        .rpc('search_player_entries_unaccent', { p_first: firstName, p_last: lastName })
         .range(from, from + PAGE - 1)
       if (error) return NextResponse.json({ error: error.message }, { status: 500 })
       if (!data || data.length === 0) break
-      all.push(...data)
+      all.push(...(data as RpcRow[]).map(fromRpcRow))
       if (data.length < PAGE) break
       from += PAGE
     }
