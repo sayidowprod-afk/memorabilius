@@ -1220,6 +1220,19 @@ export default function BinderLibrary({ userId, isOwner, accent, pendingCard, on
     setPageIndex(p)
   }
 
+  // Retour direct a la couverture, meme logique (sans animation de feuilletage).
+  const goToFirstPage = () => {
+    if (!selected || flip) return
+    setPageIndex(0)
+  }
+
+  // Saut direct a un feuillet choisi dans le menu deroulant -- meme principe
+  // que goToLastPage (pas d'animation, juste repositionner pageIndex).
+  const goToPage = (pi: number) => {
+    if (!selected || flip) return
+    setPageIndex(pi)
+  }
+
   // ── Swipe pour tourner la page : UN seul détecteur sur toute la scène ──
   // Ne démarre que sur un glissé nettement horizontal (> vertical), ce qui le
   // distingue d'un tap sur pochette. Les cartes pleines gèrent leur propre glissé
@@ -1924,18 +1937,34 @@ export default function BinderLibrary({ userId, isOwner, accent, pendingCard, on
     }
   }
 
-  const pageLabel = (() => {
-    if (!selected || !isOpen) return ''
-    const cnt = selected.page_count
-    const l = leftFace(pageIndex), r = rightFace(pageIndex)
+  // Libelle d'un feuillet donne (pageIndex) -- factorise pour etre reutilise a
+  // la fois pour l'affichage courant (pageLabel) et pour chaque option du
+  // menu deroulant "Aller a la page" (pageOptions).
+  const labelForIndex = (pi: number) => {
+    if (!selected) return ''
+    const l = leftFace(pi), r = rightFace(pi)
     if (isRings) {
       const parts: string[] = []
       if (l) parts.push(`${t('binder_sheet_prefix')} ${l.page}${t('binder_sheet_back_suffix')}`)
       if (r) parts.push(`${t('binder_sheet_prefix')} ${r.page}${t('binder_sheet_front_suffix')}`)
-      return `${parts.join(' · ') || t('binder_cover_label')} / ${cnt}`
+      return parts.join(' · ') || t('binder_cover_label')
     }
-    const label = l && r ? `${t('binder_pages_prefix')} ${l.page}–${r.page}` : r ? `${t('binder_page_prefix')} ${r.page}` : l ? `${t('binder_page_prefix')} ${l.page}` : t('binder_cover_label')
-    return `${label} / ${cnt}`
+    return l && r ? `${t('binder_pages_prefix')} ${l.page}–${r.page}` : r ? `${t('binder_page_prefix')} ${r.page}` : l ? `${t('binder_page_prefix')} ${l.page}` : t('binder_cover_label')
+  }
+
+  const pageLabel = selected && isOpen ? `${labelForIndex(pageIndex)} / ${selected.page_count}` : ''
+
+  // Toutes les positions de feuillet valides (0 = couverture, puis +2 a
+  // chaque feuillet), pour peupler le menu deroulant de navigation.
+  const pageOptions = (() => {
+    if (!selected || !isOpen) return []
+    const opts: { value: number; label: string }[] = [{ value: 0, label: labelForIndex(0) }]
+    let p = 0
+    while (isRings ? p / 2 + 1 <= selected.page_count : p + 2 <= selected.page_count) {
+      p += 2
+      opts.push({ value: p, label: labelForIndex(p) })
+    }
+    return opts
   })()
 
   const fsArrowStyle = (side: 'left' | 'right', enabled: boolean): React.CSSProperties => ({
@@ -2329,27 +2358,41 @@ export default function BinderLibrary({ userId, isOwner, accent, pendingCard, on
 
       {/* ── NORMAL bottom nav ── */}
       {!binderFullscreen && (
-      <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: 8, marginTop: 14, flexWrap: 'wrap' }}>
+      <div style={{ display: 'flex', flexDirection: 'column', gap: 8, marginTop: 14 }}>
         {!isOpen ? (
-          <>
-            <span />
+          <div style={{ display: 'flex', justifyContent: 'center' }}>
             <button onClick={openTheBinder} className="btn-main btn-primary" style={{ padding: '8px 18px', fontSize: 13 }}>📖 Ouvrir le classeur</button>
-            <span />
-          </>
+          </div>
         ) : (
           <>
-            <button
-              onClick={() => canPrev ? clickFlip('prev') : setIsOpen(false)}
-              disabled={!!flip} className="btn-main btn-secondary"
-              style={{ padding: isMobile ? '12px 18px' : '8px 14px', fontSize: 13 }} aria-label={canPrev ? t('binder_prev_page') : t('binder_close')}>
-              ←<span className="binder-nav-label"> {canPrev ? t('binder_prev_page') : t('binder_close')}</span>
-            </button>
-            <span style={{ fontSize: 12, color: 'var(--text3, #999)', whiteSpace: 'nowrap' }}>{pageLabel}</span>
-            <div style={{ display: 'flex', gap: 8 }}>
-              {isOwner && !canNext && (
-                <button onClick={addPage} className="btn-main btn-secondary" style={{ padding: isMobile ? '12px 16px' : '8px 12px', fontSize: 12 }} aria-label={t('binder_add_page')}>
-                  +<span className="binder-nav-label"> Ajouter une page</span>
+            {/* Libelle sur sa propre ligne : en mode "rings" il peut contenir 2
+                feuillets ("Feuille 1 (dos) · Feuille 2 (recto) / 81"), trop long
+                pour partager une ligne avec les boutons sans un retour a la
+                ligne imprevisible (constate sur mobile). */}
+            <div style={{ textAlign: 'center', fontSize: 12, color: 'var(--text3, #999)' }}>{pageLabel}</div>
+            <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: isMobile ? 6 : 8, flexWrap: 'wrap' }}>
+              <button
+                onClick={() => canPrev ? clickFlip('prev') : setIsOpen(false)}
+                disabled={!!flip} className="btn-main btn-secondary"
+                style={{ padding: isMobile ? '12px 14px' : '8px 14px', fontSize: 13 }} aria-label={canPrev ? t('binder_prev_page') : t('binder_close')}>
+                ←<span className="binder-nav-label"> {canPrev ? t('binder_prev_page') : t('binder_close')}</span>
+              </button>
+              {canPrev && (
+                <button onClick={goToFirstPage} disabled={!!flip} className="btn-main btn-secondary"
+                  style={{ padding: isMobile ? '12px 14px' : '8px 12px', fontSize: 13 }} aria-label={t('binder_first_page')} title={t('binder_first_page')}>
+                  ⏮
                 </button>
+              )}
+              {pageOptions.length > 2 && (
+                <select
+                  value={pageIndex}
+                  onChange={e => goToPage(Number(e.target.value))}
+                  disabled={!!flip}
+                  aria-label={t('binder_goto_page')}
+                  title={t('binder_goto_page')}
+                  style={{ padding: isMobile ? '10px 6px' : '7px 8px', fontSize: 12, borderRadius: 8, border: '1px solid var(--border, #ccc)', background: 'var(--surface, #fff)', color: 'var(--text, #111)', maxWidth: isMobile ? 110 : 160 }}>
+                  {pageOptions.map(o => <option key={o.value} value={o.value}>{o.label}</option>)}
+                </select>
               )}
               {canNext && (
                 <button onClick={goToLastPage} disabled={!!flip} className="btn-main btn-secondary"
@@ -2361,6 +2404,11 @@ export default function BinderLibrary({ userId, isOwner, accent, pendingCard, on
                 style={{ padding: isMobile ? '12px 18px' : '8px 14px', fontSize: 13, opacity: !canNext ? 0.4 : 1 }} aria-label={t('binder_next_page')}>
                 <span className="binder-nav-label">{t('binder_next_page')} </span>→
               </button>
+              {isOwner && !canNext && (
+                <button onClick={addPage} className="btn-main btn-secondary" style={{ padding: isMobile ? '12px 16px' : '8px 12px', fontSize: 12 }} aria-label={t('binder_add_page')}>
+                  +<span className="binder-nav-label"> Ajouter une page</span>
+                </button>
+              )}
             </div>
           </>
         )}

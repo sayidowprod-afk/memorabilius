@@ -972,6 +972,8 @@ export const es = {
   binder_prev_page: 'Página anterior',
   binder_next_page: 'Página siguiente',
   binder_last_page: 'Última página',
+  binder_first_page: 'Primera página',
+  binder_goto_page: 'Ir a la página',
   binder_open: 'Abrir el clasificador',
   binder_open_icon: '📖 Abrir el clasificador',
   binder_close: 'Cerrar',

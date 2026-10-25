@@ -972,6 +972,8 @@ export const it = {
   binder_prev_page: 'Pagina precedente',
   binder_next_page: 'Pagina successiva',
   binder_last_page: 'Ultima pagina',
+  binder_first_page: 'Prima pagina',
+  binder_goto_page: 'Vai alla pagina',
   binder_open: 'Apri il raccoglitore',
   binder_open_icon: '📖 Apri il raccoglitore',
   binder_close: 'Chiudi',
