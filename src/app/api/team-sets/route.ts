@@ -34,18 +34,11 @@ export async function GET(req: NextRequest) {
   const limit = Math.min(120, Math.max(1, parseInt(sp.get('limit') || '40', 10) || 40))
 
   const teamLastWord = team.name.split(' ').slice(-1)[0]
-  const { data: entries } = await supabase
-    .from('card_set_entries')
-    .select('set_id, card_sets(id, name, year, brand, sport)')
-    .ilike('team', `%${teamLastWord}%`)
-
-  const setsMap = new Map<number, any>()
-  for (const e of entries || []) {
-    const cs = (e as any).card_sets
-    if (!cs) continue
-    if (!setsMap.has(cs.id)) setsMap.set(cs.id, { ...cs })
-  }
-  const sets = [...setsMap.values()].sort((a, b) => (b.year || 0) - (a.year || 0))
+  // get_team_sets fait le GROUP BY cote DB (529ms mesure pour un nom courant
+  // comme "Tigers") plutot que de rapatrier les ~130k lignes individuelles
+  // pour en extraire les set_id distincts cote JS (1.4s + gros volume reseau).
+  const { data: setsData } = await supabase.rpc('get_team_sets', { p_team_pattern: teamLastWord })
+  const sets = [...(setsData || [])].sort((a, b) => (b.year || 0) - (a.year || 0))
 
   const total = sets.length
   const page = sets.slice(offset, offset + limit)

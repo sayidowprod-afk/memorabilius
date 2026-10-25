@@ -45,11 +45,12 @@ async function fetchTeamData(slug: string) {
     return all
   }
 
-  const [entriesRes, manuData, profilesRes] = await Promise.all([
-    supabase
-      .from('card_set_entries')
-      .select('set_id, player_name, is_rc, card_sets(id, name, year, brand, sport)')
-      .ilike('team', `%${teamLastWord}%`),
+  // get_team_sets/get_team_players font le GROUP BY cote DB plutot que de
+  // rapatrier TOUTES les lignes (jusqu'a ~130k pour un nom d'equipe courant,
+  // 1.4s+ mesure) juste pour en deduire les sets/joueurs distincts cote JS.
+  const [setsData, playersData, manuData, profilesRes] = await Promise.all([
+    supabase.rpc('get_team_sets', { p_team_pattern: teamLastWord }),
+    supabase.rpc('get_team_players', { p_team_pattern: teamLastWord }),
     fetchAllManuellesForTeam(),
     supabase
       .from('profiles')
@@ -57,20 +58,8 @@ async function fetchTeamData(slug: string) {
       .not('lien_csv', 'is', null),
   ])
 
-  // Sets + players from card_set_entries
-  const setsMap = new Map<number, any>()
-  const playersMap = new Map<string, { name: string; isRc: boolean }>()
-  for (const e of entriesRes.data || []) {
-    const cs = (e as any).card_sets
-    if (!cs) continue
-    if (!setsMap.has(cs.id)) setsMap.set(cs.id, { ...cs })
-    if (e.player_name) {
-      if (!playersMap.has(e.player_name)) playersMap.set(e.player_name, { name: e.player_name, isRc: false })
-      if (e.is_rc) playersMap.get(e.player_name)!.isRc = true
-    }
-  }
-  const sets = [...setsMap.values()].sort((a, b) => (b.year || 0) - (a.year || 0))
-  const players = [...playersMap.values()].slice(0, 30)
+  const sets = [...(setsData.data || [])].sort((a, b) => (b.year || 0) - (a.year || 0))
+  const players = (playersData.data || []).map((p: any) => ({ name: p.name, isRc: p.is_rc }))
 
   // Cartes manuelles
   const manuellesCards = manuData.map((m: any) => ({
