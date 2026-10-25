@@ -6,10 +6,14 @@ import { supabase } from '@/lib/supabase'
 // la home, exposées ici pour un polling client léger. Cache côté CDN : avec
 // potentiellement des centaines de visiteurs qui pollent toutes les ~20s,
 // sans cache chaque visiteur redéclenche les mêmes agrégations Supabase.
-// 60s (pas 15s) : une regeneration ISR a un coup, et personne ne remarque un
-// compteur "en direct" qui bouge toutes les minutes plutot que toutes les 15s
-// -- coute 4x moins cher en écritures ISR pour un gain visuel nul.
-export const revalidate = 60
+// force-dynamic (pas revalidate=60/ISR) : Next.js tentait de PRE-generer
+// cette route au `next build`, et un Supabase indisponible/trop lent a cet
+// instant precis (incident du 2026-10-25) faisait echouer le deploiement
+// ENTIER -- meme avec le timeout de 15s sur src/lib/supabase, sous la charge
+// de 11 workers de build en parallele ca ne suffisait pas a eviter le
+// watchdog de 60s de Next.js. Le Cache-Control ci-dessous (s-maxage=15)
+// assure deja un cache CDN court cote edge, meme sans le revalidate ISR.
+export const dynamic = 'force-dynamic'
 
 export async function GET() {
   const [profilesRes, totalCartesRes, bindersRes, tradeRes] = await Promise.all([

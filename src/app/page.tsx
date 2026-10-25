@@ -9,7 +9,17 @@ import NativeHomeGate from '@/components/NativeHomeGate'
 // ISR : rebuild en arrière-plan toutes les 15 min, instantané pour les visiteurs
 // (etait 5 min -- contenu "derniers ajouts"/podium, pas besoin d'etre aussi frequent,
 // coute en ecritures ISR facturees ; voir audit couts Vercel)
-export const revalidate = 900
+// force-dynamic (plutot que revalidate=900/ISR) : avec ISR, Next.js tente de
+// PRE-generer cette page au moment du `next build` -- si Supabase est
+// indisponible/trop lent a cet instant precis (incident en cours, observe le
+// 2026-10-25), ca fait echouer le DEPLOIEMENT ENTIER, pas juste cette page
+// (meme sous 11 workers de build en parallele qui saturent Supabase, le
+// timeout de 15s sur chaque requete individuelle ne suffit pas a eviter le
+// watchdog de 60s de Next.js). force-dynamic rend chaque visite a la demande
+// (le timeout de 15s protege deja contre un hang cote utilisateur) : perd le
+// cache CDN d'ISR, mais ne bloque plus jamais un deploiement. A reevaluer
+// une fois Supabase stabilise.
+export const dynamic = 'force-dynamic'
 
 interface Card {
   img: string; name: string; variant: string; year: string
@@ -215,21 +225,28 @@ export default async function Home() {
     fetchFeaturedGalleries(),
   ])
 
-  // Un hoquet Supabase passager (deja observe plusieurs fois en prod) pendant
-  // la regeneration ISR de cette page ne doit JAMAIS figer des "0" a la place
-  // des vrais chiffres -- l'ancien code retombait silencieusement sur 0 via
-  // `?? 0` des qu'une requete echouait, et ce "0 collectionneurs / 0 cartes"
-  // restait affiche jusqu'a 15 minutes (revalidate=900) le temps de la
-  // prochaine regeneration reussie. En cas d'erreur ici, on fait planter la
-  // regeneration : Next.js garde alors la DERNIERE version generee avec
-  // succes au lieu de la remplacer par des stats visiblement fausses.
+  // Historique : cette page etait en ISR (revalidate=900) et un hoquet
+  // Supabase pendant la REGENERATION la faisait planter expres, pour que
+  // Next.js garde la derniere version mise en cache plutot que d'y figer des
+  // "0" visibles par tous les visiteurs jusqu'a 15 minutes. Mais Supabase
+  // etant aussi parfois indisponible PENDANT la fenetre de `next build`
+  // (incident du 2026-10-25), planter ici bloquait alors le DEPLOIEMENT
+  // ENTIER (aucune "derniere version" n'existe encore au tout premier
+  // build) -- ca a empeche de livrer le fix critique de /galerie/[userId].
+  //
+  // La page est passee en force-dynamic (voir plus haut) pour ne plus
+  // jamais dependre de Supabase au moment du build. Consequence : il n'y a
+  // plus de cache ISR du tout, donc plus de risque de "0" fige pendant 15
+  // minutes -- chaque visite relance un fetch frais, et le polling cote
+  // client (HomeHero.tsx, toutes les ~20s via /api/site-stats) corrige tout
+  // seul en quelques secondes si une requete a echoue. Planter resterait
+  // donc strictement pire qu'avant : ca casserait la page pour CHAQUE
+  // visiteur au moindre hoquet, alors qu'avant seule la regeneration en
+  // arriere-plan etait invisible-aux-visiteurs. D'ou le retour a `?? 0`.
   const { count } = profilesRes
   const { data: totalCartesData } = totalCartesRes
   const { count: bindersCount } = bindersRes
   const { count: tradeCount } = tradeRes
-  for (const r of [profilesRes, totalCartesRes, bindersRes, tradeRes]) {
-    if (r.error) throw new Error(`Home stats indisponibles (Supabase) : ${r.error.message}`)
-  }
 
   // equipe favorite (1ere) de chaque joueur du podium : liseré de couleur + logo
   const podiumIds = [...new Set([...podium, ...podiumDay, ...podiumWeek].map((e: any) => e.userId))]
