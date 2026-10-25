@@ -2359,15 +2359,44 @@ export default function BinderLibrary({ userId, isOwner, accent, pendingCard, on
               Ouvrir le classeur
             </button>
           ) : (
-            <>
-              <span style={{ fontSize: 12, color: dark ? 'rgba(255,255,255,0.45)' : 'rgba(0,0,0,0.35)', letterSpacing: '0.04em' }}>{pageLabel}</span>
+            /* Un seul fond commun (pilule) derriere libelle + boutons -- avant,
+               chaque element flottait sans fond propre, se melangeant
+               visuellement avec les cartes du classeur juste en dessous
+               (signale par l'utilisateur : "le menu se met sur le classeur"). */
+            <div style={{
+              pointerEvents: 'auto', display: 'flex', alignItems: 'center', gap: 10,
+              background: dark ? 'rgba(0,0,0,0.45)' : 'rgba(255,255,255,0.65)',
+              border: `1px solid ${dark ? 'rgba(255,255,255,0.12)' : 'rgba(0,0,0,0.10)'}`,
+              borderRadius: 12, padding: '6px 10px',
+              backdropFilter: 'blur(10px)', WebkitBackdropFilter: 'blur(10px)',
+              boxShadow: '0 4px 16px rgba(0,0,0,0.25)',
+            }}>
+              {canPrev && (
+                <button onClick={goToFirstPage} disabled={!!flip} aria-label={t('binder_first_page')} title={t('binder_first_page')}
+                  style={{ background: 'none', border: 'none', cursor: 'pointer', color: dark ? 'rgba(255,255,255,0.8)' : 'rgba(0,0,0,0.6)', fontSize: 13, fontWeight: 600, padding: '4px 2px' }}>
+                  ⏮
+                </button>
+              )}
+              {pageOptions.length > 2 ? (
+                <select
+                  value={pageIndex}
+                  onChange={e => goToPage(Number(e.target.value))}
+                  disabled={!!flip}
+                  aria-label={t('binder_goto_page')}
+                  title={t('binder_goto_page')}
+                  style={{ background: 'none', border: 'none', color: dark ? 'rgba(255,255,255,0.8)' : 'rgba(0,0,0,0.65)', fontSize: 12, fontWeight: 600, letterSpacing: '0.04em', maxWidth: 140 }}>
+                  {pageOptions.map(o => <option key={o.value} value={o.value} style={{ color: '#111' }}>{o.label} / {selected?.page_count}</option>)}
+                </select>
+              ) : (
+                <span style={{ fontSize: 12, color: dark ? 'rgba(255,255,255,0.7)' : 'rgba(0,0,0,0.55)', letterSpacing: '0.04em' }}>{pageLabel}</span>
+              )}
               {canNext && (
                 <button onClick={goToLastPage} disabled={!!flip} aria-label={t('binder_last_page')} title={t('binder_last_page')}
-                  style={{ pointerEvents: 'auto', background: dark ? 'rgba(0,0,0,0.35)' : 'rgba(255,255,255,0.55)', border: `1px solid ${dark ? 'rgba(255,255,255,0.12)' : 'rgba(0,0,0,0.10)'}`, borderRadius: 10, padding: '6px 12px', cursor: 'pointer', color: dark ? 'rgba(255,255,255,0.8)' : 'rgba(0,0,0,0.6)', fontSize: 13, fontWeight: 600, backdropFilter: 'blur(6px)', WebkitBackdropFilter: 'blur(6px)' }}>
+                  style={{ background: 'none', border: 'none', cursor: 'pointer', color: dark ? 'rgba(255,255,255,0.8)' : 'rgba(0,0,0,0.6)', fontSize: 13, fontWeight: 600, padding: '4px 2px' }}>
                   ⏭
                 </button>
               )}
-            </>
+            </div>
           )}
         </div>
       )}
