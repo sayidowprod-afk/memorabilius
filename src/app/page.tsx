@@ -1,4 +1,5 @@
 import CardOfTheDay from '@/components/CardOfTheDay'
+import PronosHomePreview from '@/components/PronosHomePreview'
 import { supabase } from '@/lib/supabase'
 import PepitesSection from '@/components/PepitesSection'
 import HomeHero from '@/components/HomeHero'
@@ -282,6 +283,7 @@ export default async function Home() {
         siteStats={{ total, totalCartes, totalBinders, totalTrade }}
         cardOfTheDay={<CardOfTheDay />}
       />
+      <PronosHomePreview />
       <PepitesSection cards={cards} />
       <PodiumSection month={withTeam(podium)} week={withTeam(podiumWeek)} day={withTeam(podiumDay)} />
       <PWAInstall />
