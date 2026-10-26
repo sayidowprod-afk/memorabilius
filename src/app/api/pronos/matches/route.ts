@@ -11,6 +11,12 @@ import { dayLabel, timeLabel, isoDateInParis, nextDays } from '@/lib/pronosDays'
 // Pas encore appelée en prod, page non liée dans git.
 // ─────────────────────────────────────────────────────────────
 
+// Beaucoup d'appels externes séquentiels (7 jours x plusieurs sports) --
+// le timeout par défaut de Vercel (10s) peut couper la réponse en plein
+// milieu sur un cold start, ce qui laisse alors une poignée de matchs mis
+// en cache côté Next.js et rien pour le reste jusqu'au prochain revalidate.
+export const maxDuration = 60
+
 export type Sport = 'nba' | 'nfl' | 'nhl' | 'mlb' | 'football'
 
 interface OutMatch {
@@ -178,27 +184,32 @@ async function fetchUCL(revalidate: number): Promise<OutMatch[]> {
 }
 
 export async function GET() {
-  if (!KEY) return NextResponse.json({ error: 'API_SPORTS_KEY manquante' }, { status: 500 })
-
   const days = nextDays(7)
-  const all: OutMatch[] = []
 
-  for (let i = 0; i < days.length; i++) {
-    const { parisDate } = days[i]
+  // Tous les jours x sports en parallèle (pas en séquence) -- sinon la
+  // latence totale est la SOMME de chaque appel au lieu du plus lent. Si
+  // API_SPORTS_KEY manque, NBA/NFL/NHL renvoient juste [] (callApi le gère
+  // déjà) : MLB (sans clé) et Champions League continuent de fonctionner.
+  const perDay = days.map(({ parisDate }, i) => {
     // Aujourd'hui : rafraîchi toutes les 30 min (résoudre les matchs finis).
     // Jours suivants : toutes les 6h (le calendrier bouge peu à l'avance).
     const revalidate = i === 0 ? 1800 : 21600
-    const [nba, nfl, nhl, mlb] = await Promise.all([
+    return Promise.all([
       fetchNBA(parisDate, revalidate),
       fetchNFL(parisDate, revalidate),
       fetchNHL(parisDate, revalidate),
       fetchMLB(parisDate, revalidate),
     ])
-    all.push(...nba, ...nfl, ...nhl, ...mlb)
-  }
+  })
 
   // Un seul appel pour toute la fenêtre (pas de filtre date fiable côté API).
-  all.push(...await fetchUCL(21600))
+  const [perDayResults, ucl] = await Promise.all([
+    Promise.all(perDay),
+    fetchUCL(21600),
+  ])
+
+  const all: OutMatch[] = ucl.slice()
+  for (const [nba, nfl, nhl, mlb] of perDayResults) all.push(...nba, ...nfl, ...nhl, ...mlb)
 
   return NextResponse.json({ days: days.map(d => d.label), matches: all })
 }

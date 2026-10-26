@@ -65,14 +65,16 @@ function fakeRecord(teamId: string): string {
 }
 
 // Surfquest dessine ses chiffres nettement plus petits que ses lettres
-// capitales (visible sur "76ERS") -- on compense en agrandissant les
-// runs de chiffres dans le nom de l'équipe.
-function NameDigits({ text, size }: { text: string; size: number }) {
+// capitales (visible sur "76ERS") -- on compense en agrandissant les runs
+// de chiffres dans le nom de l'équipe. En `em` (relatif à la taille de
+// police héritée) pour rester correct que le nom soit affiché en grand
+// (desktop) ou réduit (mobile, voir .pronos-name).
+function NameDigits({ text }: { text: string }) {
   const parts = text.split(/([0-9]+)/)
   return (
     <>
       {parts.map((p, i) => /^[0-9]+$/.test(p)
-        ? <span key={i} style={{ fontSize: size * 1.3 }}>{p}</span>
+        ? <span key={i} style={{ fontSize: '1.3em' }}>{p}</span>
         : p)}
     </>
   )
@@ -86,12 +88,16 @@ function TeamHalf({
 }) {
   if (!team) return null
   const logo = (
-    <div className="pronos-white-circle" style={{
-      width: 64, height: 64, borderRadius: '50%', background: '#fff',
+    <div className="pronos-white-circle pronos-logo" style={{
+      background: '#fff', borderRadius: '50%',
       display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0,
       boxShadow: picked ? `0 0 0 4px ${GREEN}` : 'none',
     }}>
-      <TeamBadge teamId={team.id} size={46} />
+      {/* Taille fixe en JS (TeamBadge ne connaît pas les media queries) --
+          volontairement petite : le cercle qui l'entoure, lui, est fluide
+          via CSS (.pronos-logo), donc un peu de marge sur desktop plutôt
+          qu'un débordement sur mobile. */}
+      <TeamBadge teamId={team.id} size={32} />
     </div>
   )
   const bigName = team.name.split(' ').slice(-1)[0]
@@ -100,25 +106,25 @@ function TeamHalf({
   // -- on resserre davantage dans ce cas pour garder un espacement uniforme.
   const cityGap = /^[0-9]/.test(bigName) ? -11 : -2
   const nameBlock = (
-    <div style={{ lineHeight: 1, textAlign: side === 'left' ? 'left' : 'right' }}>
-      <div style={{ fontFamily: SURFQUEST, fontSize: 18, color: '#fff', letterSpacing: 0.5, textTransform: 'uppercase', marginBottom: cityGap }}>
+    <div className="pronos-name-block" style={{ lineHeight: 1, textAlign: side === 'left' ? 'left' : 'right' }}>
+      <div className="pronos-city" style={{ fontFamily: SURFQUEST, color: '#fff', letterSpacing: 0.5, textTransform: 'uppercase', marginBottom: cityGap }}>
         {team.name.split(' ').slice(0, -1).join(' ') || team.name}
       </div>
-      <div style={{ fontFamily: SURFQUEST, fontSize: 44, color: '#fff', letterSpacing: 0.5, textTransform: 'uppercase' }}>
-        <NameDigits text={bigName} size={44} />
+      <div className="pronos-name" style={{ fontFamily: SURFQUEST, color: '#fff', letterSpacing: 0.5, textTransform: 'uppercase' }}>
+        <NameDigits text={bigName} />
       </div>
     </div>
   )
   const scoreEl = score !== undefined
-    ? <span className={anton.className} style={{ fontSize: 46, color: '#fff' }}>{score}</span>
+    ? <span className={`${anton.className} pronos-score`} style={{ color: '#fff' }}>{score}</span>
     : null
-  const recordEl = <span className={anton.className} style={{ fontSize: 20, color: 'rgba(255,255,255,.85)' }}>{fakeRecord(team.id)}</span>
+  const recordEl = <span className={`${anton.className} pronos-record`} style={{ color: 'rgba(255,255,255,.85)' }}>{fakeRecord(team.id)}</span>
 
   return (
     <div
       onClick={clickable ? onClick : undefined}
+      className="pronos-half"
       style={{
-        flex: 1, display: 'flex', alignItems: 'center', gap: 14, padding: '12px 22px',
         cursor: clickable ? 'pointer' : 'default', fontFamily: anton.style.fontFamily,
         justifyContent: side === 'left' ? 'flex-start' : 'flex-end',
       }}
@@ -147,30 +153,21 @@ function MatchRow({ m, pick, onPick }: { m: ApiMatch; pick?: 'left' | 'right'; o
     : (pick === 'right' ? sideGradient(GREEN, 'right') : sideGradient(right.color, 'right'))
 
   return (
-    <div style={{ display: 'flex', alignItems: 'stretch', minHeight: 108 }}>
+    <div className="pronos-row">
       <div style={{ flex: 1, display: 'flex', background: leftBg }}>
         <TeamHalf team={left} score={m.status === 'final' ? m.leftScore : undefined}
           side="left" clickable={clickable} onClick={() => onPick(m.id, 'left')}
           picked={pick === 'left'} />
       </div>
 
-      <div style={{
-        display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center',
-        padding: '6px 18px', background: NAVY, flexShrink: 0, width: 150,
-      }}>
-        <div style={{
-          display: 'flex', alignItems: 'center', gap: 6, marginBottom: 6,
-          background: 'rgba(255,255,255,.14)', borderRadius: 999, padding: '3px 10px 3px 6px',
-        }}>
+      <div className="pronos-center" style={{ background: NAVY }}>
+        <div className="pronos-sport-badge" style={{ background: 'rgba(255,255,255,.14)' }}>
           <SportLogo sport={m.sport} size={16} />
           <span style={{ fontFamily: UI_FONT, fontWeight: 800, fontSize: 13, color: '#fff', letterSpacing: 0.3, whiteSpace: 'nowrap' }}>
             {SPORT_INFO[m.sport].short}
           </span>
         </div>
-        <div className="pronos-white-circle" style={{
-          width: 34, height: 34, borderRadius: '50%', background: '#fff', color: NAVY,
-          display: 'flex', alignItems: 'center', justifyContent: 'center', margin: '5px 0',
-        }}>
+        <div className="pronos-white-circle pronos-vs-circle" style={{ background: '#fff', color: NAVY }}>
           <span style={{ fontFamily: UI_FONT, fontWeight: 800, fontSize: 13, color: NAVY }}>VS</span>
         </div>
         <span style={{ fontFamily: UI_FONT, fontWeight: 700, fontSize: 14, color: '#fff' }}>{m.time}</span>
@@ -205,9 +202,40 @@ function MatchList({ matches, picks, onPick }: { matches: ApiMatch[]; picks: Rec
 // var(--bg2) !important }`) -- voir ShareButton.tsx pour le meme probleme
 // cote texte. Ici c'est le fond du cercle VS/logo qui est touche : on le
 // reaffirme avec une classe plus specifique que la regle globale.
-function PronosWhiteCircleCSS() {
+// Regroupe le correctif dark-mode (ci-dessus) et toute la mise en page
+// fluide (tailles/empilement) : les media queries ne peuvent pas vivre
+// dans un `style` React inline, donc ces propriétés sortent du JSX vers
+// de vraies classes CSS ici -- seules les couleurs dynamiques (dégradés
+// par équipe, etc.) restent en inline style sur les éléments.
+function PronosCSS() {
   return (
-    <style>{`html[data-theme="dark"] .pronos-white-circle { background: #fff !important; }`}</style>
+    <style>{`
+html[data-theme="dark"] .pronos-white-circle { background: #fff !important; }
+
+.pronos-row { display: flex; align-items: stretch; min-height: 108px; }
+.pronos-half { flex: 1; display: flex; align-items: center; gap: 14px; padding: 12px 22px; }
+.pronos-logo { width: 64px; height: 64px; flex-shrink: 0; }
+.pronos-record { font-size: 20px; }
+.pronos-city { font-size: 18px; }
+.pronos-name { font-size: 44px; }
+.pronos-score { font-size: 46px; }
+.pronos-center { display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 6px 18px; flex-shrink: 0; width: 150px; }
+.pronos-sport-badge { display: flex; align-items: center; gap: 6px; margin-bottom: 6px; border-radius: 999px; padding: 3px 10px 3px 6px; }
+.pronos-vs-circle { width: 34px; height: 34px; margin: 5px 0; display: flex; align-items: center; justify-content: center; border-radius: 50%; }
+
+@media (max-width: 680px) {
+  .pronos-row { flex-direction: column; }
+  .pronos-half { padding: 10px 14px; gap: 10px; }
+  .pronos-logo { width: 40px; height: 40px; }
+  .pronos-record { font-size: 14px; }
+  .pronos-city { font-size: 10px; }
+  .pronos-name { font-size: 22px; }
+  .pronos-score { font-size: 26px; }
+  .pronos-center { width: 100%; flex-direction: row; padding: 6px 10px; gap: 8px; }
+  .pronos-sport-badge { margin-bottom: 0; }
+  .pronos-vs-circle { width: 26px; height: 26px; margin: 0; }
+}
+`}</style>
   )
 }
 
@@ -259,7 +287,7 @@ export default function PronosHomePreview() {
 
   return (
     <section style={{ background: NAVY, padding: '32px 20px 48px' }}>
-      <PronosWhiteCircleCSS />
+      <PronosCSS />
       <div style={{ maxWidth: 1200, margin: '0 auto' }}>
         <h2 style={{ fontFamily: SURFQUEST, fontSize: 28, color: '#fff', letterSpacing: 1, margin: '0 0 20px' }}>
           🏆 PRONOS
