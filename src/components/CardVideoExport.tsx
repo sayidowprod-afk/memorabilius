@@ -660,8 +660,11 @@ export default function CardVideoExport({ card, accent: accentProp, onClose, own
     // .section-title dans da.css) sur le fond marine/bleu par defaut -- garde
     // les coins arrondis sur le theme equipe (plein-cadre couleur, deja un
     // traitement distinct) et en mode clair (DA non definie pour ce cas).
-    const daSquare = isDark && !teamTheme
-    const panelRadius = daSquare ? 0 : Math.round(W * 0.055)
+    // Toujours le panneau arrondi (style historique de l'export, voulu par
+    // l'utilisateur) -- voir CardPhotoExport.tsx pour le detail : la variante
+    // "carree + double filet" (nouvelle DA du site) desactivee ici aussi.
+    const daSquare = false
+    const panelRadius = Math.round(W * 0.055)
     const panelTop = H - INFO_H
     const panelH = (H - PB) - panelTop
     const infoCacheKey = `${W}x${H}-${isDark}-${accent}`

@@ -438,8 +438,14 @@ export default function CardPhotoExport({ card, accent: accentProp, onClose, own
     // .section-title dans da.css) sur le fond marine/bleu par defaut -- garde
     // les coins arrondis sur le theme equipe (plein-cadre couleur, deja un
     // traitement distinct) et en mode clair (DA non definie pour ce cas).
-    const daSquare = isDark && !teamTheme
-    const panelRadius = daSquare ? 0 : Math.round(w * 0.055)
+    // Toujours le panneau arrondi (style historique de l'export, voulu par
+    // l'utilisateur) -- une variante "carree + double filet" calquee sur la
+    // nouvelle DA du site avait ete ajoutee ici pour les cartes sans theme
+    // equipe detecte, changeant le rendu sans que ce soit demande pour
+    // l'export. Desactivee : l'export garde le meme style pour toutes les
+    // cartes, avec ou sans equipe/theme.
+    const daSquare = false
+    const panelRadius = Math.round(w * 0.055)
     const panelTop = h - INFO_H
     const panelH = (h - PB) - panelTop
 
