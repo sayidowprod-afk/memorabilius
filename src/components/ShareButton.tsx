@@ -212,7 +212,7 @@ export default function ShareButton({ url, title, subtitle, compact, showLabel, 
             <div style={{ display: 'flex', gap: 8, marginBottom: 16 }}>
               <input value={fullUrl} readOnly style={{
                 flex: 1, fontSize: 12, padding: '8px 12px',
-                background: '#f8f8f8', border: '1px solid #eee', borderRadius: 8,
+                background: '#f8f8f8', color: '#333', border: '1px solid #eee', borderRadius: 8,
               }} />
               <button onClick={copy} style={{
                 background: copied ? '#2ecc71' : BRAND, color: 'white', border: 'none',
