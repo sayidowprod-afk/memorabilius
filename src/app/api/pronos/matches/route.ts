@@ -31,6 +31,8 @@ interface OutMatch {
   leftScore?: number
   rightScore?: number
   winner?: 'left' | 'right'
+  leftRecord?: string
+  rightRecord?: string
 }
 
 const KEY = process.env.API_SPORTS_KEY!
@@ -51,6 +53,7 @@ function buildMatch(
   sport: Sport, apiId: string | number, start: Date,
   homeName: string, awayName: string,
   finished: boolean, homeScore: number | null, awayScore: number | null,
+  records?: Map<string, string>,
 ): OutMatch | null {
   const home = getTeamByName(homeName)
   const away = getTeamByName(awayName)
@@ -73,7 +76,31 @@ function buildMatch(
     leftScore: finished ? awayScore ?? undefined : undefined,
     rightScore: finished ? homeScore ?? undefined : undefined,
     winner,
+    leftRecord: records?.get(away.id),
+    rightRecord: records?.get(home.id),
   }
+}
+
+// ESPN (public, sans clé) -- seule source gratuite donnant le vrai bilan
+// W-L (saison en cours) par équipe. On la combine au match retourné par
+// api-sports/statsapi plutôt que de remplacer ces sources, pour ne pas
+// dépendre d'un seul fournisseur pour la liste des matchs elle-même.
+async function fetchEspnRecords(espnPath: string, usDate: string, revalidate: number): Promise<Map<string, string>> {
+  const map = new Map<string, string>()
+  try {
+    const ymd = usDate.replace(/-/g, '')
+    const res = await fetch(`https://site.api.espn.com/apis/site/v2/sports/${espnPath}/scoreboard?dates=${ymd}`, { next: { revalidate } })
+    if (!res.ok) return map
+    const data = await res.json()
+    for (const ev of data.events ?? []) {
+      for (const c of ev.competitions?.[0]?.competitors ?? []) {
+        const team = getTeamByName(c.team?.displayName)
+        const summary = c.records?.find((r: any) => r.type === 'total')?.summary ?? c.records?.[0]?.summary
+        if (team && summary) map.set(team.id, summary)
+      }
+    }
+  } catch { /* ESPN indisponible -- les matchs s'affichent juste sans bilan */ }
+  return map
 }
 
 // api-sports date par date US -- on interroge la date calendaire Paris ET
@@ -88,13 +115,16 @@ function usDatesToQuery(parisDate: string): string[] {
 async function fetchNBA(parisDate: string, revalidate: number): Promise<OutMatch[]> {
   const out: OutMatch[] = []
   for (const usDate of usDatesToQuery(parisDate)) {
-    const games = await callApi(`https://v2.nba.api-sports.io/games?date=${usDate}`, revalidate)
+    const [games, records] = await Promise.all([
+      callApi(`https://v2.nba.api-sports.io/games?date=${usDate}`, revalidate),
+      fetchEspnRecords('basketball/nba', usDate, revalidate),
+    ])
     for (const g of games) {
       const start = new Date(g.date.start)
       if (isoDateInParis(start) !== parisDate) continue
       const finished = g.status.long === 'Finished'
       const m = buildMatch('nba', g.id, start, g.teams.home.name, g.teams.visitors.name,
-        finished, g.scores?.home?.points ?? null, g.scores?.visitors?.points ?? null)
+        finished, g.scores?.home?.points ?? null, g.scores?.visitors?.points ?? null, records)
       if (m) out.push(m)
     }
   }
@@ -104,13 +134,16 @@ async function fetchNBA(parisDate: string, revalidate: number): Promise<OutMatch
 async function fetchNFL(parisDate: string, revalidate: number): Promise<OutMatch[]> {
   const out: OutMatch[] = []
   for (const usDate of usDatesToQuery(parisDate)) {
-    const games = await callApi(`https://v1.american-football.api-sports.io/games?date=${usDate}`, revalidate)
+    const [games, records] = await Promise.all([
+      callApi(`https://v1.american-football.api-sports.io/games?date=${usDate}`, revalidate),
+      fetchEspnRecords('football/nfl', usDate, revalidate),
+    ])
     for (const g of games) {
       const start = new Date(g.game.date.timestamp * 1000)
       if (isoDateInParis(start) !== parisDate) continue
       const finished = g.game.status.short === 'FT'
       const m = buildMatch('nfl', g.game.id, start, g.teams.home.name, g.teams.away.name,
-        finished, g.scores?.home?.total ?? null, g.scores?.away?.total ?? null)
+        finished, g.scores?.home?.total ?? null, g.scores?.away?.total ?? null, records)
       if (m) out.push(m)
     }
   }
@@ -120,14 +153,17 @@ async function fetchNFL(parisDate: string, revalidate: number): Promise<OutMatch
 async function fetchNHL(parisDate: string, revalidate: number): Promise<OutMatch[]> {
   const out: OutMatch[] = []
   for (const usDate of usDatesToQuery(parisDate)) {
-    const games = await callApi(`https://v1.hockey.api-sports.io/games?date=${usDate}`, revalidate)
+    const [games, records] = await Promise.all([
+      callApi(`https://v1.hockey.api-sports.io/games?date=${usDate}`, revalidate),
+      fetchEspnRecords('hockey/nhl', usDate, revalidate),
+    ])
     for (const g of games) {
       if (g.league?.id !== 57) continue // ne garder que la ligue NHL (id 57), pas les autres ligues hockey renvoyées par la même date
       const start = new Date(g.date)
       if (isoDateInParis(start) !== parisDate) continue
       const finished = g.status.short === 'FT'
       const m = buildMatch('nhl', g.id, start, g.teams.home.name, g.teams.away.name,
-        finished, g.scores?.home ?? null, g.scores?.away ?? null)
+        finished, g.scores?.home ?? null, g.scores?.away ?? null, records)
       if (m) out.push(m)
     }
   }
@@ -150,8 +186,13 @@ async function fetchMLB(parisDate: string, revalidate: number): Promise<OutMatch
       const start = new Date(g.gameDate)
       if (isoDateInParis(start) !== parisDate) continue
       const finished = g.status?.abstractGameState === 'Final'
+      const home = getTeamByName(g.teams.home.team.name)
+      const away = getTeamByName(g.teams.away.team.name)
+      const records = new Map<string, string>()
+      if (home && g.teams.home.leagueRecord) records.set(home.id, `${g.teams.home.leagueRecord.wins}-${g.teams.home.leagueRecord.losses}`)
+      if (away && g.teams.away.leagueRecord) records.set(away.id, `${g.teams.away.leagueRecord.wins}-${g.teams.away.leagueRecord.losses}`)
       const m = buildMatch('mlb', g.gamePk, start, g.teams.home.team.name, g.teams.away.team.name,
-        finished, finished ? g.teams.home.score ?? null : null, finished ? g.teams.away.score ?? null : null)
+        finished, finished ? g.teams.home.score ?? null : null, finished ? g.teams.away.score ?? null : null, records)
       if (m) out.push(m)
     }
   }

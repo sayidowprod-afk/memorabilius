@@ -35,6 +35,8 @@ interface ApiMatch {
   leftScore?: number
   rightScore?: number
   winner?: 'left' | 'right'
+  leftRecord?: string
+  rightRecord?: string
 }
 
 const SPORT_INFO: Record<Sport, { label: string; short: string; logo: string; soon?: boolean }> = {
@@ -56,14 +58,6 @@ function sideGradient(color: string, side: 'left' | 'right') {
     : `linear-gradient(90deg, ${NAVY} 0%, ${color} 58%, ${color} 100%)`
 }
 
-// Bilan fictif mais stable par équipe (même équipe = même bilan partout sur
-// la page), en attendant le vrai classement côté backend.
-function fakeRecord(teamId: string): string {
-  let h = 0
-  for (const c of teamId) h = (h * 31 + c.charCodeAt(0)) >>> 0
-  return `${h % 10}-${Math.floor(h / 10) % 8}`
-}
-
 // Surfquest dessine ses chiffres nettement plus petits que ses lettres
 // capitales (visible sur "76ERS") -- on compense en agrandissant les runs
 // de chiffres dans le nom de l'équipe. En `em` (relatif à la taille de
@@ -81,9 +75,9 @@ function NameDigits({ text }: { text: string }) {
 }
 
 function TeamHalf({
-  team, score, side, onClick, clickable, picked,
+  team, score, record, side, onClick, clickable, picked,
 }: {
-  team: ReturnType<typeof getTeamById>; score?: number
+  team: ReturnType<typeof getTeamById>; score?: number; record?: string
   side: 'left' | 'right'; onClick: () => void; clickable: boolean; picked?: boolean
 }) {
   if (!team) return null
@@ -118,7 +112,11 @@ function TeamHalf({
   const scoreEl = score !== undefined
     ? <span className={`${anton.className} pronos-score`} style={{ color: '#fff' }}>{score}</span>
     : null
-  const recordEl = <span className={`${anton.className} pronos-record`} style={{ color: 'rgba(255,255,255,.85)' }}>{fakeRecord(team.id)}</span>
+  // Bilan réel (ESPN/MLB) -- absent (ex: Champions League, pas encore
+  // branché) plutôt que d'inventer un chiffre.
+  const recordEl = record
+    ? <span className={`${anton.className} pronos-record`} style={{ color: 'rgba(255,255,255,.85)' }}>{record}</span>
+    : null
 
   return (
     <div
@@ -155,7 +153,7 @@ function MatchRow({ m, pick, onPick }: { m: ApiMatch; pick?: 'left' | 'right'; o
   return (
     <div className="pronos-row">
       <div style={{ flex: 1, display: 'flex', background: leftBg }}>
-        <TeamHalf team={left} score={m.status === 'final' ? m.leftScore : undefined}
+        <TeamHalf team={left} score={m.status === 'final' ? m.leftScore : undefined} record={m.leftRecord}
           side="left" clickable={clickable} onClick={() => onPick(m.id, 'left')}
           picked={pick === 'left'} />
       </div>
@@ -174,7 +172,7 @@ function MatchRow({ m, pick, onPick }: { m: ApiMatch; pick?: 'left' | 'right'; o
       </div>
 
       <div style={{ flex: 1, display: 'flex', background: rightBg }}>
-        <TeamHalf team={right} score={m.status === 'final' ? m.rightScore : undefined}
+        <TeamHalf team={right} score={m.status === 'final' ? m.rightScore : undefined} record={m.rightRecord}
           side="right" clickable={clickable} onClick={() => onPick(m.id, 'right')}
           picked={pick === 'right'} />
       </div>
