@@ -6,7 +6,7 @@ import { useLang } from '@/lib/LangContext'
 import { saveOrShareFile } from '@/lib/saveOrShare'
 import { toast } from '@/lib/toast'
 import { supabase } from '@/lib/supabase'
-import { cardTagDrawItems, drawTagRow } from '@/lib/drawCardTags'
+import { atoutsItems, drawAtoutsBand } from '@/lib/drawCardTags'
 import { SPORTS_TEAMS, teamLogoUrl, SPORT_LABELS, type Sport } from '@/lib/sportsTeams'
 
 // Couleur par defaut pour les equipes "custom" de l'app (Fedération de la
@@ -80,6 +80,44 @@ function truncate(ctx: CanvasRenderingContext2D, text: string, maxW: number): st
   let t = text
   while (t.length > 1 && ctx.measureText(t + '…').width > maxW) t = t.slice(0, -1)
   return t + '…'
+}
+
+// Reduit la taille de police par pas de 1px jusqu'a ce que le texte tienne
+// dans maxW (ou que minSize soit atteint) -- avant, le nom du joueur gardait
+// toujours sa taille de base et se faisait tronquer avec "…" des qu'il etait
+// un peu long, illisible pour rien alors qu'il aurait tenu en entier a une
+// taille legerement plus petite. Appele dans le bloc pre-rendu/cache du
+// panneau (pas par frame), aucun cout de perf. truncate() reste en tout
+// dernier recours si meme minSize ne suffit pas.
+function fitFontSize(
+  ctx: CanvasRenderingContext2D, text: string, maxW: number,
+  font: (size: number) => string, startSize: number, minSize: number,
+): number {
+  let size = startSize
+  ctx.font = font(size)
+  while (size > minSize && ctx.measureText(text).width > maxW) {
+    size -= 1
+    ctx.font = font(size)
+  }
+  return size
+}
+
+// Police "Surfquest" de la DA (gros titres/chiffres sur le site, voir da.css)
+// -- chargee explicitement via FontFace : contrairement au CSS, un <canvas>
+// n'attend pas qu'une police @font-face finisse de charger, le nom de la
+// carte se dessinait donc avec la police de repli tant que le fichier
+// n'etait pas deja en cache navigateur.
+let surfquestPromise: Promise<void> | null = null
+function loadSurfquest(): Promise<void> {
+  if (surfquestPromise) return surfquestPromise
+  surfquestPromise = (async () => {
+    try {
+      const face = new FontFace('Surfquest', 'url(/Surfquest-NoSlash.otf)')
+      await face.load()
+      ;(document.fonts as any).add(face)
+    } catch {}
+  })()
+  return surfquestPromise
 }
 
 export default function CardVideoExport({ card, accent: accentProp, onClose, ownerId }: Props) {
@@ -195,7 +233,7 @@ export default function CardVideoExport({ card, accent: accentProp, onClose, own
     const load = (src: string) => new Promise<HTMLImageElement>(r => {
       const i = new Image(); i.onload = () => r(i); i.onerror = () => r(i); i.src = src
     })
-    Promise.all([load('/memorabilius-logo-white.png'), load('/memorabilius-logo.png')]).then(([dark, light]) => {
+    Promise.all([load('/memorabilius-logo-white.png'), load('/memorabilius-logo.png'), loadSurfquest()]).then(([dark, light]) => {
       logoImgs.current = { dark, light }
     })
   }, [])
@@ -253,6 +291,9 @@ export default function CardVideoExport({ card, accent: accentProp, onClose, own
     const bgBot    = isDark ? '#0d0d22' : '#e8dfd0'
     const infoBg   = isDark ? '#08081a' : '#fdfaf6'
     const textMain = isDark ? '#ffffff' : '#111111'
+    // DA site (da.css) : marine -> bleu electrique en mode sombre, cadre a
+    // double filet blanc -- memes couleurs que .mb-hero / [data-theme=dark] body.
+    const daLineColor = isDark ? 'rgba(255,255,255,0.85)' : 'rgba(0,61,166,0.85)'
 
     const logoImg = isDark ? logoImgs.current.dark : logoImgs.current.light
 
@@ -352,6 +393,30 @@ export default function CardVideoExport({ card, accent: accentProp, onClose, own
         const bgGrad = octx.createLinearGradient(0, 0, 0, H)
         bgGrad.addColorStop(0, 'rgba(0,0,0,0)'); bgGrad.addColorStop(1, 'rgba(0,0,0,0.22)')
         octx.fillStyle = bgGrad; octx.fillRect(0, 0, W, H)
+      } else if (isDark) {
+        // ── Fond DA ── marine -> bleu electrique en diagonale (da.css, meme
+        // degrade que la banniere d'accueil et le fond du site en mode
+        // sombre), a la place de l'aplat neutre -- + halo accent et grain
+        // conserves par-dessus pour la profondeur.
+        const daGrad = octx.createLinearGradient(0, 0, W * 0.75, H)
+        daGrad.addColorStop(0, '#050912'); daGrad.addColorStop(0.5, '#08153b'); daGrad.addColorStop(1, '#003da6')
+        octx.fillStyle = daGrad; octx.fillRect(0, 0, W, H)
+
+        const aspect = H / W
+        const haloT = Math.min(1, Math.max(0, (aspect - 1) / 0.6))
+        const haloX = W * (0.62 + 0.20 * haloT)
+        const haloY = H * (0.10 - 0.04 * haloT)
+        const halo = octx.createRadialGradient(haloX, haloY, 0, haloX, haloY, W * 1.3)
+        halo.addColorStop(0, `rgba(${ar},${ag},${ab},0.22)`)
+        halo.addColorStop(0.5, `rgba(${ar},${ag},${ab},0.05)`)
+        halo.addColorStop(1, 'rgba(0,0,0,0)')
+        octx.fillStyle = halo; octx.fillRect(0, 0, W, H)
+
+        const bgGrad2 = octx.createLinearGradient(0, 0, 0, H)
+        bgGrad2.addColorStop(0, 'rgba(0,0,0,0)'); bgGrad2.addColorStop(1, 'rgba(0,0,0,0.3)')
+        octx.fillStyle = bgGrad2; octx.fillRect(0, 0, W, H)
+
+        paintGrain(10)
       } else {
         octx.fillStyle = bgBase; octx.fillRect(0, 0, W, H)
 
@@ -435,23 +500,27 @@ export default function CardVideoExport({ card, accent: accentProp, onClose, own
     // thème équipe pour laisser la place au logo Memorabilius en bas centré,
     // sous le panneau plutôt qu'en haut à gauche (voir plus bas et plus haut).
     const PB = H * (teamTheme ? 0.075 : 0.022) + safeBottomExtra
+    // Panneau resserre (DA) : la carte doit dominer visuellement l'export --
+    // paddings et tailles de police du panneau reduits par rapport a l'ancienne
+    // version (0.14/0.09/0.24 -> 0.10/0.07/0.19), et le ratio carte/panneau
+    // augmente en consequence plus bas (CARD_MAX_W/H).
     const measureContentH = (guessPanelH: number) => {
-      let h = guessPanelH * 0.14 // topPad, meme formule que ty de depart plus bas
+      let h = guessPanelH * 0.10 // topPad, meme formule que ty de depart plus bas
       if (card.rc || card.auto || card.num || card.patch) {
-        h += Math.round(W * 0.040) + Math.round(guessPanelH * 0.07)
+        h += Math.round(W * 0.036) + Math.round(guessPanelH * 0.06)
       }
-      if (card.t) h += Math.round(W * 0.020) * 1.6
-      h += Math.round(W * 0.052) * 1.15
-      if (card.v) h += Math.round(W * 0.028) * 1.3
+      if (card.t) h += Math.round(W * 0.019) * 1.6
+      h += Math.round(W * 0.047) * 1.15
+      if (card.v) h += Math.round(W * 0.026) * 1.3
       const meta2 = [card.y, [card.br, card.s].filter(Boolean).join(' ')].filter(Boolean).join(' · ')
-      if (meta2) h += Math.round(W * 0.021) * 1.4
-      return h + guessPanelH * 0.14 // bottomPad, marge de securite symetrique
+      if (meta2) h += Math.round(W * 0.019) * 1.4
+      return h + guessPanelH * 0.10 // bottomPad, marge de securite symetrique
     }
-    const guessPanelH = Math.round(H * (0.24 + 0.09 * infoHT)) - PB
-    const INFO_H = Math.round(Math.max(H * (0.24 + 0.09 * infoHT), measureContentH(guessPanelH) + PB))
+    const guessPanelH = Math.round(H * (0.19 + 0.07 * infoHT)) - PB
+    const INFO_H = Math.round(Math.max(H * (0.19 + 0.07 * infoHT), measureContentH(guessPanelH) + PB))
     const CARD_ZONE_H = H - INFO_H
-    const CARD_MAX_W  = W * 0.82
-    const CARD_MAX_H  = CARD_ZONE_H * 0.88
+    const CARD_MAX_W  = W * 0.86
+    const CARD_MAX_H  = CARD_ZONE_H * 0.92
     // Ratio hauteur/largeur -- inversé pour une carte à l'horizontale (plus large que
     // haute). Jusqu'ici toujours calculé en portrait quelle que soit l'orientation
     // réelle de la carte, ce qui écrasait/rétrécissait les cartes horizontales dans
@@ -587,7 +656,12 @@ export default function CardVideoExport({ card, accent: accentProp, onClose, own
     // fillText avec changement de police) en pure perte.
     const PM = W * 0.045          // marge horizontale du panneau
     const panelW = W - PM * 2
-    const panelRadius = Math.round(W * 0.055)
+    // DA : panneau a angles droits + double filet (signature du site, voir
+    // .section-title dans da.css) sur le fond marine/bleu par defaut -- garde
+    // les coins arrondis sur le theme equipe (plein-cadre couleur, deja un
+    // traitement distinct) et en mode clair (DA non definie pour ce cas).
+    const daSquare = isDark && !teamTheme
+    const panelRadius = daSquare ? 0 : Math.round(W * 0.055)
     const panelTop = H - INFO_H
     const panelH = (H - PB) - panelTop
     const infoCacheKey = `${W}x${H}-${isDark}-${accent}`
@@ -597,26 +671,36 @@ export default function CardVideoExport({ card, accent: accentProp, onClose, own
       ic.height = Math.ceil(panelH)
       const ictx = ic.getContext('2d')!
 
+      ictx.save()
       ictx.beginPath(); ictx.roundRect(0, 0, panelW, panelH, panelRadius); ictx.clip()
       ictx.fillStyle = infoBg
       ictx.fillRect(0, 0, panelW, panelH)
+      ictx.restore()
+
+      if (daSquare) {
+        // Double filet : deux traits fins avec un ecart entre les deux, comme
+        // le cadre des titres de section sur le site.
+        const inset1 = W * 0.006, inset2 = W * 0.013
+        ictx.lineWidth = Math.max(1.5, W * 0.0022)
+        ictx.strokeStyle = daLineColor
+        ictx.strokeRect(inset1, inset1, panelW - inset1 * 2, panelH - inset1 * 2)
+        ictx.strokeRect(inset2, inset2, panelW - inset2 * 2, panelH - inset2 * 2)
+      }
+
+      ictx.save()
+      ictx.beginPath(); ictx.roundRect(0, 0, panelW, panelH, panelRadius); ictx.clip()
 
       ictx.textAlign = 'center'; ictx.textBaseline = 'top'
       const tx = panelW / 2
-      let ty = panelH * 0.14
+      let ty = panelH * 0.10
 
-      // ── Badges ─────────────────────────────────────────────────────────────
-      // Style plus sobre : fond translucide neutre + texte/pastille colorés,
-      // au lieu de pilules en dégradé saturé avec lueur.
-      const badgeFs  = Math.round(W * 0.024)
-      const badgeH   = Math.round(W * 0.040)
-      const badgePad = Math.round(W * 0.022)
-      const badgeR   = badgeH / 2
-
-      const tagItems = cardTagDrawItems(card)
+      // ── Bandeau d'atouts ── meme bandeau continu que sur le site (galerie,
+      // pepites...), pas des pastilles isolees -- voir AtoutsStrip.tsx.
+      const badgeH = Math.round(W * 0.036)
+      const tagItems = atoutsItems(card)
       if (tagItems.length > 0) {
-        drawTagRow(ictx, tagItems, { cx: tx, y: ty, maxW: W * 0.84, h: badgeH, gap: Math.round(W * 0.012), isDark, fontFamily: 'Inter, sans-serif' })
-        ty += badgeH + Math.round(panelH * 0.07)
+        drawAtoutsBand(ictx, tagItems, { cx: tx, y: ty, width: panelW * 0.92, h: badgeH, fontFamily: 'Inter, sans-serif' })
+        ty += badgeH + Math.round(panelH * 0.06)
       }
 
       // ── Équipe en eyebrow ── déplacé entre les badges et le nom du joueur
@@ -624,23 +708,27 @@ export default function CardVideoExport({ card, accent: accentProp, onClose, own
       // élément de plus haute hiérarchie visuelle, l'équipe l'introduit juste
       // avant sans passer devant les badges.
       if (card.t) {
-        const teamFs = Math.round(W * 0.020)
+        const teamFs = Math.round(W * 0.019)
         ictx.fillStyle = accent
         ictx.font = `800 ${teamFs}px Inter, sans-serif`
         ictx.fillText(truncate(ictx, card.t.toUpperCase(), panelW * 0.85), tx, ty)
         ty += teamFs * 1.6
       }
 
-      // ── Nom du joueur ─────────────────────────────────────────────────────────
-      const nameFs = Math.round(W * 0.052)
+      // ── Nom du joueur ── police Surfquest (DA, gros titres du site) +
+      // capitales, comme h1/.mb-hero-title dans da.css -- repli silencieux
+      // sur Inter si la police n'a pas eu le temps de charger.
+      const nameMaxW = panelW * 0.92
+      const nameFont = (s: number) => `400 ${s}px Surfquest, Inter, sans-serif`
+      const nameFs = fitFontSize(ictx, card.n.toUpperCase(), nameMaxW, nameFont, Math.round(W * 0.047), Math.round(W * 0.028))
       ictx.fillStyle = textMain
-      ictx.font = `800 ${nameFs}px Inter, sans-serif`
-      ictx.fillText(truncate(ictx, card.n, panelW * 0.92), tx, ty)
+      ictx.font = nameFont(nameFs)
+      ictx.fillText(truncate(ictx, card.n.toUpperCase(), nameMaxW), tx, ty)
       ty += nameFs * 1.15
 
       // ── Variation ─────────────────────────────────────────────────────────────
       if (card.v) {
-        const varFs = Math.round(W * 0.028)
+        const varFs = Math.round(W * 0.026)
         ictx.fillStyle = accent
         ictx.font = `600 italic ${varFs}px Inter, sans-serif`
         ictx.fillText(truncate(ictx, card.v, panelW * 0.88), tx, ty)
@@ -650,11 +738,13 @@ export default function CardVideoExport({ card, accent: accentProp, onClose, own
       // ── Année · Marque · Collection ───────────────────────────────────────────
       const meta2 = [card.y, [card.br, card.s].filter(Boolean).join(' ')].filter(Boolean).join(' · ')
       if (meta2) {
-        const metaFs = Math.round(W * 0.021)
+        const metaFs = Math.round(W * 0.019)
         ictx.fillStyle = isDark ? 'rgba(255,255,255,0.32)' : 'rgba(0,0,0,0.32)'
         ictx.font = `400 ${metaFs}px Inter, sans-serif`
         ictx.fillText(truncate(ictx, meta2, panelW * 0.85), tx, ty)
       }
+
+      ictx.restore()
 
       infoCache.current = { key: infoCacheKey, canvas: ic, top: panelTop }
     }

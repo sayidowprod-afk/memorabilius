@@ -5,7 +5,7 @@ import { useLang } from '@/lib/LangContext'
 import { saveOrShareFile } from '@/lib/saveOrShare'
 import { toast } from '@/lib/toast'
 import { supabase } from '@/lib/supabase'
-import { cardTagDrawItems, drawTagRow } from '@/lib/drawCardTags'
+import { atoutsItems, drawAtoutsBand } from '@/lib/drawCardTags'
 import { SPORTS_TEAMS, teamLogoUrl, SPORT_LABELS, type Sport } from '@/lib/sportsTeams'
 
 interface Card {
@@ -43,6 +43,26 @@ function truncate(ctx: CanvasRenderingContext2D, text: string, maxW: number): st
   return t + '…'
 }
 
+// Reduit la taille de police par pas de 1px jusqu'a ce que le texte tienne
+// dans maxW (ou que minSize soit atteint) -- avant, le nom du joueur gardait
+// toujours sa taille de base et se faisait tronquer avec "…" des qu'il etait
+// un peu long (ex: noms composes, doubles noms de famille), illisible pour
+// rien alors qu'il aurait largement tenu en entier a une taille legerement
+// plus petite. truncate() reste en tout dernier recours si meme minSize ne
+// suffit pas (nom vraiment extreme).
+function fitFontSize(
+  ctx: CanvasRenderingContext2D, text: string, maxW: number,
+  font: (size: number) => string, startSize: number, minSize: number,
+): number {
+  let size = startSize
+  ctx.font = font(size)
+  while (size > minSize && ctx.measureText(text).width > maxW) {
+    size -= 1
+    ctx.font = font(size)
+  }
+  return size
+}
+
 // Un <img crossOrigin="anonymous"> direct echoue en pratique aussi bien vers
 // notre propre Supabase Storage (bloque cote CDN) que vers un hebergeur
 // externe (cartes importees via CSV, ex: i.ibb.co, aucune garantie CORS) --
@@ -62,6 +82,24 @@ const loadImage = (src: string): Promise<HTMLImageElement> =>
     img.onerror = () => resolve(img) // reste "cassee" (0x0) -- gere par l'appelant (voir drawImage plus bas)
     img.src = proxied(src)
   })
+
+// Police "Surfquest" de la DA (gros titres/chiffres sur le site, voir da.css)
+// -- chargee explicitement via FontFace : contrairement au CSS, un <canvas>
+// n'attend pas qu'une police @font-face finisse de charger, le nom de la
+// carte se dessinait donc avec la police de repli tant que le fichier
+// n'etait pas deja en cache navigateur.
+let surfquestPromise: Promise<void> | null = null
+function loadSurfquest(): Promise<void> {
+  if (surfquestPromise) return surfquestPromise
+  surfquestPromise = (async () => {
+    try {
+      const face = new FontFace('Surfquest', 'url(/Surfquest-NoSlash.otf)')
+      await face.load()
+      ;(document.fonts as any).add(face)
+    } catch {}
+  })()
+  return surfquestPromise
+}
 
 export default function CardPhotoExport({ card, accent: accentProp, onClose, ownerId }: Props) {
   const canvasRef = useRef<HTMLCanvasElement>(null)
@@ -125,7 +163,7 @@ export default function CardPhotoExport({ card, accent: accentProp, onClose, own
   }, [teamTheme, teamLogoImg])
 
   useEffect(() => {
-    Promise.all([loadImage('/memorabilius-logo-white.png'), loadImage('/memorabilius-logo.png')]).then(([dark, light]) => {
+    Promise.all([loadImage('/memorabilius-logo-white.png'), loadImage('/memorabilius-logo.png'), loadSurfquest()]).then(([dark, light]) => {
       logoImgs.current = { dark, light }
       draw()
     })
@@ -165,6 +203,9 @@ export default function CardPhotoExport({ card, accent: accentProp, onClose, own
     const bgBot    = isDark ? '#0d0d22' : '#e8dfd0'
     const infoBg   = isDark ? '#08081a' : '#fdfaf6'
     const textMain = isDark ? '#ffffff' : '#111111'
+    // DA site (da.css) : marine -> bleu electrique en mode sombre, cadre a
+    // double filet blanc -- memes couleurs que .mb-hero / [data-theme=dark] body.
+    const daLineColor = isDark ? 'rgba(255,255,255,0.85)' : 'rgba(0,61,166,0.85)'
 
     const logoImg = isDark ? logoImgs.current.dark : logoImgs.current.light
     const activeTeamLogo = teamTheme && teamLogoImg?.key === teamTheme.key ? teamLogoImg.img : null
@@ -247,6 +288,29 @@ export default function CardPhotoExport({ card, accent: accentProp, onClose, own
       const bgGrad = ctx.createLinearGradient(0, 0, 0, h)
       bgGrad.addColorStop(0, 'rgba(0,0,0,0)'); bgGrad.addColorStop(1, 'rgba(0,0,0,0.22)')
       ctx.fillStyle = bgGrad; ctx.fillRect(0, 0, w, h)
+    } else if (isDark) {
+      // ── Fond DA ── marine -> bleu electrique en diagonale (da.css, meme
+      // degrade que la banniere d'accueil et le fond du site en mode sombre),
+      // a la place de l'aplat neutre -- + halo accent et grain conserves
+      // par-dessus pour la profondeur.
+      const daGrad = ctx.createLinearGradient(0, 0, w * 0.75, h)
+      daGrad.addColorStop(0, '#050912'); daGrad.addColorStop(0.5, '#08153b'); daGrad.addColorStop(1, '#003da6')
+      ctx.fillStyle = daGrad; ctx.fillRect(0, 0, w, h)
+
+      const haloT = Math.min(1, Math.max(0, (aspect - 1) / 0.6))
+      const haloX = w * (0.62 + 0.20 * haloT)
+      const haloY = h * (0.10 - 0.04 * haloT)
+      const halo = ctx.createRadialGradient(haloX, haloY, 0, haloX, haloY, w * 1.3)
+      halo.addColorStop(0, `rgba(${ar},${ag},${ab},0.22)`)
+      halo.addColorStop(0.5, `rgba(${ar},${ag},${ab},0.05)`)
+      halo.addColorStop(1, 'rgba(0,0,0,0)')
+      ctx.fillStyle = halo; ctx.fillRect(0, 0, w, h)
+
+      const bgGrad2 = ctx.createLinearGradient(0, 0, 0, h)
+      bgGrad2.addColorStop(0, 'rgba(0,0,0,0)'); bgGrad2.addColorStop(1, 'rgba(0,0,0,0.3)')
+      ctx.fillStyle = bgGrad2; ctx.fillRect(0, 0, w, h)
+
+      paintGrain(10)
     } else {
       // ── Fond ── un seul halo doux couleur accent + grain subtil, comme la vidéo
       // (au lieu des deux halos concurrents + vignette de l'ancienne version).
@@ -295,23 +359,27 @@ export default function CardPhotoExport({ card, accent: accentProp, onClose, own
     // centré, voir plus bas) -- calculée ici pour que la hauteur du panneau
     // en tienne compte, pas seulement plus bas au moment de le dessiner.
     const PB = h * (teamTheme ? 0.075 : 0.022)
+    // Panneau resserre (DA) : la carte doit dominer visuellement l'export --
+    // paddings et tailles de police du panneau reduits par rapport a l'ancienne
+    // version (0.14/0.09/0.24 -> 0.10/0.07/0.19), et le ratio carte/panneau
+    // augmente en consequence plus bas (CARD_MAX_W/H).
     const measureContentH = (guessPanelH: number) => {
-      let ch = guessPanelH * 0.14
+      let ch = guessPanelH * 0.10
       if (card.rc || card.auto || card.num || card.patch || (card.g && card.g !== 'Raw')) {
-        ch += Math.round(w * 0.040) + Math.round(guessPanelH * 0.07)
+        ch += Math.round(w * 0.036) + Math.round(guessPanelH * 0.06)
       }
-      if (card.t) ch += Math.round(w * 0.020) * 1.6
-      ch += Math.round(w * 0.052) * 1.15
-      if (card.v) ch += Math.round(w * 0.028) * 1.3
+      if (card.t) ch += Math.round(w * 0.019) * 1.6
+      ch += Math.round(w * 0.047) * 1.15
+      if (card.v) ch += Math.round(w * 0.026) * 1.3
       const meta2c = [card.y, [card.br, card.s].filter(Boolean).join(' ')].filter(Boolean).join(' · ')
-      if (meta2c) ch += Math.round(w * 0.021) * 1.4
-      return ch + guessPanelH * 0.14
+      if (meta2c) ch += Math.round(w * 0.019) * 1.4
+      return ch + guessPanelH * 0.10
     }
-    const guessPanelH = Math.round(h * (0.24 + 0.09 * infoHT)) - PB
-    const INFO_H = Math.round(Math.max(h * (0.24 + 0.09 * infoHT), measureContentH(guessPanelH) + PB))
+    const guessPanelH = Math.round(h * (0.19 + 0.07 * infoHT)) - PB
+    const INFO_H = Math.round(Math.max(h * (0.19 + 0.07 * infoHT), measureContentH(guessPanelH) + PB))
     const CARD_ZONE_H = h - INFO_H
-    const CARD_MAX_W  = w * 0.82
-    const CARD_MAX_H  = CARD_ZONE_H * 0.88
+    const CARD_MAX_W  = w * 0.86
+    const CARD_MAX_H  = CARD_ZONE_H * 0.92
     const CARD_RATIO  = card.is_horizontal ? 2.5 / 3.5 : 3.5 / 2.5
     const cardW = Math.min(CARD_MAX_W, CARD_MAX_H / CARD_RATIO)
     const cardH = cardW * CARD_RATIO
@@ -366,7 +434,12 @@ export default function CardPhotoExport({ card, accent: accentProp, onClose, own
     // l'ancienne version).
     const PM = w * 0.045
     const panelW = w - PM * 2
-    const panelRadius = Math.round(w * 0.055)
+    // DA : panneau a angles droits + double filet (signature du site, voir
+    // .section-title dans da.css) sur le fond marine/bleu par defaut -- garde
+    // les coins arrondis sur le theme equipe (plein-cadre couleur, deja un
+    // traitement distinct) et en mode clair (DA non definie pour ce cas).
+    const daSquare = isDark && !teamTheme
+    const panelRadius = daSquare ? 0 : Math.round(w * 0.055)
     const panelTop = h - INFO_H
     const panelH = (h - PB) - panelTop
 
@@ -389,44 +462,55 @@ export default function CardPhotoExport({ card, accent: accentProp, onClose, own
     }
     ctx.restore()
 
+    if (daSquare) {
+      // Double filet : deux traits fins avec un ecart entre les deux, comme
+      // le cadre des titres de section sur le site.
+      const inset1 = w * 0.006, inset2 = w * 0.013
+      ctx.lineWidth = Math.max(1.5, w * 0.0022)
+      ctx.strokeStyle = daLineColor
+      ctx.strokeRect(PM + inset1, panelTop + inset1, panelW - inset1 * 2, panelH - inset1 * 2)
+      ctx.strokeRect(PM + inset2, panelTop + inset2, panelW - inset2 * 2, panelH - inset2 * 2)
+    }
+
     ctx.save()
     ctx.beginPath(); ctx.roundRect(PM, panelTop, panelW, panelH, panelRadius); ctx.clip()
 
     ctx.textAlign = 'center'; ctx.textBaseline = 'top'
     const tx = w / 2
-    let ty = panelTop + panelH * 0.14
+    let ty = panelTop + panelH * 0.10
 
-    // ── Badges ── style sobre : fond translucide neutre + texte/pastille
-    // colorés, pas de dégradé saturé avec lueur.
-    const badgeFs  = Math.round(w * 0.024)
-    const badgeH   = Math.round(w * 0.040)
-    const badgePad = Math.round(w * 0.022)
-    const badgeR   = badgeH / 2
-
-    const tagItems = cardTagDrawItems(card, accent)
+    // ── Bandeau d'atouts ── meme bandeau continu que sur le site (galerie,
+    // pepites...), pas des pastilles isolees -- voir AtoutsStrip.tsx.
+    const badgeH = Math.round(w * 0.036)
+    const tagItems = atoutsItems(card, accent)
     if (tagItems.length > 0) {
-      drawTagRow(ctx, tagItems, { cx: tx, y: ty, maxW: w * 0.84, h: badgeH, gap: Math.round(w * 0.012), isDark, fontFamily: 'Inter, sans-serif' })
-      ty += badgeH + Math.round(panelH * 0.07)
+      drawAtoutsBand(ctx, tagItems, { cx: tx, y: ty, width: panelW * 0.92, h: badgeH, fontFamily: 'Inter, sans-serif' })
+      ty += badgeH + Math.round(panelH * 0.06)
     }
 
     // ── Équipe en eyebrow ── entre les badges et le nom.
     if (card.t) {
-      const teamFs = Math.round(w * 0.020)
+      const teamFs = Math.round(w * 0.019)
       ctx.fillStyle = accent
       ctx.font = `800 ${teamFs}px Inter, sans-serif`
       ctx.fillText(truncate(ctx, card.t.toUpperCase(), panelW * 0.85), tx, ty)
       ty += teamFs * 1.6
     }
 
-    // ── Nom ───────────────────────────────────────────────────────────────────
-    const nameFs = Math.round(w * 0.052)
+    // ── Nom ── police Surfquest (DA, gros titres du site) + capitales,
+    // comme h1/.mb-hero-title dans da.css -- repli silencieux sur Inter si la
+    // police n'a pas eu le temps de charger (meme famille que le bouton
+    // "aucune police" du navigateur).
+    const nameMaxW = panelW * 0.92
+    const nameFont = (s: number) => `400 ${s}px Surfquest, Inter, sans-serif`
+    const nameFs = fitFontSize(ctx, card.n.toUpperCase(), nameMaxW, nameFont, Math.round(w * 0.047), Math.round(w * 0.028))
     ctx.fillStyle = textMain
-    ctx.font = `800 ${nameFs}px Inter, sans-serif`
-    ctx.fillText(truncate(ctx, card.n, panelW * 0.92), tx, ty)
+    ctx.font = nameFont(nameFs)
+    ctx.fillText(truncate(ctx, card.n.toUpperCase(), nameMaxW), tx, ty)
     ty += nameFs * 1.15
 
     if (card.v) {
-      const varFs = Math.round(w * 0.028)
+      const varFs = Math.round(w * 0.026)
       ctx.fillStyle = accent
       ctx.font = `600 italic ${varFs}px Inter, sans-serif`
       ctx.fillText(truncate(ctx, card.v, panelW * 0.88), tx, ty)
@@ -435,7 +519,7 @@ export default function CardPhotoExport({ card, accent: accentProp, onClose, own
 
     const meta2 = [card.y, [card.br, card.s].filter(Boolean).join(' ')].filter(Boolean).join(' · ')
     if (meta2) {
-      const metaFs = Math.round(w * 0.021)
+      const metaFs = Math.round(w * 0.019)
       ctx.fillStyle = isDark ? 'rgba(255,255,255,0.32)' : 'rgba(0,0,0,0.32)'
       ctx.font = `400 ${metaFs}px Inter, sans-serif`
       ctx.fillText(truncate(ctx, meta2, panelW * 0.85), tx, ty)
