@@ -2,7 +2,7 @@
 import { useEffect, useRef, useState } from 'react'
 import { useLang, localeFor, type Lang } from '@/lib/LangContext'
 
-interface ActiveListing { price: number; title: string; url: string; img: string }
+interface ActiveListing { price: number; title: string; url: string; img: string; shipping?: number }
 interface SoldListing   { price: number; title: string; url: string; img: string; soldDate: string }
 
 interface Props {
@@ -79,6 +79,7 @@ export default function CardValueModule({ cardName, set, year, num, variant, rc,
           title: i.title || '',
           url: i.url || '',
           img: i.img || '',
+          shipping: typeof i.shipping === 'number' ? Math.round(i.shipping * 100) / 100 : undefined,
         })))
         setSold((json.sold || []).map((i: any) => ({
           price: Math.round(i.price * 100) / 100,
@@ -145,26 +146,26 @@ export default function CardValueModule({ cardName, set, year, num, variant, rc,
 
       {/* Ventes conclues */}
       {sold.length > 0 && (
-        <div style={{ marginBottom: 12 }}>
-          <div style={{ fontSize: 9, fontWeight: 800, color: 'var(--text3, #aaa)', textTransform: 'uppercase', letterSpacing: 0.5, marginBottom: 6 }}>
+        <div style={{ marginBottom: 14 }}>
+          <div style={{ fontSize: 9, fontWeight: 800, color: 'var(--text3, #aaa)', textTransform: 'uppercase', letterSpacing: 0.5, marginBottom: 8 }}>
             {t('cardvalue_sold_completed')} ({sold.length})
           </div>
-          <div style={{ display: 'flex', gap: 6, overflowX: 'auto', paddingBottom: 4 }}>
+          <div style={{ display: 'flex', gap: 10, overflowX: 'auto', paddingBottom: 6 }}>
             {sold.map((item, i) => (
               <a key={i} href={item.url} target="_blank" rel="noopener noreferrer"
-                style={{ textDecoration: 'none', flexShrink: 0, width: 70 }}>
-                <div style={{ borderRadius: 6, overflow: 'hidden', border: '1.5px solid var(--border, #e8e8e8)',
-                  background: 'var(--card-bg, #fff)', transition: '0.15s' }}
+                style={{ textDecoration: 'none', flexShrink: 0, width: 100 }}>
+                <div style={{ borderRadius: 10, overflow: 'hidden', border: '1.5px solid var(--border, #e8e8e8)',
+                  background: 'var(--card-bg, #fff)', transition: '0.15s', boxShadow: '0 1px 3px rgba(0,0,0,0.06)' }}
                   onMouseEnter={e => (e.currentTarget.style.borderColor = '#2e7d32')}
                   onMouseLeave={e => (e.currentTarget.style.borderColor = 'var(--border, #e8e8e8)')}
                 >
                   {item.img
-                    ? <img src={item.img} alt="" style={{ width: '100%', aspectRatio: '1', objectFit: 'cover', display: 'block', background: 'var(--bg3, #f5f5f5)' }} />
-                    : <div style={{ width: '100%', aspectRatio: '1', background: 'var(--bg3, #f5f5f5)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 18 }}>🃏</div>
+                    ? <img src={item.img} alt="" style={{ width: '100%', aspectRatio: '2.5/3.5', objectFit: 'cover', display: 'block', background: 'var(--bg3, #f5f5f5)' }} />
+                    : <div style={{ width: '100%', aspectRatio: '2.5/3.5', background: 'var(--bg3, #f5f5f5)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 24 }}>🃏</div>
                   }
-                  <div style={{ padding: '4px 5px 5px' }}>
-                    <div style={{ fontWeight: 900, fontSize: 12, color: '#2e7d32', lineHeight: 1.1 }}>{item.price}€</div>
-                    <div style={{ fontSize: 9, color: 'var(--text3, #aaa)', marginTop: 1 }}>{fmtDate(item.soldDate, lang)}</div>
+                  <div style={{ padding: '6px 7px 7px' }}>
+                    <div style={{ fontWeight: 900, fontSize: 14, color: '#2e7d32', lineHeight: 1.1 }}>{item.price}€</div>
+                    <div style={{ fontSize: 10, color: 'var(--text3, #aaa)', marginTop: 2 }}>{fmtDate(item.soldDate, lang)}</div>
                   </div>
                 </div>
               </a>
@@ -173,32 +174,47 @@ export default function CardValueModule({ cardName, set, year, num, variant, rc,
         </div>
       )}
 
-      {/* Annonces actives */}
+      {/* Annonces actives -- vignettes agrandies (format carte plutot que carre,
+          moins de recadrage) avec frais de port affiches : avant, chaque
+          vignette ne montrait que le prix hors frais, sans dire si la
+          livraison etait comprise ou non. */}
       {active.length > 0 && (
         <div>
-          <div style={{ fontSize: 9, fontWeight: 800, color: 'var(--text3, #aaa)', textTransform: 'uppercase', letterSpacing: 0.5, marginBottom: 6 }}>
+          <div style={{ fontSize: 9, fontWeight: 800, color: 'var(--text3, #aaa)', textTransform: 'uppercase', letterSpacing: 0.5, marginBottom: 8 }}>
             {t('cardvalue_active_listings')} ({active.length})
           </div>
-          <div style={{ display: 'flex', gap: 6, overflowX: 'auto', paddingBottom: 4 }}>
-            {active.map((item, i) => (
-              <a key={i} href={item.url} target="_blank" rel="noopener noreferrer"
-                style={{ textDecoration: 'none', flexShrink: 0, width: 70 }}>
-                <div style={{ borderRadius: 6, overflow: 'hidden', border: `1.5px solid ${accent}44`,
-                  background: 'var(--card-bg, #fff)', transition: '0.15s' }}
-                  onMouseEnter={e => (e.currentTarget.style.borderColor = accent)}
-                  onMouseLeave={e => (e.currentTarget.style.borderColor = `${accent}44`)}
-                >
-                  {item.img
-                    ? <img src={item.img} alt="" style={{ width: '100%', aspectRatio: '1', objectFit: 'cover', display: 'block', background: 'var(--bg3, #f5f5f5)' }} />
-                    : <div style={{ width: '100%', aspectRatio: '1', background: 'var(--bg3, #f5f5f5)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 18 }}>🃏</div>
-                  }
-                  <div style={{ padding: '4px 5px 5px' }}>
-                    <div style={{ fontWeight: 900, fontSize: 12, color: accent, lineHeight: 1.1 }}>{item.price}€</div>
-                    <div style={{ fontSize: 9, color: 'var(--text3, #aaa)', marginTop: 1 }}>{t('cardvalue_active_listings')}</div>
+          <div style={{ display: 'flex', gap: 10, overflowX: 'auto', paddingBottom: 6 }}>
+            {active.map((item, i) => {
+              const total = item.shipping !== undefined ? Math.round((item.price + item.shipping) * 100) / 100 : null
+              return (
+                <a key={i} href={item.url} target="_blank" rel="noopener noreferrer"
+                  style={{ textDecoration: 'none', flexShrink: 0, width: 112 }}>
+                  <div style={{ borderRadius: 10, overflow: 'hidden', border: `1.5px solid ${accent}44`,
+                    background: 'var(--card-bg, #fff)', transition: '0.15s', boxShadow: '0 1px 3px rgba(0,0,0,0.06)' }}
+                    onMouseEnter={e => (e.currentTarget.style.borderColor = accent)}
+                    onMouseLeave={e => (e.currentTarget.style.borderColor = `${accent}44`)}
+                  >
+                    {item.img
+                      ? <img src={item.img} alt="" style={{ width: '100%', aspectRatio: '2.5/3.5', objectFit: 'cover', display: 'block', background: 'var(--bg3, #f5f5f5)' }} />
+                      : <div style={{ width: '100%', aspectRatio: '2.5/3.5', background: 'var(--bg3, #f5f5f5)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 26 }}>🃏</div>
+                    }
+                    <div style={{ padding: '7px 8px 8px' }}>
+                      <div style={{ fontWeight: 900, fontSize: 16, color: accent, lineHeight: 1.1 }}>{item.price}€</div>
+                      {item.shipping === 0 ? (
+                        <div style={{ fontSize: 10, fontWeight: 700, color: '#2e7d32', marginTop: 3 }}>{t('cardvalue_free_shipping')}</div>
+                      ) : item.shipping !== undefined ? (
+                        <div style={{ fontSize: 10, color: 'var(--text3, #999)', marginTop: 3 }}>+ {item.shipping}€ {t('cardvalue_shipping_prefix')}</div>
+                      ) : null}
+                      {total !== null && item.shipping! > 0 && (
+                        <div style={{ fontSize: 10, fontWeight: 800, color: 'var(--text2, #555)', marginTop: 2, paddingTop: 3, borderTop: '1px solid var(--border, #eee)' }}>
+                          = {total}€
+                        </div>
+                      )}
+                    </div>
                   </div>
-                </div>
-              </a>
-            ))}
+                </a>
+              )
+            })}
           </div>
         </div>
       )}

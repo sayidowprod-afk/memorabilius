@@ -115,6 +115,12 @@ function processItems(rawItems: any[], mustTerms: string[], mustSetWord: string,
       price: parseFloat(item.price?.value || '0'),
       url: item.itemWebUrl || '',
       img: item.thumbnailImages?.[0]?.imageUrl || item.image?.imageUrl || '',
+      // shippingOptions[0] -- present sur les resultats Browse API pour les
+      // annonces FIXED_PRICE/BEST_OFFER demandees ; "0" = livraison gratuite,
+      // absent = inconnu (laisse undefined plutot que de supposer gratuit).
+      shipping: item.shippingOptions?.[0]?.shippingCost?.value !== undefined
+        ? parseFloat(item.shippingOptions[0].shippingCost.value)
+        : undefined,
     }))
     .filter((i) => i.price > 0)
     .filter((i) => titleMatchesCard(i.title, mustTerms, isGraded))

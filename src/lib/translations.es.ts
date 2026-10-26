@@ -1473,6 +1473,8 @@ export const es = {
   cardvalue_no_listings: 'Ningún anuncio encontrado',
   cardvalue_sold_completed: 'Ventas concluidas',
   cardvalue_active_listings: 'En venta',
+  cardvalue_free_shipping: 'Envío gratis',
+  cardvalue_shipping_prefix: 'envío',
 
   // Admin Événements
   evadmin_confirm_delete_event: '¿Eliminar este evento?',

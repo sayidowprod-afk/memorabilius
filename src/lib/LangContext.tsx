@@ -1525,6 +1525,8 @@ const translations = {
     cardvalue_no_listings: 'Aucune annonce trouvée',
     cardvalue_sold_completed: 'Ventes conclues',
     cardvalue_active_listings: 'En vente',
+    cardvalue_free_shipping: 'Livraison gratuite',
+    cardvalue_shipping_prefix: 'port',
 
     // Admin Événements
     evadmin_confirm_delete_event: 'Supprimer cet événement ?',
@@ -3069,6 +3071,8 @@ const translations = {
     cardvalue_no_listings: 'No listings found',
     cardvalue_sold_completed: 'Completed sales',
     cardvalue_active_listings: 'For sale',
+    cardvalue_free_shipping: 'Free shipping',
+    cardvalue_shipping_prefix: 'shipping',
 
     // Events Admin
     evadmin_confirm_delete_event: 'Delete this event?',
@@ -4613,6 +4617,8 @@ const translations = {
     cardvalue_no_listings: 'Keine Angebote gefunden',
     cardvalue_sold_completed: 'Abgeschlossene Verkäufe',
     cardvalue_active_listings: 'Im Angebot',
+    cardvalue_free_shipping: 'Kostenloser Versand',
+    cardvalue_shipping_prefix: 'Versand',
 
     // Admin Veranstaltungen
     evadmin_confirm_delete_event: 'Dieses Event löschen?',
