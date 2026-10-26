@@ -282,8 +282,16 @@ export default function SetlistClient({ setId }: { setId: string }) {
 
     completedIdsRef.current = completedEntryIds
     completionDetsRef.current = completionDetails
-    // Charger la variation Base immédiatement
-    loadVariation('Base', varMetas, setData, completedEntryIds, completionDetails)
+    // Charge et ouvre "Base" par defaut -- sauf si ce set n'en a pas (certains
+    // produits complexes repartissent TOUTES leurs cartes dans des sous-sets
+    // nommes, sans "Base" litteral, ex: 2026 Topps Update Series), auquel cas
+    // on ouvrait une section vide (0 cartes) sans que l'utilisateur comprenne
+    // pourquoi. On choisit alors la plus grosse section a la place.
+    const defaultVar = (counts.get('Base') || 0) > 0
+      ? 'Base'
+      : varNames.reduce((best, n) => (counts.get(n) || 0) > (counts.get(best) || 0) ? n : best, varNames[0])
+    if (defaultVar !== 'Base') setOpenVariations(new Set([defaultVar]))
+    loadVariation(defaultVar, varMetas, setData, completedEntryIds, completionDetails)
   }
 
   async function loadVariation(
