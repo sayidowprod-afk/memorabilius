@@ -51,6 +51,7 @@ export default function SetlistClient({ setId }: { setId: string }) {
   const [search, setSearch] = useState('')
   const [filter, setFilter] = useState<'all' | 'owned' | 'missing'>('all')
   const [filterTeam, setFilterTeam] = useState('')
+  const [allTeamsDb, setAllTeamsDb] = useState<string[]>([])
   const [saving, setSaving] = useState<number | null>(null)
   const [justStampedIds, setJustStampedIds] = useState<Set<number>>(new Set())
   const [checkingAll, setCheckingAll] = useState<string | null>(null)
@@ -162,6 +163,16 @@ export default function SetlistClient({ setId }: { setId: string }) {
     const { data: setData } = await supabase.from('card_sets').select('*').eq('id', setId).single()
     if (!setData) { setLoading(false); return }
     setSet(setData)
+
+    // Liste des equipes du set entier (independante des variations deja
+    // depliees) -- sinon le menu "Toutes les equipes" restait vide tant que
+    // la section contenant des cartes n'avait pas ete ouverte manuellement.
+    // RPC plutot qu'un .select('team') direct : evite le plafond PostgREST
+    // de 1000 lignes (ce set a 3248 entrees) qui aurait pu tronquer la liste.
+    supabase.rpc('get_set_teams', { p_set_id: parseInt(setId) })
+      .then(({ data }) => {
+        if (data) setAllTeamsDb(data.map((r: { team: string }) => r.team))
+      })
 
     // Compte par variation (toutes les entrees, paralleles compris) via RPC (evite la limite max_rows)
     const roots: Set<number> | null = null
@@ -472,10 +483,15 @@ export default function SetlistClient({ setId }: { setId: string }) {
 
   const pct = (rootTotal ?? set?.total_cards) ? Math.round((totalOwned / (rootTotal ?? set!.total_cards)) * 100) : 0
 
-  // Équipes disponibles depuis toutes les variations chargées
-  const allTeams = Array.from(new Set(
-    variations.flatMap(v => v.entries.map(e => e.team)).filter(Boolean) as string[]
-  )).sort()
+  // Équipes disponibles : liste venue de la DB (toutTeams), pas seulement des
+  // variations deja chargees -- avant, si "Base" (chargee en premier) n'avait
+  // aucune carte pour ce set (ex: 2026 Topps Update Series), le menu restait
+  // vide tant qu'aucune autre section n'avait ete depliee manuellement.
+  const allTeams = allTeamsDb.length > 0
+    ? allTeamsDb
+    : Array.from(new Set(
+        variations.flatMap(v => v.entries.map(e => e.team)).filter(Boolean) as string[]
+      )).sort()
 
   if (loading) return <div style={{ textAlign: 'center', padding: 60, color: '#888' }}>{t('setlistdetail_loading')}</div>
   if (!set) return <div style={{ textAlign: 'center', padding: 60, color: '#888' }}>{t('setlistdetail_not_found')}</div>
