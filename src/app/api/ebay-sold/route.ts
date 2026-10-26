@@ -311,8 +311,17 @@ export async function GET(req: NextRequest) {
   const mustSetWord = directQ ? '' : (setWords[0] || '')
   const isGraded = Boolean(grade && grade !== 'Raw' && grade !== 'Non gradée' && grade !== '')
 
+  // Pays du visiteur (geo-IP Vercel, meme header que track-view) : les frais
+  // de port renvoyes par l'API eBay dependent de la destination -- sans ça,
+  // on recevait les frais domestiques US (souvent "gratuits"), trompeurs pour
+  // un acheteur en France (port international + droits de douane en plus,
+  // constate en prod par l'utilisateur). Pas de compte requis, ça marche pour
+  // tout visiteur. Defaut FR (site francophone) si l'en-tete est absent (dev local).
+  const buyerCountry = (req.headers.get('x-vercel-ip-country') || 'FR').slice(0, 2).toUpperCase()
+
   // Clé de cache : paramètres de recherche uniquement (sans credentials ni img)
-  const ck = [name || directQ, set, year, num, variant, rc, auto, patch, grade].join('|')
+  // + pays acheteur, puisque les frais de port retournes en dependent desormais.
+  const ck = [name || directQ, set, year, num, variant, rc, auto, patch, grade, buyerCountry].join('|')
 
   // 1. Cache mémoire Lambda (warm)
   const hit = respCacheGet(ck)
@@ -332,6 +341,9 @@ export async function GET(req: NextRequest) {
     'Authorization': `Bearer ${token}`,
     'X-EBAY-C-MARKETPLACE-ID': 'EBAY_US',
     'Content-Type': 'application/json',
+    // Localise shippingOptions[].shippingCost sur le pays de l'acheteur
+    // (sans ça, eBay renvoie les frais domestiques US par defaut).
+    'X-EBAY-C-ENDUSERCTX': `contextualLocation=country=${buyerCountry}`,
   }
 
   try {
