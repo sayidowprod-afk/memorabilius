@@ -22,8 +22,11 @@ export interface PrepState {
   images: number      // images mises en cache
   imagesTotal: number // images à mettre en cache
   imagesDone: boolean
+  hd?: number         // images HD (viewer 3D) mises en cache
+  hdTotal?: number
+  hdDone?: boolean
 }
-export interface PrepProgress { phase: 'pages' | 'images'; done: number; total: number }
+export interface PrepProgress { phase: 'pages' | 'images' | 'hd'; done: number; total: number }
 
 export function readPrepState(): PrepState | null {
   try { return JSON.parse(localStorage.getItem(STATE_KEY) || 'null') } catch { return null }
@@ -32,6 +35,13 @@ export function readPrepState(): PrepState | null {
 function saveState(s: PrepState) {
   try { localStorage.setItem(STATE_KEY, JSON.stringify(s)) } catch { /* stockage plein */ }
   window.dispatchEvent(new Event(PREP_EVENT))
+}
+
+// Met à jour une partie de l'état en gardant le reste (images vs HD sont deux
+// étapes distinctes qui ne doivent pas s'écraser mutuellement).
+function patchState(patch: Partial<PrepState>) {
+  const base: PrepState = readPrepState() ?? { at: 0, pages: 0, images: 0, imagesTotal: 0, imagesDone: false }
+  saveState({ ...base, ...patch })
 }
 
 // Vide l'état mémorisé (déconnexion / désactivation).
@@ -97,19 +107,30 @@ async function resolveGalleryUrl(userId: string): Promise<string> {
   return entry
 }
 
-async function listUserImages(userId: string): Promise<string[]> {
-  const urls = new Set<string>()
+interface UserImages { grid: string[]; hd: string[] }
+
+// grid : recto (grille) + verso, chargés en <img> classique.
+// hd   : ce que charge le viewer 3D / l'export, en mode CORS -- la version HD
+//        si elle existe, sinon l'image normale (comme le viewer lui-même).
+async function listUserImages(userId: string): Promise<UserImages> {
+  const grid = new Set<string>(), hd = new Set<string>()
+  const ok = (u?: string | null) => (u && !u.includes('placehold.co') ? u : null)
   for (let from = 0; ; from += 1000) {
     const { data, error } = await supabase.from('cartes_manuelles')
-      .select('image_recto').eq('user_id', userId).order('created_at', { ascending: true }).range(from, from + 999)
+      .select('image_recto, image_verso, image_recto_hd, image_verso_hd')
+      .eq('user_id', userId).order('created_at', { ascending: true }).range(from, from + 999)
     if (error || !data) break
     for (const row of data) {
-      const u = row.image_recto
-      if (u && !u.includes('placehold.co')) urls.add(u)
+      const r = ok(row.image_recto), v = ok(row.image_verso)
+      if (r) grid.add(r)
+      if (v) grid.add(v)
+      const rh = ok(row.image_recto_hd) || r, vh = ok(row.image_verso_hd) || v
+      if (rh) hd.add(rh)
+      if (vh) hd.add(vh)
     }
     if (data.length < 1000) break
   }
-  return [...urls]
+  return { grid: [...grid], hd: [...hd] }
 }
 
 let running = false
@@ -121,7 +142,6 @@ export async function prepareOffline(
   if (running || !navigator.onLine) return
   running = true
   try {
-    const previous = readPrepState()
     const galleryPath = await resolveGalleryUrl(userId)
     const pages = ['/', galleryPath]
     for (let i = 0; i < pages.length; i++) {
@@ -130,14 +150,11 @@ export async function prepareOffline(
       const isGallery = pages[i] === galleryPath
       await loadInIframe(pages[i], isGallery ? 12000 : 5000, { openTabs: isGallery })
     }
-    saveState({
-      at: Date.now(), pages: pages.length,
-      images: previous?.images ?? 0, imagesTotal: previous?.imagesTotal ?? 0, imagesDone: previous?.imagesDone ?? false,
-    })
+    patchState({ at: Date.now(), pages: pages.length })
 
     if (!opts.images) return
 
-    const all = await listUserImages(userId)
+    const all = (await listUserImages(userId)).grid
     const cache = await caches.open('memorabilius-images-v1')
     const todo: string[] = []
     for (const u of all) { if (!(await cache.match(u))) todo.push(u) }
@@ -146,7 +163,7 @@ export async function prepareOffline(
     let done = 0
     const report = () => {
       opts.onProgress?.({ phase: 'images', done: cachedAlready + done, total: all.length })
-      saveState({ at: Date.now(), pages: pages.length, images: cachedAlready + done, imagesTotal: all.length, imagesDone: false })
+      patchState({ at: Date.now(), images: cachedAlready + done, imagesTotal: all.length, imagesDone: false })
     }
     report()
 
@@ -164,8 +181,93 @@ export async function prepareOffline(
     await Promise.all(Array.from({ length: IMAGE_CONCURRENCY }, worker))
 
     const complete = navigator.onLine
-    saveState({ at: Date.now(), pages: pages.length, images: cachedAlready + done, imagesTotal: all.length, imagesDone: complete })
+    patchState({ at: Date.now(), images: cachedAlready + done, imagesTotal: all.length, imagesDone: complete })
     opts.onProgress?.({ phase: 'images', done: cachedAlready + done, total: all.length })
+  } finally {
+    running = false
+  }
+}
+
+// ── HD (viewer 3D) ─────────────────────────────────────────────────────────
+// Le viewer 3D affiche ses images avec de simples <img> (sans CORS) : la HD va
+// donc dans le MÊME cache images que les vignettes, via new Image(). Étape À
+// PART et sur demande : plusieurs Go pour une collection de quelques centaines
+// de cartes.
+const IMAGE_CACHE = 'memorabilius-images-v1'
+const HD_CONCURRENCY = 3
+
+export interface HdPlan {
+  total: number            // images HD à avoir
+  missing: number          // celles pas encore en cache
+  bytes: number | null     // estimation de ce qui reste à télécharger
+  free: number | null      // espace de stockage disponible sur l'appareil
+}
+
+// Taille moyenne mesurée sur un échantillon (HEAD), pas devinée.
+async function averageSize(urls: string[], sample = 8): Promise<number | null> {
+  if (urls.length === 0) return 0
+  const step = Math.max(1, Math.floor(urls.length / sample))
+  const sizes: number[] = []
+  for (let i = 0; i < urls.length && sizes.length < sample; i += step) {
+    try {
+      const res = await fetch(urls[i], { method: 'HEAD', mode: 'cors' })
+      const n = Number(res.headers.get('content-length'))
+      if (n > 0) sizes.push(n)
+    } catch { /* on passe à la suivante */ }
+  }
+  return sizes.length ? sizes.reduce((a, b) => a + b, 0) / sizes.length : null
+}
+
+export async function planHd(userId: string): Promise<HdPlan> {
+  const { hd } = await listUserImages(userId)
+  const cache = await caches.open(IMAGE_CACHE)
+  const missing: string[] = []
+  for (const u of hd) { if (!(await cache.match(u))) missing.push(u) }
+  const avg = await averageSize(missing)
+  let free: number | null = null
+  try {
+    const e = await navigator.storage?.estimate?.()
+    if (e?.quota) free = e.quota - (e.usage ?? 0)
+  } catch { /* estimation indisponible */ }
+  return { total: hd.length, missing: missing.length, bytes: avg === null ? null : Math.round(avg * missing.length), free }
+}
+
+export async function prepareHd(
+  userId: string,
+  opts: { onProgress?: (p: PrepProgress) => void },
+): Promise<void> {
+  if (running || !navigator.onLine) return
+  running = true
+  try {
+    // Demande à ne pas être purgé par le navigateur en cas de manque de place
+    // (accordé selon l'usage du site, notamment une fois installé en PWA).
+    try { await navigator.storage?.persist?.() } catch { /* ignore */ }
+
+    const { hd } = await listUserImages(userId)
+    const cache = await caches.open(IMAGE_CACHE)
+    const todo: string[] = []
+    for (const u of hd) { if (!(await cache.match(u))) todo.push(u) }
+
+    const cachedAlready = hd.length - todo.length
+    let done = 0
+    const report = (complete = false) => {
+      opts.onProgress?.({ phase: 'hd', done: cachedAlready + done, total: hd.length })
+      patchState({ at: Date.now(), hd: cachedAlready + done, hdTotal: hd.length, hdDone: complete })
+    }
+    report()
+
+    let next = 0
+    const worker = async () => {
+      while (next < todo.length && navigator.onLine) {
+        const url = todo[next++]
+        // Même chemin que le viewer (<img>, destination "image") -> cache images du SW.
+        await new Promise<void>(resolve => { const img = new Image(); img.onload = img.onerror = () => resolve(); img.src = url })
+        done++
+        if (done % 10 === 0) report()
+      }
+    }
+    await Promise.all(Array.from({ length: HD_CONCURRENCY }, worker))
+    report(navigator.onLine)
   } finally {
     running = false
   }

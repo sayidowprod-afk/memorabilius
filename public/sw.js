@@ -13,6 +13,10 @@ const RUNTIME_CACHE_NAME = 'memorabilius-runtime-v1'
 const RUNTIME_CACHE_MAX_ENTRIES = 600
 const DATA_CACHE_NAME = 'memorabilius-data-v1'
 const DATA_CACHE_MAX_ENTRIES = 600
+//  - HD      : images chargées en mode CORS (viewer 3D, export canvas), ~1 Mo
+//              pièce : cache séparé du cache images (voir le bloc cors plus bas)
+const HD_CACHE_NAME = 'memorabilius-hd-v1'
+const HD_CACHE_MAX_ENTRIES = 2500
 
 // Cache séparé pour les photos de cartes (Supabase Storage, ibb.co, etc.) —
 // cache-first : une fois une carte vue, sa photo reste dispo hors-ligne même
@@ -140,12 +144,32 @@ function isRuntimeAsset(request, url) {
   return ['font', 'style', 'script'].includes(request.destination)
 }
 
+// Supabase Storage répond avec un CORS ouvert : on récupère donc une réponse
+// LISIBLE (non opaque) -- le navigateur compte une réponse opaque pour ~7 Mo
+// dans le quota de stockage quelle que soit sa vraie taille, ce qui ferait
+// exploser le quota dès quelques centaines d'images préchargées. Elle reste
+// servie telle quelle à un <img> classique. Hébergeur sans CORS : requête
+// d'origine, inchangée (réponse opaque comme avant).
+function isSupabaseStorage(url) {
+  try { const u = new URL(url); return /\.supabase\.co$/.test(u.hostname) && u.pathname.startsWith('/storage/') } catch { return false }
+}
+
+async function fetchImage(request) {
+  if (isSupabaseStorage(request.url)) {
+    try {
+      const res = await fetch(request.url, { mode: 'cors', credentials: 'omit' })
+      if (res.ok) return res
+    } catch { /* pas de CORS ou erreur : on retombe sur la requête d'origine */ }
+  }
+  return fetch(request)
+}
+
 async function handleImageFetch(request) {
   const cache = await caches.open(IMAGE_CACHE_NAME)
   const cached = await cache.match(request)
   if (cached) return cached
   try {
-    const res = await fetch(request)
+    const res = await fetchImage(request)
     // Beaucoup de ces images viennent d'hébergeurs tiers sans CORS (ibb.co...) —
     // la réponse est alors "opaque" (statut illisible), mais reste tout à fait
     // exploitable en tant que source d'une balise <img> et cachable telle quelle.
@@ -174,7 +198,7 @@ self.addEventListener('activate', (event) => {
       // 'memorabilius-assets-v1' (ancien cache de chunks JS, retire) est volontairement
       // absent de cette liste : il sera nettoye comme n'importe quel cache perime, sur
       // les appareils qui l'avaient encore.
-      Promise.all(keys.filter((k) => ![CACHE_NAME, IMAGE_CACHE_NAME, RUNTIME_CACHE_NAME, DATA_CACHE_NAME].includes(k)).map((k) => caches.delete(k)))
+      Promise.all(keys.filter((k) => ![CACHE_NAME, IMAGE_CACHE_NAME, RUNTIME_CACHE_NAME, DATA_CACHE_NAME, HD_CACHE_NAME].includes(k)).map((k) => caches.delete(k)))
     )
   )
   self.clients.claim()
@@ -267,10 +291,15 @@ self.addEventListener('fetch', (event) => {
       // pour la MEME url (le Cache API ne distingue pas le mode de la requete
       // dans sa cle). Servir une reponse opaque ici "tainted" le canvas et casse
       // silencieusement canvas.captureStream() (export video vide/casse, signale
-      // des que ce cache image a ete introduit le 26 aout). On laisse donc ces
-      // requetes-la passer directement au reseau, en dehors du cache image --
-      // qui reste pense pour l'affichage <img> classique hors-ligne uniquement.
-      if (event.request.mode === 'cors') return
+      // des que ce cache image a ete introduit le 26 aout). Ces requetes-la ne
+      // touchent donc JAMAIS le cache image ci-dessus. Mode hors ligne : elles
+      // ont leur propre cache (HD_CACHE_NAME) qui ne contient que de VRAIES
+      // reponses CORS (res.ok exclut les opaques) -- sans danger pour un canvas.
+      // Reseau d'abord (HD = viewer 3D, export) : en ligne rien ne change.
+      if (event.request.mode === 'cors') {
+        event.respondWith(networkFirst(event, event.request, HD_CACHE_NAME, event.request, HD_CACHE_MAX_ENTRIES))
+        return
+      }
       event.respondWith(handleImageFetch(event.request))
     }
     return

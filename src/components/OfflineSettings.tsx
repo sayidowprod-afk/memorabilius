@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react'
 import { useIsNative } from '@/lib/useIsNative'
 import { useAuth } from '@/lib/AuthContext'
 import { isNativeOfflineEnabled, enableNativeOffline, disableNativeOffline } from '@/lib/offlineMode'
-import { prepareOffline, readPrepState, clearPrepState, PREP_EVENT, type PrepState, type PrepProgress } from '@/lib/offlinePrepare'
+import { prepareOffline, prepareHd, planHd, readPrepState, clearPrepState, PREP_EVENT, type PrepState, type PrepProgress } from '@/lib/offlinePrepare'
 
 // Mode hors ligne dans le profil. Sur le web/PWA le service worker est toujours
 // actif : on n'affiche que l'état de la préparation et son bouton. Dans l'app
@@ -63,11 +63,36 @@ export default function OfflineSettings() {
     }
   }
 
+  const fmtSize = (b: number) => b >= 1073741824 ? (b / 1073741824).toFixed(1).replace('.', ',') + ' Go' : Math.round(b / 1048576) + ' Mo'
+
+  // HD : étape à part (plusieurs Go) -- on annonce la taille mesurée et l'espace
+  // libre AVANT de télécharger, et on refuse s'il n'y a pas la place.
+  const prepareHdFlow = async () => {
+    setPreparing(true); setMsg('')
+    try {
+      const plan = await planHd(user.id)
+      if (plan.missing === 0) { setMsg('Toute la HD est déjà sur cet appareil.'); return }
+      if (plan.bytes !== null && plan.free !== null && plan.bytes * 1.1 > plan.free) {
+        setMsg(`Pas assez d'espace : il faut environ ${fmtSize(plan.bytes)}, il reste ${fmtSize(plan.free)}. Libère de la place sur l'appareil.`)
+        return
+      }
+      const size = plan.bytes !== null ? 'environ ' + fmtSize(plan.bytes) : 'plusieurs centaines de Mo'
+      if (!window.confirm('Télécharger ' + plan.missing + ' images HD (' + size + ') pour le viewer 3D hors ligne ? Fais-le de préférence en Wi-Fi.')) return
+      await prepareHd(user.id, { onProgress: setProgress })
+    } catch {
+      setMsg('Le téléchargement HD a échoué. Réessaie avec une meilleure connexion.')
+    } finally {
+      setPreparing(false); setProgress(null); setState(readPrepState())
+    }
+  }
+
   const when = state ? new Date(state.at).toLocaleString('fr-FR', { day: 'numeric', month: 'short', hour: '2-digit', minute: '2-digit' }) : null
   const label = progress
     ? progress.phase === 'pages'
       ? `Préparation des pages… ${progress.done}/${progress.total}`
-      : `Téléchargement des images… ${progress.done}/${progress.total}`
+      : progress.phase === 'hd'
+        ? `Téléchargement HD… ${progress.done}/${progress.total}`
+        : `Téléchargement des images… ${progress.done}/${progress.total}`
     : null
 
   return (
@@ -114,6 +139,21 @@ export default function OfflineSettings() {
             }}>
             {preparing ? 'En cours…' : state?.imagesDone ? 'Mettre à jour' : 'Télécharger ma collection'}
           </button>
+          {state?.imagesDone && (
+            <>
+              <div style={{ marginTop: 12 }}>
+                {state.hdTotal ? <>HD (viewer 3D) : {state.hd ?? 0}/{state.hdTotal}{state.hdDone ? ' ✓' : ' (incomplet)'}.</> : <>HD (viewer 3D) : pas encore téléchargée.</>}
+              </div>
+              <button type="button" onClick={prepareHdFlow} disabled={preparing}
+                style={{
+                  marginTop: 8, padding: '8px 14px', borderRadius: 8, border: '1px solid var(--border)',
+                  background: 'var(--bg3)', color: 'var(--text)', fontWeight: 700, fontSize: 13,
+                  cursor: preparing ? 'default' : 'pointer', opacity: preparing ? 0.6 : 1,
+                }}>
+                {preparing ? 'En cours…' : state.hdDone ? 'Mettre à jour la HD' : 'Ajouter la HD (viewer 3D)'}
+              </button>
+            </>
+          )}
           <div style={{ fontSize: 11, marginTop: 6 }}>Les images peuvent représenter plusieurs centaines de Mo : de préférence en Wi-Fi.</div>
         </div>
       )}
