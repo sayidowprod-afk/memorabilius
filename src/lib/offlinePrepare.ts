@@ -318,7 +318,7 @@ export async function verifyOffline(userId: string): Promise<VerifyReport> {
   let viewer = false
   const runtime = await caches.open('memorabilius-runtime-v1')
   for (const req of await runtime.keys()) {
-    if (!req.url.endsWith('.js')) continue
+    if (!new URL(req.url).pathname.endsWith('.js')) continue // les chunks portent un ?dpl=...
     const res = await runtime.match(req)
     if (res && (await res.clone().text()).includes('/api/player-jersey')) { viewer = true; break }
   }
