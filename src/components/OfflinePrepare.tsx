@@ -1,7 +1,7 @@
 'use client'
 import { useEffect } from 'react'
 import { useAuth } from '@/lib/AuthContext'
-import { prepareOffline, readPrepState, PREP_VERSION } from '@/lib/offlinePrepare'
+import { prepareOffline, prepareHd, planHd, readPrepState, PREP_VERSION } from '@/lib/offlinePrepare'
 
 const REFRESH_EVERY_MS = 12 * 3600 * 1000
 
@@ -36,11 +36,27 @@ export default function OfflinePrepare() {
       if (conn?.saveData) return
       if (!(await waitForController(8000)) || cancelled) return
 
-      const state = readPrepState()
-      if (state && state.v === PREP_VERSION && Date.now() - state.at < REFRESH_EVERY_MS) return
+      // Connexion non facturée à l'usage : Wi-Fi/ethernet, ou type inconnu sur un
+      // ordinateur (iOS et Firefox ne l'exposent pas -- sur mobile on reste prudent).
+      const mobile = /Android|iPhone|iPad|iPod/i.test(navigator.userAgent)
+      const unmetered = conn?.type === 'wifi' || conn?.type === 'ethernet' || (!conn?.type && !mobile)
+      const cellular = conn?.type === 'cellular'
 
-      const unmetered = conn?.type === 'wifi' || conn?.type === 'ethernet'
-      prepareOffline(user.id, { images: !!unmetered }).catch(() => {})
+      // Rien à refaire si tout est complet et récent ; sinon (première fois, images
+      // ou HD incomplètes, nouvelles cartes) on reprend, seul le manquant se télécharge.
+      const state = readPrepState()
+      const complete = !!state && state.v === PREP_VERSION && (cellular || state.imagesDone) && (!unmetered || state.hdDone)
+      if (complete && Date.now() - state!.at < REFRESH_EVERY_MS) return
+
+      try {
+        await prepareOffline(user.id, { images: !cellular })
+        if (cancelled || !unmetered || !navigator.onLine) return
+        // HD (plusieurs Go) : seulement hors forfait mobile et s'il y a la place.
+        const plan = await planHd(user.id)
+        if (plan.missing === 0 || cancelled) return
+        if (plan.bytes !== null && plan.free !== null && plan.bytes * 1.1 > plan.free) return
+        await prepareHd(user.id, {})
+      } catch { /* silencieux : le bouton des paramètres reste disponible */ }
     }, 10000) // laisse d'abord la page vraiment affichée finir de charger
 
     return () => { cancelled = true; clearTimeout(timer) }
