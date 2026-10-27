@@ -167,48 +167,11 @@ async function fetchSoldItems(
       .filter(i => titleMatchesCard(i.title, mustTerms, isGraded))
       .filter(i => !mustSetWord || normalize(i.title).includes(normalize(mustSetWord)))
 
-  // 1. Finding API findCompletedItems — itemFilter passé en brut (URLSearchParams encode les parenthèses).
-  //    SoldOnly + AllCompleted en parallèle.
-  const tryFinding = async (soldOnly: boolean): Promise<typeof mapAndFilter extends (...a: any[]) => infer R ? R : never> => {
-    const base = new URLSearchParams({
-      'OPERATION-NAME': 'findCompletedItems',
-      'SERVICE-VERSION': '1.0.0',
-      'SECURITY-APPNAME': appId,
-      'RESPONSE-DATA-FORMAT': 'JSON',
-      'GLOBAL-ID': 'EBAY-US',
-      'keywords': keywords,
-      'paginationInput.entriesPerPage': '40',
-      'sortOrder': 'EndTimeSoonest',
-    })
-    const filter = soldOnly ? '&itemFilter(0).name=SoldItemsOnly&itemFilter(0).value=true' : ''
-    const findingRes = await fetch(
-      `https://svcs.ebay.com/services/search/FindingService/v1?${base}${filter}`,
-      { cache: 'no-store', signal: AbortSignal.timeout(8000) }
-    )
-    const body = await findingRes.text()
-    debug[soldOnly ? 'findingSoldStatus' : 'findingCompletedStatus'] = findingRes.status
-    debug[soldOnly ? 'findingSoldBody' : 'findingCompletedBody'] = body.slice(0, 150)
-    if (!findingRes.ok || !body.startsWith('{')) return []
-    const data = JSON.parse(body)
-    const rawItems: any[] = data?.findCompletedItemsResponse?.[0]?.searchResult?.[0]?.item || []
-    return mapAndFilter(rawItems, (item: any) => ({
-      title: item.title?.[0] || '',
-      price: parseFloat(item.sellingStatus?.[0]?.convertedCurrentPrice?.[0]?.__value__ || item.sellingStatus?.[0]?.currentPrice?.[0]?.__value__ || '0'),
-      url: item.viewItemURL?.[0] || '',
-      img: item.galleryURL?.[0] || '',
-      soldDate: item.listingInfo?.[0]?.endTime?.[0] || '',
-    }))
-  }
+  // La Finding API (findCompletedItems) est arretee par eBay depuis le 2025-02-04 (remplacee par
+  // la Browse API, qui ne renvoie pas les ventes) : elle n'est plus appelee.
 
-  const [soldItems, completedItems] = await Promise.allSettled([tryFinding(true), tryFinding(false)])
-  const soldMapped = soldItems.status === 'fulfilled' ? soldItems.value : []
-  const completedMapped = completedItems.status === 'fulfilled' ? completedItems.value : []
-  debug.findingSoldOnly = soldMapped.length
-  debug.findingCompleted = completedMapped.length
-  const findingResult = soldMapped.length > 0 ? soldMapped : completedMapped
-  if (findingResult.length > 0) return { items: applyOutlierFilter(findingResult), debug }
-
-  // 2. Marketplace Insights API — endpoint eBay dédié aux ventes réalisées.
+  // Marketplace Insights API — endpoint eBay dédié aux ventes réalisées (acces reserve aux partenaires
+  // approuves : refuse a ce jour, renvoie 403 ; garde au cas ou l acces serait accorde).
   try {
     const miRes = await fetch(
       `https://api.ebay.com/buy/marketplace_insights/v1_beta/item_sales/search?q=${encodeURIComponent(keywords)}&limit=40`,
@@ -236,7 +199,7 @@ async function fetchSoldItems(
     debug.miError = String(e)
   }
 
-  // Finding API et Marketplace Insights ont échoué (418/403 depuis Vercel).
+  // Marketplace Insights non accessible (403).
   // Pas de fallback Browse API ici — le handler principal fait déjà un text search Browse
   // pour les annonces actives ; doubler la requête triplerait le quota quotidien inutilement.
   return { items: [], debug }
