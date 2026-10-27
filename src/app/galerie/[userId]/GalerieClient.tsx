@@ -1338,9 +1338,12 @@ export default function GalerieClient({ userId, initialCardUrl, initialCards, in
       if (!isOwner && privateCards.has(d.f)) return false
       // Le texte libre ne cherchait que dans le nom/variation -- une collection ("Bazooka"...) ou une marque
       // ("Topps"...) tapee dans la recherche intelligente ne matchait donc jamais, meme si la carte l'avait bien.
-      const qLower = search.toLowerCase()
+      // Chaque mot doit se retrouver quelque part (nom, variation, collection, marque) :
+      // "erving mosaic" = joueur ET collection, pas la phrase exacte collee.
+      const hay = (d.n + ' ' + d.v + ' ' + d.s + ' ' + d.br).toLowerCase()
+      const words = search.toLowerCase().split(/\s+/).filter(Boolean)
       return (
-        (!qLower || d.n.toLowerCase().includes(qLower) || d.v.toLowerCase().includes(qLower) || d.s.toLowerCase().includes(qLower) || d.br.toLowerCase().includes(qLower)) &&
+        words.every(w => hay.includes(w)) &&
         (!fSport || inferSportFromTeamName(d.t) === fSport) &&
         (!fTeamDebounced || d.t.toLowerCase().includes(fTeamDebounced.toLowerCase())) &&
         (!fBrandDebounced || d.s.toLowerCase().includes(fBrandDebounced.toLowerCase())) &&
