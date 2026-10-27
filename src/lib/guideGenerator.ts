@@ -83,18 +83,25 @@ function printRunOf(cards: UserCard[]): string {
 }
 
 // Tirages deja connus d'AUTRES guides, pour classer les parallèles sans tirage dans la pyramide (jamais pour remplir le champ).
-// Chez un meme fabricant (Panini, Topps) une parallèle porte presque toujours la meme numerotation d'un produit a l'autre : on cherche
-// d'abord dans les guides du MEME produit (« Mosaic » 2023-24 pour « Mosaic » 2024-25), puis dans ceux du meme fabricant.
+// On cherche d'abord dans les guides du MEME produit (« Mosaic » 2023-24 pour « Mosaic » 2024-25). Chez Topps on complete avec les autres guides
+// Topps (meme echelle d'un produit a l'autre) ; chez Panini avec les tables ci-dessous, car ses numerotations changent selon le produit.
+// Chez Panini les couleurs courantes (Blue, Red, Orange, Purple...) changent de numerotation selon le produit et l'annee : on ne les copie
+// donc PAS d'un produit a l'autre. Ne sont communs a tout Panini que les 1/1, Gold /10, Green et Black Gold /5, Tie-Dye et Mojo /25, et les
+// variantes de format dont le nom est propre (Choice, Fast Break, FOTL, Pulsar, Velocity...). Source : liste Gemini « Panini NBA Parallels » (a verifier).
 const PANINI_RUNS: Record<string, number> = {
-  'Red Wave': 299, 'Blue Wave': 249, 'Purple Ice': 199, 'Pink Scope': 125, 'Blue Ice': 49, 'Mojo': 25,
-  'Cherry Blossom': 20, 'Gold': 10, 'Plum Blossom': 8, 'Black Gold': 5,
-  // Complement (liste Gemini « Panini NBA Parallels », a verifier) : seulement les valeurs uniques qui ne contredisent pas le tableau ci-dessus.
   'Black Finite': 1, 'Black Prizm': 1, 'Black Vinyl': 1, 'Gold Vinyl': 1, 'Nebula': 1, 'Platinum': 1, 'Logoman': 1, 'Masterpiece': 1,
-  'Green': 5, 'Emerald': 5, 'Neon Green': 5, 'FOTL Shimmer': 7, 'White FOTL': 7, 'Green Choice': 8, 'Lucky Envelopes': 8,
-  'Gold Wave': 10, 'Gold Shimmer': 10, 'Gold Glitter': 10, 'Sapphire': 10, 'Gold Disco': 10, 'Gold Fast Break': 10, 'Ruby': 15,
-  'Bronze': 20, 'Tie-Dye': 25, 'Green Pulsar': 25, 'Camo': 25, 'Orange Rainbow': 25, 'Orange Wave': 25, 'Dragon': 25,
-  'Purple Pulsar': 35, 'Black Velocity': 39, 'Pink Pulsar': 42, 'Orange': 49, 'Blue Choice': 49, 'Pink Velocity': 79, 'Choice Red': 88,
-  'Green Wave': 99, 'Green Rainbow': 99, 'Basketball': 225,
+  'Green': 5, 'Black Gold': 5, 'Emerald': 5, 'Neon Green': 5, 'FOTL Shimmer': 7, 'White FOTL': 7, 'Green Choice': 8, 'Lucky Envelopes': 8,
+  'Gold': 10, 'Gold Wave': 10, 'Gold Shimmer': 10, 'Gold Glitter': 10, 'Sapphire': 10, 'Gold Disco': 10, 'Gold Fast Break': 10, 'Ruby': 15,
+  'Cherry Blossom': 20, 'Bronze': 20, 'Tie-Dye': 25, 'Mojo': 25, 'Green Pulsar': 25, 'Camo': 25, 'Orange Rainbow': 25, 'Orange Wave': 25, 'Dragon': 25,
+  'Purple Pulsar': 35, 'Black Velocity': 39, 'Pink Pulsar': 42, 'Blue Choice': 49, 'Pink Velocity': 79, 'Choice Red': 88,
+  'Blue Ice': 99, 'Green Wave': 99, 'Green Rainbow': 99, 'Purple Ice': 149,
+}
+// Valeurs propres a un produit (sans ambiguite dans la liste Gemini).
+const PANINI_PRODUCT_RUNS: Record<string, Record<string, number>> = {
+  mosaic: { Blue: 99, Red: 49 },
+  prizm: { Orange: 49, Purple: 75 },
+  optic: { Orange: 199 },
+  'court kings': { Orange: 149 },
 }
 
 export type GuideRows = { title: string | null; blocks: unknown }[]
@@ -119,14 +126,14 @@ async function siblingRuns(brand: string, productWords: string[], prodSet: Set<s
     }
   }
   if (wanted.length) collect(t => wanted.every(w => t.includes(w)))
-  if (brand) collect(t => t.includes(brand))
+  if (brand && brand !== 'panini') collect(t => t.includes(brand)) // Topps : meme echelle d'un produit a l'autre
   if (brand === 'panini') {
-    // Echelle Panini courante (tableau de reference Prizm 2025-26, cardlines.com) : ne comble que les parallèles pour lesquelles
-    // ni les tirages saisis ni les autres guides ne donnent rien.
-    for (const [name, n] of Object.entries(PANINI_RUNS)) {
-      const k = keyOf(name, new Set())
-      if (k && !out.has(k)) out.set(k, n)
+    // Valeurs du produit puis valeurs communes a tout Panini : ne comblent que ce que ni les tirages saisis ni les guides du meme produit ne donnent.
+    const fill = (name: string, n: number) => { const k = keyOf(name, new Set()); if (k && !out.has(k)) out.set(k, n) }
+    for (const [prod, runs] of Object.entries(PANINI_PRODUCT_RUNS)) {
+      if (prod.split(' ').every(w => wanted.includes(w))) for (const [name, n] of Object.entries(runs)) fill(name, n)
     }
+    for (const [name, n] of Object.entries(PANINI_RUNS)) fill(name, n)
     // Regle connue : chez Panini, « Black » est toujours un 1/1 (prioritaire sur tout le reste).
     out.set('black', 1)
   }
