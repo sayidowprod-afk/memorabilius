@@ -18,7 +18,7 @@ async function waitForController(timeoutMs: number): Promise<boolean> {
 // Prépare le mode hors ligne tout seul, en arrière-plan : une fois connecté,
 // service worker actif, en ligne, et au plus toutes les 12h. Les pages (accueil,
 // galerie et ses onglets) se préparent toujours ; les images de toute la
-// collection seulement en Wi-Fi (sinon : bouton dans le profil, pour ne pas
+// collection seulement en Wi-Fi (sinon : bouton dans les paramètres, pour ne pas
 // consommer le forfait sans prévenir).
 export default function OfflinePrepare() {
   const { user } = useAuth()

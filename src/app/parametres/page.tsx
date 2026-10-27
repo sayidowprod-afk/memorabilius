@@ -6,6 +6,7 @@ import { useLang } from '@/lib/LangContext'
 import { useIsNative } from '@/lib/useIsNative'
 import { isHapticsEnabled, setHapticsEnabled } from '@/lib/haptics'
 import PushNotificationSettings from '@/components/PushNotificationSettings'
+import OfflineSettings from '@/components/OfflineSettings'
 import SecuritySettings from '@/components/SecuritySettings'
 import FeedbackForm from '@/components/FeedbackForm'
 import { supabase } from '@/lib/supabase'
@@ -118,6 +119,8 @@ export default function Parametres() {
           </div>
         </div>
       )}
+
+      <OfflineSettings />
 
       {userId && (
         <div style={card}>

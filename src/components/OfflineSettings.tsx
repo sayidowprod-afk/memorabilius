@@ -5,7 +5,7 @@ import { useAuth } from '@/lib/AuthContext'
 import { isNativeOfflineEnabled, enableNativeOffline, disableNativeOffline } from '@/lib/offlineMode'
 import { prepareOffline, prepareHd, planHd, readPrepState, clearPrepState, PREP_EVENT, type PrepState, type PrepProgress } from '@/lib/offlinePrepare'
 
-// Mode hors ligne dans le profil. Sur le web/PWA le service worker est toujours
+// Mode hors ligne dans les paramètres. Sur le web/PWA le service worker est toujours
 // actif : on n'affiche que l'état de la préparation et son bouton. Dans l'app
 // native, un interrupteur (bêta) l'active -- voir lib/offlineMode.ts pour le
 // pourquoi du opt-in.
