@@ -16,6 +16,7 @@ import ShowcaseWidget from '@/components/ShowcaseWidget'
 import PushNotificationSettings from '@/components/PushNotificationSettings'
 import SecuritySettings from '@/components/SecuritySettings'
 import { clearOfflineUserData } from '@/lib/offline'
+import OfflineSettings from '@/components/OfflineSettings'
 
 export default function Profil() {
   const router = useRouter()
@@ -480,6 +481,7 @@ export default function Profil() {
       <div style={{ background: dark ? '#1e1e1e' : 'white', borderRadius: 16, padding: 30, boxShadow: '0 4px 20px rgba(0,0,0,0.08)', marginBottom: 20 }}>
         <h3 style={{ fontWeight: 800, marginBottom: 8 }}>🔔 Notifications</h3>
         <PushNotificationSettings dark={dark} />
+        <OfflineSettings hideInAppUI />
       </div>
 
       {/* Test wrap mensuel */}

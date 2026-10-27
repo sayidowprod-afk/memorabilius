@@ -1,6 +1,6 @@
 'use client'
 import { useEffect, useState } from 'react'
-import { useIsNative } from '@/lib/useIsNative'
+import { useIsNative, useIsAppUI } from '@/lib/useIsNative'
 import { useAuth } from '@/lib/AuthContext'
 import { isNativeOfflineEnabled, enableNativeOffline, disableNativeOffline } from '@/lib/offlineMode'
 import { prepareOffline, prepareHd, planHd, readPrepState, clearPrepState, PREP_EVENT, type PrepState, type PrepProgress } from '@/lib/offlinePrepare'
@@ -9,8 +9,12 @@ import { prepareOffline, prepareHd, planHd, readPrepState, clearPrepState, PREP_
 // actif : on n'affiche que l'état de la préparation et son bouton. Dans l'app
 // native, un interrupteur (bêta) l'active -- voir lib/offlineMode.ts pour le
 // pourquoi du opt-in.
-export default function OfflineSettings() {
+// hideInAppUI : sur /profil (desktop, navigateur) on le montre ; dans l'interface
+// app (native + PWA installée), les réglages sont dans /parametres, lié par la
+// barre du bas -- on évite le doublon.
+export default function OfflineSettings({ hideInAppUI = false }: { hideInAppUI?: boolean }) {
   const isNative = useIsNative()
+  const appUI = useIsAppUI()
   const { user } = useAuth()
   const [nativeOn, setNativeOn] = useState(false)
   const [busy, setBusy] = useState(false)
@@ -28,7 +32,7 @@ export default function OfflineSettings() {
   }, [])
 
   const supported = typeof navigator !== 'undefined' && 'serviceWorker' in navigator
-  if (!supported || !user) return null
+  if (!supported || !user || (hideInAppUI && appUI)) return null
   // Natif : tant que l'interrupteur n'est pas activé, il n'y a que lui à montrer.
   const active = !isNative || nativeOn
 
