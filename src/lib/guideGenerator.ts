@@ -90,16 +90,19 @@ function printRunOf(cards: UserCard[]): string {
 // variantes de format dont le nom est propre (Choice, Fast Break, FOTL, Pulsar, Velocity...). Source : liste Gemini « Panini NBA Parallels » (a verifier).
 const PANINI_RUNS: Record<string, number> = {
   'Black Finite': 1, 'Black Prizm': 1, 'Black Vinyl': 1, 'Gold Vinyl': 1, 'Nebula': 1, 'Platinum': 1, 'Logoman': 1, 'Masterpiece': 1,
-  'Green': 5, 'Black Gold': 5, 'Emerald': 5, 'Neon Green': 5, 'FOTL Shimmer': 7, 'White FOTL': 7, 'Green Choice': 8, 'Lucky Envelopes': 8,
+  'Green': 5, 'Black Gold': 5, 'Emerald': 5, 'Neon Green': 5, 'White FOTL': 7, 'Green Choice': 8, 'Lucky Envelopes': 8,
   'Gold': 10, 'Gold Wave': 10, 'Gold Shimmer': 10, 'Gold Glitter': 10, 'Sapphire': 10, 'Gold Disco': 10, 'Gold Fast Break': 10, 'Ruby': 15,
-  'Cherry Blossom': 20, 'Bronze': 20, 'Tie-Dye': 25, 'Mojo': 25, 'Green Pulsar': 25, 'Camo': 25, 'Orange Rainbow': 25, 'Orange Wave': 25, 'Dragon': 25,
+  'Cherry Blossom': 20, 'Bronze': 20, 'Fast Break Bronze': 20, 'Fast Break Pink': 50, 'Fast Break Blue': 150, 'Tie-Dye': 25, 'Mojo': 25, 'Green Pulsar': 25, 'Camo': 25, 'Orange Rainbow': 25, 'Orange Wave': 25, 'Dragon': 25,
   'Purple Pulsar': 35, 'Black Velocity': 39, 'Pink Pulsar': 42, 'Blue Choice': 49, 'Pink Velocity': 79, 'Choice Red': 88,
   'Blue Ice': 99, 'Green Wave': 99, 'Green Rainbow': 99, 'Purple Ice': 149,
 }
 // Valeurs propres a un produit (sans ambiguite dans la liste Gemini).
+// Quand Gemini donne deux valeurs (« /249 ou /149 »), on retient la premiere, presentee comme la plus courante.
 const PANINI_PRODUCT_RUNS: Record<string, Record<string, number>> = {
   mosaic: { Blue: 99, Red: 49 },
-  prizm: { Orange: 49, Purple: 75 },
+  prizm: { Red: 299, Orange: 49, Purple: 75 },
+  select: { Blue: 249 },
+  'national treasures': { Blue: 25 },
   optic: { Orange: 199 },
   'court kings': { Orange: 149 },
 }
