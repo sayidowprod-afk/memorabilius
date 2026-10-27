@@ -296,6 +296,7 @@ export async function prepareHd(
 export interface VerifyReport {
   home: boolean
   gallery: boolean
+  scripts: number          // fichiers JS/CSS en cache (diagnostic)
   viewer: boolean          // code du viewer 3D en cache
   collectionData: boolean  // lignes de la collection en cache
   dataEntries: number
@@ -316,8 +317,9 @@ export async function verifyOffline(userId: string): Promise<VerifyReport> {
 
   // Le viewer est un chunk à part : on le reconnaît à une chaîne qui lui est propre.
   let viewer = false
-  const runtime = await caches.open('memorabilius-runtime-v1')
-  for (const req of await runtime.keys()) {
+  const runtime = await caches.open('memorabilius-static-v1')
+  const scripts = await runtime.keys()
+  for (const req of scripts) {
     if (!new URL(req.url).pathname.endsWith('.js')) continue // les chunks portent un ?dpl=...
     const res = await runtime.match(req)
     if (res && (await res.clone().text()).includes('/api/player-jersey')) { viewer = true; break }
@@ -333,5 +335,5 @@ export async function verifyOffline(userId: string): Promise<VerifyReport> {
   let usage: number | null = null
   try { usage = (await navigator.storage?.estimate?.())?.usage ?? null } catch { /* indisponible */ }
 
-  return { home, gallery, viewer, collectionData, dataEntries: mine.length, images: await count(grid), hd: await count(hd), usage }
+  return { home, gallery, scripts: scripts.length, viewer, collectionData, dataEntries: mine.length, images: await count(grid), hd: await count(hd), usage }
 }

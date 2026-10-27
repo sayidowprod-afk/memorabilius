@@ -175,7 +175,7 @@ export default function OfflineSettings({ hideInAppUI = false }: { hideInAppUI?:
                 ['Accueil', report.home],
                 ['Galerie', report.gallery],
                 ['Données de la collection (' + report.dataEntries + ' requêtes)', report.collectionData],
-                ['Viewer 3D', report.viewer],
+                ['Viewer 3D (' + report.scripts + ' fichiers de code)', report.viewer],
                 ['Images : ' + report.images.cached + '/' + report.images.total, report.images.cached === report.images.total],
                 ['HD : ' + report.hd.cached + '/' + report.hd.total, report.hd.cached === report.hd.total],
               ] as [string, boolean][]).map(([name, ok]) => (

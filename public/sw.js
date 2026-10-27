@@ -11,6 +11,10 @@ const CACHE_NAME = 'memorabilius-v8'
 //              (voir dataCacheKey) -- purgé à la déconnexion
 const RUNTIME_CACHE_NAME = 'memorabilius-runtime-v1'
 const RUNTIME_CACHE_MAX_ENTRIES = 600
+// Chunks JS/CSS a part : les payloads RSC de navigation (tres nombreux) les
+// evincaient du cache commun -- le chunk du viewer 3D disparaissait.
+const STATIC_CACHE_NAME = 'memorabilius-static-v1'
+const STATIC_CACHE_MAX_ENTRIES = 2500
 const DATA_CACHE_NAME = 'memorabilius-data-v2'
 const DATA_CACHE_MAX_ENTRIES = 600
 //  - HD      : images chargées en mode CORS (viewer 3D, export canvas), ~1 Mo
@@ -249,7 +253,7 @@ self.addEventListener('activate', (event) => {
       // 'memorabilius-assets-v1' (ancien cache de chunks JS, retire) est volontairement
       // absent de cette liste : il sera nettoye comme n'importe quel cache perime, sur
       // les appareils qui l'avaient encore.
-      Promise.all(keys.filter((k) => ![CACHE_NAME, IMAGE_CACHE_NAME, RUNTIME_CACHE_NAME, DATA_CACHE_NAME, HD_CACHE_NAME].includes(k)).map((k) => caches.delete(k)))
+      Promise.all(keys.filter((k) => ![CACHE_NAME, IMAGE_CACHE_NAME, RUNTIME_CACHE_NAME, STATIC_CACHE_NAME, DATA_CACHE_NAME, HD_CACHE_NAME].includes(k)).map((k) => caches.delete(k)))
     )
   )
   self.clients.claim()
@@ -331,7 +335,8 @@ self.addEventListener('fetch', (event) => {
     // une page en cache ne démarre pas hors ligne. Réseau d'abord, jamais de
     // cache-first (voir règle en tête de fichier).
     if (isRuntimeAsset(event.request, url)) {
-      event.respondWith(networkFirst(event, event.request, RUNTIME_CACHE_NAME, event.request, RUNTIME_CACHE_MAX_ENTRIES))
+      const isChunk = url.pathname.startsWith('/_next/static/')
+      event.respondWith(networkFirst(event, event.request, isChunk ? STATIC_CACHE_NAME : RUNTIME_CACHE_NAME, event.request, isChunk ? STATIC_CACHE_MAX_ENTRIES : RUNTIME_CACHE_MAX_ENTRIES))
       return
     }
 
