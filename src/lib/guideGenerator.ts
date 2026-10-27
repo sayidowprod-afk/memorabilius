@@ -85,6 +85,11 @@ function printRunOf(cards: UserCard[]): string {
 // Tirages deja connus d'AUTRES guides, pour classer les parallèles sans tirage dans la pyramide (jamais pour remplir le champ).
 // Chez un meme fabricant (Panini, Topps) une parallèle porte presque toujours la meme numerotation d'un produit a l'autre : on cherche
 // d'abord dans les guides du MEME produit (« Mosaic » 2023-24 pour « Mosaic » 2024-25), puis dans ceux du meme fabricant.
+const PANINI_RUNS: Record<string, number> = {
+  'Red Wave': 299, 'Blue Wave': 249, 'Purple Ice': 199, 'Pink Scope': 125, 'Blue Ice': 49, 'Mojo': 25,
+  'Cherry Blossom': 20, 'Gold': 10, 'Plum Blossom': 8, 'Black Gold': 5,
+}
+
 async function siblingRuns(brand: string, productWords: string[], prodSet: Set<string>): Promise<Map<string, number>> {
   const out = new Map<string, number>()
   const wanted = productWords.map(w => w.toLowerCase())
@@ -107,8 +112,16 @@ async function siblingRuns(brand: string, productWords: string[], prodSet: Set<s
   }
   if (wanted.length) collect(t => wanted.every(w => t.includes(w)))
   if (brand) collect(t => t.includes(brand))
-  // Regle connue : chez Panini, « Black » est toujours un 1/1 (prioritaire sur ce que disent les autres guides).
-  if (brand === 'panini') out.set('black', 1)
+  if (brand === 'panini') {
+    // Echelle Panini courante (tableau de reference Prizm 2025-26, cardlines.com) : ne comble que les parallèles pour lesquelles
+    // ni les tirages saisis ni les autres guides ne donnent rien.
+    for (const [name, n] of Object.entries(PANINI_RUNS)) {
+      const k = keyOf(name, new Set())
+      if (k && !out.has(k)) out.set(k, n)
+    }
+    // Regle connue : chez Panini, « Black » est toujours un 1/1 (prioritaire sur tout le reste).
+    out.set('black', 1)
+  }
   return out
 }
 
