@@ -318,3 +318,23 @@ export async function rehostGuideImages(blocks: GuideBlock[], onProgress?: (done
     return b
   })
 }
+
+// Reordonne les pyramides d'un guide DEJA fait : memes regles que le generateur (tirage saisi, sinon tirage connu d'un autre guide du meme
+// produit puis du meme fabricant), du plus rare au plus courant. Les lignes sans aucune information gardent leur ordre relatif.
+export async function reorderGuideParallels(title: string, blocks: GuideBlock[]): Promise<{ blocks: GuideBlock[]; estimated: string[] }> {
+  const words = title.replace(/\b(guide|and|checklist|basketball|football|baseball|hockey|soccer)\b/gi, ' ').replace(/\b\d{4}(?:-\d{2,4})?\b/g, ' ').split(/\s+/).filter(Boolean)
+  const brand = ['panini', 'topps', 'upper deck', 'leaf'].find(b => title.toLowerCase().includes(b)) || ''
+  const productWords = words.filter(w => !/^(panini|topps|upper|deck|leaf)$/i.test(w))
+  const prodSet = new Set<string>(words.map(w => w.toLowerCase()))
+  const est = await siblingRuns(brand, productWords, prodSet)
+  const estimated: string[] = []
+  const out = blocks.map(b => {
+    if (b.type !== 'pyramid') return b
+    const estOf = (r: PyramidRow) => (r.printRun ? undefined : est.get(keyOf(r.name, prodSet)))
+    const runNum = (r: PyramidRow) => (r.printRun ? Number(r.printRun.replace(/\D/g, '')) || Infinity : (estOf(r) ?? Infinity))
+    for (const r of b.rows) { const e = estOf(r); if (e !== undefined) estimated.push(`${r.name} ≈ /${e}`) }
+    const sorted = b.rows.map((r, i) => ({ r, i })).sort((x, y) => runNum(x.r) - runNum(y.r) || x.i - y.i).map(x => x.r)
+    return { ...b, rows: sorted }
+  })
+  return { blocks: out, estimated }
+}

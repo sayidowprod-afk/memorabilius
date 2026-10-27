@@ -8,7 +8,7 @@ import { useLang } from '@/lib/LangContext'
 import { toast } from '@/lib/toast'
 import { uploadGuideImage } from '@/lib/guideUpload'
 import { normalizeGuideBlocks, type GuideBlock } from '@/lib/guideBlockTypes'
-import { generateGuideFromSet, rehostGuideImages, type SetRow } from '@/lib/guideGenerator'
+import { generateGuideFromSet, rehostGuideImages, reorderGuideParallels, type SetRow } from '@/lib/guideGenerator'
 import GuideCoverMaker from '@/components/GuideCoverMaker'
 
 const GuideBlocksEditor = dynamic(() => import('@/components/GuideBlocksEditor'), { ssr: false })
@@ -48,6 +48,17 @@ export default function AdminGuideEditPage({ params }: { params: Promise<{ id: s
   const [genQuery, setGenQuery] = useState('')
   const [genResults, setGenResults] = useState<SetRow[]>([])
   const [genBusy, setGenBusy] = useState(false)
+  const [reordering, setReordering] = useState(false)
+  const reorder = async () => {
+    if (!window.confirm("Réordonner les parallèles du plus rare au plus courant ? L'ordre actuel des pyramides sera remplacé.")) return
+    setReordering(true)
+    try {
+      const r = await reorderGuideParallels(title, blocks)
+      setBlocks(r.blocks)
+      toast.success(r.estimated.length ? `Réordonné. Estimé d'après d'autres guides (à confirmer) : ${r.estimated.join(', ')}` : "Réordonné d'après les tirages saisis")
+    } catch (e) { toast.error(e instanceof Error ? e.message : 'Erreur') }
+    setReordering(false)
+  }
   const [genProgress, setGenProgress] = useState('')
   const [genSet, setGenSet] = useState<SetRow | null>(null)
   const [genForeign, setGenForeign] = useState<string[]>([])
@@ -292,6 +303,12 @@ export default function AdminGuideEditPage({ params }: { params: Promise<{ id: s
           </div>
           <div>
             <label style={label}>{t('admin_guides_field_content')}</label>
+            {blocks.some(b => b.type === 'pyramid') && (
+              <button type="button" onClick={reorder} disabled={reordering}
+                style={{ marginBottom: 10, padding: '8px 14px', borderRadius: 8, border: `1.5px solid ${border}`, background: 'transparent', color: text, fontWeight: 700, fontSize: 13, cursor: reordering ? 'default' : 'pointer', opacity: reordering ? 0.6 : 1 }}>
+                {reordering ? 'Réordonnement…' : '↕ Réordonner les parallèles (tirages + autres guides)'}
+              </button>
+            )}
             <GuideBlocksEditor blocks={blocks} onChange={setBlocks} />
           </div>
 
