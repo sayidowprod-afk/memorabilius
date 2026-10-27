@@ -22,7 +22,10 @@ const DATA_CACHE_MAX_ENTRIES = 600
 // network-first (voir commentaire plus bas sur les risques de chunks JS
 // périmés) — les photos n'ont pas ce risque, une image ne "casse" jamais.
 const IMAGE_CACHE_NAME = 'memorabilius-images-v1'
-const IMAGE_CACHE_MAX_ENTRIES = 1500
+// Assez pour une grosse collection préchargée hors ligne (voir
+// lib/offlinePrepare.ts) ; au-delà, les plus anciennes sont retirées.
+const IMAGE_CACHE_MAX_ENTRIES = 10000
+let imagePutCount = 0
 
 // HISTORIQUE : un ancien cache-first sur /_next/static/* (chunks JS) avait gele
 // l'app sur certains Android (Cache Storage API bloque sans jamais rejeter, ou
@@ -148,7 +151,9 @@ async function handleImageFetch(request) {
     // exploitable en tant que source d'une balise <img> et cachable telle quelle.
     if (res.ok || res.type === 'opaque') {
       cache.put(request, res.clone())
-      trimImageCache()
+      // Élaguer à chaque image relirait la liste de TOUTES les clés (jusqu'à
+      // 10 000) à chaque fois -- coûteux pendant un préchargement massif.
+      if (++imagePutCount % 50 === 0) trimImageCache()
     }
     return res
   } catch {
@@ -180,6 +185,18 @@ self.addEventListener('activate', (event) => {
 self.addEventListener('message', (event) => {
   if (event.data && event.data.type === 'CLEAR_USER_DATA') {
     event.waitUntil(caches.delete(DATA_CACHE_NAME))
+  }
+  // Alias de navigation : "Ma galerie" pointe vers /galerie/<uuid>, que le
+  // serveur redirige vers l'adresse canonique (/galerie/<pseudo>-xxxx). Une
+  // navigation redirigée n'est pas mise en cache, donc hors ligne l'URL
+  // <uuid> n'existerait pas -- on garde la redirection elle-même.
+  if (event.data && event.data.type === 'ALIAS' && event.data.from && event.data.to) {
+    try {
+      const from = new URL(event.data.from), to = new URL(event.data.to)
+      if (from.origin === self.location.origin && to.origin === self.location.origin) {
+        event.waitUntil(putAndTrim(CACHE_NAME, new Request(from.href), Response.redirect(to.href, 307), 200))
+      }
+    } catch { /* URL invalide : ignorée */ }
   }
 })
 
@@ -274,8 +291,10 @@ self.addEventListener('fetch', (event) => {
       }
       // Même page, ou à défaut la même page sans paramètres (ex: la galerie
       // ouverte avec ?card=... retombe sur la galerie déjà visitée).
-      const cached = await cachedResponse(CACHE_NAME, event.request)
-        || await cachedResponse(CACHE_NAME, event.request, { ignoreSearch: true })
+      // ignoreVary : Next déclare Vary sur ses en-têtes RSC, qu'une navigation
+      // classique n'envoie pas -- sans ça la page préchargée pourrait ne pas matcher.
+      const cached = await cachedResponse(CACHE_NAME, event.request, { ignoreVary: true })
+        || await cachedResponse(CACHE_NAME, event.request, { ignoreSearch: true, ignoreVary: true })
       return cached || caches.match('/offline.html')
     })()
   )
