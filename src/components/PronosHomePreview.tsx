@@ -6,6 +6,7 @@ import { getTeamById } from '@/lib/sportsTeams'
 import { useAuth } from '@/lib/AuthContext'
 import { nextDays } from '@/lib/pronosDays'
 import { supabase } from '@/lib/supabase'
+import type { BoxScore as BoxScoreData, BoxGroup as BoxScoreGroup } from '@/lib/pronosBoxscore'
 
 // ─────────────────────────────────────────────────────────────
 // MAQUETTE LOCALE — module Pronos intégré à l'accueil, sous la carte
@@ -181,6 +182,184 @@ function MatchRow({ m, pick, onPick }: { m: ApiMatch; pick?: 'left' | 'right'; o
   )
 }
 
+// ── Box score ─────────────────────────────────────────────────────────────
+// Flèche sous chaque match commencé : ouvre un panneau refermable avec ton
+// pronostic et les stats individuelles de chaque joueur (onglets d'équipe en
+// haut, titulaires puis banc, comme les apps de scores). Les données ne sont
+// demandées qu'à la première ouverture (/api/pronos/boxscore).
+const BS_BG = '#0a1330'
+const COLLAPSED_ROWS = 6
+
+const POS_COLORS: Record<string, string> = {
+  PG: '#ff5c93', SG: '#ff9f43', G: '#ff9f43', SF: '#2ee6a6', F: '#2ee6a6', PF: '#38bdf8', C: '#c084fc',
+}
+
+function PickSummary({ m, pick }: { m: ApiMatch; pick?: 'left' | 'right' }) {
+  const team = pick ? getTeamById(pick === 'left' ? m.leftId : m.rightId) : null
+  let text: string, color = 'rgba(255,255,255,.75)'
+  if (!pick || !team) {
+    text = "Tu n'avais pas de pronostic sur ce match."
+  } else if (m.status !== 'final') {
+    text = `Ton pronostic : ${team.name} — match en cours`
+  } else if (m.winner === pick) {
+    text = `✓ Ton pronostic : ${team.name} — gagné (+5 XP)`; color = GREEN
+  } else {
+    text = `✗ Ton pronostic : ${team.name} — perdu`; color = '#e74c3c'
+  }
+  return <div style={{ fontFamily: UI_FONT, fontWeight: 800, fontSize: 13, color, marginBottom: 14 }}>{text}</div>
+}
+
+function Avatar({ src, name }: { src?: string; name: string }) {
+  const [failed, setFailed] = useState(false)
+  const initials = name.split(' ').map(w => w[0]).join('').slice(0, 2).toUpperCase()
+  return (
+    <div style={{ width: 40, height: 40, borderRadius: '50%', overflow: 'hidden', flexShrink: 0, background: 'rgba(255,255,255,.12)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+      {src && !failed
+        // eslint-disable-next-line @next/next/no-img-element
+        ? <img src={src} alt="" loading="lazy" onError={() => setFailed(true)} style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'top' }} />
+        : <span style={{ fontFamily: UI_FONT, fontWeight: 800, fontSize: 12, color: 'rgba(255,255,255,.6)' }}>{initials}</span>}
+    </div>
+  )
+}
+
+function BoxGroupTable({ group, abbr, expanded }: { group: BoxScoreGroup; abbr?: string; expanded: boolean }) {
+  const cols = `158px repeat(${group.labels.length}, minmax(46px, 1fr))`
+  const cell: React.CSSProperties = { padding: '0 6px', textAlign: 'center', whiteSpace: 'nowrap' }
+  const first: React.CSSProperties = { position: 'sticky', left: 0, zIndex: 1, padding: '0 8px 0 10px' }
+  const rows = expanded ? group.rows : group.rows.slice(0, COLLAPSED_ROWS)
+  return (
+    <div style={{ marginBottom: 18 }}>
+      <div style={{ overflowX: 'auto' }}>
+        <div style={{ minWidth: 158 + group.labels.length * 52, fontFamily: UI_FONT, color: '#fff' }}>
+          <div style={{ display: 'grid', gridTemplateColumns: cols, alignItems: 'center', height: 36, color: 'rgba(255,255,255,.55)', fontWeight: 800, fontSize: 12 }}>
+            <div style={{ ...first, background: BS_BG, fontSize: 14, fontWeight: 700, color: 'rgba(255,255,255,.9)', height: '100%', display: 'flex', alignItems: 'center' }}>{group.title}</div>
+            {group.labels.map(l => <div key={l} style={cell}>{l}</div>)}
+          </div>
+          {rows.map((r, i) => {
+            const bg = i % 2 === 0 ? 'rgba(255,255,255,.05)' : 'transparent'
+            const posColor = (r.pos && POS_COLORS[r.pos]) || 'rgba(255,255,255,.55)'
+            return (
+              <div key={i} style={{ display: 'grid', gridTemplateColumns: cols, alignItems: 'center', minHeight: 56, background: bg }}>
+                <div style={{ ...first, background: i % 2 === 0 ? '#111b3e' : BS_BG, height: '100%', display: 'flex', alignItems: 'center', gap: 10 }}>
+                  <Avatar src={r.headshot} name={r.name} />
+                  <div style={{ minWidth: 0 }}>
+                    <div style={{ fontWeight: 800, fontSize: 14, whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis', maxWidth: 96 }}>{r.name}</div>
+                    <div style={{ fontWeight: 700, fontSize: 11, whiteSpace: 'nowrap', color: 'rgba(255,255,255,.55)' }}>
+                      {r.pos && <span style={{ color: posColor }}>{r.pos}</span>}
+                      {r.pos && abbr ? ' • ' : ''}{abbr}
+                      {r.note ? <span style={{ marginLeft: 4 }}>{r.note}</span> : null}
+                    </div>
+                  </div>
+                </div>
+                {r.stats.map((v, j) => <div key={j} style={{ ...cell, fontSize: 14, fontWeight: 600 }}>{v}</div>)}
+              </div>
+            )
+          })}
+          {group.totals && (expanded || group.rows.length <= COLLAPSED_ROWS) && (
+            <div style={{ display: 'grid', gridTemplateColumns: cols, alignItems: 'center', minHeight: 44, borderTop: '2px solid rgba(255,255,255,.22)', fontWeight: 800 }}>
+              <div style={{ ...first, background: BS_BG, height: '100%', display: 'flex', alignItems: 'center', fontSize: 13 }}>Équipe</div>
+              {group.totals.map((v, j) => <div key={j} style={{ ...cell, fontSize: 14 }}>{v}</div>)}
+            </div>
+          )}
+        </div>
+      </div>
+    </div>
+  )
+}
+
+function BoxScorePanel({ m, pick }: { m: ApiMatch; pick?: 'left' | 'right' }) {
+  const [box, setBox] = useState<BoxScoreData | null>(null)
+  const [error, setError] = useState<'unavailable' | 'failed' | null>(null)
+  const [side, setSide] = useState<'left' | 'right'>(pick ?? 'left')
+  const [expanded, setExpanded] = useState(false)
+
+  useEffect(() => {
+    let cancelled = false
+    fetch(`/api/pronos/boxscore?id=${encodeURIComponent(m.id)}`)
+      .then(async r => {
+        if (cancelled) return
+        if (r.status === 404) return setError('unavailable')
+        if (!r.ok) return setError('failed')
+        setBox(await r.json())
+      })
+      .catch(() => { if (!cancelled) setError('failed') })
+    return () => { cancelled = true }
+  }, [m.id])
+
+  const teams = { left: getTeamById(m.leftId), right: getTeamById(m.rightId) }
+  const short = (n?: string) => (n ? n.split(' ').slice(-1)[0].toUpperCase() : '')
+  const current = box?.teams.find(t => t.side === side)
+  const hasMore = !!current?.groups.some(g => g.rows.length > COLLAPSED_ROWS)
+  const info: React.CSSProperties = { fontFamily: UI_FONT, fontWeight: 600, fontSize: 13, color: 'rgba(255,255,255,.6)', padding: '10px 0 16px' }
+
+  return (
+    <div style={{ background: BS_BG, padding: '16px 12px 8px' }}>
+      <PickSummary m={m} pick={pick} />
+      {!box && !error && <div style={info}>Chargement du box score…</div>}
+      {error === 'unavailable' && <div style={info}>Box score indisponible pour ce match.</div>}
+      {error === 'failed' && <div style={info}>Impossible de charger le box score. Réessaie dans un instant.</div>}
+      {box && box.teams.length === 0 && <div style={info}>Pas encore de statistiques pour ce match.</div>}
+      {box && box.teams.length > 0 && (
+        <>
+          <div style={{ display: 'flex', gap: 4, padding: 6, borderRadius: 999, background: 'rgba(255,255,255,.08)', marginBottom: 14 }}>
+            {(['left', 'right'] as const).map(s => {
+              const t = teams[s]
+              return (
+                <button key={s} type="button" onClick={() => { setSide(s); setExpanded(false) }} aria-pressed={side === s}
+                  style={{
+                    flex: 1, display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 8, padding: '9px 6px', borderRadius: 999,
+                    border: 'none', cursor: 'pointer', fontFamily: UI_FONT, fontWeight: 800, fontSize: 14, letterSpacing: 0.5,
+                    background: side === s ? '#fff' : 'transparent', color: side === s ? NAVY : 'rgba(255,255,255,.7)',
+                  }}>
+                  {t && <TeamBadge teamId={t.id} size={22} />}
+                  {short(t?.name)}
+                </button>
+              )
+            })}
+          </div>
+          {current && current.groups.length > 0
+            ? current.groups.map((g, i) => <BoxGroupTable key={i} group={g} abbr={current.abbr} expanded={expanded} />)
+            : <div style={info}>Pas de statistiques individuelles pour cette équipe.</div>}
+          {hasMore && (
+            <div style={{ textAlign: 'center', margin: '4px 0 14px' }}>
+              <button type="button" onClick={() => setExpanded(e => !e)}
+                style={{
+                  padding: '9px 22px', borderRadius: 999, background: 'transparent', cursor: 'pointer',
+                  border: '1px solid rgba(141,182,255,.55)', color: '#8db6ff', fontFamily: UI_FONT, fontWeight: 800, fontSize: 13, letterSpacing: 0.5,
+                }}>
+                {expanded ? 'MONTRER MOINS' : 'MONTRER PLUS'}
+              </button>
+            </div>
+          )}
+        </>
+      )}
+    </div>
+  )
+}
+
+function MatchItem({ m, pick, onPick }: { m: ApiMatch; pick?: 'left' | 'right'; onPick: (id: string, side: 'left' | 'right') => void }) {
+  const [open, setOpen] = useState(false)
+  // Pas de box score pour un match pas encore commencé (rien à montrer), ni
+  // pour le football (aucune source gratuite branchée).
+  const hasBox = m.locked && m.sport !== 'football'
+  return (
+    <>
+      <MatchRow m={m} pick={pick} onPick={onPick} />
+      {hasBox && (
+        <>
+          <button type="button" className="pronos-bs-toggle" onClick={() => setOpen(o => !o)} aria-expanded={open}>
+            <svg width="12" height="12" viewBox="0 0 12 12" aria-hidden style={{ transition: 'transform .2s', transform: open ? 'rotate(180deg)' : 'none' }}>
+              <path d="M2 4l4 4 4-4" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+            </svg>
+            {open ? 'Masquer le box score' : 'Box score'}
+          </button>
+          {open && <BoxScorePanel m={m} pick={pick} />}
+        </>
+      )}
+    </>
+  )
+}
+
 // Tous les cadres sont collés (un seul bloc, pas d'espace entre les
 // matchs) : un seul bord blanc autour de la liste, un simple filet entre
 // chaque ligne.
@@ -189,7 +368,7 @@ function MatchList({ matches, picks, onPick }: { matches: ApiMatch[]; picks: Rec
     <div style={{ border: '4px solid #fff', borderRadius: 0, overflow: 'hidden' }}>
       {matches.map((m, i) => (
         <div key={m.id} style={{ borderTop: i > 0 ? '2px solid #fff' : 'none' }}>
-          <MatchRow m={m} pick={picks[m.id]} onPick={onPick} />
+          <MatchItem m={m} pick={picks[m.id]} onPick={onPick} />
         </div>
       ))}
     </div>
@@ -221,6 +400,9 @@ html[data-theme="dark"] .pronos-white-circle { background: #fff !important; }
 .pronos-center { display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 6px 18px; flex-shrink: 0; width: 150px; }
 .pronos-sport-badge { display: flex; align-items: center; gap: 6px; margin-bottom: 6px; border-radius: 999px; padding: 3px 10px 3px 6px; }
 .pronos-vs-circle { width: 34px; height: 34px; margin: 5px 0; display: flex; align-items: center; justify-content: center; border-radius: 50%; }
+
+.pronos-bs-toggle { display: flex; align-items: center; justify-content: center; gap: 6px; width: 100%; padding: 7px 0; border: 0; cursor: pointer; background: rgba(255,255,255,.07); color: #fff; font: 800 12px/1 -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; letter-spacing: .3px; }
+.pronos-bs-toggle:hover { background: rgba(255,255,255,.13); }
 
 @media (max-width: 680px) {
   .pronos-row { flex-direction: column; }
