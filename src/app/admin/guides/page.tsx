@@ -80,9 +80,14 @@ export default function AdminGuidesPage() {
       <div style={{ maxWidth: 900, margin: '0 auto' }}>
         <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: 32, flexWrap: 'wrap', gap: 12 }}>
           <h1 style={{ color: text, margin: 0, fontSize: 26, fontWeight: 800 }}>{t('admin_guides_title')}</h1>
-          <Link href="/admin/guides/nouveau" style={{ padding: '10px 18px', borderRadius: 8, background: '#003DA6', color: 'white', fontWeight: 700, fontSize: 14, textDecoration: 'none' }}>
-            {t('admin_guides_new')}
-          </Link>
+          <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap' }}>
+            <Link href="/admin/guides/lot" style={{ padding: '10px 18px', borderRadius: 8, border: `1.5px solid #003DA6`, color: dark ? '#fff' : '#003DA6', fontWeight: 700, fontSize: 14, textDecoration: 'none' }}>
+              ✨ Générer plusieurs guides
+            </Link>
+            <Link href="/admin/guides/nouveau" style={{ padding: '10px 18px', borderRadius: 8, background: '#003DA6', color: 'white', fontWeight: 700, fontSize: 14, textDecoration: 'none' }}>
+              {t('admin_guides_new')}
+            </Link>
+          </div>
         </div>
 
         {loading ? <p style={{ color: sub }}>...</p> : guides.length === 0 ? (
