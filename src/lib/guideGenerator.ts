@@ -82,25 +82,31 @@ function printRunOf(cards: UserCard[]): string {
   return best ? `/${best[0]}` : ''
 }
 
-// Tirages deja connus d'AUTRES guides du meme produit (« Mosaic » 2023-24 pour ordonner « Mosaic » 2024-25) : les numerotations des
-// parallèles se repetent d'une annee a l'autre. Sert UNIQUEMENT a classer les parallèles sans tirage dans la pyramide, jamais a remplir le champ.
-async function siblingRuns(productWords: string[], prodSet: Set<string>): Promise<Map<string, number>> {
+// Tirages deja connus d'AUTRES guides, pour classer les parallèles sans tirage dans la pyramide (jamais pour remplir le champ).
+// Chez un meme fabricant (Panini, Topps) une parallèle porte presque toujours la meme numerotation d'un produit a l'autre : on cherche
+// d'abord dans les guides du MEME produit (« Mosaic » 2023-24 pour « Mosaic » 2024-25), puis dans ceux du meme fabricant.
+async function siblingRuns(brand: string, productWords: string[], prodSet: Set<string>): Promise<Map<string, number>> {
   const out = new Map<string, number>()
-  if (!productWords.length) return out
   const wanted = productWords.map(w => w.toLowerCase())
   const { data } = await supabase.from('guides').select('title, blocks').order('id', { ascending: false })
-  for (const g of data || []) {
-    const t = String(g.title || '').toLowerCase()
-    if (!wanted.every(w => t.includes(w))) continue
-    for (const b of (g.blocks as GuideBlock[] | null) || []) {
-      if (b.type !== 'pyramid') continue
-      for (const row of b.rows) {
-        const n = row.printRun ? Number(row.printRun.replace(/\D/g, '')) : 0
-        const k = keyOf(row.name, prodSet)
-        if (n > 0 && k && !out.has(k)) out.set(k, n) // guide le plus recent d'abord : la 1re valeur gagne
+  const collect = (accept: (title: string) => boolean) => {
+    for (const g of data || []) {
+      const title = String(g.title || '').toLowerCase()
+      if (!accept(title)) continue
+      // le nom du produit de ce guide-la (mots du titre) ne fait pas partie de la parallèle
+      const own = new Set<string>([...prodSet, ...title.split(/[^a-z0-9]+/).filter(Boolean)])
+      for (const b of (g.blocks as GuideBlock[] | null) || []) {
+        if (b.type !== 'pyramid') continue
+        for (const row of b.rows) {
+          const n = row.printRun ? Number(row.printRun.replace(/\D/g, '')) : 0
+          const k = keyOf(row.name, own)
+          if (n > 0 && k && !out.has(k)) out.set(k, n) // guide le plus recent d'abord : la 1re valeur gagne
+        }
       }
     }
   }
+  if (wanted.length) collect(t => wanted.every(w => t.includes(w)))
+  if (brand) collect(t => t.includes(brand))
   return out
 }
 
@@ -240,7 +246,7 @@ export async function generateGuideFromSet(setId: number, opts: { skip?: string[
     return row
   })
   // du plus rare (sommet de la pyramide) au plus courant : tirages croissants, puis les non numerotes par ordre alphabetique
-  const est = await siblingRuns(productWords, prodSet).catch(() => new Map<string, number>())
+  const est = await siblingRuns((['panini', 'topps', 'upper deck', 'leaf'].find(b => (set.brand || set.name || '').toLowerCase().includes(b))) || '', productWords, prodSet).catch(() => new Map<string, number>())
   const estOf = (r: PyramidRow) => est.get(keyOf(r.name, prodSet))
   const estimated = rows.filter(r => !r.printRun && estOf(r) !== undefined)
   const runNum = (r: PyramidRow) => (r.printRun ? Number(r.printRun.slice(1)) : (estOf(r) ?? Infinity))
@@ -265,7 +271,7 @@ export async function generateGuideFromSet(setId: number, opts: { skip?: string[
   const nIns = inserts.length + autos.length + memos.length
   warnings.push(`Photos trouvées dans les galeries : ${parallelImages}/${rows.length} parallèles, ${imagesFound - parallelImages}/${nIns} inserts et autographes (à compléter à la main pour les autres)`)
   if (rows.length) warnings.push(`Tirages trouvés : ${runsFound}/${rows.length} parallèles (les autres sont à renseigner à la main${unknown ? `, ${unknown} sans couleur reconnue` : ''})`)
-  if (estimated.length) warnings.push(`Ordre estimé d'après les autres guides de ce produit pour ${estimated.length} parallèle(s) sans tirage (champ laissé vide, à confirmer) : ${estimated.map(r => `${r.name} ≈ /${estOf(r)}`).join(', ')}`)
+  if (estimated.length) warnings.push(`Ordre estimé d'après les autres guides du même produit ou fabricant pour ${estimated.length} parallèle(s) sans tirage (champ laissé vide, à confirmer) : ${estimated.map(r => `${r.name} ≈ /${estOf(r)}`).join(', ')}`)
   warnings.push('Odds (tableaux de probabilités) à ajouter à la main')
 
   return {
