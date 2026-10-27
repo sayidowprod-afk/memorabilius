@@ -14,6 +14,10 @@ import { recordJsError } from '@/lib/crashlytics'
 const CHUNK_ERROR_PATTERN = /Loading chunk|ChunkLoadError|Failed to fetch dynamically imported module|error loading dynamically imported module/i
 
 function reloadOnce() {
+  // Hors ligne (mode avion), un chunk manquant ne se règle pas en rechargeant :
+  // on retomberait sur la même page en cache (ou sur offline.html, ce qui ferait
+  // perdre la page affichée) -- et le rechargement ne servirait à rien.
+  if (!navigator.onLine) return
   const key = 'chunk-error-reload-at'
   const last = Number(sessionStorage.getItem(key) || 0)
   // Garde-fou : si le rechargement lui-même retombe sur une erreur de chunk (CDN en

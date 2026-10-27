@@ -3,6 +3,7 @@ import { useEffect, useState } from 'react'
 import { useLang } from '@/lib/LangContext'
 import { supabase } from '@/lib/supabase'
 import { Capacitor } from '@capacitor/core'
+import { isNativeOfflineEnabled } from '@/lib/offlineMode'
 
 function urlBase64ToUint8Array(base64: string): Uint8Array {
   const padding = '='.repeat((4 - base64.length % 4) % 4)
@@ -65,8 +66,12 @@ export default function PWAInstall() {
     // natif (NativeInit.tsx, qui compare une version d'app contre l'API et
     // force un reload) : deux systemes independants agissant sur les memes
     // navigations/assets, redondant et potentiellement source de conflit.
-    if ('serviceWorker' in navigator && !Capacitor.isNativePlatform()) {
+    // Natif : le SW n'est enregistré que si le mode hors ligne (bêta) a été
+    // activé dans le profil -- voir lib/offlineMode.ts.
+    const native = Capacitor.isNativePlatform()
+    if ('serviceWorker' in navigator && (!native || isNativeOfflineEnabled())) {
       navigator.serviceWorker.register('/sw.js').then(async () => {
+        if (native) return // pas de web push dans l'app native (FCM), et `Notification` n'y existe pas
         // Si l'user est connecté et que la permission est déjà accordée, subscribe silencieusement
         const perm = Notification.permission
         if (perm === 'granted') {

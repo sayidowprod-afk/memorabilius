@@ -15,6 +15,8 @@ import { subscribePush } from '@/components/PWAInstall'
 import ShowcaseWidget from '@/components/ShowcaseWidget'
 import PushNotificationSettings from '@/components/PushNotificationSettings'
 import SecuritySettings from '@/components/SecuritySettings'
+import { clearOfflineUserData } from '@/lib/offline'
+import OfflineSettings from '@/components/OfflineSettings'
 
 export default function Profil() {
   const router = useRouter()
@@ -326,7 +328,7 @@ export default function Profil() {
     try {
       const { data: { session } } = await supabase.auth.getSession()
       const r = await fetch('/api/delete-account', { method: 'DELETE', headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${session?.access_token}` }, body: JSON.stringify({ userId }) })
-      if (r.ok) { await supabase.auth.signOut(); window.location.href = '/' }
+      if (r.ok) { clearOfflineUserData(); await supabase.auth.signOut(); window.location.href = '/' }
       else { toast.error(t('profile_err_delete')); setDeleting(false) }
     } catch { toast.error(t('profile_err_generic')); setDeleting(false) }
   }
@@ -479,6 +481,7 @@ export default function Profil() {
       <div style={{ background: dark ? '#1e1e1e' : 'white', borderRadius: 16, padding: 30, boxShadow: '0 4px 20px rgba(0,0,0,0.08)', marginBottom: 20 }}>
         <h3 style={{ fontWeight: 800, marginBottom: 8 }}>🔔 Notifications</h3>
         <PushNotificationSettings dark={dark} />
+        <OfflineSettings />
       </div>
 
       {/* Test wrap mensuel */}

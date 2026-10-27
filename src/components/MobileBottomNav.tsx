@@ -9,6 +9,7 @@ import { useTheme } from '@/lib/ThemeContext'
 import { useLang } from '@/lib/LangContext'
 import { useIsNative, useIsAppUI } from '@/lib/useIsNative'
 import { hapticTap } from '@/lib/haptics'
+import { clearOfflineUserData } from '@/lib/offline'
 import BottomSheet from '@/components/BottomSheet'
 import { NAV_CONTENT_HEIGHT, NAV_SAFE_AREA_BOTTOM, NAV_TOTAL_HEIGHT_CSS } from '@/lib/nativeLayout'
 
@@ -129,6 +130,7 @@ export default function MobileBottomNav() {
   const handleLogout = async () => {
     setSheet(null)
     await unsubscribeAllPush()
+    clearOfflineUserData()
     await supabase.auth.signOut()
     router.push('/')
   }
