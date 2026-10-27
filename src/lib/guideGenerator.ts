@@ -55,7 +55,10 @@ interface UserCard { variation: string | null; num: string | null; image_recto: 
 const NOISE = new Set(['panini', 'prizm', 'basketball', 'football', 'nba', 'parallel', 'the', 'and', 'of', 'card', 'cards'])
 function tokensOf(v: string, product: Set<string>): string[] {
   return v.toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g, '').replace(/[^a-z0-9 ]/g, ' ').split(/\s+/)
-    .map(w => (w === 'laser' ? 'lazer' : w)).filter(w => w && !NOISE.has(w) && !product.has(w) && !/^\d{4}$/.test(w))
+    .map(w => (w === 'laser' ? 'lazer' : w))
+    // « Prizms Black », « Black Prizms » : le pluriel du nom du produit doit disparaitre comme « Prizm »
+    .map(w => (w.length > 3 && w.endsWith('s') && (NOISE.has(w.slice(0, -1)) || product.has(w.slice(0, -1))) ? w.slice(0, -1) : w))
+    .filter(w => w && !NOISE.has(w) && !product.has(w) && !/^\d{4}$/.test(w))
 }
 const keyOf = (v: string, product: Set<string>) => tokensOf(v, product).sort().join(' ')
 
@@ -88,8 +91,12 @@ function printRunOf(cards: UserCard[]): string {
 // Chez Panini les couleurs courantes (Blue, Red, Orange, Purple...) changent de numerotation selon le produit et l'annee : on ne les copie
 // donc PAS d'un produit a l'autre. Ne sont communs a tout Panini que les 1/1, Gold /10, Green et Black Gold /5, Tie-Dye et Mojo /25, et les
 // variantes de format dont le nom est propre (Choice, Fast Break, FOTL, Pulsar, Velocity...). Source : liste Gemini « Panini NBA Parallels » (a verifier).
+// Parallèles de base jamais numerotees chez Panini : un tirage lu dans les galeries (saisie erronee) est ignore.
+const PANINI_NEVER_NUMBERED = new Set(['silver', 'holo'])
+
 const PANINI_RUNS: Record<string, number> = {
-  'Black Finite': 1, 'Black Prizm': 1, 'Black Vinyl': 1, 'Gold Vinyl': 1, 'Nebula': 1, 'Platinum': 1, 'Logoman': 1, 'Masterpiece': 1,
+  Silver: 0, Holo: 0,
+  'Black Finite': 1, 'Black Prizm': 1, 'Choice Nebula': 1, 'Black Vinyl': 1, 'Gold Vinyl': 1, 'Nebula': 1, 'Platinum': 1, 'Logoman': 1, 'Masterpiece': 1,
   'Green': 5, 'Black Gold': 5, 'Emerald': 5, 'Neon Green': 5, 'White FOTL': 7, 'Green Choice': 8, 'Lucky Envelopes': 8,
   'Gold': 10, 'Gold Wave': 10, 'Gold Shimmer': 10, 'Gold Glitter': 10, 'Sapphire': 10, 'Gold Disco': 10, 'Gold Fast Break': 10, 'Ruby': 15,
   'Cherry Blossom': 20, 'Bronze': 20, 'Fast Break Bronze': 20, 'Fast Break Pink': 50, 'Fast Break Blue': 150, 'Tie-Dye': 25, 'Mojo': 25, 'Green Pulsar': 25, 'Camo': 25, 'Orange Rainbow': 25, 'Orange Wave': 25, 'Dragon': 25,
@@ -290,7 +297,9 @@ export async function generateGuideFromSet(setId: number, opts: { skip?: string[
     return row
   })
   // du plus rare (sommet de la pyramide) au plus courant : tirages croissants, puis les non numerotes par ordre alphabetique
-  const est = await siblingRuns((['panini', 'topps', 'upper deck', 'leaf'].find(b => (set.brand || set.name || '').toLowerCase().includes(b))) || '', productWords, prodSet).catch(() => new Map<string, number>())
+  const brandName = (['panini', 'topps', 'upper deck', 'leaf'].find(b => (set.brand || set.name || '').toLowerCase().includes(b))) || ''
+  if (brandName === 'panini') for (const r of rows) if (PANINI_NEVER_NUMBERED.has(keyOf(r.name, prodSet))) r.printRun = ''
+  const est = await siblingRuns(brandName, productWords, prodSet).catch(() => new Map<string, number>())
   const estOf = (r: PyramidRow) => est.get(keyOf(r.name, prodSet))
   const estimated = rows.filter(r => !r.printRun && estOf(r) !== undefined)
   const estimatedLabels = estimated.map(r => `${r.name} /${estOf(r)}`)
@@ -385,7 +394,8 @@ export async function reorderGuideParallels(title: string, blocks: GuideBlock[],
     const estOf = (r: PyramidRow) => (r.printRun ? undefined : est.get(keyOf(r.name, prodSet)))
     const runNum = (r: PyramidRow) => (r.printRun ? Number(r.printRun.replace(/\D/g, '')) || Infinity : (estOf(r) ?? Infinity))
     // tirage estime ecrit dans le champ ; les parallèles numerotees d'abord, les autres ensuite (ordre actuel conserve)
-    const filled = b.rows.map(r => { const e = estOf(r); if (e === undefined) return r; estimated.push(`${r.name} /${e}`); return { ...r, printRun: `/${e}` } })
+    const base = brand === 'panini' ? b.rows.map(r => (PANINI_NEVER_NUMBERED.has(keyOf(r.name, prodSet)) && r.printRun ? { ...r, printRun: '' } : r)) : b.rows
+    const filled = base.map(r => { const e = estOf(r); if (e === undefined) return r; estimated.push(`${r.name} /${e}`); return { ...r, printRun: `/${e}` } })
     const sorted = filled.map((r, i) => ({ r, i })).sort((x, y) => runNum(x.r) - runNum(y.r) || x.i - y.i).map(x => x.r)
     return { ...b, rows: sorted }
   })
