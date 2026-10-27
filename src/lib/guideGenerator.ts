@@ -88,6 +88,13 @@ function printRunOf(cards: UserCard[]): string {
 const PANINI_RUNS: Record<string, number> = {
   'Red Wave': 299, 'Blue Wave': 249, 'Purple Ice': 199, 'Pink Scope': 125, 'Blue Ice': 49, 'Mojo': 25,
   'Cherry Blossom': 20, 'Gold': 10, 'Plum Blossom': 8, 'Black Gold': 5,
+  // Complement (liste Gemini « Panini NBA Parallels », a verifier) : seulement les valeurs uniques qui ne contredisent pas le tableau ci-dessus.
+  'Black Finite': 1, 'Black Prizm': 1, 'Black Vinyl': 1, 'Gold Vinyl': 1, 'Nebula': 1, 'Platinum': 1, 'Logoman': 1, 'Masterpiece': 1,
+  'Green': 5, 'Emerald': 5, 'Neon Green': 5, 'FOTL Shimmer': 7, 'White FOTL': 7, 'Green Choice': 8, 'Lucky Envelopes': 8,
+  'Gold Wave': 10, 'Gold Shimmer': 10, 'Gold Glitter': 10, 'Sapphire': 10, 'Gold Disco': 10, 'Gold Fast Break': 10, 'Ruby': 15,
+  'Bronze': 20, 'Tie-Dye': 25, 'Green Pulsar': 25, 'Camo': 25, 'Orange Rainbow': 25, 'Orange Wave': 25, 'Dragon': 25,
+  'Purple Pulsar': 35, 'Black Velocity': 39, 'Pink Pulsar': 42, 'Orange': 49, 'Blue Choice': 49, 'Pink Velocity': 79, 'Choice Red': 88,
+  'Green Wave': 99, 'Green Rainbow': 99, 'Basketball': 225,
 }
 
 export type GuideRows = { title: string | null; blocks: unknown }[]
