@@ -213,7 +213,7 @@ function Avatar({ src, name }: { src?: string; name: string }) {
   const [failed, setFailed] = useState(false)
   const initials = name.split(' ').map(w => w[0]).join('').slice(0, 2).toUpperCase()
   return (
-    <div style={{ width: 40, height: 40, borderRadius: '50%', overflow: 'hidden', flexShrink: 0, background: 'rgba(255,255,255,.12)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+    <div style={{ width: 'var(--bs-av)', height: 'var(--bs-av)', borderRadius: '50%', overflow: 'hidden', flexShrink: 0, background: 'rgba(255,255,255,.12)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
       {src && !failed
         // eslint-disable-next-line @next/next/no-img-element
         ? <img src={src} alt="" loading="lazy" onError={() => setFailed(true)} style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'top' }} />
@@ -223,14 +223,14 @@ function Avatar({ src, name }: { src?: string; name: string }) {
 }
 
 function BoxGroupTable({ group, abbr, expanded }: { group: BoxScoreGroup; abbr?: string; expanded: boolean }) {
-  const cols = `158px repeat(${group.labels.length}, minmax(46px, 1fr))`
-  const cell: React.CSSProperties = { padding: '0 6px', textAlign: 'center', whiteSpace: 'nowrap' }
-  const first: React.CSSProperties = { position: 'sticky', left: 0, zIndex: 1, padding: '0 8px 0 10px' }
+  const cols = `var(--bs-first) repeat(${group.labels.length}, minmax(var(--bs-col), 1fr))`
+  const cell: React.CSSProperties = { padding: '0 var(--bs-pad)', textAlign: 'center', whiteSpace: 'nowrap' }
+  const first: React.CSSProperties = { position: 'sticky', left: 0, zIndex: 1, padding: '0 6px 0 var(--bs-pad-first)' }
   const rows = expanded ? group.rows : group.rows.slice(0, COLLAPSED_ROWS)
   return (
     <div style={{ marginBottom: 18 }}>
-      <div style={{ overflowX: 'auto' }}>
-        <div style={{ minWidth: 158 + group.labels.length * 52, fontFamily: UI_FONT, color: '#fff' }}>
+      <div className="pronos-bs-scroll" style={{ overflowX: 'auto' }}>
+        <div style={{ minWidth: `calc(var(--bs-first) + ${group.labels.length} * var(--bs-col))`, fontFamily: UI_FONT, color: '#fff' }}>
           <div style={{ display: 'grid', gridTemplateColumns: cols, alignItems: 'center', height: 36, color: 'rgba(255,255,255,.55)', fontWeight: 800, fontSize: 12 }}>
             <div style={{ ...first, background: BS_BG, fontSize: 14, fontWeight: 700, color: 'rgba(255,255,255,.9)', height: '100%', display: 'flex', alignItems: 'center' }}>{group.title}</div>
             {group.labels.map(l => <div key={l} style={cell}>{l}</div>)}
@@ -239,11 +239,11 @@ function BoxGroupTable({ group, abbr, expanded }: { group: BoxScoreGroup; abbr?:
             const bg = i % 2 === 0 ? 'rgba(255,255,255,.05)' : 'transparent'
             const posColor = (r.pos && POS_COLORS[r.pos]) || 'rgba(255,255,255,.55)'
             return (
-              <div key={i} style={{ display: 'grid', gridTemplateColumns: cols, alignItems: 'center', minHeight: 56, background: bg }}>
-                <div style={{ ...first, background: i % 2 === 0 ? '#111b3e' : BS_BG, height: '100%', display: 'flex', alignItems: 'center', gap: 10 }}>
+              <div key={i} style={{ display: 'grid', gridTemplateColumns: cols, alignItems: 'center', minHeight: 'var(--bs-row)', background: bg }}>
+                <div style={{ ...first, background: i % 2 === 0 ? '#111b3e' : BS_BG, height: '100%', display: 'flex', alignItems: 'center', gap: 'var(--bs-gap)' }}>
                   <Avatar src={r.headshot} name={r.name} />
                   <div style={{ minWidth: 0 }}>
-                    <div style={{ fontWeight: 800, fontSize: 14, whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis', maxWidth: 96 }}>{r.name}</div>
+                    <div style={{ fontWeight: 800, fontSize: 'var(--bs-name)', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis', maxWidth: 'var(--bs-name-w)' }}>{r.name}</div>
                     <div style={{ fontWeight: 700, fontSize: 11, whiteSpace: 'nowrap', color: 'rgba(255,255,255,.55)' }}>
                       {r.pos && <span style={{ color: posColor }}>{r.pos}</span>}
                       {r.pos && abbr ? ' • ' : ''}{abbr}
@@ -251,14 +251,14 @@ function BoxGroupTable({ group, abbr, expanded }: { group: BoxScoreGroup; abbr?:
                     </div>
                   </div>
                 </div>
-                {r.stats.map((v, j) => <div key={j} style={{ ...cell, fontSize: 14, fontWeight: 600 }}>{v}</div>)}
+                {r.stats.map((v, j) => <div key={j} style={{ ...cell, fontSize: 'var(--bs-fs)', fontWeight: 600 }}>{v}</div>)}
               </div>
             )
           })}
           {group.totals && (expanded || group.rows.length <= COLLAPSED_ROWS) && (
             <div style={{ display: 'grid', gridTemplateColumns: cols, alignItems: 'center', minHeight: 44, borderTop: '2px solid rgba(255,255,255,.22)', fontWeight: 800 }}>
               <div style={{ ...first, background: BS_BG, height: '100%', display: 'flex', alignItems: 'center', fontSize: 13 }}>Équipe</div>
-              {group.totals.map((v, j) => <div key={j} style={{ ...cell, fontSize: 14 }}>{v}</div>)}
+              {group.totals.map((v, j) => <div key={j} style={{ ...cell, fontSize: 'var(--bs-fs)' }}>{v}</div>)}
             </div>
           )}
         </div>
@@ -401,6 +401,8 @@ html[data-theme="dark"] .pronos-white-circle { background: #fff !important; }
 .pronos-sport-badge { display: flex; align-items: center; gap: 6px; margin-bottom: 6px; border-radius: 999px; padding: 3px 10px 3px 6px; }
 .pronos-vs-circle { width: 34px; height: 34px; margin: 5px 0; display: flex; align-items: center; justify-content: center; border-radius: 50%; }
 
+.pronos-bs-scroll { --bs-first: 158px; --bs-col: 52px; --bs-av: 40px; --bs-pad: 6px; --bs-pad-first: 10px; --bs-gap: 10px; --bs-row: 56px; --bs-name: 14px; --bs-name-w: 96px; --bs-fs: 14px; }
+@media (max-width: 680px) { .pronos-bs-scroll { --bs-first: 108px; --bs-col: 34px; --bs-av: 26px; --bs-pad: 2px; --bs-pad-first: 6px; --bs-gap: 6px; --bs-row: 42px; --bs-name: 12px; --bs-name-w: 66px; --bs-fs: 12.5px; } }
 .pronos-bs-toggle { display: flex; align-items: center; justify-content: center; gap: 6px; width: 100%; padding: 7px 0; border: 0; cursor: pointer; background: rgba(255,255,255,.07); color: #fff; font: 800 12px/1 -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; letter-spacing: .3px; }
 .pronos-bs-toggle:hover { background: rgba(255,255,255,.13); }
 
