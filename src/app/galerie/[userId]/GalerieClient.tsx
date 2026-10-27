@@ -1191,7 +1191,7 @@ export default function GalerieClient({ userId, initialCardUrl, initialCards, in
             // remplace par le lien court une fois la carte résolue côté client.
             if (!match.id_manuelle) {
               getCsvCardSharePath(userId, match.f).then(path => {
-                if (path.startsWith('/c/')) router.replace(path)
+                if (path.startsWith('/c/') && navigator.onLine) router.replace(path)
               })
             }
           }
@@ -1553,7 +1553,12 @@ export default function GalerieClient({ userId, initialCardUrl, initialCards, in
     // (carte qui apparait/disparait en boucle, notamment apres un F5 sur un viewer ouvert).
     if (popup?.f) sp.set('card', popup.f)
     const str = sp.toString()
-    router.replace(str ? `?${str}` : window.location.pathname, { scroll: false })
+    const next = str ? `?${str}` : window.location.pathname
+    // Hors ligne, router.replace declenche une requete serveur (RSC) qui echoue :
+    // Next recharge alors la page en entier -- la fiche carte clignote et ne s'ouvre
+    // jamais. history.replaceState met a jour l'URL (et useSearchParams) sans reseau.
+    if (!navigator.onLine) window.history.replaceState(null, '', next)
+    else router.replace(next, { scroll: false })
   }, [loaded, search, fTeamDebounced, fBrandDebounced, fYear, fCollectionTag, sortBy, sortBy2, pinTeam, filterVente, popup, activeTab, objectifsSubTab])
 
   useEffect(() => {
