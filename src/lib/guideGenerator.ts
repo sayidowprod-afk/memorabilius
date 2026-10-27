@@ -90,10 +90,11 @@ const PANINI_RUNS: Record<string, number> = {
   'Cherry Blossom': 20, 'Gold': 10, 'Plum Blossom': 8, 'Black Gold': 5,
 }
 
-async function siblingRuns(brand: string, productWords: string[], prodSet: Set<string>): Promise<Map<string, number>> {
+export type GuideRows = { title: string | null; blocks: unknown }[]
+async function siblingRuns(brand: string, productWords: string[], prodSet: Set<string>, preloaded?: GuideRows): Promise<Map<string, number>> {
   const out = new Map<string, number>()
   const wanted = productWords.map(w => w.toLowerCase())
-  const { data } = await supabase.from('guides').select('title, blocks').order('id', { ascending: false })
+  const data = preloaded ?? (await supabase.from('guides').select('title, blocks').order('id', { ascending: false })).data
   const collect = (accept: (title: string) => boolean) => {
     for (const g of data || []) {
       const title = String(g.title || '').toLowerCase()
@@ -264,7 +265,10 @@ export async function generateGuideFromSet(setId: number, opts: { skip?: string[
   const est = await siblingRuns((['panini', 'topps', 'upper deck', 'leaf'].find(b => (set.brand || set.name || '').toLowerCase().includes(b))) || '', productWords, prodSet).catch(() => new Map<string, number>())
   const estOf = (r: PyramidRow) => est.get(keyOf(r.name, prodSet))
   const estimated = rows.filter(r => !r.printRun && estOf(r) !== undefined)
-  const runNum = (r: PyramidRow) => (r.printRun ? Number(r.printRun.slice(1)) : (estOf(r) ?? Infinity))
+  const estimatedLabels = estimated.map(r => `${r.name} /${estOf(r)}`)
+  // tirage estime ecrit dans le champ (signale dans les avertissements) : les parallèles numerotees passent toujours au-dessus des autres
+  for (const r of estimated) r.printRun = `/${estOf(r)}`
+  const runNum = (r: PyramidRow) => (r.printRun ? Number(r.printRun.replace(/\D/g, '')) || Infinity : Infinity)
   rows.sort((a, b) => runNum(a) - runNum(b) || a.name.localeCompare(b.name))
 
   const h = (t: string): GuideBlock => ({ type: 'text', html: `<h2 style="text-align: center;">${t}</h2><p></p>` })
@@ -286,7 +290,7 @@ export async function generateGuideFromSet(setId: number, opts: { skip?: string[
   const nIns = inserts.length + autos.length + memos.length
   warnings.push(`Photos trouvées dans les galeries : ${parallelImages}/${rows.length} parallèles, ${imagesFound - parallelImages}/${nIns} inserts et autographes (à compléter à la main pour les autres)`)
   if (rows.length) warnings.push(`Tirages trouvés : ${runsFound}/${rows.length} parallèles (les autres sont à renseigner à la main${unknown ? `, ${unknown} sans couleur reconnue` : ''})`)
-  if (estimated.length) warnings.push(`Ordre estimé d'après les autres guides du même produit ou fabricant pour ${estimated.length} parallèle(s) sans tirage (champ laissé vide, à confirmer) : ${estimated.map(r => `${r.name} ≈ /${estOf(r)}`).join(', ')}`)
+  if (estimatedLabels.length) warnings.push(`Tirages estimés d'après les autres guides du même produit ou fabricant (à vérifier) pour ${estimatedLabels.length} parallèle(s) : ${estimatedLabels.join(', ')}`)
   warnings.push('Odds (tableaux de probabilités) à ajouter à la main')
 
   return {
@@ -336,19 +340,25 @@ export async function rehostGuideImages(blocks: GuideBlock[], onProgress?: (done
 
 // Reordonne les pyramides d'un guide DEJA fait : memes regles que le generateur (tirage saisi, sinon tirage connu d'un autre guide du meme
 // produit puis du meme fabricant), du plus rare au plus courant. Les lignes sans aucune information gardent leur ordre relatif.
-export async function reorderGuideParallels(title: string, blocks: GuideBlock[]): Promise<{ blocks: GuideBlock[]; estimated: string[] }> {
+export async function loadGuideRows(): Promise<GuideRows> {
+  const { data } = await supabase.from('guides').select('title, blocks').order('id', { ascending: false })
+  return data || []
+}
+
+export async function reorderGuideParallels(title: string, blocks: GuideBlock[], preloaded?: GuideRows): Promise<{ blocks: GuideBlock[]; estimated: string[] }> {
   const words = title.replace(/\b(guide|and|checklist|basketball|football|baseball|hockey|soccer)\b/gi, ' ').replace(/\b\d{4}(?:-\d{2,4})?\b/g, ' ').split(/\s+/).filter(Boolean)
   const brand = ['panini', 'topps', 'upper deck', 'leaf'].find(b => title.toLowerCase().includes(b)) || ''
   const productWords = words.filter(w => !/^(panini|topps|upper|deck|leaf)$/i.test(w))
   const prodSet = new Set<string>(words.map(w => w.toLowerCase()))
-  const est = await siblingRuns(brand, productWords, prodSet)
+  const est = await siblingRuns(brand, productWords, prodSet, preloaded)
   const estimated: string[] = []
   const out = blocks.map(b => {
     if (b.type !== 'pyramid') return b
     const estOf = (r: PyramidRow) => (r.printRun ? undefined : est.get(keyOf(r.name, prodSet)))
     const runNum = (r: PyramidRow) => (r.printRun ? Number(r.printRun.replace(/\D/g, '')) || Infinity : (estOf(r) ?? Infinity))
-    for (const r of b.rows) { const e = estOf(r); if (e !== undefined) estimated.push(`${r.name} ≈ /${e}`) }
-    const sorted = b.rows.map((r, i) => ({ r, i })).sort((x, y) => runNum(x.r) - runNum(y.r) || x.i - y.i).map(x => x.r)
+    // tirage estime ecrit dans le champ ; les parallèles numerotees d'abord, les autres ensuite (ordre actuel conserve)
+    const filled = b.rows.map(r => { const e = estOf(r); if (e === undefined) return r; estimated.push(`${r.name} /${e}`); return { ...r, printRun: `/${e}` } })
+    const sorted = filled.map((r, i) => ({ r, i })).sort((x, y) => runNum(x.r) - runNum(y.r) || x.i - y.i).map(x => x.r)
     return { ...b, rows: sorted }
   })
   return { blocks: out, estimated }

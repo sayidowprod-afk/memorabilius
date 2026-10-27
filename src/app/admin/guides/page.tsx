@@ -5,6 +5,8 @@ import { useRouter } from 'next/navigation'
 import { supabase } from '@/lib/supabase'
 import { useTheme } from '@/lib/ThemeContext'
 import { useLang, localeFor } from '@/lib/LangContext'
+import { reorderGuideParallels, loadGuideRows } from '@/lib/guideGenerator'
+import type { GuideBlock } from '@/lib/guideBlockTypes'
 
 interface Guide {
   id: number
@@ -22,6 +24,9 @@ export default function AdminGuidesPage() {
   const router = useRouter()
   const [guides, setGuides] = useState<Guide[]>([])
   const [loading, setLoading] = useState(true)
+  const [selected, setSelected] = useState<Set<number>>(new Set())
+  const [reorderMsg, setReorderMsg] = useState('')
+  const [reordering, setReordering] = useState(false)
 
   useEffect(() => {
     supabase.auth.getSession().then(async ({ data: { session } }) => {
@@ -37,6 +42,33 @@ export default function AdminGuidesPage() {
     const { data } = await supabase.from('guides').select('id, slug, title, category, published, published_at, updated_at').order('updated_at', { ascending: false })
     setGuides(data || [])
     setLoading(false)
+  }
+
+  const toggleSel = (id: number) => setSelected(prev => { const n = new Set(prev); if (n.has(id)) n.delete(id); else n.add(id); return n })
+
+  // Reordonne les pyramides des guides donnes (tirage saisi, sinon autres guides du meme produit/fabricant) et enregistre directement.
+  const reorderGuides = async (list: Guide[]) => {
+    if (!list.length) return
+    if (!confirm(`Réordonner les parallèles de ${list.length} guide${list.length > 1 ? 's' : ''} (du plus rare au plus courant) ? L'ordre actuel des pyramides sera remplacé et enregistré.`)) return
+    setReordering(true); setReorderMsg('')
+    let changed = 0, failed = 0
+    try {
+      const rows = await loadGuideRows() // chargees une fois pour tout le lot
+      for (let i = 0; i < list.length; i++) {
+        const g = list[i]
+        setReorderMsg(`Réordonnement ${i + 1}/${list.length} : ${g.title}`)
+        const { data: full } = await supabase.from('guides').select('blocks').eq('id', g.id).single()
+        const blocks = (full?.blocks as GuideBlock[] | null) || []
+        if (!blocks.some(b => b.type === 'pyramid')) continue
+        const out = await reorderGuideParallels(g.title, blocks, rows)
+        if (JSON.stringify(out.blocks) === JSON.stringify(blocks)) continue
+        const { error } = await supabase.from('guides').update({ blocks: out.blocks, updated_at: new Date().toISOString() }).eq('id', g.id)
+        if (error) failed++; else changed++
+      }
+      setReorderMsg(`Terminé : ${changed} guide${changed > 1 ? 's' : ''} réordonné${changed > 1 ? 's' : ''}, ${list.length - changed - failed} déjà dans le bon ordre${failed ? `, ${failed} en erreur` : ''}. Les traductions EN/DE gardent l'ancien ordre jusqu'à leur régénération.`)
+      await loadAll()
+    } catch (e) { setReorderMsg(e instanceof Error ? e.message : 'Erreur') }
+    setReordering(false)
   }
 
   const togglePublish = async (g: Guide) => {
@@ -90,12 +122,27 @@ export default function AdminGuidesPage() {
           </div>
         </div>
 
+        {guides.length > 0 && (
+          <div style={{ display: 'flex', alignItems: 'center', gap: 12, flexWrap: 'wrap', marginBottom: 14, color: text, fontSize: 13 }}>
+            <label style={{ display: 'flex', alignItems: 'center', gap: 6, fontWeight: 700, cursor: 'pointer' }}>
+              <input type="checkbox" checked={selected.size === guides.length} onChange={e => setSelected(e.target.checked ? new Set(guides.map(g => g.id)) : new Set())} />
+              Tout sélectionner
+            </label>
+            <button type="button" disabled={reordering || selected.size === 0} onClick={() => reorderGuides(guides.filter(g => selected.has(g.id)))}
+              style={{ padding: '7px 12px', borderRadius: 7, border: `1px solid ${border}`, background: 'transparent', color: text, fontWeight: 700, fontSize: 12, cursor: reordering || selected.size === 0 ? 'default' : 'pointer', opacity: reordering || selected.size === 0 ? 0.5 : 1 }}>
+              ↕ Réordonner la sélection ({selected.size})
+            </button>
+            {reorderMsg && <span style={{ color: sub }}>{reorderMsg}</span>}
+          </div>
+        )}
+
         {loading ? <p style={{ color: sub }}>...</p> : guides.length === 0 ? (
           <p style={{ color: sub, fontSize: 14 }}>{t('guides_empty')}</p>
         ) : (
           <div style={{ display: 'flex', flexDirection: 'column', gap: 10 }}>
             {guides.map(g => (
               <div key={g.id} style={{ background: card, border: `1px solid ${border}`, borderRadius: 10, padding: '14px 18px', display: 'flex', justifyContent: 'space-between', alignItems: 'center', gap: 12, flexWrap: 'wrap' }}>
+                <input type="checkbox" checked={selected.has(g.id)} onChange={() => toggleSel(g.id)} aria-label="Sélectionner" style={{ flexShrink: 0 }} />
                 <div style={{ minWidth: 0, flex: 1 }}>
                   <div style={{ display: 'flex', alignItems: 'center', gap: 8, flexWrap: 'wrap' }}>
                     <p style={{ color: text, margin: 0, fontWeight: 700 }}>{g.title}</p>
@@ -114,6 +161,9 @@ export default function AdminGuidesPage() {
                   <Link href={`/admin/guides/${g.id}`} style={{ padding: '7px 12px', borderRadius: 7, background: '#003DA6', color: 'white', fontWeight: 700, fontSize: 12, textDecoration: 'none' }}>
                     {t('admin_guides_edit')}
                   </Link>
+                  <button onClick={() => reorderGuides([g])} disabled={reordering} title="Réordonner les parallèles" style={{ padding: '7px 12px', borderRadius: 7, border: `1px solid ${border}`, background: 'transparent', color: text, fontWeight: 700, fontSize: 12, cursor: 'pointer' }}>
+                    ↕ Réordonner
+                  </button>
                   <button onClick={() => duplicate(g)} style={{ padding: '7px 12px', borderRadius: 7, border: `1px solid ${border}`, background: 'transparent', color: text, fontWeight: 700, fontSize: 12, cursor: 'pointer' }}>
                     {t('admin_guides_duplicate')}
                   </button>
