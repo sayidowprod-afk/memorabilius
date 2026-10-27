@@ -16,7 +16,13 @@ const STATE_KEY = 'offline_prep_state'
 export const PREP_EVENT = 'offline-prep-update'
 const IMAGE_CONCURRENCY = 4
 
+// À incrémenter quand le SW / la préparation changent de façon à invalider ce
+// qui a déjà été préparé sur les appareils (sinon rien ne se relance avant 12h).
+// v2 : cache des requêtes .range() (206), HEAD et RPC ; tous les onglets + une carte.
+export const PREP_VERSION = 2
+
 export interface PrepState {
+  v?: number          // version de la préparation (voir PREP_VERSION)
   at: number          // dernière préparation des pages (ms)
   pages: number
   images: number      // images mises en cache
@@ -41,7 +47,7 @@ function saveState(s: PrepState) {
 // étapes distinctes qui ne doivent pas s'écraser mutuellement).
 function patchState(patch: Partial<PrepState>) {
   const base: PrepState = readPrepState() ?? { at: 0, pages: 0, images: 0, imagesTotal: 0, imagesDone: false }
-  saveState({ ...base, ...patch })
+  saveState({ ...base, ...patch, v: PREP_VERSION })
 }
 
 // Vide l'état mémorisé (déconnexion / désactivation).
@@ -53,18 +59,29 @@ export function clearPrepState() {
 // Onglets de la galerie dont les données ne se chargent qu'au clic : on les
 // ouvre un par un pour que le service worker les enregistre aussi. Repérés par
 // leur texte (même iframe, même origine -> le DOM est accessible).
-const GALLERY_TABS = ['classeurs', 'objectifs', 'badges', 'commentaires']
+const wait = (ms: number) => new Promise(r => setTimeout(r, ms))
 
+// Ouvre tous les onglets de la galerie (barre `.da-tabs`, indépendant de la
+// langue) puis UNE carte : la fiche carte / viewer 3D est un chunk chargé
+// seulement à l'usage (next/dynamic), absent du cache tant qu'on n'en a pas
+// ouvert une -- et chaque carte ouverte enregistre ses propres requêtes.
 async function openGalleryTabs(frame: HTMLIFrameElement) {
   try {
     const doc = frame.contentDocument
     if (!doc) return
-    for (const tab of GALLERY_TABS) {
+    const tabs = [...doc.querySelectorAll<HTMLButtonElement>('.da-tabs button')]
+    for (const btn of tabs) {
       if (!navigator.onLine) return
-      const btn = [...doc.querySelectorAll('button')].find(b => (b.textContent || '').trim().toLowerCase() === tab)
-      if (!btn) continue
       btn.click()
-      await new Promise(r => setTimeout(r, 4000)) // le temps que l'onglet charge ses données
+      await wait(4000) // le temps que l'onglet charge ses données
+    }
+    // Retour sur l'onglet Collection (le premier) pour y ouvrir une carte.
+    tabs[0]?.click()
+    await wait(2500)
+    const card = doc.querySelector<HTMLElement>('a[href*="?card="]')
+    if (card && navigator.onLine) {
+      card.click()
+      await wait(9000) // chargement du chunk viewer + des infos de la carte
     }
   } catch { /* structure de page différente : on garde ce qui a déjà été chargé */ }
 }
@@ -83,7 +100,7 @@ function loadInIframe(url: string, settleMs: number, opts?: { openTabs?: boolean
       if (opts?.openTabs) await openGalleryTabs(f)
       done()
     }, { once: true })
-    setTimeout(done, 90000) // garde-fou : page qui ne finit jamais de charger
+    setTimeout(done, 150000) // garde-fou : page qui ne finit jamais de charger
     document.body.appendChild(f)
   })
 }
@@ -155,7 +172,7 @@ export async function prepareOffline(
     if (!opts.images) return
 
     const all = (await listUserImages(userId)).grid
-    const cache = await caches.open('memorabilius-images-v1')
+    const cache = await caches.open('memorabilius-images-v2')
     const todo: string[] = []
     for (const u of all) { if (!(await cache.match(u))) todo.push(u) }
 
@@ -193,7 +210,7 @@ export async function prepareOffline(
 // donc dans le MÊME cache images que les vignettes, via new Image(). Étape À
 // PART et sur demande : plusieurs Go pour une collection de quelques centaines
 // de cartes.
-const IMAGE_CACHE = 'memorabilius-images-v1'
+const IMAGE_CACHE = 'memorabilius-images-v2'
 const HD_CONCURRENCY = 3
 
 export interface HdPlan {

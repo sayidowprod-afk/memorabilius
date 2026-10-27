@@ -1,7 +1,7 @@
 'use client'
 import { useEffect } from 'react'
 import { useAuth } from '@/lib/AuthContext'
-import { prepareOffline, readPrepState } from '@/lib/offlinePrepare'
+import { prepareOffline, readPrepState, PREP_VERSION } from '@/lib/offlinePrepare'
 
 const REFRESH_EVERY_MS = 12 * 3600 * 1000
 
@@ -37,7 +37,7 @@ export default function OfflinePrepare() {
       if (!(await waitForController(8000)) || cancelled) return
 
       const state = readPrepState()
-      if (state && Date.now() - state.at < REFRESH_EVERY_MS) return
+      if (state && state.v === PREP_VERSION && Date.now() - state.at < REFRESH_EVERY_MS) return
 
       const unmetered = conn?.type === 'wifi' || conn?.type === 'ethernet'
       prepareOffline(user.id, { images: !!unmetered }).catch(() => {})

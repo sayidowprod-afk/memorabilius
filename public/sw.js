@@ -11,7 +11,7 @@ const CACHE_NAME = 'memorabilius-v8'
 //              (voir dataCacheKey) -- purgé à la déconnexion
 const RUNTIME_CACHE_NAME = 'memorabilius-runtime-v1'
 const RUNTIME_CACHE_MAX_ENTRIES = 600
-const DATA_CACHE_NAME = 'memorabilius-data-v1'
+const DATA_CACHE_NAME = 'memorabilius-data-v2'
 const DATA_CACHE_MAX_ENTRIES = 600
 //  - HD      : images chargées en mode CORS (viewer 3D, export canvas), ~1 Mo
 //              pièce : cache séparé du cache images (voir le bloc cors plus bas)
@@ -25,7 +25,7 @@ const HD_CACHE_MAX_ENTRIES = 2500
 // Volontairement séparé du cache HTML/statique ci-dessus, qui lui reste
 // network-first (voir commentaire plus bas sur les risques de chunks JS
 // périmés) — les photos n'ont pas ce risque, une image ne "casse" jamais.
-const IMAGE_CACHE_NAME = 'memorabilius-images-v1'
+const IMAGE_CACHE_NAME = 'memorabilius-images-v2'
 // Assez pour une grosse collection préchargée hors ligne (voir
 // lib/offlinePrepare.ts) ; au-delà, les plus anciennes sont retirées.
 const IMAGE_CACHE_MAX_ENTRIES = 10000
@@ -102,7 +102,16 @@ async function networkFirst(event, request, cacheName, key, maxEntries) {
   }
   try {
     const res = await fetch(request)
-    if (res.ok) event.waitUntil(putAndTrim(cacheName, key, res.clone(), maxEntries))
+    if (res.ok) {
+      // Le Cache API refuse tout 206 (TypeError, avalé par putAndTrim) : or
+      // supabase-js répond en 206 à chaque .range() -- donc à toute la
+      // collection paginée par 1000. On le stocke comme un 200 ; le compteur
+      // (Content-Range) reste dans les en-têtes, seul le statut change.
+      const copy = res.status === 206
+        ? new Response(res.clone().body, { status: 200, statusText: 'OK', headers: res.headers })
+        : res.clone()
+      event.waitUntil(putAndTrim(cacheName, key, copy, maxEntries))
+    }
     return res
   } catch (err) {
     const hit = await cachedResponse(cacheName, key)
@@ -129,12 +138,30 @@ function userIdFromRequest(request) {
   }
 }
 
-function dataCacheKey(request) {
-  return new Request('https://sw-data.invalid/' + userIdFromRequest(request) + '/' + encodeURIComponent(request.url))
+function hashString(str) {
+  let h = 5381
+  for (let i = 0; i < str.length; i++) h = ((h * 33) ^ str.charCodeAt(i)) >>> 0
+  return h.toString(36)
 }
 
+// Clé = utilisateur + méthode + URL (+ corps pour une RPC : mêmes paramètres,
+// même réponse). Les HEAD (compteurs `head: true`) et les POST /rpc/ ne sont
+// pas des GET : le Cache API n'accepte que des clés GET, d'où cette clé
+// synthétique pour tous.
+async function dataCacheKey(request) {
+  const body = request.method === 'POST' ? '/' + hashString(await request.clone().text()) : ''
+  return new Request('https://sw-data.invalid/' + userIdFromRequest(request) + '/' + request.method + '/' + encodeURIComponent(request.url) + body)
+}
+
+// RPC en LECTURE uniquement (convention get_*) + bump_streak, dont on n'affiche
+// que le résultat (série en cours). Jamais une RPC d'écriture : hors ligne elle
+// renverrait une ancienne réponse et l'utilisateur croirait son action faite.
+const READ_RPC = /^\/rest\/v1\/rpc\/(get_[a-z0-9_]+|bump_streak)$/
+
 function isSupabaseRead(request, url) {
-  return request.method === 'GET' && /\.supabase\.co$/.test(url.hostname) && url.pathname.startsWith('/rest/v1/')
+  if (!/\.supabase\.co$/.test(url.hostname) || !url.pathname.startsWith('/rest/v1/')) return false
+  if (request.method === 'GET' || request.method === 'HEAD') return true
+  return request.method === 'POST' && READ_RPC.test(url.pathname)
 }
 
 function isRuntimeAsset(request, url) {
@@ -162,6 +189,30 @@ async function fetchImage(request) {
     } catch { /* pas de CORS ou erreur : on retombe sur la requête d'origine */ }
   }
   return fetch(request)
+}
+
+// Avatars (profil, équipe) : chemin fixe réécrasé à chaque changement de photo,
+// donc exclus du cache-first des images (voir isImageRequest). Réseau d'abord :
+// en ligne on a toujours la photo à jour, la copie ne sert que hors ligne.
+function isAvatarRequest(request) {
+  return request.method === 'GET' && request.mode !== 'cors' && /\/avatar\.[a-z0-9]+(\?|$)/i.test(request.url)
+}
+
+async function avatarFetch(event) {
+  const request = event.request
+  if (!self.navigator.onLine) {
+    const hit = await cachedResponse(IMAGE_CACHE_NAME, request)
+    if (hit) return hit
+  }
+  try {
+    const res = await fetchImage(request)
+    if (res.ok || res.type === 'opaque') event.waitUntil(putAndTrim(IMAGE_CACHE_NAME, request, res.clone(), IMAGE_CACHE_MAX_ENTRIES))
+    return res
+  } catch (err) {
+    const hit = await cachedResponse(IMAGE_CACHE_NAME, request)
+    if (hit) return hit
+    throw err
+  }
 }
 
 async function handleImageFetch(request) {
@@ -272,7 +323,7 @@ self.addEventListener('fetch', (event) => {
     // Lectures Supabase (données de la collection) : réseau d'abord, copie
     // locale par utilisateur en secours hors ligne.
     if (isSupabaseRead(event.request, url)) {
-      event.respondWith(networkFirst(event, event.request, DATA_CACHE_NAME, dataCacheKey(event.request), DATA_CACHE_MAX_ENTRIES))
+      event.respondWith(dataCacheKey(event.request).then(key => networkFirst(event, event.request, DATA_CACHE_NAME, key, DATA_CACHE_MAX_ENTRIES)))
       return
     }
 
@@ -281,6 +332,11 @@ self.addEventListener('fetch', (event) => {
     // cache-first (voir règle en tête de fichier).
     if (isRuntimeAsset(event.request, url)) {
       event.respondWith(networkFirst(event, event.request, RUNTIME_CACHE_NAME, event.request, RUNTIME_CACHE_MAX_ENTRIES))
+      return
+    }
+
+    if (isAvatarRequest(event.request)) {
+      event.respondWith(avatarFetch(event))
       return
     }
 

@@ -384,7 +384,7 @@ const BROKEN_IMAGE_FALLBACK = 'https://placehold.co/300x420?text=Image+indisponi
 // Nom du cache images du service worker (voir public/sw.js, IMAGE_CACHE_NAME) --
 // duplique volontairement la constante plutot que de l'importer (fichier public/
 // hors du bundle JS de l'app).
-const SW_IMAGE_CACHE = 'memorabilius-images-v1'
+const SW_IMAGE_CACHE = 'memorabilius-images-v2'
 
 // Une image qui echoue a charger reste cassee POUR TOUJOURS sur cet appareil si le
 // SW en a deja mis une reponse corrompue en cache (ex: fetch interrompu en cours de
@@ -862,6 +862,7 @@ export default function GalerieClient({ userId, initialCardUrl, initialCards, in
           } catch {}
         }
         setLoaded(true)
+        setCardsLoaded(true) // idem loadCSV : sinon le Grail Wall reste sur son squelette
       }
     }
     init(1)
@@ -1283,6 +1284,10 @@ export default function GalerieClient({ userId, initialCardUrl, initialCards, in
         } catch {}
       }
       setLoaded(true)
+      // Sans ça le Grail Wall restait sur son squelette gris pour toujours hors
+      // ligne (grailLoading = grailCards.length>0 && !cardsLoaded) : seul le
+      // chemin réussi (applyAndShow) levait ce drapeau.
+      setCardsLoaded(true)
     }
   }
 
