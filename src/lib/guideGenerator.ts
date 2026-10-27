@@ -107,6 +107,8 @@ async function siblingRuns(brand: string, productWords: string[], prodSet: Set<s
   }
   if (wanted.length) collect(t => wanted.every(w => t.includes(w)))
   if (brand) collect(t => t.includes(brand))
+  // Regle connue : chez Panini, « Black » est toujours un 1/1 (prioritaire sur ce que disent les autres guides).
+  if (brand === 'panini') out.set('black', 1)
   return out
 }
 
