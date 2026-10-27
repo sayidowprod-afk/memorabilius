@@ -289,3 +289,49 @@ export async function prepareHd(
     running = false
   }
 }
+
+// ── Vérification ───────────────────────────────────────────────────────────
+// Contrôle réel de ce qui est sur l'appareil (pas seulement les compteurs
+// mémorisés) : lit les caches du service worker.
+export interface VerifyReport {
+  home: boolean
+  gallery: boolean
+  viewer: boolean          // code du viewer 3D en cache
+  collectionData: boolean  // lignes de la collection en cache
+  dataEntries: number
+  images: { cached: number; total: number }
+  hd: { cached: number; total: number }
+  usage: number | null     // octets utilisés par le site
+}
+
+export async function verifyOffline(userId: string): Promise<VerifyReport> {
+  const pagesCache = await caches.open('memorabilius-v8')
+  const pageKeys = (await pagesCache.keys()).map(r => new URL(r.url).pathname)
+  const home = !!(await pagesCache.match('/', { ignoreSearch: true, ignoreVary: true }))
+  const gallery = pageKeys.some(p => p.startsWith('/galerie/'))
+
+  const dataKeys = (await (await caches.open('memorabilius-data-v2')).keys()).map(r => decodeURIComponent(r.url))
+  const mine = dataKeys.filter(u => u.includes('/' + userId + '/'))
+  const collectionData = mine.some(u => u.includes('cartes_manuelles'))
+
+  // Le viewer est un chunk à part : on le reconnaît à une chaîne qui lui est propre.
+  let viewer = false
+  const runtime = await caches.open('memorabilius-runtime-v1')
+  for (const req of await runtime.keys()) {
+    if (!req.url.endsWith('.js')) continue
+    const res = await runtime.match(req)
+    if (res && (await res.clone().text()).includes('/api/player-jersey')) { viewer = true; break }
+  }
+
+  const { grid, hd } = await listUserImages(userId)
+  const imgCache = await caches.open(IMAGE_CACHE)
+  const count = async (urls: string[]) => {
+    let n = 0
+    for (const u of urls) if (await imgCache.match(u)) n++
+    return { cached: n, total: urls.length }
+  }
+  let usage: number | null = null
+  try { usage = (await navigator.storage?.estimate?.())?.usage ?? null } catch { /* indisponible */ }
+
+  return { home, gallery, viewer, collectionData, dataEntries: mine.length, images: await count(grid), hd: await count(hd), usage }
+}

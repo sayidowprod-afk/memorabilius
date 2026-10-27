@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react'
 import { useIsNative, useIsAppUI } from '@/lib/useIsNative'
 import { useAuth } from '@/lib/AuthContext'
 import { isNativeOfflineEnabled, enableNativeOffline, disableNativeOffline } from '@/lib/offlineMode'
-import { prepareOffline, prepareHd, planHd, readPrepState, clearPrepState, PREP_EVENT, type PrepState, type PrepProgress } from '@/lib/offlinePrepare'
+import { prepareOffline, prepareHd, planHd, verifyOffline, type VerifyReport, readPrepState, clearPrepState, PREP_EVENT, type PrepState, type PrepProgress } from '@/lib/offlinePrepare'
 
 // Mode hors ligne dans les paramètres. Sur le web/PWA le service worker est toujours
 // actif : on n'affiche que l'état de la préparation et son bouton. Dans l'app
@@ -22,6 +22,8 @@ export default function OfflineSettings({ hideInAppUI = false }: { hideInAppUI?:
   const [state, setState] = useState<PrepState | null>(null)
   const [progress, setProgress] = useState<PrepProgress | null>(null)
   const [preparing, setPreparing] = useState(false)
+  const [report, setReport] = useState<VerifyReport | null>(null)
+  const [checking, setChecking] = useState(false)
 
   useEffect(() => {
     setNativeOn(isNativeOfflineEnabled())
@@ -88,6 +90,11 @@ export default function OfflineSettings({ hideInAppUI = false }: { hideInAppUI?:
     } finally {
       setPreparing(false); setProgress(null); setState(readPrepState())
     }
+  }
+
+  const verify = async () => {
+    setChecking(true); setMsg('')
+    try { setReport(await verifyOffline(user.id)) } catch { setMsg('Vérification impossible sur cet appareil.') } finally { setChecking(false) }
   }
 
   const when = state ? new Date(state.at).toLocaleString('fr-FR', { day: 'numeric', month: 'short', hour: '2-digit', minute: '2-digit' }) : null
@@ -157,6 +164,25 @@ export default function OfflineSettings({ hideInAppUI = false }: { hideInAppUI?:
                 {preparing ? 'En cours…' : state.hdDone ? 'Mettre à jour la HD' : 'Ajouter la HD (viewer 3D)'}
               </button>
             </>
+          )}
+          <button type="button" onClick={verify} disabled={checking || preparing}
+            style={{ marginTop: 8, marginLeft: 8, padding: '8px 14px', borderRadius: 8, border: '1px solid var(--border)', background: 'var(--bg3)', color: 'var(--text)', fontWeight: 700, fontSize: 13, cursor: 'pointer', opacity: checking ? 0.6 : 1 }}>
+            {checking ? 'Vérification…' : 'Vérifier le téléchargement'}
+          </button>
+          {report && (
+            <div style={{ marginTop: 10, lineHeight: 1.7 }}>
+              {([
+                ['Accueil', report.home],
+                ['Galerie', report.gallery],
+                ['Données de la collection (' + report.dataEntries + ' requêtes)', report.collectionData],
+                ['Viewer 3D', report.viewer],
+                ['Images : ' + report.images.cached + '/' + report.images.total, report.images.cached === report.images.total],
+                ['HD : ' + report.hd.cached + '/' + report.hd.total, report.hd.cached === report.hd.total],
+              ] as [string, boolean][]).map(([name, ok]) => (
+                <div key={name} style={{ color: ok ? '#27ae60' : '#e74c3c', fontWeight: 700 }}>{ok ? '✓' : '✗'} {name}</div>
+              ))}
+              {report.usage !== null && <div>Espace utilisé : {fmtSize(report.usage)}</div>}
+            </div>
           )}
           <div style={{ fontSize: 11, marginTop: 6 }}>Les images peuvent représenter plusieurs centaines de Mo : de préférence en Wi-Fi.</div>
         </div>
