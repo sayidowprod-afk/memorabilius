@@ -97,7 +97,7 @@ const PANINI_NEVER_NUMBERED = new Set(['silver', 'holo'])
 // propre, d'apres les listes de reference). Prioritaire sur les galeries.
 const PANINI_BLACK_EXCEPTIONS = new Set(['black gold', 'black velocity'])
 // Toute marque : une « Printing Plate » est toujours un 1/1.
-const isPrintingPlate = (name: string) => /printings+plates?/i.test(name)
+const isPrintingPlate = (name: string) => /printing\s+plates?/i.test(name)
 const isPaniniBlack1of1 = (name: string, prodSet: Set<string>) => {
   const k = keyOf(name, prodSet)
   return k.split(' ').includes('black') && !PANINI_BLACK_EXCEPTIONS.has(k)
