@@ -19,6 +19,7 @@ export const XP_AWARDS = {
   STREAK_30: 50,
   STREAK_100: 100,
   WEEKLY_CHALLENGE: 20,
+  PRONO_WIN: 5,
 } as const
 
 export function xpForCard(flags: { rc?: boolean; auto?: boolean; patch?: boolean; num?: boolean | string | null }): number {

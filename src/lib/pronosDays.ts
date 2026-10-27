@@ -28,12 +28,14 @@ export function isoDateInParis(date: Date): string {
 // correspondant à interroger côté API (api-sports date par date US/UTC) --
 // on interroge la date US du jour ET celle de la veille, pour attraper les
 // matchs qui commencent tard US mais tombent le lendemain à Paris.
-export function nextDays(n: number): { label: string; parisDate: string }[] {
-  const out: { label: string; parisDate: string }[] = []
+export function daysForOffsets(offsets: number[]): { label: string; parisDate: string; offset: number }[] {
   const now = new Date()
-  for (let i = 0; i < n; i++) {
-    const d = new Date(now.getTime() + i * 86400000)
-    out.push({ label: dayLabel(d), parisDate: isoDateInParis(d) })
-  }
-  return out
+  return offsets.map(offset => {
+    const d = new Date(now.getTime() + offset * 86400000)
+    return { label: dayLabel(d), parisDate: isoDateInParis(d), offset }
+  })
+}
+
+export function nextDays(n: number): { label: string; parisDate: string }[] {
+  return daysForOffsets(Array.from({ length: n }, (_, i) => i))
 }

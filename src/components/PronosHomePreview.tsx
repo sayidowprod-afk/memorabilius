@@ -5,6 +5,7 @@ import TeamBadge from '@/components/TeamBadge'
 import { getTeamById } from '@/lib/sportsTeams'
 import { useAuth } from '@/lib/AuthContext'
 import { nextDays } from '@/lib/pronosDays'
+import { supabase } from '@/lib/supabase'
 
 // ─────────────────────────────────────────────────────────────
 // MAQUETTE LOCALE — module Pronos intégré à l'accueil, sous la carte
@@ -253,6 +254,7 @@ export default function PronosHomePreview() {
   const [activeDay, setActiveDay] = useState(days[0])
   const [activeSport, setActiveSport] = useState<Sport | 'ALL'>('ALL')
   const [picks, setPicks] = useState<Record<string, 'left' | 'right'>>({})
+  const [xpGain, setXpGain] = useState<{ wins: number; xp: number } | null>(null)
 
   useEffect(() => {
     if (!user) return
@@ -268,11 +270,56 @@ export default function PronosHomePreview() {
     return () => { cancelled = true }
   }, [user])
 
+  // Charge les picks déjà enregistrés pour cet utilisateur -- sans ça ils
+  // disparaissaient au refresh (uniquement en state local avant).
+  useEffect(() => {
+    if (!user) return
+    let cancelled = false
+    supabase.from('pronos_picks').select('match_id, pick').eq('user_id', user.id)
+      .then(({ data }) => {
+        if (cancelled || !data) return
+        const map: Record<string, 'left' | 'right'> = {}
+        for (const row of data) map[row.match_id] = row.pick as 'left' | 'right'
+        setPicks(map)
+      })
+    return () => { cancelled = true }
+  }, [user])
+
+  // Verse l'XP des bons pronos des matchs terminés (route idempotente, le
+  // calcul est fait côté serveur) -- au chargement, une fois les picks lus.
+  useEffect(() => {
+    if (!user) return
+    let cancelled = false
+    supabase.auth.getSession().then(({ data: { session } }) => {
+      if (!session || cancelled) return
+      fetch('/api/pronos/resolve', { method: 'POST', headers: { Authorization: `Bearer ${session.access_token}` } })
+        .then(r => r.json())
+        .then(res => { if (!cancelled && res?.awarded > 0) setXpGain({ wins: res.awarded, xp: res.xp }) })
+        .catch(() => {})
+    })
+    return () => { cancelled = true }
+  }, [user])
+
   // Pas connecté -- module masqué, aucun appel supplémentaire.
   if (!user) return null
 
-  const handlePick = (id: string, side: 'left' | 'right') => {
-    setPicks(p => (p[id] === side ? { ...p, [id]: undefined as any } : { ...p, [id]: side }))
+  // Écriture via la route serveur (qui refuse un match déjà commencé) ;
+  // mise à jour optimiste, annulée si le serveur refuse.
+  const handlePick = async (id: string, side: 'left' | 'right') => {
+    const previous = picks[id]
+    const cancel = previous === side
+    setPicks(p => ({ ...p, [id]: cancel ? (undefined as any) : side }))
+    try {
+      const { data: { session } } = await supabase.auth.getSession()
+      const res = await fetch('/api/pronos/pick', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${session?.access_token ?? ''}` },
+        body: JSON.stringify({ matchId: id, pick: cancel ? null : side }),
+      })
+      if (!res.ok) throw new Error('pick refused')
+    } catch {
+      setPicks(p => ({ ...p, [id]: previous as any }))
+    }
   }
 
   const visible = (matches ?? []).filter(m => m.day === activeDay && (activeSport === 'ALL' || m.sport === activeSport))
@@ -290,6 +337,12 @@ export default function PronosHomePreview() {
         <h2 style={{ fontFamily: SURFQUEST, fontSize: 28, color: '#fff', letterSpacing: 1, margin: '0 0 20px' }}>
           🏆 PRONOS
         </h2>
+
+        {xpGain && (
+          <p style={{ fontFamily: UI_FONT, fontWeight: 800, fontSize: 14, color: GREEN, margin: '-8px 0 16px' }}>
+            +{xpGain.xp} XP — {xpGain.wins} bon{xpGain.wins > 1 ? 's' : ''} prono{xpGain.wins > 1 ? 's' : ''} sur des matchs terminés !
+          </p>
+        )}
 
         {/* Sélecteur de sport -- NBA/NFL/NHL cliquables (vraies données),
             MLB/UCL affichés en "Bientôt disponible" (plan gratuit api-sports
