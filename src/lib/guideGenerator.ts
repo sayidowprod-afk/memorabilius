@@ -82,6 +82,28 @@ function printRunOf(cards: UserCard[]): string {
   return best ? `/${best[0]}` : ''
 }
 
+// Tirages deja connus d'AUTRES guides du meme produit (« Mosaic » 2023-24 pour ordonner « Mosaic » 2024-25) : les numerotations des
+// parallèles se repetent d'une annee a l'autre. Sert UNIQUEMENT a classer les parallèles sans tirage dans la pyramide, jamais a remplir le champ.
+async function siblingRuns(productWords: string[], prodSet: Set<string>): Promise<Map<string, number>> {
+  const out = new Map<string, number>()
+  if (!productWords.length) return out
+  const wanted = productWords.map(w => w.toLowerCase())
+  const { data } = await supabase.from('guides').select('title, blocks').order('id', { ascending: false })
+  for (const g of data || []) {
+    const t = String(g.title || '').toLowerCase()
+    if (!wanted.every(w => t.includes(w))) continue
+    for (const b of (g.blocks as GuideBlock[] | null) || []) {
+      if (b.type !== 'pyramid') continue
+      for (const row of b.rows) {
+        const n = row.printRun ? Number(row.printRun.replace(/\D/g, '')) : 0
+        const k = keyOf(row.name, prodSet)
+        if (n > 0 && k && !out.has(k)) out.set(k, n) // guide le plus recent d'abord : la 1re valeur gagne
+      }
+    }
+  }
+  return out
+}
+
 const isAuto = (n: string) => /auto|sign|graphs?|script/i.test(n)
 const isMemo = (n: string) => /jersey|patch|relic|memorabilia|swatch|material|fabric|prime\b|logoman|laundry/i.test(n)
 
@@ -218,7 +240,10 @@ export async function generateGuideFromSet(setId: number, opts: { skip?: string[
     return row
   })
   // du plus rare (sommet de la pyramide) au plus courant : tirages croissants, puis les non numerotes par ordre alphabetique
-  const runNum = (r: PyramidRow) => (r.printRun ? Number(r.printRun.slice(1)) : Infinity)
+  const est = await siblingRuns(productWords, prodSet).catch(() => new Map<string, number>())
+  const estOf = (r: PyramidRow) => est.get(keyOf(r.name, prodSet))
+  const estimated = rows.filter(r => !r.printRun && estOf(r) !== undefined)
+  const runNum = (r: PyramidRow) => (r.printRun ? Number(r.printRun.slice(1)) : (estOf(r) ?? Infinity))
   rows.sort((a, b) => runNum(a) - runNum(b) || a.name.localeCompare(b.name))
 
   const h = (t: string): GuideBlock => ({ type: 'text', html: `<h2 style="text-align: center;">${t}</h2><p></p>` })
@@ -240,6 +265,7 @@ export async function generateGuideFromSet(setId: number, opts: { skip?: string[
   const nIns = inserts.length + autos.length + memos.length
   warnings.push(`Photos trouvées dans les galeries : ${parallelImages}/${rows.length} parallèles, ${imagesFound - parallelImages}/${nIns} inserts et autographes (à compléter à la main pour les autres)`)
   if (rows.length) warnings.push(`Tirages trouvés : ${runsFound}/${rows.length} parallèles (les autres sont à renseigner à la main${unknown ? `, ${unknown} sans couleur reconnue` : ''})`)
+  if (estimated.length) warnings.push(`Ordre estimé d'après les autres guides de ce produit pour ${estimated.length} parallèle(s) sans tirage (champ laissé vide, à confirmer) : ${estimated.map(r => `${r.name} ≈ /${estOf(r)}`).join(', ')}`)
   warnings.push('Odds (tableaux de probabilités) à ajouter à la main')
 
   return {
