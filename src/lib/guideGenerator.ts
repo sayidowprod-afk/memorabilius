@@ -96,6 +96,8 @@ const PANINI_NEVER_NUMBERED = new Set(['silver', 'holo'])
 // Chez Panini, toute parallèle dont le nom contient « Black » est un 1/1 (seules « Black Gold » /5 et « Black Velocity » /39 gardent leur tirage
 // propre, d'apres les listes de reference). Prioritaire sur les galeries.
 const PANINI_BLACK_EXCEPTIONS = new Set(['black gold', 'black velocity'])
+// Toute marque : une « Printing Plate » est toujours un 1/1.
+const isPrintingPlate = (name: string) => /printings+plates?/i.test(name)
 const isPaniniBlack1of1 = (name: string, prodSet: Set<string>) => {
   const k = keyOf(name, prodSet)
   return k.split(' ').includes('black') && !PANINI_BLACK_EXCEPTIONS.has(k)
@@ -306,6 +308,7 @@ export async function generateGuideFromSet(setId: number, opts: { skip?: string[
   // du plus rare (sommet de la pyramide) au plus courant : tirages croissants, puis les non numerotes par ordre alphabetique
   const brandName = (['panini', 'topps', 'upper deck', 'leaf'].find(b => (set.brand || set.name || '').toLowerCase().includes(b))) || ''
   if (brandName === 'panini') for (const r of rows) { if (PANINI_NEVER_NUMBERED.has(keyOf(r.name, prodSet))) r.printRun = ''; else if (isPaniniBlack1of1(r.name, prodSet)) r.printRun = '/1' }
+  for (const r of rows) if (isPrintingPlate(r.name)) r.printRun = '/1'
   const est = await siblingRuns(brandName, productWords, prodSet).catch(() => new Map<string, number>())
   const estOf = (r: PyramidRow) => est.get(keyOf(r.name, prodSet))
   const estimated = rows.filter(r => !r.printRun && estOf(r) !== undefined)
@@ -402,7 +405,8 @@ export async function reorderGuideParallels(title: string, blocks: GuideBlock[],
     const runNum = (r: PyramidRow) => (r.printRun ? Number(r.printRun.replace(/\D/g, '')) || Infinity : (estOf(r) ?? Infinity))
     // tirage estime ecrit dans le champ ; les parallèles numerotees d'abord, les autres ensuite (ordre actuel conserve)
     const base = brand === 'panini' ? b.rows.map(r => (PANINI_NEVER_NUMBERED.has(keyOf(r.name, prodSet)) ? { ...r, printRun: '' } : isPaniniBlack1of1(r.name, prodSet) ? { ...r, printRun: '/1' } : r)) : b.rows
-    const filled = base.map(r => { const e = estOf(r); if (e === undefined) return r; estimated.push(`${r.name} /${e}`); return { ...r, printRun: `/${e}` } })
+    const plated = base.map(r => (isPrintingPlate(r.name) ? { ...r, printRun: '/1' } : r))
+    const filled = plated.map(r => { const e = estOf(r); if (e === undefined) return r; estimated.push(`${r.name} /${e}`); return { ...r, printRun: `/${e}` } })
     const sorted = filled.map((r, i) => ({ r, i })).sort((x, y) => runNum(x.r) - runNum(y.r) || x.i - y.i).map(x => x.r)
     return { ...b, rows: sorted }
   })
