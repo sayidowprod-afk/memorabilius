@@ -64,6 +64,10 @@ import { SortableContext, useSortable, rectSortingStrategy, arrayMove } from '@d
 import { CSS } from '@dnd-kit/utilities'
 
 const Viewer3D = dynamic(() => import('@/components/Viewer3D'), { ssr: false })
+// Prechargement du viewer en tache de fond : son code ne se telecharge sinon qu'au
+// premier clic sur une carte, donc jamais disponible hors ligne si on n'en a pas
+// ouvert une avant (le service worker le met en cache des qu'il est charge).
+if (typeof window !== 'undefined') setTimeout(() => { import('@/components/Viewer3D').catch(() => {}) }, 4000)
 import { useLang } from '@/lib/LangContext'
 import { useTheme } from '@/lib/ThemeContext'
 import { useAuth } from '@/lib/AuthContext'

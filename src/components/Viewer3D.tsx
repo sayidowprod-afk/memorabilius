@@ -1491,7 +1491,7 @@ export default function Viewer3D({ popup, accent, onClose, onNext, onPrev, getTa
                         {/* Card window */}
                         <div className="slb-mid">
                           <div className="slb-window">
-                            <img src={popup.fHd || popup.f} draggable={false} alt={popup.n} />
+                            <img src={popup.fHd || popup.f} onError={e => { const i = e.currentTarget; if (!i.dataset.fb) { i.dataset.fb = "1"; i.src = popup.f } }} draggable={false} alt={popup.n} />
                             <div className="slb-sheen" />
                           </div>
                         </div>
@@ -1580,11 +1580,11 @@ export default function Viewer3D({ popup, accent, onClose, onNext, onPrev, getTa
                     l'ombre au sol fixe (viewer-ground-shadow) juste au-dessus,
                     qui reste lisible a n'importe quel angle de rotation. */}
                 <div style={{ position: 'absolute', inset: 0, backfaceVisibility: 'hidden', WebkitBackfaceVisibility: 'hidden', overflow: 'hidden', transform: half ? `translateZ(${half}px)` : undefined }}>
-                  <img src={popup.fHd || popup.f} draggable={false} style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }} alt={popup.n} />
+                  <img src={popup.fHd || popup.f} onError={e => { const i = e.currentTarget; if (!i.dataset.fb) { i.dataset.fb = "1"; i.src = popup.f } }} draggable={false} style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }} alt={popup.n} />
                 </div>
                 <div style={{ position: 'absolute', inset: 0, backfaceVisibility: 'hidden', WebkitBackfaceVisibility: 'hidden', transform: `rotateY(180deg)${half ? ` translateZ(${half}px)` : ''}`, overflow: 'hidden' }}>
                   {popup.b !== popup.f
-                    ? <img src={popup.bHd || popup.b} draggable={false} style={backFaceImgStyle(!!popup.is_horizontal, popup.verso_is_horizontal ?? !!popup.is_horizontal)} alt={popup.n} />
+                    ? <img src={popup.bHd || popup.b} onError={e => { const i = e.currentTarget; if (!i.dataset.fb) { i.dataset.fb = "1"; i.src = popup.b } }} draggable={false} style={backFaceImgStyle(!!popup.is_horizontal, popup.verso_is_horizontal ?? !!popup.is_horizontal)} alt={popup.n} />
                     /* pas de photo de verso : dos Memorabilius par defaut (au lieu de remontrer le recto) */
                     : <img src="/card-back.png" draggable={false} style={backFaceImgStyle(!!popup.is_horizontal, false)} alt="" />}
                 </div>
