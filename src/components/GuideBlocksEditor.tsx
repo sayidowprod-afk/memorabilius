@@ -623,19 +623,32 @@ function InsertGridEditor({ block, onChange, dark }: { block: Extract<GuideBlock
 
 // --- Setlist embarquée --------------------------------------------------------
 
+const SET_SPORTS: [string, string][] = [['nba', 'Basketball (NBA)'], ['wnba', 'WNBA'], ['euro-basketball', 'Basket européen'], ['nfl', 'Football US (NFL)'], ['baseball', 'Baseball (MLB)'], ['hockey', 'Hockey (NHL)'], ['soccer-international', 'Soccer'], ['tennis', 'Tennis'], ['mma', 'MMA'], ['wrestling', 'Catch'], ['racing', 'Course auto'], ['pokemon', 'Pokémon'], ['mtg', 'Magic'], ['non-sport', 'Non-sport'], ['multi-sport', 'Multi-sport']]
+
 function SetlistEmbedEditor({ block, onChange, dark }: { block: Extract<GuideBlock, { type: 'setlist_embed' }>; onChange: (b: GuideBlock) => void; dark: boolean }) {
   const [search, setSearch] = useState('')
   const [results, setResults] = useState<{ id: number; name: string; year: number | null; sport: string | null }[]>([])
   const [selectedName, setSelectedName] = useState('')
+  const [sport, setSport] = useState('')
+  const [year, setYear] = useState('')
   const f = fieldStyle(dark)
 
-  const runSearch = async (q: string) => {
-    setSearch(q)
-    if (q.trim().length < 2) { setResults([]); return }
-    const { data } = await supabase.from('card_sets').select('id, name, year, sport')
-      .ilike('name', `%${q}%`).order('year', { ascending: false }).limit(50)
-    setResults(data || [])
-  }
+  // Recherche par texte et/ou par sport et annee : un filtre seul suffit pour lister les sets.
+  useEffect(() => {
+    const q = search.trim()
+    if (q.length < 2 && !sport && !year) { setResults([]); return }
+    let cancelled = false
+    const timer = setTimeout(async () => {
+      let qry = supabase.from('card_sets').select('id, name, year, sport')
+      if (q.length >= 2) qry = qry.ilike('name', `%${q.replace(/[%_,()]/g, ' ')}%`)
+      if (sport) qry = qry.eq('sport', sport)
+      if (year) qry = qry.eq('year', Number(year))
+      const { data } = await qry.order('year', { ascending: false }).order('name').limit(100)
+      if (!cancelled) setResults(data || [])
+    }, 250)
+    return () => { cancelled = true; clearTimeout(timer) }
+  }, [search, sport, year])
+  const years = Array.from({ length: new Date().getFullYear() + 2 - 1948 }, (_, i) => new Date().getFullYear() + 1 - i)
 
   return (
     <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
@@ -646,7 +659,17 @@ function SetlistEmbedEditor({ block, onChange, dark }: { block: Extract<GuideBlo
         </div>
       ) : (
         <>
-          <input style={f} placeholder="Rechercher un set (ex: 2024-25 Panini Mosaic)" value={search} onChange={e => runSearch(e.target.value)} />
+          <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap' }}>
+            <select style={{ ...f, flex: '1 1 140px', width: 'auto' }} value={sport} onChange={e => setSport(e.target.value)} aria-label="Sport">
+              <option value="">Tous les sports</option>
+              {SET_SPORTS.map(([v, l]) => <option key={v} value={v}>{l}</option>)}
+            </select>
+            <select style={{ ...f, flex: '1 1 140px', width: 'auto' }} value={year} onChange={e => setYear(e.target.value)} aria-label="Année">
+              <option value="">Toutes les années</option>
+              {years.map(y => <option key={y} value={y}>{y}</option>)}
+            </select>
+          </div>
+          <input style={f} placeholder="Rechercher un set (ex: Mosaic) — ou choisis un sport / une année" value={search} onChange={e => setSearch(e.target.value)} />
           {results.length > 0 && (
             <div style={{ border: `1px solid ${dark ? '#333' : '#ddd'}`, borderRadius: 6, overflow: 'hidden', maxHeight: 320, overflowY: 'auto' }}>
               {results.map(r => {
