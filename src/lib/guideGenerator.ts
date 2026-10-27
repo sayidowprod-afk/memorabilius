@@ -96,14 +96,24 @@ const PANINI_RUNS: Record<string, number> = {
   'Purple Pulsar': 35, 'Black Velocity': 39, 'Pink Pulsar': 42, 'Blue Choice': 49, 'Pink Velocity': 79, 'Choice Red': 88,
   'Blue Ice': 99, 'Green Wave': 99, 'Green Rainbow': 99, 'Purple Ice': 149,
 }
-// Valeurs propres a un produit (sans ambiguite dans la liste Gemini).
-// Quand Gemini donne deux valeurs (« /249 ou /149 »), on retient la premiere, presentee comme la plus courante.
+// Valeurs propres a un produit, d'apres la liste Gemini « Panini NBA Parallels » (a verifier). Quand Gemini donne deux valeurs
+// (« /199 ou /149 »), on retient la premiere. 0 = parallèle NON numerotee dans ce produit (bloque la valeur commune a tout Panini).
 const PANINI_PRODUCT_RUNS: Record<string, Record<string, number>> = {
+  prizm: {
+    'Purple Ice': 149, 'Blue Ice': 99, 'Blue Fast Break': 99, Purple: 75, Orange: 49, 'Orange Wave': 49, Red: 299, 'Pink Pulsar': 42,
+    'Purple Pulsar': 35, Mojo: 25, Camo: 25, 'Green Pulsar': 25, 'Gold Wave': 10, 'Gold Shimmer': 10, 'Lucky Envelopes': 8,
+    Silver: 0, Hyper: 0, 'Ruby Wave': 0, 'Pink Ice': 0, 'Green Wave': 0, 'Red White Blue': 0,
+  },
+  optic: {
+    Purple: 199, Orange: 199, Red: 99, 'Blue Wave': 99, 'Pink Velocity': 79, 'Black Velocity': 39, 'Red Velocity': 99, 'Gold Wave': 10,
+    Holo: 0, 'Lime Green': 0, 'White Sparkle': 0,
+  },
+  select: {
+    Scope: 249, 'Tri-Color': 249, Blue: 149, Red: 149, 'Red Choice': 88, White: 49, 'Tie-Dye': 25, 'Gold Fast Break': 10, Flash: 1,
+  },
   mosaic: { Blue: 99, Red: 49 },
-  prizm: { Red: 299, Orange: 49, Purple: 75 },
-  select: { Blue: 249 },
-  'national treasures': { Blue: 25 },
-  optic: { Orange: 199 },
+  'national treasures': { Blue: 25, Bronze: 49 },
+  flawless: { Ruby: 15, Sapphire: 10, Emerald: 5, Diamond: 1 },
   'court kings': { Orange: 149 },
 }
 
@@ -140,6 +150,7 @@ async function siblingRuns(brand: string, productWords: string[], prodSet: Set<s
     // Regle connue : chez Panini, « Black » est toujours un 1/1 (prioritaire sur tout le reste).
     out.set('black', 1)
   }
+  for (const [k, n] of [...out]) if (n === 0) out.delete(k) // « 0 » = non numerotee : sert seulement a bloquer une valeur commune
   return out
 }
 
