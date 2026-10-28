@@ -1,0 +1,72 @@
+name: Carte mystère
+
+# Mercredi matin : choisit une carte (autos d'abord), fabrique la story (avec zone libre pour le sticker quiz)
+# et le post X, et les envoie sur Discord avec les 4 réponses.
+# Mercredi soir : envoie la révélation (carte entière + nom + crédit du membre).
+# La carte du jour est mémorisée entre le matin et le soir dans le stockage privé R2 (_meta/mystere-etat.json).
+# Secrets : NEXT_PUBLIC_SUPABASE_URL, SUPABASE_SERVICE_ROLE_KEY, DISCORD_WEBHOOK_URL, CF_R2_*.
+on:
+  schedule:
+    - cron: '0 8 * * 3'   # mercredi 8 h UTC = 9 h (hiver) / 10 h (été) à Paris : la carte mystère
+    - cron: '30 18 * * 3' # mercredi 18 h 30 UTC = 19 h 30 (hiver) / 20 h 30 (été) à Paris : la réponse
+  workflow_dispatch:
+    inputs:
+      mode:
+        description: 'mystere (le matin) ou resultat (le soir)'
+        type: choice
+        options: [mystere, resultat]
+        default: mystere
+
+permissions:
+  contents: read
+
+concurrency:
+  group: carte-mystere
+  cancel-in-progress: false
+
+jobs:
+  mystere:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    env:
+      AWS_ACCESS_KEY_ID: ${{ secrets.CF_R2_ACCESS_KEY_ID }}
+      AWS_SECRET_ACCESS_KEY: ${{ secrets.CF_R2_SECRET_ACCESS_KEY }}
+      AWS_DEFAULT_REGION: auto
+      AWS_ENDPOINT_URL: https://${{ secrets.CF_R2_ACCOUNT_ID }}.r2.cloudflarestorage.com
+      ETAT_R2: s3://${{ secrets.CF_R2_BUCKET }}/_meta/mystere-etat.json
+      MODE: ${{ github.event_name == 'workflow_dispatch' && inputs.mode || (github.event.schedule == '0 8 * * 3' && 'mystere' || 'resultat') }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          sparse-checkout: |
+            scripts/classement_hebdo.py
+            scripts/carte_mystere.py
+            scripts/carte_mystere_auto.py
+            scripts/models
+            public/Surfquest-NoSlash.otf
+            public/Memorabiliuslogo.png
+          sparse-checkout-cone-mode: false
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Police et bibliothèques
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y -qq fonts-open-sans
+          pip install --quiet pillow numpy "opencv-python-headless==4.10.0.84"
+
+      - name: Récupérer la mémoire (carte du jour, joueurs déjà proposés)
+        run: |
+          aws s3 cp "$ETAT_R2" etat.json && echo "Etat recupere" || echo "Aucun etat precedent, depart a zero"
+
+      - name: Carte mystère (${{ env.MODE }})
+        env:
+          NEXT_PUBLIC_SUPABASE_URL: ${{ secrets.NEXT_PUBLIC_SUPABASE_URL }}
+          SUPABASE_SERVICE_ROLE_KEY: ${{ secrets.SUPABASE_SERVICE_ROLE_KEY }}
+          DISCORD_WEBHOOK_URL: ${{ secrets.DISCORD_WEBHOOK_URL }}
+        run: python scripts/carte_mystere_auto.py "$MODE" --etat etat.json --discord
+
+      - name: Sauvegarder la mémoire
+        run: aws s3 cp etat.json "$ETAT_R2"
