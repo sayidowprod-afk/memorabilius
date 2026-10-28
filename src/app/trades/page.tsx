@@ -193,28 +193,57 @@ export default function Trades() {
     sport: SPORT_TO_LOCAL_KEY[inferSportFromTeamName(c.equipe) || ''] || null,
   })
 
-  const loadForum = async () => {
+  // Recherche et filtres appliques COTE SERVEUR (texte, annee, equipe, tags, type) : avant, ils ne
+  // portaient que sur les 60 premieres annonces chargees, et une recherche declenchait une cascade de
+  // lots de 60 jusqu'a trouver assez de resultats (lent, et resultats incomplets). Le sport reste
+  // filtre cote client (il se deduit du nom d'equipe pour les cartes de galerie).
+  type ForumFilters = { q: string; annee: string; equipe: string; tags: { rc: boolean; auto: boolean; num: boolean; patch: boolean }; type: 'tous' | 'offre' | 'recherche' }
+  const PROFILE_JOIN = '*, profiles(id, display_name, avatar_url, instagram, twitter, discord)'
+  const cleanTerm = (s: string) => s.replace(/[,()%*\\"']/g, ' ').trim()
+  const searchWords = (q: string) => q.split(/\s+/).map(cleanTerm).filter(Boolean).slice(0, 5)
+
+  const applyForumFilters = (qb: any, f: ForumFilters, source: 'trades' | 'cartes') => {
+    const fields = source === 'trades'
+      ? ['titre', 'joueur', 'equipe', 'marque', 'collection', 'annee']
+      : ['nom', 'equipe', 'marque', 'collection', 'annee']
+    for (const w of searchWords(f.q)) qb = qb.or(fields.map(c => `${c}.ilike.%${w}%`).join(','))
+    const annee = cleanTerm(f.annee); if (annee) qb = qb.ilike('annee', `%${annee}%`)
+    const equipe = cleanTerm(f.equipe); if (equipe) qb = qb.ilike('equipe', `%${equipe}%`)
+    if (f.tags.rc) qb = qb.eq('rc', true)
+    if (f.tags.auto) qb = qb.eq('auto', true)
+    if (f.tags.patch) qb = qb.eq('patch', true)
+    if (f.tags.num) qb = source === 'trades' ? qb.eq('num', true) : qb.not('num', 'is', null).neq('num', '')
+    return qb
+  }
+
+  const fetchForumBatch = (f: ForumFilters, tFrom: number, vFrom: number, skipTrades = false, skipCartes = false) => {
+    // Les cartes de galerie sont toujours des offres : exclues d'une recherche "Recherches".
+    const noCartes = skipCartes || f.type === 'recherche'
+    let tb: any = supabase.from('trades').select(PROFILE_JOIN).eq('statut', 'actif')
+    if (f.type !== 'tous') tb = tb.eq('type', f.type)
+    const tradesQ = skipTrades ? Promise.resolve({ data: [] as any[] }) : Promise.resolve(
+      applyForumFilters(tb.order('created_at', { ascending: false }), f, 'trades').range(tFrom, tFrom + FORUM_PAGE_SIZE - 1),
+    )
+    const cartesQ = noCartes ? Promise.resolve({ data: [] as any[] }) : Promise.resolve(applyForumFilters(
+      supabase.from('cartes_manuelles').select(PROFILE_JOIN).eq('disponible_vente', true).order('created_at', { ascending: false }), f, 'cartes',
+    ).range(vFrom, vFrom + FORUM_PAGE_SIZE - 1))
+    return Promise.all([tradesQ, cartesQ])
+  }
+
+  const forumFiltersRef = useRef<ForumFilters>({ q: '', annee: '', equipe: '', tags: { rc: false, auto: false, num: false, patch: false }, type: 'tous' })
+  const forumReq = useRef(0) // ignore les reponses d'une recherche deja remplacee
+
+  const loadForum = async (f: ForumFilters = forumFiltersRef.current) => {
+    forumFiltersRef.current = f
+    const req = ++forumReq.current
     // try/finally + withTimeout : voir withTimeout.ts -- evite que le forum
     // reste bloque sur son skeleton pour toujours en cas de rejet ou de
     // requete qui ne resout jamais.
     try {
       const [{ data: tradeData }, { data: carteData }] = await withTimeout(
-        Promise.all([
-          supabase
-            .from('trades')
-            .select('*, profiles(id, display_name, avatar_url, instagram, twitter, discord)')
-            .eq('statut', 'actif')
-            .order('created_at', { ascending: false })
-            .range(0, FORUM_PAGE_SIZE - 1),
-          supabase
-            .from('cartes_manuelles')
-            .select('*, profiles(id, display_name, avatar_url, instagram, twitter, discord)')
-            .eq('disponible_vente', true)
-            .order('created_at', { ascending: false })
-            .range(0, FORUM_PAGE_SIZE - 1),
-        ]),
-        8000, [{ data: null }, { data: null }] as any
+        fetchForumBatch(f, 0, 0), 8000, [{ data: null }, { data: null }] as any
       )
+      if (req !== forumReq.current) return
 
       const merged = [...(tradeData || []), ...(carteData || []).map(mapCarteToOffer)]
         .sort((a, b) => new Date(b.created_at).getTime() - new Date(a.created_at).getTime())
@@ -223,9 +252,9 @@ export default function Trades() {
       setTradesOffset(tradeData?.length || 0)
       setVentesOffset(carteData?.length || 0)
       setTradesDone((tradeData?.length || 0) < FORUM_PAGE_SIZE)
-      setVentesDone((carteData?.length || 0) < FORUM_PAGE_SIZE)
+      setVentesDone((f.type === 'recherche') || (carteData?.length || 0) < FORUM_PAGE_SIZE)
     } finally {
-      setLoadingForum(false)
+      if (req === forumReq.current) setLoadingForum(false)
     }
   }
 
@@ -239,20 +268,9 @@ export default function Trades() {
   const loadMoreForum = async () => {
     if (loadingMoreForum || (tradesDone && ventesDone)) return
     setLoadingMoreForum(true)
-    const [{ data: tradeData }, { data: carteData }] = await Promise.all([
-      tradesDone ? Promise.resolve({ data: [] as any[] }) : supabase
-        .from('trades')
-        .select('*, profiles(id, display_name, avatar_url, instagram, twitter, discord)')
-        .eq('statut', 'actif')
-        .order('created_at', { ascending: false })
-        .range(tradesOffset, tradesOffset + FORUM_PAGE_SIZE - 1),
-      ventesDone ? Promise.resolve({ data: [] as any[] }) : supabase
-        .from('cartes_manuelles')
-        .select('*, profiles(id, display_name, avatar_url, instagram, twitter, discord)')
-        .eq('disponible_vente', true)
-        .order('created_at', { ascending: false })
-        .range(ventesOffset, ventesOffset + FORUM_PAGE_SIZE - 1),
-    ])
+    const req = forumReq.current
+    const [{ data: tradeData }, { data: carteData }] = await fetchForumBatch(forumFiltersRef.current, tradesOffset, ventesOffset, tradesDone, ventesDone)
+    if (req !== forumReq.current) { setLoadingMoreForum(false); return } // les filtres ont change entre-temps
 
     setTrades(prev => mergeForum(prev, [...(tradeData || []), ...(carteData || []).map(mapCarteToOffer)]))
     if (!tradesDone) { setTradesOffset(o => o + (tradeData?.length || 0)); if ((tradeData?.length || 0) < FORUM_PAGE_SIZE) setTradesDone(true) }
@@ -361,10 +379,33 @@ export default function Trades() {
 
   const SPORTS: Record<string, string> = { basket: '🏀', foot: '⚽', football_us: '🏈', baseball: '⚾', hockey: '🏒', pokemon: '🟡', tcg: '🃏' }
 
+  // Rechargement serveur quand la recherche / les filtres changent (texte retarde de 350 ms pour ne pas
+  // lancer une requete a chaque touche).
+  const [debounced, setDebounced] = useState({ q: '', annee: '', equipe: '' })
+  useEffect(() => {
+    const id = setTimeout(() => setDebounced({ q: search, annee: fAnnee, equipe: fEquipe }), 350)
+    return () => clearTimeout(id)
+  }, [search, fAnnee, fEquipe])
+  const serverKey = JSON.stringify([debounced, fTags, filter])
+  const firstServerKey = useRef(serverKey)
+  useEffect(() => {
+    if (!userId || serverKey === firstServerKey.current) return
+    firstServerKey.current = serverKey
+    loadForum({ q: debounced.q, annee: debounced.annee, equipe: debounced.equipe, tags: fTags, type: filter })
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [serverKey, userId])
+
+  // Recherche tolerante : chaque mot separement, sans tenir compte des accents ni de la casse.
+  const norm = (s: any) => String(s ?? '').normalize('NFD').replace(/[̀-ͯ]/g, '').toLowerCase()
+  const queryWords = norm(search).split(/\s+/).filter(Boolean)
+
   const filteredForumBase = trades.filter(t => {
     if (showFavoritesOnly && !favorites.has(favKey(t))) return false
     if (filter !== 'tous' && t.type !== filter) return false
-    if (search && !t.titre?.toLowerCase().includes(search.toLowerCase()) && !t.joueur?.toLowerCase().includes(search.toLowerCase())) return false
+    if (queryWords.length) {
+      const hay = norm([t.titre, t.joueur, t.nom, t.equipe, t.marque, t.collection, t.annee].join(' '))
+      if (!queryWords.every(w => hay.includes(w))) return false
+    }
     if (fEquipe && !t.equipe?.toLowerCase().includes(fEquipe.toLowerCase())) return false
     if (fAnnee && !String(t.annee || '').includes(fAnnee.trim())) return false
     if (fSport && t.sport !== fSport) return false
