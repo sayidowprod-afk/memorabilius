@@ -1,0 +1,42 @@
+name: Classement hebdomadaire
+
+# Chaque lundi : calcule le podium des cartes ajoutées et le classement des pronos de la semaine passée,
+# fabrique les visuels (stories Instagram + post X) et les envoie sur un salon Discord.
+# Secrets nécessaires : NEXT_PUBLIC_SUPABASE_URL, SUPABASE_SERVICE_ROLE_KEY, DISCORD_WEBHOOK_URL.
+on:
+  schedule:
+    - cron: '0 6 * * 1' # lundi 6 h UTC = 7 h (hiver) ou 8 h (été) à Paris ; GitHub peut décaler de quelques minutes
+  workflow_dispatch: # lancement manuel depuis l'onglet Actions
+
+permissions:
+  contents: read
+
+jobs:
+  classement:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          sparse-checkout: |
+            scripts/classement_hebdo.py
+            public/Surfquest-NoSlash.otf
+            public/Memorabiliuslogo.png
+          sparse-checkout-cone-mode: false
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Police et bibliothèques
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y -qq fonts-open-sans
+          pip install --quiet pillow numpy
+
+      - name: Calcul, visuels et envoi sur Discord
+        env:
+          NEXT_PUBLIC_SUPABASE_URL: ${{ secrets.NEXT_PUBLIC_SUPABASE_URL }}
+          SUPABASE_SERVICE_ROLE_KEY: ${{ secrets.SUPABASE_SERVICE_ROLE_KEY }}
+          DISCORD_WEBHOOK_URL: ${{ secrets.DISCORD_WEBHOOK_URL }}
+        run: python scripts/classement_hebdo.py --last --discord
