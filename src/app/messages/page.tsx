@@ -191,6 +191,19 @@ function MessagesContent() {
     })()
   }, [])
 
+  // « Supprimer » une conversation = la masquer pour soi : l'autre personne garde tout, rien n'est effacé en base.
+  const hideConversation = async (otherId: string) => {
+    if (!userId) return
+    if (!confirm('Supprimer cette conversation ? Elle disparaîtra de ta liste (l\'autre personne la garde). Elle réapparaîtra si cette personne t\'écrit de nouveau.')) return
+    const { error } = await supabase.rpc('hide_conversation', { p_other: otherId })
+    if (error) { alert('Impossible de supprimer la conversation pour le moment.'); return }
+    // les messages déjà reçus ne doivent plus compter comme non lus (pastille de la barre de navigation)
+    await supabase.from('messages').update({ lu: true }).eq('to_user_id', userId).eq('from_user_id', otherId).eq('lu', false)
+    setConversations(prev => prev.filter(c => c.id !== otherId))
+    setActiveConv(null)
+    setMessages([])
+  }
+
   const toggleBlock = async (otherId: string) => {
     if (!userId) return
     const isBlocked = blockedIds.has(otherId)
@@ -335,9 +348,15 @@ function MessagesContent() {
       .order('created_at', { ascending: false })
 
     if (!data) return
+    // Conversations masquées par l'utilisateur : seuls les messages POSTÉRIEURS au masquage comptent
+    // (la conversation réapparaît si l'autre écrit de nouveau).
+    const { data: hid } = await supabase.from('hidden_conversations').select('other_id, hidden_at').eq('user_id', uid)
+    const hiddenAt = new Map<string, number>((hid || []).map((h: any) => [h.other_id, Date.parse(h.hidden_at)]))
     const convMap: Record<string, any> = {}
     for (const msg of data) {
       const otherId = msg.from_user_id === uid ? msg.to_user_id : msg.from_user_id
+      const hAt = hiddenAt.get(otherId)
+      if (hAt !== undefined && Date.parse(msg.created_at) <= hAt) continue
       const lastMsgDisplay = isTradeOfferMsg(msg.contenu) ? t('messages_trade_offer') : isImageMsg(msg.contenu) ? t('chat_photo') : isCardMsg(msg.contenu) ? `🃏 ${cardDataOf(msg.contenu)?.nom || ''}` : msg.contenu
       if (!convMap[otherId]) convMap[otherId] = { lastMsg: lastMsgDisplay, date: msg.created_at, unread: 0 }
       if (!msg.lu && msg.to_user_id === uid) convMap[otherId].unread++
@@ -353,11 +372,13 @@ function MessagesContent() {
   }
 
   const loadMessages = async (uid: string, otherId: string) => {
-    const { data } = await supabase
+    const { data: hrow } = await supabase.from('hidden_conversations').select('hidden_at').eq('user_id', uid).eq('other_id', otherId).maybeSingle()
+    let q = supabase
       .from('messages')
       .select('*')
       .or(`and(from_user_id.eq.${uid},to_user_id.eq.${otherId}),and(from_user_id.eq.${otherId},to_user_id.eq.${uid})`)
-      .order('created_at', { ascending: true })
+    if (hrow?.hidden_at) q = q.gt('created_at', hrow.hidden_at)
+    const { data } = await q.order('created_at', { ascending: true })
     setMessages(data || [])
 
     // Charger les trades (forum) référencés dans les messages
@@ -688,6 +709,16 @@ function MessagesContent() {
                   </div>
                 </div>
                 <div style={{ marginLeft: 'auto', display: 'flex', alignItems: 'center', gap: 6 }}>
+                  <button
+                    onClick={() => hideConversation(activeConv)}
+                    title="Supprimer la conversation"
+                    aria-label="Supprimer la conversation"
+                    style={{
+                      display: 'flex', alignItems: 'center', justifyContent: 'center', width: 30, height: 30, borderRadius: '50%',
+                      background: dark ? '#2a2a2a' : '#f0f0f0', color: dark ? '#aaa' : '#666',
+                      border: 'none', cursor: 'pointer', fontSize: 14,
+                    }}
+                  >🗑️</button>
                   <button
                     onClick={() => toggleBlock(activeConv)}
                     title={blockedIds.has(activeConv) ? 'Débloquer' : 'Bloquer cet utilisateur'}
