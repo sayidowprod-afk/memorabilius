@@ -292,8 +292,10 @@ def x_post_text(cards_top, pronos_top):
         return ' · '.join(('%d. %s (%d)' % (i + 1, nm, c)) if with_count else ('%d. %s' % (i + 1, nm))
                           for i, (nm, c, _) in enumerate(rows[:n]))
     for n, wc in ((3, True), (3, False), (2, False), (1, False)):
-        t = 'Classement de la semaine 🏆\n\nCartes ajoutées : %s\nPronos : %s\n\nEt toi, t\'es où ? memorabilius.fr' % (
-            compact(cards_top, n, wc), compact(pronos_top, n, wc))
+        body = 'Cartes ajoutées : %s' % compact(cards_top, n, wc)
+        if pronos_top:  # semaine sans bon prono : on n'affiche pas une ligne vide
+            body += '\nPronos : %s' % compact(pronos_top, n, wc)
+        t = 'Classement de la semaine 🏆\n\n%s\n\nEt toi, t\'es où ? memorabilius.fr' % body
         if len(t) <= 260:  # marge : l'adresse compte pour 23 caractères et l'emoji pour 2
             return t
     return t
