@@ -38,6 +38,7 @@ export default function ConfidentialitePage() {
           <tr><td><strong>Contenu de collection</strong></td><td>Images de cartes (recto/verso), informations des cartes (joueur, année, marque, set, variation, numérotation…), classement dans des collections/setlists</td><td>Ajoutées par l'utilisateur</td></tr>
           <tr><td><strong>Caméra (app mobile)</strong></td><td>Flux caméra utilisé uniquement en temps réel pour scanner les cartes. Aucune image n'est enregistrée sans action explicite de l'utilisateur.</td><td>Accès accordé par l'utilisateur à la demande</td></tr>
           <tr><td><strong>Échanges &amp; communications</strong></td><td>Messages entre utilisateurs, annonces d'échange (trades), participations aux événements</td><td>Générées par l'utilisateur</td></tr>
+          <tr><td><strong>Livraison entre membres</strong></td><td>Nom du destinataire, adresse postale ou point de retrait, téléphone (facultatif), transporteur choisi, numéro de suivi. Visibles uniquement par l'acheteur et le vendeur concernés ; <strong>effacées 30 jours</strong> après la livraison ou l'annulation de la demande.</td><td>Fournies par l'acheteur lors d'une demande de livraison</td></tr>
           <tr><td><strong>Données techniques</strong></td><td>Données de connexion, cookies de session, journaux techniques nécessaires au fonctionnement et à la sécurité</td><td>Collectées automatiquement</td></tr>
         </tbody>
       </table>
