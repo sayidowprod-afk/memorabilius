@@ -912,6 +912,44 @@ export default function BinderLibrary({ userId, isOwner, accent, pendingCard, on
     setBinders(prev => prev.map(b => b.id === selected.id ? { ...b, page_count: newCount } : b))
   }
 
+  // Insère une page vide AVANT la page `pageNo` : les pages suivantes (et leurs cartes) reculent d'un cran.
+  // Décalage fait par la même RPC atomique que les autres déplacements en masse : un échec ne peut pas
+  // laisser des cartes supprimées sans avoir été réinsérées.
+  const [insertingPage, setInsertingPage] = useState(false)
+  const insertPage = async (pageNo: number) => {
+    if (!selected || insertingPage) return
+    setInsertingPage(true)
+    try {
+      const moved = [...slots.values()].filter(s => s.page_number >= pageNo)
+      if (moved.length) {
+        const { error } = await supabase.rpc('replace_binder_slots', {
+          p_binder_id: selected.id,
+          p_deletes: moved.map(s => ({ page_number: s.page_number, slot_index: s.slot_index })),
+          p_inserts: moved.map(s => ({
+            binder_id: selected.id, page_number: s.page_number + 1, slot_index: s.slot_index, card_key: s.card_key,
+            img: s.img, img_back: s.img_back, nom: s.nom, is_horizontal: !!s.is_horizontal,
+          })),
+        })
+        if (error) { toast.error(t('binder_insert_error_prefix') + error.message); openBinder(selected); return }
+      }
+      const newCount = selected.page_count + 1
+      const { error: pcErr } = await supabase.from('binders').update({ page_count: newCount }).eq('id', selected.id)
+      if (pcErr) { toast.error(t('binder_error_prefix') + pcErr.message); openBinder(selected); return }
+      setSlots(prev => {
+        const m = new Map<string, Slot>()
+        for (const s of prev.values()) {
+          const ns = s.page_number >= pageNo ? { ...s, page_number: s.page_number + 1 } : s
+          m.set(slotKey(ns.page_number, ns.slot_index), ns)
+        }
+        return m
+      })
+      setSelected(s => s ? { ...s, page_count: newCount } : s)
+      setBinders(prev => prev.map(b => b.id === selected.id ? { ...b, page_count: newCount } : b))
+    } finally {
+      setInsertingPage(false)
+    }
+  }
+
   // Trie toutes les cartes du classeur et réécrit les slots dans le nouvel ordre
   const sortBinder = async (by: 'nom_asc' | 'nom_desc' | 'annee_asc' | 'annee_desc' | 'equipe_asc' | 'num_asc' | 'num_desc') => {
     if (!selected || sorting) return
@@ -2454,6 +2492,17 @@ export default function BinderLibrary({ userId, isOwner, accent, pendingCard, on
                 style={{ padding: isMobile ? '12px 18px' : '8px 14px', fontSize: 13, opacity: !canNext ? 0.4 : 1, flexShrink: 0 }} aria-label={t('binder_next_page')}>
                 <span className="binder-nav-label">{t('binder_next_page')} </span>→
               </button>
+              {isOwner && (() => {
+                const target = rightFace(pageIndex)
+                if (!target) return null
+                return (
+                  <button onClick={() => insertPage(target.page)} disabled={!!flip || insertingPage} className="btn-main btn-secondary"
+                    title={`Insérer une page vide avant la page ${target.page} : les pages suivantes sont décalées`}
+                    style={{ padding: isMobile ? '12px 16px' : '8px 12px', fontSize: 12, flexShrink: 0 }} aria-label="Insérer une page vide ici">
+                    ⤵<span className="binder-nav-label"> Insérer une page ici</span>
+                  </button>
+                )
+              })()}
               {isOwner && !canNext && (
                 <button onClick={addPage} className="btn-main btn-secondary" style={{ padding: isMobile ? '12px 16px' : '8px 12px', fontSize: 12, flexShrink: 0 }} aria-label={t('binder_add_page')}>
                   +<span className="binder-nav-label"> Ajouter une page</span>
