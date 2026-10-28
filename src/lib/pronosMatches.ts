@@ -20,7 +20,13 @@ export interface OutMatch {
   locked: boolean
   leftScore?: number
   rightScore?: number
-  winner?: 'left' | 'right'
+  // Issue du match : un camp, ou « draw » (nul). NHL : nul = egalite a la fin du temps
+  // reglementaire (match decide en prolongation ou aux tirs au but).
+  winner?: 'left' | 'right' | 'draw'
+  // Le « match nul » est proposable au pronostic (football, NHL).
+  drawable: boolean
+  // « Prolongation » / « Tirs au but » (NHL).
+  note?: string
   leftRecord?: string
   rightRecord?: string
 }
@@ -32,15 +38,19 @@ function buildMatch(
   homeName: string, awayName: string,
   finished: boolean, homeScore: number | null, awayScore: number | null,
   records?: Map<string, string>,
+  overtime?: string, // NHL : « Prolongation » / « Tirs au but » quand la partie n'est pas finie dans le temps reglementaire
 ): OutMatch | null {
   const home = getTeamByName(homeName)
   const away = getTeamByName(awayName)
   if (!home || !away) return null // équipe non reconnue dans sportsTeams.ts -- on saute plutôt que d'afficher un trou
 
   const started = Date.now() >= start.getTime()
-  const winner = finished && homeScore !== null && awayScore !== null
-    ? (homeScore > awayScore ? 'right' : 'left')
-    : undefined
+  const drawable = sport === 'football' || sport === 'nhl'
+  let winner: OutMatch['winner']
+  if (finished && homeScore !== null && awayScore !== null) {
+    if (overtime || homeScore === awayScore) winner = 'draw'
+    else winner = homeScore > awayScore ? 'right' : 'left'
+  }
 
   return {
     id: `${sport}-${apiId}`,
@@ -55,6 +65,8 @@ function buildMatch(
     leftScore: finished ? awayScore ?? undefined : undefined,
     rightScore: finished ? homeScore ?? undefined : undefined,
     winner,
+    drawable,
+    note: finished ? overtime : undefined,
     leftRecord: records?.get(away.id),
     rightRecord: records?.get(home.id),
   }
@@ -97,8 +109,16 @@ async function fetchEspn(sport: Sport, espnPath: string, parisDate: string, reva
         if (homeTeam && homeRec) records.set(homeTeam.id, homeRec)
         if (awayTeam && awayRec) records.set(awayTeam.id, awayRec)
 
+        // NHL : periode > 3 = prolongation (4) ou tirs au but (5). Le detail « Final/OT » / « Final/SO » le confirme.
+        const detail = String(comp.status?.type?.shortDetail ?? '')
+        const period = Number(comp.status?.period)
+        let overtime: string | undefined
+        if (sport === 'nhl' && finished) {
+          if (/\/SO\b/i.test(detail) || period >= 5) overtime = 'Tirs au but'
+          else if (/\/\d*OT\b/i.test(detail) || period === 4) overtime = 'Prolongation'
+        }
         const m = buildMatch(sport, ev.id, start, home.team?.displayName, away.team?.displayName,
-          finished, homeScore, awayScore, records)
+          finished, homeScore, awayScore, records, overtime)
         if (m) out.push(m)
       }
     } catch { /* ESPN indisponible pour cette date -- on continue avec les autres */ }

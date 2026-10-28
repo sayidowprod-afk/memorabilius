@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { createServerServiceClient } from '@/lib/supabaseServer'
 import { fetchMatchesForOffsets } from '@/lib/pronosMatches'
+import { isoDateInParis, offsetFromToday } from '@/lib/pronosDays'
 import { XP_AWARDS } from '@/lib/xp'
 
 export const maxDuration = 60
@@ -10,7 +11,7 @@ const supabase = createServerServiceClient()
 // Picks conservés 8 jours après le coup d'envoi : assez pour que
 // l'utilisateur puisse revenir résoudre ses bons pronos (fenêtre de
 // résolution ci-dessous = 7 jours), pas besoin de les garder au-delà.
-const RETENTION_DAYS = 8
+const RETENTION_DAYS = 15
 
 // Verse +5 XP par pick gagnant parmi les matchs terminés. La correction du
 // pick est recalculée ici depuis les résultats serveur (jamais confiée au
@@ -33,7 +34,10 @@ export async function POST(req: NextRequest) {
       .select('match_id, pick').eq('user_id', user.id).lt('kickoff_at', new Date().toISOString())
     if (!picks || picks.length === 0) return NextResponse.json({ ok: true, awarded: 0, xp: 0 })
 
-    const { matches } = await fetchMatchesForOffsets([-7, -6, -5, -4, -3, -2, -1, 0])
+    // Seulement les jours où l'utilisateur a un pronostic à résoudre (jusqu'à ~15 jours en arrière).
+    const offsets = [...new Set((await supabase.from('pronos_picks').select('kickoff_at').eq('user_id', user.id).lt('kickoff_at', new Date().toISOString())).data
+      ?.map(r => offsetFromToday(isoDateInParis(new Date(r.kickoff_at)))) ?? [])]
+    const { matches } = await fetchMatchesForOffsets(offsets.length ? offsets : [0])
     const byId = new Map(matches.map(m => [m.id, m]))
 
     let awarded = 0

@@ -4,7 +4,7 @@ import { Anton } from 'next/font/google'
 import TeamBadge from '@/components/TeamBadge'
 import { getTeamById } from '@/lib/sportsTeams'
 import { useAuth } from '@/lib/AuthContext'
-import { nextDays } from '@/lib/pronosDays'
+import { dayLabel, daysForOffsets, weekOffsets } from '@/lib/pronosDays'
 import { supabase } from '@/lib/supabase'
 import type { BoxScore as BoxScoreData, BoxGroup as BoxScoreGroup } from '@/lib/pronosBoxscore'
 
@@ -24,6 +24,8 @@ const SURFQUEST = "'Surfquest', Impact, 'Arial Narrow', sans-serif"
 const UI_FONT = "-apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif"
 
 type Sport = 'nba' | 'nfl' | 'mlb' | 'nhl' | 'football'
+// Pronostic : un camp, ou « draw » (match nul : football et NHL).
+type Pick = 'left' | 'right' | 'draw'
 
 interface ApiMatch {
   id: string
@@ -36,7 +38,9 @@ interface ApiMatch {
   locked: boolean
   leftScore?: number
   rightScore?: number
-  winner?: 'left' | 'right'
+  winner?: 'left' | 'right' | 'draw'
+  drawable?: boolean
+  note?: string
   leftRecord?: string
   rightRecord?: string
 }
@@ -138,7 +142,7 @@ function TeamHalf({
   )
 }
 
-function MatchRow({ m, pick, onPick }: { m: ApiMatch; pick?: 'left' | 'right'; onPick: (id: string, side: 'left' | 'right') => void }) {
+function MatchRow({ m, pick, onPick }: { m: ApiMatch; pick?: Pick; onPick: (id: string, side: Pick) => void }) {
   const left = getTeamById(m.leftId)
   const right = getTeamById(m.rightId)
   if (!left || !right) return null
@@ -171,6 +175,20 @@ function MatchRow({ m, pick, onPick }: { m: ApiMatch; pick?: 'left' | 'right'; o
           <span style={{ fontFamily: UI_FONT, fontWeight: 800, fontSize: 13, color: NAVY }}>VS</span>
         </div>
         <span style={{ fontFamily: UI_FONT, fontWeight: 700, fontSize: 14, color: '#fff' }}>{m.time}</span>
+        {m.status === 'final' && m.note && (
+          <span style={{ fontFamily: UI_FONT, fontWeight: 700, fontSize: 11, color: 'rgba(255,255,255,.7)' }}>{m.note}</span>
+        )}
+        {m.drawable && (clickable || m.status === 'final') && (
+          <button type="button" className="pronos-draw" disabled={!clickable} onClick={() => onPick(m.id, 'draw')} aria-pressed={pick === 'draw'}
+            style={{
+              background: m.status === 'final' ? (m.winner === 'draw' ? GOLD : 'rgba(255,255,255,.1)') : (pick === 'draw' ? GREEN : 'rgba(255,255,255,.14)'),
+              color: m.status === 'final' && m.winner === 'draw' ? '#1a1300' : '#fff',
+              outline: m.status === 'final' && pick === 'draw' ? `2px solid ${m.winner === 'draw' ? GREEN : '#e74c3c'}` : 'none',
+              cursor: clickable ? 'pointer' : 'default',
+            }}>
+            NUL
+          </button>
+        )}
       </div>
 
       <div style={{ flex: 1, display: 'flex', background: rightBg }}>
@@ -194,17 +212,18 @@ const POS_COLORS: Record<string, string> = {
   PG: '#ff5c93', SG: '#ff9f43', G: '#ff9f43', SF: '#2ee6a6', F: '#2ee6a6', PF: '#38bdf8', C: '#c084fc',
 }
 
-function PickSummary({ m, pick }: { m: ApiMatch; pick?: 'left' | 'right' }) {
-  const team = pick ? getTeamById(pick === 'left' ? m.leftId : m.rightId) : null
+function PickSummary({ m, pick }: { m: ApiMatch; pick?: Pick }) {
+  const team = pick && pick !== 'draw' ? getTeamById(pick === 'left' ? m.leftId : m.rightId) : null
+  const label = pick === 'draw' ? 'Match nul' : team?.name
   let text: string, color = 'rgba(255,255,255,.75)'
-  if (!pick || !team) {
+  if (!pick || !label) {
     text = "Tu n'avais pas de pronostic sur ce match."
   } else if (m.status !== 'final') {
-    text = `Ton pronostic : ${team.name} — match en cours`
+    text = `Ton pronostic : ${label} — match en cours`
   } else if (m.winner === pick) {
-    text = `✓ Ton pronostic : ${team.name} — gagné (+5 XP)`; color = GREEN
+    text = `✓ Ton pronostic : ${label} — gagné (+5 XP)`; color = GREEN
   } else {
-    text = `✗ Ton pronostic : ${team.name} — perdu`; color = '#e74c3c'
+    text = `✗ Ton pronostic : ${label} — perdu`; color = '#e74c3c'
   }
   return <div style={{ fontFamily: UI_FONT, fontWeight: 800, fontSize: 13, color, marginBottom: 14 }}>{text}</div>
 }
@@ -267,10 +286,10 @@ function BoxGroupTable({ group, abbr, expanded }: { group: BoxScoreGroup; abbr?:
   )
 }
 
-function BoxScorePanel({ m, pick }: { m: ApiMatch; pick?: 'left' | 'right' }) {
+function BoxScorePanel({ m, pick }: { m: ApiMatch; pick?: Pick }) {
   const [box, setBox] = useState<BoxScoreData | null>(null)
   const [error, setError] = useState<'unavailable' | 'failed' | null>(null)
-  const [side, setSide] = useState<'left' | 'right'>(pick ?? 'left')
+  const [side, setSide] = useState<'left' | 'right'>(pick === 'right' ? 'right' : 'left')
   const [expanded, setExpanded] = useState(false)
 
   useEffect(() => {
@@ -337,7 +356,7 @@ function BoxScorePanel({ m, pick }: { m: ApiMatch; pick?: 'left' | 'right' }) {
   )
 }
 
-function MatchItem({ m, pick, onPick }: { m: ApiMatch; pick?: 'left' | 'right'; onPick: (id: string, side: 'left' | 'right') => void }) {
+function MatchItem({ m, pick, onPick }: { m: ApiMatch; pick?: Pick; onPick: (id: string, side: Pick) => void }) {
   const [open, setOpen] = useState(false)
   // Pas de box score pour un match pas encore commencé (rien à montrer), ni
   // pour le football (aucune source gratuite branchée).
@@ -363,7 +382,7 @@ function MatchItem({ m, pick, onPick }: { m: ApiMatch; pick?: 'left' | 'right'; 
 // Tous les cadres sont collés (un seul bloc, pas d'espace entre les
 // matchs) : un seul bord blanc autour de la liste, un simple filet entre
 // chaque ligne.
-function MatchList({ matches, picks, onPick }: { matches: ApiMatch[]; picks: Record<string, 'left' | 'right'>; onPick: (id: string, side: 'left' | 'right') => void }) {
+function MatchList({ matches, picks, onPick }: { matches: ApiMatch[]; picks: Record<string, Pick>; onPick: (id: string, side: Pick) => void }) {
   return (
     <div style={{ border: '4px solid #fff', borderRadius: 0, overflow: 'hidden' }}>
       {matches.map((m, i) => (
@@ -399,6 +418,7 @@ html[data-theme="dark"] .pronos-white-circle { background: #fff !important; }
 .pronos-score { font-size: 46px; }
 .pronos-center { display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 6px 18px; flex-shrink: 0; width: 150px; }
 .pronos-sport-badge { display: flex; align-items: center; gap: 6px; margin-bottom: 6px; border-radius: 999px; padding: 3px 10px 3px 6px; }
+.pronos-draw { margin-top: 6px; padding: 4px 14px; border: 0; border-radius: 999px; font: 800 12px/1 -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; letter-spacing: .5px; }
 .pronos-vs-circle { width: 34px; height: 34px; margin: 5px 0; display: flex; align-items: center; justify-content: center; border-radius: 50%; }
 
 .pronos-bs-scroll { --bs-first: 158px; --bs-col: 52px; --bs-av: 40px; --bs-pad: 6px; --bs-pad-first: 10px; --bs-gap: 10px; --bs-row: 56px; --bs-name: 14px; --bs-name-w: 96px; --bs-fs: 14px; }
@@ -417,6 +437,7 @@ html[data-theme="dark"] .pronos-white-circle { background: #fff !important; }
   .pronos-center { width: 100%; flex-direction: row; padding: 6px 10px; gap: 8px; }
   .pronos-sport-badge { margin-bottom: 0; }
   .pronos-vs-circle { width: 26px; height: 26px; margin: 0; }
+  .pronos-draw { margin-top: 0; }
 }
 `}</style>
   )
@@ -434,10 +455,15 @@ function SportLogo({ sport, size = 20 }: { sport: Sport; size?: number }) {
 export default function PronosHomePreview() {
   const { user } = useAuth()
   const [matches, setMatches] = useState<ApiMatch[] | null>(null)
-  const [days, setDays] = useState<string[]>(() => nextDays(7).map(d => d.label))
-  const [activeDay, setActiveDay] = useState(days[0])
+  // Semaine courante du lundi au dimanche (jours passés inclus, avec leurs résultats) ;
+  // la semaine précédente se charge à la demande (bouton « résultats de la semaine dernière »).
+  const [days, setDays] = useState<string[]>(() => daysForOffsets(weekOffsets(0)).map(d => d.label))
+  const [activeDay, setActiveDay] = useState(() => dayLabel(new Date()))
+  const [week, setWeek] = useState<'current' | 'prev'>('current')
+  const [prev, setPrev] = useState<{ matches: ApiMatch[]; days: string[] } | null>(null)
+  const [prevLoading, setPrevLoading] = useState(false)
   const [activeSport, setActiveSport] = useState<Sport | 'ALL'>('ALL')
-  const [picks, setPicks] = useState<Record<string, 'left' | 'right'>>({})
+  const [picks, setPicks] = useState<Record<string, Pick>>({})
   const [xpGain, setXpGain] = useState<{ wins: number; xp: number } | null>(null)
 
   useEffect(() => {
@@ -448,7 +474,7 @@ export default function PronosHomePreview() {
       .then(data => {
         if (cancelled) return
         setMatches(data.matches ?? [])
-        if (data.days?.length) { setDays(data.days); setActiveDay(d => d || data.days[0]) }
+        if (data.days?.length) setDays(data.days)
       })
       .catch(() => { if (!cancelled) setMatches([]) })
     return () => { cancelled = true }
@@ -462,8 +488,8 @@ export default function PronosHomePreview() {
     supabase.from('pronos_picks').select('match_id, pick').eq('user_id', user.id)
       .then(({ data }) => {
         if (cancelled || !data) return
-        const map: Record<string, 'left' | 'right'> = {}
-        for (const row of data) map[row.match_id] = row.pick as 'left' | 'right'
+        const map: Record<string, Pick> = {}
+        for (const row of data) map[row.match_id] = row.pick as Pick
         setPicks(map)
       })
     return () => { cancelled = true }
@@ -489,7 +515,7 @@ export default function PronosHomePreview() {
 
   // Écriture via la route serveur (qui refuse un match déjà commencé) ;
   // mise à jour optimiste, annulée si le serveur refuse.
-  const handlePick = async (id: string, side: 'left' | 'right') => {
+  const handlePick = async (id: string, side: Pick) => {
     const previous = picks[id]
     const cancel = previous === side
     setPicks(p => ({ ...p, [id]: cancel ? (undefined as any) : side }))
@@ -506,7 +532,23 @@ export default function PronosHomePreview() {
     }
   }
 
-  const visible = (matches ?? []).filter(m => m.day === activeDay && (activeSport === 'ALL' || m.sport === activeSport))
+  const showPrev = async () => {
+    setWeek('prev')
+    const lastDay = (prev?.days ?? daysForOffsets(weekOffsets(-1)).map(d => d.label)).slice(-1)[0]
+    setActiveDay(lastDay)
+    if (prev || prevLoading) return
+    setPrevLoading(true)
+    try {
+      const data = await fetch('/api/pronos/matches?week=prev').then(r => r.json())
+      setPrev({ matches: data.matches ?? [], days: data.days ?? [] })
+    } catch { setPrev({ matches: [], days: [] }) }
+    setPrevLoading(false)
+  }
+  const showCurrent = () => { setWeek('current'); setActiveDay(dayLabel(new Date())) }
+
+  const shownDays = week === 'prev' ? (prev?.days?.length ? prev.days : daysForOffsets(weekOffsets(-1)).map(d => d.label)) : days
+  const shownMatches = week === 'prev' ? prev?.matches ?? null : matches
+  const visible = (shownMatches ?? []).filter(m => m.day === activeDay && (activeSport === 'ALL' || m.sport === activeSport))
 
   const pillBase: React.CSSProperties = {
     display: 'flex', alignItems: 'center', gap: 8, padding: '9px 16px', borderRadius: 999,
@@ -566,9 +608,9 @@ export default function PronosHomePreview() {
           })}
         </div>
 
-        {/* Sélecteur de jour */}
+        {/* Sélecteur de jour (lundi → dimanche) */}
         <div style={{ display: 'flex', gap: 8, overflowX: 'auto', paddingBottom: 20 }}>
-          {days.map(d => (
+          {shownDays.map(d => (
             <button key={d} onClick={() => setActiveDay(d)} style={{
               ...pillBase,
               background: d === activeDay ? '#fff' : 'rgba(255,255,255,.08)',
@@ -579,9 +621,23 @@ export default function PronosHomePreview() {
           ))}
         </div>
 
-        {matches === null ? (
+        <div style={{ marginBottom: 16 }}>
+          {week === 'current' ? (
+            <button type="button" onClick={showPrev}
+              style={{ ...pillBase, padding: '7px 14px', fontSize: 13, background: 'transparent', color: '#8db6ff', border: '1px solid rgba(141,182,255,.55)' }}>
+              ← Résultats de la semaine dernière
+            </button>
+          ) : (
+            <button type="button" onClick={showCurrent}
+              style={{ ...pillBase, padding: '7px 14px', fontSize: 13, background: 'transparent', color: '#8db6ff', border: '1px solid rgba(141,182,255,.55)' }}>
+              Revenir à cette semaine →
+            </button>
+          )}
+        </div>
+
+        {shownMatches === null ? (
           <p style={{ fontFamily: UI_FONT, fontWeight: 600, color: 'rgba(255,255,255,.6)', fontSize: 16, textAlign: 'center', padding: '40px 0' }}>
-            Chargement des matchs...
+            {week === 'prev' && prevLoading ? 'Chargement des résultats...' : 'Chargement des matchs...'}
           </p>
         ) : visible.length > 0 ? (
           <MatchList matches={visible} picks={picks} onPick={handlePick} />

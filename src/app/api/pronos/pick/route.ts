@@ -19,13 +19,15 @@ export async function POST(req: NextRequest) {
 
     const body = await req.json().catch(() => null)
     const matchId = typeof body?.matchId === 'string' ? body.matchId : null
-    const pick = body?.pick === 'left' || body?.pick === 'right' ? body.pick : body?.pick === null ? null : undefined
+    const pick = body?.pick === 'left' || body?.pick === 'right' || body?.pick === 'draw' ? body.pick : body?.pick === null ? null : undefined
     if (!matchId || pick === undefined) return NextResponse.json({ error: 'Bad request' }, { status: 400 })
 
     const { matches } = await fetchMatchesForOffsets([-1, 0, 1, 2, 3, 4, 5, 6])
     const match = matches.find(m => m.id === matchId)
     if (!match) return NextResponse.json({ error: 'unknown_match' }, { status: 404 })
     if (match.locked || match.status === 'final') return NextResponse.json({ error: 'locked' }, { status: 409 })
+    // « Match nul » : seulement là où il peut arriver (football, NHL) -- règle appliquée ici, pas confiée au client.
+    if (pick === 'draw' && !match.drawable) return NextResponse.json({ error: 'draw_not_allowed' }, { status: 400 })
 
     if (pick === null) {
       await supabase.from('pronos_picks').delete().eq('user_id', user.id).eq('match_id', matchId)

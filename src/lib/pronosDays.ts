@@ -39,3 +39,20 @@ export function daysForOffsets(offsets: number[]): { label: string; parisDate: s
 export function nextDays(n: number): { label: string; parisDate: string }[] {
   return daysForOffsets(Array.from({ length: n }, (_, i) => i))
 }
+
+// Décalages (en jours par rapport à aujourd'hui, Paris) des 7 jours du lundi au
+// dimanche de la semaine courante (weekShift = 0) ou d'une autre (-1 = la semaine
+// précédente). Les jours déjà passés de la semaine restent donc affichés.
+export function weekOffsets(weekShift = 0): number[] {
+  const wd = new Intl.DateTimeFormat('en-US', { weekday: 'short', timeZone: TZ }).format(new Date())
+  const idx = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'].indexOf(wd) // lundi = 0
+  const monday = -(idx < 0 ? 0 : idx) + 7 * weekShift
+  return Array.from({ length: 7 }, (_, i) => monday + i)
+}
+
+// Décalage d'une date calendaire Paris (YYYY-MM-DD) par rapport à aujourd'hui.
+export function offsetFromToday(parisDate: string): number {
+  const a = Date.parse(isoDateInParis(new Date()) + 'T12:00:00Z')
+  const b = Date.parse(parisDate + 'T12:00:00Z')
+  return Math.round((b - a) / 86400000)
+}
