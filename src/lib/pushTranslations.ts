@@ -195,3 +195,20 @@ export function tradeEventPush(lang: PushLang, event: TradeEvent, actorName: str
   }
   return { title: t[event].title[lang], body: t[event].body[lang] }
 }
+
+// Livraison entre membres (voir lib/shipping.ts).
+export function shipmentPush(lang: PushLang, event: 'requested' | 'shipped' | 'delivered' | 'cancelled', name: string) {
+  const titles = {
+    requested: { fr: '📦 Demande de livraison', en: '📦 Delivery request', de: '📦 Lieferanfrage' },
+    shipped: { fr: '🚚 Ta carte est expédiée', en: '🚚 Your card has shipped', de: '🚚 Deine Karte ist unterwegs' },
+    delivered: { fr: '✅ Carte bien reçue', en: '✅ Card received', de: '✅ Karte erhalten' },
+    cancelled: { fr: '❌ Livraison annulée', en: '❌ Delivery cancelled', de: '❌ Lieferung storniert' },
+  }
+  const bodies = {
+    requested: { fr: `${name} a choisi son mode de livraison`, en: `${name} chose a delivery method`, de: `${name} hat die Lieferart gewählt` },
+    shipped: { fr: `${name} a expédié ta carte`, en: `${name} shipped your card`, de: `${name} hat deine Karte verschickt` },
+    delivered: { fr: `${name} a bien reçu la carte`, en: `${name} received the card`, de: `${name} hat die Karte erhalten` },
+    cancelled: { fr: `${name} a annulé la demande de livraison`, en: `${name} cancelled the delivery request`, de: `${name} hat die Lieferanfrage storniert` },
+  }
+  return { title: titles[event][lang], body: bodies[event][lang] }
+}

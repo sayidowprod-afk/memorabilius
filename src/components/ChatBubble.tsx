@@ -19,6 +19,7 @@ const isImageMsg = (c: string) => typeof c === 'string' && c.startsWith(IMG_PREF
 const imgUrlOf = (c: string) => c.slice(IMG_PREFIX.length)
 
 const TRADE_PREFIX = '[[trade_offer:'
+const isShipmentMsg = (c: string) => typeof c === 'string' && c.startsWith('[[shipment:') && c.endsWith(']]')
 const isTradeMsg = (c: string) => typeof c === 'string' && c.startsWith(TRADE_PREFIX)
 const tradeIdOf = (c: string) => c.slice(TRADE_PREFIX.length, -2)
 
@@ -128,7 +129,7 @@ export default function ChatBubble() {
     for (const msg of data) {
       const otherId = msg.from_user_id === uid ? msg.to_user_id : msg.from_user_id
       if (!convMap[otherId]) convMap[otherId] = {
-        lastMsg: isTradeMsg(msg.contenu) ? t('chat_trade_offer_label') : msg.contenu,
+        lastMsg: isShipmentMsg(msg.contenu) ? '📦 Livraison' : isTradeMsg(msg.contenu) ? t('chat_trade_offer_label') : msg.contenu,
         date: msg.created_at, unread: 0,
       }
       if (!msg.lu && msg.to_user_id === uid) convMap[otherId].unread++
@@ -336,6 +337,17 @@ export default function ChatBubble() {
                     if (d.toDateString() === today.toDateString()) return time
                     return `${d.toLocaleDateString(localeFor(lang), { day: '2-digit', month: '2-digit' })} ${time}`
                   })()
+
+                  // ── Livraison : détail et actions dans la page Messages ──
+                  if (isShipmentMsg(msg.contenu)) {
+                    return (
+                      <div key={msg.id} style={{ display: 'flex', justifyContent: 'center', margin: '4px 0' }}>
+                        <a href={`/messages?to=${activeConv}`} style={{ fontSize: 12, fontWeight: 700, color: '#003DA6', background: dark ? '#1e2a3a' : '#f0f4ff', border: `1px solid ${dark ? '#2a3a5a' : '#c5d5ff'}`, borderRadius: 12, padding: '8px 12px', textDecoration: 'none' }}>
+                          📦 Livraison — voir les détails dans Messages
+                        </a>
+                      </div>
+                    )
+                  }
 
                   // ── Bulle trade offer ──
                   if (isTradeMsg(msg.contenu)) {

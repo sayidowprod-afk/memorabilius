@@ -20,6 +20,9 @@ import CardTagBadges from '@/components/CardTagBadges'
 import ModalCloseButton from '@/components/ModalCloseButton'
 import CardPicker from '@/components/CardPicker'
 import { TRADE_STATUS_COLOR, type TradeStatus } from '@/lib/tradeStatus'
+import ShipmentBubble from '@/components/ShipmentBubble'
+import ShipmentRequestModal from '@/components/ShipmentRequestModal'
+import { isShipmentMsg, shipmentIdOf } from '@/lib/shipping'
 
 // Hauteur réelle de MobileTopBar (safe-area-top + paddings 10px + logo 20px)
 const TOPBAR_HEIGHT_CSS = 'calc(var(--safe-area-inset-top, env(safe-area-inset-top)) + 40px)'
@@ -88,6 +91,7 @@ function MessagesContent() {
   const [activeConv, setActiveConv] = useState<string | null>(toParam)
   const [messages, setMessages] = useState<any[]>([])
   const [newMsg, setNewMsg] = useState('')
+  const [shipModal, setShipModal] = useState(false) // demande de livraison (acheteur -> vendeur)
 
   // Brouillon par conversation : un message long tape puis perdu (changement
   // de conversation, fermeture accidentelle) est frustrant a retaper.
@@ -357,7 +361,7 @@ function MessagesContent() {
       const otherId = msg.from_user_id === uid ? msg.to_user_id : msg.from_user_id
       const hAt = hiddenAt.get(otherId)
       if (hAt !== undefined && Date.parse(msg.created_at) <= hAt) continue
-      const lastMsgDisplay = isTradeOfferMsg(msg.contenu) ? t('messages_trade_offer') : isImageMsg(msg.contenu) ? t('chat_photo') : isCardMsg(msg.contenu) ? `🃏 ${cardDataOf(msg.contenu)?.nom || ''}` : msg.contenu
+      const lastMsgDisplay = isShipmentMsg(msg.contenu) ? '📦 Livraison' : isTradeOfferMsg(msg.contenu) ? t('messages_trade_offer') : isImageMsg(msg.contenu) ? t('chat_photo') : isCardMsg(msg.contenu) ? `🃏 ${cardDataOf(msg.contenu)?.nom || ''}` : msg.contenu
       if (!convMap[otherId]) convMap[otherId] = { lastMsg: lastMsgDisplay, date: msg.created_at, unread: 0 }
       if (!msg.lu && msg.to_user_id === uid) convMap[otherId].unread++
     }
@@ -720,6 +724,16 @@ function MessagesContent() {
                     }}
                   >🗑️</button>
                   <button
+                    onClick={() => setShipModal(true)}
+                    title="Organiser la livraison d'une carte"
+                    aria-label="Organiser la livraison"
+                    style={{
+                      display: 'flex', alignItems: 'center', justifyContent: 'center', width: 30, height: 30, borderRadius: '50%',
+                      background: dark ? '#2a2a2a' : '#f0f0f0', color: dark ? '#aaa' : '#666',
+                      border: 'none', cursor: 'pointer', fontSize: 14,
+                    }}
+                  >📦</button>
+                  <button
                     onClick={() => toggleBlock(activeConv)}
                     title={blockedIds.has(activeConv) ? 'Débloquer' : 'Bloquer cet utilisateur'}
                     style={{
@@ -746,6 +760,15 @@ function MessagesContent() {
                 {messages.map((msg, msgIdx) => {
                   const isMe = msg.from_user_id === userId
                   const linkedTrade = msg.trade_id ? tradesMap[msg.trade_id] : null
+
+                  // ── Bulle livraison (acheteur/vendeur) ──
+                  if (isShipmentMsg(msg.contenu) && userId) {
+                    return (
+                      <div key={msg.id} style={{ display: 'flex', justifyContent: 'center', margin: '4px 0' }}>
+                        <ShipmentBubble id={shipmentIdOf(msg.contenu)} userId={userId} dark={dark} refreshKey={messages.length} />
+                      </div>
+                    )
+                  }
 
                   // ── Bulle offre d'échange ──
                   if (isTradeOfferMsg(msg.contenu)) {
@@ -1034,6 +1057,10 @@ function MessagesContent() {
         </div>
       </div>
 
+      {shipModal && activeConv && userId && (
+        <ShipmentRequestModal sellerId={activeConv} sellerName={profiles[activeConv]?.display_name || 'ce membre'} dark={dark}
+          onClose={() => setShipModal(false)} onCreated={() => { setShipModal(false); loadMessages(userId, activeConv) }} />
+      )}
       {showCardPicker && userId && (
         <CardPicker
           userId={userId}
