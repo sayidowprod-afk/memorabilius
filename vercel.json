@@ -33,6 +33,10 @@
       "schedule": "0 7 * * 1"
     },
     {
+      "path": "/api/cron/pronos-resolve",
+      "schedule": "0 */3 * * *"
+    },
+    {
       "path": "/api/contest/tick",
       "schedule": "0 * * * *"
     },
