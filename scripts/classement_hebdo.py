@@ -32,7 +32,7 @@ TOP = 5
 def load_env():
     # Variables d'environnement d'abord (GitHub Actions), sinon .env.local (usage local).
     # .strip() : un secret GitHub collé avec un retour à la ligne final rendrait l'en-tête HTTP invalide.
-    env = {k: os.environ[k].strip() for k in ('NEXT_PUBLIC_SUPABASE_URL', 'SUPABASE_SERVICE_ROLE_KEY', 'DISCORD_WEBHOOK_URL') if os.environ.get(k, '').strip()}
+    env = {k: os.environ[k].strip() for k in ('NEXT_PUBLIC_SUPABASE_URL', 'SUPABASE_SERVICE_ROLE_KEY', 'DISCORD_WEBHOOK_URL', 'DISCORD_USER_ID') if os.environ.get(k, '').strip()}
     path = os.path.join(ROOT, '.env.local')
     if os.path.exists(path):
         with open(path, encoding='utf-8') as f:
@@ -301,11 +301,21 @@ def x_post_text(cards_top, pronos_top):
     return t
 
 
+_PINGED = False
+
+
 def post_discord(url, content, files):
-    """Envoie un message avec images sur un webhook Discord (gratuit)."""
+    """Envoie un message avec images sur un webhook Discord (gratuit).
+    Si DISCORD_USER_ID est défini, le PREMIER message de l'exécution cite l'utilisateur (une seule notification par envoi)."""
+    global _PINGED
+    payload = {'content': content}
+    uid = ENV.get('DISCORD_USER_ID', '')
+    if uid.isdigit() and not _PINGED:
+        payload = {'content': '<@%s> %s' % (uid, content), 'allowed_mentions': {'users': [uid]}}
+        _PINGED = True
     boundary = '----classement' + os.urandom(8).hex()
     parts = [('--%s\r\nContent-Disposition: form-data; name="payload_json"\r\nContent-Type: application/json\r\n\r\n%s\r\n'
-              % (boundary, json.dumps({'content': content}))).encode('utf-8')]
+              % (boundary, json.dumps(payload))).encode('utf-8')]
     for i, (name, path) in enumerate(files):
         with open(path, 'rb') as f:
             data = f.read()
