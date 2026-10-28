@@ -17,6 +17,7 @@ import ScrollToTopButton from '@/components/ScrollToTopButton'
 import { TRADE_STATUS_COLOR } from '@/lib/tradeStatus'
 import { toast } from '@/lib/toast'
 import TradeModal from '@/components/TradeModal'
+import PriceTag from '@/components/PriceTag'
 
 // ── Image zoom (forum annonces) ───────────────────────────────────────────────
 function ImageZoom({ src, alt }: { src: string; alt: string }) {
@@ -453,7 +454,7 @@ export default function Trades() {
   )
 
   return (
-    <div style={{ maxWidth: 1200, margin: '0 auto', fontFamily: 'Inter, sans-serif' }}>
+    <div className={mainTab === 'annonces' ? 'trades-wide' : undefined} style={{ maxWidth: 1200, margin: '0 auto', fontFamily: 'Inter, sans-serif' }}>
       <ScrollToTopButton />
 
       {/* ── En-tête + onglets principaux ── */}
@@ -565,7 +566,21 @@ export default function Trades() {
                site), plus specifique que .trades-forum-grid seule et donc
                toujours gagnante malgre le !important ici. Deplace en dehors
                du style inline pour ne plus matcher ce selecteur. */
-            .trades-forum-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 20px; }
+            /* Onglet Annonces sur grand écran : sort du cadre de 1400 px du <main> (page plus large, ~8-9 colonnes de cartes).
+               Centré sur la fenêtre via la marge ; en dessous de 1100 px rien ne change. */
+            @media (min-width: 1100px) {
+              .trades-wide { max-width: none !important; width: min(96vw, 2000px) !important; margin: 0 0 0 calc(50% - min(48vw, 1000px)) !important; }
+            }
+            .trades-forum-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(190px, 1fr)); gap: 14px; }
+            .trades-forum-grid .tfc { border-radius: 12px !important; }
+            .trades-forum-grid .tfc-head { padding: 6px 10px !important; }
+            .trades-forum-grid .tfc-body { padding: 9px 11px !important; }
+            .trades-forum-grid .tfc-body h3 { font-size: 13px !important; margin: 0 0 3px !important; }
+            .trades-forum-grid .tfc-sub { font-size: 10.5px !important; margin: 0 0 6px !important; }
+            .trades-forum-grid .tfc-tags { margin-bottom: 6px !important; }
+            .trades-forum-grid .tfc-seller { padding-top: 7px !important; gap: 6px !important; }
+            .trades-forum-grid .tfc-seller img { width: 20px !important; height: 20px !important; }
+            .trades-forum-grid .tfc-seller span { font-size: 11px !important; }
             @media (max-width: 600px) {
               .trades-forum-grid { grid-template-columns: repeat(2, 1fr) !important; gap: 10px !important; }
             }
@@ -639,7 +654,7 @@ export default function Trades() {
             ) : (
               <div className="trades-forum-grid">
                 {filteredForum.map(trade => (
-                  <div key={trade.id} onClick={() => { setPopup(trade); setPopupShowVerso(false) }} style={{
+                  <div key={trade.id} className="tfc" onClick={() => { setPopup(trade); setPopupShowVerso(false) }} style={{
                     background: 'var(--card-bg, #fff)', borderRadius: 16, overflow: 'hidden',
                     boxShadow: '0 4px 20px rgba(0,0,0,0.06)', border: '1px solid var(--border, #eee)',
                     cursor: 'pointer', transition: '0.2s',
@@ -652,7 +667,7 @@ export default function Trades() {
                         seule ligne avec space-between ne laissait plus assez de place et
                         les deux se chevauchaient. flexWrap laisse la date passer sur sa
                         propre ligne quand ca ne rentre pas. */}
-                    <div style={{ padding: '8px 16px', background: (trade as any)._source === 'galerie' ? '#f3e5f5' : trade.type === 'offre' ? '#e8f5e9' : '#e3f2fd', display: 'flex', flexWrap: 'wrap', justifyContent: 'space-between', alignItems: 'center', gap: 4 }}>
+                    <div className="tfc-head" style={{ padding: '8px 16px', background: (trade as any)._source === 'galerie' ? '#f3e5f5' : trade.type === 'offre' ? '#e8f5e9' : '#e3f2fd', display: 'flex', flexWrap: 'wrap', justifyContent: 'space-between', alignItems: 'center', gap: 4 }}>
                       <TradeTypeBadge kind={(trade as any)._source === 'galerie' ? 'galerie' : trade.type === 'offre' ? 'offre' : 'recherche'} />
                       <span style={{ fontSize: 11, color: 'var(--text3, #999)', whiteSpace: 'nowrap' }}>{new Date(trade.created_at).toLocaleDateString(localeFor(lang))}</span>
                     </div>
@@ -669,17 +684,20 @@ export default function Trades() {
                       {trade.image_url
                         ? <img loading="lazy" src={trade.image_url} alt={trade.titre} style={{ width: '100%', aspectRatio: '2.5 / 3.5', objectFit: 'contain', display: 'block' }} />
                         : <div className="card-placeholder" style={{ height: 80, fontSize: 32 }}>🃏</div>}
+                      {(trade as any)._source === 'galerie' && (trade as any).prix_vente != null && (
+                        <div className="sash-clip" aria-hidden><PriceTag price={Number((trade as any).prix_vente)} /></div>
+                      )}
                     </div>
-                    <div style={{ padding: '14px 16px' }}>
+                    <div className="tfc-body" style={{ padding: '14px 16px' }}>
                       {/* Ecart de taille plus net titre/metadonnees (15->12px etait
                           un petit pas, tout au meme poids visuel) + un peu plus de
                           respiration autour des badges pour mieux scanner la grille. */}
                       <h3 style={{ fontWeight: 900, fontSize: 16, margin: '0 0 5px', lineHeight: 1.25 }}>{trade.titre}</h3>
-                      {trade.joueur && <p style={{ fontSize: 11.5, color: '#003DA6', fontWeight: 600, margin: '0 0 10px' }}>{trade.sport ? (SPORTS[trade.sport] || '🃏') : '🃏'} {trade.joueur}{trade.equipe ? ` · ${trade.equipe}` : ''}</p>}
-                      <div style={{ display: 'flex', gap: 4, flexWrap: 'wrap', marginBottom: 10 }}>
-                        <CardTagBadges rc={trade.rc} auto={trade.auto} patch={trade.patch} num={trade.num} size="md" />
+                      {trade.joueur && <p className="tfc-sub" style={{ fontSize: 11.5, color: '#003DA6', fontWeight: 600, margin: '0 0 10px' }}>{trade.sport ? (SPORTS[trade.sport] || '🃏') : '🃏'} {trade.joueur}{trade.equipe ? ` · ${trade.equipe}` : ''}</p>}
+                      <div className="tfc-tags" style={{ display: 'flex', gap: 4, flexWrap: 'wrap', marginBottom: 10 }}>
+                        <CardTagBadges rc={trade.rc} auto={trade.auto} patch={trade.patch} num={trade.num} size="sm" />
                       </div>
-                      <div style={{ display: 'flex', alignItems: 'center', gap: 8, paddingTop: 10, borderTop: '1px solid var(--border, #f0f0f0)' }}>
+                      <div className="tfc-seller" style={{ display: 'flex', alignItems: 'center', gap: 8, paddingTop: 10, borderTop: '1px solid var(--border, #f0f0f0)' }}>
                         <img loading="lazy" src={trade.profiles?.avatar_url || `https://ui-avatars.com/api/?name=${encodeURIComponent(trade.profiles?.display_name || 'U')}&background=003DA6&color=fff`}
                           style={{ width: 26, height: 26, borderRadius: '50%', objectFit: 'cover' }} alt="" />
                         <span style={{ fontSize: 12, fontWeight: 700, color: 'var(--text2, #444)' }}>{trade.profiles?.display_name}</span>

@@ -1,5 +1,8 @@
 'use client'
 import { toast } from '@/lib/toast'
+import PriceFormField from '@/components/PriceFormField'
+import { parsePrice } from '@/lib/marketplace'
+import { useMarketplaceAccess } from '@/lib/useMarketplaceAccess'
 import { useState, use, useRef, useEffect, useCallback } from 'react'
 import { createPortal } from 'react-dom'
 import { useHideBottomNav } from '@/lib/useHideBottomNav'
@@ -105,6 +108,7 @@ function NotesPersoField({ value, isPublic, onChange, onTogglePublic }: {
 export default function EditerCarte({ params }: { params: Promise<{ userId: string; id: string }> }) {
   const { userId, id } = use(params)
   const router = useRouter()
+  const priceAllowed = useMarketplaceAccess() === true // bêta privée : champ prix
   const searchParams = useSearchParams()
   const { lang, t } = useLang()
 
@@ -139,7 +143,7 @@ export default function EditerCarte({ params }: { params: Promise<{ userId: stri
   const [form, setForm] = useState({
     nom: '', equipe: '', annee: '', marque: '', collection: '', variation: '', notes_perso: '', notes_perso_public: false,
     grade: 'Raw', cert_number: '', num: '', card_number: '', rc: false, auto: false, patch: false, printing_plate: false,
-    image_recto: '', image_verso: '', image_recto_hd: '', image_verso_hd: '', collection_tag: '', disponible_vente: false,
+    image_recto: '', image_verso: '', image_recto_hd: '', image_verso_hd: '', collection_tag: '', disponible_vente: false, prix_vente: '',
     booklet: false, is_horizontal: false, format: 'standard',
     image_interieur_gauche: '', image_interieur_droite: '',
     verso_is_horizontal: null as boolean | null,
@@ -192,6 +196,7 @@ export default function EditerCarte({ params }: { params: Promise<{ userId: stri
         image_recto_hd: data.image_recto_hd || '', image_verso_hd: data.image_verso_hd || '',
         collection_tag: data.collection_tag || '',
         disponible_vente: data.disponible_vente || false,
+        prix_vente: data.prix_vente != null ? String(data.prix_vente) : '',
         booklet: data.booklet || false,
         is_horizontal: data.is_horizontal || false,
         format: data.format || (data.is_horizontal ? 'horizontal' : 'standard'),
@@ -568,6 +573,8 @@ export default function EditerCarte({ params }: { params: Promise<{ userId: stri
       image_recto_hd: form.image_recto_hd || null, image_verso_hd: form.image_verso_hd || null,
       collection_tag: form.collection_tag || null,
       disponible_vente: form.disponible_vente,
+      // prix : bêta privée (champ visible seulement pour les utilisateurs autorisés) ; retirer Vente/Trade retire le prix
+      ...(priceAllowed ? { prix_vente: form.disponible_vente ? parsePrice(form.prix_vente) : null } : {}),
       lien_vinted: form.lien_vinted || null,
       lien_ebay: form.lien_ebay || null,
       item_type: form.item_type || 'card',
@@ -914,6 +921,7 @@ export default function EditerCarte({ params }: { params: Promise<{ userId: stri
           </label>
           {form.disponible_vente && (
             <div style={{ display: 'flex', flexDirection: 'column', gap: 8, padding: '12px 14px', borderRadius: 10, background: '#f0f4ff', border: '2px solid #003DA6' }}>
+              <PriceFormField value={form.prix_vente} onChange={v => setForm(f => ({ ...f, prix_vente: v }))} />
               <div>
                 <label style={{ fontSize: 11, fontWeight: 700, textTransform: 'uppercase', color: '#009B77', display: 'block', marginBottom: 4 }}>🛍️ Lien Vinted (facultatif)</label>
                 <input type="url" value={form.lien_vinted} onChange={e => setForm({ ...form, lien_vinted: e.target.value })}

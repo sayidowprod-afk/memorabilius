@@ -352,21 +352,23 @@ img[src$=".png"], img[src$=".svg"] { background: none !important; animation: non
 .grail-museum::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 9px; background: linear-gradient(90deg, #6b5217, #e4c46c 50%, #6b5217); }
 
 /* ── Rubans de coin (statuts : a vendre, vendu, prive) ── */
-.sash-clip { position: absolute; inset: 0; overflow: hidden; pointer-events: none; z-index: 4; }
+.sash-clip { position: absolute; inset: 0; overflow: hidden; pointer-events: none; z-index: 4; container-type: inline-size; }
 .sash { position: absolute; width: 150px; text-align: center; padding: 3px 0; font: 800 8.5px system-ui, sans-serif; letter-spacing: .07em; white-space: nowrap; text-transform: uppercase; color: #fff; font-style: normal; box-shadow: 0 2px 6px rgba(0, 0, 0, .45); }
 .sash-tr { top: 21px; right: -44px; transform: rotate(45deg); }
 .sash-tl { top: 21px; left: -44px; transform: rotate(-45deg); }
-/* Étiquette de prix d'une carte Vente/Trade : verticale, compacte, « à couture », suspendue par une ficelle au haut de
-   la carte (dans .sash-clip). Pivot en haut (transform-origin) : elle pend légèrement de travers. Sur ordinateur elle se
-   balance au survol (classe .pt-play posée par PriceTag.tsx) ; sur écran tactile elle reste inerte (le toucher va à la carte). */
+/* Étiquette de prix d'une carte Vente/Trade : verticale, « à couture », suspendue par une ficelle au haut de la carte
+   (dans .sash-clip). Dimensions PROPORTIONNELLES à la largeur de la carte (unités cqw, référence : carte de 152 px) pour
+   garder le même rendu en grille dense comme en grande vignette ; les valeurs en px servent de repli. Pivot en haut : elle
+   pend légèrement de travers. Sur ordinateur elle se balance au survol (classe .pt-play posée par PriceTag.tsx) ; sur écran
+   tactile elle reste inerte (le toucher va à la carte). */
 .price-tag { --pt-x: 12%; --pt-rot: -5deg; --pt-bg: #f4ead2; --pt-fg: #3a2a12; --pt-edge: #cdb98a; --pt-s1: #c9a96b; --pt-s2: #8c6d3a; position: absolute; top: 0; left: var(--pt-x); display: flex; flex-direction: column; align-items: center; transform: translateX(-50%) rotate(var(--pt-rot)); transform-origin: 50% 0; filter: drop-shadow(0 1px 2px rgba(0, 0, 0, .55)); pointer-events: none; }
-.price-tag .pt-string { position: absolute; top: 0; left: 50%; width: 2px; height: 15px; margin-left: -1px; background: repeating-linear-gradient(135deg, var(--pt-s1) 0 2px, var(--pt-s2) 2px 4px); z-index: 2; }
-.price-tag .pt-body { position: relative; margin-top: 10px; width: 25px; padding: 9px 2px 5px; text-align: center; background: var(--pt-bg); color: var(--pt-fg); box-shadow: inset 0 0 0 1px var(--pt-edge); clip-path: polygon(6px 0, calc(100% - 6px) 0, 100% 6px, 100% 100%, 0 100%, 0 6px); font-family: system-ui, sans-serif; }
-.price-tag .pt-body::after { content: ''; position: absolute; inset: 3px 2px 2px; border: 1px dashed rgba(58, 42, 18, .38); pointer-events: none; }
-.price-tag .pt-hole { position: absolute; top: 3px; left: 50%; width: 4px; height: 4px; margin-left: -2px; border-radius: 50%; background: rgba(0, 0, 0, .55); box-shadow: 0 0 0 1px var(--pt-edge); }
-.price-tag .pt-eur { display: block; font-weight: 900; font-size: 13px; line-height: 1; letter-spacing: -.03em; }
-.price-tag .pt-cts { display: block; font-weight: 800; font-size: 8px; line-height: 1; margin-top: 1px; }
-.price-tag .pt-cur { display: block; font-weight: 800; font-size: 8px; line-height: 1; margin-top: 2px; opacity: .8; }
+.price-tag .pt-string { position: absolute; top: 0; left: 50%; width: 2px; height: 15px; height: 9.9cqw; margin-left: -1px; background: repeating-linear-gradient(135deg, var(--pt-s1) 0 2px, var(--pt-s2) 2px 4px); z-index: 2; }
+.price-tag .pt-body { position: relative; margin-top: 10px; margin-top: 6.6cqw; width: 25px; width: 16.4cqw; padding: 9px 2px 5px; padding: 5.9cqw 1.3cqw 3.3cqw; text-align: center; background: var(--pt-bg); color: var(--pt-fg); box-shadow: inset 0 0 0 1px var(--pt-edge); clip-path: polygon(6px 0, calc(100% - 6px) 0, 100% 6px, 100% 100%, 0 100%, 0 6px); clip-path: polygon(3.9cqw 0, calc(100% - 3.9cqw) 0, 100% 3.9cqw, 100% 100%, 0 100%, 0 3.9cqw); font-family: system-ui, sans-serif; }
+.price-tag .pt-body::after { content: ''; position: absolute; inset: 3px 2px 2px; inset: 2cqw 1.3cqw 1.3cqw; border: 1px dashed rgba(58, 42, 18, .38); pointer-events: none; }
+.price-tag .pt-hole { position: absolute; top: 3px; top: 2cqw; left: 50%; width: 4px; width: 2.6cqw; height: 4px; height: 2.6cqw; margin-left: -2px; margin-left: -1.3cqw; border-radius: 50%; background: rgba(0, 0, 0, .55); box-shadow: 0 0 0 1px var(--pt-edge); }
+.price-tag .pt-eur { display: block; font-weight: 900; font-size: 13px; font-size: max(10px, 8.6cqw); line-height: 1; letter-spacing: -.03em; }
+.price-tag .pt-cts { display: block; font-weight: 800; font-size: 8px; font-size: max(6.5px, 5.3cqw); line-height: 1; margin-top: 1px; }
+.price-tag .pt-cur { display: block; font-weight: 800; font-size: 8px; font-size: max(6.5px, 5.3cqw); line-height: 1; margin-top: 2px; margin-top: 1.3cqw; opacity: .8; }
 @media (hover: hover) and (pointer: fine) { .price-tag { pointer-events: auto; cursor: pointer; } }
 .price-tag.pt-play { animation: pt-swing 1.7s ease-out; }
 @keyframes pt-swing {
