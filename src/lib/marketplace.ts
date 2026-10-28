@@ -1,16 +1,19 @@
 // Prix de vente des cartes « Vente/Trade » (étiquette de prix sur la carte).
 // Pas de paiement ni de marketplace pour l'instant : le prix est une indication, l'acheteur contacte le vendeur par message.
 
-export const MARKETPLACE_MIN_PRICE = 3
-export const MARKETPLACE_MAX_PRICE = 100000
+// Limite technique de la colonne (numeric(10,2)) : pas de plafond « métier », seulement ce que la base peut stocker.
+const DB_MAX_PRICE = 99_999_999.99
 
-// « 25 € » ou « 24,50 € » (pas de décimales inutiles sur une étiquette).
-export const fmtPrice = (n: number) =>
-  Number.isInteger(n) ? `${n} €` : `${n.toFixed(2).replace('.', ',')} €`
+// « 25 € », « 24,50 € », « 1 250 € » (espaces entre les milliers, pas de décimales inutiles).
+export const fmtPrice = (n: number) => {
+  const whole = Number.isInteger(n)
+  return `${n.toLocaleString('fr-FR', { minimumFractionDigits: whole ? 0 : 2, maximumFractionDigits: 2 })} €`
+}
 
-// Saisie libre (« 25 », « 24,5 », « 24.50 ») -> nombre arrondi au centime, ou null si vide / hors limites.
+// Saisie libre (« 25 », « 24,5 », « 24.50 », « 1 250 ») -> nombre arrondi au centime, ou null si vide / non valide (≤ 0).
 export function parsePrice(raw: string): number | null {
-  const n = Number(raw.trim().replace(/\s/g, '').replace(',', '.').replace(/€$/, ''))
-  if (!raw.trim() || !Number.isFinite(n) || n < MARKETPLACE_MIN_PRICE || n > MARKETPLACE_MAX_PRICE) return null
-  return Math.round(n * 100) / 100
+  const n = Number(raw.trim().replace(/[\s  ]/g, '').replace(',', '.').replace(/€$/, ''))
+  if (!raw.trim() || !Number.isFinite(n)) return null
+  const cents = Math.round(n * 100) / 100
+  return cents > 0 && cents <= DB_MAX_PRICE ? cents : null
 }

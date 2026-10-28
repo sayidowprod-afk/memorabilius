@@ -2,7 +2,6 @@
 import { toast } from '@/lib/toast'
 import PriceFormField from '@/components/PriceFormField'
 import { parsePrice } from '@/lib/marketplace'
-import { useMarketplaceAccess } from '@/lib/useMarketplaceAccess'
 import { useState, use, useRef, useEffect, useCallback } from 'react'
 import { createPortal } from 'react-dom'
 import { useHideBottomNav } from '@/lib/useHideBottomNav'
@@ -108,7 +107,6 @@ function NotesPersoField({ value, isPublic, onChange, onTogglePublic }: {
 export default function EditerCarte({ params }: { params: Promise<{ userId: string; id: string }> }) {
   const { userId, id } = use(params)
   const router = useRouter()
-  const priceAllowed = useMarketplaceAccess() === true // bêta privée : champ prix
   const searchParams = useSearchParams()
   const { lang, t } = useLang()
 
@@ -573,8 +571,8 @@ export default function EditerCarte({ params }: { params: Promise<{ userId: stri
       image_recto_hd: form.image_recto_hd || null, image_verso_hd: form.image_verso_hd || null,
       collection_tag: form.collection_tag || null,
       disponible_vente: form.disponible_vente,
-      // prix : bêta privée (champ visible seulement pour les utilisateurs autorisés) ; retirer Vente/Trade retire le prix
-      ...(priceAllowed ? { prix_vente: form.disponible_vente ? parsePrice(form.prix_vente) : null } : {}),
+      // prix facultatif ; retirer Vente/Trade retire le prix
+      prix_vente: form.disponible_vente ? parsePrice(form.prix_vente) : null,
       lien_vinted: form.lien_vinted || null,
       lien_ebay: form.lien_ebay || null,
       item_type: form.item_type || 'card',

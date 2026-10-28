@@ -3,49 +3,42 @@ import { useEffect, useState } from 'react'
 import { supabase } from '@/lib/supabase'
 import { useTheme } from '@/lib/ThemeContext'
 import { toast } from '@/lib/toast'
-import { useMarketplaceAccess } from '@/lib/useMarketplaceAccess'
-import { MARKETPLACE_MIN_PRICE, MARKETPLACE_MAX_PRICE } from '@/lib/marketplace'
+import { parsePrice } from '@/lib/marketplace'
 
-// Prix d'une carte « Vente/Trade » -- affiché en étiquette sur la carte. Bêta privée : n'apparaît
-// que pour les utilisateurs autorisés (vérifié côté serveur, voir useMarketplaceAccess).
+// Prix d'une carte « Vente/Trade » dans le viewer 3D (propriétaire) -- affiché en étiquette sur la carte.
 export default function MarketplacePriceField({ cardId, price, onSaved }: {
   cardId: string
   price?: number | null
   onSaved: (price: number | null) => void
 }) {
-  const allowed = useMarketplaceAccess()
   const { dark } = useTheme()
   const [value, setValue] = useState(price != null ? String(price) : '')
   const [busy, setBusy] = useState(false)
 
   useEffect(() => { setValue(price != null ? String(price) : '') }, [cardId, price])
 
-  if (!allowed) return null
-
-  const parsed = Number(value.replace(',', '.'))
-  const valid = value.trim() !== '' && Number.isFinite(parsed) && parsed >= MARKETPLACE_MIN_PRICE && parsed <= MARKETPLACE_MAX_PRICE
+  const parsed = parsePrice(value)
+  const valid = parsed !== null
 
   const save = async (next: number | null) => {
     setBusy(true)
     // Mettre un prix marque aussi la carte « Vente/Trade » (même effet que le bouton).
-    const patch = next === null ? { prix_vente: null } : { prix_vente: Math.round(next * 100) / 100, disponible_vente: true }
+    const patch = next === null ? { prix_vente: null } : { prix_vente: next, disponible_vente: true }
     const { error } = await supabase.from('cartes_manuelles').update(patch).eq('id', cardId)
     setBusy(false)
     if (error) { toast.error(error.message); return }
     toast.success(next === null ? 'Prix retiré' : 'Prix enregistré : étiquette ajoutée sur la carte')
-    onSaved(next === null ? null : Math.round(next * 100) / 100)
+    onSaved(next)
   }
 
   const border = dark ? '#3a3a3a' : '#d8dde8'
   return (
     <div style={{ gridColumn: '1 / -1', border: `1px solid ${border}`, borderRadius: 10, padding: 12, background: dark ? '#1c1c1c' : '#f7f9fd' }}>
-      <div style={{ fontSize: 12, fontWeight: 800, color: dark ? '#ddd' : '#333', marginBottom: 8 }}>
-        🏷️ Prix de la carte <span style={{ color: '#e67e22', fontWeight: 800 }}>BÊTA PRIVÉE</span>
-      </div>
+      <div style={{ fontSize: 12, fontWeight: 800, color: dark ? '#ddd' : '#333', marginBottom: 8 }}>🏷️ Prix de la carte</div>
       <div style={{ display: 'flex', gap: 8, alignItems: 'center', flexWrap: 'wrap' }}>
         <div style={{ position: 'relative', flex: '1 1 110px', minWidth: 100 }}>
           <input
-            type="text" inputMode="decimal" value={value} placeholder={`min ${MARKETPLACE_MIN_PRICE}`}
+            type="text" inputMode="decimal" value={value} placeholder="ex : 25"
             onChange={e => setValue(e.target.value)}
             onKeyDown={e => { if (e.key === 'Enter' && valid && !busy) save(parsed) }}
             style={{ width: '100%', boxSizing: 'border-box', padding: '10px 28px 10px 12px', borderRadius: 8, border: `1px solid ${border}`, background: dark ? '#2a2a2a' : '#fff', color: dark ? '#eee' : '#222', fontSize: 15, fontWeight: 700 }}
