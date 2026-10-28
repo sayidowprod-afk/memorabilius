@@ -156,6 +156,11 @@ function MatchRow({ m, pick, onPick }: { m: ApiMatch; pick?: Pick; onPick: (id: 
     ? (m.winner === 'right' ? sideGradient(GOLD, 'right') : sideGradient(right.color, 'right'))
     : (pick === 'right' ? sideGradient(GREEN, 'right') : sideGradient(right.color, 'right'))
 
+  // Barre du milieu (le « nul ») : verte si on l'a choisi, dorée quand c'est le bon résultat.
+  const centerBg = m.status === 'final'
+    ? (m.winner === 'draw' ? GOLD : NAVY)
+    : (pick === 'draw' ? GREEN : NAVY)
+
   return (
     <div className="pronos-row">
       <div style={{ flex: 1, display: 'flex', background: leftBg }}>
@@ -164,7 +169,7 @@ function MatchRow({ m, pick, onPick }: { m: ApiMatch; pick?: Pick; onPick: (id: 
           picked={pick === 'left'} />
       </div>
 
-      <div className="pronos-center" style={{ background: NAVY }}>
+      <div className="pronos-center" style={{ background: centerBg }}>
         <div className="pronos-sport-badge" style={{ background: 'rgba(255,255,255,.14)' }}>
           <SportLogo sport={m.sport} size={16} />
           <span style={{ fontFamily: UI_FONT, fontWeight: 800, fontSize: 13, color: '#fff', letterSpacing: 0.3, whiteSpace: 'nowrap' }}>
@@ -181,9 +186,8 @@ function MatchRow({ m, pick, onPick }: { m: ApiMatch; pick?: Pick; onPick: (id: 
         {m.drawable && (clickable || m.status === 'final') && (
           <button type="button" className="pronos-draw" disabled={!clickable} onClick={() => onPick(m.id, 'draw')} aria-pressed={pick === 'draw'}
             style={{
-              background: m.status === 'final' ? (m.winner === 'draw' ? GOLD : 'rgba(255,255,255,.1)') : (pick === 'draw' ? GREEN : 'rgba(255,255,255,.14)'),
-              color: m.status === 'final' && m.winner === 'draw' ? '#1a1300' : '#fff',
-              outline: m.status === 'final' && pick === 'draw' ? `2px solid ${m.winner === 'draw' ? GREEN : '#e74c3c'}` : 'none',
+              background: centerBg === NAVY ? 'rgba(255,255,255,.14)' : 'rgba(0,0,0,.28)',
+              color: '#fff',
               cursor: clickable ? 'pointer' : 'default',
             }}>
             NUL
