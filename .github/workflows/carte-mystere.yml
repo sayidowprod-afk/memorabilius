@@ -1,21 +1,19 @@
 name: Carte mystère
 
-# Mercredi matin : choisit une carte (autos d'abord), fabrique la story (avec zone libre pour le sticker quiz)
-# et le post X, et les envoie sur Discord avec les 4 réponses.
-# Mercredi soir : envoie la révélation (carte entière + nom + crédit du membre).
-# La carte du jour est mémorisée entre le matin et le soir dans le stockage privé R2 (_meta/mystere-etat.json).
+# Mercredi vers 6 h 30-7 h 30 (Paris) : choisit une carte (autos d'abord), fabrique toute la journée d'un coup
+# (le mystère, l'indice, la réponse), et envoie le tout sur Discord avec les heures conseillées pour publier.
+# L'historique des joueurs déjà proposés est mémorisé dans le stockage privé R2 (_meta/mystere-etat.json).
 # Secrets : NEXT_PUBLIC_SUPABASE_URL, SUPABASE_SERVICE_ROLE_KEY, DISCORD_WEBHOOK_URL, CF_R2_*.
 on:
   schedule:
-    - cron: '0 8 * * 3'   # mercredi 8 h UTC = 9 h (hiver) / 10 h (été) à Paris : la carte mystère
-    - cron: '30 18 * * 3' # mercredi 18 h 30 UTC = 19 h 30 (hiver) / 20 h 30 (été) à Paris : la réponse
+    - cron: '30 5 * * 3' # mercredi 5 h 30 UTC = 6 h 30 (hiver) / 7 h 30 (été) à Paris
   workflow_dispatch:
     inputs:
       mode:
-        description: 'mystere (le matin) ou resultat (le soir)'
+        description: 'tout (le programme du jour), mystere ou resultat (pour un essai isolé)'
         type: choice
-        options: [mystere, resultat]
-        default: mystere
+        options: [tout, mystere, resultat]
+        default: tout
 
 permissions:
   contents: read
@@ -34,7 +32,7 @@ jobs:
       AWS_DEFAULT_REGION: auto
       AWS_ENDPOINT_URL: https://${{ secrets.CF_R2_ACCOUNT_ID }}.r2.cloudflarestorage.com
       ETAT_R2: s3://${{ secrets.CF_R2_BUCKET }}/_meta/mystere-etat.json
-      MODE: ${{ github.event_name == 'workflow_dispatch' && inputs.mode || (github.event.schedule == '0 8 * * 3' && 'mystere' || 'resultat') }}
+      MODE: ${{ github.event_name == 'workflow_dispatch' && inputs.mode || 'tout' }}
     steps:
       - uses: actions/checkout@v4
         with:

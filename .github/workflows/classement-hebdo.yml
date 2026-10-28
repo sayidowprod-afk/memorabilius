@@ -5,7 +5,7 @@ name: Classement hebdomadaire
 # Secrets nécessaires : NEXT_PUBLIC_SUPABASE_URL, SUPABASE_SERVICE_ROLE_KEY, DISCORD_WEBHOOK_URL.
 on:
   schedule:
-    - cron: '0 6 * * 1' # lundi 6 h UTC = 7 h (hiver) ou 8 h (été) à Paris ; GitHub peut décaler de quelques minutes
+    - cron: '30 5 * * 1' # lundi 5 h 30 UTC = 6 h 30 (hiver) ou 7 h 30 (été) à Paris ; GitHub peut décaler de quelques minutes
   workflow_dispatch: # lancement manuel depuis l'onglet Actions
 
 permissions:

@@ -84,6 +84,14 @@ def eyes_crop(face, size):
     return (max(0, int(box[0])), max(0, int(box[1])), min(w, int(box[2])), min(h, int(box[3])))
 
 
+def face_crop(face, size):
+    """Indice : tout le visage (front, yeux, bouche, menton) avec un peu de marge, mais ni le nom ni le décor de la carte."""
+    x, y, fw, fh = face
+    w, h = size
+    box = (x - 0.30 * fw, y - 0.20 * fh, x + 1.30 * fw, y + 1.15 * fh)
+    return (max(0, int(box[0])), max(0, int(box[1])), min(w, int(box[2])), min(h, int(box[3])))
+
+
 # ── Sélection ──────────────────────────────────────────────────────────────
 def pick(state):
     rows = ch.api('cartes_manuelles', {
@@ -159,9 +167,9 @@ def fit(im, max_w, max_h):
     return im.resize((max(1, int(im.width * s)), max(1, int(im.height * s))), Image.LANCZOS)
 
 
-def render_mystere(crop, numero, story, out):
-    img, d, W, H, SQ, BD = canvas(story, 'CARTE MYSTÈRE N° %02d' % numero)
-    d.text((X, 400 if story else 160), 'QUI EST-CE ?', font=SQ(160 if story else 118), fill=WHITE)
+def render_mystere(crop, numero, story, out, titre='QUI EST-CE ?', badge='CARTE MYSTÈRE'):
+    img, d, W, H, SQ, BD = canvas(story, '%s N° %02d' % (badge, numero))
+    d.text((X, 400 if story else 160), titre, font=SQ(160 if story else 118), fill=WHITE)
     fy, max_h = (620, 620) if story else (310, 700)  # story : la zone sous la photo reste libre pour le sticker quiz
     pic = fit(crop, W - 2 * X, max_h)
     fx = (W - pic.width) // 2
@@ -266,14 +274,72 @@ def mode_resultat(state, discord):
     state['courant'] = None
 
 
+# Heures conseillées pour publier (à adapter) : tout arrive le matin dans Discord, tu publies à ces moments-là.
+HEURES = {'mystere': '11 h', 'indice': '16 h', 'resultat': '20 h 30'}
+
+
+def mode_tout(state, discord):
+    """Tout le programme du jour d'un coup (mystère, indice, réponse) : envoyé le matin, publié à la main aux bonnes heures."""
+    from PIL import Image
+    r, data, face = pick(state)
+    im = Image.open(io.BytesIO(data)).convert('RGB')
+    numero = state.get('numero', 0) + 1
+    pseudos = ch.names_for({r['user_id']})
+    info = {
+        'id': r['id'], 'joueur': r['nom'], 'equipe': r.get('equipe'), 'membre': pseudos.get(r['user_id'], 'un membre'),
+        'tags': r['_why'], 'numero': numero,
+        'detail': ' '.join(str(x) for x in (r.get('annee'), r.get('marque'), r.get('collection')) if x),
+    }
+    opts = cm.reponses_quiz({'joueur': r['nom'], 'equipe': r.get('equipe')})
+    state['joueurs'] = state.get('joueurs', []) + [cm.norm(r['nom'])]
+    state['numero'] = numero
+    state['courant'] = None
+    os.makedirs(OUT, exist_ok=True)
+    files = {}
+    for story, suffixe in ((True, 'story'), (False, 'post')):
+        files['mystere-' + suffixe] = os.path.join(OUT, 'mystere-%s.jpg' % suffixe)
+        files['indice-' + suffixe] = os.path.join(OUT, 'indice-%s.jpg' % suffixe)
+        files['resultat-' + suffixe] = os.path.join(OUT, 'SPOILER_resultat-%s.jpg' % suffixe)  # masquée dans Discord jusqu'au clic
+        render_mystere(im.crop(eyes_crop(face, im.size)), numero, story, files['mystere-' + suffixe])
+        render_mystere(im.crop(face_crop(face, im.size)), numero, story, files['indice-' + suffixe], titre='UN INDICE', badge='INDICE')
+        render_resultat(im, info, numero, story, files['resultat-' + suffixe])
+    lettre = 'ABCD'[[cm.norm(o) for o in opts].index(cm.norm(r['nom']))]
+    rep = '\n'.join('%s. %s' % ('ABCD'[i], o) for i, o in enumerate(opts))
+    msgs = [
+        ('🗓️ **Carte mystère n° %02d : le programme du jour** (carte de %s)\n'
+         '• %s : le mystère  • %s : l\'indice  • %s : la réponse\n\n'
+         'Les 4 réponses du sticker quiz Instagram (au moment du mystère) :\n%s\nBonne réponse : ||%s||'
+         % (numero, info['membre'], HEURES['mystere'], HEURES['indice'], HEURES['resultat'], rep, lettre), []),
+        ('🕵️ **1. Le mystère, à publier vers %s**\n📸 Story : laisse la zone libre pour le sticker quiz.\n🐦 Post X :\n```\n'
+         'Carte mystère n° %02d 🕵️ Qui est-ce ? Indice cet après-midi, réponse ce soir. Carte de %s. #MemorabiliusGalerie\n```'
+         % (HEURES['mystere'], numero, info['membre']),
+         [('mystere-story.jpg', files['mystere-story']), ('mystere-post.jpg', files['mystere-post'])]),
+        ('👀 **2. L\'indice, à publier vers %s**\n🐦 Post X :\n```\n'
+         'Indice de la carte mystère n° %02d : voici le visage en entier. Toujours pas trouvé ? Réponse ce soir. #MemorabiliusGalerie\n```'
+         % (HEURES['indice'], numero),
+         [('indice-story.jpg', files['indice-story']), ('indice-post.jpg', files['indice-post'])]),
+        ('🎉 **3. La réponse, à publier vers %s** (images masquées : clique pour afficher)\n🐦 Post X :\n```\n'
+         'Réponse de la carte mystère n° %02d : %s ! %s. Carte de %s. Bravo à ceux qui ont trouvé 👏 #MemorabiliusGalerie\n```'
+         % (HEURES['resultat'], numero, r['nom'], ' · '.join(info['tags']) or 'belle carte', info['membre']),
+         [('SPOILER_resultat-story.jpg', files['resultat-story']), ('SPOILER_resultat-post.jpg', files['resultat-post'])]),
+    ]
+    if discord:
+        for texte, fichiers in msgs:
+            ch.post_discord(discord, texte, fichiers)
+        print('Carte mystère n° %02d envoyée sur Discord (4 messages).' % numero)
+    else:
+        for texte, fichiers in msgs:
+            print(texte, [n for n, _ in fichiers], '\n')
+
+
 if __name__ == '__main__':
     a = sys.argv[1:]
-    if not a or a[0] not in ('mystere', 'resultat'):
+    if not a or a[0] not in ('mystere', 'resultat', 'tout'):
         sys.exit(__doc__)
     etat = a[a.index('--etat') + 1] if '--etat' in a else os.path.join(ROOT, 'docs', 'rdv', 'etat-mystere.json')
     hook = ch.ENV.get('DISCORD_WEBHOOK_URL') if '--discord' in a else None
     if '--discord' in a and not hook:
         sys.exit('--discord demandé mais DISCORD_WEBHOOK_URL est absent')
     st = load_state(etat)
-    (mode_mystere if a[0] == 'mystere' else mode_resultat)(st, hook)
+    {'mystere': mode_mystere, 'resultat': mode_resultat, 'tout': mode_tout}[a[0]](st, hook)
     save_state(etat, st)
