@@ -10,9 +10,9 @@ on:
   workflow_dispatch:
     inputs:
       mode:
-        description: 'tout (le programme du jour), mystere ou resultat (pour un essai isolé)'
+        description: 'tout (le programme du jour), mystere ou resultat (essai isolé), reset (remise à zéro des joueurs déjà proposés)'
         type: choice
-        options: [tout, mystere, resultat]
+        options: [tout, mystere, resultat, reset]
         default: tout
 
 permissions:

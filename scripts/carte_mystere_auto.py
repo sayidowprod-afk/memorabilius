@@ -332,14 +332,21 @@ def mode_tout(state, discord):
             print(texte, [n for n, _ in fichiers], '\n')
 
 
+def mode_reset(state, discord):
+    """Repart de zéro : tous les joueurs redeviennent proposables et la numérotation revient à 1."""
+    state.clear()
+    state.update({'joueurs': [], 'courant': None, 'numero': 0})
+    print('Historique de la carte mystère remis à zéro.')
+
+
 if __name__ == '__main__':
     a = sys.argv[1:]
-    if not a or a[0] not in ('mystere', 'resultat', 'tout'):
+    if not a or a[0] not in ('mystere', 'resultat', 'tout', 'reset'):
         sys.exit(__doc__)
     etat = a[a.index('--etat') + 1] if '--etat' in a else os.path.join(ROOT, 'docs', 'rdv', 'etat-mystere.json')
     hook = ch.ENV.get('DISCORD_WEBHOOK_URL') if '--discord' in a else None
     if '--discord' in a and not hook:
         sys.exit('--discord demandé mais DISCORD_WEBHOOK_URL est absent')
     st = load_state(etat)
-    {'mystere': mode_mystere, 'resultat': mode_resultat, 'tout': mode_tout}[a[0]](st, hook)
+    {'mystere': mode_mystere, 'resultat': mode_resultat, 'tout': mode_tout, 'reset': mode_reset}[a[0]](st, hook)
     save_state(etat, st)
