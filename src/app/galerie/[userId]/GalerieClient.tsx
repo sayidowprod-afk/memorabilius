@@ -73,7 +73,7 @@ import { useTheme } from '@/lib/ThemeContext'
 import { useAuth } from '@/lib/AuthContext'
 import { getTeamById, SPORT_LABELS, Sport, inferSportFromTeamName } from '@/lib/sportsTeams'
 import { parseNaturalQuery } from '@/lib/parseNaturalQuery'
-import { fmtPrice } from '@/lib/marketplace'
+import PriceTag from '@/components/PriceTag'
 import BadgeBox from '@/components/BadgeBox'
 import { cardDisplayRatio, isHorizontalFormat, getFormat } from '@/lib/cardFormats'
 import TeamBadge from '@/components/TeamBadge'
@@ -3580,7 +3580,7 @@ export default function GalerieClient({ userId, initialCardUrl, initialCards, in
                       ? <i className="sash sash-tr" title={t('gallery_sold_badge')} style={{ background: '#8e2b22' }}>{t('gallery_sold_badge').toUpperCase()}</i>
                       : d.disponible_vente && <i className="sash sash-tr" title={t('gallery_for_sale_title')} style={{ background: '#1f9d55' }}>{t('gallery_for_sale_label')}</i>}
                     {!d.vendue && d.disponible_vente && d.prix_vente != null && (
-                      <span className="price-tag" title={t('gallery_for_sale_title')}>{fmtPrice(Number(d.prix_vente))}</span>
+                      <PriceTag price={Number(d.prix_vente)} title={t('gallery_for_sale_title')} />
                     )}
                   </div>
                 )}
