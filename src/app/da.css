@@ -356,6 +356,9 @@ img[src$=".png"], img[src$=".svg"] { background: none !important; animation: non
 .sash { position: absolute; width: 150px; text-align: center; padding: 3px 0; font: 800 8.5px system-ui, sans-serif; letter-spacing: .07em; white-space: nowrap; text-transform: uppercase; color: #fff; font-style: normal; box-shadow: 0 2px 6px rgba(0, 0, 0, .45); }
 .sash-tr { top: 21px; right: -44px; transform: rotate(45deg); }
 .sash-tl { top: 21px; left: -44px; transform: rotate(-45deg); }
+/* Étiquette de prix d'une carte Vente/Trade : posée en bas à droite de la carte (dans .sash-clip). */
+.price-tag { position: absolute; right: 6px; bottom: 6px; background: #1f9d55; color: #fff; font: 900 11px/1 system-ui, sans-serif; letter-spacing: .02em; padding: 5px 8px 5px 17px; white-space: nowrap; clip-path: polygon(10px 0, 100% 0, 100% 100%, 10px 100%, 0 50%); }
+.price-tag::before { content: ''; position: absolute; left: 7px; top: 50%; width: 4px; height: 4px; margin-top: -2px; border-radius: 50%; background: rgba(0, 0, 0, .45); }
 
 /* ── Main de cartes (barres de selection) : les cartes cochees depassent vers le haut ── */
 .shand { position: relative; width: 150px; height: 30px; flex-shrink: 0; align-self: flex-end; }

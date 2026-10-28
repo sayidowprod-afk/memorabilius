@@ -4,10 +4,10 @@ import { supabase } from '@/lib/supabase'
 import { useTheme } from '@/lib/ThemeContext'
 import { toast } from '@/lib/toast'
 import { useMarketplaceAccess } from '@/lib/useMarketplaceAccess'
-import { MARKETPLACE_MIN_PRICE, MARKETPLACE_MAX_PRICE, commissionFor, fmtEur } from '@/lib/marketplace'
+import { MARKETPLACE_MIN_PRICE, MARKETPLACE_MAX_PRICE } from '@/lib/marketplace'
 
-// Prix de vente d'une carte (marketplace, bêta privée) -- n'apparaît que pour les utilisateurs
-// autorisés. Une carte avec un prix est « en vente » sur la marketplace.
+// Prix d'une carte « Vente/Trade » -- affiché en étiquette sur la carte. Bêta privée : n'apparaît
+// que pour les utilisateurs autorisés (vérifié côté serveur, voir useMarketplaceAccess).
 export default function MarketplacePriceField({ cardId, price, onSaved }: {
   cardId: string
   price?: number | null
@@ -24,24 +24,23 @@ export default function MarketplacePriceField({ cardId, price, onSaved }: {
 
   const parsed = Number(value.replace(',', '.'))
   const valid = value.trim() !== '' && Number.isFinite(parsed) && parsed >= MARKETPLACE_MIN_PRICE && parsed <= MARKETPLACE_MAX_PRICE
-  const commission = valid ? commissionFor(parsed) : null
 
   const save = async (next: number | null) => {
     setBusy(true)
-    // Mettre un prix = la carte est aussi marquée « disponible » (comme le bouton Vente/Échange).
-    const patch = next === null ? { prix_vente: null } : { prix_vente: next, disponible_vente: true }
+    // Mettre un prix marque aussi la carte « Vente/Trade » (même effet que le bouton).
+    const patch = next === null ? { prix_vente: null } : { prix_vente: Math.round(next * 100) / 100, disponible_vente: true }
     const { error } = await supabase.from('cartes_manuelles').update(patch).eq('id', cardId)
     setBusy(false)
     if (error) { toast.error(error.message); return }
-    toast.success(next === null ? 'Annonce retirée de la marketplace' : 'Prix enregistré : carte en vente sur la marketplace')
-    onSaved(next)
+    toast.success(next === null ? 'Prix retiré' : 'Prix enregistré : étiquette ajoutée sur la carte')
+    onSaved(next === null ? null : Math.round(next * 100) / 100)
   }
 
   const border = dark ? '#3a3a3a' : '#d8dde8'
   return (
     <div style={{ gridColumn: '1 / -1', border: `1px solid ${border}`, borderRadius: 10, padding: 12, background: dark ? '#1c1c1c' : '#f7f9fd' }}>
       <div style={{ fontSize: 12, fontWeight: 800, color: dark ? '#ddd' : '#333', marginBottom: 8 }}>
-        🛒 Prix de vente — marketplace <span style={{ color: '#e67e22', fontWeight: 800 }}>BÊTA PRIVÉE</span>
+        🏷️ Prix de la carte <span style={{ color: '#e67e22', fontWeight: 800 }}>BÊTA PRIVÉE</span>
       </div>
       <div style={{ display: 'flex', gap: 8, alignItems: 'center', flexWrap: 'wrap' }}>
         <div style={{ position: 'relative', flex: '1 1 110px', minWidth: 100 }}>
@@ -55,7 +54,7 @@ export default function MarketplacePriceField({ cardId, price, onSaved }: {
         </div>
         <button type="button" disabled={!valid || busy} onClick={() => save(parsed)}
           style={{ padding: '10px 14px', borderRadius: 8, border: 'none', background: '#003DA6', color: '#fff', fontWeight: 800, fontSize: 13, cursor: !valid || busy ? 'default' : 'pointer', opacity: !valid || busy ? 0.5 : 1 }}>
-          {price != null ? 'Mettre à jour' : 'Mettre en vente'}
+          {price != null ? 'Mettre à jour' : 'Ajouter le prix'}
         </button>
         {price != null && (
           <button type="button" disabled={busy} onClick={() => save(null)}
@@ -64,11 +63,6 @@ export default function MarketplacePriceField({ cardId, price, onSaved }: {
           </button>
         )}
       </div>
-      {commission !== null && (
-        <div style={{ fontSize: 11, marginTop: 8, color: dark ? '#999' : '#777', lineHeight: 1.4 }}>
-          Commission prévue : {fmtEur(commission)} (5 %, min 0,50 €) → tu recevrais environ {fmtEur(parsed - commission)}, hors frais de paiement et de port. Aucun paiement n&apos;est encore actif : les acheteurs te contactent par message.
-        </div>
-      )}
     </div>
   )
 }

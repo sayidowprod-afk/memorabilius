@@ -22,6 +22,7 @@ import { getCsvCardSharePath } from '@/lib/csvCardShortLink'
 import TagIcon from '@/components/TagIcon'
 import LoupeOverlay from '@/components/LoupeOverlay'
 import MarketplacePriceField from '@/components/MarketplacePriceField'
+import { fmtPrice } from '@/lib/marketplace'
 import { candidatesForCard, type MSet, type MEntry, type MCard } from '@/lib/setMatcher'
 
 interface SetPlacementData {
@@ -2090,7 +2091,7 @@ export default function Viewer3D({ popup, accent, onClose, onNext, onPrev, getTa
                 <button onClick={async () => {
                   const next = !popup.disponible_vente
                   if (popup.id_manuelle) {
-                    await supabase.from('cartes_manuelles').update({ disponible_vente: next }).eq('id', popup.id_manuelle)
+                    await supabase.from('cartes_manuelles').update(next ? { disponible_vente: true } : { disponible_vente: false, prix_vente: null }).eq('id', popup.id_manuelle)
                   } else if (userId) {
                     // Carte CSV (source externe en lecture seule) : même mécanisme de
                     // surcharge que collection_tag, upsert par (user_id, card_key).
@@ -2103,7 +2104,7 @@ export default function Viewer3D({ popup, accent, onClose, onNext, onPrev, getTa
                   fontWeight: 800, cursor: 'pointer', fontSize: 14, whiteSpace: 'nowrap',
                   transition: '0.2s',
                 }}>
-                  {popup.disponible_vente ? `✓ ${t('gallery_for_sale_label')}` : t('viewer_mark_forsale_btn')}
+                  {popup.disponible_vente ? `✓ ${t('gallery_for_sale_label')}${popup.prix_vente != null ? ` · ${fmtPrice(Number(popup.prix_vente))}` : ''}` : t('viewer_mark_forsale_btn')}
                 </button>
               )}
               {isOwner && popup.id_manuelle && onVendueChange && (

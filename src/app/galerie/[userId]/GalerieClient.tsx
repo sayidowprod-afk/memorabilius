@@ -73,6 +73,7 @@ import { useTheme } from '@/lib/ThemeContext'
 import { useAuth } from '@/lib/AuthContext'
 import { getTeamById, SPORT_LABELS, Sport, inferSportFromTeamName } from '@/lib/sportsTeams'
 import { parseNaturalQuery } from '@/lib/parseNaturalQuery'
+import { fmtPrice } from '@/lib/marketplace'
 import BadgeBox from '@/components/BadgeBox'
 import { cardDisplayRatio, isHorizontalFormat, getFormat } from '@/lib/cardFormats'
 import TeamBadge from '@/components/TeamBadge'
@@ -3578,6 +3579,9 @@ export default function GalerieClient({ userId, initialCardUrl, initialCards, in
                     {d.vendue
                       ? <i className="sash sash-tr" title={t('gallery_sold_badge')} style={{ background: '#8e2b22' }}>{t('gallery_sold_badge').toUpperCase()}</i>
                       : d.disponible_vente && <i className="sash sash-tr" title={t('gallery_for_sale_title')} style={{ background: '#1f9d55' }}>{t('gallery_for_sale_label')}</i>}
+                    {!d.vendue && d.disponible_vente && d.prix_vente != null && (
+                      <span className="price-tag" title={t('gallery_for_sale_title')}>{fmtPrice(Number(d.prix_vente))}</span>
+                    )}
                   </div>
                 )}
               </div>
@@ -3773,8 +3777,10 @@ export default function GalerieClient({ userId, initialCardUrl, initialCards, in
             setPopup(prev => prev && prev.f === card.f ? { ...prev, vendue } : prev)
           }}
           onDisponibleVenteChange={(card, disponible_vente) => {
-            setCards(prev => prev.map(c => c.f === card.f ? { ...c, disponible_vente } : c))
-            setPopup(prev => prev && prev.f === card.f ? { ...prev, disponible_vente } : prev)
+            // retirer Vente/Trade retire aussi le prix (l'étiquette n'a plus de sens)
+            const upd = (c: Card): Card => c.f === card.f ? { ...c, disponible_vente, ...(disponible_vente ? {} : { prix_vente: null }) } : c
+            setCards(prev => prev.map(upd))
+            setPopup(prev => prev ? upd(prev) : prev)
           }}
           onDeleteCard={isOwner && popup.id_manuelle ? () => {
             handleDeleteCard(popup.id_manuelle!, popup.f)

@@ -8,7 +8,6 @@ import { clearOfflineUserData } from '@/lib/offline'
 import { useAuth } from '@/lib/AuthContext'
 import { useTheme } from '@/lib/ThemeContext'
 import { useLang } from '@/lib/LangContext'
-import { useMarketplaceAccess } from '@/lib/useMarketplaceAccess'
 import ThemeToggleButton from '@/components/ThemeToggleButton'
 import HeaderSearch from '@/components/HeaderSearch'
 import SettingsMenu, { SettingsInline } from '@/components/SettingsMenu'
@@ -38,7 +37,6 @@ export default function Navbar() {
   const pathname = usePathname()
   const { dark } = useTheme()
   const { lang, setLang, t } = useLang()
-  const marketplaceAllowed = useMarketplaceAccess() === true // bêta privée : bouton invisible pour les autres
 
   const toggleDrop = (name: 'communaute' | 'outils' | 'lang') =>
     setOpenDrop(cur => cur === name ? null : name)
@@ -213,13 +211,6 @@ export default function Navbar() {
 
           <HeaderSearch open={searchOpen} onToggle={v => { setSearchOpen(v); if (v) closeDrop() }} />
 
-          {marketplaceAllowed && (
-            <Link href="/marketplace"
-              style={{ border: '2px solid #003DA6', color: dark ? '#fff' : '#003DA6', borderRadius: 20, padding: '6px 14px', fontWeight: 800, fontSize: 13, textDecoration: 'none', marginLeft: 8, whiteSpace: 'nowrap' }}>
-              🛒 Marketplace
-            </Link>
-          )}
-
           {user && (
             <Link href={`/galerie/${user.id}`}
               style={{ background: '#003DA6', color: 'white', borderRadius: 20, padding: '8px 18px', fontWeight: 700, fontSize: 14, textDecoration: 'none', marginLeft: 8, whiteSpace: 'nowrap' }}>
@@ -291,7 +282,6 @@ export default function Navbar() {
           <Link href="/guides" style={ls} onClick={() => setMenuOpen(false)}>📖 {t('nav_guides')}</Link>
           <Link href="/recherche" style={ls} onClick={() => setMenuOpen(false)}>{t('nav_recherche')}</Link>
           <Link href="/tuto" style={ls} onClick={() => setMenuOpen(false)}>{t('nav_tuto')}</Link>
-          {marketplaceAllowed && <Link href="/marketplace" style={{ ...ls, color: '#003DA6', fontWeight: 700 }} onClick={() => setMenuOpen(false)}>🛒 Marketplace (bêta)</Link>}
           {isAdmin && (
             <Link href="/admin" style={{ ...ls, color: '#003DA6', fontWeight: 700 }} onClick={() => setMenuOpen(false)}>🛠️ Admin</Link>
           )}
