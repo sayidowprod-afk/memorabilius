@@ -31,7 +31,8 @@ TOP = 5
 # ── Config ─────────────────────────────────────────────────────────────────
 def load_env():
     # Variables d'environnement d'abord (GitHub Actions), sinon .env.local (usage local).
-    env = {k: os.environ[k] for k in ('NEXT_PUBLIC_SUPABASE_URL', 'SUPABASE_SERVICE_ROLE_KEY', 'DISCORD_WEBHOOK_URL') if os.environ.get(k)}
+    # .strip() : un secret GitHub collé avec un retour à la ligne final rendrait l'en-tête HTTP invalide.
+    env = {k: os.environ[k].strip() for k in ('NEXT_PUBLIC_SUPABASE_URL', 'SUPABASE_SERVICE_ROLE_KEY', 'DISCORD_WEBHOOK_URL') if os.environ.get(k, '').strip()}
     path = os.path.join(ROOT, '.env.local')
     if os.path.exists(path):
         with open(path, encoding='utf-8') as f:
