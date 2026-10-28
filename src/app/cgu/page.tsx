@@ -77,6 +77,15 @@ export default function CGUPage() {
         <li>Il ne garantit ni l'authenticité, ni l'état, ni la valeur, ni la bonne fin des cartes échangées.</li>
         <li>Tout litige relatif à un échange relève de la seule responsabilité des utilisateurs concernés.</li>
       </ul>
+      <p>
+        <strong>Ventes, paiement et livraison.</strong> Les cartes marquées « Vente/Trade » et les prix affichés sont des
+        indications données par les utilisateurs. Le Service ne gère <strong>aucun paiement</strong> : le prix et les frais
+        d'envoi se règlent directement entre l'acheteur et le vendeur, en dehors du Service. L'outil de livraison se limite à
+        transmettre l'adresse de livraison et le numéro de suivi entre les deux utilisateurs. L'Éditeur n'est pas responsable
+        d'un défaut ou d'un retard de paiement, d'un colis non expédié, perdu, endommagé, volé ou non conforme, des frais
+        d'envoi, d'une fraude ou d'une usurpation d'identité. Chaque utilisateur agit à ses propres risques et reste seul
+        responsable de ses obligations (notamment fiscales) liées à ses ventes.
+      </p>
 
       <h2>8. Données de marché et estimations de valeur</h2>
       <p>
@@ -109,6 +118,7 @@ export default function CGUPage() {
       <ul>
         <li>des contenus publiés par les utilisateurs ;</li>
         <li>des litiges entre utilisateurs (notamment lors d'échanges) ;</li>
+        <li>des paiements, ventes, expéditions et livraisons réalisés entre utilisateurs, y compris tout défaut de paiement ou d'envoi, et toute perte ou dégradation d'un colis ;</li>
         <li>des interruptions, pertes de données ou dysfonctionnements liés aux prestataires tiers ou à des causes indépendantes de sa volonté ;</li>
         <li>de l'inexactitude des informations de cartes ou des estimations de valeur.</li>
       </ul>

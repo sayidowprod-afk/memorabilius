@@ -2,7 +2,7 @@
 import { useEffect, useMemo, useState } from 'react'
 import { supabase } from '@/lib/supabase'
 import { toast } from '@/lib/toast'
-import { CARRIERS, validateShipmentInput, carrierAdvice, type Carrier, type DeliveryMode } from '@/lib/shipping'
+import { CARRIERS, DISCLAIMER, validateShipmentInput, carrierAdvice, type Carrier, type DeliveryMode } from '@/lib/shipping'
 import { fmtPrice } from '@/lib/marketplace'
 
 interface SellerCard { id: string; nom: string; annee: string | null; marque: string | null; image_recto: string | null; prix_vente: number | null }
@@ -24,6 +24,7 @@ export default function ShipmentRequestModal({ sellerId, sellerName, dark, onClo
   const [f, setF] = useState({ recipientName: '', addressLine1: '', addressLine2: '', postalCode: '', city: '', phone: '', relayLabel: '' })
   const [remember, setRemember] = useState(true)
   const [busy, setBusy] = useState(false)
+  const [ack, setAck] = useState(false)
   const [uid, setUid] = useState<string | null>(null)
 
   // Cartes du vendeur disponibles (galerie publique) + adresse mémorisée sur cet appareil.
@@ -55,6 +56,7 @@ export default function ShipmentRequestModal({ sellerId, sellerName, dark, onClo
   }, [cards, picked])
 
   const submit = async () => {
+    if (!ack) { toast.error('Coche la case pour confirmer que tu as compris que Memorabilius n\u2019est pas responsable de la transaction.'); return }
     const input = { sellerId, cardIds: [...picked], note, carrier, deliveryMode: mode, ...f }
     const check = validateShipmentInput(input)
     if (!check.ok) { toast.error(check.error); return }
@@ -166,7 +168,14 @@ export default function ShipmentRequestModal({ sellerId, sellerName, dark, onClo
           🔒 Ton adresse n&apos;est visible que par {sellerName} pour cette livraison, et elle est effacée 30 jours après la livraison.
         </div>
 
-        <button onClick={submit} disabled={busy} style={{ width: '100%', marginTop: 14, padding: '12px 0', borderRadius: 10, border: 'none', background: '#003DA6', color: '#fff', fontWeight: 800, fontSize: 14, cursor: busy ? 'default' : 'pointer', opacity: busy ? 0.6 : 1 }}>
+        <div style={{ marginTop: 14, fontSize: 12, lineHeight: 1.5, background: dark ? '#2a2417' : '#fff7e0', border: '1px solid #f0d58a', borderRadius: 8, padding: '10px 12px' }}>
+          ⚠️ <b>Avant de continuer.</b> {DISCLAIMER} Les cartes sont achetées et payées entre toi et le vendeur, à tes risques. <a href="/cgu" target="_blank" rel="noopener noreferrer" style={{ color: dark ? '#7aa7ff' : '#003DA6', fontWeight: 700 }}>Voir les CGU ↗</a>
+          <label style={{ display: 'flex', gap: 8, alignItems: 'flex-start', marginTop: 8, cursor: 'pointer', fontWeight: 700 }}>
+            <input style={{ ...CHK, marginTop: 2 }} type="checkbox" checked={ack} onChange={e => setAck(e.target.checked)} /> J&apos;ai compris et j&apos;accepte
+          </label>
+        </div>
+
+        <button onClick={submit} disabled={busy || !ack} style={{ width: '100%', marginTop: 14, padding: '12px 0', borderRadius: 10, border: 'none', background: '#003DA6', color: '#fff', fontWeight: 800, fontSize: 14, cursor: busy || !ack ? 'default' : 'pointer', opacity: busy || !ack ? 0.5 : 1 }}>
           {busy ? 'Envoi…' : 'Envoyer la demande au vendeur'}
         </button>
       </div>

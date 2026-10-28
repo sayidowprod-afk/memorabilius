@@ -142,3 +142,7 @@ export function carrierAdvice(value: number | null): string | null {
   if (value >= 30) return 'Un envoi suivi (Colissimo, Mondial Relay ou Lettre suivie) est recommandé.'
   return null
 }
+
+// Avertissement affiché dans tous les écrans de livraison (voir aussi les CGU, articles 7 et 11).
+export const DISCLAIMER = 'Memorabilius met seulement en relation acheteurs et vendeurs : le site n\u2019intervient ni dans le paiement, ni dans l\u2019envoi, ni dans l\u2019état de la carte. Il n\u2019est pas responsable d\u2019un défaut de paiement, d\u2019un colis non envoyé, perdu, abîmé ou non conforme, ni d\u2019un litige entre membres.'
+export const DISCLAIMER_SHORT = 'Memorabilius n\u2019intervient pas dans la transaction (paiement, envoi, litiges) et n\u2019est pas responsable d\u2019un défaut de paiement ou d\u2019envoi.'

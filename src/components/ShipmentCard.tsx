@@ -1,6 +1,6 @@
 'use client'
 import { useState } from 'react'
-import { CARRIERS, STATUS_LABEL, carrierAdvice, type Shipment } from '@/lib/shipping'
+import { CARRIERS, STATUS_LABEL, DISCLAIMER, DISCLAIMER_SHORT, carrierAdvice, type Shipment } from '@/lib/shipping'
 import { fmtPrice } from '@/lib/marketplace'
 
 export type ShipmentAction = 'ship' | 'received' | 'cancel'
@@ -77,6 +77,10 @@ export function ShipSheet({ shipment: s, dark, busy, onClose, onShip }: {
           style={{ display: 'inline-block', ...btn, textDecoration: 'none', background: '#003DA6', color: '#fff', border: 'none', marginBottom: 16 }}>
           {c.createLabel} ↗
         </a>
+
+        <div style={{ fontSize: 12, lineHeight: 1.5, background: dark ? '#2a2417' : '#fff7e0', border: '1px solid #f0d58a', borderRadius: 8, padding: '9px 12px', marginBottom: 14 }}>
+          ⚠️ <b>Important.</b> {DISCLAIMER}{' '}N&apos;envoie la carte qu&apos;une fois le paiement reçu, à tes propres risques.
+        </div>
 
         <div style={{ borderTop: `1px solid ${border}`, paddingTop: 14 }}>
           <label style={{ fontSize: 11, fontWeight: 800, textTransform: 'uppercase', color: sub, display: 'block', marginBottom: 6 }}>Numéro de suivi (une fois le colis déposé)</label>
@@ -156,7 +160,7 @@ export default function ShipmentCard({ shipment: s, role, dark, busy, onAction, 
         )}
       </div>
       {role === 'seller' && s.status === 'requested' && <div style={{ fontSize: 11.5, color: sub, marginTop: 8 }}>Frais d&apos;envoi à la charge de l&apos;acheteur : à convenir avec lui avant d&apos;envoyer.</div>}
-      <div style={{ fontSize: 11, color: sub, marginTop: 8 }}>Le paiement et les frais d&apos;envoi se règlent entre vous, hors Memorabilius.</div>
+      <div style={{ fontSize: 11, color: sub, marginTop: 8 }}>{DISCLAIMER_SHORT} Paiement et frais d&apos;envoi : à régler entre vous.</div>
     </div>
   )
 }
