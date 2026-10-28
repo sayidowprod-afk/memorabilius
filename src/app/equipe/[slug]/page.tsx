@@ -10,7 +10,7 @@ import TeamCardsSection from './TeamCardsSection'
 import TeamSetsSection from './TeamSetsSection'
 import { createServerClient } from '@/lib/supabaseServer'
 
-export const revalidate = 86400 // 24h (etait 1h -- contenu quasi statique, cf. reduction couts Vercel ISR)
+export const revalidate = 604800 // 7 jours (etait 24h, 1h avant -- contenu quasi statique, cf. reduction couts Vercel ISR)
 
 const supabase = createServerClient()
 

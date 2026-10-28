@@ -19,7 +19,7 @@ import { createServerClient } from '@/lib/supabaseServer'
 // la meme bio pour le meme joueur, un seul appel reseau reel.
 const getCachedBio = cache((name: string, sport: string) => fetchEspnPlayerBio(name, sport))
 
-export const revalidate = 86400 // 24h (etait 1h -- contenu quasi statique, cf. reduction couts Vercel ISR)
+export const revalidate = 604800 // 7 jours (etait 24h, 1h avant -- contenu quasi statique, cf. reduction couts Vercel ISR)
 
 // ── Couleurs par équipe (NBA + NFL + NHL + MLB) ───────────────────────────────
 const NBA_COLORS: Record<string, { primary: string; secondary: string; abbr: string }> = {

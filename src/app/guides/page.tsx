@@ -8,7 +8,7 @@ import GuidesListClient, { type GuideListItem } from '@/components/GuidesListCli
 
 // 1h (etait 5 min) : la liste des guides change rarement (publication d'un nouveau guide),
 // inutile de la regenerer aussi souvent -- coute en ecritures ISR facturees (voir audit Vercel)
-export const revalidate = 86400 // 24h (etait 1h -- contenu quasi statique, cf. reduction couts Vercel ISR)
+export const revalidate = 604800 // 7 jours (etait 24h, 1h avant -- contenu quasi statique, cf. reduction couts Vercel ISR)
 
 // Composant serveur : pas de useLang() (hook client) disponible ici. La langue est
 // resolue au mieux via le cookie geo-lang pose par le middleware (voir
