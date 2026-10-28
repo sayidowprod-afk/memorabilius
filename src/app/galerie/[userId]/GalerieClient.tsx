@@ -447,6 +447,7 @@ function renderCardImage(card: { f: string; n: string; format?: string; is_horiz
 
 interface Card {
   id_manuelle?: string;
+  prix_vente?: number | null;
   f: string; b: string; fHd?: string; bHd?: string; n: string; t: string; y: string
   br: string; s: string; v: string; num: string; card_number?: string; cert_number?: string
   auto: boolean; rc: boolean; patch: boolean; printing_plate?: boolean; g: string
@@ -1138,6 +1139,7 @@ export default function GalerieClient({ userId, initialCardUrl, initialCards, in
         f: m.image_recto || 'https://placehold.co/300x420?text=No+Image',
         b: m.image_verso || m.image_recto || 'https://placehold.co/300x420?text=No+Image',
         fHd: m.image_recto_hd || undefined, bHd: m.image_verso_hd || undefined,
+        prix_vente: m.prix_vente ?? null,
         n: m.nom || '', t: m.equipe || '', y: m.annee || '',
         br: m.marque || '', s: m.collection || '', v: m.variation || '',
         num: m.num || '', card_number: m.card_number || '', cert_number: m.cert_number || '', auto: m.auto || false, rc: m.rc || false,
@@ -3760,6 +3762,12 @@ export default function GalerieClient({ userId, initialCardUrl, initialCards, in
             }
           } : undefined}
           onProposeTrade={!isOwner && currentUser && popup.id_manuelle ? () => setTradeCard(popup) : undefined}
+          onPriceChange={(card, prix_vente) => {
+            // un prix = la carte est aussi marquée disponible (même effet que le bouton Vente/Échange)
+            const upd = (c: Card): Card => c.f === card.f ? { ...c, prix_vente, ...(prix_vente != null ? { disponible_vente: true } : {}) } : c
+            setCards(prev => prev.map(upd))
+            setPopup(prev => prev ? upd(prev) : prev)
+          }}
           onVendueChange={(card, vendue) => {
             setCards(prev => prev.map(c => c.f === card.f ? { ...c, vendue } : c))
             setPopup(prev => prev && prev.f === card.f ? { ...prev, vendue } : prev)

@@ -21,6 +21,7 @@ import { supabase } from '@/lib/supabase'
 import { getCsvCardSharePath } from '@/lib/csvCardShortLink'
 import TagIcon from '@/components/TagIcon'
 import LoupeOverlay from '@/components/LoupeOverlay'
+import MarketplacePriceField from '@/components/MarketplacePriceField'
 import { candidatesForCard, type MSet, type MEntry, type MCard } from '@/lib/setMatcher'
 
 interface SetPlacementData {
@@ -40,7 +41,7 @@ interface Card {
   isManuelle?: boolean; id_manuelle?: string; collection_tag?: string; collections?: string[]; beckett_designation?: string
   booklet?: boolean; is_horizontal?: boolean; verso_is_horizontal?: boolean | null; format?: string; il?: string; ir?: string
   storage_binder?: string; storage_page?: number | null; storage_slot?: string;
-  lien_vinted?: string; lien_ebay?: string; vendue?: boolean; disponible_vente?: boolean;
+  lien_vinted?: string; lien_ebay?: string; vendue?: boolean; disponible_vente?: boolean; prix_vente?: number | null;
   notes_perso?: string; notes_perso_public?: boolean
 }
 
@@ -104,7 +105,7 @@ function teamVars(team: string | null | undefined, accent: string): Record<strin
   }
 }
 
-export default function Viewer3D({ popup, accent, onClose, onNext, onPrev, getTags, userId, userSlug, isOwner, currentUserId, onCollectionTagChange, onCollectionsChange, onVendueChange, onDisponibleVenteChange, allCollectionTags, onAddToMyGallery, initialAddState, onProposeTrade, cardValue, onValueSave, likeData, onLike, onDeleteCard }: {
+export default function Viewer3D({ popup, accent, onClose, onNext, onPrev, getTags, userId, userSlug, isOwner, currentUserId, onCollectionTagChange, onCollectionsChange, onVendueChange, onDisponibleVenteChange, onPriceChange, allCollectionTags, onAddToMyGallery, initialAddState, onProposeTrade, cardValue, onValueSave, likeData, onLike, onDeleteCard }: {
   popup: Card
   accent: string
   onClose: () => void
@@ -119,6 +120,7 @@ export default function Viewer3D({ popup, accent, onClose, onNext, onPrev, getTa
   onCollectionsChange?: (card: Card, next: string[]) => void
   onVendueChange?: (card: Card, vendue: boolean) => void
   onDisponibleVenteChange?: (card: Card, disponibleVente: boolean) => void
+  onPriceChange?: (card: Card, price: number | null) => void
   allCollectionTags?: string[]
   onAddToMyGallery?: () => Promise<'added' | 'duplicate'>
   initialAddState?: 'idle' | 'added' | 'duplicate'
@@ -2117,6 +2119,9 @@ export default function Viewer3D({ popup, accent, onClose, onNext, onPrev, getTa
                 }}>
                   {popup.vendue ? `✓ ${t('gallery_sold_badge')}` : t('viewer_mark_sold_btn')}
                 </button>
+              )}
+              {isOwner && popup.id_manuelle && onPriceChange && (
+                <MarketplacePriceField cardId={popup.id_manuelle} price={popup.prix_vente} onSaved={p => onPriceChange(popup, p)} />
               )}
               {onDeleteCard && (
                 <>
