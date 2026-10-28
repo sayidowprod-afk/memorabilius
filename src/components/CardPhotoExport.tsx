@@ -1,4 +1,5 @@
 'use client'
+import { readableAccent } from '@/lib/readableAccent'
 import { useRef, useState, useEffect } from 'react'
 import { createPortal } from 'react-dom'
 import { useLang } from '@/lib/LangContext'
@@ -534,7 +535,7 @@ export default function CardPhotoExport({ card, accent: accentProp, onClose, own
     // ── Équipe en eyebrow ── entre les badges et le nom.
     if (card.t) {
       const teamFs = Math.round(w * 0.019)
-      ctx.fillStyle = accent
+      ctx.fillStyle = readableAccent(accent, isDark)
       ctx.font = `800 ${teamFs}px Inter, sans-serif`
       ctx.fillText(truncate(ctx, card.t.toUpperCase(), panelW * 0.85), tx, ty)
       ty += teamFs * 1.6
@@ -554,7 +555,7 @@ export default function CardPhotoExport({ card, accent: accentProp, onClose, own
 
     if (card.v) {
       const varFs = Math.round(w * 0.026)
-      ctx.fillStyle = accent
+      ctx.fillStyle = readableAccent(accent, isDark)
       ctx.font = `600 italic ${varFs}px Inter, sans-serif`
       ctx.fillText(truncate(ctx, card.v, panelW * 0.88), tx, ty)
       ty += varFs * 1.3

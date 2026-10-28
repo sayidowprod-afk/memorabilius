@@ -1,4 +1,5 @@
 'use client'
+import { readableAccent } from '@/lib/readableAccent'
 import { useRef, useState, useEffect } from 'react'
 import { createPortal } from 'react-dom'
 import { Capacitor } from '@capacitor/core'
@@ -749,7 +750,7 @@ export default function CardVideoExport({ card, accent: accentProp, onClose, own
       // avant sans passer devant les badges.
       if (card.t) {
         const teamFs = Math.round(W * 0.019)
-        ictx.fillStyle = accent
+        ictx.fillStyle = readableAccent(accent, isDark)
         ictx.font = `800 ${teamFs}px Inter, sans-serif`
         ictx.fillText(truncate(ictx, card.t.toUpperCase(), panelW * 0.85), tx, ty)
         ty += teamFs * 1.6
@@ -769,7 +770,7 @@ export default function CardVideoExport({ card, accent: accentProp, onClose, own
       // ── Variation ─────────────────────────────────────────────────────────────
       if (card.v) {
         const varFs = Math.round(W * 0.026)
-        ictx.fillStyle = accent
+        ictx.fillStyle = readableAccent(accent, isDark)
         ictx.font = `600 italic ${varFs}px Inter, sans-serif`
         ictx.fillText(truncate(ictx, card.v, panelW * 0.88), tx, ty)
         ty += varFs * 1.3
