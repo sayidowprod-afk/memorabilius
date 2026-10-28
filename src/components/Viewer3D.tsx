@@ -2121,9 +2121,6 @@ export default function Viewer3D({ popup, accent, onClose, onNext, onPrev, getTa
                   {popup.vendue ? `✓ ${t('gallery_sold_badge')}` : t('viewer_mark_sold_btn')}
                 </button>
               )}
-              {isOwner && popup.id_manuelle && onPriceChange && (
-                <MarketplacePriceField cardId={popup.id_manuelle} price={popup.prix_vente} onSaved={p => onPriceChange(popup, p)} />
-              )}
               {onDeleteCard && (
                 <>
                   <button onClick={() => setConfirmDelete(true)} style={{
@@ -2136,6 +2133,9 @@ export default function Viewer3D({ popup, accent, onClose, onNext, onPrev, getTa
                   </button>
                   {confirmDelete && <ConfirmDeleteCard image={popup.f} name={popup.n} onCancel={() => setConfirmDelete(false)} onConfirm={() => { setConfirmDelete(false); onDeleteCard() }} />}
                 </>
+              )}
+              {isOwner && popup.id_manuelle && onPriceChange && (
+                <MarketplacePriceField cardId={popup.id_manuelle} price={popup.prix_vente} onSaved={p => onPriceChange(popup, p)} />
               )}
             </div>
             {(popup.lien_vinted || popup.lien_ebay) && (
