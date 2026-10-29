@@ -10,7 +10,7 @@ Envoie sur Discord (avec la citation de l'utilisateur) :
 Sans --discord : affiche le message et enregistre l'image dans docs/rdv/vendredi/ (essai local).
 Les journaux GitHub sont publics : aucun pseudo ni nom de joueur n'est écrit dans la sortie.
 """
-import importlib.util, io, os, random, sys, urllib.request
+import importlib.util, io, os, random, sys, urllib.parse, urllib.request
 from datetime import datetime, timedelta, timezone
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -29,9 +29,9 @@ _spec.loader.exec_module(cm)
 sys.argv = _argv
 
 TWEET = (
-    "Vendredi : ta carte de la semaine 👇\n"
-    "Réponds avec l'export photo ou vidéo Memorabilius (bouton Exporter sur ta carte) "
-    "de ta plus belle carte ajoutée cette semaine, + une ligne pour dire pourquoi.\n"
+    "Vendredi = carte de la semaine 🔥\n"
+    "Balance ton export (photo ou vidéo) de la meilleure carte que t'as ajoutée à ta galerie cette semaine, "
+    "et dis-nous pourquoi elle est stylée 👀\n"
     "Je RT mes préférées. #sportscards #NBA"
 )
 
@@ -95,10 +95,11 @@ def main():
     owner = names.get(card['user_id'], 'un membre')
     infos = ' · '.join(str(x) for x in (card.get('nom'), card.get('annee'), card.get('marque'), card.get('collection'), card.get('num')) if x)
     tags = ' / '.join(card['_why']) if card['_why'] else 'carte'
+    link = 'https://www.memorabilius.fr/galerie/%s?card=%s' % (card['user_id'], urllib.parse.quote(card['image_recto'] or card['_img'], safe=''))
     msg2 = ("**Carte d'exemple pour lancer le fil** (%s) — ajoutée par **%s** cette semaine.\n%s\n"
-            "Photo brute de la carte (l'export Memorabilius n'est possible que par son propriétaire). "
-            "Pense à citer le membre (et à lui demander son accord) si tu la publies."
-            % (tags, owner, infos))
+            "Ouvre-la ici, clique sur Exporter (photo ou vidéo) et poste l'export en premier :\n<%s>\n"
+            "Pense à citer le membre (et à lui demander son accord)."
+            % (tags, owner, infos, link))
     if discord:
         ch.post_discord(ch.ENV['DISCORD_WEBHOOK_URL'], msg1, [])
         ch.post_discord(ch.ENV['DISCORD_WEBHOOK_URL'], msg2, [('carte-exemple.jpg', path)])
