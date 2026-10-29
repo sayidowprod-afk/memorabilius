@@ -29,10 +29,10 @@ _spec.loader.exec_module(cm)
 sys.argv = _argv
 
 TWEET = (
-    "Vendredi = carte de la semaine 🔥\n"
-    "Balance ton export (photo ou vidéo) de la meilleure carte que t'as ajoutée à ta galerie cette semaine, "
-    "et dis-nous pourquoi elle est stylée 👀\n"
-    "Je RT mes préférées. #sportscards #NBA"
+    "Qui dit Vendredi dit Carte de la Semaine 🔥\n\n"
+    "Parmi toutes les pépites que t'as ajoutées à ta galerie cette semaine, laquelle te fait le plus kiffer ? "
+    "Poste ton export (photo ou vidéo) en réponse et raconte-nous l'histoire de la carte 👀\n\n"
+    "Les plus belles, je les repartage ! #sportscards #NBA"
 )
 
 
