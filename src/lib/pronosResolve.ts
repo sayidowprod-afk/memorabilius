@@ -1,6 +1,6 @@
 import type { SupabaseClient } from '@supabase/supabase-js'
 import { fetchMatchesForOffsets } from '@/lib/pronosMatches'
-import { isoDateInParis, offsetFromToday } from '@/lib/pronosDays'
+import { sportDate, offsetFromToday } from '@/lib/pronosDays'
 import { XP_AWARDS } from '@/lib/xp'
 
 // Picks conservés 15 jours après le coup d'envoi (voir /api/pronos/resolve) : le cron de résolution
@@ -32,7 +32,7 @@ export async function resolvePronosWins(supabase: SupabaseClient, opts: { userId
   const picks = await fetchAllPicks(supabase, opts)
   if (picks.length === 0) return { picks: 0, awarded: 0 }
 
-  const offsets = [...new Set(picks.map(p => offsetFromToday(isoDateInParis(new Date(p.kickoff_at)))))]
+  const offsets = [...new Set(picks.map(p => offsetFromToday(sportDate(new Date(p.kickoff_at)))))]
   const { matches } = await fetchMatchesForOffsets(offsets.length ? offsets : [0])
   const byId = new Map(matches.map(m => [m.id, m]))
 

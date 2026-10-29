@@ -1,5 +1,5 @@
 import { getTeamByName } from '@/lib/sportsTeams'
-import { dayLabel, timeLabel, isoDateInParis, daysForOffsets } from '@/lib/pronosDays'
+import { sportDayLabel, sportDate, timeLabel, daysForOffsets } from '@/lib/pronosDays'
 
 // Sources (toutes gratuites) : NBA/NFL/NHL via l'API publique ESPN (aucune
 // clé, aucune restriction de date -- api-sports.io a été abandonné, son plan
@@ -55,7 +55,7 @@ function buildMatch(
   return {
     id: `${sport}-${apiId}`,
     sport,
-    day: dayLabel(start),
+    day: sportDayLabel(start),
     kickoff: start.toISOString(),
     leftId: away.id,
     rightId: home.id,
@@ -95,7 +95,7 @@ async function fetchEspn(sport: Sport, espnPath: string, parisDate: string, reva
         if (!comp || !home || !away) continue
 
         const start = new Date(comp.date)
-        if (isoDateInParis(start) !== parisDate) continue
+        if (sportDate(start) !== parisDate) continue
 
         const finished = !!comp.status?.type?.completed
         const homeScore = finished ? Number(home.score) : null
@@ -139,7 +139,7 @@ async function fetchMLB(parisDate: string, revalidate: number): Promise<OutMatch
     } catch { /* API MLB indisponible -- on ignore ce jour */ }
     for (const g of games) {
       const start = new Date(g.gameDate)
-      if (isoDateInParis(start) !== parisDate) continue
+      if (sportDate(start) !== parisDate) continue
       const finished = g.status?.abstractGameState === 'Final'
       const home = getTeamByName(g.teams.home.team.name)
       const away = getTeamByName(g.teams.away.team.name)
@@ -211,7 +211,7 @@ export async function fetchMatchesForOffsets(offsets: number[], opts?: { include
   // que la fenêtre demandée, sinon un vieux match au même "MAR 27" qu'un
   // jour de la fenêtre (autre mois, même jour de semaine + numéro) apparaîtrait.
   const windowDates = new Set(days.map(d => d.parisDate))
-  const matches: OutMatch[] = ucl.filter(m => windowDates.has(isoDateInParis(new Date(m.kickoff))))
+  const matches: OutMatch[] = ucl.filter(m => windowDates.has(sportDate(new Date(m.kickoff))))
   for (const [nba, nfl, nhl, mlb] of perDayResults) matches.push(...nba, ...nfl, ...nhl, ...mlb)
   return { days: days.map(d => d.label), matches }
 }

@@ -4,7 +4,7 @@ import { Anton } from 'next/font/google'
 import TeamBadge from '@/components/TeamBadge'
 import { getTeamById } from '@/lib/sportsTeams'
 import { useAuth } from '@/lib/AuthContext'
-import { dayLabel, daysForOffsets, isoDateInParis, weekOffsets } from '@/lib/pronosDays'
+import { sportDayLabel, sportNow, dayLabel, sportDate, daysForOffsets, weekOffsets } from '@/lib/pronosDays'
 import { supabase } from '@/lib/supabase'
 import type { BoxScore as BoxScoreData, BoxGroup as BoxScoreGroup } from '@/lib/pronosBoxscore'
 
@@ -462,7 +462,7 @@ export default function PronosHomePreview() {
   // Semaine courante du lundi au dimanche (jours passés inclus, avec leurs résultats) ;
   // la semaine précédente se charge à la demande (bouton « résultats de la semaine dernière »).
   const [days, setDays] = useState<string[]>(() => daysForOffsets(weekOffsets(0)).map(d => d.label))
-  const [activeDay, setActiveDay] = useState(() => dayLabel(new Date()))
+  const [activeDay, setActiveDay] = useState(() => dayLabel(sportNow()))
   const [week, setWeek] = useState<'current' | 'prev'>('current')
   const [prev, setPrev] = useState<{ matches: ApiMatch[]; days: string[] } | null>(null)
   const [prevLoading, setPrevLoading] = useState(false)
@@ -485,10 +485,10 @@ export default function PronosHomePreview() {
       xp += Number(e.amount) || 0
       // le jour du match (meta.kickoff_at) si on l'a, sinon la date du versement de l'XP
       const when = new Date(e.meta?.kickoff_at || e.created_at)
-      const label = dayLabel(when) // même libellé que le sélecteur de jour (« LUN 26 »)
+      const label = sportDayLabel(when) // même libellé que le sélecteur de jour (« LUN 26 »)
       byDay[label] = (byDay[label] || 0) + 1
       xpByDay[label] = (xpByDay[label] || 0) + (Number(e.amount) || 0)
-      if (isoDateInParis(when) >= weekStart) wCount++
+      if (sportDate(when) >= weekStart) wCount++
     }
     setWins({ byDay, xpByDay, week: wCount, total: data.length, xp })
   }
@@ -573,7 +573,7 @@ export default function PronosHomePreview() {
     } catch { setPrev({ matches: [], days: [] }) }
     setPrevLoading(false)
   }
-  const showCurrent = () => { setWeek('current'); setActiveDay(dayLabel(new Date())) }
+  const showCurrent = () => { setWeek('current'); setActiveDay(dayLabel(sportNow())) }
 
   const shownDays = week === 'prev' ? (prev?.days?.length ? prev.days : daysForOffsets(weekOffsets(-1)).map(d => d.label)) : days
   const shownMatches = week === 'prev' ? prev?.matches ?? null : matches
@@ -673,7 +673,7 @@ export default function PronosHomePreview() {
           return (
             <div style={{ display: 'flex', flexWrap: 'wrap', alignItems: 'center', gap: 8, margin: '-8px 0 16px' }}>
               <span style={{ fontFamily: UI_FONT, fontWeight: 800, fontSize: 13, color: 'rgba(255,255,255,.7)' }}>
-                Bilan {activeDay === dayLabel(new Date()) ? 'du jour' : activeDay}
+                Bilan {activeDay === dayLabel(sportNow()) ? 'du jour' : activeDay}
               </span>
               <span style={chip('rgba(46,204,113,.18)', GREEN)}>✅ {won} bon{won > 1 ? 's' : ''}</span>
               <span style={chip('rgba(255,90,90,.18)', '#ff8a8a')}>❌ {lost} raté{lost > 1 ? 's' : ''}</span>
