@@ -30,8 +30,8 @@ sys.argv = _argv
 
 TWEET = (
     "Vendredi : ta carte de la semaine 👇\n"
-    "Réponds avec ta plus belle carte ajoutée à ta galerie ces 7 derniers jours. "
-    "Une photo + une ligne pour dire pourquoi.\n"
+    "Réponds avec l'export photo ou vidéo Memorabilius (bouton Exporter sur ta carte) "
+    "de ta plus belle carte ajoutée cette semaine, + une ligne pour dire pourquoi.\n"
     "Je RT mes préférées. #sportscards #NBA"
 )
 
@@ -96,6 +96,7 @@ def main():
     infos = ' · '.join(str(x) for x in (card.get('nom'), card.get('annee'), card.get('marque'), card.get('collection'), card.get('num')) if x)
     tags = ' / '.join(card['_why']) if card['_why'] else 'carte'
     msg2 = ("**Carte d'exemple pour lancer le fil** (%s) — ajoutée par **%s** cette semaine.\n%s\n"
+            "Photo brute de la carte (l'export Memorabilius n'est possible que par son propriétaire). "
             "Pense à citer le membre (et à lui demander son accord) si tu la publies."
             % (tags, owner, infos))
     if discord:
