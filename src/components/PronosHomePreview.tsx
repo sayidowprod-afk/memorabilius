@@ -471,7 +471,7 @@ export default function PronosHomePreview() {
   const [xpGain, setXpGain] = useState<{ wins: number; xp: number } | null>(null)
   // Bilan permanent des bons pronos du membre (aujourd'hui / semaine / total), relu depuis ses gains d'XP :
   // le message « +X XP » ne montre que ce qui vient d'être versé pendant ce chargement, et disparaissait ensuite.
-  const [wins, setWins] = useState<{ byDay: Record<string, number>; week: number; total: number; xp: number } | null>(null)
+  const [wins, setWins] = useState<{ byDay: Record<string, number>; xpByDay: Record<string, number>; week: number; total: number; xp: number } | null>(null)
 
   const loadWins = async (userId: string) => {
     const { data } = await supabase.from('xp_events').select('amount, meta, created_at')
@@ -479,6 +479,7 @@ export default function PronosHomePreview() {
     if (!data) return
     const weekStart = daysForOffsets([weekOffsets(0)[0]])[0].parisDate
     const byDay: Record<string, number> = {}
+    const xpByDay: Record<string, number> = {}
     let wCount = 0, xp = 0
     for (const e of data as any[]) {
       xp += Number(e.amount) || 0
@@ -486,9 +487,10 @@ export default function PronosHomePreview() {
       const when = new Date(e.meta?.kickoff_at || e.created_at)
       const label = dayLabel(when) // même libellé que le sélecteur de jour (« LUN 26 »)
       byDay[label] = (byDay[label] || 0) + 1
+      xpByDay[label] = (xpByDay[label] || 0) + (Number(e.amount) || 0)
       if (isoDateInParis(when) >= weekStart) wCount++
     }
-    setWins({ byDay, week: wCount, total: data.length, xp })
+    setWins({ byDay, xpByDay, week: wCount, total: data.length, xp })
   }
 
   useEffect(() => {
@@ -649,13 +651,37 @@ export default function PronosHomePreview() {
           ))}
         </div>
 
-        {/* Bons pronos du jour sélectionné : reste affiché pour chaque jour, même une fois vu. */}
-        {(wins?.byDay[activeDay] ?? 0) > 0 && (
-          <p style={{ fontFamily: UI_FONT, fontWeight: 800, fontSize: 14, color: GREEN, margin: '-8px 0 16px' }}>
-            🎯 {wins!.byDay[activeDay]} bon{wins!.byDay[activeDay] > 1 ? 's' : ''} prono{wins!.byDay[activeDay] > 1 ? 's' : ''}{' '}
-            {activeDay === dayLabel(new Date()) ? 'aujourd’hui' : 'ce jour-là'}
-          </p>
-        )}
+        {/* Bilan du jour sélectionné (victoires / défaites + XP), tous sports confondus : reste affiché pour chaque jour. */}
+        {(() => {
+          const dayMatches = (shownMatches ?? []).filter(m => m.day === activeDay)
+          let won = 0, lost = 0, pending = 0
+          for (const m of dayMatches) {
+            const p = picks[m.id]
+            if (!p) continue
+            if (m.status !== 'final') pending++
+            else if (m.winner === p) won++
+            else lost++
+          }
+          // si les picks de ce jour ont été purgés (15 jours), on retombe sur les gains d'XP connus
+          const wonXp = wins?.byDay[activeDay] ?? 0
+          if (wonXp > won) won = wonXp
+          const xpDay = wins?.xpByDay[activeDay] ?? 0
+          if (won + lost + pending === 0) return null
+          const chip = (bg: string, color: string): React.CSSProperties => ({
+            fontFamily: UI_FONT, fontWeight: 800, fontSize: 13, padding: '6px 12px', borderRadius: 999, background: bg, color,
+          })
+          return (
+            <div style={{ display: 'flex', flexWrap: 'wrap', alignItems: 'center', gap: 8, margin: '-8px 0 16px' }}>
+              <span style={{ fontFamily: UI_FONT, fontWeight: 800, fontSize: 13, color: 'rgba(255,255,255,.7)' }}>
+                Bilan {activeDay === dayLabel(new Date()) ? 'du jour' : activeDay}
+              </span>
+              <span style={chip('rgba(46,204,113,.18)', GREEN)}>✅ {won} bon{won > 1 ? 's' : ''}</span>
+              <span style={chip('rgba(255,90,90,.18)', '#ff8a8a')}>❌ {lost} raté{lost > 1 ? 's' : ''}</span>
+              {pending > 0 && <span style={chip('rgba(255,255,255,.1)', '#fff')}>⏳ {pending} en cours</span>}
+              <span style={chip('rgba(255,200,60,.18)', GOLD)}>+{xpDay} XP</span>
+            </div>
+          )
+        })()}
 
         <div style={{ marginBottom: 16 }}>
           {week === 'current' ? (
