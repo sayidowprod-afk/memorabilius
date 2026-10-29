@@ -28,8 +28,10 @@ jobs:
         with:
           python-version: '3.12'
 
-      - name: Bibliothèques
-        run: pip install --quiet pillow numpy
+      - name: Bibliothèques et navigateur (pour l'export photo)
+        run: |
+          pip install --quiet pillow numpy playwright
+          playwright install --with-deps chromium
 
       - name: Texte du tweet et carte d'exemple vers Discord
         env:

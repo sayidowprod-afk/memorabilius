@@ -54,6 +54,34 @@ def pick_card(since):
     return good, len(rows)
 
 
+def card_link(r):
+    return 'https://www.memorabilius.fr/galerie/%s?card=%s' % (r['user_id'], urllib.parse.quote(r['image_recto'] or r['_img'], safe=''))
+
+
+def export_photo(link, path):
+    """Ouvre la carte sur le vrai site comme un visiteur, lance « Exporter en photo » et récupère l'image
+    fabriquée par l'export (portrait, thème par défaut) : exactement ce que télécharge un membre."""
+    import base64
+    from playwright.sync_api import sync_playwright
+    with sync_playwright() as p:
+        browser = p.chromium.launch()
+        try:
+            page = browser.new_page(viewport={'width': 1280, 'height': 900}, locale='fr-FR')
+            page.goto(link, wait_until='networkidle', timeout=60000)
+            page.get_by_role('button', name='Exporter').first.click(timeout=30000)
+            page.get_by_role('button', name='Exporter en photo').click(timeout=15000)
+            page.get_by_role('button', name='Télécharger').wait_for(timeout=30000)
+            page.wait_for_timeout(5000)  # le temps que l'export dessine la carte, les polices et le logo
+            url = page.evaluate("() => { const c = [...document.querySelectorAll('canvas')].filter(c => c.width >= 800).pop();"
+                                " return c ? c.toDataURL('image/jpeg', 0.95) : '' }")
+        finally:
+            browser.close()
+    if not url.startswith('data:image/jpeg;base64,'):
+        raise RuntimeError('export vide')
+    with open(path, 'wb') as f:
+        f.write(base64.b64decode(url.split(',', 1)[1]))
+
+
 def to_jpeg(data, path):
     from PIL import Image
     im = Image.open(io.BytesIO(data)).convert('RGB')
@@ -69,16 +97,26 @@ def main():
 
     out_dir = os.path.join(ROOT, 'docs', 'rdv', 'vendredi')
     os.makedirs(out_dir, exist_ok=True)
-    path, card = os.path.join(out_dir, 'carte-exemple.jpg'), None
-    for r in cards[:30]:
+    path, card, exported = os.path.join(out_dir, 'carte-exemple.jpg'), None, False
+    # 1) l'export photo Memorabilius, tel qu'un membre le télécharge (navigateur sans affichage sur le vrai site)
+    for r in cards[:5]:
         try:
-            req = urllib.request.Request(r['_img'], headers={'User-Agent': 'Mozilla/5.0 (vendredi)'})
-            with urllib.request.urlopen(req, timeout=40) as resp:
-                to_jpeg(resp.read(), path)
-            card = r
+            export_photo(card_link(r), path)
+            card, exported = r, True
             break
         except Exception as e:
-            print('Carte ignorée :', e)
+            print('Export impossible, carte suivante :', type(e).__name__, str(e).splitlines()[0][:160] if str(e) else '')
+    # 2) secours : la photo brute de la carte
+    if not card:
+        for r in cards[:30]:
+            try:
+                req = urllib.request.Request(r['_img'], headers={'User-Agent': 'Mozilla/5.0 (vendredi)'})
+                with urllib.request.urlopen(req, timeout=40) as resp:
+                    to_jpeg(resp.read(), path)
+                card = r
+                break
+            except Exception as e:
+                print('Carte ignorée :', e)
 
     msg1 = ("**Vendredi : « ta carte de la semaine »** — à publier sur X vers 18 h.\n"
             "Texte du tweet à copier :\n```\n%s\n```" % TWEET)
@@ -95,11 +133,12 @@ def main():
     owner = names.get(card['user_id'], 'un membre')
     infos = ' · '.join(str(x) for x in (card.get('nom'), card.get('annee'), card.get('marque'), card.get('collection'), card.get('num')) if x)
     tags = ' / '.join(card['_why']) if card['_why'] else 'carte'
-    link = 'https://www.memorabilius.fr/galerie/%s?card=%s' % (card['user_id'], urllib.parse.quote(card['image_recto'] or card['_img'], safe=''))
+    how = ("L'export photo est déjà fait, tu peux le poster tel quel. Pour une vidéo, ouvre la carte ici et clique sur Exporter :"
+           if exported else "Photo brute (l'export n'a pas pu être généré). Ouvre la carte ici et clique sur Exporter (photo ou vidéo) :")
     msg2 = ("**Carte d'exemple pour lancer le fil** (%s) — ajoutée par **%s** cette semaine.\n%s\n"
-            "Ouvre-la ici, clique sur Exporter (photo ou vidéo) et poste l'export en premier :\n<%s>\n"
+            "%s\n<%s>\n"
             "Pense à citer le membre (et à lui demander son accord)."
-            % (tags, owner, infos, link))
+            % (tags, owner, infos, how, card_link(card)))
     if discord:
         ch.post_discord(ch.ENV['DISCORD_WEBHOOK_URL'], msg1, [])
         ch.post_discord(ch.ENV['DISCORD_WEBHOOK_URL'], msg2, [('carte-exemple.jpg', path)])
