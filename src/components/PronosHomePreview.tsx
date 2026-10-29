@@ -4,7 +4,7 @@ import { Anton } from 'next/font/google'
 import TeamBadge from '@/components/TeamBadge'
 import { getTeamById } from '@/lib/sportsTeams'
 import { useAuth } from '@/lib/AuthContext'
-import { dayLabel, daysForOffsets, weekOffsets } from '@/lib/pronosDays'
+import { dayLabel, daysForOffsets, isoDateInParis, weekOffsets } from '@/lib/pronosDays'
 import { supabase } from '@/lib/supabase'
 import type { BoxScore as BoxScoreData, BoxGroup as BoxScoreGroup } from '@/lib/pronosBoxscore'
 
@@ -469,6 +469,27 @@ export default function PronosHomePreview() {
   const [activeSport, setActiveSport] = useState<Sport | 'ALL'>('ALL')
   const [picks, setPicks] = useState<Record<string, Pick>>({})
   const [xpGain, setXpGain] = useState<{ wins: number; xp: number } | null>(null)
+  // Bilan permanent des bons pronos du membre (aujourd'hui / semaine / total), relu depuis ses gains d'XP :
+  // le message « +X XP » ne montre que ce qui vient d'être versé pendant ce chargement, et disparaissait ensuite.
+  const [wins, setWins] = useState<{ byDay: Record<string, number>; week: number; total: number; xp: number } | null>(null)
+
+  const loadWins = async (userId: string) => {
+    const { data } = await supabase.from('xp_events').select('amount, meta, created_at')
+      .eq('user_id', userId).eq('type', 'pronos_win').order('created_at', { ascending: false }).limit(5000)
+    if (!data) return
+    const weekStart = daysForOffsets([weekOffsets(0)[0]])[0].parisDate
+    const byDay: Record<string, number> = {}
+    let wCount = 0, xp = 0
+    for (const e of data as any[]) {
+      xp += Number(e.amount) || 0
+      // le jour du match (meta.kickoff_at) si on l'a, sinon la date du versement de l'XP
+      const when = new Date(e.meta?.kickoff_at || e.created_at)
+      const label = dayLabel(when) // même libellé que le sélecteur de jour (« LUN 26 »)
+      byDay[label] = (byDay[label] || 0) + 1
+      if (isoDateInParis(when) >= weekStart) wCount++
+    }
+    setWins({ byDay, week: wCount, total: data.length, xp })
+  }
 
   useEffect(() => {
     if (!user) return
@@ -510,8 +531,10 @@ export default function PronosHomePreview() {
         .then(r => r.json())
         .then(res => { if (!cancelled && res?.awarded > 0) setXpGain({ wins: res.awarded, xp: res.xp }) })
         .catch(() => {})
+        .finally(() => { if (!cancelled) loadWins(user.id) }) // bilan à jour une fois l'XP versée
     })
     return () => { cancelled = true }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [user])
 
   // Pas connecté -- module masqué, aucun appel supplémentaire.
@@ -568,9 +591,10 @@ export default function PronosHomePreview() {
           🏆 PRONOS
         </h2>
 
-        {xpGain && (
-          <p style={{ fontFamily: UI_FONT, fontWeight: 800, fontSize: 14, color: GREEN, margin: '-8px 0 16px' }}>
-            +{xpGain.xp} XP — {xpGain.wins} bon{xpGain.wins > 1 ? 's' : ''} prono{xpGain.wins > 1 ? 's' : ''} sur des matchs terminés !
+        {wins && wins.total > 0 && (
+          <p style={{ fontFamily: UI_FONT, fontWeight: 800, fontSize: 14, color: GREEN, margin: '-8px 0 16px', lineHeight: 1.5 }}>
+            🎯 {wins.week} bon{wins.week > 1 ? 's' : ''} prono{wins.week > 1 ? 's' : ''} cette semaine · {wins.total} au total (+{wins.xp} XP)
+            {xpGain && <span style={{ color: GOLD }}> — +{xpGain.xp} XP tout juste versés !</span>}
           </p>
         )}
 
@@ -624,6 +648,14 @@ export default function PronosHomePreview() {
             </button>
           ))}
         </div>
+
+        {/* Bons pronos du jour sélectionné : reste affiché pour chaque jour, même une fois vu. */}
+        {(wins?.byDay[activeDay] ?? 0) > 0 && (
+          <p style={{ fontFamily: UI_FONT, fontWeight: 800, fontSize: 14, color: GREEN, margin: '-8px 0 16px' }}>
+            🎯 {wins!.byDay[activeDay]} bon{wins!.byDay[activeDay] > 1 ? 's' : ''} prono{wins!.byDay[activeDay] > 1 ? 's' : ''}{' '}
+            {activeDay === dayLabel(new Date()) ? 'aujourd’hui' : 'ce jour-là'}
+          </p>
+        )}
 
         <div style={{ marginBottom: 16 }}>
           {week === 'current' ? (
