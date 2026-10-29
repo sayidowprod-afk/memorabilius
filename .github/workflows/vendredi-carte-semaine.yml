@@ -1,0 +1,40 @@
+name: Vendredi carte de la semaine
+
+# Chaque vendredi vers 6 h 30-7 h 30 (Paris) : envoie sur Discord le texte du tweet « ta carte de la semaine »
+# et une carte d'exemple choisie parmi celles ajoutées ces 7 derniers jours.
+# Secrets : NEXT_PUBLIC_SUPABASE_URL, SUPABASE_SERVICE_ROLE_KEY, DISCORD_WEBHOOK_URL, DISCORD_USER_ID.
+on:
+  schedule:
+    - cron: '30 5 * * 5' # vendredi 5 h 30 UTC = 6 h 30 (hiver) / 7 h 30 (été) à Paris
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  vendredi:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          sparse-checkout: |
+            scripts/classement_hebdo.py
+            scripts/carte_mystere.py
+            scripts/vendredi_carte_semaine.py
+          sparse-checkout-cone-mode: false
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Bibliothèques
+        run: pip install --quiet pillow numpy
+
+      - name: Texte du tweet et carte d'exemple vers Discord
+        env:
+          NEXT_PUBLIC_SUPABASE_URL: ${{ secrets.NEXT_PUBLIC_SUPABASE_URL }}
+          SUPABASE_SERVICE_ROLE_KEY: ${{ secrets.SUPABASE_SERVICE_ROLE_KEY }}
+          DISCORD_WEBHOOK_URL: ${{ secrets.DISCORD_WEBHOOK_URL }}
+          DISCORD_USER_ID: ${{ secrets.DISCORD_USER_ID }}
+        run: python scripts/vendredi_carte_semaine.py --discord
