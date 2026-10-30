@@ -55,6 +55,8 @@ jobs:
 
       - name: Bibliothèques et navigateur (pour l'export photo)
         run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y -qq ffmpeg
           pip install --quiet pillow numpy playwright
           playwright install --with-deps chromium
 
