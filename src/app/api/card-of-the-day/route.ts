@@ -3,7 +3,7 @@ import { createServerServiceClient } from '@/lib/supabaseServer'
 import { printRunOf, specialNum } from '@/lib/cardTags'
 
 // CARTE DU JOUR : une carte de la communaute, la meme pour tout le monde toute la journee (fuseau de Paris), qui change a minuit.
-// Choix : parmi les cartes recentes (60 derniers jours) qui ont une vraie photo et au moins un atout (RC, AUTO, PATCH ou numerotee),
+// Choix : parmi toutes les cartes de la communaute (sans limite d'anciennete) qui ont une vraie photo et au moins un atout (RC, AUTO, PATCH ou numerotee),
 // jamais une carte privee (table cartes_privees), jamais le compte de demonstration. La carte du jour est tiree de facon
 // deterministe avec la date comme graine : pas de stockage, pas de tache planifiee, et tout le monde voit la meme.
 // Reponse mise en cache au CDN au plus 1 h, et jamais au-dela de minuit (Paris).
@@ -24,17 +24,24 @@ export async function GET() {
   const offsetMs = parisNow.getTime() - new Date().getTime() + new Date().getMilliseconds() * 0
   const startParis = new Date(Date.now() + offsetMs); startParis.setHours(0, 0, 0, 0)
   const startOfDayParis = new Date(startParis.getTime() - offsetMs).toISOString()
-  const since = new Date(Date.now() - 60 * 86400000).toISOString()
-  const { data: recent } = await supabase
-    .from('cartes_manuelles')
-    .select('id, user_id, nom, annee, marque, collection, variation, num, rc, auto, patch, image_recto, is_horizontal, created_at')
-    .not('image_recto', 'is', null)
-    .gte('created_at', since)
-    .lt('created_at', startOfDayParis)   // jamais les cartes ajoutees AUJOURD'HUI : le lot de candidats ne bouge plus de la journee
-    .order('created_at', { ascending: false })
-    .limit(1500)
+  // toutes les cartes de la communaute avec au moins un atout, quelle que soit leur anciennete (lecture par pages de 1000)
+  const recent: any[] = []
+  for (let from = 0; from < 20000; from += 1000) {
+    const { data: page } = await supabase
+      .from('cartes_manuelles')
+      .select('id, user_id, nom, annee, marque, collection, variation, num, rc, auto, patch, image_recto, is_horizontal, created_at')
+      .not('image_recto', 'is', null)
+      .or('rc.eq.true,auto.eq.true,patch.eq.true,num.not.is.null')
+      .lt('created_at', startOfDayParis)   // jamais les cartes ajoutees AUJOURD'HUI : le lot de candidats ne bouge plus de la journee
+      .order('created_at', { ascending: false })
+      .order('id', { ascending: true })
+      .range(from, from + 999)
+    if (!page?.length) break
+    recent.push(...page)
+    if (page.length < 1000) break
+  }
 
-  let cands = (recent || []).filter((c: any) =>
+  let cands = recent.filter((c: any) =>
     /^https?:\/\//.test(c.image_recto || '') && !c.is_horizontal && c.nom && (c.rc || c.auto || c.patch || c.num))
   if (!cands.length) return NextResponse.json({ card: null })
 
