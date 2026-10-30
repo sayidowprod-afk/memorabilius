@@ -6,7 +6,8 @@ name: Carte mystère
 # Secrets : NEXT_PUBLIC_SUPABASE_URL, SUPABASE_SERVICE_ROLE_KEY, DISCORD_WEBHOOK_URL, CF_R2_*.
 on:
   schedule:
-    - cron: '30 5 * * 3' # mercredi 5 h 30 UTC = 6 h 30 (hiver) / 7 h 30 (été) à Paris
+    - cron: '20 5 * * 3' # premier essai : 6 h 20 (hiver) / 7 h 20 (été) à Paris
+    - cron: '20 6 * * 3' # second essai si le premier a été sauté ou retardé par GitHub
   workflow_dispatch:
     inputs:
       mode:
@@ -23,7 +24,31 @@ concurrency:
   cancel-in-progress: false
 
 jobs:
+  garde:
+    # Deux horaires par jour (le planificateur de GitHub saute ou retarde parfois un lancement) :
+    # si l'envoi du jour a déjà réussi, le second lancement ne fait rien. Un lancement manuel n'est jamais bloqué.
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    permissions:
+      actions: read
+    outputs:
+      deja: ${{ steps.verif.outputs.deja }}
+    steps:
+      - id: verif
+        env:
+          GH_TOKEN: ${{ github.token }}
+          GH_REPO: ${{ github.repository }}
+        run: |
+          deja=false
+          if [ "${{ github.event_name }}" = "schedule" ]; then
+            n=$(gh run list --workflow "${{ github.workflow }}" --event schedule --status success --created "$(date -u +%F)" --json databaseId --jq length)
+            if [ "${n:-0}" -gt 0 ]; then deja=true; fi
+          fi
+          echo "deja=$deja" >> "$GITHUB_OUTPUT"
+
   mystere:
+    needs: garde
+    if: needs.garde.outputs.deja != 'true'
     runs-on: ubuntu-latest
     timeout-minutes: 15
     env:
