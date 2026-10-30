@@ -47,6 +47,7 @@ jobs:
             scripts/classement_hebdo.py
             scripts/carte_mystere.py
             scripts/vendredi_carte_semaine.py
+            src/lib/sportsTeams.ts
           sparse-checkout-cone-mode: false
 
       - uses: actions/setup-python@v5

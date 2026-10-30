@@ -36,6 +36,25 @@ TWEET = (
 )
 
 
+def nba_matcher():
+    """Reconnaît une équipe NBA dans le champ « equipe » d'une carte, à partir de la liste du site (src/lib/sportsTeams.ts)."""
+    import re
+    path = os.path.join(ROOT, 'src', 'lib', 'sportsTeams.ts')
+    try:
+        with open(path, encoding='utf-8-sig') as f:
+            names = re.findall(r"sport: 'nba'.*?name: '([^']+)'", f.read())
+    except OSError:
+        names = []
+    full = {cm.norm(n) for n in names}
+    # le surnom (dernier mot) suffit (« Lakers »), sauf « Kings » qui existe aussi en NHL
+    nick = {cm.norm(n).split()[-1] for n in names if n.split()[-1].lower() != 'kings'}
+
+    def is_nba(equipe):
+        e = cm.norm(equipe or '')
+        return bool(e) and (e in full or any(t in nick for t in e.split()))
+    return is_nba
+
+
 def pick_card(since):
     rows = ch.api('cartes_manuelles', {
         'select': 'id,user_id,nom,equipe,annee,marque,collection,auto,patch,num,image_recto,image_recto_hd,created_at',
@@ -49,6 +68,12 @@ def pick_card(since):
         pts, why = cm.score(r)
         r['_img'], r['_pts'], r['_why'] = img, pts, why
         good.append(r)
+    # cette semaine : une carte NBA d'abord (s'il y en a), sinon n'importe quel sport
+    is_nba = nba_matcher()
+    nba = [r for r in good if is_nba(r.get('equipe'))]
+    print('Cartes NBA parmi les cartes de la semaine :', len(nba))
+    if nba:
+        good = nba
     good.sort(key=lambda r: -r['_pts'])
     # un tirage au sort parmi les 12 meilleures (autos, patchs, faibles tirages) : pas toujours la même carte
     head = good[:12]
