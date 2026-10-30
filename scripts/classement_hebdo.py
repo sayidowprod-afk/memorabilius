@@ -319,8 +319,8 @@ def post_discord(url, content, files):
     for i, (name, path) in enumerate(files):
         with open(path, 'rb') as f:
             data = f.read()
-        parts.append(('--%s\r\nContent-Disposition: form-data; name="files[%d]"; filename="%s"\r\nContent-Type: image/jpeg\r\n\r\n'
-                      % (boundary, i, name)).encode('utf-8'))
+        parts.append(('--%s\r\nContent-Disposition: form-data; name="files[%d]"; filename="%s"\r\nContent-Type: %s\r\n\r\n'
+                      % (boundary, i, name, 'video/mp4' if name.endswith('.mp4') else 'image/jpeg')).encode('utf-8'))
         parts.append(data)
         parts.append(b'\r\n')
     parts.append(('--%s--\r\n' % boundary).encode('utf-8'))

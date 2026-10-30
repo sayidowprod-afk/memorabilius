@@ -49,9 +49,11 @@ def pick_card(since):
         pts, why = cm.score(r)
         r['_img'], r['_pts'], r['_why'] = img, pts, why
         good.append(r)
-    random.shuffle(good)
     good.sort(key=lambda r: -r['_pts'])
-    return good, len(rows)
+    # un tirage au sort parmi les 12 meilleures (autos, patchs, faibles tirages) : pas toujours la même carte
+    head = good[:12]
+    random.shuffle(head)
+    return head + good[12:], len(rows)
 
 
 def card_link(r):
@@ -82,6 +84,33 @@ def export_photo(link, path):
         f.write(base64.b64decode(url.split(',', 1)[1]))
 
 
+def export_video(link, path_mp4):
+    """Même principe que export_photo, avec « Exporter en vidéo » : l'export enregistre l'animation (une dizaine de
+    secondes) puis on récupère le fichier qu'il télécharge, converti en mp4 (le format accepté par X et Instagram)."""
+    import re, subprocess, tempfile
+    from playwright.sync_api import sync_playwright
+    raw = os.path.join(tempfile.mkdtemp(), 'export')
+    with sync_playwright() as p:
+        browser = p.chromium.launch()
+        try:
+            page = browser.new_page(viewport={'width': 1280, 'height': 900}, locale='fr-FR', accept_downloads=True)
+            page.goto(link, wait_until='networkidle', timeout=60000)
+            page.get_by_role('button', name='Exporter').first.click(timeout=30000)
+            page.get_by_role('button', name='Exporter en vidéo').click(timeout=15000)
+            page.get_by_role('button', name='Générer').click(timeout=30000)
+            with page.expect_download(timeout=120000) as dl:
+                page.get_by_role('button', name=re.compile('Télécharger')).click(timeout=120000)
+            dl.value.save_as(raw)
+        finally:
+            browser.close()
+    for crf in ('22', '28', '34'):  # plus compressé si le fichier dépasse la limite d'envoi de Discord
+        subprocess.run(['ffmpeg', '-y', '-loglevel', 'error', '-i', raw, '-c:v', 'libx264', '-preset', 'medium', '-crf', crf,
+                        '-pix_fmt', 'yuv420p', '-movflags', '+faststart', '-an', path_mp4], check=True)
+        if os.path.getsize(path_mp4) < 20 * 1024 * 1024:
+            return
+    raise RuntimeError('vidéo trop lourde')
+
+
 def to_jpeg(data, path):
     from PIL import Image
     im = Image.open(io.BytesIO(data)).convert('RGB')
@@ -97,16 +126,26 @@ def main():
 
     out_dir = os.path.join(ROOT, 'docs', 'rdv', 'vendredi')
     os.makedirs(out_dir, exist_ok=True)
-    path, card, exported = os.path.join(out_dir, 'carte-exemple.jpg'), None, False
-    # 1) l'export photo Memorabilius, tel qu'un membre le télécharge (navigateur sans affichage sur le vrai site)
-    for r in cards[:5]:
+    path, card, exported = os.path.join(out_dir, 'carte-exemple.jpg'), None, ''
+    video_path = os.path.join(out_dir, 'carte-exemple.mp4')
+    # 1) l'export vidéo Memorabilius, tel qu'un membre le télécharge (navigateur sans affichage sur le vrai site)
+    for r in cards[:3]:
         try:
-            export_photo(card_link(r), path)
-            card, exported = r, True
+            export_video(card_link(r), video_path)
+            card, exported, path = r, 'video', video_path
             break
         except Exception as e:
-            print('Export impossible, carte suivante :', type(e).__name__, str(e).splitlines()[0][:160] if str(e) else '')
-    # 2) secours : la photo brute de la carte
+            print('Export vidéo impossible :', type(e).__name__, str(e).splitlines()[0][:160] if str(e) else '')
+    # 2) sinon l'export photo
+    if not card:
+        for r in cards[:3]:
+            try:
+                export_photo(card_link(r), path)
+                card, exported = r, 'photo'
+                break
+            except Exception as e:
+                print('Export photo impossible :', type(e).__name__, str(e).splitlines()[0][:160] if str(e) else '')
+    # 3) secours : la photo brute de la carte
     if not card:
         for r in cards[:30]:
             try:
@@ -133,15 +172,16 @@ def main():
     owner = names.get(card['user_id'], 'un membre')
     infos = ' · '.join(str(x) for x in (card.get('nom'), card.get('annee'), card.get('marque'), card.get('collection'), card.get('num')) if x)
     tags = ' / '.join(card['_why']) if card['_why'] else 'carte'
-    how = ("L'export photo est déjà fait, tu peux le poster tel quel. Pour une vidéo, ouvre la carte ici et clique sur Exporter :"
-           if exported else "Photo brute (l'export n'a pas pu être généré). Ouvre la carte ici et clique sur Exporter (photo ou vidéo) :")
+    how = {'video': "L'export vidéo est déjà fait, tu peux le poster tel quel. Pour une photo, ouvre la carte ici et clique sur Exporter :",
+           'photo': "L'export photo est déjà fait, tu peux le poster tel quel. Pour une vidéo, ouvre la carte ici et clique sur Exporter :"}.get(
+        exported, "Photo brute (l'export n'a pas pu être généré). Ouvre la carte ici et clique sur Exporter (photo ou vidéo) :")
     msg2 = ("**Carte d'exemple pour lancer le fil** (%s) — ajoutée par **%s** cette semaine.\n%s\n"
             "%s\n<%s>\n"
             "Pense à citer le membre (et à lui demander son accord)."
             % (tags, owner, infos, how, card_link(card)))
     if discord:
         ch.post_discord(ch.ENV['DISCORD_WEBHOOK_URL'], msg1, [])
-        ch.post_discord(ch.ENV['DISCORD_WEBHOOK_URL'], msg2, [('carte-exemple.jpg', path)])
+        ch.post_discord(ch.ENV['DISCORD_WEBHOOK_URL'], msg2, [(os.path.basename(path), path)])
         print('Envoyé sur Discord.')
     else:
         print(msg1); print(msg2); print('Image :', path)
