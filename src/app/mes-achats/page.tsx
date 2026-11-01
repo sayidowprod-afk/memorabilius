@@ -3,29 +3,47 @@ import { useCallback, useEffect, useState } from 'react'
 import { useRouter } from 'next/navigation'
 import { supabase } from '@/lib/supabase'
 import { withTimeout } from '@/lib/withTimeout'
-import SkeletonBlock from '@/components/SkeletonBlock'
 import { useLang } from '@/lib/LangContext'
 import { takeStagedShare } from '@/lib/shareBridge'
 import MesAchatsView, { type Conn, type Row, type Rates } from '@/components/MesAchatsView'
+import type { Budgets } from '@/components/SpendingTracker'
+import { NO_BUDGETS } from '@/components/SpendingTracker'
+import type { Compare } from '@/components/AchatExtras'
 import VintedAddModal, { type VintedInitial } from '@/components/VintedAddModal'
+import { looksLikeOrderText, type CarteLite } from '@/lib/achatsUi'
+import { DEFAULT_PREFS, normPrefs, type AlertPrefs } from '@/lib/achatsAlertPrefs'
 
 // Site eBay vers lequel pointent les liens : celui de la langue du membre (ebay.fr pour un francophone).
 const EBAY_TLD: Record<string, string> = { fr: 'fr', de: 'de', es: 'es', it: 'it', en: 'com' }
 const VINTED_RE = /https:\/\/(?:www\.)?vinted\.[a-z.]+\/items\/\d+[^\s"'<>]*/i
 const BUDGET_LS = 'memorabilius-budget-achats'
 
+const num = (v: unknown): number | null => (v === null || v === undefined || v === '' ? null : Number.isFinite(Number(v)) ? Number(v) : null)
+const toBudgets = (d: Record<string, unknown> | null): Budgets => ({
+  mensuel: num(d?.mensuel), annuel: num(d?.annuel), budget_ebay: num(d?.budget_ebay), budget_vinted: num(d?.budget_vinted),
+  objectif_nom: typeof d?.objectif_nom === 'string' && d.objectif_nom ? d.objectif_nom : null, objectif_cible: num(d?.objectif_cible),
+  objectif_epargne: num(d?.objectif_epargne) ?? 0, objectif_mensuel: num(d?.objectif_mensuel),
+})
+const isEmpty = (b: Budgets) => b.mensuel === null && b.annuel === null && b.budget_ebay === null && b.budget_vinted === null
+  && !b.objectif_nom && b.objectif_cible === null && b.objectif_epargne === 0 && b.objectif_mensuel === null
+
 // « Mes achats » : achats, enchères et articles suivis du membre (eBay importé automatiquement, Vinted ajouté depuis une
-// capture ou un lien), avec le tracker de dépenses et le budget mensuel. L'affichage est dans MesAchatsView ; ici : session,
-// chargement, synchronisation, connexion / déconnexion, ajout Vinted, budget.
+// capture, un lien ou un e-mail), avec le tracker de dépenses, les budgets et l'objectif d'épargne. L'affichage est dans
+// MesAchatsView ; ici : session, chargement, synchronisation, connexion / déconnexion, ajout Vinted, données perso, budgets, alertes.
 export default function MesAchats() {
   const router = useRouter()
   const { lang } = useLang()
   const [rates, setRates] = useState<Rates>(null)
   const [loading, setLoading] = useState(true)
   const [token, setToken] = useState<string | null>(null)
+  const [userId, setUserId] = useState<string | undefined>()
   const [conn, setConn] = useState<Conn | null>(null)
   const [rows, setRows] = useState<Row[]>([])
-  const [budget, setBudget] = useState<number | null>(null)
+  const [budgets, setBudgets] = useState<Budgets>(NO_BUDGETS)
+  const [prefs, setPrefs] = useState<AlertPrefs>(DEFAULT_PREFS)
+  const [cartes, setCartes] = useState<CarteLite[]>([])
+  const [wishlist, setWishlist] = useState<CarteLite[]>([])
+  const [notifs, setNotifs] = useState<Array<{ message: string; created_at: string }>>([])
   const [busy, setBusy] = useState<'connect' | 'sync' | 'disconnect' | null>(null)
   const [msg, setMsg] = useState<string | null>(null)
   const [now, setNow] = useState(() => Date.now())
@@ -42,22 +60,49 @@ export default function MesAchats() {
     setRows((r as Row[]) || [])
   }, [])
 
-  const loadBudget = useCallback(async (uid: string) => {
-    const { data, error } = await supabase.from('budgets_achats').select('mensuel').eq('user_id', uid).maybeSingle()
-    if (!error) { setBudget(data ? Number(data.mensuel) : null); return }
-    // table pas encore créée : repli sur le navigateur
-    try { const v = localStorage.getItem(BUDGET_LS); setBudget(v ? Number(v) : null) } catch { /* sans stockage */ }
+  const loadBudgets = useCallback(async (uid: string) => {
+    let local: Budgets | null = null
+    try {
+      const raw = localStorage.getItem(BUDGET_LS)
+      if (raw) local = raw.trim().startsWith('{') ? toBudgets(JSON.parse(raw)) : { ...NO_BUDGETS, mensuel: num(raw) }
+    } catch { /* sans stockage */ }
+    const { data, error } = await supabase.from('budgets_achats').select('*').eq('user_id', uid).maybeSingle()
+    if (error) { if (local) setBudgets(local); return }
+    // migration 20261104 pas encore appliquée : les nouveaux budgets sont gardés dans le navigateur
+    if (data && !('annuel' in data) && local) { setBudgets({ ...local, mensuel: num(data.mensuel) ?? local.mensuel }); return }
+    setBudgets(toBudgets(data as Record<string, unknown> | null))
   }, [])
 
-  const saveBudget = async (v: number | null) => {
-    setBudget(v)
+  const saveBudgets = async (b: Budgets) => {
+    setBudgets(b)
     const { data: { session } } = await supabase.auth.getSession()
     if (!session) return
     let error = null as { message: string } | null
-    if (v === null) ({ error } = await supabase.from('budgets_achats').delete().eq('user_id', session.user.id))
-    else ({ error } = await supabase.from('budgets_achats').upsert({ user_id: session.user.id, mensuel: v, updated_at: new Date().toISOString() }))
-    if (error) { try { v === null ? localStorage.removeItem(BUDGET_LS) : localStorage.setItem(BUDGET_LS, String(v)) } catch { /* sans stockage */ } }
+    if (isEmpty(b)) ({ error } = await supabase.from('budgets_achats').delete().eq('user_id', session.user.id))
+    else ({ error } = await supabase.from('budgets_achats').upsert({ user_id: session.user.id, ...b, updated_at: new Date().toISOString() }))
+    try {
+      if (error) localStorage.setItem(BUDGET_LS, JSON.stringify(b)) // repli : tables pas à jour, on garde sur cet appareil
+      else localStorage.removeItem(BUDGET_LS)
+    } catch { /* sans stockage */ }
   }
+
+  // Données qui enrichissent la page sans la bloquer : alertes reçues, préférences, collection (doublons), wishlist.
+  const loadExtras = useCallback(async (uid: string) => {
+    supabase.from('notifications').select('message, created_at').eq('user_id', uid).eq('type', 'ebay').order('created_at', { ascending: false }).limit(40)
+      .then(({ data }) => setNotifs((data as Array<{ message: string; created_at: string }>) || []))
+    supabase.from('alertes_achats_prefs').select('prefs').eq('user_id', uid).maybeSingle()
+      .then(({ data }) => { if (data) setPrefs(normPrefs(data.prefs)) })
+    supabase.from('wishlist').select('id, nom, collection, variation').eq('user_id', uid).limit(1000)
+      .then(({ data }) => setWishlist((data as CarteLite[]) || []))
+    const all: CarteLite[] = []
+    for (let from = 0; from < 6000; from += 1000) {
+      const { data, error } = await supabase.from('cartes_manuelles').select('id, nom, annee, collection, variation').eq('user_id', uid).range(from, from + 999)
+      if (error || !data) break
+      all.push(...(data as CarteLite[]))
+      if (data.length < 1000) break
+    }
+    setCartes(all)
+  }, [])
 
   const sync = useCallback(async (tok: string, uid: string, force: boolean) => {
     setBusy('sync'); setMsg(null)
@@ -76,13 +121,18 @@ export default function MesAchats() {
           const { data: { session } } = await supabase.auth.getSession()
           if (!session) { router.replace('/connexion'); return }
           setToken(session.access_token)
-          await Promise.all([load(session.user.id), loadBudget(session.user.id)])
+          setUserId(session.user.id)
+          await Promise.all([load(session.user.id), loadBudgets(session.user.id)])
           setLoading(false)
+          loadExtras(session.user.id)
 
-          // partage reçu depuis l'appli Vinted (lien d'annonce et/ou capture de la commande) : ouverture du formulaire
+          // partage reçu (lien d'annonce Vinted, capture de la commande ou e-mail de confirmation) : ouverture du formulaire
           const share = new URLSearchParams(window.location.search).get('partage') ? takeStagedShare() : null
-          if (share && (share.imagePath || VINTED_RE.test(share.text || ''))) {
-            setVintedInitial({ url: (share.text || '').match(VINTED_RE)?.[0], imageUrl: share.imagePath })
+          if (share && (share.imagePath || VINTED_RE.test(share.text || '') || looksLikeOrderText(share.text))) {
+            setVintedInitial({
+              url: (share.text || '').match(VINTED_RE)?.[0], imageUrl: share.imagePath,
+              text: !share.imagePath && !VINTED_RE.test(share.text || '') && looksLikeOrderText(share.text) ? share.text : undefined,
+            })
             setVintedOpen(true)
           }
 
@@ -92,7 +142,7 @@ export default function MesAchats() {
         })(), 20000, undefined)
       } finally { setLoading(false) }
     })()
-  }, [router, load, loadBudget, sync])
+  }, [router, load, loadBudgets, loadExtras, sync])
 
   useEffect(() => {
     fetch('/api/ebay/taux').then(r => r.json()).then(j => setRates(j?.rates || null)).catch(() => {})
@@ -130,6 +180,42 @@ export default function MesAchats() {
     await reload()
   }
 
+  // appel d'une route /api/achats/* : renvoie un message d'erreur, ou null si tout s'est bien passé
+  const call = async (path: string, body: unknown): Promise<string | null> => {
+    const { data: { session } } = await supabase.auth.getSession()
+    if (!session) return 'Session expirée : reconnecte-toi.'
+    try {
+      const res = await fetch(path, { method: 'POST', headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${session.access_token}` }, body: JSON.stringify(body) })
+      const json = await res.json().catch(() => ({}))
+      await reload()
+      return res.ok ? null : (json.error || 'Action impossible.')
+    } catch { return 'Action impossible pour le moment.' }
+  }
+  const patchAchats = (ids: string[], patch: Record<string, unknown>) => call('/api/achats/perso', { ids, patch })
+  const addTags = (ids: string[], tags: string[]) => call('/api/achats/perso', { ids, addTags: tags })
+  const toCollection = (ids: string[]) => call('/api/achats/collection', { ids })
+
+  // « Comparer au marché » : médiane des ventes eBay récentes pour une annonce (recherche libre sur le titre)
+  const compare = async (titre: string): Promise<Compare | null> => {
+    try {
+      const q = titre.replace(/[^\p{L}\p{N}\s#/-]/gu, ' ').replace(/\s+/g, ' ').trim().slice(0, 90)
+      const res = await fetch(`/api/ebay-sold?q=${encodeURIComponent(q)}`)
+      const json = await res.json()
+      const prices: number[] = (json.sold || []).map((i: { price: number }) => Number(i.price)).filter((p: number) => p > 0).sort((a: number, b: number) => a - b)
+      if (!prices.length) return null
+      const mid = Math.floor(prices.length / 2)
+      return { median: Math.round((prices.length % 2 ? prices[mid] : (prices[mid - 1] + prices[mid]) / 2) * 100) / 100, n: prices.length }
+    } catch { return null }
+  }
+
+  const savePrefs = async (p: AlertPrefs) => {
+    setPrefs(p)
+    const { data: { session } } = await supabase.auth.getSession()
+    if (!session) return
+    const { error } = await supabase.from('alertes_achats_prefs').upsert({ user_id: session.user.id, prefs: p, updated_at: new Date().toISOString() })
+    if (error) setMsg('Réglages d’alertes non enregistrés (migration 20261104 à appliquer).')
+  }
+
   const disconnect = async (deleteData: boolean) => {
     if (!token) return
     setBusy('disconnect')
@@ -140,18 +226,13 @@ export default function MesAchats() {
     } finally { setBusy(null) }
   }
 
-  if (loading) return (
-    <div style={{ maxWidth: 980, margin: '40px auto', padding: '0 16px' }}>
-      <SkeletonBlock style={{ height: 34, width: 220, marginBottom: 20 }} />
-      <SkeletonBlock style={{ height: 130, marginBottom: 12 }} /><SkeletonBlock style={{ height: 130 }} />
-    </div>
-  )
-
   return (
     <>
       <MesAchatsView
+        loading={loading}
         conn={conn} rows={rows} busy={busy} msg={msg} now={now} confirmOut={confirmOut} tld={EBAY_TLD[lang] || 'fr'} rates={rates}
-        budget={budget} onSaveBudget={saveBudget}
+        budgets={budgets} onSaveBudgets={saveBudgets} userId={userId} cartes={cartes} wishlist={wishlist} notifs={notifs}
+        prefs={prefs} onSavePrefs={savePrefs} onPatch={patchAchats} onAddTags={addTags} onCollection={toCollection} onCompare={compare}
         onAddVinted={() => { setVintedInitial(null); setVintedOpen(true) }} onDeleteVinted={deleteVinted}
         onConnect={connect} onSync={refresh} onAskDisconnect={() => setConfirmOut(true)}
         onDisconnect={disconnect} onCancelDisconnect={() => setConfirmOut(false)}

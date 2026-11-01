@@ -112,6 +112,8 @@ export type EbayArticle = {
   paye_at: string | null
   expedie_at: string | null
   statut_commande: string | null
+  suivi_numero: string | null      // numéro de suivi du colis (quand le vendeur l'a renseigné)
+  transporteur: string | null
   lien: string
   lien_commande: string | null
 }
@@ -170,7 +172,7 @@ function baseFromItem(item: El, type: EbayArticle['type']): EbayArticle | null {
     prix_actuel: num(item, 'SellingStatus/CurrentPrice'),
     ma_mise_max: null, en_tete: null, nb_encheres: num(item, 'SellingStatus/BidCount'),
     fin_at: iso(item, 'ListingDetails/EndTime'),
-    achete_at: null, paye_at: null, expedie_at: null, statut_commande: null,
+    achete_at: null, paye_at: null, expedie_at: null, statut_commande: null, suivi_numero: null, transporteur: null,
     lien: itemLink(itemId, site), lien_commande: null,
   }
 }
@@ -229,6 +231,8 @@ export function parseBuying($: CheerioAPI, myEbayId?: string | null): BuyingSnap
       a.paye_at = iso(tr, 'PaidTime')
       a.expedie_at = iso(tr, 'ShippedTime')
       a.statut_commande = orderStatus || text(tr, 'Status/PaymentHoldStatus')
+      a.suivi_numero = text(tr, 'ShippingDetails/ShipmentTrackingDetails/ShipmentTrackingNumber') ?? (order.length ? text(order, 'ShippingDetails/ShipmentTrackingDetails/ShipmentTrackingNumber') : null)
+      a.transporteur = text(tr, 'ShippingDetails/ShipmentTrackingDetails/ShippingCarrierUsed') ?? (order.length ? text(order, 'ShippingDetails/ShipmentTrackingDetails/ShippingCarrierUsed') : null)
       a.prix_actuel = null
       a.lien_commande = orderLink(a.item_id, transId, a.site)
       won.push(a)

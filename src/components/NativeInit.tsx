@@ -4,6 +4,7 @@ import { useRouter } from 'next/navigation'
 import { useIsNative } from '@/lib/useIsNative'
 import { supabase } from '@/lib/supabase'
 import { fetchPendingShare, stagePendingShare } from '@/lib/shareBridge'
+import { looksLikeOrderText } from '@/lib/achatsUi'
 
 // Compare le SHA inline au build du bundle deja charge (NEXT_PUBLIC_APP_VERSION,
 // fige au moment du build) au SHA actuel du serveur (/api/app-version, jamais
@@ -113,7 +114,7 @@ export default function NativeInit() {
       stagePendingShare(share)
       // Lien d'annonce Vinted : directement « Mes achats ». Image sans contact visé : on demande quoi en faire
       // (envoyer dans une conversation, ou lire une capture de commande). Le reste suit le parcours Messages habituel.
-      if (!share.toUserId && /vinted\.[a-z.]+\/items\//i.test(share.text || '')) { router.push('/mes-achats?partage=1'); return }
+      if (!share.toUserId && (/vinted\.[a-z.]+\/items\//i.test(share.text || '') || looksLikeOrderText(share.text))) { router.push('/mes-achats?partage=1'); return }
       if (!share.toUserId && share.imagePath) { router.push('/partage'); return }
       router.push(share.toUserId ? `/messages?to=${share.toUserId}` : '/messages')
     }

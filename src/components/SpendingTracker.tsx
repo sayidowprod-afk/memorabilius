@@ -11,6 +11,27 @@ const eur = (v: number) => v.toLocaleString('fr-FR', { style: 'currency', curren
 const monthKey = (y: number, m: number) => `${y}-${String(m + 1).padStart(2, '0')}`
 const monthLabel = (y: number, m: number) => new Date(y, m, 1).toLocaleDateString('fr-FR', { month: 'long', year: 'numeric' })
 
+export type Budgets = {
+  mensuel: number | null; annuel: number | null; budget_ebay: number | null; budget_vinted: number | null
+  objectif_nom: string | null; objectif_cible: number | null; objectif_epargne: number; objectif_mensuel: number | null
+}
+export const NO_BUDGETS: Budgets = { mensuel: null, annuel: null, budget_ebay: null, budget_vinted: null, objectif_nom: null, objectif_cible: null, objectif_epargne: 0, objectif_mensuel: null }
+
+// Barre de budget : verte, orange dès 80 %, rouge au-delà de 100 % (repère à 80 %).
+function BudgetBar({ label, spent, budget }: { label: string; spent: number; budget: number }) {
+  const pct = budget > 0 ? spent / budget : 0
+  const state = pct > 1 ? 'over' : pct >= 0.8 ? 'warn' : 'ok'
+  return (
+    <div className={`st-bb ${state}`}>
+      <div className="st-bb-top"><span>{label}</span><b>{eur(spent)} / {eur(budget)}</b></div>
+      <div className="st-bar" role="progressbar" aria-label={label} aria-valuemin={0} aria-valuemax={100} aria-valuenow={Math.min(100, Math.round(pct * 100))}>
+        <i style={{ width: `${Math.min(100, pct * 100)}%` }} /><u />
+      </div>
+      <div className="st-meta">{Math.round(pct * 100)} % utilisé{state === 'over' ? ` · dépassé de ${eur(spent - budget)}` : state === 'warn' ? ` · plus que ${eur(budget - spent)}` : ''}</div>
+    </div>
+  )
+}
+
 type Purchase = { amount: number; y: number; m: number; t: number; source: string; vendeur: string | null; titre: string | null }
 
 function amountOf(r: Row, rates: Rates): number {
@@ -34,12 +55,16 @@ function Delta({ now, before, label }: { now: number; before: number | null; lab
   )
 }
 
-export default function SpendingTracker({ rows, rates, budget, onSaveBudget }: { rows: Row[]; rates: Rates; budget: number | null; onSaveBudget: (v: number | null) => void }) {
+export default function SpendingTracker({ rows, rates, budgets, onSaveBudgets }: { rows: Row[]; rates: Rates; budgets: Budgets; onSaveBudgets: (b: Budgets) => void }) {
+  const budget = budgets.mensuel
   const today = new Date()
   const [mode, setMode] = useState<'mois' | 'annee'>('mois')
   const [sel, setSel] = useState({ y: today.getFullYear(), m: today.getMonth() })
   const [editing, setEditing] = useState(false)
-  const [draft, setDraft] = useState('')
+  const [draft, setDraft] = useState({ mensuel: '', annuel: '', ebay: '', vinted: '' })
+  const [goalEdit, setGoalEdit] = useState(false)
+  const [goal, setGoal] = useState({ nom: '', cible: '', mensuel: '' })
+  const [add, setAdd] = useState('')
 
   // une commande de plusieurs articles (même vendeur) ne compte qu'une fois : total payé et port uniques
   const purchases = useMemo<Purchase[]>(() => groupOrders(rows.filter(r => r.type === 'achat' && r.achete_at)).map(g => {
@@ -97,11 +122,33 @@ export default function SpendingTracker({ rows, rates, budget, onSaveBudget }: {
   const state = pct === null ? 'none' : pct > 1 ? 'over' : pct >= 0.8 ? 'warn' : 'ok'
 
 
-  const saveBudget = () => {
-    const n = Number(draft.replace(',', '.'))
-    if (draft.trim() === '') onSaveBudget(null)
-    else if (Number.isFinite(n) && n >= 0 && n < 1000000) onSaveBudget(Math.round(n * 100) / 100)
+  const amt = (v: string): number | null => {
+    const n = Number(v.replace(',', '.'))
+    return v.trim() !== '' && Number.isFinite(n) && n >= 0 && n < 1000000 ? Math.round(n * 100) / 100 : null
+  }
+  const openBudgets = () => {
+    const f = (v: number | null) => (v === null ? '' : String(v))
+    setDraft({ mensuel: f(budgets.mensuel), annuel: f(budgets.annuel), ebay: f(budgets.budget_ebay), vinted: f(budgets.budget_vinted) })
+    setEditing(true)
+  }
+  const saveBudgets = () => {
+    onSaveBudgets({ ...budgets, mensuel: amt(draft.mensuel), annuel: amt(draft.annuel), budget_ebay: amt(draft.ebay), budget_vinted: amt(draft.vinted) })
     setEditing(false)
+  }
+  const srcMonth = (src: string) => monthPurchases.filter(p => p.source === src).reduce((a, p) => a + p.amount, 0)
+
+  // objectif d'épargne : « je mets X € de côté pour une carte »
+  const saved = budgets.objectif_epargne, target = budgets.objectif_cible
+  const goalPct = target && target > 0 ? Math.min(1, saved / target) : 0
+  const weeksLeft = target && budgets.objectif_mensuel && saved < target ? Math.ceil((target - saved) / (budgets.objectif_mensuel / 4.345)) : null
+  const saveGoal = () => {
+    onSaveBudgets({ ...budgets, objectif_nom: goal.nom.trim().slice(0, 80) || null, objectif_cible: amt(goal.cible), objectif_mensuel: amt(goal.mensuel) })
+    setGoalEdit(false)
+  }
+  const addSaving = (v: number | null) => {
+    if (v === null || v === 0) return
+    onSaveBudgets({ ...budgets, objectif_epargne: Math.max(0, Math.round((saved + v) * 100) / 100) })
+    setAdd('')
   }
 
   const list = mode === 'mois' ? monthPurchases : yearPurchases
@@ -147,16 +194,10 @@ export default function SpendingTracker({ rows, rates, budget, onSaveBudget }: {
 
         <div className={`st-card st-budget ${state}`}>
           <div className="st-label">Budget mensuel</div>
-          {editing ? (
-            <div className="st-edit">
-              <input className="ma-search" style={{ margin: 0 }} autoFocus inputMode="decimal" value={draft} onChange={e => setDraft(e.target.value)} onKeyDown={e => { if (e.key === 'Enter') saveBudget() }} placeholder="Montant en € (vide = aucun)" aria-label="Budget mensuel en euros" />
-              <button className="ma-btn primary" style={{ padding: '9px 14px' }} onClick={saveBudget}>OK</button>
-              <button className="ma-btn ghost" onClick={() => setEditing(false)}>×</button>
-            </div>
-          ) : budget === null ? (
+          {budget === null ? (
             <>
               <div className="st-meta" style={{ margin: '6px 0 10px' }}>Fixe un budget pour suivre ce que tu dépenses chaque mois.</div>
-              <button className="ma-btn" onClick={() => { setDraft(''); setEditing(true) }}>Définir un budget</button>
+              <button className="ma-btn" onClick={openBudgets}>Définir un budget</button>
             </>
           ) : (
             <>
@@ -176,15 +217,76 @@ export default function SpendingTracker({ rows, rates, budget, onSaveBudget }: {
                   {state === 'warn' && <div className="st-flag warn">Plus que {eur(Math.max(0, budget - monthTotal))} avant ton budget</div>}
                 </>
               )}
-              <button className="ma-btn ghost" style={{ marginTop: 10 }} onClick={() => { setDraft(String(budget)); setEditing(true) }}>Modifier le budget</button>
+              <button className="ma-btn ghost" style={{ marginTop: 10 }} onClick={openBudgets}>Modifier les budgets</button>
             </>
           )}
         </div>
       </div>
 
+      {editing && (
+        <div className="st-card" style={{ marginTop: 10 }}>
+          <div className="st-label">Mes budgets (laisse vide pour ne pas en fixer)</div>
+          <div className="st-form">
+            <label>Par mois (€)<input className="ma-search" inputMode="decimal" value={draft.mensuel} onChange={e => setDraft({ ...draft, mensuel: e.target.value })} /></label>
+            <label>Par an (€)<input className="ma-search" inputMode="decimal" value={draft.annuel} onChange={e => setDraft({ ...draft, annuel: e.target.value })} /></label>
+            <label>eBay, par mois (€)<input className="ma-search" inputMode="decimal" value={draft.ebay} onChange={e => setDraft({ ...draft, ebay: e.target.value })} /></label>
+            <label>Vinted, par mois (€)<input className="ma-search" inputMode="decimal" value={draft.vinted} onChange={e => setDraft({ ...draft, vinted: e.target.value })} /></label>
+          </div>
+          <div className="st-edit"><button className="ma-btn primary" style={{ padding: '9px 16px' }} onClick={saveBudgets}>Enregistrer</button><button className="ma-btn ghost" onClick={() => setEditing(false)}>Annuler</button></div>
+        </div>
+      )}
+
+      {(budgets.annuel !== null || budgets.budget_ebay !== null || budgets.budget_vinted !== null) && (
+        <div className="st-card" style={{ marginTop: 10 }}>
+          <div className="st-label">Budgets suivis</div>
+          <div className="st-bbs">
+            {budgets.annuel !== null && <BudgetBar label={`Année ${sel.y}`} spent={yTotal} budget={budgets.annuel} />}
+            {budgets.budget_ebay !== null && <BudgetBar label={`eBay · ${monthLabel(sel.y, sel.m)}`} spent={srcMonth('ebay')} budget={budgets.budget_ebay} />}
+            {budgets.budget_vinted !== null && <BudgetBar label={`Vinted · ${monthLabel(sel.y, sel.m)}`} spent={srcMonth('vinted')} budget={budgets.budget_vinted} />}
+          </div>
+        </div>
+      )}
+
+      <div className="st-card st-goal" style={{ marginTop: 10 }}>
+        <div className="st-label">Objectif d’épargne</div>
+        {goalEdit ? (
+          <>
+            <div className="st-form">
+              <label>Pour quelle carte ?<input className="ma-search" maxLength={80} value={goal.nom} onChange={e => setGoal({ ...goal, nom: e.target.value })} placeholder="Wembanyama Prizm PSA 10" /></label>
+              <label>Prix visé (€)<input className="ma-search" inputMode="decimal" value={goal.cible} onChange={e => setGoal({ ...goal, cible: e.target.value })} /></label>
+              <label>Mis de côté par mois (€)<input className="ma-search" inputMode="decimal" value={goal.mensuel} onChange={e => setGoal({ ...goal, mensuel: e.target.value })} /></label>
+            </div>
+            <div className="st-edit"><button className="ma-btn primary" style={{ padding: '9px 16px' }} onClick={saveGoal}>Enregistrer</button><button className="ma-btn ghost" onClick={() => setGoalEdit(false)}>Annuler</button></div>
+          </>
+        ) : !budgets.objectif_nom && target === null ? (
+          <>
+            <div className="st-meta" style={{ margin: '6px 0 10px' }}>Vise une carte précise et suis ce que tu mets de côté pour te la payer.</div>
+            <button className="ma-btn" onClick={() => { setGoal({ nom: '', cible: '', mensuel: '' }); setGoalEdit(true) }}>Définir un objectif</button>
+          </>
+        ) : (
+          <div className="st-goal-body">
+            <div className="st-ring" style={{ background: `conic-gradient(${goalPct >= 1 ? '#1e9e57' : '#2f6bff'} 0 ${goalPct * 100}%, var(--bg3) 0)` }} role="img" aria-label={`${Math.round(goalPct * 100)} % de l’objectif`}>
+              <span>{Math.round(goalPct * 100)} %</span>
+            </div>
+            <div style={{ flex: 1, minWidth: 180 }}>
+              <div className="st-goal-name">{budgets.objectif_nom || 'Mon objectif'}</div>
+              <div className="st-meta">{eur(saved)} / {target !== null ? eur(target) : '—'}{goalPct >= 1 ? ' · objectif atteint 🎉' : target !== null ? ` · encore ${eur(target - saved)}` : ''}</div>
+              {weeksLeft !== null && <div className="st-meta">≈ {weeksLeft} semaine{weeksLeft > 1 ? 's' : ''} au rythme de {eur(budgets.objectif_mensuel!)} / mois</div>}
+              <div className="st-edit">
+                {[10, 50].map(v => <button key={v} className="ma-btn" style={{ padding: '6px 12px' }} onClick={() => addSaving(v)}>+ {v} €</button>)}
+                <input className="ma-search" style={{ margin: 0, maxWidth: 110 }} inputMode="decimal" value={add} onChange={e => setAdd(e.target.value)} onKeyDown={e => { if (e.key === 'Enter') addSaving(amt(add)) }} placeholder="Autre €" aria-label="Montant mis de côté" />
+                <button className="ma-btn ghost" onClick={() => addSaving(amt(add))}>Ajouter</button>
+                <button className="ma-btn ghost" onClick={() => { setGoal({ nom: budgets.objectif_nom || '', cible: target !== null ? String(target) : '', mensuel: budgets.objectif_mensuel !== null ? String(budgets.objectif_mensuel) : '' }); setGoalEdit(true) }}>Modifier</button>
+                <button className="ma-btn ghost" onClick={() => onSaveBudgets({ ...budgets, objectif_nom: null, objectif_cible: null, objectif_epargne: 0, objectif_mensuel: null })}>Supprimer</button>
+              </div>
+            </div>
+          </div>
+        )}
+      </div>
+
       <div className="st-card" style={{ marginTop: 10 }}>
         <div className="st-label">Évolution des dépenses</div>
-        <SpendingChart purchases={chartData} budget={budget} onPickMonth={(y, m) => { setSel({ y, m }); setMode('mois') }} />
+        <SpendingChart purchases={chartData} budget={budgets.mensuel} onPickMonth={(y, m) => { setSel({ y, m }); setMode('mois') }} />
       </div>
 
       <div className="st-grid" style={{ marginTop: 10 }}>
@@ -239,5 +341,16 @@ const CSS = `
 .st-chart { width: 100%; height: auto; display: block; margin-top: 8px; color: var(--text); }
 .st-src { display: grid; grid-template-columns: 56px 1fr auto; gap: 10px; align-items: center; font-size: 13px; margin-top: 8px; }
 .st-srcbar { height: 10px; background: var(--bg3); } .st-srcbar i { display: block; height: 100%; }
+.st-form { display: grid; grid-template-columns: repeat(auto-fit, minmax(170px, 1fr)); gap: 10px; margin: 8px 0; }
+.st-form label { font: 700 12px system-ui, sans-serif; color: var(--text2); display: block; }
+.st-form .ma-search { margin: 4px 0 0; }
+.st-bbs { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 260px), 1fr)); gap: 16px; margin-top: 6px; }
+.st-bb-top { display: flex; justify-content: space-between; gap: 8px; font-size: 13px; flex-wrap: wrap; }
+.st-bb .st-bar { position: relative; margin-top: 6px; } .st-bb .st-bar u { position: absolute; left: 80%; top: -3px; bottom: -3px; width: 2px; background: var(--text); opacity: .45; }
+.st-bb.warn .st-bar i { background: #f5c451; } .st-bb.over .st-bar i { background: #d6293e; } .st-bb.over .st-meta { color: #d6293e; font-weight: 700; }
+.st-goal-body { display: flex; gap: 16px; align-items: center; flex-wrap: wrap; margin-top: 6px; }
+.st-ring { width: 84px; height: 84px; border-radius: 50%; display: grid; place-items: center; flex-shrink: 0; }
+.st-ring span { width: 62px; height: 62px; border-radius: 50%; background: var(--bg2); display: grid; place-items: center; font: 800 15px system-ui, sans-serif; }
+.st-goal-name { font: 400 22px 'Surfquest', Impact, 'Arial Narrow', sans-serif; text-transform: uppercase; line-height: 1.1; }
 .st-note { font-size: 12px; color: var(--text3); margin: 10px 0 0; }
 `

@@ -3,7 +3,7 @@ import { useCallback, useEffect, useRef, useState } from 'react'
 
 // Ajout d'un achat Vinted : lien d'annonce et/ou capture d'écran de la commande -> lecture automatique (titre, photo, prix,
 // port, frais, total, vendeur, date) -> le membre vérifie, corrige et enregistre. Tout est modifiable à la main.
-export type VintedInitial = { url?: string; imageUrl?: string }
+export type VintedInitial = { url?: string; imageUrl?: string; text?: string }
 
 type Fields = { titre: string; prix: string; frais_port: string; autres_frais: string; vendeur: string; achete_at: string; expedie: boolean }
 const EMPTY: Fields = { titre: '', prix: '', frais_port: '', autres_frais: '', vendeur: '', achete_at: new Date().toISOString().slice(0, 10), expedie: false }
@@ -47,13 +47,13 @@ export default function VintedAddModal({ token, initial, onClose, onSaved }: { t
   const fileRef = useRef<HTMLInputElement>(null)
   const set = (k: keyof Fields, v: string | boolean) => setF(p => ({ ...p, [k]: v }))
 
-  const read = useCallback(async (u: string, img: string | null) => {
-    if (!u.trim() && !img) { setMsg('Ajoute un lien d’annonce ou une capture de ta commande.'); return }
+  const read = useCallback(async (u: string, img: string | null, texte?: string) => {
+    if (!u.trim() && !img && !texte) { setMsg('Ajoute un lien d’annonce ou une capture de ta commande.'); return }
     setBusy('read'); setMsg(null); setInfo(null)
     try {
       const res = await fetch('/api/achats/vinted/lire', {
         method: 'POST', headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${token}` },
-        body: JSON.stringify({ url: u.trim() || undefined, image: img || undefined }),
+        body: JSON.stringify({ url: u.trim() || undefined, image: img || undefined, texte: texte || undefined }),
       })
       const json = await res.json().catch(() => ({}))
       if (!res.ok) { setMsg(json.error || 'Lecture impossible : remplis à la main.'); return }
@@ -71,7 +71,7 @@ export default function VintedAddModal({ token, initial, onClose, onSaved }: { t
       let ph: string | null = d.photo_url || null
       if (!ph && img && d.photo_box) ph = await cropThumb(img, d.photo_box)
       setPhoto(ph)
-      setInfo(`Lu ${json.lu?.capture ? 'sur la capture' : ''}${json.lu?.capture && json.lu?.annonce ? ' et ' : ''}${json.lu?.annonce ? 'sur l’annonce' : ''} : vérifie les montants avant d’enregistrer.`)
+      setInfo(`Lu ${json.lu?.capture && texte && !img ? 'dans le message partagé' : json.lu?.capture ? 'sur la capture' : ''}${json.lu?.capture && json.lu?.annonce ? ' et ' : ''}${json.lu?.annonce ? 'sur l’annonce' : ''} : vérifie les montants avant d’enregistrer.`)
     } catch { setMsg('Lecture impossible : remplis à la main.') } finally { setBusy(null) }
   }, [token])
 
@@ -100,7 +100,7 @@ export default function VintedAddModal({ token, initial, onClose, onSaved }: { t
           img = await toJpegDataUrl(raw); setImage(img)
         } catch { /* on continue avec le lien seul */ }
       }
-      if (initial.url || img) read(initial.url || '', img)
+      if (initial.url || img || initial.text) read(initial.url || '', img, initial.text)
     })()
   }, [initial, read])
 

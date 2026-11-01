@@ -133,3 +133,44 @@ export async function readVintedScreenshot(base64Jpeg: string): Promise<Partial<
   }
   return out
 }
+
+const TEXT_PROMPT = `Ce texte est un e-mail ou un message de confirmation de commande Vinted (en français ou dans une autre langue).
+Extrais uniquement ce qui est ÉCRIT, sans rien inventer. Mets null pour tout ce qui n'apparaît pas.
+- titre : titre de l'article acheté
+- prix_article : prix de l'article seul, en nombre (12.5)
+- frais_port : frais de livraison / d'expédition payés
+- frais_protection : frais de Protection acheteur / frais Vinted
+- total : montant total payé
+- vendeur : pseudo du vendeur
+- date : date de la commande, au format AAAA-MM-JJ (si l'année manque, prends l'année en cours)
+- devise : code ISO de la devise (EUR, GBP, PLN…)
+- photo_box : toujours null
+Les montants utilisent la virgule décimale en français : convertis-les en nombres (12,50 -> 12.5).`
+
+// Lecture d'un e-mail de confirmation partagé depuis une autre appli (Partager -> Memorabilius). Même résultat que pour une capture.
+export async function readVintedText(texte: string): Promise<Partial<VintedDraft> | null> {
+  const apiKey = process.env.GEMINI_API_KEY
+  if (!apiKey) throw new Error('GEMINI_API_KEY non configurée')
+  const res = await fetch(`${GEMINI_URL}?key=${apiKey}`, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({
+      contents: [{ parts: [{ text: `${TEXT_PROMPT}\n\n---\n${texte.slice(0, 12000)}` }] }],
+      generationConfig: { temperature: 0, maxOutputTokens: 1024, thinkingConfig: { thinkingBudget: 0 }, responseMimeType: 'application/json', responseSchema: SCHEMA },
+    }),
+    signal: AbortSignal.timeout(45000),
+  })
+  if (!res.ok) throw new Error('Lecture du message impossible.')
+  const data = await res.json()
+  const raw = (data.candidates?.[0]?.content?.parts ?? []).map((p: { text?: string }) => p.text || '').join('')
+  let x: Extracted
+  try { x = JSON.parse(raw) } catch { return null }
+  const n = (v: unknown) => (typeof v === 'number' && Number.isFinite(v) && v >= 0 && v < 100000 ? Math.round(v * 100) / 100 : null)
+  return {
+    titre: typeof x.titre === 'string' ? x.titre.slice(0, 200) : null,
+    prix: n(x.prix_article), frais_port: n(x.frais_port), autres_frais: n(x.frais_protection), total_paye: n(x.total),
+    vendeur: typeof x.vendeur === 'string' ? x.vendeur.slice(0, 80) : null,
+    achete_at: typeof x.date === 'string' && /^\d{4}-\d{2}-\d{2}$/.test(x.date) ? x.date : null,
+    devise: typeof x.devise === 'string' && /^[A-Z]{3}$/.test(x.devise) ? x.devise : 'EUR',
+  }
+}

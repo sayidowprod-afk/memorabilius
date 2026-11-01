@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { getUserFromRequest } from '@/lib/shipmentServer'
-import { emptyDraft, extractVintedUrl, readVintedListing, readVintedScreenshot, type VintedDraft } from '@/lib/vinted'
+import { emptyDraft, extractVintedUrl, readVintedListing, readVintedScreenshot, readVintedText, type VintedDraft } from '@/lib/vinted'
 
 export const maxDuration = 60
 
@@ -19,18 +19,19 @@ export async function POST(req: NextRequest) {
   try {
     const user = await getUserFromRequest(req)
     if (!user) return NextResponse.json({ error: 'Non connecté.' }, { status: 401 })
-    const body = await req.json().catch(() => null) as { url?: string; image?: string } | null
+    const body = await req.json().catch(() => null) as { url?: string; image?: string; texte?: string } | null
     const url = extractVintedUrl(body?.url)
     const image = typeof body?.image === 'string' ? body.image.replace(/^data:image\/\w+;base64,/, '') : ''
-    if (!url && !image) return NextResponse.json({ error: 'Ajoute un lien d’annonce Vinted ou une capture de ta commande.' }, { status: 400 })
+    const texte = typeof body?.texte === 'string' ? body.texte.trim().slice(0, 12000) : ''
+    if (!url && !image && !texte) return NextResponse.json({ error: 'Ajoute un lien d’annonce Vinted, une capture ou le texte de ta commande.' }, { status: 400 })
     if (image.length > 5_500_000) return NextResponse.json({ error: 'Image trop lourde.' }, { status: 413 })
     if (tooMany(user.id)) return NextResponse.json({ error: 'Trop de lectures : réessaie dans un moment.' }, { status: 429 })
 
     const [listing, shot] = await Promise.all([
       url ? readVintedListing(url) : Promise.resolve(null),
-      image ? readVintedScreenshot(image).catch(() => null) : Promise.resolve(null),
+      image ? readVintedScreenshot(image).catch(() => null) : texte ? readVintedText(texte).catch(() => null) : Promise.resolve(null),
     ])
-    if (url && !listing && !shot) {
+    if ((url || texte) && !listing && !shot) {
       return NextResponse.json({ error: 'Impossible de lire cette annonce (supprimée ou protégée). Ajoute plutôt une capture de ta commande, ou remplis à la main.' }, { status: 422 })
     }
 
