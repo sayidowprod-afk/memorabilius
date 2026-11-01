@@ -38,7 +38,7 @@ function flagImgUrl(code: string | null | undefined): string | null {
 function StatCard({ label, value }: { label: string; value: string }) {
   return (
     <div style={{
-      background: '#fff', borderRadius: 14,
+      background: '#fefefe', borderRadius: 14, // pas #fff : le thème sombre du site (globals.css) assombrit les div à fond #fff
       padding: '18px 20px', position: 'relative', overflow: 'hidden',
     }}>
       <div style={{ position: 'absolute', top: 0, left: 0, right: 0, height: 6, background: FDLC_RED }} />
@@ -260,7 +260,7 @@ export default function PlayerSheetPresenterPage() {
           {sheet.notes && (
             <div style={{
               fontSize: 17, lineHeight: 1.55, color: FDLC_NAVY, fontStyle: 'italic',
-              background: '#fff', borderLeft: `6px solid ${FDLC_RED}`,
+              background: '#fefefe', borderLeft: `6px solid ${FDLC_RED}`,
               borderRadius: 14, padding: '20px 24px', whiteSpace: 'pre-wrap',
             }}>
               {sheet.notes}
