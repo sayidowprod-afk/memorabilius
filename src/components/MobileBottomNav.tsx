@@ -235,12 +235,11 @@ export default function MobileBottomNav() {
         <Link href="/teams" style={dropItemStyle} onClick={() => setSheet(null)}>🏆 {t('nav_teams')}</Link>
         <Link href="/trades" style={dropItemStyle} onClick={() => setSheet(null)}>🔄 {t('nav_trades')}</Link>
         <Link href="/evenements" style={dropItemStyle} onClick={() => setSheet(null)}>📅 {t('nav_evenements')}</Link>
-        {user && <Link href="/activite" style={dropItemStyle} onClick={() => setSheet(null)}>📰 {t('nav_activite')}</Link>}
-        {user && <Link href="/mes-achats" style={dropItemStyle} onClick={() => setSheet(null)}>🛒 Mes achats</Link>}
-      </BottomSheet>
+        {user && <Link href="/activite" style={dropItemStyle} onClick={() => setSheet(null)}>📰 {t('nav_activite')}</Link>}      </BottomSheet>
 
       <BottomSheet open={sheet === 'outils'} onClose={() => setSheet(null)} title={t('nav_outils')} bottomOffset={NAV_TOTAL_HEIGHT_CSS}>
         <Link href="/scanner" style={dropItemStyle} onClick={() => setSheet(null)}>📷 {t('nav_scanner')}</Link>
+        {user && <Link href="/mes-achats" style={dropItemStyle} onClick={() => setSheet(null)}>🛒 Mes achats</Link>}
         <Link href="/gradation" style={dropItemStyle} onClick={() => setSheet(null)}>🔍 {t('nav_gradation')}</Link>
         <Link href="/setlist" style={dropItemStyle} onClick={() => setSheet(null)}>📋 {t('nav_setlist')}</Link>
         <Link href="/guides" style={dropItemStyle} onClick={() => setSheet(null)}>📖 {t('nav_guides')}</Link>
