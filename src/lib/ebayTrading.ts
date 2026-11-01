@@ -230,8 +230,9 @@ export function parseBuying($: CheerioAPI, myEbayId?: string | null): BuyingSnap
 }
 
 export async function getMyBuying(token: string, myEbayId?: string | null): Promise<BuyingSnapshot> {
-  const page = (extra = '') => `<Include>true</Include>${extra}<Pagination><EntriesPerPage>100</EntriesPerPage><PageNumber>1</PageNumber></Pagination>`
+  const page = `<Include>true</Include><Pagination><EntriesPerPage>100</EntriesPerPage><PageNumber>1</PageNumber></Pagination>`
+  // WonList : exactement la requête validée sur un vrai compte (avec la pagination, la liste revenait vide)
   const $ = await trading('GetMyeBayBuying',
-    `<BidList>${page()}</BidList><WonList>${page('<DurationInDays>60</DurationInDays>')}</WonList><WatchList>${page()}</WatchList>`, token)
+    `<BidList>${page}</BidList><WonList><Include>true</Include><DurationInDays>60</DurationInDays></WonList><WatchList>${page}</WatchList>`, token)
   return parseBuying($, myEbayId)
 }
