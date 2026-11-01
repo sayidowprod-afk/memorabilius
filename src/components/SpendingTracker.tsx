@@ -2,6 +2,7 @@
 import { useMemo, useState } from 'react'
 import type { Row, Rates } from '@/components/MesAchatsView'
 import { groupOrders, orderTotals } from '@/lib/achatsOrders'
+import SpendingChart from '@/components/SpendingChart'
 
 // Tracker de dépenses de « Mes achats » : calculé automatiquement à partir des achats importés (eBay et Vinted),
 // en euros. Vue mensuelle ou annuelle, budget mensuel, comparaison avec le mois / l'année précédents, répartition par source.
@@ -10,7 +11,7 @@ const eur = (v: number) => v.toLocaleString('fr-FR', { style: 'currency', curren
 const monthKey = (y: number, m: number) => `${y}-${String(m + 1).padStart(2, '0')}`
 const monthLabel = (y: number, m: number) => new Date(y, m, 1).toLocaleDateString('fr-FR', { month: 'long', year: 'numeric' })
 
-type Purchase = { amount: number; y: number; m: number; source: string; vendeur: string | null; titre: string | null }
+type Purchase = { amount: number; y: number; m: number; t: number; source: string; vendeur: string | null; titre: string | null }
 
 function amountOf(r: Row, rates: Rates): number {
   const raw = r.total_paye ?? ((r.prix || 0) + (r.frais_port || 0) + (r.autres_frais || 0))
@@ -50,8 +51,9 @@ export default function SpendingTracker({ rows, rates, budget, onSaveBudget }: {
       amount = rate ? raw * rate : raw
     }
     const titre = g.length > 1 ? `Commande de ${g.length} articles` : r.titre
-    return { amount, y: d.getFullYear(), m: d.getMonth(), source: r.source || 'ebay', vendeur: r.vendeur, titre }
+    return { amount, y: d.getFullYear(), m: d.getMonth(), t: d.getTime(), source: r.source || 'ebay', vendeur: r.vendeur, titre }
   }), [rows, rates])
+  const chartData = useMemo(() => purchases.map(p => ({ t: p.t, amount: p.amount, source: p.source, titre: p.titre })), [purchases])
 
   const byMonth = useMemo(() => {
     const o: Record<string, number> = {}
@@ -91,10 +93,6 @@ export default function SpendingTracker({ rows, rates, budget, onSaveBudget }: {
   const pct = budget && budget > 0 ? monthTotal / budget : null
   const state = pct === null ? 'none' : pct > 1 ? 'over' : pct >= 0.8 ? 'warn' : 'ok'
 
-  // graphique : 12 mois de l'année sélectionnée
-  const bars = Array.from({ length: 12 }, (_, m) => spent(sel.y, m))
-  const max = Math.max(1, ...bars, budget || 0)
-  const W = 600, H = 170, bw = 30, gap = (W - bw * 12) / 11
 
   const saveBudget = () => {
     const n = Number(draft.replace(',', '.'))
@@ -182,25 +180,8 @@ export default function SpendingTracker({ rows, rates, budget, onSaveBudget }: {
       </div>
 
       <div className="st-card" style={{ marginTop: 10 }}>
-        <div className="st-label">{sel.y} · mois par mois {budget ? '(trait pointillé = budget)' : ''}</div>
-        <svg viewBox={`0 0 ${W} ${H + 22}`} className="st-chart" role="img" aria-label={`Dépenses mensuelles ${sel.y}`}>
-          {budget ? <line x1="0" x2={W} y1={H - (budget / max) * (H - 18)} y2={H - (budget / max) * (H - 18)} stroke="#f5c451" strokeWidth="2" strokeDasharray="6 5" /> : null}
-          {bars.map((v, m) => {
-            const h = Math.max(v > 0 ? 3 : 0, (v / max) * (H - 18)), x = m * (bw + gap)
-            const on = mode === 'mois' && sel.m === m
-            const future = sel.y === today.getFullYear() && m > today.getMonth()
-            const over = budget && v > budget
-            return (
-              <g key={m} onClick={() => { setSel(s => ({ ...s, m })); setMode('mois') }} style={{ cursor: 'pointer' }}>
-                <rect x={x - gap / 2} y="0" width={bw + gap} height={H + 22} fill="transparent" />
-                <rect x={x} y={H - h} width={bw} height={h} fill={over ? '#d6293e' : '#2f6bff'} opacity={future ? 0.25 : on ? 1 : 0.62} />
-                {on && <rect x={x - 2} y={H - h - 2} width={bw + 4} height={h + 4} fill="none" stroke="currentColor" strokeWidth="2" />}
-                {v > 0 && (on || mode === 'annee') && <text x={x + bw / 2} y={H - h - 5} textAnchor="middle" fontSize="11" fontWeight="700" fill="currentColor">{Math.round(v)}</text>}
-                <text x={x + bw / 2} y={H + 15} textAnchor="middle" fontSize="12" fill="currentColor" opacity={on ? 1 : 0.65} fontWeight={on ? 800 : 500}>{MONTHS_SHORT[m]}</text>
-              </g>
-            )
-          })}
-        </svg>
+        <div className="st-label">Évolution des dépenses</div>
+        <SpendingChart purchases={chartData} budget={budget} onPickMonth={(y, m) => { setSel({ y, m }); setMode('mois') }} />
       </div>
 
       <div className="st-grid" style={{ marginTop: 10 }}>
