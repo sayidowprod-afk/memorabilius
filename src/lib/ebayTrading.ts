@@ -210,12 +210,14 @@ export function parseBuying($: CheerioAPI, myEbayId?: string | null): BuyingSnap
       a.transaction_id = transId
       a.order_id = orderId
       a.ref = transId && transId !== '0' ? `${a.item_id}-${transId}` : a.item_id
-      a.prix = num(tr, 'TransactionPrice')
-      a.devise = cur(tr, 'TransactionPrice') || a.devise
+      // prix de l'article : pour un lot ou une commande groupée, eBay ne renseigne pas toujours TransactionPrice -> repli sur les autres champs
+      a.prix = num(tr, 'TransactionPrice') ?? num(tr, 'TotalTransactionPrice') ?? num(tr, 'Item/SellingStatus/CurrentPrice') ?? num(tr, 'Item/BuyItNowPrice')
+      a.devise = cur(tr, 'TransactionPrice') || cur(tr, 'TotalTransactionPrice') || a.devise || order.attr('currencyID') || cur(order, 'Total')
       if (orderShipping !== null) a.frais_port = orderShipping
-      // total / sous-total : seulement pour une commande à un seul article (sinon impossible de répartir les frais)
-      const orderTotal = order.length && transactions.length === 1 ? num(order, 'Total') : null
-      const orderSub = order.length && transactions.length === 1 ? num(order, 'Subtotal') : null
+      // total / sous-total de la COMMANDE (identiques sur chaque article d'une même commande : l'affichage et le tracker
+      // regroupent par commande pour ne compter le total et le port qu'une fois)
+      const orderTotal = order.length ? num(order, 'Total') : null
+      const orderSub = order.length ? num(order, 'Subtotal') : null
       if (orderTotal !== null) {
         a.total_paye = orderTotal
         if (orderSub !== null && orderShipping !== null) {

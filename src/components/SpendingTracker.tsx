@@ -1,6 +1,7 @@
 'use client'
 import { useMemo, useState } from 'react'
 import type { Row, Rates } from '@/components/MesAchatsView'
+import { groupOrders, orderTotals } from '@/lib/achatsOrders'
 
 // Tracker de dépenses de « Mes achats » : calculé automatiquement à partir des achats importés (eBay et Vinted),
 // en euros. Vue mensuelle ou annuelle, budget mensuel, comparaison avec le mois / l'année précédents, répartition par source.
@@ -39,9 +40,17 @@ export default function SpendingTracker({ rows, rates, budget, onSaveBudget }: {
   const [editing, setEditing] = useState(false)
   const [draft, setDraft] = useState('')
 
-  const purchases = useMemo<Purchase[]>(() => rows.filter(r => r.type === 'achat' && r.achete_at).map(r => {
+  // une commande de plusieurs articles (même vendeur) ne compte qu'une fois : total payé et port uniques
+  const purchases = useMemo<Purchase[]>(() => groupOrders(rows.filter(r => r.type === 'achat' && r.achete_at)).map(g => {
+    const r = g[0]
     const d = new Date(r.achete_at!)
-    return { amount: amountOf(r, rates), y: d.getFullYear(), m: d.getMonth(), source: (r as Row & { source?: string }).source || 'ebay', vendeur: r.vendeur, titre: r.titre }
+    let amount = amountOf(r, rates)
+    if (g.length > 1) {
+      const raw = orderTotals(g).total, cur = r.devise, rate = cur && cur !== 'EUR' ? rates?.[cur] : 1
+      amount = rate ? raw * rate : raw
+    }
+    const titre = g.length > 1 ? `Commande de ${g.length} articles` : r.titre
+    return { amount, y: d.getFullYear(), m: d.getMonth(), source: r.source || 'ebay', vendeur: r.vendeur, titre }
   }), [rows, rates])
 
   const byMonth = useMemo(() => {

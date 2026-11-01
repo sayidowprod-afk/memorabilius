@@ -1,13 +1,14 @@
 'use client'
 import { useState } from 'react'
 import SpendingTracker from '@/components/SpendingTracker'
+import { groupOrders, orderTotals } from '@/lib/achatsOrders'
 
 // Affichage de « Mes achats » (sans logique réseau) : utilisé par /mes-achats et par la page de démonstration locale.
 export type Conn = { statut: 'en_attente' | 'connecte' | 'expire'; ebay_user_id: string | null; derniere_synchro_at: string | null; derniere_erreur: string | null }
 export type Row = {
   id: string; type: 'achat' | 'enchere' | 'suivi'; source?: 'ebay' | 'vinted'; item_id: string | null; transaction_id: string | null; titre: string | null; photo_url: string | null; photo_mini: string | null
   vendeur: string | null; vendeur_note: number | null; devise: string | null; prix: number | null; frais_port: number | null
-  total_paye?: number | null; autres_frais?: number | null
+  total_paye?: number | null; autres_frais?: number | null; order_id?: string | null
   prix_actuel: number | null; ma_mise_max: number | null; en_tete: boolean | null; nb_encheres: number | null
   fin_at: string | null; achete_at: string | null; paye_at: string | null; expedie_at: string | null
   lien: string | null; lien_commande: string | null
@@ -110,6 +111,73 @@ export default function MesAchatsView({ conn, rows, busy, msg, now, confirmOut, 
   const achatsShown = achats.filter(r => matches(r, qAchats))
   const suivisShown = suivis.filter(r => matches(r, qSuivis))
 
+  // Achat seul : une carte avec son prix, son port et son total payé.
+  const singleCard = (r: Row) => (
+    <article key={r.id} className="ma-card">
+      <Photo r={r} />
+      <div className="ma-body">
+        <div className="ma-title"><SrcTag r={r} />{r.titre}</div>
+        <div className="ma-line">
+          <span className="da-num ma-price">{P(r.prix, r.devise).main}</span>
+          {P(r.prix, r.devise).sub && <span className="ma-meta">{P(r.prix, r.devise).sub}</span>}
+          {r.frais_port !== null && r.frais_port > 0 && <span className="ma-meta">+ {P(r.frais_port, r.devise).main} de port</span>}
+        </div>
+        <div className="ma-meta">{r.vendeur ? <>Vendeur : {r.vendeur}{r.vendeur_note !== null ? ` (${r.vendeur_note.toLocaleString('fr-FR')})` : ''}</> : null}{r.achete_at ? ` · acheté le ${day(r.achete_at)}` : ''}</div>
+        {r.autres_frais != null && r.autres_frais > 0 && (
+          <div className="ma-meta">dont douane / taxes / frais : {P(r.autres_frais, r.devise).main}</div>
+        )}
+        {r.total_paye != null && r.total_paye > 0 && (
+          <div className="ma-meta"><b>Total payé : {P(r.total_paye, r.devise).main}</b></div>
+        )}
+        <div className="ma-steps">
+          <Step done={!!r.paye_at} label="Payé" sub={day(r.paye_at)} />
+          <Step done={!!r.expedie_at} label={r.expedie_at ? 'Expédié' : r.paye_at ? 'En attente d’expédition' : 'Expédition'} sub={day(r.expedie_at)} />
+        </div>
+        <div className="ma-links">
+          {annonceUrl(r, tld) && <a href={annonceUrl(r, tld)!} target="_blank" rel="noopener noreferrer">Voir l’annonce</a>}
+          {commandeUrl(r, tld) && (r.expedie_at || r.paye_at) && <a href={commandeUrl(r, tld)!} target="_blank" rel="noopener noreferrer">Suivre le colis</a>}
+          {r.source === 'vinted' && onDeleteVinted && <button className="ma-del" onClick={() => { if (window.confirm('Supprimer cet achat Vinted ?')) onDeleteVinted(r.id) }}>Supprimer</button>}
+        </div>
+      </div>
+    </article>
+  )
+
+  // Commande de plusieurs articles (même vendeur) : un seul total payé et un seul port, les articles listés dedans.
+  const orderCard = (g: Row[]) => {
+    const t = orderTotals(g)
+    const first = g[0]
+    const items = g.slice(0, 12)
+    return (
+      <article key={'o-' + first.order_id} className="ma-card ma-order">
+        <div className="ma-mosaic" aria-hidden="true">
+          {g.slice(0, 4).map(r => <Photo key={r.id} r={r} />)}
+        </div>
+        <div className="ma-body">
+          <div className="ma-title"><SrcTag r={first} />Commande de {g.length} articles</div>
+          <div className="ma-line">
+            <span className="da-num ma-price">{P(t.total, first.devise).main}</span>
+            {P(t.total, first.devise).sub && <span className="ma-meta">{P(t.total, first.devise).sub}</span>}
+            <span className="ma-meta">payé{t.port ? <> dont {P(t.port, first.devise).main} de port (une seule fois)</> : null}</span>
+          </div>
+          {t.remise !== null && <div className="ma-meta" style={{ color: '#1e9e57', fontWeight: 700 }}>Remise de lot : −{P(t.remise, first.devise).main} sur le prix des annonces</div>}
+          {t.extra !== null && <div className="ma-meta">dont douane / taxes / frais : {P(t.extra, first.devise).main}</div>}
+          <div className="ma-meta">{first.vendeur ? <>Vendeur : {first.vendeur}{first.vendeur_note !== null ? ` (${first.vendeur_note.toLocaleString('fr-FR')})` : ''}</> : null}{first.achete_at ? ` · acheté le ${day(first.achete_at)}` : ''}</div>
+          <ul className="ma-items">
+            {items.map(r => <li key={r.id}>{annonceUrl(r, tld) ? <a href={annonceUrl(r, tld)!} target="_blank" rel="noopener noreferrer">{r.titre}</a> : r.titre}</li>)}
+            {g.length > items.length && <li>… et {g.length - items.length} autres</li>}
+          </ul>
+          <div className="ma-steps">
+            <Step done={!!first.paye_at} label="Payé" sub={day(first.paye_at)} />
+            <Step done={!!first.expedie_at} label={first.expedie_at ? 'Expédié' : first.paye_at ? 'En attente d’expédition' : 'Expédition'} sub={day(first.expedie_at)} />
+          </div>
+          <div className="ma-links">
+            {commandeUrl(first, tld) && (first.expedie_at || first.paye_at) && <a href={commandeUrl(first, tld)!} target="_blank" rel="noopener noreferrer">Suivre le colis</a>}
+          </div>
+        </div>
+      </article>
+    )
+  }
+
   const month = new Date(now).toISOString().slice(0, 7)
   const spent = achats.filter(a => (a.achete_at || '').startsWith(month)).reduce<Record<string, number>>((acc, a) => {
     const total = (a.prix || 0) + (a.frais_port || 0)
@@ -161,7 +229,7 @@ export default function MesAchatsView({ conn, rows, busy, msg, now, confirmOut, 
         <>
           <div className="ma-stats">
             <div><span className="da-num">{encheres.length}</span><small>enchère{encheres.length > 1 ? 's' : ''} en cours</small></div>
-            <div><span className="da-num">{achats.length}</span><small>achat{achats.length > 1 ? 's' : ''} importé{achats.length > 1 ? 's' : ''}</small></div>
+            <div><span className="da-num">{groupOrders(achats).length}</span><small>commande{groupOrders(achats).length > 1 ? 's' : ''} importée{groupOrders(achats).length > 1 ? 's' : ''}</small></div>
             <div><span className="da-num">{spentLabel}</span><small>dépensés ce mois-ci</small></div>
           </div>
 
@@ -206,35 +274,7 @@ export default function MesAchatsView({ conn, rows, busy, msg, now, confirmOut, 
               <input className="ma-search" type="search" value={qAchats} onChange={e => setQAchats(e.target.value)} placeholder="Rechercher un achat (carte, joueur, vendeur…)" aria-label="Rechercher dans mes achats" />
               {achatsShown.length === 0 && <div className="ma-empty">Aucun achat ne correspond à « {qAchats} ».</div>}
               <div className="ma-grid">
-                {achatsShown.map(r => (
-                  <article key={r.id} className="ma-card">
-                    <Photo r={r} />
-                    <div className="ma-body">
-                      <div className="ma-title"><SrcTag r={r} />{r.titre}</div>
-                      <div className="ma-line">
-                        <span className="da-num ma-price">{P(r.prix, r.devise).main}</span>
-                        {P(r.prix, r.devise).sub && <span className="ma-meta">{P(r.prix, r.devise).sub}</span>}
-                        {r.frais_port !== null && r.frais_port > 0 && <span className="ma-meta">+ {P(r.frais_port, r.devise).main} de port</span>}
-                      </div>
-                      <div className="ma-meta">{r.vendeur ? <>Vendeur : {r.vendeur}{r.vendeur_note !== null ? ` (${r.vendeur_note.toLocaleString('fr-FR')})` : ''}</> : null}{r.achete_at ? ` · acheté le ${day(r.achete_at)}` : ''}</div>
-                      {r.autres_frais != null && r.autres_frais > 0 && (
-                        <div className="ma-meta">dont douane / taxes / frais : {P(r.autres_frais, r.devise).main}</div>
-                      )}
-                      {r.total_paye != null && r.total_paye > 0 && (
-                        <div className="ma-meta"><b>Total payé : {P(r.total_paye, r.devise).main}</b></div>
-                      )}
-                      <div className="ma-steps">
-                        <Step done={!!r.paye_at} label="Payé" sub={day(r.paye_at)} />
-                        <Step done={!!r.expedie_at} label={r.expedie_at ? 'Expédié' : r.paye_at ? 'En attente d’expédition' : 'Expédition'} sub={day(r.expedie_at)} />
-                      </div>
-                      <div className="ma-links">
-                        {annonceUrl(r, tld) && <a href={annonceUrl(r, tld)!} target="_blank" rel="noopener noreferrer">Voir l’annonce</a>}
-                        {commandeUrl(r, tld) && (r.expedie_at || r.paye_at) && <a href={commandeUrl(r, tld)!} target="_blank" rel="noopener noreferrer">Suivre le colis</a>}
-                        {r.source === 'vinted' && onDeleteVinted && <button className="ma-del" onClick={() => { if (window.confirm('Supprimer cet achat Vinted ?')) onDeleteVinted(r.id) }}>Supprimer</button>}
-                      </div>
-                    </div>
-                  </article>
-                ))}
+                {groupOrders(achatsShown).map(g => (g.length > 1 ? orderCard(g) : singleCard(g[0])))}
               </div>
               </>
             )}
@@ -322,6 +362,11 @@ const CSS = `
 .ma-links { display: flex; gap: 14px; flex-wrap: wrap; margin-top: auto; padding-top: 4px; }
 .ma-links a { font: 800 12px system-ui, sans-serif; letter-spacing: .05em; text-transform: uppercase; color: #2f6bff; text-decoration: none; }
 .ma-links a:hover { text-decoration: underline; }
+.ma-mosaic { width: 110px; height: 110px; flex-shrink: 0; display: grid; grid-template-columns: 1fr 1fr; gap: 2px; background: var(--bg3); }
+.ma-mosaic .ma-photo { width: 100%; height: 100%; }
+.ma-items { margin: 2px 0 2px; padding-left: 16px; font-size: 12px; color: var(--text2); line-height: 1.5; max-height: 110px; overflow-y: auto; }
+.ma-items a { color: inherit; text-decoration: none; } .ma-items a:hover { text-decoration: underline; }
+@media (max-width: 520px) { .ma-mosaic { width: 84px; height: 84px; } }
 .ma-del { background: none; border: 0; padding: 0; font: 800 12px system-ui, sans-serif; letter-spacing: .05em; text-transform: uppercase; color: var(--text3); cursor: pointer; margin-left: auto; }
 .ma-del:hover { color: #d6293e; }
 .ma-src { display: inline-block; font: 800 10px system-ui, sans-serif; letter-spacing: .06em; text-transform: uppercase; padding: 2px 6px; margin-right: 7px; vertical-align: 1px; color: #fff; }
