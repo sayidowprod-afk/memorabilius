@@ -73,12 +73,16 @@ export default function SpendingChart({ purchases, budget, onPickMonth }: { purc
   const W = w, L = 46, R = cumul ? 50 : 14, H = w < 520 ? 250 : 300, IW = W - L - R, IH = H - T - B
 
   const days = Math.round((range.to - range.from) / DAY) + 1
-  const gran: Gran = granPref !== 'auto' ? granPref : days <= 45 ? 'jour' : days <= 200 ? 'semaine' : 'mois'
+  const wanted: Gran = granPref !== 'auto' ? granPref : days <= 45 ? 'jour' : days <= 200 ? 'semaine' : 'mois'
+  // jamais plus de ~366 barres : sinon on passe à une précision plus large (et on le dit)
+  const countFor = (g: Gran) => (g === 'jour' ? days : g === 'semaine' ? Math.ceil(days / 7) + 1 : Math.ceil(days / 30.4) + 1)
+  const gran: Gran = countFor(wanted) <= 366 ? wanted : wanted === 'jour' && countFor('semaine') <= 366 ? 'semaine' : 'mois'
+  const adjusted = gran !== wanted
 
   const buckets = useMemo<Bucket[]>(() => {
     const out: Bucket[] = []
     let s = startOf(range.from, gran)
-    while (s <= range.to && out.length < 800) { const e = nextOf(s, gran); out.push({ start: s, end: e, total: 0, n: 0, ebay: 0, vinted: 0, titres: [] }); s = e }
+    while (s <= range.to && out.length < 1200) { const e = nextOf(s, gran); out.push({ start: s, end: e, total: 0, n: 0, ebay: 0, vinted: 0, titres: [] }); s = e }
     const idx = new Map(out.map((b, i) => [b.start, i]))
     for (const p of purchases) {
       if (p.t < range.from || p.t >= range.to + DAY) continue
@@ -116,17 +120,18 @@ export default function SpendingChart({ purchases, budget, onPickMonth }: { purc
     const i = Math.min(a, b), j = Math.max(a, b)
     const from = Math.max(lo, buckets[i].start), to = Math.min(hi, buckets[j].end - DAY)
     if (to - from < DAY) return
-    setStack(s => [...s, range]); setRange({ from, to })
+    setStack(s => [...s, range]); setHover(null); setRange({ from, to })
   }
-  const setPreset = (v: number | 'annee' | 'tout') => {
-    setStack([])
-    if (v === 'tout') setRange({ from: lo, to: hi })
-    else if (v === 'annee') setRange({ from: new Date(new Date(today).getFullYear(), 0, 1).getTime(), to: hi })
-    else setRange({ from: Math.max(lo, today - (v - 1) * DAY), to: hi })
-  }
+  const presetRange = (v: number | 'annee' | 'tout') =>
+    v === 'tout' ? { from: lo, to: hi }
+      : v === 'annee' ? { from: Math.max(lo, new Date(new Date(today).getFullYear(), 0, 1).getTime()), to: hi }
+        : { from: Math.max(lo, today - (v - 1) * DAY), to: hi }
+  const setPreset = (v: number | 'annee' | 'tout') => { setStack([]); setHover(null); setRange(presetRange(v)) }
+  const isActive = (v: number | 'annee' | 'tout') => { const p = presetRange(v); return p.from === range.from && p.to === range.to }
 
   // ── pointeur sur le graphique : survol, glisser pour zoomer, clic sur une barre mensuelle ──
-  const onDown = (e: React.PointerEvent<SVGRectElement>) => { e.currentTarget.setPointerCapture(e.pointerId); const i = idxAt(px(e.clientX, svgRef.current, W)); setDrag({ a: i, b: i }) }
+  const ptr = useRef('mouse')
+  const onDown = (e: React.PointerEvent<SVGRectElement>) => { ptr.current = e.pointerType; try { e.currentTarget.setPointerCapture(e.pointerId) } catch { /* capture indisponible : on continue sans */ } const i = idxAt(px(e.clientX, svgRef.current, W)); setDrag({ a: i, b: i }) }
   const onMove = (e: React.PointerEvent<SVGRectElement>) => {
     const i = idxAt(px(e.clientX, svgRef.current, W))
     setHover(i)
@@ -135,15 +140,18 @@ export default function SpendingChart({ purchases, budget, onPickMonth }: { purc
   const onUp = () => {
     if (drag) {
       if (drag.a !== drag.b) zoomTo(drag.a, drag.b)
-      else if (gran === 'mois' && onPickMonth) { const d = new Date(buckets[drag.a].start); onPickMonth(d.getFullYear(), d.getMonth()) }
+      else if (ptr.current === 'mouse' && buckets[drag.a] && buckets[drag.a].n > 0) {
+        if (gran === 'mois' && onPickMonth) { const d = new Date(buckets[drag.a].start); onPickMonth(d.getFullYear(), d.getMonth()) }
+        if (gran !== 'jour') zoomTo(drag.a, drag.a)
+      }
     }
     setDrag(null)
   }
 
   // ── mini-carte : déplacer / redimensionner la fenêtre ──
   const mw = MW - 2 * MP
-  const tx = (t: number) => MP + ((t - lo) / Math.max(DAY, hi - lo)) * mw
-  const xt = (x: number) => lo + ((x - MP) / mw) * (hi - lo)
+  const tx = (t: number) => Math.min(MP + mw, Math.max(MP, MP + ((t - lo) / Math.max(DAY, hi + DAY - lo)) * mw))
+  const xt = (x: number) => lo + ((x - MP) / mw) * (hi + DAY - lo)
   const miniMonths = useMemo(() => {
     const m: Array<{ s: number; v: number }> = []
     for (let s = lo; s <= hi; s = nextOf(s, 'mois')) m.push({ s, v: 0 })
@@ -158,7 +166,7 @@ export default function SpendingChart({ purchases, budget, onPickMonth }: { purc
     return { from: Math.max(lo, sod(from)), to: Math.min(hi, sod(to)) }
   }
   const mDown = (e: React.PointerEvent<SVGRectElement>) => {
-    e.currentTarget.setPointerCapture(e.pointerId)
+    try { e.currentTarget.setPointerCapture(e.pointerId) } catch { /* capture indisponible */ }
     const x = px(e.clientX, miniRef.current, MW), x1 = tx(range.from), x2 = tx(range.to + DAY)
     const mode = Math.abs(x - x1) < 12 ? 'l' : Math.abs(x - x2) < 12 ? 'r' : x > x1 && x < x2 ? 'm' : null
     if (mode) miniDrag.current = { mode, x0: x, from: range.from, to: range.to }
@@ -174,7 +182,8 @@ export default function SpendingChart({ purchases, budget, onPickMonth }: { purc
   const mUp = () => { miniDrag.current = null }
 
   const hb = hover !== null ? buckets[hover] : null
-  const labelEvery = Math.max(1, Math.ceil(n / 11))
+  const labelEvery = Math.max(1, Math.ceil(n / Math.max(3, Math.floor(IW / (gran === 'mois' ? 40 : 54)))))
+  const tickLabel = (v: number) => (v === 0 ? '0' : v >= 10 ? String(Math.round(v)) : String(Math.round(v * 10) / 10).replace('.', ','))
   const yAt = (v: number, max: number) => T + IH - (v / max) * IH
   const ticks = [0, 0.25, 0.5, 0.75, 1]
 
@@ -184,11 +193,11 @@ export default function SpendingChart({ purchases, budget, onPickMonth }: { purc
 
       <div className="spc-bar">
         <div className="spc-presets" role="group" aria-label="Période">
-          {PRESETS.map(([label, v]) => <button key={label} onClick={() => setPreset(v)}>{label}</button>)}
+          {PRESETS.map(([label, v]) => <button key={label} className={isActive(v) ? 'on' : ''} onClick={() => setPreset(v)}>{label}</button>)}
         </div>
         <div className="spc-dates">
-          <label>Du <input type="date" value={inputDate(range.from)} min={inputDate(lo)} max={inputDate(range.to)} onChange={e => e.target.value && setRange(r => ({ ...r, from: Math.max(lo, fromInput(e.target.value)) }))} /></label>
-          <label>au <input type="date" value={inputDate(range.to)} min={inputDate(range.from)} max={inputDate(hi)} onChange={e => e.target.value && setRange(r => ({ ...r, to: Math.min(hi, fromInput(e.target.value)) }))} /></label>
+          <label>Du <input type="date" value={inputDate(range.from)} min={inputDate(lo)} max={inputDate(hi)} onChange={e => { const v = e.target.value; if (v) { setHover(null); setRange(r => { const f = Math.min(Math.max(lo, fromInput(v)), hi); return { from: f, to: Math.max(r.to, f) } }) } }} /></label>
+          <label>au <input type="date" value={inputDate(range.to)} min={inputDate(lo)} max={inputDate(hi)} onChange={e => { const v = e.target.value; if (v) { setHover(null); setRange(r => { const t = Math.max(Math.min(hi, fromInput(v)), lo); return { from: Math.min(r.from, t), to: t } }) } }} /></label>
         </div>
       </div>
 
@@ -221,8 +230,8 @@ export default function SpendingChart({ purchases, budget, onPickMonth }: { purc
           {ticks.map(k => (
             <g key={k}>
               <line x1={L} x2={W - R} y1={T + IH - k * IH} y2={T + IH - k * IH} stroke="currentColor" opacity={k === 0 ? 0.4 : 0.12} />
-              <text x={L - 8} y={T + IH - k * IH + 4} textAnchor="end" fontSize="11" fill="currentColor" opacity="0.6">{k === 0 ? '0' : Math.round(ymax * k)}</text>
-              {cumul && k > 0 && <text x={W - R + 8} y={T + IH - k * IH + 4} fontSize="11" fill="#f5c451">{Math.round(cmax * k)}</text>}
+              <text x={L - 8} y={T + IH - k * IH + 4} textAnchor="end" fontSize="11" fill="currentColor" opacity="0.6">{tickLabel(ymax * k)}</text>
+              {cumul && k > 0 && <text x={W - R + 8} y={T + IH - k * IH + 4} fontSize="11" fill="#f5c451">{tickLabel(cmax * k)}</text>}
             </g>
           ))}
           {budgetPer ? <line x1={L} x2={W - R} y1={yAt(budgetPer, ymax)} y2={yAt(budgetPer, ymax)} stroke="#f5c451" strokeWidth="2" strokeDasharray="6 5" /> : null}
@@ -248,6 +257,7 @@ export default function SpendingChart({ purchases, budget, onPickMonth }: { purc
               points={cum.map((v, i) => `${L + i * slot + slot / 2},${yAt(v, cmax)}`).join(' ')} />
           )}
 
+          {count === 0 && <text x={L + IW / 2} y={T + IH / 2} textAnchor="middle" fontSize="13" fill="currentColor" opacity="0.55">Aucun achat sur cette période</text>}
           {buckets.map((b, i) => (i % labelEvery === 0 ? (
             <text key={b.start} x={L + i * slot + slot / 2} y={H - 12} textAnchor="middle" fontSize="11" fill="currentColor" opacity="0.7">{labelOf(b, gran)}</text>
           ) : null))}
@@ -261,7 +271,7 @@ export default function SpendingChart({ purchases, budget, onPickMonth }: { purc
         </svg>
 
         {hb && !drag && (
-          <div className="spc-tip" style={{ left: `${Math.min(78, Math.max(2, ((L + hover! * slot + slot / 2) / W) * 100 - 10))}%` }}>
+          <div className="spc-tip" style={{ width: Math.min(250, W - 8), left: Math.min(Math.max(L + hover! * slot + slot / 2 - Math.min(250, W - 8) / 2, 4), Math.max(4, W - Math.min(250, W - 8) - 4)) }}>
             <b>{fullLabel(hb, gran)}</b>
             <div className="spc-tip-total">{eur(hb.total)}{budgetPer ? <small> / {eur(budgetPer)}</small> : null}</div>
             <div>{hb.n} achat{hb.n > 1 ? 's' : ''}{hb.ebay > 0 && hb.vinted > 0 ? ` · eBay ${eur(hb.ebay)} · Vinted ${eur(hb.vinted)}` : hb.n > 0 ? ` · ${hb.vinted > 0 ? 'Vinted' : 'eBay'}` : ''}</div>
@@ -269,11 +279,12 @@ export default function SpendingChart({ purchases, budget, onPickMonth }: { purc
             {cumul && <div>Cumul : {eur(cum[hover!])}</div>}
           </div>
         )}
-        <div className="spc-hint">Glisse sur le graphique pour zoomer sur une période{gran === 'mois' && onPickMonth ? ' · clique sur un mois pour le détailler' : ''}.</div>
+        {adjusted && <div className="spc-hint">Précision « {wanted} » trop fine pour cette durée : affichage par {gran}.</div>}
+        <div className="spc-hint">Glisse sur le graphique pour zoomer sur une période{gran !== 'jour' ? ' · clique sur une barre pour la détailler' : ''}.</div>
       </div>
 
       <svg ref={miniRef} viewBox={`0 0 ${MW} ${MH}`} className="spc-mini" role="img" aria-label="Vue d’ensemble : déplace ou redimensionne la fenêtre">
-        {miniMonths.map(m => { const h = (m.v / mmax) * (MH - 14); return <rect key={m.s} x={tx(m.s) + 1} y={MH - 8 - h} width={Math.max(1, mw / Math.max(1, miniMonths.length) - 2)} height={Math.max(m.v > 0 ? 2 : 0, h)} fill="#5b8def" opacity="0.55" /> })}
+        {miniMonths.map(m => { const h = (m.v / mmax) * (MH - 14); return <rect key={m.s} x={tx(m.s) + 1} y={MH - 8 - h} width={Math.max(1, tx(nextOf(m.s, 'mois')) - tx(m.s) - 2)} height={Math.max(m.v > 0 ? 2 : 0, h)} fill="#5b8def" opacity="0.55" /> })}
         <rect x={MP} y={4} width={Math.max(0, tx(range.from) - MP)} height={MH - 12} fill="#000" opacity="0.38" />
         <rect x={tx(range.to + DAY)} y={4} width={Math.max(0, MP + mw - tx(range.to + DAY))} height={MH - 12} fill="#000" opacity="0.38" />
         <rect x={tx(range.from)} y={4} width={Math.max(2, tx(range.to + DAY) - tx(range.from))} height={MH - 12} fill="none" stroke="#f5c451" strokeWidth="2" />
@@ -293,7 +304,7 @@ const CSS = `
 .spc-presets, .spc-seg { display: inline-flex; flex-wrap: wrap; border: 3px solid var(--border); }
 .spc-presets button, .spc-seg button { background: transparent; border: 0; color: var(--text2); font: 800 11px system-ui, sans-serif; letter-spacing: .05em; text-transform: uppercase; padding: 7px 11px; cursor: pointer; }
 .spc-presets button:hover, .spc-seg button:hover { color: var(--text); background: var(--bg3); }
-.spc-seg button.on { background: #2f6bff; color: #fff; }
+.spc-seg button.on, .spc-presets button.on { background: #2f6bff; color: #fff; }
 .spc-dates, .spc-opts { display: flex; gap: 12px; align-items: center; flex-wrap: wrap; font-size: 12px; color: var(--text2); }
 .spc-dates input { background: var(--input-bg); color: var(--text); border: 2px solid var(--border); padding: 5px 7px; font: 600 12px system-ui, sans-serif; border-radius: 0; }
 .spc-opts label { display: inline-flex; align-items: center; gap: 6px; cursor: pointer; }

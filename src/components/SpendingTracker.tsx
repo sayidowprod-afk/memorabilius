@@ -66,6 +66,9 @@ export default function SpendingTracker({ rows, rates, budget, onSaveBudget }: {
 
   const years = [...new Set(purchases.map(p => p.y).concat(today.getFullYear()))].sort((a, b) => a - b)
   const isCurrentMonth = sel.y === today.getFullYear() && sel.m === today.getMonth()
+  // pas de comparaison avec une période antérieure aux premières données importées (eBay ne remonte que 60 jours au départ)
+  const firstT = purchases.length ? Math.min(...purchases.map(p => p.t)) : Infinity
+  const covered = (y: number, m: number) => new Date(y, m + 1, 1).getTime() > firstT
   const prevM = sel.m === 0 ? { y: sel.y - 1, m: 11 } : { y: sel.y, m: sel.m - 1 }
   const move = (delta: number) => setSel(s => { const d = new Date(s.y, s.m + delta, 1); return { y: d.getFullYear(), m: d.getMonth() } })
 
@@ -131,13 +134,13 @@ export default function SpendingTracker({ rows, rates, budget, onSaveBudget }: {
 
           {mode === 'mois' ? (
             <>
-              <Delta now={monthTotal} before={byMonth[monthKey(prevM.y, prevM.m)] !== undefined || hasYear(prevM.y) ? spent(prevM.y, prevM.m) : null} label={`vs ${new Date(prevM.y, prevM.m, 1).toLocaleDateString('fr-FR', { month: 'long' })}`} />
-              <Delta now={monthTotal} before={hasYear(sel.y - 1) ? spent(sel.y - 1, sel.m) : null} label={`vs ${new Date(sel.y - 1, sel.m, 1).toLocaleDateString('fr-FR', { month: 'short', year: 'numeric' })}`} />
+              <Delta now={monthTotal} before={covered(prevM.y, prevM.m) ? spent(prevM.y, prevM.m) : null} label={`vs ${new Date(prevM.y, prevM.m, 1).toLocaleDateString('fr-FR', { month: 'long' })}`} />
+              <Delta now={monthTotal} before={covered(sel.y - 1, sel.m) ? spent(sel.y - 1, sel.m) : null} label={`vs ${new Date(sel.y - 1, sel.m, 1).toLocaleDateString('fr-FR', { month: 'short', year: 'numeric' })}`} />
             </>
           ) : (
             <>
               <div className="st-meta">Moyenne : {eur(monthsElapsed > 0 ? yTotal / monthsElapsed : 0)} / mois</div>
-              <Delta now={yTotal} before={hasYear(sel.y - 1) ? yearTotal(sel.y - 1) : null} label={`vs ${sel.y - 1}`} />
+              <Delta now={yTotal} before={hasYear(sel.y - 1) ? yearTotal(sel.y - 1) : null} label={`vs ${sel.y - 1}${firstT > new Date(sel.y - 1, 0, 1).getTime() ? ' (année partielle)' : ''}`} />
             </>
           )}
         </div>
