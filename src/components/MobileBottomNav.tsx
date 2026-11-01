@@ -236,6 +236,7 @@ export default function MobileBottomNav() {
         <Link href="/trades" style={dropItemStyle} onClick={() => setSheet(null)}>🔄 {t('nav_trades')}</Link>
         <Link href="/evenements" style={dropItemStyle} onClick={() => setSheet(null)}>📅 {t('nav_evenements')}</Link>
         {user && <Link href="/activite" style={dropItemStyle} onClick={() => setSheet(null)}>📰 {t('nav_activite')}</Link>}
+        {user && <Link href="/mes-achats" style={dropItemStyle} onClick={() => setSheet(null)}>🛒 Mes achats</Link>}
       </BottomSheet>
 
       <BottomSheet open={sheet === 'outils'} onClose={() => setSheet(null)} title={t('nav_outils')} bottomOffset={NAV_TOTAL_HEIGHT_CSS}>
