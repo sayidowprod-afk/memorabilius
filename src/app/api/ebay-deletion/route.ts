@@ -1,6 +1,9 @@
 import { NextRequest, NextResponse } from 'next/server'
+import { createServerServiceClient } from '@/lib/supabaseServer'
 
 const ENDPOINT_URL = 'https://www.memorabilius.fr/api/ebay-deletion'
+
+const supabase = createServerServiceClient()
 
 // eBay envoie un GET pour valider l'endpoint
 export async function GET(req: NextRequest) {
@@ -19,8 +22,17 @@ export async function GET(req: NextRequest) {
   return NextResponse.json({ challengeResponse })
 }
 
-// eBay envoie un POST quand un compte est supprimé
+// eBay envoie un POST quand un utilisateur supprime son compte eBay : on efface ses données eBay chez nous
+// (compte relié dans « Mes achats » : jeton chiffré, achats, enchères, suivis).
 export async function POST(req: NextRequest) {
-  // On accuse réception — on ne stocke pas de données eBay donc rien à supprimer
+  const body = await req.json().catch(() => null) as { notification?: { data?: { username?: string } } } | null
+  const username = body?.notification?.data?.username
+  if (username) {
+    const { data: rows } = await supabase.from('ebay_connexions').select('user_id').ilike('ebay_user_id', username)
+    for (const r of rows || []) {
+      await supabase.from('achats_membre').delete().eq('user_id', r.user_id).eq('source', 'ebay')
+      await supabase.from('ebay_connexions').delete().eq('user_id', r.user_id)
+    }
+  }
   return NextResponse.json({ ok: true }, { status: 200 })
 }
