@@ -81,9 +81,22 @@ export type MesAchatsViewProps = {
 export default function MesAchatsView({ conn, rows, busy, msg, now, confirmOut, onConnect, onSync, onAskDisconnect, onDisconnect, onCancelDisconnect, tld = 'fr', rates = null }: MesAchatsViewProps) {
   const connected = conn?.statut === 'connecte'
   const P = (v: number | null, d: string | null) => fmt(v, d, rates)
+  const [qAchats, setQAchats] = useState('')
+  const [qSuivis, setQSuivis] = useState('')
   const encheres = rows.filter(r => r.type === 'enchere').sort((a, b) => (a.fin_at || '9').localeCompare(b.fin_at || '9'))
   const achats = rows.filter(r => r.type === 'achat').sort((a, b) => (b.achete_at || '').localeCompare(a.achete_at || ''))
   const suivis = rows.filter(r => r.type === 'suivi').sort((a, b) => (a.fin_at || '9').localeCompare(b.fin_at || '9'))
+
+  // recherche : titre ou vendeur, sans tenir compte des accents ni des majuscules ; tous les mots doivent être présents
+  const norm = (s: string | null) => (s || '').normalize('NFD').replace(/[̀-ͯ]/g, '').toLowerCase()
+  const matches = (r: Row, q: string) => {
+    const words = norm(q).split(/\s+/).filter(Boolean)
+    if (!words.length) return true
+    const hay = norm(`${r.titre || ''} ${r.vendeur || ''}`)
+    return words.every(w => hay.includes(w))
+  }
+  const achatsShown = achats.filter(r => matches(r, qAchats))
+  const suivisShown = suivis.filter(r => matches(r, qSuivis))
 
   const month = new Date(now).toISOString().slice(0, 7)
   const spent = achats.filter(a => (a.achete_at || '').startsWith(month)).reduce<Record<string, number>>((acc, a) => {
@@ -176,8 +189,11 @@ export default function MesAchatsView({ conn, rows, busy, msg, now, confirmOut, 
             {achats.length === 0 ? (
               <div className="ma-empty">Aucun achat pour l’instant. eBay ne donne que les 60 derniers jours à la première connexion : l’historique se construit ensuite au fil du temps.</div>
             ) : (
+              <>
+              <input className="ma-search" type="search" value={qAchats} onChange={e => setQAchats(e.target.value)} placeholder="Rechercher un achat (carte, joueur, vendeur…)" aria-label="Rechercher dans mes achats" />
+              {achatsShown.length === 0 && <div className="ma-empty">Aucun achat ne correspond à « {qAchats} ».</div>}
               <div className="ma-grid">
-                {achats.map(r => (
+                {achatsShown.map(r => (
                   <article key={r.id} className="ma-card">
                     <Photo r={r} />
                     <div className="ma-body">
@@ -206,14 +222,17 @@ export default function MesAchatsView({ conn, rows, busy, msg, now, confirmOut, 
                   </article>
                 ))}
               </div>
+              </>
             )}
           </section>
 
           {suivis.length > 0 && (
             <section>
               <h2 className="ma-h2">Articles suivis</h2>
+              <input className="ma-search" type="search" value={qSuivis} onChange={e => setQSuivis(e.target.value)} placeholder="Rechercher un article suivi (carte, joueur…)" aria-label="Rechercher dans mes articles suivis" />
+              {suivisShown.length === 0 && <div className="ma-empty">Aucun article suivi ne correspond à « {qSuivis} ».</div>}
               <div className="ma-grid">
-                {suivis.map(r => {
+                {suivisShown.map(r => {
                   const t = left(r.fin_at, now)
                   return (
                     <article key={r.id} className="ma-card">
@@ -289,6 +308,8 @@ const CSS = `
 .ma-links { display: flex; gap: 14px; flex-wrap: wrap; margin-top: auto; padding-top: 4px; }
 .ma-links a { font: 800 12px system-ui, sans-serif; letter-spacing: .05em; text-transform: uppercase; color: #2f6bff; text-decoration: none; }
 .ma-links a:hover { text-decoration: underline; }
+.ma-search { width: 100%; box-sizing: border-box; margin: 0 0 12px; padding: 11px 14px; border: 3px solid var(--border); background: var(--input-bg); color: var(--text); font: 600 14px system-ui, sans-serif; border-radius: 0; }
+.ma-search:focus { outline: none; border-color: #2f6bff; }
 .ma-empty { border: 3px dashed var(--border); padding: 22px; color: var(--text2); font-size: 14px; line-height: 1.5; }
 .ma-modal { position: fixed; inset: 0; background: rgba(0,0,0,.55); display: flex; align-items: center; justify-content: center; padding: 16px; z-index: 1000; }
 .ma-modal-box { background: var(--bg2); border: 3px solid var(--border); padding: 22px; max-width: 440px; width: 100%; }
