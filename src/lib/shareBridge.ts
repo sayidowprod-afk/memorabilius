@@ -36,6 +36,16 @@ export function stagePendingShare(share: PendingShare) {
   try { sessionStorage.setItem(STAGED_KEY, JSON.stringify(share)) } catch {}
 }
 
+// Lecture sans consommer (page « Que faire de ce partage ? »).
+export function peekStagedShare(): PendingShare | null {
+  try {
+    const raw = sessionStorage.getItem(STAGED_KEY)
+    return raw ? JSON.parse(raw) : null
+  } catch {
+    return null
+  }
+}
+
 // Consommé une seule fois — la page Messages l'appelle au montage puis l'utilise.
 export function takeStagedShare(): PendingShare | null {
   try {

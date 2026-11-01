@@ -1,10 +1,11 @@
 'use client'
 import { useState } from 'react'
+import SpendingTracker from '@/components/SpendingTracker'
 
 // Affichage de « Mes achats » (sans logique réseau) : utilisé par /mes-achats et par la page de démonstration locale.
 export type Conn = { statut: 'en_attente' | 'connecte' | 'expire'; ebay_user_id: string | null; derniere_synchro_at: string | null; derniere_erreur: string | null }
 export type Row = {
-  id: string; type: 'achat' | 'enchere' | 'suivi'; item_id: string | null; transaction_id: string | null; titre: string | null; photo_url: string | null; photo_mini: string | null
+  id: string; type: 'achat' | 'enchere' | 'suivi'; source?: 'ebay' | 'vinted'; item_id: string | null; transaction_id: string | null; titre: string | null; photo_url: string | null; photo_mini: string | null
   vendeur: string | null; vendeur_note: number | null; devise: string | null; prix: number | null; frais_port: number | null
   total_paye?: number | null; autres_frais?: number | null
   prix_actuel: number | null; ma_mise_max: number | null; en_tete: boolean | null; nb_encheres: number | null
@@ -53,6 +54,12 @@ function Photo({ r }: { r: Row }) {
   return <img className="ma-photo" src={src} alt={r.titre || ''} loading="lazy" onError={() => { if (src !== r.photo_mini && r.photo_mini) setSrc(r.photo_mini); else setSrc(null) }} />
 }
 
+// Étiquette de provenance : eBay ou Vinted
+function SrcTag({ r }: { r: Row }) {
+  const v = r.source === 'vinted'
+  return <span className={`ma-src ${v ? 'vi' : 'eb'}`}>{v ? 'Vinted' : 'eBay'}</span>
+}
+
 function Step({ done, label, sub }: { done: boolean; label: string; sub?: string }) {
   return (
     <div className={`ma-step${done ? ' done' : ''}`}>
@@ -76,10 +83,15 @@ export type MesAchatsViewProps = {
   onCancelDisconnect: () => void
   tld?: string          // site eBay de l'utilisateur : fr, de, com…
   rates?: Rates
+  budget?: number | null
+  onSaveBudget?: (v: number | null) => void
+  onAddVinted?: () => void
+  onDeleteVinted?: (id: string) => void
 }
 
-export default function MesAchatsView({ conn, rows, busy, msg, now, confirmOut, onConnect, onSync, onAskDisconnect, onDisconnect, onCancelDisconnect, tld = 'fr', rates = null }: MesAchatsViewProps) {
+export default function MesAchatsView({ conn, rows, busy, msg, now, confirmOut, onConnect, onSync, onAskDisconnect, onDisconnect, onCancelDisconnect, tld = 'fr', rates = null, budget = null, onSaveBudget, onAddVinted, onDeleteVinted }: MesAchatsViewProps) {
   const connected = conn?.statut === 'connecte'
+  const hasData = connected || rows.length > 0
   const P = (v: number | null, d: string | null) => fmt(v, d, rates)
   const [qAchats, setQAchats] = useState('')
   const [qSuivis, setQSuivis] = useState('')
@@ -116,12 +128,11 @@ export default function MesAchatsView({ conn, rows, busy, msg, now, confirmOut, 
           <h1 style={{ margin: 0, fontSize: 38 }}>Mes achats</h1>
           {connected && <div className="ma-sub">eBay · {conn?.ebay_user_id || 'compte relié'} · mis à jour {ago(conn?.derniere_synchro_at || null, now)}</div>}
         </div>
-        {connected && (
-          <div className="ma-actions">
-            <button className="ma-btn" disabled={busy !== null} onClick={onSync}>{busy === 'sync' ? 'Actualisation…' : 'Actualiser'}</button>
-            <button className="ma-btn ghost" disabled={busy !== null} onClick={onAskDisconnect}>Déconnecter</button>
-          </div>
-        )}
+        <div className="ma-actions">
+          {onAddVinted && <button className="ma-btn" onClick={onAddVinted}>+ Achat Vinted</button>}
+          {connected && <button className="ma-btn" disabled={busy !== null} onClick={onSync}>{busy === 'sync' ? 'Actualisation…' : 'Actualiser eBay'}</button>}
+          {connected && <button className="ma-btn ghost" disabled={busy !== null} onClick={onAskDisconnect}>Déconnecter eBay</button>}
+        </div>
       </div>
 
       {msg && <div className="ma-alert">{msg}</div>}
@@ -146,13 +157,15 @@ export default function MesAchatsView({ conn, rows, busy, msg, now, confirmOut, 
         </div>
       )}
 
-      {connected && (
+      {hasData && (
         <>
           <div className="ma-stats">
             <div><span className="da-num">{encheres.length}</span><small>enchère{encheres.length > 1 ? 's' : ''} en cours</small></div>
             <div><span className="da-num">{achats.length}</span><small>achat{achats.length > 1 ? 's' : ''} importé{achats.length > 1 ? 's' : ''}</small></div>
             <div><span className="da-num">{spentLabel}</span><small>dépensés ce mois-ci</small></div>
           </div>
+
+          {onSaveBudget && <SpendingTracker rows={rows} rates={rates} budget={budget} onSaveBudget={onSaveBudget} />}
 
           {encheres.length > 0 && (
             <section>
@@ -164,7 +177,7 @@ export default function MesAchatsView({ conn, rows, busy, msg, now, confirmOut, 
                     <article key={r.id} className="ma-card">
                       <Photo r={r} />
                       <div className="ma-body">
-                        <div className="ma-title">{r.titre}</div>
+                        <div className="ma-title"><SrcTag r={r} />{r.titre}</div>
                         <div className="ma-line">
                           <span className="da-num ma-price">{P(r.prix_actuel, r.devise).main}</span>{P(r.prix_actuel, r.devise).sub && <span className="ma-meta">{P(r.prix_actuel, r.devise).sub}</span>}
                           {r.en_tete === true && <span className="ma-tag ok">En tête</span>}
@@ -197,7 +210,7 @@ export default function MesAchatsView({ conn, rows, busy, msg, now, confirmOut, 
                   <article key={r.id} className="ma-card">
                     <Photo r={r} />
                     <div className="ma-body">
-                      <div className="ma-title">{r.titre}</div>
+                      <div className="ma-title"><SrcTag r={r} />{r.titre}</div>
                       <div className="ma-line">
                         <span className="da-num ma-price">{P(r.prix, r.devise).main}</span>
                         {P(r.prix, r.devise).sub && <span className="ma-meta">{P(r.prix, r.devise).sub}</span>}
@@ -217,6 +230,7 @@ export default function MesAchatsView({ conn, rows, busy, msg, now, confirmOut, 
                       <div className="ma-links">
                         {annonceUrl(r, tld) && <a href={annonceUrl(r, tld)!} target="_blank" rel="noopener noreferrer">Voir l’annonce</a>}
                         {commandeUrl(r, tld) && (r.expedie_at || r.paye_at) && <a href={commandeUrl(r, tld)!} target="_blank" rel="noopener noreferrer">Suivre le colis</a>}
+                        {r.source === 'vinted' && onDeleteVinted && <button className="ma-del" onClick={() => { if (window.confirm('Supprimer cet achat Vinted ?')) onDeleteVinted(r.id) }}>Supprimer</button>}
                       </div>
                     </div>
                   </article>
@@ -238,7 +252,7 @@ export default function MesAchatsView({ conn, rows, busy, msg, now, confirmOut, 
                     <article key={r.id} className="ma-card">
                       <Photo r={r} />
                       <div className="ma-body">
-                        <div className="ma-title">{r.titre}</div>
+                        <div className="ma-title"><SrcTag r={r} />{r.titre}</div>
                         <div className="ma-line"><span className="da-num ma-price">{P(r.prix_actuel, r.devise).main}</span>{P(r.prix_actuel, r.devise).sub && <span className="ma-meta">{P(r.prix_actuel, r.devise).sub}</span>}</div>
                         {r.fin_at && <div className={`ma-clock${t.urgent ? ' urgent' : ''}`}>⏱ {t.over ? 'Terminée' : `Fin dans ${t.text}`}</div>}
                         <div className="ma-links">{annonceUrl(r, tld) && <a href={annonceUrl(r, tld)!} target="_blank" rel="noopener noreferrer">Voir l’annonce</a>}</div>
@@ -308,6 +322,10 @@ const CSS = `
 .ma-links { display: flex; gap: 14px; flex-wrap: wrap; margin-top: auto; padding-top: 4px; }
 .ma-links a { font: 800 12px system-ui, sans-serif; letter-spacing: .05em; text-transform: uppercase; color: #2f6bff; text-decoration: none; }
 .ma-links a:hover { text-decoration: underline; }
+.ma-del { background: none; border: 0; padding: 0; font: 800 12px system-ui, sans-serif; letter-spacing: .05em; text-transform: uppercase; color: var(--text3); cursor: pointer; margin-left: auto; }
+.ma-del:hover { color: #d6293e; }
+.ma-src { display: inline-block; font: 800 10px system-ui, sans-serif; letter-spacing: .06em; text-transform: uppercase; padding: 2px 6px; margin-right: 7px; vertical-align: 1px; color: #fff; }
+.ma-src.eb { background: #2f6bff; } .ma-src.vi { background: #09b1ba; }
 .ma-search { width: 100%; box-sizing: border-box; margin: 0 0 12px; padding: 11px 14px; border: 3px solid var(--border); background: var(--input-bg); color: var(--text); font: 600 14px system-ui, sans-serif; border-radius: 0; }
 .ma-search:focus { outline: none; border-color: #2f6bff; }
 .ma-empty { border: 3px dashed var(--border); padding: 22px; color: var(--text2); font-size: 14px; line-height: 1.5; }
