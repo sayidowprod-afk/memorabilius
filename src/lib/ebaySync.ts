@@ -90,7 +90,12 @@ export async function syncMember(userId: string, minIntervalMs = 0): Promise<Syn
     ...(alertsDone.has(`${a.type}:${a.ref}`) ? { alerte_fin_envoyee: true } : {}),
   }))
   if (rows.length) {
-    const { error } = await sb.from('achats_membre').upsert(rows, { onConflict: 'user_id,source,type,ref' })
+    let { error } = await sb.from('achats_membre').upsert(rows, { onConflict: 'user_id,source,type,ref' })
+    // migration 20261102_ebay_achats_frais.sql pas encore appliquée : on enregistre le reste sans ces deux colonnes
+    if (error && /total_paye|autres_frais/.test(error.message)) {
+      ;({ error } = await sb.from('achats_membre').upsert(
+        rows.map(({ total_paye: _t, autres_frais: _a, ...rest }) => rest), { onConflict: 'user_id,source,type,ref' }))
+    }
     if (error) return { ok: false, error: 'Enregistrement impossible : ' + error.message }
   }
 

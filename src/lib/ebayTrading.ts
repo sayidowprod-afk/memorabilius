@@ -101,6 +101,8 @@ export type EbayArticle = {
   devise: string | null
   prix: number | null
   frais_port: number | null
+  total_paye: number | null        // total de la commande tel que payé (articles + port + taxes)
+  autres_frais: number | null      // écart déduit : total - sous-total - port (douane, taxes, frais de service)
   prix_actuel: number | null
   ma_mise_max: number | null
   en_tete: boolean | null
@@ -164,7 +166,7 @@ function baseFromItem(item: El, type: EbayArticle['type']): EbayArticle | null {
     type_annonce: text(item, 'ListingType'),
     vendeur: text(item, 'Seller/UserID'), vendeur_note: num(item, 'Seller/FeedbackScore'),
     devise: cur(item, 'SellingStatus/CurrentPrice') || cur(item, 'BuyItNowPrice'),
-    prix: null, frais_port: num(item, 'ShippingDetails/ShippingServiceOptions/ShippingServiceCost'),
+    prix: null, frais_port: num(item, 'ShippingDetails/ShippingServiceOptions/ShippingServiceCost'), total_paye: null, autres_frais: null,
     prix_actuel: num(item, 'SellingStatus/CurrentPrice'),
     ma_mise_max: null, en_tete: null, nb_encheres: num(item, 'SellingStatus/BidCount'),
     fin_at: iso(item, 'ListingDetails/EndTime'),
@@ -210,6 +212,16 @@ export function parseBuying($: CheerioAPI, myEbayId?: string | null): BuyingSnap
       a.prix = num(tr, 'TransactionPrice')
       a.devise = cur(tr, 'TransactionPrice') || a.devise
       if (orderShipping !== null) a.frais_port = orderShipping
+      // total / sous-total : seulement pour une commande à un seul article (sinon impossible de répartir les frais)
+      const orderTotal = order.length && transactions.length === 1 ? num(order, 'Total') : null
+      const orderSub = order.length && transactions.length === 1 ? num(order, 'Subtotal') : null
+      if (orderTotal !== null) {
+        a.total_paye = orderTotal
+        if (orderSub !== null && orderShipping !== null) {
+          const extra = Math.round((orderTotal - orderSub - orderShipping) * 100) / 100
+          if (extra > 0.009) a.autres_frais = extra
+        }
+      }
       a.achete_at = iso(tr, 'CreatedDate')
       a.paye_at = iso(tr, 'PaidTime')
       a.expedie_at = iso(tr, 'ShippedTime')

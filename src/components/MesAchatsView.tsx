@@ -6,6 +6,7 @@ export type Conn = { statut: 'en_attente' | 'connecte' | 'expire'; ebay_user_id:
 export type Row = {
   id: string; type: 'achat' | 'enchere' | 'suivi'; item_id: string | null; transaction_id: string | null; titre: string | null; photo_url: string | null; photo_mini: string | null
   vendeur: string | null; vendeur_note: number | null; devise: string | null; prix: number | null; frais_port: number | null
+  total_paye?: number | null; autres_frais?: number | null
   prix_actuel: number | null; ma_mise_max: number | null; en_tete: boolean | null; nb_encheres: number | null
   fin_at: string | null; achete_at: string | null; paye_at: string | null; expedie_at: string | null
   lien: string | null; lien_commande: string | null
@@ -187,6 +188,12 @@ export default function MesAchatsView({ conn, rows, busy, msg, now, confirmOut, 
                         {r.frais_port !== null && r.frais_port > 0 && <span className="ma-meta">+ {P(r.frais_port, r.devise).main} de port</span>}
                       </div>
                       <div className="ma-meta">{r.vendeur ? <>Vendeur : {r.vendeur}{r.vendeur_note !== null ? ` (${r.vendeur_note.toLocaleString('fr-FR')})` : ''}</> : null}{r.achete_at ? ` · acheté le ${day(r.achete_at)}` : ''}</div>
+                      {r.autres_frais != null && r.autres_frais > 0 && (
+                        <div className="ma-meta">dont douane / taxes / frais : {P(r.autres_frais, r.devise).main}</div>
+                      )}
+                      {r.total_paye != null && r.total_paye > 0 && (
+                        <div className="ma-meta"><b>Total payé : {P(r.total_paye, r.devise).main}</b></div>
+                      )}
                       <div className="ma-steps">
                         <Step done={!!r.paye_at} label="Payé" sub={day(r.paye_at)} />
                         <Step done={!!r.expedie_at} label={r.expedie_at ? 'Expédié' : r.paye_at ? 'En attente d’expédition' : 'Expédition'} sub={day(r.expedie_at)} />
