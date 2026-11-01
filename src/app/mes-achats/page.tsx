@@ -4,13 +4,19 @@ import { useRouter } from 'next/navigation'
 import { supabase } from '@/lib/supabase'
 import { withTimeout } from '@/lib/withTimeout'
 import SkeletonBlock from '@/components/SkeletonBlock'
-import MesAchatsView, { type Conn, type Row } from '@/components/MesAchatsView'
+import { useLang } from '@/lib/LangContext'
+import MesAchatsView, { type Conn, type Row, type Rates } from '@/components/MesAchatsView'
+
+// Site eBay vers lequel pointent les liens : celui de la langue du membre (ebay.fr pour un francophone).
+const EBAY_TLD: Record<string, string> = { fr: 'fr', de: 'de', es: 'es', it: 'it', en: 'com' }
 
 // « Mes achats » : les achats, enchères en cours et articles suivis du membre, importés de son compte eBay
 // (tables ebay_connexions / achats_membre, voir supabase/migrations/20261101_ebay_achats.sql). L'affichage est dans
 // MesAchatsView ; ici : session, chargement, synchronisation, connexion / déconnexion.
 export default function MesAchats() {
   const router = useRouter()
+  const { lang } = useLang()
+  const [rates, setRates] = useState<Rates>(null)
   const [loading, setLoading] = useState(true)
   const [token, setToken] = useState<string | null>(null)
   const [conn, setConn] = useState<Conn | null>(null)
@@ -57,6 +63,10 @@ export default function MesAchats() {
   }, [router, load, sync])
 
   useEffect(() => {
+    fetch('/api/ebay/taux').then(r => r.json()).then(j => setRates(j?.rates || null)).catch(() => {})
+  }, [])
+
+  useEffect(() => {
     const id = setInterval(() => setNow(Date.now()), 30000)
     return () => clearInterval(id)
   }, [])
@@ -97,7 +107,7 @@ export default function MesAchats() {
 
   return (
     <MesAchatsView
-      conn={conn} rows={rows} busy={busy} msg={msg} now={now} confirmOut={confirmOut}
+      conn={conn} rows={rows} busy={busy} msg={msg} now={now} confirmOut={confirmOut} tld={EBAY_TLD[lang] || 'fr'} rates={rates}
       onConnect={connect} onSync={refresh} onAskDisconnect={() => setConfirmOut(true)}
       onDisconnect={disconnect} onCancelDisconnect={() => setConfirmOut(false)}
     />

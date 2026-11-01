@@ -4,7 +4,7 @@ import { useState } from 'react'
 // Affichage de « Mes achats » (sans logique réseau) : utilisé par /mes-achats et par la page de démonstration locale.
 export type Conn = { statut: 'en_attente' | 'connecte' | 'expire'; ebay_user_id: string | null; derniere_synchro_at: string | null; derniere_erreur: string | null }
 export type Row = {
-  id: string; type: 'achat' | 'enchere' | 'suivi'; titre: string | null; photo_url: string | null; photo_mini: string | null
+  id: string; type: 'achat' | 'enchere' | 'suivi'; item_id: string | null; transaction_id: string | null; titre: string | null; photo_url: string | null; photo_mini: string | null
   vendeur: string | null; vendeur_note: number | null; devise: string | null; prix: number | null; frais_port: number | null
   prix_actuel: number | null; ma_mise_max: number | null; en_tete: boolean | null; nb_encheres: number | null
   fin_at: string | null; achete_at: string | null; paye_at: string | null; expedie_at: string | null
@@ -13,6 +13,20 @@ export type Row = {
 
 const money = (v: number | null, devise: string | null) =>
   v === null ? '—' : v.toLocaleString('fr-FR', { style: 'currency', currency: devise && devise.length === 3 ? devise : 'EUR' })
+// Taux : euros pour 1 unité de la devise (ex. USD -> 0.92). Sans taux connu, on garde le prix d'origine.
+export type Rates = Record<string, number> | null
+const toEur = (v: number, devise: string | null, rates: Rates): number | null =>
+  !devise || devise === 'EUR' ? v : rates?.[devise] ? v * rates[devise] : null
+// Prix converti en euros (gros) + prix d'origine (petit) quand l'annonce n'est pas en euros.
+function fmt(v: number | null, devise: string | null, rates: Rates): { main: string; sub: string | null } {
+  if (v === null) return { main: '—', sub: null }
+  const e = devise && devise !== 'EUR' ? toEur(v, devise, rates) : null
+  return e === null ? { main: money(v, devise), sub: null } : { main: money(e, 'EUR'), sub: `${money(v, devise)} · converti` }
+}
+// Les liens suivent le site eBay de l'utilisateur (ebay.fr pour un francophone), pas celui de l'annonce.
+const annonceUrl = (r: Row, tld: string) => (r.item_id ? `https://www.ebay.${tld}/itm/${r.item_id}` : r.lien)
+const commandeUrl = (r: Row, tld: string) =>
+  r.item_id && r.transaction_id ? `https://www.ebay.${tld}/vod/FetchOrderDetails?itemid=${r.item_id}&transid=${r.transaction_id}` : r.lien_commande
 const day = (iso: string | null) => (iso ? new Date(iso).toLocaleDateString('fr-FR', { day: 'numeric', month: 'short' }) : '')
 const ago = (iso: string | null, now: number) => {
   if (!iso) return 'jamais'
@@ -59,18 +73,23 @@ export type MesAchatsViewProps = {
   onAskDisconnect: () => void
   onDisconnect: (deleteData: boolean) => void
   onCancelDisconnect: () => void
+  tld?: string          // site eBay de l'utilisateur : fr, de, com…
+  rates?: Rates
 }
 
-export default function MesAchatsView({ conn, rows, busy, msg, now, confirmOut, onConnect, onSync, onAskDisconnect, onDisconnect, onCancelDisconnect }: MesAchatsViewProps) {
+export default function MesAchatsView({ conn, rows, busy, msg, now, confirmOut, onConnect, onSync, onAskDisconnect, onDisconnect, onCancelDisconnect, tld = 'fr', rates = null }: MesAchatsViewProps) {
   const connected = conn?.statut === 'connecte'
+  const P = (v: number | null, d: string | null) => fmt(v, d, rates)
   const encheres = rows.filter(r => r.type === 'enchere').sort((a, b) => (a.fin_at || '9').localeCompare(b.fin_at || '9'))
   const achats = rows.filter(r => r.type === 'achat').sort((a, b) => (b.achete_at || '').localeCompare(a.achete_at || ''))
   const suivis = rows.filter(r => r.type === 'suivi').sort((a, b) => (a.fin_at || '9').localeCompare(b.fin_at || '9'))
 
   const month = new Date(now).toISOString().slice(0, 7)
   const spent = achats.filter(a => (a.achete_at || '').startsWith(month)).reduce<Record<string, number>>((acc, a) => {
-    const d = a.devise || 'EUR'
-    acc[d] = (acc[d] || 0) + (a.prix || 0) + (a.frais_port || 0)
+    const total = (a.prix || 0) + (a.frais_port || 0)
+    const e = toEur(total, a.devise, rates)
+    const d = e === null ? (a.devise || 'EUR') : 'EUR'
+    acc[d] = (acc[d] || 0) + (e === null ? total : e)
     return acc
   }, {})
   const spentLabel = Object.entries(spent).map(([d, v]) => money(v, d)).join(' + ') || money(0, 'EUR')
@@ -133,16 +152,16 @@ export default function MesAchatsView({ conn, rows, busy, msg, now, confirmOut, 
                       <div className="ma-body">
                         <div className="ma-title">{r.titre}</div>
                         <div className="ma-line">
-                          <span className="da-num ma-price">{money(r.prix_actuel, r.devise)}</span>
+                          <span className="da-num ma-price">{P(r.prix_actuel, r.devise).main}</span>{P(r.prix_actuel, r.devise).sub && <span className="ma-meta">{P(r.prix_actuel, r.devise).sub}</span>}
                           {r.en_tete === true && <span className="ma-tag ok">En tête</span>}
                           {r.en_tete === false && <span className="ma-tag ko">Surenchéri</span>}
                         </div>
                         <div className="ma-meta">
-                          {r.ma_mise_max !== null && <>Ma mise max : {money(r.ma_mise_max, r.devise)} · </>}
+                          {r.ma_mise_max !== null && <>Ma mise max : {P(r.ma_mise_max, r.devise).main} ·</>}
                           {r.nb_encheres !== null && <>{r.nb_encheres} enchère{r.nb_encheres > 1 ? 's' : ''}</>}
                         </div>
                         <div className={`ma-clock${t.urgent ? ' urgent' : ''}`}>⏱ {t.over ? 'Terminée — résultat à la prochaine actualisation' : `Fin dans ${t.text}`}</div>
-                        <div className="ma-links">{r.lien && <a href={r.lien} target="_blank" rel="noopener noreferrer">Voir l’annonce</a>}</div>
+                        <div className="ma-links">{annonceUrl(r, tld) && <a href={annonceUrl(r, tld)!} target="_blank" rel="noopener noreferrer">Voir l’annonce</a>}</div>
                       </div>
                     </article>
                   )
@@ -163,8 +182,9 @@ export default function MesAchatsView({ conn, rows, busy, msg, now, confirmOut, 
                     <div className="ma-body">
                       <div className="ma-title">{r.titre}</div>
                       <div className="ma-line">
-                        <span className="da-num ma-price">{money(r.prix, r.devise)}</span>
-                        {r.frais_port !== null && r.frais_port > 0 && <span className="ma-meta">+ {money(r.frais_port, r.devise)} de port</span>}
+                        <span className="da-num ma-price">{P(r.prix, r.devise).main}</span>
+                        {P(r.prix, r.devise).sub && <span className="ma-meta">{P(r.prix, r.devise).sub}</span>}
+                        {r.frais_port !== null && r.frais_port > 0 && <span className="ma-meta">+ {P(r.frais_port, r.devise).main} de port</span>}
                       </div>
                       <div className="ma-meta">{r.vendeur ? <>Vendeur : {r.vendeur}{r.vendeur_note !== null ? ` (${r.vendeur_note.toLocaleString('fr-FR')})` : ''}</> : null}{r.achete_at ? ` · acheté le ${day(r.achete_at)}` : ''}</div>
                       <div className="ma-steps">
@@ -172,8 +192,8 @@ export default function MesAchatsView({ conn, rows, busy, msg, now, confirmOut, 
                         <Step done={!!r.expedie_at} label={r.expedie_at ? 'Expédié' : r.paye_at ? 'En attente d’expédition' : 'Expédition'} sub={day(r.expedie_at)} />
                       </div>
                       <div className="ma-links">
-                        {r.lien && <a href={r.lien} target="_blank" rel="noopener noreferrer">Voir l’annonce</a>}
-                        {r.lien_commande && (r.expedie_at || r.paye_at) && <a href={r.lien_commande} target="_blank" rel="noopener noreferrer">Suivre le colis</a>}
+                        {annonceUrl(r, tld) && <a href={annonceUrl(r, tld)!} target="_blank" rel="noopener noreferrer">Voir l’annonce</a>}
+                        {commandeUrl(r, tld) && (r.expedie_at || r.paye_at) && <a href={commandeUrl(r, tld)!} target="_blank" rel="noopener noreferrer">Suivre le colis</a>}
                       </div>
                     </div>
                   </article>
@@ -193,9 +213,9 @@ export default function MesAchatsView({ conn, rows, busy, msg, now, confirmOut, 
                       <Photo r={r} />
                       <div className="ma-body">
                         <div className="ma-title">{r.titre}</div>
-                        <div className="ma-line"><span className="da-num ma-price">{money(r.prix_actuel, r.devise)}</span></div>
+                        <div className="ma-line"><span className="da-num ma-price">{P(r.prix_actuel, r.devise).main}</span>{P(r.prix_actuel, r.devise).sub && <span className="ma-meta">{P(r.prix_actuel, r.devise).sub}</span>}</div>
                         {r.fin_at && <div className={`ma-clock${t.urgent ? ' urgent' : ''}`}>⏱ {t.over ? 'Terminée' : `Fin dans ${t.text}`}</div>}
-                        <div className="ma-links">{r.lien && <a href={r.lien} target="_blank" rel="noopener noreferrer">Voir l’annonce</a>}</div>
+                        <div className="ma-links">{annonceUrl(r, tld) && <a href={annonceUrl(r, tld)!} target="_blank" rel="noopener noreferrer">Voir l’annonce</a>}</div>
                       </div>
                     </article>
                   )
