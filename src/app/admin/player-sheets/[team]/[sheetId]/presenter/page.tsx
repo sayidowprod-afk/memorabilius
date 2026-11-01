@@ -9,6 +9,8 @@ import TeamBadge from '@/components/TeamBadge'
 import type { CardMeta } from '@/app/api/admin/player-sheets-card-search/route'
 import TeamHistory from '@/components/TeamHistory'
 import type { TeamStint } from '@/lib/espnHeadshot'
+import { fdlcFont } from '@/lib/fdlcFont'
+import { FDLC_BLUE, FDLC_RED, FDLC_NAVY } from '@/lib/fdlcBranding'
 
 interface Sheet {
   player_name: string
@@ -31,15 +33,17 @@ function flagImgUrl(code: string | null | undefined): string | null {
   return `https://flagcdn.com/w80/${c}.png`
 }
 
-function StatCard({ label, value, accent }: { label: string; value: string; accent: string }) {
+// Charte du podcast Fédération de la Carte (bleu / rouge / blanc, typo impact) : la page est capturée
+// dans le grand cadre de l'habillage du podcast, donc elle n'utilise plus les couleurs de l'équipe.
+function StatCard({ label, value }: { label: string; value: string }) {
   return (
     <div style={{
-      background: 'rgba(255,255,255,0.045)', border: '1px solid rgba(255,255,255,0.08)', borderRadius: 16,
+      background: '#fff', borderRadius: 14,
       padding: '18px 20px', position: 'relative', overflow: 'hidden',
     }}>
-      <div style={{ position: 'absolute', top: 0, left: 0, right: 0, height: 3, background: accent }} />
-      <div style={{ fontSize: 12, fontWeight: 800, letterSpacing: 1.8, textTransform: 'uppercase', color: 'rgba(255,255,255,0.45)', marginBottom: 6 }}>{label}</div>
-      <div style={{ fontSize: 38, fontWeight: 900, color: '#fff', lineHeight: 1, fontVariantNumeric: 'tabular-nums' }}>{value}</div>
+      <div style={{ position: 'absolute', top: 0, left: 0, right: 0, height: 6, background: FDLC_RED }} />
+      <div className={fdlcFont.className} style={{ fontSize: 13, letterSpacing: 1.6, textTransform: 'uppercase', color: FDLC_BLUE, marginBottom: 6, marginTop: 4 }}>{label}</div>
+      <div className={fdlcFont.className} style={{ fontSize: 42, color: FDLC_NAVY, lineHeight: 1, fontVariantNumeric: 'tabular-nums' }}>{value}</div>
     </div>
   )
 }
@@ -139,11 +143,7 @@ export default function PlayerSheetPresenterPage() {
   return (
     <div style={{
       position: 'fixed', inset: 0, zIndex: 999999, overflow: 'auto', color: '#fff',
-      background: `
-        radial-gradient(1100px 700px at 12% -10%, ${team.color}3d, transparent 60%),
-        radial-gradient(900px 600px at 105% 110%, ${team.color}26, transparent 55%),
-        linear-gradient(160deg, #05070c 0%, #0a0d16 55%, #05070c 100%)
-      `,
+      background: FDLC_BLUE, boxShadow: `inset 0 0 0 5px ${FDLC_RED}`,
     }}>
       <Link href={`/admin/player-sheets/${teamAbbr}/${sheetId}`} style={{
         position: 'fixed', top: 20, right: 24, width: 42, height: 42, borderRadius: '50%',
@@ -181,7 +181,7 @@ export default function PlayerSheetPresenterPage() {
             <div style={{
               position: 'absolute', left: '50%', bottom: -20, transform: 'translateX(-50%)',
               width: '78%', height: 40, borderRadius: '50%',
-              background: `radial-gradient(ellipse, ${team.color}55, transparent 72%)`, filter: 'blur(6px)',
+              background: 'radial-gradient(ellipse, rgba(0,0,0,0.45), transparent 72%)', filter: 'blur(6px)',
             }} />
             {sheet.card_image_recto && (
               <Card3DInline
@@ -189,13 +189,13 @@ export default function PlayerSheetPresenterPage() {
                 front={sheet.card_image_recto_hd || sheet.card_image_recto}
                 back={sheet.card_image_verso_hd || sheet.card_image_verso || undefined}
                 isHorizontal={sheet.card_is_horizontal}
-                accent={team.color}
+                accent={FDLC_RED}
                 maxWidth={520}
               />
             )}
           </div>
           {sheet.card_meta && (sheet.card_meta.brand || sheet.card_meta.year || sheet.card_meta.number || sheet.card_meta.owner) && (
-            <div style={{ fontSize: 12.5, color: 'rgba(255,255,255,0.4)', marginTop: 10, textAlign: 'center' }}>
+            <div style={{ fontSize: 12.5, color: 'rgba(255,255,255,0.75)', marginTop: 10, textAlign: 'center' }}>
               {[sheet.card_meta.brand, sheet.card_meta.year, sheet.card_meta.number ? `#${sheet.card_meta.number}` : null].filter(Boolean).join(' · ')}
               {sheet.card_meta.owner && <span> · Collection de {sheet.card_meta.owner}</span>}
             </div>
@@ -204,16 +204,19 @@ export default function PlayerSheetPresenterPage() {
 
         <div style={{ maxWidth: 580, width: '100%', display: 'flex', flexDirection: 'column', gap: 28 }}>
           <div>
-            <div style={{ display: 'flex', alignItems: 'center', gap: 10, marginBottom: 14 }}>
-              <TeamBadge teamId={team.id} size={30} />
-              <div style={{ fontSize: 13, fontWeight: 800, letterSpacing: 3, textTransform: 'uppercase', color: 'rgba(255,255,255,0.5)' }}>{team.name}</div>
+            <div style={{
+              display: 'inline-flex', alignItems: 'center', gap: 10, marginBottom: 16,
+              background: FDLC_RED, borderRadius: 999, padding: '6px 18px 6px 8px',
+            }}>
+              <span style={{ background: '#fff', borderRadius: '50%', width: 34, height: 34, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                <TeamBadge teamId={team.id} size={26} />
+              </span>
+              <div className={fdlcFont.className} style={{ fontSize: 15, letterSpacing: 2.5, textTransform: 'uppercase', color: '#fff' }}>{team.name}</div>
             </div>
             <div style={{ display: 'flex', alignItems: 'center', gap: 16 }}>
               {flag && <img src={flag} alt="" style={{ width: 46, height: 34, objectFit: 'cover', borderRadius: 5, flexShrink: 0 }} />}
-              <div style={{
-                fontSize: 'clamp(36px, 5.2vw, 58px)', fontWeight: 900, lineHeight: 1.25, paddingBottom: 4, letterSpacing: -1,
-                background: `linear-gradient(135deg, #fff 40%, ${team.color})`,
-                WebkitBackgroundClip: 'text', backgroundClip: 'text', color: 'transparent',
+              <div className={fdlcFont.className} style={{
+                fontSize: 'clamp(36px, 5.2vw, 62px)', lineHeight: 1.1, paddingBottom: 4, textTransform: 'uppercase', color: '#fff',
               }}>
                 {sheet.player_name}
               </div>
@@ -222,11 +225,10 @@ export default function PlayerSheetPresenterPage() {
               <div style={{ display: 'flex', flexWrap: 'wrap', gap: 8, marginTop: 14 }}>
                 {infoBadges.map(b => (
                   <span key={b.label} style={{
-                    fontSize: 14, fontWeight: 700, color: 'rgba(255,255,255,0.85)',
-                    background: 'rgba(255,255,255,0.08)', border: '1px solid rgba(255,255,255,0.1)',
-                    borderRadius: 999, padding: '6px 14px',
+                    fontSize: 14, fontWeight: 700, color: FDLC_NAVY,
+                    background: '#fff', borderRadius: 999, padding: '6px 14px',
                   }}>
-                    <span style={{ color: 'rgba(255,255,255,0.5)', fontWeight: 800 }}>{b.label} : </span>{b.value}
+                    <span style={{ color: FDLC_RED, fontWeight: 800 }}>{b.label} : </span>{b.value}
                   </span>
                 ))}
               </div>
@@ -235,21 +237,21 @@ export default function PlayerSheetPresenterPage() {
 
           {stats.length > 0 && (
             <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(130px, 1fr))', gap: 12 }}>
-              {stats.map(s => <StatCard key={s.label} {...s} accent={team.color} />)}
+              {stats.map(s => <StatCard key={s.label} {...s} />)}
             </div>
           )}
 
           {Array.isArray(sheet.team_history) && sheet.team_history.length > 1 && (
             <div>
-              <div style={{ fontSize: 12, fontWeight: 800, letterSpacing: 1.8, textTransform: 'uppercase', color: 'rgba(255,255,255,0.45)', marginBottom: 10 }}>Parcours</div>
+              <div className={fdlcFont.className} style={{ fontSize: 14, letterSpacing: 1.8, textTransform: 'uppercase', color: '#fff', marginBottom: 10 }}>Parcours</div>
               <TeamHistory history={sheet.team_history} variant="dark" />
             </div>
           )}
 
           {sheet.stat_autres && (
             <div style={{
-              fontSize: 18, fontWeight: 700, color: 'rgba(255,255,255,0.9)',
-              borderLeft: `3px solid ${team.color}`, paddingLeft: 16,
+              fontSize: 18, fontWeight: 700, color: '#fff',
+              borderLeft: `5px solid ${FDLC_RED}`, paddingLeft: 16,
             }}>
               {sheet.stat_autres}
             </div>
@@ -257,9 +259,9 @@ export default function PlayerSheetPresenterPage() {
 
           {sheet.notes && (
             <div style={{
-              fontSize: 17, lineHeight: 1.55, color: 'rgba(255,255,255,0.8)', fontStyle: 'italic',
-              background: 'rgba(255,255,255,0.045)', border: '1px solid rgba(255,255,255,0.08)',
-              borderRadius: 16, padding: '20px 24px', whiteSpace: 'pre-wrap',
+              fontSize: 17, lineHeight: 1.55, color: FDLC_NAVY, fontStyle: 'italic',
+              background: '#fff', borderLeft: `6px solid ${FDLC_RED}`,
+              borderRadius: 14, padding: '20px 24px', whiteSpace: 'pre-wrap',
             }}>
               {sheet.notes}
             </div>
