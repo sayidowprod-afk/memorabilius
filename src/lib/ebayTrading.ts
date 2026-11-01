@@ -182,7 +182,7 @@ export function parseBuying($: CheerioAPI, myEbayId?: string | null): BuyingSnap
   const root = $('GetMyeBayBuyingResponse').first() as El
 
   const bids: EbayArticle[] = []
-  at(root, 'BidList/ItemArray').children('Item').each((_, n) => {
+  at(root, 'BidList').find('ItemArray > Item').each((_, n) => {
     const item = $(n) as El
     const a = baseFromItem(item, 'enchere')
     if (!a) return
@@ -194,7 +194,8 @@ export function parseBuying($: CheerioAPI, myEbayId?: string | null): BuyingSnap
   })
 
   const won: EbayArticle[] = []
-  at(root, 'WonList').children('OrderTransaction').each((_, n) => {
+  // WonList > OrderTransactionArray > OrderTransaction (structure constatée sur un vrai compte) ; find couvre aussi une liste directe
+  at(root, 'WonList').find('OrderTransaction').each((_, n) => {
     const ot = $(n) as El
     const order = at(ot, 'Order')
     const orderId = order.length ? text(order, 'OrderID') : null
