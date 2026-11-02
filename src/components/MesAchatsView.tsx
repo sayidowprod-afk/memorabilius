@@ -732,3 +732,5 @@ const CSS = `
   .ma-sort { margin-left: 0; }
 }
 `
+
+export const MA_CSS = CSS

@@ -17,7 +17,10 @@ export async function POST(req: NextRequest) {
     try { await revokeToken(decryptToken(conn.token_chiffre)) } catch { /* déjà révoqué ou expiré : sans importance */ }
   }
   await supabaseAdmin.from('ebay_connexions').delete().eq('user_id', user.id)
-  if (body?.deleteData) await supabaseAdmin.from('achats_membre').delete().eq('user_id', user.id).eq('source', 'ebay')
+  if (body?.deleteData) {
+    await supabaseAdmin.from('achats_membre').delete().eq('user_id', user.id).eq('source', 'ebay')
+    await supabaseAdmin.from('ventes_membre').delete().eq('user_id', user.id).eq('source', 'ebay')
+  }
   else await supabaseAdmin.from('achats_membre').delete().eq('user_id', user.id).eq('source', 'ebay').in('type', ['enchere', 'suivi'])
   return NextResponse.json({ ok: true })
 }

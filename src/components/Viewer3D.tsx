@@ -2135,7 +2135,8 @@ export default function Viewer3D({ popup, accent, onClose, onNext, onPrev, getTa
                 </>
               )}
               {isOwner && popup.id_manuelle && onPriceChange && (
-                <MarketplacePriceField cardId={popup.id_manuelle} price={popup.prix_vente} onSaved={p => onPriceChange(popup, p)} />
+                <MarketplacePriceField cardId={popup.id_manuelle} price={popup.prix_vente} onSaved={p => onPriceChange(popup, p)}
+                  suggest={{ name: popup.n, set: `${popup.br} ${popup.s}`.trim(), year: popup.y, num: popup.num, variant: popup.v, rc: popup.rc, auto: popup.auto, patch: popup.patch, grade: popup.g, img: popup.f }} />
               )}
             </div>
             {(popup.lien_vinted || popup.lien_ebay) && (

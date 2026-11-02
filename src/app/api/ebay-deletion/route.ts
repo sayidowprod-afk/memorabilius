@@ -31,6 +31,7 @@ export async function POST(req: NextRequest) {
     const { data: rows } = await supabase.from('ebay_connexions').select('user_id').ilike('ebay_user_id', username)
     for (const r of rows || []) {
       await supabase.from('achats_membre').delete().eq('user_id', r.user_id).eq('source', 'ebay')
+      await supabase.from('ventes_membre').delete().eq('user_id', r.user_id).eq('source', 'ebay')
       await supabase.from('ebay_connexions').delete().eq('user_id', r.user_id)
     }
   }

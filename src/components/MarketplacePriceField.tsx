@@ -5,20 +5,49 @@ import { useTheme } from '@/lib/ThemeContext'
 import { toast } from '@/lib/toast'
 import { parsePrice } from '@/lib/marketplace'
 
+// Carte décrite pour chercher sa cote (mêmes paramètres que CardValueModule / /api/ebay-sold).
+export type PriceSuggestCard = { name: string; set?: string; year?: string; num?: string; variant?: string; rc?: boolean; auto?: boolean; patch?: boolean; grade?: string; img?: string }
+type Suggestion = { median: number; min: number; max: number; n: number; source: 'sold' | 'active' }
+
 // Prix d'une carte « Vente/Trade » dans le viewer 3D (propriétaire) -- affiché en étiquette sur la carte.
-export default function MarketplacePriceField({ cardId, price, onSaved }: {
+// `suggest` : bouton « Prix conseillé » (médiane des ventes eBay récentes, à défaut des annonces en cours), à la demande
+// pour ne pas consommer le quota eBay à chaque ouverture.
+export default function MarketplacePriceField({ cardId, price, onSaved, suggest }: {
   cardId: string
   price?: number | null
   onSaved: (price: number | null) => void
+  suggest?: PriceSuggestCard
 }) {
   const { dark } = useTheme()
   const [value, setValue] = useState(price != null ? String(price) : '')
   const [busy, setBusy] = useState(false)
+  const [sug, setSug] = useState<null | 'loading' | 'none' | Suggestion>(null)
 
-  useEffect(() => { setValue(price != null ? String(price) : '') }, [cardId, price])
+  useEffect(() => { setValue(price != null ? String(price) : ''); setSug(null) }, [cardId, price])
 
   const parsed = parsePrice(value)
   const valid = parsed !== null
+
+  const askSuggestion = async () => {
+    if (!suggest?.name) return
+    setSug('loading')
+    try {
+      const params = new URLSearchParams({ name: suggest.name })
+      if (suggest.set) params.set('set', suggest.set)
+      if (suggest.year) params.set('year', suggest.year)
+      if (suggest.num) params.set('num', suggest.num)
+      if (suggest.variant) params.set('variant', suggest.variant)
+      if (suggest.rc) params.set('rc', 'true')
+      if (suggest.auto) params.set('auto', 'true')
+      if (suggest.patch) params.set('patch', 'true')
+      if (suggest.grade) params.set('grade', suggest.grade)
+      if (suggest.img) params.set('img', suggest.img)
+      const json = await (await fetch(`/api/ebay-sold?${params.toString()}`)).json()
+      const pool: Array<{ price: number }> = json.priceSource === 'sold' ? json.sold : json.priceSource === 'active' ? json.active : []
+      if (!pool?.length || !(json.median > 0)) { setSug('none'); return }
+      setSug({ median: Math.round(json.median), min: Math.round(json.min), max: Math.round(json.max), n: pool.length, source: json.priceSource })
+    } catch { setSug('none') }
+  }
 
   const save = async (next: number | null) => {
     setBusy(true)
@@ -55,7 +84,27 @@ export default function MarketplacePriceField({ cardId, price, onSaved }: {
             Retirer
           </button>
         )}
+        {suggest?.name && (
+          <button type="button" disabled={sug === 'loading'} onClick={askSuggestion}
+            style={{ padding: '10px 14px', borderRadius: 8, border: `1px solid ${border}`, background: 'transparent', color: dark ? '#ddd' : '#555', fontWeight: 700, fontSize: 13, cursor: 'pointer' }}>
+            {sug === 'loading' ? 'Recherche…' : '💡 Prix conseillé'}
+          </button>
+        )}
       </div>
+      {sug === 'none' && <div style={{ marginTop: 8, fontSize: 12, color: dark ? '#aaa' : '#666' }}>Pas assez d’annonces ou de ventes trouvées pour cette carte : fixe ton prix à la main.</div>}
+      {sug && typeof sug === 'object' && (
+        <div style={{ marginTop: 8, fontSize: 12, lineHeight: 1.5, color: dark ? '#ddd' : '#333' }}>
+          <b>{sug.source === 'sold' ? 'Médiane des ventes récentes' : 'Médiane des annonces en cours'} : {sug.median} €</b>{' '}
+          <span style={{ color: dark ? '#aaa' : '#666' }}>({sug.n} {sug.source === 'sold' ? `vente${sug.n > 1 ? 's' : ''}` : `annonce${sug.n > 1 ? 's' : ''}`} · de {sug.min} € à {sug.max} €)</span>
+          {sug.source === 'active' && <div style={{ color: dark ? '#aaa' : '#666' }}>Ce sont des prix demandés par des vendeurs, pas des ventes conclues : vise un peu en dessous pour vendre vite.</div>}
+          <div style={{ marginTop: 6 }}>
+            <button type="button" onClick={() => setValue(String(sug.median))}
+              style={{ padding: '6px 12px', borderRadius: 8, border: '1px solid #003DA6', background: 'transparent', color: '#003DA6', fontWeight: 800, fontSize: 12, cursor: 'pointer' }}>
+              Utiliser {sug.median} €
+            </button>
+          </div>
+        </div>
+      )}
     </div>
   )
 }

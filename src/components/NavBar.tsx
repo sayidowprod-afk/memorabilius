@@ -141,7 +141,7 @@ export default function Navbar() {
   // Indicateur de section active — soulignement anime (transition color) plutot
   // qu'un changement instantane, comme un onglet actif.
   const COMMUNAUTE_PATHS = ['/annuaire', '/teams', '/trades', '/evenements', '/activite']
-  const OUTILS_PATHS = ['/scanner', '/gradation', '/setlist', '/guides', '/recherche', '/tuto']
+  const OUTILS_PATHS = ['/scanner', '/gradation', '/setlist', '/guides', '/recherche', '/tuto', '/mes-achats', '/mes-ventes']
   const communauteActive = COMMUNAUTE_PATHS.some(p => pathname.startsWith(p))
   const outilsActive = OUTILS_PATHS.some(p => pathname.startsWith(p))
   const navUnderline = (active: boolean): React.CSSProperties => ({
@@ -193,7 +193,9 @@ export default function Navbar() {
               <div style={{ position: 'absolute', top: 56, left: 0, background: dropBg, border: `1px solid ${dropBorder}`, borderRadius: 12, padding: 6, boxShadow: '0 8px 24px rgba(0,0,0,0.12)', minWidth: 160, zIndex: 300 }}>
                 <Link href="/scanner" style={dropItemStyle} onClick={closeDrop}>📷 {t('nav_scanner')}</Link>
                 {user && <Link href="/mes-achats" style={dropItemStyle} onClick={closeDrop}>🛒 Mes achats</Link>}
+                {user && <Link href="/mes-ventes" style={dropItemStyle} onClick={closeDrop}>💰 Mes ventes</Link>}
                 <Link href="/gradation" style={dropItemStyle} onClick={closeDrop}>🔍 {t('nav_gradation')}</Link>
+                {user && <Link href="/gradation/suivi" style={dropItemStyle} onClick={closeDrop}>📮 Suivi gradation</Link>}
                 <Link href="/setlist" style={dropItemStyle} onClick={closeDrop}>📋 {t('nav_setlist')}</Link>
                 <Link href="/guides" style={dropItemStyle} onClick={closeDrop}>📖 {t('nav_guides')}</Link>
                 {/* Pas de lien Recherche ici en desktop : la loupe du header le remplace.
@@ -279,7 +281,9 @@ export default function Navbar() {
           <div style={{ fontSize: 10, fontWeight: 800, textTransform: 'uppercase', color: '#999', letterSpacing: 1, padding: '16px 0 4px' }}>{t('nav_outils')}</div>
           <Link href="/scanner" style={ls} onClick={() => setMenuOpen(false)}>📷 {t('nav_scanner')}</Link>
           {user && <Link href="/mes-achats" style={ls} onClick={() => setMenuOpen(false)}>🛒 Mes achats</Link>}
+          {user && <Link href="/mes-ventes" style={ls} onClick={() => setMenuOpen(false)}>💰 Mes ventes</Link>}
           <Link href="/gradation" style={ls} onClick={() => setMenuOpen(false)}>🔍 {t('nav_gradation')}</Link>
+          {user && <Link href="/gradation/suivi" style={ls} onClick={() => setMenuOpen(false)}>📮 Suivi gradation</Link>}
           <Link href="/setlist" style={ls} onClick={() => setMenuOpen(false)}>📋 {t('nav_setlist')}</Link>
           <Link href="/guides" style={ls} onClick={() => setMenuOpen(false)}>📖 {t('nav_guides')}</Link>
           <Link href="/recherche" style={ls} onClick={() => setMenuOpen(false)}>{t('nav_recherche')}</Link>

@@ -255,3 +255,90 @@ export async function getMyBuying(token: string, myEbayId?: string | null): Prom
     `<BidList>${page}</BidList><WonList><Include>true</Include><DurationInDays>60</DurationInDays></WonList><WatchList>${page}</WatchList>`, token)
   return parseBuying($, myEbayId)
 }
+
+// ── Lecture des ventes (côté vendeur) ─────────────────────────────────────────────────────────────────────────────
+
+export type EbayVente = {
+  ref: string                       // identifiant de la commande
+  order_id: string
+  item_id: string | null
+  titre: string | null
+  acheteur: string | null
+  devise: string | null
+  prix: number | null               // articles
+  port_facture: number | null       // port payé par l'acheteur
+  total_encaisse: number | null     // total payé par l'acheteur
+  frais: number | null              // commission eBay (somme des « frais de valeur finale » des articles), si eBay la renseigne
+  vendu_at: string | null
+  paye_at: string | null
+  expedie_at: string | null
+  lien: string | null
+  lien_commande: string | null
+}
+
+// Transforme la réponse XML de GetOrders (rôle vendeur). Séparée de l'appel réseau pour pouvoir être testée sur un exemple.
+export function parseSales($: CheerioAPI): { ventes: EbayVente[]; hasMore: boolean } {
+  const root = $('GetOrdersResponse').first() as El
+  const ventes: EbayVente[] = []
+  at(root, 'OrderArray').children('Order').each((_, n) => {
+    const order = $(n) as El
+    const status = text(order, 'OrderStatus')
+    if (status && /^(Cancelled|CancelPending|Inactive|Invalid)$/i.test(status)) return
+    const orderId = text(order, 'OrderID')
+    if (!orderId) return
+    const trs = at(order, 'TransactionArray').children('Transaction')
+    const first = trs.first() as El
+    const itemId = first.length ? text(first, 'Item/ItemID') : null
+    const titles: string[] = []
+    let fees = 0, hasFees = false
+    trs.each((__, tn) => {
+      const tr = $(tn) as El
+      const t = text(tr, 'Item/Title')
+      if (t) titles.push(t)
+      const f = num(tr, 'FinalValueFee')
+      if (f !== null) { fees += f; hasFees = true }
+    })
+    const total = num(order, 'Total') ?? num(order, 'AmountPaid')
+    const site = first.length ? text(first, 'Item/Site') : null
+    ventes.push({
+      ref: orderId, order_id: orderId, item_id: itemId,
+      titre: titles.length ? titles[0] + (titles.length > 1 ? ` + ${titles.length - 1} autre${titles.length > 2 ? 's' : ''}` : '') : null,
+      acheteur: text(order, 'BuyerUserID') ?? (first.length ? text(first, 'Buyer/UserID') : null),
+      devise: cur(order, 'Total') || cur(order, 'AmountPaid'),
+      prix: num(order, 'Subtotal'),
+      port_facture: num(order, 'ShippingServiceSelected/ShippingServiceCost'),
+      total_encaisse: total,
+      frais: hasFees ? Math.round(fees * 100) / 100 : null,
+      vendu_at: iso(order, 'CreatedTime'), paye_at: iso(order, 'PaidTime'), expedie_at: iso(order, 'ShippedTime'),
+      lien: itemId ? itemLink(itemId, site) : null,
+      lien_commande: `https://www.ebay.${tld(site)}/sh/ord/details?orderid=${encodeURIComponent(orderId)}`,
+    })
+  })
+  return { ventes, hasMore: $('HasMoreOrders').first().text() === 'true' }
+}
+
+// Ventes des `days` derniers jours. GetOrders limite chaque appel à 90 jours : on enchaîne les fenêtres, et on pagine.
+export async function getMySales(token: string, days: number): Promise<EbayVente[]> {
+  const out = new Map<string, EbayVente>()
+  const DAY = 86400000, now = Date.now()
+  for (let w = 0; w * 90 < days; w++) {
+    const from = new Date(now - Math.min(days, (w + 1) * 90) * DAY).toISOString()
+    const to = new Date(now - w * 90 * DAY).toISOString()
+    for (let page = 1; page <= 6; page++) {
+      const $ = await trading('GetOrders',
+        `<DetailLevel>ReturnAll</DetailLevel><CreateTimeFrom>${from}</CreateTimeFrom><CreateTimeTo>${to}</CreateTimeTo><OrderRole>Seller</OrderRole><OrderStatus>All</OrderStatus><Pagination><EntriesPerPage>100</EntriesPerPage><PageNumber>${page}</PageNumber></Pagination>`, token)
+      const { ventes, hasMore } = parseSales($)
+      for (const v of ventes) out.set(v.ref, v)
+      if (!hasMore) break
+    }
+  }
+  return [...out.values()]
+}
+
+// Photo d'une annonce terminée (GetOrders n'en renvoie pas) : un appel par article, utilisé avec parcimonie.
+export async function getItemPhoto(token: string, itemId: string): Promise<string | null> {
+  try {
+    const $ = await trading('GetItem', `<ItemID>${esc(itemId)}</ItemID><OutputSelector>PictureDetails</OutputSelector>`, token)
+    return bigPhoto($('PictureDetails > GalleryURL').first().text() || $('PictureDetails > PictureURL').first().text() || null)
+  } catch { return null }
+}

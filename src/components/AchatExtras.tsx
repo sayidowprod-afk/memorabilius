@@ -70,7 +70,7 @@ export function MesAchatsSkeleton() {
 }
 
 // ── Panneau « Détails » d'un achat ──────────────────────────────────────────
-export type Compare = { median: number; n: number }
+export type Compare = { median: number; n: number; source: 'sold' | 'active' }
 const TAG_IDEAS = ['à-grader', 'revendre', 'cadeau', 'à-vérifier']
 
 export function DetailsPanel({ row, ids, priceEur, onPatch, onCompare, onClose }: {
@@ -147,10 +147,10 @@ export function DetailsPanel({ row, ids, priceEur, onPatch, onCompare, onClose }
       {onCompare && row.titre && (
         <div className="ma-det-row">
           <button type="button" className="ma-btn ghost" disabled={cmp === 'loading'} onClick={compare}>{cmp === 'loading' ? 'Recherche des ventes…' : 'Comparer au marché'}</button>
-          {cmp === 'none' && <div className="ma-meta">Pas assez de ventes récentes trouvées pour cette annonce.</div>}
+          {cmp === 'none' && <div className="ma-meta">Pas assez de ventes ni d’annonces trouvées pour cette carte.</div>}
           {cmp && typeof cmp === 'object' && (
             <div className="ma-cmp">
-              <div>Médiane des ventes récentes : <b>{money(cmp.median)}</b> <span className="ma-meta">({cmp.n} vente{cmp.n > 1 ? 's' : ''})</span></div>
+              <div>{cmp.source === 'sold' ? 'Médiane des ventes récentes' : 'Médiane des annonces en cours'} : <b>{money(cmp.median)}</b> <span className="ma-meta">({cmp.n} {cmp.source === 'sold' ? 'vente' : 'annonce'}{cmp.n > 1 ? 's' : ''}{cmp.source === 'active' ? ' · prix demandés, pas des ventes conclues' : ''})</span></div>
               {diff !== null && (
                 <div className={`ma-verdict ${diff <= -10 ? 'ok' : diff >= 10 ? 'ko' : ''}`}>
                   {diff <= -10 ? `Bonne affaire : ${Math.abs(diff)} % sous le marché` : diff >= 10 ? `${diff} % au-dessus du marché` : 'Dans le prix du marché'}

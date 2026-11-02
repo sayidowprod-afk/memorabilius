@@ -195,16 +195,17 @@ export default function MesAchats() {
   const addTags = (ids: string[], tags: string[]) => call('/api/achats/perso', { ids, addTags: tags })
   const toCollection = (ids: string[]) => call('/api/achats/collection', { ids })
 
-  // « Comparer au marché » : médiane des ventes eBay récentes pour une annonce (recherche libre sur le titre)
+  // « Comparer au marché » : médiane des ventes eBay récentes (ou des annonces en cours) pour une annonce (recherche libre sur le titre)
   const compare = async (titre: string): Promise<Compare | null> => {
     try {
       const q = titre.replace(/[^\p{L}\p{N}\s#/-]/gu, ' ').replace(/\s+/g, ' ').trim().slice(0, 90)
       const res = await fetch(`/api/ebay-sold?q=${encodeURIComponent(q)}`)
       const json = await res.json()
-      const prices: number[] = (json.sold || []).map((i: { price: number }) => Number(i.price)).filter((p: number) => p > 0).sort((a: number, b: number) => a - b)
-      if (!prices.length) return null
-      const mid = Math.floor(prices.length / 2)
-      return { median: Math.round((prices.length % 2 ? prices[mid] : (prices[mid - 1] + prices[mid]) / 2) * 100) / 100, n: prices.length }
+      // la route renvoie la médiane des ventes, ou à défaut celle des annonces en cours (les ventes conclues sont souvent indisponibles)
+      const source = json.priceSource === 'sold' ? 'sold' : json.priceSource === 'active' ? 'active' : null
+      const pool = source === 'sold' ? json.sold : source === 'active' ? json.active : []
+      if (!source || !pool?.length || !(json.median > 0)) return null
+      return { median: Math.round(json.median * 100) / 100, n: pool.length, source }
     } catch { return null }
   }
 
