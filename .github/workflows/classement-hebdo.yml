@@ -15,7 +15,7 @@ permissions:
 jobs:
   garde:
     # Deux horaires par jour (le planificateur de GitHub saute ou retarde parfois un lancement) :
-    # si l'envoi du jour a déjà réussi, le second lancement ne fait rien. Un lancement manuel n'est jamais bloqué.
+    # si un envoi du jour a déjà réussi (planifié OU lancé à la main), le lancement planifié suivant ne fait rien. Un lancement manuel n'est jamais bloqué.
     runs-on: ubuntu-latest
     timeout-minutes: 5
     permissions:
@@ -30,7 +30,7 @@ jobs:
         run: |
           deja=false
           if [ "${{ github.event_name }}" = "schedule" ]; then
-            n=$(gh run list --workflow "${{ github.workflow }}" --event schedule --status success --created "$(date -u +%F)" --json databaseId --jq length)
+            n=$(gh run list --workflow "${{ github.workflow }}" --status success --created "$(date -u +%F)" --json databaseId --jq length)
             if [ "${n:-0}" -gt 0 ]; then deja=true; fi
           fi
           echo "deja=$deja" >> "$GITHUB_OUTPUT"

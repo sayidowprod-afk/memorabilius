@@ -30,7 +30,7 @@ jobs:
         run: |
           deja=false
           if [ "${{ github.event_name }}" = "schedule" ]; then
-            n=$(gh run list --workflow "${{ github.workflow }}" --event schedule --status success --created "$(date -u +%F)" --json databaseId --jq length)
+            n=$(gh run list --workflow "${{ github.workflow }}" --status success --created "$(date -u +%F)" --json databaseId --jq length)
             if [ "${n:-0}" -gt 0 ]; then deja=true; fi
           fi
           echo "deja=$deja" >> "$GITHUB_OUTPUT"
