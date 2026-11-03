@@ -2550,6 +2550,10 @@ export default function BinderLibrary({ userId, isOwner, accent, pendingCard, on
                 style={{ padding: isMobile ? '12px 18px' : '8px 14px', fontSize: 13, opacity: !canNext ? 0.4 : 1, flexShrink: 0 }} aria-label={t('binder_next_page')}>
                 <span className="binder-nav-label">{t('binder_next_page')} </span>→
               </button>
+            </div>
+            {/* Outils du propriétaire sur leur propre ligne (avec retour à la ligne) : dans la barre de navigation
+                ci-dessus, ils la faisaient déborder et masquaient « Page précédente » sur mobile. */}
+            <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: isMobile ? 6 : 8, flexWrap: 'wrap', marginTop: 6 }}>
               {isOwner && (() => {
                 const target = rightFace(pageIndex)
                 if (!target) return null
