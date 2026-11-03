@@ -5,8 +5,6 @@ import { ThemeProvider } from '@/lib/ThemeContext'
 import { LangProvider } from '@/lib/LangContext'
 import { AuthProvider } from '@/lib/AuthContext'
 import { NativeProvider } from '@/lib/useIsNative'
-import { Analytics } from '@vercel/analytics/react'
-import { SpeedInsights } from '@vercel/speed-insights/next'
 import TrackView from '@/components/TrackView'
 import NativeInit from '@/components/NativeInit'
 import OfflinePrepare from '@/components/OfflinePrepare'
@@ -114,8 +112,6 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         </ThemeProvider>
         </AuthProvider>
         </NativeProvider>
-        <Analytics />
-        <SpeedInsights />
         <TrackView />
       </body>
     </html>

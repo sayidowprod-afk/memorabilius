@@ -950,8 +950,66 @@ export default function BinderLibrary({ userId, isOwner, accent, pendingCard, on
     }
   }
 
+  // Supprime ou déplace une PAGE entière. `remap` donne la nouvelle page de chaque ancienne page (null = supprimée).
+  // Même RPC atomique que les autres opérations en masse. Les cartes d'une page supprimée quittent seulement le
+  // classeur : elles restent dans la collection.
+  const [managePage, setManagePage] = useState<{ page: number; dest: number } | null>(null)
+  const [pageBusy, setPageBusy] = useState(false)
+  const remapPages = async (remap: (p: number) => number | null, newCount: number) => {
+    if (!selected || pageBusy) return
+    setPageBusy(true)
+    try {
+      const changed = [...slots.values()].filter(s => remap(s.page_number) !== s.page_number)
+      if (changed.length) {
+        const { error } = await supabase.rpc('replace_binder_slots', {
+          p_binder_id: selected.id,
+          p_deletes: changed.map(s => ({ page_number: s.page_number, slot_index: s.slot_index })),
+          p_inserts: changed.filter(s => remap(s.page_number) !== null).map(s => ({
+            binder_id: selected.id, page_number: remap(s.page_number), slot_index: s.slot_index, card_key: s.card_key,
+            img: s.img, img_back: s.img_back, nom: s.nom, is_horizontal: !!s.is_horizontal,
+          })),
+        })
+        if (error) { toast.error(t('binder_error_prefix') + error.message); openBinder(selected); return }
+      }
+      if (newCount !== selected.page_count) {
+        const { error: pcErr } = await supabase.from('binders').update({ page_count: newCount }).eq('id', selected.id)
+        if (pcErr) { toast.error(t('binder_error_prefix') + pcErr.message); openBinder(selected); return }
+      }
+      const next = new Map<string, Slot>()
+      for (const s of slots.values()) {
+        const np = remap(s.page_number)
+        if (np !== null) next.set(slotKey(np, s.slot_index), { ...s, page_number: np })
+      }
+      setSlots(next)
+      setCardCounts(prev => ({ ...prev, [selected.id]: next.size }))
+      setSelected(s => s ? { ...s, page_count: newCount } : s)
+      setBinders(prev => prev.map(b => b.id === selected.id ? { ...b, page_count: newCount } : b))
+      // la page affichée peut ne plus exister après une suppression
+      const maxIdx = isRings ? newCount * 2 : Math.floor(newCount / 2) * 2
+      setPageIndex(i => Math.min(i, maxIdx))
+      setManagePage(null)
+    } finally {
+      setPageBusy(false)
+    }
+  }
+  const deletePage = (k: number) => {
+    if (!selected || selected.page_count <= 1) return
+    const n = [...slots.values()].filter(s => s.page_number === k).length
+    if (!confirm(`Supprimer la page ${k} ?${n ? ` Ses ${n} carte${n > 1 ? 's' : ''} seront retirées du classeur (elles restent dans ta collection).` : ''} Les pages suivantes avancent d'un cran.`)) return
+    remapPages(p => (p === k ? null : p > k ? p - 1 : p), selected.page_count - 1)
+  }
+  const movePage = (a: number, b: number) => {
+    if (!selected || a === b) return
+    remapPages(p => {
+      if (p === a) return b
+      if (a < b && p > a && p <= b) return p - 1
+      if (a > b && p >= b && p < a) return p + 1
+      return p
+    }, selected.page_count)
+  }
+
   // Trie toutes les cartes du classeur et réécrit les slots dans le nouvel ordre
-  const sortBinder = async (by: 'nom_asc' | 'nom_desc' | 'annee_asc' | 'annee_desc' | 'equipe_asc' | 'num_asc' | 'num_desc') => {
+  const sortBinder =async (by: 'nom_asc' | 'nom_desc' | 'annee_asc' | 'annee_desc' | 'equipe_asc' | 'num_asc' | 'num_desc') => {
     if (!selected || sorting) return
     setShowSortMenu(false)
     setSorting(true)
@@ -2503,6 +2561,14 @@ export default function BinderLibrary({ userId, isOwner, accent, pendingCard, on
                   </button>
                 )
               })()}
+              {isOwner && selected && selected.page_count > 1 && (
+                <button onClick={() => { const p = rightFace(pageIndex)?.page ?? leftFace(pageIndex)?.page ?? 1; setManagePage({ page: p, dest: p }) }}
+                  disabled={!!flip || pageBusy} className="btn-main btn-secondary"
+                  title="Déplacer ou supprimer une page entière"
+                  style={{ padding: isMobile ? '12px 16px' : '8px 12px', fontSize: 12, flexShrink: 0 }} aria-label="Gérer les pages">
+                  ↕<span className="binder-nav-label"> Déplacer / supprimer une page</span>
+                </button>
+              )}
               {isOwner && !canNext && (
                 <button onClick={addPage} className="btn-main btn-secondary" style={{ padding: isMobile ? '12px 16px' : '8px 12px', fontSize: 12, flexShrink: 0 }} aria-label={t('binder_add_page')}>
                   +<span className="binder-nav-label"> Ajouter une page</span>
@@ -2513,6 +2579,41 @@ export default function BinderLibrary({ userId, isOwner, accent, pendingCard, on
         )}
       </div>
       )}
+
+      {managePage && selected && (() => {
+        const count = selected.page_count
+        const pages = Array.from({ length: count }, (_, i) => i + 1)
+        const sel: React.CSSProperties = { padding: '9px 10px', fontSize: 14, borderRadius: 8, border: '1px solid var(--border, #ccc)', background: 'var(--surface, #fff)', color: 'var(--text, #111)' }
+        const cardsOn = (k: number) => [...slots.values()].filter(s => s.page_number === k).length
+        return (
+          <div role="dialog" aria-modal="true" aria-label="Gérer les pages" onClick={() => !pageBusy && setManagePage(null)}
+            style={{ position: 'fixed', inset: 0, zIndex: 1000, background: 'rgba(0,0,0,.6)', display: 'flex', alignItems: 'center', justifyContent: 'center', padding: 16 }}>
+            <div onClick={e => e.stopPropagation()} style={{ width: '100%', maxWidth: 380, background: 'var(--bg2, #fff)', color: 'var(--text, #111)', border: '2px solid var(--border, #ccc)', borderRadius: 12, padding: 18, display: 'grid', gap: 14 }}>
+              <div style={{ fontWeight: 800, fontSize: 16 }}>Gérer les pages</div>
+              <label style={{ display: 'grid', gap: 6, fontSize: 13 }}>Page concernée
+                <select value={managePage.page} onChange={e => setManagePage({ page: Number(e.target.value), dest: Number(e.target.value) })} style={sel}>
+                  {pages.map(p => <option key={p} value={p}>Page {p} ({cardsOn(p)} carte{cardsOn(p) > 1 ? 's' : ''})</option>)}
+                </select>
+              </label>
+              <div style={{ display: 'grid', gap: 8 }}>
+                <label style={{ display: 'grid', gap: 6, fontSize: 13 }}>Déplacer vers la position
+                  <select value={managePage.dest} onChange={e => setManagePage({ ...managePage, dest: Number(e.target.value) })} style={sel}>
+                    {pages.map(p => <option key={p} value={p}>Page {p}</option>)}
+                  </select>
+                </label>
+                <button className="btn-main btn-primary" disabled={pageBusy || managePage.dest === managePage.page}
+                  onClick={() => movePage(managePage.page, managePage.dest)}>
+                  Déplacer la page {managePage.page} en position {managePage.dest}
+                </button>
+              </div>
+              <button className="btn-main btn-secondary" disabled={pageBusy} onClick={() => deletePage(managePage.page)} style={{ color: '#ff6b6b' }}>
+                Supprimer la page {managePage.page}
+              </button>
+              <button className="btn-main btn-secondary" disabled={pageBusy} onClick={() => setManagePage(null)}>Fermer</button>
+            </div>
+          </div>
+        )
+      })()}
 
       {pickerTarget && (
         <CardPicker

@@ -172,6 +172,8 @@ export const it = {
   settings_notif_streak_desc: "Un promemoria serale se la tua serie di giorni consecutivi sta per interrompersi",
   settings_notif_winback: 'Richiamo dopo inattività',
   settings_notif_winback_desc: "Un messaggio se non torni da un po'",
+  settings_notif_followed: 'Carte aggiunte da chi seguo',
+  settings_notif_followed_desc: 'Un riepilogo al giorno quando i membri che segui aggiungono carte',
   feedback_title: 'Segnala un bug / suggerimento',
   feedback_desc: "Un problema, un'idea di miglioramento? Diccelo direttamente.",
   settings_support: 'Sostieni il progetto',

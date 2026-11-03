@@ -74,7 +74,6 @@ export default function ConfidentialitePage() {
         <li><strong>Supabase, Inc.</strong> — hébergement de la base de données, des images et de l'authentification. <em>Région : Union Européenne.</em></li>
         <li><strong>Vercel Inc.</strong> — hébergement de l'application et exécution des fonctions serveur (États-Unis).</li>
         <li><strong>Google LLC (API Gemini)</strong> — analyse automatique des <strong>images de cartes</strong> envoyées par l'utilisateur afin d'en extraire les informations (joueur, set, variation…). Seules les images de cartes soumises à l'analyse sont transmises. Il en va de même, à votre demande, pour les <strong>captures d'écran de commandes</strong> (par exemple Vinted) que vous ajoutez dans « Mes achats » : elles servent uniquement à lire le titre, les montants et la date, et ne sont pas conservées par Memorabilius.</li>
-        <li><strong>Vercel Inc. (Vercel Web Analytics &amp; Speed Insights)</strong> — mesure d'audience et de performance du site. Cet outil est <strong>sans cookie</strong> et ne crée pas d'identifiant permettant de vous suivre. Il agrège des données de navigation anonymisées (pages consultées, type d'appareil, pays) sans stocker d'information sur votre appareil.</li>
         <li><strong>eBay</strong> — estimation indicative de la valeur des cartes. Seuls des <strong>mots-clés de recherche</strong> (nom de la carte, année, set…) sont transmis ; <strong>aucune donnée personnelle identifiante</strong> n'est envoyée.</li>
         <li><strong>eBay (compte relié, facultatif)</strong> — si vous reliez votre compte à « Mes achats », Memorabilius lit vos enchères, achats, articles suivis et ventes auprès d'eBay, en lecture seule, avec votre autorisation donnée directement sur eBay.</li>
       </ul>
@@ -121,9 +120,7 @@ export default function ConfidentialitePage() {
         <li><strong>Cookies strictement nécessaires</strong> : gestion de la session et de l'authentification. Ils ne nécessitent pas de consentement.</li>
       </ul>
       <p>
-        Le site utilise par ailleurs un outil de mesure d'audience <strong>sans cookie</strong> (Vercel
-        Web Analytics), qui ne dépose aucun traceur sur votre appareil et ne permet pas de vous
-        identifier. <strong>Aucun cookie publicitaire ou de suivi tiers n'est utilisé</strong>, et le site
+        <strong>Aucun cookie publicitaire ou de suivi tiers n'est utilisé</strong>, et le site
         n'affiche donc pas de bandeau de consentement aux cookies.
       </p>
 

@@ -43,7 +43,7 @@ export default function Parametres() {
   const isNative = useIsNative()
   const [hapticsOn, setHapticsOnState] = useState(true)
   const [userId, setUserId] = useState<string | null>(null)
-  const [notifPrefs, setNotifPrefs] = useState<{ notif_popularity_digest: boolean; notif_streak_warning: boolean; notif_winback: boolean; notif_pref_messages: boolean; notif_pref_trades: boolean; notif_pref_wishlist: boolean; notif_pref_community: boolean } | null>(null)
+  const [notifPrefs, setNotifPrefs] = useState<{ notif_popularity_digest: boolean; notif_streak_warning: boolean; notif_winback: boolean; notif_followed_cards: boolean; notif_pref_messages: boolean; notif_pref_trades: boolean; notif_pref_wishlist: boolean; notif_pref_community: boolean } | null>(null)
 
   useEffect(() => { setHapticsOnState(isHapticsEnabled()) }, [])
   useEffect(() => {
@@ -51,13 +51,13 @@ export default function Parametres() {
       const uid = session?.user.id ?? null
       setUserId(uid)
       if (uid) {
-        supabase.from('profiles').select('notif_popularity_digest, notif_streak_warning, notif_winback, notif_pref_messages, notif_pref_trades, notif_pref_wishlist, notif_pref_community').eq('id', uid).single()
+        supabase.from('profiles').select('notif_popularity_digest, notif_streak_warning, notif_winback, notif_followed_cards, notif_pref_messages, notif_pref_trades, notif_pref_wishlist, notif_pref_community').eq('id', uid).single()
           .then(({ data }) => { if (data) setNotifPrefs(data as any) })
       }
     })
   }, [])
 
-  const toggleNotifPref = (key: 'notif_popularity_digest' | 'notif_streak_warning' | 'notif_winback' | 'notif_pref_messages' | 'notif_pref_trades' | 'notif_pref_wishlist' | 'notif_pref_community') => {
+  const toggleNotifPref = (key: 'notif_popularity_digest' | 'notif_streak_warning' | 'notif_winback' | 'notif_followed_cards' | 'notif_pref_messages' | 'notif_pref_trades' | 'notif_pref_wishlist' | 'notif_pref_community') => {
     if (!notifPrefs || !userId) return
     const next = { ...notifPrefs, [key]: !notifPrefs[key] }
     setNotifPrefs(next)
@@ -185,6 +185,13 @@ export default function Parametres() {
               <div style={rowSub}>{t('settings_notif_winback_desc')}</div>
             </div>
             <Toggle on={notifPrefs.notif_winback} onClick={() => toggleNotifPref('notif_winback')} />
+          </div>
+          <div style={row}>
+            <div>
+              <div style={rowLabel}>{t('settings_notif_followed')}</div>
+              <div style={rowSub}>{t('settings_notif_followed_desc')}</div>
+            </div>
+            <Toggle on={notifPrefs.notif_followed_cards} onClick={() => toggleNotifPref('notif_followed_cards')} />
           </div>
         </div>
       )}

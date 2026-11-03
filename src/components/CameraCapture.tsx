@@ -450,16 +450,30 @@ export default function CameraCapture({ onCapture, onClose, ratio }: Props) {
         // reglage -- resolution par defaut du capteur, mais fiable partout.
         const photoBlob = await withTimeout(imageCaptureRef.current.takePhoto(), 5000)
         if (await isBlackBlob(photoBlob)) throw new Error('black photo')
-        const bmp = await createImageBitmap(photoBlob)
-        sx = bmp.width / vw
-        sy = bmp.height / vh
+        // Orientation EXIF explicite : le defaut de createImageBitmap varie selon la WebView.
+        const bmp = await createImageBitmap(photoBlob, { imageOrientation: 'from-image' })
+        let pw = bmp.width, ph = bmp.height
+        let finalBlob: Blob = photoBlob
+        // Certains appareils renvoient une photo en pixels « capteur » (paysage) sans etiquette de rotation alors
+        // que l'apercu est en portrait : la carte horizontale ressortait alors a la verticale. Si l'orientation de
+        // la photo contredit celle de l'apercu, on la redresse (quart de tour) -- cas rare, sinon photo intacte.
+        if (vw !== vh && (pw > ph) !== (vw > vh)) {
+          const rc = document.createElement('canvas')
+          rc.width = ph; rc.height = pw
+          const rx = rc.getContext('2d')!
+          rx.translate(ph, 0); rx.rotate(Math.PI / 2); rx.drawImage(bmp, 0, 0)
+          const rotated = await new Promise<Blob | null>(resolve => rc.toBlob(resolve, 'image/jpeg', 0.95))
+          if (rotated) { finalBlob = rotated; [pw, ph] = [ph, pw] }
+        }
+        sx = pw / vw
+        sy = ph / vh
         frameRect = { x: frameRect.x * sx, y: frameRect.y * sy, w: frameRect.w * sx, h: frameRect.h * sy }
         bmp.close?.()
         // Pleine resolution renvoyee telle quelle -- un cap ici degraderait
         // aussi l'image finale stockee en galerie (image_recto/HD/Viewer3D),
         // pas seulement ce qui part en reseau (voir scanner/page.tsx pour la
         // seule copie reduite, faite localement juste pour son propre appel).
-        blob = photoBlob
+        blob = finalBlob
       } catch { blob = null }
     }
 
@@ -477,7 +491,7 @@ export default function CameraCapture({ onCapture, onClose, ratio }: Props) {
     // non zoomee). Recadrage en pleine resolution, sans re-echantillonnage.
     if (blob && digitalZoomRef.current && zoomRef.current > 1.001) {
       try {
-        const bmp = await createImageBitmap(blob)
+        const bmp = await createImageBitmap(blob, { imageOrientation: 'from-image' })
         const cx = Math.max(0, Math.round(srcX * sx)), cy = Math.max(0, Math.round(srcY * sy))
         const cw = Math.min(bmp.width - cx, Math.round(srcW * sx)), ch = Math.min(bmp.height - cy, Math.round(srcH * sy))
         if (cw > 50 && ch > 50) {

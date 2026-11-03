@@ -172,6 +172,8 @@ export const es = {
   settings_notif_streak_desc: "Un recordatorio por la noche si tu racha de días consecutivos va a terminar",
   settings_notif_winback: 'Aviso tras inactividad',
   settings_notif_winback_desc: "Un mensaje si no has venido desde hace un tiempo",
+  settings_notif_followed: 'Cartas añadidas por mis seguidos',
+  settings_notif_followed_desc: 'Un resumen diario cuando los miembros que sigues añaden cartas',
   feedback_title: 'Reportar un error / sugerencia',
   feedback_desc: '¿Un problema, una idea de mejora? Cuéntanoslo directamente.',
   settings_support: 'Apoyar el proyecto',
