@@ -1,10 +1,9 @@
 'use client'
 import { useCallback, useEffect, useState } from 'react'
-import type { CardMarket, Seg } from '@/lib/playerCardMarket'
+import { eur, toEur, type CardMarket, type Seg } from '@/lib/playerCardMarket'
 
 // Bloc « Marché des cartes » d'une fiche joueur : catalogue mondial (TCDB) + annonces eBay en cours.
 // Mis en cache sur la fiche ; « Actualiser » relance le calcul. Les prix sont des prix DEMANDÉS (annonces), en dollars.
-const usd = (n: number) => '$' + n.toLocaleString('en-US', { maximumFractionDigits: n < 100 ? 2 : 0 })
 const nf = (n: number) => n.toLocaleString('fr-FR')
 
 export default function CardMarketPanel({ sheetId, getToken, dark, color, labelStyle }: {
@@ -53,6 +52,7 @@ export default function CardMarketPanel({ sheetId, getToken, dark, color, labelS
   const big: React.CSSProperties = { fontSize: 20, fontWeight: 900, lineHeight: 1.1, color }
   const small: React.CSSProperties = { fontSize: 11, color: dark ? '#aaa' : '#777' }
   const c = data?.catalog, m = data?.market
+  const usd = (n: number) => eur(toEur(n, m))
   const seg = (label: string, s: Seg | null | undefined) => (
     <div style={box} key={label}>
       <div style={small}>{label}</div>
@@ -91,12 +91,12 @@ export default function CardMarketPanel({ sheetId, getToken, dark, color, labelS
           {m ? (
             <>
               <div style={{ ...small, fontWeight: 700 }}>
-                eBay · annonces en cours{m.listings != null ? ` (${nf(m.listings)} pour ce joueur)` : ''} · prix médians demandés
+                eBay · annonces en cours{m.listings != null ? ` (${nf(m.listings)} pour ce joueur)` : ''} · prix médians demandés (€)
               </div>
               <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(140px, 1fr))', gap: 8 }}>
                 {seg('Échantillon toutes cartes', m.all)}{seg('RC', m.rc)}{seg('Autos', m.auto)}{seg('Patchs', m.patch)}{seg('PSA 10', m.psa10)}
               </div>
-              <div style={{ ...small, fontStyle: 'italic' }}>Prix demandés par les vendeurs (pas des ventes conclues), en dollars, catégorie Basketball Cards.</div>
+              <div style={{ ...small, fontStyle: 'italic' }}>Prix demandés par les vendeurs (pas des ventes conclues), catégorie Basketball Cards, convertis en euros (eBay US).</div>
             </>
           ) : <div style={small}>Marché eBay indisponible.</div>}
         </div>

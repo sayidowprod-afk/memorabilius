@@ -13,10 +13,27 @@ export type CardMarket = {
     topBrands: Array<{ brand: string; count: number }>
   } | null
   market: {
-    currency: 'USD'
+    currency: 'USD' // les prix mémorisés restent en dollars (eBay US) ; l'affichage les convertit avec usdToEur
+    usdToEur?: number // taux du jour au moment du calcul (absent sur les anciens calculs -> taux par défaut)
     listings: number | null
     all: Seg | null; rc: Seg | null; auto: Seg | null; patch: Seg | null; psa10: Seg | null
   } | null
+}
+
+// ── Euros ────────────────────────────────────────────────────────────────────
+export const DEFAULT_USD_EUR = 0.86
+// Prix affiché en euros : taux enregistré avec les stats (ou taux par défaut pour les anciens calculs).
+export const toEur = (usd: number, m: { usdToEur?: number } | null | undefined) => usd * (m?.usdToEur ?? DEFAULT_USD_EUR)
+export const eur = (n: number) => n.toLocaleString('fr-FR', { style: 'currency', currency: 'EUR', maximumFractionDigits: n < 100 ? 2 : 0 })
+
+// Taux du jour (Banque centrale européenne via frankfurter.app, gratuit, sans clé). Repli sur le taux par défaut.
+async function usdToEurRate(): Promise<number> {
+  try {
+    const r = await fetch('https://api.frankfurter.app/latest?from=USD&to=EUR', { cache: 'no-store', signal: AbortSignal.timeout(4000) })
+    const j = await r.json()
+    const v = Number(j?.rates?.EUR)
+    return Number.isFinite(v) && v > 0.5 && v < 1.5 ? v : DEFAULT_USD_EUR
+  } catch { return DEFAULT_USD_EUR }
 }
 
 const norm = (s: string) => s.toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g, '').replace(/[^a-z0-9 ]/g, ' ').replace(/\s+/g, ' ').trim()
@@ -134,7 +151,7 @@ export async function marketStats(playerName: string): Promise<CardMarket['marke
     search(token, `${name} patch jersey`, t => /patch|jersey|relic|logoman/i.test(t), last),
     search(token, `${name} PSA 10`, t => /psa\s*10/i.test(t), last),
   ])
-  return { currency: 'USD', listings: all.total, all: all.seg, rc: rc.seg, auto: auto.seg, patch: patch.seg, psa10: psa10.seg }
+  return { currency: 'USD', usdToEur: await usdToEurRate(), listings: all.total, all: all.seg, rc: rc.seg, auto: auto.seg, patch: patch.seg, psa10: psa10.seg }
 }
 
 export async function buildCardMarket(admin: SupabaseClient, playerName: string): Promise<CardMarket> {
