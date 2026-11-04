@@ -403,6 +403,28 @@ function handleBrokenImg(src: string) {
   caches.open(SW_IMAGE_CACHE).then(c => c.delete(src)).catch(() => {})
 }
 
+// Echec de chargement : on reessaie 2 fois (avec un parametre anti-cache, apres une courte
+// pause) AVANT d'afficher "Image indisponible". Un echec passager (rafale de requetes sur
+// la galerie, reseau mobile, reponse du SW corrompue) laissait sinon le placeholder
+// definitivement, alors que l'image s'ouvrait bien au clic (signale par un membre).
+function onImgError(e: { currentTarget: HTMLImageElement }) {
+  const img = e.currentTarget
+  if (img.src === BROKEN_IMAGE_FALLBACK) return
+  const orig = img.dataset.origSrc || img.src
+  const tries = Number(img.dataset.retries || 0)
+  handleBrokenImg(img.src)
+  if (tries < 2 && !orig.startsWith('data:')) {
+    img.dataset.origSrc = orig
+    img.dataset.retries = String(tries + 1)
+    window.setTimeout(() => {
+      const base = orig.replace(/([?&])_r=\d+&?/, '$1').replace(/[?&]$/, '')
+      img.src = `${base}${base.includes('?') ? '&' : '?'}_r=${Date.now()}`
+    }, 1200 * (tries + 1))
+    return
+  }
+  img.src = BROKEN_IMAGE_FALLBACK
+}
+
 function renderCardImage(card: { f: string; n: string; format?: string; is_horizontal?: boolean }) {
   const src = cardThumb(card.f)
   const fmt = getFormat(card.format)
@@ -424,7 +446,7 @@ function renderCardImage(card: { f: string; n: string; format?: string; is_horiz
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
           src={src} alt={card.n}
-          onError={e => { const img = e.currentTarget; if (img.src !== BROKEN_IMAGE_FALLBACK) { handleBrokenImg(img.src); img.src = BROKEN_IMAGE_FALLBACK } }}
+          onError={onImgError}
           style={horiz
             ? { position: 'absolute', width: '140%', height: '71.43%', left: '-20%', top: '14.286%', transform: 'rotate(90deg)', objectFit: 'cover' }
             : { position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover' }
@@ -440,7 +462,7 @@ function renderCardImage(card: { f: string; n: string; format?: string; is_horiz
         sizes="(max-width: 640px) 150px, 220px"
         style={{ objectFit: 'cover' }}
         unoptimized
-        onError={e => { const img = e.currentTarget; if (img.src !== BROKEN_IMAGE_FALLBACK) { handleBrokenImg(img.src); img.src = BROKEN_IMAGE_FALLBACK } }}
+        onError={onImgError}
       />
     </div>
   )
