@@ -60,11 +60,10 @@ function age(player: BirthdayPlayer, dateStr: string): number | null {
   return thisYear - birthYear
 }
 
-// Membres prévenus (mention Discord) à chaque annonce d'anniversaire publiée.
-const BIRTHDAY_TAGGED_USER_IDS = ['341923688758640640', '332999619459940354']
+// Membres prévenus (mention Discord) par le message du fil de choix : le rappel de ne pas oublier de publier.
+export const BIRTHDAY_TAGGED_USER_IDS = ['341923688758640640', '332999619459940354']
 
-// tag=false : annonces de test (autre serveur/salon), qui ne doivent notifier personne.
-export function birthdayEmbed(player: BirthdayPlayer, dateStr: string, tag = true) {
+export function birthdayEmbed(player: BirthdayPlayer, dateStr: string) {
   const a = age(player, dateStr)
   const emoji = SPORT_EMOJI[player.sport] || '🎉'
   // Joueur decede : pas de "bon anniversaire" (sujet qui ne se felicite pas a
@@ -74,11 +73,8 @@ export function birthdayEmbed(player: BirthdayPlayer, dateStr: string, tag = tru
   const content = player.death_date
     ? `🕊️ **${player.player_name}** aurait eu${a ? ` ${a} ans` : ' son anniversaire'} aujourd'hui. Une pensée pour lui, et une carte pour s'en souvenir.`
     : `🎂 Aujourd'hui c'est l'anniversaire de **${player.player_name}**${a ? ` (${a} ans)` : ''} ! Alors postons une carte pour lui souhaiter un bon anniversaire ${emoji}`
-  const mentions = tag ? BIRTHDAY_TAGGED_USER_IDS.map(id => `<@${id}>`).join(' ') : ''
   return {
-    content: mentions ? `${content}\n${mentions}` : content,
-    // seuls ces comptes sont notifiés : le nom d'un joueur ne peut jamais déclencher un @everyone / @rôle
-    allowed_mentions: { parse: [], users: tag ? BIRTHDAY_TAGGED_USER_IDS : [] },
+    content,
     embeds: player.headshot_url ? [{ image: { url: player.headshot_url }, color: player.death_date ? 0x7f8c8d : 0xf39c12 }] : [],
   }
 }
@@ -136,7 +132,7 @@ export async function postTestBirthdays(players: BirthdayPlayer[], dateStr: stri
 export async function postTestBirthday(player: BirthdayPlayer, dateStr: string, channelId: string) {
   return discordFetch(`/channels/${channelId}/messages`, {
     method: 'POST',
-    body: JSON.stringify(birthdayEmbed(player, dateStr, false)),
+    body: JSON.stringify(birthdayEmbed(player, dateStr)),
   })
 }
 

@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { discordFetch } from '@/lib/discordContest'
-import { birthdayChannelId, parisToday, postPublicBirthday, postTestBirthday, birthdaySelectMenu, groupCandidatesBySport, type BirthdayPlayer } from '@/lib/discordBirthday'
+import { BIRTHDAY_TAGGED_USER_IDS, birthdayChannelId, parisToday, postPublicBirthday, postTestBirthday, birthdaySelectMenu, groupCandidatesBySport, type BirthdayPlayer } from '@/lib/discordBirthday'
 import { createServerServiceClient } from '@/lib/supabaseServer'
 
 export const dynamic = 'force-dynamic'
@@ -80,7 +80,10 @@ export async function GET(req: NextRequest) {
   await discordFetch(`/channels/${thread.id}/messages`, {
     method: 'POST',
     body: JSON.stringify({
-      content: `🎂 Plusieurs anniversaires marquants aujourd'hui — choisis un ou plusieurs joueurs à publier (une annonce par joueur) :\n\n${groupCandidatesBySport(list)}`,
+      // En prod seulement : les 2 membres sont notifiés pour ne pas oublier de publier (jamais en test).
+      content: `${testChannelId ? '' : BIRTHDAY_TAGGED_USER_IDS.map(id => `<@${id}>`).join(' ') + '\n'}🎂 Plusieurs anniversaires marquants aujourd'hui — choisis un ou plusieurs joueurs à publier (une annonce par joueur) :\n\n${groupCandidatesBySport(list)}`,
+      // seuls ces comptes sont notifiés : un nom de joueur ne peut jamais déclencher un @everyone / @rôle
+      allowed_mentions: { parse: [], users: testChannelId ? [] : BIRTHDAY_TAGGED_USER_IDS },
       components: birthdaySelectMenu(testChannelId ? `bdayseltest:${channelId}` : `bdaysel:${dateStr}`, list),
     }),
   })
