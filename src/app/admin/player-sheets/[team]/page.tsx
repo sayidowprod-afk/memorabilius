@@ -51,6 +51,16 @@ export default function TeamPlayerSheetsPage() {
         const j = await res.json().catch(() => null)
         if (!j || !j.remaining || j.remaining <= 0) break
       }
+      // Idem pour les stats « marché des cartes » (TCDB + eBay) : fiches sans stats -> calculées par lots.
+      for (let i = 0; i < 30; i++) {
+        const res = await fetch('/api/admin/player-sheets-market', {
+          method: 'POST', headers: { Authorization: `Bearer ${tok}`, 'Content-Type': 'application/json' },
+          body: JSON.stringify({ team: teamAbbr }),
+        }).catch(() => null)
+        if (!res || !res.ok) break
+        const j = await res.json().catch(() => null)
+        if (!j || !j.remaining || j.remaining <= 0 || !j.done) break
+      }
     })
   }, [teamAbbr])
 

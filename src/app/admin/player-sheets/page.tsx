@@ -40,6 +40,29 @@ export default function PlayerSheetsHubPage() {
     })
   }, [])
 
+  // Stats « marché des cartes » de TOUTES les fiches sans stats, par lots (le serveur répond « remaining » tant qu'il en reste).
+  const [marketRun, setMarketRun] = useState<{ done: number; remaining: number | null; running: boolean; msg?: string } | null>(null)
+  const computeAllMarkets = async () => {
+    if (marketRun?.running) return
+    if (!confirm('Calculer les stats cartes (catalogue TCDB + annonces eBay) de toutes les fiches qui n’en ont pas ?\n\nChaque fiche utilise environ 5 appels eBay (quota de 5 000 par jour, partagé avec le site). Tu peux laisser la page ouverte.')) return
+    setMarketRun({ done: 0, remaining: null, running: true })
+    let done = 0
+    for (let i = 0; i < 200; i++) {
+      const tok = (await supabase.auth.getSession()).data.session?.access_token
+      if (!tok) break
+      const res = await fetch('/api/admin/player-sheets-market', {
+        method: 'POST', headers: { Authorization: `Bearer ${tok}`, 'Content-Type': 'application/json' }, body: JSON.stringify({ all: true }),
+      }).catch(() => null)
+      if (!res || !res.ok) { setMarketRun({ done, remaining: null, running: false, msg: res?.status === 409 ? 'Migration 20261107 à lancer dans Supabase.' : 'Erreur : relance plus tard.' }); return }
+      const j = await res.json().catch(() => null)
+      if (!j) break
+      done += j.done || 0
+      setMarketRun({ done, remaining: j.remaining ?? 0, running: j.remaining > 0 && j.done > 0 })
+      if (!j.remaining || !j.done) break
+    }
+    setMarketRun(m => m ? { ...m, running: false, msg: m.remaining ? 'Arrêté : certaines fiches n’ont pas pu être calculées.' : 'Terminé.' } : m)
+  }
+
   const doneCount = useMemo(() => NBA_TEAMS.filter(t => stats[t.abbr]).length, [stats])
   const shown = useMemo(() => NBA_TEAMS.filter(t =>
     filter === 'all' ? true : filter === 'done' ? !!stats[t.abbr] : !stats[t.abbr]
@@ -66,6 +89,18 @@ export default function PlayerSheetsHubPage() {
           Choisis une équipe NBA pour voir ou créer ses fiches joueurs (émission).{' '}
           <strong style={{ color: '#1b8a3a' }}>{doneCount}/{NBA_TEAMS.length} équipes faites</strong>
         </p>
+      </div>
+      <div style={{ display: 'flex', alignItems: 'center', gap: 10, marginBottom: 14, flexWrap: 'wrap' }}>
+        <button onClick={computeAllMarkets} disabled={!!marketRun?.running} style={{
+          padding: '7px 14px', borderRadius: 20, border: '1px solid #003DA6', background: 'transparent', color: '#003DA6',
+          fontWeight: 800, fontSize: 12.5, cursor: marketRun?.running ? 'wait' : 'pointer',
+        }}>💹 Calculer les stats cartes de toutes les fiches</button>
+        {marketRun && (
+          <span style={{ fontSize: 12.5, color: '#888' }}>
+            {marketRun.running ? 'Calcul en cours… ' : ''}{marketRun.done} fiche{marketRun.done > 1 ? 's' : ''} calculée{marketRun.done > 1 ? 's' : ''}
+            {marketRun.remaining ? ` · ${marketRun.remaining} restante${marketRun.remaining > 1 ? 's' : ''}` : ''}{marketRun.msg ? ` · ${marketRun.msg}` : ''}
+          </span>
+        )}
       </div>
       <div style={{ display: 'flex', gap: 8, marginBottom: 16, flexWrap: 'wrap' }}>
         {chip('all', `Toutes (${NBA_TEAMS.length})`)}

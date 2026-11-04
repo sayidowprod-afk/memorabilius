@@ -10,6 +10,7 @@ import TeamBadge from '@/components/TeamBadge'
 import type { CardSearchResult, CardMeta } from '@/app/api/admin/player-sheets-card-search/route'
 import { ALL_NBA_COUNTRIES, nbaCountryName } from '@/lib/nbaCountries'
 import TeamHistory from '@/components/TeamHistory'
+import CardMarketPanel from '@/components/CardMarketPanel'
 import type { TeamStint } from '@/lib/espnHeadshot'
 
 const POSTES = ['Meneur', 'Arrière', 'Ailier', 'Ailier Fort', 'Pivot']
@@ -356,6 +357,9 @@ export default function PlayerSheetEditorPage() {
               {history && history.length > 0 && <TeamHistory history={history} />}
             </div>
           ) : null}
+          {sheet.player_name.trim().length > 2 && (
+            <CardMarketPanel sheetId={sheet.id} getToken={freshToken} dark={dark} color={team.color} labelStyle={labelStyle} />
+          )}
           <div>
             <span style={labelStyle}>Notes / infos libres</span>
             <textarea
