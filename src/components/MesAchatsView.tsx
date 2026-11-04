@@ -271,7 +271,8 @@ export default function MesAchatsView({
     const title = multi ? `Commande de ${g.length} articles` : r.titre
     const track = r.suivi_numero ? trackingUrl(r.transporteur || null, r.suivi_numero) : null
     const orderLink = commandeUrl(r, tld)
-    const canReceive = s === 'transit' && !!onPatch
+    // aussi en « préparation » : le vendeur n'a pas toujours déclaré l'expédition sur eBay alors que le colis est bien arrivé
+    const canReceive = (s === 'transit' || s === 'preparation') && !!onPatch
     const links = (
       <>
         {!multi && annonceUrl(r, tld) && <a href={annonceUrl(r, tld)!} target="_blank" rel="noopener noreferrer">{vue === 'liste' ? 'Ouvrir' : 'Voir l’annonce'}</a>}
@@ -369,9 +370,16 @@ export default function MesAchatsView({
     )
   }
 
-  const month = new Date(now).toISOString().slice(0, 7)
-  const spent = achatsAll.filter(a => (a.achete_at || '').startsWith(month)).reduce<Record<string, number>>((acc, a) => {
-    const total = (a.prix || 0) + (a.frais_port || 0)
+  // Même calcul que le suivi « Dépenses » (SpendingTracker) : une commande = un seul achat, au total réellement payé
+  // (port, frais et remise de lot compris), mois en heure locale. Avant, chaque article était additionné
+  // séparément (port compté plusieurs fois sur les commandes multi-articles) -> chiffre plus élevé que le suivi.
+  const nowD = new Date(now)
+  const spent = groupOrders(achatsAll.filter(a => a.achete_at)).filter(g => {
+    const d = new Date(g[0].achete_at!)
+    return d.getFullYear() === nowD.getFullYear() && d.getMonth() === nowD.getMonth()
+  }).reduce<Record<string, number>>((acc, g) => {
+    const a = g[0]
+    const total = g.length > 1 ? orderTotals(g).total : (a.total_paye ?? ((a.prix || 0) + (a.frais_port || 0) + (a.autres_frais || 0)))
     const e = toEur(total, a.devise, rates)
     const d = e === null ? (a.devise || 'EUR') : 'EUR'
     acc[d] = (acc[d] || 0) + (e === null ? total : e)
