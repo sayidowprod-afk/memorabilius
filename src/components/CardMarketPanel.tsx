@@ -65,10 +65,11 @@ export default function CardMarketPanel({ sheetId, getToken, dark, color, labelS
     <div>
       <div style={{ display: 'flex', alignItems: 'center', gap: 10, flexWrap: 'wrap' }}>
         <span style={labelStyle}>Marché des cartes {loading && '· calcul…'}</span>
-        <button type="button" onClick={() => load(true)} disabled={loading} style={{ padding: '3px 10px', borderRadius: 14, border: `1px solid ${color}`, background: 'transparent', color, fontWeight: 700, fontSize: 11.5, cursor: loading ? 'wait' : 'pointer' }}>↻ Actualiser</button>
+        <button type="button" onClick={() => load(true)} disabled={loading} style={{ padding: '3px 10px', borderRadius: 14, border: `1px solid ${color}`, background: 'transparent', color, fontWeight: 700, fontSize: 11.5, cursor: loading ? 'wait' : 'pointer' }}>{data ? '↻ Actualiser' : '▶ Calculer'}</button>
         {data?.at && <span style={small}>mis à jour le {new Date(data.at).toLocaleDateString('fr-FR')}</span>}
       </div>
       {err && <div style={{ fontSize: 12, color: '#e74c3c', marginTop: 6 }}>{err}</div>}
+      {!data && !loading && !err && <div style={small}>Stats non calculées : l’équipe n’est pas cochée dans « Fiches joueurs ». Coche-la pour un calcul en lot, ou calcule celle-ci avec le bouton.</div>}
       {data && (
         <div style={{ display: 'grid', gap: 10, marginTop: 8 }}>
           {c ? (
