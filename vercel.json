@@ -50,6 +50,18 @@
       "schedule": "0 9 * * *"
     },
     {
+      "path": "/api/cron/declencher-workflows?w=classement-hebdo.yml",
+      "schedule": "25 5 * * 1"
+    },
+    {
+      "path": "/api/cron/declencher-workflows?w=carte-mystere.yml",
+      "schedule": "25 5 * * 3"
+    },
+    {
+      "path": "/api/cron/declencher-workflows?w=vendredi-carte-semaine.yml",
+      "schedule": "25 5 * * 5"
+    },
+    {
       "path": "/api/cron/followed-cards",
       "schedule": "0 17 * * *"
     },
