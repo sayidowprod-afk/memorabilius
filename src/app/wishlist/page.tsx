@@ -52,7 +52,9 @@ export default function WishlistPage() {
   useEffect(() => {
     const tm = window.setTimeout(() => {
       try {
-        setSalon(localStorage.getItem('mb_wish_salon') === '1')
+        const fromLink = new URLSearchParams(window.location.search).get('salon') === '1'
+        if (fromLink) localStorage.setItem('mb_wish_salon', '1')
+        setSalon(fromLink || localStorage.getItem('mb_wish_salon') === '1')
         const f = JSON.parse(localStorage.getItem('mb_wish_found') || '[]')
         if (Array.isArray(f)) setFound(new Set(f.map(String)))
       } catch { /* stockage indisponible */ }

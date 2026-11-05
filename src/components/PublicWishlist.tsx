@@ -177,7 +177,9 @@ export default function PublicWishlist({ userId, accent, isOwner }: { userId: st
   return (
     <div style={{ paddingBottom: 20 }}>
       {isOwner && (
-        <div style={{ marginBottom: 16, display: 'flex', justifyContent: 'flex-end' }}>
+        <div style={{ marginBottom: 16, display: 'flex', justifyContent: 'flex-end', gap: 10, flexWrap: 'wrap' }}>
+          <a href="/wishlist?salon=1" style={{ border: '2px solid var(--border, #ccc)', borderRadius: 10, padding: '8px 14px', fontWeight: 800, fontSize: 13, textDecoration: 'none', color: 'inherit' }}>📱 Mode salon</a>
+          <a href="/wishlist" style={{ border: '2px solid var(--border, #ccc)', borderRadius: 10, padding: '8px 14px', fontWeight: 800, fontSize: 13, textDecoration: 'none', color: 'inherit' }}>🔗 Partager ma wishlist</a>
           <button onClick={() => setShowForm(!showForm)} style={{
             background: showForm ? 'var(--bg3, #eee)' : accent, color: showForm ? 'var(--text2, #333)' : 'white',
             border: 'none', borderRadius: 10, padding: '10px 20px',
