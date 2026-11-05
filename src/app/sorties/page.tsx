@@ -9,7 +9,7 @@ export const metadata: Metadata = {
   alternates: { canonical: '/sorties' },
 }
 
-type Row = { name: string; release_date: string; formats: string[] | null; source_url: string | null }
+type Row = { name: string; release_date: string; formats: string[] | null; source_url: string | null; set_id?: number | null }
 
 const MOIS = ['janvier', 'février', 'mars', 'avril', 'mai', 'juin', 'juillet', 'août', 'septembre', 'octobre', 'novembre', 'décembre']
 
@@ -28,8 +28,10 @@ export default async function SortiesPage() {
   const supabase = createServerClient()
   const today = new Date()
   const from = new Date(today.getTime() - 7 * 86400000).toISOString().slice(0, 10)
-  const { data, error } = await supabase.from('card_releases').select('name, release_date, formats, source_url').gte('release_date', from).order('release_date').limit(200)
-  const rows = (error ? [] : (data ?? [])) as Row[]
+  let res = (await supabase.from('card_releases').select('name, release_date, formats, source_url, set_id').gte('release_date', from).order('release_date').limit(200)) as { data: Row[] | null; error: unknown }
+  // colonne set_id pas encore créée (migration) : on affiche quand même le calendrier, sans bouton checklist
+  if (res.error) res = (await supabase.from('card_releases').select('name, release_date, formats, source_url').gte('release_date', from).order('release_date').limit(200)) as { data: Row[] | null; error: unknown }
+  const rows: Row[] = res.error ? [] : (res.data ?? [])
 
   const groups = new Map<string, Row[]>()
   for (const r of rows) {
@@ -77,7 +79,7 @@ export default async function SortiesPage() {
                         {r.formats && r.formats.length > 0 && <> · {r.formats.join(' · ')}</>}
                       </div>
                     </div>
-                    {r.source_url && <a href={r.source_url} target="_blank" rel="noopener noreferrer" style={{ fontSize: 13, textDecoration: 'underline', whiteSpace: 'nowrap' }}>Checklist ↗</a>}
+                    {r.set_id && <Link href={`/setlist/${r.set_id}`} style={{ fontSize: 13, fontWeight: 700, textDecoration: 'underline', whiteSpace: 'nowrap' }}>Checklist →</Link>}
                   </div>
                 )
               })}

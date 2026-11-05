@@ -1,8 +1,9 @@
 import type { SupabaseClient } from '@supabase/supabase-js'
 import { revalidatePath } from 'next/cache'
 import { parseSorties, SORTIES_SOURCE } from '@/lib/sortiesProduits'
+import { linkReleasesToSets } from '@/lib/sortiesChecklist'
 
-export type SortiesRefresh = { ok: true; read: number } | { ok: false; status: number; error: string }
+export type SortiesRefresh = { ok: true; read: number; linked: number; imported: number } | { ok: false; status: number; error: string }
 
 // Relit le calendrier public des sorties de cartes de basket et met à jour la table card_releases.
 // Partagé par le contrôle hebdomadaire (cron) et le bouton « Actualiser » de l'admin. Une seule requête HTTP, aucun appel payant.
@@ -30,6 +31,9 @@ export async function refreshSorties(supabase: SupabaseClient): Promise<SortiesR
   const limit = new Date(Date.now() - 60 * 86400000).toISOString().slice(0, 10)
   await supabase.from('card_releases').delete().lt('release_date', limit)
   // les pages /sorties et l'agenda sont mises en cache 1 h : on les rafraîchit tout de suite pour que les nouvelles dates apparaissent
+  // relie chaque sortie à un set de la setlist (et importe la checklist d'un set absent) ; sans effet tant que la colonne set_id n'existe pas
+  let link = { linked: 0, imported: 0 }
+  try { link = await linkReleasesToSets(supabase) } catch { /* l'actualisation des dates reste valable */ }
   try { revalidatePath('/sorties'); revalidatePath('/api/sorties/ics') } catch { /* hors contexte Next : sans effet */ }
-  return { ok: true, read: sorties.length }
+  return { ok: true, read: sorties.length, ...link }
 }

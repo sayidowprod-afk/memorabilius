@@ -31,7 +31,7 @@ export default function SortiesAdminCard() {
       if (!session) { setMsg({ ok: false, text: 'Session expirée : reconnecte-toi.' }); return }
       const res = await fetch('/api/admin/sorties-refresh', { method: 'POST', headers: { Authorization: `Bearer ${session.access_token}` } })
       const d = await res.json().catch(() => ({}))
-      if (res.ok) { setMsg({ ok: true, text: `${d.read} sortie${d.read > 1 ? 's' : ''} lue${d.read > 1 ? 's' : ''} et enregistrée${d.read > 1 ? 's' : ''}.` }); await load() }
+      if (res.ok) { setMsg({ ok: true, text: `${d.read} sortie${d.read > 1 ? 's' : ''} lue${d.read > 1 ? 's' : ''} et enregistrée${d.read > 1 ? 's' : ''}${d.linked ? ` · ${d.linked} liée${d.linked > 1 ? 's' : ''} à une setlist` : ''}${d.imported ? ` (dont ${d.imported} checklist${d.imported > 1 ? 's' : ''} importée${d.imported > 1 ? 's' : ''})` : ''}.` }); await load() }
       else setMsg({ ok: false, text: d.error || `Échec (${res.status}).` })
     } catch { setMsg({ ok: false, text: 'Échec de la connexion, réessaie.' }) }
     finally { setBusy(false) }
