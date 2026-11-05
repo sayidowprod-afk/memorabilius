@@ -1,4 +1,5 @@
 import type { SupabaseClient } from '@supabase/supabase-js'
+import { revalidatePath } from 'next/cache'
 import { parseSorties, SORTIES_SOURCE } from '@/lib/sortiesProduits'
 
 export type SortiesRefresh = { ok: true; read: number } | { ok: false; status: number; error: string }
@@ -28,5 +29,7 @@ export async function refreshSorties(supabase: SupabaseClient): Promise<SortiesR
   // ménage : les sorties passées depuis plus de 60 jours ne servent plus
   const limit = new Date(Date.now() - 60 * 86400000).toISOString().slice(0, 10)
   await supabase.from('card_releases').delete().lt('release_date', limit)
+  // les pages /sorties et l'agenda sont mises en cache 1 h : on les rafraîchit tout de suite pour que les nouvelles dates apparaissent
+  try { revalidatePath('/sorties'); revalidatePath('/api/sorties/ics') } catch { /* hors contexte Next : sans effet */ }
   return { ok: true, read: sorties.length }
 }

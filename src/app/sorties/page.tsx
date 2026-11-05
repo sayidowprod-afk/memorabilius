@@ -42,10 +42,10 @@ export default async function SortiesPage() {
     <main style={{ maxWidth: 760, margin: '0 auto', padding: '32px 16px 60px' }}>
       <h1 style={{ fontSize: 'clamp(2rem, 4.5vw, 2.75rem)', margin: '0 0 6px' }}>Sorties de cartes</h1>
       <p style={{ color: 'var(--text2, #666)', margin: '0 0 8px' }}>Les prochaines sorties de produits de basket (Panini, Topps…), mises à jour automatiquement chaque semaine.</p>
-      <p style={{ margin: '0 0 24px' }}>
+      <div style={{ margin: '0 0 24px', display: 'flex', alignItems: 'center', gap: 10, flexWrap: 'wrap' }}>
         <a href="/api/sorties/ics" className="btn-main btn-secondary" style={{ padding: '10px 16px', fontSize: 13 }}>📅 Ajouter à mon agenda</a>
-        <span style={{ fontSize: 13, color: 'var(--text2, #666)', marginLeft: 10 }}>L’agenda se met à jour tout seul.</span>
-      </p>
+        <span style={{ fontSize: 13, color: 'var(--text2, #666)', flex: '1 1 180px' }}>L’agenda se met à jour tout seul.</span>
+      </div>
 
       {rows.length === 0 && (
         <div style={{ border: '2px dashed var(--border, #243063)', padding: 24, textAlign: 'center' }}>
