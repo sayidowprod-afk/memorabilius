@@ -125,7 +125,7 @@ export default function MobileBottomNav() {
     borderRadius: 10,
   }
 
-  const tabColor = (active: boolean) => active ? '#003DA6' : (dark ? '#888' : '#888')
+  const tabColor = (active: boolean) => active ? 'var(--accent, #003DA6)' : (dark ? '#888' : '#888')
 
   const handleLogout = async () => {
     setSheet(null)
@@ -149,7 +149,7 @@ export default function MobileBottomNav() {
           // libellé — signalé : "Ma galerie" caché/coupe en bas de l'app Android.
           position: 'fixed', left: 0, right: 0, bottom: 0, zIndex: 99999, minHeight: NAV_CONTENT_HEIGHT,
           background: dark ? '#1a1a1a' : 'white',
-          borderTop: '2px solid #003DA6',
+          borderTop: '2px solid var(--accent, #003DA6)',
           paddingBottom: NAV_SAFE_AREA_BOTTOM,
           display: 'flex', alignItems: 'center', justifyContent: 'space-around',
         }}
@@ -208,7 +208,7 @@ export default function MobileBottomNav() {
                 border: `2px solid ${dark ? '#1a1a1a' : 'white'}`,
               }} />
             </div>
-            <span style={{ fontSize: 11, fontWeight: 700, color: '#003DA6' }} aria-hidden="true">{t('nav_galerie')}</span>
+            <span style={{ fontSize: 11, fontWeight: 700, color: 'var(--accent, #003DA6)' }} aria-hidden="true">{t('nav_galerie')}</span>
           </Link>
         </div>
 
@@ -246,7 +246,7 @@ export default function MobileBottomNav() {
         <Link href="/guides" style={dropItemStyle} onClick={() => setSheet(null)}>📖 {t('nav_guides')}</Link>
         <Link href="/recherche" style={dropItemStyle} onClick={() => setSheet(null)}>{t('nav_recherche')}</Link>
         {isAdmin && (
-          <Link href="/admin" style={{ ...dropItemStyle, color: '#003DA6' }} onClick={() => setSheet(null)}>🛠️ Admin</Link>
+          <Link href="/admin" style={{ ...dropItemStyle, color: 'var(--accent, #003DA6)' }} onClick={() => setSheet(null)}>🛠️ Admin</Link>
         )}
 
         {user && (

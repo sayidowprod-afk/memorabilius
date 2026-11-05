@@ -1466,3 +1466,7 @@ html[data-accent] a[style*="color:#003DA6"], html[data-accent] a[style*="color: 
 .da-salon-txt b { font-size: 18px; line-height: 1.2; overflow-wrap: anywhere; }
 .da-salon-txt small { font-size: 13px; color: var(--text2, #aaa); overflow-wrap: anywhere; }
 .da-salon-note { font-size: 12.5px; color: var(--text2, #aaa); margin: 6px 2px 0; }
+
+/* Couleur du site : icône « Ma galerie » de la barre du bas (les deux cartes empilées) suit la couleur choisie */
+html[data-accent] .nav-gallery-card-1 { background: linear-gradient(160deg, color-mix(in srgb, var(--accent) 62%, #fff), color-mix(in srgb, var(--accent) 88%, #000)) !important; }
+html[data-accent] .nav-gallery-card-2 { background: linear-gradient(160deg, var(--accent), color-mix(in srgb, var(--accent) 55%, #000)) !important; box-shadow: 0 6px 16px color-mix(in srgb, var(--accent) 50%, transparent) !important; }

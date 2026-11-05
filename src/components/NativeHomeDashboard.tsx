@@ -710,7 +710,7 @@ export const DD_CSS = `
 .dd-head { display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 18px 16px 14px; flex-wrap: wrap; }
 .dd-who { display: flex; align-items: center; gap: 14px; min-width: 0; }
 .dd-avatar { width: 56px; height: 56px; border-radius: 50%; object-fit: cover; flex-shrink: 0; border: 3px solid var(--text); }
-.dd-avatar--ph { display: grid; place-items: center; background: #003da6; color: #fff; font-weight: 900; font-size: 22px; }
+.dd-avatar--ph { display: grid; place-items: center; background: var(--accent, #003da6); color: #fff; font-weight: 900; font-size: 22px; }
 .dd-kicker { font: 800 12px system-ui, sans-serif; letter-spacing: .14em; text-transform: uppercase; color: var(--text2); }
 .dd-name { font-size: clamp(34px, 5vw, 56px); line-height: .95; margin: 2px 0 0; color: var(--text); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 .dd-streak { display: inline-flex; align-items: center; gap: 6px; font: 800 12px system-ui, sans-serif; letter-spacing: .1em; text-transform: uppercase; padding: 0; border: 0; }
@@ -742,7 +742,7 @@ export const DD_CSS = `
 .dd-blk-bar span { flex: 1; }
 .dd-blk-bar button { padding: 4px 10px; border: 2px solid var(--text2, #888); background: transparent; color: var(--text); font: 800 11px system-ui, sans-serif; cursor: pointer; border-radius: 0; }
 .dd-hero { display: flex; align-items: stretch; margin: 0 16px 14px; border: 3px solid rgba(255,255,255,.28);
-  background: linear-gradient(135deg, #050912 0%, #08153b 48%, #003da6 100%); color: #fff; overflow: hidden; }
+  background: linear-gradient(135deg, #050912 0%, #08153b 48%, var(--accent, #003da6) 100%); color: #fff; overflow: hidden; }
 .dd-hero-l { flex: 1; padding: clamp(18px, 3vw, 36px); display: flex; flex-direction: column; justify-content: center; min-width: 0; }
 .dd-hero-k { font: 800 12px system-ui, sans-serif; letter-spacing: .16em; text-transform: uppercase; color: #9fbdf5; }
 .dd-hero-n { font-size: clamp(76px, 13vw, 160px); line-height: .9; margin: 6px 0 2px; color: #fff; }
@@ -790,7 +790,7 @@ export const DD_CSS = `
 .dd-actions { display: grid; grid-template-columns: repeat(var(--n, 3), minmax(0, 1fr)); gap: 10px; margin: 0 16px 14px; }
 .dd-act { display: grid; place-items: center; text-align: center; padding: 16px 8px; background: #fff; color: #06122e !important; border: 3px solid #fff;
   font: 800 14px system-ui, sans-serif; letter-spacing: .08em; text-transform: uppercase; transition: transform .15s; }
-:root:not([data-theme="dark"]) .dd-act { background: #003da6; border-color: #003da6; color: #fff !important; }
+:root:not([data-theme="dark"]) .dd-act { background: var(--accent, #003da6); border-color: var(--accent, #003da6); color: #fff !important; }
 .dd-act:hover { transform: translateY(-3px); }
 .dd-search-wrap { position: relative; margin: 0 16px 14px; }
 .dd-search-wrap .dd-search { margin: 0; }
@@ -817,7 +817,7 @@ export const DD_CSS = `
 .dd-lvl-row { display: flex; justify-content: space-between; gap: 10px; font: 800 12px system-ui, sans-serif; letter-spacing: .06em; text-transform: uppercase; margin-bottom: 7px; }
 .dd-lvl-row span:first-child { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
 .dd-bar { height: 12px; background: var(--bg3); }
-.dd-bar i { display: block; height: 100%; background: #2f6bff; }
+.dd-bar i { display: block; height: 100%; background: var(--accent, #2f6bff); }
 .dd-bar--gold i { background: #e0a526; }
 .dd-bar--ok i { background: #2fd072; }
 /* ---- petites animations de l'accueil ---- */
