@@ -267,6 +267,7 @@ export default function Navbar() {
                 {openDrop === 'user' && (
                   <div role="menu" style={{ position: 'absolute', top: 56, right: 0, background: dropBg, border: `1px solid ${dropBorder}`, borderRadius: 12, padding: 6, boxShadow: '0 8px 24px rgba(0,0,0,0.12)', minWidth: 190, zIndex: 300 }}>
                     <Link href="/profil" role="menuitem" style={dropItemStyle} onClick={closeDrop}>👤 Mon profil</Link>
+                    <Link href="/nouveautes" role="menuitem" style={dropItemStyle} onClick={closeDrop}>✨ Nouveautés</Link>
                     <div style={{ margin: '4px 8px', borderTop: `1px solid ${dropBorder}` }} />
                     <button type="button" role="menuitem" className="sm-out" onClick={() => { closeDrop(); handleLogout() }}
                       style={{ ...dropItemStyle, width: '100%', textAlign: 'left', background: 'none', border: 'none', cursor: 'pointer', color: dark ? '#ff8a8a' : '#b42318' }}>Se déconnecter</button>
@@ -325,6 +326,7 @@ export default function Navbar() {
                 <span className={bellPulse ? 'bell-pulse' : undefined} style={{ display: 'inline-block' }}>🔔</span> Notifications <Badge count={notifs} />
               </Link>
               <Link href="/profil" style={ls} onClick={() => setMenuOpen(false)}>{t('nav_profil')}</Link>
+              <Link href="/nouveautes" style={ls} onClick={() => setMenuOpen(false)}>✨ Nouveautés</Link>
               <SettingsInline />
               <div style={{ padding: '16px 0' }}>
                 <button onClick={handleLogout} style={{ width: '100%', background: '#003DA6', color: 'white', border: 'none', borderRadius: 8, padding: '12px', fontWeight: 700, cursor: 'pointer', fontSize: 15 }}>{t('nav_deconnexion')}</button>

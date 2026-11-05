@@ -253,6 +253,7 @@ export default function MobileBottomNav() {
           <>
             <div style={{ margin: '6px 12px', borderTop: `1px solid ${dark ? '#2a2a2a' : '#f0f0f0'}` }} />
             <Link href="/profil" style={dropItemStyle} onClick={() => setSheet(null)}>👤 {t('nav_profil')}</Link>
+            <Link href="/nouveautes" style={dropItemStyle} onClick={() => setSheet(null)}>✨ Nouveautés</Link>
           </>
         )}
 

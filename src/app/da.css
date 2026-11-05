@@ -1310,3 +1310,12 @@ h1, h2, h3, .section-title, .da-h2, .da-display { text-wrap: balance; }
 .da-img-box img.da-img-loading { opacity: 0; filter: blur(10px); }
 @keyframes daImgShimmer { to { background-position: -200% 0; } }
 @media (prefers-reduced-motion: reduce) { .da-img-box { animation: none; } .da-img-box img { transition: none; } }
+
+/* Fenêtre « Quoi de neuf ? » (NewsPopup) : réutilise le cadre de la confirmation */
+.da-news { max-width: 460px; }
+.da-news-date { font: 800 11px system-ui, sans-serif; letter-spacing: .12em; text-transform: uppercase; color: #3ddc97; margin-bottom: 4px; }
+.da-news-sub { margin: 8px 0 6px; font-weight: 700; font-size: 15px; }
+.da-news-list { margin: 0 0 16px; padding-left: 18px; font-size: 14px; line-height: 1.55; color: var(--text2, #aaa); max-height: 38vh; overflow-y: auto; }
+.da-news-list li + li { margin-top: 4px; }
+a.da-confirm-btn { display: inline-flex; align-items: center; text-decoration: none; }
+.da-confirm-btn.news-ok { background: #1f9d55; border-color: #1f9d55; color: #fff; }

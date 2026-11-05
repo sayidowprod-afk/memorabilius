@@ -552,12 +552,15 @@ export default function NativeHomeDashboard({ siteStats, cardOfTheDay }: { siteS
             </div>
           </div>
         </div>
-        {data.streak > 0 && (
-          <div className="dd-streak">
-            <StreakFlame streak={data.streak} />
-            <span><b className="da-num">{data.streak}</b>{t(data.streak === 1 ? 'dashboard_streak_one' : 'dashboard_streak_other').replace('{n}', '').trim()}</span>
-          </div>
-        )}
+        <div className="dd-side">
+          {data.streak > 0 && (
+            <div className="dd-streak">
+              <StreakFlame streak={data.streak} />
+              <span><b className="da-num">{data.streak}</b>{t(data.streak === 1 ? 'dashboard_streak_one' : 'dashboard_streak_other').replace('{n}', '').trim()}</span>
+            </div>
+          )}
+          <Link href="/nouveautes" onClick={hapticTap} className="dd-news">Quoi de nouveau ?</Link>
+        </div>
       </header>
 
       <Link href={galleryHref} onClick={hapticTap} className="dd-hero da-grain">
@@ -712,6 +715,10 @@ export const DD_CSS = `
 .dd-name { font-size: clamp(34px, 5vw, 56px); line-height: .95; margin: 2px 0 0; color: var(--text); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 .dd-streak { display: inline-flex; align-items: center; gap: 6px; font: 800 12px system-ui, sans-serif; letter-spacing: .1em; text-transform: uppercase; padding: 0; border: 0; }
 .dd-streak span { display: inline-flex; align-items: baseline; gap: 6px; line-height: 1; }
+.dd-side { display: inline-flex; align-items: center; gap: 14px; flex-wrap: wrap; }
+.dd .dd-news { background: #1f9d55; color: #fff; border: 3px solid #1f9d55; padding: 9px 14px; font: 800 12px system-ui, sans-serif; letter-spacing: .08em; text-transform: uppercase; border-radius: 0; line-height: 1; white-space: nowrap; transition: background-color .15s ease; }
+.dd .dd-news:hover { background: #17824a; border-color: #17824a; }
+.dd .dd-news:focus-visible { outline: 3px solid #5b8def; outline-offset: 2px; }
 .dd-streak b { font-size: 24px; line-height: 1; letter-spacing: 0; }
 .flame-ic { filter: drop-shadow(0 0 10px rgba(255,140,0,.7)); animation: flameFlick 1.4s ease-in-out infinite; transform-origin: 50% 100%; flex-shrink: 0; }
 @keyframes flameFlick { 0%,100% { transform: scale(1,1) rotate(0); filter: drop-shadow(0 0 8px rgba(255,140,0,.55)); } 25% { transform: scale(1.06,.96) rotate(-3deg); } 50% { transform: scale(.95,1.12) rotate(2.5deg); filter: drop-shadow(0 0 16px rgba(255,150,0,.95)); } 78% { transform: scale(1.03,1.04) rotate(-2deg); } }
