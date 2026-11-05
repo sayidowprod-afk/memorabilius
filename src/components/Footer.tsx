@@ -38,6 +38,7 @@ export default function Footer() {
         </div>
         <nav style={{ display: 'flex', flexWrap: 'wrap', gap: 18, alignItems: 'center' }}>
           <Link href="/nouveautes" style={linkStyle}>Nouveautés</Link>
+          <Link href="/sorties" style={linkStyle}>Sorties</Link>
           <Link href="/mentions-legales" style={linkStyle}>Mentions légales</Link>
           <a href={`/api/presskit?lang=${lang}`} download style={linkStyle}>{PRESSKIT_LABEL[lang] || PRESSKIT_LABEL.fr}</a>
           <Link href="/confidentialite" style={linkStyle}>Confidentialité</Link>

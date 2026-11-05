@@ -12,6 +12,7 @@ import ClearableInput from '@/components/ClearableInput'
 import ScrollToTopButton from '@/components/ScrollToTopButton'
 import TeamBadge from '@/components/TeamBadge'
 import DensityToggle from '@/components/DensityToggle'
+import { saveScroll, readScroll, arrivedByBack, scrollToWhenReady } from '@/lib/scrollMemory'
 
 interface Stats { total: number; rc: number; auto: number; num: number; patch: number }
 interface Collector { id: string; display_name: string; avatar_url: string; lien_csv: string; stats?: Stats; favorite_teams?: string[]; is_donor?: boolean }
@@ -39,6 +40,22 @@ function AnnuaireContent() {
   // lui-meme, retirer le filtre ne remettait rien).
   const [teamMemberIds, setTeamMemberIds] = useState<Set<string> | null>(null)
   const [loading, setLoading] = useState(true)
+  // Garde la place dans la liste au retour arrière (ouvrir une galerie puis revenir)
+  const backRef = useRef<boolean | null>(null)
+  if (backRef.current === null && typeof window !== 'undefined') backRef.current = arrivedByBack()
+  useEffect(() => {
+    let timer: number | undefined
+    const onScroll = () => { window.clearTimeout(timer); timer = window.setTimeout(() => saveScroll('annuaire'), 150) }
+    window.addEventListener('scroll', onScroll, { passive: true })
+    return () => { window.removeEventListener('scroll', onScroll); window.clearTimeout(timer) }
+  }, [])
+  const restoredRef = useRef(false)
+  useEffect(() => {
+    if (loading || restoredRef.current) return
+    restoredRef.current = true
+    const saved = readScroll('annuaire')
+    if (backRef.current && saved && saved.y > 200 && Date.now() - saved.at < 30 * 60 * 1000) scrollToWhenReady(saved.y)
+  }, [loading])
   const [isMobile, setIsMobile] = useState(false)
 
   useEffect(() => {

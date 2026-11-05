@@ -2,6 +2,7 @@
 import { useEffect, useRef, useState } from 'react'
 import { useLang } from '@/lib/LangContext'
 import ThemeToggleButton from '@/components/ThemeToggleButton'
+import { ACCENTS, getAccent, applyAccent } from '@/lib/accent'
 
 // Langues proposees (drapeaux dessines en CSS : les emojis de drapeaux ne s'affichent pas sous Windows)
 export const LANG_LIST = [
@@ -56,6 +57,7 @@ export default function SettingsMenu() {
           <span className="sm-t">{t('settings_title')}</span>
           <div className="sm-r"><label>{t('settings_language')}</label><FlagRow onPick={() => setOpen(false)} /></div>
           <div className="sm-r sm-r-row"><label>{t('settings_dark_mode')}</label><ThemeToggleButton /></div>
+          <div className="sm-r"><label>Couleur du site</label><AccentRow /></div>
         </div>
       )}
     </div>
@@ -63,6 +65,21 @@ export default function SettingsMenu() {
 }
 
 // Version « a plat » pour le menu mobile : drapeaux pleine largeur puis interrupteur (pas de panneau flottant)
+// Rangée de pastilles : couleur d'accent du site (garde sur l'appareil)
+function AccentRow() {
+  const [cur, setCur] = useState<string | null>(null)
+  useEffect(() => { const t = window.setTimeout(() => setCur(getAccent()), 0); return () => window.clearTimeout(t) }, [])
+  return (
+    <div className="sm-accents" role="radiogroup" aria-label="Couleur du site">
+      {ACCENTS.map(a => (
+        <button key={a.id} type="button" role="radio" aria-checked={cur === a.color} aria-label={a.label} title={a.label}
+          className={'sm-accent' + (cur === a.color ? ' on' : '')} style={{ background: a.color ?? '#003da6' }}
+          onClick={() => { setCur(a.color); applyAccent(a.color) }} />
+      ))}
+    </div>
+  )
+}
+
 export function SettingsInline() {
   const { t } = useLang()
   return (
@@ -70,6 +87,8 @@ export function SettingsInline() {
       <label>{t('settings_language')}</label>
       <FlagRow />
       <div className="sm-inline-row"><label>{t('settings_dark_mode')}</label><ThemeToggleButton /></div>
+      <label>Couleur du site</label>
+      <AccentRow />
     </div>
   )
 }

@@ -79,6 +79,8 @@ import { cardDisplayRatio, isHorizontalFormat, getFormat } from '@/lib/cardForma
 import TeamBadge from '@/components/TeamBadge'
 import TradeReputation from '@/components/TradeReputation'
 import { addRecentCard } from '@/lib/recentCards'
+import { saveScroll, readScroll, clearScroll, arrivedByBack, scrollToWhenReady } from '@/lib/scrollMemory'
+import JumpBar from '@/components/JumpBar'
 
 // ── Helpers numériques (module scope pour éviter re-création à chaque render) ──
 const numValue = (num: string) => { const m = num.trim().match(/\/(\d+)$/); return m ? parseInt(m[1]) : null }
@@ -596,6 +598,9 @@ export default function GalerieClient({ userId, initialCardUrl, initialCards, in
   const [showAllCollectionTags, setShowAllCollectionTags] = useState(false)
   const [viewMode, setViewMode] = useState<'grid' | 'timeline' | 'mosaic'>('grid')
   const [compactView, setCompactView] = useState(false)
+  // Taille de la grille choisie en pinçant (téléphone) : null = réglage habituel (normal / compact)
+  const [gridCols, setGridCols] = useState<number | null>(null)
+  const pinchRef = useRef<number | null>(null)
   const [fCollectionTag, setFCollectionTag] = useState(searchParams.get('tag') || '')
   const [pinTeam, setPinTeam] = useState(searchParams.get('pin') || '')
   const [teams, setTeams] = useState<string[]>([])
@@ -772,6 +777,7 @@ export default function GalerieClient({ userId, initialCardUrl, initialCards, in
     try { if (localStorage.getItem('gallery_compact_view') === '1') setCompactView(true) } catch {}
   }, [])
   const toggleCompactView = () => {
+    setGridCols(null)
     setCompactView(p => {
       const next = !p
       try { localStorage.setItem('gallery_compact_view', next ? '1' : '0') } catch {}
@@ -1559,6 +1565,109 @@ export default function GalerieClient({ userId, initialCardUrl, initialCards, in
   useEffect(() => {
     setDisplayed(filtered.slice(0, page * PAGE_SIZE))
   }, [page, filtered])
+
+  // ── Grille : nombre de colonnes mémorisé (pincement) ──
+  useEffect(() => {
+    const t = window.setTimeout(() => {
+      try { const v = Number(localStorage.getItem('mb_grid_cols')); if (v >= 1 && v <= 6) setGridCols(v) } catch { /* stockage indisponible */ }
+    }, 0)
+    return () => window.clearTimeout(t)
+  }, [])
+  const gridTouchStart = (e: React.TouchEvent) => {
+    pinchRef.current = e.touches.length === 2 ? Math.hypot(e.touches[0].clientX - e.touches[1].clientX, e.touches[0].clientY - e.touches[1].clientY) : null
+  }
+  const gridTouchMove = (e: React.TouchEvent) => {
+    if (e.touches.length !== 2 || pinchRef.current === null) return
+    const d = Math.hypot(e.touches[0].clientX - e.touches[1].clientX, e.touches[0].clientY - e.touches[1].clientY)
+    const ratio = d / pinchRef.current
+    if (ratio > 1.3 || ratio < 0.77) {
+      pinchRef.current = d
+      setGridCols(c => {
+        const cur = c ?? (compactView ? 3 : 2)
+        const next = Math.min(6, Math.max(1, cur + (ratio > 1 ? -1 : 1)))
+        try { localStorage.setItem('mb_grid_cols', String(next)) } catch { /* rien */ }
+        return next
+      })
+    }
+  }
+
+  // ── Saut rapide (barre au bord de l'écran) quand le tri est par nom ou par année ──
+  const jumpKind: 'n' | 'y' | null = sortBy === 'n' || sortBy === 'n_desc' ? 'n' : sortBy === 'y' || sortBy === 'y_desc' ? 'y' : null
+  const jumpKeys = useMemo(() => {
+    if (!jumpKind) return [] as Array<{ key: string; idx: number }>
+    const seen = new Set<string>()
+    const out: Array<{ key: string; idx: number }> = []
+    filtered.forEach((c, i) => {
+      let k: string
+      if (jumpKind === 'n') {
+        // m\u00eame cl\u00e9 que le tri \u00ab Joueur A\u2192Z \u00bb : la premi\u00e8re lettre du NOM DE FAMILLE (dernier mot)
+        const last = (c.n || '').trim().split(' ').slice(-1)[0] || c.n || ''
+        const ch = last.normalize('NFD').replace(/[\u0300-\u036f]/g, '').trim().charAt(0).toUpperCase()
+        k = /[A-Z]/.test(ch) ? ch : '#'
+      } else {
+        const m = String(c.y || '').match(/\d{4}/)
+        k = m ? m[0] : '—'
+      }
+      if (!seen.has(k)) { seen.add(k); out.push({ key: k, idx: i }) }
+    })
+    return out
+  }, [filtered, jumpKind])
+  const jumpTo = (idx: number) => {
+    setPage(p => Math.max(p, Math.floor(idx / PAGE_SIZE) + 2))
+    let tries = 0
+    const go = () => {
+      const el = gridRef.current?.children[idx] as HTMLElement | undefined
+      if (el) { el.scrollIntoView({ block: 'start' }); return }
+      if (++tries < 14) window.setTimeout(go, 90)
+    }
+    window.setTimeout(go, 60)
+  }
+
+  // ── Mémoire de position : garder sa place au retour arrière, et proposer de reprendre là où on s'était arrêté ──
+  const scrollKey = `galerie_${userId}`
+  const lastOpenedRef = useRef('')
+  useEffect(() => { if (popup) { lastOpenedRef.current = popup.n; saveScroll(scrollKey, { n: displayedLenRef.current, card: popup.n }) } }, [popup, scrollKey])
+  const displayedLenRef = useRef(0)
+  useEffect(() => { displayedLenRef.current = displayed.length }, [displayed.length])
+  const backRef = useRef<boolean | null>(null)
+  if (backRef.current === null && typeof window !== 'undefined') backRef.current = arrivedByBack()
+  const [resumeOffer, setResumeOffer] = useState<{ y: number; n: number; card: string } | null>(null)
+  useEffect(() => {
+    let timer: number | undefined
+    const onScroll = () => {
+      window.clearTimeout(timer)
+      timer = window.setTimeout(() => saveScroll(scrollKey, { n: displayedLenRef.current, card: lastOpenedRef.current }), 150)
+    }
+    window.addEventListener('scroll', onScroll, { passive: true })
+    return () => { window.removeEventListener('scroll', onScroll); window.clearTimeout(timer) }
+  }, [scrollKey])
+  const restoredRef = useRef(false)
+  useEffect(() => {
+    if (!loaded || restoredRef.current) return
+    restoredRef.current = true
+    const saved = readScroll(scrollKey)
+    if (!saved || saved.y < 200) return
+    if (backRef.current && Date.now() - saved.at < 30 * 60 * 1000) {
+      if (saved.n) setPage(Math.max(1, Math.ceil(saved.n / PAGE_SIZE)))
+      scrollToWhenReady(saved.y)
+    } else if (isOwner && saved.y > 1500 && Date.now() - saved.at < 7 * 24 * 3600 * 1000) {
+      const t = window.setTimeout(() => setResumeOffer({ y: saved.y, n: saved.n || 0, card: saved.card || '' }), 600)
+      return () => window.clearTimeout(t)
+    }
+  }, [loaded, scrollKey, isOwner])
+  const resumeNow = () => {
+    if (!resumeOffer) return
+    if (resumeOffer.n) setPage(Math.max(1, Math.ceil(resumeOffer.n / PAGE_SIZE)))
+    scrollToWhenReady(resumeOffer.y)
+    setResumeOffer(null)
+  }
+  const dismissResume = () => { clearScroll(scrollKey); setResumeOffer(null) }
+
+  // ── Cartes « À compléter » (créées par l'ajout en lot sans nom identifié) ──
+  const todoIds = useMemo(
+    () => (isOwner ? cards.filter(c => c.id_manuelle && (c.n || '').trim().toLowerCase() === 'carte à compléter').map(c => c.id_manuelle as string) : []),
+    [cards, isOwner]
+  )
 
   useEffect(() => {
     if (!loaded) return
@@ -2441,6 +2550,9 @@ export default function GalerieClient({ userId, initialCardUrl, initialCards, in
                   </Link>
                 )}
                 <FollowButton targetUserId={userId} accent={accent} />
+                {currentUser && currentUser !== userId && (
+                  <Link href={`/comparer/${profile?.slug || userId}`} className="da-cmp-link" title="Voir ce que vous avez en commun et ce qui peut s’échanger">⚖ {'Comparer'}</Link>
+                )}
                 {currentUser && currentUser !== userId && (
                   <ReportButton reportedUserId={userId} context={`Galerie de ${profile?.display_name || userId}`} />
                 )}
@@ -3473,6 +3585,25 @@ export default function GalerieClient({ userId, initialCardUrl, initialCards, in
           document.body
         )}
 
+        {activeTab === 'collection' && todoIds.length > 0 && (
+          <div className="da-draft" role="status">
+            <div style={{ flex: 1, minWidth: 0 }}>
+              <b>{todoIds.length} carte{todoIds.length > 1 ? 's' : ''} à compléter</b>
+              <div className="da-draft-sub">Ajoutées en lot sans nom identifié. On les complète une par une, avec « Suivante ».</div>
+            </div>
+            <button type="button" className="da-confirm-btn primary" onClick={() => { const ids = todoIds.slice(0, 60); router.push(`/galerie/${userId}/editer/${ids[0]}${ids.length > 1 ? `?queue=${ids.join(',')}&qidx=0` : ''}`) }}>Compléter →</button>
+          </div>
+        )}
+        {resumeOffer && activeTab === 'collection' && viewMode === 'grid' && (
+          <div className="da-draft" role="status">
+            <div style={{ flex: 1, minWidth: 0 }}>
+              <b>Reprendre où tu t’étais arrêté ?</b>
+              <div className="da-draft-sub">{resumeOffer.card ? `Dernière carte ouverte : ${resumeOffer.card}` : resumeOffer.n ? `Vers la carte n° ${resumeOffer.n}` : 'Plus bas dans ta collection'}</div>
+            </div>
+            <button type="button" className="da-confirm-btn primary" onClick={resumeNow}>Reprendre</button>
+            <button type="button" className="da-confirm-btn" onClick={dismissResume} aria-label="Ne plus proposer">✕</button>
+          </div>
+        )}
         <div style={{ display: 'flex', justifyContent: 'flex-end', gap: 6, marginBottom: 10 }}>
           <button type="button" onClick={() => setViewMode('grid')} title={t('gallery_view_grid')} style={{
             border: 'none', borderRadius: 8, padding: '6px 12px', fontSize: 12, fontWeight: 700, cursor: 'pointer',
@@ -3541,6 +3672,7 @@ export default function GalerieClient({ userId, initialCardUrl, initialCards, in
           </div>
         )}
 
+        {viewMode === 'grid' && activeTab === 'collection' && jumpKeys.length > 3 && !editMode && <JumpBar keys={jumpKeys} onJump={jumpTo} />}
         {viewMode === 'grid' && (
         <DndContext
           sensors={sensors}
@@ -3549,7 +3681,7 @@ export default function GalerieClient({ userId, initialCardUrl, initialCards, in
           onDragEnd={onDragEnd}
         >
           <SortableContext items={displayed.map(getCardId)} strategy={rectSortingStrategy}>
-          <div ref={el => { gridRef.current = el; cardGridReveal.ref.current = el }} className={`card-grid ${cardGridReveal.className}${compactView ? ' card-grid-compact' : ''}`}>
+          <div ref={el => { gridRef.current = el; cardGridReveal.ref.current = el }} className={`card-grid ${cardGridReveal.className}${compactView ? ' card-grid-compact' : ''}${gridCols ? ' card-grid-cols' : ''}`} style={gridCols ? ({ '--cols': gridCols } as React.CSSProperties) : undefined} onTouchStart={gridTouchStart} onTouchMove={gridTouchMove}>
           {displayed.map((d, idx) => (
             <SortableCard
               key={getCardId(d)}

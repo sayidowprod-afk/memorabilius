@@ -1,5 +1,7 @@
 'use client'
 import PackReveal from '@/components/PackReveal'
+import { useIsAppUI } from '@/lib/useIsNative'
+import { NAV_TOTAL_HEIGHT_CSS } from '@/lib/nativeLayout'
 import HelpTip from '@/components/HelpTip'
 import { toast } from '@/lib/toast'
 import PriceFormField from '@/components/PriceFormField'
@@ -273,6 +275,7 @@ export default function AjouterCarte({ params }: { params: Promise<{ userId: str
   const { lang, t } = useLang()
   const { dark } = useTheme()
   const [saving, setSaving] = useState(false)
+  const isAppUI = useIsAppUI()
   const [showDesignation, setShowDesignation] = useState(false)
   const [designation, setDesignation] = useState('')
   const [designationDone, setDesignationDone] = useState(false)
@@ -305,6 +308,48 @@ export default function AjouterCarte({ params }: { params: Promise<{ userId: str
     touchedFieldsRef.current.add(key)
     setForm(f => ({ ...f, [key]: value }))
   }
+
+  // ── Brouillon automatique : ce qui est saisi (et les photos déjà envoyées) est gardé sur l'appareil, pour reprendre après une interruption ──
+  const draftKey = `mb_add_draft_${userId}`
+  const [draftOffer, setDraftOffer] = useState<{ form: typeof form; at: number } | null>(null)
+  useEffect(() => {
+    const t = window.setTimeout(() => {
+      try {
+        const raw = localStorage.getItem(draftKey)
+        if (!raw) return
+        const d = JSON.parse(raw)
+        if (d && d.form && typeof d.at === 'number' && Date.now() - d.at < 7 * 24 * 3600 * 1000 && (d.form.nom || d.form.image_recto)) setDraftOffer(d)
+      } catch { /* brouillon illisible : ignoré */ }
+    }, 400)
+    return () => window.clearTimeout(t)
+  }, [draftKey])
+  const draftReadyRef = useRef(false)
+  useEffect(() => {
+    // pas d'écriture avant d'avoir proposé/reçu la reprise, ni pendant un enregistrement
+    const t = window.setTimeout(() => { draftReadyRef.current = true }, 1200)
+    return () => window.clearTimeout(t)
+  }, [])
+  useEffect(() => {
+    if (!draftReadyRef.current || draftOffer || saving) return
+    const hasContent = !!(form.nom || form.image_recto || form.image_verso || form.equipe || form.marque)
+    const t = window.setTimeout(() => {
+      try {
+        if (hasContent) localStorage.setItem(draftKey, JSON.stringify({ form, at: Date.now() }))
+        else localStorage.removeItem(draftKey)
+      } catch { /* stockage indisponible */ }
+    }, 700)
+    return () => window.clearTimeout(t)
+  }, [form, draftOffer, saving, draftKey])
+  const clearDraft = () => { try { localStorage.removeItem(draftKey) } catch { /* rien */ } }
+  const resumeDraft = () => {
+    if (!draftOffer) return
+    const d = draftOffer.form
+    setForm({ ...form, ...d })
+    setPreviewRecto(d.image_recto || null); setPreviewVerso(d.image_verso || null)
+    setPreviewIL(d.image_interieur_gauche || null); setPreviewIR(d.image_interieur_droite || null)
+    setDraftOffer(null)
+  }
+  const discardDraft = () => { clearDraft(); setDraftOffer(null) }
 
   type Side = 'recto' | 'verso' | 'il' | 'ir'
   const [packReveal, setPackReveal] = useState<{ image: string; total?: number; count: number } | null>(null)
@@ -818,6 +863,7 @@ export default function AjouterCarte({ params }: { params: Promise<{ userId: str
   }
 
   const resetForm = () => {
+    clearDraft()
     setForm({
       nom: '', equipe: '', annee: '', marque: '', collection: '', variation: '', notes_perso: '', notes_perso_public: true,
       grade: 'Raw', cert_number: '', num: '', card_number: '', rc: false, auto: false, patch: false, printing_plate: false, booklet: false,
@@ -865,6 +911,7 @@ export default function AjouterCarte({ params }: { params: Promise<{ userId: str
       item_type: form.item_type || 'card',
     })
     if (error) { toast.error('Erreur : ' + error.message); setSaving(false); return }
+    clearDraft()
     const { data: { session } } = await supabase.auth.getSession()
     fetch('/api/wishlist-notify', {
       method: 'PUT',
@@ -1002,6 +1049,17 @@ export default function AjouterCarte({ params }: { params: Promise<{ userId: str
         ))}
       </div>
 
+      <Link href={`/galerie/${userId}/ajouter-lot`} className="da-lot-entry">📚 Ajouter plusieurs cartes d’un coup (recto + verso) →</Link>
+      {draftOffer && (
+        <div className="da-draft" role="status">
+          <div style={{ flex: 1, minWidth: 0 }}>
+            <b>Reprendre ton brouillon ?</b>
+            <div className="da-draft-sub">{[draftOffer.form.nom, draftOffer.form.annee, draftOffer.form.marque].filter(Boolean).join(' · ') || 'Carte en cours'} — enregistré {new Date(draftOffer.at).toLocaleString('fr-FR', { day: '2-digit', month: '2-digit', hour: '2-digit', minute: '2-digit' })}</div>
+          </div>
+          <button type="button" className="da-confirm-btn primary" onClick={resumeDraft}>Reprendre</button>
+          <button type="button" className="da-confirm-btn" onClick={discardDraft}>Repartir de zéro</button>
+        </div>
+      )}
       <form onSubmit={handleSubmit}>
         {/* Format -- avant les photos : determine leur ratio de cadrage juste en dessous */}
         {form.item_type === 'card' && (
@@ -1315,9 +1373,11 @@ export default function AjouterCarte({ params }: { params: Promise<{ userId: str
           </div>
           )}
 
-          <button type="submit" disabled={saving} className="btn-main btn-primary" style={{ marginTop: 8 }}>
+          <div className="da-sticky-actions" style={{ bottom: isAppUI ? NAV_TOTAL_HEIGHT_CSS : 0 }}>
+            <button type="submit" disabled={saving} className="btn-main btn-primary" style={{ width: '100%' }}>
             {saving ? '...' : t('addcard_submit_add')}
           </button>
+          </div>
         </div>
       </form>
 

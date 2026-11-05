@@ -26,6 +26,29 @@ export default function WishlistPage() {
   const router = useRouter()
   const { t, lang } = useLang()
   const { dark } = useTheme()
+  // Partage par lien (lecture seule, sans connexion) : le jeton est géré par /api/wishlist-share
+  const [shareToken, setShareToken] = useState<string | null>(null)
+  const [shareState, setShareState] = useState<'idle' | 'busy' | 'migration' | 'copied'>('idle')
+  const shareUrl = shareToken && typeof window !== 'undefined' ? `${window.location.origin}/wishlist/partage/${shareToken}` : ''
+  const shareCall = async (method: 'GET' | 'POST', action?: 'enable' | 'regenerate' | 'disable') => {
+    const { data: { session } } = await supabase.auth.getSession()
+    if (!session) return
+    setShareState('busy')
+    try {
+      const res = await fetch('/api/wishlist-share', {
+        method, headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${session.access_token}` },
+        body: method === 'POST' ? JSON.stringify({ action }) : undefined,
+      })
+      if (res.status === 409) { setShareState('migration'); return }
+      const d = await res.json().catch(() => ({}))
+      setShareToken(d.token ?? null)
+      setShareState('idle')
+    } catch { setShareState('idle') }
+  }
+  useEffect(() => { if (userId) { const tm = window.setTimeout(() => { shareCall('GET') }, 0); return () => window.clearTimeout(tm) } }, [userId])
+  const copyShare = async () => {
+    try { await navigator.clipboard.writeText(shareUrl); setShareState('copied'); window.setTimeout(() => setShareState('idle'), 2000) } catch { /* presse-papiers indisponible */ }
+  }
 
   useEffect(() => {
     // try/finally + withTimeout : ni un rejet ni une requete qui ne resout
@@ -84,6 +107,33 @@ export default function WishlistPage() {
           {showForm ? t('wishlist_cancel_add') : t('wishlist_add')}
         </button>
       </div>
+
+      {/* Partage par lien */}
+      {userId && shareState !== 'migration' && (
+        <div className="da-share" style={{ marginBottom: 20 }}>
+          {!shareToken ? (
+            <div style={{ display: 'flex', alignItems: 'center', gap: 12, flexWrap: 'wrap' }}>
+              <div style={{ flex: 1, minWidth: 200 }}>
+                <b>Partager ma wishlist</b>
+                <div className="da-share-sub">Un lien en lecture seule, sans connexion : pratique pour que tes amis sachent quoi t’offrir ou t’échanger. Tu peux l’arrêter à tout moment.</div>
+              </div>
+              <button type="button" className="da-confirm-btn primary" disabled={shareState === 'busy'} onClick={() => shareCall('POST', 'enable')}>Créer un lien</button>
+            </div>
+          ) : (
+            <div>
+              <b>Ta wishlist est partagée</b>
+              <div className="da-share-link">
+                <input readOnly value={shareUrl} aria-label="Lien de partage" onFocus={e => e.currentTarget.select()} />
+                <button type="button" className="da-confirm-btn primary" onClick={copyShare}>{shareState === 'copied' ? 'Copié ✓' : 'Copier'}</button>
+              </div>
+              <div className="da-share-actions">
+                <button type="button" onClick={() => shareCall('POST', 'regenerate')} disabled={shareState === 'busy'}>Nouveau lien (l’ancien ne marche plus)</button>
+                <button type="button" onClick={() => shareCall('POST', 'disable')} disabled={shareState === 'busy'}>Arrêter le partage</button>
+              </div>
+            </div>
+          )}
+        </div>
+      )}
 
       {/* Formulaire */}
       {showForm && (

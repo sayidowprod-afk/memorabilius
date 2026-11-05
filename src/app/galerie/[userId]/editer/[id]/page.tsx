@@ -1,5 +1,7 @@
 'use client'
 import { toast } from '@/lib/toast'
+import { useIsAppUI } from '@/lib/useIsNative'
+import { NAV_TOTAL_HEIGHT_CSS } from '@/lib/nativeLayout'
 import PriceFormField from '@/components/PriceFormField'
 import { parsePrice } from '@/lib/marketplace'
 import { useState, use, useRef, useEffect, useCallback } from 'react'
@@ -131,6 +133,7 @@ export default function EditerCarte({ params }: { params: Promise<{ userId: stri
   }
   const [loading, setLoading] = useState(true)
   const [saving, setSaving] = useState(false)
+  const isAppUI = useIsAppUI()
   const [uploadingRecto, setUploadingRecto] = useState(false)
   const [uploadingVerso, setUploadingVerso] = useState(false)
   const [uploadingIL, setUploadingIL] = useState(false)
@@ -1003,13 +1006,15 @@ export default function EditerCarte({ params }: { params: Promise<{ userId: stri
             </div>
           </div>
 
-          <button type="submit" disabled={saving} className="btn-main btn-primary" style={{ marginTop: 8 }}>
+          <div className="da-sticky-actions" style={{ bottom: isAppUI ? NAV_TOTAL_HEIGHT_CSS : 0 }}>
+            <button type="submit" disabled={saving} className="btn-main btn-primary" style={{ width: '100%' }}>
             {saving ? '...' : isQueueMode
               ? (queueCurrent < queueTotal
                 ? t('addcard_save_and_next')
                 : `✅ ${t('onboardt_finish')}`)
               : t('addcard_save_changes')}
           </button>
+          </div>
         </div>
       </form>
 

@@ -130,6 +130,10 @@ function MessagesContent() {
   const [uploading, setUploading] = useState(false)
   const [showCardPicker, setShowCardPicker] = useState(false)
   const [reactionPickerFor, setReactionPickerFor] = useState<string | null>(null)
+  // Message auquel on est en train de répondre (citation affichée au-dessus du champ de saisie)
+  const [replyTo, setReplyTo] = useState<any | null>(null)
+  const replyActive = replyTo && (replyTo.from_user_id === activeConv || replyTo.to_user_id === activeConv) ? replyTo : null
+  const quoteLabel = (m: any) => isImageMsg(m.contenu) ? '📷 Photo' : isCardMsg(m.contenu) ? '🃏 Carte' : isTradeOfferMsg(m.contenu) ? '🔄 Offre d’échange' : isShipmentMsg(m.contenu) ? '📦 Livraison' : String(m.contenu || '').slice(0, 90)
   const [expandedOffer, setExpandedOffer] = useState<any | null>(null)
   const [otherTyping, setOtherTyping] = useState(false)
   const bottomRef = useRef<HTMLDivElement>(null)
@@ -440,11 +444,16 @@ function MessagesContent() {
 
   // Insere un message ; si l'echange lie n'existe pas (cle etrangere, code 23503), on reessaie sans trade_id
   // plutot que de bloquer l'envoi.
-  const insertMessage = async (contenu: string) => {
+  const insertMessage = async (contenu: string, replyToId?: string | null) => {
     const base = { from_user_id: userId, to_user_id: activeConv, contenu }
-    let res = await supabase.from('messages').insert({ ...base, trade_id: tradeIdForMsg }).select('id').single()
+    const withReply = replyToId ? { ...base, reply_to_id: replyToId } : base
+    let res = await supabase.from('messages').insert({ ...withReply, trade_id: tradeIdForMsg }).select('id').single()
     if (res.error?.code === '23503' && tradeIdForMsg !== null) {
-      res = await supabase.from('messages').insert({ ...base, trade_id: null }).select('id').single()
+      res = await supabase.from('messages').insert({ ...withReply, trade_id: null }).select('id').single()
+    }
+    // Colonne reply_to_id pas encore créée (migration non passée) : on envoie quand même le message, sans citation
+    if (res.error && replyToId && (res.error.code === 'PGRST204' || res.error.code === '42703' || /reply_to_id/.test(res.error.message || ''))) {
+      res = await supabase.from('messages').insert({ ...base, trade_id: tradeIdForMsg }).select('id').single()
     }
     return res
   }
@@ -453,7 +462,7 @@ function MessagesContent() {
     const content = (contentOverride ?? newMsg).trim()
     if (!content || !userId || !activeConv || sendingRef.current) return
     sendingRef.current = true
-    const { data: inserted, error } = await insertMessage(content)
+    const { data: inserted, error } = await insertMessage(content, contentOverride ? null : replyActive?.id)
     sendingRef.current = false
     if (error) {
       // RLS rejette l'insert si le destinataire nous a bloques (voir migration
@@ -464,6 +473,7 @@ function MessagesContent() {
       return
     }
     setNewMsg('')
+    if (!contentOverride) setReplyTo(null)
     loadMessages(userId, activeConv)
     loadConversations(userId)
     // Push notification au destinataire
@@ -972,6 +982,16 @@ function MessagesContent() {
                               fontSize: 14, lineHeight: 1.45, userSelect: 'none',
                             }}>
                               {(() => {
+                                const quoted = msg.reply_to_id ? messages.find((m: any) => m.id === msg.reply_to_id) : null
+                                if (!quoted) return null
+                                return (
+                                  <div style={{ borderLeft: `3px solid ${isMe ? 'rgba(255,255,255,.7)' : '#003DA6'}`, background: isMe ? 'rgba(255,255,255,.14)' : (dark ? 'rgba(255,255,255,.07)' : 'rgba(0,0,0,.05)'), padding: '4px 8px', marginBottom: 6, fontSize: 12, lineHeight: 1.35, opacity: .95 }}>
+                                    <div style={{ fontWeight: 800 }}>{quoted.from_user_id === userId ? 'Toi' : (profiles[quoted.from_user_id]?.display_name || 'Message')}</div>
+                                    <div style={{ overflowWrap: 'anywhere' }}>{quoteLabel(quoted)}</div>
+                                  </div>
+                                )
+                              })()}
+                              {(() => {
                                 const sq = convSearch && convSearch.conv === activeConv ? convSearch.q.trim() : ''
                                 const txt: string = typeof msg.contenu === 'string' ? msg.contenu : ''
                                 const i = sq ? txt.toLowerCase().indexOf(sq.toLowerCase()) : -1
@@ -1013,6 +1033,10 @@ function MessagesContent() {
                                   {emoji}
                                 </button>
                               ))}
+                              <button onClick={() => { setReplyTo(msg); setReactionPickerFor(null) }} aria-label="Répondre à ce message" title="Répondre"
+                                style={{ background: 'none', border: 'none', borderLeft: `1px solid ${dark ? '#444' : '#ddd'}`, marginLeft: 2, paddingLeft: 8, fontSize: 13, fontWeight: 700, cursor: 'pointer', color: dark ? '#ddd' : '#333', whiteSpace: 'nowrap' }}>
+                                ↩ Répondre
+                              </button>
                             </div>
                           )}
                         </div>
@@ -1043,6 +1067,16 @@ function MessagesContent() {
                 )}
                 <div ref={bottomRef} />
               </div>
+
+              {replyActive && (
+                <div style={{ display: 'flex', alignItems: 'center', gap: 10, padding: '8px 16px', borderTop: `1px solid ${border}`, fontSize: 13 }}>
+                  <div style={{ flex: 1, minWidth: 0, borderLeft: '3px solid #003DA6', paddingLeft: 8 }}>
+                    <div style={{ fontWeight: 800, fontSize: 12 }}>Réponse à {replyActive.from_user_id === userId ? 'toi-même' : (profiles[replyActive.from_user_id]?.display_name || 'ce message')}</div>
+                    <div style={{ overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap', color: textMuted }}>{quoteLabel(replyActive)}</div>
+                  </div>
+                  <button type="button" onClick={() => setReplyTo(null)} aria-label="Annuler la réponse" style={{ background: 'none', border: 'none', cursor: 'pointer', fontSize: 16, color: textMuted, width: 32, height: 32 }}>✕</button>
+                </div>
+              )}
 
               {/* Input façon Insta : pill avec icône appareil photo intégrée + bouton cœur d'envoi rapide */}
               <div style={{ padding: '10px 16px', paddingBottom: 'max(10px, var(--safe-area-inset-bottom, env(safe-area-inset-bottom)))', borderTop: `1px solid ${border}`, display: 'flex', gap: 8, alignItems: 'center' }}>

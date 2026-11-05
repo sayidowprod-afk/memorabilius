@@ -92,7 +92,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       )}
       <body>
         {/* Lit le thème depuis localStorage AVANT le premier rendu React pour éviter le flash light→dark (CLS) */}
-        <script dangerouslySetInnerHTML={{ __html: `try{if(localStorage.getItem('theme')!=='light'){document.documentElement.setAttribute('data-theme','dark')}}catch(e){document.documentElement.setAttribute('data-theme','dark')}` }} />
+        <script dangerouslySetInnerHTML={{ __html: `try{if(localStorage.getItem('theme')!=='light'){document.documentElement.setAttribute('data-theme','dark')}}catch(e){document.documentElement.setAttribute('data-theme','dark')};try{var a=localStorage.getItem('mb_accent');if(a&&/^#[0-9a-f]{6}$/i.test(a)){document.documentElement.style.setProperty('--accent',a);document.documentElement.setAttribute('data-accent','1')}}catch(e){}` }} />
         {/* Filet de secours "page blanche/bloquée" (voir HangWatchdog.tsx) : tourne
             avant même l'hydratation React, donc capte aussi un blocage qui empêche
             React de démarrer du tout, pas seulement un hang après coup. */}

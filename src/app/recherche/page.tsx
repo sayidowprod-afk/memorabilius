@@ -12,6 +12,7 @@ import SkeletonBlock from '@/components/SkeletonBlock'
 import TagIcon from '@/components/TagIcon'
 import CardTagBadges from '@/components/CardTagBadges'
 import { readRecentCards, clearRecentCards, type RecentCard } from '@/lib/recentCards'
+import VoiceButton from '@/components/VoiceButton'
 
 type Section = 'all' | 'cards' | 'players' | 'collectors'
 type SortKey = 'default' | 'y_desc' | 'y_asc' | 'name'
@@ -35,7 +36,7 @@ function NumTag({ num }: { num: string }) {
 export default function Recherche() {
   const searchParams = useSearchParams()
   const router = useRouter()
-  const { t } = useLang()
+  const { t, lang } = useLang()
   const { dark } = useTheme()
 
   const [query, setQuery] = useState(searchParams.get('q') || '')
@@ -279,8 +280,9 @@ export default function Recherche() {
               }}
             />
             <span style={{ position: 'absolute', left: 17, top: '50%', transform: 'translateY(-50%)', fontSize: 19, pointerEvents: 'none' }}>🔍</span>
+            <VoiceButton onText={handleQuery} lang={lang === 'en' ? 'en-US' : lang === 'de' ? 'de-DE' : lang === 'es' ? 'es-ES' : lang === 'it' ? 'it-IT' : 'fr-FR'} style={{ position: 'absolute', right: 8, top: '50%', transform: 'translateY(-50%)' }} />
             {loading && (
-              <span style={{ position: 'absolute', right: 17, top: '50%', transform: 'translateY(-50%)' }}>
+              <span style={{ position: 'absolute', right: 62, top: '50%', transform: 'translateY(-50%)' }}>
                 <div style={{ width: 18, height: 18, border: '2.5px solid #ddd', borderTopColor: accent, borderRadius: '50%', animation: 'spin 0.7s linear infinite' }} />
               </span>
             )}

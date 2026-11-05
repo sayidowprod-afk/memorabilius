@@ -56,6 +56,7 @@ export default function CommandPalette() {
     { id: 'setl', icon: '📋', label: 'Setlists', hint: 'Outil', keywords: 'setlist sets checklist', href: '/setlist' },
     { id: 'guides', icon: '📖', label: 'Guides', hint: 'Aide', keywords: 'guides tutoriels aide', href: '/guides' },
     { id: 'tuto', icon: '🎓', label: 'Tutoriel', hint: 'Aide', keywords: 'tuto tutoriel debuter', href: '/tuto' },
+    { id: 'sort', icon: '📅', label: 'Calendrier des sorties', hint: 'Aide', keywords: 'sorties calendrier release panini topps produits', href: '/sorties' },
     { id: 'new', icon: '✨', label: 'Nouveautés', hint: 'Aide', keywords: 'nouveautes changelog mises a jour', href: '/nouveautes' },
   ], [uid])
 
