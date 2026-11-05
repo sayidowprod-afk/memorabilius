@@ -9,6 +9,7 @@ import PushNotificationSettings from '@/components/PushNotificationSettings'
 import OfflineSettings from '@/components/OfflineSettings'
 import SecuritySettings from '@/components/SecuritySettings'
 import FeedbackForm from '@/components/FeedbackForm'
+import { AccentRow } from '@/components/SettingsMenu'
 import { supabase } from '@/lib/supabase'
 
 const LANGS = [
@@ -104,6 +105,13 @@ export default function Parametres() {
               }}>{l.flag}</button>
             ))}
           </div>
+        </div>
+        <div style={{ ...row, alignItems: 'flex-start' }}>
+          <div>
+            <div style={rowLabel}>Couleur du site</div>
+            <div style={rowSub}>Change la couleur des boutons principaux. Garde le bleu pour revenir à l’habituel.</div>
+          </div>
+          <AccentRow />
         </div>
       </div>
 

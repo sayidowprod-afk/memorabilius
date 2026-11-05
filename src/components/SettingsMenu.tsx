@@ -66,7 +66,7 @@ export default function SettingsMenu() {
 
 // Version « a plat » pour le menu mobile : drapeaux pleine largeur puis interrupteur (pas de panneau flottant)
 // Rangée de pastilles : couleur d'accent du site (garde sur l'appareil)
-function AccentRow() {
+export function AccentRow() {
   const [cur, setCur] = useState<string | null>(null)
   useEffect(() => { const t = window.setTimeout(() => setCur(getAccent()), 0); return () => window.clearTimeout(t) }, [])
   return (

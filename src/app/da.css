@@ -1449,3 +1449,20 @@ html[data-accent] a[style*="color:#003DA6"], html[data-accent] a[style*="color: 
 .da-sortbloc-name { font-weight: 800; font-size: 15px; overflow-wrap: anywhere; }
 .da-sortbloc-sub { font-size: 13px; color: var(--text2, #aaa); }
 .da-sortbloc-sub span { font-weight: 700; color: #3ddc97; }
+
+/* 126 · Mode salon de la wishlist : grosses lignes à cocher « trouvée » */
+.da-salon-btn { font: 700 13px system-ui, sans-serif; letter-spacing: .04em; padding: 10px 16px; border: 2px solid #3a4a8a; background: transparent; color: inherit; cursor: pointer; border-radius: 10px; min-height: 40px; }
+.da-salon-btn.on { background: #1f9d55; border-color: #1f9d55; color: #fff; }
+.da-salon { display: grid; gap: 8px; }
+.da-salon-top { display: flex; align-items: center; justify-content: space-between; gap: 10px; padding: 4px 2px 6px; font-size: 15px; }
+.da-salon-top button { background: none; border: 0; color: #8fb0ff; text-decoration: underline; text-underline-offset: 3px; cursor: pointer; font: 600 13px system-ui, sans-serif; }
+.da-salon-row { display: flex; align-items: center; gap: 14px; width: 100%; padding: 14px 14px; text-align: left; border: 2px solid var(--border, #243063); background: var(--card-bg, var(--bg2, #0e1530)); color: inherit; cursor: pointer; min-height: 64px; border-radius: 0; }
+:root:not([data-theme="dark"]) .da-salon-row { background: #fff; }
+.da-salon-box { flex: none; width: 34px; height: 34px; border: 3px solid #5b8def; display: grid; place-items: center; font-size: 22px; font-weight: 900; color: #fff; }
+.da-salon-row.on { opacity: .6; border-color: #1f9d55; }
+.da-salon-row.on .da-salon-box { background: #1f9d55; border-color: #1f9d55; }
+.da-salon-row.on .da-salon-txt b { text-decoration: line-through; }
+.da-salon-txt { display: grid; gap: 2px; min-width: 0; }
+.da-salon-txt b { font-size: 18px; line-height: 1.2; overflow-wrap: anywhere; }
+.da-salon-txt small { font-size: 13px; color: var(--text2, #aaa); overflow-wrap: anywhere; }
+.da-salon-note { font-size: 12.5px; color: var(--text2, #aaa); margin: 6px 2px 0; }

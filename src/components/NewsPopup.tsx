@@ -47,7 +47,7 @@ export default function NewsPopup() {
         <div id="da-news-title" className="da-confirm-title">Quoi de neuf ?</div>
         <div className="da-news-sub">{latest.titre}</div>
         <ul className="da-news-list">
-          {latest.points.slice(0, 5).map(p => <li key={p}>{p}</li>)}
+          {latest.points.map(p => <li key={p}>{p}</li>)}
         </ul>
         <div className="da-confirm-actions">
           <Link href="/nouveautes" className="da-confirm-btn" onClick={close}>Tout voir</Link>

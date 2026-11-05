@@ -46,6 +46,23 @@ export default function WishlistPage() {
     } catch { setShareState('idle') }
   }
   useEffect(() => { if (userId) { const tm = window.setTimeout(() => { shareCall('GET') }, 0); return () => window.clearTimeout(tm) } }, [userId])
+  // Mode salon : liste en grosses lignes à cocher « trouvée » ; cases et liste gardées sur l'appareil (marche sans réseau une fois chargée)
+  const [salon, setSalon] = useState(false)
+  const [found, setFound] = useState<Set<string>>(new Set())
+  useEffect(() => {
+    const tm = window.setTimeout(() => {
+      try {
+        setSalon(localStorage.getItem('mb_wish_salon') === '1')
+        const f = JSON.parse(localStorage.getItem('mb_wish_found') || '[]')
+        if (Array.isArray(f)) setFound(new Set(f.map(String)))
+      } catch { /* stockage indisponible */ }
+    }, 0)
+    return () => window.clearTimeout(tm)
+  }, [])
+  const toggleSalon = (v: boolean) => { setSalon(v); try { localStorage.setItem('mb_wish_salon', v ? '1' : '0') } catch { /* rien */ } }
+  const saveFound = (n: Set<string>) => { try { localStorage.setItem('mb_wish_found', JSON.stringify([...n])) } catch { /* rien */ } }
+  const toggleFound = (id: string) => setFound(prev => { const n = new Set(prev); if (n.has(id)) n.delete(id); else n.add(id); saveFound(n); return n })
+  const clearFound = () => { const n = new Set<string>(); setFound(n); saveFound(n) }
   const copyShare = async () => {
     try { await navigator.clipboard.writeText(shareUrl); setShareState('copied'); window.setTimeout(() => setShareState('idle'), 2000) } catch { /* presse-papiers indisponible */ }
   }
@@ -63,7 +80,12 @@ export default function WishlistPage() {
           supabase.from('wishlist').select('*').eq('user_id', session.user.id).order('created_at', { ascending: false }),
           8000, { data: null } as any
         )
-        setItems(d || [])
+        if (d) {
+          setItems(d)
+          try { localStorage.setItem('mb_wish_cache', JSON.stringify(d)) } catch { /* rien */ }
+        } else {
+          try { const c = JSON.parse(localStorage.getItem('mb_wish_cache') || 'null'); if (Array.isArray(c)) setItems(c) } catch { /* rien */ }
+        }
       } finally {
         setLoading(false)
       }
@@ -100,16 +122,21 @@ export default function WishlistPage() {
           <h1 style={{ fontWeight: 900, fontSize: 28, margin: 0 }}>{t('wishlist_title')}</h1>
           <p style={{ color: '#999', fontSize: 13, margin: '4px 0 0' }}>{t('wishlist_sub')}</p>
         </div>
-        <button onClick={() => setShowForm(!showForm)} style={{
+        <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap' }}>
+        <button type="button" onClick={() => toggleSalon(!salon)} className={'da-salon-btn' + (salon ? ' on' : '')} aria-pressed={salon}>
+          {salon ? '✕ Quitter le mode salon' : '🎪 Mode salon'}
+        </button>
+        {!salon && <button onClick={() => setShowForm(!showForm)} style={{
           background: '#003DA6', color: 'white', border: 'none', borderRadius: 10,
           padding: '10px 20px', fontWeight: 800, fontSize: 14, cursor: 'pointer',
         }}>
           {showForm ? t('wishlist_cancel_add') : t('wishlist_add')}
-        </button>
+        </button>}
+        </div>
       </div>
 
       {/* Partage par lien */}
-      {userId && shareState !== 'migration' && (
+      {!salon && userId && shareState !== 'migration' && (
         <div className="da-share" style={{ marginBottom: 20 }}>
           {!shareToken ? (
             <div style={{ display: 'flex', alignItems: 'center', gap: 12, flexWrap: 'wrap' }}>
@@ -136,7 +163,7 @@ export default function WishlistPage() {
       )}
 
       {/* Formulaire */}
-      {showForm && (
+      {!salon && showForm && (
         <form onSubmit={e => { e.preventDefault(); save() }} style={{ background: dark ? '#1e1e1e' : 'white', borderRadius: 14, padding: 20, marginBottom: 24, boxShadow: '0 4px 20px rgba(0,0,0,0.08)', border: `1px solid ${dark ? '#2a2a2a' : '#eee'}` }}>
           <h3 style={{ fontWeight: 800, margin: '0 0 16px', fontSize: 15 }}>{t('wishlist_new_wanted')}</h3>
           <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 10 }}>
@@ -206,7 +233,27 @@ export default function WishlistPage() {
         </div>
       )}
 
-      <div style={{ display: 'flex', flexDirection: 'column', gap: 10 }}>
+      {salon && (
+        <div className="da-salon">
+          <div className="da-salon-top">
+            <b>{found.size} / {items.length} trouvée{found.size > 1 ? 's' : ''}</b>
+            {found.size > 0 && <button type="button" onClick={clearFound}>Tout décocher</button>}
+          </div>
+          {items.map(item => {
+            const on = found.has(String(item.id))
+            const detail = [item.annee, item.marque, item.collection, item.variation, item.num, item.rc && 'RC', item.auto && 'Auto', item.patch && 'Patch'].filter(Boolean).join(' · ')
+            return (
+              <button key={item.id} type="button" className={'da-salon-row' + (on ? ' on' : '')} aria-pressed={on} onClick={() => toggleFound(String(item.id))}>
+                <span className="da-salon-box" aria-hidden="true">{on ? '✓' : ''}</span>
+                <span className="da-salon-txt"><b>{item.nom}</b>{detail && <small>{detail}</small>}{item.notes && <small>« {item.notes} »</small>}</span>
+              </button>
+            )
+          })}
+          <p className="da-salon-note">Tes cases « trouvée » sont gardées sur ce téléphone. La liste reste disponible sans réseau une fois chargée.</p>
+        </div>
+      )}
+
+      <div style={{ display: salon ? 'none' : 'flex', flexDirection: 'column', gap: 10 }}>
         {items.map(item => (
           <div key={item.id} style={{
             background: dark ? '#1e1e1e' : 'white', borderRadius: 12, padding: '14px 18px',
