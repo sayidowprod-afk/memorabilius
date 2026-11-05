@@ -4,6 +4,20 @@ export type Entry = { date: string; titre: string; points: string[] }
 
 export const ENTRIES: Entry[] = [
   {
+    date: '7 novembre 2026', titre: 'Page de classeur, offres de prix, galerie personnalisable',
+    points: [
+      'Ajout en lot : « 📖 Page de classeur ». Prends en photo une page de classeur (recto, puis verso de la page retournée) : les cartes sont repérées et découpées toutes seules, et tu peux réajuster les coins de chacune (lien « coins »).',
+      'Ajout en lot : les photos de cartes seules sont maintenant recadrées automatiquement (détection des coins), et un « 🎞️ Mode rafale » garde la caméra ouverte pour enchaîner recto, verso, recto, verso.',
+      'Messages : le bouton 💶 te laisse proposer un prix pour une carte à vendre. Le vendeur accepte, refuse ou te répond par un autre prix, et l’offre expire au bout de 48 h.',
+      'Galerie : le bouton 🎨 personnalise ta galerie au même endroit : le fond (29 au choix : pelouse, glace, terre battue, piste, matière des balles de basket, tennis, baseball, golf…), la couleur et tes équipes favorites. Tes visiteurs voient ton fond. Les mêmes réglages existent dans Paramètres.',
+      'Thèmes de saison : pendant All-Star (février), les playoffs (avril à juin) et Noël, la couleur du site et un liseré en haut de l’écran changent tout seuls. Tu peux les désactiver dans Paramètres, et ta couleur choisie reste prioritaire.',
+      'Wishlist : « Mode salon » et « Partager ma wishlist » sont maintenant directement dans l’onglet Wishlist de ta galerie.',
+      'Sorties : le bouton Checklist ouvre notre propre setlist, et les checklists des prochaines sorties sont ajoutées automatiquement.',
+      'Galerie : en pinçant pour réduire la grille, les noms et les textes des cartes s’adaptent à la taille. Au toucher d’une carte, elle s’agrandit en douceur.',
+      'Un seul jeu d’icônes au trait fin dans les menus, un ballon de basket qui rebondit quand tu tires pour actualiser (appli), et un fond d’accueil plus vivant.',
+    ],
+  },
+  {
     date: '6 novembre 2026', titre: 'Ajout en lot, calendrier des sorties, mode salon et plus',
     points: [
       'Ajout en lot : choisis les photos (recto + verso) de plusieurs cartes d’un coup, elles sont identifiées automatiquement. Les cartes non identifiées se complètent ensuite avec « À compléter » dans ta galerie.',
