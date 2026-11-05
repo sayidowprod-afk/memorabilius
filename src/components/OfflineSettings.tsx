@@ -3,6 +3,7 @@ import { useEffect, useState } from 'react'
 import { useIsNative, useIsAppUI } from '@/lib/useIsNative'
 import { useAuth } from '@/lib/AuthContext'
 import { isNativeOfflineEnabled, enableNativeOffline, disableNativeOffline } from '@/lib/offlineMode'
+import { askConfirm } from '@/components/ConfirmHost'
 import { prepareOffline, prepareHd, planHd, verifyOffline, type VerifyReport, readPrepState, clearPrepState, PREP_EVENT, type PrepState, type PrepProgress } from '@/lib/offlinePrepare'
 
 // Mode hors ligne dans les paramètres. Sur le web/PWA le service worker est toujours
@@ -83,7 +84,7 @@ export default function OfflineSettings({ hideInAppUI = false }: { hideInAppUI?:
         return
       }
       const size = plan.bytes !== null ? 'environ ' + fmtSize(plan.bytes) : 'plusieurs centaines de Mo'
-      if (!window.confirm('Télécharger ' + plan.missing + ' images HD (' + size + ') pour le viewer 3D hors ligne ? Fais-le de préférence en Wi-Fi.')) return
+      if (!(await askConfirm('Télécharger ' + plan.missing + ' images HD (' + size + ') pour le viewer 3D hors ligne ? Fais-le de préférence en Wi-Fi.', { confirmLabel: 'Télécharger' }))) return
       await prepareHd(user.id, { onProgress: setProgress })
     } catch {
       setMsg('Le téléchargement HD a échoué. Réessaie avec une meilleure connexion.')

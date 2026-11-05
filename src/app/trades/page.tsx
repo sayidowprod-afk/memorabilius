@@ -18,6 +18,7 @@ import { TRADE_STATUS_COLOR } from '@/lib/tradeStatus'
 import { toast } from '@/lib/toast'
 import TradeModal from '@/components/TradeModal'
 import PriceTag from '@/components/PriceTag'
+import { askConfirm } from '@/components/ConfirmHost'
 
 // ── Image zoom (forum annonces) ───────────────────────────────────────────────
 function ImageZoom({ src, alt }: { src: string; alt: string }) {
@@ -341,7 +342,7 @@ export default function Trades() {
   const OFFER_CONFIRM_KEY = { accept: 'trades_offer_accept_confirm', refuse: 'trades_offer_refuse_confirm', cancel: 'trades_offer_cancel_confirm' } as const
 
   const actOnOffer = async (tradeId: string, action: 'accept' | 'refuse' | 'cancel') => {
-    if (!confirm(t(OFFER_CONFIRM_KEY[action]))) return
+    if (!(await askConfirm(t(OFFER_CONFIRM_KEY[action]), { danger: action !== 'accept', confirmLabel: action === 'accept' ? 'Accepter' : action === 'refuse' ? 'Refuser' : 'Annuler l’offre' }))) return
     setActing(tradeId + action)
     const { data: { session } } = await supabase.auth.getSession()
     if (!session) { setActing(null); return }
@@ -1168,7 +1169,7 @@ export default function Trades() {
                         ✓ Marquer comme conclu
                       </button>
                       <button onClick={async () => {
-                        if (!confirm(t('trades_delete_confirm'))) return
+                        if (!(await askConfirm(t('trades_delete_confirm'), { danger: true, confirmLabel: 'Supprimer' }))) return
                         await supabase.from('trades').delete().eq('id', popup.id)
                         setTrades(prev => prev.filter(t => t.id !== popup.id))
                         setPopup(null)

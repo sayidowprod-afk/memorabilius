@@ -28,17 +28,19 @@ export default function Navbar() {
   const [bellPulse, setBellPulse] = useState(false)
   const prevNotifsRef = useRef(0)
   const [menuOpen, setMenuOpen] = useState(false)
-  const [openDrop, setOpenDrop] = useState<'communaute' | 'outils' | 'lang' | null>(null)
+  const [openDrop, setOpenDrop] = useState<'communaute' | 'outils' | 'lang' | 'user' | null>(null)
   const [searchOpen, setSearchOpen] = useState(false)
   const communauteRef = useRef<HTMLDivElement>(null)
   const outilsRef = useRef<HTMLDivElement>(null)
   const langRef = useRef<HTMLDivElement>(null)
+  const userRef = useRef<HTMLDivElement>(null)
+  const [avatarUrl, setAvatarUrl] = useState<string | null>(null)
   const router = useRouter()
   const pathname = usePathname()
   const { dark } = useTheme()
   const { lang, setLang, t } = useLang()
 
-  const toggleDrop = (name: 'communaute' | 'outils' | 'lang') =>
+  const toggleDrop = (name: 'communaute' | 'outils' | 'lang' | 'user') =>
     setOpenDrop(cur => cur === name ? null : name)
 
   const closeDrop = () => setOpenDrop(null)
@@ -50,6 +52,7 @@ export default function Navbar() {
         if (communauteRef.current?.contains(e.target as Node)) return
         if (outilsRef.current?.contains(e.target as Node)) return
         if (langRef.current?.contains(e.target as Node)) return
+        if (userRef.current?.contains(e.target as Node)) return
       }
       closeDrop()
     }
@@ -73,8 +76,8 @@ export default function Navbar() {
     if (!user) { setNotifs(0); setIsAdmin(false); return }
     loadNotifs(user.id)
     updateLastSeen(user.id)
-    supabase.from('profiles').select('is_admin').eq('id', user.id).single()
-      .then(({ data: p }) => setIsAdmin(p?.is_admin ?? false))
+    supabase.from('profiles').select('is_admin, avatar_url').eq('id', user.id).single()
+      .then(({ data: p }) => { setIsAdmin(p?.is_admin ?? false); setAvatarUrl(p?.avatar_url ?? null) })
   }, [user?.id])
 
   useEffect(() => {
@@ -236,12 +239,25 @@ export default function Navbar() {
                   <span className={bellPulse ? 'bell-pulse' : undefined} style={{ display: 'inline-block' }}>🔔</span> <Badge count={notifs} />
                 </Link>
               </div>
-              <div style={{ padding: '0 8px', height: 60, display: 'flex', alignItems: 'center' }}>
-                <Link href="/profil" style={linkStyle}>{t('nav_profil')}</Link>
-              </div>
-
               <SettingsMenu />
-              <button onClick={handleLogout} className="sm-out" style={{ background: 'none', border: `1px solid ${dark ? '#555' : '#ddd'}`, borderRadius: 20, padding: '6px 14px', cursor: 'pointer', fontSize: 13, fontWeight: 600, color: dark ? '#ddd' : '#555' }}>{t('nav_deconnexion')}</button>
+              {/* Menu avatar : Mon profil + Se déconnecter (remplace le lien Profil et le bouton Déconnexion) */}
+              <div ref={userRef} style={{ position: 'relative', padding: '0 8px', height: 60, display: 'flex', alignItems: 'center' }}>
+                <button type="button" aria-label={t('nav_profil')} aria-haspopup="menu" aria-expanded={openDrop === 'user'} onClick={() => toggleDrop('user')}
+                  style={{ width: 36, height: 36, padding: 0, borderRadius: '50%', border: '2px solid #5b8def', background: '#003DA6', cursor: 'pointer', overflow: 'hidden', display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#fff', fontWeight: 800, fontSize: 14 }}>
+                  {avatarUrl
+                    // eslint-disable-next-line @next/next/no-img-element
+                    ? <img src={avatarUrl} alt="" width={36} height={36} style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }} />
+                    : <span aria-hidden="true">{(user.email || '?').charAt(0).toUpperCase()}</span>}
+                </button>
+                {openDrop === 'user' && (
+                  <div role="menu" style={{ position: 'absolute', top: 56, right: 0, background: dropBg, border: `1px solid ${dropBorder}`, borderRadius: 12, padding: 6, boxShadow: '0 8px 24px rgba(0,0,0,0.12)', minWidth: 190, zIndex: 300 }}>
+                    <Link href="/profil" role="menuitem" style={dropItemStyle} onClick={closeDrop}>👤 Mon profil</Link>
+                    <div style={{ margin: '4px 8px', borderTop: `1px solid ${dropBorder}` }} />
+                    <button type="button" role="menuitem" className="sm-out" onClick={() => { closeDrop(); handleLogout() }}
+                      style={{ ...dropItemStyle, width: '100%', textAlign: 'left', background: 'none', border: 'none', cursor: 'pointer', color: dark ? '#ff8a8a' : '#b42318' }}>Se déconnecter</button>
+                  </div>
+                )}
+              </div>
             </div>
           ) : (
             <div style={{ display: 'flex', gap: 8, alignItems: 'center' }}>

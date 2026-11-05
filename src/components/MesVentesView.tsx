@@ -6,6 +6,7 @@ import { EXTRA_CSS } from '@/components/AchatExtras'
 import { MA_CSS, type Row, type Rates } from '@/components/MesAchatsView'
 import { achatCosts, encaisse, netOf, profitOf, statsOf, suggestAchat, type Vente } from '@/lib/ventesUi'
 import { matchesQuery } from '@/lib/achatsUi'
+import { askConfirm } from '@/components/ConfirmHost'
 
 // Affichage de « Mes ventes » (sans logique réseau) : ventes eBay importées + ventes saisies à la main, net encaissé, profit
 // réalisé et rendement (vente moins coût d'achat, relié automatiquement à « Mes achats » quand les titres se ressemblent).
@@ -150,7 +151,7 @@ export default function MesVentesView({
                       {v.lien && <a href={v.lien} target="_blank" rel="noopener noreferrer">Voir l’annonce</a>}
                       {v.lien_commande && <a href={v.lien_commande} target="_blank" rel="noopener noreferrer">Voir la commande</a>}
                       <button type="button" className="ma-linkbtn" aria-expanded={isOpen} onClick={() => setOpen(isOpen ? null : v.id)}>{isOpen ? 'Fermer' : 'Détails'}</button>
-                      {v.source !== 'ebay' && <button type="button" className="ma-del" onClick={() => { if (window.confirm('Supprimer cette vente ?')) onDelete(v.id) }}>Supprimer</button>}
+                      {v.source !== 'ebay' && <button type="button" className="ma-del" onClick={async () => { if (await askConfirm('Supprimer cette vente ?', { danger: true, confirmLabel: 'Supprimer' })) onDelete(v.id) }}>Supprimer</button>}
                     </div>
                   </div>
                   {isOpen && <VenteDetails v={v} achats={achatsSorted} costs={costs} taken={taken} onPatch={onPatch} onLink={link} onClose={() => setOpen(null)} />}

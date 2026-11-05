@@ -23,6 +23,7 @@ import { TRADE_STATUS_COLOR, type TradeStatus } from '@/lib/tradeStatus'
 import ShipmentBubble from '@/components/ShipmentBubble'
 import ShipmentRequestModal from '@/components/ShipmentRequestModal'
 import { isShipmentMsg, shipmentIdOf } from '@/lib/shipping'
+import { askConfirm } from '@/components/ConfirmHost'
 
 // Hauteur réelle de MobileTopBar (safe-area-top + paddings 10px + logo 20px)
 const TOPBAR_HEIGHT_CSS = 'calc(var(--safe-area-inset-top, env(safe-area-inset-top)) + 40px)'
@@ -198,7 +199,7 @@ function MessagesContent() {
   // « Supprimer » une conversation = la masquer pour soi : l'autre personne garde tout, rien n'est effacé en base.
   const hideConversation = async (otherId: string) => {
     if (!userId) return
-    if (!confirm('Supprimer cette conversation ? Elle disparaîtra de ta liste (l\'autre personne la garde). Elle réapparaîtra si cette personne t\'écrit de nouveau.')) return
+    if (!(await askConfirm('Supprimer cette conversation ? Elle disparaîtra de ta liste (l\'autre personne la garde). Elle réapparaîtra si cette personne t\'écrit de nouveau.', { danger: true, confirmLabel: 'Supprimer' }))) return
     const { error } = await supabase.rpc('hide_conversation', { p_other: otherId })
     if (error) { alert('Impossible de supprimer la conversation pour le moment.'); return }
     // les messages déjà reçus ne doivent plus compter comme non lus (pastille de la barre de navigation)
@@ -211,10 +212,11 @@ function MessagesContent() {
   const toggleBlock = async (otherId: string) => {
     if (!userId) return
     const isBlocked = blockedIds.has(otherId)
-    if (!confirm(isBlocked
+    if (!(await askConfirm(isBlocked
       ? 'Débloquer cet utilisateur ? Il pourra de nouveau t\'envoyer des messages.'
-      : 'Bloquer cet utilisateur ? Il ne pourra plus t\'envoyer de messages.'
-    )) return
+      : 'Bloquer cet utilisateur ? Il ne pourra plus t\'envoyer de messages.',
+      { danger: !isBlocked, confirmLabel: isBlocked ? 'Débloquer' : 'Bloquer', title: isBlocked ? 'Débloquer' : 'Bloquer' }
+    ))) return
     if (isBlocked) {
       await supabase.from('blocked_users').delete().eq('blocker_id', userId).eq('blocked_id', otherId)
       setBlockedIds(prev => { const s = new Set(prev); s.delete(otherId); return s })

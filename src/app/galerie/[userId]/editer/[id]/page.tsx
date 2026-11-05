@@ -12,6 +12,7 @@ import { useLang } from '@/lib/LangContext'
 import CardScanner from '@/components/CardScanner'
 import CollectionTagSelect from '@/components/CollectionTagSelect'
 import { SELECTABLE_FORMATS, getFormat } from '@/lib/cardFormats'
+import { askConfirm } from '@/components/ConfirmHost'
 
 // Réduit une photo importée à ~1600px avant traitement (évite les crashs mémoire
 // mobile causés par les photos 12 Mpx décodées en plusieurs bitmaps pleine résolution).
@@ -677,8 +678,8 @@ export default function EditerCarte({ params }: { params: Promise<{ userId: stri
             </button>
             <button
               type="button"
-              onClick={() => {
-                if (isDirty() && !confirm(t('editcard_unsaved_confirm'))) return
+              onClick={async () => {
+                if (isDirty() && !(await askConfirm(t('editcard_unsaved_confirm'), { confirmLabel: 'Quitter', cancelLabel: 'Rester' }))) return
                 router.push(`/galerie/${userId}`)
               }}
               style={{ padding: '8px 14px', borderRadius: 8, border: 'none', background: 'rgba(255,255,255,0.15)', color: 'white', fontWeight: 700, fontSize: 13, cursor: 'pointer' }}

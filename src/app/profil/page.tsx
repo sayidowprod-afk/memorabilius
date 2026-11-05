@@ -17,6 +17,7 @@ import PushNotificationSettings from '@/components/PushNotificationSettings'
 import SecuritySettings from '@/components/SecuritySettings'
 import { clearOfflineUserData } from '@/lib/offline'
 import OfflineSettings from '@/components/OfflineSettings'
+import { askConfirm } from '@/components/ConfirmHost'
 
 export default function Profil() {
   const router = useRouter()
@@ -165,7 +166,7 @@ export default function Profil() {
 
   const convertCsvCards = async () => {
     if (converting || !form.lien_csv) return
-    if (!confirm("Convertir toutes les cartes de ton Google Sheet en vraies cartes sur ton profil ? Le lien CSV sera retiré ensuite (tu pourras annuler juste après si besoin).")) return
+    if (!(await askConfirm("Convertir toutes les cartes de ton Google Sheet en vraies cartes sur ton profil ? Le lien CSV sera retiré ensuite (tu pourras annuler juste après si besoin).", { confirmLabel: 'Convertir' }))) return
     setConverting(true)
     setConvertResult(null)
     try {

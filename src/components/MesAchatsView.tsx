@@ -3,6 +3,7 @@ import { useEffect, useMemo, useState } from 'react'
 import SpendingTracker, { type Budgets, NO_BUDGETS } from '@/components/SpendingTracker'
 import { ActivityLog, Clock, DetailsPanel, EXTRA_CSS, Lightbox, MesAchatsSkeleton, PrefsModal, type Compare, type LogEvent } from '@/components/AchatExtras'
 import { groupOrders, orderTotals } from '@/lib/achatsOrders'
+import { askConfirm } from '@/components/ConfirmHost'
 import { findMatch, indexCartes, matchesQuery, rappels, statutOf, STATUT_COLOR, STATUT_LABEL, trackingUrl, type CarteLite, type Statut } from '@/lib/achatsUi'
 import type { AlertPrefs } from '@/lib/achatsAlertPrefs'
 
@@ -276,14 +277,14 @@ export default function MesAchatsView({
     const links = (
       <>
         {!multi && annonceUrl(r, tld) && <a href={annonceUrl(r, tld)!} target="_blank" rel="noopener noreferrer">{vue === 'liste' ? 'Ouvrir' : 'Voir l’annonce'}</a>}
-        {track ? <a href={track.url} target="_blank" rel="noopener noreferrer">Suivre chez {track.label}</a>
+        {s === 'recu' ? null : track ? <a href={track.url} target="_blank" rel="noopener noreferrer">Suivre chez {track.label}</a>
           : orderLink && (r.expedie_at || r.paye_at) && <a href={orderLink} target="_blank" rel="noopener noreferrer">Suivre le colis</a>}
         {canReceive && <button type="button" className="ma-linkbtn" disabled={working === 'rec-' + r.id} onClick={() => run('rec-' + r.id, () => patch(ids, { recu: true }), 'Marqué comme reçu.')}>Marquer reçu</button>}
         {onCollection && (inColl === g.length && userId
           ? <a href={`/galerie/${userId}/editer/${g[0].carte_id}`}>✓ En collection</a>
           : <button type="button" className="ma-linkbtn" disabled={working === 'col-' + ids[0]} onClick={() => addToCollection(ids.filter((_, i) => !g[i].carte_id))}>{working === 'col-' + ids[0] ? 'Ajout…' : multi ? `+ Ma collection (${g.length - inColl})` : '+ Ma collection'}</button>)}
         {onPatch && <button type="button" className="ma-linkbtn" aria-expanded={isOpen} onClick={() => setOpen(isOpen ? null : r.id)}>{isOpen ? 'Fermer' : 'Détails'}</button>}
-        {!multi && r.source === 'vinted' && onDeleteVinted && <button className="ma-del" onClick={() => { if (window.confirm('Supprimer cet achat Vinted ?')) onDeleteVinted(r.id) }}>Supprimer</button>}
+        {!multi && r.source === 'vinted' && onDeleteVinted && <button className="ma-del" onClick={async () => { if (await askConfirm('Supprimer cet achat Vinted ?', { danger: true, confirmLabel: 'Supprimer' })) onDeleteVinted(r.id) }}>Supprimer</button>}
       </>
     )
     const tags = (g.flatMap(x => x.tags || []).filter((x, i, a) => a.indexOf(x) === i))
@@ -356,7 +357,7 @@ export default function MesAchatsView({
           <div className="ma-steps">
             <Step done={!!r.achete_at} label="Acheté" sub={day(r.achete_at)} />
             <Step done={!!r.paye_at} label="Payé" sub={day(r.paye_at)} />
-            <Step done={!!r.expedie_at} label={r.expedie_at ? 'Expédié' : r.paye_at ? 'En attente d’expédition' : 'Expédition'} sub={[day(r.expedie_at), r.transporteur].filter(Boolean).join(' · ')} />
+            <Step done={!!r.expedie_at || s === 'recu'} label={r.expedie_at || s === 'recu' ? 'Expédié' : r.paye_at ? 'En attente d’expédition' : 'Expédition'} sub={[day(r.expedie_at), r.transporteur].filter(Boolean).join(' · ')} />
             <Step done={s === 'recu'} label="Reçu" sub={r.recu_at ? day(r.recu_at) : s === 'recu' ? 'colis arrivé' : undefined} />
           </div>
           {r.suivi_numero && (
@@ -385,6 +386,20 @@ export default function MesAchatsView({
     acc[d] = (acc[d] || 0) + (e === null ? total : e)
     return acc
   }, {})
+  // Évolution par rapport au mois dernier (en euros), seulement si les données remontent assez loin (eBay n'importe que ~60 jours au départ)
+  const withDate = achatsAll.filter(x => x.achete_at)
+  const prevStart = new Date(nowD.getFullYear(), nowD.getMonth() - 1, 1)
+  const firstBuy = withDate.length ? Math.min(...withDate.map(x => new Date(x.achete_at!).getTime())) : null
+  const prevEur = groupOrders(withDate).filter(g => {
+    const d = new Date(g[0].achete_at!)
+    return d.getFullYear() === prevStart.getFullYear() && d.getMonth() === prevStart.getMonth()
+  }).reduce((acc, g) => {
+    const a = g[0]
+    const total = g.length > 1 ? orderTotals(g).total : (a.total_paye ?? ((a.prix || 0) + (a.frais_port || 0) + (a.autres_frais || 0)))
+    return acc + (toEur(total, a.devise, rates) ?? 0)
+  }, 0)
+  const curEur = spent.EUR || 0
+  const trend = firstBuy !== null && firstBuy <= prevStart.getTime() && prevEur > 0 ? Math.round(((curEur - prevEur) / prevEur) * 100) : null
   const spentLabel = Object.entries(spent).map(([d, v]) => money(v, d)).join(' + ') || money(0, 'EUR')
   const nbCmd = groupOrders(achatsAll).length
   const firstLoad = busy === 'sync' && rows.length === 0 && connected
@@ -447,7 +462,7 @@ export default function MesAchatsView({
           <div className="ma-stats">
             <div><span className="da-num">{nbEncheresAll}</span><small>enchère{nbEncheresAll > 1 ? 's' : ''} en cours</small></div>
             <div><span className="da-num">{nbCmd}</span><small>commande{nbCmd > 1 ? 's' : ''} importée{nbCmd > 1 ? 's' : ''}</small></div>
-            <div><span className="da-num">{spentLabel}</span><small>dépensés ce mois-ci</small></div>
+            <div><span className="da-num">{spentLabel}</span><small>dépensés ce mois-ci</small>{trend !== null && <small className={`ma-trend ${trend > 0 ? 'up' : trend < 0 ? 'down' : ''}`}>{trend > 0 ? '▲ +' : trend < 0 ? '▼ −' : '= '}{Math.abs(trend)} % vs mois dernier</small>}</div>
           </div>
 
           <input className="ma-search" type="search" value={q} onChange={e => setQ(e.target.value)} placeholder="Rechercher partout : carte, joueur, vendeur, étiquette, note…" aria-label="Rechercher dans mes achats, enchères et articles suivis" />
@@ -679,8 +694,11 @@ const CSS = `
 .ma-mosaic .ma-photo { width: 100%; height: 100%; }
 .ma-items { margin: 2px 0 2px; padding-left: 16px; font-size: 12px; color: var(--text2); line-height: 1.5; max-height: 110px; overflow-y: auto; }
 .ma-items a { color: inherit; text-decoration: none; } .ma-items a:hover { text-decoration: underline; }
-.ma-del { background: none; border: 0; padding: 0; font: 800 12px system-ui, sans-serif; letter-spacing: .05em; text-transform: uppercase; color: var(--text3); cursor: pointer; margin-left: auto; }
-.ma-del:hover { color: #d6293e; }
+.ma-del { background: none; border: 2px solid rgba(214, 41, 62, .55); padding: 5px 10px; font: 800 12px system-ui, sans-serif; letter-spacing: .05em; text-transform: uppercase; color: #ef6b78; cursor: pointer; margin-left: auto; }
+.ma-del:hover { background: #b42318; border-color: #b42318; color: #fff; }
+.ma-trend { display: block; margin-top: 2px; font-weight: 700; color: var(--text2, #aaa); }
+.ma-trend.up { color: #ffb36b; }
+.ma-trend.down { color: #6fe0a8; }
 .ma-src { display: inline-block; font: 800 10px system-ui, sans-serif; letter-spacing: .06em; text-transform: uppercase; padding: 2px 6px; margin-right: 7px; vertical-align: 1px; color: #fff; }
 .ma-src.eb { background: #2f6bff; } .ma-src.vi { background: #09b1ba; }
 .ma-search { width: 100%; box-sizing: border-box; margin: 0 0 12px; padding: 11px 14px; border: 3px solid var(--border); background: var(--input-bg); color: var(--text); font: 600 14px system-ui, sans-serif; border-radius: 0; }

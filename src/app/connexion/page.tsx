@@ -181,7 +181,7 @@ export default function Connexion() {
               inputMode="numeric" autoComplete="one-time-code" placeholder="000000" maxLength={6}
               style={{ textAlign: 'center', fontSize: 24, letterSpacing: 6, fontWeight: 700 }} autoFocus
             />
-            {error && <p style={{ color: '#e74c3c', fontSize: 13 }}>{error}</p>}
+            {error && <p role="alert" className="da-error">⚠ {error}</p>}
             <button type="submit" className="btn-main btn-primary" disabled={mfaVerifying || mfaCode.length !== 6} aria-busy={mfaVerifying}>
               {mfaVerifying ? t('login_verifying') : t('login_2fa_verify')}
             </button>
@@ -225,13 +225,13 @@ export default function Connexion() {
         <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', gap: 16 }}>
           <div>
             <label htmlFor="login-email" style={{ fontSize: 12, fontWeight: 700, textTransform: 'uppercase', color: '#888', display: 'block', marginBottom: 6 }}>{t('login_email')}</label>
-            <input id="login-email" type="email" required placeholder="votre@email.com" autoComplete="email" value={form.email} onChange={e => setForm({ ...form, email: e.target.value })} />
+            <input id="login-email" type="email" aria-invalid={!!error} required placeholder="votre@email.com" autoComplete="email" value={form.email} onChange={e => setForm({ ...form, email: e.target.value })} />
           </div>
           <div>
             <label htmlFor="login-password" style={{ fontSize: 12, fontWeight: 700, textTransform: 'uppercase', color: '#888', display: 'block', marginBottom: 6 }}>{t('login_password')}</label>
-            <input id="login-password" type="password" required placeholder={t('login_password_placeholder')} autoComplete="current-password" value={form.password} onChange={e => setForm({ ...form, password: e.target.value })} />
+            <input id="login-password" type="password" aria-invalid={!!error} required placeholder={t('login_password_placeholder')} autoComplete="current-password" value={form.password} onChange={e => setForm({ ...form, password: e.target.value })} />
           </div>
-          {error && <p style={{ color: '#e74c3c', fontSize: 13 }}>{error}</p>}
+          {error && <p role="alert" className="da-error">⚠ {error}</p>}
           <button type="submit" className="btn-main btn-primary" style={{ marginTop: 8 }} disabled={loading} aria-busy={loading}>
             {loading ? t('login_signing_in') : t('login_btn')}
           </button>

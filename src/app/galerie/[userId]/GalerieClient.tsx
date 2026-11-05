@@ -3563,6 +3563,16 @@ export default function GalerieClient({ userId, initialCardUrl, initialCards, in
                 </div>
               )}
 
+              {/* Actions rapides au survol (ordinateur seulement, hors mode édition / QR) : partager, et modifier pour le propriétaire */}
+              {!editMode && !qrMode && (
+                <div className="da-tile-actions">
+                  <button type="button" onClick={e => { e.stopPropagation(); shareCardNative(d) }} aria-label={`Partager ${d.n}`}>🔗 Partager</button>
+                  {isOwner && d.isManuelle && d.id_manuelle && (
+                    <button type="button" onClick={e => { e.stopPropagation(); router.push(`/galerie/${userId}/editer/${d.id_manuelle}`) }} aria-label={`Modifier ${d.n}`}>✏️ Modifier</button>
+                  )}
+                </div>
+              )}
+
               {/* Actions du mode édition (Confidentialité + Suppression) */}
               {editMode && isOwner && (
                 <div style={{ position: 'absolute', top: 4, left: 0, right: 0, zIndex: 2, display: 'flex', flexDirection: 'column', gap: 4, padding: '0 4px' }}>

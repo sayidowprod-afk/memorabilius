@@ -4,6 +4,7 @@ import { useEffect, useRef, useState } from 'react'
 import Link from 'next/link'
 import { EXTRA_CSS } from '@/components/AchatExtras'
 import { MA_CSS } from '@/components/MesAchatsView'
+import { askConfirm } from '@/components/ConfirmHost'
 
 // Suivi des envois en gradation : chaque envoi (PSA, BGS, CGC…) avec ses cartes, ses dates, son coût et son retour estimé.
 // Quand les cartes reviennent, la note et le n° de certificat peuvent être reportés sur les fiches de la collection.
@@ -143,7 +144,7 @@ export default function EnvoisGradationView({
                     {next && e.statut !== 'termine' && <button type="button" className="ma-linkbtn" onClick={async () => flash(await onStatus(e, next.k), `Statut : ${next.label}.`)}>→ Marquer « {next.label} »</button>}
                     {canApply && <button type="button" className="ma-linkbtn" onClick={async () => flash(await onApply(e), 'Notes reportées sur tes fiches.')}>Reporter les notes sur mes fiches</button>}
                     <button type="button" className="ma-linkbtn" onClick={() => setEditing({ ...e })}>Modifier</button>
-                    <button type="button" className="ma-del" onClick={() => { if (window.confirm('Supprimer cet envoi ?')) onDelete(e.id) }}>Supprimer</button>
+                    <button type="button" className="ma-del" onClick={async () => { if (await askConfirm('Supprimer cet envoi ?', { danger: true, confirmLabel: 'Supprimer' })) onDelete(e.id) }}>Supprimer</button>
                   </div>
                 </div>
               </article>

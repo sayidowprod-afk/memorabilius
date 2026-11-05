@@ -1163,3 +1163,81 @@ html[data-theme="light"] .tcdb-imp-open { border-color: #06122e; color: #06122e;
 .pc-tbtn.on.own { background: #27ae60; color: #fff; }
 .pc-tbtn.on.wish { background: #f1c40f; color: #3a2e00; }
 .pc-tbtn[disabled] { opacity: 0.5; cursor: default; }
+
+/* ═══ Propositions DA validées (2026-11-05) : lisibilité, titres, champs, focus, liens, tableaux, fond ═══ */
+
+/* 1 · Textes secondaires : plus de texte lu sous 12 px, gris secondaire plus clair en mode sombre */
+[data-theme="dark"] { --text3: #b0b8d6; }
+p[style*="font-size:9px"], span[style*="font-size:9px"], div[style*="font-size:9px"], small[style*="font-size:9px"],
+p[style*="font-size: 9px"], span[style*="font-size: 9px"], div[style*="font-size: 9px"] { font-size: 11px !important; }
+p[style*="font-size:10px"], span[style*="font-size:10px"], div[style*="font-size:10px"], small[style*="font-size:10px"], td[style*="font-size:10px"],
+p[style*="font-size: 10px"], span[style*="font-size: 10px"], div[style*="font-size: 10px"] { font-size: 12px !important; }
+p[style*="font-size:10.5px"], span[style*="font-size:10.5px"], div[style*="font-size:10.5px"],
+p[style*="font-size:11px"], span[style*="font-size:11px"], div[style*="font-size:11px"], small[style*="font-size:11px"], td[style*="font-size:11px"],
+p[style*="font-size: 11px"], span[style*="font-size: 11px"], div[style*="font-size: 11px"] { font-size: 12px !important; }
+
+/* 2 · En-têtes de tableaux */
+main th, main table thead th { font-size: 13px !important; }
+[data-theme="dark"] main th, [data-theme="dark"] main table thead th { color: #b6bfdf !important; }
+
+/* 3 · Titres de page : une taille nette (les petits titres de carte / fenêtre ne changent pas) */
+main h1[style*="font-size:28px"], main h1[style*="font-size:30px"], main h1[style*="font-size:32px"], main h1[style*="font-size:36px"],
+main h1[style*="font-size: 28px"], main h1[style*="font-size: 30px"], main h1[style*="font-size: 32px"], main h1[style*="font-size: 36px"] {
+  font-size: clamp(2rem, 4.5vw, 2.75rem) !important; line-height: 1 !important;
+}
+
+/* 5 · Chiffres à largeur fixe dans les tableaux et les montants */
+main table td, main table th, .da-num { font-variant-numeric: tabular-nums; }
+
+/* 6 · Liens dans les textes : soulignés et plus clairs */
+[data-theme="dark"] main p a:not([class]), [data-theme="dark"] main li a:not([class]) { color: #8fb0ff; text-decoration: underline; text-underline-offset: 3px; }
+:root:not([data-theme="dark"]) main p a:not([class]), :root:not([data-theme="dark"]) main li a:not([class]) { text-decoration: underline; text-underline-offset: 3px; }
+
+/* 18 · Boutons-icônes : zone tactile de 44 px sur écran tactile */
+@media (pointer: coarse) {
+  button[aria-label]:not(.btn-main) { min-width: 44px; min-height: 44px; }
+  main select, main input:not([type="checkbox"]):not([type="radio"]):not([type="range"]):not([type="file"]):not([type="color"]) { min-height: 44px; }
+}
+
+/* 22 · Champs : angles droits, bord net */
+main input:not([type="checkbox"]):not([type="radio"]):not([type="range"]):not([type="file"]):not([type="color"]), main select, main textarea {
+  border-radius: 0 !important; border-width: 2px !important;
+}
+[data-theme="dark"] main input:not([type="checkbox"]):not([type="radio"]):not([type="range"]):not([type="file"]):not([type="color"]), [data-theme="dark"] main select, [data-theme="dark"] main textarea { border-color: #3a4a8a; }
+:root:not([data-theme="dark"]) main input:not([type="checkbox"]):not([type="radio"]):not([type="range"]):not([type="file"]):not([type="color"]), :root:not([data-theme="dark"]) main select, :root:not([data-theme="dark"]) main textarea { border-color: #b8c4e0; }
+
+/* 23 · Champ actif : contour bleu épais */
+main input:focus, main select:focus, main textarea:focus { outline: 3px solid #5b8def; outline-offset: 2px; border-color: #5b8def !important; }
+
+/* 62 · Fond : dégradé final moins saturé */
+[data-theme="dark"] body {
+  background:
+    radial-gradient(circle at 15% -10%, rgba(91,141,239,0.07), transparent 45%),
+    linear-gradient(160deg, #050912 0%, #08153b 70%, #0a1d50 100%) fixed !important;
+}
+
+/* 49 · Fenêtre de confirmation (ConfirmHost) */
+.da-confirm-back { position: fixed; inset: 0; z-index: 10000; background: rgba(2, 5, 14, 0.72); display: flex; align-items: center; justify-content: center; padding: 16px; }
+.da-confirm { width: 100%; max-width: 420px; background: var(--bg2, #0e1530); color: var(--text, #f0f0f0); border: 2px solid #3a4a8a; box-shadow: 0 16px 44px rgba(0, 0, 0, 0.6); padding: 22px; }
+.da-confirm-title { font-family: 'Surfquest', Impact, 'Arial Narrow', sans-serif; text-transform: uppercase; font-size: 26px; line-height: 1; letter-spacing: 0.02em; }
+.da-confirm-msg { margin: 10px 0 18px; font-size: 15px; line-height: 1.5; color: var(--text2, #aaa); }
+.da-confirm-actions { display: flex; gap: 10px; justify-content: flex-end; flex-wrap: wrap; }
+.da-confirm-btn { font: 700 13px system-ui, sans-serif; letter-spacing: 0.06em; text-transform: uppercase; padding: 11px 18px; border: 2px solid #3a4a8a; background: transparent; color: inherit; border-radius: 0; cursor: pointer; min-height: 44px; }
+.da-confirm-btn.primary { background: #003da6; border-color: #003da6; color: #fff; }
+.da-confirm-btn.danger { background: #b42318; border-color: #b42318; color: #fff; }
+.da-confirm-btn:focus-visible { outline: 3px solid #5b8def; outline-offset: 2px; }
+
+/* 24 · Erreurs de formulaire : message collé au champ, bord rouge sur le champ concerné */
+.da-error { margin: 0; padding: 9px 12px; font-size: 14px; line-height: 1.4; color: #ffb4ad; background: rgba(180, 35, 24, 0.16); border: 2px solid #b42318; border-left-width: 6px; }
+:root:not([data-theme="dark"]) .da-error { color: #8a1c13; background: #fdecea; }
+main input[aria-invalid="true"], main select[aria-invalid="true"], main textarea[aria-invalid="true"] { border-color: #ef5b5b !important; }
+
+/* 33 · Actions rapides au survol d'une tuile de la galerie (ordinateur) */
+.da-tile-actions { display: none; }
+@media (hover: hover) and (pointer: fine) {
+  .da-tile-actions { display: flex; gap: 6px; position: absolute; top: 10px; left: 10px; right: 10px; z-index: 4; justify-content: center; opacity: 0; pointer-events: none; transition: opacity 0.15s ease; }
+  .card-item:hover .da-tile-actions, .card-item:focus-within .da-tile-actions { opacity: 1; pointer-events: auto; }
+  .da-tile-actions button { font: 700 11px system-ui, sans-serif; letter-spacing: 0.04em; padding: 6px 9px; border: 2px solid #fff; background: rgba(5, 9, 18, 0.88); color: #fff; border-radius: 0; cursor: pointer; white-space: nowrap; }
+  .da-tile-actions button:hover { background: #003da6; border-color: #003da6; }
+  .da-tile-actions button:focus-visible { outline: 3px solid #5b8def; outline-offset: 2px; }
+}

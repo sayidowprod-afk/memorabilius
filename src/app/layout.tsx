@@ -16,6 +16,7 @@ import LocalRemindersInit from '@/components/LocalRemindersInit'
 import ChunkErrorReload from '@/components/ChunkErrorReload'
 import HangWatchdog from '@/components/HangWatchdog'
 import SiteShell from '@/components/SiteShell'
+import ConfirmHost from '@/components/ConfirmHost'
 
 export const viewport: Viewport = {
   width: 'device-width',
@@ -107,6 +108,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             <OfflineBanner />
             <OfflinePrepare />
             <PullToRefresh />
+            <ConfirmHost />
             <SiteShell>{children}</SiteShell>
           </LangProvider>
         </ThemeProvider>

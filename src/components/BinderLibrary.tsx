@@ -16,6 +16,7 @@ import FolderIconPicker from './FolderIconPicker'
 import { getTeamById, teamLogoUrl } from '@/lib/sportsTeams'
 import { useIsAppUI } from '@/lib/useIsNative'
 import { NAV_SAFE_AREA_BOTTOM, NAV_TOTAL_HEIGHT_CSS } from '@/lib/nativeLayout'
+import { askConfirm } from '@/components/ConfirmHost'
 const GalerieExport = dynamic(() => import('./GalerieExport'), { ssr: false })
 
 // Rend l'icône d'un dossier : emoji, logo d'équipe (team:<id>) ou 📁 par défaut
@@ -503,7 +504,7 @@ export default function BinderLibrary({ userId, isOwner, accent, pendingCard, on
   }
 
   const deleteFolder = async (folder: Folder) => {
-    if (!confirm(`${t('binder_folder_delete_confirm_prefix')}« ${folder.name} »${t('binder_folder_delete_confirm_suffix')}`)) return
+    if (!(await askConfirm(`${t('binder_folder_delete_confirm_prefix')}« ${folder.name} »${t('binder_folder_delete_confirm_suffix')}`, { danger: true, confirmLabel: 'Supprimer' }))) return
     await supabase.from('binder_folders').delete().eq('id', folder.id)
     setFolders(prev => prev.filter(f => f.id !== folder.id))
     setBinders(prev => prev.map(b => b.folder_id === folder.id ? { ...b, folder_id: null } : b))
@@ -657,7 +658,7 @@ export default function BinderLibrary({ userId, isOwner, accent, pendingCard, on
       const current = binders.find(b => b.id === id)
       let fullPayload: typeof payload & { layout?: number; page_count?: number } = payload
       if (current && fLayout !== current.layout) {
-        if (slots.size > 0 && !confirm(t('binder_layout_change_confirm'))) return
+        if (slots.size > 0 && !(await askConfirm(t('binder_layout_change_confirm'), { confirmLabel: 'Continuer' }))) return
         try {
           const newPageCount = await reflowSlotsForLayout(id, slots, fLayout)
           fullPayload = { ...payload, layout: fLayout, page_count: newPageCount }
@@ -992,10 +993,10 @@ export default function BinderLibrary({ userId, isOwner, accent, pendingCard, on
       setPageBusy(false)
     }
   }
-  const deletePage = (k: number) => {
+  const deletePage = async (k: number) => {
     if (!selected || selected.page_count <= 1) return
     const n = [...slots.values()].filter(s => s.page_number === k).length
-    if (!confirm(`Supprimer la page ${k} ?${n ? ` Ses ${n} carte${n > 1 ? 's' : ''} seront retirées du classeur (elles restent dans ta collection).` : ''} Les pages suivantes avancent d'un cran.`)) return
+    if (!(await askConfirm(`Supprimer la page ${k} ?${n ? ` Ses ${n} carte${n > 1 ? 's' : ''} seront retirées du classeur (elles restent dans ta collection).` : ''} Les pages suivantes avancent d'un cran.`, { danger: true, confirmLabel: 'Supprimer' }))) return
     remapPages(p => (p === k ? null : p > k ? p - 1 : p), selected.page_count - 1)
   }
   const movePage = (a: number, b: number) => {
@@ -1549,12 +1550,12 @@ export default function BinderLibrary({ userId, isOwner, accent, pendingCard, on
   })
 
   // ── Formulaire création / édition (partagé) ──
-  const closeBinderForm = () => {
+  const closeBinderForm = async () => {
     // Seule la creation est gardee (pas l'edition, dont le "dirty" exigerait
     // de comparer a l'etat d'origine du classeur) -- un nom deja tape est un
     // signal suffisant de progres qu'on ne veut pas perdre a un clic hors
     // modale par megarde.
-    if (formOpen === 'create' && fName.trim() && !confirm(t('editcard_unsaved_confirm'))) return
+    if (formOpen === 'create' && fName.trim() && !(await askConfirm(t('editcard_unsaved_confirm'), { confirmLabel: 'Quitter', cancelLabel: 'Rester' }))) return
     setFormOpen(null)
   }
 
