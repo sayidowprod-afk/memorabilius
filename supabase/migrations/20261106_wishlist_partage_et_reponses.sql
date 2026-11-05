@@ -10,4 +10,4 @@ ALTER TABLE public.wishlist_shares ENABLE ROW LEVEL SECURITY;
 GRANT ALL ON public.wishlist_shares TO service_role;
 
 -- 115 · Répondre à un message en le citant
-ALTER TABLE public.messages ADD COLUMN IF NOT EXISTS reply_to_id uuid REFERENCES public.messages(id) ON DELETE SET NULL;
+ALTER TABLE public.messages ADD COLUMN IF NOT EXISTS reply_to_id integer REFERENCES public.messages(id) ON DELETE SET NULL;

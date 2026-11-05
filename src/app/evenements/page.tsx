@@ -1,5 +1,6 @@
 'use client'
 import EventClock from '@/components/EventClock'
+import UpcomingReleases from '@/components/UpcomingReleases'
 import { toast } from '@/lib/toast'
 import { useEffect, useState, useRef } from 'react'
 import { createPortal } from 'react-dom'
@@ -206,6 +207,8 @@ export default function Evenements() {
             )}
           </div>
         </div>
+
+        <UpcomingReleases />
 
         {loading && <p style={{ color: sub, textAlign: 'center' }}>{t('events_loading')}</p>}
 

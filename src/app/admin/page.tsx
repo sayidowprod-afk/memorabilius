@@ -3,6 +3,7 @@ import { useEffect, useState } from 'react'
 import Link from 'next/link'
 import { useAuth } from '@/lib/AuthContext'
 import { supabase } from '@/lib/supabase'
+import SortiesAdminCard from '@/components/SortiesAdminCard'
 
 interface AdminLink { href: string; icon: string; title: string; desc: string }
 
@@ -69,6 +70,10 @@ export default function AdminHubPage() {
   return (
     <div style={{ maxWidth: 900, margin: '0 auto' }}>
       <h1 style={{ fontWeight: 900, fontSize: 26, marginBottom: 24 }}>🛠️ Administration</h1>
+      <div style={{ marginBottom: 28 }}>
+        <div style={{ fontSize: 11, fontWeight: 800, textTransform: 'uppercase', letterSpacing: 1, color: '#888', marginBottom: 10 }}>Données automatiques</div>
+        <SortiesAdminCard />
+      </div>
       {GROUPS.map(group => (
         <div key={group.title} style={{ marginBottom: 28 }}>
           <div style={{ fontSize: 11, fontWeight: 800, textTransform: 'uppercase', letterSpacing: 1, color: '#888', marginBottom: 10 }}>

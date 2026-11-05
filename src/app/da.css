@@ -1195,7 +1195,7 @@ main table td, main table th, .da-num { font-variant-numeric: tabular-nums; }
 
 /* 18 · Boutons-icônes : zone tactile de 44 px sur écran tactile */
 @media (pointer: coarse) {
-  button[aria-label]:not(.btn-main) { min-width: 44px; min-height: 44px; }
+  button[aria-label]:not(.btn-main):not(.da-help-btn) { min-width: 44px; min-height: 44px; }
   main select, main input:not([type="checkbox"]):not([type="radio"]):not([type="range"]):not([type="file"]):not([type="color"]) { min-height: 44px; }
 }
 
@@ -1430,3 +1430,22 @@ html[data-accent] a[style*="color:#003DA6"], html[data-accent] a[style*="color: 
 .da-cmp-load .sk { height: 14px; background: linear-gradient(90deg, #17214a, #243063, #17214a); background-size: 200% 100%; animation: daImgShimmer 1.4s linear infinite; }
 .da-cmp-link { display: flex; align-items: center; gap: 4px; font-size: 12px; font-weight: 700; color: #fff !important; padding: 5px 12px; border: 2px solid rgba(255, 255, 255, .55); text-decoration: none !important; border-radius: 20px; }
 .da-cmp-link:hover { background: rgba(255, 255, 255, .18); }
+
+/* Aide « ? » : petit rond discret, zone de toucher agrandie sans grossir l'affichage (ne déforme plus les libellés) */
+.da-help { margin-left: 5px; line-height: 1; }
+.da-help-btn { width: 17px !important; height: 17px !important; min-width: 0 !important; min-height: 0 !important; border-width: 1.5px !important; font-size: 10px !important; position: relative; flex: none; }
+.da-help-btn::after { content: ''; position: absolute; inset: -10px; }
+
+/* Encadré « Prochaines sorties » (événements, guides) */
+.da-sortbloc { border: 2px solid var(--border, #243063); border-left: 6px solid var(--accent, #003da6); background: var(--card-bg, var(--bg2, #0e1530)); padding: 12px 14px; margin: 0 0 22px; }
+:root:not([data-theme="dark"]) .da-sortbloc { background: #fff; }
+.da-sortbloc-head { display: flex; align-items: baseline; justify-content: space-between; gap: 10px; flex-wrap: wrap; margin-bottom: 6px; }
+.da-sortbloc-head h2 { font-family: 'Surfquest', Impact, sans-serif; font-weight: 400; text-transform: uppercase; font-size: 24px; margin: 0; line-height: 1; }
+.da-sortbloc-head a { font-size: 13px; font-weight: 700; text-decoration: underline; text-underline-offset: 3px; }
+.da-sortbloc-row { display: flex; align-items: center; gap: 12px; padding: 7px 0; border-top: 1px solid var(--border, #243063); }
+.da-sortbloc-date { min-width: 44px; text-align: center; line-height: 1; }
+.da-sortbloc-date b { display: block; font-family: 'Surfquest', Impact, sans-serif; font-weight: 400; font-size: 28px; }
+.da-sortbloc-date span { font-size: 11px; text-transform: uppercase; letter-spacing: .08em; color: var(--text2, #aaa); }
+.da-sortbloc-name { font-weight: 800; font-size: 15px; overflow-wrap: anywhere; }
+.da-sortbloc-sub { font-size: 13px; color: var(--text2, #aaa); }
+.da-sortbloc-sub span { font-weight: 700; color: #3ddc97; }

@@ -5,6 +5,7 @@ import type { Lang } from '@/lib/LangContext'
 import { guidesI18n } from '@/lib/guidesI18n'
 import GuidesAdminBar from '@/components/GuidesAdminBar'
 import GuidesListClient, { type GuideListItem } from '@/components/GuidesListClient'
+import UpcomingReleases from '@/components/UpcomingReleases'
 
 // 1h (etait 5 min) : la liste des guides change rarement (publication d'un nouveau guide),
 // inutile de la regenerer aussi souvent -- coute en ecritures ISR facturees (voir audit Vercel)
@@ -91,6 +92,8 @@ export default async function GuidesPage() {
       <p style={{ color: 'var(--text2, #777)', fontSize: 14, margin: '0 0 20px' }}>
         {t.guides_subtitle}
       </p>
+
+      <UpcomingReleases />
 
       <GuidesAdminBar />
 
