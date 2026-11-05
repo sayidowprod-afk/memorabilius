@@ -11,6 +11,7 @@ import { parseNaturalQuery } from '@/lib/parseNaturalQuery'
 import SkeletonBlock from '@/components/SkeletonBlock'
 import TagIcon from '@/components/TagIcon'
 import CardTagBadges from '@/components/CardTagBadges'
+import { readRecentCards, clearRecentCards, type RecentCard } from '@/lib/recentCards'
 
 type Section = 'all' | 'cards' | 'players' | 'collectors'
 type SortKey = 'default' | 'y_desc' | 'y_asc' | 'name'
@@ -67,6 +68,8 @@ export default function Recherche() {
   const RECENT_SEARCHES_KEY = 'recherche_recentes'
   const RECENT_SEARCHES_MAX = 8
   const [recentSearches, setRecentSearches] = useState<string[]>([])
+  const [recentCards, setRecentCards] = useState<RecentCard[]>([])
+  useEffect(() => { setRecentCards(readRecentCards()) }, [])
 
   useEffect(() => {
     try {
@@ -289,6 +292,25 @@ export default function Recherche() {
             <p style={{ color: muted, fontSize: 12, marginTop: 8 }}>
               {t('search_understood_as')} <strong style={{ color: accent }}>{nlpHint.join(' · ')}</strong>
             </p>
+          )}
+
+          {/* Cartes récemment consultées (gardées sur cet appareil) */}
+          {!searched && recentCards.length > 0 && (
+            <div style={{ maxWidth: 620, margin: '18px auto 0', textAlign: 'left' }}>
+              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'baseline', marginBottom: 8 }}>
+                <span style={{ fontSize: 12, fontWeight: 800, color: muted, textTransform: 'uppercase', letterSpacing: '0.08em' }}>Récemment vues</span>
+                <button type="button" onClick={() => { clearRecentCards(); setRecentCards([]) }} style={{ background: 'none', border: 'none', cursor: 'pointer', color: muted, fontSize: 12, textDecoration: 'underline' }}>Effacer</button>
+              </div>
+              <div style={{ display: 'flex', gap: 8, overflowX: 'auto', paddingBottom: 4 }}>
+                {recentCards.map(c => (
+                  <a key={c.href} href={c.href} title={c.name} style={{ flex: '0 0 auto', width: 92, textDecoration: 'none', color: text }}>
+                    {/* eslint-disable-next-line @next/next/no-img-element */}
+                    <img src={c.img} alt={c.name} width={92} height={128} loading="lazy" style={{ width: 92, aspectRatio: '2.5/3.5', objectFit: 'cover', display: 'block', border: `2px solid ${accent}` }} />
+                    <div style={{ fontSize: 12, fontWeight: 700, marginTop: 4, whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>{c.name}</div>
+                  </a>
+                ))}
+              </div>
+            </div>
           )}
 
           {/* Recherches recentes -- seulement tant qu'aucune recherche n'est en

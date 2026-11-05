@@ -8,6 +8,7 @@ import { useLang } from '@/lib/LangContext'
 import { useTheme } from '@/lib/ThemeContext'
 import { useIsNative } from '@/lib/useIsNative'
 import OAuthButtons from '@/components/OAuthButtons'
+import { useCapsLock, CapsLockHint } from '@/lib/formHints'
 import {
   isBiometricAvailable, hasSavedBiometricCredentials, wasBiometricPromptDismissed,
   dismissBiometricPrompt, saveBiometricCredentials, loginWithBiometric,
@@ -20,6 +21,7 @@ export default function Connexion() {
   const isNative = useIsNative()
   const [form, setForm] = useState({ email: '', password: '' })
   const [error, setError] = useState('')
+  const { capsOn, capsProps } = useCapsLock()
   const [loading, setLoading] = useState(false)
   const [bioAvailable, setBioAvailable] = useState(false)
   const [bioSaved, setBioSaved] = useState(false)
@@ -229,7 +231,8 @@ export default function Connexion() {
           </div>
           <div>
             <label htmlFor="login-password" style={{ fontSize: 12, fontWeight: 700, textTransform: 'uppercase', color: '#888', display: 'block', marginBottom: 6 }}>{t('login_password')}</label>
-            <input id="login-password" type="password" aria-invalid={!!error} required placeholder={t('login_password_placeholder')} autoComplete="current-password" value={form.password} onChange={e => setForm({ ...form, password: e.target.value })} />
+            <input id="login-password" type="password" aria-invalid={!!error} required placeholder={t('login_password_placeholder')} autoComplete="current-password" value={form.password} onChange={e => setForm({ ...form, password: e.target.value })} {...capsProps} />
+            <CapsLockHint on={capsOn} />
           </div>
           {error && <p role="alert" className="da-error">⚠ {error}</p>}
           <button type="submit" className="btn-main btn-primary" style={{ marginTop: 8 }} disabled={loading} aria-busy={loading}>

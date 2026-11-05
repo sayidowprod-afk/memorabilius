@@ -78,6 +78,7 @@ import BadgeBox from '@/components/BadgeBox'
 import { cardDisplayRatio, isHorizontalFormat, getFormat } from '@/lib/cardFormats'
 import TeamBadge from '@/components/TeamBadge'
 import TradeReputation from '@/components/TradeReputation'
+import { addRecentCard } from '@/lib/recentCards'
 
 // ── Helpers numériques (module scope pour éviter re-création à chaque render) ──
 const numValue = (num: string) => { const m = num.trim().match(/\/(\d+)$/); return m ? parseInt(m[1]) : null }
@@ -425,6 +426,11 @@ function onImgError(e: { currentTarget: HTMLImageElement }) {
   img.src = BROKEN_IMAGE_FALLBACK
 }
 
+// Chargement doux : tant que l'image n'est pas arrivée, elle est floue et transparente sur un fond animé, puis se précise.
+// (par défaut visible : si le script échoue, l'image reste affichée normalement)
+function imgRefCb(el: HTMLImageElement | null) { if (el && !el.complete) el.classList.add('da-img-loading') }
+function onImgLoaded(e: { currentTarget: HTMLImageElement }) { e.currentTarget.classList.remove('da-img-loading') }
+
 function renderCardImage(card: { f: string; n: string; format?: string; is_horizontal?: boolean }) {
   const src = cardThumb(card.f)
   const fmt = getFormat(card.format)
@@ -440,13 +446,13 @@ function renderCardImage(card: { f: string; n: string; format?: string; is_horiz
   // la croissance du site ; on paie un peu plus de bande passante à la place.
   if (fmt.isSlab || horiz) {
     return (
-      <div style={{ aspectRatio: ratio, overflow: 'hidden', position: 'relative', background: fmt.isSlab ? '#111' : undefined }}>
+      <div className="da-img-box" style={{ aspectRatio: ratio, overflow: 'hidden', position: 'relative', background: fmt.isSlab ? '#111' : undefined }}>
         {/* <img> simple (pas NextImage fill) : next/image refuse "fill" + style.width en dev
             et faisait planter la galerie en local ; rendu identique (unoptimized). */}
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
           src={src} alt={card.n}
-          onError={onImgError}
+          onError={onImgError} onLoad={onImgLoaded} ref={imgRefCb}
           style={horiz
             ? { position: 'absolute', width: '140%', height: '71.43%', left: '-20%', top: '14.286%', transform: 'rotate(90deg)', objectFit: 'cover' }
             : { position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover' }
@@ -456,13 +462,13 @@ function renderCardImage(card: { f: string; n: string; format?: string; is_horiz
   }
 
   return (
-    <div style={{ aspectRatio: ratio, overflow: 'hidden', position: 'relative' }}>
+    <div className="da-img-box" style={{ aspectRatio: ratio, overflow: 'hidden', position: 'relative' }}>
       <NextImage
         src={src} alt={card.n} fill
         sizes="(max-width: 640px) 150px, 220px"
         style={{ objectFit: 'cover' }}
         unoptimized
-        onError={onImgError}
+        onError={onImgError} onLoad={onImgLoaded} ref={imgRefCb}
       />
     </div>
   )
@@ -588,7 +594,7 @@ export default function GalerieClient({ userId, initialCardUrl, initialCards, in
   const [fYear, setFYear] = useState(initialParsedSearch.year || searchParams.get('year') || '')
   const [showAdvancedFilters, setShowAdvancedFilters] = useState(false)
   const [showAllCollectionTags, setShowAllCollectionTags] = useState(false)
-  const [viewMode, setViewMode] = useState<'grid' | 'timeline'>('grid')
+  const [viewMode, setViewMode] = useState<'grid' | 'timeline' | 'mosaic'>('grid')
   const [compactView, setCompactView] = useState(false)
   const [fCollectionTag, setFCollectionTag] = useState(searchParams.get('tag') || '')
   const [pinTeam, setPinTeam] = useState(searchParams.get('pin') || '')
@@ -653,6 +659,12 @@ export default function GalerieClient({ userId, initialCardUrl, initialCards, in
     vt?.updateCallbackDone?.catch(() => {})
     vt?.finished?.catch(() => {})
   }, [])
+  // Cartes récemment consultées (pour la page Recherche) : gardées sur l'appareil
+  useEffect(() => {
+    if (!popup) return
+    addRecentCard({ img: popup.f, name: popup.n, set: [popup.y, popup.s].filter(Boolean).join(' '), href: `/galerie/${profile?.slug || userId}?card=${encodeURIComponent(popup.f)}` })
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [popup])
   const [tradeCard, setTradeCard] = useState<Card | null>(null)
   const [tradeSent, setTradeSent] = useState(false)
   const [showConversionBanner, setShowConversionBanner] = useState(true)
@@ -3470,6 +3482,10 @@ export default function GalerieClient({ userId, initialCardUrl, initialCards, in
             border: 'none', borderRadius: 8, padding: '6px 12px', fontSize: 12, fontWeight: 700, cursor: 'pointer',
             background: viewMode === 'timeline' ? accent : (dark ? '#2a2a2a' : '#f0f0f0'), color: viewMode === 'timeline' ? 'white' : (dark ? '#ccc' : '#555'),
           }}>📅 {t('gallery_view_timeline')}</button>
+          <button type="button" onClick={() => setViewMode('mosaic')} title="Mosaïque : chaque carte garde sa forme" style={{
+            border: 'none', borderRadius: 8, padding: '6px 12px', fontSize: 12, fontWeight: 700, cursor: 'pointer',
+            background: viewMode === 'mosaic' ? accent : (dark ? '#2a2a2a' : '#f0f0f0'), color: viewMode === 'mosaic' ? 'white' : (dark ? '#ccc' : '#555'),
+          }}>▥ Mosaïque</button>
           {viewMode === 'grid' && (
             <button type="button" onClick={toggleCompactView} title="Vue compacte" style={{
               border: 'none', borderRadius: 8, padding: '6px 12px', fontSize: 12, fontWeight: 700, cursor: 'pointer',
@@ -3504,6 +3520,21 @@ export default function GalerieClient({ userId, initialCardUrl, initialCards, in
                     <div className="film-meta"><span>{String(fi + 1).padStart(2, '0')}A</span><span>{c.created_at ? new Date(c.created_at).toLocaleDateString('fr-FR', { day: '2-digit', month: '2-digit' }) : ''}</span></div>
                     </div>
                   ))}
+                </div>
+              </div>
+            ))}
+          </div>
+        )}
+
+        {viewMode === 'mosaic' && (
+          <div className="da-mosaic">
+            {displayed.length === 0 && <p style={{ color: '#999', textAlign: 'center', padding: 30 }}>{t('gallery_no_match_title')}</p>}
+            {displayed.map(d => (
+              <div key={getCardId(d)} className="da-mosaic-item">
+                <div onClick={() => setPopup(d)} role="button" tabIndex={0} aria-label={d.n}
+                  onKeyDown={e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); setPopup(d) } }}
+                  style={{ cursor: 'pointer', overflow: 'hidden', ...coloredBorder(cardTagColor(d)) }}>
+                  <CardLink slug={profile?.slug || userId} cardKey={d.f}>{renderCardImage(d)}</CardLink>
                 </div>
               </div>
             ))}

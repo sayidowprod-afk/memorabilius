@@ -1,5 +1,6 @@
 'use client'
 import PackReveal from '@/components/PackReveal'
+import HelpTip from '@/components/HelpTip'
 import { toast } from '@/lib/toast'
 import PriceFormField from '@/components/PriceFormField'
 import { parsePrice } from '@/lib/marketplace'
@@ -1168,12 +1169,12 @@ export default function AjouterCarte({ params }: { params: Promise<{ userId: str
               <input value={form.collection} onChange={e => setField('collection', e.target.value)} placeholder={t('addcard_ex_collection')} />
             </div>
             <div>
-              <label style={{ fontSize: 12, fontWeight: 700, textTransform: 'uppercase', color: '#888', display: 'block', marginBottom: 6 }}>{t('addcard_label_variation')}</label>
+              <label style={{ fontSize: 12, fontWeight: 700, textTransform: 'uppercase', color: '#888', display: 'block', marginBottom: 6 }}>{t('addcard_label_variation')} <HelpTip text="Version particulière de la carte : autre couleur, autre finition ou tirage plus rare (Silver, Gold, Refractor…). Laisse vide pour une carte de base." /></label>
               <input value={form.variation} onChange={e => setField('variation', e.target.value)} placeholder={t('addcard_ex_variation')} />
             </div>
             {form.item_type === 'memorabilia' ? (
               <div>
-                <label style={{ fontSize: 12, fontWeight: 700, textTransform: 'uppercase', color: '#888', display: 'block', marginBottom: 6 }}>Patch</label>
+                <label style={{ fontSize: 12, fontWeight: 700, textTransform: 'uppercase', color: '#888', display: 'block', marginBottom: 6 }}>Patch <HelpTip text="Morceau de maillot ou d’équipement inséré dans la carte." /></label>
                 <input value={form.card_number} onChange={e => setField('card_number', e.target.value)} placeholder={t('addcard_ex_patch_desc')} />
               </div>
             ) : (
@@ -1191,21 +1192,21 @@ export default function AjouterCarte({ params }: { params: Promise<{ userId: str
             <>
               <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', gap: 12 }}>
                 <div>
-                  <label style={{ fontSize: 12, fontWeight: 700, textTransform: 'uppercase', color: '#888', display: 'block', marginBottom: 6 }}>Grade</label>
+                  <label style={{ fontSize: 12, fontWeight: 700, textTransform: 'uppercase', color: '#888', display: 'block', marginBottom: 6 }}>Grade <HelpTip text="Note donnée par une société de gradation (PSA, BGS, SGC) de 1 à 10. Laisse vide si la carte n’est pas gradée." /></label>
                   <input value={form.grade} onChange={e => setField('grade', e.target.value)} placeholder={t('addcard_ex_grade')} />
                 </div>
                 <div>
-                  <label style={{ fontSize: 12, fontWeight: 700, textTransform: 'uppercase', color: '#888', display: 'block', marginBottom: 6 }}>{t('addcard_label_card_num')}</label>
+                  <label style={{ fontSize: 12, fontWeight: 700, textTransform: 'uppercase', color: '#888', display: 'block', marginBottom: 6 }}>{t('addcard_label_card_num')} <HelpTip text="Le numéro imprimé sur la carte dans son set, par exemple 124." /></label>
                   <input value={form.card_number} onChange={e => setField('card_number', e.target.value)} placeholder={t('addcard_ex_card_num')} />
                 </div>
                 <div>
-                  <label style={{ fontSize: 12, fontWeight: 700, textTransform: 'uppercase', color: '#888', display: 'block', marginBottom: 6 }}>{t('addcard_label_numbering')}</label>
+                  <label style={{ fontSize: 12, fontWeight: 700, textTransform: 'uppercase', color: '#888', display: 'block', marginBottom: 6 }}>{t('addcard_label_numbering')} <HelpTip text="Pour une carte à tirage limité : 12/99 veut dire la 12e carte sur 99 exemplaires. 1/1 = carte unique." /></label>
                   <input value={form.num} onChange={e => setField('num', e.target.value)} placeholder={t('addcard_ex_numbering')} />
                 </div>
               </div>
               {form.grade.trim() && form.grade.trim().toLowerCase() !== 'raw' && (
                 <div>
-                  <label style={{ fontSize: 12, fontWeight: 700, textTransform: 'uppercase', color: '#888', display: 'block', marginBottom: 6 }}>{t('addcard_label_cert_num')}</label>
+                  <label style={{ fontSize: 12, fontWeight: 700, textTransform: 'uppercase', color: '#888', display: 'block', marginBottom: 6 }}>{t('addcard_label_cert_num')} <HelpTip text="Numéro de certification inscrit sur l’étiquette du boîtier d’une carte gradée." /></label>
                   <input value={form.cert_number} onChange={e => setForm({ ...form, cert_number: e.target.value })} placeholder={t('addcard_ex_cert_num')} />
                 </div>
               )}

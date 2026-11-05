@@ -11,6 +11,7 @@ import { SPORTS_TEAMS, getTeamById } from '@/lib/sportsTeams'
 import ClearableInput from '@/components/ClearableInput'
 import ScrollToTopButton from '@/components/ScrollToTopButton'
 import TeamBadge from '@/components/TeamBadge'
+import DensityToggle from '@/components/DensityToggle'
 
 interface Stats { total: number; rc: number; auto: number; num: number; patch: number }
 interface Collector { id: string; display_name: string; avatar_url: string; lien_csv: string; stats?: Stats; favorite_teams?: string[]; is_donor?: boolean }
@@ -370,6 +371,7 @@ function AnnuaireContent() {
             {t('directory_back_all_teams')}
           </button>
         )}
+        <DensityToggle />
       </div>
 
       <div style={{ display: 'flex', gap: 10, marginBottom: 16, flexWrap: 'wrap' }}>

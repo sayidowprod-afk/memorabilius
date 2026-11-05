@@ -91,6 +91,9 @@ function MessagesContent() {
   const [conversations, setConversations] = useState<any[]>([])
   const [activeConv, setActiveConv] = useState<string | null>(toParam)
   const [messages, setMessages] = useState<any[]>([])
+  // Recherche dans la conversation ouverte (liée à la conversation : changer de conversation la ferme)
+  const [convSearch, setConvSearch] = useState<{ conv: string; q: string } | null>(null)
+  const [hitIdx, setHitIdx] = useState(0)
   const [newMsg, setNewMsg] = useState('')
   const [shipModal, setShipModal] = useState(false) // demande de livraison (acheteur -> vendeur)
 
@@ -736,6 +739,16 @@ function MessagesContent() {
                     }}
                   >📦</button>
                   <button
+                    onClick={() => { setHitIdx(0); setConvSearch(cur => cur && cur.conv === activeConv ? null : { conv: activeConv, q: '' }) }}
+                    title="Rechercher dans la conversation" aria-label="Rechercher dans la conversation"
+                    style={{
+                      display: 'flex', alignItems: 'center', justifyContent: 'center', width: 30, height: 30, borderRadius: '50%',
+                      background: convSearch?.conv === activeConv ? '#003DA6' : (dark ? '#2a2a2a' : '#f0f0f0'),
+                      color: convSearch?.conv === activeConv ? 'white' : (dark ? '#aaa' : '#666'),
+                      border: 'none', cursor: 'pointer', fontSize: 14,
+                    }}
+                  >🔍</button>
+                  <button
                     onClick={() => toggleBlock(activeConv)}
                     title={blockedIds.has(activeConv) ? 'Débloquer' : 'Bloquer cet utilisateur'}
                     style={{
@@ -753,6 +766,29 @@ function MessagesContent() {
                   🚫 Tu as bloqué cet utilisateur — il ne peut plus t'envoyer de messages
                 </div>
               )}
+
+              {convSearch && convSearch.conv === activeConv && (() => {
+                const sq = convSearch.q.trim().toLowerCase()
+                const hits = sq ? messages.filter(m => typeof m.contenu === 'string' && m.contenu.toLowerCase().includes(sq)).length : 0
+                const jump = (dir: number) => {
+                  if (!hits) return
+                  const next = (hitIdx + dir + hits) % hits
+                  setHitIdx(next)
+                  const els = chatScrollRef.current?.querySelectorAll('[data-hit="1"]')
+                  els?.[next]?.scrollIntoView({ block: 'center', behavior: 'smooth' })
+                }
+                return (
+                  <div style={{ display: 'flex', gap: 8, alignItems: 'center', padding: '8px 16px', borderBottom: `1px solid ${dark ? '#2a2a2a' : '#eee'}` }}>
+                    <input autoFocus value={convSearch.q} placeholder="Rechercher dans la conversation…" aria-label="Rechercher dans la conversation"
+                      onChange={e => { setHitIdx(0); setConvSearch({ conv: activeConv, q: e.target.value }) }}
+                      onKeyDown={e => { if (e.key === 'Enter') { e.preventDefault(); jump(e.shiftKey ? -1 : 1) } else if (e.key === 'Escape') setConvSearch(null) }}
+                      style={{ flex: 1, minWidth: 0 }} />
+                    <span style={{ fontSize: 13, color: dark ? '#b6bfdf' : '#555', whiteSpace: 'nowrap' }}>{sq ? (hits ? `${Math.min(hitIdx + 1, hits)} / ${hits}` : 'Aucun résultat') : ''}</span>
+                    <button type="button" onClick={() => jump(-1)} disabled={!hits} aria-label="Résultat précédent" style={{ cursor: hits ? 'pointer' : 'default' }}>↑</button>
+                    <button type="button" onClick={() => jump(1)} disabled={!hits} aria-label="Résultat suivant" style={{ cursor: hits ? 'pointer' : 'default' }}>↓</button>
+                  </div>
+                )
+              })()}
 
               {/* Messages -- data-no-ptr : cette liste scrolle dans son propre conteneur,
                   pas la fenetre (window.scrollY reste a 0), donc PullToRefresh
@@ -935,7 +971,22 @@ function MessagesContent() {
                               color: isMe ? 'white' : bubbleThemText,
                               fontSize: 14, lineHeight: 1.45, userSelect: 'none',
                             }}>
-                              <p style={{ margin: 0 }}><LinkifiedText text={msg.contenu} /></p>
+                              {(() => {
+                                const sq = convSearch && convSearch.conv === activeConv ? convSearch.q.trim() : ''
+                                const txt: string = typeof msg.contenu === 'string' ? msg.contenu : ''
+                                const i = sq ? txt.toLowerCase().indexOf(sq.toLowerCase()) : -1
+                                if (i < 0) return <p style={{ margin: 0 }}><LinkifiedText text={msg.contenu} /></p>
+                                const parts: React.ReactNode[] = []
+                                let from = 0, at = i, k = 0
+                                while (at >= 0) {
+                                  if (at > from) parts.push(txt.slice(from, at))
+                                  parts.push(<mark key={k++} style={{ background: '#f5c542', color: '#111', padding: '0 1px' }}>{txt.slice(at, at + sq.length)}</mark>)
+                                  from = at + sq.length
+                                  at = txt.toLowerCase().indexOf(sq.toLowerCase(), from)
+                                }
+                                if (from < txt.length) parts.push(txt.slice(from))
+                                return <p data-hit="1" style={{ margin: 0, whiteSpace: 'pre-wrap', overflowWrap: 'anywhere' }}>{parts}</p>
+                              })()}
                             </div>
                           )}
 

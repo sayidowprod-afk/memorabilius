@@ -85,6 +85,21 @@ export default function Navbar() {
     setMenuOpen(false)
   }, [pathname])
 
+  // Compteur de notifications non lues dans le titre de l'onglet : « (2) Memorabilius… » (réappliqué si Next change le titre)
+  useEffect(() => {
+    const el = document.querySelector('title')
+    if (!el) return
+    const apply = () => {
+      const base = document.title.replace(/^\(\d+\)\s*/, '')
+      const want = notifs > 0 ? `(${notifs}) ${base}` : base
+      if (document.title !== want) document.title = want
+    }
+    apply()
+    const mo = new MutationObserver(apply)
+    mo.observe(el, { childList: true, characterData: true, subtree: true })
+    return () => { mo.disconnect(); document.title = document.title.replace(/^\(\d+\)\s*/, '') }
+  }, [notifs])
+
   const updateLastSeen = async (uid: string) => {
     await supabase.from('profiles').update({ last_seen: new Date().toISOString() }).eq('id', uid)
   }

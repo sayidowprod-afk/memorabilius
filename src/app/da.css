@@ -810,7 +810,7 @@ html[data-theme="light"] .tcdb-imp-open { border-color: #06122e; color: #06122e;
 
 /* Menu reglages de la barre du haut : un carre "engrenage" -> panneau (langue en drapeaux + mode sombre) */
 .sm-wrap { position: relative; display: inline-flex; }
-.sm-btn { width: 34px; height: 34px; display: inline-flex; align-items: center; justify-content: center; border: 2px solid var(--text, #fff); background: transparent; color: var(--text, #fff); cursor: pointer; border-radius: 0; padding: 0; }
+.sm-btn { width: 34px; height: 34px; display: inline-flex; align-items: center; justify-content: center; border: 0; background: transparent; color: var(--text, #fff); cursor: pointer; border-radius: 0; padding: 0; }
 .sm-btn:hover, .sm-btn.on { background: var(--text, #fff); color: var(--bg, #06122e); }
 .sm-panel { position: absolute; top: calc(100% + 10px); right: 0; z-index: 400; width: 300px; padding: 14px 16px; background: var(--card-bg, #0a1330); color: var(--text, #fff); border: 3px solid var(--text, #fff); box-shadow: inset 0 0 0 3px var(--card-bg, #0a1330), inset 0 0 0 4.5px color-mix(in srgb, var(--text, #fff) 45%, transparent), 0 18px 40px rgba(0,0,0,.45); }
 .sm-t { display: block; font: 800 11px system-ui, sans-serif; letter-spacing: .18em; text-transform: uppercase; opacity: .65; margin-bottom: 10px; }
@@ -1177,7 +1177,7 @@ p[style*="font-size:11px"], span[style*="font-size:11px"], div[style*="font-size
 p[style*="font-size: 11px"], span[style*="font-size: 11px"], div[style*="font-size: 11px"] { font-size: 12px !important; }
 
 /* 2 · En-têtes de tableaux */
-main th, main table thead th { font-size: 13px !important; }
+@media (min-width: 700px) { main th, main table thead th { font-size: 13px !important; } }
 [data-theme="dark"] main th, [data-theme="dark"] main table thead th { color: #b6bfdf !important; }
 
 /* 3 · Titres de page : une taille nette (les petits titres de carte / fenêtre ne changent pas) */
@@ -1241,3 +1241,72 @@ main input[aria-invalid="true"], main select[aria-invalid="true"], main textarea
   .da-tile-actions button:hover { background: #003da6; border-color: #003da6; }
   .da-tile-actions button:focus-visible { outline: 3px solid #5b8def; outline-offset: 2px; }
 }
+
+/* 86 · Sélection de texte aux couleurs de la DA */
+::selection { background: #003da6; color: #fff; }
+
+/* 87 · Barres de défilement fines aux couleurs de la DA (ordinateur) */
+@media (hover: hover) and (pointer: fine) {
+  * { scrollbar-width: thin; scrollbar-color: #3a4a8a transparent; }
+  *::-webkit-scrollbar { width: 10px; height: 10px; }
+  *::-webkit-scrollbar-track { background: transparent; }
+  *::-webkit-scrollbar-thumb { background: #3a4a8a; border: 2px solid transparent; background-clip: padding-box; }
+  *::-webkit-scrollbar-thumb:hover { background: #5b8def; background-clip: padding-box; }
+  :root:not([data-theme="dark"]) * { scrollbar-color: #9fb0d8 transparent; }
+}
+
+/* 100 · Carrousels : accroche en fin de défilement (tactile) */
+@media (pointer: coarse) {
+  .pepites-track { scroll-snap-type: x proximity; }
+  .pepites-track > * { scroll-snap-align: center; }
+}
+
+/* 81 · Petites aides sous les champs (majuscules activées, correction d'e-mail) */
+.da-hint { margin: 6px 0 0; font-size: 13px; line-height: 1.4; color: #b6bfdf; }
+.da-hint.warn { color: #ffb36b; font-weight: 700; }
+.da-hint button { background: none; border: 0; padding: 0; color: #8fb0ff; font: inherit; font-weight: 700; text-decoration: underline; text-underline-offset: 3px; cursor: pointer; }
+
+/* 67 · Palette de commandes (Ctrl / ⌘ + K) */
+.da-pal-back { position: fixed; inset: 0; z-index: 10001; background: rgba(2, 5, 14, 0.7); display: flex; align-items: flex-start; justify-content: center; padding: 12vh 16px 16px; }
+.da-pal { width: 100%; max-width: 560px; background: var(--bg2, #0e1530); color: var(--text, #f0f0f0); border: 2px solid #3a4a8a; box-shadow: 0 16px 44px rgba(0, 0, 0, 0.6); }
+.da-pal-input { width: 100%; box-sizing: border-box; padding: 16px 18px; font-size: 17px; background: transparent !important; color: inherit; border: 0 !important; border-bottom: 2px solid #3a4a8a !important; border-radius: 0 !important; outline: none !important; }
+.da-pal-list { max-height: 52vh; overflow-y: auto; padding: 6px; }
+.da-pal-item { display: flex; align-items: center; gap: 12px; width: 100%; padding: 10px 12px; background: transparent; border: 0; color: inherit; cursor: pointer; text-align: left; font: 600 15px system-ui, sans-serif; border-radius: 0; }
+.da-pal-item.on { background: rgba(91, 141, 239, 0.18); }
+.da-pal-ic { width: 24px; text-align: center; }
+.da-pal-lb { flex: 1; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.da-pal-h { font-size: 12px; color: var(--text3, #b0b8d6); text-transform: uppercase; letter-spacing: .08em; }
+.da-pal-empty { padding: 16px; color: var(--text3, #b0b8d6); }
+.da-pal-foot { padding: 8px 14px; font-size: 12px; color: var(--text3, #b0b8d6); border-top: 1px solid #243063; }
+@media (pointer: coarse) { .da-pal-foot { display: none; } }
+
+/* 80 · Vue « Mosaïque » de la galerie : chaque carte garde sa forme (horizontale, slab…), colonnes qui se remplissent */
+.da-mosaic { column-width: 150px; column-gap: 10px; }
+.da-mosaic-item { break-inside: avoid; margin-bottom: 10px; }
+@media (min-width: 900px) { .da-mosaic { column-width: 190px; } }
+
+/* 79 · Densité des tableaux (bascule Confortable / Compact) */
+.da-density { display: inline-flex; margin-left: auto; }
+.da-density button { font: 700 12px system-ui, sans-serif; letter-spacing: .06em; text-transform: uppercase; padding: 7px 12px; border: 2px solid #3a4a8a; background: transparent; color: var(--text2, #aaa); cursor: pointer; border-radius: 0; }
+.da-density button + button { border-left: 0; }
+.da-density button.on { background: #003da6; border-color: #003da6; color: #fff; }
+[data-density="compact"] main table tbody td { padding-top: 5px !important; padding-bottom: 5px !important; }
+[data-density="compact"] main table tbody td img[width="48"] { width: 32px !important; height: 32px !important; }
+[data-density="compact"] main table tbody td a.da-display { font-size: 22px !important; }
+[data-density="compact"] main table tbody td .da-num, [data-density="compact"] main table tbody td[style*="font-size"] { font-size: 22px !important; }
+
+/* 92 · Titres équilibrés sur plusieurs lignes (pas de mot seul) */
+h1, h2, h3, .section-title, .da-h2, .da-display { text-wrap: balance; }
+
+/* 97 · Aide contextuelle « ? » à côté des champs */
+.da-help { position: relative; display: inline-block; margin-left: 6px; vertical-align: middle; text-transform: none; letter-spacing: 0; }
+.da-help-btn { width: 20px; height: 20px; padding: 0; border: 2px solid #5b8def; border-radius: 50%; background: transparent; color: #5b8def; font: 800 11px system-ui, sans-serif; line-height: 1; cursor: pointer; display: inline-flex; align-items: center; justify-content: center; }
+.da-help-btn:hover, .da-help-btn[aria-expanded="true"] { background: #003da6; border-color: #003da6; color: #fff; }
+.da-help-tip { position: absolute; z-index: 60; left: 50%; top: calc(100% + 8px); transform: translateX(-50%); width: max-content; max-width: min(260px, 70vw); padding: 9px 12px; background: var(--bg2, #0e1530); color: var(--text, #f0f0f0); border: 2px solid #3a4a8a; box-shadow: 0 8px 24px rgba(0,0,0,.45); font: 500 13px/1.45 system-ui, sans-serif; text-transform: none; letter-spacing: 0; text-align: left; white-space: normal; }
+
+/* 99 · Chargement doux des images de cartes : fond animé + image floue qui se précise */
+.da-img-box { background-image: linear-gradient(100deg, rgba(255,255,255,0.04) 20%, rgba(255,255,255,0.12) 50%, rgba(255,255,255,0.04) 80%); background-size: 200% 100%; animation: daImgShimmer 1.4s linear infinite; }
+.da-img-box img { transition: opacity 0.35s ease, filter 0.35s ease; }
+.da-img-box img.da-img-loading { opacity: 0; filter: blur(10px); }
+@keyframes daImgShimmer { to { background-position: -200% 0; } }
+@media (prefers-reduced-motion: reduce) { .da-img-box { animation: none; } .da-img-box img { transition: none; } }

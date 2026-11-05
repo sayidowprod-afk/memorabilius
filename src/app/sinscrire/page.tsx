@@ -5,6 +5,7 @@ import Link from 'next/link'
 import { supabase } from '@/lib/supabase'
 import { useLang } from '@/lib/LangContext'
 import OAuthButtons from '@/components/OAuthButtons'
+import { useCapsLock, CapsLockHint, suggestEmail } from '@/lib/formHints'
 import { useIsNative } from '@/lib/useIsNative'
 
 type PseudoStatus = 'idle' | 'checking' | 'available' | 'taken'
@@ -21,6 +22,7 @@ export default function Inscription() {
   const { t } = useLang()
   const isNative = useIsNative()
   const [form, setForm] = useState({ email: '', password: '', display_name: '' })
+  const { capsOn, capsProps } = useCapsLock()
   const [error, setError] = useState('')
   const [loading, setLoading] = useState(false)
   const [pseudoStatus, setPseudoStatus] = useState<PseudoStatus>('idle')
@@ -167,13 +169,18 @@ export default function Inscription() {
               onBlur={() => setTouched(p => ({ ...p, email: true }))}
               aria-invalid={emailError} style={{ borderColor: emailError ? '#c62828' : undefined }} />
             {emailError && <p style={{ color: '#c62828', fontSize: 12, margin: '4px 0 0' }}>{t('signup_email_invalid')}</p>}
+            {!emailError && suggestEmail(form.email) && (
+              <p className="da-hint">Tu voulais dire <button type="button" onClick={() => setForm({ ...form, email: suggestEmail(form.email)! })}>{suggestEmail(form.email)}</button> ?</p>
+            )}
           </div>
           <div>
             <label htmlFor="signup-password" style={{ fontSize: 12, fontWeight: 700, textTransform: 'uppercase', color: 'var(--text3, #888)', display: 'block', marginBottom: 6 }}>{t('login_password')}</label>
             <input id="signup-password" type="password" required placeholder={t('signup_password_placeholder')} value={form.password}
               onChange={e => setForm({ ...form, password: e.target.value })}
-              onBlur={() => setTouched(p => ({ ...p, password: true }))}
+              {...capsProps}
+              onBlur={() => { capsProps.onBlur(); setTouched(p => ({ ...p, password: true })) }}
               aria-invalid={passwordError} style={{ borderColor: passwordError ? '#c62828' : undefined }} />
+            <CapsLockHint on={capsOn} />
             {passwordError && <p style={{ color: '#c62828', fontSize: 12, margin: '4px 0 0' }}>{t('signup_password_too_short')}</p>}
             {!passwordError && form.password.length > 0 && (
               <div style={{ marginTop: 6 }}>

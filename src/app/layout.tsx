@@ -17,6 +17,7 @@ import ChunkErrorReload from '@/components/ChunkErrorReload'
 import HangWatchdog from '@/components/HangWatchdog'
 import SiteShell from '@/components/SiteShell'
 import ConfirmHost from '@/components/ConfirmHost'
+import CommandPalette from '@/components/CommandPalette'
 
 export const viewport: Viewport = {
   width: 'device-width',
@@ -109,6 +110,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             <OfflinePrepare />
             <PullToRefresh />
             <ConfirmHost />
+            <CommandPalette />
             <SiteShell>{children}</SiteShell>
           </LangProvider>
         </ThemeProvider>
