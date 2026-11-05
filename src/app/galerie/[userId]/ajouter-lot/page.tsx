@@ -12,6 +12,7 @@ import { NAV_TOTAL_HEIGHT_CSS } from '@/lib/nativeLayout'
 import { cropQuad, type Quad } from '@/lib/perspectiveCrop'
 import { detectCornersYOLO, waitForYOLO } from '@/lib/cornerDetectorYolo'
 import CornerEditor from '@/components/CornerEditor'
+import BurstCamera from '@/components/BurstCamera'
 import { detectBinderCards } from '@/lib/binderDetect'
 
 type Photo = { file: File; url: string }
@@ -104,6 +105,7 @@ export default function AjoutLotPage({ params }: { params: Promise<{ userId: str
   const [binderBusy, setBinderBusy] = useState(false)
   const [debugImgs, setDebugImgs] = useState<string[]>([])
   const [autoCorners, setAutoCorners] = useState(true)
+  const [burst, setBurst] = useState(false)
   const [editing, setEditing] = useState<{ id: number; side: 'recto' | 'verso' } | null>(null)
   const [grid, setGrid] = useState<[number, number]>([3, 3]) // [lignes, colonnes]
 
@@ -117,6 +119,13 @@ export default function AjoutLotPage({ params }: { params: Promise<{ userId: str
     if (!files?.length) return
     const next = [...photos, ...Array.from(files).filter(f => f.type.startsWith('image/')).map(photoOf)].slice(0, MAX_CARDS * 2)
     setPhotos(next); regroup(next, mode)
+  }
+  // rafale caméra : les photos prises arrivent comme si on les avait choisies (recto, verso, recto, verso… ou recto seul)
+  const onBurstDone = (files: File[], faces: 1 | 2) => {
+    setBurst(false)
+    const m: Mode = faces === 2 ? 'alt' : 'single'
+    const next = [...photos, ...files.map(photoOf)].slice(0, MAX_CARDS * 2)
+    setPhotos(next); setMode(m); regroup(next, m)
   }
   const changeMode = (m: Mode) => { setMode(m); regroup(photos, m) }
   const removeEntry = (id: number) => setEntries(es => es.filter(e => e.id !== id))
@@ -269,6 +278,7 @@ export default function AjoutLotPage({ params }: { params: Promise<{ userId: str
       <div className="da-lot-box">
         <input ref={inputRef} type="file" accept="image/*" multiple style={{ display: 'none' }} onChange={e => { onPick(e.target.files); e.target.value = '' }} />
         <button type="button" className="da-confirm-btn primary" onClick={() => inputRef.current?.click()} disabled={running}>📷 Choisir des photos</button>
+        <button type="button" className="da-confirm-btn" onClick={() => setBurst(true)} disabled={running} title="La caméra reste ouverte : tu prends recto, verso, recto, verso…">🎞️ Mode rafale</button>
         <span style={{ fontSize: 13, color: 'var(--text2, #666)' }}>{photos.length} photo{photos.length > 1 ? 's' : ''} · {entries.length} carte{entries.length > 1 ? 's' : ''} (max {MAX_CARDS})</span>
         {photos.length > 0 && !running && <button type="button" className="da-lot-link" onClick={clearAll}>Tout effacer</button>}
       </div>
@@ -326,6 +336,7 @@ export default function AjoutLotPage({ params }: { params: Promise<{ userId: str
         })}
       </div>
 
+      {burst && <BurstCamera maxCards={MAX_CARDS} onDone={onBurstDone} onClose={() => setBurst(false)} />}
       {editing && (() => { const ref = entries.find(x => x.id === editing.id)?.src?.[editing.side]; return ref ? <CornerEditor full={ref.full} quad={ref.quad} label={`Carte ${entries.findIndex(x => x.id === editing.id) + 1} · ${editing.side}`} onSave={saveCorners} onCancel={() => setEditing(null)} /> : null })()}
 
       {entries.length > 0 && (

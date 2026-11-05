@@ -12,6 +12,7 @@ import { hapticTap } from '@/lib/haptics'
 import { clearOfflineUserData } from '@/lib/offline'
 import BottomSheet from '@/components/BottomSheet'
 import { NAV_CONTENT_HEIGHT, NAV_SAFE_AREA_BOTTOM, NAV_TOTAL_HEIGHT_CSS } from '@/lib/nativeLayout'
+import Icon from '@/components/Icon'
 
 const COMMUNAUTE_PATHS = ['/annuaire', '/teams', '/trades', '/evenements', '/activite']
 const OUTILS_PATHS = ['/scanner', '/gradation', '/setlist', '/guides', '/recherche', '/profil', '/mes-achats']
@@ -231,38 +232,38 @@ export default function MobileBottomNav() {
       </div>
 
       <BottomSheet open={sheet === 'communaute'} onClose={() => setSheet(null)} title={t('nav_communaute')} bottomOffset={NAV_TOTAL_HEIGHT_CSS}>
-        <Link href="/annuaire" style={dropItemStyle} onClick={() => setSheet(null)}>👥 {t('nav_annuaire')}</Link>
-        <Link href="/teams" style={dropItemStyle} onClick={() => setSheet(null)}>🏆 {t('nav_teams')}</Link>
-        <Link href="/trades" style={dropItemStyle} onClick={() => setSheet(null)}>🔄 {t('nav_trades')}</Link>
-        <Link href="/evenements" style={dropItemStyle} onClick={() => setSheet(null)}>📅 {t('nav_evenements')}</Link>
-        {user && <Link href="/activite" style={dropItemStyle} onClick={() => setSheet(null)}>📰 {t('nav_activite')}</Link>}
+        <Link href="/annuaire" style={dropItemStyle} onClick={() => setSheet(null)}><Icon name="users" /> {t('nav_annuaire')}</Link>
+        <Link href="/teams" style={dropItemStyle} onClick={() => setSheet(null)}><Icon name="trophy" /> {t('nav_teams')}</Link>
+        <Link href="/trades" style={dropItemStyle} onClick={() => setSheet(null)}><Icon name="swap" /> {t('nav_trades')}</Link>
+        <Link href="/evenements" style={dropItemStyle} onClick={() => setSheet(null)}><Icon name="calendar" /> {t('nav_evenements')}</Link>
+        {user && <Link href="/activite" style={dropItemStyle} onClick={() => setSheet(null)}><Icon name="news" /> {t('nav_activite')}</Link>}
       </BottomSheet>
 
       <BottomSheet open={sheet === 'outils'} onClose={() => setSheet(null)} title={t('nav_outils')} bottomOffset={NAV_TOTAL_HEIGHT_CSS}>
-        <Link href="/scanner" style={dropItemStyle} onClick={() => setSheet(null)}>📷 {t('nav_scanner')}</Link>
-        {user && <Link href="/mes-achats" style={dropItemStyle} onClick={() => setSheet(null)}>🛒 Mes achats & ventes</Link>}
-        <Link href="/gradation" style={dropItemStyle} onClick={() => setSheet(null)}>🔍 {t('nav_gradation')}</Link>
-        <Link href="/setlist" style={dropItemStyle} onClick={() => setSheet(null)}>📋 {t('nav_setlist')}</Link>
-        <Link href="/guides" style={dropItemStyle} onClick={() => setSheet(null)}>📖 {t('nav_guides')}</Link>
+        <Link href="/scanner" style={dropItemStyle} onClick={() => setSheet(null)}><Icon name="camera" /> {t('nav_scanner')}</Link>
+        {user && <Link href="/mes-achats" style={dropItemStyle} onClick={() => setSheet(null)}><Icon name="cart" /> Mes achats & ventes</Link>}
+        <Link href="/gradation" style={dropItemStyle} onClick={() => setSheet(null)}><Icon name="search" /> {t('nav_gradation')}</Link>
+        <Link href="/setlist" style={dropItemStyle} onClick={() => setSheet(null)}><Icon name="list" /> {t('nav_setlist')}</Link>
+        <Link href="/guides" style={dropItemStyle} onClick={() => setSheet(null)}><Icon name="book" /> {t('nav_guides')}</Link>
         <Link href="/recherche" style={dropItemStyle} onClick={() => setSheet(null)}>{t('nav_recherche')}</Link>
         {isAdmin && (
-          <Link href="/admin" style={{ ...dropItemStyle, color: 'var(--accent, #003DA6)' }} onClick={() => setSheet(null)}>🛠️ Admin</Link>
+          <Link href="/admin" style={{ ...dropItemStyle, color: 'var(--accent, #003DA6)' }} onClick={() => setSheet(null)}><Icon name="tool" /> Admin</Link>
         )}
 
         {user && (
           <>
             <div style={{ margin: '6px 12px', borderTop: `1px solid ${dark ? '#2a2a2a' : '#f0f0f0'}` }} />
-            <Link href="/profil" style={dropItemStyle} onClick={() => setSheet(null)}>👤 {t('nav_profil')}</Link>
+            <Link href="/profil" style={dropItemStyle} onClick={() => setSheet(null)}><Icon name="user" /> {t('nav_profil')}</Link>
           </>
         )}
 
-        <Link href="/parametres" style={dropItemStyle} onClick={() => setSheet(null)}>⚙️ {t('settings_title')}</Link>
+        <Link href="/parametres" style={dropItemStyle} onClick={() => setSheet(null)}><Icon name="gear" /> {t('settings_title')}</Link>
 
         {!user && (
           <>
             <div style={{ margin: '6px 12px', borderTop: `1px solid ${dark ? '#2a2a2a' : '#f0f0f0'}` }} />
-            <Link href="/connexion" style={dropItemStyle} onClick={() => setSheet(null)}>🔑 {t('nav_connexion')}</Link>
-            <Link href="/sinscrire" style={dropItemStyle} onClick={() => setSheet(null)}>✨ {t('nav_inscription')}</Link>
+            <Link href="/connexion" style={dropItemStyle} onClick={() => setSheet(null)}><Icon name="key" /> {t('nav_connexion')}</Link>
+            <Link href="/sinscrire" style={dropItemStyle} onClick={() => setSheet(null)}><Icon name="sparkle" /> {t('nav_inscription')}</Link>
           </>
         )}
 

@@ -195,6 +195,7 @@ export default function HomeHero({ total, totalCartes, totalBinders, totalTrade,
             ? 'radial-gradient(700px 400px at 20% 20%, rgba(0,150,255,0.16), transparent 60%), radial-gradient(700px 400px at 80% 80%, rgba(140,60,220,0.16), transparent 60%)'
             : 'radial-gradient(700px 400px at 20% 20%, rgba(0,120,255,0.10), transparent 60%), radial-gradient(700px 400px at 80% 80%, rgba(0,180,255,0.10), transparent 60%)',
         }} />
+        <div className="hero-glow g1" aria-hidden="true" /><div className="hero-glow g2" aria-hidden="true" /><div className="hero-grain" aria-hidden="true" />
         {wallImgs.length >= 12 && (
           <div className="hero-wall" aria-hidden="true">
             <div className="hero-wall-cols">

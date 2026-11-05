@@ -1,0 +1,29 @@
+// Thèmes de galerie : un fond dessiné en CSS (dégradés et motifs, aucune image à héberger). Les cartes ne sont jamais modifiées.
+import { teamPalette } from '@/lib/teamColors'
+import { getTeamById } from '@/lib/sportsTeams'
+
+export const GALLERY_THEMES = [
+  { id: 'equipe', label: 'Mon équipe' },
+  { id: 'bois', label: 'Vitrine en bois' },
+  { id: 'marbre', label: 'Marbre noir' },
+  { id: 'tapis', label: 'Tapis de salon' },
+  { id: 'neon', label: 'Néon' },
+  { id: 'ardoise', label: 'Ardoise' },
+  { id: 'parquet', label: 'Parquet' },
+] as const
+
+export type GalleryThemeId = (typeof GALLERY_THEMES)[number]['id']
+export const isGalleryTheme = (v: unknown): v is GalleryThemeId => GALLERY_THEMES.some(t => t.id === v)
+
+// Couleurs [principale, secondaire] de la première équipe favorite du profil (null si aucune / inconnue).
+export function favoriteTeamColors(favoriteTeams: unknown): [string, string] | null {
+  const first = Array.isArray(favoriteTeams) ? favoriteTeams[0] : null
+  if (!first) return null
+  const name = getTeamById(String(first))?.name
+  const p = teamPalette(name ?? null)
+  return p ? [p.primary, p.secondary] : null
+}
+
+// Fond « Mon équipe » : dégradé sombre teinté de la couleur principale, liseré lumineux de la secondaire.
+export const teamBackground = ([a, b]: [string, string]) =>
+  `radial-gradient(ellipse at 15% 0%, ${a}cc, transparent 55%), radial-gradient(ellipse at 100% 100%, ${b}33, transparent 50%), #07101f`

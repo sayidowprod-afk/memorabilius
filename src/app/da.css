@@ -1498,3 +1498,30 @@ html[data-accent] .nav-gallery-card-2 { background: linear-gradient(160deg, var(
   .card-grid[data-cols="3"] .card-item .gc-name { padding: 0 6px !important; }
   .card-grid[data-cols="3"] .card-item .gc-bot { padding: 8px 4px 10px !important; }
 }
+
+/* 191 · Thèmes de galerie : fond dessiné en CSS (aucune image). Calque fixe derrière la page ; en mode clair, version très atténuée. */
+.gtheme-bg { background-color: #0a0f24; }
+.gtheme-layer { position: fixed; inset: 0; z-index: -1; pointer-events: none; }
+.gtheme-layer.light { opacity: .16; }
+.gtheme-bg[data-gtheme="bois"] { background: repeating-linear-gradient(90deg, #4a2f19 0 46px, #3d2714 46px 49px, #52351d 49px 92px, #3d2714 92px 95px), #3d2714; background-blend-mode: normal; }
+.gtheme-bg[data-gtheme="marbre"] { background: radial-gradient(ellipse at 20% 15%, rgba(255,255,255,.10), transparent 45%), radial-gradient(ellipse at 80% 70%, rgba(255,255,255,.08), transparent 50%), linear-gradient(135deg, #0b0c12 0%, #1b1d29 45%, #0d0e15 100%); }
+.gtheme-bg[data-gtheme="tapis"] { background: radial-gradient(circle at 30% 25%, #1f7a42 0%, #0f4a28 55%, #08301a 100%); }
+.gtheme-bg[data-gtheme="neon"] { background: radial-gradient(circle at 15% 10%, rgba(255,60,200,.35), transparent 45%), radial-gradient(circle at 85% 90%, rgba(60,140,255,.35), transparent 50%), linear-gradient(160deg, #12002b, #2a0a5e); }
+.gtheme-bg[data-gtheme="ardoise"] { background: linear-gradient(160deg, #1d2430 0%, #2a3342 55%, #1a202b 100%); }
+.gtheme-bg[data-gtheme="parquet"] { background: repeating-linear-gradient(90deg, #6b4a28 0 38px, #5b3e21 38px 40px, #755230 40px 78px, #5b3e21 78px 80px), #5b3e21; }
+.gtheme-bg[data-swatch] { background-size: auto; }
+
+/* 231 · Thèmes de saison : liseré en haut de l'écran (la couleur d'accent est posée par le script du layout). */
+html[data-season]::before { content: ''; position: fixed; top: 0; left: 0; right: 0; height: 3px; z-index: 100000; pointer-events: none; }
+html[data-season="allstar"]::before { background: linear-gradient(90deg, #c47f00, #ffd84d, #c47f00); }
+html[data-season="playoffs"]::before { background: repeating-linear-gradient(90deg, #c0262d 0 22px, #111 22px 44px); }
+html[data-season="noel"]::before { background: repeating-linear-gradient(90deg, #1f9d55 0 22px, #c0262d 22px 44px); }
+
+/* 235 · Fond d'accueil : deux lueurs très lentes + grain léger ; arrêtés si le téléphone demande de réduire les animations. */
+.hero-glow { position: absolute; border-radius: 50%; pointer-events: none; z-index: 0; filter: blur(8px); }
+.hero-glow.g1 { left: 4%; top: 6%; width: 340px; height: 340px; background: radial-gradient(circle, rgba(0,100,255,.32), transparent 65%); animation: heroDrift1 16s ease-in-out infinite; }
+.hero-glow.g2 { right: 2%; bottom: -4%; width: 380px; height: 380px; background: radial-gradient(circle, rgba(140,60,220,.26), transparent 65%); animation: heroDrift2 20s ease-in-out infinite; }
+.hero-grain { position: absolute; inset: 0; pointer-events: none; z-index: 0; opacity: .07; mix-blend-mode: overlay; background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2'/></filter><rect width='160' height='160' filter='url(%23n)'/></svg>"); }
+@keyframes heroDrift1 { 0%, 100% { transform: translate(0, 0) scale(1); } 50% { transform: translate(60px, 40px) scale(1.18); } }
+@keyframes heroDrift2 { 0%, 100% { transform: translate(0, 0) scale(1.08); } 50% { transform: translate(-70px, -30px) scale(.92); } }
+@media (prefers-reduced-motion: reduce) { .hero-glow { animation: none !important; } }

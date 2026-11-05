@@ -23,6 +23,9 @@ import { TRADE_STATUS_COLOR, type TradeStatus } from '@/lib/tradeStatus'
 import ShipmentBubble from '@/components/ShipmentBubble'
 import ShipmentRequestModal from '@/components/ShipmentRequestModal'
 import { isShipmentMsg, shipmentIdOf } from '@/lib/shipping'
+import { isOfferMsg, offerIdOf } from '@/lib/offers'
+import OfferBubble from '@/components/OfferBubble'
+import OfferModal from '@/components/OfferModal'
 import { askConfirm } from '@/components/ConfirmHost'
 
 // Hauteur réelle de MobileTopBar (safe-area-top + paddings 10px + logo 20px)
@@ -96,6 +99,7 @@ function MessagesContent() {
   const [hitIdx, setHitIdx] = useState(0)
   const [newMsg, setNewMsg] = useState('')
   const [shipModal, setShipModal] = useState(false) // demande de livraison (acheteur -> vendeur)
+  const [offerModal, setOfferModal] = useState(false) // offre de prix (acheteur -> vendeur)
 
   // Brouillon par conversation : un message long tape puis perdu (changement
   // de conversation, fermeture accidentelle) est frustrant a retaper.
@@ -133,7 +137,7 @@ function MessagesContent() {
   // Message auquel on est en train de répondre (citation affichée au-dessus du champ de saisie)
   const [replyTo, setReplyTo] = useState<any | null>(null)
   const replyActive = replyTo && (replyTo.from_user_id === activeConv || replyTo.to_user_id === activeConv) ? replyTo : null
-  const quoteLabel = (m: any) => isImageMsg(m.contenu) ? '📷 Photo' : isCardMsg(m.contenu) ? '🃏 Carte' : isTradeOfferMsg(m.contenu) ? '🔄 Offre d’échange' : isShipmentMsg(m.contenu) ? '📦 Livraison' : String(m.contenu || '').slice(0, 90)
+  const quoteLabel = (m: any) => isImageMsg(m.contenu) ? '📷 Photo' : isCardMsg(m.contenu) ? '🃏 Carte' : isOfferMsg(m.contenu) ? '💶 Offre de prix' : isTradeOfferMsg(m.contenu) ? '🔄 Offre d’échange' : isShipmentMsg(m.contenu) ? '📦 Livraison' : String(m.contenu || '').slice(0, 90)
   const [expandedOffer, setExpandedOffer] = useState<any | null>(null)
   const [otherTyping, setOtherTyping] = useState(false)
   const bottomRef = useRef<HTMLDivElement>(null)
@@ -370,7 +374,7 @@ function MessagesContent() {
       const otherId = msg.from_user_id === uid ? msg.to_user_id : msg.from_user_id
       const hAt = hiddenAt.get(otherId)
       if (hAt !== undefined && Date.parse(msg.created_at) <= hAt) continue
-      const lastMsgDisplay = isShipmentMsg(msg.contenu) ? '📦 Livraison' : isTradeOfferMsg(msg.contenu) ? t('messages_trade_offer') : isImageMsg(msg.contenu) ? t('chat_photo') : isCardMsg(msg.contenu) ? `🃏 ${cardDataOf(msg.contenu)?.nom || ''}` : msg.contenu
+      const lastMsgDisplay = isOfferMsg(msg.contenu) ? '💶 Offre' : isShipmentMsg(msg.contenu) ? '📦 Livraison' : isTradeOfferMsg(msg.contenu) ? t('messages_trade_offer') : isImageMsg(msg.contenu) ? t('chat_photo') : isCardMsg(msg.contenu) ? `🃏 ${cardDataOf(msg.contenu)?.nom || ''}` : msg.contenu
       if (!convMap[otherId]) convMap[otherId] = { lastMsg: lastMsgDisplay, date: msg.created_at, unread: 0 }
       if (!msg.lu && msg.to_user_id === uid) convMap[otherId].unread++
     }
@@ -739,6 +743,16 @@ function MessagesContent() {
                     }}
                   >🗑️</button>
                   <button
+                    onClick={() => setOfferModal(true)}
+                    title="Faire une offre de prix"
+                    aria-label="Faire une offre de prix"
+                    style={{
+                      display: 'flex', alignItems: 'center', justifyContent: 'center', width: 30, height: 30, borderRadius: '50%',
+                      background: dark ? '#2a2a2a' : '#f0f0f0', color: dark ? '#aaa' : '#666',
+                      border: 'none', cursor: 'pointer', fontSize: 14,
+                    }}
+                  >💶</button>
+                  <button
                     onClick={() => setShipModal(true)}
                     title="Organiser la livraison d'une carte"
                     aria-label="Organiser la livraison"
@@ -808,6 +822,15 @@ function MessagesContent() {
                 {messages.map((msg, msgIdx) => {
                   const isMe = msg.from_user_id === userId
                   const linkedTrade = msg.trade_id ? tradesMap[msg.trade_id] : null
+
+                  // ── Bulle offre de prix (acheteur/vendeur) ──
+                  if (isOfferMsg(msg.contenu) && userId) {
+                    return (
+                      <div key={msg.id} style={{ display: 'flex', justifyContent: 'center', margin: '4px 0' }}>
+                        <OfferBubble id={offerIdOf(msg.contenu)} userId={userId} dark={dark} refreshKey={messages.length} />
+                      </div>
+                    )
+                  }
 
                   // ── Bulle livraison (acheteur/vendeur) ──
                   if (isShipmentMsg(msg.contenu) && userId) {
@@ -1144,6 +1167,10 @@ function MessagesContent() {
         </div>
       </div>
 
+      {offerModal && activeConv && userId && (
+        <OfferModal sellerId={activeConv} sellerName={profiles[activeConv]?.display_name || 'ce membre'} dark={dark}
+          onClose={() => setOfferModal(false)} onCreated={() => { setOfferModal(false); loadMessages(userId, activeConv) }} />
+      )}
       {shipModal && activeConv && userId && (
         <ShipmentRequestModal sellerId={activeConv} sellerName={profiles[activeConv]?.display_name || 'ce membre'} dark={dark}
           onClose={() => setShipModal(false)} onCreated={() => { setShipModal(false); loadMessages(userId, activeConv) }} />

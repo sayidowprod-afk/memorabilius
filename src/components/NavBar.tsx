@@ -12,6 +12,7 @@ import ThemeToggleButton from '@/components/ThemeToggleButton'
 import HeaderSearch from '@/components/HeaderSearch'
 import SettingsMenu, { SettingsInline } from '@/components/SettingsMenu'
 import type { User } from '@supabase/supabase-js'
+import Icon from '@/components/Icon'
 
 const LANGS = [
   { code: 'fr' as const, flag: '🇫🇷', label: 'Français' },
@@ -193,11 +194,11 @@ export default function Navbar() {
             </div>
             {openDrop === 'communaute' && (
               <div style={{ position: 'absolute', top: 56, left: 0, background: dropBg, border: `1px solid ${dropBorder}`, borderRadius: 12, padding: 6, boxShadow: '0 8px 24px rgba(0,0,0,0.12)', minWidth: 160, zIndex: 300 }}>
-                <Link href="/annuaire" style={dropItemStyle} onClick={closeDrop}>👥 {t('nav_annuaire')}</Link>
-                <Link href="/teams" style={dropItemStyle} onClick={closeDrop}>🏆 {t('nav_teams')}</Link>
-                <Link href="/trades" style={dropItemStyle} onClick={closeDrop}>🔄 {t('nav_trades')}</Link>
-                <Link href="/evenements" style={dropItemStyle} onClick={closeDrop}>📅 {t('nav_evenements')}</Link>
-                {user && <Link href="/activite" style={dropItemStyle} onClick={closeDrop}>📰 {t('nav_activite')}</Link>}
+                <Link href="/annuaire" style={dropItemStyle} onClick={closeDrop}><Icon name="users" /> {t('nav_annuaire')}</Link>
+                <Link href="/teams" style={dropItemStyle} onClick={closeDrop}><Icon name="trophy" /> {t('nav_teams')}</Link>
+                <Link href="/trades" style={dropItemStyle} onClick={closeDrop}><Icon name="swap" /> {t('nav_trades')}</Link>
+                <Link href="/evenements" style={dropItemStyle} onClick={closeDrop}><Icon name="calendar" /> {t('nav_evenements')}</Link>
+                {user && <Link href="/activite" style={dropItemStyle} onClick={closeDrop}><Icon name="news" /> {t('nav_activite')}</Link>}
               </div>
             )}
           </div>
@@ -209,18 +210,18 @@ export default function Navbar() {
             </div>
             {openDrop === 'outils' && (
               <div style={{ position: 'absolute', top: 56, left: 0, background: dropBg, border: `1px solid ${dropBorder}`, borderRadius: 12, padding: 6, boxShadow: '0 8px 24px rgba(0,0,0,0.12)', minWidth: 160, zIndex: 300 }}>
-                <Link href="/scanner" style={dropItemStyle} onClick={closeDrop}>📷 {t('nav_scanner')}</Link>
-                {user && <Link href="/mes-achats" style={dropItemStyle} onClick={closeDrop}>🛒 Mes achats & ventes</Link>}
-                <Link href="/gradation" style={dropItemStyle} onClick={closeDrop}>🔍 {t('nav_gradation')}</Link>
-                <Link href="/setlist" style={dropItemStyle} onClick={closeDrop}>📋 {t('nav_setlist')}</Link>
-                <Link href="/guides" style={dropItemStyle} onClick={closeDrop}>📖 {t('nav_guides')}</Link>
+                <Link href="/scanner" style={dropItemStyle} onClick={closeDrop}><Icon name="camera" /> {t('nav_scanner')}</Link>
+                {user && <Link href="/mes-achats" style={dropItemStyle} onClick={closeDrop}><Icon name="cart" /> Mes achats & ventes</Link>}
+                <Link href="/gradation" style={dropItemStyle} onClick={closeDrop}><Icon name="search" /> {t('nav_gradation')}</Link>
+                <Link href="/setlist" style={dropItemStyle} onClick={closeDrop}><Icon name="list" /> {t('nav_setlist')}</Link>
+                <Link href="/guides" style={dropItemStyle} onClick={closeDrop}><Icon name="book" /> {t('nav_guides')}</Link>
                 {/* Pas de lien Recherche ici en desktop : la loupe du header le remplace.
                     Reste present dans le menu mobile (plus bas) -- pas de loupe dediee la-bas. */}
-                <Link href="/tuto" style={dropItemStyle} onClick={closeDrop}>🎓 {t('nav_tuto')}</Link>
+                <Link href="/tuto" style={dropItemStyle} onClick={closeDrop}><Icon name="cap" /> {t('nav_tuto')}</Link>
                 {isAdmin && (
                   <>
                     <div style={{ margin: '4px 8px', borderTop: `1px solid ${dropBorder}` }} />
-                    <Link href="/admin" style={{ ...dropItemStyle, color: '#003DA6' }} onClick={closeDrop}>🛠️ Admin</Link>
+                    <Link href="/admin" style={{ ...dropItemStyle, color: '#003DA6' }} onClick={closeDrop}><Icon name="tool" /> Admin</Link>
                   </>
                 )}
               </div>
@@ -241,7 +242,7 @@ export default function Navbar() {
 
           {user === undefined ? (
             <div style={{ visibility: 'hidden', display: 'flex', gap: 8, alignItems: 'center', pointerEvents: 'none' }}>
-              <span style={{ fontWeight: 600 }}>🔔</span>
+              <span style={{ fontWeight: 600 }}><Icon name="bell" /></span>
               <span style={{ fontWeight: 600 }}>Profil</span>
               <button style={{ background: 'none', border: '1px solid #ddd', borderRadius: 20, padding: '4px 10px', fontSize: 12, fontWeight: 700 }}>FR</button>
               <button style={{ background: 'none', border: '1px solid #ddd', borderRadius: 20, padding: '4px 12px', fontSize: 14 }}>🌙</button>
@@ -251,7 +252,7 @@ export default function Navbar() {
             <div style={{ display: 'flex', gap: 4, alignItems: 'center' }}>
               <div style={{ padding: '0 8px', height: 60, display: 'flex', alignItems: 'center' }}>
                 <Link href="/notifications" aria-label="Notifications" style={{ ...linkStyle, display: 'flex', alignItems: 'center', gap: 4 }}>
-                  <span className={bellPulse ? 'bell-pulse' : undefined} style={{ display: 'inline-block' }}>🔔</span> <Badge count={notifs} />
+                  <span className={bellPulse ? 'bell-pulse' : undefined} style={{ display: 'inline-block' }}><Icon name="bell" /></span> <Badge count={notifs} />
                 </Link>
               </div>
               <SettingsMenu />
@@ -266,8 +267,8 @@ export default function Navbar() {
                 </button>
                 {openDrop === 'user' && (
                   <div role="menu" style={{ position: 'absolute', top: 56, right: 0, background: dropBg, border: `1px solid ${dropBorder}`, borderRadius: 12, padding: 6, boxShadow: '0 8px 24px rgba(0,0,0,0.12)', minWidth: 190, zIndex: 300 }}>
-                    <Link href="/profil" role="menuitem" style={dropItemStyle} onClick={closeDrop}>👤 Mon profil</Link>
-                    <Link href="/nouveautes" role="menuitem" style={dropItemStyle} onClick={closeDrop}>✨ Nouveautés</Link>
+                    <Link href="/profil" role="menuitem" style={dropItemStyle} onClick={closeDrop}><Icon name="user" /> Mon profil</Link>
+                    <Link href="/nouveautes" role="menuitem" style={dropItemStyle} onClick={closeDrop}><Icon name="sparkle" /> Nouveautés</Link>
                     <div style={{ margin: '4px 8px', borderTop: `1px solid ${dropBorder}` }} />
                     <button type="button" role="menuitem" className="sm-out" onClick={() => { closeDrop(); handleLogout() }}
                       style={{ ...dropItemStyle, width: '100%', textAlign: 'left', background: 'none', border: 'none', cursor: 'pointer', color: dark ? '#ff8a8a' : '#b42318' }}>Se déconnecter</button>
@@ -303,27 +304,27 @@ export default function Navbar() {
       {menuOpen && (
         <div style={{ position: 'fixed', top: 60, left: 0, right: 0, bottom: 0, background: dark ? '#1a1a1a' : 'white', zIndex: 199, padding: '16px 24px', display: 'flex', flexDirection: 'column', overflowY: 'auto' }} className="nav-mobile-menu">
           <div style={{ fontSize: 10, fontWeight: 800, textTransform: 'uppercase', color: '#999', letterSpacing: 1, padding: '4px 0 4px' }}>{t('nav_communaute')}</div>
-          <Link href="/annuaire" style={ls} onClick={() => setMenuOpen(false)}>👥 {t('nav_annuaire')}</Link>
-          <Link href="/teams" style={ls} onClick={() => setMenuOpen(false)}>🏆 {t('nav_teams')}</Link>
-          <Link href="/trades" style={ls} onClick={() => setMenuOpen(false)}>🔄 {t('nav_trades')}</Link>
-          <Link href="/evenements" style={ls} onClick={() => setMenuOpen(false)}>📅 {t('nav_evenements')}</Link>
-          {user && <Link href="/activite" style={ls} onClick={() => setMenuOpen(false)}>📰 {t('nav_activite')}</Link>}
+          <Link href="/annuaire" style={ls} onClick={() => setMenuOpen(false)}><Icon name="users" /> {t('nav_annuaire')}</Link>
+          <Link href="/teams" style={ls} onClick={() => setMenuOpen(false)}><Icon name="trophy" /> {t('nav_teams')}</Link>
+          <Link href="/trades" style={ls} onClick={() => setMenuOpen(false)}><Icon name="swap" /> {t('nav_trades')}</Link>
+          <Link href="/evenements" style={ls} onClick={() => setMenuOpen(false)}><Icon name="calendar" /> {t('nav_evenements')}</Link>
+          {user && <Link href="/activite" style={ls} onClick={() => setMenuOpen(false)}><Icon name="news" /> {t('nav_activite')}</Link>}
           <div style={{ fontSize: 10, fontWeight: 800, textTransform: 'uppercase', color: '#999', letterSpacing: 1, padding: '16px 0 4px' }}>{t('nav_outils')}</div>
-          <Link href="/scanner" style={ls} onClick={() => setMenuOpen(false)}>📷 {t('nav_scanner')}</Link>
-          {user && <Link href="/mes-achats" style={ls} onClick={() => setMenuOpen(false)}>🛒 Mes achats & ventes</Link>}
-          <Link href="/gradation" style={ls} onClick={() => setMenuOpen(false)}>🔍 {t('nav_gradation')}</Link>
-          <Link href="/setlist" style={ls} onClick={() => setMenuOpen(false)}>📋 {t('nav_setlist')}</Link>
-          <Link href="/guides" style={ls} onClick={() => setMenuOpen(false)}>📖 {t('nav_guides')}</Link>
+          <Link href="/scanner" style={ls} onClick={() => setMenuOpen(false)}><Icon name="camera" /> {t('nav_scanner')}</Link>
+          {user && <Link href="/mes-achats" style={ls} onClick={() => setMenuOpen(false)}><Icon name="cart" /> Mes achats & ventes</Link>}
+          <Link href="/gradation" style={ls} onClick={() => setMenuOpen(false)}><Icon name="search" /> {t('nav_gradation')}</Link>
+          <Link href="/setlist" style={ls} onClick={() => setMenuOpen(false)}><Icon name="list" /> {t('nav_setlist')}</Link>
+          <Link href="/guides" style={ls} onClick={() => setMenuOpen(false)}><Icon name="book" /> {t('nav_guides')}</Link>
           <Link href="/recherche" style={ls} onClick={() => setMenuOpen(false)}>{t('nav_recherche')}</Link>
           <Link href="/tuto" style={ls} onClick={() => setMenuOpen(false)}>{t('nav_tuto')}</Link>
           {isAdmin && (
-            <Link href="/admin" style={{ ...ls, color: '#003DA6', fontWeight: 700 }} onClick={() => setMenuOpen(false)}>🛠️ Admin</Link>
+            <Link href="/admin" style={{ ...ls, color: '#003DA6', fontWeight: 700 }} onClick={() => setMenuOpen(false)}><Icon name="tool" /> Admin</Link>
           )}
           {user ? (
             <>
               <div style={{ fontSize: 10, fontWeight: 800, textTransform: 'uppercase', color: '#999', letterSpacing: 1, padding: '16px 0 4px' }}>{t('nav_my_account')}</div>
               <Link href="/notifications" style={ls} onClick={() => setMenuOpen(false)}>
-                <span className={bellPulse ? 'bell-pulse' : undefined} style={{ display: 'inline-block' }}>🔔</span> Notifications <Badge count={notifs} />
+                <span className={bellPulse ? 'bell-pulse' : undefined} style={{ display: 'inline-block' }}><Icon name="bell" /></span> Notifications <Badge count={notifs} />
               </Link>
               <Link href="/profil" style={ls} onClick={() => setMenuOpen(false)}>{t('nav_profil')}</Link>
               <SettingsInline />

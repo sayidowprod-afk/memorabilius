@@ -70,6 +70,9 @@ const Viewer3D = dynamic(() => import('@/components/Viewer3D'), { ssr: false })
 if (typeof window !== 'undefined') setTimeout(() => { import('@/components/Viewer3D').catch(() => {}) }, 4000)
 import { useLang } from '@/lib/LangContext'
 import { useTheme } from '@/lib/ThemeContext'
+import { isGalleryTheme, favoriteTeamColors, teamBackground, type GalleryThemeId } from '@/lib/galleryThemes'
+import GalleryThemePicker from '@/components/GalleryThemePicker'
+import CardGrowEffect from '@/components/CardGrowEffect'
 import { useAuth } from '@/lib/AuthContext'
 import { getTeamById, SPORT_LABELS, Sport, inferSportFromTeamName } from '@/lib/sportsTeams'
 import { parseNaturalQuery } from '@/lib/parseNaturalQuery'
@@ -744,6 +747,10 @@ export default function GalerieClient({ userId, initialCardUrl, initialCards, in
   const isOwner = currentUser === userId
   const { t, lang } = useLang()
   const { dark } = useTheme()
+  // thème de galerie (fond CSS) : choisi par le propriétaire (profiles.galerie_theme) ; ?theme=… permet de l'essayer sans l'enregistrer
+  const [themePreview, setThemePreview] = useState<GalleryThemeId | null | undefined>(undefined)
+  const [themePicker, setThemePicker] = useState(false)
+  const [themeSaving, setThemeSaving] = useState(false)
   const isNative = useIsNative()
   const isApp = useIsAppUI()
   const cardParam = searchParams.get('card')
@@ -2408,8 +2415,24 @@ export default function GalerieClient({ userId, initialCardUrl, initialCards, in
   // ferme par defaut et ferme tant qu'on ne l'ouvre pas : un filtre avance actif n'ouvre plus le volet de force (le point • sur le bouton le signale)
   const advancedVisible = showAdvancedFilters
 
+  const urlTheme = searchParams.get('theme')
+  const savedTheme: GalleryThemeId | null = isGalleryTheme(profile?.galerie_theme) ? profile.galerie_theme : (isGalleryTheme(urlTheme) ? urlTheme : null)
+  const teamColors = favoriteTeamColors(profile?.favorite_teams)
+  const shownTheme: GalleryThemeId | null = themePreview !== undefined ? themePreview : savedTheme
+  const saveTheme = async () => {
+    setThemeSaving(true)
+    const { error } = await supabase.from('profiles').update({ galerie_theme: shownTheme }).eq('id', userId)
+    setThemeSaving(false)
+    if (error) { toast.error('Enregistrement impossible (la migration du thème est-elle passée ?)'); return }
+    setProfile((p: any) => ({ ...p, galerie_theme: shownTheme })); setThemePreview(undefined); setThemePicker(false)
+    toast.success('Thème enregistré.')
+  }
+
   return (
     <>
+      <CardGrowEffect disabled={editMode || qrMode} />
+      {shownTheme && <div className={'gtheme-bg gtheme-layer' + (dark ? '' : ' light')} data-gtheme={shownTheme} aria-hidden="true" style={shownTheme === 'equipe' && teamColors ? { background: teamBackground(teamColors) } : undefined} />}
+      {themePicker && isOwner && <GalleryThemePicker value={shownTheme} teamColors={teamColors} onPreview={t => setThemePreview(t)} onSave={saveTheme} saving={themeSaving} onClose={() => { setThemePicker(false); setThemePreview(undefined) }} />}
       <div style={{ maxWidth: 1400, margin: '0 auto', fontFamily: 'Inter, sans-serif', padding: '0 10px', paddingBottom: (editMode && isOwner && selectedCards.size > 0) || qrMode ? 80 : 0 }}>
 
         {usingOfflineCache && (
@@ -2682,6 +2705,9 @@ export default function GalerieClient({ userId, initialCardUrl, initialCards, in
                   </div>
                 )}
 
+                {isOwner && !editMode && (
+                  <button type="button" onClick={() => setThemePicker(true)} title="Choisir le thème de ma galerie" aria-label="Thème de la galerie" style={{ background: dark ? '#2a2a2a' : '#f0f0f0', color: dark ? '#ccc' : '#444', border: 'none', borderRadius: 10, padding: '12px 14px', fontWeight: 800, fontSize: 15, cursor: 'pointer' }}>🎨</button>
+                )}
                 {/* CTA principal */}
                 {isOwner && !editMode && (
                   <Link href={`/galerie/${userId}/ajouter`} className="btn-ajouter" style={{

@@ -76,14 +76,18 @@ export default function PullToRefresh() {
       height: pull, overflow: 'hidden', zIndex: 260, pointerEvents: 'none',
       transition: pulling.current ? 'none' : 'height 0.2s ease',
     }}>
-      <div style={{
-        marginTop: 14, width: 26, height: 26, borderRadius: '50%',
-        border: '3px solid #d5deef', borderTopColor: '#003DA6',
-        animation: refreshing ? 'ptr-spin 0.6s linear infinite' : 'none',
-        transform: refreshing ? undefined : `rotate(${pull * 3}deg)`,
+      {/* ballon de basket : tourne pendant qu'on tire, rebondit pendant l'actualisation */}
+      <svg viewBox="0 0 32 32" width="30" height="30" aria-hidden="true" style={{
+        marginTop: 12,
+        animation: refreshing ? 'ptr-bounce 0.55s ease-in-out infinite' : 'none',
+        transform: refreshing ? undefined : `rotate(${pull * 4}deg) scale(${0.6 + Math.min(pull / THRESHOLD, 1) * 0.4})`,
         opacity: Math.min(pull / THRESHOLD, 1),
-      }} />
-      <style>{`@keyframes ptr-spin { to { transform: rotate(360deg); } }`}</style>
+      }}>
+        <circle cx="16" cy="16" r="14.5" fill="#e8741f" stroke="#7a3410" strokeWidth="1.5" />
+        <path d="M16 1.5v29M1.5 16h29" stroke="#2a1206" strokeWidth="1.4" fill="none" />
+        <path d="M5 5.5c6 4 6 17 0 21M27 5.5c-6 4-6 17 0 21" stroke="#2a1206" strokeWidth="1.4" fill="none" />
+      </svg>
+      <style>{`@keyframes ptr-bounce { 0%,100% { transform: translateY(0) } 50% { transform: translateY(14px) } }`}</style>
     </div>
   )
 }

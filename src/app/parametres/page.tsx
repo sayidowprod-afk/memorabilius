@@ -10,6 +10,8 @@ import OfflineSettings from '@/components/OfflineSettings'
 import SecuritySettings from '@/components/SecuritySettings'
 import FeedbackForm from '@/components/FeedbackForm'
 import { AccentRow } from '@/components/SettingsMenu'
+import SeasonRow from '@/components/SeasonRow'
+import GalleryThemeRow from '@/components/GalleryThemeRow'
 import { supabase } from '@/lib/supabase'
 
 const LANGS = [
@@ -113,6 +115,8 @@ export default function Parametres() {
           </div>
           <AccentRow />
         </div>
+        <SeasonRow row={row} rowLabel={rowLabel} rowSub={rowSub} />
+        <GalleryThemeRow row={row} rowLabel={rowLabel} rowSub={rowSub} />
       </div>
 
       {isNative && (
