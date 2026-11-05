@@ -1397,7 +1397,20 @@ html[data-accent] a[style*="color:#003DA6"], html[data-accent] a[style*="color: 
 .card-grid { touch-action: pan-y; }
 @media (max-width: 768px) {
   .card-grid.card-grid-cols .card-item { flex: 0 0 calc((100% - (var(--cols) - 1) * 8px) / var(--cols)) !important; max-width: calc((100% - (var(--cols) - 1) * 8px) / var(--cols)) !important; }
-  .card-grid.card-grid-cols .card-item p { font-size: 10px !important; }
+  /* texte des tuiles adapté à la taille choisie : plus il y a de colonnes, plus on réduit puis on masque le secondaire */
+  .card-grid[data-cols="1"] .card-item .gc-name .da-display { font-size: 26px !important; }
+  .card-grid[data-cols="1"] .card-item p { font-size: 13px !important; }
+  .card-grid[data-cols="3"] .card-item .gc-name .da-display { font-size: 14px !important; }
+  .card-grid[data-cols="3"] .card-item p { font-size: 10px !important; }
+  .card-grid[data-cols="4"] .card-item { padding: 5px !important; }
+  .card-grid[data-cols="4"] .card-item .gc-name .da-display { font-size: 11px !important; }
+  .card-grid[data-cols="4"] .card-item p { font-size: 8.5px !important; }
+  .card-grid[data-cols="4"] .card-item .gc-right { display: none !important; }
+  .card-grid[data-cols="5"] .card-item, .card-grid[data-cols="6"] .card-item { padding: 3px !important; }
+  .card-grid[data-cols="5"] .card-item .gc-name .da-display, .card-grid[data-cols="6"] .card-item .gc-name .da-display { font-size: 9px !important; }
+  .card-grid[data-cols="5"] .card-item .gc-bot p:not(.gc-name), .card-grid[data-cols="6"] .card-item .gc-bot p:not(.gc-name) { display: none !important; }
+  .card-grid[data-cols="5"] .card-item .gc-right, .card-grid[data-cols="6"] .card-item .gc-right { display: none !important; }
+  .card-grid[data-cols="5"] .card-item .gc-med, .card-grid[data-cols="6"] .card-item .gc-med { display: none !important; }
 }
 
 /* 155 · Recherche vocale */
@@ -1470,3 +1483,18 @@ html[data-accent] a[style*="color:#003DA6"], html[data-accent] a[style*="color: 
 /* Couleur du site : icône « Ma galerie » de la barre du bas (les deux cartes empilées) suit la couleur choisie */
 html[data-accent] .nav-gallery-card-1 { background: linear-gradient(160deg, color-mix(in srgb, var(--accent) 62%, #fff), color-mix(in srgb, var(--accent) 88%, #000)) !important; }
 html[data-accent] .nav-gallery-card-2 { background: linear-gradient(160deg, var(--accent), color-mix(in srgb, var(--accent) 55%, #000)) !important; box-shadow: 0 6px 16px color-mix(in srgb, var(--accent) 50%, transparent) !important; }
+
+/* 135 · Grille serrée (4 à 6 colonnes) : le nom passe sur 2 lignes au lieu d'être coupé, le texte secondaire est réduit puis masqué */
+@media (max-width: 768px) {
+  .card-grid[data-cols="4"] .card-item .gc-name, .card-grid[data-cols="5"] .card-item .gc-name, .card-grid[data-cols="6"] .card-item .gc-name { display: block !important; white-space: normal !important; }
+  .card-grid[data-cols="4"] .card-item .gc-name .da-display, .card-grid[data-cols="5"] .card-item .gc-name .da-display, .card-grid[data-cols="6"] .card-item .gc-name .da-display {
+    display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 2; line-clamp: 2; overflow: hidden; white-space: normal !important; line-height: 1.05 !important; word-break: break-word;
+  }
+  .card-grid[data-cols="4"] .card-item .gc-name + p + p { display: none !important; }
+}
+@media (max-width: 768px) {
+  .card-grid[data-cols="4"] .card-item .gc-name, .card-grid[data-cols="5"] .card-item .gc-name, .card-grid[data-cols="6"] .card-item .gc-name { padding: 0 !important; text-align: center; }
+  .card-grid[data-cols="4"] .card-item .gc-bot, .card-grid[data-cols="5"] .card-item .gc-bot, .card-grid[data-cols="6"] .card-item .gc-bot { padding: 6px 2px 8px !important; }
+  .card-grid[data-cols="3"] .card-item .gc-name { padding: 0 6px !important; }
+  .card-grid[data-cols="3"] .card-item .gc-bot { padding: 8px 4px 10px !important; }
+}

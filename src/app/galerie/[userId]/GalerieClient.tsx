@@ -3681,7 +3681,7 @@ export default function GalerieClient({ userId, initialCardUrl, initialCards, in
           onDragEnd={onDragEnd}
         >
           <SortableContext items={displayed.map(getCardId)} strategy={rectSortingStrategy}>
-          <div ref={el => { gridRef.current = el; cardGridReveal.ref.current = el }} className={`card-grid ${cardGridReveal.className}${compactView ? ' card-grid-compact' : ''}${gridCols ? ' card-grid-cols' : ''}`} style={gridCols ? ({ '--cols': gridCols } as React.CSSProperties) : undefined} onTouchStart={gridTouchStart} onTouchMove={gridTouchMove}>
+          <div ref={el => { gridRef.current = el; cardGridReveal.ref.current = el }} className={`card-grid ${cardGridReveal.className}${compactView ? ' card-grid-compact' : ''}${gridCols ? ' card-grid-cols' : ''}`} data-cols={gridCols ?? undefined} style={gridCols ? ({ '--cols': gridCols } as React.CSSProperties) : undefined} onTouchStart={gridTouchStart} onTouchMove={gridTouchMove}>
           {displayed.map((d, idx) => (
             <SortableCard
               key={getCardId(d)}
