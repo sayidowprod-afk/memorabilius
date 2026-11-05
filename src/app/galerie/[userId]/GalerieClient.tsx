@@ -71,7 +71,8 @@ if (typeof window !== 'undefined') setTimeout(() => { import('@/components/Viewe
 import { useLang } from '@/lib/LangContext'
 import { useTheme } from '@/lib/ThemeContext'
 import { isGalleryTheme, favoriteTeamColors, teamBackground, type GalleryThemeId } from '@/lib/galleryThemes'
-import GalleryThemePicker from '@/components/GalleryThemePicker'
+import GalleryCustomizer from '@/components/GalleryCustomizer'
+import { ballStyle } from '@/lib/ballThemes'
 import CardGrowEffect from '@/components/CardGrowEffect'
 import { useAuth } from '@/lib/AuthContext'
 import { getTeamById, SPORT_LABELS, Sport, inferSportFromTeamName } from '@/lib/sportsTeams'
@@ -750,6 +751,9 @@ export default function GalerieClient({ userId, initialCardUrl, initialCards, in
   // thème de galerie (fond CSS) : choisi par le propriétaire (profiles.galerie_theme) ; ?theme=… permet de l'essayer sans l'enregistrer
   const [themePreview, setThemePreview] = useState<GalleryThemeId | null | undefined>(undefined)
   const [themePicker, setThemePicker] = useState(false)
+  // aperçus en direct du panneau 🎨 (non enregistrés) : couleur de la galerie et équipes favorites
+  const [accentPreview, setAccentPreview] = useState<string | undefined>(undefined)
+  const [favPreview, setFavPreview] = useState<string[] | undefined>(undefined)
   const [themeSaving, setThemeSaving] = useState(false)
   const isNative = useIsNative()
   const isApp = useIsAppUI()
@@ -2088,7 +2092,8 @@ export default function GalerieClient({ userId, initialCardUrl, initialCards, in
     </div>
   )
 
-  const accent = profile?.couleur_bordure || '#003DA6'
+  const accent = accentPreview ?? (profile?.couleur_bordure || '#003DA6')
+  const favShown: string[] = favPreview ?? (Array.isArray(profile?.favorite_teams) ? profile.favorite_teams : [])
 
   const resolveColor = (c: string) => isGradient(c) ? c.match(/#[0-9a-fA-F]{6}/)?.[0] || accent : c
   const byPos = (a: string, b: string) => {
@@ -2417,22 +2422,32 @@ export default function GalerieClient({ userId, initialCardUrl, initialCards, in
 
   const urlTheme = searchParams.get('theme')
   const savedTheme: GalleryThemeId | null = isGalleryTheme(profile?.galerie_theme) ? profile.galerie_theme : (isGalleryTheme(urlTheme) ? urlTheme : null)
-  const teamColors = favoriteTeamColors(profile?.favorite_teams)
+  const teamColors = favoriteTeamColors(favShown)
   const shownTheme: GalleryThemeId | null = themePreview !== undefined ? themePreview : savedTheme
-  const saveTheme = async () => {
+  const closeCustomizer = () => { setThemePicker(false); setThemePreview(undefined); setAccentPreview(undefined); setFavPreview(undefined) }
+  const saveCustom = async () => {
     setThemeSaving(true)
-    const { error } = await supabase.from('profiles').update({ galerie_theme: shownTheme }).eq('id', userId)
+    const patch = { couleur_bordure: accent, favorite_teams: favShown }
+    let themeSaved = true
+    let { error } = await supabase.from('profiles').update({ ...patch, galerie_theme: shownTheme }).eq('id', userId)
+    if (error) {
+      // la colonne du thème n'existe peut-être pas encore (migration) : on enregistre au moins la couleur et les équipes
+      themeSaved = false
+      const r = await supabase.from('profiles').update(patch).eq('id', userId)
+      error = r.error
+    }
     setThemeSaving(false)
-    if (error) { toast.error('Enregistrement impossible (la migration du thème est-elle passée ?)'); return }
-    setProfile((p: any) => ({ ...p, galerie_theme: shownTheme })); setThemePreview(undefined); setThemePicker(false)
-    toast.success('Thème enregistré.')
+    if (error) { toast.error('Enregistrement impossible. Réessaie.'); return }
+    setProfile((p: any) => ({ ...p, ...patch, ...(themeSaved ? { galerie_theme: shownTheme } : {}) }))
+    closeCustomizer()
+    if (themeSaved) toast.success('Galerie enregistrée.'); else toast.error('Couleur et équipes enregistrées, mais pas le fond (la migration du thème est-elle passée ?).')
   }
 
   return (
     <>
       <CardGrowEffect disabled={editMode || qrMode} />
-      {shownTheme && <div className={'gtheme-bg gtheme-layer' + (dark ? '' : ' light')} data-gtheme={shownTheme} aria-hidden="true" style={shownTheme === 'equipe' && teamColors ? { background: teamBackground(teamColors) } : undefined} />}
-      {themePicker && isOwner && <GalleryThemePicker value={shownTheme} teamColors={teamColors} onPreview={t => setThemePreview(t)} onSave={saveTheme} saving={themeSaving} onClose={() => { setThemePicker(false); setThemePreview(undefined) }} />}
+      {shownTheme && <div className={'gtheme-bg gtheme-layer' + (dark ? '' : ' light')} data-gtheme={shownTheme} aria-hidden="true" style={shownTheme === 'equipe' && teamColors ? { background: teamBackground(teamColors) } : ballStyle(shownTheme)} />}
+      {themePicker && isOwner && <GalleryCustomizer theme={shownTheme} onTheme={t => setThemePreview(t)} accent={accent} onAccent={setAccentPreview} favs={favShown} onFavs={setFavPreview} teamColors={teamColors} onSave={saveCustom} saving={themeSaving} onClose={closeCustomizer} />}
       <div style={{ maxWidth: 1400, margin: '0 auto', fontFamily: 'Inter, sans-serif', padding: '0 10px', paddingBottom: (editMode && isOwner && selectedCards.size > 0) || qrMode ? 80 : 0 }}>
 
         {usingOfflineCache && (
@@ -2515,7 +2530,7 @@ export default function GalerieClient({ userId, initialCardUrl, initialCards, in
                 {profile?.is_donor && (
                   <span className="sticker-holo" data-label="Donateur Ko-fi" style={{ fontSize: 26 }}>☕</span>
                 )}
-                {(Array.isArray(profile?.favorite_teams) ? profile.favorite_teams : []).map((id: string) => {
+                {favShown.map((id: string) => {
                   const team = getTeamById(id)
                   return (
                     <span key={id} className="sticker-team" data-label={team?.name ?? id}>

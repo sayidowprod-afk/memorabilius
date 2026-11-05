@@ -1,6 +1,7 @@
 // Thèmes de galerie : un fond dessiné en CSS (dégradés et motifs, aucune image à héberger). Les cartes ne sont jamais modifiées.
 import { teamPalette } from '@/lib/teamColors'
 import { getTeamById } from '@/lib/sportsTeams'
+import { BALL_THEMES } from '@/lib/ballThemes'
 
 export const GALLERY_THEMES = [
   { id: 'equipe', label: 'Mon équipe' },
@@ -10,6 +11,22 @@ export const GALLERY_THEMES = [
   { id: 'neon', label: 'Néon' },
   { id: 'ardoise', label: 'Ardoise' },
   { id: 'parquet', label: 'Parquet' },
+  { id: 'pelouse', label: 'Pelouse de foot' },
+  { id: 'baseball', label: 'Terrain de baseball' },
+  { id: 'glace', label: 'Glace de hockey' },
+  { id: 'terre', label: 'Terre battue' },
+  { id: 'piste', label: 'Piste de course' },
+  { id: 'tatami', label: 'Tapis de combat' },
+  { id: 'etoiles', label: 'Ciel étoilé' },
+  { id: 'aurore', label: 'Aurore boréale' },
+  { id: 'coucher', label: 'Coucher de soleil' },
+  { id: 'ocean', label: 'Grand large' },
+  { id: 'beton', label: 'Playground béton' },
+  { id: 'synthwave', label: 'Synthwave' },
+  { id: 'carbone', label: 'Fibre de carbone' },
+  { id: 'cuir', label: 'Cuir et coutures' },
+  { id: 'vestiaire', label: 'Vestiaire' },
+  ...BALL_THEMES,
 ] as const
 
 export type GalleryThemeId = (typeof GALLERY_THEMES)[number]['id']

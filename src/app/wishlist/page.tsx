@@ -52,9 +52,10 @@ export default function WishlistPage() {
   useEffect(() => {
     const tm = window.setTimeout(() => {
       try {
-        const fromLink = new URLSearchParams(window.location.search).get('salon') === '1'
-        if (fromLink) localStorage.setItem('mb_wish_salon', '1')
-        setSalon(fromLink || localStorage.getItem('mb_wish_salon') === '1')
+        // ?salon=1 ouvre le mode salon, ?salon=0 le quitte (bouton « Partager ») ; sans paramètre, on garde le dernier choix
+        const p = new URLSearchParams(window.location.search).get('salon')
+        if (p === '1' || p === '0') localStorage.setItem('mb_wish_salon', p)
+        setSalon(localStorage.getItem('mb_wish_salon') === '1')
         const f = JSON.parse(localStorage.getItem('mb_wish_found') || '[]')
         if (Array.isArray(f)) setFound(new Set(f.map(String)))
       } catch { /* stockage indisponible */ }
