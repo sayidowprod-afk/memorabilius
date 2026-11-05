@@ -326,7 +326,6 @@ export default function Navbar() {
                 <span className={bellPulse ? 'bell-pulse' : undefined} style={{ display: 'inline-block' }}>🔔</span> Notifications <Badge count={notifs} />
               </Link>
               <Link href="/profil" style={ls} onClick={() => setMenuOpen(false)}>{t('nav_profil')}</Link>
-              <Link href="/nouveautes" style={ls} onClick={() => setMenuOpen(false)}>✨ Nouveautés</Link>
               <SettingsInline />
               <div style={{ padding: '16px 0' }}>
                 <button onClick={handleLogout} style={{ width: '100%', background: '#003DA6', color: 'white', border: 'none', borderRadius: 8, padding: '12px', fontWeight: 700, cursor: 'pointer', fontSize: 15 }}>{t('nav_deconnexion')}</button>
