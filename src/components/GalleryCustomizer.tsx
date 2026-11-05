@@ -1,4 +1,5 @@
 'use client'
+import { useEffect } from 'react'
 import { GALLERY_THEMES, teamBackground, type GalleryThemeId } from '@/lib/galleryThemes'
 import { ballStyle } from '@/lib/ballThemes'
 import TeamColorPicker from '@/components/TeamColorPicker'
@@ -13,6 +14,8 @@ export default function GalleryCustomizer({ theme, onTheme, accent, onAccent, fa
   teamColors: [string, string] | null
   onSave: () => void; onClose: () => void; saving: boolean
 }) {
+  // la barre de navigation du bas recouvrirait le bouton « Enregistrer » : on la masque tant que le panneau est ouvert
+  useEffect(() => { document.body.classList.add('modal-fullscreen-active'); return () => { document.body.classList.remove('modal-fullscreen-active') } }, [])
   const head: React.CSSProperties = { fontWeight: 800, fontSize: 12, letterSpacing: '.1em', textTransform: 'uppercase', color: '#9fb0e6', margin: '16px 0 8px' }
   const hex = /^#[0-9a-fA-F]{6}$/.test(accent) ? accent : '#003DA6'
   return (

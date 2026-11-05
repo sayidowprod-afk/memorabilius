@@ -1,4 +1,5 @@
 'use client'
+import { useEffect } from 'react'
 import { GALLERY_THEMES, teamBackground, type GalleryThemeId } from '@/lib/galleryThemes'
 import { ballStyle } from '@/lib/ballThemes'
 
@@ -6,6 +7,8 @@ import { ballStyle } from '@/lib/ballThemes'
 export default function GalleryThemePicker({ value, teamColors, onPreview, onSave, onClose, saving }: {
   value: GalleryThemeId | null; teamColors?: [string, string] | null; onPreview: (t: GalleryThemeId | null) => void; onSave: () => void; onClose: () => void; saving: boolean
 }) {
+  // la barre de navigation du bas recouvrirait le bouton « Enregistrer » : on la masque tant que le panneau est ouvert
+  useEffect(() => { document.body.classList.add('modal-fullscreen-active'); return () => { document.body.classList.remove('modal-fullscreen-active') } }, [])
   return (
     <div role="dialog" aria-modal="true" aria-label="Thème de la galerie" style={{ position: 'fixed', left: 0, right: 0, bottom: 0, zIndex: 1000, background: 'rgba(5,8,25,.96)', borderTop: '2px solid #3a4a8a', padding: '14px 14px calc(14px + env(safe-area-inset-bottom))', color: '#fff' }}>
       <div style={{ maxWidth: 760, margin: '0 auto' }}>
