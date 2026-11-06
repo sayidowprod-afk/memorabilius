@@ -1,10 +1,12 @@
 'use client'
+import LikeFace from '@/components/LikeFace'
 import { useEffect, useState, useRef } from 'react'
 import Link from 'next/link'
 import { supabase } from '@/lib/supabase'
 import { useTheme } from '@/lib/ThemeContext'
 import { useLang } from '@/lib/LangContext'
 import EmptyState from '@/components/EmptyState'
+import RelTime from '@/components/RelTime'
 
 const EMOJIS = [
   '😀','😂','🥰','😍','🤩','😎','🥳','🤯','😮','🔥',
@@ -68,16 +70,6 @@ interface Comment extends CommentRow {
   likes: number; liked: boolean; replies: Comment[]
 }
 
-const timeAgo = (date: string, t: (k: any) => string, lang: string) => {
-  const diff = Date.now() - new Date(date).getTime()
-  const mins = Math.floor(diff / 60000)
-  if (mins < 1) return t('comments_instant')
-  if (mins < 60) return lang !== 'en' ? `${t('comments_ago')} ${mins}${t('comments_min')}` : `${mins} ${t('comments_min')}`
-  const hours = Math.floor(mins / 60)
-  if (hours < 24) return lang !== 'en' ? `${t('comments_ago')} ${hours}h` : `${hours}h ago`
-  return lang !== 'en' ? `${t('comments_ago')} ${Math.floor(hours / 24)}${t('comments_day')}` : `${Math.floor(hours / 24)}${t('comments_day')}`
-}
-
 const Avatar = ({ profile, accent, size = 36 }: { profile: Profile | null; accent: string; size?: number }) => (
   profile?.avatar_url
     ? <img src={profile.avatar_url} alt="" style={{ width: size, height: size, borderRadius: '50%', objectFit: 'cover', flexShrink: 0 }} />
@@ -128,7 +120,7 @@ function CommentItem({
               <Link href={`/galerie/${comment.profiles?.slug || comment.author_id}`} style={{ fontWeight: 800, fontSize: 13, color: textMain, textDecoration: 'none' }}>
                 {comment.profiles?.display_name || 'Collectionneur'}
               </Link>
-              <span style={{ fontSize: 11, color: textMuted }}>{timeAgo(comment.created_at, t, lang)}</span>
+              <span style={{ fontSize: 11, color: textMuted }}><RelTime iso={comment.created_at} /></span>
             </div>
             {(isOwner || currentUserId === comment.author_id) && (
               deleteConfirm ? (
@@ -153,9 +145,7 @@ function CommentItem({
             color: comment.liked ? '#e74c3c' : textMuted,
             padding: 0,
           }}>
-            <span key={comment.liked ? 'liked' : 'unliked'} className={comment.liked ? 'selection-check-pop' : undefined} style={{ display: 'inline-block' }}>
-              {comment.liked ? '❤️' : '🤍'}
-            </span> {comment.likes > 0 && comment.likes}
+            <LikeFace liked={comment.liked} count={comment.likes} layout="inline" heartSize={12} />
           </button>
           {currentUserId && depth === 0 && (
             <button onClick={() => setReplyOpen(!replyOpen)} style={{

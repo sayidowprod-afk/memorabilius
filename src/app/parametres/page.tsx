@@ -73,10 +73,6 @@ export default function Parametres() {
     setHapticsEnabled(next)
   }
 
-  const card: React.CSSProperties = {
-    background: dark ? '#1e1e1e' : 'white', borderRadius: 16, padding: 24,
-    boxShadow: '0 4px 20px rgba(0,0,0,0.08)', marginBottom: 20,
-  }
   const row: React.CSSProperties = {
     display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: 12, padding: '10px 0',
   }
@@ -87,7 +83,7 @@ export default function Parametres() {
     <div style={{ maxWidth: 560, margin: '0 auto', padding: '24px 16px 60px' }}>
       <h1 style={{ fontWeight: 900, fontSize: 22, marginBottom: 20, color: dark ? '#fff' : '#111' }}>⚙️ {t('settings_title')}</h1>
 
-      <div style={card}>
+      <div className="da-panel da-panel-pad da-panel-gap">
         <h3 style={{ fontWeight: 800, marginBottom: 4 }}>🎨 {t('settings_appearance')}</h3>
         <div style={row}>
           <div>
@@ -120,7 +116,7 @@ export default function Parametres() {
       </div>
 
       {isNative && (
-        <div style={card}>
+        <div className="da-panel da-panel-pad da-panel-gap">
           <h3 style={{ fontWeight: 800, marginBottom: 4 }}>📳 {t('settings_haptics')}</h3>
           <div style={row}>
             <div>
@@ -135,13 +131,13 @@ export default function Parametres() {
       <OfflineSettings />
 
       {userId && (
-        <div style={card}>
+        <div className="da-panel da-panel-pad da-panel-gap">
           <h3 style={{ fontWeight: 800, marginBottom: 8 }}>🔒 {t('security_title')}</h3>
           <SecuritySettings dark={dark} />
         </div>
       )}
 
-      <div style={card}>
+      <div className="da-panel da-panel-pad da-panel-gap">
         <h3 style={{ fontWeight: 800, marginBottom: 8 }}>🔔 {t('settings_notifications')}</h3>
         {userId ? (
           <PushNotificationSettings dark={dark} />
@@ -153,7 +149,7 @@ export default function Parametres() {
       </div>
 
       {userId && notifPrefs && (
-        <div style={card}>
+        <div className="da-panel da-panel-pad da-panel-gap">
           <h3 style={{ fontWeight: 800, marginBottom: 4 }}>🎛️ {t('settings_notif_channels')}</h3>
           <div style={row}>
             <div style={rowLabel}>{t('settings_notif_channel_messages')}</div>
@@ -175,7 +171,7 @@ export default function Parametres() {
       )}
 
       {userId && notifPrefs && (
-        <div style={card}>
+        <div className="da-panel da-panel-pad da-panel-gap">
           <h3 style={{ fontWeight: 800, marginBottom: 4 }}>🎛️ {t('settings_notif_types')}</h3>
           <div style={row}>
             <div>
@@ -208,7 +204,7 @@ export default function Parametres() {
         </div>
       )}
 
-      <div style={card}>
+      <div className="da-panel da-panel-pad da-panel-gap">
         <h3 style={{ fontWeight: 800, marginBottom: 4 }}>💬 {t('feedback_title')}</h3>
         <p style={rowSub}>{t('feedback_desc')}</p>
         <div style={{ marginTop: 10 }}>

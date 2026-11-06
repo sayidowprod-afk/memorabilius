@@ -11,6 +11,7 @@ import MobileBottomNav from './MobileBottomNav'
 import PageTransition from './PageTransition'
 import InstallBanner from './InstallBanner'
 import DemoAttractMode from './DemoAttractMode'
+import KeyboardAvoid from './KeyboardAvoid'
 
 // Le quiz en direct (page spectateur + overlay OBS/Streamlabs, /quiz/[code]*)
 // a besoin d'un rendu plein écran SANS le chrome habituel du site (navbar,
@@ -39,6 +40,7 @@ export default function SiteShell({ children }: { children: React.ReactNode }) {
       <WebOnly><InstallBanner /></WebOnly>
       <MobileBottomNav />
       <DemoAttractMode />
+      <KeyboardAvoid />
     </>
   )
 }

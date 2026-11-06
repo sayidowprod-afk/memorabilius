@@ -267,6 +267,15 @@ export default function AjoutLotPage({ params }: { params: Promise<{ userId: str
 
   const counts = Object.values(status).reduce((a, v) => { a[v.s] = (a[v.s] || 0) + 1; return a }, {} as Record<string, number>)
   const okCount = (counts.done || 0) + (counts.todo || 0)
+  // 283 · pastille d'état sur la miniature : roue pendant le traitement, coche verte quand la carte est ajoutée, point d'exclamation si elle est à compléter
+  const badge = (s?: Status) => {
+    if (!s || s === 'wait') return null
+    if (s === 'detect' || s === 'upload' || s === 'scan') return <span className="da-lot-badge run" role="img" aria-label="En cours" />
+    if (s === 'done') return <span className="da-lot-badge ok selection-check-pop" role="img" aria-label="Ajoutée">✓</span>
+    if (s === 'todo') return <span className="da-lot-badge todo selection-check-pop" role="img" aria-label="Ajoutée, à compléter">!</span>
+    return <span className="da-lot-badge err" role="img" aria-label="Échec">✕</span>
+  }
+  const doneTotal = okCount + (counts.error || 0)
   const label: Record<Status, string> = { wait: 'En attente', detect: 'Détection des coins…', upload: 'Envoi des photos…', scan: 'Identification…', done: 'Ajoutée', todo: 'Ajoutée — à compléter', error: 'Échec' }
 
   return (
@@ -318,7 +327,7 @@ export default function AjoutLotPage({ params }: { params: Promise<{ userId: str
             <div key={e.id} className={'da-lot-row' + (st?.s === 'error' ? ' err' : '')}>
               <div className="da-lot-num">{i + 1}</div>
               <div className="da-lot-photos">
-                <figure><img src={e.recto.url} alt={`Carte ${i + 1}, recto`} /><figcaption>Recto{e.src?.recto && !running && !finished && <> · <button type="button" className="da-lot-link" onClick={() => setEditing({ id: e.id, side: 'recto' })}>coins</button></>}</figcaption></figure>
+                <figure><img src={e.recto.url} alt={`Carte ${i + 1}, recto`} className={st && (st.s === 'upload' || st.s === 'scan' || st.s === 'detect') ? 'busy' : undefined} />{badge(st?.s)}<figcaption>Recto{e.src?.recto && !running && !finished && <> · <button type="button" className="da-lot-link" onClick={() => setEditing({ id: e.id, side: 'recto' })}>coins</button></>}</figcaption></figure>
                 {e.verso ? <figure><img src={e.verso.url} alt={`Carte ${i + 1}, verso`} /><figcaption>Verso{e.src?.verso && !running && !finished && <> · <button type="button" className="da-lot-link" onClick={() => setEditing({ id: e.id, side: 'verso' })}>coins</button></>}</figcaption></figure> : <figure className="empty"><div>Pas de verso</div></figure>}
               </div>
               <div style={{ flex: 1, minWidth: 0 }}>
@@ -349,6 +358,7 @@ export default function AjoutLotPage({ params }: { params: Promise<{ userId: str
             </div>
           ) : (
             <div style={{ display: 'flex', gap: 10 }}>
+              {running && <div className="da-lot-progress" role="progressbar" aria-valuemin={0} aria-valuemax={entries.length} aria-valuenow={doneTotal} aria-label="Avancement de l’ajout"><i style={{ width: `${Math.round((doneTotal / Math.max(1, entries.length)) * 100)}%` }} /></div>}
               {running && <button type="button" className="da-confirm-btn" onClick={() => { cancelRef.current = true }}>Arrêter</button>}
               <button type="button" className="btn-main btn-primary" style={{ flex: 1 }} disabled={running} onClick={run}>
                 {running ? `Ajout en cours… ${okCount + (counts.error || 0)} / ${entries.length}` : `Ajouter ${entries.length} carte${entries.length > 1 ? 's' : ''}`}

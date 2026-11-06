@@ -1,6 +1,6 @@
 'use client'
 import { toast } from '@/lib/toast'
-import { useEffect, useState, useRef, Suspense } from 'react'
+import { useEffect, useState, useRef, Suspense, Fragment } from 'react'
 import { createPortal } from 'react-dom'
 import Link from 'next/link'
 import { useRouter, useSearchParams } from 'next/navigation'
@@ -25,6 +25,8 @@ import ShipmentRequestModal from '@/components/ShipmentRequestModal'
 import { isShipmentMsg, shipmentIdOf } from '@/lib/shipping'
 import { isOfferMsg, offerIdOf } from '@/lib/offers'
 import OfferBubble from '@/components/OfferBubble'
+import SwipeAction from '@/components/SwipeAction'
+import { dayLabel, dayKey } from '@/lib/relativeTime'
 import OfferModal from '@/components/OfferModal'
 import { askConfirm } from '@/components/ConfirmHost'
 
@@ -607,7 +609,7 @@ function MessagesContent() {
     <div className="msg-page" style={{ maxWidth: 1000, margin: '20px auto', fontFamily: 'Inter, sans-serif', height: 'calc(100vh - 120px)', display: 'flex', gap: 20, padding: '0 10px' }}>
       <style>{`
         .msg-back { display: none; }
-        @media (max-width: 768px) {
+        @media (max-width: 599px) {
           .msg-back { display: inline-block !important; }
           .msg-layout { flex-direction: column !important; height: calc(100vh - 80px) !important; gap: 0 !important; }
           .msg-list { width: 100% !important; display: ${activeConv ? 'none' : 'flex'} !important; border-radius: 12px 12px 0 0 !important; }
@@ -627,7 +629,7 @@ function MessagesContent() {
       <div className="msg-layout" style={{ maxWidth: 1000, width: '100%', margin: '0 auto', height: 'calc(100vh - 120px)', display: 'flex', gap: 20 }}>
 
         {/* Liste conversations */}
-        <div className="msg-list" style={{ width: 280, background: bgPanel, borderRadius: 16, boxShadow: '0 4px 20px rgba(0,0,0,0.12)', overflow: 'hidden', display: 'flex', flexDirection: 'column' }}>
+        <div className="msg-list da-panel" style={{ width: 300, background: bgPanel, overflow: 'hidden', display: 'flex', flexDirection: 'column' }}>
           <div className="msg-list-header" style={{ padding: '16px', borderBottom: `1px solid ${border}`, display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: 8 }}>
             <h2 style={{ fontWeight: 900, fontSize: 22, margin: 0, color: textMain }}>{t('messages_title')}</h2>
             <button onClick={() => setNewConvOpen(v => !v)} title="Nouvelle conversation" style={{
@@ -673,8 +675,9 @@ function MessagesContent() {
               </div>
             )}
             {conversations.map(conv => (
-              <div key={conv.id} onClick={() => selectConv(conv.id)} style={{
-                padding: '10px 16px', cursor: 'pointer',
+              <SwipeAction key={conv.id} direction="left" reveal={{ label: 'Masquer', onClick: () => hideConversation(conv.id) }} style={{ background: bgPanel }}>
+              <div onClick={() => selectConv(conv.id)} style={{
+                width: '100%', boxSizing: 'border-box', padding: '10px 16px', cursor: 'pointer',
                 background: activeConv === conv.id ? bgHover : 'transparent',
                 display: 'flex', alignItems: 'center', gap: 14,
               }}>
@@ -696,12 +699,13 @@ function MessagesContent() {
                   </div>
                 </div>
               </div>
+              </SwipeAction>
             ))}
           </div>
         </div>
 
         {/* Zone messages */}
-        <div className="msg-chat" style={{ flex: 1, background: bgPanel, borderRadius: 16, boxShadow: '0 4px 20px rgba(0,0,0,0.12)', display: 'flex', flexDirection: 'column', overflow: 'hidden' }}>
+        <div className="msg-chat da-panel" style={{ flex: 1, background: bgPanel, display: 'flex', flexDirection: 'column', overflow: 'hidden' }}>
           {!activeConv ? (
             <div style={{ flex: 1, display: 'flex', alignItems: 'center', justifyContent: 'center', color: textMuted }}>
               <p>{t('messages_select')}</p>
@@ -820,6 +824,15 @@ function MessagesContent() {
                   tirer-pour-rafraichir et rechargeait l'app en plein milieu. */}
               <div ref={chatScrollRef} data-no-ptr="true" style={{ flex: 1, minHeight: 0, overflowY: 'auto', padding: 20, display: 'flex', flexDirection: 'column', gap: 12 }}>
                 {messages.map((msg, msgIdx) => {
+                  // 269 · séparateur de jour, bulles d'un même expéditeur regroupées (une seule heure pour la série)
+                  const prevMsg = msgIdx > 0 ? messages[msgIdx - 1] : null
+                  const nextMsg = msgIdx < messages.length - 1 ? messages[msgIdx + 1] : null
+                  const dayLabelText = !prevMsg || dayKey(prevMsg.created_at) !== dayKey(msg.created_at) ? dayLabel(msg.created_at, localeFor(lang)) : null
+                  const plain = (m: any) => !isOfferMsg(m.contenu) && !isShipmentMsg(m.contenu) && !isTradeOfferMsg(m.contenu)
+                  const sameGroup = (a: any, b: any) => !!a && !!b && plain(a) && plain(b) && a.from_user_id === b.from_user_id && dayKey(a.created_at) === dayKey(b.created_at) && Math.abs(new Date(b.created_at).getTime() - new Date(a.created_at).getTime()) < 5 * 60000
+                  const groupedWithPrev = sameGroup(prevMsg, msg)
+                  const hideTime = sameGroup(msg, nextMsg)
+                  const renderMsg = () => {
                   const isMe = msg.from_user_id === userId
                   const linkedTrade = msg.trade_id ? tradesMap[msg.trade_id] : null
 
@@ -948,7 +961,7 @@ function MessagesContent() {
                   }
 
                   return (
-                    <div key={msg.id} style={{ display: 'flex', justifyContent: isMe ? 'flex-end' : 'flex-start' }}>
+                    <SwipeAction key={msg.id} direction="right" icon="↩" onTrigger={() => { setReplyTo(msg); setReactionPickerFor(null) }} style={{ display: 'flex', justifyContent: isMe ? 'flex-end' : 'flex-start', marginTop: groupedWithPrev ? -8 : 0 }}>
                       <div style={{ maxWidth: '75%', display: 'flex', flexDirection: 'column', gap: 4, alignItems: isMe ? 'flex-end' : 'flex-start' }}>
 
                         {/* Carte trade forum attachée */}
@@ -1065,15 +1078,26 @@ function MessagesContent() {
                         </div>
 
                         <div style={{ display: 'flex', alignItems: 'center', gap: 6 }}>
-                          <span style={{ fontSize: 10, color: textMuted }}>
-                            {new Date(msg.created_at).toLocaleTimeString(localeFor(lang), { hour: '2-digit', minute: '2-digit' })}
-                          </span>
+                          {!hideTime && (
+                            <span style={{ fontSize: 10, color: textMuted }}>
+                              {new Date(msg.created_at).toLocaleTimeString(localeFor(lang), { hour: '2-digit', minute: '2-digit' })}
+                            </span>
+                          )}
                           {isMe && msg.lu && msgIdx === messages.length - 1 && (
                             <span style={{ fontSize: 10, color: textMuted, fontStyle: 'italic' }}>{t('messages_seen')}</span>
                           )}
                         </div>
                       </div>
-                    </div>
+                    </SwipeAction>
+                  )
+                  }
+                  return (
+                    <Fragment key={msg.id}>
+                      {dayLabelText && (
+                        <div role="separator" style={{ alignSelf: 'center', margin: '6px 0 2px', padding: '3px 12px', fontSize: 12, fontWeight: 700, color: textMuted, background: dark ? '#2a2a2a' : '#f0f0f0' }}>{dayLabelText}</div>
+                      )}
+                      {renderMsg()}
+                    </Fragment>
                   )
                 })}
                 {reactionPickerFor && (

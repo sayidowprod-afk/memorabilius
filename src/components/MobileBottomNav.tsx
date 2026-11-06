@@ -119,6 +119,8 @@ export default function MobileBottomNav() {
 
   const communauteActive = COMMUNAUTE_PATHS.some(p => pathname.startsWith(p))
   const outilsActive = OUTILS_PATHS.some(p => pathname.startsWith(p))
+  // « Ma galerie » est actif sur ta propre galerie (et ses sous-pages), pas sur celle d'un autre membre
+  const galerieActive = !!user && (pathname === `/galerie/${user.id}` || pathname.startsWith(`/galerie/${user.id}/`))
 
   const dropItemStyle: React.CSSProperties = {
     display: 'flex', alignItems: 'center', gap: 10, padding: '13px 12px',
@@ -180,6 +182,7 @@ export default function MobileBottomNav() {
             )}
           </span>
           <span style={{ fontSize: 11, fontWeight: 700, lineHeight: 1 }} aria-hidden="true">{t('nav_communaute')}</span>
+          <span className={'nav-active-bar' + ((communauteActive || sheet === 'communaute') ? ' on' : '')} aria-hidden="true" />
         </button>
 
         <div style={{ flex: 1, display: 'flex', justifyContent: 'center' }}>
@@ -210,6 +213,7 @@ export default function MobileBottomNav() {
               }} />
             </div>
             <span style={{ fontSize: 11, fontWeight: 700, color: 'var(--accent, #003DA6)' }} aria-hidden="true">{t('nav_galerie')}</span>
+            <span className={'nav-active-bar' + (galerieActive ? ' on' : '')} aria-hidden="true" />
           </Link>
         </div>
 
@@ -228,6 +232,7 @@ export default function MobileBottomNav() {
         >
           <span aria-hidden="true"><ToolIcon /></span>
           <span style={{ fontSize: 11, fontWeight: 700, lineHeight: 1 }} aria-hidden="true">{t('nav_outils')}</span>
+          <span className={'nav-active-bar' + ((outilsActive || sheet === 'outils') ? ' on' : '')} aria-hidden="true" />
         </button>
       </div>
 

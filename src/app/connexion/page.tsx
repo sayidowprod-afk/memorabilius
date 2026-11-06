@@ -1,4 +1,5 @@
 'use client'
+import AuthLayout from '@/components/AuthLayout'
 import { useEffect, useState } from 'react'
 import { useRouter } from 'next/navigation'
 import Link from 'next/link'
@@ -214,8 +215,8 @@ export default function Connexion() {
   }
 
   return (
-    <div style={{ maxWidth: 460, margin: '60px auto' }}>
-      <div className="auth-card-bg" style={{ background: dark ? '#1e1e1e' : 'white', borderRadius: 16, padding: 40, boxShadow: '0 10px 40px rgba(0,0,0,0.08)' }}>
+    <AuthLayout>
+      <div className="auth-card-bg da-panel" style={{ background: dark ? '#1e1e1e' : 'white', padding: 40 }}>
         <h1 style={{ fontWeight: 900, fontSize: 28, marginBottom: 8 }}>{t('login_title')}</h1>
         <p style={{ color: dark ? '#aaa' : '#666', marginBottom: 30, fontSize: 14 }}>{t('login_welcome_back')}</p>
         {isNative && bioAvailable && bioSaved && (
@@ -247,6 +248,6 @@ export default function Connexion() {
           <Link href="/mot-de-passe-oublie" style={{ color: '#999' }}>{t('login_forgot')}</Link>
         </p>
       </div>
-    </div>
+    </AuthLayout>
   )
 }

@@ -7,6 +7,7 @@ import { MA_CSS, type Row, type Rates } from '@/components/MesAchatsView'
 import { achatCosts, encaisse, netOf, profitOf, statsOf, suggestAchat, type Vente } from '@/lib/ventesUi'
 import { matchesQuery } from '@/lib/achatsUi'
 import { askConfirm } from '@/components/ConfirmHost'
+import DataTable, { type Col } from '@/components/DataTable'
 
 // Affichage de « Mes ventes » (sans logique réseau) : ventes eBay importées + ventes saisies à la main, net encaissé, profit
 // réalisé et rendement (vente moins coût d'achat, relié automatiquement à « Mes achats » quand les titres se ressemblent).
@@ -30,6 +31,7 @@ export default function MesVentesView({
   onDelete: (id: string) => Promise<void>
 }) {
   const [period, setPeriod] = useState<Period>('annee')
+  const [view, setView] = useState<'cartes' | 'tableau'>('cartes')
   const [q, setQ] = useState('')
   const [open, setOpen] = useState<string | null>(null)
   const [adding, setAdding] = useState(false)
@@ -43,6 +45,15 @@ export default function MesVentesView({
   const shown = list.filter(v => matchesQuery({ titre: v.titre, vendeur: v.acheteur, tags: [], notes: v.notes } as unknown as Row, q))
   const st = statsOf(list, rates)
 
+  const sum = (rows: Vente[], f: (v: Vente) => number | null) => rows.reduce((a, v) => a + (f(v) ?? 0), 0)
+  const ventesCols: Col<Vente>[] = [
+    { key: 'date', label: 'Date', sort: v => v.vendu_at || null, render: v => day(v.vendu_at) || '—' },
+    { key: 'titre', label: 'Article', sort: v => (v.titre || '').toLowerCase(), render: v => <span>{v.titre || '—'} <small style={{ opacity: .7 }}>· {v.source === 'ebay' ? 'eBay' : v.source === 'vinted' ? 'Vinted' : 'Autre'}</small></span> },
+    { key: 'acheteur', label: 'Acheteur', sort: v => (v.acheteur || '').toLowerCase() || null, render: v => v.acheteur || '—' },
+    { key: 'enc', label: 'Encaissé', align: 'right', sort: v => encaisse(v, rates), render: v => eur(encaisse(v, rates)), total: rows => eur(sum(rows, v => encaisse(v, rates))) },
+    { key: 'net', label: 'Net', align: 'right', sort: v => netOf(v, rates), render: v => eur(netOf(v, rates)), total: rows => eur(sum(rows, v => netOf(v, rates))) },
+    { key: 'profit', label: 'Profit', align: 'right', sort: v => profitOf(v, rates), render: v => { const p = profitOf(v, rates); return p === null ? '—' : <span className={p >= 0 ? 'up' : 'down'}>{signed(p)}</span> }, total: rows => signed(sum(rows, v => profitOf(v, rates))) },
+  ]
   const costs = useMemo(() => achatCosts(achats, rates), [achats, rates])
   const taken = new Set(ventes.map(v => v.achat_id).filter((x): x is string => !!x))
   const achatsSorted = useMemo(() => achats.filter(a => a.type === 'achat').sort((a, b) => (b.achete_at || '').localeCompare(a.achete_at || '')).slice(0, 300), [achats])
@@ -90,6 +101,10 @@ export default function MesVentesView({
             <button key={k} role="tab" aria-selected={period === k} className={`mv-tab${period === k ? ' on' : ''}`} onClick={() => setPeriod(k)}>{l}</button>
           ))}
         </div>
+        <div className="ma-seg" role="group" aria-label="Affichage" style={{ marginLeft: 12 }}>
+          <button type="button" className={view === 'cartes' ? 'on' : ''} aria-pressed={view === 'cartes'} onClick={() => setView('cartes')}>▦ Cartes</button>
+          <button type="button" className={view === 'tableau' ? 'on' : ''} aria-pressed={view === 'tableau'} onClick={() => setView('tableau')}>☷ Tableau</button>
+        </div>
       </div>
 
       <div className="ma-stats mv-stats">
@@ -112,7 +127,10 @@ export default function MesVentesView({
         <>
           <input className="ma-search" type="search" value={q} onChange={e => setQ(e.target.value)} placeholder="Rechercher une vente (carte, acheteur, note…)" aria-label="Rechercher dans mes ventes" />
           {shown.length === 0 && <div className="ma-empty">Aucune vente ne correspond{q.trim() ? ` à « ${q} »` : ' à cette période'}.</div>}
-          <div className="ma-list">
+          {view === 'tableau' && shown.length > 0 && (
+            <DataTable<Vente> caption="Mes ventes" rows={shown} rowKey={v => v.id} defaultSort={{ key: 'date', dir: 'desc' }} cols={ventesCols} />
+          )}
+          <div className="ma-list" style={view === 'tableau' ? { display: 'none' } : undefined}>
             {shown.map(v => {
               const net = netOf(v, rates), prof = profitOf(v, rates), enc = encaisse(v, rates)
               const sug = v.cout_achat === null ? suggestAchat(v, achats, taken) : null

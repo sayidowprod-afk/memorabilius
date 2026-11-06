@@ -37,6 +37,7 @@ export default function BottomSheet({
       />
       <div
         role="dialog"
+        data-keep-nav="true"
         aria-modal="true"
         aria-label={title}
         style={{

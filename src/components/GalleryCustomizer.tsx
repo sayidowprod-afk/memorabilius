@@ -1,9 +1,9 @@
 'use client'
-import { useEffect } from 'react'
 import { GALLERY_THEMES, teamBackground, type GalleryThemeId } from '@/lib/galleryThemes'
 import { ballStyle } from '@/lib/ballThemes'
 import TeamColorPicker from '@/components/TeamColorPicker'
 import TeamPicker from '@/components/TeamPicker'
+import ModalShell from '@/components/ModalShell'
 
 // Personnalisation de la galerie (bouton 🎨) : fond, couleur et équipes favorites au même endroit, avec aperçu en direct sur la galerie derrière.
 // Un seul « Enregistrer ». Les cartes ne sont jamais modifiées.
@@ -14,17 +14,14 @@ export default function GalleryCustomizer({ theme, onTheme, accent, onAccent, fa
   teamColors: [string, string] | null
   onSave: () => void; onClose: () => void; saving: boolean
 }) {
-  // la barre de navigation du bas recouvrirait le bouton « Enregistrer » : on la masque tant que le panneau est ouvert
-  useEffect(() => { document.body.classList.add('modal-fullscreen-active'); return () => { document.body.classList.remove('modal-fullscreen-active') } }, [])
   const head: React.CSSProperties = { fontWeight: 800, fontSize: 12, letterSpacing: '.1em', textTransform: 'uppercase', color: '#9fb0e6', margin: '16px 0 8px' }
   const hex = /^#[0-9a-fA-F]{6}$/.test(accent) ? accent : '#003DA6'
   return (
-    <div role="dialog" aria-modal="true" aria-label="Personnaliser ma galerie" style={{ position: 'fixed', left: 0, right: 0, bottom: 0, zIndex: 1000, background: 'rgba(5,8,25,.97)', borderTop: '2px solid #3a4a8a', color: '#fff', maxHeight: '78vh', display: 'flex', flexDirection: 'column' }}>
-      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '12px 16px 0', maxWidth: 760, width: '100%', margin: '0 auto', boxSizing: 'border-box' }}>
-        <b>🎨 Personnaliser ma galerie</b>
-        <button type="button" onClick={onClose} aria-label="Fermer sans enregistrer" style={{ background: 'none', border: 'none', color: '#b9c3e8', fontSize: 20, cursor: 'pointer' }}>✕</button>
-      </div>
-      <div style={{ overflowY: 'auto', padding: '0 16px', maxWidth: 760, width: '100%', margin: '0 auto', boxSizing: 'border-box' }}>
+    <ModalShell title="🎨 Personnaliser ma galerie" onClose={onClose} variant="sheet" maxWidth={760} backdrop={false}
+      footer={<>
+        <button type="button" className="btn-main btn-primary" onClick={onSave} disabled={saving}>{saving ? 'Enregistrement…' : 'Enregistrer'}</button>
+        <button type="button" className="da-confirm-btn" onClick={onClose}>Annuler</button>
+      </>}>
         <div style={head}>1 · Fond</div>
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(110px, 1fr))', gap: 8 }}>
           <button type="button" onClick={() => onTheme(null)} style={{ height: 60, border: `3px solid ${theme === null ? '#ffd84d' : '#3a4a8a'}`, background: '#0a0f24', color: '#fff', fontWeight: 700, fontSize: 12, cursor: 'pointer' }}>Aucun</button>
@@ -46,11 +43,6 @@ export default function GalleryCustomizer({ theme, onTheme, accent, onAccent, fa
         <div style={head}>3 · Équipes favorites (5 maximum)</div>
         <TeamPicker value={favs} onChange={onFavs} max={5} />
         <p style={{ fontSize: 12, color: '#9aa6bb', margin: '12px 0 0' }}>Tu vois chaque changement tout de suite sur ta galerie. Rien n’est enregistré tant que tu n’appuies pas sur « Enregistrer ». Les visiteurs verront ces choix.</p>
-      </div>
-      <div style={{ display: 'flex', gap: 10, padding: '12px 16px calc(12px + env(safe-area-inset-bottom))', maxWidth: 760, width: '100%', margin: '0 auto', boxSizing: 'border-box' }}>
-        <button type="button" className="btn-main btn-primary" onClick={onSave} disabled={saving}>{saving ? 'Enregistrement…' : 'Enregistrer'}</button>
-        <button type="button" className="da-confirm-btn" onClick={onClose}>Annuler</button>
-      </div>
-    </div>
+    </ModalShell>
   )
 }

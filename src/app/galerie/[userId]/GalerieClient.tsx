@@ -5,6 +5,7 @@ function numHint(min: number | null, max: number | null): string {
   if (min != null) return `≥ /${min}`
   return ''
 }
+import LikeFace from '@/components/LikeFace'
 import ConfirmDeleteCard from '@/components/ConfirmDeleteCard'
 import SelectionHand from '@/components/SelectionHand'
 import { numTier, numShort, TAG_BASE, mix } from '@/lib/cardTags'
@@ -70,10 +71,11 @@ const Viewer3D = dynamic(() => import('@/components/Viewer3D'), { ssr: false })
 if (typeof window !== 'undefined') setTimeout(() => { import('@/components/Viewer3D').catch(() => {}) }, 4000)
 import { useLang } from '@/lib/LangContext'
 import { useTheme } from '@/lib/ThemeContext'
-import { isGalleryTheme, favoriteTeamColors, teamBackground, type GalleryThemeId } from '@/lib/galleryThemes'
+import { isGalleryTheme, isLightTheme, favoriteTeamColors, teamBackground, type GalleryThemeId } from '@/lib/galleryThemes'
 import GalleryCustomizer from '@/components/GalleryCustomizer'
 import { ballStyle } from '@/lib/ballThemes'
 import CardGrowEffect from '@/components/CardGrowEffect'
+import ModalShell from '@/components/ModalShell'
 import { useAuth } from '@/lib/AuthContext'
 import { getTeamById, SPORT_LABELS, Sport, inferSportFromTeamName } from '@/lib/sportsTeams'
 import { parseNaturalQuery } from '@/lib/parseNaturalQuery'
@@ -751,6 +753,7 @@ export default function GalerieClient({ userId, initialCardUrl, initialCards, in
   // thème de galerie (fond CSS) : choisi par le propriétaire (profiles.galerie_theme) ; ?theme=… permet de l'essayer sans l'enregistrer
   const [themePreview, setThemePreview] = useState<GalleryThemeId | null | undefined>(undefined)
   const [themePicker, setThemePicker] = useState(false)
+  const [tileMenu, setTileMenu] = useState<Card | null>(null) // menu rapide à l'appui long sur une vignette
   // aperçus en direct du panneau 🎨 (non enregistrés) : couleur de la galerie et équipes favorites
   const [accentPreview, setAccentPreview] = useState<string | undefined>(undefined)
   const [favPreview, setFavPreview] = useState<string[] | undefined>(undefined)
@@ -1961,6 +1964,17 @@ export default function GalerieClient({ userId, initialCardUrl, initialCards, in
   }
   const handlePaintEnd = () => { paintedRef.current = new Set(); paintMoveScheduledRef.current = false }
 
+  // 261 · Partager depuis le menu rapide : appli native = feuille de partage du système ; sinon partage du navigateur, à défaut lien copié
+  const shareTile = async (d: Card) => {
+    setTileMenu(null)
+    if (isNative) { await shareCardNative(d); return }
+    try {
+      const path = d.id_manuelle ? `/s/${d.id_manuelle}` : await getCsvCardSharePath(userId, d.f)
+      const url = `https://www.memorabilius.fr${path}`
+      if (navigator.share) await navigator.share({ title: d.n, url })
+      else { await navigator.clipboard.writeText(url); toast.success('Lien copié.') }
+    } catch { /* partage annulé */ }
+  }
   const shareCardNative = async (d: Card) => {
     if (!isNative) return
     hapticTap()
@@ -2446,7 +2460,21 @@ export default function GalerieClient({ userId, initialCardUrl, initialCards, in
   return (
     <>
       <CardGrowEffect disabled={editMode || qrMode} />
-      {shownTheme && <div className={'gtheme-bg gtheme-layer' + (dark ? '' : ' light')} data-gtheme={shownTheme} aria-hidden="true" style={shownTheme === 'equipe' && teamColors ? { background: teamBackground(teamColors) } : ballStyle(shownTheme)} />}
+      {tileMenu && (
+        <ModalShell title={tileMenu.n} variant="sheet" maxWidth={520} onClose={() => setTileMenu(null)}>
+          <div className="da-modal-menu">
+            <button type="button" onClick={() => { const d = tileMenu; setTileMenu(null); setPopup(d) }}>👁 Voir la carte</button>
+            <button type="button" onClick={() => shareTile(tileMenu)}>🔗 Partager</button>
+            {isOwner && tileMenu.isManuelle && tileMenu.id_manuelle && (
+              <button type="button" onClick={() => { const d = tileMenu; setTileMenu(null); router.push(`/galerie/${userId}/editer/${d.id_manuelle}`) }}>✏️ Modifier</button>
+            )}
+            {isOwner && tileMenu.isManuelle && tileMenu.id_manuelle && (
+              <button type="button" className="danger" onClick={() => { const d = tileMenu; setTileMenu(null); handleDeleteCard(d.id_manuelle as string, d.f) }}>🗑️ Supprimer (annulable)</button>
+            )}
+          </div>
+        </ModalShell>
+      )}
+      {shownTheme && <div className={'gtheme-bg gtheme-layer' + (dark ? '' : ' light')} data-gtheme={shownTheme} data-tone={isLightTheme(shownTheme) ? 'light' : 'dark'} aria-hidden="true" style={shownTheme === 'equipe' && teamColors ? { background: teamBackground(teamColors) } : ballStyle(shownTheme)} />}
       {themePicker && isOwner && <GalleryCustomizer theme={shownTheme} onTheme={t => setThemePreview(t)} accent={accent} onAccent={setAccentPreview} favs={favShown} onFavs={setFavPreview} teamColors={teamColors} onSave={saveCustom} saving={themeSaving} onClose={closeCustomizer} />}
       <div style={{ maxWidth: 1400, margin: '0 auto', fontFamily: 'Inter, sans-serif', padding: '0 10px', paddingBottom: (editMode && isOwner && selectedCards.size > 0) || qrMode ? 80 : 0 }}>
 
@@ -3729,7 +3757,7 @@ export default function GalerieClient({ userId, initialCardUrl, initialCards, in
               id={getCardId(d)}
               disabled={!editMode || !isOwner || sortBy !== 'default'}
               className={`card-item${justAddedIds.has(getCardId(d)) ? ' card-just-added' : ''}${!initialCascadeDone && idx < 24 ? ' card-cascade-in' : ''}${numTier(d.num) !== 'std' ? ` gc-rare gc-${numTier(d.num)}` : ''}`}
-              onLongPress={qrMode ? undefined : editMode && isOwner ? () => startPaintSelect(d) : () => shareCardNative(d)}
+              onLongPress={qrMode ? undefined : editMode && isOwner ? () => startPaintSelect(d) : () => { hapticTap(); setTileMenu(d) }}
               onPaintMove={handlePaintMove}
               onPaintEnd={handlePaintEnd}
               onClick={() => {
@@ -3900,10 +3928,7 @@ export default function GalerieClient({ userId, initialCardUrl, initialCards, in
                         padding: '2px 4px', flexShrink: 0,
                       }}
                     >
-                      <span style={{ fontSize: 16, lineHeight: 1, transition: '0.15s', transform: likeInfo.liked ? 'scale(1.2)' : 'scale(1)' }}>
-                        {likeInfo.liked ? '❤️' : '🤍'}
-                      </span>
-                      {likeInfo.count > 0 && <span style={{ fontSize: 9, fontWeight: 800, color: likeInfo.liked ? '#e53935' : '#bbb' }}>{likeInfo.count}</span>}
+                      <LikeFace liked={likeInfo.liked} count={likeInfo.count} layout="stack" heartSize={16} countStyle={{ fontSize: 9, fontWeight: 800, color: likeInfo.liked ? '#e53935' : '#bbb' }} />
                     </button>
                   </div>
                   )
@@ -4164,7 +4189,7 @@ export default function GalerieClient({ userId, initialCardUrl, initialCards, in
             href="/sinscrire"
             style={{
               background: '#003DA6', color: 'white', borderRadius: 10,
-              padding: '10px 18px', fontWeight: 700, fontSize: 13,
+              padding: '10px 18px', fontWeight: 700, fontSize: 13, minHeight: 44, display: 'inline-flex', alignItems: 'center',
               textDecoration: 'none', whiteSpace: 'nowrap', flexShrink: 0,
             }}
           >

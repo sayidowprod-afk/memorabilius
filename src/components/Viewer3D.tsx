@@ -1,4 +1,5 @@
 'use client'
+import LikeFace from '@/components/LikeFace'
 import { useRef, useCallback, useEffect, useState } from 'react'
 import { createPortal } from 'react-dom'
 import Link from 'next/link'
@@ -2243,9 +2244,7 @@ export default function Viewer3D({ popup, accent, onClose, onNext, onPrev, getTa
                     display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 4,
                   }}
                 >
-                  <span style={{ fontSize: 14, transition: '0.15s', transform: likeData.liked ? 'scale(1.2)' : 'scale(1)', display: 'inline-block' }}>
-                    {likeData.liked ? '❤️' : '🤍'}
-                  </span>
+                  <LikeFace liked={likeData.liked} layout="heart-only" heartSize={14} />
                   J'aime
                   {likeData.count > 0 && <span style={{ fontSize: 11 }}>({likeData.count})</span>}
                 </button>

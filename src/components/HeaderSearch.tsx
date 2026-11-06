@@ -6,6 +6,7 @@ import { useTheme } from '@/lib/ThemeContext'
 import { useLang } from '@/lib/LangContext'
 import { playerSlug, teamSlug } from '@/lib/playerSlug'
 import { SPORTS_TEAMS } from '@/lib/sportsTeams'
+import TeamBadge from '@/components/TeamBadge'
 
 interface Suggestions { players: string[]; collectors: { id: string; display_name: string; avatar_url: string | null }[] }
 
@@ -16,7 +17,7 @@ interface Suggestions { players: string[]; collectors: { id: string; display_nam
 // dessous, dans un panneau qui lui reste flottant.
 export default function HeaderSearch({ open, onToggle }: { open: boolean; onToggle: (v: boolean) => void }) {
   const { dark } = useTheme()
-  const { t } = useLang()
+  const { t, lang } = useLang()
   const router = useRouter()
   const [q, setQ] = useState('')
   const [data, setData] = useState<Suggestions>({ players: [], collectors: [] })
@@ -71,6 +72,11 @@ export default function HeaderSearch({ open, onToggle }: { open: boolean; onTogg
     display: 'flex', alignItems: 'center', gap: 8, padding: '8px 12px', borderRadius: 8,
     color: dark ? '#ddd' : '#333', fontWeight: 600, fontSize: 13, textDecoration: 'none',
   }
+  // 253 · résultats rangés par type, avec une vignette devant chaque ligne
+  const heads = lang === 'fr' ? { teams: 'Équipes', players: 'Joueurs', members: 'Membres' } : { teams: 'Teams', players: 'Players', members: 'Members' }
+  const headStyle: React.CSSProperties = { padding: '8px 12px 2px', fontSize: 11, fontWeight: 800, letterSpacing: '.08em', textTransform: 'uppercase', color: dark ? '#7f8aa8' : '#888' }
+  const initials = (name: string) => name.split(/[\s-]+/).filter(Boolean).slice(0, 2).map(w => w[0]).join('').toUpperCase()
+  const thumb: React.CSSProperties = { width: 24, height: 24, borderRadius: '50%', flexShrink: 0, display: 'flex', alignItems: 'center', justifyContent: 'center', objectFit: 'cover' }
   const hasResults = data.players.length > 0 || data.collectors.length > 0 || teams.length > 0
   const showPanel = open && q.trim().length >= 2
 
@@ -104,23 +110,27 @@ export default function HeaderSearch({ open, onToggle }: { open: boolean; onTogg
         <div style={{ position: 'absolute', top: 'calc(100% + 8px)', left: 0, background: dark ? '#1a1a1a' : 'white', border: `1px solid ${dark ? '#2a2a2a' : '#eee'}`, borderRadius: 12, padding: 6, boxShadow: '0 8px 24px rgba(0,0,0,0.14)', width: 280, maxHeight: 340, overflowY: 'auto', zIndex: 300 }}>
           {loading && <div style={{ padding: '10px 12px', fontSize: 12, color: dark ? '#888' : '#999' }}>{t('nav_search_loading')}</div>}
           {!loading && !hasResults && <div style={{ padding: '10px 12px', fontSize: 12, color: dark ? '#888' : '#999' }}>{t('nav_search_no_results')}</div>}
+          {teams.length > 0 && <div style={headStyle}>{heads.teams}</div>}
           {teams.map(team => (
             <Link key={team.id} href={`/equipe/${teamSlug(team.name)}`} style={itemStyle} onClick={close}>
-              <span style={{ width: 8, height: 8, borderRadius: '50%', background: team.color, flexShrink: 0 }} />
+              <span style={{ ...thumb, background: dark ? '#222' : '#f0f0f0' }}><TeamBadge teamId={team.id} size={20} /></span>
               {team.name}
             </Link>
           ))}
+          {data.players.length > 0 && <div style={headStyle}>{heads.players}</div>}
           {data.players.map(name => (
             <Link key={name} href={`/joueur/${playerSlug(name)}`} style={itemStyle} onClick={close}>
-              🏀 {name}
+              <span style={{ ...thumb, background: 'linear-gradient(135deg, #1e63e0, #00307e)', color: '#fff', fontSize: 10, fontWeight: 800 }} aria-hidden="true">{initials(name)}</span>
+              {name}
             </Link>
           ))}
+          {data.collectors.length > 0 && <div style={headStyle}>{heads.members}</div>}
           {data.collectors.map(c => (
             <Link key={c.id} href={`/galerie/${c.id}`} style={itemStyle} onClick={close}>
               {c.avatar_url
                 // eslint-disable-next-line @next/next/no-img-element
-                ? <img src={c.avatar_url} alt="" style={{ width: 18, height: 18, borderRadius: '50%', objectFit: 'cover', flexShrink: 0 }} />
-                : <span style={{ width: 18, height: 18, borderRadius: '50%', background: dark ? '#333' : '#ddd', flexShrink: 0 }} />}
+                ? <img src={c.avatar_url} alt="" style={thumb} />
+                : <span style={{ ...thumb, background: dark ? '#333' : '#ddd' }} />}
               {c.display_name}
             </Link>
           ))}

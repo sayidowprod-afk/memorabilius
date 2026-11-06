@@ -1,4 +1,5 @@
 'use client'
+import RelTime from '@/components/RelTime'
 import { useEffect, useState } from 'react'
 import Link from 'next/link'
 import { useRouter } from 'next/navigation'
@@ -69,17 +70,6 @@ export default function Notifications() {
     return d.toLocaleDateString(localeFor(lang), { day: 'numeric', month: 'long' })
   }
 
-  const timeAgo = (date: string) => {
-    const diff = Date.now() - new Date(date).getTime()
-    const mins = Math.floor(diff / 60000)
-    if (mins < 1) return 'À l\'instant'
-    if (mins < 60) return `Il y a ${mins}min`
-    const hours = Math.floor(mins / 60)
-    if (hours < 24) return `Il y a ${hours}h`
-    const days = Math.floor(hours / 24)
-    return `Il y a ${days}j`
-  }
-
   if (loading) return (
     <div style={{ maxWidth: 700, margin: '40px auto', padding: '0 16px', boxSizing: 'border-box', display: 'flex', flexDirection: 'column', gap: 10 }}>
       <SkeletonBlock style={{ height: 28, width: 180, marginBottom: 14 }} />
@@ -124,7 +114,7 @@ export default function Notifications() {
                   <div className="notif-ic" aria-hidden="true">{getIcon(n.type)}</div>
                   <div className="notif-tx">
                     <p className="m">{n.message}</p>
-                    <p className="t">{timeAgo(n.created_at)}{!n.lu && <b>Nouveau</b>}</p>
+                    <p className="t"><RelTime iso={n.created_at} />{!n.lu && <b>Nouveau</b>}</p>
                   </div>
                 </div>
               </div>

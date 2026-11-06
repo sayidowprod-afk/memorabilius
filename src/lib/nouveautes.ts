@@ -4,6 +4,19 @@ export type Entry = { date: string; titre: string; points: string[] }
 
 export const ENTRIES: Entry[] = [
   {
+    date: '8 novembre 2026', titre: 'Une interface plus harmonieuse et plus pratique',
+    points: [
+      'Messages : séparateurs de jour (Aujourd’hui, Hier…), bulles d’une même personne regroupées, glisse un message vers la droite pour y répondre, glisse une conversation vers la gauche pour la masquer. Les tablettes et les téléphones à l’horizontale affichent aussi la liste et la discussion côte à côte.',
+      'Galerie : un appui long sur une carte ouvre un menu rapide (voir, partager, modifier, supprimer), et le cœur « J’aime » rebondit.',
+      'Recherche du haut : les résultats sont classés par Équipes, Joueurs et Membres, avec une vignette devant chaque ligne.',
+      'Mes achats et Mes ventes : une nouvelle vue « Tableau » avec tri par colonne, en-têtes qui restent en haut et totaux en bas.',
+      'Ajout en lot : une pastille sur chaque miniature (roue, coche verte, point d’exclamation) et une barre d’avancement pendant l’envoi.',
+      'Connexion et inscription : un mur de vraies cartes en fond et une courte présentation du site à côté du formulaire.',
+      'Partout : transitions douces entre les pages, dates relatives écrites de la même façon (« il y a 2 h », « hier »), contour de focus clair au clavier, zones tactiles de 44 px, champs, panneaux et fenêtres au même style, onglet actif souligné dans la barre du bas, clavier du téléphone qui ne recouvre plus les champs.',
+      'Galerie personnalisée : les fonds clairs (balles de baseball, tennis, golf, volley) restent lisibles.',
+    ],
+  },
+  {
     date: '7 novembre 2026', titre: 'Page de classeur, offres de prix, galerie personnalisable',
     points: [
       'Ajout en lot : « 📖 Page de classeur ». Prends en photo une page de classeur (recto, puis verso de la page retournée) : les cartes sont repérées et découpées toutes seules, et tu peux réajuster les coins de chacune (lien « coins »).',

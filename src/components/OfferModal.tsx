@@ -4,13 +4,14 @@ import { supabase } from '@/lib/supabase'
 import { toast } from '@/lib/toast'
 import { fmtPrice } from '@/lib/marketplace'
 import { parsePrice, OFFER_TTL_HOURS } from '@/lib/offers'
+import ModalShell from '@/components/ModalShell'
 
 interface SellerCard { id: string; nom: string; annee: string | null; marque: string | null; image_recto: string | null; prix_vente: number | null }
 
 // Offre de prix (acheteur) : on choisit une carte à vendre chez ce membre et on propose un prix inférieur au sien.
 // Aucun paiement : si le vendeur accepte, la suite (envoi, règlement) se passe entre membres.
-export default function OfferModal({ sellerId, sellerName, dark, onClose, onCreated }: {
-  sellerId: string; sellerName: string; dark: boolean; onClose: () => void; onCreated: () => void
+export default function OfferModal({ sellerId, sellerName, onClose, onCreated }: {
+  sellerId: string; sellerName: string; dark?: boolean; onClose: () => void; onCreated: () => void
 }) {
   const [cards, setCards] = useState<SellerCard[] | null>(null)
   const [cardId, setCardId] = useState<string | null>(null)
@@ -30,9 +31,9 @@ export default function OfferModal({ sellerId, sellerName, dark, onClose, onCrea
     return () => { cancelled = true }
   }, [sellerId])
 
-  const bg = dark ? '#16202e' : '#fff', fg = dark ? '#e8ecf3' : '#111', sub = dark ? '#9aa6bb' : '#666', border = dark ? '#2c3a52' : '#dde2ee'
   const picked = cards?.find(c => c.id === cardId) || null
-  const inp: React.CSSProperties = { width: '100%', padding: '10px 12px', borderRadius: 8, border: `1.5px solid ${border}`, background: dark ? '#0f1824' : '#fff', color: fg, fontSize: 14, boxSizing: 'border-box' }
+  const sub: React.CSSProperties = { color: 'var(--text2, #9aa6bb)' }
+  const head: React.CSSProperties = { fontWeight: 800, fontSize: 'var(--fs-xs)', letterSpacing: '.08em', textTransform: 'uppercase', margin: '0 0 var(--sp-2)', ...sub }
 
   const submit = async () => {
     if (!picked) { toast.error('Choisis la carte.'); return }
@@ -51,45 +52,38 @@ export default function OfferModal({ sellerId, sellerName, dark, onClose, onCrea
   }
 
   return (
-    <div role="dialog" aria-modal="true" aria-label="Faire une offre" style={{ position: 'fixed', inset: 0, zIndex: 1000, background: 'rgba(0,0,0,.6)', display: 'flex', alignItems: 'center', justifyContent: 'center', padding: 12 }} onClick={onClose}>
-      <div onClick={e => e.stopPropagation()} style={{ background: bg, color: fg, width: '100%', maxWidth: 460, maxHeight: '92vh', overflowY: 'auto', padding: 18, border: `2px solid ${border}` }}>
-        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-          <b style={{ fontSize: 17 }}>💶 Faire une offre à {sellerName}</b>
-          <button type="button" onClick={onClose} aria-label="Fermer" style={{ background: 'none', border: 'none', color: sub, fontSize: 20, cursor: 'pointer' }}>✕</button>
-        </div>
-        <p style={{ fontSize: 12.5, color: sub, margin: '6px 0 12px', lineHeight: 1.5 }}>Propose un prix inférieur au sien. Il a {OFFER_TTL_HOURS} h pour accepter, refuser ou te répondre par un autre prix. Aucun paiement sur Memorabilius : la suite se règle entre vous.</p>
+    <ModalShell title={`💶 Offre à ${sellerName}`} onClose={onClose}
+      footer={<>
+        <button type="button" onClick={submit} disabled={busy || !picked} className="btn-main btn-primary">{busy ? 'Envoi…' : 'Envoyer l’offre'}</button>
+        <button type="button" onClick={onClose} disabled={busy} className="da-confirm-btn">Annuler</button>
+      </>}>
+      <p style={{ fontSize: 'var(--fs-sm)', margin: '0 0 var(--sp-4)', lineHeight: 1.5, ...sub }}>Propose un prix inférieur au sien. Il a {OFFER_TTL_HOURS} h pour accepter, refuser ou te répondre par un autre prix. Aucun paiement sur Memorabilius : la suite se règle entre vous.</p>
 
-        <div style={{ fontWeight: 800, fontSize: 12, letterSpacing: '.08em', textTransform: 'uppercase', color: sub, margin: '0 0 6px' }}>1 · Carte</div>
-        {cards === null ? <div style={{ fontSize: 13, color: sub }}>Chargement…</div> : cards.length === 0 ? (
-          <div style={{ fontSize: 13, color: sub }}>Ce membre n’a aucune carte à vendre avec un prix affiché.</div>
-        ) : (
-          <div style={{ border: `1.5px solid ${border}`, maxHeight: 220, overflowY: 'auto' }}>
-            {cards.map(c => (
-              <label key={c.id} style={{ display: 'flex', alignItems: 'center', gap: 10, padding: '7px 10px', borderBottom: `1px solid ${border}`, cursor: 'pointer', background: cardId === c.id ? (dark ? '#1c2b46' : '#eef3ff') : 'transparent' }}>
-                <input type="radio" name="offer-card" checked={cardId === c.id} onChange={() => setCardId(c.id)} style={{ width: 16, height: 16, margin: 0, accentColor: '#003DA6' }} />
-                {c.image_recto
-                  // eslint-disable-next-line @next/next/no-img-element
-                  ? <img src={c.image_recto} alt="" style={{ width: 28, height: 40, objectFit: 'cover' }} />
-                  : <div style={{ width: 28, height: 40, background: dark ? '#0f1824' : '#dde4f5' }} />}
-                <span style={{ flex: 1, minWidth: 0, fontSize: 13, lineHeight: 1.3 }}><b>{c.nom}</b><br /><span style={{ color: sub, fontSize: 11.5 }}>{[c.annee, c.marque].filter(Boolean).join(' · ')}</span></span>
-                <b style={{ fontSize: 13 }}>{fmtPrice(Number(c.prix_vente))}</b>
-              </label>
-            ))}
-          </div>
-        )}
-
-        <div style={{ fontWeight: 800, fontSize: 12, letterSpacing: '.08em', textTransform: 'uppercase', color: sub, margin: '14px 0 6px' }}>2 · Ton offre</div>
-        <div style={{ display: 'flex', gap: 8, alignItems: 'center' }}>
-          <input inputMode="decimal" value={price} onChange={e => setPrice(e.target.value)} placeholder={picked ? `moins de ${fmtPrice(Number(picked.prix_vente))}` : 'Prix en €'} style={{ ...inp, flex: 1 }} />
-          <span style={{ fontWeight: 800 }}>€</span>
+      <div style={head}>1 · Carte</div>
+      {cards === null ? <div style={{ fontSize: 'var(--fs-sm)', ...sub }}>Chargement…</div> : cards.length === 0 ? (
+        <div style={{ fontSize: 'var(--fs-sm)', ...sub }}>Ce membre n’a aucune carte à vendre avec un prix affiché.</div>
+      ) : (
+        <div style={{ border: '2px solid var(--border, #3a4a8a)', maxHeight: 220, overflowY: 'auto' }}>
+          {cards.map(c => (
+            <label key={c.id} style={{ display: 'flex', alignItems: 'center', gap: 'var(--sp-3)', padding: 'var(--sp-2) var(--sp-3)', borderBottom: '1px solid var(--border, #3a4a8a)', cursor: 'pointer', background: cardId === c.id ? 'color-mix(in srgb, var(--accent, #003DA6) 25%, transparent)' : 'transparent' }}>
+              <input type="radio" name="offer-card" checked={cardId === c.id} onChange={() => setCardId(c.id)} style={{ width: 18, height: 18, margin: 0, accentColor: '#003DA6', minHeight: 0 }} />
+              {c.image_recto
+                // eslint-disable-next-line @next/next/no-img-element
+                ? <img src={c.image_recto} alt="" style={{ width: 28, height: 40, objectFit: 'cover' }} />
+                : <div style={{ width: 28, height: 40, background: 'var(--bg3, #17214a)' }} />}
+              <span style={{ flex: 1, minWidth: 0, fontSize: 'var(--fs-sm)', lineHeight: 1.3 }}><b>{c.nom}</b><br /><span style={{ ...sub, fontSize: 'var(--fs-xs)' }}>{[c.annee, c.marque].filter(Boolean).join(' · ')}</span></span>
+              <b style={{ fontSize: 'var(--fs-sm)' }}>{fmtPrice(Number(c.prix_vente))}</b>
+            </label>
+          ))}
         </div>
-        <input value={message} onChange={e => setMessage(e.target.value.slice(0, 300))} placeholder="Un petit mot (facultatif)" style={{ ...inp, marginTop: 8 }} />
+      )}
 
-        <div style={{ display: 'flex', gap: 10, marginTop: 16 }}>
-          <button type="button" onClick={submit} disabled={busy || !picked} className="btn-main btn-primary" style={{ flex: 1 }}>{busy ? 'Envoi…' : 'Envoyer l’offre'}</button>
-          <button type="button" onClick={onClose} disabled={busy} className="da-confirm-btn">Annuler</button>
-        </div>
+      <div style={{ ...head, marginTop: 'var(--sp-4)' }}>2 · Ton offre</div>
+      <div style={{ display: 'flex', gap: 'var(--sp-2)', alignItems: 'center' }}>
+        <input inputMode="decimal" value={price} onChange={e => setPrice(e.target.value)} placeholder={picked ? `moins de ${fmtPrice(Number(picked.prix_vente))}` : 'Prix en €'} aria-label="Prix proposé en euros" style={{ flex: 1 }} />
+        <span style={{ fontWeight: 800 }}>€</span>
       </div>
-    </div>
+      <input value={message} onChange={e => setMessage(e.target.value.slice(0, 300))} placeholder="Un petit mot (facultatif)" aria-label="Message au vendeur" style={{ marginTop: 'var(--sp-2)' }} />
+    </ModalShell>
   )
 }

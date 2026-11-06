@@ -4,6 +4,7 @@ import { supabase } from '@/lib/supabase'
 import { toast } from '@/lib/toast'
 import { CARRIERS, DISCLAIMER, validateShipmentInput, carrierAdvice, type Carrier, type DeliveryMode } from '@/lib/shipping'
 import { fmtPrice } from '@/lib/marketplace'
+import ModalShell from '@/components/ModalShell'
 
 interface SellerCard { id: string; nom: string; annee: string | null; marque: string | null; image_recto: string | null; prix_vente: number | null }
 
@@ -88,12 +89,12 @@ export default function ShipmentRequestModal({ sellerId, sellerName, dark, onClo
   const advice = carrierAdvice(declared)
 
   return (
-    <div onClick={onClose} style={{ position: 'fixed', inset: 0, background: 'rgba(0,0,0,.6)', zIndex: 1000, display: 'flex', alignItems: 'center', justifyContent: 'center', padding: 14 }}>
-      <div onClick={e => e.stopPropagation()} style={{ background: bg, color: text, borderRadius: 14, width: '100%', maxWidth: 560, maxHeight: '92vh', overflowY: 'auto', padding: 20, boxSizing: 'border-box' }}>
-        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-          <b style={{ fontSize: 16 }}>📦 Organiser la livraison</b>
-          <button onClick={onClose} aria-label="Fermer" style={{ padding: '4px 10px', borderRadius: 8, border: `1px solid ${border}`, background: 'transparent', color: text, cursor: 'pointer' }}>✕</button>
-        </div>
+    <ModalShell title="📦 Organiser la livraison" onClose={onClose} maxWidth={560}
+      footer={
+        <button onClick={submit} disabled={busy || !ack} className="btn-main btn-primary" style={{ opacity: busy || !ack ? 0.5 : 1 }}>
+          {busy ? 'Envoi…' : 'Envoyer la demande au vendeur'}
+        </button>
+      }>
         <p style={{ fontSize: 12.5, color: sub, margin: '8px 0 0', lineHeight: 1.5 }}>
           À faire une fois d&apos;accord avec <b>{sellerName}</b>. Le paiement et les frais d&apos;envoi (à ta charge, à intégrer au prix convenu) se règlent entre vous, hors Memorabilius.
         </p>
@@ -174,11 +175,6 @@ export default function ShipmentRequestModal({ sellerId, sellerName, dark, onClo
             <input style={{ ...CHK, marginTop: 2 }} type="checkbox" checked={ack} onChange={e => setAck(e.target.checked)} /> J&apos;ai compris et j&apos;accepte
           </label>
         </div>
-
-        <button onClick={submit} disabled={busy || !ack} style={{ width: '100%', marginTop: 14, padding: '12px 0', borderRadius: 10, border: 'none', background: '#003DA6', color: '#fff', fontWeight: 800, fontSize: 14, cursor: busy || !ack ? 'default' : 'pointer', opacity: busy || !ack ? 0.5 : 1 }}>
-          {busy ? 'Envoi…' : 'Envoyer la demande au vendeur'}
-        </button>
-      </div>
-    </div>
+    </ModalShell>
   )
 }

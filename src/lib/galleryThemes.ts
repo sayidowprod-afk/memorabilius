@@ -44,3 +44,7 @@ export function favoriteTeamColors(favoriteTeams: unknown): [string, string] | n
 // Fond « Mon équipe » : dégradé sombre teinté de la couleur principale, liseré lumineux de la secondaire.
 export const teamBackground = ([a, b]: [string, string]) =>
   `radial-gradient(ellipse at 15% 0%, ${a}cc, transparent 55%), radial-gradient(ellipse at 100% 100%, ${b}33, transparent 50%), #07101f`
+
+// Fonds clairs : la galerie y ajoute un voile sombre pour garder les textes lisibles (da.css « 275 »).
+const LIGHT_THEME_IDS: string[] = ['balle-baseball', 'balle-tennis', 'balle-golf', 'balle-volley']
+export const isLightTheme = (id: string | null | undefined) => !!id && LIGHT_THEME_IDS.includes(id)

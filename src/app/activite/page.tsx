@@ -1,4 +1,5 @@
 'use client'
+import RelTime from '@/components/RelTime'
 import { useEffect, useState } from 'react'
 import Link from 'next/link'
 import { supabase } from '@/lib/supabase'
@@ -17,18 +18,6 @@ interface ActivityItem {
   annee: string | null
   image_recto: string | null
   created_at: string
-}
-
-function timeAgo(iso: string, t: ReturnType<typeof useLang>['t']): string {
-  const diffMs = Date.now() - new Date(iso).getTime()
-  const mins = Math.floor(diffMs / 60000)
-  if (mins < 1) return t('activity_just_now')
-  if (mins < 60) return `${mins} min`
-  const hours = Math.floor(mins / 60)
-  if (hours < 24) return `${hours} h`
-  const days = Math.floor(hours / 24)
-  if (days < 7) return `${days} j`
-  return new Date(iso).toLocaleDateString()
 }
 
 export default function ActivitePage() {
@@ -104,7 +93,7 @@ export default function ActivitePage() {
               <div className="tl-ev" key={ev.key}>
                 <div className="tl-date da-display">
                   {d.toLocaleDateString(localeFor(lang), { day: '2-digit', month: 'short' }).replace('.', '')}
-                  <small>{timeAgo(first.created_at, t)}</small>
+                  <small><RelTime iso={first.created_at} /></small>
                 </div>
                 <div className="tl-body">
                   <Link href={gal} className="tl-who">

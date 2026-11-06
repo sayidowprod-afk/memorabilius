@@ -1,5 +1,7 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  // Transitions de page via l'API de transition de vue du navigateur (PageTransition.tsx, da.css « 248 »).
+  experimental: { viewTransition: true },
   // @napi-rs/canvas embarque des binaires natifs .node par plateforme --
   // sans ça webpack essaie de les parser comme du JS et le build casse
   // ("Module parse failed: Unexpected character") sur /api/discord

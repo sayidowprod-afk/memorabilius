@@ -3,6 +3,7 @@ import { useEffect, useMemo, useState } from 'react'
 import SpendingTracker, { type Budgets, NO_BUDGETS } from '@/components/SpendingTracker'
 import { ActivityLog, Clock, DetailsPanel, EXTRA_CSS, Lightbox, MesAchatsSkeleton, PrefsModal, type Compare, type LogEvent } from '@/components/AchatExtras'
 import { groupOrders, orderTotals } from '@/lib/achatsOrders'
+import DataTable, { type Col } from '@/components/DataTable'
 import { askConfirm } from '@/components/ConfirmHost'
 import { findMatch, indexCartes, matchesQuery, rappels, statutOf, STATUT_COLOR, STATUT_LABEL, trackingUrl, type CarteLite, type Statut } from '@/lib/achatsUi'
 import type { AlertPrefs } from '@/lib/achatsAlertPrefs'
@@ -127,7 +128,7 @@ export type MesAchatsViewProps = {
 }
 
 type Filtre = 'tout' | 'arecevoir' | 'apayer' | 'terminees'
-type Vue = 'cartes' | 'liste'
+type Vue = 'cartes' | 'liste' | 'tableau'
 const VUE_LS = 'memorabilius-vue-achats'
 
 export default function MesAchatsView({
@@ -144,7 +145,7 @@ export default function MesAchatsView({
   const [srcF, setSrcF] = useState<'all' | 'ebay' | 'vinted'>('all')
   const [tri, setTri] = useState<'date' | 'prix' | 'vendeur'>('date')
   const [vue, setVue] = useState<Vue>(() => {
-    try { const v = localStorage.getItem(VUE_LS); if (v === 'cartes' || v === 'liste') return v } catch { /* sans stockage */ }
+    try { const v = localStorage.getItem(VUE_LS); if (v === 'cartes' || v === 'liste' || v === 'tableau') return v } catch { /* sans stockage */ }
     return typeof window !== 'undefined' && window.innerWidth <= 520 ? 'liste' : 'cartes'
   })
   const [open, setOpen] = useState<string | null>(null)          // achat dont le panneau « Détails » est ouvert
@@ -187,6 +188,14 @@ export default function MesAchatsView({
   const groups = groupOrders(filtered)
   if (tri === 'prix') groups.sort((x, y) => gAmount(y) - gAmount(x))
   else if (tri === 'vendeur') groups.sort((x, y) => (x[0].vendeur || '~').localeCompare(y[0].vendeur || '~', 'fr'))
+
+  const achatsCols: Col<Row[]>[] = [
+    { key: 'date', label: 'Date', sort: g => g[0].achete_at || null, render: g => (g[0].achete_at ? day(g[0].achete_at) : '—') },
+    { key: 'titre', label: 'Article', sort: g => (g[0].titre || '').toLowerCase(), render: g => <span>{g.length > 1 ? `Commande de ${g.length} articles` : (g[0].titre || '—')} <small style={{ opacity: .7 }}>· {g[0].source === 'vinted' ? 'Vinted' : 'eBay'}</small></span> },
+    { key: 'statut', label: 'Statut', sort: g => STATUT_LABEL[statutOfRow(g[0])], render: g => STATUT_LABEL[statutOfRow(g[0])] },
+    { key: 'vendeur', label: 'Vendeur', sort: g => (g[0].vendeur || '').toLowerCase() || null, render: g => g[0].vendeur || '—' },
+    { key: 'total', label: 'Total', align: 'right', sort: g => gAmount(g), render: g => money(gAmount(g), 'EUR'), total: rows => money(rows.reduce((a, g) => a + gAmount(g), 0), 'EUR') },
+  ]
 
   // doublons avec la collection et correspondances avec la wishlist (recherche par mots, sans réseau)
   const cIdx = useMemo(() => indexCartes(cartes), [cartes])
@@ -537,6 +546,7 @@ export default function MesAchatsView({
                   <div className="ma-seg" role="group" aria-label="Affichage">
                     <button type="button" className={vue === 'cartes' ? 'on' : ''} aria-pressed={vue === 'cartes'} onClick={() => setVue('cartes')}>▦ Cartes</button>
                     <button type="button" className={vue === 'liste' ? 'on' : ''} aria-pressed={vue === 'liste'} onClick={() => setVue('liste')}>☰ Liste</button>
+                    <button type="button" className={vue === 'tableau' ? 'on' : ''} aria-pressed={vue === 'tableau'} onClick={() => setVue('tableau')}>☷ Tableau</button>
                   </div>
                   {(onCollection || onAddTags) && <button type="button" className={`ma-btn${selMode ? ' primary' : ' ghost'}`} style={{ padding: '7px 12px' }} onClick={() => (selMode ? leaveSel() : setSelMode(true))}>{selMode ? 'Terminer' : 'Sélectionner'}</button>}
                 </div>
@@ -571,7 +581,9 @@ export default function MesAchatsView({
                   </label>
                 </div>
                 {groups.length === 0 && <div className="ma-empty">Aucun achat ne correspond{q.trim() ? ` à « ${q} »` : ' à ces filtres'}.</div>}
-                <div className={vue === 'liste' ? 'ma-list' : 'ma-grid'}>{groups.map(purchase)}</div>
+                {vue === 'tableau'
+                  ? (groups.length > 0 && <DataTable<Row[]> caption="Mes achats" rows={groups} rowKey={g => g[0].id} defaultSort={{ key: 'date', dir: 'desc' }} cols={achatsCols} />)
+                  : <div className={vue === 'liste' ? 'ma-list' : 'ma-grid'}>{groups.map(purchase)}</div>}
               </>
             )}
           </section>
