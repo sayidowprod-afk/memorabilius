@@ -1,6 +1,5 @@
 'use client'
 import { useEffect, useState } from 'react'
-import { Anton } from 'next/font/google'
 import TeamBadge from '@/components/TeamBadge'
 import { getTeamById } from '@/lib/sportsTeams'
 import { useAuth } from '@/lib/AuthContext'
@@ -16,10 +15,9 @@ import type { BoxScore as BoxScoreData, BoxGroup as BoxScoreGroup } from '@/lib/
 // accès à la saison en cours. Pas de page /pronos séparée.
 // ─────────────────────────────────────────────────────────────
 
-const anton = Anton({ weight: '400', subsets: ['latin'] })
 const SURFQUEST = "'Surfquest', Impact, 'Arial Narrow', sans-serif"
-// Surfquest/Anton sont des fontes d'affichage (condensées, pensées pour du
-// gros texte) -- illisibles en dessous d'~20px. Tout le texte d'interface
+// Surfquest (aujourd'hui Thernaly) est une fonte d'affichage (condensée, pensée pour du
+// gros texte) -- illisible en dessous d'~20px. Tout le texte d'interface
 // (filtres, badges, VS, heure) passe par une sans-serif system classique.
 const UI_FONT = "-apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif"
 
@@ -64,22 +62,6 @@ function sideGradient(color: string, side: 'left' | 'right') {
     : `linear-gradient(90deg, ${NAVY} 0%, ${color} 58%, ${color} 100%)`
 }
 
-// Surfquest dessine ses chiffres nettement plus petits que ses lettres
-// capitales (visible sur "76ERS") -- on compense en agrandissant les runs
-// de chiffres dans le nom de l'équipe. En `em` (relatif à la taille de
-// police héritée) pour rester correct que le nom soit affiché en grand
-// (desktop) ou réduit (mobile, voir .pronos-name).
-function NameDigits({ text }: { text: string }) {
-  const parts = text.split(/([0-9]+)/)
-  return (
-    <>
-      {parts.map((p, i) => /^[0-9]+$/.test(p)
-        ? <span key={i} style={{ fontSize: '1.3em' }}>{p}</span>
-        : p)}
-    </>
-  )
-}
-
 function TeamHalf({
   team, score, record, side, onClick, clickable, picked,
 }: {
@@ -101,27 +83,24 @@ function TeamHalf({
     </div>
   )
   const bigName = team.name.split(' ').slice(-1)[0]
-  // Un nom qui commence par un chiffre (ex: "76ers") a un blanc visuel plus
-  // grand au-dessus (le chiffre, plus petit, "flotte" plus bas dans sa ligne)
-  // -- on resserre davantage dans ce cas pour garder un espacement uniforme.
-  const cityGap = /^[0-9]/.test(bigName) ? -11 : -2
+  const cityGap = -2
   const nameBlock = (
     <div className="pronos-name-block" style={{ lineHeight: 1, textAlign: side === 'left' ? 'left' : 'right' }}>
       <div className="pronos-city" style={{ fontFamily: SURFQUEST, color: '#fff', letterSpacing: 0.5, textTransform: 'uppercase', marginBottom: cityGap }}>
         {team.name.split(' ').slice(0, -1).join(' ') || team.name}
       </div>
       <div className="pronos-name" style={{ fontFamily: SURFQUEST, color: '#fff', letterSpacing: 0.5, textTransform: 'uppercase' }}>
-        <NameDigits text={bigName} />
+        {bigName}
       </div>
     </div>
   )
   const scoreEl = score !== undefined
-    ? <span className={`${anton.className} pronos-score`} style={{ color: '#fff' }}>{score}</span>
+    ? <span className="pronos-score" style={{ fontFamily: SURFQUEST, color: '#fff' }}>{score}</span>
     : null
   // Bilan réel (ESPN/MLB) -- absent (ex: Champions League, pas encore
   // branché) plutôt que d'inventer un chiffre.
   const recordEl = record
-    ? <span className={`${anton.className} pronos-record`} style={{ color: 'rgba(255,255,255,.85)' }}>{record}</span>
+    ? <span className="pronos-record" style={{ fontFamily: SURFQUEST, color: 'rgba(255,255,255,.85)' }}>{record}</span>
     : null
 
   return (
@@ -129,7 +108,7 @@ function TeamHalf({
       onClick={clickable ? onClick : undefined}
       className="pronos-half"
       style={{
-        cursor: clickable ? 'pointer' : 'default', fontFamily: anton.style.fontFamily,
+        cursor: clickable ? 'pointer' : 'default', fontFamily: SURFQUEST,
         justifyContent: side === 'left' ? 'flex-start' : 'flex-end',
       }}
     >

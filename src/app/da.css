@@ -3,7 +3,9 @@
    structure modifiee. Pour revenir en arriere : retirer l'import de ce fichier
    dans layout.tsx. */
 
-@font-face { font-family: 'Surfquest'; src: url('/Surfquest-NoSlash.otf?v=3') format('opentype'); font-display: swap; }
+/* Police d'affichage du site : Thernaly (GGBotNet, licence SIL OFL), corrigée pour les accents (scripts/make-thernaly-accents.py). Le nom de famille « Surfquest » est conservé
+   pour que toutes les règles et tous les exports (canvas) qui l'utilisent suivent. size-adjust : même hauteur de capitales que l'ancienne Surfquest. */
+@font-face { font-family: 'Surfquest'; src: url('/Thernaly.ttf?v=1') format('truetype'); font-display: swap; size-adjust: 90%; }
 
 /* ── Typographie : Surfquest reservee aux gros titres et aux chiffres ── */
 h1,
@@ -920,7 +922,7 @@ html[data-theme="light"] .tcdb-imp-open { border-color: #06122e; color: #06122e;
 /* Onglets de galerie : segments carres sur toute la largeur, onglet actif en bloc plein (proprietaire : 6 onglets avec Aimees) */
 .da-tabs { border: 2px solid var(--text) !important; border-bottom: 2px solid var(--text) !important; margin-bottom: 14px !important; overflow-x: visible !important; }
 .da-tabs > div:first-child { display: none !important; }
-.da-tabs button { flex: 1 1 0 !important; min-width: 0; text-align: center; padding: 12px 6px 10px !important; border-right: 2px solid var(--text) !important; font-family: 'Surfquest', Impact, 'Arial Narrow', sans-serif !important; font-weight: 400 !important; font-size: 17px !important; line-height: 1 !important; letter-spacing: .05em !important; color: var(--text) !important; white-space: nowrap; }
+.da-tabs button { flex: 1 1 0 !important; min-width: 0; text-align: center; padding: 7px 6px 6px !important; border-right: 2px solid var(--text) !important; font-family: 'Surfquest', Impact, 'Arial Narrow', sans-serif !important; font-weight: 400 !important; font-size: clamp(16px, 2vw, 26px) !important; line-height: 1 !important; letter-spacing: .05em !important; color: var(--text) !important; white-space: nowrap; }
 .da-tabs button:last-child { border-right: 0 !important; }
 :root[data-theme="dark"] .da-tabs button.on { background: #fff !important; color: #06122e !important; }
 :root[data-theme="light"] .da-tabs button.on { background: #06122e !important; color: #fff !important; }
@@ -936,7 +938,7 @@ html[data-theme="light"] .tcdb-imp-open { border-color: #06122e; color: #06122e;
      n'est touche par aucune des deux regles ci-dessous et garde sa grille
      3x2 habituelle. */
   .da-tabs { display: grid !important; grid-template-columns: repeat(6, 1fr); border-width: 2px 0 0 2px !important; border-style: solid !important; border-color: var(--text) !important; }
-  .da-tabs button { grid-column: span 2; border-right: 2px solid var(--text) !important; border-bottom: 2px solid var(--text) !important; font-size: 15px !important; padding: 11px 2px 9px !important; }
+  .da-tabs button { grid-column: span 2; border-right: 2px solid var(--text) !important; border-bottom: 2px solid var(--text) !important; font-size: 18px !important; padding: 7px 2px 6px !important; }
   .da-tabs button:nth-of-type(1):nth-last-of-type(5),
   .da-tabs button:nth-of-type(2):nth-last-of-type(4) { grid-column: span 3; }
   .da-tabs button:last-child { border-right: 2px solid var(--text) !important; }
@@ -1571,8 +1573,8 @@ html[data-season="noel"]::before { background: repeating-linear-gradient(90deg, 
   --focus-ring: color-mix(in srgb, var(--accent, #5b8def) 55%, #fff);
 }
 /* 238 — Les tailles intermédiaires les plus courantes se calent sur l'échelle (13 → 14, 15 → 16), hors vignettes de cartes. */
-main :is(p, span, div, label, small, li, a, td, th, button):is([style*="font-size:13px"], [style*="font-size: 13px"]):not(.card-item *) { font-size: var(--fs-sm) !important; }
-main :is(p, span, div, label, small, li, a, td, th, button):is([style*="font-size:15px"], [style*="font-size: 15px"]):not(.card-item *) { font-size: var(--fs-md) !important; }
+main :is(p, span, div, label, small, li, a, td, th, button):is([style*="font-size:13px"], [style*="font-size: 13px"]):not(.card-item *):not(.da-tabs *) { font-size: var(--fs-sm) !important; }
+main :is(p, span, div, label, small, li, a, td, th, button):is([style*="font-size:15px"], [style*="font-size: 15px"]):not(.card-item *):not(.da-tabs *) { font-size: var(--fs-md) !important; }
 
 /* 240 — Un seul style de champ : même hauteur, même taille de texte (16 px : pas de zoom involontaire sur téléphone), mêmes états. */
 main input:not([type="checkbox"]):not([type="radio"]):not([type="range"]):not([type="file"]):not([type="color"]):not(.ma-det-in), main select { min-height: var(--ctl-h); font-size: var(--fs-md) !important; line-height: 1.3; }
@@ -1702,8 +1704,18 @@ body:has([role="dialog"][aria-modal="true"]:not([data-keep-nav])) .mobile-bottom
 .da-th-btn:hover { color: var(--text, #fff); }
 .da-table .up { color: #3ddc97; } .da-table .down { color: #ff7a7a; }
 
-/* Noms des vignettes de la galerie : Surfquest Expanded (lettres plus larges, donc plus lisibles). Même fabrication que Surfquest-NoSlash : le 0 barré y est un O
-   (scripts/make-surfquest-noslash.py). Réduite de 8 % pour compenser sa largeur, un peu plus espacée, sans l'ombre floue. Le reste du site garde la Surfquest actuelle. */
-@font-face { font-family: 'SurfquestExp'; src: url('/SurfquestExpanded-NoSlash.otf?v=1') format('opentype'); font-display: swap; }
-.card-item .gc-name .da-display { font-family: 'SurfquestExp', 'Surfquest', Impact, 'Arial Narrow', sans-serif !important; letter-spacing: .04em; zoom: .92; }
+/* Noms des vignettes : l'ombre portée floue est retirée (contours plus nets). */
 .card-item .gc-bot .gc-name .da-display { text-shadow: none; }
+
+/* 289 · Pied de page en colonnes (Footer.tsx) : marque à gauche, puis Site, Légal, Communauté. Deux colonnes sur téléphone. */
+.da-footer-in { max-width: 1400px; margin: 0 auto; display: grid; grid-template-columns: 1.3fr repeat(3, minmax(150px, 1fr)); gap: var(--sp-5) var(--sp-6); align-items: start; }
+.da-footer-brand { display: flex; flex-direction: column; align-items: flex-start; gap: var(--sp-3); }
+.da-footer-col { display: flex; flex-direction: column; align-items: flex-start; gap: 0; min-width: 0; }
+.da-footer-col h4 { margin: 0 0 var(--sp-2); font: 800 11px system-ui, sans-serif; letter-spacing: .14em; text-transform: uppercase; opacity: .65; }
+.da-footer-col a:not(.support-btn), .da-footer-col button { padding: 6px 0 !important; }
+.da-footer-col .support-btn { margin-top: var(--sp-2); }
+@media (max-width: 720px) {
+  .da-footer-in { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .da-footer-brand { grid-column: 1 / -1; flex-direction: row; align-items: center; flex-wrap: wrap; }
+  .da-footer-col:last-of-type { grid-column: 1 / -1; }
+}

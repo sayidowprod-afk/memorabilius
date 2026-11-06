@@ -112,9 +112,9 @@ function loadSurfquest(): Promise<void> {
   if (surfquestPromise) return surfquestPromise
   surfquestPromise = (async () => {
     try {
-      const face = new FontFace('Surfquest', 'url(/Surfquest-NoSlash.otf)')
-      await face.load()
-      ;(document.fonts as any).add(face)
+      // la police « Surfquest » du site (da.css, aujourd'hui Thernaly) : on attend simplement son chargement, sans ajouter un second fichier du même nom
+      // (qui aurait remplacé la police de tout le site après un export)
+      await document.fonts.load('400 40px Surfquest')
     } catch {}
   })()
   return surfquestPromise
@@ -695,16 +695,10 @@ export default function CardVideoExport({ card, accent: accentProp, onClose, own
 
       ictx.textAlign = 'center'; ictx.textBaseline = 'top'
       const tx = panelW / 2
-      let ty = panelH * 0.10
 
       // ── Badges ── pastilles isolees (style historique de l'export, voulu
       // par l'utilisateur) -- PAS le bandeau continu de la nouvelle DA du
       // site (AtoutsStrip.tsx), qui s'etait glisse ici par erreur.
-      const badgeFs  = Math.round(W * 0.024)
-      const badgeH   = Math.round(W * 0.040)
-      const badgePad = Math.round(W * 0.022)
-      const badgeR   = badgeH / 2
-
       type BadgeEntry = { label: string; color: string }
       const tags: BadgeEntry[] = []
       if (card.rc) tags.push({ label: '★ RC', color: '#e67e22' })
@@ -717,6 +711,45 @@ export default function CardVideoExport({ card, accent: accentProp, onClose, own
       }
       if (card.patch) tags.push({ label: 'PATCH', color: '#1565c0' })
       if (card.g && card.g !== 'Raw') tags.push({ label: card.g, color: accent })
+
+      // Tout le bloc est mis a l'echelle pour remplir la hauteur du panneau
+      // (1x a 1.6x, jamais reduit) -- voir CardPhotoExport.tsx pour le detail.
+      const nameMaxWPre = panelW * 0.92
+      const nameFontPre = (s: number) => `400 ${s}px Surfquest, Inter, sans-serif`
+      const meta2 = [card.y, [card.br, card.s].filter(Boolean).join(' ')].filter(Boolean).join(' · ')
+
+      const badgeH0 = Math.round(W * 0.040)
+      const teamFs0 = Math.round(W * 0.019)
+      const nameFsMax0 = Math.round(W * 0.047)
+      const nameFsMin0 = Math.round(W * 0.028)
+      const varFs0 = Math.round(W * 0.026)
+      const metaFs0 = Math.round(W * 0.019)
+      const nameFs0 = fitFontSize(ictx, card.n.toUpperCase(), nameMaxWPre, nameFontPre, nameFsMax0, nameFsMin0)
+      const baseContentH =
+        (tags.length > 0 ? badgeH0 + Math.round(panelH * 0.06) : 0) +
+        (card.t ? teamFs0 * 1.6 : 0) +
+        nameFs0 * 1.15 +
+        (card.v ? varFs0 * 1.3 : 0) +
+        (meta2 ? metaFs0 : 0)
+      const availableH = panelH * 0.86
+      const scale = Math.min(1.6, Math.max(1, availableH / Math.max(1, baseContentH)))
+
+      const badgeFs  = Math.round(W * 0.024 * scale)
+      const badgeH   = Math.round(badgeH0 * scale)
+      const badgePad = Math.round(W * 0.022 * scale)
+      const badgeR   = badgeH / 2
+      const teamFs = Math.round(teamFs0 * scale)
+      const varFs = Math.round(varFs0 * scale)
+      const metaFs = Math.round(metaFs0 * scale)
+      const nameFs = fitFontSize(ictx, card.n.toUpperCase(), nameMaxWPre, nameFontPre, Math.round(nameFsMax0 * scale), Math.round(nameFsMin0 * scale))
+
+      const contentH =
+        (tags.length > 0 ? badgeH + Math.round(panelH * 0.06) : 0) +
+        (card.t ? teamFs * 1.6 : 0) +
+        nameFs * 1.15 +
+        (card.v ? varFs * 1.3 : 0) +
+        (meta2 ? metaFs : 0)
+      let ty = Math.max(panelH * 0.06, (panelH - contentH) / 2)
 
       if (tags.length > 0) {
         ictx.font = `800 ${badgeFs}px Inter, sans-serif`
@@ -749,7 +782,6 @@ export default function CardVideoExport({ card, accent: accentProp, onClose, own
       // élément de plus haute hiérarchie visuelle, l'équipe l'introduit juste
       // avant sans passer devant les badges.
       if (card.t) {
-        const teamFs = Math.round(W * 0.019)
         ictx.fillStyle = readableAccent(accent, isDark)
         ictx.font = `800 ${teamFs}px Inter, sans-serif`
         ictx.fillText(truncate(ictx, card.t.toUpperCase(), panelW * 0.85), tx, ty)
@@ -759,17 +791,13 @@ export default function CardVideoExport({ card, accent: accentProp, onClose, own
       // ── Nom du joueur ── police Surfquest (DA, gros titres du site) +
       // capitales, comme h1/.mb-hero-title dans da.css -- repli silencieux
       // sur Inter si la police n'a pas eu le temps de charger.
-      const nameMaxW = panelW * 0.92
-      const nameFont = (s: number) => `400 ${s}px Surfquest, Inter, sans-serif`
-      const nameFs = fitFontSize(ictx, card.n.toUpperCase(), nameMaxW, nameFont, Math.round(W * 0.047), Math.round(W * 0.028))
       ictx.fillStyle = textMain
-      ictx.font = nameFont(nameFs)
-      ictx.fillText(truncate(ictx, card.n.toUpperCase(), nameMaxW), tx, ty)
+      ictx.font = nameFontPre(nameFs)
+      ictx.fillText(truncate(ictx, card.n.toUpperCase(), nameMaxWPre), tx, ty)
       ty += nameFs * 1.15
 
       // ── Variation ─────────────────────────────────────────────────────────────
       if (card.v) {
-        const varFs = Math.round(W * 0.026)
         ictx.fillStyle = readableAccent(accent, isDark)
         ictx.font = `600 italic ${varFs}px Inter, sans-serif`
         ictx.fillText(truncate(ictx, card.v, panelW * 0.88), tx, ty)
@@ -777,9 +805,7 @@ export default function CardVideoExport({ card, accent: accentProp, onClose, own
       }
 
       // ── Année · Marque · Collection ───────────────────────────────────────────
-      const meta2 = [card.y, [card.br, card.s].filter(Boolean).join(' ')].filter(Boolean).join(' · ')
       if (meta2) {
-        const metaFs = Math.round(W * 0.019)
         ictx.fillStyle = isDark ? 'rgba(255,255,255,0.32)' : 'rgba(0,0,0,0.32)'
         ictx.font = `400 ${metaFs}px Inter, sans-serif`
         ictx.fillText(truncate(ictx, meta2, panelW * 0.85), tx, ty)

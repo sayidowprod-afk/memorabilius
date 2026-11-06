@@ -14,6 +14,8 @@ export const ENTRIES: Entry[] = [
       'Connexion et inscription : un mur de vraies cartes en fond et une courte présentation du site à côté du formulaire.',
       'Partout : transitions douces entre les pages, dates relatives écrites de la même façon (« il y a 2 h », « hier »), contour de focus clair au clavier, zones tactiles de 44 px, champs, panneaux et fenêtres au même style, onglet actif souligné dans la barre du bas, clavier du téléphone qui ne recouvre plus les champs.',
       'Galerie personnalisée : les fonds clairs (balles de baseball, tennis, golf, volley) restent lisibles.',
+      'Nouvelle police pour les titres, les noms et les chiffres : lettres plus larges et plus lisibles, avec des accents (É, À, Ç…) à pleine hauteur. Les noms des cartes dans la grille se lisent beaucoup mieux.',
+      'Bas de page en colonnes (Réseaux sociaux, Légal, Communauté) : retrouve-nous sur X et sur Instagram.',
     ],
   },
   {
