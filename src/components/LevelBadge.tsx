@@ -115,6 +115,7 @@ export default function LevelBadge({ userId, celebrateOnLevelUp, accent = '#003D
 
       <button
         ref={btnRef}
+        className="da-level-btn"
         onClick={() => {
           if (!showInfo) setInfoRect(btnRef.current?.getBoundingClientRect() ?? null)
           setShowInfo(v => !v)

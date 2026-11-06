@@ -1197,7 +1197,9 @@ main table td, main table th, .da-num { font-variant-numeric: tabular-nums; }
 
 /* 18 · Boutons-icônes : zone tactile de 44 px sur écran tactile */
 @media (pointer: coarse) {
-  button[aria-label]:not(.btn-main):not(.da-help-btn) { min-width: 44px; min-height: 44px; }
+  button[aria-label]:not(.btn-main):not(.da-help-btn):not(.da-level-btn) { min-width: 44px; min-height: 44px; }
+  .da-level-btn { position: relative; }
+  .da-level-btn::after { content: ''; position: absolute; inset: -9px; }
   main select, main input:not([type="checkbox"]):not([type="radio"]):not([type="range"]):not([type="file"]):not([type="color"]) { min-height: 44px; }
 }
 
