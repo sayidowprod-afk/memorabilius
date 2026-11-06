@@ -12,11 +12,11 @@ export default function AuthLayout({ children }: { children: React.ReactNode }) 
   useEffect(() => {
     let cancelled = false
     supabase.from('cartes_manuelles').select('image_recto').not('image_recto', 'is', null).eq('is_horizontal', false)
-      .order('created_at', { ascending: false }).limit(30)
+      .order('created_at', { ascending: false }).limit(40)
       .then(({ data }) => {
         if (cancelled) return
         const urls = Array.from(new Set((data || []).map((r: { image_recto: string | null }) => r.image_recto).filter(Boolean))) as string[]
-        setImgs(urls.sort(() => Math.random() - 0.5).slice(0, 18))
+        setImgs(urls.sort(() => Math.random() - 0.5))
       })
     return () => { cancelled = true }
   }, [])
@@ -28,11 +28,14 @@ export default function AuthLayout({ children }: { children: React.ReactNode }) 
 
   return (
     <div className="auth-split">
+      {/* Le mur couvre tout l'écran : on répète les images disponibles pour remplir la grille, quelle que soit la taille de l'écran */}
       <div className="auth-wall" aria-hidden="true">
-        {imgs.map(u => (
-          // eslint-disable-next-line @next/next/no-img-element
-          <img key={u} src={u} alt="" loading="lazy" />
-        ))}
+        <div className="auth-wall-in">
+          {imgs.length > 0 && Array.from({ length: 150 }, (_, i) => imgs[i % imgs.length]).map((u, i) => (
+            // eslint-disable-next-line @next/next/no-img-element
+            <img key={i} src={u} alt="" loading="lazy" />
+          ))}
+        </div>
       </div>
       <aside className="auth-pitch">
         <h2 className="da-display">{fr ? 'Ta collection mérite une vraie vitrine' : 'Your collection deserves a real showcase'}</h2>

@@ -5,8 +5,10 @@ from fontTools.pens.boundsPen import BoundsPen
 from fontTools.pens.transformPen import TransformPen
 from fontTools.pens.t2CharStringPen import T2CharStringPen
 
-SRC = 'public/Surfquest-3zVXL.otf'
-OUT = 'public/Surfquest-NoSlash.otf'
+import sys
+# Par defaut : la police d'origine -> Surfquest-NoSlash.otf. Autre variante : python scripts/make-surfquest-noslash.py <source.otf> <sortie.otf>
+SRC = sys.argv[1] if len(sys.argv) > 1 else 'public/Surfquest-3zVXL.otf'
+OUT = sys.argv[2] if len(sys.argv) > 2 else 'public/Surfquest-NoSlash.otf'
 
 font = TTFont(SRC)
 gs = font.getGlyphSet()

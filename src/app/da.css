@@ -1675,8 +1675,12 @@ body:has([role="dialog"][aria-modal="true"]:not([data-keep-nav])) .mobile-bottom
 /* 288 · Connexion et inscription : mur de cartes en fond + argumentaire à côté du formulaire (grand écran) */
 .auth-split { position: relative; max-width: 1040px; margin: 40px auto; padding: 0 var(--sp-4); display: grid; grid-template-columns: 1fr; gap: var(--sp-5); align-items: center; }
 @media (min-width: 900px) { .auth-split { grid-template-columns: 1.1fr 460px; } }
-.auth-wall { position: fixed; inset: 0; z-index: -1; display: grid; grid-template-columns: repeat(auto-fill, minmax(110px, 1fr)); gap: 10px; padding: 10px; opacity: .17; overflow: hidden; pointer-events: none; -webkit-mask-image: linear-gradient(180deg, #000 0%, transparent 88%); mask-image: linear-gradient(180deg, #000 0%, transparent 88%); }
-.auth-wall img { width: 100%; aspect-ratio: 2.5 / 3.5; object-fit: cover; border: 2px solid rgba(255, 255, 255, .3); }
+.auth-wall { position: fixed; inset: 0; z-index: -1; overflow: hidden; pointer-events: none; }
+.auth-wall-in { position: absolute; inset: -12%; display: grid; grid-template-columns: repeat(auto-fill, minmax(118px, 1fr)); gap: 12px; transform: rotate(-6deg); opacity: .3; filter: saturate(.85); }
+.auth-wall-in img { width: 100%; aspect-ratio: 2.5 / 3.5; object-fit: cover; border: 2px solid rgba(255, 255, 255, .28); }
+/* voile : plus sombre au centre (formulaire et texte lisibles), plus léger sur les bords pour que les cartes se devinent partout */
+.auth-wall::after { content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse at 50% 55%, rgba(5, 9, 24, .78) 0%, rgba(5, 9, 24, .55) 55%, rgba(5, 9, 24, .35) 100%); }
+:root:not([data-theme="dark"]) .auth-wall::after { background: radial-gradient(ellipse at 50% 55%, rgba(255, 255, 255, .8) 0%, rgba(255, 255, 255, .6) 55%, rgba(255, 255, 255, .4) 100%); }
 .auth-pitch { display: none; }
 @media (min-width: 900px) { .auth-pitch { display: block; } }
 .auth-pitch h2 { font-size: var(--fs-2xl); line-height: 1.05; margin: 0 0 var(--sp-4); }
@@ -1697,3 +1701,9 @@ body:has([role="dialog"][aria-modal="true"]:not([data-keep-nav])) .mobile-bottom
 .da-th-btn { background: none; border: none; padding: 0; color: inherit; font: inherit; letter-spacing: inherit; text-transform: inherit; cursor: pointer; min-height: 32px; }
 .da-th-btn:hover { color: var(--text, #fff); }
 .da-table .up { color: #3ddc97; } .da-table .down { color: #ff7a7a; }
+
+/* Noms des vignettes de la galerie : Surfquest Expanded (lettres plus larges, donc plus lisibles). Même fabrication que Surfquest-NoSlash : le 0 barré y est un O
+   (scripts/make-surfquest-noslash.py). Réduite de 8 % pour compenser sa largeur, un peu plus espacée, sans l'ombre floue. Le reste du site garde la Surfquest actuelle. */
+@font-face { font-family: 'SurfquestExp'; src: url('/SurfquestExpanded-NoSlash.otf?v=1') format('opentype'); font-display: swap; }
+.card-item .gc-name .da-display { font-family: 'SurfquestExp', 'Surfquest', Impact, 'Arial Narrow', sans-serif !important; letter-spacing: .04em; zoom: .92; }
+.card-item .gc-bot .gc-name .da-display { text-shadow: none; }
