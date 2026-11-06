@@ -4,6 +4,18 @@ export type Entry = { date: string; titre: string; points: string[] }
 
 export const ENTRIES: Entry[] = [
   {
+    date: '9 novembre 2026', titre: 'Nouvelle police, onglets plus lisibles, bas de page en colonnes',
+    points: [
+      'Nouvelle police pour les titres, les noms et les chiffres : lettres plus larges et plus lisibles, avec des accents (É, À, Ç…) à pleine hauteur. Les noms des cartes dans la grille se lisent beaucoup mieux.',
+      'Pronos : les scores, les bilans et les noms d’équipes utilisent la même police que le reste du site, et « 76ERS » n’est plus coupé.',
+      'Galerie : les onglets (Collection, Classeurs, Objectifs, Badges, Commentaires, Aimées) sont plus grands et la barre est plus fine.',
+      'Bas de page en colonnes (Réseaux sociaux, Légal, Communauté) : retrouve-nous sur X et sur Instagram.',
+      'Connexion et inscription : le fond de cartes couvre maintenant tout l’écran.',
+      'Personnalisation de ta galerie : dans le choix de couleur d’équipe, les pastilles montrent maintenant le logo de l’équipe au lieu de trois lettres.',
+      'Grail Wall : chaque pièce maîtresse est maintenant exposée dans un cadre doré ouvragé, avec sa plaque dorée dessous (nom et variante).',
+    ],
+  },
+  {
     date: '8 novembre 2026', titre: 'Une interface plus harmonieuse et plus pratique',
     points: [
       'Messages : séparateurs de jour (Aujourd’hui, Hier…), bulles d’une même personne regroupées, glisse un message vers la droite pour y répondre, glisse une conversation vers la gauche pour la masquer. Les tablettes et les téléphones à l’horizontale affichent aussi la liste et la discussion côte à côte.',
@@ -14,8 +26,6 @@ export const ENTRIES: Entry[] = [
       'Connexion et inscription : un mur de vraies cartes en fond et une courte présentation du site à côté du formulaire.',
       'Partout : transitions douces entre les pages, dates relatives écrites de la même façon (« il y a 2 h », « hier »), contour de focus clair au clavier, zones tactiles de 44 px, champs, panneaux et fenêtres au même style, onglet actif souligné dans la barre du bas, clavier du téléphone qui ne recouvre plus les champs.',
       'Galerie personnalisée : les fonds clairs (balles de baseball, tennis, golf, volley) restent lisibles.',
-      'Nouvelle police pour les titres, les noms et les chiffres : lettres plus larges et plus lisibles, avec des accents (É, À, Ç…) à pleine hauteur. Les noms des cartes dans la grille se lisent beaucoup mieux.',
-      'Bas de page en colonnes (Réseaux sociaux, Légal, Communauté) : retrouve-nous sur X et sur Instagram.',
     ],
   },
   {

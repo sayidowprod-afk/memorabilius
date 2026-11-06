@@ -1719,3 +1719,24 @@ body:has([role="dialog"][aria-modal="true"]:not([data-keep-nav])) .mobile-bottom
   .da-footer-brand { grid-column: 1 / -1; flex-direction: row; align-items: center; flex-wrap: wrap; }
   .da-footer-col:last-of-type { grid-column: 1 / -1; }
 }
+
+/* Sélecteur de couleur d'équipe : logo de l'équipe sur un rond blanc (TeamColorPicker) */
+.tcp-logo { display: flex; align-items: center; justify-content: center; width: 28px; height: 28px; margin: auto; border-radius: 50%; background: #fff; }
+.tcp-logo img { width: 22px; height: 22px; object-fit: contain; background: none !important; animation: none !important; }
+
+/* Grail Wall : chaque carte est dans un cadre doré orné (public/grail-frame.webp, fenêtre transparente) ; nom et variation sur une fiche dorée dessous. */
+.grail-museum { container-type: inline-size; }
+.grail-gilded-col { width: clamp(150px, calc((100cqw - 76px) / 5), 234px); }
+@media (min-width: 641px) { .grail-museum { gap: 18px; padding-left: 12px; padding-right: 12px; } }
+.grail-gilded { position: relative; width: 100%; aspect-ratio: 1528 / 2000; }
+.grail-gilded-win { position: absolute; left: 17%; top: 14.2%; width: 63.6%; height: 69.6%; overflow: hidden; background: #0a0a0a; z-index: 1; }
+.grail-gilded-win .da-img-box { width: 100%; height: 100%; aspect-ratio: auto !important; border-radius: 0; }
+.grail-gilded-frame { position: absolute; inset: 0; width: 100%; height: 100%; z-index: 2; pointer-events: none; object-fit: contain; background: none !important; animation: none !important; }
+.grail-gilded-del { position: absolute; left: 17%; top: 14.2%; width: 63.6%; height: 69.6%; z-index: 3; pointer-events: none; }
+.grail-gilded-del button { pointer-events: auto; }
+.grail-plaque { min-height: 3.6em; display: flex; flex-direction: column; justify-content: center; margin-top: 2px; padding: 8px 10px 9px; text-align: center; background: linear-gradient(135deg, #d8b45a, #f1dc9a 45%, #b8923a); border: 1px solid rgba(0, 0, 0, .4); box-shadow: 0 6px 14px rgba(0, 0, 0, .4), inset 0 1px 0 rgba(255, 255, 255, .55); }
+.grail-plaque-name { margin: 0; font-weight: 800; font-size: 11px; color: #2a1c00; text-transform: uppercase; letter-spacing: .02em; line-height: 1.2; white-space: normal; overflow: hidden; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; }
+.grail-plaque-var { margin: 2px 0 0; font-size: 10px; font-weight: 700; font-style: italic; color: #5a3f08; line-height: 1.2; white-space: normal; overflow: hidden; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; }
+@media (max-width: 640px) { .grail-museum .grail-slot .grail-gilded-col { width: min(58vw, 210px); } }
+.grail-gilded-win > a, .grail-gilded-win > div { display: block; width: 100%; height: 100%; }
+.grail-gilded-win img { object-fit: contain !important; width: 100%; height: 100%; }

@@ -2825,18 +2825,21 @@ export default function GalerieClient({ userId, initialCardUrl, initialCards, in
             const card = !grailLoading ? grailItems[i] : undefined
             if (card) {
               return (
-                <div key={i} className={`grail-slot${i === Math.min(grailIdx, grailItems.length - 1) ? ' on' : ''}`} style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 6 }}>
-                  <div onClick={() => setPopup(card)} role="button" tabIndex={0} aria-label={card.n}
-                    onKeyDown={e => { if ((e.key === 'Enter' || e.key === ' ') && e.target === e.currentTarget) { e.preventDefault(); setPopup(card) } }}
-                    className="grail-wall-cursor grail-gold-glow" style={{
-                    width: medal.width, cursor: 'pointer', position: 'relative',
-                    background: `linear-gradient(145deg, ${medal.color}, ${medal.color}aa 45%, ${medal.color})`, padding: 6, borderRadius: 0, outline: '1px solid rgba(0,0,0,.45)', outlineOffset: -1,
-                    boxShadow: i === 0 ? undefined : `0 6px 20px ${medal.glow}`, transition: 'transform 0.2s',
-                  }}
-                    onMouseEnter={e => (e.currentTarget.style.transform = 'translateY(-4px)')}
-                    onMouseLeave={e => (e.currentTarget.style.transform = 'translateY(0)')}
-                  >
-                    <div style={{ borderRadius: 0, overflow: 'hidden', background: '#ece6d6', position: 'relative', padding: 6, boxShadow: 'inset 0 0 0 1px rgba(0,0,0,.35)' }}>
+                <div key={i} className={`grail-slot${i === Math.min(grailIdx, grailItems.length - 1) ? ' on' : ''}`} style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+                  <div className="grail-gilded-col">
+                    <div onClick={() => setPopup(card)} role="button" tabIndex={0} aria-label={card.n}
+                      onKeyDown={e => { if ((e.key === 'Enter' || e.key === ' ') && e.target === e.currentTarget) { e.preventDefault(); setPopup(card) } }}
+                      className="grail-wall-cursor grail-gilded" style={{ cursor: 'pointer', transition: 'transform 0.2s' }}
+                      onMouseEnter={e => (e.currentTarget.style.transform = 'translateY(-4px)')}
+                      onMouseLeave={e => (e.currentTarget.style.transform = 'translateY(0)')}
+                    >
+                      {/* la carte, dans la fenêtre du cadre ; le cadre doré orné passe par-dessus */}
+                      <div className="grail-gilded-win">
+                        <CardLink slug={profile?.slug || userId} cardKey={card.f}>{renderCardImage(card)}</CardLink>
+                      </div>
+                      {/* eslint-disable-next-line @next/next/no-img-element */}
+                      <img className="grail-gilded-frame" src="/grail-frame.webp" alt="" draggable={false} />
+                      <div className="grail-gilded-del">
                       {isOwner && (
                         deleteGrailConfirm === card.f ? (
                           <div style={{ position: 'absolute', top: 4, right: 4, zIndex: 3, display: 'flex', gap: 2 }}>
@@ -2852,11 +2855,12 @@ export default function GalerieClient({ userId, initialCardUrl, initialCards, in
                           }}>✕</button>
                         )
                       )}
-                      <CardLink slug={profile?.slug || userId} cardKey={card.f}>{renderCardImage(card)}</CardLink>
-                      <div style={{ margin: '8px -6px -6px', padding: '6px 8px 7px', background: 'linear-gradient(135deg,#d8b45a,#f1dc9a 45%,#b8923a)', borderTop: '1px solid rgba(0,0,0,.35)' }}>
-                        <p style={{ fontWeight: 800, fontSize: 10, margin: 0, whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis', color: '#2a1c00', textTransform: 'uppercase' }}>{card.n}</p>
-                        <p style={{ fontSize: 9, color: '#5a3f08', fontWeight: 700, margin: '1px 0 0', fontStyle: 'italic', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>{card.v || card.s}</p>
                       </div>
+                    </div>
+                    {/* fiche dorée : nom et variation */}
+                    <div className="grail-plaque">
+                      <p className="grail-plaque-name">{card.n}</p>
+                      <p className="grail-plaque-var">{card.v || card.s}</p>
                     </div>
                   </div>
                 </div>
