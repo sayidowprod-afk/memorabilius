@@ -8,6 +8,11 @@ on:
     - cron: '20 5 * * 5' # premier essai : 6 h 20 (hiver) / 7 h 20 (été) à Paris
     - cron: '20 6 * * 5' # second essai si le premier a été sauté ou retardé par GitHub
   workflow_dispatch:
+    inputs:
+      carte:
+        description: "Identifiant de la carte d'exemple à imposer (facultatif)"
+        required: false
+        default: ''
 
 permissions:
   contents: read
@@ -67,4 +72,5 @@ jobs:
           SUPABASE_SERVICE_ROLE_KEY: ${{ secrets.SUPABASE_SERVICE_ROLE_KEY }}
           DISCORD_WEBHOOK_URL: ${{ secrets.DISCORD_WEBHOOK_URL }}
           DISCORD_USER_ID: ${{ secrets.DISCORD_USER_ID }}
-        run: python scripts/vendredi_carte_semaine.py --discord
+          CARTE: ${{ inputs.carte }}
+        run: python scripts/vendredi_carte_semaine.py --discord ${CARTE:+--card=$CARTE}

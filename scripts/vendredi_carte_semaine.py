@@ -148,6 +148,14 @@ def main():
     since = datetime.now(timezone.utc) - timedelta(days=7)
     cards, total = pick_card(since)
     print('Cartes ajoutées sur 7 jours :', total)
+    # --card=ID : impose la carte d'exemple (elle doit faire partie des cartes ajoutées ces 7 jours)
+    forced = next((x.split('=', 1)[1].strip() for x in sys.argv if x.startswith('--card=')), '')
+    if forced:
+        pick = [r for r in cards if r['id'] == forced]
+        if pick:
+            cards = pick + [r for r in cards if r['id'] != forced]
+        else:
+            print('Carte demandée introuvable parmi les cartes de la semaine : tirage normal.')
 
     out_dir = os.path.join(ROOT, 'docs', 'rdv', 'vendredi')
     os.makedirs(out_dir, exist_ok=True)
