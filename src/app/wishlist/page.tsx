@@ -6,14 +6,16 @@ import { withTimeout } from '@/lib/withTimeout'
 import { useLang } from '@/lib/LangContext'
 import { useTheme } from '@/lib/ThemeContext'
 import CardTagBadges from '@/components/CardTagBadges'
+import { toast } from '@/lib/toast'
+import { parsePrice } from '@/lib/marketplace'
 
 interface WishItem {
   id: string; nom: string; annee: string; marque: string
   collection: string; variation: string; num: string
-  rc: boolean; auto: boolean; patch: boolean; notes: string
+  rc: boolean; auto: boolean; patch: boolean; notes: string; prix_cible?: number | null
 }
 
-const empty = { nom: '', annee: '', marque: '', collection: '', variation: '', num: '', rc: false, auto: false, patch: false, notes: '' }
+const empty = { nom: '', annee: '', marque: '', collection: '', variation: '', num: '', rc: false, auto: false, patch: false, notes: '', prix_cible: '' }
 
 export default function WishlistPage() {
   const [items, setItems] = useState<WishItem[]>([])
@@ -98,7 +100,15 @@ export default function WishlistPage() {
   const save = async () => {
     if (!userId || !form.nom.trim()) return
     setSaving(true)
-    const { data } = await supabase.from('wishlist').insert({ ...form, user_id: userId }).select().single()
+    const { prix_cible, ...rest } = form
+    const target = parsePrice(prix_cible)
+    const first = await supabase.from('wishlist').insert({ ...rest, ...(target !== null ? { prix_cible: target } : {}), user_id: userId }).select().single()
+    let data = first.data
+    // migration du prix cible pas encore appliquée : on enregistre quand même la carte, sans le prix, en le disant
+    if (first.error && target !== null) {
+      toast.error('Carte ajoutée, mais le prix cible n’a pas pu être enregistré (mise à jour de la base à appliquer).')
+      ;({ data } = await supabase.from('wishlist').insert({ ...rest, user_id: userId }).select().single())
+    }
     if (data) setItems(prev => [data, ...prev])
     setForm(empty)
     setShowForm(false)
@@ -195,6 +205,11 @@ export default function WishlistPage() {
               <input value={form.num} onChange={e => setForm(p => ({ ...p, num: e.target.value }))} placeholder="/99" />
             </div>
             <div style={{ gridColumn: '1/-1' }}>
+              <label style={{ fontSize: 10, fontWeight: 800, color: '#888', textTransform: 'uppercase', display: 'block', marginBottom: 4 }}>Prix cible (€), facultatif</label>
+              <input inputMode="decimal" value={form.prix_cible} onChange={e => setForm(p => ({ ...p, prix_cible: e.target.value }))} placeholder="Ex : 60" />
+              <div style={{ fontSize: 11, color: '#888', marginTop: 4 }}>Tu es prévenu quand un membre met cette carte en vente à ce prix ou moins.</div>
+            </div>
+            <div style={{ gridColumn: '1/-1' }}>
               <label style={{ fontSize: 10, fontWeight: 800, color: '#888', textTransform: 'uppercase', display: 'block', marginBottom: 4 }}>{t('wishlist_notes_label')}</label>
               <input value={form.notes} onChange={e => setForm(p => ({ ...p, notes: e.target.value }))} placeholder={t('wishlist_notes_placeholder')} />
             </div>
@@ -271,6 +286,7 @@ export default function WishlistPage() {
               <div style={{ display: 'flex', gap: 5, flexWrap: 'wrap' }}>
                 <CardTagBadges rc={!!item.rc} auto={!!item.auto} patch={!!item.patch} num={item.num} size="md" />
               </div>
+              {item.prix_cible != null && <div style={{ fontSize: 12, fontWeight: 800, color: '#1f9d55', marginTop: 6 }}>🎯 Prix cible : {Number(item.prix_cible).toLocaleString('fr-FR', { style: 'currency', currency: 'EUR', maximumFractionDigits: 2 })}</div>}
               {item.notes && <div style={{ fontSize: 11, color: '#888', marginTop: 6, fontStyle: 'italic' }}>"{item.notes}"</div>}
             </div>
             {removingId === item.id ? (

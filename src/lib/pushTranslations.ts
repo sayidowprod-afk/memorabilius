@@ -85,6 +85,18 @@ export function wishlistCardAddedPush(lang: PushLang, ownerName: string, cardNam
   }
 }
 
+// Une carte de ta wishlist est mise en vente à ton prix cible (ou moins)
+export function wishlistPriceFoundPush(lang: PushLang, ownerName: string, cardName: string, price: string, target: string) {
+  return {
+    title: { fr: '🎯 Prix cible atteint', en: '🎯 Target price reached', de: '🎯 Zielpreis erreicht' }[lang],
+    body: {
+      fr: `${ownerName} vend ${cardName} à ${price} (ton prix cible : ${target})`,
+      en: `${ownerName} is selling ${cardName} for ${price} (your target: ${target})`,
+      de: `${ownerName} verkauft ${cardName} für ${price} (dein Zielpreis: ${target})`,
+    }[lang],
+  }
+}
+
 export function commentReceivedTitle(lang: PushLang): string {
   return { fr: '💬 Nouveau commentaire', en: '💬 New comment', de: '💬 Neuer Kommentar' }[lang]
 }

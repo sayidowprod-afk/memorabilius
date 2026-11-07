@@ -4,6 +4,23 @@ export type Entry = { date: string; titre: string; points: string[] }
 
 export const ENTRIES: Entry[] = [
   {
+    date: '10 novembre 2026', titre: 'Ajout en lot plus fiable et plus clair',
+    points: [
+      'Ajout en lot : une seule liste de cartes pour les photos, la rafale et les pages de classeur. Tu peux les mélanger sans rien perdre, et retirer une carte la retire vraiment.',
+      'Page de classeur : photographie d’abord le recto, puis ajoute le verso quand tu veux. La disposition (3 × 3, 3 × 4…) est devinée toute seule, et les emplacements simplement estimés (pochettes vides ?) ne sont plus ajoutés sans que tu les coches.',
+      'Si l’ajout s’arrête (bouton Arrêter, coupure de réseau), tes cartes restent dans la liste : « Reprendre » continue là où ça s’est arrêté et « Réessayer » relance les échecs. Rien n’est ajouté en double.',
+      'Les cartes sont envoyées trois par trois, donc beaucoup plus vite. L’écran reste allumé pendant l’envoi et une alerte te prévient si tu quittes la page par erreur.',
+      'Moins de plantages sur téléphone avec beaucoup de photos, et un résumé de fin avec un lien direct vers les cartes « À compléter ».',
+      'Accueil : les « Dernières pépites » défilent de nouveau toutes seules sur téléphone.',
+      'Recherche du haut : des pastilles Tout / Équipes / Joueurs / Membres pour filtrer, et tes dernières recherches proposées dès l’ouverture.',
+      'Galerie : après une suppression, tu as 8 secondes pour annuler, avec un compte à rebours bien visible.',
+      'Classeur : quand tu déplaces une carte, la pochette visée s’allume, une pastille par page permet de la déposer sur une autre page sans feuilleter, et un message confirme où elle est allée.',
+      'Mes ventes : les offres de prix reçues sur tes cartes s’affichent en haut, avec Accepter, Contre-offre et Refuser sans ouvrir les messages.',
+      'Wishlist : un prix cible facultatif par carte. Tu es prévenu quand un membre met cette carte en vente à ce prix ou moins.',
+      'Cartes à vendre : quand une offre est acceptée, la carte passe en « Réservée » (bandeau orange) et ne reçoit plus d’offres. Le vendeur peut lever la réservation depuis la fiche de la carte.',
+    ],
+  },
+  {
     date: '9 novembre 2026', titre: 'Nouvelle police, onglets plus lisibles, bas de page en colonnes',
     points: [
       'Nouvelle police pour les titres, les noms et les chiffres : lettres plus larges et plus lisibles, avec des accents (É, À, Ç…) à pleine hauteur. Les noms des cartes dans la grille se lisent beaucoup mieux.',

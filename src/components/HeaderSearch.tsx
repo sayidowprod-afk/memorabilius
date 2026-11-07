@@ -8,6 +8,19 @@ import { playerSlug, teamSlug } from '@/lib/playerSlug'
 import { SPORTS_TEAMS } from '@/lib/sportsTeams'
 import TeamBadge from '@/components/TeamBadge'
 
+// Dernières recherches (gardées sur l'appareil uniquement, rien n'est envoyé au serveur)
+const RECENT_KEY = 'mb_recent_searches'
+const readRecents = (): string[] => {
+  try { const r = JSON.parse(localStorage.getItem(RECENT_KEY) || '[]'); return Array.isArray(r) ? r.filter((x): x is string => typeof x === 'string').slice(0, 6) : [] } catch { return [] }
+}
+const addRecent = (q: string) => {
+  const v = q.trim()
+  if (v.length < 2) return
+  try { localStorage.setItem(RECENT_KEY, JSON.stringify([v, ...readRecents().filter(x => x.toLowerCase() !== v.toLowerCase())].slice(0, 6))) } catch { /* stockage indisponible */ }
+}
+const clearRecents = () => { try { localStorage.removeItem(RECENT_KEY) } catch { /* rien */ } }
+type Filter = 'all' | 'teams' | 'players' | 'members'
+
 interface Suggestions { players: string[]; collectors: { id: string; display_name: string; avatar_url: string | null }[] }
 
 // Recherche du header (desktop) : la loupe s'etend EN PLACE en un champ de
@@ -22,11 +35,17 @@ export default function HeaderSearch({ open, onToggle }: { open: boolean; onTogg
   const [q, setQ] = useState('')
   const [data, setData] = useState<Suggestions>({ players: [], collectors: [] })
   const [loading, setLoading] = useState(false)
+  const [filter, setFilter] = useState<Filter>('all')
+  const [recents, setRecents] = useState<string[]>([])
   const wrapRef = useRef<HTMLDivElement>(null)
   const inputRef = useRef<HTMLInputElement>(null)
   const debounceRef = useRef<ReturnType<typeof setTimeout> | null>(null)
 
   const close = () => { onToggle(false); setQ('') }
+  // une recherche menée jusqu'au bout (résultat ouvert ou « voir tout ») est retenue pour la prochaine ouverture
+  const pick = () => { addRecent(q); close() }
+
+  useEffect(() => { if (open) setRecents(readRecents()) }, [open])
 
   useEffect(() => {
     if (!open) return
@@ -59,11 +78,14 @@ export default function HeaderSearch({ open, onToggle }: { open: boolean; onTogg
   }, [q])
 
   const nq = q.trim().toLowerCase()
-  const teams = nq.length >= 2 ? SPORTS_TEAMS.filter(team => team.name.toLowerCase().includes(nq)).slice(0, 5) : []
+  const teams = nq.length >= 2 && (filter === 'all' || filter === 'teams') ? SPORTS_TEAMS.filter(team => team.name.toLowerCase().includes(nq)).slice(0, 5) : []
+  const players = filter === 'all' || filter === 'players' ? data.players : []
+  const collectors = filter === 'all' || filter === 'members' ? data.collectors : []
 
   const goToFullSearch = () => {
     const query = q.trim()
     if (!query) return
+    addRecent(query)
     close()
     router.push(`/recherche?q=${encodeURIComponent(query)}`)
   }
@@ -77,8 +99,10 @@ export default function HeaderSearch({ open, onToggle }: { open: boolean; onTogg
   const headStyle: React.CSSProperties = { padding: '8px 12px 2px', fontSize: 11, fontWeight: 800, letterSpacing: '.08em', textTransform: 'uppercase', color: dark ? '#7f8aa8' : '#888' }
   const initials = (name: string) => name.split(/[\s-]+/).filter(Boolean).slice(0, 2).map(w => w[0]).join('').toUpperCase()
   const thumb: React.CSSProperties = { width: 24, height: 24, borderRadius: '50%', flexShrink: 0, display: 'flex', alignItems: 'center', justifyContent: 'center', objectFit: 'cover' }
-  const hasResults = data.players.length > 0 || data.collectors.length > 0 || teams.length > 0
-  const showPanel = open && q.trim().length >= 2
+  const hasResults = players.length > 0 || collectors.length > 0 || teams.length > 0
+  const typed = q.trim().length >= 2
+  const showPanel = open
+  const FILTERS: [Filter, string][] = [['all', lang === 'fr' ? 'Tout' : 'All'], ['teams', heads.teams], ['players', heads.players], ['members', heads.members]]
 
   return (
     <div ref={wrapRef} style={{ position: 'relative', display: 'flex', alignItems: 'center' }}>
@@ -108,25 +132,46 @@ export default function HeaderSearch({ open, onToggle }: { open: boolean; onTogg
       </div>
       {showPanel && (
         <div style={{ position: 'absolute', top: 'calc(100% + 8px)', left: 0, background: dark ? '#1a1a1a' : 'white', border: `1px solid ${dark ? '#2a2a2a' : '#eee'}`, borderRadius: 12, padding: 6, boxShadow: '0 8px 24px rgba(0,0,0,0.14)', width: 280, maxHeight: 340, overflowY: 'auto', zIndex: 300 }}>
-          {loading && <div style={{ padding: '10px 12px', fontSize: 12, color: dark ? '#888' : '#999' }}>{t('nav_search_loading')}</div>}
-          {!loading && !hasResults && <div style={{ padding: '10px 12px', fontSize: 12, color: dark ? '#888' : '#999' }}>{t('nav_search_no_results')}</div>}
+          <div role="group" aria-label="Filtrer la recherche" style={{ display: 'flex', flexWrap: 'wrap', gap: 4, padding: '4px 6px 6px' }}>
+            {FILTERS.map(([k, l]) => (
+              <button key={k} type="button" aria-pressed={filter === k} onClick={() => setFilter(k)}
+                style={{ border: `1px solid ${filter === k ? (dark ? '#fff' : '#06122e') : (dark ? '#444' : '#ccd3e6')}`, background: filter === k ? (dark ? '#fff' : '#06122e') : 'transparent', color: filter === k ? (dark ? '#06122e' : '#fff') : (dark ? '#ddd' : '#333'), borderRadius: 0, padding: '1px 7px', font: '700 9.5px system-ui', letterSpacing: '.05em', textTransform: 'uppercase', cursor: 'pointer' }}>{l}</button>
+            ))}
+          </div>
+          {!typed && (
+            recents.length > 0 ? (
+              <>
+                <div style={{ ...headStyle, display: 'flex', alignItems: 'center' }}>
+                  <span style={{ flex: 1 }}>{lang === 'fr' ? 'Récents' : 'Recent'}</span>
+                  <button type="button" onClick={() => { clearRecents(); setRecents([]) }} style={{ background: 'none', border: 0, color: dark ? '#8fb0ff' : '#003DA6', cursor: 'pointer', font: '700 11px system-ui', textTransform: 'none', letterSpacing: 0 }}>{lang === 'fr' ? 'Effacer' : 'Clear'}</button>
+                </div>
+                {recents.map(r => (
+                  <button key={r} type="button" onClick={() => setQ(r)} style={{ ...itemStyle, width: '100%', boxSizing: 'border-box', background: 'none', border: 'none', cursor: 'pointer', textAlign: 'left' }}>
+                    <span aria-hidden="true" style={{ opacity: .6 }}>↺</span>{r}
+                  </button>
+                ))}
+              </>
+            ) : <div style={{ padding: '10px 12px', fontSize: 12, color: dark ? '#888' : '#999' }}>{lang === 'fr' ? 'Tape au moins 2 lettres : joueur, équipe ou membre.' : 'Type at least 2 letters: player, team or member.'}</div>
+          )}
+          {typed && loading && <div style={{ padding: '10px 12px', fontSize: 12, color: dark ? '#888' : '#999' }}>{t('nav_search_loading')}</div>}
+          {typed && !loading && !hasResults && <div style={{ padding: '10px 12px', fontSize: 12, color: dark ? '#888' : '#999' }}>{t('nav_search_no_results')}</div>}
           {teams.length > 0 && <div style={headStyle}>{heads.teams}</div>}
           {teams.map(team => (
-            <Link key={team.id} href={`/equipe/${teamSlug(team.name)}`} style={itemStyle} onClick={close}>
+            <Link key={team.id} href={`/equipe/${teamSlug(team.name)}`} style={itemStyle} onClick={pick}>
               <span style={{ ...thumb, background: dark ? '#222' : '#f0f0f0' }}><TeamBadge teamId={team.id} size={20} /></span>
               {team.name}
             </Link>
           ))}
-          {data.players.length > 0 && <div style={headStyle}>{heads.players}</div>}
-          {data.players.map(name => (
-            <Link key={name} href={`/joueur/${playerSlug(name)}`} style={itemStyle} onClick={close}>
+          {players.length > 0 && <div style={headStyle}>{heads.players}</div>}
+          {players.map(name => (
+            <Link key={name} href={`/joueur/${playerSlug(name)}`} style={itemStyle} onClick={pick}>
               <span style={{ ...thumb, background: 'linear-gradient(135deg, #1e63e0, #00307e)', color: '#fff', fontSize: 10, fontWeight: 800 }} aria-hidden="true">{initials(name)}</span>
               {name}
             </Link>
           ))}
-          {data.collectors.length > 0 && <div style={headStyle}>{heads.members}</div>}
-          {data.collectors.map(c => (
-            <Link key={c.id} href={`/galerie/${c.id}`} style={itemStyle} onClick={close}>
+          {collectors.length > 0 && <div style={headStyle}>{heads.members}</div>}
+          {collectors.map(c => (
+            <Link key={c.id} href={`/galerie/${c.id}`} style={itemStyle} onClick={pick}>
               {c.avatar_url
                 // eslint-disable-next-line @next/next/no-img-element
                 ? <img src={c.avatar_url} alt="" style={thumb} />
@@ -134,7 +179,7 @@ export default function HeaderSearch({ open, onToggle }: { open: boolean; onTogg
               {c.display_name}
             </Link>
           ))}
-          {hasResults && (
+          {typed && hasResults && (
             <button onClick={goToFullSearch} style={{ ...itemStyle, width: '100%', boxSizing: 'border-box', background: 'none', border: 'none', cursor: 'pointer', color: '#003DA6', marginTop: 2 }}>
               🔎 {t('nav_search_see_all')} « {q.trim()} »
             </button>

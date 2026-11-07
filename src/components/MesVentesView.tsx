@@ -8,6 +8,7 @@ import { achatCosts, encaisse, netOf, profitOf, statsOf, suggestAchat, type Vent
 import { matchesQuery } from '@/lib/achatsUi'
 import { askConfirm } from '@/components/ConfirmHost'
 import DataTable, { type Col } from '@/components/DataTable'
+import { hoursLeft, parsePrice, type Offer } from '@/lib/offers'
 
 // Affichage de « Mes ventes » (sans logique réseau) : ventes eBay importées + ventes saisies à la main, net encaissé, profit
 // réalisé et rendement (vente moins coût d'achat, relié automatiquement à « Mes achats » quand les titres se ressemblent).
@@ -21,8 +22,10 @@ const EMPTY: VenteForm = { titre: '', prix: '', port_facture: '', frais: '', cou
 type Period = 'mois' | 'annee' | 'tout'
 
 export default function MesVentesView({
-  ventes, achats, rates, connected, ebayStatut, busy, msg, now, onSync, onAdd, onPatch, onDelete, loading = false,
+  ventes, achats, rates, connected, ebayStatut, busy, msg, now, onSync, onAdd, onPatch, onDelete, loading = false, offers = [], onOfferAct,
 }: {
+  offers?: Array<Offer & { buyer_name: string | null }>
+  onOfferAct?: (id: string, action: 'accept' | 'refuse' | 'counter', price?: number) => Promise<string | null>
   ventes: Vente[]; achats: Row[]; rates: Rates; connected: boolean; ebayStatut?: string | null
   busy: boolean; msg: string | null; now: number; loading?: boolean
   onSync: () => void
@@ -94,6 +97,8 @@ export default function MesVentesView({
           {ebayStatut === 'expire' ? 'Ta connexion eBay a expiré. ' : ''}Pour importer tes ventes eBay automatiquement, relie ton compte depuis <Link href="/mes-achats" style={{ color: '#2f6bff', fontWeight: 700 }}>Mes achats</Link>.
         </div>
       )}
+
+      {offers.length > 0 && onOfferAct && <OffersBox offers={offers} onAct={onOfferAct} onNote={setNote} />}
 
       <div className="mv-bar">
         <div className="st-tabs" role="tablist" style={{ display: 'inline-flex', border: '3px solid var(--border)' }}>
@@ -182,6 +187,60 @@ export default function MesVentesView({
 
       {adding && <AddModal achats={achatsSorted} costs={costs} taken={taken} onClose={() => setAdding(false)} onAdd={async f => { const e = await onAdd(f); if (!e) { setAdding(false); setNote({ text: 'Vente ajoutée.' }) } return e }} />}
     </div>
+  )
+}
+
+// Offres de prix reçues sur mes cartes à vendre (entre membres de Memorabilius) : accepter, refuser ou contre-proposer sans ouvrir les messages.
+// Les offres « Meilleure offre » faites sur une annonce eBay ne passent pas ici : elles se traitent sur eBay.
+function OffersBox({ offers, onAct, onNote }: {
+  offers: Array<Offer & { buyer_name: string | null }>
+  onAct: (id: string, action: 'accept' | 'refuse' | 'counter', price?: number) => Promise<string | null>
+  onNote: (n: { text: string; ko?: boolean }) => void
+}) {
+  const [busy, setBusy] = useState<string | null>(null)
+  const [counter, setCounter] = useState<string | null>(null) // offre dont la contre-proposition est ouverte
+  const [price, setPrice] = useState('')
+  const run = async (id: string, action: 'accept' | 'refuse' | 'counter', p?: number, ok?: string) => {
+    setBusy(id)
+    const err = await onAct(id, action, p)
+    setBusy(null)
+    if (err) onNote({ text: err, ko: true })
+    else { onNote({ text: ok || 'Fait.' }); setCounter(null); setPrice('') }
+  }
+  return (
+    <section className="mv-offers" aria-label="Offres reçues">
+      <h2 className="ma-h2">Offres reçues ({offers.length})</h2>
+      <div className="mv-off-list">
+        {offers.map(o => {
+          const asking = o.card?.prix != null ? Number(o.card.prix) : null
+          const left = hoursLeft(o.expires_at)
+          const cp = parsePrice(price)
+          return (
+            <div key={o.id} className="mv-off">
+              {o.card?.image ? <img className="mv-off-ph" src={o.card.image} alt="" loading="lazy" /> : <div className="mv-off-ph mv-off-no" aria-hidden="true">🃏</div>}
+              <div className="mv-off-b">
+                <div className="ma-title">{o.card?.nom || 'Carte'}</div>
+                <div className="ma-line"><span className="da-num ma-price">{eur(Number(o.price))}</span>{asking !== null && <span className="ma-meta">prix demandé <s>{eur(asking)}</s></span>}</div>
+                <div className="ma-meta">de {o.buyer_name || 'un membre'} · expire dans {left} h{o.message ? ` · « ${o.message} »` : ''}</div>
+                {counter === o.id ? (
+                  <div className="mv-off-act">
+                    <input className="ma-det-in" style={{ width: 110 }} inputMode="decimal" value={price} onChange={e => setPrice(e.target.value)} placeholder="Ton prix" aria-label="Ta contre-proposition en euros" />
+                    <button type="button" className="ma-btn primary" disabled={busy === o.id || cp === null} onClick={() => run(o.id, 'counter', cp ?? undefined, 'Contre-proposition envoyée.')}>Envoyer</button>
+                    <button type="button" className="ma-btn ghost" onClick={() => { setCounter(null); setPrice('') }}>Annuler</button>
+                  </div>
+                ) : (
+                  <div className="mv-off-act">
+                    <button type="button" className="ma-btn primary" disabled={busy === o.id} onClick={async () => { if (await askConfirm(`Accepter l’offre de ${eur(Number(o.price))} pour « ${(o.card?.nom || 'cette carte').slice(0, 50)} » ?`, { confirmLabel: 'Accepter' })) run(o.id, 'accept', undefined, 'Offre acceptée : l’acheteur est prévenu.') }}>Accepter</button>
+                    <button type="button" className="ma-btn" disabled={busy === o.id} onClick={() => { setCounter(o.id); setPrice('') }}>Contre-offre</button>
+                    <button type="button" className="ma-btn ghost" disabled={busy === o.id} onClick={() => run(o.id, 'refuse', undefined, 'Offre refusée.')}>Refuser</button>
+                  </div>
+                )}
+              </div>
+            </div>
+          )
+        })}
+      </div>
+    </section>
   )
 }
 
@@ -282,4 +341,8 @@ const CSS = `
 .mv-card.src-ot { border-left: 6px solid #8a6cf0; } .ma-src.ot { background: #8a6cf0; }
 .mv-form { display: flex; flex-direction: column; gap: 10px; } .mv-form label { font: 700 12px system-ui, sans-serif; color: var(--text2); display: block; } .mv-form .ma-det-in { margin-top: 4px; }
 .mv-card .ma-det { flex-basis: 100%; }
+.mv-offers { margin: 0 0 18px; } .mv-off-list { display: grid; gap: 10px; }
+.mv-off { display: flex; gap: 12px; padding: 10px; border: 3px solid var(--border); background: var(--bg2); border-left: 6px solid #c98a12; }
+.mv-off-ph { width: 56px; aspect-ratio: 5 / 7; object-fit: cover; flex: none; align-self: flex-start; } .mv-off-no { display: grid; place-items: center; background: var(--bg3); font-size: 22px; }
+.mv-off-b { flex: 1; min-width: 0; } .mv-off-act { display: flex; gap: 8px; flex-wrap: wrap; align-items: center; margin-top: 8px; }
 `

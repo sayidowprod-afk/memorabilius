@@ -8,7 +8,7 @@ const IDLE_MS = 45_000
 // Evenements consideres comme une interaction -- couvre souris (web) et
 // tactile (tablette), sans se limiter a un seul type qui manquerait l'autre.
 const ACTIVITY_EVENTS = ['pointerdown', 'touchstart', 'keydown', 'wheel'] as const
-const FEATURE_PILLS = ['📸 Scan IA en 1 photo', '🃏 Galerie illimitée', '🏆 Classements', '🎥 Export vidéo & photo', '📔 Classeurs personnalisés', '💬 Communauté']
+const FEATURE_PILLS = ['Scan IA en 1 photo', 'Galerie illimitée', 'Classements', 'Export vidéo & photo', 'Classeurs personnalisés', 'Communauté']
 
 // Ecran "attract mode" façon demo en boutique (telephones exposes) : sur la
 // tablette du salon (compte demo uniquement), un carrousel plein ecran
@@ -91,11 +91,11 @@ export default function DemoAttractMode() {
     // visibles, seul le carrousel de cartes (au milieu, moins essentiel) absorbe
     // le manque de hauteur. Tailles en vh/clamp pour la meme raison.
     <div onClick={dismiss} onTouchStart={dismiss} className="demo-attract-root" style={{
-      position: 'fixed', inset: 0, zIndex: 999999, background: '#0a0e1a',
+      position: 'fixed', inset: 0, zIndex: 999999, background: 'linear-gradient(135deg, #050912 0%, #08153b 55%, #003da6 135%)', color: '#fff',
       display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'space-between',
       cursor: 'pointer', overflow: 'hidden', padding: '3vh 0',
     }}>
-      <img src="/memorabilius-logo.png" alt="Memorabilius" className="demo-attract-logo" style={{ width: 'min(420px, 60vw)', maxHeight: '14vh', height: 'auto', objectFit: 'contain', flexShrink: 0 }} />
+      <img src="/memorabilius-logo-white.png" alt="Memorabilius" className="demo-attract-logo" style={{ width: 'min(420px, 60vw)', maxHeight: '14vh', height: 'auto', objectFit: 'contain', flexShrink: 0 }} />
       <div style={{
         display: 'flex', gap: 16, animation: `demoAttractScroll ${scrollSecs}s linear infinite`,
         willChange: 'transform', flexShrink: 1, minHeight: 0,
@@ -103,25 +103,27 @@ export default function DemoAttractMode() {
         {[...cards, ...cards].map((c, i) => (
           <img key={i} src={c.url} alt="" loading="lazy" className="demo-attract-card" style={
             c.horizontal
-              ? { width: 'auto', height: '26vh', aspectRatio: '224 / 160', objectFit: 'cover', borderRadius: 12, boxShadow: '0 8px 30px rgba(0,0,0,0.5)', flexShrink: 0 }
-              : { width: 'auto', height: '26vh', aspectRatio: '160 / 224', objectFit: 'cover', borderRadius: 12, boxShadow: '0 8px 30px rgba(0,0,0,0.5)', flexShrink: 0 }
+              ? { width: 'auto', height: '26vh', aspectRatio: '224 / 160', objectFit: 'cover', borderRadius: 0, boxShadow: '0 14px 36px rgba(0,0,0,0.6)', flexShrink: 0 }
+              : { width: 'auto', height: '26vh', aspectRatio: '160 / 224', objectFit: 'cover', borderRadius: 0, boxShadow: '0 14px 36px rgba(0,0,0,0.6)', flexShrink: 0 }
           } />
         ))}
       </div>
       <div className="demo-attract-pills" style={{ display: 'flex', gap: 10, flexWrap: 'wrap', justifyContent: 'center', maxWidth: '90vw', flexShrink: 0 }}>
         {FEATURE_PILLS.map(p => (
           <div key={p} style={{
-            padding: '7px 16px', borderRadius: 99, background: 'rgba(255,255,255,0.08)',
-            border: '1px solid rgba(255,255,255,0.16)', color: 'rgba(255,255,255,0.85)',
-            fontSize: 14, fontWeight: 700, whiteSpace: 'nowrap',
+            padding: '8px 18px', borderRadius: 0, background: 'transparent',
+            border: '2px solid rgba(255,255,255,0.7)', color: '#fff',
+            fontSize: 14, fontWeight: 800, letterSpacing: '0.12em', textTransform: 'uppercase', whiteSpace: 'nowrap',
           }}>{p}</div>
         ))}
       </div>
       <div style={{
         textAlign: 'center', animation: 'demoAttractPulse 1.8s ease-in-out infinite', flexShrink: 0,
       }}>
-        <div style={{ fontSize: 44, marginBottom: 8 }}>👆</div>
-        <div style={{ color: 'white', fontSize: 28, fontWeight: 900, letterSpacing: 0.5, padding: '0 16px' }}>
+        <svg width="52" height="52" viewBox="0 0 52 52" fill="none" stroke="#fff" strokeWidth="3" aria-hidden="true" style={{ marginBottom: 10 }}>
+          <circle cx="26" cy="26" r="22" /><circle cx="26" cy="26" r="9" fill="#fff" stroke="none" />
+        </svg>
+        <div className="da-display" style={{ color: 'white', fontSize: 'clamp(26px, 4.2vh, 44px)', letterSpacing: '0.04em', padding: '0 16px' }}>
           Touchez l&apos;écran pour découvrir Memorabilius
         </div>
       </div>

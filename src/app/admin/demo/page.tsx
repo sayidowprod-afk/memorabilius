@@ -38,16 +38,18 @@ export default function AdminDemoPage() {
   }
 
   return (
-    <div style={{ maxWidth: 480, margin: '80px auto', padding: '0 20px', textAlign: 'center' }}>
-      <h1 style={{ fontSize: 22, fontWeight: 900, marginBottom: 8 }}>Lancer la demo salon</h1>
-      <p style={{ color: '#888', fontSize: 14, marginBottom: 24 }}>
-        Bascule cet appareil sur le compte demo. A faire une seule fois par
+    <div style={{ maxWidth: 480, margin: '80px auto', padding: '0 20px' }}>
+     <div style={{ border: '3px solid var(--border, #243063)', background: 'var(--bg2, #0e1530)', padding: '32px 24px', textAlign: 'center' }}>
+      <h1 style={{ fontSize: 34, marginBottom: 10 }}>Lancer la démo salon</h1>
+      <p style={{ color: 'var(--text2, #aab3d1)', fontSize: 15, lineHeight: 1.5, marginBottom: 24 }}>
+        Bascule cet appareil sur le compte démo. À faire une seule fois par
         tablette avant de passer en mode kiosque.
       </p>
       <button onClick={launchDemo} disabled={loading} className="btn-main btn-primary" style={{ width: '100%' }}>
-        {loading ? 'Connexion...' : 'Lancer la demo'}
+        {loading ? 'Connexion…' : 'Lancer la démo'}
       </button>
-      {error && <p style={{ color: '#e74c3c', fontSize: 13, marginTop: 16 }}>{error}</p>}
+      {error && <p role="alert" style={{ color: '#ff8a8a', fontSize: 14, marginTop: 16 }}>{error}</p>}
+     </div>
     </div>
   )
 }

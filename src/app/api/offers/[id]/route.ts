@@ -36,6 +36,8 @@ export async function PATCH(req: NextRequest, { params }: { params: Promise<{ id
       const { data: card } = await supabaseAdmin.from('cartes_manuelles').select('vendue, disponible_vente').eq('id', o.card_id).eq('user_id', o.seller_id).maybeSingle()
       if (!card || card.vendue || !card.disponible_vente) return NextResponse.json({ error: 'Cette carte n’est plus à vendre.' }, { status: 409 })
       await supabaseAdmin.from('offers').update({ status: 'accepted', updated_at: now }).eq('id', id)
+      // la carte est réservée pour l'acheteur (le vendeur peut lever la réservation) ; erreur ignorée si la migration n'est pas appliquée
+      await supabaseAdmin.from('cartes_manuelles').update({ reservee_pour: o.buyer_id, reservee_at: now }).eq('id', o.card_id).eq('user_id', o.seller_id)
       await postMessage(user.id, other, `✅ Offre acceptée : ${nameOf} à ${fmtPrice(final)}. On organise l’envoi ? (bouton 📦 de la conversation)`)
       await notifyOffer(other, user.id, 'accepted', fmtPrice(final))
       return NextResponse.json({ ok: true })

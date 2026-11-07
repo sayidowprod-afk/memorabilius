@@ -7,7 +7,9 @@ import type { Quad } from '@/lib/perspectiveCrop'
 
 export type P = { x: number; y: number }
 export type Slot = { quad: Quad; how: 'affinée' | 'prédite' | 'large' }
-export type BinderResult = { W: number; H: number; slots: Slot[]; lattice: boolean; log: string[] }
+// grid : disposition [lignes, colonnes] utilisée (devinée si rows/cols valent 0), [0, 0] si le réseau n'a pas été trouvé
+export type BinderResult = { W: number; H: number; slots: Slot[]; lattice: boolean; grid: [number, number]; log: string[] }
+const STD_GRIDS: [number, number][] = [[3, 3], [2, 2], [3, 2], [2, 3], [3, 4], [4, 3]]
 
 const cent = (p: P[]) => ({ x: p.reduce((a, q) => a + q.x, 0) / p.length, y: p.reduce((a, q) => a + q.y, 0) / p.length })
 const area = (p: P[]) => Math.abs(p.reduce((a, q, i) => { const r = p[(i + 1) % p.length]; return a + (q.x * r.y - r.x * q.y) }, 0)) / 2
@@ -39,8 +41,11 @@ function fit3(rows: { c: number; r: number; v: number }[]): [number, number, num
   return [m[0][3] / m[0][0], m[1][3] / m[1][1], m[2][3] / m[2][2]]
 }
 
-export async function detectBinderCards(full: HTMLCanvasElement, rows: number, cols: number, progress: (m: string) => void = () => {}): Promise<BinderResult> {
-  const W = full.width, H = full.height, n = rows * cols
+// rows et cols à 0 : la disposition est devinée d'après les cartes trouvées (parmi les pages de classeur courantes)
+export async function detectBinderCards(full: HTMLCanvasElement, rowsIn: number, colsIn: number, progress: (m: string) => void = () => {}): Promise<BinderResult> {
+  const auto = !rowsIn || !colsIn
+  let rows = auto ? 5 : rowsIn, cols = auto ? 5 : colsIn
+  const W = full.width, H = full.height, n = auto ? 12 : rows * cols
   const log: string[] = []
   const s = Math.min(1, 1600 / Math.max(W, H))
   const work = document.createElement('canvas'); work.width = Math.round(W * s); work.height = Math.round(H * s)
@@ -127,6 +132,12 @@ export async function detectBinderCards(full: HTMLCanvasElement, rows: number, c
       }
     }
     if (best && best.idx.length >= 3) {
+      if (auto) {
+        const extC = Math.max(...best.idx.map(i => i.a)) + 1, extR = Math.max(...best.idx.map(i => i.b)) + 1
+        const g = STD_GRIDS.filter(([r, c]) => r >= extR && c >= extC).sort((a, b) => a[0] * a[1] - b[0] * b[1])[0] ?? [extR, extC]
+        rows = g[0]; cols = g[1]
+        log.push(`disposition devinée : ${rows} × ${cols}`)
+      }
       log.push(`réseau : ${best.idx.length} / ${good.length} cartes cohérentes · U=(${best.U.x.toFixed(0)},${best.U.y.toFixed(0)}) V=(${best.V.x.toFixed(0)},${best.V.y.toFixed(0)})`)
       const fx = fit3(best.idx.map(i => ({ c: i.a, r: i.b, v: cs[i.k].x }))), fy = fit3(best.idx.map(i => ({ c: i.a, r: i.b, v: cs[i.k].y })))
       const first = best.idx[0]
@@ -151,9 +162,9 @@ export async function detectBinderCards(full: HTMLCanvasElement, rows: number, c
       const m = await refine(preds[i])
       slots.push(m ? { quad: toQuad(m), how: 'affinée' } : { quad: toQuad(preds[i]), how: 'prédite' })
     }
-    return { W, H, slots, lattice: true, log }
+    return { W, H, slots, lattice: true, grid: [rows, cols], log }
   }
   // repli : on garde ce qu'on a trouvé, rangé par lignes
   const sorted = [...good].sort((a, b) => cent(a).y - cent(b).y)
-  return { W, H, slots: sorted.map(q => ({ quad: toQuad(q), how: 'large' as const })), lattice: false, log }
+  return { W, H, slots: sorted.map(q => ({ quad: toQuad(q), how: 'large' as const })), lattice: false, grid: [0, 0], log }
 }

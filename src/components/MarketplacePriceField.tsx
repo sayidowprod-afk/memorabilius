@@ -12,11 +12,13 @@ type Suggestion = { median: number; min: number; max: number; n: number; source:
 // Prix d'une carte « Vente/Trade » dans le viewer 3D (propriétaire) -- affiché en étiquette sur la carte.
 // `suggest` : bouton « Prix conseillé » (médiane des ventes eBay récentes, à défaut des annonces en cours), à la demande
 // pour ne pas consommer le quota eBay à chaque ouverture.
-export default function MarketplacePriceField({ cardId, price, onSaved, suggest }: {
+export default function MarketplacePriceField({ cardId, price, onSaved, suggest, reserved, onReleased }: {
   cardId: string
   price?: number | null
   onSaved: (price: number | null) => void
   suggest?: PriceSuggestCard
+  reserved?: boolean          // carte réservée (offre acceptée) : le vendeur peut lever la réservation
+  onReleased?: () => void
 }) {
   const { dark } = useTheme()
   const [value, setValue] = useState(price != null ? String(price) : '')
@@ -58,12 +60,33 @@ export default function MarketplacePriceField({ cardId, price, onSaved, suggest 
     if (error) { toast.error(error.message); return }
     toast.success(next === null ? 'Prix retiré' : 'Prix enregistré : étiquette ajoutée sur la carte')
     onSaved(next)
+    // prévient les membres dont la wishlist attend cette carte à ce prix (prix cible) ; sans effet si personne n'est concerné
+    if (next !== null) {
+      supabase.auth.getSession().then(({ data: { session } }) => {
+        if (session) fetch('/api/wishlist-price-alert', { method: 'POST', headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${session.access_token}` }, body: JSON.stringify({ cardId }) }).catch(() => {})
+      })
+    }
+  }
+
+  const release = async () => {
+    setBusy(true)
+    const { error } = await supabase.from('cartes_manuelles').update({ reservee_pour: null, reservee_at: null }).eq('id', cardId)
+    setBusy(false)
+    if (error) { toast.error(error.message); return }
+    toast.success('Réservation levée : la carte peut de nouveau recevoir des offres')
+    onReleased?.()
   }
 
   const border = dark ? '#3a3a3a' : '#d8dde8'
   return (
     <div style={{ gridColumn: '1 / -1', border: `1px solid ${border}`, borderRadius: 10, padding: 12, background: dark ? '#1c1c1c' : '#f7f9fd' }}>
       <div style={{ fontSize: 12, fontWeight: 800, color: dark ? '#ddd' : '#333', marginBottom: 8 }}>🏷️ Prix de la carte</div>
+      {reserved && (
+        <div style={{ display: 'flex', alignItems: 'center', gap: 8, flexWrap: 'wrap', marginBottom: 10, padding: '8px 10px', border: '2px solid #c98a12', background: dark ? '#2a2000' : '#fff6dc', fontSize: 12, fontWeight: 700, color: dark ? '#ffd98a' : '#7a4f00' }}>
+          <span style={{ flex: '1 1 160px' }}>🔒 Réservée : une offre a été acceptée pour cette carte.</span>
+          <button type="button" disabled={busy} onClick={release} style={{ border: '2px solid currentColor', background: 'transparent', color: 'inherit', padding: '4px 10px', fontWeight: 800, fontSize: 11, cursor: 'pointer', textTransform: 'uppercase', letterSpacing: '.05em' }}>Lever la réservation</button>
+        </div>
+      )}
       <div style={{ display: 'flex', gap: 8, alignItems: 'center', flexWrap: 'wrap' }}>
         <div style={{ position: 'relative', flex: '1 1 110px', minWidth: 100 }}>
           <input

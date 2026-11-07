@@ -489,7 +489,7 @@ interface Card {
   br: string; s: string; v: string; num: string; card_number?: string; cert_number?: string
   auto: boolean; rc: boolean; patch: boolean; printing_plate?: boolean; g: string
   booklet?: boolean; is_horizontal?: boolean; verso_is_horizontal?: boolean | null; format?: string; il?: string; ir?: string
-  isManuelle?: boolean; disponible_vente?: boolean; vendue?: boolean; beckett_designation?: string; item_type?: string
+  isManuelle?: boolean; disponible_vente?: boolean; vendue?: boolean; reservee?: boolean; beckett_designation?: string; item_type?: string
   storage_binder?: string; storage_page?: number | null; storage_slot?: string;
   lien_vinted?: string; lien_ebay?: string;
   created_at?: string; position?: number; collection_tag?: string; collections?: string[];
@@ -958,13 +958,13 @@ export default function GalerieClient({ userId, initialCardUrl, initialCards, in
     }
   }
 
-  // Suppression avec délai d'annulation (5s) : la carte disparaît immédiatement de
+  // Suppression avec délai d'annulation (8 s, avec compte à rebours visible) : la carte disparaît immédiatement de
   // l'UI, mais la suppression réelle en base n'est déclenchée qu'après le délai
   // (sauf annulation) — évite le côté définitif/anxiogène d'un clic malheureux
   // (surtout avec la confirmation à 2 taps déjà en place). Volontairement pas de
   // "vraie" annulation après coup (delete + reinsert) : ça créerait une nouvelle
   // ligne (nouvel id) et casserait les likes/commentaires déjà liés à l'ancienne.
-  const UNDO_DELETE_DELAY_MS = 5000
+  const UNDO_DELETE_DELAY_MS = 8000
   const pendingDeletesRef = useRef<Map<string, { card: Card; index: number; timeoutId: ReturnType<typeof setTimeout> }>>(new Map())
   const [undoBanner, setUndoBanner] = useState<{ id: string; nom: string; ids?: string[] } | null>(null)
 
@@ -1061,7 +1061,7 @@ export default function GalerieClient({ userId, initialCardUrl, initialCards, in
   useEffect(() => { setBulkDeleteConfirm(false) }, [selectedCards])
 
   // Suppression groupée : réutilise handleDeleteCard carte par carte (même délai
-  // d'annulation de 5s, même nettoyage binder_slots/checklist/visibilité par
+  // d'annulation de 8 s, même nettoyage binder_slots/checklist/visibilité par
   // carte) plutôt que de dupliquer la logique de finalizeDeleteCard. Seule la
   // suppression concerne les cartes manuelles (isManuelle) — les cartes
   // communautaires n'ont pas d'id_manuelle à supprimer, comme pour le bouton
@@ -1203,7 +1203,7 @@ export default function GalerieClient({ userId, initialCardUrl, initialCards, in
         booklet: m.booklet || false, is_horizontal: m.is_horizontal || false, verso_is_horizontal: m.verso_is_horizontal ?? null, format: m.format || (m.is_horizontal ? 'horizontal' : 'standard'),
         il: m.image_interieur_gauche || '', ir: m.image_interieur_droite || '',
         created_at: m.created_at || '', position: m.position ?? 9999,
-        collection_tag: m.collection_tag || '', disponible_vente: m.disponible_vente || false, vendue: m.vendue || false, item_type: m.item_type || 'card',
+        collection_tag: m.collection_tag || '', disponible_vente: m.disponible_vente || false, vendue: m.vendue || false, reservee: !!m.reservee_pour, item_type: m.item_type || 'card',
         storage_binder: m.storage_binder || '', storage_page: m.storage_page ?? null, storage_slot: m.storage_slot || '',
         lien_vinted: m.lien_vinted || '', lien_ebay: m.lien_ebay || '',
       })
@@ -3469,12 +3469,17 @@ export default function GalerieClient({ userId, initialCardUrl, initialCards, in
         `}</style>
         
         {mounted && undoBanner && createPortal(
-          <div style={{ position: 'fixed', bottom: 'var(--bottom-nav-h, 0px)', left: 0, right: 0, zIndex: 10000, display: 'flex', alignItems: 'center', gap: 14, background: '#1a1a1a', color: 'white', borderRadius: '12px 12px 0 0', padding: '12px 24px', fontSize: 13, fontWeight: 700, boxShadow: '0 -4px 24px rgba(0,0,0,0.35)' }}>
-            <span style={{ flex: 1 }}>🗑️ {t('gallery_deleted_toast').replace('{nom}', undoBanner.nom)}</span>
-            <button onClick={() => undoBanner.ids ? undoBulkDelete(undoBanner.ids) : undoDeleteCard(undoBanner.id)}
-              style={{ background: 'white', color: '#111', border: 'none', borderRadius: 8, padding: '7px 16px', fontSize: 13, fontWeight: 800, cursor: 'pointer', flexShrink: 0 }}>
-              {t('gallery_undo')}
-            </button>
+          <div key={undoBanner.id + (undoBanner.ids ? undoBanner.ids.join(',') : '')} role="status" style={{ position: 'fixed', bottom: 'var(--bottom-nav-h, 0px)', left: 0, right: 0, zIndex: 10000, background: '#fff', color: '#06122e', borderTop: '3px solid #06122e', padding: '12px 24px 14px', fontSize: 13, fontWeight: 700, boxShadow: '0 -6px 24px rgba(0,0,0,0.35)' }}>
+            <div style={{ display: 'flex', alignItems: 'center', gap: 14 }}>
+              <span style={{ flex: 1 }}>🗑️ {t('gallery_deleted_toast').replace('{nom}', undoBanner.nom)}</span>
+              <button onClick={() => undoBanner.ids ? undoBulkDelete(undoBanner.ids) : undoDeleteCard(undoBanner.id)}
+                style={{ background: 'transparent', color: '#06122e', border: '3px solid #06122e', borderRadius: 0, padding: '7px 16px', fontSize: 13, fontWeight: 800, cursor: 'pointer', flexShrink: 0, textTransform: 'uppercase', letterSpacing: '0.06em' }}>
+                {t('gallery_undo')}
+              </button>
+            </div>
+            {/* compte à rebours : la barre se vide pendant le délai d'annulation */}
+            <i aria-hidden="true" style={{ display: 'block', height: 4, marginTop: 10, background: '#06122e', animation: `undoShrink ${UNDO_DELETE_DELAY_MS}ms linear forwards` }} />
+            <style>{`@keyframes undoShrink { from { width: 100%; } to { width: 0; } } @media (prefers-reduced-motion: reduce) { [role="status"] > i { animation: none !important; } }`}</style>
           </div>,
           document.body
         )}
@@ -3846,7 +3851,9 @@ export default function GalerieClient({ userId, initialCardUrl, initialCards, in
                     {isOwner && privateCards.has(d.f) && <i className="sash sash-tl" style={{ background: '#c0392b' }}>{t('gallery_private')}</i>}
                     {d.vendue
                       ? <i className="sash sash-tr" title={t('gallery_sold_badge')} style={{ background: '#8e2b22' }}>{t('gallery_sold_badge').toUpperCase()}</i>
-                      : d.disponible_vente && <i className="sash sash-tr" title={t('gallery_for_sale_title')} style={{ background: '#1f9d55' }}>{t('gallery_for_sale_label')}</i>}
+                      : d.disponible_vente && (d.reservee
+                        ? <i className="sash sash-tr" title="Une offre a été acceptée pour cette carte" style={{ background: '#c98a12' }}>Réservée</i>
+                        : <i className="sash sash-tr" title={t('gallery_for_sale_title')} style={{ background: '#1f9d55' }}>{t('gallery_for_sale_label')}</i>)}
                     {!d.vendue && d.disponible_vente && d.prix_vente != null && (
                       <PriceTag price={Number(d.prix_vente)} title={t('gallery_for_sale_title')} />
                     )}
@@ -4036,6 +4043,10 @@ export default function GalerieClient({ userId, initialCardUrl, initialCards, in
             const upd = (c: Card): Card => c.f === card.f ? { ...c, prix_vente, ...(prix_vente != null ? { disponible_vente: true } : {}) } : c
             setCards(prev => prev.map(upd))
             setPopup(prev => prev ? upd(prev) : prev)
+          }}
+          onReservedChange={(card, reservee) => {
+            setCards(prev => prev.map(c => c.f === card.f ? { ...c, reservee } : c))
+            setPopup(prev => prev && prev.f === card.f ? { ...prev, reservee } : prev)
           }}
           onVendueChange={(card, vendue) => {
             setCards(prev => prev.map(c => c.f === card.f ? { ...c, vendue } : c))

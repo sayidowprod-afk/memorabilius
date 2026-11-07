@@ -110,7 +110,7 @@ export async function generatePresskit(opts: { origin: string; lang: PresskitLan
   pdf.setTitle(tr('foot_l'))
   pdf.setAuthor('Memorabilius')
   const [surf, regular, bold] = await Promise.all([
-    fetchBytes(`${origin}/presskit/Surfquest.ttf`).then(b => pdf.embedFont(b, { subset: true })),
+    fetchBytes(`${origin}/presskit/Thernaly.ttf`).then(b => pdf.embedFont(b, { subset: true })),
     pdf.embedFont(StandardFonts.Helvetica),
     pdf.embedFont(StandardFonts.HelveticaBold),
   ])

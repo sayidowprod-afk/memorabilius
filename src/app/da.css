@@ -1259,11 +1259,7 @@ main input[aria-invalid="true"], main select[aria-invalid="true"], main textarea
   :root:not([data-theme="dark"]) * { scrollbar-color: #9fb0d8 transparent; }
 }
 
-/* 100 · Carrousels : accroche en fin de défilement (tactile) */
-@media (pointer: coarse) {
-  .pepites-track { scroll-snap-type: x proximity; }
-  .pepites-track > * { scroll-snap-align: center; }
-}
+/* 100 · Carrousels : l'accroche (scroll-snap) a été retirée, elle bloquait le défilement automatique des « Dernières pépites » */
 
 /* 81 · Petites aides sous les champs (majuscules activées, correction d'e-mail) */
 .da-hint { margin: 6px 0 0; font-size: 13px; line-height: 1.4; color: #b6bfdf; }
@@ -1379,6 +1375,8 @@ html[data-accent] a[style*="color:#003DA6"], html[data-accent] a[style*="color: 
 .da-lot-link { background: none; border: 0; color: #8fb0ff; text-decoration: underline; text-underline-offset: 3px; cursor: pointer; font: inherit; font-size: 13px; }
 .da-lot-row { display: flex; gap: 12px; align-items: center; padding: 10px; border: 2px solid var(--border, #243063); background: var(--bg2, #0e1530); }
 .da-lot-row.err { border-color: #b42318; }
+.da-lot-row.skip { opacity: .6; border-style: dashed; }
+.da-lot-warn { display: flex; align-items: center; gap: 8px; margin-top: 4px; font-size: 12.5px; color: #ffd84d; cursor: pointer; }
 .da-lot-num { font-family: 'Surfquest', Impact, sans-serif; font-size: 28px; min-width: 30px; text-align: center; color: #5b8def; }
 .da-lot-photos { display: flex; gap: 8px; }
 .da-lot-photos figure { margin: 0; width: 64px; }

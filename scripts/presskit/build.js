@@ -29,7 +29,8 @@ const CHIPS = (keys, style = '') => `<div class="chips" data-chips="${keys.join(
 const NUM = (name, label) => `<div><div class="num" data-num="${name}">0</div>${T(label, 'div', '')}</div>`
 
 const css = `
-@font-face{font-family:'Surfquest';src:url('${u('public/Surfquest-NoSlash.otf')}') format('opentype')}
+/* Thernaly (SIL OFL) sous le nom « Surfquest » : la détection du style titre (fam « sd ») plus bas repose sur ce nom */
+@font-face{font-family:'Surfquest';src:url('${u('public/Thernaly.ttf')}') format('truetype')}
 *{box-sizing:border-box;margin:0;padding:0}
 body{font-family:'Segoe UI',system-ui,Arial,sans-serif;color:#fff}
 .pg{width:1600px;height:900px;position:relative;overflow:hidden;padding:76px 96px;
@@ -52,11 +53,11 @@ p{font-size:26px;line-height:1.5;color:rgba(255,255,255,.82)}
 .chip{display:inline-block;border:2px solid rgba(255,255,255,.7);padding:8px 18px;font:800 19px 'Segoe UI',sans-serif;letter-spacing:.12em;text-transform:uppercase}
 .card{position:absolute;box-shadow:0 36px 70px rgba(0,0,0,.6);display:block}
 .grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:26px}
-.feat{border:3px solid rgba(255,255,255,.28);padding:30px 30px 26px;background:rgba(255,255,255,.05);min-height:210px}
+.feat{border:3px solid rgba(255,255,255,.28);padding:26px 30px 22px;background:rgba(255,255,255,.05);min-height:196px}
 .feat b{display:block;font:900 27px 'Segoe UI',sans-serif;margin-bottom:10px}
 .feat p{font-size:21px;line-height:1.45}
 .feat i{display:block;width:46px;height:6px;margin-bottom:20px}
-.num{font-family:'Surfquest',Impact,sans-serif;font-size:190px;line-height:.9}
+.num{font-family:'Surfquest',Impact,sans-serif;font-size:112px;line-height:.9;white-space:nowrap}
 .lab{font:800 22px 'Segoe UI',sans-serif;letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,.72);margin-top:10px}
 .phone{width:300px;border:10px solid #04060d;border-radius:44px;overflow:hidden;box-shadow:0 36px 70px rgba(0,0,0,.55);background:#04060d}
 .phone img{display:block;width:100%}
@@ -104,7 +105,7 @@ pages.push(`<section class="pg">
 pages.push(`<section class="pg">
   ${EYE('s2_eyebrow')}
   ${T('s2_title', 'h2', 'margin-bottom:60px')}
-  <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:30px;border-top:3px solid rgba(255,255,255,.35);padding-top:40px">
+  <div style="display:grid;grid-template-columns:1.25fr 2.3fr 1.25fr 1.9fr;gap:30px;border-top:3px solid rgba(255,255,255,.35);padding-top:40px">
     ${NUM('collectors', 'l_collectors').replace('<div data-t', '<div class="lab" data-t')}
     ${NUM('cards', 'l_cards').replace('<div data-t', '<div class="lab" data-t')}
     ${NUM('binders', 'l_binders').replace('<div data-t', '<div class="lab" data-t')}
@@ -118,7 +119,7 @@ pages.push(`<section class="pg">
 const COLORS = ['#2f6bff', '#e67e22', '#2fd072', '#d9a521', '#7b1fa2', '#1976d2']
 pages.push(`<section class="pg">
   ${EYE('s3_eyebrow')}
-  ${T('s3_title', 'h2', 'margin-bottom:38px')}
+  ${T('s3_title', 'h2', 'margin-bottom:24px')}
   <div class="grid3">${COLORS.map((c, i) => `<div class="feat"><i style="background:${c}"></i>${T(`f${i + 1}_t`, 'b')}${T(`f${i + 1}_d`, 'p')}</div>`).join('')}</div>
   ${FOOT(4)}
 </section>`)
@@ -143,7 +144,7 @@ pages.push(`<section class="pg">
   <div class="cols">
     <img class="shot" style="flex:1.3;width:100%" src="${w('viewer_d')}">
     <div style="flex:.7">
-      ${T('s5_title', 'h2')}
+      ${T('s5_title', 'h2', 'font-size:74px')}
       ${T('s5_p', 'p')}
     </div>
   </div>
@@ -197,7 +198,7 @@ pages.push(`<section class="pg light">
       </div>
       ${T('s8_logo_p', 'p', 'font-size:20px')}
       ${T('s8_typo', 'h2', 'font-size:70px;margin:26px 0 8px')}
-      <div class="sd" style="font-size:58px;color:#0a1228;line-height:1">Surfquest — 0123456789</div>
+      <div class="sd" style="font-size:58px;color:#0a1228;line-height:1">Thernaly — 0123456789</div>
       ${T('s8_typo_p', 'p', 'font-size:19px;margin-top:8px')}
     </div>
     <div>

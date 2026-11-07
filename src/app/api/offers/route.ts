@@ -20,8 +20,9 @@ export async function POST(req: NextRequest) {
 
     // La carte est relue en base : elle doit appartenir au vendeur, être à vendre et ne pas être vendue.
     const { data: card } = await supabaseAdmin.from('cartes_manuelles')
-      .select('id, nom, annee, marque, image_recto, prix_vente, vendue, disponible_vente').eq('id', cardId).eq('user_id', sellerId).maybeSingle()
+      .select('*').eq('id', cardId).eq('user_id', sellerId).maybeSingle()
     if (!card || !card.disponible_vente || card.vendue) return NextResponse.json({ error: 'Cette carte n’est plus à vendre.' }, { status: 409 })
+    if (card.reservee_pour) return NextResponse.json({ error: 'Cette carte est réservée pour un autre membre.' }, { status: 409 })
     const asking = card.prix_vente != null ? Number(card.prix_vente) : null
     if (asking != null && price >= asking) return NextResponse.json({ error: `Ton offre doit être inférieure au prix demandé (${fmtPrice(asking)}).` }, { status: 400 })
 

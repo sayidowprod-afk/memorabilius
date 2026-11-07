@@ -204,6 +204,10 @@ export default function BinderLibrary({ userId, isOwner, accent, pendingCard, on
   const [viewerSlot, setViewerSlot] = useState<Slot | null>(null)
   // Glisser-déplacer d'une carte d'une pochette à une autre
   const [cardDrag, setCardDrag] = useState<{ img: string; x: number; y: number } | null>(null)
+  // cible survolee pendant un deplacement de carte : une pochette precise, ou une pastille de page (deposer sur la page entiere)
+  const [dropTarget, setDropTarget] = useState<{ page: number; idx: number } | { chip: number } | null>(null)
+  const edgeRef = useRef<{ dir: 'next' | 'prev'; since: number } | null>(null)
+  const isDropAt = (p: number, i: number) => !!dropTarget && 'idx' in dropTarget && dropTarget.page === p && dropTarget.idx === i
   const cardDragRef = useRef<{ page: number; idx: number; slot: Slot; startX: number; startY: number; active: boolean; pointerId: number; el: HTMLElement; timer: number } | null>(null)
   const openSpreadRef = useRef<HTMLDivElement>(null)
   const flipCooldownRef = useRef(0)
@@ -1186,7 +1190,16 @@ export default function BinderLibrary({ userId, isOwner, accent, pendingCard, on
     const rows = [{ binder_id: selected.id, page_number: toPage, slot_index: toIdx, card_key: fromSlot.card_key, img: fromSlot.img, img_back: fromSlot.img_back, nom: fromSlot.nom, is_horizontal: !!fromSlot.is_horizontal }]
     if (toSlot) rows.push({ binder_id: selected.id, page_number: fromPage, slot_index: fromIdx, card_key: toSlot.card_key, img: toSlot.img, img_back: toSlot.img_back, nom: toSlot.nom, is_horizontal: !!toSlot.is_horizontal })
     const { error } = await supabase.rpc('replace_binder_slots', { p_binder_id: selected.id, p_deletes: moveDeletes, p_inserts: rows })
-    if (error) { toast.error(t('binder_error_prefix') + error.message); openBinder(selected) }
+    if (error) { toast.error(t('binder_error_prefix') + error.message); openBinder(selected); return }
+    toast.success(toSlot ? `Cartes échangées (page ${toPage})` : toPage === fromPage ? 'Carte déplacée' : `Carte déplacée : page ${toPage}`)
+  }
+
+  // Depose une carte sur une PAGE entiere (pastille du haut) : elle prend la premiere pochette libre de cette page
+  const moveToPage = (fromPage: number, fromIdx: number, toPage: number) => {
+    if (!selected) return
+    if (toPage === fromPage) { toast.info('La carte est déjà sur cette page : dépose-la sur une pochette précise.'); return }
+    for (let i = 0; i < selected.layout; i++) if (!slots.has(slotKey(toPage, i))) { moveSlot(fromPage, fromIdx, toPage, i); return }
+    toast.error(`La page ${toPage} est pleine : dépose la carte sur une pochette pour l’échanger.`)
   }
 
   // Déplacer une carte = APPUI LONG puis glisser (pour ne pas confondre avec le
@@ -1220,11 +1233,19 @@ export default function BinderLibrary({ userId, isOwner, accent, pendingCard, on
     }
     e.stopPropagation()
     setCardDrag({ img: c.slot.img, x: e.clientX, y: e.clientY })
-    // Près d'un bord → tourne la page pour pouvoir déposer sur une autre page
+    // cible survolée (pochette ou pastille de page) : elle s'allume pour montrer où la carte va tomber
+    const hit = document.elementFromPoint(e.clientX, e.clientY) as HTMLElement | null
+    const chip = hit?.closest('[data-dropchip]') as HTMLElement | null
+    const pocket = hit?.closest('[data-pocket]') as HTMLElement | null
+    const next: { page: number; idx: number } | { chip: number } | null = chip ? { chip: Number(chip.dataset.page) } : pocket ? { page: Number(pocket.dataset.page), idx: Number(pocket.dataset.idx) } : null
+    setDropTarget(prev => JSON.stringify(prev) === JSON.stringify(next) ? prev : next)
+    // Près d'un bord (56 px) pendant un court instant → tourne la page pour pouvoir déposer sur une autre page
     const rect = openSpreadRef.current?.getBoundingClientRect()
-    if (rect && !flip && Date.now() > flipCooldownRef.current) {
-      if (e.clientX > rect.right - 28 && canNext) { flipCooldownRef.current = Date.now() + 800; clickFlip('next') }
-      else if (e.clientX < rect.left + 28 && canPrev) { flipCooldownRef.current = Date.now() + 800; clickFlip('prev') }
+    if (rect && !flip) {
+      const dir: 'next' | 'prev' | null = e.clientX > rect.right - 56 && canNext ? 'next' : e.clientX < rect.left + 56 && canPrev ? 'prev' : null
+      if (!dir) edgeRef.current = null
+      else if (!edgeRef.current || edgeRef.current.dir !== dir) edgeRef.current = { dir, since: Date.now() }
+      else if (Date.now() - edgeRef.current.since > 250 && Date.now() > flipCooldownRef.current) { flipCooldownRef.current = Date.now() + 700; edgeRef.current = null; clickFlip(dir) }
     }
   }
   const cardPointerUp = (e: React.PointerEvent) => {
@@ -1234,8 +1255,11 @@ export default function BinderLibrary({ userId, isOwner, accent, pendingCard, on
     clearTimeout(c.timer)
     if (!c.active) return // appui simple → l'onClick ouvre la carte
     suppressClickUntil.current = Date.now() + 400
-    setCardDrag(null)
-    const target = (document.elementFromPoint(e.clientX, e.clientY) as HTMLElement | null)?.closest('[data-pocket]') as HTMLElement | null
+    setCardDrag(null); setDropTarget(null); edgeRef.current = null
+    const hit = document.elementFromPoint(e.clientX, e.clientY) as HTMLElement | null
+    const chip = hit?.closest('[data-dropchip]') as HTMLElement | null
+    if (chip) { const tp = Number(chip.dataset.page); if (!Number.isNaN(tp)) moveToPage(c.page, c.idx, tp); return }
+    const target = hit?.closest('[data-pocket]') as HTMLElement | null
     if (target) {
       const tPage = Number(target.dataset.page), tIdx = Number(target.dataset.idx)
       if (!Number.isNaN(tPage) && !Number.isNaN(tIdx) && !(tPage === c.page && tIdx === c.idx)) {
@@ -1247,7 +1271,7 @@ export default function BinderLibrary({ userId, isOwner, accent, pendingCard, on
     const c = cardDragRef.current
     cardDragRef.current = null
     if (c) clearTimeout(c.timer)
-    setCardDrag(null)
+    setCardDrag(null); setDropTarget(null); edgeRef.current = null
     if (c?.active) suppressClickUntil.current = Date.now() + 400
   }
 
@@ -1475,7 +1499,7 @@ export default function BinderLibrary({ userId, isOwner, accent, pendingCard, on
             return (
               <div key={idx} data-pocket data-page={page} data-idx={idx}
                 className={`binder-slot-card${justInserted === k ? ' binder-slot-card-enter' : ''}`}
-                style={{ aspectRatio: '2.5/3.5', overflow: 'hidden', position: 'relative', boxShadow: pendingCard && isOwner ? '0 0 0 2px #003DA6' : '0 0 0 1px rgba(150,165,180,0.4)', touchAction: 'none', opacity: isDragSource ? 0.35 : 1, cursor: pendingCard && isOwner ? 'cell' : undefined }}
+                style={{ aspectRatio: '2.5/3.5', overflow: 'hidden', position: 'relative', boxShadow: isDropAt(page, idx) ? '0 0 0 4px #5b8def, 0 0 20px rgba(91,141,239,0.8)' : pendingCard && isOwner ? '0 0 0 2px #003DA6' : '0 0 0 1px rgba(150,165,180,0.4)', touchAction: 'none', opacity: isDragSource ? 0.35 : 1, cursor: pendingCard && isOwner ? 'cell' : undefined }}
                 onPointerDown={pendingCard ? undefined : cardPointerDown(page, idx, slot)}
                 onPointerMove={pendingCard ? undefined : cardPointerMove}
                 onPointerUp={pendingCard ? undefined : cardPointerUp}
@@ -1517,8 +1541,8 @@ export default function BinderLibrary({ userId, isOwner, accent, pendingCard, on
                 else setPickerTarget({ page, idx })
               }}
               style={{
-                aspectRatio: '2.5/3.5', background: 'rgba(255,255,255,0.35)', position: 'relative', overflow: 'hidden',
-                boxShadow: 'inset 0 0 0 1px rgba(255,255,255,0.8), 0 0 0 1px rgba(150,165,180,0.45)',
+                aspectRatio: '2.5/3.5', background: isDropAt(page, idx) ? 'rgba(91,141,239,0.35)' : 'rgba(255,255,255,0.35)', position: 'relative', overflow: 'hidden',
+                boxShadow: isDropAt(page, idx) ? '0 0 0 4px #5b8def, 0 0 20px rgba(91,141,239,0.8)' : 'inset 0 0 0 1px rgba(255,255,255,0.8), 0 0 0 1px rgba(150,165,180,0.45)',
                 display: 'flex', alignItems: 'center', justifyContent: 'center',
                 cursor: isOwner ? 'pointer' : 'default', color: 'rgba(90,110,130,0.5)', fontSize: 18,
               }}
@@ -2692,11 +2716,26 @@ export default function BinderLibrary({ userId, isOwner, accent, pendingCard, on
       {/* Aperçu de la carte pendant le glisser-déplacer, collé au pointeur */}
       {cardDrag && createPortal(
         <div style={{
-          position: 'fixed', left: cardDrag.x, top: cardDrag.y, width: 74, aspectRatio: '2.5/3.5',
+          position: 'fixed', left: cardDrag.x, top: cardDrag.y, width: 84, aspectRatio: '2.5/3.5',
           transform: 'translate(-50%, -50%) rotate(-4deg)', zIndex: 3000, pointerEvents: 'none',
-          boxShadow: '0 12px 28px rgba(0,0,0,0.4)', overflow: 'hidden', borderRadius: 2,
+          boxShadow: '0 18px 36px rgba(0,0,0,0.5)', overflow: 'hidden', borderRadius: 0,
         }}>
           <img loading="lazy" src={cardDrag.img} alt="" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+        </div>,
+        document.body
+      )}
+
+      {/* Pendant le déplacement : une pastille par page, pour déposer la carte sur une autre page sans la feuilleter */}
+      {cardDrag && selected && createPortal(
+        <div role="group" aria-label="Déposer sur une page" style={{ position: 'fixed', top: 10, left: '50%', transform: 'translateX(-50%)', zIndex: 3001, maxWidth: '94vw', display: 'flex', alignItems: 'center', gap: 6, background: 'rgba(6,18,46,0.94)', border: '3px solid #fff', padding: '8px 10px', overflowX: 'auto' }}>
+          <span style={{ color: '#fff', font: '800 11px system-ui', letterSpacing: '.1em', textTransform: 'uppercase', whiteSpace: 'nowrap' }}>Déposer sur la page</span>
+          {Array.from({ length: selected.page_count }, (_, i) => i + 1).map(n => {
+            const on = !!dropTarget && 'chip' in dropTarget && dropTarget.chip === n
+            const here = cardDragRef.current?.page === n
+            return (
+              <span key={n} data-dropchip data-page={n} style={{ minWidth: 34, height: 34, display: 'grid', placeItems: 'center', font: '800 13px system-ui', border: '2px solid', borderColor: on ? '#5b8def' : here ? 'rgba(255,255,255,.3)' : '#fff', background: on ? '#5b8def' : 'transparent', color: here && !on ? 'rgba(255,255,255,.4)' : '#fff', flex: 'none' }}>{n}</span>
+            )
+          })}
         </div>,
         document.body
       )}

@@ -43,7 +43,7 @@ interface Card {
   isManuelle?: boolean; id_manuelle?: string; collection_tag?: string; collections?: string[]; beckett_designation?: string
   booklet?: boolean; is_horizontal?: boolean; verso_is_horizontal?: boolean | null; format?: string; il?: string; ir?: string
   storage_binder?: string; storage_page?: number | null; storage_slot?: string;
-  lien_vinted?: string; lien_ebay?: string; vendue?: boolean; disponible_vente?: boolean; prix_vente?: number | null;
+  lien_vinted?: string; lien_ebay?: string; vendue?: boolean; reservee?: boolean; disponible_vente?: boolean; prix_vente?: number | null;
   notes_perso?: string; notes_perso_public?: boolean
 }
 
@@ -107,7 +107,7 @@ function teamVars(team: string | null | undefined, accent: string): Record<strin
   }
 }
 
-export default function Viewer3D({ popup, accent, onClose, onNext, onPrev, getTags, userId, userSlug, isOwner, currentUserId, onCollectionTagChange, onCollectionsChange, onVendueChange, onDisponibleVenteChange, onPriceChange, allCollectionTags, onAddToMyGallery, initialAddState, onProposeTrade, cardValue, onValueSave, likeData, onLike, onDeleteCard }: {
+export default function Viewer3D({ popup, accent, onClose, onNext, onPrev, getTags, userId, userSlug, isOwner, currentUserId, onCollectionTagChange, onCollectionsChange, onVendueChange, onDisponibleVenteChange, onPriceChange, onReservedChange, allCollectionTags, onAddToMyGallery, initialAddState, onProposeTrade, cardValue, onValueSave, likeData, onLike, onDeleteCard }: {
   popup: Card
   accent: string
   onClose: () => void
@@ -123,6 +123,7 @@ export default function Viewer3D({ popup, accent, onClose, onNext, onPrev, getTa
   onVendueChange?: (card: Card, vendue: boolean) => void
   onDisponibleVenteChange?: (card: Card, disponibleVente: boolean) => void
   onPriceChange?: (card: Card, price: number | null) => void
+  onReservedChange?: (card: Card, reserved: boolean) => void
   allCollectionTags?: string[]
   onAddToMyGallery?: () => Promise<'added' | 'duplicate'>
   initialAddState?: 'idle' | 'added' | 'duplicate'
@@ -2136,7 +2137,7 @@ export default function Viewer3D({ popup, accent, onClose, onNext, onPrev, getTa
                 </>
               )}
               {isOwner && popup.id_manuelle && onPriceChange && (
-                <MarketplacePriceField cardId={popup.id_manuelle} price={popup.prix_vente} onSaved={p => onPriceChange(popup, p)}
+                <MarketplacePriceField cardId={popup.id_manuelle} price={popup.prix_vente} onSaved={p => onPriceChange(popup, p)} reserved={!!popup.reservee} onReleased={() => onReservedChange?.(popup, false)}
                   suggest={{ name: popup.n, set: `${popup.br} ${popup.s}`.trim(), year: popup.y, num: popup.num, variant: popup.v, rc: popup.rc, auto: popup.auto, patch: popup.patch, grade: popup.g, img: popup.f }} />
               )}
             </div>
