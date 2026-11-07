@@ -1,4 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server'
+import { cronAuthorized } from '@/lib/cronAuth'
 import { fetchCsvCapped, parseCardStats, isAllowedCsvUrl } from '@/lib/csvParse'
 import { createServerServiceClient } from '@/lib/supabaseServer'
 
@@ -18,7 +19,7 @@ const MAX_PER_RUN = 1500
 
 export async function GET(req: NextRequest) {
   const authHeader = req.headers.get('authorization')
-  if (authHeader !== `Bearer ${process.env.CRON_SECRET}`) {
+  if (!cronAuthorized(authHeader)) {
     return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
   }
 

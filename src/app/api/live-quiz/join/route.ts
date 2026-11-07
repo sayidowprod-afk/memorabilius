@@ -1,4 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server'
+import { rateLimited } from '@/lib/publicRateLimit'
 import { createServerServiceClient } from '@/lib/supabaseServer'
 
 const admin = createServerServiceClient()
@@ -9,6 +10,7 @@ const admin = createServerServiceClient()
 // personne tant qu'aucune question n'avait été lancée. Appelé une fois au
 // clic "Rejoindre" (voir /quiz/[code]/page.tsx).
 export async function POST(req: NextRequest) {
+  if (rateLimited(req, 'quiz-join', 30, 60000)) return NextResponse.json({ error: 'Too many requests' }, { status: 429 })
   const { code, participantId, pseudo } = await req.json()
   if (!code || !participantId || !pseudo) return NextResponse.json({ error: 'champs manquants' }, { status: 400 })
 

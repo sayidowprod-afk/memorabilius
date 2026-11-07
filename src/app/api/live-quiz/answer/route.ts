@@ -1,4 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server'
+import { rateLimited } from '@/lib/publicRateLimit'
 import { createServerServiceClient } from '@/lib/supabaseServer'
 
 const admin = createServerServiceClient()
@@ -9,6 +10,7 @@ const admin = createServerServiceClient()
 // -- volontairement PAS renvoyé dans la réponse non plus, pour garder le
 // suspense jusqu'au clic "Révéler" de l'animateur, comme les votes des autres.
 export async function POST(req: NextRequest) {
+  if (rateLimited(req, 'quiz-answer', 60, 60000)) return NextResponse.json({ error: 'Too many requests' }, { status: 429 })
   const { code, participantId, pseudo, choiceIndex } = await req.json()
   if (!code || !participantId || !pseudo || typeof choiceIndex !== 'number') {
     return NextResponse.json({ error: 'champs manquants' }, { status: 400 })

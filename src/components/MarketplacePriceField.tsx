@@ -70,7 +70,7 @@ export default function MarketplacePriceField({ cardId, price, onSaved, suggest,
 
   const release = async () => {
     setBusy(true)
-    const { error } = await supabase.from('cartes_manuelles').update({ reservee_pour: null, reservee_at: null }).eq('id', cardId)
+    const { error } = await supabase.from('cartes_manuelles').update({ reservee: false }).eq('id', cardId)
     setBusy(false)
     if (error) { toast.error(error.message); return }
     toast.success('Réservation levée : la carte peut de nouveau recevoir des offres')

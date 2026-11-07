@@ -1,4 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server'
+import { cronAuthorized } from '@/lib/cronAuth'
 import { createServerServiceClient } from '@/lib/supabaseServer'
 import { resolvePronosWins, purgeOldPicks } from '@/lib/pronosResolve'
 
@@ -12,7 +13,7 @@ const supabase = createServerServiceClient()
 // Fenêtre de 5 jours : largement assez pour rattraper une exécution manquée ; le reste a déjà été traité.
 export async function GET(req: NextRequest) {
   if (!process.env.CRON_SECRET) return NextResponse.json({ error: 'CRON_SECRET manquant' }, { status: 500 })
-  if (req.headers.get('authorization') !== `Bearer ${process.env.CRON_SECRET}`) {
+  if (!cronAuthorized(req.headers.get('authorization'))) {
     return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
   }
   try {

@@ -1,4 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server'
+import { cronAuthorized } from '@/lib/cronAuth'
 import { sendPushToUser, isChannelAllowed } from '@/lib/pushNotify'
 import { normalizePushLang, type PushLang } from '@/lib/pushTranslations'
 import { createServerServiceClient } from '@/lib/supabaseServer'
@@ -28,7 +29,7 @@ function wording(lang: PushLang, list: Added[]) {
 
 export async function GET(req: NextRequest) {
   if (!process.env.CRON_SECRET) return NextResponse.json({ error: 'CRON_SECRET manquant' }, { status: 500 })
-  if (req.headers.get('authorization') !== `Bearer ${process.env.CRON_SECRET}`) {
+  if (!cronAuthorized(req.headers.get('authorization'))) {
     return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
   }
 

@@ -1,4 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server'
+import { cronAuthorized } from '@/lib/cronAuth'
 import { createServerServiceClient } from '@/lib/supabaseServer'
 import { syncMember } from '@/lib/ebaySync'
 
@@ -11,7 +12,7 @@ const supabase = createServerServiceClient()
 // membres pas synchronisés depuis 6 h. Chaque exécution est plafonnée pour rester sous la durée maximale.
 export async function GET(req: NextRequest) {
   if (!process.env.CRON_SECRET) return NextResponse.json({ error: 'CRON_SECRET manquant' }, { status: 500 })
-  if (req.headers.get('authorization') !== `Bearer ${process.env.CRON_SECRET}`) {
+  if (!cronAuthorized(req.headers.get('authorization'))) {
     return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
   }
   const started = Date.now()

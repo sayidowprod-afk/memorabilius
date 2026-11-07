@@ -1,4 +1,5 @@
 import { ImageResponse } from 'next/og'
+import { cronAuthorized } from '@/lib/cronAuth'
 import { NextRequest, NextResponse } from 'next/server'
 import { Resend } from 'resend'
 import fs from 'fs'
@@ -38,7 +39,7 @@ const medal = (i: number) => i === 0 ? '🥇' : i === 1 ? '🥈' : i === 2 ? '�
 // manuellement en attendant.
 export async function GET(req: NextRequest) {
   const authHeader = req.headers.get('authorization')
-  if (authHeader !== `Bearer ${process.env.CRON_SECRET}`) {
+  if (!cronAuthorized(authHeader)) {
     return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
   }
 

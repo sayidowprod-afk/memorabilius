@@ -1,4 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server'
+import { rateLimited } from '@/lib/publicRateLimit'
 import { createServerClient } from '@/lib/supabaseServer'
 
 // Suggestions legeres pour la recherche du header (icone loupe, voir
@@ -24,6 +25,7 @@ function checkRate(ip: string): boolean {
 }
 
 export async function GET(req: NextRequest) {
+  if (rateLimited(req, 'search-suggest', 120, 60000)) return NextResponse.json({ error: 'Too many requests' }, { status: 429 })
   const ip = req.headers.get('x-forwarded-for')?.split(',')[0]?.trim() || 'unknown'
   if (!checkRate(ip)) return NextResponse.json({ error: 'Too many requests' }, { status: 429 })
 

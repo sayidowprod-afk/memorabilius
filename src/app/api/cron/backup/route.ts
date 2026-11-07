@@ -1,4 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server'
+import { cronAuthorized } from '@/lib/cronAuth'
 import { S3Client, PutObjectCommand } from '@aws-sdk/client-s3'
 import { createServerServiceClient } from '@/lib/supabaseServer'
 
@@ -28,7 +29,7 @@ async function upload(key: string, body: Buffer | string, contentType = 'applica
 }
 
 export async function GET(req: NextRequest) {
-  if (req.headers.get('authorization') !== `Bearer ${process.env.CRON_SECRET}`) {
+  if (!cronAuthorized(req.headers.get('authorization'))) {
     return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
   }
 

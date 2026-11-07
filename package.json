@@ -62,7 +62,7 @@
     "jspdf": "^4.2.1",
     "jsqr": "^1.4.0",
     "jszip": "^3.10.1",
-    "next": "16.2.7",
+    "next": "16.4.5",
     "node-fetch": "^2.7.0",
     "onnxruntime-web": "^1.27.0",
     "papaparse": "^5.5.3",
@@ -92,7 +92,7 @@
     "cheerio": "^1.2.0",
     "dotenv": "^17.4.2",
     "eslint": "^9",
-    "eslint-config-next": "16.2.7",
+    "eslint-config-next": "16.4.5",
     "tailwindcss": "^4",
     "typescript": "^5",
     "world-atlas": "^2.0.2"

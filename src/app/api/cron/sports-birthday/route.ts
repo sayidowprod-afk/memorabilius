@@ -1,4 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server'
+import { cronAuthorized } from '@/lib/cronAuth'
 import { discordFetch } from '@/lib/discordContest'
 import { BIRTHDAY_TAGGED_USER_IDS, birthdayChannelId, parisToday, postPublicBirthday, postTestBirthday, birthdaySelectMenu, groupCandidatesBySport, type BirthdayPlayer } from '@/lib/discordBirthday'
 import { createServerServiceClient } from '@/lib/supabaseServer'
@@ -28,7 +29,7 @@ const supabase = createServerServiceClient()
 export async function GET(req: NextRequest) {
   if (!process.env.CRON_SECRET) return NextResponse.json({ error: 'CRON_SECRET manquant' }, { status: 500 })
   const auth = req.headers.get('authorization')
-  if (auth !== `Bearer ${process.env.CRON_SECRET}`) {
+  if (!cronAuthorized(auth)) {
     return NextResponse.json({ error: 'unauthorized' }, { status: 401 })
   }
 

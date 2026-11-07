@@ -1,4 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server'
+import { cronAuthorized } from '@/lib/cronAuth'
 import { sendPushToUser } from '@/lib/pushNotify'
 import { popularityDigestPush, normalizePushLang } from '@/lib/pushTranslations'
 import { createServerServiceClient } from '@/lib/supabaseServer'
@@ -11,7 +12,7 @@ const supabase = createServerServiceClient()
 export async function GET(req: NextRequest) {
   if (!process.env.CRON_SECRET) return NextResponse.json({ error: 'CRON_SECRET manquant' }, { status: 500 })
   const authHeader = req.headers.get('authorization')
-  if (authHeader !== `Bearer ${process.env.CRON_SECRET}`) {
+  if (!cronAuthorized(authHeader)) {
     return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
   }
 

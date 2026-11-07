@@ -86,8 +86,15 @@ export default function WishlistPage() {
           8000, { data: null } as any
         )
         if (d) {
-          setItems(d)
-          try { localStorage.setItem('mb_wish_cache', JSON.stringify(d)) } catch { /* rien */ }
+          // prix cibles : table privée (lisible par toi seul) ; erreur ignorée si la migration n'est pas appliquée
+          let withTargets = d as WishItem[]
+          try {
+            const { data: pc } = await supabase.from('wishlist_prix_cible').select('wishlist_id, prix').eq('user_id', session.user.id)
+            const byId = new Map((pc || []).map((x: { wishlist_id: string; prix: number }) => [x.wishlist_id, Number(x.prix)]))
+            withTargets = withTargets.map(w => (byId.has(w.id) ? { ...w, prix_cible: byId.get(w.id)! } : w))
+          } catch { /* rien */ }
+          setItems(withTargets)
+          try { localStorage.setItem('mb_wish_cache', JSON.stringify(withTargets)) } catch { /* rien */ }
         } else {
           try { const c = JSON.parse(localStorage.getItem('mb_wish_cache') || 'null'); if (Array.isArray(c)) setItems(c) } catch { /* rien */ }
         }
@@ -102,20 +109,23 @@ export default function WishlistPage() {
     setSaving(true)
     const { prix_cible, ...rest } = form
     const target = parsePrice(prix_cible)
-    const first = await supabase.from('wishlist').insert({ ...rest, ...(target !== null ? { prix_cible: target } : {}), user_id: userId }).select().single()
-    let data = first.data
-    // migration du prix cible pas encore appliquée : on enregistre quand même la carte, sans le prix, en le disant
-    if (first.error && target !== null) {
-      toast.error('Carte ajoutée, mais le prix cible n’a pas pu être enregistré (mise à jour de la base à appliquer).')
-      ;({ data } = await supabase.from('wishlist').insert({ ...rest, user_id: userId }).select().single())
+    const first = await supabase.from('wishlist').insert({ ...rest, user_id: userId }).select().single()
+    const data = first.data as WishItem | null
+    let saved: WishItem | null = data
+    // le prix cible est rangé à part, dans une table que toi seul peux lire
+    if (data && target !== null) {
+      const { error: e2 } = await supabase.from('wishlist_prix_cible').insert({ wishlist_id: data.id, user_id: userId, prix: target })
+      if (e2) toast.error('Carte ajoutée, mais le prix cible n’a pas pu être enregistré (mise à jour de la base à appliquer).')
+      else saved = { ...data, prix_cible: target }
     }
-    if (data) setItems(prev => [data, ...prev])
+    if (saved) setItems(prev => [saved as WishItem, ...prev])
     setForm(empty)
     setShowForm(false)
     setSaving(false)
   }
 
   const remove = async (id: string) => {
+    await supabase.from('wishlist_prix_cible').delete().eq('wishlist_id', id) // prix cible rangé à part (erreur ignorée si la table n'existe pas encore)
     await supabase.from('wishlist').delete().eq('id', id)
     setItems(prev => prev.filter(i => i.id !== id))
     setRemovingId(null)

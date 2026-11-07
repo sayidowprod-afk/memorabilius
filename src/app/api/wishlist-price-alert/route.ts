@@ -41,9 +41,14 @@ export async function POST(req: NextRequest) {
   if (!card || !card.disponible_vente || card.vendue || card.prix_vente == null) return NextResponse.json({ ok: true, notified: 0 })
   const price = Number(card.prix_vente)
 
-  // colonne prix_cible absente (migration non appliquée) : erreur ignorée, simplement personne n'est prévenu
-  const { data: wishes, error } = await supabase.from('wishlist').select('*').neq('user_id', user.id).ilike('nom', escapeLike(card.nom)).not('prix_cible', 'is', null).gte('prix_cible', price)
-  if (error || !wishes?.length) return NextResponse.json({ ok: true, notified: 0 })
+  // wishlists qui contiennent cette carte, puis leurs prix cibles (table privée) supérieurs ou égaux au prix demandé.
+  // Table absente (migration non appliquée) : erreur ignorée, simplement personne n'est prévenu.
+  const { data: wl, error: e1 } = await supabase.from('wishlist').select('*').neq('user_id', user.id).ilike('nom', escapeLike(card.nom))
+  if (e1 || !wl?.length) return NextResponse.json({ ok: true, notified: 0 })
+  const { data: targets, error: e2 } = await supabase.from('wishlist_prix_cible').select('wishlist_id, prix').in('wishlist_id', wl.map(w => w.id)).gte('prix', price)
+  if (e2 || !targets?.length) return NextResponse.json({ ok: true, notified: 0 })
+  const targetOf = new Map(targets.map(t => [t.wishlist_id as string, Number(t.prix)]))
+  const wishes = wl.filter(w => targetOf.has(w.id)).map(w => ({ ...w, prix_cible: targetOf.get(w.id)! }))
 
   const lien = `/galerie/${user.id}${card.image_recto ? `?card=${encodeURIComponent(card.image_recto)}` : ''}`
   const toNotify: { uid: string; target: number }[] = []

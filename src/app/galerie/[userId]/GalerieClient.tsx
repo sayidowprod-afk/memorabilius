@@ -1203,7 +1203,7 @@ export default function GalerieClient({ userId, initialCardUrl, initialCards, in
         booklet: m.booklet || false, is_horizontal: m.is_horizontal || false, verso_is_horizontal: m.verso_is_horizontal ?? null, format: m.format || (m.is_horizontal ? 'horizontal' : 'standard'),
         il: m.image_interieur_gauche || '', ir: m.image_interieur_droite || '',
         created_at: m.created_at || '', position: m.position ?? 9999,
-        collection_tag: m.collection_tag || '', disponible_vente: m.disponible_vente || false, vendue: m.vendue || false, reservee: !!m.reservee_pour, item_type: m.item_type || 'card',
+        collection_tag: m.collection_tag || '', disponible_vente: m.disponible_vente || false, vendue: m.vendue || false, reservee: !!m.reservee, item_type: m.item_type || 'card',
         storage_binder: m.storage_binder || '', storage_page: m.storage_page ?? null, storage_slot: m.storage_slot || '',
         lien_vinted: m.lien_vinted || '', lien_ebay: m.lien_ebay || '',
       })

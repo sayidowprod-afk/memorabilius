@@ -1,4 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server'
+import { rateLimited } from '@/lib/publicRateLimit'
 import { createServerServiceClient } from '@/lib/supabaseServer'
 
 const admin = createServerServiceClient()
@@ -6,6 +7,7 @@ const admin = createServerServiceClient()
 const SKIP = /^\/(admin|api|_next|favicon)/
 
 export async function POST(req: NextRequest) {
+  if (rateLimited(req, 'track-view', 120, 60000)) return NextResponse.json({ error: 'Too many requests' }, { status: 429 })
   try {
     const { path, token } = await req.json() as { path?: string; token?: string }
     const country = (req.headers.get('x-vercel-ip-country') || 'XX').slice(0, 2).toUpperCase()

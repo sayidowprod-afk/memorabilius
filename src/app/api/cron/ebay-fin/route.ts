@@ -1,4 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server'
+import { cronAuthorized } from '@/lib/cronAuth'
 import { createServerServiceClient } from '@/lib/supabaseServer'
 import { loadAlertPrefs, notifyEbay, shortTitle } from '@/lib/ebaySync'
 
@@ -11,7 +12,7 @@ const supabase = createServerServiceClient()
 // quasi gratuit. Un drapeau évite d'envoyer deux fois le rappel pour la même enchère.
 export async function GET(req: NextRequest) {
   if (!process.env.CRON_SECRET) return NextResponse.json({ error: 'CRON_SECRET manquant' }, { status: 500 })
-  if (req.headers.get('authorization') !== `Bearer ${process.env.CRON_SECRET}`) {
+  if (!cronAuthorized(req.headers.get('authorization'))) {
     return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
   }
   const now = Date.now()

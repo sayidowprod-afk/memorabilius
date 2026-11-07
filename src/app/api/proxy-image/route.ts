@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server'
 import dns from 'node:dns/promises'
 import net from 'node:net'
+import { rateLimited } from '@/lib/publicRateLimit'
 
 // Proxy image : recharge cote client (via <img> same-origin, pour lire les
 // pixels en canvas sans probleme CORS) soit une photo de NOTRE bucket
@@ -31,6 +32,10 @@ function isPrivateIp(ip: string): boolean {
     if (a === 172 && b >= 16 && b <= 31) return true // RFC1918
     if (a === 192 && b === 168) return true // RFC1918
     if (a === 169 && b === 254) return true // link-local (metadata cloud incl.)
+    if (a === 100 && b >= 64 && b <= 127) return true // CGNAT (100.64.0.0/10)
+    if (a === 198 && (b === 18 || b === 19)) return true // réseaux de test (198.18.0.0/15)
+    if (a === 192 && b === 0) return true // 192.0.0.0/24 et 192.0.2.0/24
+    if (a >= 224) return true // multicast et réservé
     if (a === 0) return true
     return false
   }
@@ -56,6 +61,7 @@ async function isSafeExternalUrl(url: URL): Promise<boolean> {
 }
 
 export async function GET(req: NextRequest) {
+  if (rateLimited(req, 'proxy-image', 600, 60_000)) return NextResponse.json({ error: 'Trop de requetes' }, { status: 429 })
   const raw = req.nextUrl.searchParams.get('url')
   if (!raw) return NextResponse.json({ error: 'URL manquante' }, { status: 400 })
 
@@ -67,8 +73,22 @@ export async function GET(req: NextRequest) {
     return NextResponse.json({ error: 'URL non autorisee' }, { status: 400 })
   }
 
-  const res = await fetch(url.toString(), { signal: AbortSignal.timeout(10000), redirect: 'follow' })
-  if (!res.ok || !res.body) {
+  // Redirections suivies à la main : chaque saut est revérifié (avant, `redirect: 'follow'` laissait une adresse
+  // externe rediriger le serveur vers une adresse interne sans nouveau contrôle).
+  let res: Response | null = null
+  try {
+    let current = url
+    for (let hop = 0; hop < 4; hop++) {
+      const own = current.toString().startsWith(SUPABASE_STORAGE_PREFIX)
+      if (!own && !(await isSafeExternalUrl(current))) return NextResponse.json({ error: 'URL non autorisee' }, { status: 400 })
+      const r = await fetch(current.toString(), { signal: AbortSignal.timeout(10000), redirect: 'manual' })
+      const loc = r.headers.get('location')
+      if (r.status >= 300 && r.status < 400 && loc) { current = new URL(loc, current); continue }
+      res = r
+      break
+    }
+  } catch { return NextResponse.json({ error: 'Image introuvable' }, { status: 502 }) }
+  if (!res || !res.ok || !res.body) {
     return NextResponse.json({ error: 'Image introuvable' }, { status: 502 })
   }
   const contentType = res.headers.get('content-type') || ''
@@ -80,7 +100,17 @@ export async function GET(req: NextRequest) {
     return NextResponse.json({ error: 'Image trop volumineuse' }, { status: 413 })
   }
 
-  return new NextResponse(res.body, {
+  // plafond de taille appliqué aussi pendant le transfert (l'en-tête Content-Length peut être absent ou faux)
+  let sent = 0
+  const capped = res.body.pipeThrough(new TransformStream<Uint8Array, Uint8Array>({
+    transform(chunk, controller) {
+      sent += chunk.byteLength
+      if (sent > MAX_BYTES) controller.error(new Error('Image trop volumineuse'))
+      else controller.enqueue(chunk)
+    },
+  }))
+
+  return new NextResponse(capped, {
     headers: {
       'Content-Type': contentType || 'image/jpeg',
       // Cacheable publiquement par le CDN : l'image renvoyee ne depend que de l'URL (query param),
