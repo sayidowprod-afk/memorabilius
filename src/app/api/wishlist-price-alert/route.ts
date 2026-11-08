@@ -4,6 +4,7 @@ import { wishlistPriceFoundPush, genericCollectorName, normalizePushLang } from 
 import { createServerServiceClient } from '@/lib/supabaseServer'
 import { fmtPrice } from '@/lib/marketplace'
 import { teamOk } from '@/lib/wishTeam'
+import { demoUserIds } from '@/lib/demoUsers'
 
 const supabase = createServerServiceClient()
 
@@ -42,6 +43,8 @@ export async function POST(req: NextRequest) {
   const { data: card } = await supabase.from('cartes_manuelles').select('*').eq('id', cardId).eq('user_id', user.id).maybeSingle()
   if (!card || !card.disponible_vente || card.vendue || card.prix_vente == null) return NextResponse.json({ ok: true, notified: 0 })
   const price = Number(card.prix_vente)
+  const demo = await demoUserIds(supabase) // compte démo (salons) : ni alerte envoyée, ni reçue
+  if (demo.has(user.id)) return NextResponse.json({ ok: true, notified: 0 })
 
   // wishlists qui contiennent cette carte, puis leurs prix cibles (table privée) supérieurs ou égaux au prix demandé.
   // Table absente (migration non appliquée) : erreur ignorée, simplement personne n'est prévenu.
@@ -50,7 +53,7 @@ export async function POST(req: NextRequest) {
   const { data: targets, error: e2 } = await supabase.from('wishlist_prix_cible').select('wishlist_id, prix').in('wishlist_id', wl.map(w => w.id)).gte('prix', price)
   if (e2 || !targets?.length) return NextResponse.json({ ok: true, notified: 0 })
   const targetOf = new Map(targets.map(t => [t.wishlist_id as string, Number(t.prix)]))
-  const wishes = wl.filter(w => targetOf.has(w.id)).map(w => ({ ...w, prix_cible: targetOf.get(w.id)! }))
+  const wishes = wl.filter(w => targetOf.has(w.id) && !demo.has(w.user_id)).map(w => ({ ...w, prix_cible: targetOf.get(w.id)! }))
 
   const lien = `/galerie/${user.id}${card.image_recto ? `?card=${encodeURIComponent(card.image_recto)}` : ''}`
   const toNotify: { uid: string; target: number }[] = []

@@ -1,6 +1,7 @@
 import { MetadataRoute } from 'next'
 import { playerSlug, teamSlug } from '@/lib/playerSlug'
 import { createServerClient } from '@/lib/supabaseServer'
+import { demoUserIds } from '@/lib/demoUsers'
 
 const supabase = createServerClient()
 
@@ -35,7 +36,8 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
         .limit(5000),
     ])
 
-    const galeries: MetadataRoute.Sitemap = (profiles || []).map(p => ({
+    const demo = await demoUserIds(supabase) // compte démo (salons) : jamais référencé
+    const galeries: MetadataRoute.Sitemap = (profiles || []).filter(p => !demo.has(p.id)).map(p => ({
       url: `${base}/galerie/${(p as any).slug || p.id}`,
       lastModified: new Date((p as any).updated_at || new Date()),
       changeFrequency: 'weekly' as const,
@@ -66,7 +68,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     const playerPages: MetadataRoute.Sitemap = []
     const seenTeams = new Set<string>()
     const teamPages: MetadataRoute.Sitemap = []
-    for (const c of (cards || []) as any[]) {
+    for (const c of ((cards || []) as any[]).filter(c => !demo.has(c.user_id))) {
       if (c.nom) {
         const slug = playerSlug(c.nom)
         if (slug && !seenPlayers.has(slug)) {

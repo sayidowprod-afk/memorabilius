@@ -99,8 +99,11 @@ def pick(state):
         'or': '(auto.eq.true,patch.eq.true,num.not.is.null)',
     })
     deja = set(state.get('joueurs', []))
+    demo = ch.demo_ids()
     best = {}
     for r in rows:
+        if r.get('user_id') in demo:
+            continue
         img = r.get('image_recto_hd') or r.get('image_recto')
         if not img or 'placehold.co' in img or not r.get('nom'):
             continue

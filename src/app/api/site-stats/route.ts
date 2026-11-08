@@ -17,7 +17,7 @@ export const dynamic = 'force-dynamic'
 
 export async function GET() {
   const [profilesRes, totalCartesRes, bindersRes, tradeRes] = await Promise.all([
-    supabase.from('profiles').select('*', { count: 'exact', head: true }),
+    supabase.from('profiles').select('*', { count: 'exact', head: true }).eq('is_demo', false), // compte démo (salons) : jamais compté
     supabase.rpc('get_total_cards'),
     supabase.from('binders').select('*', { count: 'exact', head: true }).neq('is_public', false).gte('page_count', 1),
     supabase.from('cartes_manuelles').select('*', { count: 'exact', head: true }).eq('disponible_vente', true),

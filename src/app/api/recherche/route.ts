@@ -49,10 +49,10 @@ export async function GET(req: NextRequest) {
     for (let from = 0; ; from += 1000) {
       const { data, error } = await supabase
         .from('profiles')
-        .select('id, display_name, avatar_url, lien_csv, couleur_bordure')
+        .select('id, display_name, avatar_url, lien_csv, couleur_bordure, is_demo')
         .range(from, from + 999)
       if (error || !data || data.length === 0) break
-      all.push(...data)
+      all.push(...data.filter(p => !p.is_demo)) // compte démo (salons) : jamais dans les résultats, ni lui ni ses cartes
       if (data.length < 1000) break
     }
     return all
@@ -108,7 +108,7 @@ export async function GET(req: NextRequest) {
   // Collectionneurs — filtre côté DB, insensible aux accents (voir RPC plus haut)
   const { data: matchingProfiles } = await supabase
     .rpc('search_profiles_unaccent', { q: safeQ, max_rows: 10 })
-  const users = (matchingProfiles || []).map((p: any) => ({ id: p.id, display_name: p.display_name, avatar_url: p.avatar_url, accent: p.couleur_bordure || '#003DA6' }))
+  const users = (matchingProfiles || []).filter((p: any) => profileMap.has(p.id)).map((p: any) => ({ id: p.id, display_name: p.display_name, avatar_url: p.avatar_url, accent: p.couleur_bordure || '#003DA6' }))
 
   // ── Joueurs ────────────────────────────────────────────────────────────────
   // Source 1 : card_set_entries (joueurs avec sets dans la DB)

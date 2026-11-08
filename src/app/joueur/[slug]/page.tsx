@@ -349,14 +349,14 @@ async function _fetchPlayer(slug: string) {
     for (let from = 0; ; from += 1000) {
       const { data, error } = await supabase
         .from('cartes_manuelles')
-        .select('id, nom, annee, rc, auto, num, patch, marque, collection, variation, image_recto, is_horizontal, disponible_vente, created_at, user_id, profiles(display_name, avatar_url, couleur_bordure)')
+        .select('id, nom, annee, rc, auto, num, patch, marque, collection, variation, image_recto, is_horizontal, disponible_vente, created_at, user_id, profiles(display_name, avatar_url, couleur_bordure, is_demo)')
         .ilike('nom', `%${firstName}%`)
         .ilike('nom', `%${lastName}%`)
         .not('image_recto', 'is', null)
         .order('created_at', { ascending: false })
         .range(from, from + 999)
       if (error || !data || data.length === 0) break
-      all.push(...data)
+      all.push(...data.filter((m: any) => !m.profiles?.is_demo)) // compte démo (salons) : invisible
       if (data.length < 1000) break
     }
     return all
@@ -372,6 +372,7 @@ async function _fetchPlayer(slug: string) {
         .from('profiles')
         .select('id, display_name, avatar_url, lien_csv, couleur_bordure')
         .not('lien_csv', 'is', null)
+        .eq('is_demo', false)
         .range(from, from + 999)
       if (error || !data || data.length === 0) break
       all.push(...data)

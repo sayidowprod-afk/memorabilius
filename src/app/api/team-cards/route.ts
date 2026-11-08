@@ -3,6 +3,7 @@ import { SPORTS_TEAMS, type SportsTeam } from '@/lib/sportsTeams'
 import { teamSlug } from '@/lib/playerSlug'
 import { fetchCsvCardsForProfilesCached } from '@/lib/csvCardsCache'
 import { createServerClient } from '@/lib/supabaseServer'
+import { demoUserIds } from '@/lib/demoUsers'
 
 // Pagination de la section "Dans les collections" d'une page equipe
 // (defilement), meme principe que /api/player-cards.
@@ -48,7 +49,8 @@ export async function GET(req: NextRequest) {
     if (data.length < 1000) break
   }
 
-  const manuellesCards = manuelles.map((m: any) => ({
+  const demo = await demoUserIds(supabase) // compte démo (salons) : invisible
+  const manuellesCards = manuelles.filter((m: any) => !demo.has(m.user_id)).map((m: any) => ({
     id: m.id, img: m.image_recto, nom: m.nom, annee: m.annee, marque: m.marque,
     is_horizontal: m.is_horizontal, user_id: m.user_id,
     display_name: m.profiles?.display_name, avatar_url: m.profiles?.avatar_url,
@@ -56,7 +58,7 @@ export async function GET(req: NextRequest) {
   }))
 
   const { data: profilesData } = await supabase.from('profiles').select('id, display_name, avatar_url, lien_csv, couleur_bordure').not('lien_csv', 'is', null)
-  const csvAll = await fetchCsvCardsForProfilesCached(profilesData || [])
+  const csvAll = await fetchCsvCardsForProfilesCached((profilesData || []).filter((p: any) => !demo.has(p.id)))
   const lowerTeam = teamLastWord.toLowerCase()
   const csvCards = csvAll
     .filter(c => c.team.toLowerCase().includes(lowerTeam))

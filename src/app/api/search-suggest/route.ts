@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { rateLimited } from '@/lib/publicRateLimit'
 import { createServerClient } from '@/lib/supabaseServer'
+import { demoUserIds } from '@/lib/demoUsers'
 
 // Suggestions legeres pour la recherche du header (icone loupe, voir
 // HeaderSearch.tsx) -- volontairement separee de /api/recherche, qui elle
@@ -43,7 +44,9 @@ export async function GET(req: NextRequest) {
   ])
 
   const players = (playerRows || []).map((r: any) => r.player_name).filter(Boolean)
-  const collectors = (profileRows || []).map((p: any) => ({ id: p.id, display_name: p.display_name, avatar_url: p.avatar_url }))
+  // le compte démo (salons) ne doit jamais apparaître
+  const demo = await demoUserIds(supabase)
+  const collectors = (profileRows || []).filter((p: any) => !demo.has(p.id)).map((p: any) => ({ id: p.id, display_name: p.display_name, avatar_url: p.avatar_url }))
 
   return NextResponse.json({ players, collectors })
 }

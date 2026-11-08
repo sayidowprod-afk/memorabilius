@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from 'next/server'
 import { fetchCsvCardsForProfilesCached } from '@/lib/csvCardsCache'
 import { normalizeName, cardPageUrl } from '@/lib/playerSlug'
 import { createServerClient } from '@/lib/supabaseServer'
+import { demoUserIds } from '@/lib/demoUsers'
 
 // Pagination des "cartes communaute" d'un joueur, appelee par
 // CommunityCardsSection.tsx (defilement + changement de filtre/tri).
@@ -103,7 +104,8 @@ export async function GET(req: NextRequest) {
     all.push(...data)
     if (data.length < 1000) break
   }
-  const matchedManu = all.filter((m: any) => normalizeName(m.nom || '').includes(normTarget))
+  const demo = await demoUserIds(supabase) // compte démo (salons) : invisible
+  const matchedManu = all.filter((m: any) => !demo.has(m.user_id) && normalizeName(m.nom || '').includes(normTarget))
 
   const manuellesCards: Card[] = matchedManu.map((m: any) => ({
     id: m.id, img: m.image_recto, nom: m.nom, annee: m.annee, marque: m.marque, collection: m.collection,
@@ -127,7 +129,7 @@ export async function GET(req: NextRequest) {
     profilesData.push(...data)
     if (data.length < 1000) break
   }
-  const csvAll = await fetchCsvCardsForProfilesCached(profilesData)
+  const csvAll = await fetchCsvCardsForProfilesCached(profilesData.filter((p: any) => !demo.has(p.id)))
   const csvCards: Card[] = csvAll
     .filter(c => normalizeName(c.name).includes(normTarget))
     .map(c => ({

@@ -3,6 +3,7 @@ import { sendPushToUser } from '@/lib/pushNotify'
 import { wishlistMatchFoundPush, wishlistCardAddedPush, genericCollectorName, normalizePushLang } from '@/lib/pushTranslations'
 import { createServerServiceClient } from '@/lib/supabaseServer'
 import { teamOk } from '@/lib/wishTeam'
+import { demoUserIds } from '@/lib/demoUsers'
 
 const supabase = createServerServiceClient()
 
@@ -46,6 +47,8 @@ export async function POST(req: NextRequest) {
   const { wishItem, wishUserId } = await req.json()
   if (!wishItem || !wishUserId) return NextResponse.json({ ok: false })
   if (callerId !== wishUserId) return NextResponse.json({ error: 'Forbidden' }, { status: 403 })
+  const demo = await demoUserIds(supabase) // compte démo (salons) : ni notification envoyée, ni reçue
+  if (demo.has(wishUserId)) return NextResponse.json({ ok: true, notified: 0 })
 
   // Vérifie que wishItem correspond réellement à une ligne de la wishlist de
   // l'appelant — sans ça, n'importe quel utilisateur connecté pouvait poster
@@ -73,7 +76,7 @@ export async function POST(req: NextRequest) {
   const toNotify: string[] = []
   for (const card of cards || []) {
     if (toNotify.length >= MAX_NOTIFS) break
-    if (!toNotify.includes(card.user_id) && cardMatchesWish(card, wishItem)) {
+    if (!demo.has(card.user_id) && !toNotify.includes(card.user_id) && cardMatchesWish(card, wishItem)) {
       toNotify.push(card.user_id)
     }
   }
@@ -116,6 +119,8 @@ export async function PUT(req: NextRequest) {
   const { card, cardUserId } = await req.json()
   if (!card || !cardUserId) return NextResponse.json({ ok: false })
   if (callerId !== cardUserId) return NextResponse.json({ error: 'Forbidden' }, { status: 403 })
+  const demoPut = await demoUserIds(supabase) // compte démo (salons) : ni notification envoyée, ni reçue
+  if (demoPut.has(cardUserId)) return NextResponse.json({ ok: true, notified: 0 })
 
   // Filtrer les wishlists par nom en SQL pour éviter un scan complet
   const { data: wishes } = await supabase
@@ -134,7 +139,7 @@ export async function PUT(req: NextRequest) {
   const toNotify: string[] = []
   for (const wish of wishes || []) {
     if (toNotify.length >= MAX_NOTIFS) break
-    if (!toNotify.includes(wish.user_id) && cardMatchesWish(card, wish)) {
+    if (!demoPut.has(wish.user_id) && !toNotify.includes(wish.user_id) && cardMatchesWish(card, wish)) {
       toNotify.push(wish.user_id)
     }
   }

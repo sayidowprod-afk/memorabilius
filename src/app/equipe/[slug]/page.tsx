@@ -33,13 +33,13 @@ async function fetchTeamData(slug: string) {
     for (let from = 0; ; from += 1000) {
       const { data, error } = await supabase
         .from('cartes_manuelles')
-        .select('id, nom, annee, marque, image_recto, is_horizontal, user_id, profiles(display_name, avatar_url, couleur_bordure)')
+        .select('id, nom, annee, marque, image_recto, is_horizontal, user_id, profiles(display_name, avatar_url, couleur_bordure, is_demo)')
         .ilike('equipe', `%${teamLastWord}%`)
         .not('image_recto', 'is', null)
         .order('created_at', { ascending: false })
         .range(from, from + 999)
       if (error || !data || data.length === 0) break
-      all.push(...data)
+      all.push(...data.filter((m: any) => !m.profiles?.is_demo)) // compte démo (salons) : invisible
       if (data.length < 1000) break
     }
     return all
@@ -55,7 +55,8 @@ async function fetchTeamData(slug: string) {
     supabase
       .from('profiles')
       .select('id, display_name, avatar_url, lien_csv, couleur_bordure')
-      .not('lien_csv', 'is', null),
+      .not('lien_csv', 'is', null)
+      .eq('is_demo', false),
   ])
 
   const sets = [...(setsData.data || [])].sort((a, b) => (b.year || 0) - (a.year || 0))

@@ -75,10 +75,10 @@ export async function GET(req: NextRequest) {
 
   const { data: profiles } = await supabase
     .from('profiles')
-    .select('id, display_name, avatar_url, couleur_bordure, slug')
+    .select('id, display_name, avatar_url, couleur_bordure, slug, is_demo')
     .in('id', [...matchIds])
 
-  const results = (profiles || []).map(p => ({
+  const results = (profiles || []).filter(p => !p.is_demo /* compte démo (salons) : invisible */).map(p => ({
     id: p.id,
     slug: p.slug || p.id,
     display_name: p.display_name,

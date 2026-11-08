@@ -53,6 +53,11 @@ BASE = ENV['NEXT_PUBLIC_SUPABASE_URL'].rstrip('/') + '/rest/v1'
 KEY = ENV['SUPABASE_SERVICE_ROLE_KEY']
 
 
+def demo_ids():
+    """Identifiants du compte démo (salons) : invisible, jamais dans une publication (classement, carte mystère, carte de la semaine)."""
+    return {r['id'] for r in api('profiles', {'select': 'id', 'is_demo': 'eq.true'})}
+
+
 def api(path, params=None, page=1000):
     """GET paginé sur l'API REST de Supabase."""
     out, start = [], 0

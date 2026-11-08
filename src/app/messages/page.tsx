@@ -563,7 +563,7 @@ function MessagesContent() {
   const searchNewConv = async (q: string) => {
     setNewConvSearch(q)
     if (q.trim().length < 2) { setNewConvResults([]); return }
-    const { data } = await supabase.from('profiles').select('id, display_name, avatar_url').ilike('display_name', `%${q}%`).neq('id', userId).limit(8)
+    const { data } = await supabase.from('profiles').select('id, display_name, avatar_url').ilike('display_name', `%${q}%`).neq('id', userId).eq('is_demo', false).limit(8)
     setNewConvResults(data || [])
   }
 

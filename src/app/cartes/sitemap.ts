@@ -1,6 +1,7 @@
 import { MetadataRoute } from 'next'
 import { cardPageUrl } from '@/lib/playerSlug'
 import { createServerClient } from '@/lib/supabaseServer'
+import { demoUserIds } from '@/lib/demoUsers'
 
 // Sitemap de TOUTES les fiches carte (+ sitemap d'images pour Google Images), decoupe en tranches :
 // une tranche = CHUNK cartes, servie sur /cartes/sitemap/<id>.xml (limite Google : 50 000 URLs / fichier).
@@ -26,6 +27,7 @@ export default async function sitemap(props: { id: Promise<string> }): Promise<M
   const base = 'https://www.memorabilius.fr'
   const out: MetadataRoute.Sitemap = []
   try {
+    const demo = await demoUserIds(supabase) // compte démo (salons) : jamais référencé
     for (let off = id * CHUNK; off < (id + 1) * CHUNK; off += PAGE) {
       const { data, error } = await supabase
         .from('cartes_manuelles')
@@ -35,7 +37,7 @@ export default async function sitemap(props: { id: Promise<string> }): Promise<M
         .range(off, off + PAGE - 1)
       if (error || !data?.length) break
       for (const c of data as any[]) {
-        if (!c.nom || !/^https?:\/\//.test(c.image_recto || '')) continue
+        if (demo.has(c.user_id) || !c.nom || !/^https?:\/\//.test(c.image_recto || '')) continue
         out.push({
           url: `${base}${cardPageUrl(c.user_id, c)}`,
           lastModified: new Date(c.created_at || Date.now()),

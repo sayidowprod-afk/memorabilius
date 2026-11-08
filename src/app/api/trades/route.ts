@@ -4,6 +4,7 @@ import { sendPushToUser } from '@/lib/pushNotify'
 import { tradeOfferPush, someoneNameFallback, normalizePushLang } from '@/lib/pushTranslations'
 import { notifyTradeEvent, TRADE_OFFER_TTL_DAYS } from '@/lib/tradeNotify'
 import { createServerServiceClient } from '@/lib/supabaseServer'
+import { demoUserIds } from '@/lib/demoUsers'
 
 const cardInputSchema = z.object({
   id: z.string().min(1).max(2000),
@@ -151,6 +152,10 @@ async function postHandler(req: NextRequest) {
 
   if (receiverId === user.id)
     return NextResponse.json({ error: 'Impossible de s\'échanger avec soi-même' }, { status: 400 })
+
+  // le compte démo (salons) est invisible des membres : on ne peut pas lui proposer d'échange
+  if ((await demoUserIds(supabaseAdmin)).has(receiverId))
+    return NextResponse.json({ error: 'Destinataire introuvable' }, { status: 404 })
 
   // Validation basique des cartes CSV : l'id doit être une URL publique externe
   const csvOffered = offeredCards.filter(c => !c.isManuelle)

@@ -1,5 +1,7 @@
 import type { SupabaseClient } from '@supabase/supabase-js'
 import { teamOk } from '@/lib/wishTeam'
+import { makeOwnedChecker } from '@/lib/ownedCards'
+import { demoUserIds } from '@/lib/demoUsers'
 
 // Meme logique de matching que api/wishlist-notify (voir ses commentaires) --
 // dupliquee ici plutot que partagee car cette route est en lecture seule et
@@ -30,6 +32,7 @@ const CARD_COLS = 'id, user_id, nom, annee, marque, collection, variation, num, 
 //  - theyWantFromMe: MES cartes disponibles qui correspondent a la wishlist d'autres membres
 //  - perfect       : membres presents dans les deux (echange parfait possible)
 export async function computeMatches(supabase: SupabaseClient, userId: string) {
+  const demo = await demoUserIds(supabase) // le compte démo (salons) reste invisible des membres
   const [{ data: myWishes }, { data: myCards }] = await Promise.all([
     supabase.from('wishlist').select('*').eq('user_id', userId).limit(60),
     supabase.from('cartes_manuelles').select(CARD_COLS).eq('user_id', userId).eq('disponible_vente', true).limit(300),
@@ -53,8 +56,11 @@ export async function computeMatches(supabase: SupabaseClient, userId: string) {
       .from('cartes_manuelles').select(CARD_COLS)
       .neq('user_id', userId).eq('disponible_vente', true).or(orFilter).limit(600)
     const isPriv = await isPrivateFor(candidates || [])
+    // jamais de carte que j'ai déjà dans ma collection
+    const { data: allMine } = await supabase.from('cartes_manuelles').select('nom, annee, marque, collection, variation, num').eq('user_id', userId).limit(20000)
+    const iOwn = makeOwnedChecker(allMine || [])
     for (const card of candidates || []) {
-      if (isPriv(card)) continue
+      if (isPriv(card) || iOwn(card) || demo.has(card.user_id)) continue
       const wish = myWishes.find(w => cardMatchesWish(card, w))
       if (wish) iWant.push({ wish: { id: wish.id, nom: wish.nom }, card })
     }
@@ -69,7 +75,7 @@ export async function computeMatches(supabase: SupabaseClient, userId: string) {
       .from('wishlist').select('*').neq('user_id', userId).or(orFilter).limit(600)
     for (const card of myCards) {
       for (const w of wishes || []) {
-        if (cardMatchesWish(card, w)) theyWant.push({ wisherId: w.user_id, wish: { id: w.id, nom: w.nom }, card })
+        if (!demo.has(w.user_id) && cardMatchesWish(card, w)) theyWant.push({ wisherId: w.user_id, wish: { id: w.id, nom: w.nom }, card })
       }
     }
   }

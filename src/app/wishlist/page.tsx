@@ -7,6 +7,8 @@ import { useLang } from '@/lib/LangContext'
 import { useTheme } from '@/lib/ThemeContext'
 import CardTagBadges from '@/components/CardTagBadges'
 import { toast } from '@/lib/toast'
+import SuggestInput from '@/components/SuggestInput'
+import { suggestPlayers, suggestTeams } from '@/lib/wishSuggest'
 import { parsePrice } from '@/lib/marketplace'
 
 interface WishItem {
@@ -198,11 +200,11 @@ export default function WishlistPage() {
           <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 10 }}>
             <div style={{ gridColumn: '1/-1' }}>
               <label style={{ fontSize: 10, fontWeight: 800, color: '#888', textTransform: 'uppercase', display: 'block', marginBottom: 4 }}>{t('setlist_player')}</label>
-              <input value={form.nom} onChange={e => setForm(p => ({ ...p, nom: e.target.value }))} placeholder="Ex: Shai Gilgeous-Alexander" />
+              <SuggestInput value={form.nom} onChange={v => setForm(p => ({ ...p, nom: v }))} getSuggestions={suggestPlayers} placeholder="Ex: Shai Gilgeous-Alexander" />
             </div>
             <div style={{ gridColumn: '1/-1' }}>
               <label style={{ fontSize: 10, fontWeight: 800, color: '#888', textTransform: 'uppercase', display: 'block', marginBottom: 4 }}>Équipe, facultatif</label>
-              <input value={form.equipe} onChange={e => setForm(p => ({ ...p, equipe: e.target.value }))} placeholder="Ex: Philadelphia 76ers" />
+              <SuggestInput value={form.equipe} onChange={v => setForm(p => ({ ...p, equipe: v }))} getSuggestions={suggestTeams} minChars={1} placeholder="Ex: Philadelphia 76ers" />
               <div style={{ fontSize: 11, color: '#888', marginTop: 4 }}>Pour ne chercher que les cartes du joueur dans cette équipe (ex : Iguodala chez les 76ers).</div>
             </div>
             <div>

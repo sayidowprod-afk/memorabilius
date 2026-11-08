@@ -1,5 +1,7 @@
 import type { SupabaseClient } from '@supabase/supabase-js'
 import { cardMatchesWish } from '@/lib/tradeMatches'
+import { makeOwnedChecker } from '@/lib/ownedCards'
+import { demoUserIds } from '@/lib/demoUsers'
 
 // « Chercher les meilleurs partenaires » : croise les collections (toutes les cartes, avec un indicateur « à vendre / échanger »)
 // et les wishlists des membres avec les miennes, puis classe les membres. Lecture seule. Les cartes privées sont exclues.
@@ -59,13 +61,17 @@ export async function computePartners(supabase: SupabaseClient, userId: string, 
     }
     return out
   })()
-  const [allCards, allWishes, privees] = await Promise.all([
+  let [allCards, allWishes, privees] = await Promise.all([
     theirCardsPromise,
     fetchAll<Row>((a, b) => supabase.from('wishlist').select(WISH_COLS).neq('user_id', userId).range(a, b)),
     fetchAll<Row>((a, b) => supabase.from('cartes_privees').select('user_id, card_key').range(a, b)),
   ])
   const priv = new Set(privees.map(p => `${p.user_id}::${p.card_key}`))
-  const cards = allCards.filter(c => !priv.has(`${c.user_id}::${c.image_recto}`))
+  // jamais de carte que j'ai déjà, ni de carte privée, ni rien venant du compte démo (invisible des membres)
+  const demo = await demoUserIds(supabase)
+  const iOwn = makeOwnedChecker(myCards)
+  const cards = allCards.filter(c => !demo.has(c.user_id) && !priv.has(`${c.user_id}::${c.image_recto}`) && !iOwn(c))
+  allWishes = allWishes.filter(w => !demo.has(w.user_id))
 
   // index par nom normalisé : évite de comparer chaque carte à chaque wishlist
   const myWishByName = new Map<string, Row[]>()
