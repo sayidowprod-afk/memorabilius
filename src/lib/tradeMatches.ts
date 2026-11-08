@@ -1,4 +1,5 @@
 import type { SupabaseClient } from '@supabase/supabase-js'
+import { teamOk } from '@/lib/wishTeam'
 
 // Meme logique de matching que api/wishlist-notify (voir ses commentaires) --
 // dupliquee ici plutot que partagee car cette route est en lecture seule et
@@ -13,6 +14,7 @@ export function cardMatchesWish(card: any, wish: any) {
   if (wish.marque && normalize(card.marque) !== normalize(wish.marque)) return false
   if (wish.collection && normalize(card.collection) !== normalize(wish.collection)) return false
   if (wish.variation && normalize(card.variation) !== normalize(wish.variation)) return false
+  if (!teamOk(card.equipe, wish.equipe)) return false
   if (wish.num && normNum(card.num) !== normNum(wish.num)) return false
   if (wish.rc && !card.rc) return false
   if (wish.auto && !card.auto) return false
@@ -20,7 +22,7 @@ export function cardMatchesWish(card: any, wish: any) {
   return true
 }
 
-const CARD_COLS = 'id, user_id, nom, annee, marque, collection, variation, num, rc, auto, patch, image_recto, valeur'
+const CARD_COLS = 'id, user_id, nom, annee, marque, collection, variation, num, rc, auto, patch, image_recto, valeur, equipe'
 
 
 // Mise en relation wishlist <-> collection pour un membre :

@@ -1496,7 +1496,8 @@ export default function Viewer3D({ popup, accent, onClose, onNext, onPrev, getTa
                         {/* Card window */}
                         <div className="slb-mid">
                           <div className="slb-window">
-                            <img src={popup.fHd || popup.f} onError={e => { const i = e.currentTarget; if (!i.dataset.fb) { i.dataset.fb = "1"; i.src = popup.f } }} draggable={false} alt={popup.n} />
+                            {/* La miniature de la grille (déjà en cache) sert de fond le temps que la version HD arrive : sans ça, sur connexion lente, la carte s'affichait, disparaissait puis réapparaissait. La HD reste l'image affichée. */}
+                            <img src={popup.fHd || popup.f} onError={e => { const i = e.currentTarget; if (!i.dataset.fb) { i.dataset.fb = "1"; i.src = popup.f } }} draggable={false} alt={popup.n} style={popup.fHd ? { backgroundImage: `url(${JSON.stringify(popup.f)})`, backgroundSize: 'cover', backgroundPosition: 'center' } : undefined} />
                             <div className="slb-sheen" />
                           </div>
                         </div>
@@ -1585,7 +1586,7 @@ export default function Viewer3D({ popup, accent, onClose, onNext, onPrev, getTa
                     l'ombre au sol fixe (viewer-ground-shadow) juste au-dessus,
                     qui reste lisible a n'importe quel angle de rotation. */}
                 <div style={{ position: 'absolute', inset: 0, backfaceVisibility: 'hidden', WebkitBackfaceVisibility: 'hidden', overflow: 'hidden', transform: half ? `translateZ(${half}px)` : undefined }}>
-                  <img src={popup.fHd || popup.f} onError={e => { const i = e.currentTarget; if (!i.dataset.fb) { i.dataset.fb = "1"; i.src = popup.f } }} draggable={false} style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }} alt={popup.n} />
+                  <img src={popup.fHd || popup.f} onError={e => { const i = e.currentTarget; if (!i.dataset.fb) { i.dataset.fb = "1"; i.src = popup.f } }} draggable={false} style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block', ...(popup.fHd ? { backgroundImage: `url(${JSON.stringify(popup.f)})`, backgroundSize: 'cover', backgroundPosition: 'center' } : {}) }} alt={popup.n} />
                 </div>
                 <div style={{ position: 'absolute', inset: 0, backfaceVisibility: 'hidden', WebkitBackfaceVisibility: 'hidden', transform: `rotateY(180deg)${half ? ` translateZ(${half}px)` : ''}`, overflow: 'hidden' }}>
                   {popup.b !== popup.f

@@ -81,15 +81,20 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   const supabaseOrigin = process.env.NEXT_PUBLIC_SUPABASE_URL
   return (
     <html lang="fr" suppressHydrationWarning>
-      {supabaseOrigin && (
-        <head>
-          {/* Quasiment toutes les données de l'app viennent de Supabase — établir
-              la connexion (DNS + TLS) pendant que la page charge évite d'attendre
-              ce round-trip au moment du tout premier fetch. */}
-          <link rel="preconnect" href={supabaseOrigin} />
-          <link rel="dns-prefetch" href={supabaseOrigin} />
-        </head>
-      )}
+      <head>
+        {/* Police des titres (Thernaly, déclarée dans da.css) préchargée : sans ça elle n'est demandée qu'une fois le CSS lu, et
+            sur connexion lente les titres changent de taille en cours de route (la page « saute »). L'URL doit être identique à celle du @font-face. */}
+        <link rel="preload" href="/Thernaly.ttf?v=1" as="font" type="font/ttf" crossOrigin="anonymous" />
+        {supabaseOrigin && (
+          <>
+            {/* Quasiment toutes les données de l'app viennent de Supabase — établir
+                la connexion (DNS + TLS) pendant que la page charge évite d'attendre
+                ce round-trip au moment du tout premier fetch. */}
+            <link rel="preconnect" href={supabaseOrigin} />
+            <link rel="dns-prefetch" href={supabaseOrigin} />
+          </>
+        )}
+      </head>
       <body>
         {/* Lit le thème depuis localStorage AVANT le premier rendu React pour éviter le flash light→dark (CLS) */}
         <script dangerouslySetInnerHTML={{ __html: `try{if(localStorage.getItem('theme')!=='light'){document.documentElement.setAttribute('data-theme','dark')}}catch(e){document.documentElement.setAttribute('data-theme','dark')};try{var a=localStorage.getItem('mb_accent');if(a&&/^#[0-9a-f]{6}$/i.test(a)){document.documentElement.style.setProperty('--accent',a);document.documentElement.setAttribute('data-accent','1')}}catch(e){};try{var h=document.documentElement,q=new URLSearchParams(location.search).get('season'),d=new Date(),m=d.getMonth()+1,j=d.getDate(),z=null;if(m===12&&j<=26)z='noel';else if(m===2&&j<=20)z='allstar';else if((m===4&&j>=15)||m===5||(m===6&&j<=20))z='playoffs';if(q==='noel'||q==='allstar'||q==='playoffs')z=q;else if(localStorage.getItem('mb_season_off')==='1')z=null;if(z){h.setAttribute('data-season',z);if(!h.hasAttribute('data-accent')){h.style.setProperty('--accent',{noel:'#1f9d55',allstar:'#c47f00',playoffs:'#c0262d'}[z]);h.setAttribute('data-accent','1')}}}catch(e){}` }} />

@@ -3,6 +3,7 @@ import { sendPushToUser } from '@/lib/pushNotify'
 import { wishlistPriceFoundPush, genericCollectorName, normalizePushLang } from '@/lib/pushTranslations'
 import { createServerServiceClient } from '@/lib/supabaseServer'
 import { fmtPrice } from '@/lib/marketplace'
+import { teamOk } from '@/lib/wishTeam'
 
 const supabase = createServerServiceClient()
 
@@ -19,6 +20,7 @@ function matches(card: Record<string, unknown>, wish: Record<string, unknown>) {
   if (w('marque') && normalize(f('marque')) !== normalize(w('marque'))) return false
   if (w('collection') && normalize(f('collection')) !== normalize(w('collection'))) return false
   if (w('variation') && normalize(f('variation')) !== normalize(w('variation'))) return false
+  if (!teamOk(f('equipe'), w('equipe'))) return false
   if (w('num') && normNum(f('num')) !== normNum(w('num'))) return false
   if (wish.rc && !card.rc) return false
   if (wish.auto && !card.auto) return false

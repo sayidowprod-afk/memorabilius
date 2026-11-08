@@ -10,12 +10,12 @@ import { toast } from '@/lib/toast'
 import { parsePrice } from '@/lib/marketplace'
 
 interface WishItem {
-  id: string; nom: string; annee: string; marque: string
+  id: string; nom: string; equipe?: string | null; annee: string; marque: string
   collection: string; variation: string; num: string
   rc: boolean; auto: boolean; patch: boolean; notes: string; prix_cible?: number | null
 }
 
-const empty = { nom: '', annee: '', marque: '', collection: '', variation: '', num: '', rc: false, auto: false, patch: false, notes: '', prix_cible: '' }
+const empty = { nom: '', equipe: '', annee: '', marque: '', collection: '', variation: '', num: '', rc: false, auto: false, patch: false, notes: '', prix_cible: '' }
 
 export default function WishlistPage() {
   const [items, setItems] = useState<WishItem[]>([])
@@ -107,9 +107,15 @@ export default function WishlistPage() {
   const save = async () => {
     if (!userId || !form.nom.trim()) return
     setSaving(true)
-    const { prix_cible, ...rest } = form
+    const { prix_cible, equipe, ...rest } = form
     const target = parsePrice(prix_cible)
-    const first = await supabase.from('wishlist').insert({ ...rest, user_id: userId }).select().single()
+    // l'équipe n'est envoyée que si elle est remplie ; si la colonne n'existe pas encore (mise à jour de la base à appliquer),
+    // on enregistre la carte sans l'équipe et on le dit
+    let first = await supabase.from('wishlist').insert({ ...rest, ...(equipe.trim() ? { equipe: equipe.trim() } : {}), user_id: userId }).select().single()
+    if (first.error && equipe.trim()) {
+      toast.error('Carte ajoutée sans l’équipe (mise à jour de la base à appliquer).')
+      first = await supabase.from('wishlist').insert({ ...rest, user_id: userId }).select().single()
+    }
     const data = first.data as WishItem | null
     let saved: WishItem | null = data
     // le prix cible est rangé à part, dans une table que toi seul peux lire
@@ -194,6 +200,11 @@ export default function WishlistPage() {
               <label style={{ fontSize: 10, fontWeight: 800, color: '#888', textTransform: 'uppercase', display: 'block', marginBottom: 4 }}>{t('setlist_player')}</label>
               <input value={form.nom} onChange={e => setForm(p => ({ ...p, nom: e.target.value }))} placeholder="Ex: Shai Gilgeous-Alexander" />
             </div>
+            <div style={{ gridColumn: '1/-1' }}>
+              <label style={{ fontSize: 10, fontWeight: 800, color: '#888', textTransform: 'uppercase', display: 'block', marginBottom: 4 }}>Équipe, facultatif</label>
+              <input value={form.equipe} onChange={e => setForm(p => ({ ...p, equipe: e.target.value }))} placeholder="Ex: Philadelphia 76ers" />
+              <div style={{ fontSize: 11, color: '#888', marginTop: 4 }}>Pour ne chercher que les cartes du joueur dans cette équipe (ex : Iguodala chez les 76ers).</div>
+            </div>
             <div>
               <label style={{ fontSize: 10, fontWeight: 800, color: '#888', textTransform: 'uppercase', display: 'block', marginBottom: 4 }}>{t('gallery_year_label')}</label>
               <input value={form.annee} onChange={e => setForm(p => ({ ...p, annee: e.target.value }))} placeholder="2024-25" />
@@ -269,7 +280,7 @@ export default function WishlistPage() {
           </div>
           {items.map(item => {
             const on = found.has(String(item.id))
-            const detail = [item.annee, item.marque, item.collection, item.variation, item.num, item.rc && 'RC', item.auto && 'Auto', item.patch && 'Patch'].filter(Boolean).join(' · ')
+            const detail = [item.equipe, item.annee, item.marque, item.collection, item.variation, item.num, item.rc && 'RC', item.auto && 'Auto', item.patch && 'Patch'].filter(Boolean).join(' · ')
             return (
               <button key={item.id} type="button" className={'da-salon-row' + (on ? ' on' : '')} aria-pressed={on} onClick={() => toggleFound(String(item.id))}>
                 <span className="da-salon-box" aria-hidden="true">{on ? '✓' : ''}</span>
@@ -289,7 +300,7 @@ export default function WishlistPage() {
             display: 'flex', alignItems: 'center', gap: 12,
           }}>
             <div style={{ flex: 1, minWidth: 0 }}>
-              <div style={{ fontWeight: 800, fontSize: 15, marginBottom: 3 }}>{item.nom}</div>
+              <div style={{ fontWeight: 800, fontSize: 15, marginBottom: 3 }}>{item.nom}{item.equipe && <span style={{ fontWeight: 700, fontSize: 12, color: '#003DA6', marginLeft: 8 }}>· {item.equipe}</span>}</div>
               <div style={{ fontSize: 12, color: '#999', marginBottom: 6 }}>
                 {[item.annee, item.marque, item.collection, item.variation].filter(Boolean).join(' · ')}
               </div>

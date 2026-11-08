@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from 'next/server'
 import { sendPushToUser } from '@/lib/pushNotify'
 import { wishlistMatchFoundPush, wishlistCardAddedPush, genericCollectorName, normalizePushLang } from '@/lib/pushTranslations'
 import { createServerServiceClient } from '@/lib/supabaseServer'
+import { teamOk } from '@/lib/wishTeam'
 
 const supabase = createServerServiceClient()
 
@@ -22,6 +23,7 @@ function cardMatchesWish(card: any, wish: any) {
   if (wish.marque && normalize(card.marque) !== normalize(wish.marque)) return false
   if (wish.collection && normalize(card.collection) !== normalize(wish.collection)) return false
   if (wish.variation && normalize(card.variation) !== normalize(wish.variation)) return false
+  if (!teamOk(card.equipe, wish.equipe)) return false
   if (wish.num && normNum(card.num) !== normNum(wish.num)) return false
   if (wish.rc != null && wish.rc && !card.rc) return false
   if (wish.auto != null && wish.auto && !card.auto) return false
@@ -57,7 +59,7 @@ export async function POST(req: NextRequest) {
   // Filtrer par nom en SQL pour éviter un scan complet
   const { data: cards } = await supabase
     .from('cartes_manuelles')
-    .select('user_id, nom, annee, marque, collection, image_recto')
+    .select('user_id, nom, annee, marque, collection, equipe, image_recto')
     .neq('user_id', wishUserId)
     .ilike('nom', escapeLike(wishItem.nom))
 

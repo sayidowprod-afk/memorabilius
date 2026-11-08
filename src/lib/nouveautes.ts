@@ -4,6 +4,13 @@ export type Entry = { date: string; titre: string; points: string[] }
 
 export const ENTRIES: Entry[] = [
   {
+    date: '12 novembre 2026', titre: 'Une équipe dans ta wishlist, Trade Matching',
+    points: [
+      'Échanges : l’onglet « Pour toi » s’appelle maintenant « Trade Matching ».',
+      'Wishlist : tu peux maintenant préciser une équipe (par exemple Iguodala chez les 76ers). Les alertes et les échanges ne te proposent alors que les cartes du joueur dans cette équipe.',
+    ],
+  },
+  {
     date: '11 novembre 2026', titre: 'Trouve les meilleurs échanges et un seul prix par carte',
     points: [
       'Échanges, onglet « Pour toi » : le bouton « Chercher les meilleurs partenaires » parcourt les collections et les wishlists de tous les membres, et classe ceux avec qui l’échange est le plus intéressant (score sur 100, valeurs équilibrées, échange parfait).',

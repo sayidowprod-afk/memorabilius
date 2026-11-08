@@ -5,7 +5,7 @@ import { cardMatchesWish } from '@/lib/tradeMatches'
 // et les wishlists des membres avec les miennes, puis classe les membres. Lecture seule. Les cartes privées sont exclues.
 
 const normalize = (s: string) => (s || '').normalize('NFD').replace(/[̀-ͯ]/g, '').toLowerCase().replace(/[^a-z0-9]/g, '')
-const CARD_COLS = 'id, user_id, nom, annee, marque, collection, variation, num, rc, auto, patch, image_recto, valeur'
+const CARD_COLS = 'id, user_id, nom, annee, marque, collection, variation, num, rc, auto, patch, image_recto, valeur, equipe, disponible_vente'
 const WISH_COLS = 'id, user_id, nom, annee, marque, collection, variation, num, rc, auto, patch'
 const PAGE = 1000
 const MAX_ROWS = 40000 // garde-fou : on ne charge jamais plus que cela en mémoire

@@ -917,7 +917,7 @@ export default function AjouterCarte({ params }: { params: Promise<{ userId: str
       method: 'PUT',
       headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${session?.access_token}` },
       body: JSON.stringify({
-        card: { nom: form.nom, annee: form.annee, marque: form.marque, collection: form.collection, variation: form.variation, num: form.num, rc: form.rc, auto: form.auto, patch: form.patch },
+        card: { nom: form.nom, equipe: form.equipe, annee: form.annee, marque: form.marque, collection: form.collection, variation: form.variation, num: form.num, rc: form.rc, auto: form.auto, patch: form.patch },
         cardUserId: uid,
       }),
     }).catch(() => {})

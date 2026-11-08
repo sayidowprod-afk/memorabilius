@@ -291,7 +291,7 @@ export const es = {
   trades_sport_label: 'Deporte:',
   trades_offers: '📤 Ofertas',
   trades_favorites: 'Favoritos',
-  trades_for_you: 'Para ti',
+  trades_for_you: 'Trade Matching',
   trades_counter_offer: 'Contraoferta',
   trades_counter_title: 'Contraoferta',
   trades_counter_send: 'Enviar contraoferta',

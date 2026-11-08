@@ -955,4 +955,7 @@ body {
    `hidden` : ne cree pas de conteneur de defilement, donc position: sticky continue de fonctionner. Les rangees qui defilent a l'horizontale
    (pepites, filtres...) gardent leur propre defilement. */
 html, body { overflow-x: clip; max-width: 100%; }
+/* Réserve la place de la barre de défilement : sans ça, ouvrir une carte ou une fenêtre (qui bloque le défilement) ou charger une page
+   plus courte décale tout le contenu de quelques pixels sur ordinateur. */
+html { scrollbar-gutter: stable; }
 body { overscroll-behavior-x: none; }
