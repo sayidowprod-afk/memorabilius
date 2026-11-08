@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { createServerClient } from '@/lib/supabaseServer'
+import { teamOk } from '@/lib/wishTeam'
 
 const supabase = createServerClient()
 
@@ -10,6 +11,7 @@ export async function GET(req: NextRequest) {
   const set = req.nextUrl.searchParams.get('set')?.trim() || ''
   const variant = req.nextUrl.searchParams.get('variant')?.trim() || ''
   const num = req.nextUrl.searchParams.get('num')?.trim() || ''
+  const team = req.nextUrl.searchParams.get('team')?.trim() || '' // équipe de la wishlist : n'affiche que les cartes de cette équipe
   const rc = req.nextUrl.searchParams.get('rc') || ''
   const auto = req.nextUrl.searchParams.get('auto') || ''
   const patch = req.nextUrl.searchParams.get('patch') || ''
@@ -35,7 +37,7 @@ export async function GET(req: NextRequest) {
   const manuelles: any[] = []
   for (let from = 0; ; from += 1000) {
     const { data, error } = await supabase.from('cartes_manuelles')
-      .select('user_id, nom, image_recto, annee, marque, collection, variation, num, rc, auto, patch')
+      .select('user_id, nom, equipe, image_recto, annee, marque, collection, variation, num, rc, auto, patch')
       .ilike('nom', `%${safeQ}%`)
       .neq('user_id', excludeUserId || '00000000-0000-0000-0000-000000000000')
       .range(from, from + 999)
@@ -62,10 +64,11 @@ export async function GET(req: NextRequest) {
     const sameSet     = !set     || normalize(m.collection || '') === normalize(set)
     const sameVariant = !variant || normalize(m.variation || '')  === normalize(variant)
     const sameNum     = !num     || normNum(m.num || '')           === normNum(num)
+    const sameTeam    = teamOk(m.equipe, team)
     const sameRc      = !rc      || String(m.rc)    === rc
     const sameAuto    = !auto    || String(m.auto)  === auto
     const samePatch   = !patch   || String(m.patch) === patch
-    if (sameName && sameYear && sameBrand && sameSet && sameVariant && sameNum && sameRc && sameAuto && samePatch) {
+    if (sameName && sameYear && sameBrand && sameSet && sameVariant && sameNum && sameTeam && sameRc && sameAuto && samePatch) {
       matchIds.add(m.user_id)
       if (!cardsByUser.has(m.user_id)) cardsByUser.set(m.user_id, m)
     }

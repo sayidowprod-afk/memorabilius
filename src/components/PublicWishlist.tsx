@@ -37,6 +37,7 @@ function WishCard({ item, accent, isOwner, onRemove }: {
     if (item.collection) params.set('set', item.collection)
     if (item.variation) params.set('variant', item.variation)
     if (item.num) params.set('num', item.num)
+    if (item.equipe) params.set('team', item.equipe)
     if (item.rc) params.set('rc', 'true')
     if (item.auto) params.set('auto', 'true')
     if (item.patch) params.set('patch', 'true')
