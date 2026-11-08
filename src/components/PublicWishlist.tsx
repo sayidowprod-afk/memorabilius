@@ -8,16 +8,17 @@ import { useLang } from '@/lib/LangContext'
 import EmptyState from '@/components/EmptyState'
 import { toast } from '@/lib/toast'
 import CardTagBadges from '@/components/CardTagBadges'
+import { parsePrice } from '@/lib/marketplace'
 
 interface WishItem {
-  id: string; nom: string; annee: string; marque: string
+  id: string; nom: string; equipe?: string | null; annee: string; marque: string
   collection: string; variation: string; num: string
-  rc: boolean; auto: boolean; patch: boolean; notes: string
+  rc: boolean; auto: boolean; patch: boolean; notes: string; prix_cible?: number | null
 }
 
 interface Collector { id: string; display_name: string; slug: string | null; cardImg?: string; accent?: string }
 
-const empty = { nom: '', annee: '', marque: '', collection: '', variation: '', num: '', rc: false, auto: false, patch: false, notes: '' }
+const empty = { nom: '', equipe: '', prix_cible: '', annee: '', marque: '', collection: '', variation: '', num: '', rc: false, auto: false, patch: false, notes: '' }
 
 function WishCard({ item, accent, isOwner, onRemove }: {
   item: WishItem; accent: string; isOwner?: boolean; onRemove: () => void
@@ -96,13 +97,17 @@ function WishCard({ item, accent, isOwner, onRemove }: {
       <div className="wp-info">
         <div className="wp-name da-display">{item.nom}</div>
         <div className="wp-meta" style={{ fontSize: 11, lineHeight: 1.3 }}>
-          {[item.annee, item.marque, item.collection].filter(Boolean).join(' · ')}
+          {[item.equipe, item.annee, item.marque, item.collection].filter(Boolean).join(' · ')}
         </div>
 
         {tags.length > 0 && (
           <div style={{ display: 'flex', gap: 4, flexWrap: 'wrap', marginTop: 2 }}>
             <CardTagBadges rc={!!item.rc} auto={!!item.auto} patch={!!item.patch} num={item.num} size="md" />
           </div>
+        )}
+
+        {isOwner && item.prix_cible != null && (
+          <div style={{ fontSize: 11, fontWeight: 800, marginTop: 2 }}>🎯 Prix cible : {Number(item.prix_cible).toLocaleString('fr-FR', { style: 'currency', currency: 'EUR', maximumFractionDigits: 2 })}</div>
         )}
 
         {item.notes && (
@@ -144,15 +149,42 @@ export default function PublicWishlist({ userId, accent, isOwner }: { userId: st
 
   useEffect(() => {
     supabase.from('wishlist').select('*').eq('user_id', userId).order('created_at', { ascending: false })
-      .then(({ data }) => setItems(data || []))
-  }, [userId])
+      .then(async ({ data }) => {
+        const list = (data || []) as WishItem[]
+        // prix cibles : table privée (propriétaire seul) ; erreur ignorée si la migration n'est pas appliquée
+        if (isOwner && list.length) {
+          try {
+            const { data: pc } = await supabase.from('wishlist_prix_cible').select('wishlist_id, prix').eq('user_id', userId)
+            const byId = new Map((pc || []).map((x: { wishlist_id: string; prix: number }) => [x.wishlist_id, Number(x.prix)]))
+            setItems(list.map(w => (byId.has(w.id) ? { ...w, prix_cible: byId.get(w.id)! } : w)))
+            return
+          } catch { /* rien */ }
+        }
+        setItems(list)
+      })
+  }, [userId, isOwner])
 
   const save = async () => {
     if (!form.nom.trim()) return
     setSaving(true)
-    const { data } = await supabase.from('wishlist').insert({ ...form, user_id: userId }).select().single()
+    const { prix_cible, equipe, ...rest } = form
+    const target = parsePrice(prix_cible)
+    // l'équipe n'est envoyée que si elle est remplie ; colonne absente (base pas à jour) : carte ajoutée sans l'équipe, et on le dit
+    let first = await supabase.from('wishlist').insert({ ...rest, ...(equipe.trim() ? { equipe: equipe.trim() } : {}), user_id: userId }).select().single()
+    if (first.error && equipe.trim()) {
+      toast.error('Carte ajoutée sans l’équipe (mise à jour de la base à appliquer).')
+      first = await supabase.from('wishlist').insert({ ...rest, user_id: userId }).select().single()
+    }
+    const data = first.data as WishItem | null
     if (data) {
-      setItems(prev => [data, ...prev])
+      let saved: WishItem = data
+      // le prix cible est rangé à part, dans une table que toi seul peux lire
+      if (target !== null) {
+        const { error: e2 } = await supabase.from('wishlist_prix_cible').insert({ wishlist_id: data.id, user_id: userId, prix: target })
+        if (e2) toast.error('Carte ajoutée, mais le prix cible n’a pas pu être enregistré (mise à jour de la base à appliquer).')
+        else saved = { ...data, prix_cible: target }
+      }
+      setItems(prev => [saved, ...prev])
       supabase.auth.getSession().then(({ data: { session } }) => {
         fetch('/api/wishlist-notify', {
           method: 'POST',
@@ -167,6 +199,7 @@ export default function PublicWishlist({ userId, accent, isOwner }: { userId: st
   }
 
   const remove = async (id: string) => {
+    await supabase.from('wishlist_prix_cible').delete().eq('wishlist_id', id) // prix cible rangé à part (erreur ignorée si la table n'existe pas encore)
     const { error } = await supabase.from('wishlist').delete().eq('id', id)
     if (error) { toast.error(t('wishlist_remove_error')); return }
     setItems(prev => prev.filter(i => i.id !== id))
@@ -198,6 +231,11 @@ export default function PublicWishlist({ userId, accent, isOwner }: { userId: st
               <label style={{ fontSize: 10, fontWeight: 800, color: 'var(--text3, #888)', textTransform: 'uppercase', display: 'block', marginBottom: 4 }}>{t('setlist_player')}</label>
               <input value={form.nom} onChange={e => setForm(p => ({ ...p, nom: e.target.value }))} placeholder="Ex: Shai Gilgeous-Alexander" />
             </div>
+            <div style={{ gridColumn: '1/-1' }}>
+              <label style={{ fontSize: 10, fontWeight: 800, color: 'var(--text3, #888)', textTransform: 'uppercase', display: 'block', marginBottom: 4 }}>Équipe, facultatif</label>
+              <input value={form.equipe} onChange={e => setForm(p => ({ ...p, equipe: e.target.value }))} placeholder="Ex: Philadelphia 76ers" />
+              <div style={{ fontSize: 11, color: 'var(--text3, #888)', marginTop: 4 }}>Pour ne chercher que les cartes du joueur dans cette équipe.</div>
+            </div>
             <div>
               <label style={{ fontSize: 10, fontWeight: 800, color: 'var(--text3, #888)', textTransform: 'uppercase', display: 'block', marginBottom: 4 }}>{t('gallery_year_label')}</label>
               <input value={form.annee} onChange={e => setForm(p => ({ ...p, annee: e.target.value }))} placeholder="2024-25" />
@@ -217,6 +255,11 @@ export default function PublicWishlist({ userId, accent, isOwner }: { userId: st
             <div>
               <label style={{ fontSize: 10, fontWeight: 800, color: 'var(--text3, #888)', textTransform: 'uppercase', display: 'block', marginBottom: 4 }}>{t('wishlist_num_label')}</label>
               <input value={form.num} onChange={e => setForm(p => ({ ...p, num: e.target.value }))} placeholder="/99" />
+            </div>
+            <div style={{ gridColumn: '1/-1' }}>
+              <label style={{ fontSize: 10, fontWeight: 800, color: 'var(--text3, #888)', textTransform: 'uppercase', display: 'block', marginBottom: 4 }}>Prix cible (€), facultatif</label>
+              <input inputMode="decimal" value={form.prix_cible} onChange={e => setForm(p => ({ ...p, prix_cible: e.target.value }))} placeholder="Ex : 60" />
+              <div style={{ fontSize: 11, color: 'var(--text3, #888)', marginTop: 4 }}>Tu es prévenu quand un membre met cette carte en vente à ce prix ou moins. Toi seul le vois.</div>
             </div>
             <div style={{ gridColumn: '1/-1' }}>
               <label style={{ fontSize: 10, fontWeight: 800, color: 'var(--text3, #888)', textTransform: 'uppercase', display: 'block', marginBottom: 4 }}>{t('wishlist_notes_label')}</label>

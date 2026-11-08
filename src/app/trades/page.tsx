@@ -580,6 +580,36 @@ export default function Trades() {
                         </div>
                       )}
                     </div>
+                    {/* Les cartes concernées : de chaque côté, les 8 premières (touche une carte pour la voir dans la galerie du membre) */}
+                    <div style={{ flexBasis: '100%', display: 'flex', flexDirection: 'column', gap: 10 }}>
+                      {[
+                        { title: 'Il a et tu cherches', cards: m.theyHave, owner: m.id },
+                        { title: 'Tu as et il cherche', cards: m.theyWantFromMe, owner: null },
+                      ].map(col => col.cards.length > 0 && (
+                        <div key={col.title}>
+                          <div style={{ fontSize: 10, fontWeight: 800, textTransform: 'uppercase', color: 'var(--text3, #888)', marginBottom: 6 }}>{col.title}</div>
+                          <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap' }}>
+                            {col.cards.slice(0, 8).map((c: any) => {
+                              const inner = (
+                                <>
+                                  <div style={{ position: 'relative', aspectRatio: '2.5/3.5', overflow: 'hidden', background: 'var(--bg3, #f4f4f4)' }}>
+                                    {c.image_recto && <img loading="lazy" src={c.image_recto} alt="" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />}
+                                    {c.disponible_vente && <span title="À vendre / échanger" style={{ position: 'absolute', right: 2, bottom: 2, background: '#1e9e57', color: '#fff', fontSize: 8, fontWeight: 900, width: 14, height: 14, borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', boxShadow: '0 0 0 1.5px #fff' }}>€</span>}
+                                  </div>
+                                  <div style={{ fontSize: 10, fontWeight: 700, marginTop: 3, lineHeight: 1.2, overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>{c.nom}</div>
+                                  <div style={{ fontSize: 9, color: 'var(--text3, #888)', lineHeight: 1.2, overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>{[c.annee, c.collection || c.marque].filter(Boolean).join(' · ')}</div>
+                                </>
+                              )
+                              const title = [c.nom, c.annee, c.marque, c.collection, c.variation, c.num].filter(Boolean).join(' · ')
+                              return col.owner && c.image_recto
+                                ? <Link key={c.id} href={`/galerie/${col.owner}?card=${encodeURIComponent(c.image_recto)}`} title={title} style={{ width: 72, color: 'inherit', textDecoration: 'none' }}>{inner}</Link>
+                                : <div key={c.id} title={title} style={{ width: 72 }}>{inner}</div>
+                            })}
+                            {col.cards.length > 8 && <div style={{ alignSelf: 'center', fontSize: 12, fontWeight: 700, color: 'var(--text3, #888)' }}>+{col.cards.length - 8}</div>}
+                          </div>
+                        </div>
+                      ))}
+                    </div>
                     <button onClick={() => setTradeModal({ userId: m.id, name: m.name, targetIds: m.theyHave.map((c: any) => c.id), myIds: m.theyWantFromMe.map((c: any) => c.id) })}
                       style={{ background: '#1b5e20', color: '#fff', border: 'none', borderRadius: 10, padding: '9px 16px', fontWeight: 800, fontSize: 13, cursor: 'pointer' }}>
                       🔄 {t('trades_propose_exchange')}
