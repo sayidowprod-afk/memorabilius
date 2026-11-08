@@ -52,12 +52,24 @@ export async function computePartners(supabase: SupabaseClient, userId: string, 
 
   // Cartes des autres qui portent le nom d'une carte de ma wishlist (par lots de noms : on ne charge pas les 118 000 cartes)
   const wishNames = [...new Set(myWishes.map(w => String(w.nom || '').trim()).filter(Boolean))]
+  const myTeamWishes = myWishes.filter(w => !String(w.nom || '').trim() && String(w.equipe || '').trim()) // « équipe seule »
   const likeSafe = (s: string) => s.replace(/[%_\\]/g, c => `\\${c}`).replace(/[,()"]/g, ' ')
   const theirCardsPromise = (async () => {
     const out: Row[] = []
     for (let i = 0; i < wishNames.length && out.length < MAX_ROWS; i += 25) {
       const orFilter = wishNames.slice(i, i + 25).map(n => `nom.ilike.${likeSafe(n)}`).join(',')
       out.push(...await fetchAll<Row>((a, b) => supabase.from('cartes_manuelles').select(CARD_COLS).neq('user_id', userId).or(orFilter).range(a, b)))
+    }
+    // wishlists « équipe seule » : cartes de cette équipe (et AUTO / RC / PATCH si demandés)
+    for (const tw of myTeamWishes.slice(0, 10)) {
+      const team = String(tw.equipe).replace(/[%_\,()"]/g, ' ').trim()
+      out.push(...await fetchAll<Row>((a, b) => {
+        let q = supabase.from('cartes_manuelles').select(CARD_COLS).neq('user_id', userId).ilike('equipe', `%${team}%`)
+        if (tw.auto) q = q.eq('auto', true)
+        if (tw.rc) q = q.eq('rc', true)
+        if (tw.patch) q = q.eq('patch', true)
+        return q.range(a, Math.min(b, a + 499))
+      }))
     }
     return out
   })()
@@ -76,6 +88,7 @@ export async function computePartners(supabase: SupabaseClient, userId: string, 
   // index par nom normalisé : évite de comparer chaque carte à chaque wishlist
   const myWishByName = new Map<string, Row[]>()
   for (const w of myWishes) { const k = normalize(w.nom); if (k) myWishByName.set(k, [...(myWishByName.get(k) || []), w]) }
+  const othersTeamWishes = allWishes.filter(w => !normalize(w.nom) && normalize(w.equipe)) // wishlists « équipe seule » des autres
   const wishByName = new Map<string, Row[]>()
   for (const w of allWishes) { const k = normalize(w.nom); if (k) wishByName.set(k, [...(wishByName.get(k) || []), w]) }
 
@@ -85,13 +98,13 @@ export async function computePartners(supabase: SupabaseClient, userId: string, 
   // ce qu'ils ont et que je cherche
   for (const c of cards) {
     const ws = myWishByName.get(normalize(c.nom))
-    if (ws?.some(w => cardMatchesWish(c, w))) slot(c.user_id).theyHave.set(c.id, c)
+    if (ws?.some(w => cardMatchesWish(c, w)) || myTeamWishes.some(w => cardMatchesWish(c, w))) slot(c.user_id).theyHave.set(c.id, c)
   }
   // ce que j'ai et qu'ils cherchent
   for (const c of myCards) {
     const ws = wishByName.get(normalize(c.nom))
-    if (!ws) continue
-    for (const w of ws) if (cardMatchesWish(c, w)) slot(w.user_id).theyWant.set(c.id, c)
+    for (const w of ws || []) if (cardMatchesWish(c, w)) slot(w.user_id).theyWant.set(c.id, c)
+    for (const w of othersTeamWishes) if (cardMatchesWish(c, w)) slot(w.user_id).theyWant.set(c.id, c)
   }
 
   const ids = [...byMember.keys()]

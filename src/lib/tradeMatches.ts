@@ -11,7 +11,8 @@ const normNum = (s: string) => { const m = (s || '').match(/\/(\d+)/); return m 
 const escapeLike = (s: string) => (s || '').replace(/[%_,()]/g, c => (c === '%' || c === '_') ? `\\${c}` : ' ')
 
 export function cardMatchesWish(card: any, wish: any) {
-  if (normalize(card.nom) !== normalize(wish.nom)) return false
+  // wishlist sans joueur (ex. « autos des 76ers ») : pas de nom à comparer, mais une équipe est obligatoire
+  if (normalize(wish.nom)) { if (normalize(card.nom) !== normalize(wish.nom)) return false } else if (!normalize(wish.equipe)) return false
   if (wish.annee && normalize(card.annee) !== normalize(wish.annee)) return false
   if (wish.marque && normalize(card.marque) !== normalize(wish.marque)) return false
   if (wish.collection && normalize(card.collection) !== normalize(wish.collection)) return false
@@ -51,10 +52,26 @@ export async function computeMatches(supabase: SupabaseClient, userId: string) {
   // ── iWant : ma wishlist vs cartes dispo des autres ──────────────────────────
   const iWant: { wish: any; card: any }[] = []
   if (myWishes?.length) {
-    const orFilter = myWishes.map(w => `nom.ilike.${escapeLike(w.nom)}`).join(',')
-    const { data: candidates } = await supabase
-      .from('cartes_manuelles').select(CARD_COLS)
-      .neq('user_id', userId).eq('disponible_vente', true).or(orFilter).limit(600)
+    const namedWishes = myWishes.filter(w => (w.nom || '').trim())
+    const teamWishes = myWishes.filter(w => !(w.nom || '').trim() && (w.equipe || '').trim())
+    const found: any[] = []
+    if (namedWishes.length) {
+      const orFilter = namedWishes.map(w => `nom.ilike.${escapeLike(w.nom)}`).join(',')
+      const { data } = await supabase
+        .from('cartes_manuelles').select(CARD_COLS)
+        .neq('user_id', userId).eq('disponible_vente', true).or(orFilter).limit(600)
+      found.push(...(data || []))
+    }
+    // wishlists « équipe seule » : cartes de cette équipe (et AUTO / RC / PATCH si demandés), à vendre ou échanger
+    for (const tw of teamWishes.slice(0, 10)) {
+      let q = supabase.from('cartes_manuelles').select(CARD_COLS).neq('user_id', userId).eq('disponible_vente', true).ilike('equipe', `%${escapeLike(tw.equipe)}%`)
+      if (tw.auto) q = q.eq('auto', true)
+      if (tw.rc) q = q.eq('rc', true)
+      if (tw.patch) q = q.eq('patch', true)
+      const { data } = await q.limit(300)
+      found.push(...(data || []))
+    }
+    const candidates = [...new Map(found.map(c => [c.id, c])).values()]
     const isPriv = await isPrivateFor(candidates || [])
     // jamais de carte que j'ai déjà dans ma collection
     const { data: allMine } = await supabase.from('cartes_manuelles').select('nom, annee, marque, collection, variation, num').eq('user_id', userId).limit(20000)
@@ -62,7 +79,7 @@ export async function computeMatches(supabase: SupabaseClient, userId: string) {
     for (const card of candidates || []) {
       if (isPriv(card) || iOwn(card) || demo.has(card.user_id)) continue
       const wish = myWishes.find(w => cardMatchesWish(card, w))
-      if (wish) iWant.push({ wish: { id: wish.id, nom: wish.nom }, card })
+      if (wish) iWant.push({ wish: { id: wish.id, nom: wish.nom || wish.equipe }, card })
     }
   }
 
@@ -71,11 +88,15 @@ export async function computeMatches(supabase: SupabaseClient, userId: string) {
   if (myCards?.length) {
     const names = [...new Set(myCards.map(c => c.nom).filter(Boolean))].slice(0, 80)
     const orFilter = names.map(n => `nom.ilike.${escapeLike(n)}`).join(',')
-    const { data: wishes } = await supabase
+    const { data: namedWishes } = await supabase
       .from('wishlist').select('*').neq('user_id', userId).or(orFilter).limit(600)
+    // wishlists « équipe seule » des autres membres
+    const { data: teamWishes } = await supabase
+      .from('wishlist').select('*').neq('user_id', userId).eq('nom', '').not('equipe', 'is', null).limit(600)
+    const wishes = [...(namedWishes || []), ...(teamWishes || [])]
     for (const card of myCards) {
-      for (const w of wishes || []) {
-        if (!demo.has(w.user_id) && cardMatchesWish(card, w)) theyWant.push({ wisherId: w.user_id, wish: { id: w.id, nom: w.nom }, card })
+      for (const w of wishes) {
+        if (!demo.has(w.user_id) && cardMatchesWish(card, w)) theyWant.push({ wisherId: w.user_id, wish: { id: w.id, nom: w.nom || w.equipe }, card })
       }
     }
   }

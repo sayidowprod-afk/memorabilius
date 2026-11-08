@@ -19,7 +19,8 @@ const normNum = (s: string) => { const m = (s || '').match(/\/(\d+)/); return m 
 const escapeLike = (s: string) => (s || '').replace(/[%_]/g, c => `\\${c}`)
 
 function cardMatchesWish(card: any, wish: any) {
-  if (normalize(card.nom) !== normalize(wish.nom)) return false
+  // wishlist sans joueur (« autos des 76ers ») : pas de nom à comparer, mais une équipe est obligatoire
+  if (normalize(wish.nom)) { if (normalize(card.nom) !== normalize(wish.nom)) return false } else if (!normalize(wish.equipe)) return false
   if (wish.annee && normalize(card.annee) !== normalize(wish.annee)) return false
   if (wish.marque && normalize(card.marque) !== normalize(wish.marque)) return false
   if (wish.collection && normalize(card.collection) !== normalize(wish.collection)) return false
@@ -55,16 +56,27 @@ export async function POST(req: NextRequest) {
   // un item entièrement inventé (jamais sauvegardé) pour spammer jusqu'à 10
   // autres utilisateurs de fausses notifs "quelqu'un cherche votre carte",
   // en boucle, sans aucune limite de fréquence.
-  const { data: realWish } = await supabase
-    .from('wishlist').select('id').eq('user_id', wishUserId).ilike('nom', escapeLike(wishItem.nom)).limit(1).maybeSingle()
+  const teamOnly = !String(wishItem.nom || '').trim() // wishlist « équipe seule »
+  const { data: realWish } = teamOnly
+    ? await supabase.from('wishlist').select('id').eq('user_id', wishUserId).eq('nom', '').eq('equipe', String(wishItem.equipe || '')).limit(1).maybeSingle()
+    : await supabase.from('wishlist').select('id').eq('user_id', wishUserId).ilike('nom', escapeLike(wishItem.nom)).limit(1).maybeSingle()
   if (!realWish) return NextResponse.json({ ok: false })
 
   // Filtrer par nom en SQL pour éviter un scan complet
-  const { data: cards } = await supabase
+  let cardsQuery = supabase
     .from('cartes_manuelles')
-    .select('user_id, nom, annee, marque, collection, equipe, image_recto')
+    .select('user_id, nom, annee, marque, collection, equipe, image_recto, rc, auto, patch, variation, num')
     .neq('user_id', wishUserId)
-    .ilike('nom', escapeLike(wishItem.nom))
+  if (teamOnly) {
+    cardsQuery = cardsQuery.ilike('equipe', `%${escapeLike(String(wishItem.equipe || ''))}%`)
+    if (wishItem.auto) cardsQuery = cardsQuery.eq('auto', true)
+    if (wishItem.rc) cardsQuery = cardsQuery.eq('rc', true)
+    if (wishItem.patch) cardsQuery = cardsQuery.eq('patch', true)
+    cardsQuery = cardsQuery.limit(500)
+  } else {
+    cardsQuery = cardsQuery.ilike('nom', escapeLike(wishItem.nom))
+  }
+  const { data: cards } = await cardsQuery
 
   const { data: wishUser } = await supabase
     .from('profiles')
@@ -123,11 +135,15 @@ export async function PUT(req: NextRequest) {
   if (demoPut.has(cardUserId)) return NextResponse.json({ ok: true, notified: 0 })
 
   // Filtrer les wishlists par nom en SQL pour éviter un scan complet
-  const { data: wishes } = await supabase
+  const { data: namedWishes } = await supabase
     .from('wishlist')
     .select('*')
     .neq('user_id', cardUserId)
     .ilike('nom', escapeLike(card.nom))
+  // wishlists « équipe seule » (ex. autos des 76ers) : comparées aussi à la carte ajoutée
+  const { data: teamWishes } = await supabase
+    .from('wishlist').select('*').neq('user_id', cardUserId).eq('nom', '').not('equipe', 'is', null).limit(500)
+  const wishes = [...(namedWishes || []), ...(teamWishes || [])]
 
   const { data: cardUser } = await supabase
     .from('profiles')
@@ -137,7 +153,7 @@ export async function PUT(req: NextRequest) {
 
   const MAX_NOTIFS = 10
   const toNotify: string[] = []
-  for (const wish of wishes || []) {
+  for (const wish of wishes) {
     if (toNotify.length >= MAX_NOTIFS) break
     if (!demoPut.has(wish.user_id) && !toNotify.includes(wish.user_id) && cardMatchesWish(card, wish)) {
       toNotify.push(wish.user_id)

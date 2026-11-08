@@ -107,7 +107,7 @@ export default function WishlistPage() {
   }, [])
 
   const save = async () => {
-    if (!userId || !form.nom.trim()) return
+    if (!userId || (!form.nom.trim() && !form.equipe.trim())) return // un joueur, ou au moins une équipe
     setSaving(true)
     const { prix_cible, equipe, ...rest } = form
     const target = parsePrice(prix_cible)
@@ -205,7 +205,7 @@ export default function WishlistPage() {
             <div style={{ gridColumn: '1/-1' }}>
               <label style={{ fontSize: 10, fontWeight: 800, color: '#888', textTransform: 'uppercase', display: 'block', marginBottom: 4 }}>Équipe, facultatif</label>
               <SuggestInput value={form.equipe} onChange={v => setForm(p => ({ ...p, equipe: v }))} getSuggestions={suggestTeams} minChars={1} placeholder="Ex: Philadelphia 76ers" />
-              <div style={{ fontSize: 11, color: '#888', marginTop: 4 }}>Pour ne chercher que les cartes du joueur dans cette équipe (ex : Iguodala chez les 76ers).</div>
+              <div style={{ fontSize: 11, color: '#888', marginTop: 4 }}>Avec un joueur : seulement ses cartes dans cette équipe. Sans joueur : toutes les cartes de l’équipe (ajoute AUTO, RC ou PATCH pour préciser, ex. les autos des 76ers).</div>
             </div>
             <div>
               <label style={{ fontSize: 10, fontWeight: 800, color: '#888', textTransform: 'uppercase', display: 'block', marginBottom: 4 }}>{t('gallery_year_label')}</label>
@@ -247,10 +247,10 @@ export default function WishlistPage() {
               ))}
             </div>
           </div>
-          <button type="submit" disabled={saving || !form.nom.trim()} style={{
-            marginTop: 16, width: '100%', background: form.nom.trim() ? '#003DA6' : '#ccc',
+          <button type="submit" disabled={saving || (!form.nom.trim() && !form.equipe.trim())} style={{
+            marginTop: 16, width: '100%', background: (form.nom.trim() || form.equipe.trim()) ? '#003DA6' : '#ccc',
             color: 'white', border: 'none', borderRadius: 10, padding: '12px',
-            fontWeight: 800, fontSize: 14, cursor: form.nom.trim() ? 'pointer' : 'default',
+            fontWeight: 800, fontSize: 14, cursor: (form.nom.trim() || form.equipe.trim()) ? 'pointer' : 'default',
           }}>
             {saving ? t('wishlist_saving') : t('wishlist_submit')}
           </button>
@@ -282,11 +282,11 @@ export default function WishlistPage() {
           </div>
           {items.map(item => {
             const on = found.has(String(item.id))
-            const detail = [item.equipe, item.annee, item.marque, item.collection, item.variation, item.num, item.rc && 'RC', item.auto && 'Auto', item.patch && 'Patch'].filter(Boolean).join(' · ')
+            const detail = [item.nom ? item.equipe : null, item.annee, item.marque, item.collection, item.variation, item.num, item.rc && 'RC', item.auto && 'Auto', item.patch && 'Patch'].filter(Boolean).join(' · ')
             return (
               <button key={item.id} type="button" className={'da-salon-row' + (on ? ' on' : '')} aria-pressed={on} onClick={() => toggleFound(String(item.id))}>
                 <span className="da-salon-box" aria-hidden="true">{on ? '✓' : ''}</span>
-                <span className="da-salon-txt"><b>{item.nom}</b>{detail && <small>{detail}</small>}{item.notes && <small>« {item.notes} »</small>}</span>
+                <span className="da-salon-txt"><b>{item.nom || item.equipe}</b>{detail && <small>{detail}</small>}{item.notes && <small>« {item.notes} »</small>}</span>
               </button>
             )
           })}
@@ -302,7 +302,7 @@ export default function WishlistPage() {
             display: 'flex', alignItems: 'center', gap: 12,
           }}>
             <div style={{ flex: 1, minWidth: 0 }}>
-              <div style={{ fontWeight: 800, fontSize: 15, marginBottom: 3 }}>{item.nom}{item.equipe && <span style={{ fontWeight: 700, fontSize: 12, color: '#003DA6', marginLeft: 8 }}>· {item.equipe}</span>}</div>
+              <div style={{ fontWeight: 800, fontSize: 15, marginBottom: 3 }}>{item.nom || item.equipe}{item.nom && item.equipe && <span style={{ fontWeight: 700, fontSize: 12, color: '#003DA6', marginLeft: 8 }}>· {item.equipe}</span>}</div>
               <div style={{ fontSize: 12, color: '#999', marginBottom: 6 }}>
                 {[item.annee, item.marque, item.collection, item.variation].filter(Boolean).join(' · ')}
               </div>

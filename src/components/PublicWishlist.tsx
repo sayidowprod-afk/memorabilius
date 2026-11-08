@@ -11,6 +11,7 @@ import SuggestInput from '@/components/SuggestInput'
 import { suggestPlayers, suggestTeams } from '@/lib/wishSuggest'
 import CardTagBadges from '@/components/CardTagBadges'
 import { parsePrice } from '@/lib/marketplace'
+import { getTeamByName, teamLogoUrl } from '@/lib/sportsTeams'
 
 interface WishItem {
   id: string; nom: string; equipe?: string | null; annee: string; marque: string
@@ -27,10 +28,14 @@ function WishCard({ item, accent, isOwner, onRemove }: {
 }) {
   const [collectors, setCollectors] = useState<Collector[] | null>(null)
   const [cardImg, setCardImg] = useState<string | null>(null)
+  const [failed, setFailed] = useState(false)
   const { t } = useLang()
   const { dark } = useTheme()
+  const teamOnly = !item.nom.trim() // wishlist sans joueur (ex. tous les autos des 76ers) : pas de recherche de carte, le logo de l'équipe sert d'image
+  const teamLogo = teamOnly ? teamLogoUrl(getTeamByName(item.equipe) as never) : ''
 
   useEffect(() => {
+    if (teamOnly) { setCollectors([]); return }
     const params = new URLSearchParams({ name: item.nom })
     if (item.annee) params.set('year', item.annee)
     if (item.marque) params.set('brand', item.marque)
@@ -41,13 +46,36 @@ function WishCard({ item, accent, isOwner, onRemove }: {
     if (item.rc) params.set('rc', 'true')
     if (item.auto) params.set('auto', 'true')
     if (item.patch) params.set('patch', 'true')
-    fetch(`/api/same-card?${params}`)
-      .then(r => r.json())
-      .then((d: Collector[]) => {
-        setCollectors(d || [])
-        const first = (d || []).find(c => c.cardImg)
-        if (first?.cardImg) setCardImg(first.cardImg)
-      })
+    if (item.equipe) params.set('team', item.equipe)
+    // Réponse gardée 10 min dans l'onglet (revenir sur la page est instantané) ; en cas d'échec ou de réponse lente on réessaie
+    // deux fois au lieu de laisser un « ? » définitif.
+    const key = `mb_wish_same:${params}`
+    const apply = (d: Collector[]) => {
+      setCollectors(d || []); setFailed(false)
+      const first = (d || []).find(c => c.cardImg)
+      if (first?.cardImg) setCardImg(first.cardImg)
+    }
+    try {
+      const c = JSON.parse(sessionStorage.getItem(key) || 'null')
+      if (c && Date.now() - c.at < 10 * 60 * 1000) { apply(c.d); return }
+    } catch { /* rien */ }
+    let cancelled = false
+    const load = async (attempt: number) => {
+      try {
+        const r = await fetch(`/api/same-card?${params}`)
+        if (!r.ok) throw new Error(String(r.status))
+        const d: Collector[] = await r.json()
+        if (cancelled) return
+        apply(d)
+        try { sessionStorage.setItem(key, JSON.stringify({ at: Date.now(), d })) } catch { /* rien */ }
+      } catch {
+        if (cancelled) return
+        if (attempt < 2) setTimeout(() => load(attempt + 1), 1500 * (attempt + 1))
+        else setFailed(true)
+      }
+    }
+    load(0)
+    return () => { cancelled = true }
   }, [item.id])
 
   const tags = [
@@ -64,7 +92,10 @@ function WishCard({ item, accent, isOwner, onRemove }: {
       <div className="wp-head da-display">Recherché</div>
       {/* Card image area */}
       <div className="wp-pic">
-        {cardImg ? (
+        {teamOnly && teamLogo ? (
+          // eslint-disable-next-line @next/next/no-img-element
+          <img src={teamLogo} alt={item.equipe || ''} style={{ width: '70%', height: '70%', objectFit: 'contain', opacity: 0.9 }} />
+        ) : cardImg ? (
           isSupabase ? (
             <Image
               src={cardImg}
@@ -78,6 +109,8 @@ function WishCard({ item, accent, isOwner, onRemove }: {
             // eslint-disable-next-line @next/next/no-img-element
             <img src={cardImg} alt={item.nom} style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
           )
+        ) : collectors === null && !failed && !teamOnly ? (
+          <span className="wp-q da-display" style={{ opacity: 0.35 }} aria-label="Chargement">…</span>
         ) : (
           <span className="wp-q da-display">?</span>
         )}
@@ -98,9 +131,9 @@ function WishCard({ item, accent, isOwner, onRemove }: {
 
       {/* Info area */}
       <div className="wp-info">
-        <div className="wp-name da-display">{item.nom}</div>
+        <div className="wp-name da-display">{item.nom || item.equipe}</div>
         <div className="wp-meta" style={{ fontSize: 11, lineHeight: 1.3 }}>
-          {[item.equipe, item.annee, item.marque, item.collection].filter(Boolean).join(' · ')}
+          {[item.nom ? item.equipe : null, item.annee, item.marque, item.collection].filter(Boolean).join(' · ')}
         </div>
 
         {tags.length > 0 && (
@@ -168,7 +201,7 @@ export default function PublicWishlist({ userId, accent, isOwner }: { userId: st
   }, [userId, isOwner])
 
   const save = async () => {
-    if (!form.nom.trim()) return
+    if (!form.nom.trim() && !form.equipe.trim()) return // un joueur, ou au moins une équipe
     setSaving(true)
     const { prix_cible, equipe, ...rest } = form
     const target = parsePrice(prix_cible)
@@ -237,7 +270,7 @@ export default function PublicWishlist({ userId, accent, isOwner }: { userId: st
             <div style={{ gridColumn: '1/-1' }}>
               <label style={{ fontSize: 10, fontWeight: 800, color: 'var(--text3, #888)', textTransform: 'uppercase', display: 'block', marginBottom: 4 }}>Équipe, facultatif</label>
               <SuggestInput value={form.equipe} onChange={v => setForm(p => ({ ...p, equipe: v }))} getSuggestions={suggestTeams} minChars={1} placeholder="Ex: Philadelphia 76ers" />
-              <div style={{ fontSize: 11, color: 'var(--text3, #888)', marginTop: 4 }}>Pour ne chercher que les cartes du joueur dans cette équipe.</div>
+              <div style={{ fontSize: 11, color: 'var(--text3, #888)', marginTop: 4 }}>Avec un joueur : seulement ses cartes dans cette équipe. Sans joueur : toutes les cartes de l’équipe (ajoute AUTO, RC ou PATCH pour préciser, ex. les autos des 76ers).</div>
             </div>
             <div>
               <label style={{ fontSize: 10, fontWeight: 800, color: 'var(--text3, #888)', textTransform: 'uppercase', display: 'block', marginBottom: 4 }}>{t('gallery_year_label')}</label>
@@ -279,10 +312,10 @@ export default function PublicWishlist({ userId, accent, isOwner }: { userId: st
               ))}
             </div>
           </div>
-          <button onClick={save} disabled={saving || !form.nom.trim()} style={{
-            marginTop: 14, width: '100%', background: form.nom.trim() ? accent : 'var(--border, #ccc)',
+          <button onClick={save} disabled={saving || (!form.nom.trim() && !form.equipe.trim())} style={{
+            marginTop: 14, width: '100%', background: (form.nom.trim() || form.equipe.trim()) ? accent : 'var(--border, #ccc)',
             color: 'white', border: 'none', borderRadius: 10, padding: '11px',
-            fontWeight: 800, fontSize: 13, cursor: form.nom.trim() ? 'pointer' : 'default',
+            fontWeight: 800, fontSize: 13, cursor: (form.nom.trim() || form.equipe.trim()) ? 'pointer' : 'default',
           }}>
             {saving ? t('wishlist_saving') : t('wishlist_submit')}
           </button>

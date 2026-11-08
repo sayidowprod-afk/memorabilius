@@ -16,7 +16,8 @@ const escapeLike = (s: string) => (s || '').replace(/[%_]/g, c => `\\${c}`)
 function matches(card: Record<string, unknown>, wish: Record<string, unknown>) {
   const f = (k: string) => String(card[k] ?? '')
   const w = (k: string) => String(wish[k] ?? '')
-  if (normalize(f('nom')) !== normalize(w('nom'))) return false
+  // wishlist sans joueur (« autos des 76ers ») : pas de nom à comparer, mais une équipe est obligatoire
+  if (normalize(w('nom'))) { if (normalize(f('nom')) !== normalize(w('nom'))) return false } else if (!normalize(w('equipe'))) return false
   if (w('annee') && normalize(f('annee')) !== normalize(w('annee'))) return false
   if (w('marque') && normalize(f('marque')) !== normalize(w('marque'))) return false
   if (w('collection') && normalize(f('collection')) !== normalize(w('collection'))) return false
@@ -48,8 +49,10 @@ export async function POST(req: NextRequest) {
 
   // wishlists qui contiennent cette carte, puis leurs prix cibles (table privée) supérieurs ou égaux au prix demandé.
   // Table absente (migration non appliquée) : erreur ignorée, simplement personne n'est prévenu.
-  const { data: wl, error: e1 } = await supabase.from('wishlist').select('*').neq('user_id', user.id).ilike('nom', escapeLike(card.nom))
-  if (e1 || !wl?.length) return NextResponse.json({ ok: true, notified: 0 })
+  const { data: namedWl, error: e1 } = await supabase.from('wishlist').select('*').neq('user_id', user.id).ilike('nom', escapeLike(card.nom))
+  const { data: teamWl } = await supabase.from('wishlist').select('*').neq('user_id', user.id).eq('nom', '').not('equipe', 'is', null).limit(500) // « équipe seule »
+  const wl = [...(namedWl || []), ...(teamWl || [])]
+  if (e1 || !wl.length) return NextResponse.json({ ok: true, notified: 0 })
   const { data: targets, error: e2 } = await supabase.from('wishlist_prix_cible').select('wishlist_id, prix').in('wishlist_id', wl.map(w => w.id)).gte('prix', price)
   if (e2 || !targets?.length) return NextResponse.json({ ok: true, notified: 0 })
   const targetOf = new Map(targets.map(t => [t.wishlist_id as string, Number(t.prix)]))

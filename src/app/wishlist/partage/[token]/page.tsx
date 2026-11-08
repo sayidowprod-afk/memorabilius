@@ -7,7 +7,7 @@ import CardTagBadges from '@/components/CardTagBadges'
 export const dynamic = 'force-dynamic'
 export const metadata: Metadata = { title: 'Wishlist partagée | Memorabilius', robots: { index: false, follow: false } }
 
-type Item = { id: string; nom: string; annee: string | null; marque: string | null; collection: string | null; variation: string | null; num: string | null; rc: boolean | null; auto: boolean | null; patch: boolean | null; notes: string | null }
+type Item = { id: string; nom: string; equipe?: string | null; annee: string | null; marque: string | null; collection: string | null; variation: string | null; num: string | null; rc: boolean | null; auto: boolean | null; patch: boolean | null; notes: string | null }
 
 export default async function SharedWishlistPage({ params }: { params: Promise<{ token: string }> }) {
   const { token } = await params
@@ -19,7 +19,7 @@ export default async function SharedWishlistPage({ params }: { params: Promise<{
     if (share?.user_id) {
       const [{ data: p }, { data: w }] = await Promise.all([
         supabase.from('profiles').select('id, display_name, avatar_url, slug').eq('id', share.user_id).maybeSingle(),
-        supabase.from('wishlist').select('id, nom, annee, marque, collection, variation, num, rc, auto, patch, notes').eq('user_id', share.user_id).order('created_at', { ascending: false }),
+        supabase.from('wishlist').select('id, nom, equipe, annee, marque, collection, variation, num, rc, auto, patch, notes').eq('user_id', share.user_id).order('created_at', { ascending: false }),
       ])
       owner = p ?? null
       items = (w ?? []) as Item[]
@@ -54,8 +54,8 @@ export default async function SharedWishlistPage({ params }: { params: Promise<{
       <div style={{ display: 'grid', gap: 10 }}>
         {items.map(item => (
           <div key={item.id} style={{ border: '2px solid var(--border, #243063)', background: 'var(--card-bg, transparent)', padding: '14px 18px' }}>
-            <div style={{ fontWeight: 800, fontSize: 16, marginBottom: 3 }}>{item.nom}</div>
-            <div style={{ fontSize: 13, color: 'var(--text2, #666)', marginBottom: 6 }}>{[item.annee, item.marque, item.collection, item.variation].filter(Boolean).join(' · ')}</div>
+            <div style={{ fontWeight: 800, fontSize: 16, marginBottom: 3 }}>{item.nom || item.equipe}</div>
+            <div style={{ fontSize: 13, color: 'var(--text2, #666)', marginBottom: 6 }}>{[item.nom ? item.equipe : null, item.annee, item.marque, item.collection, item.variation].filter(Boolean).join(' · ')}</div>
             <div style={{ display: 'flex', gap: 5, flexWrap: 'wrap' }}><CardTagBadges rc={!!item.rc} auto={!!item.auto} patch={!!item.patch} num={item.num || ''} size="md" /></div>
             {item.notes && <div style={{ fontSize: 13, marginTop: 6, fontStyle: 'italic', color: 'var(--text2, #666)' }}>« {item.notes} »</div>}
           </div>

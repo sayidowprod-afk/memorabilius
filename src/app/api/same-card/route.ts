@@ -34,7 +34,12 @@ export async function GET(req: NextRequest) {
   // carte identique cherchee pour un joueur tres collectionne avant meme
   // d'atteindre le matching exact plus bas (meme bug que vu ailleurs).
   const safeQ = name.replace(/%/g, '\\%').replace(/_/g, '\\_')
-  const manuelles: any[] = []
+  // first=1 : on n'a besoin que d'une carte (image de l'affiche « Recherché ») -> on s'arrête dès la première page qui en contient une,
+  // au lieu de lire toutes les cartes du joueur (jusqu'à plusieurs secondes sur un joueur très collectionné).
+  const firstOnly = req.nextUrl.searchParams.get('first') === '1'
+  const matchIds = new Set<string>()
+  const cardsByUser = new Map<string, any>()
+
   for (let from = 0; ; from += 1000) {
     const { data, error } = await supabase.from('cartes_manuelles')
       .select('user_id, nom, equipe, image_recto, annee, marque, collection, variation, num, rc, auto, patch')
@@ -42,37 +47,33 @@ export async function GET(req: NextRequest) {
       .neq('user_id', excludeUserId || '00000000-0000-0000-0000-000000000000')
       .range(from, from + 999)
     if (error || !data || data.length === 0) break
-    manuelles.push(...data)
-    if (data.length < 1000) break
+
+    // Cartes privées scoped aux user_ids de cette page — évite le scan de 2000 lignes
+    const pageUserIds = [...new Set(data.map((m: any) => m.user_id))]
+    const { data: privees } = pageUserIds.length > 0
+      ? await supabase.from('cartes_privees').select('user_id, card_key').in('user_id', pageUserIds)
+      : { data: null }
+    const privateSet = new Set((privees || []).map((p: any) => `${p.user_id}::${p.card_key}`))
+
+    data.forEach((m: any) => {
+      if (privateSet.has(`${m.user_id}::${m.image_recto}`)) return
+      const sameName    = normalize(m.nom || '') === normalize(name)
+      const sameYear    = !year    || normalize(m.annee || '')      === normalize(year)
+      const sameBrand   = !brand   || normalize(m.marque || '')     === normalize(brand)
+      const sameSet     = !set     || normalize(m.collection || '') === normalize(set)
+      const sameVariant = !variant || normalize(m.variation || '')  === normalize(variant)
+      const sameNum     = !num     || normNum(m.num || '')           === normNum(num)
+      const sameTeam    = teamOk(m.equipe, team)
+      const sameRc      = !rc      || String(m.rc)    === rc
+      const sameAuto    = !auto    || String(m.auto)  === auto
+      const samePatch   = !patch   || String(m.patch) === patch
+      if (sameName && sameYear && sameBrand && sameSet && sameVariant && sameNum && sameTeam && sameRc && sameAuto && samePatch) {
+        matchIds.add(m.user_id)
+        if (!cardsByUser.has(m.user_id)) cardsByUser.set(m.user_id, m)
+      }
+    })
+    if ((firstOnly && matchIds.size > 0) || data.length < 1000) break
   }
-
-  // Cartes privées scoped aux user_ids des cartes candidates — évite le scan de 2000 lignes
-  const candidateUserIds = [...new Set(manuelles.map((m: any) => m.user_id))]
-  const { data: privees } = candidateUserIds.length > 0
-    ? await supabase.from('cartes_privees').select('user_id, card_key').in('user_id', candidateUserIds)
-    : { data: null }
-  const privateSet = new Set((privees || []).map((p: any) => `${p.user_id}::${p.card_key}`))
-
-  const matchIds = new Set<string>()
-  const cardsByUser = new Map<string, any>()
-
-  manuelles.forEach(m => {
-    if (privateSet.has(`${m.user_id}::${m.image_recto}`)) return
-    const sameName    = normalize(m.nom || '') === normalize(name)
-    const sameYear    = !year    || normalize(m.annee || '')      === normalize(year)
-    const sameBrand   = !brand   || normalize(m.marque || '')     === normalize(brand)
-    const sameSet     = !set     || normalize(m.collection || '') === normalize(set)
-    const sameVariant = !variant || normalize(m.variation || '')  === normalize(variant)
-    const sameNum     = !num     || normNum(m.num || '')           === normNum(num)
-    const sameTeam    = teamOk(m.equipe, team)
-    const sameRc      = !rc      || String(m.rc)    === rc
-    const sameAuto    = !auto    || String(m.auto)  === auto
-    const samePatch   = !patch   || String(m.patch) === patch
-    if (sameName && sameYear && sameBrand && sameSet && sameVariant && sameNum && sameTeam && sameRc && sameAuto && samePatch) {
-      matchIds.add(m.user_id)
-      if (!cardsByUser.has(m.user_id)) cardsByUser.set(m.user_id, m)
-    }
-  })
 
   if (matchIds.size === 0) return NextResponse.json([])
 
