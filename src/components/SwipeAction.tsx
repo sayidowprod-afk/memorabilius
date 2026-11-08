@@ -62,7 +62,7 @@ export default function SwipeAction({ direction, threshold = 64, onTrigger, reve
       {direction === 'right' && dx > 0 && icon && (
         <span aria-hidden="true" style={{ position: 'absolute', left: 8, top: '50%', transform: `translateY(-50%) scale(${0.6 + progress * 0.4})`, opacity: progress, fontSize: 18, pointerEvents: 'none' }}>{icon}</span>
       )}
-      {reveal && (
+      {reveal && (open || dx < 0) && (
         <button type="button" onClick={() => { setOpen(false); setDx(0); reveal.onClick() }} tabIndex={open ? 0 : -1} aria-hidden={!open}
           style={{ position: 'absolute', right: 0, top: 0, bottom: 0, width: REVEAL_W, background: reveal.color || '#b42318', color: '#fff', border: 'none', fontWeight: 800, fontSize: 13, cursor: 'pointer' }}>{reveal.label}</button>
       )}

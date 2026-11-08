@@ -19,6 +19,20 @@ import { toast } from '@/lib/toast'
 import TradeModal from '@/components/TradeModal'
 import PriceTag from '@/components/PriceTag'
 import { askConfirm } from '@/components/ConfirmHost'
+import dynamic from 'next/dynamic'
+
+const Viewer3D = dynamic(() => import('@/components/Viewer3D'), { ssr: false })
+
+// Ligne de carte (cartes_manuelles) -> format attendu par le Viewer3D (toujours l'image HD quand elle existe)
+const toViewerCard = (m: any) => ({
+  f: m.image_recto || '', b: m.image_verso || m.image_recto || '',
+  fHd: m.image_recto_hd || undefined, bHd: m.image_verso_hd || undefined,
+  n: m.nom || '', t: m.equipe || '', y: m.annee || '', br: m.marque || '', s: m.collection || '', v: m.variation || '',
+  num: m.num || '', card_number: m.card_number || '', auto: !!m.auto, rc: !!m.rc, patch: !!m.patch, g: m.grade || 'Raw',
+  isManuelle: true, id_manuelle: m.id, is_horizontal: !!m.is_horizontal, verso_is_horizontal: m.verso_is_horizontal ?? null,
+  format: m.format || (m.is_horizontal ? 'horizontal' : 'standard'),
+  disponible_vente: !!m.disponible_vente, prix_vente: m.prix_vente ?? null,
+})
 
 // ── Image zoom (forum annonces) ───────────────────────────────────────────────
 function ImageZoom({ src, alt }: { src: string; alt: string }) {
@@ -97,6 +111,7 @@ export default function Trades() {
       setPartnersState('idle')
     } catch { setPartnersState('error') }
   }
+  const [viewerCard, setViewerCard] = useState<{ card: any; owner: string | null } | null>(null)
   const [tradeModal, setTradeModal] = useState<{ userId: string; name: string; targetIds: string[]; myIds: string[]; message?: string; counterOfId?: string } | null>(null)
   const [reviewDraft, setReviewDraft] = useState<Record<string, { rating: number; comment: string }>>({})
   const [fAnnee, setFAnnee] = useState('')
@@ -601,8 +616,8 @@ export default function Trades() {
                                 </>
                               )
                               const title = [c.nom, c.annee, c.marque, c.collection, c.variation, c.num].filter(Boolean).join(' · ')
-                              return col.owner && c.image_recto
-                                ? <Link key={c.id} href={`/galerie/${col.owner}?card=${encodeURIComponent(c.image_recto)}`} title={title} style={{ width: 72, color: 'inherit', textDecoration: 'none' }}>{inner}</Link>
+                              return c.image_recto
+                                ? <button key={c.id} type="button" onClick={() => setViewerCard({ card: c, owner: col.owner })} title={title} style={{ width: 72, color: 'inherit', background: 'none', border: 'none', padding: 0, textAlign: 'left', cursor: 'pointer', font: 'inherit' }}>{inner}</button>
                                 : <div key={c.id} title={title} style={{ width: 72 }}>{inner}</div>
                             })}
                             {col.cards.length > 8 && <div style={{ alignSelf: 'center', fontSize: 12, fontWeight: 700, color: 'var(--text3, #888)' }}>+{col.cards.length - 8}</div>}
@@ -653,12 +668,12 @@ export default function Trades() {
                     <div style={{ fontSize: 11, fontWeight: 800, textTransform: 'uppercase', color: 'var(--text3, #888)', marginBottom: 8 }}>{col.title}</div>
                     <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap' }}>
                       {col.cards.slice(0, 6).map((c: any) => (
-                        <div key={c.id} title={[c.nom, c.annee, c.marque].filter(Boolean).join(' · ')} style={{ width: 64 }}>
+                        <button key={c.id} type="button" onClick={() => c.image_recto && setViewerCard({ card: c, owner: null })} title={[c.nom, c.annee, c.marque].filter(Boolean).join(' · ')} style={{ width: 64, background: 'none', border: 'none', padding: 0, textAlign: 'left', cursor: c.image_recto ? 'pointer' : 'default', color: 'inherit', font: 'inherit' }}>
                           <div style={{ aspectRatio: '2.5/3.5', overflow: 'hidden', background: 'var(--bg3, #f4f4f4)' }}>
                             {c.image_recto && <img loading="lazy" src={c.image_recto} alt="" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />}
                           </div>
                           <div style={{ fontSize: 10, fontWeight: 700, marginTop: 3, lineHeight: 1.2, overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>{c.nom}</div>
-                        </div>
+                        </button>
                       ))}
                       {col.cards.length > 6 && <div style={{ alignSelf: 'center', fontSize: 12, color: 'var(--text3, #888)', fontWeight: 700 }}>+{col.cards.length - 6}</div>}
                     </div>
@@ -668,6 +683,16 @@ export default function Trades() {
             </div>
           ))}
         </div>
+      )}
+
+      {viewerCard && (
+        <Viewer3D
+          popup={toViewerCard(viewerCard.card)}
+          accent="#003DA6"
+          onClose={() => setViewerCard(null)}
+          getTags={() => null}
+          userId={viewerCard.owner || undefined}
+        />
       )}
 
       {tradeModal && (

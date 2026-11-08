@@ -4144,7 +4144,7 @@ export default function GalerieClient({ userId, initialCardUrl, initialCards, in
         />
       )}
 
-      {showBackToTop && (
+      {showBackToTop && activeTab !== 'library' /* le classeur a ses propres boutons en bas : la flèche les recouvrait */ && (
         <button
           onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
           style={{

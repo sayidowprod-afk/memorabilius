@@ -25,7 +25,7 @@ export function cardMatchesWish(card: any, wish: any) {
   return true
 }
 
-const CARD_COLS = 'id, user_id, nom, annee, marque, collection, variation, num, rc, auto, patch, image_recto, valeur, equipe'
+const CARD_COLS = 'id, user_id, nom, annee, marque, collection, variation, num, rc, auto, patch, image_recto, valeur, equipe, disponible_vente, image_verso, image_recto_hd, image_verso_hd, is_horizontal, verso_is_horizontal, grade, prix_vente, format, card_number'
 
 
 // Mise en relation wishlist <-> collection pour un membre :

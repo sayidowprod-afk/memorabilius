@@ -2561,7 +2561,7 @@ export default function BinderLibrary({ userId, isOwner, accent, pendingCard, on
                   disabled={!!flip}
                   aria-label={t('binder_goto_page')}
                   title={t('binder_goto_page')}
-                  style={{ padding: isMobile ? '10px 4px' : '7px 8px', fontSize: 12, borderRadius: 8, border: '1px solid var(--border, #ccc)', background: 'var(--surface, #fff)', color: 'var(--text, #111)', width: isMobile ? 90 : 160, flexShrink: 0 }}>
+                  style={{ padding: isMobile ? '10px 4px' : '7px 8px', fontSize: 12, borderRadius: 8, border: '1px solid var(--border, #ccc)', background: 'var(--card-bg, #fff)', color: 'var(--text, #111)', width: isMobile ? 90 : 160, flexShrink: 0 }}>
                   {pageOptions.map(o => <option key={o.value} value={o.value}>{o.label}</option>)}
                 </select>
               )}
@@ -2612,7 +2612,7 @@ export default function BinderLibrary({ userId, isOwner, accent, pendingCard, on
       {managePage && selected && (() => {
         const count = selected.page_count
         const pages = Array.from({ length: count }, (_, i) => i + 1)
-        const sel: React.CSSProperties = { padding: '9px 10px', fontSize: 14, borderRadius: 8, border: '1px solid var(--border, #ccc)', background: 'var(--surface, #fff)', color: 'var(--text, #111)' }
+        const sel: React.CSSProperties = { padding: '9px 10px', fontSize: 14, borderRadius: 8, border: '1px solid var(--border, #ccc)', background: 'var(--card-bg, #fff)', color: 'var(--text, #111)' }
         const cardsOn = (k: number) => [...slots.values()].filter(s => s.page_number === k).length
         return (
           <div role="dialog" aria-modal="true" aria-label="Gérer les pages" onClick={() => !pageBusy && setManagePage(null)}
