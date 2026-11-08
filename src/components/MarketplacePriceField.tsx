@@ -12,20 +12,30 @@ type Suggestion = { median: number; min: number; max: number; n: number; source:
 // Prix d'une carte « Vente/Trade » dans le viewer 3D (propriétaire) -- affiché en étiquette sur la carte.
 // `suggest` : bouton « Prix conseillé » (médiane des ventes eBay récentes, à défaut des annonces en cours), à la demande
 // pour ne pas consommer le quota eBay à chaque ouverture.
-export default function MarketplacePriceField({ cardId, price, onSaved, suggest, reserved, onReleased }: {
+// Prix unique avec un interrupteur Public / Privé :
+//  - Public : prix affiché sur la carte (prix_vente) et carte marquée « Vente/Trade » ;
+//  - Privé  : visible par toi seul (pas d'étiquette).
+// Dans les deux cas le montant est aussi enregistré comme valeur estimée (card_values, via onValueSave), qui alimente les statistiques.
+export default function MarketplacePriceField({ cardId, price, privateValue, forSale, onValueSave, onSaved, suggest, reserved, onReleased }: {
   cardId: string
-  price?: number | null
+  price?: number | null            // prix public (prix_vente)
+  privateValue?: number | null     // valeur estimée privée (card_values)
+  forSale?: boolean                // carte marquée Vente/Trade
+  onValueSave?: (val: number | null) => void | Promise<void>
   onSaved: (price: number | null) => void
   suggest?: PriceSuggestCard
   reserved?: boolean          // carte réservée (offre acceptée) : le vendeur peut lever la réservation
   onReleased?: () => void
 }) {
   const { dark } = useTheme()
-  const [value, setValue] = useState(price != null ? String(price) : '')
+  const current = price ?? privateValue ?? null
+  const [mode, setMode] = useState<'public' | 'private'>(price != null || forSale ? 'public' : 'private')
+  const [value, setValue] = useState(current != null ? String(current) : '')
   const [busy, setBusy] = useState(false)
   const [sug, setSug] = useState<null | 'loading' | 'none' | Suggestion>(null)
 
-  useEffect(() => { setValue(price != null ? String(price) : ''); setSug(null) }, [cardId, price])
+  useEffect(() => { setMode(price != null || forSale ? 'public' : 'private') }, [cardId]) // eslint-disable-line react-hooks/exhaustive-deps
+  useEffect(() => { setValue(current != null ? String(current) : ''); setSug(null) }, [cardId, price, privateValue]) // eslint-disable-line react-hooks/exhaustive-deps
 
   const parsed = parsePrice(value)
   const valid = parsed !== null
@@ -51,17 +61,22 @@ export default function MarketplacePriceField({ cardId, price, onSaved, suggest,
     } catch { setSug('none') }
   }
 
-  const save = async (next: number | null) => {
+  const save = async (next: number | null, m: 'public' | 'private' = mode) => {
     setBusy(true)
-    // Mettre un prix marque aussi la carte « Vente/Trade » (même effet que le bouton).
-    const patch = next === null ? { prix_vente: null } : { prix_vente: next, disponible_vente: true }
-    const { error } = await supabase.from('cartes_manuelles').update(patch).eq('id', cardId)
+    // Public : mettre un prix marque aussi la carte « Vente/Trade » (même effet que le bouton). Privé : on retire seulement l'étiquette publique.
+    const patch = m === 'public'
+      ? (next === null ? { prix_vente: null } : { prix_vente: next, disponible_vente: true })
+      : (price != null ? { prix_vente: null } : null)
+    if (patch) {
+      const { error } = await supabase.from('cartes_manuelles').update(patch).eq('id', cardId)
+      if (error) { setBusy(false); toast.error(error.message); return }
+    }
+    try { await onValueSave?.(next) } catch { /* la valeur privée est secondaire */ }
     setBusy(false)
-    if (error) { toast.error(error.message); return }
-    toast.success(next === null ? 'Prix retiré' : 'Prix enregistré : étiquette ajoutée sur la carte')
-    onSaved(next)
+    toast.success(next === null ? 'Prix retiré' : m === 'public' ? 'Prix public enregistré : étiquette ajoutée sur la carte' : 'Prix privé enregistré (toi seul le vois)')
+    if (m === 'public' || price != null) onSaved(m === 'public' ? next : null)
     // prévient les membres dont la wishlist attend cette carte à ce prix (prix cible) ; sans effet si personne n'est concerné
-    if (next !== null) {
+    if (next !== null && m === 'public') {
       supabase.auth.getSession().then(({ data: { session } }) => {
         if (session) fetch('/api/wishlist-price-alert', { method: 'POST', headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${session.access_token}` }, body: JSON.stringify({ cardId }) }).catch(() => {})
       })
@@ -77,10 +92,28 @@ export default function MarketplacePriceField({ cardId, price, onSaved, suggest,
     onReleased?.()
   }
 
+  // Bascule Public/Privé : si un montant existe déjà, il est appliqué tout de suite dans le nouveau mode
+  const switchMode = async (m: 'public' | 'private') => {
+    if (m === mode || busy) return
+    setMode(m)
+    if (current != null) await save(current, m)
+  }
+
   const border = dark ? '#3a3a3a' : '#d8dde8'
   return (
     <div style={{ gridColumn: '1 / -1', border: `1px solid ${border}`, borderRadius: 10, padding: 12, background: dark ? '#1c1c1c' : '#f7f9fd' }}>
-      <div style={{ fontSize: 12, fontWeight: 800, color: dark ? '#ddd' : '#333', marginBottom: 8 }}>🏷️ Prix de la carte</div>
+      <div style={{ display: 'flex', alignItems: 'center', gap: 10, flexWrap: 'wrap', marginBottom: 8 }}>
+        <div style={{ fontSize: 12, fontWeight: 800, color: dark ? '#ddd' : '#333', flex: 1 }}>🏷️ Prix de la carte</div>
+        <div role="group" aria-label="Visibilité du prix" style={{ display: 'flex', border: '2px solid #003DA6' }}>
+          {([['public', '🌐 Public'], ['private', '🔒 Privé']] as const).map(([k, label]) => (
+            <button key={k} type="button" disabled={busy} aria-pressed={mode === k} onClick={() => switchMode(k)}
+              style={{ padding: '5px 12px', border: 'none', fontWeight: 800, fontSize: 12, cursor: 'pointer', background: mode === k ? '#003DA6' : 'transparent', color: mode === k ? '#fff' : (dark ? '#ddd' : '#003DA6') }}>{label}</button>
+          ))}
+        </div>
+      </div>
+      <div style={{ fontSize: 11, marginBottom: 8, color: dark ? '#aaa' : '#666' }}>
+        {mode === 'public' ? 'Public : le prix est affiché sur la carte et elle passe en Vente/Trade.' : 'Privé : seul toi vois ce prix (valeur de ta collection), rien n’est affiché sur la carte.'}
+      </div>
       {reserved && (
         <div style={{ display: 'flex', alignItems: 'center', gap: 8, flexWrap: 'wrap', marginBottom: 10, padding: '8px 10px', border: '2px solid #c98a12', background: dark ? '#2a2000' : '#fff6dc', fontSize: 12, fontWeight: 700, color: dark ? '#ffd98a' : '#7a4f00' }}>
           <span style={{ flex: '1 1 160px' }}>🔒 Réservée : une offre a été acceptée pour cette carte.</span>
@@ -99,9 +132,9 @@ export default function MarketplacePriceField({ cardId, price, onSaved, suggest,
         </div>
         <button type="button" disabled={!valid || busy} onClick={() => save(parsed)}
           style={{ padding: '10px 14px', borderRadius: 8, border: 'none', background: '#003DA6', color: '#fff', fontWeight: 800, fontSize: 13, cursor: !valid || busy ? 'default' : 'pointer', opacity: !valid || busy ? 0.5 : 1 }}>
-          {price != null ? 'Mettre à jour' : 'Ajouter le prix'}
+          {current != null ? 'Mettre à jour' : 'Ajouter le prix'}
         </button>
-        {price != null && (
+        {current != null && (
           <button type="button" disabled={busy} onClick={() => save(null)}
             style={{ padding: '10px 14px', borderRadius: 8, border: `1px solid ${border}`, background: 'transparent', color: dark ? '#ddd' : '#555', fontWeight: 700, fontSize: 13, cursor: 'pointer' }}>
             Retirer

@@ -4,6 +4,14 @@ export type Entry = { date: string; titre: string; points: string[] }
 
 export const ENTRIES: Entry[] = [
   {
+    date: '11 novembre 2026', titre: 'Trouve les meilleurs échanges et un seul prix par carte',
+    points: [
+      'Échanges, onglet « Pour toi » : le bouton « Chercher les meilleurs partenaires » parcourt les collections et les wishlists de tous les membres, et classe ceux avec qui l’échange est le plus intéressant (score sur 100, valeurs équilibrées, échange parfait).',
+      'Dans la fenêtre d’échange, un petit € vert signale les cartes qui sont en Vente/Trade.',
+      'Un seul prix par carte : le bloc « Prix de la carte » a maintenant un interrupteur Public / Privé. Public, le prix s’affiche sur la carte ; Privé, il reste visible par toi seul. Fini la valeur estimée à part.',
+    ],
+  },
+  {
     date: '10 novembre 2026', titre: 'Ajout en lot plus fiable et plus clair',
     points: [
       'Ajout en lot : une seule liste de cartes pour les photos, la rafale et les pages de classeur. Tu peux les mélanger sans rien perdre, et retirer une carte la retire vraiment.',

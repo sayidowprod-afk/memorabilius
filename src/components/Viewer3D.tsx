@@ -129,7 +129,7 @@ export default function Viewer3D({ popup, accent, onClose, onNext, onPrev, getTa
   initialAddState?: 'idle' | 'added' | 'duplicate'
   onProposeTrade?: () => void
   cardValue?: number
-  onValueSave?: (val: number | null) => void
+  onValueSave?: (val: number | null) => void | Promise<void>
   likeData?: { count: number; liked: boolean }
   onLike?: () => void
   onDeleteCard?: () => void
@@ -2137,7 +2137,7 @@ export default function Viewer3D({ popup, accent, onClose, onNext, onPrev, getTa
                 </>
               )}
               {isOwner && popup.id_manuelle && onPriceChange && (
-                <MarketplacePriceField cardId={popup.id_manuelle} price={popup.prix_vente} onSaved={p => onPriceChange(popup, p)} reserved={!!popup.reservee} onReleased={() => onReservedChange?.(popup, false)}
+                <MarketplacePriceField cardId={popup.id_manuelle} price={popup.prix_vente} privateValue={cardValue} forSale={!!popup.disponible_vente} onValueSave={onValueSave} onSaved={p => onPriceChange(popup, p)} reserved={!!popup.reservee} onReleased={() => onReservedChange?.(popup, false)}
                   suggest={{ name: popup.n, set: `${popup.br} ${popup.s}`.trim(), year: popup.y, num: popup.num, variant: popup.v, rc: popup.rc, auto: popup.auto, patch: popup.patch, grade: popup.g, img: popup.f }} />
               )}
             </div>
@@ -2253,7 +2253,8 @@ export default function Viewer3D({ popup, accent, onClose, onNext, onPrev, getTa
             </div>
           )}
 
-          {onValueSave && (
+          {/* « Valeur est. » privée : seulement pour les cartes sans prix unifié (cartes CSV) ; sinon elle est dans le bloc « Prix de la carte » */}
+          {onValueSave && !(isOwner && popup.id_manuelle && onPriceChange) && (
             <div style={{ borderTop: `1px solid ${borderColor}`, paddingTop: 14, marginTop: 14, display: 'flex', alignItems: 'center', gap: 10 }}>
               <span style={{ fontSize: 10, fontWeight: 800, color: '#bbb', textTransform: 'uppercase', letterSpacing: 1, whiteSpace: 'nowrap' }}>Valeur est.</span>
               <div style={{ position: 'relative', flex: 1, maxWidth: 140 }}>

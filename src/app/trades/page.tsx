@@ -82,6 +82,21 @@ export default function Trades() {
 
   // ── Matches wishlist <-> collection (voir api/trades/matches) ───────────────
   const [matches, setMatches] = useState<any[] | null>(null)
+  // « Chercher les meilleurs partenaires » : scan de toutes les collections (cartes à vendre / échanger)
+  const [partners, setPartners] = useState<{ list: any[]; scanned: number; at: number } | null>(null)
+  const [partnersState, setPartnersState] = useState<'idle' | 'loading' | 'error'>('idle')
+  const searchPartners = async (refresh: boolean) => {
+    setPartnersState('loading')
+    try {
+      const { data: { session } } = await supabase.auth.getSession()
+      if (!session) { setPartnersState('error'); return }
+      const res = await fetch(`/api/trades/partners${refresh ? '?refresh=1' : ''}`, { headers: { Authorization: `Bearer ${session.access_token}` } })
+      if (!res.ok) throw new Error(String(res.status))
+      const j = await res.json()
+      setPartners({ list: j.partners || [], scanned: j.scannedMembers || 0, at: j.cachedAt || Date.now() })
+      setPartnersState('idle')
+    } catch { setPartnersState('error') }
+  }
   const [tradeModal, setTradeModal] = useState<{ userId: string; name: string; targetIds: string[]; myIds: string[]; message?: string; counterOfId?: string } | null>(null)
   const [reviewDraft, setReviewDraft] = useState<Record<string, { rating: number; comment: string }>>({})
   const [fAnnee, setFAnnee] = useState('')
@@ -531,6 +546,50 @@ export default function Trades() {
       {mainTab === 'matches' && (
         <div style={{ display: 'flex', flexDirection: 'column', gap: 16 }}>
           <p style={{ fontSize: 13, color: 'var(--text3, #888)', margin: 0 }}>{t('trades_matches_intro')}</p>
+
+          {/* Recherche élargie : classe les membres dont les cartes à vendre / échanger croisent ta wishlist et tes cartes */}
+          <div style={{ border: '2px solid #f39c12', borderRadius: 16, padding: 16, background: 'var(--card-bg, #fff)' }}>
+            <div style={{ display: 'flex', alignItems: 'center', gap: 12, flexWrap: 'wrap' }}>
+              <button onClick={() => searchPartners(partners !== null)} disabled={partnersState === 'loading'}
+                style={{ background: '#f39c12', color: '#1a1200', border: 'none', borderRadius: 10, padding: '10px 18px', fontWeight: 900, fontSize: 13, cursor: partnersState === 'loading' ? 'wait' : 'pointer' }}>
+                🔍 {partnersState === 'loading' ? 'Analyse des collections…' : partners ? 'Relancer la recherche' : 'Chercher les meilleurs partenaires'}
+              </button>
+              <span style={{ fontSize: 12, color: 'var(--text3, #888)' }}>
+                {partners ? `${partners.scanned} membres analysés` : 'Parcourt les cartes à vendre / échanger de tous les membres pour trouver les meilleurs échanges avec toi.'}
+              </span>
+            </div>
+            {partnersState === 'error' && <p style={{ color: '#d6293e', fontSize: 13, margin: '10px 0 0' }}>La recherche a échoué (ou trop de relances). Réessaie dans quelques minutes.</p>}
+            {partners && partners.list.length === 0 && <p style={{ fontSize: 13, margin: '10px 0 0' }}>Aucun échange possible pour l’instant. Ajoute des cartes à ta wishlist, ou marque des cartes « à vendre / échanger ».</p>}
+            {partners && partners.list.length > 0 && (
+              <div style={{ display: 'flex', flexDirection: 'column', gap: 10, marginTop: 14 }}>
+                {partners.list.map((m: any) => (
+                  <div key={m.id} style={{ display: 'flex', alignItems: 'center', gap: 12, flexWrap: 'wrap', border: '1px solid var(--border, #eee)', borderRadius: 12, padding: 10 }}>
+                    <div title="Score d’intérêt de l’échange (sur 100)" style={{ width: 52, height: 52, border: '3px solid #f39c12', display: 'grid', placeItems: 'center', fontWeight: 900, fontSize: 20, color: '#b9770e', flex: 'none' }}>{m.score}</div>
+                    <img loading="lazy" src={m.avatar || `https://ui-avatars.com/api/?name=${encodeURIComponent(m.name)}&background=003DA6&color=fff`} style={{ width: 36, height: 36, borderRadius: '50%', objectFit: 'cover' }} alt="" />
+                    <div style={{ flex: 1, minWidth: 160 }}>
+                      <Link href={`/galerie/${m.id}`} style={{ fontWeight: 800, color: 'inherit', textDecoration: 'none' }}>{m.name}</Link>
+                      {m.perfect && <span style={{ marginLeft: 8, background: '#f39c12', color: '#fff', fontSize: 10, fontWeight: 900, padding: '2px 8px', borderRadius: 20 }}>⭐ Échange parfait</span>}
+                      {m.balanced && <span style={{ marginLeft: 6, background: '#1e9e57', color: '#fff', fontSize: 10, fontWeight: 900, padding: '2px 8px', borderRadius: 20 }}>Valeurs équilibrées</span>}
+                      <div style={{ fontSize: 12, color: 'var(--text3, #888)', marginTop: 2 }}>
+                        Il a {m.theyHave.length} carte{m.theyHave.length > 1 ? 's' : ''} que tu cherches{m.theyHaveValue > 0 ? ` (≈ ${Math.round(m.theyHaveValue)} €)` : ''} · tu en as {m.theyWantFromMe.length} qu’il cherche{m.theyWantValue > 0 ? ` (≈ ${Math.round(m.theyWantValue)} €)` : ''}
+                      </div>
+                      {(m.theyHaveForTrade > 0 || m.theyWantForTrade > 0) && (
+                        <div style={{ fontSize: 11, color: '#1e9e57', fontWeight: 700, marginTop: 2 }}>
+                          <span style={{ display: 'inline-block', background: '#1e9e57', color: '#fff', borderRadius: '50%', width: 13, height: 13, textAlign: 'center', fontSize: 8, lineHeight: '13px', marginRight: 4 }}>€</span>
+                          dont {m.theyHaveForTrade} à vendre / échanger chez lui · {m.theyWantForTrade} chez toi
+                        </div>
+                      )}
+                    </div>
+                    <button onClick={() => setTradeModal({ userId: m.id, name: m.name, targetIds: m.theyHave.map((c: any) => c.id), myIds: m.theyWantFromMe.map((c: any) => c.id) })}
+                      style={{ background: '#1b5e20', color: '#fff', border: 'none', borderRadius: 10, padding: '9px 16px', fontWeight: 800, fontSize: 13, cursor: 'pointer' }}>
+                      🔄 {t('trades_propose_exchange')}
+                    </button>
+                  </div>
+                ))}
+              </div>
+            )}
+          </div>
+
           {matches === null ? (
             <div style={{ display: 'flex', flexDirection: 'column', gap: 12 }}>
               {[0, 1, 2].map(i => <SkeletonBlock key={i} style={{ height: 120, borderRadius: 16 }} />)}

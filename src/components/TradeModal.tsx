@@ -21,6 +21,7 @@ interface CardInfo {
   patch: boolean
   isManuelle: boolean
   valeur?: number | null
+  disponible_vente?: boolean | null
 }
 
 interface Filters {
@@ -136,6 +137,9 @@ function CardGrid({
                 <CardTagBadges rc={c.rc} auto={c.auto} patch={c.patch} size="xs" compact />
               </div>
             )}
+            {c.isManuelle && c.disponible_vente && (
+              <div title="Carte à vendre / échanger" style={{ position: 'absolute', bottom: 2, right: 2, background: '#1e9e57', color: '#fff', fontSize: 8, fontWeight: 900, width: 14, height: 14, borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', boxShadow: '0 0 0 1.5px #fff' }}>€</div>
+            )}
             {!c.isManuelle && (
               <div style={{ position: 'absolute', top: 2, left: 2, background: 'rgba(0,0,0,0.5)', color: '#fff', fontSize: 6, fontWeight: 900, padding: '1px 3px', borderRadius: 3 }}>CSV</div>
             )}
@@ -232,7 +236,7 @@ export default function TradeModal({ targetCard, initialTargetSelected, initialM
   const fetchTargetCards = useCallback(async () => {
     const [{ data: manuelles }, { data: profile }, { data: privees }] = await Promise.all([
       supabase.from('cartes_manuelles')
-        .select('id, nom, annee, marque, equipe, image_recto, rc, auto, patch, valeur')
+        .select('id, nom, annee, marque, equipe, image_recto, rc, auto, patch, valeur, disponible_vente')
         .eq('user_id', targetUserId)
         .order('created_at', { ascending: false }),
       supabase.from('profiles').select('lien_csv').eq('id', targetUserId).single(),
@@ -258,7 +262,7 @@ export default function TradeModal({ targetCard, initialTargetSelected, initialM
     if (!session) return
     const [{ data: manuelles }, { data: profile }] = await Promise.all([
       supabase.from('cartes_manuelles')
-        .select('id, nom, annee, marque, equipe, image_recto, rc, auto, patch, valeur')
+        .select('id, nom, annee, marque, equipe, image_recto, rc, auto, patch, valeur, disponible_vente')
         .eq('user_id', session.user.id)
         .order('created_at', { ascending: false }),
       supabase.from('profiles').select('lien_csv').eq('id', session.user.id).single(),

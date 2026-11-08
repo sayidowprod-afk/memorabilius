@@ -7,7 +7,7 @@ const normalize = (s: string) => (s || '').normalize('NFD').replace(/[̀-ͯ]/g, 
 const normNum = (s: string) => { const m = (s || '').match(/\/(\d+)/); return m ? m[1] : normalize(s) }
 const escapeLike = (s: string) => (s || '').replace(/[%_,()]/g, c => (c === '%' || c === '_') ? `\\${c}` : ' ')
 
-function cardMatchesWish(card: any, wish: any) {
+export function cardMatchesWish(card: any, wish: any) {
   if (normalize(card.nom) !== normalize(wish.nom)) return false
   if (wish.annee && normalize(card.annee) !== normalize(wish.annee)) return false
   if (wish.marque && normalize(card.marque) !== normalize(wish.marque)) return false
