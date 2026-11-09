@@ -428,9 +428,7 @@ export default function CameraCapture({ onCapture, onClose, ratio }: Props) {
 
     // Zoom MATERIEL actif : takePhoto() ignore souvent le zoom du flux (photo non zoomee, differente de l'apercu) ;
     // l'image du flux video, elle, est exactement ce que l'utilisateur voit -> on la prend, plus fiable.
-    // Même règle pour le zoom numérique (WebView Android sans zoom matériel) : takePhoto() renvoie la photo du capteur, dont le champ
-    // peut être plus large que l'aperçu — la carte ressortait alors petite et mal cadrée. Dès qu'on a zoomé, on prend ce que l'écran montre.
-    const hwZoomActive = zoomRef.current > 1.05
+    const hwZoomActive = !digitalZoomRef.current && zoomRef.current > 1.05
     try { await withTimeout(ensureFocused(), 1500) } catch { /* on capture quand meme */ }
 
     // ImageCapture.takePhoto() capture une vraie photo depuis le capteur
@@ -491,7 +489,10 @@ export default function CameraCapture({ onCapture, onClose, ratio }: Props) {
     // Zoom numerique : la photo est la frame COMPLETE -- on la recadre sur la
     // zone zoomee visible (sinon l'etape de reperage des coins affiche la photo
     // non zoomee). Recadrage en pleine resolution, sans re-echantillonnage.
-    if (blob && digitalZoomRef.current && zoomRef.current > 1.001) {
+    // Recadrage aussi SANS zoom : l'aperçu (object-fit: cover) n'affiche que le centre de l'image du capteur quand l'écran est plus
+    // haut/étroit qu'elle (téléphones allongés) ; la photo gardait l'image entière, donc plus large et cadrée autrement qu'à l'écran.
+    const visibleCrop = srcW < vw * 0.99 || srcH < vh * 0.99
+    if (blob && ((digitalZoomRef.current && zoomRef.current > 1.001) || visibleCrop)) {
       try {
         const bmp = await createImageBitmap(blob, { imageOrientation: 'from-image' })
         const cx = Math.max(0, Math.round(srcX * sx)), cy = Math.max(0, Math.round(srcY * sy))
