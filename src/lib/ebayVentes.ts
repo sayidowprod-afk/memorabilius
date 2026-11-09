@@ -1,11 +1,32 @@
 import { createServerServiceClient } from '@/lib/supabaseServer'
 import { decryptToken } from '@/lib/ebayCrypto'
-import { EbayError, getItemPhoto, getMySales } from '@/lib/ebayTrading'
+import { EbayError, getItemPhoto, getMySales, getMyActiveListings, type EbayAnnonce } from '@/lib/ebayTrading'
 
 // Lecture des ventes eBay d'un membre (GetOrders, rôle vendeur) -> table `ventes_membre`. Appelée à l'ouverture de
 // « Mes ventes » et au bouton « Actualiser », jamais par une tâche planifiée : les ventes bougent peu et le quota d'appels
 // eBay est partagé par tous les membres. Les champs saisis à la main (coût d'achat, notes, port réel…) ne sont jamais écrasés.
 const sb = createServerServiceClient(30000)
+
+// Annonces eBay en cours (enchères, prix fixe) : lues à la demande, jamais enregistrées (elles bougent sans cesse). Cache de 60 s par membre
+// pour ne pas multiplier les appels (le quota eBay est partagé par tous les membres).
+const annoncesCache = new Map<string, { at: number; annonces: EbayAnnonce[] }>()
+export type AnnoncesResult = { ok: true; annonces: EbayAnnonce[] } | { ok: false; error: string; reconnect?: boolean }
+
+export async function listAnnonces(userId: string): Promise<AnnoncesResult> {
+  const hit = annoncesCache.get(userId)
+  if (hit && Date.now() - hit.at < 60000) return { ok: true, annonces: hit.annonces }
+  const { data: conn } = await sb.from('ebay_connexions').select('token_chiffre, statut').eq('user_id', userId).maybeSingle()
+  if (!conn || conn.statut !== 'connecte' || !conn.token_chiffre) return { ok: false, error: 'Compte eBay non connecté.', reconnect: conn?.statut === 'expire' }
+  try {
+    const annonces = await getMyActiveListings(decryptToken(conn.token_chiffre))
+    annoncesCache.set(userId, { at: Date.now(), annonces })
+    return { ok: true, annonces }
+  } catch (e) {
+    const err = e instanceof EbayError ? e : null
+    if (err?.tokenInvalid) return { ok: false, error: 'Connexion eBay expirée : reconnecte ton compte.', reconnect: true }
+    return { ok: false, error: err ? `eBay : ${err.message}` : 'Lecture des annonces impossible.' }
+  }
+}
 
 export type VentesSyncResult =
   | { ok: true; ventes: number }

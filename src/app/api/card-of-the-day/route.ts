@@ -5,8 +5,11 @@ import { printRunOf, specialNum } from '@/lib/cardTags'
 // CARTE DU JOUR : une carte de la communaute, la meme pour tout le monde toute la journee (fuseau de Paris), qui change a minuit.
 // Choix : parmi toutes les cartes de la communaute (sans limite d'anciennete) qui ont une vraie photo et au moins un atout (RC, AUTO, PATCH ou numerotee),
 // jamais une carte privee (table cartes_privees), jamais le compte de demonstration. La carte du jour est tiree de facon
-// deterministe avec la date comme graine : pas de stockage, pas de tache planifiee, et tout le monde voit la meme.
-// Reponse mise en cache au CDN au plus 1 h, et jamais au-dela de minuit (Paris).
+// deterministe avec la date comme graine : tout le monde voit la meme.
+// Le calcul lit jusqu'a 20 000 cartes (~20 requetes, 6 a 8 s) : il n'est donc fait QU'UNE FOIS PAR JOUR puis le resultat est range dans la table
+// carte_du_jour (voir supabase/migrations/20261115_carte_du_jour.sql) ; les appels suivants lisent une seule ligne. Si la table n'existe pas encore,
+// on recalcule comme avant (aucune panne). Avant chaque reutilisation on verifie que la carte existe toujours et n'est pas devenue privee.
+// Reponse mise en cache au CDN au plus 6 h, et jamais au-dela de minuit (Paris).
 export const dynamic = 'force-dynamic'
 
 const supabase = createServerServiceClient()
@@ -17,6 +20,21 @@ function hash(s: string) {
   return h >>> 0
 }
 
+// la carte rangee pour aujourd'hui, si elle existe encore et n'est pas privee
+async function readStored(day: string): Promise<any | null> {
+  try {
+    const { data, error } = await supabase.from('carte_du_jour').select('card_id, payload').eq('day', day).maybeSingle()
+    if (error || !data?.payload?.card) return null
+    const card = data.payload.card
+    const [{ data: row }, { data: priv }] = await Promise.all([
+      supabase.from('cartes_manuelles').select('id').eq('id', data.card_id).eq('user_id', card.owner?.id).eq('image_recto', card.image).maybeSingle(),
+      supabase.from('cartes_privees').select('card_key').eq('user_id', card.owner?.id).eq('card_key', card.image).limit(1),
+    ])
+    if (!row || (priv && priv.length > 0)) return null
+    return data.payload
+  } catch { return null }
+}
+
 export async function GET() {
   const day = new Intl.DateTimeFormat('fr-CA', { timeZone: 'Europe/Paris' }).format(new Date()) // AAAA-MM-JJ
   // minuit (Europe/Paris) du jour courant, en UTC
@@ -24,6 +42,14 @@ export async function GET() {
   const offsetMs = parisNow.getTime() - new Date().getTime() + new Date().getMilliseconds() * 0
   const startParis = new Date(Date.now() + offsetMs); startParis.setHours(0, 0, 0, 0)
   const startOfDayParis = new Date(startParis.getTime() - offsetMs).toISOString()
+  // le cache CDN ne depasse jamais minuit (Paris) ; le client ajoute ?d=AAAA-MM-JJ, donc une nouvelle journee = une nouvelle entree de cache
+  const secondsToMidnight = Math.max(60, Math.min(21600, Math.round((86400000 - (parisNow.getHours() * 3600000 + parisNow.getMinutes() * 60000 + parisNow.getSeconds() * 1000)) / 1000)))
+  // 6 h au plus (avant : 1 h) ; stale-while-revalidate : apres expiration, le visiteur recoit tout de suite l'ancienne reponse pendant que la nouvelle se prepare
+  const headers = { 'Cache-Control': `public, s-maxage=${secondsToMidnight}, stale-while-revalidate=3600` }
+
+  const stored = await readStored(day)
+  if (stored) return NextResponse.json(stored, { headers })
+
   // toutes les cartes de la communaute avec au moins un atout, quelle que soit leur anciennete (lecture par pages de 1000)
   const recent: any[] = []
   for (let from = 0; from < 20000; from += 1000) {
@@ -73,19 +99,15 @@ export async function GET() {
   for (const c of pool) { const sc = hash(`${day}|${c.id}`); if (sc > top) { top = sc; pick = c } }
   const prof: any = (profiles || []).find((p: any) => p.id === pick.user_id)
   const [y, m, d] = day.split('-').map(Number)
-  // le cache CDN ne depasse jamais minuit (Paris) ; le client ajoute ?d=AAAA-MM-JJ, donc une nouvelle journee = une nouvelle entree de cache
-  const secondsToMidnight = Math.max(60, Math.min(21600, Math.round((86400000 - (parisNow.getHours() * 3600000 + parisNow.getMinutes() * 60000 + parisNow.getSeconds() * 1000)) / 1000)))
-  return NextResponse.json(
-    {
-      day: { y, m, d },
-      card: {
-        image: pick.image_recto, nom: pick.nom, annee: pick.annee, marque: pick.marque, collection: pick.collection, variation: pick.variation,
-        num: pick.num, rc: !!pick.rc, auto: !!pick.auto, patch: !!pick.patch,
-        owner: { id: pick.user_id, slug: prof?.slug || null, name: prof?.display_name || null, avatar: prof?.avatar_url || null, total: prof?.stats_total || 0 },
-      },
+  const payload = {
+    day: { y, m, d },
+    card: {
+      image: pick.image_recto, nom: pick.nom, annee: pick.annee, marque: pick.marque, collection: pick.collection, variation: pick.variation,
+      num: pick.num, rc: !!pick.rc, auto: !!pick.auto, patch: !!pick.patch,
+      owner: { id: pick.user_id, slug: prof?.slug || null, name: prof?.display_name || null, avatar: prof?.avatar_url || null, total: prof?.stats_total || 0 },
     },
-    // 6 h au plus (avant : 1 h) : la carte ne change qu'à minuit, et chaque recalcul coûte ~20 requêtes (8 s) ; stale-while-revalidate : après expiration,
-    // le visiteur reçoit tout de suite l'ancienne réponse pendant que la nouvelle se recalcule en arrière-plan, au lieu d'attendre.
-    { headers: { 'Cache-Control': `public, s-maxage=${secondsToMidnight}, stale-while-revalidate=3600` } },
-  )
+  }
+  // on range le resultat du jour : les prochains appels (autres regions du CDN, cache expire) ne refont pas le calcul. Sans importance si ca echoue.
+  try { await supabase.from('carte_du_jour').upsert({ day, card_id: pick.id, payload }) } catch { /* table absente : on recalculera */ }
+  return NextResponse.json(payload, { headers })
 }

@@ -321,18 +321,80 @@ export function parseSales($: CheerioAPI): { ventes: EbayVente[]; hasMore: boole
 export async function getMySales(token: string, days: number): Promise<EbayVente[]> {
   const out = new Map<string, EbayVente>()
   const DAY = 86400000, now = Date.now()
-  for (let w = 0; w * 90 < days; w++) {
-    const from = new Date(now - Math.min(days, (w + 1) * 90) * DAY).toISOString()
-    const to = new Date(now - w * 90 * DAY).toISOString()
-    for (let page = 1; page <= 6; page++) {
-      const $ = await trading('GetOrders',
-        `<DetailLevel>ReturnAll</DetailLevel><CreateTimeFrom>${from}</CreateTimeFrom><CreateTimeTo>${to}</CreateTimeTo><OrderRole>Seller</OrderRole><OrderStatus>All</OrderStatus><Pagination><EntriesPerPage>100</EntriesPerPage><PageNumber>${page}</PageNumber></Pagination>`, token)
-      const { ventes, hasMore } = parseSales($)
-      for (const v of ventes) out.set(v.ref, v)
-      if (!hasMore) break
+  // fenêtres de 89 jours qui se suivent sans trou (eBay refuse plus de 90 jours par appel, et un début à la limite exacte)
+  const WIN = 89 * DAY, oldest = now - days * DAY
+  let to = now
+  for (let w = 0; to > oldest; w++) {
+    const fromMs = Math.max(oldest, to - WIN)
+    const from = new Date(fromMs).toISOString()
+    const toIso = new Date(to).toISOString()
+    to = fromMs
+    try {
+      for (let page = 1; page <= 6; page++) {
+        const $ = await trading('GetOrders',
+          `<DetailLevel>ReturnAll</DetailLevel><CreateTimeFrom>${from}</CreateTimeFrom><CreateTimeTo>${toIso}</CreateTimeTo><OrderRole>Seller</OrderRole><OrderStatus>All</OrderStatus><Pagination><EntriesPerPage>100</EntriesPerPage><PageNumber>${page}</PageNumber></Pagination>`, token)
+        const { ventes, hasMore } = parseSales($)
+        for (const v of ventes) out.set(v.ref, v)
+        if (!hasMore) break
+      }
+    } catch (e) {
+      // eBay ne renvoie que les commandes des ~90 derniers jours : une fenêtre plus ancienne répond « Invalid dates in your CreateTimeFrom filters ».
+      // Pour les fenêtres au-delà de la première, ce n'est pas une panne : on garde ce qu'on a et on s'arrête là. La première fenêtre, elle, doit réussir.
+      if (w > 0 && e instanceof EbayError && /invalid dates/i.test(e.message)) return [...out.values()]
+      throw e
     }
   }
   return [...out.values()]
+}
+
+// ── Annonces en cours (côté vendeur) ────────────────────────────────────────────
+
+export type EbayAnnonce = {
+  item_id: string
+  titre: string | null
+  photo_url: string | null
+  enchere: boolean                  // vente aux enchères (sinon prix fixe)
+  devise: string | null
+  prix_actuel: number | null        // enchère : mise actuelle ; prix fixe : prix demandé
+  nb_encheres: number | null
+  nb_suivis: number | null          // personnes qui suivent l'annonce (« watchers » eBay)
+  meilleur_encherisseur: string | null
+  quantite: number | null
+  fin_at: string | null
+  lien: string
+}
+
+// Transforme la réponse XML de GetMyeBaySelling (liste active). Séparée de l'appel réseau pour pouvoir être testée sur un exemple.
+export function parseActiveListings($: CheerioAPI): EbayAnnonce[] {
+  const root = $('GetMyeBaySellingResponse').first() as El
+  const out: EbayAnnonce[] = []
+  at(root, 'ActiveList/ItemArray').children('Item').each((_, n) => {
+    const it = $(n) as El
+    const itemId = text(it, 'ItemID')
+    if (!itemId) return
+    out.push({
+      item_id: itemId,
+      titre: text(it, 'Title'),
+      photo_url: bigPhoto(text(it, 'PictureDetails/GalleryURL')),
+      enchere: text(it, 'ListingType') === 'Chinese',
+      devise: cur(it, 'SellingStatus/CurrentPrice') || cur(it, 'BuyItNowPrice'),
+      prix_actuel: num(it, 'SellingStatus/CurrentPrice') ?? num(it, 'BuyItNowPrice'),
+      nb_encheres: num(it, 'SellingStatus/BidCount'),
+      nb_suivis: num(it, 'WatchCount'),
+      meilleur_encherisseur: text(it, 'SellingStatus/HighBidder/UserID'),
+      quantite: num(it, 'QuantityAvailable') ?? num(it, 'Quantity'),
+      fin_at: iso(it, 'ListingDetails/EndTime'),
+      lien: text(it, 'ListingDetails/ViewItemURL') || itemLink(itemId, text(it, 'Site')),
+    })
+  })
+  return out.sort((a, b) => (a.fin_at || '9').localeCompare(b.fin_at || '9')) // la plus proche de la fin d'abord
+}
+
+// Annonces actives du vendeur (100 au maximum) avec le nombre de personnes qui les suivent.
+export async function getMyActiveListings(token: string): Promise<EbayAnnonce[]> {
+  const $ = await trading('GetMyeBaySelling',
+    `<ActiveList><Include>true</Include><IncludeWatchCount>true</IncludeWatchCount><Pagination><EntriesPerPage>100</EntriesPerPage><PageNumber>1</PageNumber></Pagination></ActiveList>`, token)
+  return parseActiveListings($)
 }
 
 // Photo d'une annonce terminée (GetOrders n'en renvoie pas) : un appel par article, utilisé avec parcimonie.

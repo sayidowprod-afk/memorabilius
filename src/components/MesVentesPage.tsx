@@ -7,6 +7,7 @@ import MesVentesView, { type VenteForm } from '@/components/MesVentesView'
 import type { Row, Rates } from '@/components/MesAchatsView'
 import type { Vente } from '@/lib/ventesUi'
 import type { Offer } from '@/lib/offers'
+import type { EbayAnnonce } from '@/lib/ebayTrading'
 
 // « Mes ventes » : ventes eBay importées (lecture seule, même connexion que « Mes achats ») et ventes saisies à la main,
 // avec net encaissé, profit réalisé et rendement. L'affichage est dans MesVentesView ; ici : session, chargement, synchronisation.
@@ -22,6 +23,7 @@ export default function MesVentes() {
   const [busy, setBusy] = useState(false)
   const [msg, setMsg] = useState<string | null>(null)
   const [now, setNow] = useState(() => Date.now())
+  const [annonces, setAnnonces] = useState<EbayAnnonce[]>([])
 
   // Offres de prix reçues sur mes cartes à vendre (entre membres de Memorabilius) qui attendent ma réponse
   const loadOffers = async (uid: string) => {
@@ -50,6 +52,15 @@ export default function MesVentes() {
     await loadOffers(uid)
   }, [])
 
+  // Annonces eBay en cours (enchères, prix fixe) : lecture à la demande, affichée en haut ; une erreur ici ne gêne pas le reste de la page
+  const loadAnnonces = useCallback(async (tok: string) => {
+    try {
+      const res = await fetch('/api/ebay/en-cours', { headers: { Authorization: `Bearer ${tok}` } })
+      const json = await res.json().catch(() => ({}))
+      setAnnonces(json && json.ok ? (json.annonces as EbayAnnonce[]) : [])
+    } catch { setAnnonces([]) }
+  }, [])
+
   const sync = useCallback(async (tok: string, uid: string, force: boolean) => {
     setBusy(true); setMsg(null)
     try {
@@ -57,8 +68,9 @@ export default function MesVentes() {
       const json = await res.json().catch(() => ({}))
       if (json && json.ok === false && !json.skipped && json.error !== 'Compte eBay non connecté.') setMsg(json.error || 'Actualisation impossible.')
       await load(uid)
+      void loadAnnonces(tok)
     } finally { setBusy(false) }
-  }, [load])
+  }, [load, loadAnnonces])
 
   useEffect(() => {
     (async () => {
@@ -105,7 +117,7 @@ export default function MesVentes() {
 
   return (
     <MesVentesView
-      offers={offers} onOfferAct={offerAct}
+      offers={offers} onOfferAct={offerAct} annonces={annonces}
       loading={loading} ventes={ventes} achats={achats} rates={rates} connected={statut === 'connecte'} ebayStatut={statut} busy={busy} msg={msg} now={now}
       onSync={() => { if (token) supabase.auth.getSession().then(({ data: { session } }) => session && sync(session.access_token, session.user.id, true)) }}
       onAdd={(f: VenteForm) => call('POST', f)}

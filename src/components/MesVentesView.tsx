@@ -9,6 +9,7 @@ import { matchesQuery } from '@/lib/achatsUi'
 import { askConfirm } from '@/components/ConfirmHost'
 import DataTable, { type Col } from '@/components/DataTable'
 import { hoursLeft, parsePrice, type Offer } from '@/lib/offers'
+import type { EbayAnnonce } from '@/lib/ebayTrading'
 
 // Affichage de « Mes ventes » (sans logique réseau) : ventes eBay importées + ventes saisies à la main, net encaissé, profit
 // réalisé et rendement (vente moins coût d'achat, relié automatiquement à « Mes achats » quand les titres se ressemblent).
@@ -22,9 +23,10 @@ const EMPTY: VenteForm = { titre: '', prix: '', port_facture: '', frais: '', cou
 type Period = 'mois' | 'annee' | 'tout'
 
 export default function MesVentesView({
-  ventes, achats, rates, connected, ebayStatut, busy, msg, now, onSync, onAdd, onPatch, onDelete, loading = false, offers = [], onOfferAct,
+  ventes, achats, rates, connected, ebayStatut, busy, msg, now, onSync, onAdd, onPatch, onDelete, loading = false, offers = [], onOfferAct, annonces = [],
 }: {
   offers?: Array<Offer & { buyer_name: string | null }>
+  annonces?: EbayAnnonce[]
   onOfferAct?: (id: string, action: 'accept' | 'refuse' | 'counter', price?: number) => Promise<string | null>
   ventes: Vente[]; achats: Row[]; rates: Rates; connected: boolean; ebayStatut?: string | null
   busy: boolean; msg: string | null; now: number; loading?: boolean
@@ -99,6 +101,7 @@ export default function MesVentesView({
       )}
 
       {offers.length > 0 && onOfferAct && <OffersBox offers={offers} onAct={onOfferAct} onNote={setNote} />}
+      {annonces.length > 0 && <ActiveBox annonces={annonces} now={now} />}
 
       <div className="mv-bar">
         <div className="st-tabs" role="tablist" style={{ display: 'inline-flex', border: '3px solid var(--border)' }}>
@@ -187,6 +190,50 @@ export default function MesVentesView({
 
       {adding && <AddModal achats={achatsSorted} costs={costs} taken={taken} onClose={() => setAdding(false)} onAdd={async f => { const e = await onAdd(f); if (!e) { setAdding(false); setNote({ text: 'Vente ajoutée.' }) } return e }} />}
     </div>
+  )
+}
+
+// Temps restant avant la fin d'une annonce (« 2 j 5 h », « 3 h 20 min », « 45 min »)
+const timeLeft = (iso: string | null, now: number): string => {
+  if (!iso) return ''
+  const ms = new Date(iso).getTime() - now
+  if (!Number.isFinite(ms)) return ''
+  if (ms <= 0) return 'terminée'
+  const min = Math.floor(ms / 60000), h = Math.floor(min / 60), d = Math.floor(h / 24)
+  if (d >= 1) return `${d} j ${h % 24} h`
+  if (h >= 1) return `${h} h ${min % 60} min`
+  return `${Math.max(1, min)} min`
+}
+
+// Annonces eBay en cours (enchères et prix fixe) : mise actuelle, nombre d'enchères, personnes qui suivent, temps restant. Lecture seule.
+function ActiveBox({ annonces, now }: { annonces: EbayAnnonce[]; now: number }) {
+  const encheres = annonces.filter(a => a.enchere).length
+  return (
+    <section className="mv-offers mv-act" aria-label="Annonces en cours sur eBay">
+      <h2 className="ma-h2">En cours sur eBay ({annonces.length}){encheres ? ` · ${encheres} enchère${encheres > 1 ? 's' : ''}` : ''}</h2>
+      <div className="mv-off-list">
+        {annonces.map(a => {
+          const fin = timeLeft(a.fin_at, now)
+          const suivis = a.nb_suivis // null : eBay ne l'a pas indiqué, on n'affiche rien plutôt qu'un faux « 0 »
+          return (
+            <div key={a.item_id} className="mv-off">
+              {a.photo_url ? <img className="mv-off-ph" src={a.photo_url} alt="" loading="lazy" /> : <div className="mv-off-ph mv-off-no" aria-hidden="true">🃏</div>}
+              <div className="mv-off-b">
+                <div className="ma-title"><a href={a.lien} target="_blank" rel="noopener noreferrer" style={{ color: 'inherit' }}>{a.titre || 'Annonce eBay'}</a></div>
+                <div className="ma-line">
+                  <span className="da-num ma-price">{eur(a.prix_actuel)}</span>
+                  <span className="ma-meta">{a.enchere ? (a.nb_encheres ? `${a.nb_encheres} enchère${a.nb_encheres > 1 ? 's' : ''}` : 'aucune enchère') : 'prix fixe'}</span>
+                </div>
+                <div className="ma-meta">
+                  {suivis !== null ? `👁 ${suivis} personne${suivis > 1 ? 's' : ''} suivent l’annonce` : ''}{fin ? `${suivis !== null ? ' · ' : ''}fin dans ${fin}` : ''}
+                  {a.enchere && a.meilleur_encherisseur ? ` · en tête : ${a.meilleur_encherisseur}` : ''}
+                </div>
+              </div>
+            </div>
+          )
+        })}
+      </div>
+    </section>
   )
 }
 
@@ -342,6 +389,7 @@ const CSS = `
 .mv-form { display: flex; flex-direction: column; gap: 10px; } .mv-form label { font: 700 12px system-ui, sans-serif; color: var(--text2); display: block; } .mv-form .ma-det-in { margin-top: 4px; }
 .mv-card .ma-det { flex-basis: 100%; }
 .mv-offers { margin: 0 0 18px; } .mv-off-list { display: grid; gap: 10px; }
+.mv-act .mv-off { border-left-color: #2f6bff; }
 .mv-off { display: flex; gap: 12px; padding: 10px; border: 3px solid var(--border); background: var(--bg2); border-left: 6px solid #c98a12; }
 .mv-off-ph { width: 56px; aspect-ratio: 5 / 7; object-fit: cover; flex: none; align-self: flex-start; } .mv-off-no { display: grid; place-items: center; background: var(--bg3); font-size: 22px; }
 .mv-off-b { flex: 1; min-width: 0; } .mv-off-act { display: flex; gap: 8px; flex-wrap: wrap; align-items: center; margin-top: 8px; }

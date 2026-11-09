@@ -118,7 +118,7 @@ export default function HomeHero({ total, totalCartes, totalBinders, totalTrade,
         if (!cancelled) setLiveStats(data)
       } catch {}
     }
-    const id = setInterval(poll, 20000)
+    const id = setInterval(poll, 60000) // 1 min (avant : 20 s) : moins de requêtes sur une base chargée ; le compteur reste vivant
     return () => { cancelled = true; clearInterval(id) }
   }, [])
 

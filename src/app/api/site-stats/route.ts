@@ -40,6 +40,8 @@ export async function GET() {
 
   return NextResponse.json(
     { total, totalCartes, totalBinders, totalTrade },
-    { headers: { 'Cache-Control': 'public, s-maxage=15, stale-while-revalidate=30' } }
+    // 2 min (avant : 15 s) : ces 4 comptages pèsent sur la base (le compteur « à vendre » parcourt toute la table) et la base était saturée ;
+    // des chiffres « en direct » à 2 minutes près sont indiscernables pour un compteur de collection. stale-while-revalidate : jamais d'attente.
+    { headers: { 'Cache-Control': 'public, s-maxage=120, stale-while-revalidate=300' } }
   )
 }
