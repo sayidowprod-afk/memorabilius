@@ -428,7 +428,9 @@ export default function CameraCapture({ onCapture, onClose, ratio }: Props) {
 
     // Zoom MATERIEL actif : takePhoto() ignore souvent le zoom du flux (photo non zoomee, differente de l'apercu) ;
     // l'image du flux video, elle, est exactement ce que l'utilisateur voit -> on la prend, plus fiable.
-    const hwZoomActive = !digitalZoomRef.current && zoomRef.current > 1.05
+    // Même règle pour le zoom numérique (WebView Android sans zoom matériel) : takePhoto() renvoie la photo du capteur, dont le champ
+    // peut être plus large que l'aperçu — la carte ressortait alors petite et mal cadrée. Dès qu'on a zoomé, on prend ce que l'écran montre.
+    const hwZoomActive = zoomRef.current > 1.05
     try { await withTimeout(ensureFocused(), 1500) } catch { /* on capture quand meme */ }
 
     // ImageCapture.takePhoto() capture une vraie photo depuis le capteur
