@@ -572,10 +572,10 @@ export default function NativeHomeDashboard({ siteStats, cardOfTheDay }: { siteS
             <div className="dd-hero-last">{t('dashboard_last_added')} <strong>{data.lastCard.name}</strong></div>
           )}
         </div>
-        {/* fond : mosaique de tes dernieres cartes (vignettes optimisees, fixe, fondue vers la gauche) */}
+        {/* fond : mosaique de tes dernieres cartes (vignettes optimisees, fixe, fondue vers la gauche). Même taille (440) que l'éventail : une carte = une seule transformation facturée au lieu de deux */}
         {(data.lastCards || []).length > 5 && (
           <div className="dd-hero-mos" aria-hidden>
-            {data.lastCards.slice(0, 24).map((c, i) => <img key={i} src={heroThumb(c.image, 220)} alt="" loading="lazy" decoding="async" />)}
+            {data.lastCards.slice(0, 24).map((c, i) => <img key={i} src={heroThumb(c.image, 440)} alt="" loading="lazy" decoding="async" />)}
           </div>
         )}
         <div className="dd-hero-r">

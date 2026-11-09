@@ -74,7 +74,7 @@ export async function GET() {
   const prof: any = (profiles || []).find((p: any) => p.id === pick.user_id)
   const [y, m, d] = day.split('-').map(Number)
   // le cache CDN ne depasse jamais minuit (Paris) ; le client ajoute ?d=AAAA-MM-JJ, donc une nouvelle journee = une nouvelle entree de cache
-  const secondsToMidnight = Math.max(60, Math.min(3600, Math.round((86400000 - (parisNow.getHours() * 3600000 + parisNow.getMinutes() * 60000 + parisNow.getSeconds() * 1000)) / 1000)))
+  const secondsToMidnight = Math.max(60, Math.min(21600, Math.round((86400000 - (parisNow.getHours() * 3600000 + parisNow.getMinutes() * 60000 + parisNow.getSeconds() * 1000)) / 1000)))
   return NextResponse.json(
     {
       day: { y, m, d },
@@ -84,6 +84,8 @@ export async function GET() {
         owner: { id: pick.user_id, slug: prof?.slug || null, name: prof?.display_name || null, avatar: prof?.avatar_url || null, total: prof?.stats_total || 0 },
       },
     },
-    { headers: { 'Cache-Control': `public, s-maxage=${secondsToMidnight}` } },
+    // 6 h au plus (avant : 1 h) : la carte ne change qu'à minuit, et chaque recalcul coûte ~20 requêtes (8 s) ; stale-while-revalidate : après expiration,
+    // le visiteur reçoit tout de suite l'ancienne réponse pendant que la nouvelle se recalcule en arrière-plan, au lieu d'attendre.
+    { headers: { 'Cache-Control': `public, s-maxage=${secondsToMidnight}, stale-while-revalidate=3600` } },
   )
 }
