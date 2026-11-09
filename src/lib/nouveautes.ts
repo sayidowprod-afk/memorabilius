@@ -4,6 +4,16 @@ export type Entry = { date: string; titre: string; points: string[] }
 
 export const ENTRIES: Entry[] = [
   {
+    date: '15 novembre 2026', titre: 'Aide au cadrage, réessai carte par carte, galerie plus fluide',
+    points: [
+      'Appareil photo : le cadre passe au vert quand ta carte est bien alignée. Un bouton « Aide au cadrage » en haut à gauche permet de le couper.',
+      'Quantité par carte : le champ « Exemplaires » est disponible dans la fiche de la carte, et « ×3 » s’affiche sur la vignette et dans le viewer.',
+      'Ajout en lot : chaque carte en échec a son bouton « Réessayer cette carte ». Si le détecteur de coins est indisponible, la photo est ajoutée telle quelle au lieu d’échouer, et tu peux régler les coins ensuite.',
+      'Viewer 3D : la carte s’ouvre sans clignotement, et la barre de filtres de la galerie ne repasse plus par-dessus.',
+      'Galerie : moins de calculs à chaque action, donc plus fluide sur les grosses collections (ouverture d’une carte, recherche, filtres).',
+    ],
+  },
+  {
     date: '14 novembre 2026', titre: 'Ajout en lot plus sûr, quantité par carte, viewer sans clignotement',
     points: [
       'Ajout en lot : les coins de chaque photo sont détectés dès qu’elle arrive dans la liste. Quand le recadrage est douteux, la carte porte une pastille « Recadrage à vérifier » et un bouton « Régler les coins » ouvre le même réglage que pour une carte seule.',
