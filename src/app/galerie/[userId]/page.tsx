@@ -2,7 +2,6 @@ import type { Metadata } from 'next'
 import { cache, Suspense } from 'react'
 import { redirect } from 'next/navigation'
 import GalerieClient from './GalerieClient'
-import GalerieFallback from './GalerieFallback'
 import { resolveProfileBySlugParam, canonicalProfileSlug } from '@/lib/resolveProfileSlug'
 import { createServerClient } from '@/lib/supabaseServer'
 
@@ -199,7 +198,7 @@ export default async function GaleriePage({
 
   const { cards: initialCards, grail: initialGrailCards } = await fetchInitialPreview(userId)
   return (
-    <Suspense fallback={<GalerieFallback cards={initialCards} grail={initialGrailCards} />}>
+    <Suspense fallback={<div style={{ padding: '80px 20px', textAlign: 'center', color: '#999', fontSize: 14 }}>Chargement de la galerie…</div>}>
       <GalerieClient userId={userId} initialCards={initialCards} initialGrailCards={initialGrailCards} />
     </Suspense>
   )

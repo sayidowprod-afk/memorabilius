@@ -2639,7 +2639,7 @@ export default function GalerieClient({ userId, initialCardUrl, initialCards, in
       )}
       {shownTheme && <div className={'gtheme-bg gtheme-layer' + (dark ? '' : ' light')} data-gtheme={shownTheme} data-tone={isLightTheme(shownTheme) ? 'light' : 'dark'} aria-hidden="true" style={shownTheme === 'equipe' && teamColors ? { background: teamBackground(teamColors) } : ballStyle(shownTheme)} />}
       {themePicker && isOwner && <GalleryCustomizer theme={shownTheme} onTheme={t => setThemePreview(t)} accent={accent} onAccent={setAccentPreview} favs={favShown} onFavs={setFavPreview} teamColors={teamColors} onSave={saveCustom} saving={themeSaving} onClose={closeCustomizer} />}
-      <div style={{ maxWidth: 1400, margin: '0 auto', fontFamily: 'Inter, sans-serif', padding: '0 10px', paddingBottom: (editMode && isOwner && selectedCards.size > 0) || qrMode ? 80 : 0, minHeight: loaded ? undefined : '170vh' /* tant que ça charge, le pied de page reste hors écran : il ne saute plus quand la vraie galerie arrive */ }}>
+      <div style={{ maxWidth: 1400, margin: '0 auto', fontFamily: 'Inter, sans-serif', padding: '0 10px', paddingBottom: (editMode && isOwner && selectedCards.size > 0) || qrMode ? 80 : 0 }}>
 
         {usingOfflineCache && (
           <div style={{
@@ -2668,7 +2668,7 @@ export default function GalerieClient({ userId, initialCardUrl, initialCards, in
             en bas a droite et qui s'estompe vers le haut a gauche. Calque plein format
             (pas juste une bande en haut) pour que le clip coincide avec le contour reel
             du header (coins arrondis) plutot que de couper au milieu du contenu. */}
-        <div className="da-profile da-grain" style={{ ['--da-accent' as any]: accent.startsWith('#') ? accent : '#003DA6', position: 'relative', background: dark ? '#1e1e1e' : 'white', borderRadius: 16, marginBottom: 20, boxShadow: 'var(--elevation-md)', overflow: 'hidden', minHeight: loaded ? undefined : 'var(--gal-profile-h)' }}>
+        <div className="da-profile da-grain" style={{ ['--da-accent' as any]: accent.startsWith('#') ? accent : '#003DA6', position: 'relative', background: dark ? '#1e1e1e' : 'white', borderRadius: 16, marginBottom: 20, boxShadow: 'var(--elevation-md)', overflow: 'hidden' }}>
           <div style={{
             position: 'absolute', inset: 0,
             background: `linear-gradient(to top left, ${accent}${dark ? '3d' : '2b'}, transparent 70%)`,
@@ -3126,7 +3126,7 @@ export default function GalerieClient({ userId, initialCardUrl, initialCards, in
         {/* Onglets Collection / Wishlist / Commentaires / Bibliothèque — scrollable sur mobile.
             L'onglet actif est indique par une pilule qui glisse (mesuree via refs) plutot
             que chaque bouton togglant independamment son propre fond. */}
-        <div ref={tabBarRef} className="da-tabs" style={{ position: 'relative', display: loaded ? 'flex' : 'none', gap: 4, marginBottom: 16, background: dark ? '#2a2a2a' : '#f0f0f0', borderRadius: 10, padding: 4, maxWidth: '100%', overflowX: 'auto', WebkitOverflowScrolling: 'touch' }}>
+        <div ref={tabBarRef} className="da-tabs" style={{ position: 'relative', display: 'flex', gap: 4, marginBottom: 16, background: dark ? '#2a2a2a' : '#f0f0f0', borderRadius: 10, padding: 4, maxWidth: '100%', overflowX: 'auto', WebkitOverflowScrolling: 'touch' }}>
           {tabIndicator && (
             <div style={{
               position: 'absolute', top: 4, bottom: 4, left: tabIndicator.left, width: tabIndicator.width,
@@ -3197,7 +3197,7 @@ export default function GalerieClient({ userId, initialCardUrl, initialCards, in
             espace vide) sans pouvoir les déboguer en direct (natif only).
             Retour à un bloc simple et fiable — le gain de confort du sticky ne
             valait pas l'instabilité que ça causait. */}
-        <div className="gf-panel" style={{ display: loaded ? undefined : 'none', background: dark ? '#1e1e1e' : '#fff', padding: 10, borderRadius: 8, marginBottom: 15, border: dark ? '1px solid #333' : '1px solid #eee' }}>
+        <div className="gf-panel" style={{ background: dark ? '#1e1e1e' : '#fff', padding: 10, borderRadius: 8, marginBottom: 15, border: dark ? '1px solid #333' : '1px solid #eee' }}>
           <div className="gf-two" style={{ display: 'grid', gridTemplateColumns: 'repeat(2,1fr)', gap: 8, marginBottom: 10 }}>
             <div>
             <div style={{ position: 'relative' }}>
@@ -3456,7 +3456,7 @@ export default function GalerieClient({ userId, initialCardUrl, initialCards, in
             réel — voir fetchInitialPreview() dans page.tsx. Disparaît dès que `loaded`
             passe à true via le flux existant, inchangé, qui reste seul maître du jeu. */}
         {!loaded && initialGrailCards && initialGrailCards.length > 0 && (
-          <div style={{ display: 'flex', gap: 8, justifyContent: 'center', flexWrap: 'wrap', alignContent: 'flex-start', margin: '0 0 16px', minHeight: 'var(--gal-wall-h)' }}>
+          <div style={{ display: 'flex', gap: 8, justifyContent: 'center', flexWrap: 'wrap', margin: '0 0 16px' }}>
             {initialGrailCards.map(c => (
               <div key={c.id} style={{ width: 90, borderRadius: 8, overflow: 'hidden', background: dark ? '#2a2a2a' : '#f0f0f0' }}>
                 <div style={{ width: '100%', aspectRatio: '2.5/3.5', overflow: 'hidden' }}>
@@ -3468,9 +3468,6 @@ export default function GalerieClient({ userId, initialCardUrl, initialCards, in
             ))}
           </div>
         )}
-
-        {/* tant que ça charge, la place des onglets et des filtres est réservée : à l'arrivée, les cartes ne bougent plus */}
-        {!loaded && <div aria-hidden style={{ height: 'var(--gal-ctrl-h)' }} />}
 
         {!loaded && (
           initialCards && initialCards.length > 0 ? (
@@ -3502,8 +3499,6 @@ export default function GalerieClient({ userId, initialCardUrl, initialCards, in
         )}
 
         <style>{`
-          :root { --gal-profile-h: 530px; --gal-wall-h: 434px; --gal-ctrl-h: 660px; }
-          @media (min-width: 768px) { :root { --gal-profile-h: 480px; --gal-wall-h: 404px; --gal-ctrl-h: 476px; } }
           .card-grid { display: flex; flex-wrap: wrap; justify-content: center; gap: 10px; }
           .card-item { flex: 0 0 calc(50% - 5px); max-width: calc(50% - 5px); }
           @media (max-width: 768px) {
