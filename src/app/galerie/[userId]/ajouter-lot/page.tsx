@@ -14,6 +14,7 @@ import { cropQuad, type Quad } from '@/lib/perspectiveCrop'
 import { detectCornersYOLO, waitForYOLO } from '@/lib/cornerDetectorYolo'
 import CornerEditor from '@/components/CornerEditor'
 import BurstCamera from '@/components/BurstCamera'
+import CollectionTagSelect from '@/components/CollectionTagSelect'
 import { detectBinderCards } from '@/lib/binderDetect'
 
 type Photo = { file: File; url: string }
@@ -148,6 +149,28 @@ export default function AjoutLotPage({ params }: { params: Promise<{ userId: str
   const [mode, setMode] = useState<Mode>('alt')
   const [entries, setEntries] = useState<Entry[]>([])
   const [useAI, setUseAI] = useState(true)
+  // réglages appliqués à toutes les cartes de ce lot (comme dans l'ajout d'une seule carte)
+  const [collectionTag, setCollectionTag] = useState('')
+  const [forSale, setForSale] = useState(false)
+  // collection propre à une carte ('' = celle du lot, NONE = aucune collection)
+  const NONE = '__none'
+  const [cardTag, setCardTag] = useState<Record<number, string>>({})
+  const [allTags, setAllTags] = useState<string[]>([])
+  useEffect(() => {
+    let off = false
+    ;(async () => {
+      const [a, b, c, d] = await Promise.all([
+        supabase.from('cartes_manuelles').select('collection_tag').eq('user_id', userId).not('collection_tag', 'is', null),
+        supabase.from('carte_tags').select('collection_tag').eq('user_id', userId),
+        supabase.from('card_collections').select('collection').eq('user_id', userId),
+        supabase.from('collection_tab_settings').select('tag').eq('user_id', userId),
+      ])
+      /* eslint-disable @typescript-eslint/no-explicit-any */
+      const all = [...(a.data || []).map((r: any) => r.collection_tag), ...(b.data || []).map((r: any) => r.collection_tag), ...(c.data || []).map((r: any) => r.collection), ...(d.data || []).map((r: any) => r.tag)].filter(Boolean)
+      if (!off) setAllTags([...new Set(all as string[])].sort())
+    })().catch(() => {})
+    return () => { off = true }
+  }, [userId])
   const [running, setRunning] = useState(false)
   const [status, setStatus] = useState<Record<number, St>>({})
   const cancelRef = useRef(false)
@@ -420,7 +443,7 @@ export default function AjoutLotPage({ params }: { params: Promise<{ userId: str
           format: horizontal ? 'horizontal' : 'standard', is_horizontal: horizontal, verso_is_horizontal: versoHorizontal,
           image_recto: imageRecto, image_verso: imageVerso, image_recto_hd: imageRectoHd, image_verso_hd: imageVersoHd,
           notes_perso: nom ? null : 'À compléter (ajout en lot)', notes_perso_public: false,
-          disponible_vente: false, prix_vente: null, item_type: 'card',
+          collection_tag: (cardTag[e.id] === NONE ? '' : (cardTag[e.id] || collectionTag)) || null, disponible_vente: forSale, prix_vente: null, item_type: 'card',
         }
         const { error } = await supabase.from('cartes_manuelles').insert(row)
         if (error) throw new Error(error.message)
@@ -512,6 +535,17 @@ export default function AjoutLotPage({ params }: { params: Promise<{ userId: str
         </details>
       )}
 
+      <div className="da-lot-label" style={{ marginTop: 18 }}>Pour toutes les cartes de ce lot</div>
+      <div className="da-lot-box" style={{ flexDirection: 'column', alignItems: 'stretch', gap: 10, pointerEvents: running ? 'none' : undefined, opacity: running ? 0.6 : 1 }}>
+        <div>
+          <div style={{ fontSize: 13, marginBottom: 4 }}>Collection</div>
+          <CollectionTagSelect userId={userId} value={collectionTag} onChange={setCollectionTag} />
+        </div>
+        <label style={{ display: 'flex', alignItems: 'center', gap: 8, fontSize: 13, cursor: 'pointer' }}>
+          <input type="checkbox" checked={forSale} onChange={e => setForSale(e.target.checked)} disabled={running} /> À vendre / échanger (tu pourras mettre un prix carte par carte ensuite)
+        </label>
+      </div>
+
       {entries.length > 0 && (
         <>
           <div className="da-lot-label" style={{ marginTop: 18 }}>2 · Vérifie la liste</div>
@@ -538,6 +572,13 @@ export default function AjoutLotPage({ params }: { params: Promise<{ userId: str
               <div style={{ flex: 1, minWidth: 0 }}>
                 <div style={{ fontWeight: 700, fontSize: 14 }}>{st?.nom || `Carte ${i + 1}`}</div>
                 <div style={{ fontSize: 13, color: st?.s === 'error' ? '#ff8a8a' : st?.s === 'done' ? '#3ddc97' : 'var(--text2, #666)' }}>{e.skip && !st ? 'Ignorée' : st ? (st.s === 'error' ? `Échec : ${st.msg}` : label[st.s]) : label.wait}</div>
+                {idle && !over && (
+                  <select aria-label={`Collection de la carte ${i + 1}`} value={cardTag[e.id] || ''} onChange={ev => setCardTag(m => ({ ...m, [e.id]: ev.target.value }))} style={{ marginTop: 6, padding: '6px 8px', fontSize: 12, maxWidth: '100%' }}>
+                    <option value="">Collection : {collectionTag ? `« ${collectionTag} » (le lot)` : 'aucune (le lot)'}</option>
+                    <option value={NONE}>Aucune collection</option>
+                    {[...new Set([...allTags, ...(collectionTag ? [collectionTag] : [])])].sort().map(t => <option key={t} value={t}>{t}</option>)}
+                  </select>
+                )}
                 {e.weak && !over && <label className="da-lot-warn"><input type="checkbox" checked={!e.skip} onChange={() => toggleSkip(e.id)} disabled={running} /> Emplacement estimé (pochette vide ?) : ajouter quand même</label>}
               </div>
               {idle && !over && (

@@ -1052,7 +1052,7 @@ export default function AjouterCarte({ params }: { params: Promise<{ userId: str
       <Link href={`/galerie/${userId}/ajouter-lot`} className="da-lot-entry">📚 Ajouter plusieurs cartes d’un coup (recto + verso) →</Link>
       {draftOffer && (
         <div className="da-draft" role="status">
-          <div style={{ flex: 1, minWidth: 0 }}>
+          <div style={{ flex: '1 1 100%', minWidth: 0 }}>
             <b>Reprendre ton brouillon ?</b>
             <div className="da-draft-sub">{[draftOffer.form.nom, draftOffer.form.annee, draftOffer.form.marque].filter(Boolean).join(' · ') || 'Carte en cours'} — enregistré {new Date(draftOffer.at).toLocaleString('fr-FR', { day: '2-digit', month: '2-digit', hour: '2-digit', minute: '2-digit' })}</div>
           </div>
