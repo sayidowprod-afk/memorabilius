@@ -15,7 +15,6 @@ import { nationalTeam, raceTeam, flagUrl } from '@/lib/nationalTeams'
 import { historicLogo } from '@/lib/historicLogos'
 import { toast } from '@/lib/toast'
 import { Fragment, useEffect, useLayoutEffect, useState, useRef, useMemo, useCallback } from 'react'
-import { flushSync } from 'react-dom'
 import { updateGalleryWidget } from '@/lib/widgetBridge'
 import { createPortal } from 'react-dom'
 import Link from 'next/link'
@@ -673,19 +672,11 @@ export default function GalerieClient({ userId, initialCardUrl, initialCards, in
     return (d.collection_tag && tabSettings.get(d.collection_tag)?.color) || accent
   }
   const [popup, setPopupRaw] = useState<Card | null>(null)
-  // Ouverture/fermeture/navigation du viewer via l'API View Transitions quand
-  // le navigateur la supporte : un fondu-enchaîné natif remplace le cut sec.
-  const setPopup = useCallback((next: Card | null | ((prev: Card | null) => Card | null)) => {
-    const apply = () => flushSync(() => setPopupRaw(next))
-    const startVT = (document as any).startViewTransition?.bind(document)
-    if (!startVT) { apply(); return }
-    const vt = startVT(apply)
-    // Une transition en cours peut être avortée par la suivante (ex: clics rapides
-    // suivant/précédent) — chaque promesse doit être catchée séparément.
-    vt?.ready?.catch(() => {})
-    vt?.updateCallbackDone?.catch(() => {})
-    vt?.finished?.catch(() => {})
-  }, [])
+  // Ouverture / fermeture / navigation du viewer : appliquées directement, SANS transition de page du navigateur.
+  // La transition (fondu de tout l'écran) figeait la galerie sur l'ancienne image le temps de préparer la nouvelle, puis faisait
+  // repasser l'ancienne page (barre de filtres comprise) par-dessus le viewer : c'étaient les clignotements. L'animation d'ouverture
+  // (vignette qui grandit) ci-dessous suffit.
+  const setPopup = useCallback((next: Card | null | ((prev: Card | null) => Card | null)) => { setPopupRaw(next) }, [])
   // Modification d'une carte déjà ouverte (prix, réservée, collections…) : aucune transition de page,
   // sinon chaque réglage relançait un fondu de tout l'écran (les « flashs » du viewer).
   const updatePopup = useCallback((fn: (prev: Card | null) => Card | null) => { setPopupRaw(fn) }, [])
@@ -1451,14 +1442,30 @@ export default function GalerieClient({ userId, initialCardUrl, initialCards, in
   // Séparé de applyAndShow() car isOwner (dérivé de l'auth, résolue en parallèle
   // du chargement des cartes) peut encore valoir false au moment où les cartes
   // arrivent en premier — cet effet se redéclenche quand isOwner devient vrai.
-  const lastAddedCard = [...cards]
-    .filter(c => c.created_at)
-    .sort((a, b) => new Date(b.created_at || 0).getTime() - new Date(a.created_at || 0).getTime())[0]
+  // La carte ajoutée en dernier. Avant : une copie + un tri complet de toutes les cartes (avec des dates recalculées à chaque comparaison)
+  // à CHAQUE affichage de la galerie, même pour un visiteur ; avec des milliers de cartes c'était un gros coût à chaque action à l'écran.
+  // Maintenant : un seul passage, et seulement quand la liste des cartes change. Même résultat (en cas d'égalité, la première reste choisie).
+  const lastAddedCard = useMemo(() => {
+    let best: Card | undefined, bestT = -Infinity
+    for (const c of cards) {
+      if (!c.created_at) continue
+      const t = new Date(c.created_at).getTime()
+      if (t > bestT) { bestT = t; best = c }
+    }
+    return best
+  }, [cards])
   const lastAddedKey = lastAddedCard ? `${lastAddedCard.f}_${cards.length}` : `_${cards.length}`
 
   useEffect(() => {
     if (!isOwner || !loaded || cards.length === 0) return
-    try { localStorage.setItem(`gallery-cache-${userId}`, JSON.stringify(cards)) } catch {}
+    // Copie hors ligne : le navigateur plafonne le stockage local à ~5 Mo. Avec des milliers de cartes la copie dépasse ce plafond et
+    // l'écriture échouait en silence, après avoir sérialisé toute la galerie pour rien (plusieurs centaines de ms). On estime donc la taille
+    // sur un échantillon et on n'essaie que si ça peut tenir (la copie précédente, plus petite, reste alors en place).
+    try {
+      const sample = cards.slice(0, 40)
+      const per = JSON.stringify(sample).length / Math.max(1, sample.length)
+      if (per * cards.length <= 4_500_000) localStorage.setItem(`gallery-cache-${userId}`, JSON.stringify(cards))
+    } catch {}
     if (lastAddedCard) {
       updateGalleryWidget({
         imageUrl: lastAddedCard.f,
@@ -1473,6 +1480,9 @@ export default function GalerieClient({ userId, initialCardUrl, initialCards, in
       })
     }
   }, [isOwner, loaded, lastAddedKey, userId])
+
+  // Index des cartes par image (pour le Grail Wall) : calculé une fois par changement de liste, pas à chaque affichage
+  const grailMap = useMemo(() => new Map(cards.map(c => [c.f, c])), [cards])
 
   const gallerySports = useMemo(() => {
     const set = new Set<Sport>()
@@ -2895,7 +2905,6 @@ export default function GalerieClient({ userId, initialCardUrl, initialCards, in
             { emoji: '', color: '#E8C25A', glow: '#E8C25A88', width: 152 },
             { emoji: '', color: '#E8C25A', glow: '#E8C25A88', width: 152 },
           ]
-          const grailMap = new Map(cards.map(c => [c.f, c]))
           const grailItems = grailCards.map(g => grailMap.get(g.card_key)).filter(Boolean) as Card[]
           const grailLoading = grailCards.length > 0 && !cardsLoaded
           // uniquement les places occupees (ou en chargement) : pas de cadre vide, le reste se centre tout seul
