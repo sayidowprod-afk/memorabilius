@@ -27,7 +27,6 @@ import OnlineIndicator from '@/components/OnlineIndicator'
 import FollowButton from '@/components/FollowButton'
 import ReportButton from '@/components/ReportButton'
 import FollowCounts from '@/components/FollowCounts'
-import FollowListModal from '@/components/FollowListModal'
 import LevelBadge from '@/components/LevelBadge'
 import { InstagramIcon, XIcon, DiscordIcon } from '@/components/SocialIcons'
 // Charge en dynamic import : n'est ouvert que par un clic rare sur "partager
@@ -57,6 +56,10 @@ const TradeModal = dynamic(() => import('@/components/TradeModal'), { ssr: false
 const LikedCards = dynamic(() => import('@/components/LikedCards'), { ssr: false })
 const BinderLibrary = dynamic(() => import('@/components/BinderLibrary'), { ssr: false })
 const MesPCTab = dynamic(() => import('@/components/MesPCTab'), { ssr: false })
+// Rarement ouverts (onglet Badges, personnalisation, liste d'abonnés) : chargés à la demande pour alléger le code de la galerie
+const BadgeBox = dynamic(() => import('@/components/BadgeBox'), { ssr: false })
+const GalleryCustomizer = dynamic(() => import('@/components/GalleryCustomizer'), { ssr: false })
+const FollowListModal = dynamic(() => import('@/components/FollowListModal'), { ssr: false })
 import {
   DndContext, closestCenter, PointerSensor, TouchSensor,
   useSensor, useSensors, type DragEndEvent
@@ -72,7 +75,6 @@ if (typeof window !== 'undefined') setTimeout(() => { import('@/components/Viewe
 import { useLang } from '@/lib/LangContext'
 import { useTheme } from '@/lib/ThemeContext'
 import { isGalleryTheme, isLightTheme, favoriteTeamColors, teamBackground, type GalleryThemeId } from '@/lib/galleryThemes'
-import GalleryCustomizer from '@/components/GalleryCustomizer'
 import { ballStyle } from '@/lib/ballThemes'
 import CardGrowEffect from '@/components/CardGrowEffect'
 import ModalShell from '@/components/ModalShell'
@@ -80,7 +82,6 @@ import { useAuth } from '@/lib/AuthContext'
 import { getTeamById, SPORT_LABELS, Sport, inferSportFromTeamName } from '@/lib/sportsTeams'
 import { parseNaturalQuery } from '@/lib/parseNaturalQuery'
 import PriceTag from '@/components/PriceTag'
-import BadgeBox from '@/components/BadgeBox'
 import { cardDisplayRatio, isHorizontalFormat, getFormat } from '@/lib/cardFormats'
 import TeamBadge from '@/components/TeamBadge'
 import TradeReputation from '@/components/TradeReputation'

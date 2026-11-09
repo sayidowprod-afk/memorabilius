@@ -160,5 +160,5 @@ export async function GET(req: NextRequest) {
 
   const total = cards.length
   const page = cards.slice(offset, offset + limit)
-  return NextResponse.json({ cards: page, total, hasMore: offset + limit < total })
+  return NextResponse.json({ cards: page, total, hasMore: offset + limit < total }, { headers: { 'Cache-Control': 'public, max-age=60, stale-while-revalidate=300' } })
 }

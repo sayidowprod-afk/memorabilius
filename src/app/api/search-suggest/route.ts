@@ -48,5 +48,5 @@ export async function GET(req: NextRequest) {
   const demo = await demoUserIds(supabase)
   const collectors = (profileRows || []).filter((p: any) => !demo.has(p.id)).map((p: any) => ({ id: p.id, display_name: p.display_name, avatar_url: p.avatar_url }))
 
-  return NextResponse.json({ players, collectors })
+  return NextResponse.json({ players, collectors }, { headers: { 'Cache-Control': 'public, max-age=60, stale-while-revalidate=300' } })
 }

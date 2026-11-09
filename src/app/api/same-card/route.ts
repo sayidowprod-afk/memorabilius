@@ -91,5 +91,5 @@ export async function GET(req: NextRequest) {
     cardImg: cardsByUser.get(p.id)?.image_recto,
   }))
 
-  return NextResponse.json(results)
+  return NextResponse.json(results, { headers: { 'Cache-Control': 'public, max-age=60, stale-while-revalidate=300' } })
 }
