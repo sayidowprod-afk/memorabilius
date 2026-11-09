@@ -56,8 +56,9 @@ const TradeModal = dynamic(() => import('@/components/TradeModal'), { ssr: false
 const LikedCards = dynamic(() => import('@/components/LikedCards'), { ssr: false })
 const BinderLibrary = dynamic(() => import('@/components/BinderLibrary'), { ssr: false })
 const MesPCTab = dynamic(() => import('@/components/MesPCTab'), { ssr: false })
-// Rarement ouverts (onglet Badges, personnalisation, liste d'abonnés) : chargés à la demande pour alléger le code de la galerie
-const BadgeBox = dynamic(() => import('@/components/BadgeBox'), { ssr: false })
+// Fenêtres rarement ouvertes (personnalisation, liste d'abonnés) : chargées à la demande
+// BadgeBox reste en import normal : il est dans la page, le charger plus tard fait sauter la mise en page
+import BadgeBox from '@/components/BadgeBox'
 const GalleryCustomizer = dynamic(() => import('@/components/GalleryCustomizer'), { ssr: false })
 const FollowListModal = dynamic(() => import('@/components/FollowListModal'), { ssr: false })
 import {
