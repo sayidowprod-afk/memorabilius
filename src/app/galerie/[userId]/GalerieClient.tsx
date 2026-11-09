@@ -389,8 +389,19 @@ function CardLink({ slug, cardKey, children }: { slug: string; cardKey: string; 
   )
 }
 
+// 435 : sur réseau lent (2G/3G) ou en mode économie de données, la grille demande une vignette réduite
+// (≈ 6 fois plus légère) au lieu de l'image complète. L'image haute définition reste pour le viewer.
+// Rien ne change sur un bon réseau. Si la version réduite échoue, onImgError revient à l'image d'origine.
+const THUMB_PATH = '/storage/v1/render/image/public/'
+function isSlowNetwork(): boolean {
+  if (typeof navigator === 'undefined') return false
+  const c = (navigator as Navigator & { connection?: { saveData?: boolean; effectiveType?: string } }).connection
+  return !!c && (!!c.saveData || c.effectiveType === 'slow-2g' || c.effectiveType === '2g' || c.effectiveType === '3g')
+}
 function cardThumb(url: string): string {
-  return url
+  if (!isSlowNetwork()) return url
+  const m = url.match(/^(https:\/\/[^/]+\.supabase\.co)\/storage\/v1\/object\/public\/([^?]+)$/)
+  return m ? `${m[1]}${THUMB_PATH}${m[2]}?width=320&quality=60` : url
 }
 
 // Fallback quand une image externe (lien CSV vers un hébergeur tiers —
@@ -421,6 +432,8 @@ function handleBrokenImg(src: string) {
 function onImgError(e: { currentTarget: HTMLImageElement }) {
   const img = e.currentTarget
   if (img.src === BROKEN_IMAGE_FALLBACK) return
+  // la vignette réduite a échoué (transformation indisponible) : on revient à l'image d'origine
+  if (img.src.includes(THUMB_PATH)) { img.src = img.src.replace(THUMB_PATH, '/storage/v1/object/public/').split('?')[0]; return }
   const orig = img.dataset.origSrc || img.src
   const tries = Number(img.dataset.retries || 0)
   handleBrokenImg(img.src)
@@ -487,6 +500,7 @@ function renderCardImage(card: { f: string; n: string; format?: string; is_horiz
 interface Card {
   id_manuelle?: string;
   prix_vente?: number | null;
+  quantite?: number;
   f: string; b: string; fHd?: string; bHd?: string; n: string; t: string; y: string
   br: string; s: string; v: string; num: string; card_number?: string; cert_number?: string
   auto: boolean; rc: boolean; patch: boolean; printing_plate?: boolean; g: string
@@ -672,6 +686,84 @@ export default function GalerieClient({ userId, initialCardUrl, initialCards, in
     vt?.updateCallbackDone?.catch(() => {})
     vt?.finished?.catch(() => {})
   }, [])
+  // Modification d'une carte déjà ouverte (prix, réservée, collections…) : aucune transition de page,
+  // sinon chaque réglage relançait un fondu de tout l'écran (les « flashs » du viewer).
+  const updatePopup = useCallback((fn: (prev: Card | null) => Card | null) => { setPopupRaw(fn) }, [])
+  // 456 : la vignette touchée « grandit » jusqu'à la carte du viewer. On retient l'image touchée, puis un double volant
+  // (copie de l'image) glisse de la vignette vers la place de la carte dans le viewer.
+  const heroImgRef = useRef<HTMLImageElement | null>(null)
+  const viewerWasOpen = useRef(false)
+  // 436 : l'image haute définition commence à se télécharger dès que le doigt (ou la souris) se pose sur une vignette,
+  // avant même le clic : à l'ouverture du viewer elle est déjà là. (Le code du viewer est lui préchargé plus bas.)
+  const cardsRef = useRef<Card[]>([])
+  cardsRef.current = cards
+  const hdPrefetched = useRef<Set<string>>(new Set())
+  useEffect(() => {
+    const findImg = (target: EventTarget | null) => {
+      const root = (target as HTMLElement | null)?.closest?.('[role="button"], a, .card-item')
+      const img = root ? [...root.querySelectorAll('img')].find(i => i.naturalWidth > 0 && !/grail-frame/.test(i.src)) : null
+      return (img as HTMLImageElement) || null
+    }
+    const prefetch = (img: HTMLImageElement | null) => {
+      if (!img) return
+      const src = img.getAttribute('src') || ''
+      const c = cardsRef.current.find(x => x.f === src || cardThumb(x.f) === src)
+      const hd = c?.fHd
+      if (!hd || hd === c?.f || hdPrefetched.current.has(hd) || hdPrefetched.current.size > 40) return
+      hdPrefetched.current.add(hd)
+      const pre = new Image(); pre.decoding = 'async'; pre.src = hd
+    }
+    const down = (e: PointerEvent) => { const img = findImg(e.target); heroImgRef.current = img; prefetch(img) }
+    // survol : on attend que la souris s'arrête 250 ms sur la carte (sinon passer sur toute une rangée téléchargerait toutes les images HD)
+    let lastHover: Element | null = null
+    let hoverTimer: ReturnType<typeof setTimeout> | undefined
+    const over = (e: PointerEvent) => {
+      if (e.pointerType !== 'mouse') return
+      const root = (e.target as HTMLElement | null)?.closest?.('.card-item, .grail-gilded')
+      if (root === lastHover) return
+      lastHover = root || null
+      clearTimeout(hoverTimer)
+      if (root) hoverTimer = setTimeout(() => prefetch(findImg(root)), 250)
+    }
+    document.addEventListener('pointerdown', down, true)
+    document.addEventListener('pointerover', over, true)
+    return () => { clearTimeout(hoverTimer); document.removeEventListener('pointerdown', down, true); document.removeEventListener('pointerover', over, true) }
+  }, [])
+  const viewerOpen = !!popup
+  useEffect(() => {
+    const open = viewerOpen
+    const wasOpen = viewerWasOpen.current
+    viewerWasOpen.current = open
+    if (!open || wasOpen) return
+    const src = heroImgRef.current
+    heroImgRef.current = null
+    if (!src || !src.isConnected || window.matchMedia?.('(prefers-reduced-motion: reduce)').matches) return
+    const from = src.getBoundingClientRect()
+    if (from.width < 24 || from.bottom < 0 || from.top > window.innerHeight) return
+    let raf = 0, tries = 0
+    const go = () => {
+      const card = document.querySelector('.viewer-card:not(.viewer-ground-shadow)') as HTMLElement | null
+      const to = card?.getBoundingClientRect()
+      if (!card || !to || to.width < 24) { if (++tries < 20) raf = requestAnimationFrame(go); return }
+      const ghost = document.createElement('img')
+      ghost.src = src.currentSrc || src.src
+      ghost.alt = ''
+      ghost.style.cssText = `position:fixed;left:${from.left}px;top:${from.top}px;width:${from.width}px;height:${from.height}px;object-fit:cover;pointer-events:none;z-index:2147483000;transform-origin:0 0;will-change:transform`
+      document.querySelectorAll('[data-hero-ghost]').forEach(e => e.remove())
+      ghost.setAttribute('data-hero-ghost', '1')
+      document.body.appendChild(ghost)
+      card.style.visibility = 'hidden'
+      const done = () => { ghost.remove(); card.style.visibility = '' }
+      try {
+        ghost.animate(
+          [{ transform: 'none' }, { transform: `translate(${to.left - from.left}px, ${to.top - from.top}px) scale(${to.width / from.width}, ${to.height / from.height})` }],
+          { duration: 300, easing: 'cubic-bezier(.2,.8,.2,1)', fill: 'forwards' },
+        ).finished.then(done, done)
+      } catch { done() }
+    }
+    raf = requestAnimationFrame(go)
+    return () => { cancelAnimationFrame(raf) }
+  }, [viewerOpen])
   // Cartes récemment consultées (pour la page Recherche) : gardées sur l'appareil
   useEffect(() => {
     if (!popup) return
@@ -1197,6 +1289,7 @@ export default function GalerieClient({ userId, initialCardUrl, initialCards, in
         b: m.image_verso || m.image_recto || 'https://placehold.co/300x420?text=No+Image',
         fHd: m.image_recto_hd || undefined, bHd: m.image_verso_hd || undefined,
         prix_vente: m.prix_vente ?? null,
+        quantite: m.quantite ?? 1,
         n: m.nom || '', t: m.equipe || '', y: m.annee || '',
         br: m.marque || '', s: m.collection || '', v: m.variation || '',
         num: m.num || '', card_number: m.card_number || '', cert_number: m.cert_number || '', auto: m.auto || false, rc: m.rc || false,
@@ -1722,9 +1815,10 @@ export default function GalerieClient({ userId, initialCardUrl, initialCards, in
     // Hors ligne, router.replace declenche une requete serveur (RSC) qui echoue :
     // Next recharge alors la page en entier -- la fiche carte clignote et ne s'ouvre
     // jamais. history.replaceState met a jour l'URL (et useSearchParams) sans reseau.
-    if (!navigator.onLine) window.history.replaceState(null, '', next)
-    else router.replace(next, { scroll: false })
-  }, [loaded, search, fTeamDebounced, fBrandDebounced, fYear, fCollectionTag, sortBy, sortBy2, pinTeam, filterVente, popup, activeTab, objectifsSubTab])
+    // Toujours history.replaceState (jamais router.replace) : router.replace redemandait la page au serveur à chaque
+    // ouverture / modification de carte, ce qui re-rendait la galerie et faisait clignoter le viewer.
+    if (next !== (window.location.search || window.location.pathname)) window.history.replaceState(window.history.state, '', next)
+  }, [loaded, search, fTeamDebounced, fBrandDebounced, fYear, fCollectionTag, sortBy, sortBy2, pinTeam, filterVente, popup?.f, activeTab, objectifsSubTab])
 
   useEffect(() => {
     const handler = (e: KeyboardEvent) => {
@@ -3848,6 +3942,7 @@ export default function GalerieClient({ userId, initialCardUrl, initialCards, in
               {(() => {
                 return <div className={`holo-light${numTier(d.num) !== 'std' ? ` halo halo-${numTier(d.num)}` : ''}`} style={{ width: '100%', marginBottom: 6 }}>
                 <CardLink slug={profile?.slug || userId} cardKey={d.f}>{renderCardImage(d)}</CardLink>
+                {(d.quantite || 1) > 1 && <span aria-label={`${d.quantite} exemplaires`} title={`${d.quantite} exemplaires`} style={{ position: 'absolute', right: 6, bottom: 6, zIndex: 5, background: '#2f6bff', color: '#fff', font: '800 12px system-ui', padding: '2px 7px', letterSpacing: '.04em', pointerEvents: 'none', boxShadow: '0 1px 4px rgba(0,0,0,.45)' }}>×{d.quantite}</span>}
                 {(d.vendue || d.disponible_vente || (isOwner && privateCards.has(d.f))) && (
                   <div className="sash-clip" aria-hidden>
                     {isOwner && privateCards.has(d.f) && <i className="sash sash-tl" style={{ background: '#c0392b' }}>{t('gallery_private')}</i>}
@@ -4044,21 +4139,21 @@ export default function GalerieClient({ userId, initialCardUrl, initialCards, in
             // un prix = la carte est aussi marquée disponible (même effet que le bouton Vente/Échange)
             const upd = (c: Card): Card => c.f === card.f ? { ...c, prix_vente, ...(prix_vente != null ? { disponible_vente: true } : {}) } : c
             setCards(prev => prev.map(upd))
-            setPopup(prev => prev ? upd(prev) : prev)
+            updatePopup(prev => prev ? upd(prev) : prev)
           }}
           onReservedChange={(card, reservee) => {
             setCards(prev => prev.map(c => c.f === card.f ? { ...c, reservee } : c))
-            setPopup(prev => prev && prev.f === card.f ? { ...prev, reservee } : prev)
+            updatePopup(prev => prev && prev.f === card.f ? { ...prev, reservee } : prev)
           }}
           onVendueChange={(card, vendue) => {
             setCards(prev => prev.map(c => c.f === card.f ? { ...c, vendue } : c))
-            setPopup(prev => prev && prev.f === card.f ? { ...prev, vendue } : prev)
+            updatePopup(prev => prev && prev.f === card.f ? { ...prev, vendue } : prev)
           }}
           onDisponibleVenteChange={(card, disponible_vente) => {
             // retirer Vente/Trade retire aussi le prix (l'étiquette n'a plus de sens)
             const upd = (c: Card): Card => c.f === card.f ? { ...c, disponible_vente, ...(disponible_vente ? {} : { prix_vente: null }) } : c
             setCards(prev => prev.map(upd))
-            setPopup(prev => prev ? upd(prev) : prev)
+            updatePopup(prev => prev ? upd(prev) : prev)
           }}
           onDeleteCard={isOwner && popup.id_manuelle ? () => {
             handleDeleteCard(popup.id_manuelle!, popup.f)
@@ -4140,7 +4235,7 @@ export default function GalerieClient({ userId, initialCardUrl, initialCards, in
             // Les écritures DB sont faites par CollectionMultiSelect ; on met à jour l'état local
             const cols = [...new Set(next)]
             setCards(prev => prev.map(c => c.f === card.f ? { ...c, collections: cols, collection_tag: cols[0] || '' } : c))
-            setPopup(prev => prev ? { ...prev, collections: cols, collection_tag: cols[0] || '' } : null)
+            updatePopup(prev => prev ? { ...prev, collections: cols, collection_tag: cols[0] || '' } : null)
             setCollectionTags(prev => [...new Set([...prev, ...cols])].sort())
           }}
         />

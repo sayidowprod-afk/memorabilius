@@ -16,12 +16,17 @@ import CornerEditor from '@/components/CornerEditor'
 import BurstCamera from '@/components/BurstCamera'
 import CollectionTagSelect from '@/components/CollectionTagSelect'
 import { detectBinderCards } from '@/lib/binderDetect'
+import { draftPut, draftDelete, draftPutMeta, draftLoad, draftClear, type DraftEntry } from '@/lib/lotDraft'
 
 type Photo = { file: File; url: string }
 type SrcRef = { full: HTMLCanvasElement; quad: Quad }
+type CropRes = { file: File; ok: boolean; quad?: Quad }
 // cropped : la photo est déjà une carte découpée (page de classeur) ; src : la grande photo d'origine, pour réajuster les coins
 // weak : emplacement simplement estimé (peut-être une pochette vide) ; skip : ignorée à l'ajout ; session/slot : d'où vient la carte dans la page de classeur
-type Entry = { id: number; recto: Photo; verso: Photo | null; cropped?: boolean; src?: { recto: SrcRef; verso?: SrcRef }; weak?: boolean; skip?: boolean; session?: number; slot?: number }
+// rawRecto/rawVerso : photos d'origine gardées après le recadrage automatique (pour réajuster les coins) ; quadRecto/quadVerso : coins trouvés
+// check : le recadrage automatique a échoué sur cette face (« à vérifier ») ; det : détection des coins faite dès l'ajout à la liste
+type Entry = { id: number; recto: Photo; verso: Photo | null; cropped?: boolean; src?: { recto?: SrcRef; verso?: SrcRef }; weak?: boolean; skip?: boolean; session?: number; slot?: number
+  rawRecto?: File; rawVerso?: File; quadRecto?: Quad; quadVerso?: Quad; check?: { recto?: boolean; verso?: boolean }; det?: 'pending' | 'done' }
 type Status = 'wait' | 'detect' | 'upload' | 'scan' | 'done' | 'todo' | 'error'
 type Mode = 'alt' | 'split' | 'single'
 type Analysed = { full: HTMLCanvasElement; quads: Quad[]; weak: boolean[]; lattice: boolean; grid: [number, number]; overlay: string }
@@ -92,7 +97,7 @@ const freeCanvas = (c: HTMLCanvasElement) => { c.width = 0; c.height = 0 }
 
 // Recadre une photo de carte seule avec le détecteur de coins maison (YOLO) : même résultat que l'ajout à l'unité, sans l'écran de réglage.
 // Si rien de fiable n'est trouvé, la photo d'origine est gardée telle quelle.
-async function autoCrop(file: File): Promise<File> {
+async function autoCrop(file: File): Promise<CropRes> {
   let full: HTMLCanvasElement | null = null
   try {
     full = await loadCanvas(file)
@@ -106,7 +111,7 @@ async function autoCrop(file: File): Promise<File> {
     const pts = await detectCornersYOLO(el)
     const sw = small.width, sh = small.height
     freeCanvas(small)
-    if (!pts || pts.length !== 4) return file
+    if (!pts || pts.length !== 4) return { file, ok: false }
     const q: Quad = { topLeft: { x: pts[0].x / sw, y: pts[0].y / sh }, topRight: { x: pts[1].x / sw, y: pts[1].y / sh }, bottomRight: { x: pts[2].x / sw, y: pts[2].y / sh }, bottomLeft: { x: pts[3].x / sw, y: pts[3].y / sh } }
     const ps = [q.topLeft, q.topRight, q.bottomRight, q.bottomLeft]
     const area = Math.abs(ps.reduce((a, p, i) => { const r = ps[(i + 1) % 4]; return a + (p.x * r.y - r.x * p.y) }, 0)) / 2
@@ -114,9 +119,9 @@ async function autoCrop(file: File): Promise<File> {
     const h = (Math.hypot((q.bottomLeft.x - q.topLeft.x) * W, (q.bottomLeft.y - q.topLeft.y) * H) + Math.hypot((q.bottomRight.x - q.topRight.x) * W, (q.bottomRight.y - q.topRight.y) * H)) / 2
     const ratio = w / Math.max(1, h)
     const plausible = area > 0.1 && ((ratio > 0.55 && ratio < 0.95) || (ratio > 1.05 && ratio < 1.8)) && ps.every(p => p.x > -0.02 && p.x < 1.02 && p.y > -0.02 && p.y < 1.02)
-    if (!plausible) return file
-    return new File([await cropQuad(full, q, 3200)], file.name.replace(/\.\w+$/, '') + '_recadree.jpg', { type: 'image/jpeg' })
-  } catch { return file } finally { if (full) freeCanvas(full) }
+    if (!plausible) return { file, ok: false }
+    return { file: new File([await cropQuad(full, q, 3200)], file.name.replace(/\.\w+$/, '') + '_recadree.jpg', { type: 'image/jpeg' }), ok: true, quad: q }
+  } catch { return { file, ok: false } } finally { if (full) freeCanvas(full) }
 }
 
 const toBase64 = (blob: Blob) => new Promise<string>(res => { const r = new FileReader(); r.onload = () => res((r.result as string).split(',')[1]); r.readAsDataURL(blob) })
@@ -195,7 +200,7 @@ export default function AjoutLotPage({ params }: { params: Promise<{ userId: str
     const { entries: es, binder: b } = live.current
     es.forEach(e => { URL.revokeObjectURL(e.recto.url); if (e.verso) URL.revokeObjectURL(e.verso.url) })
     if (b) { freeCanvas(b.A.full); if (b.B) freeCanvas(b.B.full) }
-    es.forEach(e => { if (e.src) { freeCanvas(e.src.recto.full); if (e.src.verso) freeCanvas(e.src.verso.full) } })
+    es.forEach(e => { if (e.src) { if (e.src.recto) freeCanvas(e.src.recto.full); if (e.src.verso) freeCanvas(e.src.verso.full) } })
   }, [])
 
   // pendant l'envoi : prévient avant de fermer la page, et garde l'écran allumé (le téléphone ne doit pas se mettre en veille)
@@ -240,9 +245,11 @@ export default function AjoutLotPage({ params }: { params: Promise<{ userId: str
     const e = entries.find(x => x.id === id)
     if (e) freePhotos(e)
     setEntries(es => es.filter(x => x.id !== id))
+    if (e?.src && !e.session) { if (e.src.recto) freeCanvas(e.src.recto.full); if (e.src.verso) freeCanvas(e.src.verso.full) }
   }
   const toggleSkip = (id: number) => setEntries(es => es.map(e => e.id === id ? { ...e, skip: !e.skip } : e))
-  const swap = (id: number) => setEntries(es => es.map(e => e.id === id && e.verso ? { ...e, recto: e.verso, verso: e.recto, src: e.src?.verso ? { recto: e.src.verso, verso: e.src.recto } : e.src } : e))
+  const swap = (id: number) => setEntries(es => es.map(e => e.id === id && e.verso ? { ...e, recto: e.verso, verso: e.recto, src: e.src?.verso ? { recto: e.src.verso, verso: e.src.recto } : e.src,
+    rawRecto: e.rawVerso, rawVerso: e.rawRecto, quadRecto: e.quadVerso, quadVerso: e.quadRecto, check: e.check ? { recto: e.check.verso, verso: e.check.recto } : e.check } : e))
   // réajustement manuel des coins : on redécoupe la carte depuis la grande photo d'origine
   const saveCorners = async (q: Quad) => {
     if (!editing) return
@@ -250,12 +257,25 @@ export default function AjoutLotPage({ params }: { params: Promise<{ userId: str
     const e = entries.find(x => x.id === id); const ref = e?.src?.[side]
     setEditing(null)
     if (!e || !ref) return
-    const photo = photoOf(new File([await cropQuad(ref.full, q)], `classeur_${id}_${side}.jpg`, { type: 'image/jpeg' }))
+    const photo = photoOf(new File([await cropQuad(ref.full, q, e.rawRecto || e.rawVerso ? 3200 : undefined)], `${e.session ? 'classeur' : 'carte'}_${id}_${side}.jpg`, { type: 'image/jpeg' }))
     URL.revokeObjectURL(e[side]!.url)
-    setEntries(es => es.map(x => x.id === id ? { ...x, [side]: photo, src: { ...x.src!, [side]: { full: ref.full, quad: q } } } : x))
+    setEntries(es => es.map(x => x.id === id ? { ...x, [side]: photo, src: { ...x.src, [side]: { full: ref.full, quad: q } }, check: { ...x.check, [side]: false } } : x))
+  }
+  // ouvre le réglage des coins : pour une photo de carte seule, la grande photo d'origine est rechargée à la demande (rien n'est gardé en mémoire avant)
+  const openEditor = async (id: number, side: 'recto' | 'verso') => {
+    const e = entries.find(x => x.id === id); if (!e) return
+    if (e.src?.[side]) { setEditing({ id, side }); return }
+    const raw = side === 'recto' ? e.rawRecto : e.rawVerso
+    if (!raw) return
+    try {
+      const full = await loadCanvas(raw)
+      const q = (side === 'recto' ? e.quadRecto : e.quadVerso) || { topLeft: { x: 0.12, y: 0.08 }, topRight: { x: 0.88, y: 0.08 }, bottomRight: { x: 0.88, y: 0.92 }, bottomLeft: { x: 0.12, y: 0.92 } }
+      setEntries(es => es.map(x => x.id === id ? { ...x, src: { ...x.src, [side]: { full, quad: q } } } : x))
+      setEditing({ id, side })
+    } catch { toast.error('Photo illisible : impossible d’ouvrir le réglage des coins.') }
   }
   const clearAll = () => {
-    entries.forEach(e => { freePhotos(e); if (e.src) { freeCanvas(e.src.recto.full); if (e.src.verso) freeCanvas(e.src.verso.full) } })
+    entries.forEach(e => { freePhotos(e); if (e.src) { if (e.src.recto) freeCanvas(e.src.recto.full); if (e.src.verso) freeCanvas(e.src.verso.full) } })
     if (binder) { freeCanvas(binder.A.full); if (binder.B) freeCanvas(binder.B.full) }
     setEntries([]); statusRef.current = {}; setStatus({}); setBinder(null); setBinderMsg(null)
   }
@@ -371,6 +391,83 @@ export default function AjoutLotPage({ params }: { params: Promise<{ userId: str
     })
   }
 
+  // ── Détection des coins dès l'ajout à la liste (439) ──────────────────────────────────────────────────────────────────────────
+  // Chaque photo de carte seule est recadrée tout de suite (une à la fois), pour qu'on voie le résultat avant d'envoyer. Si le détecteur ne trouve
+  // rien de fiable, la photo est gardée telle quelle et marquée « recadrage à vérifier » : on peut régler les coins à la main.
+  const detBusy = useRef(false)
+  const [detTick, setDetTick] = useState(0)
+  useEffect(() => {
+    if (!autoCorners || running || detBusy.current) return
+    const next = entries.find(e => !e.cropped && !e.det && !isOver(statusRef.current[e.id]?.s))
+    if (!next) return
+    detBusy.current = true
+    setEntries(es => es.map(x => x.id === next.id ? { ...x, det: 'pending' } : x))
+    ;(async () => {
+      let r: CropRes | null = null, v: CropRes | null = null, failed = false
+      try {
+        if (!(await waitForYOLO(30000))) throw new Error('détecteur indisponible')
+        r = await autoCrop(next.recto.file)
+        if (next.verso) v = await autoCrop(next.verso.file)
+      } catch { failed = true }
+      setEntries(es => es.map(x => {
+        if (x.id !== next.id) return x
+        const rPhoto = r?.ok ? photoOf(r.file) : null, vPhoto = v?.ok ? photoOf(v.file) : null
+        if (rPhoto) URL.revokeObjectURL(x.recto.url)
+        if (vPhoto && x.verso) URL.revokeObjectURL(x.verso.url)
+        return { ...x, det: 'done', cropped: true, rawRecto: x.recto.file, rawVerso: x.verso?.file, quadRecto: r?.quad, quadVerso: v?.quad,
+          recto: rPhoto || x.recto, verso: vPhoto || x.verso, check: { recto: failed || !r?.ok, verso: !!x.verso && (failed || !v?.ok) } }
+      }))
+      detBusy.current = false
+      setDetTick(t => t + 1)
+    })()
+  }, [entries, autoCorners, running, detTick])
+
+  // ── Brouillon : reprise après coupure (442) ─────────────────────────────────────────────────────────────────────────────────────
+  // Les cartes pas encore ajoutées sont gardées sur l'appareil. Si la page se ferme, on propose de reprendre au retour.
+  const [draftInfo, setDraftInfo] = useState<{ n: number; done: number; total: number } | null>(null)
+  const draftSaved = useRef<Map<number, string>>(new Map())
+  const [draftReady, setDraftReady] = useState(false)
+  useEffect(() => {
+    let off = false
+    draftLoad(userId).then(({ meta, entries: es }) => {
+      if (off) return
+      if (es.length) setDraftInfo({ n: es.length, done: meta?.done ?? 0, total: meta?.total ?? es.length })
+      else draftClear(userId)
+      setDraftReady(true)
+    })
+    return () => { off = true }
+  }, [userId])
+  useEffect(() => {
+    if (!draftReady || draftInfo) return // tant que l'ancien brouillon n'est ni repris ni effacé, on ne l'écrase pas
+    const pending = entries.filter(e => !isOver(status[e.id]?.s))
+    const live = new Set(pending.map(e => e.id))
+    for (const [id] of [...draftSaved.current]) if (!live.has(id)) { draftSaved.current.delete(id); draftDelete(userId, id) }
+    for (const e of pending) {
+      const sig = [e.recto.url, e.verso?.url, e.skip, e.check?.recto, e.check?.verso, cardTag[e.id]].join('|')
+      if (draftSaved.current.get(e.id) === sig) continue
+      draftSaved.current.set(e.id, sig)
+      const d: DraftEntry = { recto: e.recto.file, verso: e.verso?.file ?? null, rawRecto: e.rawRecto, rawVerso: e.rawVerso, quadRecto: e.quadRecto, quadVerso: e.quadVerso, cropped: e.cropped, weak: e.weak, skip: e.skip, check: e.check, tag: cardTag[e.id] }
+      draftPut(userId, e.id, d)
+    }
+    if (pending.length) draftPutMeta(userId, { collectionTag, forSale, useAI, autoCorners, total: entries.length, done: entries.length - pending.length, savedAt: Date.now() })
+  }, [entries, status, cardTag, collectionTag, forSale, useAI, autoCorners, draftInfo, draftReady, userId])
+  const resumeDraft = async () => {
+    const { meta, entries: es } = await draftLoad(userId)
+    await draftClear(userId)
+    draftSaved.current = new Map()
+    const made: Entry[] = es.slice(0, MAX_CARDS).map(d => ({
+      id: nextId++, recto: photoOf(d.recto), verso: d.verso ? photoOf(d.verso) : null, rawRecto: d.rawRecto, rawVerso: d.rawVerso, quadRecto: d.quadRecto, quadVerso: d.quadVerso,
+      cropped: d.cropped, weak: d.weak, skip: d.skip, check: d.check, det: d.cropped ? 'done' : undefined,
+    }))
+    const tags: Record<number, string> = {}
+    made.forEach((m, i) => { if (es[i].tag) tags[m.id] = es[i].tag as string })
+    if (meta) { setCollectionTag(meta.collectionTag || ''); setForSale(!!meta.forSale); setUseAI(meta.useAI !== false); setAutoCorners(meta.autoCorners !== false) }
+    setCardTag(m => ({ ...m, ...tags }))
+    setEntries(list => [...list, ...made])
+    setDraftInfo(null)
+  }
+  const dropDraft = async () => { await draftClear(userId); draftSaved.current = new Map(); setDraftInfo(null) }
+
   // ── Envoi ─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
   const included = entries.filter(e => !e.skip)
   const doneN = included.filter(e => isOver(status[e.id]?.s)).length
@@ -400,9 +497,9 @@ export default function AjoutLotPage({ params }: { params: Promise<{ userId: str
         if (autoCorners && !e.cropped) {
           set(e.id, { s: 'detect' })
           await exclusive(async () => {
-            if (!(await waitForYOLO(30000))) throw new Error('détecteur de coins indisponible')
-            rectoFile = await autoCrop(rectoFile)
-            if (versoFile) versoFile = await autoCrop(versoFile)
+            if (!(await waitForYOLO(30000))) return // détecteur indisponible : la photo est ajoutée telle quelle (pas d'échec), à recadrer ensuite avec « coins »
+            rectoFile = (await autoCrop(rectoFile)).file
+            if (versoFile) versoFile = (await autoCrop(versoFile)).file
           })
         }
         set(e.id, { s: 'upload' })
@@ -473,7 +570,7 @@ export default function AjoutLotPage({ params }: { params: Promise<{ userId: str
     const doneIds = new Set(es.filter(e => isOver(st[e.id]?.s)).map(e => e.id))
     if (!doneIds.size || !es.some(e => doneIds.has(e.id) && e.src)) return
     const keep = new Set<HTMLCanvasElement>()
-    es.forEach(e => { if (!doneIds.has(e.id) && e.src) { keep.add(e.src.recto.full); if (e.src.verso) keep.add(e.src.verso.full) } })
+    es.forEach(e => { if (!doneIds.has(e.id) && e.src) { if (e.src.recto) keep.add(e.src.recto.full); if (e.src.verso) keep.add(e.src.verso.full) } })
     es.forEach(e => { if (doneIds.has(e.id) && e.src) { for (const r of [e.src.recto, e.src.verso]) if (r && !keep.has(r.full)) freeCanvas(r.full) } })
     if (b && !keep.has(b.A.full) && !(b.B && keep.has(b.B.full))) { freeCanvas(b.A.full); if (b.B) freeCanvas(b.B.full); setBinder(null) }
     setEntries(list => list.map(e => doneIds.has(e.id) && e.src ? { ...e, src: undefined } : e))
@@ -498,6 +595,17 @@ export default function AjoutLotPage({ params }: { params: Promise<{ userId: str
       <Link href={`/galerie/${userId}/ajouter`} style={{ fontSize: 13, textDecoration: 'underline' }} onClick={e => { if (running && !window.confirm('Un ajout est en cours : quitter maintenant l’interrompt. Continuer ?')) e.preventDefault() }}>← Ajouter une seule carte</Link>
       <h1 style={{ margin: '10px 0 4px' }}>Ajouter plusieurs cartes</h1>
       <p style={{ color: 'var(--text2, #666)', margin: '0 0 18px' }}>Ajoute tes cartes <b>par photos, en rafale ou par page de classeur</b>, vérifie la liste, puis lance l’ajout. Les photos sont envoyées en haute qualité et les cartes identifiées automatiquement. Tu pourras corriger chaque carte ensuite.</p>
+
+      {draftInfo && entries.length === 0 && (
+        <div role="status" style={{ border: '3px solid #e0a526', padding: '12px 14px', margin: '0 0 16px', display: 'flex', gap: 10, alignItems: 'center', flexWrap: 'wrap' }}>
+          <div style={{ flex: '1 1 100%', minWidth: 0 }}>
+            <b>Reprendre ton lot ?</b>
+            <div style={{ fontSize: 13, color: 'var(--text2, #666)' }}>{draftInfo.done > 0 ? `${draftInfo.done} carte${draftInfo.done > 1 ? 's' : ''} sur ${draftInfo.total} déjà ajoutée${draftInfo.done > 1 ? 's' : ''}, ` : ''}{draftInfo.n} pas encore ajoutée{draftInfo.n > 1 ? 's' : ''} (photos gardées sur cet appareil).</div>
+          </div>
+          <button type="button" className="da-confirm-btn primary" onClick={resumeDraft}>Reprendre</button>
+          <button type="button" className="da-confirm-btn" onClick={dropDraft}>Effacer</button>
+        </div>
+      )}
 
       <div className="da-lot-label">1 · Ajoute des cartes</div>
       <input ref={inputRef} type="file" accept="image/*" multiple style={{ display: 'none' }} onChange={e => { onPick(e.target.files); e.target.value = '' }} />
@@ -566,8 +674,8 @@ export default function AjoutLotPage({ params }: { params: Promise<{ userId: str
             <div key={e.id} className={'da-lot-row' + (st?.s === 'error' ? ' err' : '') + (e.skip ? ' skip' : '')}>
               <div className="da-lot-num">{i + 1}</div>
               <div className="da-lot-photos">
-                <figure><img src={e.recto.url} alt={`Carte ${i + 1}, recto`} className={st && (st.s === 'upload' || st.s === 'scan' || st.s === 'detect') ? 'busy' : undefined} />{badge(st?.s)}<figcaption>Recto{e.src?.recto && idle && !over && <> · <button type="button" className="da-lot-link" onClick={() => setEditing({ id: e.id, side: 'recto' })}>coins</button></>}</figcaption></figure>
-                {e.verso ? <figure><img src={e.verso.url} alt={`Carte ${i + 1}, verso`} /><figcaption>Verso{e.src?.verso && idle && !over && <> · <button type="button" className="da-lot-link" onClick={() => setEditing({ id: e.id, side: 'verso' })}>coins</button></>}</figcaption></figure> : <figure className="empty"><div>Pas de verso</div></figure>}
+                <figure><img src={e.recto.url} alt={`Carte ${i + 1}, recto`} className={st && (st.s === 'upload' || st.s === 'scan' || st.s === 'detect') ? 'busy' : undefined} />{badge(st?.s)}<figcaption>Recto{(e.src?.recto || e.rawRecto) && idle && !over && <> · <button type="button" className="da-lot-link" onClick={() => openEditor(e.id, 'recto')}>coins</button></>}</figcaption></figure>
+                {e.verso ? <figure><img src={e.verso.url} alt={`Carte ${i + 1}, verso`} /><figcaption>Verso{(e.src?.verso || e.rawVerso) && idle && !over && <> · <button type="button" className="da-lot-link" onClick={() => openEditor(e.id, 'verso')}>coins</button></>}</figcaption></figure> : <figure className="empty"><div>Pas de verso</div></figure>}
               </div>
               <div style={{ flex: 1, minWidth: 0 }}>
                 <div style={{ fontWeight: 700, fontSize: 14 }}>{st?.nom || `Carte ${i + 1}`}</div>
@@ -578,6 +686,13 @@ export default function AjoutLotPage({ params }: { params: Promise<{ userId: str
                     <option value={NONE}>Aucune collection</option>
                     {[...new Set([...allTags, ...(collectionTag ? [collectionTag] : [])])].sort().map(t => <option key={t} value={t}>{t}</option>)}
                   </select>
+                )}
+                {e.det === 'pending' && !over && <div style={{ fontSize: 12, color: 'var(--text2, #666)', marginTop: 4 }}>Recadrage en cours…</div>}
+                {(e.check?.recto || e.check?.verso) && !over && (
+                  <div style={{ marginTop: 6, display: 'flex', alignItems: 'center', gap: 8, flexWrap: 'wrap' }}>
+                    <span style={{ background: '#c98a12', color: '#fff', fontSize: 11, fontWeight: 800, padding: '3px 8px', letterSpacing: '.04em', textTransform: 'uppercase' }}>Recadrage à vérifier</span>
+                    {idle && <button type="button" className="da-confirm-btn" style={{ padding: '4px 10px', fontSize: 12 }} onClick={() => openEditor(e.id, e.check?.recto ? 'recto' : 'verso')}>Régler les coins</button>}
+                  </div>
                 )}
                 {e.weak && !over && <label className="da-lot-warn"><input type="checkbox" checked={!e.skip} onChange={() => toggleSkip(e.id)} disabled={running} /> Emplacement estimé (pochette vide ?) : ajouter quand même</label>}
               </div>

@@ -43,7 +43,7 @@ interface Card {
   isManuelle?: boolean; id_manuelle?: string; collection_tag?: string; collections?: string[]; beckett_designation?: string
   booklet?: boolean; is_horizontal?: boolean; verso_is_horizontal?: boolean | null; format?: string; il?: string; ir?: string
   storage_binder?: string; storage_page?: number | null; storage_slot?: string;
-  lien_vinted?: string; lien_ebay?: string; vendue?: boolean; reservee?: boolean; disponible_vente?: boolean; prix_vente?: number | null;
+  lien_vinted?: string; lien_ebay?: string; vendue?: boolean; reservee?: boolean; disponible_vente?: boolean; prix_vente?: number | null; quantite?: number;
   notes_perso?: string; notes_perso_public?: boolean
 }
 
@@ -1633,6 +1633,7 @@ export default function Viewer3D({ popup, accent, onClose, onNext, onPrev, getTa
               ['Numérotation', popup.num || 'N/A'],
               [isMemo ? 'Taille' : 'Grade', isMemo ? (popup.g || '—') : popup.g],
               ['Collection', `${popup.br} ${popup.s}`],
+              ...((popup.quantite || 1) > 1 ? [['Exemplaires', `×${popup.quantite}`]] : []),
             ].map(([l, v]) => (
               <div key={l}>
                 <label style={{ display: 'block', fontSize: 9, fontWeight: 800, color: metaColor, textTransform: 'uppercase' }}>{l}</label>

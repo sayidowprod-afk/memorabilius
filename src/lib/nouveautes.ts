@@ -4,6 +4,20 @@ export type Entry = { date: string; titre: string; points: string[] }
 
 export const ENTRIES: Entry[] = [
   {
+    date: '14 novembre 2026', titre: 'Ajout en lot plus sûr, quantité par carte, viewer sans clignotement',
+    points: [
+      'Ajout en lot : les coins de chaque photo sont détectés dès qu’elle arrive dans la liste. Quand le recadrage est douteux, la carte porte une pastille « Recadrage à vérifier » et un bouton « Régler les coins » ouvre le même réglage que pour une carte seule.',
+      'Ajout en lot : si la page se ferme ou plante en plein lot, les cartes pas encore ajoutées sont gardées sur ton appareil et le site te propose de les reprendre au retour.',
+      'Ajout en lot : choisis une collection pour tout le lot (ou carte par carte) et coche « À vendre / échanger ».',
+      'Quantité par carte : une seule fiche pour plusieurs exemplaires identiques (« ×3 » sur la vignette et dans le viewer). Le champ « Exemplaires » est dans la fiche de la carte.',
+      'Viewer 3D : plus de clignotements à l’ouverture ni quand tu modifies une carte (prix, collection…). La vignette que tu touches « grandit » jusqu’au viewer, et l’image haute définition commence à charger dès que tu poses le doigt.',
+      'Réseau lent : sur 3G ou en économie de données, la galerie charge des vignettes bien plus légères.',
+      'Trade Matching : les cartes s’ouvrent dans le viewer 3D.',
+      'Appareil photo : la photo prise correspond maintenant exactement à ce que tu vois à l’écran, avec ou sans zoom.',
+      'Corrections : bouton « Masquer » des messages, flèche de retour en haut qui recouvrait les boutons du classeur, menu des pages du classeur illisible en mode sombre, bandeau « Reprendre ton brouillon » sur téléphone.',
+    ],
+  },
+  {
     date: '13 novembre 2026', titre: 'Propositions dans la wishlist, Trade Matching plus juste',
     points: [
       'Wishlist : quand tu écris un joueur ou une équipe, le site te propose les noms exacts (Philadelphia 76ers, Andre Iguodala…). Plus de faute d’orthographe qui fait rater une alerte.',

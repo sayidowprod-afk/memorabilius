@@ -290,7 +290,7 @@ export default function AjouterCarte({ params }: { params: Promise<{ userId: str
   const [form, setForm] = useState({
     nom: '', equipe: '', annee: '', marque: '', collection: '', variation: '', notes_perso: '', notes_perso_public: true,
     grade: 'Raw', cert_number: '', num: '', card_number: '', rc: false, auto: false, patch: false, printing_plate: false, booklet: false,
-    is_horizontal: false, format: 'standard', collection_tag: '', disponible_vente: false, prix_vente: '',
+    is_horizontal: false, format: 'standard', collection_tag: '', disponible_vente: false, quantite: '1', prix_vente: '',
     image_recto: '', image_verso: '', image_interieur_gauche: '', image_interieur_droite: '',
     image_recto_hd: '', image_verso_hd: '',
     verso_is_horizontal: null as boolean | null, // null = même orientation que le recto
@@ -867,7 +867,7 @@ export default function AjouterCarte({ params }: { params: Promise<{ userId: str
     setForm({
       nom: '', equipe: '', annee: '', marque: '', collection: '', variation: '', notes_perso: '', notes_perso_public: true,
       grade: 'Raw', cert_number: '', num: '', card_number: '', rc: false, auto: false, patch: false, printing_plate: false, booklet: false,
-      is_horizontal: false, format: 'standard', collection_tag: '', disponible_vente: false, prix_vente: '',
+      is_horizontal: false, format: 'standard', collection_tag: '', disponible_vente: false, quantite: '1', prix_vente: '',
       image_recto: '', image_verso: '', image_interieur_gauche: '', image_interieur_droite: '',
       image_recto_hd: '', image_verso_hd: '',
       verso_is_horizontal: null, item_type: 'card',
@@ -904,6 +904,8 @@ export default function AjouterCarte({ params }: { params: Promise<{ userId: str
       image_interieur_droite: form.image_interieur_droite || null,
       collection_tag: form.collection_tag || null,
       disponible_vente: form.disponible_vente,
+      // n'est envoyée que si > 1 : la base reste compatible tant que la migration quantité n'est pas appliquée
+      ...((parseInt(form.quantite, 10) || 1) > 1 ? { quantite: Math.min(999, parseInt(form.quantite, 10)) } : {}),
       // prix facultatif ; retirer Vente/Trade retire le prix
       prix_vente: form.disponible_vente ? parsePrice(form.prix_vente) : null,
       lien_vinted: form.lien_vinted || null,
@@ -1310,6 +1312,12 @@ export default function AjouterCarte({ params }: { params: Promise<{ userId: str
               {t('addcard_available_sale')}
             </span>
           </label>
+          <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
+            <label htmlFor="qte" style={{ fontSize: 12, fontWeight: 700, textTransform: 'uppercase', color: '#888' }}>Exemplaires</label>
+            <input id="qte" type="number" inputMode="numeric" min={1} max={999} value={form.quantite} onChange={e => setForm(f => ({ ...f, quantite: e.target.value }))}
+              style={{ width: 80, padding: '8px 10px', borderRadius: 8, border: '1.5px solid #ddd', fontSize: 14 }} />
+            <span style={{ fontSize: 12, color: '#888' }}>même carte en plusieurs exemplaires : une seule fiche</span>
+          </div>
           {form.disponible_vente && (
             <div style={{ display: 'flex', flexDirection: 'column', gap: 8, padding: '12px 14px', borderRadius: 10, background: '#f0f4ff', border: '2px solid #003DA6' }}>
               <PriceFormField value={form.prix_vente} onChange={v => setForm(f => ({ ...f, prix_vente: v }))} />

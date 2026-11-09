@@ -145,7 +145,7 @@ export default function EditerCarte({ params }: { params: Promise<{ userId: stri
   const [form, setForm] = useState({
     nom: '', equipe: '', annee: '', marque: '', collection: '', variation: '', notes_perso: '', notes_perso_public: false,
     grade: 'Raw', cert_number: '', num: '', card_number: '', rc: false, auto: false, patch: false, printing_plate: false,
-    image_recto: '', image_verso: '', image_recto_hd: '', image_verso_hd: '', collection_tag: '', disponible_vente: false, prix_vente: '',
+    image_recto: '', image_verso: '', image_recto_hd: '', image_verso_hd: '', collection_tag: '', disponible_vente: false, quantite: '1', prix_vente: '',
     booklet: false, is_horizontal: false, format: 'standard',
     image_interieur_gauche: '', image_interieur_droite: '',
     verso_is_horizontal: null as boolean | null,
@@ -180,6 +180,8 @@ export default function EditerCarte({ params }: { params: Promise<{ userId: stri
   const isDragging = useRef(false)
   const rotationRef = useRef(rotation)
   useEffect(() => { rotationRef.current = rotation }, [rotation])
+  // la fiche connaît déjà la colonne quantite (migration appliquée) : on peut alors toujours la renvoyer
+  const quantiteKnown = useRef(false)
   const isHorizontalRef = useRef(false)
   useEffect(() => { isHorizontalRef.current = form.format === 'horizontal' || form.is_horizontal }, [form.format, form.is_horizontal])
 
@@ -188,6 +190,7 @@ export default function EditerCarte({ params }: { params: Promise<{ userId: stri
       if (!session?.user) { router.push(`/galerie/${userId}`); return }
       supabase.from('cartes_manuelles').select('*').eq('id', id).eq('user_id', session.user.id).single().then(({ data, error }) => {
       if (error || !data) { router.push(`/galerie/${userId}`); return }
+      quantiteKnown.current = data.quantite !== undefined
       const loadedForm = {
         nom: data.nom || '', equipe: data.equipe || '', annee: data.annee || '',
         marque: data.marque || '', collection: data.collection || '', variation: data.variation || '',
@@ -198,6 +201,7 @@ export default function EditerCarte({ params }: { params: Promise<{ userId: stri
         image_recto_hd: data.image_recto_hd || '', image_verso_hd: data.image_verso_hd || '',
         collection_tag: data.collection_tag || '',
         disponible_vente: data.disponible_vente || false,
+        quantite: String(data.quantite ?? 1),
         prix_vente: data.prix_vente != null ? String(data.prix_vente) : '',
         booklet: data.booklet || false,
         is_horizontal: data.is_horizontal || false,
@@ -575,6 +579,8 @@ export default function EditerCarte({ params }: { params: Promise<{ userId: stri
       image_recto_hd: form.image_recto_hd || null, image_verso_hd: form.image_verso_hd || null,
       collection_tag: form.collection_tag || null,
       disponible_vente: form.disponible_vente,
+      // la colonne quantite n'est envoyée que si elle sert (> 1) ou si la fiche la connaît déjà : la base reste compatible avant la migration
+      ...((parseInt(form.quantite, 10) || 1) > 1 || quantiteKnown.current ? { quantite: Math.min(999, Math.max(1, parseInt(form.quantite, 10) || 1)) } : {}),
       // prix facultatif ; retirer Vente/Trade retire le prix
       prix_vente: form.disponible_vente ? parsePrice(form.prix_vente) : null,
       lien_vinted: form.lien_vinted || null,
@@ -921,6 +927,12 @@ export default function EditerCarte({ params }: { params: Promise<{ userId: stri
               {t('addcard_available_sale')}
             </span>
           </label>
+          <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
+            <label htmlFor="qte" style={{ fontSize: 12, fontWeight: 700, textTransform: 'uppercase', color: '#888' }}>Exemplaires</label>
+            <input id="qte" type="number" inputMode="numeric" min={1} max={999} value={form.quantite} onChange={e => setForm(f => ({ ...f, quantite: e.target.value }))}
+              style={{ width: 80, padding: '8px 10px', borderRadius: 8, border: '1.5px solid #ddd', fontSize: 14 }} />
+            <span style={{ fontSize: 12, color: '#888' }}>même carte en plusieurs exemplaires : une seule fiche</span>
+          </div>
           {form.disponible_vente && (
             <div style={{ display: 'flex', flexDirection: 'column', gap: 8, padding: '12px 14px', borderRadius: 10, background: '#f0f4ff', border: '2px solid #003DA6' }}>
               <PriceFormField value={form.prix_vente} onChange={v => setForm(f => ({ ...f, prix_vente: v }))} />
