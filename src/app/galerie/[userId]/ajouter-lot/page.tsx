@@ -476,7 +476,8 @@ export default function AjoutLotPage({ params }: { params: Promise<{ userId: str
   const pendingN = included.length - doneN
   const skippedN = entries.length - included.length
 
-  const run = async () => {
+  // only : ne traiter que cette carte (bouton « Réessayer » d'une carte en échec) ; sinon toutes celles qui restent
+  const run = async (only?: number) => {
     if (running || !pendingN) return
     const { data: { session } } = await supabase.auth.getSession()
     if (!session || session.user.id !== userId) { toast.error('Ta session a expiré : reconnecte-toi puis reviens ici (tes photos de cette page seront à rechoisir).'); router.replace('/connexion'); return }
@@ -488,7 +489,7 @@ export default function AjoutLotPage({ params }: { params: Promise<{ userId: str
     let chain: Promise<unknown> = Promise.resolve()
     const exclusive = <T,>(fn: () => Promise<T>): Promise<T> => { const p = chain.then(fn, fn); chain = p.catch(() => {}); return p }
 
-    const queue = entries.filter(e => !e.skip && !isOver(status[e.id]?.s))
+    const queue = entries.filter(e => !e.skip && !isOver(status[e.id]?.s) && (only === undefined || e.id === only))
     queue.forEach(e => set(e.id, { s: 'wait' }))
     const processOne = async (e: Entry) => {
       const uploaded: string[] = []
@@ -680,6 +681,7 @@ export default function AjoutLotPage({ params }: { params: Promise<{ userId: str
               <div style={{ flex: 1, minWidth: 0 }}>
                 <div style={{ fontWeight: 700, fontSize: 14 }}>{st?.nom || `Carte ${i + 1}`}</div>
                 <div style={{ fontSize: 13, color: st?.s === 'error' ? '#ff8a8a' : st?.s === 'done' ? '#3ddc97' : 'var(--text2, #666)' }}>{e.skip && !st ? 'Ignorée' : st ? (st.s === 'error' ? `Échec : ${st.msg}` : label[st.s]) : label.wait}</div>
+                {st?.s === 'error' && idle && <button type="button" className="da-confirm-btn primary" style={{ marginTop: 6, padding: '6px 12px', fontSize: 13 }} onClick={() => run(e.id)}>↻ Réessayer cette carte</button>}
                 {idle && !over && (
                   <select aria-label={`Collection de la carte ${i + 1}`} value={cardTag[e.id] || ''} onChange={ev => setCardTag(m => ({ ...m, [e.id]: ev.target.value }))} style={{ marginTop: 6, padding: '6px 8px', fontSize: 12, maxWidth: '100%' }}>
                     <option value="">Collection : {collectionTag ? `« ${collectionTag} » (le lot)` : 'aucune (le lot)'}</option>
@@ -723,7 +725,7 @@ export default function AjoutLotPage({ params }: { params: Promise<{ userId: str
               {running && <div className="da-lot-progress" role="progressbar" aria-valuemin={0} aria-valuemax={included.length} aria-valuenow={doneN + errN} aria-label="Avancement de l’ajout"><i style={{ width: `${Math.round(((doneN + errN) / Math.max(1, included.length)) * 100)}%` }} /></div>}
               {!running && doneN > 0 && <span style={{ fontSize: 13, flex: '1 1 100%' }}>{doneN} ajoutée{doneN > 1 ? 's' : ''}{errN ? ` · ${errN} en échec` : ''} · {pendingN} restante{pendingN > 1 ? 's' : ''}</span>}
               {running && <button type="button" className="da-confirm-btn" onClick={() => { cancelRef.current = true }}>Arrêter</button>}
-              <button type="button" className="btn-main btn-primary" style={{ flex: 1 }} disabled={running || pendingN === 0} onClick={run}>
+              <button type="button" className="btn-main btn-primary" style={{ flex: 1 }} disabled={running || pendingN === 0} onClick={() => run()}>
                 {running ? `Ajout en cours… ${doneN + errN} / ${included.length}`
                   : pendingN === 0 ? 'Aucune carte à ajouter'
                   : errN > 0 ? `Réessayer ${errN} échec${errN > 1 ? 's' : ''}${pendingN > errN ? ` et continuer (${pendingN} restantes)` : ''}`

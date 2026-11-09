@@ -66,7 +66,10 @@ const nextConfig = {
           // strict a deja casse le chargement CSV -> galeries vides en prod une fois).
           { key: 'Content-Security-Policy', value: [
             "default-src 'self'",
-            "script-src 'self' 'unsafe-inline' 'wasm-unsafe-eval' https://cdn.jsdelivr.net https://challenges.cloudflare.com",
+            // blob: onnxruntime-web (détecteur de coins) charge son module multi-thread depuis le CDN via une URL blob: sur les pages isolées
+            // (/galerie/:userId/ajouter et /editer/:id) ; sans lui le détecteur ne démarre pas. Autorisé à la demande du propriétaire (9 nov. 2026).
+            // Risque faible : 'unsafe-inline' est déjà autorisé, donc blob: n'ouvre pas de nouvelle porte.
+            "script-src 'self' 'unsafe-inline' 'wasm-unsafe-eval' https://cdn.jsdelivr.net https://challenges.cloudflare.com blob:",
             "style-src 'self' 'unsafe-inline'",
             "img-src 'self' data: blob: https:",
             "font-src 'self' data: https://fonts.gstatic.com",
