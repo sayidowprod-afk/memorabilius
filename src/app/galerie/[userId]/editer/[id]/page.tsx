@@ -10,6 +10,7 @@ import { useHideBottomNav } from '@/lib/useHideBottomNav'
 import { useRouter, useSearchParams } from 'next/navigation'
 import Link from 'next/link'
 import { supabase } from '@/lib/supabase'
+import { galleryMemClear } from '@/lib/galleryMem'
 import { useLang } from '@/lib/LangContext'
 import CardScanner from '@/components/CardScanner'
 import CollectionTagSelect from '@/components/CollectionTagSelect'
@@ -598,6 +599,7 @@ export default function EditerCarte({ params }: { params: Promise<{ userId: stri
     }).eq('id', id).eq('user_id', user.id)
 
     if (error) { toast.error('Erreur : ' + error.message); setSaving(false); return }
+    galleryMemClear(userId) // la galerie en mémoire a l'ancienne version de cette carte : elle sera rechargée
     if (isQueueMode) { goNext(); return }
     router.push(`/galerie/${userId}`)
   }

@@ -12,6 +12,7 @@ import { useHideBottomNav } from '@/lib/useHideBottomNav'
 import { useRouter } from 'next/navigation'
 import Link from 'next/link'
 import { supabase } from '@/lib/supabase'
+import { galleryMemClear } from '@/lib/galleryMem'
 import { useLang } from '@/lib/LangContext'
 import { useTheme } from '@/lib/ThemeContext'
 import dynamic from 'next/dynamic'
@@ -913,6 +914,7 @@ export default function AjouterCarte({ params }: { params: Promise<{ userId: str
       item_type: form.item_type || 'card',
     })
     if (error) { toast.error('Erreur : ' + error.message); setSaving(false); return }
+    galleryMemClear(userId) // la galerie en mémoire n'a pas cette carte : elle sera rechargée
     clearDraft()
     const { data: { session } } = await supabase.auth.getSession()
     fetch('/api/wishlist-notify', {

@@ -7,6 +7,7 @@ import { use, useEffect, useRef, useState } from 'react'
 import { useRouter } from 'next/navigation'
 import Link from 'next/link'
 import { supabase } from '@/lib/supabase'
+import { galleryMemClear } from '@/lib/galleryMem'
 import { toast } from '@/lib/toast'
 import { useIsAppUI } from '@/lib/useIsNative'
 import { NAV_TOTAL_HEIGHT_CSS } from '@/lib/nativeLayout'
@@ -545,6 +546,7 @@ export default function AjoutLotPage({ params }: { params: Promise<{ userId: str
         }
         const { error } = await supabase.from('cartes_manuelles').insert(row)
         if (error) throw new Error(error.message)
+        galleryMemClear(userId)
         fetch('/api/card-added', { method: 'POST', headers: auth, body: JSON.stringify({ userId, rc: row.rc, auto: row.auto, patch: row.patch, num: !!row.num }) }).catch(() => {})
         if (nom) fetch('/api/wishlist-notify', { method: 'PUT', headers: auth, body: JSON.stringify({ card: { nom, equipe: row.equipe, annee: row.annee, marque: row.marque, collection: row.collection, variation: row.variation, num: row.num, rc: row.rc, auto: row.auto, patch: row.patch }, cardUserId: userId }) }).catch(() => {})
         set(e.id, nom ? { s: 'done', nom } : { s: 'todo', msg: 'À compléter' })

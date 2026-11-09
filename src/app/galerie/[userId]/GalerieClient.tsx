@@ -87,6 +87,7 @@ import TeamBadge from '@/components/TeamBadge'
 import TradeReputation from '@/components/TradeReputation'
 import { addRecentCard } from '@/lib/recentCards'
 import { saveScroll, readScroll, clearScroll, arrivedByBack, scrollToWhenReady } from '@/lib/scrollMemory'
+import { galleryMemGet, galleryMemSet } from '@/lib/galleryMem'
 import JumpBar from '@/components/JumpBar'
 
 // ── Helpers numériques (module scope pour éviter re-création à chaque render) ──
@@ -391,6 +392,33 @@ function CardLink({ slug, cardKey, children }: { slug: string; cardKey: string; 
 // 435 : sur réseau lent (2G/3G) ou en mode économie de données, la grille demande une vignette réduite
 // (≈ 6 fois plus légère) au lieu de l'image complète. L'image haute définition reste pour le viewer.
 // Rien ne change sur un bon réseau. Si la version réduite échoue, onImgError revient à l'image d'origine.
+// Cartes de la galerie demandées TOUT DE SUITE au démarrage, en parallèle du profil et des étiquettes (avant : le profil d'abord, puis le premier lot
+// de 1000 cartes, puis seulement les lots suivants = trois vagues l'une derrière l'autre). Le nombre total de cartes est demandé à part (très rapide),
+// ce qui permet de lancer les lots suivants sans attendre la fin du premier.
+type GalleryPrefetch = { total: Promise<number>; first: Promise<any>; cc: Promise<any[]>; rest: Promise<any[][]> }
+function startGalleryPrefetch(uid: string): GalleryPrefetch {
+  const PAGE = 1000
+  const first = Promise.resolve(supabase.from('cartes_manuelles').select('*', { count: 'exact' }).eq('user_id', uid).order('created_at', { ascending: true }).range(0, PAGE - 1))
+  const cc = (async () => {
+    const { data: f1, count } = await supabase.from('card_collections').select('card_key, collection', { count: 'exact' }).eq('user_id', uid).range(0, PAGE - 1)
+    const all = [...(f1 || [])]
+    const total = count || 0
+    if (total > PAGE) {
+      const more = await Promise.all(Array.from({ length: Math.ceil(total / PAGE) - 1 }, (_, i) =>
+        supabase.from('card_collections').select('card_key, collection').eq('user_id', uid).range((i + 1) * PAGE, (i + 2) * PAGE - 1).then(r => r.data || [])))
+      all.push(...more.flat())
+    }
+    return all
+  })()
+  const total = Promise.resolve(supabase.from('cartes_manuelles').select('id', { count: 'exact', head: true }).eq('user_id', uid)).then(r => r.count || 0, () => 0)
+  const rest = total.then(n => n > PAGE
+    ? Promise.all(Array.from({ length: Math.ceil(n / PAGE) - 1 }, (_, i) =>
+        Promise.resolve(supabase.from('cartes_manuelles').select('*').eq('user_id', uid).order('created_at', { ascending: true }).range((i + 1) * PAGE, (i + 2) * PAGE - 1)).then(r => r.data || [])))
+    : [])
+  // pas d'erreur non gérée si personne n'attend ces résultats (page quittée, CSV…)
+  for (const p of [first, cc, total, rest]) p.catch(() => {})
+  return { total, first, cc, rest }
+}
 const THUMB_PATH = '/storage/v1/render/image/public/'
 function isSlowNetwork(): boolean {
   if (typeof navigator === 'undefined') return false
@@ -672,6 +700,9 @@ export default function GalerieClient({ userId, initialCardUrl, initialCards, in
     return (d.collection_tag && tabSettings.get(d.collection_tag)?.color) || accent
   }
   const [popup, setPopupRaw] = useState<Card | null>(null)
+  const memShownRef = useRef(false) // la galerie a déjà été affichée depuis la mémoire : la copie hors ligne ne doit pas la remplacer
+  const prefetchRef = useRef<GalleryPrefetch | null>(null) // cartes demandées dès le démarrage (voir startGalleryPrefetch)
+  const targetOpenedRef = useRef(false) // la carte demandée par l'adresse (?card=) ne s'ouvre qu'une fois par visite
   // Ouverture / fermeture / navigation du viewer : appliquées directement, SANS transition de page du navigateur.
   // La transition (fondu de tout l'écran) figeait la galerie sur l'ancienne image le temps de préparer la nouvelle, puis faisait
   // repasser l'ancienne page (barre de filtres comprise) par-dessus le viewer : c'étaient les clignotements. L'animation d'ouverture
@@ -912,6 +943,9 @@ export default function GalerieClient({ userId, initialCardUrl, initialCards, in
           if (p) resolvedId = p.id
           else { setLoaded(true); return }
         }
+
+        // Les cartes sont demandées tout de suite, sans attendre le profil (qui ne sert qu'au lien CSV et à l'ordre)
+        prefetchRef.current = startGalleryPrefetch(resolvedId)
 
         // Tags + profil en parallèle — pas de getSession() qui peut bloquer/pendre
         const [{ data: tagsData }, { data: profileData }] = await Promise.race([
@@ -1294,6 +1328,36 @@ export default function GalerieClient({ userId, initialCardUrl, initialCards, in
         lien_vinted: m.lien_vinted || '', lien_ebay: m.lien_ebay || '',
       })
 
+      // Affiche une liste de cartes prête (fraîche ou gardée en mémoire) : liste, filtres, ouverture de la carte demandée par l'adresse
+      const commitCards = (allCards: Card[]) => {
+        setCards(allCards)
+        setCardsLoaded(true)
+        setTeams([...new Set(allCards.map(d => d.t).filter(Boolean))].sort())
+        setBrands([...new Set(allCards.map(d => d.s).filter(Boolean))].sort())
+        setYears([...new Set(allCards.map(d => d.y).filter(Boolean))].sort())
+        setCollectionTags([...new Set(allCards.flatMap(d => d.collections || []).filter(Boolean) as string[])].sort())
+        setLoaded(true)
+        setUsingOfflineCache(false)
+        // searchParams.get() decode deja la valeur — un decodeURIComponent() ici
+        // double-decodait le param (symetrique au double-encode corrige plus bas).
+        const target = initialCardUrl || cardParam || null
+        if (target && !targetOpenedRef.current) {
+          const match = allCards.find(c => c.f === target)
+          if (match) {
+            targetOpenedRef.current = true
+            setPopup(match)
+            // Nettoie l'URL affichée dans la barre d'adresse : peu importe d'où vient ce
+            // lien long (recherche globale, ancienne notification, partage...), on la
+            // remplace par le lien court une fois la carte résolue côté client.
+            if (!match.id_manuelle) {
+              getCsvCardSharePath(userId, match.f).then(path => {
+                if (path.startsWith('/c/') && navigator.onLine) router.replace(path)
+              })
+            }
+          }
+        }
+      }
+
       const applyAndShow = (manuelles: any[], ccMap: Map<string, string[]>) => {
         const cartesM: Card[] = manuelles.map(mapManuelle)
         const attachCollections = (card: Card) => {
@@ -1314,31 +1378,7 @@ export default function GalerieClient({ userId, initialCardUrl, initialCards, in
             return pa - pb
           })
         }
-        setCards(allCards)
-        setCardsLoaded(true)
-        setTeams([...new Set(allCards.map(d => d.t).filter(Boolean))].sort())
-        setBrands([...new Set(allCards.map(d => d.s).filter(Boolean))].sort())
-        setYears([...new Set(allCards.map(d => d.y).filter(Boolean))].sort())
-        setCollectionTags([...new Set(allCards.flatMap(d => d.collections || []).filter(Boolean) as string[])].sort())
-        setLoaded(true)
-        setUsingOfflineCache(false)
-        // searchParams.get() decode deja la valeur — un decodeURIComponent() ici
-        // double-decodait le param (symetrique au double-encode corrige plus bas).
-        const target = initialCardUrl || cardParam || null
-        if (target) {
-          const match = allCards.find(c => c.f === target)
-          if (match) {
-            setPopup(match)
-            // Nettoie l'URL affichée dans la barre d'adresse : peu importe d'où vient ce
-            // lien long (recherche globale, ancienne notification, partage...), on la
-            // remplace par le lien court une fois la carte résolue côté client.
-            if (!match.id_manuelle) {
-              getCsvCardSharePath(userId, match.f).then(path => {
-                if (path.startsWith('/c/') && navigator.onLine) router.replace(path)
-              })
-            }
-          }
-        }
+        commitCards(allCards)
       }
 
       // Premier batch + card_collections en parallèle → affichage immédiat.
@@ -1376,9 +1416,16 @@ export default function GalerieClient({ userId, initialCardUrl, initialCards, in
         }
         return all
       }
+      const pre = prefetchRef.current
+      prefetchRef.current = null
       const fetchFirstBatch = async (attempt: number): Promise<any> => {
         const timeout = new Promise<never>((_, reject) => setTimeout(() => reject(new Error('timeout')), 6000))
         try {
+          if (attempt === 1 && pre) { // lot déjà demandé au démarrage : on l'attend (au pire, on retombe sur les requêtes d'origine ci-dessous)
+            const [fr, cc] = await Promise.race([Promise.all([pre.first, pre.cc]), timeout])
+            if (fr.error) throw fr.error
+            return [fr, cc]
+          }
           return await Promise.race([
             Promise.all([
               supabase.from('cartes_manuelles').select('*', { count: 'exact' }).eq('user_id', uid).order('created_at', { ascending: true }).range(0, 999),
@@ -1392,6 +1439,9 @@ export default function GalerieClient({ userId, initialCardUrl, initialCards, in
           return fetchFirstBatch(attempt + 1)
         }
       }
+      // Retour sur une galerie déjà vue dans cet onglet : on l'affiche tout de suite, les données fraîches arrivent ensuite (lib/galleryMem.ts)
+      const memCards = galleryMemGet<Card>(userId)
+      if (memCards) { memShownRef.current = true; commitCards(memCards) }
       const [firstResult, ccRows] = await fetchFirstBatch(1)
       const firstBatch = firstResult.data || []
       const totalCount = firstResult.count || 0
@@ -1400,12 +1450,16 @@ export default function GalerieClient({ userId, initialCardUrl, initialCards, in
         const arr = ccMap.get(r.card_key) || []; arr.push(r.collection); ccMap.set(r.card_key, arr)
       }
 
-      applyAndShow(firstBatch, ccMap)
+      // avec une galerie gardée en mémoire, on saute ce premier lot partiel (la grille reculerait à 1000 cartes puis remonterait)
+      if (!memCards || totalCount <= 1000) applyAndShow(firstBatch, ccMap)
 
       // Si plus de 1000 cartes, charge le reste en arrière-plan
       if (totalCount > 1000) {
         const pageCount = Math.ceil(totalCount / 1000)
-        const remainingBatches = await Promise.all(
+        // lots suivants déjà demandés au démarrage si le total correspond ; sinon (ou en cas d'échec) requêtes d'origine
+        let prefetched: any[][] | null = null
+        try { if (pre && (await pre.total) === totalCount) prefetched = await pre.rest } catch { prefetched = null }
+        const remainingBatches = prefetched ?? await Promise.all(
           Array.from({ length: pageCount - 1 }, (_, i) =>
             supabase.from('cartes_manuelles').select('*').eq('user_id', uid).order('created_at', { ascending: true }).range((i + 1) * 1000, (i + 2) * 1000 - 1).then(r => r.data || [])
           )
@@ -1416,7 +1470,7 @@ export default function GalerieClient({ userId, initialCardUrl, initialCards, in
       console.error('CSV error', e)
       // Hors-ligne / requête échouée : si c'est la galerie du propriétaire, on
       // retombe sur la dernière copie mise en cache plutôt que d'afficher du vide.
-      if (isOwner) {
+      if (isOwner && !memShownRef.current) {
         try {
           const cached = localStorage.getItem(`gallery-cache-${userId}`)
           if (cached) {
@@ -1483,6 +1537,9 @@ export default function GalerieClient({ userId, initialCardUrl, initialCards, in
 
   // Index des cartes par image (pour le Grail Wall) : calculé une fois par changement de liste, pas à chaque affichage
   const grailMap = useMemo(() => new Map(cards.map(c => [c.f, c])), [cards])
+
+  // Garde la liste à jour en mémoire (voir lib/galleryMem.ts) : une modification locale (prix, suppression…) y est donc aussi
+  useEffect(() => { if (loaded && cardsLoaded && !usingOfflineCache) galleryMemSet(userId, cards) }, [cards, loaded, cardsLoaded, usingOfflineCache, userId])
 
   const gallerySports = useMemo(() => {
     const set = new Set<Sport>()
@@ -2582,7 +2639,7 @@ export default function GalerieClient({ userId, initialCardUrl, initialCards, in
       )}
       {shownTheme && <div className={'gtheme-bg gtheme-layer' + (dark ? '' : ' light')} data-gtheme={shownTheme} data-tone={isLightTheme(shownTheme) ? 'light' : 'dark'} aria-hidden="true" style={shownTheme === 'equipe' && teamColors ? { background: teamBackground(teamColors) } : ballStyle(shownTheme)} />}
       {themePicker && isOwner && <GalleryCustomizer theme={shownTheme} onTheme={t => setThemePreview(t)} accent={accent} onAccent={setAccentPreview} favs={favShown} onFavs={setFavPreview} teamColors={teamColors} onSave={saveCustom} saving={themeSaving} onClose={closeCustomizer} />}
-      <div style={{ maxWidth: 1400, margin: '0 auto', fontFamily: 'Inter, sans-serif', padding: '0 10px', paddingBottom: (editMode && isOwner && selectedCards.size > 0) || qrMode ? 80 : 0 }}>
+      <div style={{ maxWidth: 1400, margin: '0 auto', fontFamily: 'Inter, sans-serif', padding: '0 10px', paddingBottom: (editMode && isOwner && selectedCards.size > 0) || qrMode ? 80 : 0, minHeight: loaded ? undefined : '170vh' /* tant que ça charge, le pied de page reste hors écran : il ne saute plus quand la vraie galerie arrive */ }}>
 
         {usingOfflineCache && (
           <div style={{
@@ -2611,7 +2668,7 @@ export default function GalerieClient({ userId, initialCardUrl, initialCards, in
             en bas a droite et qui s'estompe vers le haut a gauche. Calque plein format
             (pas juste une bande en haut) pour que le clip coincide avec le contour reel
             du header (coins arrondis) plutot que de couper au milieu du contenu. */}
-        <div className="da-profile da-grain" style={{ ['--da-accent' as any]: accent.startsWith('#') ? accent : '#003DA6', position: 'relative', background: dark ? '#1e1e1e' : 'white', borderRadius: 16, marginBottom: 20, boxShadow: 'var(--elevation-md)', overflow: 'hidden' }}>
+        <div className="da-profile da-grain" style={{ ['--da-accent' as any]: accent.startsWith('#') ? accent : '#003DA6', position: 'relative', background: dark ? '#1e1e1e' : 'white', borderRadius: 16, marginBottom: 20, boxShadow: 'var(--elevation-md)', overflow: 'hidden', minHeight: loaded ? undefined : 'var(--gal-profile-h)' }}>
           <div style={{
             position: 'absolute', inset: 0,
             background: `linear-gradient(to top left, ${accent}${dark ? '3d' : '2b'}, transparent 70%)`,
@@ -3069,7 +3126,7 @@ export default function GalerieClient({ userId, initialCardUrl, initialCards, in
         {/* Onglets Collection / Wishlist / Commentaires / Bibliothèque — scrollable sur mobile.
             L'onglet actif est indique par une pilule qui glisse (mesuree via refs) plutot
             que chaque bouton togglant independamment son propre fond. */}
-        <div ref={tabBarRef} className="da-tabs" style={{ position: 'relative', display: 'flex', gap: 4, marginBottom: 16, background: dark ? '#2a2a2a' : '#f0f0f0', borderRadius: 10, padding: 4, maxWidth: '100%', overflowX: 'auto', WebkitOverflowScrolling: 'touch' }}>
+        <div ref={tabBarRef} className="da-tabs" style={{ position: 'relative', display: loaded ? 'flex' : 'none', gap: 4, marginBottom: 16, background: dark ? '#2a2a2a' : '#f0f0f0', borderRadius: 10, padding: 4, maxWidth: '100%', overflowX: 'auto', WebkitOverflowScrolling: 'touch' }}>
           {tabIndicator && (
             <div style={{
               position: 'absolute', top: 4, bottom: 4, left: tabIndicator.left, width: tabIndicator.width,
@@ -3140,7 +3197,7 @@ export default function GalerieClient({ userId, initialCardUrl, initialCards, in
             espace vide) sans pouvoir les déboguer en direct (natif only).
             Retour à un bloc simple et fiable — le gain de confort du sticky ne
             valait pas l'instabilité que ça causait. */}
-        <div className="gf-panel" style={{ background: dark ? '#1e1e1e' : '#fff', padding: 10, borderRadius: 8, marginBottom: 15, border: dark ? '1px solid #333' : '1px solid #eee' }}>
+        <div className="gf-panel" style={{ display: loaded ? undefined : 'none', background: dark ? '#1e1e1e' : '#fff', padding: 10, borderRadius: 8, marginBottom: 15, border: dark ? '1px solid #333' : '1px solid #eee' }}>
           <div className="gf-two" style={{ display: 'grid', gridTemplateColumns: 'repeat(2,1fr)', gap: 8, marginBottom: 10 }}>
             <div>
             <div style={{ position: 'relative' }}>
@@ -3399,7 +3456,7 @@ export default function GalerieClient({ userId, initialCardUrl, initialCards, in
             réel — voir fetchInitialPreview() dans page.tsx. Disparaît dès que `loaded`
             passe à true via le flux existant, inchangé, qui reste seul maître du jeu. */}
         {!loaded && initialGrailCards && initialGrailCards.length > 0 && (
-          <div style={{ display: 'flex', gap: 8, justifyContent: 'center', flexWrap: 'wrap', margin: '0 0 16px' }}>
+          <div style={{ display: 'flex', gap: 8, justifyContent: 'center', flexWrap: 'wrap', alignContent: 'flex-start', margin: '0 0 16px', minHeight: 'var(--gal-wall-h)' }}>
             {initialGrailCards.map(c => (
               <div key={c.id} style={{ width: 90, borderRadius: 8, overflow: 'hidden', background: dark ? '#2a2a2a' : '#f0f0f0' }}>
                 <div style={{ width: '100%', aspectRatio: '2.5/3.5', overflow: 'hidden' }}>
@@ -3411,6 +3468,9 @@ export default function GalerieClient({ userId, initialCardUrl, initialCards, in
             ))}
           </div>
         )}
+
+        {/* tant que ça charge, la place des onglets et des filtres est réservée : à l'arrivée, les cartes ne bougent plus */}
+        {!loaded && <div aria-hidden style={{ height: 'var(--gal-ctrl-h)' }} />}
 
         {!loaded && (
           initialCards && initialCards.length > 0 ? (
@@ -3442,6 +3502,8 @@ export default function GalerieClient({ userId, initialCardUrl, initialCards, in
         )}
 
         <style>{`
+          :root { --gal-profile-h: 530px; --gal-wall-h: 434px; --gal-ctrl-h: 660px; }
+          @media (min-width: 768px) { :root { --gal-profile-h: 480px; --gal-wall-h: 404px; --gal-ctrl-h: 476px; } }
           .card-grid { display: flex; flex-wrap: wrap; justify-content: center; gap: 10px; }
           .card-item { flex: 0 0 calc(50% - 5px); max-width: calc(50% - 5px); }
           @media (max-width: 768px) {

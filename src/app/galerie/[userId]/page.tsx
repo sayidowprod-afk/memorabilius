@@ -2,6 +2,7 @@ import type { Metadata } from 'next'
 import { cache, Suspense } from 'react'
 import { redirect } from 'next/navigation'
 import GalerieClient from './GalerieClient'
+import GalerieFallback from './GalerieFallback'
 import { resolveProfileBySlugParam, canonicalProfileSlug } from '@/lib/resolveProfileSlug'
 import { createServerClient } from '@/lib/supabaseServer'
 
@@ -118,11 +119,10 @@ export interface PreviewCard { id: string; image_recto: string; is_horizontal: b
 async function fetchInitialPreview(userId: string): Promise<{ cards: PreviewCard[]; grail: PreviewCard[] }> {
   const empty = { cards: [], grail: [] }
   try {
-    const { data: profile } = await supabase
-      .from('profiles').select('lien_csv, gallery_order').eq('id', userId).single()
-    if (!profile || profile.lien_csv) return empty
-
-    const [{ data: privateRows }, { data: rows }, { data: grailRows }] = await Promise.all([
+    // Profil et listes demandés EN MÊME TEMPS (avant : le profil d'abord, puis le reste = un aller-retour de plus avant d'envoyer la page).
+    // Pour une galerie basée sur un CSV externe (rare) ces listes sont demandées pour rien, c'est sans conséquence.
+    const [{ data: profile }, { data: privateRows }, { data: rows }, { data: grailRows }] = await Promise.all([
+      supabase.from('profiles').select('lien_csv, gallery_order').eq('id', userId).single(),
       supabase.from('cartes_privees').select('card_key').eq('user_id', userId),
       supabase.from('cartes_manuelles')
         .select('id, image_recto, is_horizontal, position')
@@ -132,6 +132,7 @@ async function fetchInitialPreview(userId: string): Promise<{ cards: PreviewCard
         .limit(80),
       supabase.from('grail_cards').select('card_key').eq('user_id', userId).order('position').limit(5),
     ])
+    if (!profile || profile.lien_csv) return empty
     const privateSet = new Set((privateRows || []).map((r: any) => r.card_key))
 
     let candidates = (rows || []).filter((r: any) => !privateSet.has(r.image_recto))
@@ -198,7 +199,7 @@ export default async function GaleriePage({
 
   const { cards: initialCards, grail: initialGrailCards } = await fetchInitialPreview(userId)
   return (
-    <Suspense fallback={<div style={{ padding: '80px 20px', textAlign: 'center', color: '#999', fontSize: 14 }}>Chargement de la galerie…</div>}>
+    <Suspense fallback={<GalerieFallback cards={initialCards} grail={initialGrailCards} />}>
       <GalerieClient userId={userId} initialCards={initialCards} initialGrailCards={initialGrailCards} />
     </Suspense>
   )
