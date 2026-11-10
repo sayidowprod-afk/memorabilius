@@ -13,6 +13,7 @@ import { useRouter } from 'next/navigation'
 import Link from 'next/link'
 import { supabase } from '@/lib/supabase'
 import { galleryMemClear } from '@/lib/galleryMem'
+import { makeThumb } from '@/lib/thumbnail'
 import { useLang } from '@/lib/LangContext'
 import { useTheme } from '@/lib/ThemeContext'
 import dynamic from 'next/dynamic'
@@ -293,7 +294,7 @@ export default function AjouterCarte({ params }: { params: Promise<{ userId: str
     grade: 'Raw', cert_number: '', num: '', card_number: '', rc: false, auto: false, patch: false, printing_plate: false, booklet: false,
     is_horizontal: false, format: 'standard', collection_tag: '', disponible_vente: false, quantite: '1', prix_vente: '',
     image_recto: '', image_verso: '', image_interieur_gauche: '', image_interieur_droite: '',
-    image_recto_hd: '', image_verso_hd: '',
+    image_recto_hd: '', image_verso_hd: '', image_recto_thumb: '',
     verso_is_horizontal: null as boolean | null, // null = même orientation que le recto
     item_type: 'card' as string,
     lien_vinted: '', lien_ebay: '',
@@ -591,8 +592,19 @@ export default function AjouterCarte({ params }: { params: Promise<{ userId: str
         if (!hdError) hdUrl = supabase.storage.from('avatars').getPublicUrl(hdPath).data.publicUrl
       }
 
+      // Miniature pour la grille de la galerie (~50 Ko au lieu de ~150) : jamais bloquante, la photo complète reste utilisée partout ailleurs
+      let thumbUrl = ''
       if (side === 'recto') {
-        setForm(f => ({ ...f, image_recto: url, image_recto_hd: hdUrl || url })); setPreviewRecto(url); setUploadingRecto(false)
+        const tb = await makeThumb(blob)
+        if (tb) {
+          const tPath = `cartes/${user.id}/${Date.now()}_recto_thumb.jpg`
+          const { error: tErr } = await supabase.storage.from('avatars').upload(tPath, new File([tb], `${Date.now()}_recto_thumb.jpg`, { type: 'image/jpeg' }), { upsert: true })
+          if (!tErr) thumbUrl = supabase.storage.from('avatars').getPublicUrl(tPath).data.publicUrl
+        }
+      }
+
+      if (side === 'recto') {
+        setForm(f => ({ ...f, image_recto: url, image_recto_hd: hdUrl || url, image_recto_thumb: thumbUrl })); setPreviewRecto(url); setUploadingRecto(false)
         // Image envoyée à Gemini : la version 1200px dédiée si dispo, sinon la compressée par défaut.
         const rectoB64 = await new Promise<string>(res => { const reader = new FileReader(); reader.onload = () => res((reader.result as string).split(',')[1]); reader.readAsDataURL(geminiBlob || blob) })
         rectoBase64Ref.current = rectoB64
@@ -870,7 +882,7 @@ export default function AjouterCarte({ params }: { params: Promise<{ userId: str
       grade: 'Raw', cert_number: '', num: '', card_number: '', rc: false, auto: false, patch: false, printing_plate: false, booklet: false,
       is_horizontal: false, format: 'standard', collection_tag: '', disponible_vente: false, quantite: '1', prix_vente: '',
       image_recto: '', image_verso: '', image_interieur_gauche: '', image_interieur_droite: '',
-      image_recto_hd: '', image_verso_hd: '',
+      image_recto_hd: '', image_verso_hd: '', image_recto_thumb: '',
       verso_is_horizontal: null, item_type: 'card',
       lien_vinted: '', lien_ebay: '',
     })
@@ -890,7 +902,7 @@ export default function AjouterCarte({ params }: { params: Promise<{ userId: str
   }
 
   const doInsert = async (uid: string) => {
-    const { error } = await supabase.from('cartes_manuelles').insert({
+    const row: Record<string, unknown> = {
       user_id: uid, nom: form.nom, equipe: form.equipe || null, annee: form.annee || null,
       marque: form.marque || null, collection: form.collection || null, variation: form.variation || null,
       notes_perso: form.notes_perso || null, notes_perso_public: form.notes_perso_public, grade: form.grade,
@@ -912,7 +924,11 @@ export default function AjouterCarte({ params }: { params: Promise<{ userId: str
       lien_vinted: form.lien_vinted || null,
       lien_ebay: form.lien_ebay || null,
       item_type: form.item_type || 'card',
-    })
+      ...(form.image_recto_thumb ? { image_recto_thumb: form.image_recto_thumb } : {}),
+    }
+    let { error } = await supabase.from('cartes_manuelles').insert(row)
+    // colonne image_recto_thumb ajoutée par la migration 20261117 : tant qu'elle manque, on enregistre sans la miniature
+    if (error && /image_recto_thumb/.test(error.message)) { delete row.image_recto_thumb; ({ error } = await supabase.from('cartes_manuelles').insert(row)) }
     if (error) { toast.error('Erreur : ' + error.message); setSaving(false); return }
     galleryMemClear(userId) // la galerie en mémoire n'a pas cette carte : elle sera rechargée
     clearDraft()

@@ -2,9 +2,10 @@
 /* eslint-disable @next/next/no-img-element */
 import { useMemo, useState } from 'react'
 import Link from 'next/link'
-import { EXTRA_CSS } from '@/components/AchatExtras'
+import { EXTRA_CSS, PrefsModal } from '@/components/AchatExtras'
+import type { AlertPrefs } from '@/lib/achatsAlertPrefs'
 import { MA_CSS, type Row, type Rates } from '@/components/MesAchatsView'
-import { achatCosts, encaisse, netOf, profitOf, statsOf, suggestAchat, type Vente } from '@/lib/ventesUi'
+import { achatCosts, encaisse, netOf, profitOf, statsOf, suggestAchat, type Vente, type AnnonceTerminee } from '@/lib/ventesUi'
 import { matchesQuery } from '@/lib/achatsUi'
 import { askConfirm } from '@/components/ConfirmHost'
 import DataTable, { type Col } from '@/components/DataTable'
@@ -23,10 +24,12 @@ const EMPTY: VenteForm = { titre: '', prix: '', port_facture: '', frais: '', cou
 type Period = 'mois' | 'annee' | 'tout'
 
 export default function MesVentesView({
-  ventes, achats, rates, connected, ebayStatut, busy, msg, now, onSync, onAdd, onPatch, onDelete, loading = false, offers = [], onOfferAct, annonces = [],
+  ventes, achats, rates, connected, ebayStatut, busy, msg, now, onSync, onAdd, onPatch, onDelete, loading = false, offers = [], onOfferAct, annonces = [], ended = [], prefs, onSavePrefs,
 }: {
   offers?: Array<Offer & { buyer_name: string | null }>
   annonces?: EbayAnnonce[]
+  ended?: AnnonceTerminee[]
+  prefs?: AlertPrefs; onSavePrefs?: (p: AlertPrefs) => void
   onOfferAct?: (id: string, action: 'accept' | 'refuse' | 'counter', price?: number) => Promise<string | null>
   ventes: Vente[]; achats: Row[]; rates: Rates; connected: boolean; ebayStatut?: string | null
   busy: boolean; msg: string | null; now: number; loading?: boolean
@@ -101,7 +104,8 @@ export default function MesVentesView({
       )}
 
       {offers.length > 0 && onOfferAct && <OffersBox offers={offers} onAct={onOfferAct} onNote={setNote} />}
-      {annonces.length > 0 && <ActiveBox annonces={annonces} now={now} />}
+      {connected && <ShipBox ventes={ventes} now={now} />}
+      {(annonces.length > 0 || ended.length > 0) && <ActiveBox annonces={annonces} ended={ended} now={now} prefs={prefs} onSavePrefs={onSavePrefs} />}
 
       <div className="mv-bar">
         <div className="st-tabs" role="tablist" style={{ display: 'inline-flex', border: '3px solid var(--border)' }}>
@@ -206,11 +210,16 @@ const timeLeft = (iso: string | null, now: number): string => {
 }
 
 // Annonces eBay en cours (enchères et prix fixe) : mise actuelle, nombre d'enchères, personnes qui suivent, temps restant. Lecture seule.
-function ActiveBox({ annonces, now }: { annonces: EbayAnnonce[]; now: number }) {
+function ActiveBox({ annonces, ended, now, prefs, onSavePrefs }: { annonces: EbayAnnonce[]; ended: AnnonceTerminee[]; now: number; prefs?: AlertPrefs; onSavePrefs?: (p: AlertPrefs) => void }) {
   const encheres = annonces.filter(a => a.enchere).length
+  const [alertsOpen, setAlertsOpen] = useState(false)
   return (
     <section className="mv-offers mv-act" aria-label="Annonces en cours sur eBay">
-      <h2 className="ma-h2">En cours sur eBay ({annonces.length}){encheres ? ` · ${encheres} enchère${encheres > 1 ? 's' : ''}` : ''}</h2>
+      <div style={{ display: 'flex', alignItems: 'baseline', justifyContent: 'space-between', gap: 10, flexWrap: 'wrap' }}>
+        <h2 className="ma-h2">{annonces.length > 0 ? `En cours sur eBay (${annonces.length})${encheres ? ` · ${encheres} enchère${encheres > 1 ? 's' : ''}` : ''}` : 'Annonces eBay terminées'}</h2>
+        {prefs && onSavePrefs && <button type="button" className="ma-btn ghost" onClick={() => setAlertsOpen(true)}>🔔 Alertes</button>}
+      </div>
+      {alertsOpen && prefs && onSavePrefs && <PrefsModal group="vente" prefs={prefs} onSave={onSavePrefs} onClose={() => setAlertsOpen(false)} />}
       <div className="mv-off-list">
         {annonces.map(a => {
           const fin = timeLeft(a.fin_at, now)
@@ -228,6 +237,48 @@ function ActiveBox({ annonces, now }: { annonces: EbayAnnonce[]; now: number }) 
                   {suivis !== null ? `👁 ${suivis} personne${suivis > 1 ? 's' : ''} suivent l’annonce` : ''}{fin ? `${suivis !== null ? ' · ' : ''}fin dans ${fin}` : ''}
                   {a.enchere && a.meilleur_encherisseur ? ` · en tête : ${a.meilleur_encherisseur}` : ''}
                 </div>
+              </div>
+            </div>
+          )
+        })}
+        {ended.length > 0 && <div className="ma-meta" style={{ margin: annonces.length ? '10px 0 0' : 0 }}>Terminées depuis 7 jours</div>}
+        {ended.map(e => (
+          <div key={e.item_id} className="mv-off" style={{ borderLeftColor: e.statut === 'vendue' ? '#1e9e57' : '#8a6cf0' }}>
+            {e.photo_url ? <img className="mv-off-ph" src={e.photo_url} alt="" loading="lazy" /> : <div className="mv-off-ph mv-off-no" aria-hidden="true">🃏</div>}
+            <div className="mv-off-b">
+              <div className="ma-title">{e.titre || 'Annonce eBay'}</div>
+              {e.statut === 'vendue'
+                ? <div className="ma-line"><span className="da-num ma-price mv-up">{eur(e.prix_final)}</span><span className="ma-meta">vendue{e.acheteur ? ` à ${e.acheteur}` : ''}</span></div>
+                : <div className="ma-meta">Terminée sans acheteur · <a href="https://www.ebay.fr/sh/lst/ended" target="_blank" rel="noopener noreferrer" style={{ color: 'inherit', textDecoration: 'underline' }}>la remettre en vente sur eBay →</a></div>}
+            </div>
+          </div>
+        ))}
+      </div>
+    </section>
+  )
+}
+
+// Colis à expédier : ventes eBay payées et pas encore expédiées (eBay est la référence : le colis disparaît d'ici dès qu'il est marqué expédié sur eBay)
+function ShipBox({ ventes, now }: { ventes: Vente[]; now: number }) {
+  const list = ventes
+    .filter(v => v.source === 'ebay' && v.paye_at && !v.expedie_at && now - new Date(v.paye_at).getTime() < 30 * 86400000)
+    .sort((a, b) => new Date(a.paye_at as string).getTime() - new Date(b.paye_at as string).getTime())
+  if (list.length === 0) return null
+  const days = (v: Vente) => Math.floor((now - new Date(v.paye_at as string).getTime()) / 86400000)
+  const late = list.filter(v => days(v) >= 2).length
+  return (
+    <section className="mv-offers mv-ship" aria-label="Colis à expédier">
+      <h2 className="ma-h2">📦 À expédier ({list.length}){late ? ` · ${late} en retard` : ''}</h2>
+      <div className="mv-off-list">
+        {list.map(v => {
+          const d = days(v)
+          return (
+            <div key={v.id} className="mv-off" style={{ borderLeftColor: d >= 2 ? '#d6293e' : '#c98a12' }}>
+              {v.photo_url ? <img className="mv-off-ph" src={v.photo_url} alt="" loading="lazy" /> : <div className="mv-off-ph mv-off-no" aria-hidden="true">📦</div>}
+              <div className="mv-off-b">
+                <div className="ma-title">{v.titre || 'Vente eBay'}</div>
+                <div className="ma-meta">{v.acheteur ? `pour ${v.acheteur} · ` : ''}payé {d <= 0 ? 'aujourd’hui' : d === 1 ? 'hier' : `il y a ${d} jours`}{d >= 2 ? ' · à expédier vite' : ''}</div>
+                {v.lien_commande && <div className="mv-off-act"><a className="ma-btn primary" href={v.lien_commande} target="_blank" rel="noopener noreferrer" style={{ textDecoration: 'none' }}>Expédier sur eBay →</a></div>}
               </div>
             </div>
           )

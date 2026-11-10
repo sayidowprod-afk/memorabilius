@@ -6,6 +6,7 @@ import Link from 'next/link'
 import { supabase } from '@/lib/supabase'
 import AddToCalendarButton from '@/components/AddToCalendarButton'
 import SubscribeCalendarLink from '@/components/SubscribeCalendarLink'
+import SetWishlistMatch from '@/components/SetWishlistMatch'
 import { releaseEvent } from '@/lib/eventIcs'
 
 type Row = { name: string; release_date: string; formats: string[] | null; source_url?: string | null; set_id?: string | null }
@@ -61,6 +62,7 @@ export default function UpcomingReleases() {
                 <AddToCalendarButton className="da-sortbloc-btn" ev={releaseEvent(r)} serverUrl={`/api/sorties/ics/une?date=${r.release_date}&name=${encodeURIComponent(r.name)}`} filename="sortie-cartes.ics">📅 Ajouter</AddToCalendarButton>
                 {r.set_id && <Link href={`/setlist/${r.set_id}`}>Checklist →</Link>}
               </div>
+              {r.set_id && <SetWishlistMatch setId={r.set_id} className="da-sortbloc-sub" />}
             </div>
           </div>
         )

@@ -11,6 +11,7 @@ import { useRouter, useSearchParams } from 'next/navigation'
 import Link from 'next/link'
 import { supabase } from '@/lib/supabase'
 import { galleryMemClear } from '@/lib/galleryMem'
+import { makeThumb } from '@/lib/thumbnail'
 import { useLang } from '@/lib/LangContext'
 import CardScanner from '@/components/CardScanner'
 import CollectionTagSelect from '@/components/CollectionTagSelect'
@@ -146,7 +147,7 @@ export default function EditerCarte({ params }: { params: Promise<{ userId: stri
   const [form, setForm] = useState({
     nom: '', equipe: '', annee: '', marque: '', collection: '', variation: '', notes_perso: '', notes_perso_public: false,
     grade: 'Raw', cert_number: '', num: '', card_number: '', rc: false, auto: false, patch: false, printing_plate: false,
-    image_recto: '', image_verso: '', image_recto_hd: '', image_verso_hd: '', collection_tag: '', disponible_vente: false, quantite: '1', prix_vente: '',
+    image_recto: '', image_verso: '', image_recto_hd: '', image_verso_hd: '', image_recto_thumb: '', collection_tag: '', disponible_vente: false, quantite: '1', prix_vente: '',
     booklet: false, is_horizontal: false, format: 'standard',
     image_interieur_gauche: '', image_interieur_droite: '',
     verso_is_horizontal: null as boolean | null,
@@ -183,6 +184,7 @@ export default function EditerCarte({ params }: { params: Promise<{ userId: stri
   useEffect(() => { rotationRef.current = rotation }, [rotation])
   // la fiche connaît déjà la colonne quantite (migration appliquée) : on peut alors toujours la renvoyer
   const quantiteKnown = useRef(false)
+  const thumbKnown = useRef(false) // la colonne image_recto_thumb existe (migration 20261117 appliquée)
   const isHorizontalRef = useRef(false)
   useEffect(() => { isHorizontalRef.current = form.format === 'horizontal' || form.is_horizontal }, [form.format, form.is_horizontal])
 
@@ -192,6 +194,7 @@ export default function EditerCarte({ params }: { params: Promise<{ userId: stri
       supabase.from('cartes_manuelles').select('*').eq('id', id).eq('user_id', session.user.id).single().then(({ data, error }) => {
       if (error || !data) { router.push(`/galerie/${userId}`); return }
       quantiteKnown.current = data.quantite !== undefined
+      thumbKnown.current = data.image_recto_thumb !== undefined
       const loadedForm = {
         nom: data.nom || '', equipe: data.equipe || '', annee: data.annee || '',
         marque: data.marque || '', collection: data.collection || '', variation: data.variation || '',
@@ -199,7 +202,7 @@ export default function EditerCarte({ params }: { params: Promise<{ userId: stri
         grade: data.grade || 'Raw', cert_number: data.cert_number || '', num: data.num || '', card_number: data.card_number || '',
         rc: data.rc || false, auto: data.auto || false, patch: data.patch || false, printing_plate: data.printing_plate || false,
         image_recto: data.image_recto || '', image_verso: data.image_verso || '',
-        image_recto_hd: data.image_recto_hd || '', image_verso_hd: data.image_verso_hd || '',
+        image_recto_hd: data.image_recto_hd || '', image_verso_hd: data.image_verso_hd || '', image_recto_thumb: data.image_recto_thumb || '',
         collection_tag: data.collection_tag || '',
         disponible_vente: data.disponible_vente || false,
         quantite: String(data.quantite ?? 1),
@@ -365,7 +368,17 @@ export default function EditerCarte({ params }: { params: Promise<{ userId: stri
       if (!hdError) hdUrl = supabase.storage.from('avatars').getPublicUrl(hdPath).data.publicUrl
     }
 
-    if (side === 'recto') { setForm(f => ({ ...f, image_recto: url, image_recto_hd: hdUrl || url })); setPreviewRecto(url); setUploadingRecto(false) }
+    if (side === 'recto') {
+      // nouvelle photo = nouvelle miniature (sinon la grille montrerait encore l'ancienne)
+      let thumbUrl = ''
+      const tb = await makeThumb(blob)
+      if (tb) {
+        const tPath = `cartes/${user.id}/${Date.now()}_recto_thumb.jpg`
+        const { error: tErr } = await supabase.storage.from('avatars').upload(tPath, new File([tb], `${Date.now()}_recto_thumb.jpg`, { type: 'image/jpeg' }), { upsert: true })
+        if (!tErr) thumbUrl = supabase.storage.from('avatars').getPublicUrl(tPath).data.publicUrl
+      }
+      setForm(f => ({ ...f, image_recto: url, image_recto_hd: hdUrl || url, image_recto_thumb: thumbUrl })); setPreviewRecto(url); setUploadingRecto(false)
+    }
     else if (side === 'verso') {
       const versoHorizontal = await detectBlobOrientation(blob)
       setForm(f => ({ ...f, image_verso: url, image_verso_hd: hdUrl || url, verso_is_horizontal: versoHorizontal }))
@@ -571,7 +584,7 @@ export default function EditerCarte({ params }: { params: Promise<{ userId: stri
     const { data: { user } } = await supabase.auth.getUser()
     if (!user || user.id !== userId) { router.push('/connexion'); return }
 
-    const { error } = await supabase.from('cartes_manuelles').update({
+    const patchRow: Record<string, unknown> = {
       nom: form.nom, equipe: form.equipe || null, annee: form.annee || null,
       marque: form.marque || null, collection: form.collection || null, variation: form.variation || null,
       notes_perso: form.notes_perso || null, notes_perso_public: form.notes_perso_public, grade: form.grade,
@@ -596,7 +609,11 @@ export default function EditerCarte({ params }: { params: Promise<{ userId: stri
       storage_binder: form.storage_binder || null,
       storage_page: form.storage_page ? parseInt(form.storage_page) : null,
       storage_slot: form.storage_slot || null,
-    }).eq('id', id).eq('user_id', user.id)
+      // miniature : envoyée seulement si la colonne existe (migration 20261117) ou si une miniature vient d'être créée
+      ...((thumbKnown.current || form.image_recto_thumb) ? { image_recto_thumb: form.image_recto_thumb || null } : {}),
+    }
+    let { error } = await supabase.from('cartes_manuelles').update(patchRow).eq('id', id).eq('user_id', user.id)
+    if (error && /image_recto_thumb/.test(error.message)) { delete patchRow.image_recto_thumb; ({ error } = await supabase.from('cartes_manuelles').update(patchRow).eq('id', id).eq('user_id', user.id)) }
 
     if (error) { toast.error('Erreur : ' + error.message); setSaving(false); return }
     galleryMemClear(userId) // la galerie en mémoire a l'ancienne version de cette carte : elle sera rechargée

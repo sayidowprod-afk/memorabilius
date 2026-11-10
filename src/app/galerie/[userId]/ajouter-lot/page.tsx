@@ -506,7 +506,7 @@ export default function AjoutLotPage({ params }: { params: Promise<{ userId: str
         }
         set(e.id, { s: 'upload' })
         const ts = `${Date.now()}_${e.id}`
-        const [rStd, rHd, rAi] = await resizeMany(rectoFile, [{ max: 1600, q: 0.88 }, { max: 3200, q: 0.92 }, { max: 1200, q: 0.9 }])
+        const [rStd, rHd, rAi, rTh] = await resizeMany(rectoFile, [{ max: 1600, q: 0.88 }, { max: 3200, q: 0.92 }, { max: 1200, q: 0.9 }, { max: 520, q: 0.8 }])
         const up = async (blob: Blob, name: string) => {
           const path = `cartes/${userId}/${ts}_${name}.jpg`
           const { error } = await supabase.storage.from('avatars').upload(path, blob, { upsert: true, contentType: 'image/jpeg' })
@@ -515,6 +515,7 @@ export default function AjoutLotPage({ params }: { params: Promise<{ userId: str
           return supabase.storage.from('avatars').getPublicUrl(path).data.publicUrl
         }
         const imageRecto = await up(rStd.blob, 'recto'), imageRectoHd = await up(rHd.blob, 'recto_hd')
+        const imageRectoThumb = await up(rTh.blob, 'recto_thumb') // miniature de la grille
         let imageVerso: string | null = null, imageVersoHd: string | null = null, versoHorizontal: boolean | null = null, vAi: Blob | null = null
         if (versoFile) {
           const [vStd, vHd, vA] = await resizeMany(versoFile, [{ max: 1600, q: 0.88 }, { max: 3200, q: 0.92 }, { max: 1200, q: 0.9 }])
@@ -540,11 +541,13 @@ export default function AjoutLotPage({ params }: { params: Promise<{ userId: str
           collection: card?.collection || null, variation: card?.variation || null, num: card?.num || null, card_number: card?.card_number || null,
           grade: card?.grade || 'Raw', rc: !!card?.rc, auto: !!card?.auto, patch: !!card?.patch, printing_plate: false, booklet: false,
           format: horizontal ? 'horizontal' : 'standard', is_horizontal: horizontal, verso_is_horizontal: versoHorizontal,
-          image_recto: imageRecto, image_verso: imageVerso, image_recto_hd: imageRectoHd, image_verso_hd: imageVersoHd,
+          image_recto: imageRecto, image_verso: imageVerso, image_recto_hd: imageRectoHd, image_verso_hd: imageVersoHd, image_recto_thumb: imageRectoThumb,
           notes_perso: nom ? null : 'À compléter (ajout en lot)', notes_perso_public: false,
           collection_tag: (cardTag[e.id] === NONE ? '' : (cardTag[e.id] || collectionTag)) || null, disponible_vente: forSale, prix_vente: null, item_type: 'card',
         }
-        const { error } = await supabase.from('cartes_manuelles').insert(row)
+        let { error } = await supabase.from('cartes_manuelles').insert(row)
+        // colonne image_recto_thumb ajoutée par la migration 20261117 : tant qu'elle manque, on enregistre sans la miniature
+        if (error && /image_recto_thumb/.test(error.message)) { const { image_recto_thumb: _t, ...rest } = row; void _t; ({ error } = await supabase.from('cartes_manuelles').insert(rest)) }
         if (error) throw new Error(error.message)
         galleryMemClear(userId)
         fetch('/api/card-added', { method: 'POST', headers: auth, body: JSON.stringify({ userId, rc: row.rc, auto: row.auto, patch: row.patch, num: !!row.num }) }).catch(() => {})

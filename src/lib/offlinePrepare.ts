@@ -19,7 +19,7 @@ const IMAGE_CONCURRENCY = 4
 // À incrémenter quand le SW / la préparation changent de façon à invalider ce
 // qui a déjà été préparé sur les appareils (sinon rien ne se relance avant 12h).
 // v2 : cache des requêtes .range() (206), HEAD et RPC ; tous les onglets + une carte.
-export const PREP_VERSION = 2
+export const PREP_VERSION = 3 // v3 : + miniatures de la grille (image_recto_thumb)
 
 export interface PrepState {
   v?: number          // version de la préparation (voir PREP_VERSION)
@@ -133,11 +133,18 @@ async function listUserImages(userId: string): Promise<UserImages> {
   const grid = new Set<string>(), hd = new Set<string>()
   const ok = (u?: string | null) => (u && !u.includes('placehold.co') ? u : null)
   for (let from = 0; ; from += 1000) {
-    const { data, error } = await supabase.from('cartes_manuelles')
+    // la miniature de la grille (colonne image_recto_thumb) est celle que la galerie affiche : c'est elle qu'il faut avoir hors ligne
+    let res: { data: any[] | null; error: unknown } = await supabase.from('cartes_manuelles')
+      .select('image_recto, image_verso, image_recto_hd, image_verso_hd, image_recto_thumb')
+      .eq('user_id', userId).order('created_at', { ascending: true }).range(from, from + 999)
+    if (res.error) res = await supabase.from('cartes_manuelles') // colonne pas encore créée (migration 20261117)
       .select('image_recto, image_verso, image_recto_hd, image_verso_hd')
       .eq('user_id', userId).order('created_at', { ascending: true }).range(from, from + 999)
+    const { data, error } = res
     if (error || !data) break
     for (const row of data) {
+      const th = ok(row.image_recto_thumb)
+      if (th) grid.add(th)
       const r = ok(row.image_recto), v = ok(row.image_verso)
       if (r) grid.add(r)
       if (v) grid.add(v)

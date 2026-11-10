@@ -77,6 +77,10 @@
     {
       "path": "/api/cron/ebay-fin",
       "schedule": "*/15 * * * *"
+    },
+    {
+      "path": "/api/cron/ebay-annonces",
+      "schedule": "20 * * * *"
     }
   ],
   "headers": [

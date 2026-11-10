@@ -4,6 +4,12 @@ import { norm } from '@/lib/achatsUi'
 
 // Calculs de « Mes ventes » : net encaissé, profit réalisé (vente − coût d'achat), rendement, lien automatique avec « Mes achats ».
 // Fonctions pures, tout en euros.
+// Annonce eBay terminée (table ebay_annonces) : vendue (à qui, à quel prix) ou terminée sans acheteur
+export type AnnonceTerminee = {
+  item_id: string; titre: string | null; photo_url: string | null; statut: 'vendue' | 'invendue'
+  prix_final: number | null; acheteur: string | null; devise: string | null; lien: string | null; maj_at: string
+}
+
 export type Vente = {
   id: string; source: 'ebay' | 'vinted' | 'autre'; ref: string; titre: string | null; photo_url: string | null; acheteur: string | null
   devise: string | null; prix: number | null; port_facture: number | null; total_encaisse: number | null

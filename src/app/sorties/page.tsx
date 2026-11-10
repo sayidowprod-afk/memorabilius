@@ -3,6 +3,7 @@ import Link from 'next/link'
 import { createServerClient } from '@/lib/supabaseServer'
 import AddToCalendarButton from '@/components/AddToCalendarButton'
 import SubscribeCalendarLink from '@/components/SubscribeCalendarLink'
+import SetWishlistMatch from '@/components/SetWishlistMatch'
 import { releaseEvent } from '@/lib/eventIcs'
 
 export const revalidate = 3600
@@ -81,6 +82,7 @@ export default async function SortiesPage() {
                         <span style={{ fontWeight: 700, color: past ? undefined : '#3ddc97' }}>{rel}</span>
                         {r.formats && r.formats.length > 0 && <> · {r.formats.join(' · ')}</>}
                       </div>
+                      {r.set_id && <SetWishlistMatch setId={r.set_id} style={{ fontSize: 13, color: 'var(--text2, #666)', marginTop: 3 }} />}
                     </div>
                     <div style={{ display: 'flex', flexDirection: 'column', gap: 6, alignItems: 'flex-end' }}>
                       {!past && <AddToCalendarButton ev={releaseEvent(r)} serverUrl={`/api/sorties/ics/une?date=${r.release_date}&name=${encodeURIComponent(r.name)}`} filename="sortie-cartes.ics" style={{ background: 'none', border: 0, padding: 0, color: 'inherit', cursor: 'pointer', fontFamily: 'inherit', fontSize: 13, fontWeight: 700, textDecoration: 'underline', whiteSpace: 'nowrap' }}>📅 Ajouter</AddToCalendarButton>}

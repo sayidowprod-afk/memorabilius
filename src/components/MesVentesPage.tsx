@@ -5,7 +5,8 @@ import { supabase } from '@/lib/supabase'
 import { withTimeout } from '@/lib/withTimeout'
 import MesVentesView, { type VenteForm } from '@/components/MesVentesView'
 import type { Row, Rates } from '@/components/MesAchatsView'
-import type { Vente } from '@/lib/ventesUi'
+import type { Vente, AnnonceTerminee } from '@/lib/ventesUi'
+import { DEFAULT_PREFS, normPrefs, type AlertPrefs } from '@/lib/achatsAlertPrefs'
 import type { Offer } from '@/lib/offers'
 import type { EbayAnnonce } from '@/lib/ebayTrading'
 
@@ -24,6 +25,8 @@ export default function MesVentes() {
   const [msg, setMsg] = useState<string | null>(null)
   const [now, setNow] = useState(() => Date.now())
   const [annonces, setAnnonces] = useState<EbayAnnonce[]>([])
+  const [ended, setEnded] = useState<AnnonceTerminee[]>([])
+  const [prefs, setPrefs] = useState<AlertPrefs>(DEFAULT_PREFS)
 
   // Offres de prix reçues sur mes cartes à vendre (entre membres de Memorabilius) qui attendent ma réponse
   const loadOffers = async (uid: string) => {
@@ -59,6 +62,12 @@ export default function MesVentes() {
       const json = await res.json().catch(() => ({}))
       setAnnonces(json && json.ok ? (json.annonces as EbayAnnonce[]) : [])
     } catch { setAnnonces([]) }
+    // annonces terminées depuis 7 jours (vendue / sans acheteur) : table ebay_annonces, alimentée par la tâche planifiée ; absente = rien à montrer
+    try {
+      const since = new Date(Date.now() - 7 * 86400000).toISOString()
+      const { data } = await supabase.from('ebay_annonces').select('item_id, titre, photo_url, statut, prix_final, acheteur, devise, lien, maj_at').neq('statut', 'active').gt('maj_at', since).order('maj_at', { ascending: false }).limit(10)
+      setEnded((data as AnnonceTerminee[] | null) || [])
+    } catch { setEnded([]) }
   }, [])
 
   const sync = useCallback(async (tok: string, uid: string, force: boolean) => {
@@ -91,6 +100,21 @@ export default function MesVentes() {
   useEffect(() => { fetch('/api/ebay/taux').then(r => r.json()).then(j => setRates(j?.rates || null)).catch(() => {}) }, [])
   useEffect(() => { const id = setInterval(() => setNow(Date.now()), 60000); return () => clearInterval(id) }, [])
 
+  // Réglages des alertes de vente (mêmes préférences que « Mes achats »)
+  useEffect(() => {
+    supabase.auth.getSession().then(({ data: { session } }) => {
+      if (!session) return
+      supabase.from('alertes_achats_prefs').select('prefs').eq('user_id', session.user.id).maybeSingle().then(({ data }) => { if (data) setPrefs(normPrefs(data.prefs)) })
+    })
+  }, [])
+  const savePrefs = async (p: AlertPrefs) => {
+    setPrefs(p)
+    const { data: { session } } = await supabase.auth.getSession()
+    if (!session) return
+    const { error } = await supabase.from('alertes_achats_prefs').upsert({ user_id: session.user.id, prefs: p, updated_at: new Date().toISOString() })
+    setMsg(error ? 'Réglages non enregistrés.' : null)
+  }
+
   const reload = async () => { const { data: { session } } = await supabase.auth.getSession(); if (session) await load(session.user.id) }
   const call = async (method: 'POST' | 'PATCH' | 'DELETE', body: unknown): Promise<string | null> => {
     const { data: { session } } = await supabase.auth.getSession()
@@ -117,7 +141,7 @@ export default function MesVentes() {
 
   return (
     <MesVentesView
-      offers={offers} onOfferAct={offerAct} annonces={annonces}
+      offers={offers} onOfferAct={offerAct} annonces={annonces} ended={ended} prefs={prefs} onSavePrefs={savePrefs}
       loading={loading} ventes={ventes} achats={achats} rates={rates} connected={statut === 'connecte'} ebayStatut={statut} busy={busy} msg={msg} now={now}
       onSync={() => { if (token) supabase.auth.getSession().then(({ data: { session } }) => session && sync(session.access_token, session.user.id, true)) }}
       onAdd={(f: VenteForm) => call('POST', f)}

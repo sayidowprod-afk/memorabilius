@@ -189,15 +189,15 @@ export function ActivityLog({ events }: { events: LogEvent[] }) {
 }
 
 // ── Réglages d'alertes ──────────────────────────────────────────────────────
-export function PrefsModal({ prefs, onSave, onClose }: { prefs: AlertPrefs; onSave: (p: AlertPrefs) => void; onClose: () => void }) {
+export function PrefsModal({ prefs, onSave, onClose, group = 'achat' }: { prefs: AlertPrefs; onSave: (p: AlertPrefs) => void; onClose: () => void; group?: 'achat' | 'vente' }) {
   const [p, setP] = useState<AlertPrefs>(prefs)
   const hours = Array.from({ length: 24 }, (_, h) => h)
   return (
     <div className="ma-modal" role="dialog" aria-modal="true" aria-label="Réglages des alertes" onClick={onClose}>
       <div className="ma-modal-box" style={{ maxWidth: 480 }} onClick={e => e.stopPropagation()}>
-        <h3 style={{ margin: '0 0 4px', fontSize: 22 }}>Alertes</h3>
+        <h3 style={{ margin: '0 0 4px', fontSize: 22 }}>{group === 'vente' ? 'Alertes de vente' : 'Alertes'}</h3>
         <p style={{ margin: '0 0 14px', color: 'var(--text2)', fontSize: 13, lineHeight: 1.5 }}>Choisis ce que tu veux recevoir. Les alertes arrivent dans la cloche et en notification sur ton téléphone.</p>
-        {ALERT_LABELS.map(a => (
+        {ALERT_LABELS.filter(a => (a.group || 'achat') === group).map(a => (
           <label key={a.kind} className="ma-pref">
             <span><b>{a.label}</b><small>{a.sub}</small></span>
             <input type="checkbox" checked={p[a.kind]} onChange={e => setP({ ...p, [a.kind]: e.target.checked })} />

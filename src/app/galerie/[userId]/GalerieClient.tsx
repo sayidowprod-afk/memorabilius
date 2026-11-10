@@ -68,6 +68,10 @@ import { SortableContext, useSortable, rectSortingStrategy, arrayMove } from '@d
 import { CSS } from '@dnd-kit/utilities'
 
 const Viewer3D = dynamic(() => import('@/components/Viewer3D'), { ssr: false })
+const StoryMode = dynamic(() => import('@/components/StoryMode'), { ssr: false })
+const ExportStudio = dynamic(() => import('@/components/ExportStudio'), { ssr: false })
+const YearRecap = dynamic(() => import('@/components/YearRecap'), { ssr: false })
+const ThumbBackfill = dynamic(() => import('@/components/ThumbBackfill'), { ssr: false })
 // Prechargement du viewer en tache de fond : son code ne se telecharge sinon qu'au
 // premier clic sur une carte, donc jamais disponible hors ligne si on n'en a pas
 // ouvert une avant (le service worker le met en cache des qu'il est charge).
@@ -395,7 +399,7 @@ function CardLink({ slug, cardKey, children }: { slug: string; cardKey: string; 
 // Cartes de la galerie demandées TOUT DE SUITE au démarrage, en parallèle du profil et des étiquettes (avant : le profil d'abord, puis le premier lot
 // de 1000 cartes, puis seulement les lots suivants = trois vagues l'une derrière l'autre). Le nombre total de cartes est demandé à part (très rapide),
 // ce qui permet de lancer les lots suivants sans attendre la fin du premier.
-type GalleryPrefetch = { total: Promise<number>; first: Promise<any>; cc: Promise<any[]>; rest: Promise<any[][]> }
+type GalleryPrefetch = { total: Promise<number>; first: Promise<any>; cc: Promise<any[]>; rest: () => Promise<any[][]> }
 function startGalleryPrefetch(uid: string): GalleryPrefetch {
   const PAGE = 1000
   const first = Promise.resolve(supabase.from('cartes_manuelles').select('*', { count: 'exact' }).eq('user_id', uid).order('created_at', { ascending: true }).range(0, PAGE - 1))
@@ -411,12 +415,18 @@ function startGalleryPrefetch(uid: string): GalleryPrefetch {
     return all
   })()
   const total = Promise.resolve(supabase.from('cartes_manuelles').select('id', { count: 'exact', head: true }).eq('user_id', uid)).then(r => r.count || 0, () => 0)
-  const rest = total.then(n => n > PAGE
+  // lots suivants : demandés à la demande (un visiteur n'en a pas forcément besoin, voir « galerie par tranches ») ; tout de suite seulement
+  // si cet appareil a déjà une copie de la galerie (= le propriétaire, qui a besoin de tout)
+  let restP: Promise<any[][]> | null = null
+  const rest = () => restP ??= total.then(n => n > PAGE
     ? Promise.all(Array.from({ length: Math.ceil(n / PAGE) - 1 }, (_, i) =>
         Promise.resolve(supabase.from('cartes_manuelles').select('*').eq('user_id', uid).order('created_at', { ascending: true }).range((i + 1) * PAGE, (i + 2) * PAGE - 1)).then(r => r.data || [])))
     : [])
+  let ownerDevice = false
+  try { ownerDevice = !!localStorage.getItem(`gallery-cache-${uid}`) } catch { /* stockage indisponible */ }
+  if (ownerDevice) rest().catch(() => {})
   // pas d'erreur non gérée si personne n'attend ces résultats (page quittée, CSV…)
-  for (const p of [first, cc, total, rest]) p.catch(() => {})
+  for (const p of [first, cc, total]) p.catch(() => {})
   return { total, first, cc, rest }
 }
 const THUMB_PATH = '/storage/v1/render/image/public/'
@@ -459,6 +469,9 @@ function handleBrokenImg(src: string) {
 function onImgError(e: { currentTarget: HTMLImageElement }) {
   const img = e.currentTarget
   if (img.src === BROKEN_IMAGE_FALLBACK) return
+  // la miniature n'a pas pu se charger : on affiche la photo complète (une seule fois)
+  const full = img.dataset.full
+  if (full) { img.dataset.full = ''; img.src = full; return }
   // la vignette réduite a échoué (transformation indisponible) : on revient à l'image d'origine
   if (img.src.includes(THUMB_PATH)) { img.src = img.src.replace(THUMB_PATH, '/storage/v1/object/public/').split('?')[0]; return }
   const orig = img.dataset.origSrc || img.src
@@ -481,8 +494,10 @@ function onImgError(e: { currentTarget: HTMLImageElement }) {
 function imgRefCb(el: HTMLImageElement | null) { if (el && !el.complete) el.classList.add('da-img-loading') }
 function onImgLoaded(e: { currentTarget: HTMLImageElement }) { e.currentTarget.classList.remove('da-img-loading') }
 
-function renderCardImage(card: { f: string; n: string; format?: string; is_horizontal?: boolean }) {
-  const src = cardThumb(card.f)
+function renderCardImage(card: { f: string; n: string; thumb?: string; format?: string; is_horizontal?: boolean }) {
+  // miniature créée à l'ajout (lib/thumbnail.ts) : 2 à 4 fois plus légère que la photo ; sinon la photo (cartes plus anciennes), réduite sur réseau lent
+  const src = card.thumb || cardThumb(card.f)
+  const fullFallback = card.thumb ? card.f : undefined // si la miniature ne charge pas, on retombe sur la photo complète
   const fmt = getFormat(card.format)
   const horiz = isHorizontalFormat(card.format, card.is_horizontal)
   const ratio = fmt.isSlab ? cardDisplayRatio(card.format, card.is_horizontal) : '2.5/3.5'
@@ -501,7 +516,7 @@ function renderCardImage(card: { f: string; n: string; format?: string; is_horiz
             et faisait planter la galerie en local ; rendu identique (unoptimized). */}
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
-          src={src} alt={card.n}
+          src={src} alt={card.n} data-full={fullFallback}
           onError={onImgError} onLoad={onImgLoaded} ref={imgRefCb}
           style={horiz
             ? { position: 'absolute', width: '140%', height: '71.43%', left: '-20%', top: '14.286%', transform: 'rotate(90deg)', objectFit: 'cover' }
@@ -514,7 +529,7 @@ function renderCardImage(card: { f: string; n: string; format?: string; is_horiz
   return (
     <div className="da-img-box" style={{ aspectRatio: ratio, overflow: 'hidden', position: 'relative' }}>
       <NextImage
-        src={src} alt={card.n} fill
+        src={src} alt={card.n} fill data-full={fullFallback}
         sizes="(max-width: 640px) 150px, 220px"
         style={{ objectFit: 'cover' }}
         unoptimized
@@ -528,6 +543,7 @@ interface Card {
   id_manuelle?: string;
   prix_vente?: number | null;
   quantite?: number;
+  thumb?: string  // miniature de la grille (image_recto_thumb), absente pour les cartes anciennes
   f: string; b: string; fHd?: string; bHd?: string; n: string; t: string; y: string
   br: string; s: string; v: string; num: string; card_number?: string; cert_number?: string
   auto: boolean; rc: boolean; patch: boolean; printing_plate?: boolean; g: string
@@ -645,7 +661,7 @@ export default function GalerieClient({ userId, initialCardUrl, initialCards, in
   const [fYear, setFYear] = useState(initialParsedSearch.year || searchParams.get('year') || '')
   const [showAdvancedFilters, setShowAdvancedFilters] = useState(false)
   const [showAllCollectionTags, setShowAllCollectionTags] = useState(false)
-  const [viewMode, setViewMode] = useState<'grid' | 'timeline' | 'mosaic'>('grid')
+  const [viewMode, setViewMode] = useState<'grid' | 'timeline'>('grid')
   const [compactView, setCompactView] = useState(false)
   // Taille de la grille choisie en pinçant (téléphone) : null = réglage habituel (normal / compact)
   const [gridCols, setGridCols] = useState<number | null>(null)
@@ -701,7 +717,15 @@ export default function GalerieClient({ userId, initialCardUrl, initialCards, in
   }
   const [popup, setPopupRaw] = useState<Card | null>(null)
   const memShownRef = useRef(false) // la galerie a déjà été affichée depuis la mémoire : la copie hors ligne ne doit pas la remplacer
+  const loadRestRef = useRef<(() => Promise<void>) | null>(null) // cartes au-delà de 1000, chargées à la demande pour un visiteur
+  const [restExtra, setRestExtra] = useState(0) // nombre de cartes pas encore chargées (pour le total affiché)
   const prefetchRef = useRef<GalleryPrefetch | null>(null) // cartes demandées dès le démarrage (voir startGalleryPrefetch)
+  const [shareSub, setShareSub] = useState(false) // sous-menu « Partager » (lien / Multi-QR)
+  const [thumbBannerOff, setThumbBannerOff] = useState(() => { try { return localStorage.getItem('thumb-banner-off') === '1' } catch { return false } })
+  const [recapOpen, setRecapOpen] = useState(() => process.env.NODE_ENV !== 'production' && searchParams.get('bilan') === '1') // « Mon année en cartes » : test local seulement (pas en production)
+  const [reelOpen, setReelOpen] = useState(false) // « Reel de ma collection » (vidéo verticale de 15 s)
+  const [thumbsOpen, setThumbsOpen] = useState(false) // outil « miniatures » du propriétaire
+  const [storyIdx, setStoryIdx] = useState<number | null>(null) // mode « story » ouvert sur cette carte (index dans la liste filtrée)
   const targetOpenedRef = useRef(false) // la carte demandée par l'adresse (?card=) ne s'ouvre qu'une fois par visite
   // Ouverture / fermeture / navigation du viewer : appliquées directement, SANS transition de page du navigateur.
   // La transition (fondu de tout l'écran) figeait la galerie sur l'ancienne image le temps de préparer la nouvelle, puis faisait
@@ -729,7 +753,7 @@ export default function GalerieClient({ userId, initialCardUrl, initialCards, in
     const prefetch = (img: HTMLImageElement | null) => {
       if (!img) return
       const src = img.getAttribute('src') || ''
-      const c = cardsRef.current.find(x => x.f === src || cardThumb(x.f) === src)
+      const c = cardsRef.current.find(x => x.thumb === src || x.f === src || cardThumb(x.f) === src)
       const hd = c?.fHd
       if (!hd || hd === c?.f || hdPrefetched.current.has(hd) || hdPrefetched.current.size > 40) return
       hdPrefetched.current.add(hd)
@@ -1315,6 +1339,7 @@ export default function GalerieClient({ userId, initialCardUrl, initialCards, in
         fHd: m.image_recto_hd || undefined, bHd: m.image_verso_hd || undefined,
         prix_vente: m.prix_vente ?? null,
         quantite: m.quantite ?? 1,
+        thumb: m.image_recto_thumb || undefined,
         n: m.nom || '', t: m.equipe || '', y: m.annee || '',
         br: m.marque || '', s: m.collection || '', v: m.variation || '',
         num: m.num || '', card_number: m.card_number || '', cert_number: m.cert_number || '', auto: m.auto || false, rc: m.rc || false,
@@ -1453,12 +1478,25 @@ export default function GalerieClient({ userId, initialCardUrl, initialCards, in
       // avec une galerie gardée en mémoire, on saute ce premier lot partiel (la grille reculerait à 1000 cartes puis remonterait)
       if (!memCards || totalCount <= 1000) applyAndShow(firstBatch, ccMap)
 
-      // Si plus de 1000 cartes, charge le reste en arrière-plan
-      if (totalCount > 1000) {
+      // Si plus de 1000 cartes, charge le reste en arrière-plan.
+      // Un visiteur (pas le propriétaire) sur une galerie à l'ordre simple (aucune carte repositionnée à la main, pas d'ordre perso) ne reçoit
+      // d'abord que les 1000 premières cartes : le reste arrive dès qu'il défile jusqu'au bout, filtre, trie, cherche ou ouvre une carte.
+      const orderIsSimple = galleryOrder.length === 0 && !firstBatch.some((m: any) => m.position != null)
+      if (totalCount > 1000 && !isOwner && orderIsSimple && !memCards && !(initialCardUrl || cardParam)) {
+        const pageCount = Math.ceil(totalCount / 1000)
+        loadRestRef.current = async () => {
+          loadRestRef.current = null
+          const more = await Promise.all(Array.from({ length: pageCount - 1 }, (_, i) =>
+            supabase.from('cartes_manuelles').select('*').eq('user_id', uid).order('created_at', { ascending: true }).range((i + 1) * 1000, (i + 2) * 1000 - 1).then(r => r.data || [])))
+          setRestExtra(0)
+          applyAndShow([...firstBatch, ...more.flat()], ccMap)
+        }
+        setRestExtra(totalCount - firstBatch.length)
+      } else if (totalCount > 1000) {
         const pageCount = Math.ceil(totalCount / 1000)
         // lots suivants déjà demandés au démarrage si le total correspond ; sinon (ou en cas d'échec) requêtes d'origine
         let prefetched: any[][] | null = null
-        try { if (pre && (await pre.total) === totalCount) prefetched = await pre.rest } catch { prefetched = null }
+        try { if (pre && (await pre.total) === totalCount) prefetched = await pre.rest() } catch { prefetched = null }
         const remainingBatches = prefetched ?? await Promise.all(
           Array.from({ length: pageCount - 1 }, (_, i) =>
             supabase.from('cartes_manuelles').select('*').eq('user_id', uid).order('created_at', { ascending: true }).range((i + 1) * 1000, (i + 2) * 1000 - 1).then(r => r.data || [])
@@ -1660,12 +1698,12 @@ export default function GalerieClient({ userId, initialCardUrl, initialCards, in
 
   // Petit flash visuel quand une stat du header change (ex: carte ajoutee) —
   // fait remarquer ce qui vient de bouger plutot que de changer silencieusement.
-  const totalFlash = useFlashOnChange(filtered.length)
+  const totalFlash = useFlashOnChange(filtered.length + restExtra)
   const rcFlash = useFlashOnChange(filteredStats.rc)
   const autoFlash = useFlashOnChange(filteredStats.auto)
   const numFlash = useFlashOnChange(filteredStats.num)
   const patchFlash = useFlashOnChange(filteredStats.patch)
-  const totalCount = useCountUp(filtered.length)
+  const totalCount = useCountUp(filtered.length + restExtra)
   const rcCount = useCountUp(filteredStats.rc)
   const autoCount = useCountUp(filteredStats.auto)
   const numCount = useCountUp(filteredStats.num)
@@ -1741,6 +1779,15 @@ export default function GalerieClient({ userId, initialCardUrl, initialCards, in
   useEffect(() => {
     setDisplayed(filtered.slice(0, page * PAGE_SIZE))
   }, [page, filtered])
+
+  // Galerie par tranches : le reste des cartes arrive dès qu'il est utile (fin de grille proche, filtre, tri, recherche, carte ouverte, chronologie)
+  useEffect(() => {
+    if (!loadRestRef.current) return
+    const touched = !!(search || fSport || fTeam || fBrand || fYear || fCollectionTag || numMax != null || numMin != null || filterPrivate || filterVente || filterMemo
+      || activeFilters.rc || activeFilters.auto || activeFilters.patch || activeFilters.num || sortBy !== 'default' || sortBy2 !== 'none' || pinTeam || viewMode !== 'grid')
+    const nearEnd = displayed.length >= cards.length - PAGE_SIZE * 2
+    if (touched || nearEnd || popup || storyIdx !== null) void loadRestRef.current()
+  }, [restExtra, displayed, cards.length, search, fSport, fTeam, fBrand, fYear, fCollectionTag, numMax, numMin, filterPrivate, filterVente, filterMemo, activeFilters, sortBy, sortBy2, pinTeam, viewMode, popup, storyIdx])
 
   // ── Grille : nombre de colonnes mémorisé (pincement) ──
   useEffect(() => {
@@ -2641,6 +2688,13 @@ export default function GalerieClient({ userId, initialCardUrl, initialCards, in
       {themePicker && isOwner && <GalleryCustomizer theme={shownTheme} onTheme={t => setThemePreview(t)} accent={accent} onAccent={setAccentPreview} favs={favShown} onFavs={setFavPreview} teamColors={teamColors} onSave={saveCustom} saving={themeSaving} onClose={closeCustomizer} />}
       <div style={{ maxWidth: 1400, margin: '0 auto', fontFamily: 'Inter, sans-serif', padding: '0 10px', paddingBottom: (editMode && isOwner && selectedCards.size > 0) || qrMode ? 80 : 0 }}>
 
+        {isOwner && loaded && !thumbBannerOff && !thumbsOpen && cards.some(c => !c.thumb && c.id_manuelle && c.f.startsWith('http')) && (
+          <div style={{ display: 'flex', gap: 10, alignItems: 'center', flexWrap: 'wrap', padding: '8px 12px', margin: '0 0 10px', background: dark ? '#17214a' : '#eef3ff', border: '2px solid #2f6bff', color: dark ? '#ddd' : '#222', fontSize: 13 }}>
+            <span style={{ flex: 1, minWidth: 200 }}>🖼️ {cards.filter(c => !c.thumb && c.id_manuelle && c.f.startsWith('http')).length} cartes n’ont pas encore de miniature : les créer rend ta galerie plus légère.</span>
+            <button type="button" onClick={() => setThumbsOpen(true)} style={{ background: '#2f6bff', color: '#fff', border: 0, padding: '6px 12px', fontWeight: 800, fontSize: 12, cursor: 'pointer' }}>Créer</button>
+            <button type="button" aria-label="Masquer" onClick={() => { setThumbBannerOff(true); try { localStorage.setItem('thumb-banner-off', '1') } catch { /* stockage indisponible */ } }} style={{ background: 'none', border: 0, color: 'inherit', cursor: 'pointer', fontSize: 16 }}>✕</button>
+          </div>
+        )}
         {usingOfflineCache && (
           <div style={{
             background: dark ? '#3a2e00' : '#fff8e1', border: `1px solid ${dark ? '#5a4600' : '#ffe082'}`,
@@ -2867,32 +2921,35 @@ export default function GalerieClient({ userId, initialCardUrl, initialCards, in
                               {editMode ? t('gallery_done') : t('gallery_privacy')}
                             </button>
                           )}
-                          <button onClick={() => { setActionMenuOpen(false); setShareModalOpen(true) }}
-                            style={{ background: 'none', border: 'none', borderRadius: 8, padding: '9px 14px', fontWeight: 700, fontSize: 13, cursor: 'pointer', textAlign: 'left', color: dark ? '#ddd' : '#333', width: '100%' }}>
-                            ↗ Partager
+                          <button onClick={() => setShareSub(v => !v)} style={{ background: 'none', border: 'none', borderRadius: 8, padding: '9px 14px', fontWeight: 700, fontSize: 13, cursor: 'pointer', textAlign: 'left', color: dark ? '#ddd' : '#333', width: '100%' }}>
+                            ↗ Partager {shareSub ? '▴' : '▾'}
                           </button>
+                          {shareSub && (<>
+                            <button onClick={() => { setActionMenuOpen(false); setShareSub(false); setShareModalOpen(true) }} style={{ background: 'none', border: 'none', borderRadius: 8, padding: '7px 14px 7px 28px', fontWeight: 700, fontSize: 13, cursor: 'pointer', textAlign: 'left', color: dark ? '#ddd' : '#333', width: '100%' }}>
+                              Lien et carte collectionneur
+                            </button>
+                            <button onClick={() => { setQrMode(m => !m); setQrSelected(new Map()); setActionMenuOpen(false); setShareSub(false) }} style={{ background: 'none', border: 'none', borderRadius: 8, padding: '7px 14px 7px 28px', fontWeight: 700, fontSize: 13, cursor: 'pointer', textAlign: 'left', color: dark ? '#ddd' : '#333', width: '100%' }}>
+                              ▦ {qrMode ? 'Quitter Multi-QR' : 'Multi-QR'}
+                            </button>
+                          </>)}
                           <button onClick={() => { setActionMenuOpen(false); router.push(`/galerie/${userId}/expo`) }}
                             style={{ background: 'none', border: 'none', borderRadius: 8, padding: '9px 14px', fontWeight: 700, fontSize: 13, cursor: 'pointer', textAlign: 'left', color: dark ? '#ddd' : '#333', width: '100%' }}>
                             ⊞ Mode expo
                           </button>
                           <button onClick={() => { setActionMenuOpen(false); setExportOpen(true) }} disabled={!cards.length}
                             style={{ background: 'none', border: 'none', borderRadius: 8, padding: '9px 14px', fontWeight: 700, fontSize: 13, cursor: cards.length ? 'pointer' : 'not-allowed', textAlign: 'left', color: dark ? '#ddd' : '#333', width: '100%', opacity: cards.length ? 1 : 0.5 }}>
-                            📸 {t('export_button')}
+                            📄 Export assurance / données
                           </button>
+                          {isOwner && (
+                            <button onClick={() => { setActionMenuOpen(false); setReelOpen(true) }} disabled={!cards.length}
+                              style={{ background: 'none', border: 'none', borderRadius: 8, padding: '9px 14px', fontWeight: 700, fontSize: 13, cursor: cards.length ? 'pointer' : 'not-allowed', textAlign: 'left', color: dark ? '#ddd' : '#333', width: '100%', opacity: cards.length ? 1 : 0.5 }}>
+                              🎬 Export image et vidéos
+                            </button>
+                          )}
                           <button onClick={() => { setShowStats(s => !s); setActionMenuOpen(false) }}
                             style={{ background: 'none', border: 'none', borderRadius: 8, padding: '9px 14px', fontWeight: 700, fontSize: 13, cursor: 'pointer', textAlign: 'left', color: dark ? '#ddd' : '#333', width: '100%' }}>
                             📊 {showStats ? t('gallery_hide_stats') : t('gallery_show_stats')}
                           </button>
-                          <button onClick={() => { setQrMode(m => !m); setQrSelected(new Map()); setActionMenuOpen(false) }}
-                            style={{ background: 'none', border: 'none', borderRadius: 8, padding: '9px 14px', fontWeight: 700, fontSize: 13, cursor: 'pointer', textAlign: 'left', color: dark ? '#ddd' : '#333', width: '100%' }}>
-                            ▦ {qrMode ? 'Quitter Multi-QR' : 'Multi-QR'}
-                          </button>
-                          {isOwner && (
-                            <button onClick={() => { setActionMenuOpen(false); router.push(`/galerie/${userId}/plaque`) }}
-                              style={{ background: 'none', border: 'none', borderRadius: 8, padding: '9px 14px', fontWeight: 700, fontSize: 13, cursor: 'pointer', textAlign: 'left', color: dark ? '#ddd' : '#333', width: '100%' }}>
-                              🪧 Plaque de salon
-                            </button>
-                          )}
                         </div>
                       </>,
                       document.body
@@ -3853,10 +3910,10 @@ export default function GalerieClient({ userId, initialCardUrl, initialCards, in
             border: 'none', borderRadius: 8, padding: '6px 12px', fontSize: 12, fontWeight: 700, cursor: 'pointer',
             background: viewMode === 'timeline' ? accent : (dark ? '#2a2a2a' : '#f0f0f0'), color: viewMode === 'timeline' ? 'white' : (dark ? '#ccc' : '#555'),
           }}>📅 {t('gallery_view_timeline')}</button>
-          <button type="button" onClick={() => setViewMode('mosaic')} title="Mosaïque : chaque carte garde sa forme" style={{
+          <button type="button" className="da-story-btn" onClick={() => setStoryIdx(0)} title="Story : tes cartes une par une en plein écran, à faire défiler du doigt" disabled={filtered.length === 0} style={{
             border: 'none', borderRadius: 8, padding: '6px 12px', fontSize: 12, fontWeight: 700, cursor: 'pointer',
-            background: viewMode === 'mosaic' ? accent : (dark ? '#2a2a2a' : '#f0f0f0'), color: viewMode === 'mosaic' ? 'white' : (dark ? '#ccc' : '#555'),
-          }}>▥ Mosaïque</button>
+            background: dark ? '#2a2a2a' : '#f0f0f0', color: dark ? '#ccc' : '#555',
+          }}>📱 Story</button>
           {viewMode === 'grid' && (
             <button type="button" onClick={toggleCompactView} title="Vue compacte" style={{
               border: 'none', borderRadius: 8, padding: '6px 12px', fontSize: 12, fontWeight: 700, cursor: 'pointer',
@@ -3891,21 +3948,6 @@ export default function GalerieClient({ userId, initialCardUrl, initialCards, in
                     <div className="film-meta"><span>{String(fi + 1).padStart(2, '0')}A</span><span>{c.created_at ? new Date(c.created_at).toLocaleDateString('fr-FR', { day: '2-digit', month: '2-digit' }) : ''}</span></div>
                     </div>
                   ))}
-                </div>
-              </div>
-            ))}
-          </div>
-        )}
-
-        {viewMode === 'mosaic' && (
-          <div className="da-mosaic">
-            {displayed.length === 0 && <p style={{ color: '#999', textAlign: 'center', padding: 30 }}>{t('gallery_no_match_title')}</p>}
-            {displayed.map(d => (
-              <div key={getCardId(d)} className="da-mosaic-item">
-                <div onClick={() => setPopup(d)} role="button" tabIndex={0} aria-label={d.n}
-                  onKeyDown={e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); setPopup(d) } }}
-                  style={{ cursor: 'pointer', overflow: 'hidden', ...coloredBorder(cardTagColor(d)) }}>
-                  <CardLink slug={profile?.slug || userId} cardKey={d.f}>{renderCardImage(d)}</CardLink>
                 </div>
               </div>
             ))}
@@ -4174,6 +4216,26 @@ export default function GalerieClient({ userId, initialCardUrl, initialCards, in
           emptyLabel="Soyez le premier à commenter cette carte"
         />
       )}
+
+      {reelOpen && isOwner && (() => {
+        const ok = (c: Card) => /^https?:///.test(c.thumb || c.f)
+        const fmt = (c: Card) => ({ f: c.f, n: c.n, y: c.y, s: c.s, t: c.t, thumb: c.thumb, rc: c.rc, auto: c.auto, patch: c.patch, num: c.num, g: c.g })
+        const sel = cards.filter(c => selectedCards.has(getCardId(c)) && ok(c))
+        // « plus précieuses » : d'abord les plus rares (1/1, puis /5, /10, /25…), à tirage égal les autos et patchs, puis la valeur estimée
+        const tirage = (c: Card) => { const m = (c.num || '').trim().match(/\/(\d+)$/); return m ? parseInt(m[1]) : Infinity }
+        const byValue = cards.filter(ok).sort((a, b) => (tirage(a) - tirage(b)) || ((b.auto ? 2 : 0) + (b.patch ? 1 : 0) - (a.auto ? 2 : 0) - (a.patch ? 1 : 0)) || ((cardValues.get(b.f) ?? 0) - (cardValues.get(a.f) ?? 0)))
+        const recent = cards.filter(ok).sort((a, b) => (b.created_at || '').localeCompare(a.created_at || ''))
+        const rnd = cards.filter(ok).sort(() => Math.random() - 0.5)
+        return <ExportStudio ownerName={profile?.display_name || ''} all={cards.filter(ok).map(fmt)} onClose={() => setReelOpen(false)} pools={[
+          { key: 'sel', label: 'Mes cartes sélectionnées', cards: sel.map(fmt) },
+          { key: 'val', label: 'Mes plus précieuses', cards: byValue.map(fmt) },
+          { key: 'new', label: 'Mes dernières ajoutées', cards: recent.map(fmt) },
+          { key: 'rnd', label: 'Au hasard', cards: rnd.map(fmt) },
+        ]} />
+      })()}
+      {recapOpen && isOwner && process.env.NODE_ENV !== 'production' && <YearRecap cards={cards} values={cardValues} ownerName={profile?.display_name || ''} onClose={() => setRecapOpen(false)} />}
+      {thumbsOpen && isOwner && <ThumbBackfill cards={cards} userId={userId} onClose={() => setThumbsOpen(false)} />}
+      {storyIdx !== null && <StoryMode cards={filtered} startIndex={storyIdx} onClose={() => setStoryIdx(null)} onOpen={c => setPopup(c as Card)} />}
 
       {popup && randomTeamId && (
         <button onClick={rerollRandomTeamCard} disabled={rerolling} title={t('gallery_reroll_random_card')} style={{

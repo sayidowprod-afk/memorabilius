@@ -1280,10 +1280,9 @@ main input[aria-invalid="true"], main select[aria-invalid="true"], main textarea
 .da-pal-foot { padding: 8px 14px; font-size: 12px; color: var(--text3, #b0b8d6); border-top: 1px solid #243063; }
 @media (pointer: coarse) { .da-pal-foot { display: none; } }
 
-/* 80 · Vue « Mosaïque » de la galerie : chaque carte garde sa forme (horizontale, slab…), colonnes qui se remplissent */
-.da-mosaic { column-width: 150px; column-gap: 10px; }
-.da-mosaic-item { break-inside: avoid; margin-bottom: 10px; }
-@media (min-width: 900px) { .da-mosaic { column-width: 190px; } }
+/* Mode « Story » de la galerie : réservé aux écrans tactiles (téléphone, tablette), jamais affiché sur ordinateur */
+.da-story-btn { display: none; }
+@media (pointer: coarse) { .da-story-btn { display: inline-block; } }
 
 /* 79 · Densité des tableaux (bascule Confortable / Compact) */
 .da-density { display: inline-flex; margin-left: auto; }

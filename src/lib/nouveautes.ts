@@ -4,6 +4,22 @@ export type Entry = { date: string; titre: string; points: string[] }
 
 export const ENTRIES: Entry[] = [
   {
+    date: '16 novembre 2026', titre: 'Exports vidéo et image, mode Story, galerie plus légère, alertes de vente',
+    points: [
+      'Export image et vidéos (menu « ⋯ » de ta galerie) : plusieurs cartes dans un même export. Une vidéo qui enchaîne tes cartes (transition et durée au choix), une planche de contact, ou un carrousel prêt à poster (une image par carte).',
+      'Exports : format 9:16 (story), 4:5, 1:1 ou 16:9, et trois modèles (Sobre, Néon, Vitrine). Les cartes sont choisies et rangées comme tu veux, ou prises parmi tes plus précieuses (les 1/1 d’abord), tes dernières ajoutées ou au hasard. Tout est créé sur ton appareil.',
+      '« Export assurance / données » : l’ancien export reste dans son entrée à part.',
+      'Mode Story (sur téléphone) : tes cartes une par une en plein écran, à faire défiler du doigt.',
+      'Galerie plus légère : la grille charge des miniatures environ 3 fois plus petites que les photos (le viewer 3D garde toujours la photo complète). Pour tes anciennes cartes, un bandeau en haut de ta galerie te propose de les créer en un clic. Elles sont aussi gardées pour le mode hors ligne.',
+      'Grosses galeries : chez un visiteur, les cartes au-delà de 1000 n’arrivent qu’au moment où on en a besoin.',
+      'Menu « ⋯ » de la galerie plus court : « Partager » regroupe le lien et le Multi-QR, la plaque de salon n’y figure plus.',
+      'Messages : une recherche en haut de la liste retrouve un membre ou un message.',
+      'Sorties : sous chaque set, « 🎯 N joueurs de ta wishlist dans ce set ».',
+      'Mes ventes : alertes sur tes annonces eBay (nouvelle enchère, nouveaux suiveurs, fin dans 1 h, vendu ou sans acheteur) et rappel des colis à expédier. Chaque alerte se règle dans « 🔔 Alertes ».',
+      'Retrait du mode mosaïque de la galerie.',
+    ],
+  },
+  {
     date: '15 novembre 2026', titre: 'Aide au cadrage, réessai carte par carte, galerie plus fluide',
     points: [
       'Appareil photo : le cadre passe au vert quand ta carte est bien alignée. Un bouton « Aide au cadrage » en haut à gauche permet de le couper.',

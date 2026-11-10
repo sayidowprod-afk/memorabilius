@@ -98,6 +98,9 @@ function MessagesContent() {
   const [messages, setMessages] = useState<any[]>([])
   // Recherche dans la conversation ouverte (liée à la conversation : changer de conversation la ferme)
   const [convSearch, setConvSearch] = useState<{ conv: string; q: string } | null>(null)
+  // Recherche dans TOUTES les conversations : se fait dans les messages déjà chargés pour la liste (aucune requête de plus)
+  const [listQuery, setListQuery] = useState('')
+  const msgIndex = useRef<{ other: string; text: string; at: string; mine: boolean }[]>([])
   const [hitIdx, setHitIdx] = useState(0)
   const [newMsg, setNewMsg] = useState('')
   const [shipModal, setShipModal] = useState(false) // demande de livraison (acheteur -> vendeur)
@@ -372,10 +375,12 @@ function MessagesContent() {
     const { data: hid } = await supabase.from('hidden_conversations').select('other_id, hidden_at').eq('user_id', uid)
     const hiddenAt = new Map<string, number>((hid || []).map((h: any) => [h.other_id, Date.parse(h.hidden_at)]))
     const convMap: Record<string, any> = {}
+    const index: { other: string; text: string; at: string; mine: boolean }[] = []
     for (const msg of data) {
       const otherId = msg.from_user_id === uid ? msg.to_user_id : msg.from_user_id
       const hAt = hiddenAt.get(otherId)
       if (hAt !== undefined && Date.parse(msg.created_at) <= hAt) continue
+      if (typeof msg.contenu === 'string' && !isOfferMsg(msg.contenu) && !isShipmentMsg(msg.contenu) && !isTradeOfferMsg(msg.contenu) && !isImageMsg(msg.contenu)) index.push({ other: otherId, text: msg.contenu, at: msg.created_at, mine: msg.from_user_id === uid })
       const lastMsgDisplay = isOfferMsg(msg.contenu) ? '💶 Offre' : isShipmentMsg(msg.contenu) ? '📦 Livraison' : isTradeOfferMsg(msg.contenu) ? t('messages_trade_offer') : isImageMsg(msg.contenu) ? t('chat_photo') : isCardMsg(msg.contenu) ? `🃏 ${cardDataOf(msg.contenu)?.nom || ''}` : msg.contenu
       if (!convMap[otherId]) convMap[otherId] = { lastMsg: lastMsgDisplay, date: msg.created_at, unread: 0 }
       if (!msg.lu && msg.to_user_id === uid) convMap[otherId].unread++
@@ -387,6 +392,7 @@ function MessagesContent() {
       profs?.forEach(p => { profMap[p.id] = p })
       setProfiles(profMap)
     }
+    msgIndex.current = index
     setConversations(Object.entries(convMap).map(([id, v]) => ({ id, ...v })))
   }
 
@@ -642,6 +648,12 @@ function MessagesContent() {
               </svg>
             </button>
           </div>
+          {conversations.length > 0 && (
+            <div style={{ padding: '8px 12px', borderBottom: `1px solid ${border}` }}>
+              <input value={listQuery} onChange={e => setListQuery(e.target.value)} placeholder="🔍 Chercher un message ou un membre" aria-label="Chercher dans les messages"
+                style={{ width: '100%', fontSize: 13, background: dark ? '#2a2a2a' : undefined, color: dark ? '#fff' : undefined, borderColor: dark ? '#444' : undefined }} />
+            </div>
+          )}
           {newConvOpen && (
             <div style={{ padding: '10px 12px', borderBottom: `1px solid ${border}` }}>
               <input
@@ -674,7 +686,33 @@ function MessagesContent() {
                 </Link>
               </div>
             )}
-            {conversations.map(conv => (
+            {listQuery.trim() !== '' && (() => {
+              const fold = (x: string) => x.toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g, '')
+              const q = fold(listQuery.trim())
+              const people = conversations.filter(c => fold(profiles[c.id]?.display_name || '').includes(q))
+              const hits = msgIndex.current.filter(m => fold(m.text).includes(q)).slice(0, 30)
+              const snippet = (text: string) => {
+                const i = fold(text).indexOf(q)
+                const a = Math.max(0, i - 24), b = Math.min(text.length, i + q.length + 40)
+                return <>{a > 0 ? '…' : ''}{text.slice(a, i)}<b style={{ color: textMain, background: dark ? '#3a4a8a' : '#ffe99a' }}>{text.slice(i, i + q.length)}</b>{text.slice(i + q.length, b)}{b < text.length ? '…' : ''}</>
+              }
+              const nameOf = (id: string) => profiles[id]?.display_name || '…'
+              return (
+                <div>
+                  {people.length > 0 && <div style={{ padding: '8px 16px 2px', fontSize: 11, fontWeight: 800, color: textMuted, textTransform: 'uppercase', letterSpacing: '.06em' }}>Membres</div>}
+                  {people.map(c => <div key={'p' + c.id} onClick={() => { selectConv(c.id); setListQuery('') }} style={{ padding: '9px 16px', cursor: 'pointer', fontSize: 13, fontWeight: 700, color: textMain }}>{nameOf(c.id)}</div>)}
+                  {hits.length > 0 && <div style={{ padding: '8px 16px 2px', fontSize: 11, fontWeight: 800, color: textMuted, textTransform: 'uppercase', letterSpacing: '.06em' }}>Dans les messages ({hits.length}{hits.length === 30 ? '+' : ''})</div>}
+                  {hits.map((m, i) => (
+                    <div key={'m' + i} onClick={() => { selectConv(m.other); setHitIdx(0); setConvSearch({ conv: m.other, q: listQuery.trim() }) }} style={{ padding: '8px 16px', cursor: 'pointer', borderTop: `1px solid ${border}` }}>
+                      <div style={{ display: 'flex', justifyContent: 'space-between', gap: 6 }}><span style={{ fontSize: 12, fontWeight: 800, color: textMain }}>{m.mine ? 'Toi → ' : ''}{nameOf(m.other)}</span><span style={{ fontSize: 10, color: textMuted, flexShrink: 0 }}>{fmtConvDate(m.at)}</span></div>
+                      <div style={{ fontSize: 12, color: textMuted, overflowWrap: 'anywhere' }}>{snippet(m.text)}</div>
+                    </div>
+                  ))}
+                  {people.length === 0 && hits.length === 0 && <p style={{ fontSize: 13, color: textMuted, padding: '16px', margin: 0 }}>Aucun résultat pour « {listQuery.trim()} ».</p>}
+                </div>
+              )
+            })()}
+            {listQuery.trim() === '' && conversations.map(conv => (
               <SwipeAction key={conv.id} direction="left" reveal={{ label: 'Masquer', onClick: () => hideConversation(conv.id) }} style={{ background: bgPanel }}>
               <div onClick={() => selectConv(conv.id)} style={{
                 width: '100%', boxSizing: 'border-box', padding: '10px 16px', cursor: 'pointer',

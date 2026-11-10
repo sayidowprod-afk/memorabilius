@@ -68,7 +68,11 @@ export async function syncVentes(userId: string, minIntervalMs = 0): Promise<Ven
       ...(photos.has(v.ref) ? { photo_url: photos.get(v.ref) } : {}),
       devise: v.devise || 'EUR',
     }))
-    const { error } = await sb.from('ventes_membre').upsert(rows, { onConflict: 'user_id,source,ref' })
+    let { error } = await sb.from('ventes_membre').upsert(rows, { onConflict: 'user_id,source,ref' })
+    // item_id : colonne ajoutée par la migration 20261116 (la table d'origine ne l'avait pas) ; tant qu'elle manque, on enregistre sans elle
+    if (error && /item_id/.test(error.message)) {
+      ;({ error } = await sb.from('ventes_membre').upsert(rows.map(r => { const { item_id: _ignore, ...rest } = r; void _ignore; return rest }), { onConflict: 'user_id,source,ref' }))
+    }
     if (error) return { ok: false, error: /ventes_membre/.test(error.message) ? 'Migration 20261105 à appliquer dans Supabase.' : 'Enregistrement impossible : ' + error.message }
   }
   await sb.from('ebay_connexions').update({ ventes_synchro_at: nowIso }).eq('user_id', userId)
