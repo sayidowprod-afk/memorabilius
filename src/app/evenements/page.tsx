@@ -9,6 +9,8 @@ import { supabase } from '@/lib/supabase'
 import { useTheme } from '@/lib/ThemeContext'
 import { useLang } from '@/lib/LangContext'
 import { saveOrShareFile } from '@/lib/saveOrShare'
+import { Capacitor } from '@capacitor/core'
+import { buildEventICS, googleCalendarUrl } from '@/lib/eventIcs'
 
 type Event = {
   id: number
@@ -28,48 +30,17 @@ type Event = {
 
 const emptyForm = { title: '', description: '', date: '', time: '', end_date: '', city: '', country: 'France', location_name: '', website: '', image_url: '' }
 
-// Echappement RFC5545 (virgule, point-virgule, retour a la ligne, antislash).
-const escapeICS = (s: string) => s.replace(/\\/g, '\\\\').replace(/,/g, '\\,').replace(/;/g, '\\;').replace(/\n/g, '\\n')
-
-// Sans heure renseignee : DTSTART;VALUE=DATE suffit, pas besoin de fuseau
-// horaire -- s'affiche comme un evenement "journee entiere" dans tous les
-// agendas (Google/Apple/Outlook). Avec heure : horaire local flottant (sans
-// Z ni TZID) -- approximation suffisante, l'organisateur et les participants
-// d'un meme evenement physique sont presque toujours dans le meme fuseau.
-async function downloadEventICS(ev: Event) {
-  const dt = ev.date.replace(/-/g, '')
-  const stamp = new Date().toISOString().replace(/[-:]/g, '').split('.')[0] + 'Z'
-  const location = [ev.location_name, ev.city, ev.country].filter(Boolean).join(', ')
-  const dtStartLine = ev.time
-    ? `DTSTART:${dt}T${ev.time.replace(':', '')}00`
-    : `DTSTART;VALUE=DATE:${dt}`
-  // DTEND : uniquement pour un evenement multi-jours (end_date renseigne et
-  // different de date). VALUE=DATE est EXCLUSIF en iCal (le jour de fin ne
-  // compte pas) -- on ajoute donc un jour a end_date pour que le dernier
-  // jour reel de l'evenement soit bien inclus dans tous les agendas.
-  let dtEndLine: string | false = false
-  if (ev.end_date && ev.end_date !== ev.date) {
-    const endPlus1 = new Date(`${ev.end_date}T00:00:00`)
-    endPlus1.setDate(endPlus1.getDate() + 1)
-    const endDt = `${endPlus1.getFullYear()}${String(endPlus1.getMonth() + 1).padStart(2, '0')}${String(endPlus1.getDate()).padStart(2, '0')}`
-    dtEndLine = `DTEND;VALUE=DATE:${endDt}`
+// « Ajouter au calendrier » : le bouton ne faisait rien sur téléphone (un fichier .ics créé en mémoire et « téléchargé » part dans les téléchargements
+// sans ouvrir l'agenda). Maintenant : Android -> Google Agenda avec l'événement prérempli ; iPhone / iPad -> le fichier servi depuis le serveur, que Safari
+// propose d'ajouter à l'agenda ; application native et ordinateur -> fichier .ics comme avant. Voir lib/eventIcs.ts.
+async function addToCalendar(ev: Event) {
+  if (!Capacitor.isNativePlatform() && typeof navigator !== 'undefined') {
+    const ua = navigator.userAgent
+    if (/Android/i.test(ua)) { window.open(googleCalendarUrl(ev), '_blank', 'noopener'); return }
+    if (/iPhone|iPad|iPod/i.test(ua) || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1)) { window.location.assign(`/api/evenements/ics?id=${ev.id}`); return }
   }
-  const lines = [
-    'BEGIN:VCALENDAR', 'VERSION:2.0', 'PRODID:-//Memorabilius//FR',
-    'BEGIN:VEVENT',
-    `UID:event-${ev.id}@memorabilius.fr`,
-    `DTSTAMP:${stamp}`,
-    dtStartLine,
-    dtEndLine,
-    `SUMMARY:${escapeICS(ev.title)}`,
-    location && `LOCATION:${escapeICS(location)}`,
-    ev.description && `DESCRIPTION:${escapeICS(ev.description)}`,
-    'END:VEVENT', 'END:VCALENDAR',
-  ].filter(Boolean)
-  const blob = new Blob([lines.join('\r\n')], { type: 'text/calendar;charset=utf-8' })
-  // saveOrShareFile gere le repli natif (Filesystem+Share) -- un <a download>
-  // brut ne fait silencieusement rien dans la WebView Android, meme bug deja
-  // corrige sur l'export setlist.
+  const blob = new Blob([buildEventICS(ev)], { type: 'text/calendar;charset=utf-8' })
+  // saveOrShareFile gere le repli natif (Filesystem+Share) -- un <a download> brut ne fait silencieusement rien dans la WebView Android.
   await saveOrShareFile(blob, `${ev.title.replace(/[^a-z0-9]+/gi, '_').slice(0, 60) || 'evenement'}.ics`)
 }
 
@@ -364,7 +335,7 @@ function EventCard({ ev, dark, text, sub, card, border, onToggle, userId, format
               window.opener). */}
           <div style={{ display: 'flex', gap: 12, alignItems: 'center', marginTop: 4 }}>
             {ev.website && /^https?:\/\//i.test(ev.website) && <a href={ev.website} target="_blank" rel="noopener noreferrer" style={{ color: '#003DA6', fontSize: 12, display: 'inline-block' }}>{t('events_official_site')}</a>}
-            <button onClick={() => downloadEventICS(ev)} style={{ background: 'none', border: 'none', color: '#003DA6', fontSize: 12, fontWeight: 600, cursor: 'pointer', padding: 0 }}>
+            <button onClick={() => addToCalendar(ev)} style={{ background: 'none', border: 'none', color: '#003DA6', fontSize: 12, fontWeight: 600, cursor: 'pointer', padding: 0 }}>
               📅 {t('events_add_to_calendar')}
             </button>
           </div>
