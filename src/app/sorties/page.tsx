@@ -1,6 +1,9 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
 import { createServerClient } from '@/lib/supabaseServer'
+import AddToCalendarButton from '@/components/AddToCalendarButton'
+import SubscribeCalendarLink from '@/components/SubscribeCalendarLink'
+import { releaseEvent } from '@/lib/eventIcs'
 
 export const revalidate = 3600
 export const metadata: Metadata = {
@@ -45,7 +48,7 @@ export default async function SortiesPage() {
       <h1 style={{ fontSize: 'clamp(2rem, 4.5vw, 2.75rem)', margin: '0 0 6px' }}>Sorties de cartes</h1>
       <p style={{ color: 'var(--text2, #666)', margin: '0 0 8px' }}>Les prochaines sorties de produits de basket (Panini, Topps…), mises à jour automatiquement chaque semaine.</p>
       <div style={{ margin: '0 0 24px', display: 'flex', alignItems: 'center', gap: 10, flexWrap: 'wrap' }}>
-        <a href="/api/sorties/ics" className="btn-main btn-secondary" style={{ padding: '10px 16px', fontSize: 13 }}>📅 Ajouter à mon agenda</a>
+        <SubscribeCalendarLink className="btn-main btn-secondary" style={{ padding: '10px 16px', fontSize: 13 }}>📅 Ajouter à mon agenda</SubscribeCalendarLink>
         <span style={{ fontSize: 13, color: 'var(--text2, #666)', flex: '1 1 180px' }}>L’agenda se met à jour tout seul.</span>
       </div>
 
@@ -79,7 +82,10 @@ export default async function SortiesPage() {
                         {r.formats && r.formats.length > 0 && <> · {r.formats.join(' · ')}</>}
                       </div>
                     </div>
-                    {r.set_id && <Link href={`/setlist/${r.set_id}`} style={{ fontSize: 13, fontWeight: 700, textDecoration: 'underline', whiteSpace: 'nowrap' }}>Checklist →</Link>}
+                    <div style={{ display: 'flex', flexDirection: 'column', gap: 6, alignItems: 'flex-end' }}>
+                      {!past && <AddToCalendarButton ev={releaseEvent(r)} serverUrl={`/api/sorties/ics/une?date=${r.release_date}&name=${encodeURIComponent(r.name)}`} filename="sortie-cartes.ics" style={{ background: 'none', border: 0, padding: 0, color: 'inherit', cursor: 'pointer', fontFamily: 'inherit', fontSize: 13, fontWeight: 700, textDecoration: 'underline', whiteSpace: 'nowrap' }}>📅 Ajouter</AddToCalendarButton>}
+                      {r.set_id && <Link href={`/setlist/${r.set_id}`} style={{ fontSize: 13, fontWeight: 700, textDecoration: 'underline', whiteSpace: 'nowrap' }}>Checklist →</Link>}
+                    </div>
                   </div>
                 )
               })}

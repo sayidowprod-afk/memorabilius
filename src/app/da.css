@@ -1464,6 +1464,9 @@ html[data-accent] a[style*="color:#003DA6"], html[data-accent] a[style*="color: 
 .da-sortbloc-name { font-weight: 800; font-size: 15px; overflow-wrap: anywhere; }
 .da-sortbloc-sub { font-size: 13px; color: var(--text2, #aaa); }
 .da-sortbloc-sub span { font-weight: 700; color: #3ddc97; }
+.da-sortbloc-act { display: flex; flex-wrap: wrap; gap: 4px 16px; margin-top: 4px; }
+.da-sortbloc-act a, .da-sortbloc-btn { font: inherit; font-size: 13px; font-weight: 700; text-decoration: underline; text-underline-offset: 3px; background: none; border: 0; padding: 0; color: inherit; cursor: pointer; }
+.da-sortbloc-btn:disabled { opacity: .6; cursor: wait; }
 
 /* 126 · Mode salon de la wishlist : grosses lignes à cocher « trouvée » */
 .da-salon-btn { font: 700 13px system-ui, sans-serif; letter-spacing: .04em; padding: 10px 16px; border: 2px solid #3a4a8a; background: transparent; color: inherit; cursor: pointer; border-radius: 10px; min-height: 40px; }

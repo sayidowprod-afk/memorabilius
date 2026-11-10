@@ -4,8 +4,11 @@
 import { useEffect, useState } from 'react'
 import Link from 'next/link'
 import { supabase } from '@/lib/supabase'
+import AddToCalendarButton from '@/components/AddToCalendarButton'
+import SubscribeCalendarLink from '@/components/SubscribeCalendarLink'
+import { releaseEvent } from '@/lib/eventIcs'
 
-type Row = { name: string; release_date: string; formats: string[] | null }
+type Row = { name: string; release_date: string; formats: string[] | null; source_url?: string | null; set_id?: string | null }
 
 const MOIS = ['janv.', 'févr.', 'mars', 'avr.', 'mai', 'juin', 'juil.', 'août', 'sept.', 'oct.', 'nov.', 'déc.']
 
@@ -24,8 +27,15 @@ export default function UpcomingReleases() {
   useEffect(() => {
     let alive = true
     const today = new Date().toISOString().slice(0, 10)
-    supabase.from('card_releases').select('name, release_date, formats').gte('release_date', today).order('release_date').limit(4)
-      .then(({ data, error }) => { if (alive) setRows(error ? [] : (data as Row[] | null) ?? []) })
+    // set_id (lien vers la checklist) : si la colonne n'existe pas encore, on réessaie sans elle
+    const q = (cols: string) => supabase.from('card_releases').select(cols).gte('release_date', today).order('release_date').limit(4)
+    q('name, release_date, formats, source_url, set_id')
+      .then(async ({ data, error }) => {
+        if (!error) return data
+        const r2 = await q('name, release_date, formats, source_url')
+        return r2.error ? [] : r2.data
+      })
+      .then(data => { if (alive) setRows((data as unknown as Row[] | null) ?? []) })
     return () => { alive = false }
   }, [])
 
@@ -34,7 +44,10 @@ export default function UpcomingReleases() {
     <section className="da-sortbloc" aria-label="Prochaines sorties de cartes">
       <div className="da-sortbloc-head">
         <h2>📅 Prochaines sorties</h2>
-        <Link href="/sorties">Tout le calendrier →</Link>
+        <span style={{ display: 'flex', gap: 14, flexWrap: 'wrap' }}>
+          <SubscribeCalendarLink title="Ajoute toutes les sorties à ton agenda ; il se met ensuite à jour tout seul">📅 Tout ajouter</SubscribeCalendarLink>
+          <Link href="/sorties">Tout le calendrier →</Link>
+        </span>
       </div>
       {rows.map(r => {
         const d = new Date(r.release_date + 'T00:00:00Z')
@@ -44,6 +57,10 @@ export default function UpcomingReleases() {
             <div style={{ minWidth: 0 }}>
               <div className="da-sortbloc-name">{r.name}</div>
               <div className="da-sortbloc-sub"><span>{relative(r.release_date)}</span>{r.formats && r.formats.length > 0 ? ` · ${r.formats.join(' · ')}` : ''}</div>
+              <div className="da-sortbloc-act">
+                <AddToCalendarButton className="da-sortbloc-btn" ev={releaseEvent(r)} serverUrl={`/api/sorties/ics/une?date=${r.release_date}&name=${encodeURIComponent(r.name)}`} filename="sortie-cartes.ics">📅 Ajouter</AddToCalendarButton>
+                {r.set_id && <Link href={`/setlist/${r.set_id}`}>Checklist →</Link>}
+              </div>
             </div>
           </div>
         )

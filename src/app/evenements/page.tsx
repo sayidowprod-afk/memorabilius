@@ -8,9 +8,7 @@ import Link from 'next/link'
 import { supabase } from '@/lib/supabase'
 import { useTheme } from '@/lib/ThemeContext'
 import { useLang } from '@/lib/LangContext'
-import { saveOrShareFile } from '@/lib/saveOrShare'
-import { Capacitor } from '@capacitor/core'
-import { buildEventICS, googleCalendarUrl } from '@/lib/eventIcs'
+import { addToCalendar as addEventToCalendar } from '@/lib/addToCalendar'
 
 type Event = {
   id: number
@@ -30,19 +28,8 @@ type Event = {
 
 const emptyForm = { title: '', description: '', date: '', time: '', end_date: '', city: '', country: 'France', location_name: '', website: '', image_url: '' }
 
-// « Ajouter au calendrier » : le bouton ne faisait rien sur téléphone (un fichier .ics créé en mémoire et « téléchargé » part dans les téléchargements
-// sans ouvrir l'agenda). Maintenant : Android -> Google Agenda avec l'événement prérempli ; iPhone / iPad -> le fichier servi depuis le serveur, que Safari
-// propose d'ajouter à l'agenda ; application native et ordinateur -> fichier .ics comme avant. Voir lib/eventIcs.ts.
-async function addToCalendar(ev: Event) {
-  if (!Capacitor.isNativePlatform() && typeof navigator !== 'undefined') {
-    const ua = navigator.userAgent
-    if (/Android/i.test(ua)) { window.open(googleCalendarUrl(ev), '_blank', 'noopener'); return }
-    if (/iPhone|iPad|iPod/i.test(ua) || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1)) { window.location.assign(`/api/evenements/ics?id=${ev.id}`); return }
-  }
-  const blob = new Blob([buildEventICS(ev)], { type: 'text/calendar;charset=utf-8' })
-  // saveOrShareFile gere le repli natif (Filesystem+Share) -- un <a download> brut ne fait silencieusement rien dans la WebView Android.
-  await saveOrShareFile(blob, `${ev.title.replace(/[^a-z0-9]+/gi, '_').slice(0, 60) || 'evenement'}.ics`)
-}
+// « Ajouter au calendrier » : voir lib/addToCalendar.ts (Android : Google Agenda ; iPhone : fichier servi par le serveur ; ordinateur / appli : .ics)
+const addToCalendar = (ev: Event) => addEventToCalendar(ev, `/api/evenements/ics?id=${ev.id}`, `${ev.title.replace(/[^a-z0-9]+/gi, '_').slice(0, 60) || 'evenement'}.ics`)
 
 export default function Evenements() {
   const { dark } = useTheme()

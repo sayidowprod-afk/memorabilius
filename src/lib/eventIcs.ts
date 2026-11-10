@@ -11,6 +11,8 @@ export type EventLike = {
   city: string
   country: string
   location_name: string | null
+  uid?: string                // identifiant d'agenda imposé (sorties : le même que dans l'agenda abonné, pour ne pas créer de doublon)
+  transparent?: boolean       // n'occupe pas le temps dans l'agenda (sorties de cartes)
 }
 
 // Echappement RFC5545 (virgule, point-virgule, retour a la ligne, antislash).
@@ -39,16 +41,31 @@ export function buildEventICS(ev: EventLike): string {
   const lines = [
     'BEGIN:VCALENDAR', 'VERSION:2.0', 'PRODID:-//Memorabilius//FR', 'CALSCALE:GREGORIAN', 'METHOD:PUBLISH',
     'BEGIN:VEVENT',
-    `UID:event-${ev.id}@memorabilius.fr`,
+    `UID:${ev.uid ?? `event-${ev.id}@memorabilius.fr`}`,
     `DTSTAMP:${stamp}`,
     dtStartLine,
     dtEndLine,
+    ev.transparent && 'TRANSP:TRANSPARENT',
     `SUMMARY:${escapeICS(ev.title)}`,
     location && `LOCATION:${escapeICS(location)}`,
     ev.description && `DESCRIPTION:${escapeICS(ev.description)}`,
     'END:VEVENT', 'END:VCALENDAR',
   ].filter(Boolean)
   return lines.join('\r\n') + '\r\n'
+}
+
+// Une sortie de cartes (table card_releases) vue comme un événement « journée entière ». Même UID que l'agenda abonné (/api/sorties/ics).
+export type ReleaseLike = { name: string; release_date: string; formats: string[] | null; source_url?: string | null }
+export function releaseEvent(r: ReleaseLike): EventLike {
+  const hex = Array.from(new TextEncoder().encode(r.name)).map(b => b.toString(16).padStart(2, '0')).join('').slice(0, 40)
+  return {
+    id: `sortie-${r.release_date}`,
+    uid: `${r.release_date.replace(/-/g, '')}-${hex}@memorabilius.fr`,
+    transparent: true,
+    title: `🃏 ${r.name}`,
+    description: [(r.formats ?? []).join(' · '), 'Les dates peuvent changer.', r.source_url ?? ''].filter(Boolean).join('\n'),
+    date: r.release_date, time: null, end_date: null, city: '', country: '', location_name: null,
+  }
 }
 
 // Lien « ajouter à Google Agenda » : s'ouvre dans l'appli Google Agenda sur Android (événement prérempli, il suffit d'enregistrer).
