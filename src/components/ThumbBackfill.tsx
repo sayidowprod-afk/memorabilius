@@ -19,26 +19,29 @@ export default function ThumbBackfill({ cards, userId, onClose }: { cards: C[]; 
   const [running, setRunning] = useState(false)
   const [msg, setMsg] = useState<string | null>(null)
   const stop = useRef(false)
+  const reasons = useRef<Record<string, number>>({})
   const started = useRef(0)
 
   const one = async (c: C): Promise<'ok' | 'fail' | 'schema'> => {
+    const why = (m: string) => { reasons.current[m] = (reasons.current[m] || 0) + 1; return 'fail' as const }
     try {
-      const res = await fetch(c.f)
-      if (!res.ok) return 'fail'
+      let res: Response
+      try { res = await fetch(c.f) } catch { try { await new Promise(r => setTimeout(r, 600)); res = await fetch(c.f) } catch { return why(/supabase.co/.test(c.f) ? 'photo illisible (réseau)' : 'photo hébergée ailleurs (accès refusé)') } }
+      if (!res.ok) return why(`photo introuvable (${res.status})`)
       const tb = await makeThumb(await res.blob())
-      if (!tb) return 'fail'
+      if (!tb) return why('format de photo non lisible')
       const path = `cartes/${userId}/thumbs/${c.id_manuelle}.jpg`
       const { error: up } = await supabase.storage.from('avatars').upload(path, new File([tb], `${c.id_manuelle}.jpg`, { type: 'image/jpeg' }), { upsert: true, contentType: 'image/jpeg' })
-      if (up) return 'fail'
+      if (up) return why(`envoi refusé : ${up.message.slice(0, 60)}`)
       const url = supabase.storage.from('avatars').getPublicUrl(path).data.publicUrl
       const { error } = await supabase.from('cartes_manuelles').update({ image_recto_thumb: url }).eq('id', c.id_manuelle as string).eq('user_id', userId)
-      if (error) return /image_recto_thumb/.test(error.message) ? 'schema' : 'fail'
+      if (error) return /image_recto_thumb/.test(error.message) ? 'schema' : why(`fiche non mise à jour : ${error.message.slice(0, 60)}`)
       return 'ok'
-    } catch { return 'fail' }
+    } catch (e) { return why(`erreur : ${e instanceof Error ? e.message.slice(0, 60) : 'inconnue'}`) }
   }
 
   const run = async () => {
-    stop.current = false; setRunning(true); setMsg(null); started.current = Date.now()
+    stop.current = false; setRunning(true); setMsg(null); setFailed(0); reasons.current = {}; started.current = Date.now()
     const queue = todo.current.filter(c => !c.thumb)
     let i = 0
     const worker = async () => {
@@ -76,6 +79,11 @@ export default function ThumbBackfill({ cards, userId, onClose }: { cards: C[]; 
             <div style={{ height: 12, background: '#17214a', margin: '6px 0' }}><i style={{ display: 'block', height: '100%', width: `${(done / total.current) * 100}%`, background: '#2f6bff' }} /></div>
             <div style={{ fontSize: 13, color: '#aab3d1' }}>{done} / {total.current} créées{failed ? ` · ${failed} en échec` : ''}{running && eta !== null ? ` · environ ${eta} min restantes` : ''}</div>
           </>
+        )}
+        {!running && failed > 0 && (
+          <div style={{ fontSize: 12, color: '#ffd84d', marginTop: 8 }}>
+            {Object.entries(reasons.current).sort((a, b) => b[1] - a[1]).map(([k, n]) => <div key={k}>• {n} × {k}</div>)}
+          </div>
         )}
         {msg && <p style={{ color: '#ffd84d', fontSize: 13 }}>{msg}</p>}
         <div style={{ display: 'flex', gap: 10, marginTop: 14, flexWrap: 'wrap' }}>
