@@ -4,6 +4,13 @@ export type Entry = { date: string; titre: string; points: string[] }
 
 export const ENTRIES: Entry[] = [
   {
+    date: '22 novembre 2026', titre: 'Mes decks : il te manque combien de cartes ?',
+    points: [
+      'Nouvelle page « Mes decks » : colle la liste d’un deck (une carte par ligne, ex. « 4 Dracaufeu ex »), le site la compare avec les cartes à jouer de ta galerie et te dit combien de cartes il te manque, avec la liste à copier.',
+      'Fiche d’une carte à jouer : un lien « Toutes les cartes de ce personnage » vers la page du personnage.',
+    ],
+  },
+  {
     date: '21 novembre 2026', titre: 'TCG : accueil dédié, guide, annonces et ajout en lot',
     points: [
       'Accueil : un bloc « TCG » avec tes jeux, le nombre de cartes, la valeur estimée de ta collection et des accès rapides. Avec le réglage « TCG » seul, les pépites et podiums de sport sont masqués.',

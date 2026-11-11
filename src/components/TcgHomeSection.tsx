@@ -73,6 +73,7 @@ export default function TcgHomeSection() {
         <div style={{ display: 'flex', flexWrap: 'wrap', gap: 8 }}>
           <Link href={`/galerie/${uid}/ajouter`} style={{ ...btn, background: '#003DA6', color: '#fff' }}>＋ {ADD[lang] || ADD.fr}</Link>
           <Link href={`${gal}?jeu=tcg`} style={outline}>{MINE[lang] || MINE.fr}</Link>
+          <Link href="/decks" style={outline}>{lang === 'en' ? 'My decks' : 'Mes decks'}</Link>
           <Link href="/tcg" style={outline}>{GUIDE[lang] || GUIDE.fr}</Link>
         </div>
       </div>

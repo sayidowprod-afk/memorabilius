@@ -3,6 +3,7 @@
 import { useEffect, useState } from 'react'
 import { getTcgGame, tcgLabel } from '@/lib/tcgGames'
 import { useLang } from '@/lib/LangContext'
+import { playerSlug } from '@/lib/playerSlug'
 
 interface P { jeu?: string; n: string; s: string; card_number?: string; rarete?: string; langue?: string; edition?: string; etat?: string; v: string; tcg_ref?: string }
 type Price = { eur: number | null; eurFoil: number | null; source: string } | null
@@ -45,6 +46,11 @@ export default function TcgInfoBlock({ card, metaColor, textColor, borderColor }
           </div>
         ))}
       </div>
+      {card.n.trim() && playerSlug(card.n) && (
+        <a href={`/joueur/${playerSlug(card.n)}`} style={{ display: 'inline-block', marginTop: 10, fontSize: 12, fontWeight: 800, color: textColor, textDecoration: 'underline' }}>
+          {lang === 'en' ? `All “${card.n}” cards` : `Toutes les cartes « ${card.n} »`}
+        </a>
+      )}
       {eur != null && (
         <div style={{ marginTop: 10, fontSize: 12, fontWeight: 800, color: '#1e9e57' }}>
           {tcgLabel('price', lang).replace('Cardmarket', price?.source === 'scryfall' ? 'Scryfall' : 'Cardmarket')} ≈ {eur.toFixed(2)} €

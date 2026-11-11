@@ -19,7 +19,16 @@ const seg = (t: number, a: number, b: number) => clamp((t - a) / (b - a))
 const lerp = (a: number, b: number, t: number) => a + (b - a) * t
 
 const OWNER = 'eb730dee-414e-4fcb-89d8-4a7b3448c218' // galerie GKNNN_Cards
-type Row = { nom: string | null; equipe: string | null; annee: string | null; image_recto: string | null; rc: boolean | null; auto: boolean | null; patch: boolean | null; num: string | null; item_type: string | null; vendue: boolean | null; booklet: boolean | null; grade?: string | null }
+// accroches de la pub TCG, par langue
+const TCG_PUB: Record<Lang, { hook: string; cta: string }> = {
+  fr: { hook: 'Tu collectionnes Pokémon, Magic ?', cta: 'Range ta collection TCG gratuitement' },
+  en: { hook: 'Do you collect Pokémon or Magic cards?', cta: 'Organize your TCG collection for free' },
+  de: { hook: 'Sammelst du Pokémon oder Magic?', cta: 'Verwalte deine TCG-Sammlung kostenlos' },
+  es: { hook: '¿Coleccionas Pokémon o Magic?', cta: 'Organiza tu colección TCG gratis' },
+  it: { hook: 'Collezioni Pokémon o Magic?', cta: 'Organizza la tua collezione TCG gratis' },
+}
+
+type Row = { jeu?: string | null; nom: string | null; equipe: string | null; annee: string | null; image_recto: string | null; rc: boolean | null; auto: boolean | null; patch: boolean | null; num: string | null; item_type: string | null; vendue: boolean | null; booklet: boolean | null; grade?: string | null }
 const pick = <T,>(a: T[]): T => a[Math.floor(Math.random() * a.length)]
 const shuffle = <T,>(a: T[]): T[] => { const b = [...a]; for (let i = b.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)); [b[i], b[j]] = [b[j], b[i]] } return b }
 // légende automatique : nom + étiquettes (RC, AUTO, PATCH, numérotation) ; jamais de prix
@@ -172,6 +181,8 @@ export default function TikTokMaker() {
 
   const [pos, setPos] = useState(0)
   const rowsRef = useRef<Row[] | null>(null)
+  const [tcgOnly, setTcgOnly] = useState(false) // pub TCG : uniquement les cartes à jouer de la galerie, avec des accroches TCG
+  const tcgOnlyRef = useRef(false)
   const musicRef = useRef<MusicKind>('beat')
   const fileBufRef = useRef<AudioBuffer | null>(null)
   const adRef = useRef<AdAssets | null>(null)
@@ -257,11 +268,11 @@ export default function TikTokMaker() {
     try {
       setStatus('Je choisis les cartes dans ta galerie…')
       if (!rowsRef.current) {
-        const { data, error } = await supabase.from('cartes_manuelles').select('nom,equipe,annee,image_recto,rc,auto,patch,num,item_type,vendue,booklet,grade').eq('user_id', OWNER).limit(1500)
+        const { data, error } = await supabase.from('cartes_manuelles').select('nom,equipe,annee,image_recto,rc,auto,patch,num,item_type,vendue,booklet,grade,jeu').eq('user_id', OWNER).limit(1500)
         if (error || !data) throw new Error(error?.message || 'galerie illisible')
         rowsRef.current = (data as Row[]).filter(r => r.nom && r.image_recto && r.image_recto.includes('supabase.co') && !r.image_recto.includes('placehold') && (r.item_type || 'card') === 'card' && !r.vendue && !r.booklet)
       }
-      const rows = rowsRef.current
+      const rows = (rowsRef.current || []).filter(r => (tcgOnlyRef.current ? !!r.jeu : !r.jeu))
       const teamCount = new Map<string, number>(); rows.forEach(r => { if (r.equipe) teamCount.set(r.equipe, (teamCount.get(r.equipe) || 0) + 1) })
       const topTeam = [...teamCount.entries()].sort((a, b) => b[1] - a[1])[0]?.[0]
       const themes: { hooks: string[]; ok: (r: Row) => boolean }[] = [
@@ -295,11 +306,11 @@ export default function TikTokMaker() {
     try {
       setStatus('Je choisis des cartes dans ta galerie…')
       if (!rowsRef.current) {
-        const { data, error } = await supabase.from('cartes_manuelles').select('nom,equipe,annee,image_recto,rc,auto,patch,num,item_type,vendue,booklet,grade').eq('user_id', OWNER).limit(1500)
+        const { data, error } = await supabase.from('cartes_manuelles').select('nom,equipe,annee,image_recto,rc,auto,patch,num,item_type,vendue,booklet,grade,jeu').eq('user_id', OWNER).limit(1500)
         if (error || !data) throw new Error(error?.message || 'galerie illisible')
         rowsRef.current = (data as Row[]).filter(r => r.nom && r.image_recto && r.image_recto.includes('supabase.co') && !r.image_recto.includes('placehold') && (r.item_type || 'card') === 'card' && !r.vendue && !r.booklet)
       }
-      const rows = rowsRef.current
+      const rows = (rowsRef.current || []).filter(r => (tcgOnlyRef.current ? !!r.jeu : !r.jeu))
       // les plus belles : cartes du Grail Wall, autos, patchs, petites numérotations (/1, /10, /25…), cartes gradées, rookies
       let grail = new Set<string>()
       try { const { data: g } = await supabase.from('grail_cards').select('card_key').eq('user_id', OWNER); grail = new Set((g || []).map((x: { card_key: string }) => x.card_key)) } catch { /* sans Grail Wall */ }
@@ -341,6 +352,14 @@ export default function TikTokMaker() {
         <h2 style={{ margin: '0 0 6px', fontSize: 24 }}>Pub TikTok · générateur</h2>
         <p style={{ color: '#aab3d1', fontSize: 14, lineHeight: 1.5, margin: '0 0 10px' }}>Une vraie pub Memorabilius au format TikTok : accroche, écrans de l’appli, carte en 3D, cuts sur le beat, sous-titres mot par mot, appel à l’action. 9:16, 60 i/s, créée sur ton appareil.</p>
         <button type="button" disabled={busy} onClick={autoAd} style={{ width: '100%', padding: '16px 18px', fontWeight: 900, fontSize: 18, background: '#ff3b6b', color: '#fff', border: 0, cursor: busy ? 'default' : 'pointer', margin: '4px 0 10px' }}>🎬 Générer la pub TikTok pour moi</button>
+        <label style={{ fontSize: 13, display: 'block', margin: '0 0 8px' }}>
+          <input type="checkbox" checked={tcgOnly} disabled={busy} onChange={e => {
+            const on = e.target.checked
+            setTcgOnly(on); tcgOnlyRef.current = on
+            const tx = TCG_PUB[lang]
+            setHook(on ? tx.hook : 'Ma collection de cartes'); setCta(on ? tx.cta : 'Rejoins les collectionneurs')
+          }} /> Pub TCG (cartes à jouer de la galerie uniquement)
+        </label>
         <label style={{ fontSize: 13, display: 'block', margin: '0 0 8px' }}>Langue de la pub <select value={lang} onChange={e => setLang(e.target.value as Lang)} disabled={busy} style={box}>{(Object.keys(LANG_NAMES) as Lang[]).map(l => <option key={l} value={l}>{LANG_NAMES[l]}</option>)}</select></label>
         <div style={{ display: 'flex', gap: 10, flexWrap: 'wrap', alignItems: 'center', margin: '0 0 10px' }}>
           <label style={{ fontSize: 13 }}>Musique <select value={music} onChange={e => setMusic(e.target.value as MusicKind)} style={box}><option value="beat">Beat dynamique</option><option value="lounge">Ambiance douce</option><option value="file">Mon propre morceau…</option><option value="none">Aucune</option></select></label>

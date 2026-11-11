@@ -42,6 +42,9 @@ export default function TcgGuide() {
       <h2 style={h2}>Prix</h2>
       <p>Les prix affichés viennent de Cardmarket pour Pokémon (via TCGdex) et de Scryfall pour Magic. Ils sont indicatifs et mis à jour une fois par jour. Une version Holo ou Foil utilise le prix correspondant.</p>
 
+      <h2 style={h2}>Mes decks</h2>
+      <p>Colle la liste d’un deck sur la page <Link href="/decks" style={{ fontWeight: 800 }}>Mes decks</Link> : le site la compare avec les cartes de ta galerie et indique combien de cartes il te manque, avec la liste à copier pour la chercher ou l’échanger.</p>
+
       <h2 style={h2}>Progression par extension</h2>
       <p>Dans ta galerie, le filtre TCG affiche, pour chaque extension Pokémon, combien de cartes tu possèdes sur le total officiel.</p>
 
