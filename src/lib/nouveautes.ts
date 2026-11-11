@@ -4,6 +4,17 @@ export type Entry = { date: string; titre: string; points: string[] }
 
 export const ENTRIES: Entry[] = [
   {
+    date: '20 novembre 2026', titre: 'Cartes à jouer (TCG) : Pokémon, Magic, Yu-Gi-Oh!, Lorcana, One Piece',
+    points: [
+      'Nouveau réglage « Je collectionne » (Paramètres) : Sport, TCG ou Les deux. Avec « TCG » seul, les pronos disparaissent de ton accueil.',
+      'Ajout d’une carte : choisis le type (Sport ou un jeu). Une carte à jouer a ses propres champs : extension, numéro, rareté, finition, langue, édition et état (de Mint à Poor, comme sur Cardmarket).',
+      'Recherche de carte : tape le nom et la fiche se remplit toute seule (Pokémon et Magic), avec le prix en euros quand il existe.',
+      'Scan IA : l’appareil reconnaît aussi les cartes à jouer et remplit le jeu, l’extension, le numéro, la rareté et la langue.',
+      'Galerie : filtres Sport / TCG / par jeu, pastilles sur les cartes, recherche par numéro (ex. 025/165), rareté, langue ou édition.',
+      'Progression par extension pour les cartes Pokémon (ex. 42 / 172), et prix Cardmarket (Pokémon) ou Scryfall (Magic) dans la fiche d’une carte.',
+    ],
+  },
+  {
     date: '19 novembre 2026', titre: 'Cartes multi-équipes : chaque équipe a ses cartes',
     points: [
       'Cartes avec plusieurs équipes (échange, anciens coéquipiers…) : dans les listes et les filtres, chaque équipe apparaît seule (Boston Celtics, Philadelphia 76ers, Toronto Raptors…) au lieu d’une longue ligne. La carte est trouvée dans chacune de ses équipes.',

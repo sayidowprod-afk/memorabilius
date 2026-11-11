@@ -1,5 +1,7 @@
 'use client'
 import { toast } from '@/lib/toast'
+import TcgFields, { TcgKindPicker } from '@/components/TcgFields'
+import { isTcg, getTcgGame } from '@/lib/tcgGames'
 import { useIsAppUI } from '@/lib/useIsNative'
 import { NAV_TOTAL_HEIGHT_CSS } from '@/lib/nativeLayout'
 import PriceFormField from '@/components/PriceFormField'
@@ -155,6 +157,7 @@ export default function EditerCarte({ params }: { params: Promise<{ userId: stri
     storage_binder: '', storage_page: '', storage_slot: '',
     item_type: 'card',
     lien_vinted: '', lien_ebay: '',
+    jeu: '', rarete: '', langue: '', edition: '', etat: '', tcg_ref: '',
   })
 
   const initialFormRef = useRef<string | null>(null)
@@ -220,6 +223,7 @@ export default function EditerCarte({ params }: { params: Promise<{ userId: stri
         item_type: (data.item_type && data.item_type !== 'card') ? 'memorabilia' : 'card',
         lien_vinted: data.lien_vinted || '',
         lien_ebay: data.lien_ebay || '',
+        jeu: data.jeu || '', rarete: data.rarete || '', langue: data.langue || '', edition: data.edition || '', etat: data.etat || '', tcg_ref: data.tcg_ref || '',
       }
       setForm(loadedForm)
       if (data.image_recto) setPreviewRecto(data.image_recto)
@@ -599,6 +603,7 @@ export default function EditerCarte({ params }: { params: Promise<{ userId: stri
       prix_vente: form.disponible_vente ? parsePrice(form.prix_vente) : null,
       lien_vinted: form.lien_vinted || null,
       lien_ebay: form.lien_ebay || null,
+      ...(isTcg(form.jeu) ? { jeu: form.jeu, rarete: form.rarete || null, langue: form.langue || null, edition: form.edition || null, etat: form.etat || null, tcg_ref: form.tcg_ref || null } : {}),
       item_type: form.item_type || 'card',
       format: form.format || 'standard',
       booklet: form.booklet, is_horizontal: form.format === 'horizontal',
@@ -776,7 +781,8 @@ export default function EditerCarte({ params }: { params: Promise<{ userId: stri
         )}
 
         <div style={{ background: 'white', borderRadius: 16, padding: 30, boxShadow: '0 4px 20px rgba(0,0,0,0.08)', display: 'flex', flexDirection: 'column', gap: 18 }}>
-          <div>
+          {isTcg(form.jeu) && <TcgKindPicker value={form.jeu} lang={lang} onChange={jeu => setForm(f => ({ ...f, jeu: jeu || f.jeu, marque: getTcgGame(jeu)?.publisher || f.marque }))} />}
+          <div style={{ display: isTcg(form.jeu) ? 'none' : undefined }}>
             <label style={{ fontSize: 12, fontWeight: 700, textTransform: 'uppercase', color: '#888', display: 'block', marginBottom: 10 }}>{t('addcard_item_type')}</label>
             <div style={{ display: 'flex', gap: 10 }}>
               {([
@@ -797,7 +803,7 @@ export default function EditerCarte({ params }: { params: Promise<{ userId: stri
             </div>
           </div>
 
-          {form.item_type === 'card' && (
+          {form.item_type === 'card' && !isTcg(form.jeu) && (
           <div>
             <label style={{ fontSize: 12, fontWeight: 700, textTransform: 'uppercase', color: '#888', display: 'block', marginBottom: 10 }}>Format</label>
             <div style={{ display: 'flex', flexWrap: 'wrap', gap: 8 }}>
@@ -818,6 +824,14 @@ export default function EditerCarte({ params }: { params: Promise<{ userId: stri
           </div>
           )}
 
+          {isTcg(form.jeu) ? (
+            <>
+              <TcgFields lang={lang} form={form} onChange={patch => setForm(f => ({ ...f, ...patch }))} />
+              <NotesPersoField value={form.notes_perso} isPublic={form.notes_perso_public}
+                onChange={v => setForm(f => ({ ...f, notes_perso: v }))} onTogglePublic={() => setForm(f => ({ ...f, notes_perso_public: !f.notes_perso_public }))} />
+            </>
+          ) : (
+          <>
           <div>
             <label style={{ fontSize: 12, fontWeight: 700, textTransform: 'uppercase', color: '#888', display: 'block', marginBottom: 6 }}>
               {t('addcard_player_name')}
@@ -929,6 +943,9 @@ export default function EditerCarte({ params }: { params: Promise<{ userId: stri
             </>
           )}
 
+          </>
+          )}
+
           <div>
             <label style={{ fontSize: 12, fontWeight: 700, textTransform: 'uppercase', color: '#888', display: 'block', marginBottom: 6 }}>
               {t('addcard_add_to_collection_placeholder')}
@@ -970,7 +987,7 @@ export default function EditerCarte({ params }: { params: Promise<{ userId: stri
             </div>
           )}
 
-          {form.item_type !== 'memorabilia' ? (
+          {isTcg(form.jeu) ? null : form.item_type !== 'memorabilia' ? (
           <div>
             <label style={{ fontSize: 12, fontWeight: 700, textTransform: 'uppercase', color: '#888', display: 'block', marginBottom: 10 }}>{t('addcard_features')}</label>
             <div style={{ display: 'flex', flexWrap: 'wrap', gap: 10 }}>

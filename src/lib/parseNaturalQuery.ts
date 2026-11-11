@@ -36,7 +36,9 @@ export function parseNaturalQuery(raw: string): ParsedQuery {
     const oneOfOne = strip(/\b1\s*\/\s*1\b/)
     if (oneOfOne) { num = true; numMax = 1 }
   }
-  if (!num) {
+  // Numéro de carte à jouer (« 025/165 », « 003/030 ») : ce n'est pas un tirage, on le laisse dans le texte pour la recherche par numéro
+  const tcgNumber = /\b0\d{1,3}\s*\/\s*\d{2,4}\b|\b\d{3,4}\s*\/\s*\d{3,4}\b/.test(text)
+  if (!num && !tcgNumber) {
     const bareNum = text.match(/\bnum(?:erot[eé]e?s?)?\b|\/(\d{1,4})\b/i)
     if (bareNum) { num = true; if (bareNum[1]) numMax = parseInt(bareNum[1]); text = text.replace(bareNum[0], ' ') }
   } else {

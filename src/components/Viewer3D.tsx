@@ -23,6 +23,7 @@ import { getCsvCardSharePath } from '@/lib/csvCardShortLink'
 import TagIcon from '@/components/TagIcon'
 import LoupeOverlay from '@/components/LoupeOverlay'
 import MarketplacePriceField from '@/components/MarketplacePriceField'
+import TcgInfoBlock from '@/components/TcgInfoBlock'
 import { fmtPrice } from '@/lib/marketplace'
 import { candidatesForCard, type MSet, type MEntry, type MCard } from '@/lib/setMatcher'
 
@@ -45,6 +46,7 @@ interface Card {
   storage_binder?: string; storage_page?: number | null; storage_slot?: string;
   lien_vinted?: string; lien_ebay?: string; vendue?: boolean; reservee?: boolean; disponible_vente?: boolean; prix_vente?: number | null; quantite?: number;
   notes_perso?: string; notes_perso_public?: boolean
+  jeu?: string; rarete?: string; langue?: string; edition?: string; etat?: string; tcg_ref?: string
 }
 
 // Le container .viewer-card a une forme fixe (déterminée par le recto, is_horizontal).
@@ -1627,12 +1629,12 @@ export default function Viewer3D({ popup, accent, onClose, onNext, onPrev, getTa
           )}
           </div>
           {getTags(popup)}
+          {popup.jeu && <TcgInfoBlock card={popup} metaColor={metaColor} textColor={textColor} borderColor={borderColor} />}
           <div className="v3d-grid" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 10, borderTop: `1px solid ${borderColor}`, marginTop: 10, paddingTop: 10, ...(teamColorOf(popup.t) ? {} : { ['--v3d-bar' as string]: accent, ['--v3d-bar2' as string]: accent }) }}>
             {[
-              ['Année', popup.y],
-              ['Numérotation', popup.num || 'N/A'],
+              ...(popup.jeu ? [] : [['Année', popup.y], ['Numérotation', popup.num || 'N/A']]),
               [isMemo ? 'Taille' : 'Grade', isMemo ? (popup.g || '—') : popup.g],
-              ['Collection', `${popup.br} ${popup.s}`],
+              ...(popup.jeu ? [['Année', popup.y]] : [['Collection', `${popup.br} ${popup.s}`]]),
               ...((popup.quantite || 1) > 1 ? [['Exemplaires', `×${popup.quantite}`]] : []),
             ].map(([l, v]) => (
               <div key={l}>

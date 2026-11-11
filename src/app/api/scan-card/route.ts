@@ -31,6 +31,9 @@ const PROMPT = `Tu es un expert en cartes de collection sportives et TCG. Répon
   "num": "Tirage sériel imprimé: '/Y' ou 'X/Y'. Vide sinon.",
   "card_number": "Numéro au verso, sans '#'. Vide si absent.",
   "grade": "Raw",
+  "jeu": "UNIQUEMENT si carte à jouer : pokemon, mtg, yugioh, lorcana ou onepiece. Sinon vide.",
+  "rarete": "TCG seulement : rareté imprimée/symbole (Commune, Rare Holo, Mythique, Secret Rare…). Sinon vide.",
+  "langue": "TCG seulement : langue du texte de la carte en code (FR, EN, JP, DE, ES, IT, PT, KO, ZH). Sinon vide.",
   "rc": false,
   "auto": false,
   "patch": false
@@ -53,6 +56,7 @@ Premium (Immaculate/NT/Noir/Obsidian/Flawless): texte imprimé priorité absolue
 TOPPS/BOWMAN: Refractor (miroir irisé)→"Refractor". 1st Bowman→rc=true, variation="".
 UPPER DECK: Young Guns→rc=true, variation="Young Guns". SP Authentic Future Watch→rc=true.
 SOCCER: equipe=CLUB (ex: Real Madrid) ou NATION si World Cup (ex: France). Mêmes règles parallèles que NBA.
+TCG (jeu renseigné): collection = nom de l'extension/set, card_number = numéro dans l'extension (ex: 025/165), nom = nom de la carte, equipe vide, rc/auto/patch=false.
 POKÉMON/TCG: VMAX/VSTAR/V/ex/GX/EX→inclure dans variation. Rareté (Holo Rare, Full Art, Alt Art…)→variation.
 
 ═══ RÈGLES ═══

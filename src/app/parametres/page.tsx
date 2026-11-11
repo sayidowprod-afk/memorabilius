@@ -12,6 +12,7 @@ import FeedbackForm from '@/components/FeedbackForm'
 import { AccentRow } from '@/components/SettingsMenu'
 import SeasonRow from '@/components/SeasonRow'
 import GalleryThemeRow from '@/components/GalleryThemeRow'
+import CollectionFocusRow from '@/components/CollectionFocusRow'
 import { supabase } from '@/lib/supabase'
 
 const LANGS = [
@@ -113,6 +114,7 @@ export default function Parametres() {
         </div>
         <SeasonRow row={row} rowLabel={rowLabel} rowSub={rowSub} />
         <GalleryThemeRow row={row} rowLabel={rowLabel} rowSub={rowSub} />
+        <CollectionFocusRow row={row} rowLabel={rowLabel} rowSub={rowSub} />
       </div>
 
       {isNative && (

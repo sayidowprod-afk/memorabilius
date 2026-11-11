@@ -14,6 +14,8 @@ import Link from 'next/link'
 import { supabase } from '@/lib/supabase'
 import { galleryMemClear } from '@/lib/galleryMem'
 import { makeThumb } from '@/lib/thumbnail'
+import TcgFields, { TcgKindPicker } from '@/components/TcgFields'
+import { isTcg, getTcgGame } from '@/lib/tcgGames'
 import { useLang } from '@/lib/LangContext'
 import { useTheme } from '@/lib/ThemeContext'
 import dynamic from 'next/dynamic'
@@ -169,6 +171,18 @@ function parseDesignation(raw: string) {
 // fiche publique de la carte.
 // Icone oeil / oeil barre -- SVG inline (pas d'emoji, rendu trop discret/pas
 // assez lisible comme bouton d'apres retour utilisateur).
+// 652 : si l'IA reconnaît une carte à jouer, on bascule la fiche en TCG et on remplit jeu / rareté / langue (sans écraser ce qui est déjà saisi)
+function tcgFromScan(card: any, f: { jeu: string; rarete: string; langue: string }) {
+  const jeu = typeof card?.jeu === 'string' ? card.jeu.trim().toLowerCase() : ''
+  if (!getTcgGame(jeu) && !isTcg(f.jeu)) return {}
+  const lg = typeof card?.langue === 'string' ? card.langue.trim().toUpperCase() : ''
+  return {
+    jeu: f.jeu || jeu,
+    rarete: f.rarete || (typeof card?.rarete === 'string' ? card.rarete.trim() : ''),
+    langue: f.langue || (['FR','EN','JP','DE','ES','IT','PT','KO','ZH'].includes(lg) ? lg : ''),
+  }
+}
+
 function EyeIcon({ open }: { open: boolean }) {
   return open ? (
     <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round">
@@ -279,6 +293,16 @@ export default function AjouterCarte({ params }: { params: Promise<{ userId: str
   const [saving, setSaving] = useState(false)
   const isAppUI = useIsAppUI()
   const [showDesignation, setShowDesignation] = useState(false)
+  // Ce que collectionne le membre : 'sport' (par défaut, rien ne change), 'tcg' ou 'both' (alors le choix du type de carte est proposé)
+  const [collectionFocus, setCollectionFocus] = useState<'sport' | 'tcg' | 'both'>('sport')
+  useEffect(() => {
+    supabase.from('profiles').select('collection_focus').eq('id', userId).single().then(({ data, error }) => {
+      const f = error ? null : (data as { collection_focus?: string } | null)?.collection_focus
+      if (f === 'tcg' || f === 'both') setCollectionFocus(f)
+      if (f === 'tcg') setForm(x => (x.jeu ? x : { ...x, jeu: 'pokemon', marque: x.marque || 'Pokémon', item_type: 'card' }))
+    })
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [userId])
   const [designation, setDesignation] = useState('')
   const [designationDone, setDesignationDone] = useState(false)
   const [uploadingRecto, setUploadingRecto] = useState(false)
@@ -298,6 +322,7 @@ export default function AjouterCarte({ params }: { params: Promise<{ userId: str
     verso_is_horizontal: null as boolean | null, // null = même orientation que le recto
     item_type: 'card' as string,
     lien_vinted: '', lien_ebay: '',
+    jeu: '', rarete: '', langue: '', edition: '', etat: '', tcg_ref: '',
   })
 
   // Champs que l'utilisateur a modifiés à la main pendant qu'un scan IA était
@@ -688,6 +713,7 @@ export default function AjouterCarte({ params }: { params: Promise<{ userId: str
         rc:         f.rc   || (card.rc   ?? false),
         auto:       f.auto || (card.auto ?? false),
         patch:      f.patch || (card.patch ?? false),
+        ...tcgFromScan(card, f),
       }))
     } catch (e: any) {
       setScanError(e.message)
@@ -727,6 +753,7 @@ export default function AjouterCarte({ params }: { params: Promise<{ userId: str
         rc:         f.rc   || (card.rc   ?? false),
         auto:       f.auto || (card.auto ?? false),
         patch:      f.patch || (card.patch ?? false),
+        ...tcgFromScan(card, f),
       }))
     } catch (e: any) {
       setScanError(e.message)
@@ -883,6 +910,7 @@ export default function AjouterCarte({ params }: { params: Promise<{ userId: str
       image_recto_hd: '', image_verso_hd: '', image_recto_thumb: '',
       verso_is_horizontal: null, item_type: 'card',
       lien_vinted: '', lien_ebay: '',
+      jeu: '', rarete: '', langue: '', edition: '', etat: '', tcg_ref: '',
     })
     setPreviewRecto(null); setPreviewVerso(null); setPreviewIL(null); setPreviewIR(null)
     setBinderPrompt(null); setShowBinderPicker(false)
@@ -923,6 +951,7 @@ export default function AjouterCarte({ params }: { params: Promise<{ userId: str
       lien_ebay: form.lien_ebay || null,
       item_type: form.item_type || 'card',
       ...(form.image_recto_thumb ? { image_recto_thumb: form.image_recto_thumb } : {}),
+      ...(isTcg(form.jeu) ? { jeu: form.jeu, rarete: form.rarete || null, langue: form.langue || null, edition: form.edition || null, etat: form.etat || null, tcg_ref: form.tcg_ref || null } : {}),
     }
     let { error } = await supabase.from('cartes_manuelles').insert(row)
     // colonne image_recto_thumb ajoutée par la migration 20261117 : tant qu'elle manque, on enregistre sans la miniature
@@ -1048,8 +1077,15 @@ export default function AjouterCarte({ params }: { params: Promise<{ userId: str
         {t('addcard_title_add')}
       </h1>
 
+      {(collectionFocus !== 'sport' || !!form.jeu) && (
+        <TcgKindPicker value={form.jeu} lang={lang} onChange={jeu => setForm(f => ({
+          ...f, jeu, item_type: 'card', marque: jeu ? (getTcgGame(jeu)?.publisher || f.marque) : (isTcg(f.jeu) ? '' : f.marque),
+          ...(jeu ? { equipe: '', rc: false, auto: false, patch: false, printing_plate: false, num: '', booklet: false } : { rarete: '', langue: '', edition: '', etat: '', tcg_ref: '' }),
+        }))} />
+      )}
+
       {/* Sélecteur de type */}
-      <div style={{ display: 'flex', gap: 10, marginBottom: 24 }}>
+      <div style={{ display: isTcg(form.jeu) ? 'none' : 'flex', gap: 10, marginBottom: 24 }}>
         {([
           { id: 'card',        icon: '🃏', label: t('addcard_type_card') },
           { id: 'memorabilia', icon: '🏆', label: t('addcard_type_memorabilia') },
@@ -1080,7 +1116,7 @@ export default function AjouterCarte({ params }: { params: Promise<{ userId: str
       )}
       <form onSubmit={handleSubmit}>
         {/* Format -- avant les photos : determine leur ratio de cadrage juste en dessous */}
-        {form.item_type === 'card' && (
+        {form.item_type === 'card' && !isTcg(form.jeu) && (
         <div style={{ marginBottom: 20 }}>
           <label style={{ fontSize: 12, fontWeight: 700, textTransform: 'uppercase', color: '#888', display: 'block', marginBottom: 10 }}>Format</label>
           <div style={{ display: 'flex', flexWrap: 'wrap', gap: 8 }}>
@@ -1166,7 +1202,7 @@ export default function AjouterCarte({ params }: { params: Promise<{ userId: str
 
         <div style={{ background: 'white', borderRadius: 16, padding: 30, boxShadow: '0 4px 20px rgba(0,0,0,0.08)', display: 'flex', flexDirection: 'column', gap: 18 }}>
           {/* Saisie rapide par désignation (façon Beckett) */}
-          <div style={{ border: '1.5px dashed #cbd5e1', borderRadius: 12, padding: showDesignation ? 16 : 0, background: '#f8faff' }}>
+          <div style={{ border: '1.5px dashed #cbd5e1', borderRadius: 12, padding: showDesignation ? 16 : 0, background: '#f8faff', display: isTcg(form.jeu) ? 'none' : undefined }}>
             <button type="button" onClick={() => setShowDesignation(v => !v)}
               style={{ width: '100%', background: 'none', border: 'none', cursor: 'pointer', padding: showDesignation ? '0 0 12px' : '12px 16px', display: 'flex', alignItems: 'center', justifyContent: 'space-between', color: '#003DA6', fontWeight: 800, fontSize: 13 }}>
               <span>⚡ {t('addcard_fill_from_designation')}</span>
@@ -1217,6 +1253,14 @@ export default function AjouterCarte({ params }: { params: Promise<{ userId: str
             )}
           </div>
 
+          {isTcg(form.jeu) ? (
+            <>
+              <TcgFields lang={lang} form={form} onChange={patch => setForm(f => ({ ...f, ...patch }))} />
+              <NotesPersoField value={form.notes_perso} isPublic={form.notes_perso_public}
+                onChange={v => setField('notes_perso', v)} onTogglePublic={() => setForm(f => ({ ...f, notes_perso_public: !f.notes_perso_public }))} />
+            </>
+          ) : (
+          <>
           <div>
             <label style={{ fontSize: 12, fontWeight: 700, textTransform: 'uppercase', color: '#888', display: 'block', marginBottom: 6 }}>
               {t('addcard_player_name')}
@@ -1395,6 +1439,9 @@ export default function AjouterCarte({ params }: { params: Promise<{ userId: str
               </div>
             )}
           </div>
+          )}
+
+          </>
           )}
 
           <div className="da-sticky-actions" style={{ bottom: isAppUI ? NAV_TOTAL_HEIGHT_CSS : 0 }}>

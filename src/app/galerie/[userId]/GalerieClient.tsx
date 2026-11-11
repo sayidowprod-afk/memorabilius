@@ -85,6 +85,7 @@ import ModalShell from '@/components/ModalShell'
 import { useAuth } from '@/lib/AuthContext'
 import { getTeamById, SPORT_LABELS, Sport, inferSportFromTeamName } from '@/lib/sportsTeams'
 import { parseNaturalQuery } from '@/lib/parseNaturalQuery'
+import TcgSetProgress from '@/components/TcgSetProgress'
 import PriceTag from '@/components/PriceTag'
 import { cardDisplayRatio, isHorizontalFormat, getFormat } from '@/lib/cardFormats'
 import TeamBadge from '@/components/TeamBadge'
@@ -94,6 +95,7 @@ import { saveScroll, readScroll, clearScroll, arrivedByBack, scrollToWhenReady }
 import { galleryMemGet, galleryMemSet } from '@/lib/galleryMem'
 import { rememberOwnGallery } from '@/lib/ownGallery'
 import { teamList, hasTeam } from '@/lib/cardTeams'
+import { TCG_GAMES, getTcgGame, isTcg } from '@/lib/tcgGames'
 import JumpBar from '@/components/JumpBar'
 
 // ── Helpers numériques (module scope pour éviter re-création à chaque render) ──
@@ -403,7 +405,7 @@ function CardLink({ slug, cardKey, children }: { slug: string; cardKey: string; 
 // ce qui permet de lancer les lots suivants sans attendre la fin du premier.
 // 624 : colonnes lues par la galerie = exactement celles utilisées par mapManuelle (on ne télécharge plus user_id, valeur, set_entry_id, team).
 // Si une colonne venait à manquer en base, le premier lot échoue une fois puis on repasse automatiquement sur « toutes les colonnes ».
-const CARD_COLS = 'id,image_recto,image_verso,image_recto_hd,image_verso_hd,image_recto_thumb,prix_vente,quantite,nom,equipe,annee,marque,collection,variation,num,card_number,cert_number,auto,rc,patch,printing_plate,grade,beckett_designation,booklet,is_horizontal,verso_is_horizontal,format,image_interieur_gauche,image_interieur_droite,created_at,position,collection_tag,disponible_vente,vendue,reservee,item_type,storage_binder,storage_page,storage_slot,lien_vinted,lien_ebay,notes_perso,notes_perso_public'
+const CARD_COLS = 'id,image_recto,image_verso,image_recto_hd,image_verso_hd,image_recto_thumb,prix_vente,quantite,nom,equipe,annee,marque,collection,variation,num,card_number,cert_number,auto,rc,patch,printing_plate,grade,beckett_designation,booklet,is_horizontal,verso_is_horizontal,format,image_interieur_gauche,image_interieur_droite,created_at,position,collection_tag,disponible_vente,vendue,reservee,item_type,storage_binder,storage_page,storage_slot,lien_vinted,lien_ebay,notes_perso,notes_perso_public,jeu,rarete,langue,edition,etat,tcg_ref'
 let cardColsOk = true
 const cardCols = () => (cardColsOk ? CARD_COLS : '*')
 type GalleryPrefetch = { total: Promise<number>; first: Promise<any>; cc: Promise<any[]>; rest: () => Promise<any[][]> }
@@ -437,6 +439,7 @@ function startGalleryPrefetch(uid: string): GalleryPrefetch {
   return { total, first, cc, rest }
 }
 const THUMB_PATH = '/storage/v1/render/image/public/'
+const TCG_PILL: React.CSSProperties = { display: 'inline-block', padding: '1px 6px', fontSize: 9, fontWeight: 800, letterSpacing: '.04em', textTransform: 'uppercase', background: '#3a4577', color: '#fff', borderRadius: 3, whiteSpace: 'nowrap' }
 const USE_SUPABASE_TRANSFORMS = false
 function isSlowNetwork(): boolean {
   if (typeof navigator === 'undefined') return false
@@ -553,6 +556,7 @@ interface Card {
   prix_vente?: number | null;
   quantite?: number;
   thumb?: string  // miniature de la grille (image_recto_thumb), absente pour les cartes anciennes
+  jeu?: string; rarete?: string; langue?: string; edition?: string; etat?: string; tcg_ref?: string // cartes à jouer (TCG) ; vide = carte de sport
   f: string; b: string; fHd?: string; bHd?: string; n: string; t: string; y: string
   br: string; s: string; v: string; num: string; card_number?: string; cert_number?: string
   auto: boolean; rc: boolean; patch: boolean; printing_plate?: boolean; g: string
@@ -663,6 +667,7 @@ export default function GalerieClient({ userId, initialCardUrl, initialCards, in
   const [search, setSearch] = useState(initialParsedSearch.text)
   const searchDebounceRef = useRef<ReturnType<typeof setTimeout> | null>(null)
   const [fSport, setFSport] = useState(searchParams.get('sport') || '')
+  const [fJeu, setFJeu] = useState(searchParams.get('jeu') || '') // '' = tout, 'sport', 'tcg' ou un jeu précis (pokemon, mtg…)
   const [fTeam, setFTeam] = useState(searchParams.get('team') || '')
   const [fBrand, setFBrand] = useState(searchParams.get('brand') || '')
   const fTeamDebounced = useDebouncedValue(fTeam, 200)
@@ -1362,6 +1367,7 @@ export default function GalerieClient({ userId, initialCardUrl, initialCards, in
         collection_tag: m.collection_tag || '', disponible_vente: m.disponible_vente || false, vendue: m.vendue || false, reservee: !!m.reservee, item_type: m.item_type || 'card',
         storage_binder: m.storage_binder || '', storage_page: m.storage_page ?? null, storage_slot: m.storage_slot || '',
         lien_vinted: m.lien_vinted || '', lien_ebay: m.lien_ebay || '',
+        jeu: m.jeu || undefined, rarete: m.rarete || undefined, langue: m.langue || undefined, edition: m.edition || undefined, etat: m.etat || undefined, tcg_ref: m.tcg_ref || undefined,
       })
 
       // Affiche une liste de cartes prête (fraîche ou gardée en mémoire) : liste, filtres, ouverture de la carte demandée par l'adresse
@@ -1470,7 +1476,7 @@ export default function GalerieClient({ userId, initialCardUrl, initialCards, in
             timeout,
           ])
         } catch (e) {
-          if (/column|PGRST204|42703/i.test(String((e as { message?: string })?.message || '') + String((e as { code?: string })?.code || ''))) cardColsOk = false
+          if (cardColsOk && /column|PGRST204|42703/i.test(String((e as { message?: string })?.message || '') + String((e as { code?: string })?.code || ''))) { cardColsOk = false; return fetchFirstBatch(0) } // colonne absente : on repart tout de suite sur « toutes les colonnes »
           if (attempt >= 2) throw e
           await new Promise(r => setTimeout(r, 1000))
           return fetchFirstBatch(attempt + 1)
@@ -1612,10 +1618,11 @@ export default function GalerieClient({ userId, initialCardUrl, initialCards, in
       // ("Topps"...) tapee dans la recherche intelligente ne matchait donc jamais, meme si la carte l'avait bien.
       // Chaque mot doit se retrouver quelque part (nom, variation, collection, marque) :
       // "erving mosaic" = joueur ET collection, pas la phrase exacte collee.
-      const hay = (d.n + ' ' + d.v + ' ' + d.s + ' ' + d.br).toLowerCase()
+      const hay = (d.n + ' ' + d.v + ' ' + d.s + ' ' + d.br + (d.jeu ? ' ' + [d.card_number, d.rarete, d.langue, d.edition, d.etat, getTcgGame(d.jeu)?.label].filter(Boolean).join(' ') : '')).toLowerCase()
       const words = search.toLowerCase().split(/\s+/).filter(Boolean)
       return (
         words.every(w => hay.includes(w)) &&
+        (!fJeu || (fJeu === 'sport' ? !d.jeu : fJeu === 'tcg' ? !!d.jeu : d.jeu === fJeu)) &&
         (!fSport || inferSportFromTeamName(d.t) === fSport) &&
         (!fTeamDebounced || d.t.toLowerCase().includes(fTeamDebounced.toLowerCase())) &&
         (!fBrandDebounced || d.s.toLowerCase().includes(fBrandDebounced.toLowerCase())) &&
@@ -1749,7 +1756,7 @@ export default function GalerieClient({ userId, initialCardUrl, initialCards, in
   // pour reordonner - ca renvoyait l'utilisateur en page 1 (donc en haut)
   // a chaque deplacement de carte. On ne reinitialise la page que quand un
   // critere de filtre/tri change reellement.
-  useEffect(() => { setPage(1) }, [search, fSport, fTeamDebounced, fBrandDebounced, fYear, fCollectionTag, activeFilters, filterPrivate, filterVente, filterMemo, sortBy, sortBy2, pinTeam])
+  useEffect(() => { setPage(1) }, [search, fJeu, fSport, fTeamDebounced, fBrandDebounced, fYear, fCollectionTag, activeFilters, filterPrivate, filterVente, filterMemo, sortBy, sortBy2, pinTeam])
 
   useEffect(() => {
     const ids = new Set(cards.map(getCardId))
@@ -1798,11 +1805,11 @@ export default function GalerieClient({ userId, initialCardUrl, initialCards, in
   // Galerie par tranches : le reste des cartes arrive dès qu'il est utile (fin de grille proche, filtre, tri, recherche, carte ouverte, chronologie)
   useEffect(() => {
     if (!loadRestRef.current) return
-    const touched = !!(search || fSport || fTeam || fBrand || fYear || fCollectionTag || numMax != null || numMin != null || filterPrivate || filterVente || filterMemo
+    const touched = !!(search || fJeu || fSport || fTeam || fBrand || fYear || fCollectionTag || numMax != null || numMin != null || filterPrivate || filterVente || filterMemo
       || activeFilters.rc || activeFilters.auto || activeFilters.patch || activeFilters.num || sortBy !== 'default' || sortBy2 !== 'none' || pinTeam || viewMode !== 'grid')
     const nearEnd = displayed.length >= cards.length - PAGE_SIZE * 2
     if (touched || nearEnd || popup || storyIdx !== null) void loadRestRef.current()
-  }, [restExtra, displayed, cards.length, search, fSport, fTeam, fBrand, fYear, fCollectionTag, numMax, numMin, filterPrivate, filterVente, filterMemo, activeFilters, sortBy, sortBy2, pinTeam, viewMode, popup, storyIdx])
+  }, [restExtra, displayed, cards.length, search, fJeu, fSport, fTeam, fBrand, fYear, fCollectionTag, numMax, numMin, filterPrivate, filterVente, filterMemo, activeFilters, sortBy, sortBy2, pinTeam, viewMode, popup, storyIdx])
 
   // ── Grille : nombre de colonnes mémorisé (pincement) ──
   useEffect(() => {
@@ -1925,6 +1932,7 @@ export default function GalerieClient({ userId, initialCardUrl, initialCards, in
     const pageParam = searchParams.get('page')
     if (pageParam) sp.set('page', pageParam)
     if (search) sp.set('q', search)
+    if (fJeu) sp.set('jeu', fJeu)
     if (fTeamDebounced) sp.set('team', fTeamDebounced)
     if (fBrandDebounced) sp.set('brand', fBrandDebounced)
     if (fYear) sp.set('year', fYear)
@@ -1947,7 +1955,7 @@ export default function GalerieClient({ userId, initialCardUrl, initialCards, in
     // Toujours history.replaceState (jamais router.replace) : router.replace redemandait la page au serveur à chaque
     // ouverture / modification de carte, ce qui re-rendait la galerie et faisait clignoter le viewer.
     if (next !== (window.location.search || window.location.pathname)) window.history.replaceState(window.history.state, '', next)
-  }, [loaded, search, fTeamDebounced, fBrandDebounced, fYear, fCollectionTag, sortBy, sortBy2, pinTeam, filterVente, popup?.f, activeTab, objectifsSubTab])
+  }, [loaded, search, fJeu, fTeamDebounced, fBrandDebounced, fYear, fCollectionTag, sortBy, sortBy2, pinTeam, filterVente, popup?.f, activeTab, objectifsSubTab])
 
   useEffect(() => {
     const handler = (e: KeyboardEvent) => {
@@ -3270,6 +3278,16 @@ export default function GalerieClient({ userId, initialCardUrl, initialCards, in
             Retour à un bloc simple et fiable — le gain de confort du sticky ne
             valait pas l'instabilité que ça causait. */}
         <div className="gf-panel" style={{ background: dark ? '#1e1e1e' : '#fff', padding: 10, borderRadius: 8, marginBottom: 15, border: dark ? '1px solid #333' : '1px solid #eee' }}>
+          {cards.some(c => !!c.jeu) && (
+            <div style={{ display: 'flex', flexWrap: 'wrap', gap: 6, marginBottom: 10 }}>
+              {([['', t('gallery_all')], ['sport', '🏀 Sport'], ['tcg', '🎴 TCG'], ...TCG_GAMES.filter(g => cards.some(c => c.jeu === g.id)).map(g => [g.id, `${g.emoji} ${g.label}`] as [string, string])] as [string, string][]).map(([id, label]) => (
+                <button key={id || 'all'} type="button" onClick={() => setFJeu(id)}
+                  style={{ padding: '6px 12px', borderRadius: 16, cursor: 'pointer', fontWeight: 800, fontSize: 12, border: fJeu === id ? '2px solid transparent' : `2px solid ${dark ? '#444' : '#ddd'}`,
+                    background: fJeu === id ? accent : 'transparent', color: fJeu === id ? '#fff' : (dark ? '#ddd' : '#444') }}>{label}</button>
+              ))}
+            </div>
+          )}
+          {fJeu && fJeu !== 'sport' && <TcgSetProgress cards={cards.filter(c => !!c.jeu && (fJeu === 'tcg' || c.jeu === fJeu))} accent={accent} dark={dark} />}
           <div className="gf-two" style={{ display: 'grid', gridTemplateColumns: 'repeat(2,1fr)', gap: 8, marginBottom: 10 }}>
             <div>
             <div style={{ position: 'relative' }}>
@@ -4113,6 +4131,15 @@ export default function GalerieClient({ userId, initialCardUrl, initialCards, in
                   <p style={{ fontSize: 10, color: '#999', marginTop: 2, display: 'flex', alignItems: 'center', gap: 5, flexWrap: 'wrap' }}>
                     <span style={{ whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>{d.y} {d.br} {d.s}</span>
                   </p>
+                  {isTcg(d.jeu) && (
+                    <p style={{ margin: '3px 0 0', display: 'flex', gap: 4, flexWrap: 'wrap' }}>
+                      {d.card_number && <span style={TCG_PILL}>{d.card_number}</span>}
+                      {d.rarete && <span style={{ ...TCG_PILL, background: getTcgGame(d.jeu)?.color || '#7a2bff', color: '#111' }}>{d.rarete}</span>}
+                      {d.langue && <span style={TCG_PILL}>{d.langue}</span>}
+                      {d.edition && <span style={{ ...TCG_PILL, background: '#e0a526', color: '#1a1200' }}>{d.edition}</span>}
+                      {d.etat && <span style={{ ...TCG_PILL, background: '#1e9e57' }}>{d.etat}</span>}
+                    </p>
+                  )}
                 </div>
                 <div className="gc-right">
                 {/* Boutons like + commentaires */}

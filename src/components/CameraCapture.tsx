@@ -52,7 +52,6 @@ export default function CameraCapture({ onCapture, onClose, ratio }: Props) {
   const zoomCapsRef = useRef<{ min: number; max: number; step: number } | null>(null)
   const zoomRef = useRef(1)
   const zoomBusyRef = useRef(false)
-  const zoomSaveRef = useRef<ReturnType<typeof setTimeout> | null>(null)
   const zoomPendingRef = useRef<number | null>(null)
   const pinchRef = useRef<{ dist: number; zoom: number } | null>(null)
   // Choix du capteur (grand angle, tele, avant...) -- liste des cameras video.
@@ -97,12 +96,6 @@ export default function CameraCapture({ onCapture, onClose, ratio }: Props) {
         zoomRef.current = 1
         setZoom(1)
       }
-      // Zoom memorise : on reprend le dernier reglage utilise avec ce capteur (evite de re-cliquer 7 fois sur « + » a chaque ouverture).
-      try {
-        const saved = JSON.parse(localStorage.getItem('camera_zoom_v1') || '{}') as Record<string, number>
-        const zs = saved[settings.deviceId ?? 'default']
-        if (typeof zs === 'number' && zs > (zoomCapsRef.current?.min ?? 1) + 0.01) applyZoomRef.current(zs)
-      } catch { /* stockage indisponible : zoom de depart habituel */ }
       // Les libelles des cameras ne sont disponibles qu'apres l'autorisation.
       navigator.mediaDevices.enumerateDevices()
         .then(list => setDevices(list.filter(d => d.kind === 'videoinput')))
@@ -193,16 +186,6 @@ export default function CameraCapture({ onCapture, onClose, ratio }: Props) {
     const z = Math.max(zc.min, Math.min(zc.max, value))
     zoomRef.current = z
     setZoom(z)
-    // memorise le zoom (par capteur), un peu apres le dernier geste pour ne pas ecrire des dizaines de fois par seconde
-    if (zoomSaveRef.current) clearTimeout(zoomSaveRef.current)
-    zoomSaveRef.current = setTimeout(() => {
-      try {
-        const id = (track.getSettings?.() as { deviceId?: string } | undefined)?.deviceId ?? 'default'
-        const saved = JSON.parse(localStorage.getItem('camera_zoom_v1') || '{}') as Record<string, number>
-        saved[id] = Math.round(z * 100) / 100
-        localStorage.setItem('camera_zoom_v1', JSON.stringify(saved))
-      } catch { /* stockage indisponible */ }
-    }, 400)
     if (digitalZoomRef.current) return
     // Une seule applyConstraints en vol a la fois (le pincement en envoie des dizaines/s).
     if (zoomBusyRef.current) { zoomPendingRef.current = z; return }
@@ -372,12 +355,12 @@ export default function CameraCapture({ onCapture, onClose, ratio }: Props) {
       p.then(v => { clearTimeout(t); resolve(v) }, e => { clearTimeout(t); reject(e) })
     })
   // Photo "noire" : takePhoto() renvoie parfois un fichier valide mais vide (bug Android/Chromium connu).
-  // Test sur le bitmap deja decode (un seul decodage de la photo pleine resolution).
-  const isBlackBitmap = (bmp: ImageBitmap): boolean => {
+  const isBlackBlob = async (b: Blob): Promise<boolean> => {
     try {
+      const bmp = await createImageBitmap(b)
       const c = document.createElement('canvas'); c.width = 24; c.height = 24
       const cx = c.getContext('2d', { willReadFrequently: true })!
-      cx.drawImage(bmp, 0, 0, 24, 24)
+      cx.drawImage(bmp, 0, 0, 24, 24); bmp.close?.()
       const d = cx.getImageData(0, 0, 24, 24).data
       let sum = 0
       for (let i = 0; i < d.length; i += 4) sum += d[i] + d[i + 1] + d[i + 2]
@@ -388,6 +371,7 @@ export default function CameraCapture({ onCapture, onClose, ratio }: Props) {
   const capture = async () => {
     const video = videoRef.current
     if (!video) return
+
     const vw = video.videoWidth
     const vh = video.videoHeight
     const dw = video.clientWidth
@@ -455,9 +439,6 @@ export default function CameraCapture({ onCapture, onClose, ratio }: Props) {
     let blob: Blob | null = null
     // Echelle video -> pixels du blob final (1 pour la capture de la frame video).
     let sx = 1, sy = 1
-    // photo deja decodee (reutilisee pour le recadrage plus bas : evite 2 decodages supplementaires de l'image pleine resolution)
-    let photoBmp: ImageBitmap | null = null
-    let photoSrcBlob: Blob | null = null
     if (imageCaptureRef.current && !hwZoomActive) {
       try {
         // REVERT (URGENT) : forcer imageWidth/imageHeight via getPhotoCapabilities()
@@ -468,10 +449,9 @@ export default function CameraCapture({ onCapture, onClose, ratio }: Props) {
         // implementations Chromium/Android). On repasse a takePhoto() sans
         // reglage -- resolution par defaut du capteur, mais fiable partout.
         const photoBlob = await withTimeout(imageCaptureRef.current.takePhoto(), 5000)
+        if (await isBlackBlob(photoBlob)) throw new Error('black photo')
         // Orientation EXIF explicite : le defaut de createImageBitmap varie selon la WebView.
         const bmp = await createImageBitmap(photoBlob, { imageOrientation: 'from-image' })
-        // un seul decodage de l'image pleine resolution : le test « photo noire » se fait sur ce bitmap
-        if (isBlackBitmap(bmp)) { bmp.close?.(); throw new Error('black photo') }
         let pw = bmp.width, ph = bmp.height
         let finalBlob: Blob = photoBlob
         // Certains appareils renvoient une photo en pixels « capteur » (paysage) sans etiquette de rotation alors
@@ -488,7 +468,7 @@ export default function CameraCapture({ onCapture, onClose, ratio }: Props) {
         sx = pw / vw
         sy = ph / vh
         frameRect = { x: frameRect.x * sx, y: frameRect.y * sy, w: frameRect.w * sx, h: frameRect.h * sy }
-        if (finalBlob === photoBlob) { photoBmp = bmp; photoSrcBlob = photoBlob } else bmp.close?.()
+        bmp.close?.()
         // Pleine resolution renvoyee telle quelle -- un cap ici degraderait
         // aussi l'image finale stockee en galerie (image_recto/HD/Viewer3D),
         // pas seulement ce qui part en reseau (voir scanner/page.tsx pour la
@@ -509,12 +489,9 @@ export default function CameraCapture({ onCapture, onClose, ratio }: Props) {
     // Zoom numerique : la photo est la frame COMPLETE -- on la recadre sur la
     // zone zoomee visible (sinon l'etape de reperage des coins affiche la photo
     // non zoomee). Recadrage en pleine resolution, sans re-echantillonnage.
-    // Recadrage aussi SANS zoom : l'aperçu (object-fit: cover) n'affiche que le centre de l'image du capteur quand l'écran est plus
-    // haut/étroit qu'elle (téléphones allongés) ; la photo gardait l'image entière, donc plus large et cadrée autrement qu'à l'écran.
-    const visibleCrop = srcW < vw * 0.99 || srcH < vh * 0.99
-    if (blob && ((digitalZoomRef.current && zoomRef.current > 1.001) || visibleCrop)) {
+    if (blob && digitalZoomRef.current && zoomRef.current > 1.001) {
       try {
-        const bmp = photoBmp && blob === photoSrcBlob ? photoBmp : await createImageBitmap(blob, { imageOrientation: 'from-image' })
+        const bmp = await createImageBitmap(blob, { imageOrientation: 'from-image' })
         const cx = Math.max(0, Math.round(srcX * sx)), cy = Math.max(0, Math.round(srcY * sy))
         const cw = Math.min(bmp.width - cx, Math.round(srcW * sx)), ch = Math.min(bmp.height - cy, Math.round(srcH * sy))
         if (cw > 50 && ch > 50) {
@@ -531,8 +508,6 @@ export default function CameraCapture({ onCapture, onClose, ratio }: Props) {
         bmp.close?.()
       } catch { /* on garde la photo complete */ }
     }
-
-    try { photoBmp?.close?.() } catch { /* deja ferme */ }
 
     // Le flux n'est plus coupe ici : onCapture demonte ce composant juste
     // apres, ce qui declenche releaseCameraStream() (voir le useEffect plus
@@ -706,7 +681,6 @@ export default function CameraCapture({ onCapture, onClose, ratio }: Props) {
 }
 
 function OverlayMask({ cardRatio }: { cardRatio: number }) {
-  const accent = '#00e5ff'
   // Portrait (ratio < 1) : largeur contrainte → min(78vw, 56vh)
   // Paysage (ratio > 1) : hauteur contrainte → width = ratio * min(44vh, 78vw/ratio)
   const isLandscape = cardRatio > 1
@@ -722,15 +696,14 @@ function OverlayMask({ cardRatio }: { cardRatio: number }) {
         borderRadius: 10,
         boxShadow: '0 0 0 200vmax rgba(0,0,0,0.60)',
         border: '2px solid rgba(255,255,255,0.6)',
-        transition: 'border-color .15s, box-shadow .15s',
         zIndex: 1,
       }}>
         {/* Coins cyan */}
         {[
-          { top: -3, left: -3, borderTop: `4px solid ${accent}`, borderLeft: `4px solid ${accent}` },
-          { top: -3, right: -3, borderTop: `4px solid ${accent}`, borderRight: `4px solid ${accent}` },
-          { bottom: -3, right: -3, borderBottom: `4px solid ${accent}`, borderRight: `4px solid ${accent}` },
-          { bottom: -3, left: -3, borderBottom: `4px solid ${accent}`, borderLeft: `4px solid ${accent}` },
+          { top: -3, left: -3, borderTop: '4px solid #00e5ff', borderLeft: '4px solid #00e5ff' },
+          { top: -3, right: -3, borderTop: '4px solid #00e5ff', borderRight: '4px solid #00e5ff' },
+          { bottom: -3, right: -3, borderBottom: '4px solid #00e5ff', borderRight: '4px solid #00e5ff' },
+          { bottom: -3, left: -3, borderBottom: '4px solid #00e5ff', borderLeft: '4px solid #00e5ff' },
         ].map((s, i) => (
           <div key={i} style={{ position: 'absolute', width: 24, height: 24, borderRadius: 2, ...s }} />
         ))}

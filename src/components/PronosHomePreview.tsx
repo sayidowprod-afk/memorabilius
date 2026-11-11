@@ -3,6 +3,7 @@ import { useEffect, useState } from 'react'
 import TeamBadge from '@/components/TeamBadge'
 import { getTeamById } from '@/lib/sportsTeams'
 import { useAuth } from '@/lib/AuthContext'
+import { useCollectionFocus } from '@/lib/useCollectionFocus'
 import { sportDayLabel, sportNow, dayLabel, sportDate, daysForOffsets, weekOffsets } from '@/lib/pronosDays'
 import { supabase } from '@/lib/supabase'
 import type { BoxScore as BoxScoreData, BoxGroup as BoxScoreGroup } from '@/lib/pronosBoxscore'
@@ -439,6 +440,7 @@ function SportLogo({ sport, size = 20 }: { sport: Sport; size?: number }) {
 
 export default function PronosHomePreview() {
   const { user } = useAuth()
+  const focus = useCollectionFocus()
   const [matches, setMatches] = useState<ApiMatch[] | null>(null)
   // Semaine courante du lundi au dimanche (jours passés inclus, avec leurs résultats) ;
   // la semaine précédente se charge à la demande (bouton « résultats de la semaine dernière »).
@@ -527,7 +529,8 @@ export default function PronosHomePreview() {
   useEffect(() => { setShowAll(false) }, [activeDay, activeSport, week])
 
   // Pas connecté -- module masqué, aucun appel supplémentaire.
-  if (!user) return null
+  // Les membres qui ne collectionnent que des cartes à jouer (TCG) n'ont pas les pronos sur leur accueil.
+  if (!user || focus === 'tcg') return null
 
   // Écriture via la route serveur (qui refuse un match déjà commencé) ;
   // mise à jour optimiste, annulée si le serveur refuse.
