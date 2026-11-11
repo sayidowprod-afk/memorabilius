@@ -104,7 +104,7 @@ export async function generateMetadata({
   }
 }
 
-export interface PreviewCard { id: string; image_recto: string; is_horizontal: boolean }
+export interface PreviewCard { id: string; image_recto: string; is_horizontal: boolean; thumb?: string }
 
 // Aperçu purement visuel affiché pendant le chargement réel côté client (voir
 // GalerieClient) — seul but : donner quelque chose à regarder plus tôt, sans
@@ -123,12 +123,11 @@ async function fetchInitialPreview(userId: string): Promise<{ cards: PreviewCard
     const [{ data: profile }, { data: privateRows }, { data: rows }, { data: grailRows }] = await Promise.all([
       supabase.from('profiles').select('lien_csv, gallery_order').eq('id', userId).single(),
       supabase.from('cartes_privees').select('card_key').eq('user_id', userId),
-      supabase.from('cartes_manuelles')
-        .select('id, image_recto, is_horizontal, position')
-        .eq('user_id', userId)
-        .not('image_recto', 'is', null)
-        .order('position', { ascending: true })
-        .limit(80),
+      (async () => {
+        const q = (cols: string) => supabase.from('cartes_manuelles').select(cols).eq('user_id', userId).not('image_recto', 'is', null).order('position', { ascending: true }).limit(80)
+        const r = await q('id, image_recto, is_horizontal, position, image_recto_thumb')
+        return r.error ? await q('id, image_recto, is_horizontal, position') : r
+      })(),
       supabase.from('grail_cards').select('card_key').eq('user_id', userId).order('position').limit(5),
     ])
     if (!profile || profile.lien_csv) return empty
@@ -144,7 +143,7 @@ async function fetchInitialPreview(userId: string): Promise<{ cards: PreviewCard
     }
 
     const cards: PreviewCard[] = candidates.slice(0, 24)
-      .map((r: any) => ({ id: r.id, image_recto: r.image_recto, is_horizontal: !!r.is_horizontal }))
+      .map((r: any) => ({ id: r.id, image_recto: r.image_recto, is_horizontal: !!r.is_horizontal, thumb: r.image_recto_thumb || undefined }))
 
     const grailKeys = (grailRows || []).map((r: any) => r.card_key).filter((k: string) => !privateSet.has(k))
     let grail: PreviewCard[] = []

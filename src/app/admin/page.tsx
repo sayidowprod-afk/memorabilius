@@ -12,6 +12,7 @@ const GROUPS: { title: string; links: AdminLink[] }[] = [
     title: 'Modération & stats',
     links: [
       { href: '/admin/stats', icon: '📊', title: 'Statistiques', desc: 'Vue d\'ensemble du site' },
+      { href: '/admin/performance', icon: '⚡', title: 'Vitesse du site', desc: 'Temps d\'affichage et réactivité mesurés chez les membres, par page' },
       { href: '/admin/reports', icon: '🚩', title: 'Signalements', desc: 'Contenus signalés par la communauté' },
       { href: '/admin/demo', icon: '🎪', title: 'Mode démo', desc: 'Configuration du mode salon / tablette' },
       { href: '/evenements/admin', icon: '📅', title: 'Événements', desc: 'Gestion des événements' },

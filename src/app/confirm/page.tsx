@@ -1,13 +1,17 @@
 import Link from 'next/link'
 import { headers } from 'next/headers'
 import ResendConfirmButton from '@/components/ResendConfirmButton'
-import { translations } from '@/lib/LangContext'
+import { fr } from '@/lib/translations.fr'
+import { en } from '@/lib/translations.en'
+import { de } from '@/lib/translations.de'
+
+const translations: Record<'fr' | 'en' | 'de', Record<string, string>> = { fr, en, de }
 
 export default async function Confirm({ searchParams }: { searchParams: Promise<{ email?: string }> }) {
   const headersList = await headers()
   const acceptLang = headersList.get('accept-language')?.toLowerCase() || ''
   const lang = acceptLang.startsWith('en') ? 'en' : acceptLang.startsWith('de') ? 'de' : 'fr'
-  const t = (key: keyof typeof translations.fr) => translations[lang][key] || translations.fr[key]
+  const t = (key: keyof typeof fr) => translations[lang][key] || fr[key]
   const { email } = await searchParams
 
   return (

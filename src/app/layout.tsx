@@ -15,6 +15,7 @@ import OfflineBanner from '@/components/OfflineBanner'
 import LocalRemindersInit from '@/components/LocalRemindersInit'
 import ChunkErrorReload from '@/components/ChunkErrorReload'
 import HangWatchdog from '@/components/HangWatchdog'
+import WebVitalsReporter from '@/components/WebVitalsReporter'
 import SiteShell from '@/components/SiteShell'
 import ConfirmHost from '@/components/ConfirmHost'
 import CommandPalette from '@/components/CommandPalette'
@@ -108,6 +109,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           <LangProvider>
             <ChunkErrorReload />
             <HangWatchdog />
+            <WebVitalsReporter />
             <NativeInit />
             <HoloLight />
             <PushInit />

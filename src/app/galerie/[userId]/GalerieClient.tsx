@@ -14,7 +14,7 @@ import { teamInfo } from '@/lib/teamColors'
 import { nationalTeam, raceTeam, flagUrl } from '@/lib/nationalTeams'
 import { historicLogo } from '@/lib/historicLogos'
 import { toast } from '@/lib/toast'
-import { Fragment, useEffect, useLayoutEffect, useState, useRef, useMemo, useCallback } from 'react'
+import { Fragment, useEffect, useLayoutEffect, useState, useRef, useMemo, useCallback, startTransition } from 'react'
 import { updateGalleryWidget } from '@/lib/widgetBridge'
 import { createPortal } from 'react-dom'
 import Link from 'next/link'
@@ -92,6 +92,7 @@ import TradeReputation from '@/components/TradeReputation'
 import { addRecentCard } from '@/lib/recentCards'
 import { saveScroll, readScroll, clearScroll, arrivedByBack, scrollToWhenReady } from '@/lib/scrollMemory'
 import { galleryMemGet, galleryMemSet } from '@/lib/galleryMem'
+import { rememberOwnGallery } from '@/lib/ownGallery'
 import JumpBar from '@/components/JumpBar'
 
 // ── Helpers numériques (module scope pour éviter re-création à chaque render) ──
@@ -399,10 +400,15 @@ function CardLink({ slug, cardKey, children }: { slug: string; cardKey: string; 
 // Cartes de la galerie demandées TOUT DE SUITE au démarrage, en parallèle du profil et des étiquettes (avant : le profil d'abord, puis le premier lot
 // de 1000 cartes, puis seulement les lots suivants = trois vagues l'une derrière l'autre). Le nombre total de cartes est demandé à part (très rapide),
 // ce qui permet de lancer les lots suivants sans attendre la fin du premier.
+// 624 : colonnes lues par la galerie = exactement celles utilisées par mapManuelle (on ne télécharge plus user_id, valeur, set_entry_id, team).
+// Si une colonne venait à manquer en base, le premier lot échoue une fois puis on repasse automatiquement sur « toutes les colonnes ».
+const CARD_COLS = 'id,image_recto,image_verso,image_recto_hd,image_verso_hd,image_recto_thumb,prix_vente,quantite,nom,equipe,annee,marque,collection,variation,num,card_number,cert_number,auto,rc,patch,printing_plate,grade,beckett_designation,booklet,is_horizontal,verso_is_horizontal,format,image_interieur_gauche,image_interieur_droite,created_at,position,collection_tag,disponible_vente,vendue,reservee,item_type,storage_binder,storage_page,storage_slot,lien_vinted,lien_ebay,notes_perso,notes_perso_public'
+let cardColsOk = true
+const cardCols = () => (cardColsOk ? CARD_COLS : '*')
 type GalleryPrefetch = { total: Promise<number>; first: Promise<any>; cc: Promise<any[]>; rest: () => Promise<any[][]> }
 function startGalleryPrefetch(uid: string): GalleryPrefetch {
   const PAGE = 1000
-  const first = Promise.resolve(supabase.from('cartes_manuelles').select('*', { count: 'exact' }).eq('user_id', uid).order('created_at', { ascending: true }).range(0, PAGE - 1))
+  const first = Promise.resolve(supabase.from('cartes_manuelles').select(cardCols(), { count: 'exact' }).eq('user_id', uid).order('created_at', { ascending: true }).range(0, PAGE - 1))
   const cc = (async () => {
     const { data: f1, count } = await supabase.from('card_collections').select('card_key, collection', { count: 'exact' }).eq('user_id', uid).range(0, PAGE - 1)
     const all = [...(f1 || [])]
@@ -420,7 +426,7 @@ function startGalleryPrefetch(uid: string): GalleryPrefetch {
   let restP: Promise<any[][]> | null = null
   const rest = () => restP ??= total.then(n => n > PAGE
     ? Promise.all(Array.from({ length: Math.ceil(n / PAGE) - 1 }, (_, i) =>
-        Promise.resolve(supabase.from('cartes_manuelles').select('*').eq('user_id', uid).order('created_at', { ascending: true }).range((i + 1) * PAGE, (i + 2) * PAGE - 1)).then(r => r.data || [])))
+        Promise.resolve(supabase.from('cartes_manuelles').select(cardCols()).eq('user_id', uid).order('created_at', { ascending: true }).range((i + 1) * PAGE, (i + 2) * PAGE - 1)).then(r => r.data || [])))
     : [])
   let ownerDevice = false
   try { ownerDevice = !!localStorage.getItem(`gallery-cache-${uid}`) } catch { /* stockage indisponible */ }
@@ -557,7 +563,7 @@ interface Card {
   notes_perso?: string; notes_perso_public?: boolean;
 }
 
-interface PreviewCard { id: string; image_recto: string; is_horizontal: boolean }
+interface PreviewCard { id: string; image_recto: string; is_horizontal: boolean; thumb?: string }
 
 // Petit clin d'oeil au langage visuel des cartes flottantes du hero (accueil,
 // HomeHero.tsx `.mb-card`) plutot que le simple emoji nu -- silhouettes de
@@ -761,7 +767,7 @@ export default function GalerieClient({ userId, initialCardUrl, initialCards, in
       hdPrefetched.current.add(hd)
       const pre = new Image(); pre.decoding = 'async'; pre.src = hd
     }
-    const down = (e: PointerEvent) => { const img = findImg(e.target); heroImgRef.current = img; prefetch(img) }
+    const down = (e: PointerEvent) => { void import('@/components/Viewer3D').catch(() => {}); const img = findImg(e.target); heroImgRef.current = img; prefetch(img) }
     // survol : on attend que la souris s'arrête 250 ms sur la carte (sinon passer sur toute une rangée téléchargerait toutes les images HD)
     let lastHover: Element | null = null
     let hoverTimer: ReturnType<typeof setTimeout> | undefined
@@ -770,6 +776,7 @@ export default function GalerieClient({ userId, initialCardUrl, initialCards, in
       const root = (e.target as HTMLElement | null)?.closest?.('.card-item, .grail-gilded')
       if (root === lastHover) return
       lastHover = root || null
+      if (root) void import('@/components/Viewer3D').catch(() => {})
       clearTimeout(hoverTimer)
       if (root) hoverTimer = setTimeout(() => prefetch(findImg(root)), 250)
     }
@@ -890,6 +897,7 @@ export default function GalerieClient({ userId, initialCardUrl, initialCards, in
 
   const { user: authUser } = useAuth()
   const isOwner = currentUser === userId
+  useEffect(() => { if (isOwner) rememberOwnGallery(userId) }, [isOwner, userId]) // retient l'adresse lisible de ta galerie : les liens de navigation évitent la redirection
   const { t, lang } = useLang()
   const { dark } = useTheme()
   // thème de galerie (fond CSS) : choisi par le propriétaire (profiles.galerie_theme) ; ?theme=… permet de l'essayer sans l'enregistrer
@@ -1455,19 +1463,23 @@ export default function GalerieClient({ userId, initialCardUrl, initialCards, in
           }
           return await Promise.race([
             Promise.all([
-              supabase.from('cartes_manuelles').select('*', { count: 'exact' }).eq('user_id', uid).order('created_at', { ascending: true }).range(0, 999),
+              supabase.from('cartes_manuelles').select(cardCols(), { count: 'exact' }).eq('user_id', uid).order('created_at', { ascending: true }).range(0, 999),
               fetchAllCardCollections(uid),
             ]),
             timeout,
           ])
         } catch (e) {
+          if (/column|PGRST204|42703/i.test(String((e as { message?: string })?.message || '') + String((e as { code?: string })?.code || ''))) cardColsOk = false
           if (attempt >= 2) throw e
           await new Promise(r => setTimeout(r, 1000))
           return fetchFirstBatch(attempt + 1)
         }
       }
       // Retour sur une galerie déjà vue dans cet onglet : on l'affiche tout de suite, les données fraîches arrivent ensuite (lib/galleryMem.ts)
-      const memCards = galleryMemGet<Card>(userId)
+      let memCards = galleryMemGet<Card>(userId)
+      if (!memCards && isOwner) { // première ouverture de la session : la copie gardée sur l'appareil s'affiche aussitôt (le propriétaire seulement)
+        try { const c = localStorage.getItem(`gallery-cache-${userId}`); if (c) { const arr = JSON.parse(c) as Card[]; if (Array.isArray(arr) && arr.length) memCards = arr } } catch { /* copie illisible : chargement normal */ }
+      }
       if (memCards) { memShownRef.current = true; commitCards(memCards) }
       const [firstResult, ccRows] = await fetchFirstBatch(1)
       const firstBatch = firstResult.data || []
@@ -1489,7 +1501,7 @@ export default function GalerieClient({ userId, initialCardUrl, initialCards, in
         loadRestRef.current = async () => {
           loadRestRef.current = null
           const more = await Promise.all(Array.from({ length: pageCount - 1 }, (_, i) =>
-            supabase.from('cartes_manuelles').select('*').eq('user_id', uid).order('created_at', { ascending: true }).range((i + 1) * 1000, (i + 2) * 1000 - 1).then(r => r.data || [])))
+            supabase.from('cartes_manuelles').select(cardCols()).eq('user_id', uid).order('created_at', { ascending: true }).range((i + 1) * 1000, (i + 2) * 1000 - 1).then(r => r.data || [])))
           setRestExtra(0)
           applyAndShow([...firstBatch, ...more.flat()], ccMap)
         }
@@ -1501,7 +1513,7 @@ export default function GalerieClient({ userId, initialCardUrl, initialCards, in
         try { if (pre && (await pre.total) === totalCount) prefetched = await pre.rest() } catch { prefetched = null }
         const remainingBatches = prefetched ?? await Promise.all(
           Array.from({ length: pageCount - 1 }, (_, i) =>
-            supabase.from('cartes_manuelles').select('*').eq('user_id', uid).order('created_at', { ascending: true }).range((i + 1) * 1000, (i + 2) * 1000 - 1).then(r => r.data || [])
+            supabase.from('cartes_manuelles').select(cardCols()).eq('user_id', uid).order('created_at', { ascending: true }).range((i + 1) * 1000, (i + 2) * 1000 - 1).then(r => r.data || [])
           )
         )
         applyAndShow([...firstBatch, ...remainingBatches.flat()], ccMap)
@@ -3263,7 +3275,7 @@ export default function GalerieClient({ userId, initialCardUrl, initialCards, in
               <input ref={searchInputRef} value={searchInput} onChange={e => {
                 setSearchInput(e.target.value)
                 if (searchDebounceRef.current) clearTimeout(searchDebounceRef.current)
-                searchDebounceRef.current = setTimeout(() => {
+                searchDebounceRef.current = setTimeout(() => startTransition(() => {
                   const parsed = parseNaturalQuery(e.target.value)
                   const hints: string[] = []
                   setActiveFilters({ rc: parsed.rc, auto: parsed.auto, num: parsed.num, patch: parsed.patch })
@@ -3275,7 +3287,7 @@ export default function GalerieClient({ userId, initialCardUrl, initialCards, in
                   if (parsed.num) hints.push(numHint(parsed.numMin, parsed.numMax) || t('gallery_numbered_hint'))
                   setNlpHint(hints)
                   setSearch(parsed.text)
-                }, 200)
+                }), 200)
               }} placeholder={t('gallery_search')} aria-label={t('gallery_search_label')} style={{ width: '100%', boxSizing: 'border-box', paddingRight: !isApp && !searchInput ? 26 : undefined }} />
               {/* Indice de raccourci clavier "/" — desktop web uniquement, aucun sens sur natif (pas de clavier physique) */}
               {!isApp && !searchInput && (
@@ -3519,7 +3531,7 @@ export default function GalerieClient({ userId, initialCardUrl, initialCards, in
             {initialGrailCards.map(c => (
               <div key={c.id} style={{ width: 90, borderRadius: 8, overflow: 'hidden', background: dark ? '#2a2a2a' : '#f0f0f0' }}>
                 <div style={{ width: '100%', aspectRatio: '2.5/3.5', overflow: 'hidden' }}>
-                  <img src={c.image_recto} alt="" loading="eager" style={c.is_horizontal
+                  <img src={c.thumb || c.image_recto} alt="" loading="eager" style={c.is_horizontal
                     ? { width: '140%', height: '71.43%', marginLeft: '-20%', marginTop: '14.286%', transform: 'rotate(90deg)', objectFit: 'cover' }
                     : { width: '100%', height: '100%', objectFit: 'cover' }} />
                 </div>
@@ -3534,10 +3546,11 @@ export default function GalerieClient({ userId, initialCardUrl, initialCards, in
               {initialCards.map(c => (
                 <div key={c.id} className="card-item" style={{ borderRadius: 8, overflow: 'hidden', background: dark ? '#2a2a2a' : '#f0f0f0' }}>
                   <div style={{ width: '100%', aspectRatio: '2.5/3.5', overflow: 'hidden' }}>
-                    <img src={c.image_recto} alt="" loading="eager" style={c.is_horizontal
+                    <img src={c.thumb || c.image_recto} alt="" loading="eager" style={c.is_horizontal
                       ? { width: '140%', height: '71.43%', marginLeft: '-20%', marginTop: '14.286%', transform: 'rotate(90deg)', objectFit: 'cover' }
                       : { width: '100%', height: '100%', objectFit: 'cover' }} />
                   </div>
+                  <div style={{ minHeight: 92 }} />{/* place du nom et de l'année : même hauteur que les vraies cartes */}
                 </div>
               ))}
             </div>

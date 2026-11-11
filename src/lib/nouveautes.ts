@@ -4,6 +4,19 @@ export type Entry = { date: string; titre: string; points: string[] }
 
 export const ENTRIES: Entry[] = [
   {
+    date: '18 novembre 2026', titre: 'Galerie plus rapide, envois de photos accélérés, aide au cadrage retirée',
+    points: [
+      'Galerie : elle ne télécharge plus que les informations utiles à l’affichage, l’aperçu de chargement utilise les petites miniatures et a la même hauteur que les vraies cartes (plus de saut de page), et ta dernière galerie s’affiche tout de suite à l’ouverture pendant que les données fraîches arrivent.',
+      'Recherche : taper reste fluide même sur une très grosse collection.',
+      'Viewer 3D : il se prépare dès que tu touches ou survoles une carte, donc il s’ouvre plus vite.',
+      'Ajout de cartes (une par une et en lot) : la photo, sa version HD et sa miniature partent en même temps, donc l’envoi est plus court.',
+      'Navigation : « Ma galerie » va directement à ta galerie, sans redirection.',
+      'Site plus léger : seules la langue française et la langue choisie sont chargées (avant : les cinq), donc les pages s’ouvrent plus vite.',
+      'Accueil : le calcul de tes pronos gagnés n’est plus relancé à chaque visite, et le résumé de tes échanges est gardé 1 minute : l’accueil s’affiche plus vite quand tu y reviens.',
+      'Appareil photo : l’aide au cadrage est retirée (elle ralentissait l’appareil).',
+    ],
+  },
+  {
     date: '17 novembre 2026', titre: 'Zoom de l’appareil mémorisé, accueil plus clair, photo plus rapide',
     points: [
       'Appareil photo : ton dernier zoom est retenu pour chaque objectif et réappliqué à l’ouverture (plus besoin de recliquer plusieurs fois sur « + »).',

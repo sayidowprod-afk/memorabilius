@@ -49,5 +49,6 @@ export async function GET(req: NextRequest) {
 
   const total = sets.length
   const page = sets.slice(offset, offset + limit)
-  return NextResponse.json({ sets: page, total, hasMore: offset + limit < total })
+  // 638 : données publiques qui changent rarement : servies depuis le cache partagé 1 h (puis encore 24 h le temps de les rafraîchir)
+  return NextResponse.json({ sets: page, total, hasMore: offset + limit < total }, { headers: { 'Cache-Control': 'public, s-maxage=3600, stale-while-revalidate=86400' } })
 }

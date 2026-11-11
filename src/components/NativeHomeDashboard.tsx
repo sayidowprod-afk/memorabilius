@@ -13,6 +13,7 @@ import { BADGE_CATEGORIES, type BadgeCategory, type BadgeTier } from '@/lib/badg
 import { levelFromXP, type LevelInfo } from '@/lib/leveling'
 import { currentChallenge, startOfWeekISO, endOfWeekISO, type ChallengeTemplate } from '@/lib/weeklyChallenge'
 import { recordJsError } from '@/lib/crashlytics'
+import { ownGalleryHref } from '@/lib/ownGallery'
 
 interface SiteStats { total: number; totalCartes: number; totalBinders: number; totalTrade: number }
 
@@ -482,7 +483,7 @@ export default function NativeHomeDashboard({ siteStats, cardOfTheDay }: { siteS
   if (tradeSummary && tradeSummary.pendingReceived > 0) activityItems.push({ n: tradeSummary.pendingReceived, label: t('home_trades_pending'), href: '/trades?tab=echanges' })
   if (tradeSummary && tradeSummary.matches > 0) activityItems.push({ n: tradeSummary.matches, label: t('home_trades_matches'), href: '/trades?tab=matches' })
 
-  const galleryHref = `/galerie/${user?.id}`
+  const galleryHref = ownGalleryHref(user?.id)
 
   const renderActivity = () => activityItems.length === 0 ? <p className="dd-sub" style={{ margin: 0 }}>{L.since} : 0</p> : (
         <section className="dd-box">

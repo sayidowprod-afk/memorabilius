@@ -509,8 +509,11 @@ export default function PronosHomePreview() {
   useEffect(() => {
     if (!user) return
     let cancelled = false
+    // 637 : la résolution (2 à 7 s côté serveur en développement) n'est relancée qu'au plus toutes les 10 minutes sur cet appareil ; le cron la fait de toute façon pour tout le monde
+    try { if (Date.now() - (Number(localStorage.getItem('pronos-resolve-at')) || 0) < 10 * 60 * 1000) { loadWins(user.id); return } } catch { /* stockage indisponible : on résout comme avant */ }
     supabase.auth.getSession().then(({ data: { session } }) => {
       if (!session || cancelled) return
+      try { localStorage.setItem('pronos-resolve-at', String(Date.now())) } catch { /* rien */ }
       fetch('/api/pronos/resolve', { method: 'POST', headers: { Authorization: `Bearer ${session.access_token}` } })
         .then(r => r.json())
         .then(res => { if (!cancelled && res?.awarded > 0) setXpGain({ wins: res.awarded, xp: res.xp }) })

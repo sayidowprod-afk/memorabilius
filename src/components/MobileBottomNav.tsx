@@ -8,6 +8,7 @@ import { useAuth } from '@/lib/AuthContext'
 import { useTheme } from '@/lib/ThemeContext'
 import { useLang } from '@/lib/LangContext'
 import { useIsNative, useIsAppUI } from '@/lib/useIsNative'
+import { ownGalleryHref } from '@/lib/ownGallery'
 import { hapticTap } from '@/lib/haptics'
 import { clearOfflineUserData } from '@/lib/offline'
 import BottomSheet from '@/components/BottomSheet'
@@ -187,7 +188,7 @@ export default function MobileBottomNav() {
 
         <div style={{ flex: 1, display: 'flex', justifyContent: 'center' }}>
           <Link
-            href={user ? `/galerie/${user.id}` : '/connexion'}
+            href={ownGalleryHref(user?.id)}
             onClick={() => hapticTap()}
             className="nav-tap-bounce"
             aria-label={t('nav_galerie')}

@@ -5,6 +5,7 @@ import { useRouter, usePathname } from 'next/navigation'
 import { supabase } from '@/lib/supabase'
 import { unsubscribeAllPush } from '@/lib/pushUnsubscribe'
 import { clearOfflineUserData } from '@/lib/offline'
+import { ownGalleryHref } from '@/lib/ownGallery'
 import { useAuth } from '@/lib/AuthContext'
 import { useTheme } from '@/lib/ThemeContext'
 import { useLang } from '@/lib/LangContext'
@@ -232,7 +233,7 @@ export default function Navbar() {
           <HeaderSearch open={searchOpen} onToggle={v => { setSearchOpen(v); if (v) closeDrop() }} />
 
           {user && (
-            <Link href={`/galerie/${user.id}`}
+            <Link href={ownGalleryHref(user.id)}
               style={{ background: '#003DA6', color: 'white', borderRadius: 20, padding: '8px 18px', fontWeight: 700, fontSize: 14, textDecoration: 'none', marginLeft: 8, whiteSpace: 'nowrap' }}>
               {t('nav_galerie')}
             </Link>
@@ -287,7 +288,7 @@ export default function Navbar() {
         {/* Ma Galerie + Hamburger groupés (mobile uniquement) */}
         <div className="nav-hamburger" style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
           {user && (
-            <Link href={`/galerie/${user.id}`}
+            <Link href={ownGalleryHref(user.id)}
               style={{ background: '#003DA6', color: 'white', borderRadius: 20, padding: '9px 18px', fontWeight: 700, fontSize: 14, textDecoration: 'none', whiteSpace: 'nowrap' }}>
               {t('nav_galerie')}
             </Link>

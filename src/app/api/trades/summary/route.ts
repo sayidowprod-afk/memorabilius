@@ -21,10 +21,12 @@ export async function GET(req: NextRequest) {
     computeMatches(supabase, user.id).catch(() => ({ members: [], counts: { total: 0, perfect: 0 } })),
   ])
 
+  // 637 : le navigateur garde la réponse 1 minute (et la sert encore 5 minutes le temps de la rafraîchir) : revenir sur l'accueil ne refait pas le calcul des matchs.
+  // « Vary: Authorization » : jamais partagée entre deux comptes sur un même appareil.
   return NextResponse.json({
     pendingReceived: pendingReceived || 0,
     inProgress: inProgress || 0,
     matches: matches.counts.total,
     perfectMatches: matches.counts.perfect,
-  })
+  }, { headers: { 'Cache-Control': 'private, max-age=60, stale-while-revalidate=300', Vary: 'Authorization' } })
 }

@@ -514,12 +514,19 @@ export default function AjoutLotPage({ params }: { params: Promise<{ userId: str
           uploaded.push(path)
           return supabase.storage.from('avatars').getPublicUrl(path).data.publicUrl
         }
-        const imageRecto = await up(rStd.blob, 'recto'), imageRectoHd = await up(rHd.blob, 'recto_hd')
-        const imageRectoThumb = await up(rTh.blob, 'recto_thumb') // miniature de la grille
+        // 644 : les trois envois de la face avant partent en même temps (avant : l'un après l'autre). On attend qu'ils soient tous terminés avant de réagir à une erreur,
+        // pour que la liste des fichiers envoyés (nettoyage en cas d'échec) soit complète.
+        const rectoUps = await Promise.allSettled([up(rStd.blob, 'recto'), up(rHd.blob, 'recto_hd'), up(rTh.blob, 'recto_thumb')]) // la 3e est la miniature de la grille
+        const rectoFail = rectoUps.find(r => r.status === 'rejected') as PromiseRejectedResult | undefined
+        if (rectoFail) throw rectoFail.reason
+        const [imageRecto, imageRectoHd, imageRectoThumb] = rectoUps.map(r => (r as PromiseFulfilledResult<string>).value)
         let imageVerso: string | null = null, imageVersoHd: string | null = null, versoHorizontal: boolean | null = null, vAi: Blob | null = null
         if (versoFile) {
           const [vStd, vHd, vA] = await resizeMany(versoFile, [{ max: 1600, q: 0.88 }, { max: 3200, q: 0.92 }, { max: 1200, q: 0.9 }])
-          imageVerso = await up(vStd.blob, 'verso'); imageVersoHd = await up(vHd.blob, 'verso_hd')
+          const versoUps = await Promise.allSettled([up(vStd.blob, 'verso'), up(vHd.blob, 'verso_hd')])
+          const versoFail = versoUps.find(r => r.status === 'rejected') as PromiseRejectedResult | undefined
+          if (versoFail) throw versoFail.reason
+          imageVerso = (versoUps[0] as PromiseFulfilledResult<string>).value; imageVersoHd = (versoUps[1] as PromiseFulfilledResult<string>).value
           versoHorizontal = vStd.w > vStd.h; vAi = vA.blob
         }
 

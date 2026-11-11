@@ -3,7 +3,6 @@ import { useEffect, useRef, useState } from 'react'
 import { createPortal } from 'react-dom'
 import { Capacitor } from '@capacitor/core'
 import { acquireCameraStream, releaseCameraStream } from '@/lib/cameraStreamPool'
-import { liveEdgeAligned } from '@/lib/liveFrameCheck'
 
 interface FrameRect { x: number; y: number; w: number; h: number }
 
@@ -389,10 +388,6 @@ export default function CameraCapture({ onCapture, onClose, ratio }: Props) {
   const capture = async () => {
     const video = videoRef.current
     if (!video) return
-    // l'aide au cadrage fait une pause pendant la prise de photo (reprend toute seule si la caméra reste ouverte)
-    assistPauseRef.current = true
-    setTimeout(() => { assistPauseRef.current = false }, 5000)
-
     const vw = video.videoWidth
     const vh = video.videoHeight
     const dw = video.clientWidth
@@ -547,70 +542,6 @@ export default function CameraCapture({ onCapture, onClose, ratio }: Props) {
 
   const CARD_RATIO = ratio ?? (2.5 / 3.5)
 
-  // ── Aide au cadrage (443) ───────────────────────────────────────────────────────────────────────────────────────────────────
-  // Le cadre passe au vert quand la carte vue dans l'aperçu est bien alignée. Lecture seule : ça n'influence ni la capture ni le recadrage.
-  // Limites : une vérification à la fois, jamais pendant la prise de photo, au plus ~50 % du temps de calcul, et coupée toute seule
-  // si l'appareil est trop lent. Un bouton permet de la désactiver.
-  const [assist, setAssist] = useState(() => { try { return localStorage.getItem('cam-assist') !== '0' } catch { return true } })
-  const [aligned, setAligned] = useState(false)
-  const [assistNote, setAssistNote] = useState<string | null>(null)
-  const assistPauseRef = useRef(false)
-  // dernier contact avec l'écran : le calcul bloque l'écran ~0,5 s, donc on ne le lance jamais pendant que tu zoomes ou touches
-  const assistTouchRef = useRef(0)
-  useEffect(() => {
-    const el = rootRef.current
-    if (!el) return
-    const mark = () => { assistTouchRef.current = performance.now() }
-    const evs = ['pointerdown', 'pointermove', 'touchstart', 'touchmove', 'wheel', 'input'] as const
-    evs.forEach(e => el.addEventListener(e, mark, { capture: true, passive: true }))
-    return () => evs.forEach(e => el.removeEventListener(e, mark, { capture: true }))
-  }, [ready])
-  useEffect(() => {
-    if (!ready || !assist) { setAligned(false); return }
-    let stop = false, timer: ReturnType<typeof setTimeout> | undefined, slow = 0, hits = 0, misses = 0
-    // cadre affiché, converti en pixels de la vidéo (même calcul que capture(), sans marge)
-    const frameInVideo = (video: HTMLVideoElement) => {
-      const vw = video.videoWidth, vh = video.videoHeight, dw = video.clientWidth, dh = video.clientHeight
-      const landscape = CARD_RATIO > 1
-      const fW = landscape ? Math.min(CARD_RATIO * dh * 0.44, dw * 0.78) : Math.min(dw * 0.78, dh * 0.56)
-      const fH = fW / CARD_RATIO
-      const fX = (dw - fW) / 2, fY = (dh - fH) / 2
-      let srcX = 0, srcY = 0, srcW = vw, srcH = vh
-      if (vw / vh > dw / dh) { srcW = vh * (dw / dh); srcX = (vw - srcW) / 2 } else { srcH = vw / (dw / dh); srcY = (vh - srcH) / 2 }
-      if (digitalZoomRef.current && zoomRef.current > 1) {
-        const nw = srcW / zoomRef.current, nh = srcH / zoomRef.current
-        srcX += (srcW - nw) / 2; srcY += (srcH - nh) / 2; srcW = nw; srcH = nh
-      }
-      return { x: srcX + fX * (srcW / dw), y: srcY + fY * (srcH / dh), w: fW * (srcW / dw), h: fH * (srcH / dh) }
-    }
-    const tick = async () => {
-      if (stop) return
-      const video = videoRef.current
-      if (performance.now() - assistTouchRef.current < 1200) { timer = setTimeout(tick, 400); return } // doigt sur l'écran : on attend
-      if (!video || assistPauseRef.current || document.hidden || !video.videoWidth || video.readyState < 2) { timer = setTimeout(tick, 500); return }
-      const t0 = performance.now()
-      let ok = false
-      try { const r = liveEdgeAligned(video, frameInVideo(video)); ok = r.ok } catch { ok = false }
-      if (stop) return
-      const dt = performance.now() - t0
-      slow = dt > 1500 ? slow + 1 : 0
-      if (slow >= 3) { // appareil trop lent : on coupe l'aide pour ne pas gêner la prise de vue
-        setAssist(false); setAligned(false); setAssistNote('Aide au cadrage coupée : appareil trop lent')
-        return
-      }
-      if (ok) { hits++; misses = 0 } else { misses++; hits = 0 }
-      if (hits >= 3) setAligned(true)
-      if (misses >= 2) setAligned(false)
-      timer = setTimeout(tick, 250) // le calcul ne prend que quelques millisecondes : on peut vérifier 4 fois par seconde sans gêner l'écran
-    }
-    timer = setTimeout(tick, 600)
-    return () => { stop = true; if (timer) clearTimeout(timer) }
-  }, [ready, assist, CARD_RATIO])
-  const toggleAssist = () => {
-    setAssistNote(null)
-    setAssist(a => { const n = !a; try { localStorage.setItem('cam-assist', n ? '1' : '0') } catch { /* rien */ } return n })
-  }
-
   const content = (
     <div ref={rootRef} style={{ position: 'fixed', inset: 0, background: 'black', zIndex: 9999, display: 'flex', flexDirection: 'column', touchAction: 'none' }}>
       <style>{`@keyframes focusFade { 0%{opacity:1;transform:scale(1)} 60%{opacity:1;transform:scale(0.85)} 100%{opacity:0;transform:scale(0.8)} }`}</style>
@@ -694,18 +625,7 @@ export default function CameraCapture({ onCapture, onClose, ratio }: Props) {
 
           {/* Overlay sombre avec découpe */}
           {ready && (
-            <OverlayMask cardRatio={CARD_RATIO} aligned={aligned} />
-          )}
-
-          {/* Interrupteur de l'aide au cadrage */}
-          {ready && (
-            <button type="button" onClick={toggleAssist} aria-pressed={assist}
-              style={{ position: 'absolute', top: 'calc(var(--safe-area-inset-top, env(safe-area-inset-top)) + 48px)', left: 12, zIndex: 2, background: 'rgba(0,0,0,0.5)', border: `1.5px solid ${assist ? '#3ddc97' : 'rgba(255,255,255,0.5)'}`, color: assist ? '#3ddc97' : 'white', borderRadius: 20, padding: '6px 12px', fontSize: 12, fontWeight: 700, cursor: 'pointer' }}>
-              {assist ? '🎯 Aide au cadrage : oui' : '🎯 Aide au cadrage : non'}
-            </button>
-          )}
-          {ready && assistNote && (
-            <p style={{ position: 'absolute', top: 'calc(var(--safe-area-inset-top, env(safe-area-inset-top)) + 92px)', left: 12, margin: 0, color: '#ffd84d', fontSize: 12, fontWeight: 600, zIndex: 2 }}>{assistNote}</p>
+            <OverlayMask cardRatio={CARD_RATIO} />
           )}
 
           {/* Zoom : - / curseur / + */}
@@ -785,8 +705,8 @@ export default function CameraCapture({ onCapture, onClose, ratio }: Props) {
   return typeof document !== 'undefined' ? createPortal(content, document.body) : null
 }
 
-function OverlayMask({ cardRatio, aligned = false }: { cardRatio: number; aligned?: boolean }) {
-  const accent = aligned ? '#3ddc97' : '#00e5ff'
+function OverlayMask({ cardRatio }: { cardRatio: number }) {
+  const accent = '#00e5ff'
   // Portrait (ratio < 1) : largeur contrainte → min(78vw, 56vh)
   // Paysage (ratio > 1) : hauteur contrainte → width = ratio * min(44vh, 78vw/ratio)
   const isLandscape = cardRatio > 1
@@ -801,7 +721,7 @@ function OverlayMask({ cardRatio, aligned = false }: { cardRatio: number; aligne
         aspectRatio: `${cardRatio}`,
         borderRadius: 10,
         boxShadow: '0 0 0 200vmax rgba(0,0,0,0.60)',
-        border: `2px solid ${aligned ? '#3ddc97' : 'rgba(255,255,255,0.6)'}`,
+        border: '2px solid rgba(255,255,255,0.6)',
         transition: 'border-color .15s, box-shadow .15s',
         zIndex: 1,
       }}>
@@ -819,7 +739,7 @@ function OverlayMask({ cardRatio, aligned = false }: { cardRatio: number; aligne
           textAlign: 'center', color: 'rgba(255,255,255,0.8)',
           fontSize: 13, fontWeight: 600, margin: 0, whiteSpace: 'nowrap',
         }}>
-          {aligned ? 'Carte bien alignée ✓' : 'Alignez la carte dans le cadre'}
+          Alignez la carte dans le cadre
         </p>
       </div>
     </div>

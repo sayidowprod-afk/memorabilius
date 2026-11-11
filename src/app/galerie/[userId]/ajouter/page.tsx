@@ -577,34 +577,32 @@ export default function AjouterCarte({ params }: { params: Promise<{ userId: str
 
       const path = `cartes/${user.id}/${Date.now()}_${side}.jpg`
       const file = new File([blob], `${Date.now()}_${side}.jpg`, { type: 'image/jpeg' })
-      const { error } = await supabase.storage.from('avatars').upload(path, file, { upsert: true })
-      if (error) { toast.error('Erreur upload : ' + error.message); setUploadingRecto(false); setUploadingVerso(false); setUploadingIL(false); setUploadingIR(false); return }
-
-      const { data } = supabase.storage.from('avatars').getPublicUrl(path)
-      const url = data.publicUrl
-
-      // Version HD (qualité originale) en plus de la version compressée -- utilisée
-      // uniquement par le Viewer3D, upload en parallèle, jamais bloquant.
-      let hdUrl: string | null = null
-      if (hdBlob) {
-        const hdPath = `cartes/${user.id}/${Date.now()}_${side}_hd.jpg`
-        const { error: hdError } = await supabase.storage.from('avatars').upload(hdPath, new File([hdBlob], `${Date.now()}_${side}_hd.jpg`, { type: 'image/jpeg' }), { upsert: true })
-        if (!hdError) hdUrl = supabase.storage.from('avatars').getPublicUrl(hdPath).data.publicUrl
-      }
-
-      // Miniature pour la grille de la galerie (~50 Ko au lieu de ~150) : jamais bloquante, la photo complète reste utilisée partout ailleurs
-      let thumbUrl = ''
-      if (side === 'recto') {
-        const tb = await makeThumb(blob)
-        if (tb) {
+      // 644 : photo compressée, version HD et miniature partent EN MÊME TEMPS (avant : l'une après l'autre, donc la somme des trois délais).
+      // La miniature n'est jamais attendue : elle s'ajoute à la fiche dès qu'elle est prête.
+      const hdPath = hdBlob ? `cartes/${user.id}/${Date.now()}_${side}_hd.jpg` : null
+      const mainUp = supabase.storage.from('avatars').upload(path, file, { upsert: true })
+      const hdUp = hdBlob && hdPath ? supabase.storage.from('avatars').upload(hdPath, new File([hdBlob], `${Date.now()}_${side}_hd.jpg`, { type: 'image/jpeg' }), { upsert: true }) : null
+      const thumbUp: Promise<string> | null = side === 'recto' ? (async () => {
+        try {
+          const tb = await makeThumb(blob)
+          if (!tb) return ''
           const tPath = `cartes/${user.id}/${Date.now()}_recto_thumb.jpg`
           const { error: tErr } = await supabase.storage.from('avatars').upload(tPath, new File([tb], `${Date.now()}_recto_thumb.jpg`, { type: 'image/jpeg' }), { upsert: true })
-          if (!tErr) thumbUrl = supabase.storage.from('avatars').getPublicUrl(tPath).data.publicUrl
-        }
-      }
+          return tErr ? '' : supabase.storage.from('avatars').getPublicUrl(tPath).data.publicUrl
+        } catch { return '' }
+      })() : null
+      hdUp?.catch(() => {})
+      const { error } = await mainUp
+      if (error) { toast.error('Erreur upload : ' + error.message); setUploadingRecto(false); setUploadingVerso(false); setUploadingIL(false); setUploadingIR(false); return }
+      const { data } = supabase.storage.from('avatars').getPublicUrl(path)
+      const url = data.publicUrl
+      let hdUrl: string | null = null
+      if (hdUp && hdPath) { try { const { error: hdError } = await hdUp; if (!hdError) hdUrl = supabase.storage.from('avatars').getPublicUrl(hdPath).data.publicUrl } catch { /* la HD reste facultative */ } }
 
       if (side === 'recto') {
-        setForm(f => ({ ...f, image_recto: url, image_recto_hd: hdUrl || url, image_recto_thumb: thumbUrl })); setPreviewRecto(url); setUploadingRecto(false)
+        setForm(f => ({ ...f, image_recto: url, image_recto_hd: hdUrl || url, image_recto_thumb: '' })); setPreviewRecto(url); setUploadingRecto(false)
+        // la miniature s'ajoute dès qu'elle est prête, seulement si c'est toujours la même photo
+        thumbUp?.then(tu => { if (tu) setForm(f => (f.image_recto === url ? { ...f, image_recto_thumb: tu } : f)) })
         // Image envoyée à Gemini : la version 1200px dédiée si dispo, sinon la compressée par défaut.
         const rectoB64 = await new Promise<string>(res => { const reader = new FileReader(); reader.onload = () => res((reader.result as string).split(',')[1]); reader.readAsDataURL(geminiBlob || blob) })
         rectoBase64Ref.current = rectoB64
