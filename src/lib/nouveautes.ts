@@ -4,6 +4,13 @@ export type Entry = { date: string; titre: string; points: string[] }
 
 export const ENTRIES: Entry[] = [
   {
+    date: '19 novembre 2026', titre: 'Cartes multi-équipes : chaque équipe a ses cartes',
+    points: [
+      'Cartes avec plusieurs équipes (échange, anciens coéquipiers…) : dans les listes et les filtres, chaque équipe apparaît seule (Boston Celtics, Philadelphia 76ers, Toronto Raptors…) au lieu d’une longue ligne. La carte est trouvée dans chacune de ses équipes.',
+      'Ça s’applique au filtre « Équipe » de la galerie, à « Équipe en tête », à l’export de galerie et au filtre de la fenêtre d’échange.',
+    ],
+  },
+  {
     date: '18 novembre 2026', titre: 'Galerie plus rapide, envois de photos accélérés, aide au cadrage retirée',
     points: [
       'Galerie : elle ne télécharge plus que les informations utiles à l’affichage, l’aperçu de chargement utilise les petites miniatures et a la même hauteur que les vraies cartes (plus de saut de page), et ta dernière galerie s’affiche tout de suite à l’ouverture pendant que les données fraîches arrivent.',

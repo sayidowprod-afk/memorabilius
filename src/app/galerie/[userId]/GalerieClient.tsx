@@ -93,6 +93,7 @@ import { addRecentCard } from '@/lib/recentCards'
 import { saveScroll, readScroll, clearScroll, arrivedByBack, scrollToWhenReady } from '@/lib/scrollMemory'
 import { galleryMemGet, galleryMemSet } from '@/lib/galleryMem'
 import { rememberOwnGallery } from '@/lib/ownGallery'
+import { teamList, hasTeam } from '@/lib/cardTeams'
 import JumpBar from '@/components/JumpBar'
 
 // ── Helpers numériques (module scope pour éviter re-création à chaque render) ──
@@ -1066,7 +1067,7 @@ export default function GalerieClient({ userId, initialCardUrl, initialCards, in
             if (cached) {
               const allCards: Card[] = JSON.parse(cached)
               setCards(allCards)
-              setTeams([...new Set(allCards.map(d => d.t).filter(Boolean))].sort())
+              setTeams(teamList(allCards.map(d => d.t)))
               setBrands([...new Set(allCards.map(d => d.s).filter(Boolean))].sort())
               setYears([...new Set(allCards.map(d => d.y).filter(Boolean))].sort())
               setCollectionTags([...new Set(allCards.flatMap(d => d.collections || []).filter(Boolean) as string[])].sort())
@@ -1367,7 +1368,7 @@ export default function GalerieClient({ userId, initialCardUrl, initialCards, in
       const commitCards = (allCards: Card[]) => {
         setCards(allCards)
         setCardsLoaded(true)
-        setTeams([...new Set(allCards.map(d => d.t).filter(Boolean))].sort())
+        setTeams(teamList(allCards.map(d => d.t)))
         setBrands([...new Set(allCards.map(d => d.s).filter(Boolean))].sort())
         setYears([...new Set(allCards.map(d => d.y).filter(Boolean))].sort())
         setCollectionTags([...new Set(allCards.flatMap(d => d.collections || []).filter(Boolean) as string[])].sort())
@@ -1528,7 +1529,7 @@ export default function GalerieClient({ userId, initialCardUrl, initialCards, in
           if (cached) {
             const allCards: Card[] = JSON.parse(cached)
             setCards(allCards)
-            setTeams([...new Set(allCards.map(d => d.t).filter(Boolean))].sort())
+            setTeams(teamList(allCards.map(d => d.t)))
             setBrands([...new Set(allCards.map(d => d.s).filter(Boolean))].sort())
             setYears([...new Set(allCards.map(d => d.y).filter(Boolean))].sort())
             setCollectionTags([...new Set(allCards.flatMap(d => d.collections || []).filter(Boolean) as string[])].sort())
@@ -1668,8 +1669,8 @@ export default function GalerieClient({ userId, initialCardUrl, initialCards, in
     }
     return [...f].sort((a, b) => {
       if (pinTeam) {
-        const aPin = a.t === pinTeam
-        const bPin = b.t === pinTeam
+        const aPin = hasTeam(a.t, pinTeam)
+        const bPin = hasTeam(b.t, pinTeam)
         if (aPin && !bPin) return -1
         if (!aPin && bPin) return 1
       }

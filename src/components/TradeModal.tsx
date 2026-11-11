@@ -1,4 +1,5 @@
 'use client'
+import { teamList, hasTeam } from '@/lib/cardTeams'
 import { useState, useEffect, useCallback, useMemo } from 'react'
 import { createPortal } from 'react-dom'
 import { useRouter } from 'next/navigation'
@@ -85,7 +86,7 @@ function applyFilters(cards: CardInfo[], f: Filters): CardInfo[] {
     if (f.patch && !c.patch) return false
     if (f.annee && c.annee !== f.annee) return false
     if (f.marque && c.marque !== f.marque) return false
-    if (f.equipe && c.equipe !== f.equipe) return false
+    if (f.equipe && !hasTeam(c.equipe, f.equipe)) return false
     if (f.sport && inferSportFromTeamName(c.equipe) !== f.sport) return false
     if (f.search.trim()) {
       const q = f.search.toLowerCase()
@@ -156,7 +157,7 @@ function FilterBar({ cards, filters, onChange }: { cards: CardInfo[]; filters: F
   const { t } = useLang()
   const années = useMemo(() => [...new Set(cards.map(c => c.annee).filter(Boolean))].sort().reverse(), [cards])
   const marques = useMemo(() => [...new Set(cards.map(c => c.marque).filter(Boolean))].sort(), [cards])
-  const équipes = useMemo(() => [...new Set(cards.map(c => c.equipe).filter(Boolean))].sort(), [cards])
+  const équipes = useMemo(() => teamList(cards.map(c => c.equipe)), [cards])
   const sports = useMemo(() => [...new Set(cards.map(c => inferSportFromTeamName(c.equipe)).filter((s): s is Sport => !!s))], [cards])
   const hasActive = filters.rc || filters.auto || filters.patch || filters.annee || filters.marque || filters.equipe || filters.sport || filters.search
 

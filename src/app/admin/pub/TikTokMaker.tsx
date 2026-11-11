@@ -4,6 +4,7 @@
 import { useEffect, useRef, useState } from 'react'
 import { supabase } from '@/lib/supabase'
 import { encodeMp4 } from './encode'
+import { saveOrShareFile } from '@/lib/saveOrShare'
 import { scheduleMusic, scheduleHits, decodeAudioFile, type MusicKind } from './audio'
 import { AD_DUR, AD_TX, LANG_NAMES, drawAd, loadAdAssets, type AdAssets, type Lang } from './tiktokAd'
 
@@ -160,6 +161,15 @@ export default function TikTokMaker() {
   const [status, setStatus] = useState('Ajoute des photos de cartes pour commencer.')
   const [busy, setBusy] = useState(false)
   const [video, setVideo] = useState<string | null>(null)
+  const [videoBlob, setVideoBlob] = useState<Blob | null>(null)
+  const [saveMsg, setSaveMsg] = useState('')
+  const saveVideo = async (blob: Blob | null, name: string) => {
+    if (!blob) return
+    setSaveMsg('Enregistrement en cours… (une vidéo de plusieurs Mo peut prendre un moment sur téléphone)')
+    try { await saveOrShareFile(blob, name, { timeoutMs: 180000 }); setSaveMsg('') }
+    catch (e) { setSaveMsg('Échec de l’enregistrement : ' + (e instanceof Error ? e.message : 'erreur') + '. Réessaie, ou télécharge depuis un ordinateur.') }
+  }
+
   const [pos, setPos] = useState(0)
   const rowsRef = useRef<Row[] | null>(null)
   const musicRef = useRef<MusicKind>('beat')
@@ -236,7 +246,7 @@ export default function TikTokMaker() {
     })
     if (!res) setStatus('Ce navigateur ne sait pas créer le MP4 (utilise Chrome ou Edge récent).')
     else if ('error' in res) setStatus('Échec de l’encodage : ' + res.error)
-    else { setVideo(URL.createObjectURL(res.blob)); setStatus(`Vidéo prête · ${dur.toFixed(1)} s · MP4 60 images/s`) }
+    else { setVideoBlob(res.blob); setVideo(URL.createObjectURL(res.blob)); setStatus(`Vidéo prête · ${dur.toFixed(1)} s · MP4 60 images/s`) }
     setBusy(false)
   }
 
@@ -370,7 +380,9 @@ export default function TikTokMaker() {
         {video && (
           <div style={{ marginTop: 14 }}>
             <video src={video} controls playsInline style={{ width: '100%', maxHeight: 520, background: '#000' }} />
-            <a href={video} download="memorabilius-tiktok.mp4" style={{ display: 'inline-block', marginTop: 10, padding: '10px 16px', background: '#1e9e57', color: '#fff', fontWeight: 800, textDecoration: 'none' }}>⬇ Télécharger la vidéo</a>
+            <button type="button" onClick={() => saveVideo(videoBlob, 'memorabilius-tiktok.mp4')} style={{ ...{ display: 'inline-block', marginTop: 10, padding: '10px 16px', background: '#1e9e57', color: '#fff', fontWeight: 800, textDecoration: 'none' }, border: 0, cursor: 'pointer' }}>⬇ Télécharger la vidéo</button>
+            {saveMsg && <p style={{ fontSize: 13, color: '#ffd84d', margin: '8px 0 0' }}>{saveMsg}</p>}
+            <p style={{ fontSize: 12, color: '#aab3d1', margin: '8px 0 0' }}>Si rien ne se télécharge : clic droit sur la vidéo → « Enregistrer la vidéo sous… ».</p>
           </div>)}
       </div>
     </section>

@@ -1,4 +1,5 @@
 'use client'
+import { teamList, hasTeam } from '@/lib/cardTeams'
 import { useState, useMemo, useEffect } from 'react'
 import { createPortal } from 'react-dom'
 import { saveOrShareFile } from '@/lib/saveOrShare'
@@ -374,14 +375,14 @@ export default function GalerieExport({ cards: allCards, profileName, avatarUrl,
 
   useEffect(() => { setMounted(true) }, [])
 
-  const teams = useMemo(() => [...new Set(cards.map(c => c.t).filter(Boolean))].sort(), [cards])
+  const teams = useMemo(() => teamList(cards.map(c => c.t)), [cards])
   const brands = useMemo(() => [...new Set(cards.map(c => c.s).filter(Boolean))].sort(), [cards])
   const years = useMemo(() => [...new Set(cards.map(c => c.y).filter(Boolean))].sort(), [cards])
 
   const filtered = useMemo(() => {
     const list = cards.filter(c =>
       c.n.toLowerCase().includes(search.toLowerCase()) &&
-      (!fTeam || c.t === fTeam) &&
+      (!fTeam || hasTeam(c.t, fTeam)) &&
       (!fBrand || c.s === fBrand) &&
       (!fYear || c.y === fYear) &&
       (!fRc || c.rc) && (!fAuto || c.auto) && (!fPatch || c.patch) && (!fNum || c.num !== '')

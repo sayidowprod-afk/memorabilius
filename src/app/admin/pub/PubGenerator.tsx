@@ -7,6 +7,7 @@ import { useEffect, useRef, useState } from 'react'
 import TikTokMaker from './TikTokMaker'
 import { scheduleMusic, decodeAudioFile, type MusicKind } from './audio'
 import { AD_TX, loadPartnerLogo } from './tiktokAd'
+import { saveOrShareFile } from '@/lib/saveOrShare'
 
 const W = 1080, H = 1920, FPS = 60, DUR = 30
 const FONT = 'system-ui, -apple-system, "Segoe UI", sans-serif'
@@ -307,7 +308,15 @@ export default function PubGenerator() {
   const [musicFile, setMusicFile] = useState('')
   const musicBuf = useRef<AudioBuffer | null>(null)
   const withMusic = musicKind !== 'none'
-  const [video, setVideo] = useState<{ url: string; ext: string } | null>(null)
+  const [video, setVideo] = useState<{ url: string; ext: string; blob: Blob } | null>(null)
+  const [saveMsg, setSaveMsg] = useState('')
+  const saveVideo = async (blob: Blob | null, name: string) => {
+    if (!blob) return
+    setSaveMsg('Enregistrement en cours… (une vidéo de plusieurs Mo peut prendre un moment sur téléphone)')
+    try { await saveOrShareFile(blob, name, { timeoutMs: 180000 }); setSaveMsg('') }
+    catch (e) { setSaveMsg('Échec de l’enregistrement : ' + (e instanceof Error ? e.message : 'erreur') + '. Réessaie, ou télécharge depuis un ordinateur.') }
+  }
+
   const [pos, setPos] = useState(0)
   const [lang, setLang] = useState<Lang>('fr')
 
@@ -405,7 +414,7 @@ export default function PubGenerator() {
     if (encErr) { setStatus('Échec de l’encodage : ' + String(encErr)); setBusy('idle'); return true }
     muxer.finalize()
     setPos(1); setStatus('Vidéo prête · MP4 60 images/s')
-    setVideo({ url: URL.createObjectURL(new Blob([target.buffer], { type: 'video/mp4' })), ext: 'mp4' })
+    { const blob = new Blob([target.buffer], { type: 'video/mp4' }); setVideo({ url: URL.createObjectURL(blob), ext: 'mp4', blob }) }
     setBusy('idle')
     return true
     /* eslint-enable @typescript-eslint/no-explicit-any */
@@ -445,7 +454,7 @@ export default function PubGenerator() {
     if (rec) {
       await new Promise<void>(res => { rec!.onstop = () => res(); rec!.stop() })
       ac?.close()
-      setVideo({ url: URL.createObjectURL(new Blob(chunks, { type: rec.mimeType || 'video/webm' })), ext })
+      { const blob = new Blob(chunks, { type: rec.mimeType || 'video/webm' }); setVideo({ url: URL.createObjectURL(blob), ext, blob }) }
     }
     setBusy('idle')
   }
@@ -472,7 +481,9 @@ export default function PubGenerator() {
         {video && (
           <div style={{ marginTop: 14 }}>
             <video src={video.url} controls playsInline style={{ width: '100%', maxHeight: 520, background: '#000' }} />
-            <a href={video.url} download={`memorabilius-pub-${lang}.${video.ext}`} style={{ display: 'inline-block', marginTop: 10, padding: '10px 16px', background: '#1e9e57', color: '#fff', fontWeight: 800, textDecoration: 'none' }}>⬇ Télécharger la vidéo</a>
+            <button type="button" onClick={() => saveVideo(video.blob, `memorabilius-pub-${lang}.${video.ext}`)} style={{ ...{ display: 'inline-block', marginTop: 10, padding: '10px 16px', background: '#1e9e57', color: '#fff', fontWeight: 800, textDecoration: 'none' }, border: 0, cursor: 'pointer' }}>⬇ Télécharger la vidéo</button>
+            {saveMsg && <p style={{ fontSize: 13, color: '#ffd84d', margin: '8px 0 0' }}>{saveMsg}</p>}
+            <p style={{ fontSize: 12, color: '#aab3d1', margin: '8px 0 0' }}>Si rien ne se télécharge : clic droit sur la vidéo → « Enregistrer la vidéo sous… ».</p>
           </div>)}
       </div>
       <div style={{ width: '100%', maxWidth: 1000 }}><TikTokMaker /></div>
