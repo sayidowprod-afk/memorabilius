@@ -6,6 +6,8 @@ import ChatBubble from './ChatBubble'
 import Toaster from './Toaster'
 import OnboardingTooltip from './OnboardingTooltip'
 import WebOnly from './WebOnly'
+import AppOnly from './AppOnly'
+import FederationBand from './FederationBand'
 import MobileTopBar from './MobileTopBar'
 import MobileBottomNav from './MobileBottomNav'
 import PageTransition from './PageTransition'
@@ -34,6 +36,7 @@ export default function SiteShell({ children }: { children: React.ReactNode }) {
         <PageTransition>{children}</PageTransition>
       </main>
       <WebOnly><Footer /></WebOnly>
+      <AppOnly><FederationBand marginTop={24} /></AppOnly>
       <ChatBubble />
       <Toaster />
       <OnboardingTooltip />
