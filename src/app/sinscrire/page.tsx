@@ -8,6 +8,8 @@ import { useLang } from '@/lib/LangContext'
 import OAuthButtons from '@/components/OAuthButtons'
 import { useCapsLock, CapsLockHint, suggestEmail } from '@/lib/formHints'
 import { useIsNative } from '@/lib/useIsNative'
+import { useLang as useLangFocus } from '@/lib/LangContext'
+import { tcgLabel } from '@/lib/tcgGames'
 
 type PseudoStatus = 'idle' | 'checking' | 'available' | 'taken'
 
@@ -26,6 +28,8 @@ export default function Inscription() {
   const { capsOn, capsProps } = useCapsLock()
   const [error, setError] = useState('')
   const [loading, setLoading] = useState(false)
+  const [focusPick, setFocusPick] = useState<'sport' | 'tcg' | 'both'>('sport')
+  const { lang: focusLang } = useLangFocus()
   const [pseudoStatus, setPseudoStatus] = useState<PseudoStatus>('idle')
   const [touched, setTouched] = useState({ email: false, password: false })
   const debounceRef = useRef<ReturnType<typeof setTimeout> | null>(null)
@@ -122,6 +126,8 @@ export default function Inscription() {
         options: { data: { display_name: form.display_name } }
       })
       if (error) { setError(error.message); setLoading(false); return }
+      // ce que le membre collectionne : appliqué à son profil à sa première connexion (voir useCollectionFocus)
+      try { if (focusPick !== 'sport') localStorage.setItem('pending-collection-focus', focusPick) } catch { /* rien */ }
       window.location.href = '/confirm?email=' + encodeURIComponent(form.email)
     } catch (e: any) {
       // Sans ce filet, une exception ici (reseau, reponse inattendue de
@@ -208,6 +214,15 @@ export default function Inscription() {
               data-expired-callback="onTurnstileExpired"
             />
           )}
+          <div>
+            <div style={{ fontSize: 13, fontWeight: 700, marginBottom: 6 }}>{tcgLabel('focus', focusLang)}</div>
+            <div style={{ display: 'flex', gap: 6, flexWrap: 'wrap' }}>
+              {([['sport', '🏀 ' + tcgLabel('sport', focusLang)], ['tcg', '🎴 ' + tcgLabel('tcg', focusLang)], ['both', tcgLabel('both', focusLang)]] as const).map(([id, label]) => (
+                <button key={id} type="button" onClick={() => setFocusPick(id)} aria-pressed={focusPick === id}
+                  style={{ padding: '8px 12px', borderRadius: 8, border: 'none', cursor: 'pointer', fontWeight: 800, fontSize: 13, background: focusPick === id ? '#003DA6' : '#f0f0f0', color: focusPick === id ? '#fff' : '#333' }}>{label}</button>
+              ))}
+            </div>
+          </div>
           {error && <p style={{ color: '#e74c3c', fontSize: 13 }}>{error}</p>}
           <button type="submit" className="btn-main btn-primary" style={{ marginTop: 8 }} disabled={loading || pseudoStatus === 'taken' || pseudoStatus === 'checking' || emailError || passwordError || (requireCaptcha && !captchaToken)}>
             {loading ? '...' : t('register_btn')}

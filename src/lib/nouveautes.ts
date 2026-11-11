@@ -4,6 +4,17 @@ export type Entry = { date: string; titre: string; points: string[] }
 
 export const ENTRIES: Entry[] = [
   {
+    date: '21 novembre 2026', titre: 'TCG : accueil dédié, guide, annonces et ajout en lot',
+    points: [
+      'Accueil : un bloc « TCG » avec tes jeux, le nombre de cartes, la valeur estimée de ta collection et des accès rapides. Avec le réglage « TCG » seul, les pépites et podiums de sport sont masqués.',
+      'Le choix « Sport / TCG / Les deux » est maintenant aussi dans le menu ⚙️ en haut et à l’inscription.',
+      'Ajout en lot : choisis le type de cartes (Sport ou un jeu) pour tout le lot.',
+      'Annonces et échanges : état, langue et édition des cartes à jouer, et filtre TCG.',
+      'Nouveau guide des cartes à jouer : /tcg.',
+      'Ajout de carte : le bouton « Ajouter à ma galerie » revient en bas du formulaire, comme avant.',
+    ],
+  },
+  {
     date: '20 novembre 2026', titre: 'Cartes à jouer (TCG) : Pokémon, Magic, Yu-Gi-Oh!, Lorcana, One Piece',
     points: [
       'Nouveau réglage « Je collectionne » (Paramètres) : Sport, TCG ou Les deux. Avec « TCG » seul, les pronos disparaissent de ton accueil.',

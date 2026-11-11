@@ -18,6 +18,7 @@ export default function TcgHomeSection() {
   const { lang } = useLang()
   const focus = useCollectionFocus()
   const [counts, setCounts] = useState<Record<string, number> | null>(null)
+  const [value, setValue] = useState<{ eur: number; n: number } | null>(null)
   const on = !!user && focus !== 'sport'
   const uid = user?.id
   useEffect(() => {
@@ -29,6 +30,25 @@ export default function TcgHomeSection() {
       for (const r of (data || []) as { jeu: string }[]) c[r.jeu] = (c[r.jeu] || 0) + 1
       setCounts(c)
     })
+    // Valeur estimée : prix du jour (Cardmarket pour Pokémon, Scryfall pour Magic) des cartes identifiées, 60 cartes au plus, mis en cache côté serveur
+    supabase.from('cartes_manuelles').select('jeu, tcg_ref, langue, variation, quantite').eq('user_id', uid).not('tcg_ref', 'is', null).limit(60).then(async ({ data, error }) => {
+      if (dead || error || !data?.length) return
+      const rows = data as { jeu: string; tcg_ref: string; langue?: string; variation?: string; quantite?: number }[]
+      let eur = 0, n = 0, i = 0
+      const worker = async () => {
+        while (i < rows.length && !dead) {
+          const r = rows[i++]
+          try {
+            const j = await (await fetch(`/api/tcg/price?game=${r.jeu}&ref=${encodeURIComponent(r.tcg_ref)}&lang=${encodeURIComponent(r.langue || 'FR')}`)).json()
+            const pr = j.price as { eur: number | null; eurFoil: number | null } | null
+            const v = pr ? (/foil|holo/i.test(r.variation || '') && pr.eurFoil != null ? pr.eurFoil : pr.eur) : null
+            if (v != null) { eur += v * (r.quantite || 1); n++ }
+          } catch { /* carte ignorée */ }
+        }
+      }
+      await Promise.all([worker(), worker(), worker(), worker()])
+      if (!dead && n > 0) setValue({ eur, n })
+    })
     return () => { dead = true }
   }, [on, uid])
   if (!on || !uid) return null
@@ -39,7 +59,7 @@ export default function TcgHomeSection() {
   return (
     <section style={{ maxWidth: 1100, margin: '16px auto', padding: '0 16px' }} aria-label="TCG">
       <div style={{ border: '1px solid rgba(128,128,128,0.3)', borderRadius: 14, padding: 14, background: 'rgba(128,128,128,0.06)' }}>
-        <div style={{ fontWeight: 900, fontSize: 16, marginBottom: 10 }}>🎴 {tcgLabel('tcg', lang)}{counts ? ` · ${total}` : ''}</div>
+        <div style={{ fontWeight: 900, fontSize: 16, marginBottom: 10 }}>🎴 {tcgLabel('tcg', lang)}{counts ? ` · ${total}` : ''}{value ? <span style={{ fontWeight: 700, fontSize: 13, marginLeft: 8, color: '#1e9e57' }}>≈ {Math.round(value.eur)} € <span style={{ opacity: 0.7, fontWeight: 600 }}>({value.n})</span></span> : null}</div>
         {counts && total === 0 && <p style={{ margin: '0 0 10px', fontSize: 13, opacity: 0.8 }}>{tcgLabel('focusSub', lang)}</p>}
         {counts && total > 0 && (
           <div style={{ display: 'flex', flexWrap: 'wrap', gap: 8, marginBottom: 12 }}>

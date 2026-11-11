@@ -3,6 +3,10 @@ import { useEffect, useRef, useState } from 'react'
 import { useLang } from '@/lib/LangContext'
 import ThemeToggleButton from '@/components/ThemeToggleButton'
 import { ACCENTS, getAccent, applyAccent } from '@/lib/accent'
+import { supabase } from '@/lib/supabase'
+import { useAuth } from '@/lib/AuthContext'
+import { useCollectionFocus, rememberCollectionFocus, type CollectionFocus } from '@/lib/useCollectionFocus'
+import { tcgLabel } from '@/lib/tcgGames'
 
 // Langues proposees (drapeaux dessines en CSS : les emojis de drapeaux ne s'affichent pas sous Windows)
 export const LANG_LIST = [
@@ -26,6 +30,35 @@ function FlagRow({ onPick }: { onPick?: () => void }) {
       ))}
     </div>
   )
+}
+
+// Je collectionne : Sport / TCG / Les deux (visible une fois connecté)
+function FocusRow() {
+  const { user } = useAuth()
+  const { lang } = useLang()
+  const focus = useCollectionFocus()
+  if (!user) return null
+  const pick = async (f: CollectionFocus) => {
+    rememberCollectionFocus(user.id, f)
+    await supabase.from('profiles').update({ collection_focus: f }).eq('id', user.id)
+  }
+  const opts: [CollectionFocus, string][] = [['sport', '🏀 ' + tcgLabel('sport', lang)], ['tcg', '🎴 ' + tcgLabel('tcg', lang)], ['both', tcgLabel('both', lang)]]
+  return (
+    <div style={{ display: 'flex', gap: 6, flexWrap: 'wrap' }} role="group" aria-label={tcgLabel('focus', lang)}>
+      {opts.map(([id, label]) => (
+        <button key={id} type="button" aria-pressed={focus === id} onClick={() => pick(id)}
+          style={{ padding: '6px 10px', borderRadius: 8, border: '2px solid ' + (focus === id ? 'var(--accent, #003DA6)' : 'rgba(128,128,128,0.4)'), background: focus === id ? 'var(--accent, #003DA6)' : 'transparent', color: focus === id ? '#fff' : 'inherit', fontWeight: 800, fontSize: 12, cursor: 'pointer' }}>{label}</button>
+      ))}
+    </div>
+  )
+}
+
+// Titre + boutons, masqués si non connecté
+function FocusLabelled() {
+  const { user } = useAuth()
+  const { lang } = useLang()
+  if (!user) return null
+  return <div className="sm-r"><label>{tcgLabel('focus', lang)}</label><FocusRow /></div>
 }
 
 // Un seul carré « ⚙ » dans la barre du haut : il ouvre un panneau avec la langue (drapeaux) et le mode sombre.
@@ -58,6 +91,7 @@ export default function SettingsMenu() {
           <div className="sm-r"><label>{t('settings_language')}</label><FlagRow onPick={() => setOpen(false)} /></div>
           <div className="sm-r sm-r-row"><label>{t('settings_dark_mode')}</label><ThemeToggleButton /></div>
           <div className="sm-r"><label>Couleur du site</label><AccentRow /></div>
+          <FocusLabelled />
         </div>
       )}
     </div>
@@ -89,6 +123,7 @@ export function SettingsInline() {
       <div className="sm-inline-row"><label>{t('settings_dark_mode')}</label><ThemeToggleButton /></div>
       <label>Couleur du site</label>
       <AccentRow />
+      <FocusLabelled />
     </div>
   )
 }

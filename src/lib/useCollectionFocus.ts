@@ -26,6 +26,17 @@ export function useCollectionFocus(): CollectionFocus {
     supabase.from('profiles').select('collection_focus').eq('id', uid).single().then(({ data, error }) => {
       if (dead || error) return
       const v = (data as { collection_focus?: string } | null)?.collection_focus
+      // choix fait à l'inscription : appliqué une seule fois, tant que le profil est encore sur « sport » par défaut
+      try {
+        const pending = localStorage.getItem('pending-collection-focus')
+        if (pending) {
+          localStorage.removeItem('pending-collection-focus')
+          if ((pending === 'tcg' || pending === 'both') && v === 'sport') {
+            void supabase.from('profiles').update({ collection_focus: pending }).eq('id', uid)
+            setFocus(pending); localStorage.setItem(KEY(uid), pending); return
+          }
+        }
+      } catch { /* rien */ }
       if (valid(v)) { setFocus(v); try { localStorage.setItem(KEY(uid), v) } catch { /* rien */ } }
     })
     window.addEventListener(EVT, readLocal)

@@ -1,7 +1,5 @@
 'use client'
 import PackReveal from '@/components/PackReveal'
-import { useIsAppUI } from '@/lib/useIsNative'
-import { NAV_TOTAL_HEIGHT_CSS } from '@/lib/nativeLayout'
 import HelpTip from '@/components/HelpTip'
 import { toast } from '@/lib/toast'
 import PriceFormField from '@/components/PriceFormField'
@@ -291,7 +289,6 @@ export default function AjouterCarte({ params }: { params: Promise<{ userId: str
   const { lang, t } = useLang()
   const { dark } = useTheme()
   const [saving, setSaving] = useState(false)
-  const isAppUI = useIsAppUI()
   const [showDesignation, setShowDesignation] = useState(false)
   // Ce que collectionne le membre : 'sport' (par défaut, rien ne change), 'tcg' ou 'both' (alors le choix du type de carte est proposé)
   const [collectionFocus, setCollectionFocus] = useState<'sport' | 'tcg' | 'both'>('sport')
@@ -1444,11 +1441,9 @@ export default function AjouterCarte({ params }: { params: Promise<{ userId: str
           </>
           )}
 
-          <div className="da-sticky-actions" style={{ bottom: isAppUI ? NAV_TOTAL_HEIGHT_CSS : 0 }}>
-            <button type="submit" disabled={saving} className="btn-main btn-primary" style={{ width: '100%' }}>
+          <button type="submit" disabled={saving} className="btn-main btn-primary" style={{ marginTop: 8 }}>
             {saving ? '...' : t('addcard_submit_add')}
           </button>
-          </div>
         </div>
       </form>
 

@@ -15,6 +15,7 @@ import { cropQuad, type Quad } from '@/lib/perspectiveCrop'
 import { detectCornersYOLO, waitForYOLO } from '@/lib/cornerDetectorYolo'
 import CornerEditor from '@/components/CornerEditor'
 import BurstCamera from '@/components/BurstCamera'
+import { TCG_GAMES, getTcgGame } from '@/lib/tcgGames'
 import CollectionTagSelect from '@/components/CollectionTagSelect'
 import { detectBinderCards } from '@/lib/binderDetect'
 import { draftPut, draftDelete, draftPutMeta, draftLoad, draftClear, type DraftEntry } from '@/lib/lotDraft'
@@ -158,6 +159,7 @@ export default function AjoutLotPage({ params }: { params: Promise<{ userId: str
   // réglages appliqués à toutes les cartes de ce lot (comme dans l'ajout d'une seule carte)
   const [collectionTag, setCollectionTag] = useState('')
   const [forSale, setForSale] = useState(false)
+  const [lotJeu, setLotJeu] = useState('') // '' = cartes de sport ; sinon toutes les cartes du lot sont des cartes à jouer de ce jeu
   // collection propre à une carte ('' = celle du lot, NONE = aucune collection)
   const NONE = '__none'
   const [cardTag, setCardTag] = useState<Record<number, string>>({})
@@ -549,12 +551,14 @@ export default function AjoutLotPage({ params }: { params: Promise<{ userId: str
           grade: card?.grade || 'Raw', rc: !!card?.rc, auto: !!card?.auto, patch: !!card?.patch, printing_plate: false, booklet: false,
           format: horizontal ? 'horizontal' : 'standard', is_horizontal: horizontal, verso_is_horizontal: versoHorizontal,
           image_recto: imageRecto, image_verso: imageVerso, image_recto_hd: imageRectoHd, image_verso_hd: imageVersoHd, image_recto_thumb: imageRectoThumb,
+          ...((lotJeu || getTcgGame(card?.jeu)) ? { jeu: lotJeu || String(card?.jeu).toLowerCase(), rarete: card?.rarete || null, langue: card?.langue || null } : {}),
           notes_perso: nom ? null : 'À compléter (ajout en lot)', notes_perso_public: false,
           collection_tag: (cardTag[e.id] === NONE ? '' : (cardTag[e.id] || collectionTag)) || null, disponible_vente: forSale, prix_vente: null, item_type: 'card',
         }
         let { error } = await supabase.from('cartes_manuelles').insert(row)
         // colonne image_recto_thumb ajoutée par la migration 20261117 : tant qu'elle manque, on enregistre sans la miniature
         if (error && /image_recto_thumb/.test(error.message)) { const { image_recto_thumb: _t, ...rest } = row; void _t; ({ error } = await supabase.from('cartes_manuelles').insert(rest)) }
+        if (error && /\b(jeu|rarete|langue)\b/.test(error.message)) { const { jeu: _j, rarete: _r, langue: _l, ...rest } = row as typeof row & { jeu?: string; rarete?: string | null; langue?: string | null }; void _j; void _r; void _l; ({ error } = await supabase.from('cartes_manuelles').insert(rest)) }
         if (error) throw new Error(error.message)
         galleryMemClear(userId)
         fetch('/api/card-added', { method: 'POST', headers: auth, body: JSON.stringify({ userId, rc: row.rc, auto: row.auto, patch: row.patch, num: !!row.num }) }).catch(() => {})
@@ -661,6 +665,13 @@ export default function AjoutLotPage({ params }: { params: Promise<{ userId: str
         <div>
           <div style={{ fontSize: 13, marginBottom: 4 }}>Collection</div>
           <CollectionTagSelect userId={userId} value={collectionTag} onChange={setCollectionTag} />
+        </div>
+        <div>
+          <div style={{ fontSize: 13, marginBottom: 4 }}>Type de cartes</div>
+          <select value={lotJeu} onChange={e => setLotJeu(e.target.value)} disabled={running}>
+            <option value="">🏀 Sport</option>
+            {TCG_GAMES.map(g => <option key={g.id} value={g.id}>{g.emoji} {g.label}</option>)}
+          </select>
         </div>
         <label style={{ display: 'flex', alignItems: 'center', gap: 8, fontSize: 13, cursor: 'pointer' }}>
           <input type="checkbox" checked={forSale} onChange={e => setForSale(e.target.checked)} disabled={running} /> À vendre / échanger (tu pourras mettre un prix carte par carte ensuite)
