@@ -430,13 +430,15 @@ function startGalleryPrefetch(uid: string): GalleryPrefetch {
   return { total, first, cc, rest }
 }
 const THUMB_PATH = '/storage/v1/render/image/public/'
+const USE_SUPABASE_TRANSFORMS = false
 function isSlowNetwork(): boolean {
   if (typeof navigator === 'undefined') return false
   const c = (navigator as Navigator & { connection?: { saveData?: boolean; effectiveType?: string } }).connection
   return !!c && (!!c.saveData || c.effectiveType === 'slow-2g' || c.effectiveType === '2g' || c.effectiveType === '3g')
 }
 function cardThumb(url: string): string {
-  if (!isSlowNetwork()) return url
+  // Les transformations d'images Supabase sont facturées (5 $ par tranche de 1 000 au-delà de 100/mois) : désactivées, les miniatures stockées (image_recto_thumb) suffisent.
+  if (!isSlowNetwork() || !USE_SUPABASE_TRANSFORMS) return url
   const m = url.match(/^(https:\/\/[^/]+\.supabase\.co)\/storage\/v1\/object\/public\/([^?]+)$/)
   return m ? `${m[1]}${THUMB_PATH}${m[2]}?width=320&quality=60` : url
 }

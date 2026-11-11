@@ -39,6 +39,12 @@ const GROUPS: { title: string; links: AdminLink[] }[] = [
     ],
   },
   {
+    title: 'Marketing',
+    links: [
+      { href: '/admin/pub', icon: '🎬', title: 'Générateur de pub', desc: 'Vidéos 9:16 (TikTok, Reels, Shorts) : présentation du site et pub TikTok par langue' },
+    ],
+  },
+  {
     title: 'IA / ML',
     links: [
       { href: '/admin/diecut-test', icon: '✂️', title: 'Test DieCut', desc: 'Modèle expérimental de détection de forme die-cut — test uniquement' },

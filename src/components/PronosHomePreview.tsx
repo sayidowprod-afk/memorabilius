@@ -54,6 +54,7 @@ const SPORT_INFO: Record<Sport, { label: string; short: string; logo: string; so
 const GREEN = '#1fae4a'
 const GOLD = '#d4a017'
 const NAVY = '#0d1840'
+const MATCH_LIMIT = 3
 
 // Dégradé couleur d'équipe → marine au centre.
 function sideGradient(color: string, side: 'left' | 'right') {
@@ -79,7 +80,7 @@ function TeamHalf({
           volontairement petite : le cercle qui l'entoure, lui, est fluide
           via CSS (.pronos-logo), donc un peu de marge sur desktop plutôt
           qu'un débordement sur mobile. */}
-      <TeamBadge teamId={team.id} size={32} />
+      <TeamBadge teamId={team.id} size={28} />
     </div>
   )
   const bigName = team.name.split(' ').slice(-1)[0]
@@ -392,17 +393,17 @@ function PronosCSS() {
     <style>{`
 html[data-theme="dark"] .pronos-white-circle { background: #fff !important; }
 
-.pronos-row { display: flex; align-items: stretch; min-height: 108px; }
-.pronos-half { flex: 1; display: flex; align-items: center; gap: 14px; padding: 12px 22px; }
-.pronos-logo { width: 64px; height: 64px; flex-shrink: 0; }
-.pronos-record { font-size: 20px; }
-.pronos-city { font-size: 18px; }
-.pronos-name { font-size: 44px; }
-.pronos-score { font-size: 46px; }
-.pronos-center { display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 6px 18px; flex-shrink: 0; width: 150px; }
-.pronos-sport-badge { display: flex; align-items: center; gap: 6px; margin-bottom: 6px; border-radius: 999px; padding: 3px 10px 3px 6px; }
-.pronos-draw { margin-top: 6px; padding: 4px 14px; border: 0; border-radius: 999px; font: 800 12px/1 -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; letter-spacing: .5px; }
-.pronos-vs-circle { width: 34px; height: 34px; margin: 5px 0; display: flex; align-items: center; justify-content: center; border-radius: 50%; }
+.pronos-row { display: flex; align-items: stretch; min-height: 70px; }
+.pronos-half { flex: 1; display: flex; align-items: center; gap: 12px; padding: 8px 18px; }
+.pronos-logo { width: 44px; height: 44px; flex-shrink: 0; }
+.pronos-record { font-size: 16px; }
+.pronos-city { font-size: 13px; }
+.pronos-name { font-size: 30px; }
+.pronos-score { font-size: 32px; }
+.pronos-center { display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 4px 14px; flex-shrink: 0; width: 124px; }
+.pronos-sport-badge { display: flex; align-items: center; gap: 6px; margin-bottom: 3px; border-radius: 999px; padding: 3px 10px 3px 6px; }
+.pronos-draw { margin-top: 3px; padding: 3px 12px; border: 0; border-radius: 999px; font: 800 12px/1 -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; letter-spacing: .5px; }
+.pronos-vs-circle { width: 26px; height: 26px; margin: 3px 0; display: flex; align-items: center; justify-content: center; border-radius: 50%; }
 
 .pronos-bs-scroll { --bs-first: 158px; --bs-col: 52px; --bs-av: 40px; --bs-pad: 6px; --bs-pad-first: 10px; --bs-gap: 10px; --bs-row: 56px; --bs-name: 14px; --bs-name-w: 96px; --bs-fs: 14px; }
 @media (max-width: 680px) { .pronos-bs-scroll { --bs-first: 108px; --bs-col: 34px; --bs-av: 26px; --bs-pad: 2px; --bs-pad-first: 6px; --bs-gap: 6px; --bs-row: 42px; --bs-name: 12px; --bs-name-w: 66px; --bs-fs: 12.5px; } }
@@ -411,15 +412,16 @@ html[data-theme="dark"] .pronos-white-circle { background: #fff !important; }
 
 @media (max-width: 680px) {
   .pronos-row { flex-direction: column; }
-  .pronos-half { padding: 10px 14px; gap: 10px; }
-  .pronos-logo { width: 40px; height: 40px; }
-  .pronos-record { font-size: 14px; }
-  .pronos-city { font-size: 10px; }
-  .pronos-name { font-size: 22px; }
-  .pronos-score { font-size: 26px; }
-  .pronos-center { width: 100%; flex-direction: row; padding: 6px 10px; gap: 8px; }
+  .pronos-row { min-height: 0; }
+  .pronos-half { padding: 5px 12px; gap: 8px; }
+  .pronos-logo { width: 34px; height: 34px; }
+  .pronos-record { font-size: 12px; }
+  .pronos-city { font-size: 9px; }
+  .pronos-name { font-size: 18px; }
+  .pronos-score { font-size: 22px; }
+  .pronos-center { width: 100%; flex-direction: row; padding: 3px 10px; gap: 8px; }
   .pronos-sport-badge { margin-bottom: 0; }
-  .pronos-vs-circle { width: 26px; height: 26px; margin: 0; }
+  .pronos-vs-circle { width: 22px; height: 22px; margin: 0; }
   .pronos-draw { margin-top: 0; }
 }
 `}</style>
@@ -446,6 +448,7 @@ export default function PronosHomePreview() {
   const [prev, setPrev] = useState<{ matches: ApiMatch[]; days: string[] } | null>(null)
   const [prevLoading, setPrevLoading] = useState(false)
   const [activeSport, setActiveSport] = useState<Sport | 'ALL'>('ALL')
+  const [showAll, setShowAll] = useState(false) // N594 : 3 matchs d'abord, « Voir les autres » pour le reste
   const [picks, setPicks] = useState<Record<string, Pick>>({})
   const [xpGain, setXpGain] = useState<{ wins: number; xp: number } | null>(null)
   // Bilan permanent des bons pronos du membre (aujourd'hui / semaine / total), relu depuis ses gains d'XP :
@@ -517,6 +520,8 @@ export default function PronosHomePreview() {
     return () => { cancelled = true }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [user])
+
+  useEffect(() => { setShowAll(false) }, [activeDay, activeSport, week])
 
   // Pas connecté -- module masqué, aucun appel supplémentaire.
   if (!user) return null
@@ -681,7 +686,15 @@ export default function PronosHomePreview() {
             {week === 'prev' && prevLoading ? 'Chargement des résultats...' : 'Chargement des matchs...'}
           </p>
         ) : visible.length > 0 ? (
-          <MatchList matches={visible} picks={picks} onPick={handlePick} />
+          <>
+            <MatchList matches={showAll ? visible : visible.slice(0, MATCH_LIMIT)} picks={picks} onPick={handlePick} />
+            {visible.length > MATCH_LIMIT && (
+              <button type="button" onClick={() => setShowAll(v => !v)}
+                style={{ ...pillBase, margin: '12px auto 0', padding: '8px 18px', fontSize: 13, background: 'transparent', color: '#8db6ff', border: '1px solid rgba(141,182,255,.55)' }}>
+                {showAll ? 'Réduire ↑' : `Voir les ${visible.length - MATCH_LIMIT} autres matchs ↓`}
+              </button>
+            )}
+          </>
         ) : (
           <p style={{ fontFamily: UI_FONT, fontWeight: 600, color: 'rgba(255,255,255,.6)', fontSize: 16, textAlign: 'center', padding: '40px 0' }}>
             Aucun match ce jour-là.

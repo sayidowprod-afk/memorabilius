@@ -269,10 +269,13 @@ function BadgeTooltip({ t: info }: { t: TooltipInfo }) {
   const pal = TIER[info.palIdx] as Pal
   const pct = Math.min(info.statVal / info.tier.threshold, 1)
   const yPos = info.above ? info.y - 14 : info.y + 70
+  // jamais coupé par le bord de l'écran : le tooltip (≈ 230 px de large) est recentré dans la fenêtre (badge tout à gauche ou à droite d'une ligne)
+  const half = Math.min(120, (typeof window !== 'undefined' ? window.innerWidth : 480) / 2 - 8)
+  const left = typeof window === 'undefined' ? info.x : Math.max(half + 8, Math.min(window.innerWidth - half - 8, info.x))
 
   return (
     <div style={{
-      position: 'fixed', left: info.x, top: yPos,
+      position: 'fixed', left, top: yPos, maxWidth: 'calc(100vw - 16px)',
       transform: info.above ? 'translate(-50%,-100%)' : 'translate(-50%,0)',
       zIndex: 99999, pointerEvents: 'none',
       background: 'linear-gradient(145deg,#0d1b2e,#162438)',

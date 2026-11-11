@@ -78,6 +78,22 @@ const sportIcon = (s?: string | null) => {
   return '🏀'
 }
 
+// N564 : salutation selon l'heure (matin, après-midi, soir, week-end) ; langue inconnue : texte habituel
+function greeting(lang: string, fallback: string): string {
+  const d = new Date(), h = d.getHours(), we = d.getDay() === 0 || d.getDay() === 6
+  const slot = h >= 5 && h < 12 ? 0 : h >= 12 && h < 18 ? 1 : 2
+  const T: Record<string, [string, string, string, string]> = {
+    fr: ['Bonjour', 'Bon après-midi', 'Bonsoir', 'Bon week-end'],
+    en: ['Good morning', 'Good afternoon', 'Good evening', 'Happy weekend'],
+    de: ['Guten Morgen', 'Guten Tag', 'Guten Abend', 'Schönes Wochenende'],
+    es: ['Buenos días', 'Buenas tardes', 'Buenas noches', 'Buen fin de semana'],
+    it: ['Buongiorno', 'Buon pomeriggio', 'Buonasera', 'Buon weekend'],
+  }
+  const row = T[lang]
+  if (!row) return fallback
+  return we && slot !== 2 ? row[3] : row[slot]
+}
+
 // N7 : le champ de recherche « tape » des exemples tout seul tant qu'il est vide et sans focus (texte fixe si « reduire les animations »)
 const TYPED: Record<string, { pre: string; words: string[] }> = {
   fr: { pre: 'Rechercher ', words: ['un joueur…', 'un set…', 'un collectionneur…', 'une carte…'] },
@@ -480,41 +496,31 @@ export default function NativeHomeDashboard({ siteStats, cardOfTheDay }: { siteS
           </div>
         </section>
   )
+  // N556 : niveau, prochain badge et défi de la semaine = trois anneaux avec leurs vrais chiffres (430/500…)
+  const ring = (pct: number, color: string) => ({ background: `conic-gradient(${color} ${Math.min(100, Math.max(0, Math.round(pct * 100)))}%, var(--bg3, #17214a) 0)` })
   const renderProgress = () => (
       <section className="dd-box">
-        <div className="dd-prog dd-prog--first">
-          <button type="button" className={'dd-prog-ico dd-lvl-ico' + (lvlPop ? ' dd-lvl-pop' : '')} onClick={() => setShowXpInfo(v => !v)} aria-label="XP">
-            <b className="da-num">{data.level.level}</b>{lvlPop && <span className="dd-lvl-ring" aria-hidden />}
+        <div className="dd-rings">
+          <button type="button" className="dd-ringc" onClick={() => setShowXpInfo(v => !v)} aria-label="XP">
+            <span className={'dd-ring' + (lvlPop ? ' dd-lvl-pop' : '')} style={ring(data.level.pct, '#2f6bff')}><span><b className="da-num">{data.level.level}</b></span></span>
+            <span className="dd-ring-n">{data.level.xpIntoLevel}/{data.level.xpForNextLevel}</span>
+            <span className="dd-ring-l">{t('word_level')} {data.level.level} · XP</span>
           </button>
-          <div className="dd-prog-b">
-            <div className="dd-lvl-row"><span>{t('word_level')} {data.level.level}</span><span>{data.level.xpIntoLevel}/{data.level.xpForNextLevel} XP</span></div>
-            <div className="dd-bar dd-bar--seg"><i style={{ width: `${Math.min(100, Math.round(data.level.pct * 100))}%` }} /></div>
-            <div className="dd-sub">{Math.max(0, data.level.xpForNextLevel - data.level.xpIntoLevel)} {L.toNext}</div>
-          </div>
-        </div>
-        {showXpInfo && <p className="dd-info">{t('xp_info_explanation')}</p>}
-
-        {data.nextBadge && (
-          <Link href={`${galleryHref}?tab=badges`} onClick={hapticTap} className="dd-prog">
-            <span className={'dd-prog-ico' + (data.nextBadge.pct >= 0.9 ? ' dd-hop' : '')}>{data.nextBadge.cat.emoji}</span>
-            <div className="dd-prog-b">
-              <div className="dd-lvl-row"><span>{`${t('dashboard_next_badge_prefix')} ${data.nextBadge.tier.label} ${data.nextBadge.cat.unit}`}</span><span>{data.nextBadge.value}/{data.nextBadge.tier.threshold}</span></div>
-              <div className={'dd-bar dd-bar--gold' + (data.nextBadge.pct >= 0.9 ? ' dd-bar--near' : '')}><i style={{ width: `${Math.min(100, Math.round(data.nextBadge.pct * 100))}%` }} /></div>
-            </div>
+          {data.nextBadge ? (
+            <Link href={`${galleryHref}?tab=badges`} onClick={hapticTap} className="dd-ringc" title={`${data.nextBadge.tier.label} ${data.nextBadge.cat.unit}`}>
+              <span className={'dd-ring' + (data.nextBadge.pct >= 0.9 ? ' dd-hop' : '')} style={ring(data.nextBadge.pct, '#e0a526')}><span>{data.nextBadge.cat.emoji}</span></span>
+              <span className="dd-ring-n">{data.nextBadge.value}/{data.nextBadge.tier.threshold}</span>
+              <span className="dd-ring-l">{data.nextBadge.cat.unit}</span>
+            </Link>
+          ) : <span />}
+          <Link href={galleryHref} onClick={hapticTap} className="dd-ringc" title={`+${data.challenge.rewardXp} XP · ${t('dashboard_challenge_ends_in')} ${formatCountdown(challengeMsLeft, t)}`}>
+            <span className="dd-ring" style={ring(data.challengeProgress / data.challenge.target, '#1e9e57')}><span>{challengeDone ? '✓' : data.challenge.emoji}</span></span>
+            <span className="dd-ring-n">{challengeDone ? t('dashboard_challenge_done') : `${data.challengeProgress}/${data.challenge.target}`}</span>
+            <span className="dd-ring-l">{t(data.challenge.labelKey)}</span>
           </Link>
-        )}
-
-        <Link href={galleryHref} onClick={hapticTap} className="dd-prog">
-          <span className="dd-prog-ico">{challengeDone ? '✓' : data.challenge.emoji}</span>
-          <div className="dd-prog-b">
-            <div className="dd-lvl-row">
-              <span>{`${t('dashboard_challenge_prefix')} ${t(data.challenge.labelKey)}`}</span>
-              <span>{challengeDone ? t('dashboard_challenge_done') : `${data.challengeProgress}/${data.challenge.target}`}</span>
-            </div>
-            <div className={`dd-bar${challengeDone ? ' dd-bar--ok' : ''}`}><i style={{ width: `${Math.min(100, Math.round((data.challengeProgress / data.challenge.target) * 100))}%` }} /></div>
-            <div className="dd-sub">+{data.challenge.rewardXp} XP · {t('dashboard_challenge_ends_in')} {formatCountdown(challengeMsLeft, t)}</div>
-          </div>
-        </Link>
+        </div>
+        <div className="dd-sub" style={{ textAlign: 'center' }}>{Math.max(0, data.level.xpForNextLevel - data.level.xpIntoLevel)} {L.toNext} · {t('dashboard_challenge_prefix')} +{data.challenge.rewardXp} XP · {t('dashboard_challenge_ends_in')} {formatCountdown(challengeMsLeft, t)}</div>
+        {showXpInfo && <p className="dd-info">{t('xp_info_explanation')}</p>}
       </section>
   )
   const renderSite = () => (
@@ -541,7 +547,7 @@ export default function NativeHomeDashboard({ siteStats, cardOfTheDay }: { siteS
             ? <img src={data.avatarUrl} alt="" className="dd-avatar" />
             : <div className="dd-avatar dd-avatar--ph">{data.displayName[0]?.toUpperCase()}</div>}
           <div style={{ minWidth: 0 }}>
-            <div className="dd-kicker">{t('dashboard_greeting')}</div>
+            <div className="dd-kicker">{greeting(lang, t('dashboard_greeting'))}</div>
             <div className="dd-name-row">
               <h1 className="dd-name" aria-label={data.displayName}>{Array.from(data.displayName).map((ch, ci) => <span key={ci} aria-hidden="true" className="dd-ch" style={{ ['--i' as string]: Math.min(ci, 16) } as React.CSSProperties}>{ch === ' ' ? '\u00A0' : ch}</span>)}</h1>
               <button type="button" className={'dd-edit-btn' + (editMode ? ' on' : '')} onClick={() => setEditMode(v => !v)} aria-label={L.customize} title={L.customize}>
@@ -880,6 +886,13 @@ export const DD_CSS = `
 .dd-lvl-ico { background: transparent; color: var(--text); cursor: pointer; padding: 0; }
 .dd-lvl-ico b { font-size: 36px; line-height: .8; font-weight: 400; display: block; transform: translateY(-2px); }
 .dd-prog--first { border-top: 0; }
+.dd-rings { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; padding: 6px 0 2px; }
+.dd-ringc { display: flex; flex-direction: column; align-items: center; gap: 6px; background: none; border: 0; padding: 0; color: inherit; text-decoration: none; cursor: pointer; min-width: 0; }
+.dd-ring { width: 74px; height: 74px; border-radius: 50%; display: grid; place-items: center; }
+.dd-ring > span { width: 58px; height: 58px; border-radius: 50%; background: var(--card-bg, var(--bg2, #0e1530)); display: grid; place-items: center; font-size: 24px; }
+.dd-ring b { font-size: 30px; line-height: .8; font-weight: 400; display: block; }
+.dd-ring-n { font: 800 15px system-ui, sans-serif; color: var(--text); font-variant-numeric: tabular-nums; }
+.dd-ring-l { font: 700 10.5px system-ui, sans-serif; color: var(--text2); text-transform: uppercase; letter-spacing: .05em; text-align: center; max-width: 100%; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
 .dd-prog-ico { width: 46px; height: 46px; display: grid; place-items: center; font-size: 22px; border: 3px solid var(--text); flex-shrink: 0; }
 .dd-prog-b { flex: 1; min-width: 0; }
 .dd-sub { font: 700 11px system-ui, sans-serif; color: var(--text2); margin-top: 7px; letter-spacing: .04em; }

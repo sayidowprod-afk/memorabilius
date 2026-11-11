@@ -4,6 +4,17 @@ export type Entry = { date: string; titre: string; points: string[] }
 
 export const ENTRIES: Entry[] = [
   {
+    date: '17 novembre 2026', titre: 'Zoom de l’appareil mémorisé, accueil plus clair, photo plus rapide',
+    points: [
+      'Appareil photo : ton dernier zoom est retenu pour chaque objectif et réappliqué à l’ouverture (plus besoin de recliquer plusieurs fois sur « + »).',
+      'Appareil photo : la photo est traitée plus vite une fois prise (moins de décodages inutiles).',
+      'Accueil : tes objectifs s’affichent en anneaux de progression avec les chiffres (ex. 430/500).',
+      'Accueil : le message de bienvenue s’adapte à l’heure, au week-end et à ta langue.',
+      'Accueil : les pronos montrent d’abord 3 matchs, avec un bouton pour voir les autres : l’écran est plus lisible.',
+      'Badges : l’infobulle ne dépasse plus de l’écran sur téléphone.',
+    ],
+  },
+  {
     date: '16 novembre 2026', titre: 'Exports vidéo et image, mode Story, galerie plus légère, alertes de vente',
     points: [
       'Export image et vidéos (menu « ⋯ » de ta galerie) : plusieurs cartes dans un même export. Une vidéo qui enchaîne tes cartes (transition et durée au choix), une planche de contact, ou un carrousel prêt à poster (une image par carte).',
