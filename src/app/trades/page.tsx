@@ -32,6 +32,7 @@ const toViewerCard = (m: any) => ({
   isManuelle: true, id_manuelle: m.id, is_horizontal: !!m.is_horizontal, verso_is_horizontal: m.verso_is_horizontal ?? null,
   format: m.format || (m.is_horizontal ? 'horizontal' : 'standard'),
   disponible_vente: !!m.disponible_vente, prix_vente: m.prix_vente ?? null,
+  ...(m.jeu ? { jeu: m.jeu, rarete: m.rarete || '', langue: m.langue || '', edition: m.edition || '', etat: m.etat || '', tcg_ref: m.tcg_ref || '' } : {}),
 })
 
 // ── Image zoom (forum annonces) ───────────────────────────────────────────────
@@ -216,12 +217,12 @@ export default function Trades() {
     ...c,
     _source: 'galerie' as const,
     type: 'offre',
-    titre: [c.annee, c.marque, c.collection, c.nom].filter(Boolean).join(' '),
+    titre: (c.jeu ? [c.nom, c.collection, c.card_number, c.etat, c.langue, c.edition] : [c.annee, c.marque, c.collection, c.nom]).filter(Boolean).join(' '),
     joueur: c.nom,
     image_url: c.image_recto || null,
     image_verso: c.image_verso || null,
     statut: 'actif',
-    sport: SPORT_TO_LOCAL_KEY[inferSportFromTeamName(c.equipe) || ''] || null,
+    sport: c.jeu ? (c.jeu === 'pokemon' ? 'pokemon' : 'tcg') : (SPORT_TO_LOCAL_KEY[inferSportFromTeamName(c.equipe) || ''] || null),
   })
 
   // Recherche et filtres appliques COTE SERVEUR (texte, annee, equipe, tags, type) : avant, ils ne
@@ -439,7 +440,7 @@ export default function Trades() {
     }
     if (fEquipe && !t.equipe?.toLowerCase().includes(fEquipe.toLowerCase())) return false
     if (fAnnee && !String(t.annee || '').includes(fAnnee.trim())) return false
-    if (fSport && t.sport !== fSport) return false
+    if (fSport && t.sport !== fSport && !(fSport === 'tcg' && t.sport === 'pokemon')) return false
     if (fTags.rc && !t.rc) return false
     if (fTags.auto && !t.auto) return false
     if (fTags.num && !t.num) return false
@@ -612,7 +613,7 @@ export default function Trades() {
                                     {c.disponible_vente && <span title="À vendre / échanger" style={{ position: 'absolute', right: 2, bottom: 2, background: '#1e9e57', color: '#fff', fontSize: 8, fontWeight: 900, width: 14, height: 14, borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', boxShadow: '0 0 0 1.5px #fff' }}>€</span>}
                                   </div>
                                   <div style={{ fontSize: 10, fontWeight: 700, marginTop: 3, lineHeight: 1.2, overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>{c.nom}</div>
-                                  <div style={{ fontSize: 9, color: 'var(--text3, #888)', lineHeight: 1.2, overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>{[c.annee, c.collection || c.marque].filter(Boolean).join(' · ')}</div>
+                                  <div style={{ fontSize: 9, color: 'var(--text3, #888)', lineHeight: 1.2, overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>{(c.jeu ? [c.collection, c.etat, c.langue, c.edition] : [c.annee, c.collection || c.marque]).filter(Boolean).join(' · ')}</div>
                                 </>
                               )
                               const title = [c.nom, c.annee, c.marque, c.collection, c.variation, c.num].filter(Boolean).join(' · ')

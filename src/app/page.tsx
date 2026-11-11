@@ -2,6 +2,8 @@ import CardOfTheDay from '@/components/CardOfTheDay'
 import PronosHomePreview from '@/components/PronosHomePreview'
 import { supabase } from '@/lib/supabase'
 import PepitesSection from '@/components/PepitesSection'
+import SportOnly from '@/components/SportOnly'
+import TcgHomeSection from '@/components/TcgHomeSection'
 import HomeHero from '@/components/HomeHero'
 import PodiumSection from '@/components/PodiumSection'
 import PWAInstall from '@/components/PWAInstall'
@@ -283,9 +285,12 @@ export default async function Home() {
         siteStats={{ total, totalCartes, totalBinders, totalTrade }}
         cardOfTheDay={<CardOfTheDay />}
       />
+      <TcgHomeSection />
       <PronosHomePreview />
-      <PepitesSection cards={cards} />
-      <PodiumSection month={withTeam(podium)} week={withTeam(podiumWeek)} day={withTeam(podiumDay)} />
+      <SportOnly>
+        <PepitesSection cards={cards} />
+        <PodiumSection month={withTeam(podium)} week={withTeam(podiumWeek)} day={withTeam(podiumDay)} />
+      </SportOnly>
       <PWAInstall />
     </div>
   )
