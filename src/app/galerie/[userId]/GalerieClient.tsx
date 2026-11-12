@@ -1600,6 +1600,9 @@ export default function GalerieClient({ userId, initialCardUrl, initialCards, in
   useEffect(() => {
     if (!isOwner || !loaded || restExtra !== 0 || cards.length === 0 || !profile?.id) return
     if (profile.lien_csv && !cards.some(c => !c.id_manuelle)) return
+    // Le total enregistré dans le profil ne peut être écrit que par le serveur (règle de sécurité) : on retient donc aussi, sur cet appareil, le nombre que la galerie vient de compter,
+    // pour que l'accueil affiche le même chiffre qu'elle (cartes manuelles + CSV).
+    try { localStorage.setItem(`gallery-count-${profile.id}`, String(cards.length)) } catch { /* rien */ }
     const st = { stats_total: cards.length, stats_rc: cards.filter(c => c.rc).length, stats_auto: cards.filter(c => c.auto).length, stats_patch: cards.filter(c => c.patch).length, stats_num: cards.filter(c => !!c.num && String(c.num).trim() !== '').length }
     if (st.stats_total === profile.stats_total && st.stats_rc === profile.stats_rc && st.stats_auto === profile.stats_auto && st.stats_patch === profile.stats_patch && st.stats_num === profile.stats_num) return
     void supabase.from('profiles').update({ ...st, stats_updated_at: new Date().toISOString() }).eq('id', profile.id)
