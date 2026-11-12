@@ -56,6 +56,7 @@ const GROUPS: { title: string; links: AdminLink[] }[] = [
     links: [
       { href: '/admin/da', icon: '🎨', title: 'Idées visuelles — classeurs & bibliothèque', desc: '23 pistes (visuel, animations, technique/perf) pour les classeurs et la bibliothèque de la galerie, en maquettes vivantes — page de travail, rien n\'est modifié sur le site' },
       { href: '/design-preview/tags', icon: '🏷️', title: 'Comparaison des icônes', desc: 'RC / AUTO / PATCH / NUM : 4 styles comparés sur de vraies cartes' },
+      { href: '/essai-gyro', icon: '📱', title: 'Essai : inclinaison au gyroscope', desc: 'La carte réagit à l’inclinaison du téléphone (reflet, inclinaison). À ouvrir sur ton téléphone ; comparaison avec la carte intacte.' },
     ],
   },
 ]

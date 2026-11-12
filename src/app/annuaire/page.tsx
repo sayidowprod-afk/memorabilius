@@ -82,15 +82,17 @@ function AnnuaireContent() {
   const hoverCardsCache = useRef<Map<string, string[]>>(new Map())
   const [hoverCards, setHoverCards] = useState<string[] | null>(null)
   const hoverTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null)
+  const hoverCloseRef = useRef<ReturnType<typeof setTimeout> | null>(null)   // fermeture retardée : laisse le temps d’aller sur la carte
   // true juste avant qu'on ecrive nous-memes l'URL (recherche/filtres) -- voir
   // l'effet de resynchronisation plus bas, qui s'en sert pour ignorer l'echo.
   const selfNavRef = useRef(false)
 
   const scheduleHoverPreview = (id: string, x: number, y: number) => {
-    setHoverPos({ x, y })
-    if (hoverId === id) return
+    if (hoverCloseRef.current) { clearTimeout(hoverCloseRef.current); hoverCloseRef.current = null }
+    if (hoverId === id) return   // la carte déjà ouverte reste là où elle est : elle ne suit plus la souris, on peut donc l’atteindre
     if (hoverTimerRef.current) clearTimeout(hoverTimerRef.current)
     hoverTimerRef.current = setTimeout(async () => {
+      setHoverPos({ x, y })
       setHoverId(id)
       const cached = hoverCardsCache.current.get(id)
       if (cached) { setHoverCards(cached); return }
@@ -105,8 +107,10 @@ function AnnuaireContent() {
   }
   const cancelHoverPreview = () => {
     if (hoverTimerRef.current) clearTimeout(hoverTimerRef.current)
-    setHoverId(null)
+    if (hoverCloseRef.current) clearTimeout(hoverCloseRef.current)
+    hoverCloseRef.current = setTimeout(() => setHoverId(null), 220)
   }
+  const keepHoverPreview = () => { if (hoverCloseRef.current) { clearTimeout(hoverCloseRef.current); hoverCloseRef.current = null } }
 
   // Resynchronise l'état des filtres avec l'URL à chaque changement (y compris
   // navigation arrière/avant), pour ne pas perdre la recherche/team en revenant
@@ -491,10 +495,10 @@ function AnnuaireContent() {
         if (!hc) return null
         return (
           <div style={{
-            position: 'fixed', left: Math.min(hoverPos.x + 16, window.innerWidth - 240), top: Math.min(hoverPos.y + 16, window.innerHeight - 200),
-            zIndex: 500, background: dark ? '#1e1e1e' : 'white', borderRadius: 12, padding: 12, width: 220,
-            boxShadow: '0 8px 28px rgba(0,0,0,0.25)', border: `1px solid ${dark ? '#333' : '#eee'}`, pointerEvents: 'none',
-          }}>
+            position: 'fixed', left: Math.min(hoverPos.x + 10, window.innerWidth - 260), top: Math.min(hoverPos.y + 10, window.innerHeight - 290),
+            zIndex: 500, background: dark ? '#1e1e1e' : 'white', borderRadius: 12, padding: 12, width: 240,
+            boxShadow: '0 8px 28px rgba(0,0,0,0.25)', border: `1px solid ${dark ? '#333' : '#eee'}`,
+          }} onMouseEnter={keepHoverPreview} onMouseLeave={cancelHoverPreview}>
             <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 8 }}>
               <img src={hc.avatar_url || `https://ui-avatars.com/api/?name=${encodeURIComponent(hc.display_name || 'U')}&background=003DA6&color=fff`}
                 style={{ width: 32, height: 32, borderRadius: '50%', objectFit: 'cover' }} alt="" />
@@ -510,10 +514,19 @@ function AnnuaireContent() {
             ) : hoverCards.length > 0 && (
               <div style={{ display: 'flex', gap: 4 }}>
                 {hoverCards.map((img, i) => (
-                  <img key={i} src={img} alt="" style={{ width: 44, height: 62, objectFit: 'cover', borderRadius: 4, flexShrink: 0 }} />
+                  <img key={i} src={img} alt="" style={{ width: 48, height: 67, objectFit: 'cover', flexShrink: 0 }} />
                 ))}
               </div>
             )}
+            {(hc.favorite_teams || []).length > 0 && (
+              <div style={{ display: 'flex', gap: 5, alignItems: 'center', marginTop: 8, flexWrap: 'wrap' }}>
+                {(hc.favorite_teams || []).slice(0, 4).map((id: string) => <TeamBadge key={id} teamId={id} size={20} />)}
+              </div>
+            )}
+            <div style={{ display: 'flex', gap: 6, marginTop: 10 }}>
+              <Link href={'/galerie/' + hc.id} style={{ flex: 1, textAlign: 'center', padding: '6px 8px', borderRadius: 8, background: '#003DA6', color: '#fff', fontWeight: 800, fontSize: 12, textDecoration: 'none' }}>Voir la galerie</Link>
+              <Link href={'/messages?to=' + hc.id} style={{ flex: 1, textAlign: 'center', padding: '6px 8px', borderRadius: 8, border: '1px solid ' + (dark ? '#444' : '#ccc'), color: dark ? '#eee' : '#222', fontWeight: 800, fontSize: 12, textDecoration: 'none' }}>Écrire</Link>
+            </div>
           </div>
         )
       })()}

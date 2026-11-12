@@ -15,6 +15,7 @@ import { cropQuad, type Quad } from '@/lib/perspectiveCrop'
 import { detectCornersYOLO, waitForYOLO } from '@/lib/cornerDetectorYolo'
 import CornerEditor from '@/components/CornerEditor'
 import BurstCamera from '@/components/BurstCamera'
+import LotReview from '@/components/LotReview'
 import { TCG_GAMES, getTcgGame } from '@/lib/tcgGames'
 import CollectionTagSelect from '@/components/CollectionTagSelect'
 import { detectBinderCards } from '@/lib/binderDetect'
@@ -187,6 +188,7 @@ export default function AjoutLotPage({ params }: { params: Promise<{ userId: str
   const [binderBusy, setBinderBusy] = useState(false)
   const [autoCorners, setAutoCorners] = useState(true)
   const [burst, setBurst] = useState(false)
+  const [reviewOpen, setReviewOpen] = useState(false)
   const [editing, setEditing] = useState<{ id: number; side: 'recto' | 'verso' } | null>(null)
   const [gridSel, setGridSel] = useState('auto')
   // toujours la dernière valeur, pour le nettoyage à la fermeture de la page
@@ -732,6 +734,7 @@ export default function AjoutLotPage({ params }: { params: Promise<{ userId: str
         })}
       </div>
 
+      {reviewOpen && <LotReview userId={userId} count={doneN} onClose={() => setReviewOpen(false)} />}
       {burst && <BurstCamera maxCards={Math.max(1, MAX_CARDS - entries.length)} onDone={onBurstDone} onClose={() => setBurst(false)} />}
       {editing && (() => { const ref = entries.find(x => x.id === editing.id)?.src?.[editing.side]; return ref ? <CornerEditor full={ref.full} quad={ref.quad} label={`Carte ${entries.findIndex(x => x.id === editing.id) + 1} · ${editing.side}`} onSave={saveCorners} onCancel={() => setEditing(null)} /> : null })()}
 
@@ -740,7 +743,8 @@ export default function AjoutLotPage({ params }: { params: Promise<{ userId: str
           {!running && pendingN === 0 && doneN > 0 ? (
             <div style={{ display: 'flex', alignItems: 'center', gap: 10, flexWrap: 'wrap' }}>
               <b style={{ flex: 1, minWidth: 180 }}>{doneN} carte{doneN > 1 ? 's' : ''} ajoutée{doneN > 1 ? 's' : ''}{todoN ? ` · dont ${todoN} à compléter` : ''}{skippedN ? ` · ${skippedN} ignorée${skippedN > 1 ? 's' : ''}` : ''}</b>
-              <Link href={`/galerie/${userId}`} className="da-confirm-btn primary" style={{ textDecoration: 'none' }}>{todoN ? 'Voir ma galerie et compléter' : 'Voir ma galerie'}</Link>
+              <button type="button" className="da-confirm-btn primary" onClick={() => setReviewOpen(true)}>Vérifier les cartes</button>
+              <Link href={`/galerie/${userId}`} className="da-confirm-btn" style={{ textDecoration: 'none' }}>{todoN ? 'Voir ma galerie et compléter' : 'Voir ma galerie'}</Link>
               <button type="button" className="da-confirm-btn" onClick={clearAll}>Ajouter d’autres cartes</button>
             </div>
           ) : (

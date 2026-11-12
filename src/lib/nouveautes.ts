@@ -4,6 +4,16 @@ export type Entry = { date: string; titre: string; points: string[] }
 
 export const ENTRIES: Entry[] = [
   {
+    date: '25 novembre 2026', titre: 'Le Défilé, notifications regroupées, revue de lot',
+    points: [
+      'Nouveau « Défilé » (sur téléphone, à la place du mode Story) : tes cartes défilent en perspective, celle du centre de face et les autres inclinées de chaque côté. Fais-les glisser du doigt, touche celle du centre pour l’ouvrir.',
+      'Notifications : les « j’aime » sur une même carte le même jour sont regroupés en une ligne, avec les avatars empilés (« Alex, Julie et 18 autres ont aimé votre carte »). Un toucher affiche le détail.',
+      'Annuaire : l’aperçu d’un collectionneur reste ouvert quand tu vas dessus, avec ses équipes favorites et deux boutons (Voir la galerie, Écrire).',
+      'Galerie sur téléphone : balaye l’écran vers la gauche ou la droite pour passer à l’onglet voisin.',
+      'Ajout en lot : un bouton « Vérifier les cartes » à la fin. Les cartes défilent en grand : glisse à droite si c’est juste, à gauche pour corriger les champs sans quitter la revue.',
+    ],
+  },
+  {
     date: '24 novembre 2026', titre: 'Recherche dans mes cartes et nettoyage des noms',
     points: [
       'Recherche du haut de page : tes propres cartes apparaissent maintenant dans les suggestions, dans un groupe « Mes cartes », avec un filtre pour ne voir que celles-ci.',

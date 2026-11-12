@@ -69,7 +69,7 @@ import { SortableContext, useSortable, rectSortingStrategy, arrayMove } from '@d
 import { CSS } from '@dnd-kit/utilities'
 
 const Viewer3D = dynamic(() => import('@/components/Viewer3D'), { ssr: false })
-const StoryMode = dynamic(() => import('@/components/StoryMode'), { ssr: false })
+const Defile = dynamic(() => import('@/components/Defile'), { ssr: false })
 const ExportStudio = dynamic(() => import('@/components/ExportStudio'), { ssr: false })
 const YearRecap = dynamic(() => import('@/components/YearRecap'), { ssr: false })
 const ThumbBackfill = dynamic(() => import('@/components/ThumbBackfill'), { ssr: false })
@@ -740,7 +740,7 @@ export default function GalerieClient({ userId, initialCardUrl, initialCards, in
   const [recapOpen, setRecapOpen] = useState(() => process.env.NODE_ENV !== 'production' && searchParams.get('bilan') === '1') // « Mon année en cartes » : test local seulement (pas en production)
   const [reelOpen, setReelOpen] = useState(false) // « Reel de ma collection » (vidéo verticale de 15 s)
   const [thumbsOpen, setThumbsOpen] = useState(false) // outil « miniatures » du propriétaire
-  const [storyIdx, setStoryIdx] = useState<number | null>(null) // mode « story » ouvert sur cette carte (index dans la liste filtrée)
+  const [storyIdx, setStoryIdx] = useState<number | null>(null) // « Défilé » ouvert sur cette carte (index dans la liste filtrée)
   const targetOpenedRef = useRef(false) // la carte demandée par l'adresse (?card=) ne s'ouvre qu'une fois par visite
   // Ouverture / fermeture / navigation du viewer : appliquées directement, SANS transition de page du navigateur.
   // La transition (fondu de tout l'écran) figeait la galerie sur l'ancienne image le temps de préparer la nouvelle, puis faisait
@@ -904,6 +904,44 @@ export default function GalerieClient({ userId, initialCardUrl, initialCards, in
 
   const { user: authUser } = useAuth()
   const isOwner = currentUser === userId
+
+  // 801 · sur téléphone, balayer l'écran à l'horizontale passe à l'onglet voisin (Collection, Classeurs, Objectifs…).
+  // Prudent : jamais si le geste commence dans un champ, une fenêtre, une zone qui défile à l'horizontale ou une carte à glisser.
+  useEffect(() => {
+    if (typeof window === 'undefined' || !window.matchMedia('(pointer: coarse)').matches) return
+    const order = ['collection', 'library', 'objectifs', 'badges', 'comments', ...(isOwner ? ['likes'] : [])] as const
+    let start: { x: number; y: number; t: number } | null = null
+    const blocked = (el: Element | null): boolean => {
+      for (let n: Element | null = el; n && n !== document.body; n = n.parentElement) {
+        const tag = n.tagName
+        if (tag === 'INPUT' || tag === 'TEXTAREA' || tag === 'SELECT' || tag === 'CANVAS') return true
+        if (n.hasAttribute('data-no-tabswipe') || n.getAttribute('role') === 'dialog' || n.classList.contains('da-tabs')) return true
+        const st = getComputedStyle(n)
+        if ((st.overflowX === 'auto' || st.overflowX === 'scroll') && n.scrollWidth > n.clientWidth + 2) return true
+        if (st.position === 'fixed') return true
+      }
+      return false
+    }
+    const onStart = (e: TouchEvent) => {
+      if (e.touches.length !== 1 || document.querySelector('[role="dialog"]')) { start = null; return }
+      start = blocked(e.target as Element) ? null : { x: e.touches[0].clientX, y: e.touches[0].clientY, t: Date.now() }
+    }
+    const onEnd = (e: TouchEvent) => {
+      const s0 = start; start = null
+      if (!s0 || !e.changedTouches.length) return
+      const dx = e.changedTouches[0].clientX - s0.x, dy = e.changedTouches[0].clientY - s0.y
+      if (Math.abs(dx) < 80 || Math.abs(dx) < Math.abs(dy) * 2 || Date.now() - s0.t > 600) return
+      setActiveTab(cur => {
+        const i = order.indexOf(cur as (typeof order)[number])
+        if (i < 0) return cur
+        const next = order[Math.max(0, Math.min(order.length - 1, i + (dx < 0 ? 1 : -1)))]
+        return next as typeof cur
+      })
+    }
+    document.addEventListener('touchstart', onStart, { passive: true })
+    document.addEventListener('touchend', onEnd, { passive: true })
+    return () => { document.removeEventListener('touchstart', onStart); document.removeEventListener('touchend', onEnd) }
+  }, [isOwner])
   useEffect(() => { if (isOwner) rememberOwnGallery(userId) }, [isOwner, userId]) // retient l'adresse lisible de ta galerie : les liens de navigation évitent la redirection
   const { t, lang } = useLang()
   const { dark } = useTheme()
@@ -3964,10 +4002,10 @@ export default function GalerieClient({ userId, initialCardUrl, initialCards, in
             border: 'none', borderRadius: 8, padding: '6px 12px', fontSize: 12, fontWeight: 700, cursor: 'pointer',
             background: viewMode === 'timeline' ? accent : (dark ? '#2a2a2a' : '#f0f0f0'), color: viewMode === 'timeline' ? 'white' : (dark ? '#ccc' : '#555'),
           }}>📅 {t('gallery_view_timeline')}</button>
-          <button type="button" className="da-story-btn" onClick={() => setStoryIdx(0)} title="Story : tes cartes une par une en plein écran, à faire défiler du doigt" disabled={filtered.length === 0} style={{
+          <button type="button" className="da-story-btn" onClick={() => setStoryIdx(0)} title="Défilé : tes cartes en perspective, à faire glisser du doigt" disabled={filtered.length === 0} style={{
             border: 'none', borderRadius: 8, padding: '6px 12px', fontSize: 12, fontWeight: 700, cursor: 'pointer',
             background: dark ? '#2a2a2a' : '#f0f0f0', color: dark ? '#ccc' : '#555',
-          }}>📱 Story</button>
+          }}>🎞 Défilé</button>
           {viewMode === 'grid' && (
             <button type="button" onClick={toggleCompactView} title="Vue compacte" style={{
               border: 'none', borderRadius: 8, padding: '6px 12px', fontSize: 12, fontWeight: 700, cursor: 'pointer',
@@ -4298,7 +4336,7 @@ export default function GalerieClient({ userId, initialCardUrl, initialCards, in
       })()}
       {recapOpen && isOwner && process.env.NODE_ENV !== 'production' && <YearRecap cards={cards} values={cardValues} ownerName={profile?.display_name || ''} onClose={() => setRecapOpen(false)} />}
       {thumbsOpen && isOwner && <ThumbBackfill cards={cards} userId={userId} onClose={() => setThumbsOpen(false)} />}
-      {storyIdx !== null && <StoryMode cards={filtered} startIndex={storyIdx} onClose={() => setStoryIdx(null)} onOpen={c => setPopup(c as Card)} />}
+      {storyIdx !== null && <Defile cards={filtered} startIndex={storyIdx} onClose={() => setStoryIdx(null)} onOpen={c => setPopup(c as Card)} />}
 
       {popup && randomTeamId && (
         <button onClick={rerollRandomTeamCard} disabled={rerolling} title={t('gallery_reroll_random_card')} style={{
