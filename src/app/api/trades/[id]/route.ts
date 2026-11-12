@@ -20,7 +20,7 @@ export async function PATCH(req: NextRequest, context: { params: Promise<{ id: s
   if (!user) return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
 
   const { action } = await req.json()
-  if (!['accept', 'refuse', 'cancel', 'ship', 'receive'].includes(action))
+  if (!['accept', 'refuse', 'cancel', 'ship', 'receive', 'nudge'].includes(action))
     return NextResponse.json({ error: 'Action invalide' }, { status: 400 })
 
   const { data: trade } = await supabaseAdmin
@@ -66,6 +66,20 @@ export async function PATCH(req: NextRequest, context: { params: Promise<{ id: s
 
   // ── Reponse a une offre en attente ─────────────────────────────────────────
   if (trade.status !== 'pending') return NextResponse.json({ error: 'Échange déjà traité' }, { status: 409 })
+
+  // ── Relance polie : l'expéditeur rappelle son offre restée sans réponse (au plus une fois tous les 3 jours) ──
+  if (action === 'nudge') {
+    if (trade.sender_id !== user.id) return NextResponse.json({ error: 'Seul l’expéditeur peut relancer' }, { status: 403 })
+    const last = new Date(trade.updated_at || trade.created_at).getTime()
+    if (!isFinite(last) || Date.now() - last < 3 * 24 * 3600 * 1000)
+      return NextResponse.json({ error: 'Tu pourras relancer 3 jours après l’envoi (ou la dernière relance).' }, { status: 429 })
+    if (trade.expires_at && new Date(trade.expires_at).getTime() < Date.now()) return NextResponse.json({ error: 'Cette offre a expiré' }, { status: 409 })
+    // updated_at sert de repère : il est remis à maintenant, donc la prochaine relance n'est possible que 3 jours plus tard
+    const { data: bumped } = await supabaseAdmin.from('trade_offers').update({ updated_at: new Date().toISOString() }).eq('id', trade.id).eq('status', 'pending').select('id')
+    if (!bumped?.length) return NextResponse.json({ error: 'Échange déjà traité' }, { status: 409 })
+    await notifyTradeEvent(supabaseAdmin, { toUserId: trade.receiver_id, actorId: user.id, event: 'nudge' })
+    return NextResponse.json({ ok: true })
+  }
 
   if (action === 'cancel' && trade.sender_id !== user.id)
     return NextResponse.json({ error: 'Seul l\'expéditeur peut annuler' }, { status: 403 })

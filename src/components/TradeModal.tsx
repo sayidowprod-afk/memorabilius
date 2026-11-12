@@ -1,6 +1,6 @@
 'use client'
 import { teamList, hasTeam } from '@/lib/cardTeams'
-import { useState, useEffect, useCallback, useMemo } from 'react'
+import { useState, useEffect, useCallback, useMemo, useRef } from 'react'
 import { createPortal } from 'react-dom'
 import { useRouter } from 'next/navigation'
 import { supabase } from '@/lib/supabase'
@@ -9,6 +9,7 @@ import { SPORT_LABELS, Sport, inferSportFromTeamName } from '@/lib/sportsTeams'
 import { sportColor } from '@/lib/sportColors'
 import CardTagBadges from '@/components/CardTagBadges'
 import ModalCloseButton from '@/components/ModalCloseButton'
+import { loadDraft, saveDraft, clearDraft } from '@/lib/tradeDrafts'
 
 interface CardInfo {
   id: string
@@ -233,6 +234,25 @@ export default function TradeModal({ targetCard, initialTargetSelected, initialM
   const [sending, setSending] = useState(false)
   const [error, setError] = useState('')
   const [justSent, setJustSent] = useState(false)
+  const [draftBack, setDraftBack] = useState(false)
+
+  // Brouillon (747) : repris à l'ouverture si je n'arrive pas d'un match ni d'une contre-offre ; enregistré à la fermeture si l'offre n'a pas été envoyée.
+  const draftState = useRef({ targetSelected, mySelected, message, justSent })
+  draftState.current = { targetSelected, mySelected, message, justSent }
+  useEffect(() => {
+    if (counterOfId || targetCard || initialTargetSelected?.length || initialMySelected?.length || initialMessage) return
+    const d = loadDraft(targetUserId)
+    if (!d) return
+    setTargetSelected(new Set(d.targetIds)); setMySelected(new Set(d.myIds)); setMessage(d.message || ''); setDraftBack(true)
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [])
+  const closeWithDraft = useCallback(() => {
+    const st = draftState.current
+    if (!counterOfId && !st.justSent && (st.targetSelected.size > 0 || st.mySelected.size > 0 || st.message.trim())) {
+      saveDraft({ userId: targetUserId, name: targetUserName, targetIds: [...st.targetSelected], myIds: [...st.mySelected], message: st.message, at: Date.now() })
+    }
+    onClose()
+  }, [counterOfId, targetUserId, targetUserName, onClose])
 
   // Toutes les cartes d'un membre : Supabase plafonne chaque réponse à 1000 lignes, donc on lit par tranches (sans ça, au-delà de 1000 cartes la fenêtre de trade n'en montrait qu'une partie).
   const fetchAllManuelles = useCallback(async (userId: string) => {
@@ -293,10 +313,10 @@ export default function TradeModal({ targetCard, initialTargetSelected, initialM
   useEffect(() => { fetchTargetCards(); fetchMyCards() }, [fetchTargetCards, fetchMyCards])
 
   useEffect(() => {
-    const onKey = (e: KeyboardEvent) => { if (e.key === 'Escape') onClose() }
+    const onKey = (e: KeyboardEvent) => { if (e.key === 'Escape') closeWithDraft() }
     window.addEventListener('keydown', onKey)
     return () => window.removeEventListener('keydown', onKey)
-  }, [onClose])
+  }, [closeWithDraft])
 
   const toggleTarget = (id: string) => setTargetSelected(prev => {
     const next = new Set(prev); next.has(id) ? next.delete(id) : next.add(id); return next
@@ -353,6 +373,7 @@ export default function TradeModal({ targetCard, initialTargetSelected, initialM
       const json = await res.json()
       if (!res.ok) { setError(json.error || t('trademodal_err_generic')); setSending(false); return }
       setJustSent(true)
+      clearDraft(targetUserId)
       setTimeout(() => {
         onSuccess()
         if (redirectToChat) router.push(`/messages?to=${targetUserId}`)
@@ -372,16 +393,17 @@ export default function TradeModal({ targetCard, initialTargetSelected, initialM
   const inputStyle: React.CSSProperties = { border: '1.5px solid var(--border, #e0e0e0)', borderRadius: 10, padding: '7px 12px', fontSize: 13, fontFamily: 'inherit', outline: 'none', width: '100%', boxSizing: 'border-box', background: 'var(--card-bg, #fff)', color: 'var(--text, #121212)' }
 
   const modal = (
-    <div onClick={onClose} className="modal-glass-overlay" style={{ position: 'fixed', inset: 0, background: 'rgba(0,0,0,0.6)', zIndex: 10000000, display: 'flex', alignItems: 'center', justifyContent: 'center', padding: 16 }}>
+    <div onClick={closeWithDraft} className="modal-glass-overlay" style={{ position: 'fixed', inset: 0, background: 'rgba(0,0,0,0.6)', zIndex: 10000000, display: 'flex', alignItems: 'center', justifyContent: 'center', padding: 16 }}>
       <div onClick={e => e.stopPropagation()} style={{ background: 'var(--card-bg, #fff)', color: 'var(--text, #121212)', borderRadius: 18, padding: 24, width: '100%', maxWidth: 560, maxHeight: '92vh', display: 'flex', flexDirection: 'column', gap: 14, overflowY: 'auto', boxSizing: 'border-box' }}>
 
         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
           <h2 style={{ fontSize: 18, fontWeight: 800, margin: 0 }}>{counterOfId ? `↩️ ${t('trades_counter_title')}` : t('trademodal_title')}</h2>
-          <ModalCloseButton onClick={onClose} />
+          <ModalCloseButton onClick={closeWithDraft} />
         </div>
 
         {/* Section : cartes du destinataire */}
         <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
+          {draftBack && <div style={{ fontSize: 12, fontWeight: 700, color: '#003DA6' }}>📝 Brouillon repris : tu peux le modifier ou l’envoyer.</div>}
           {sectionLabel(`${t('trademodal_cards_of')} ${targetUserName} ${t('trademodal_target_cards')}`, targetSelected.size)}
           <input type="text" autoFocus placeholder={t('trademodal_search')} value={targetFilters.search}
             onChange={e => setTargetFilters(f => ({ ...f, search: e.target.value }))}

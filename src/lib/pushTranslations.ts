@@ -166,7 +166,7 @@ export function winbackPush(lang: PushLang) {
   }
 }
 
-export type TradeEvent = 'counter' | 'expiring' | 'expired' | 'shipped' | 'received' | 'completed' | 'followup' | 'review'
+export type TradeEvent = 'counter' | 'expiring' | 'expired' | 'shipped' | 'received' | 'completed' | 'followup' | 'review' | 'nudge'
 
 // Evenements du cycle de vie d'un echange (contre-offre, expiration, suivi,
 // avis) -- voir api/trades/** et api/cron/trade-expiry.
@@ -199,6 +199,10 @@ export function tradeEventPush(lang: PushLang, event: TradeEvent, actorName: str
     followup: {
       title: { fr: '📮 Où en est votre échange ?', en: '📮 How is your trade going?', de: '📮 Wie läuft euer Tausch?' },
       body: { fr: `N'oublie pas de confirmer l'envoi/la réception avec ${actorName}`, en: `Don't forget to confirm shipping/receipt with ${actorName}`, de: `Vergiss nicht, Versand/Erhalt mit ${actorName} zu bestätigen` },
+    },
+    nudge: {
+      title: { fr: '👋 Une offre t’attend', en: '👋 An offer is waiting for you', de: '👋 Ein Angebot wartet auf dich' },
+      body: { fr: `${actorName} te rappelle son offre d’échange : un petit coup d’œil ?`, en: `${actorName} is reminding you about their trade offer: take a look?`, de: `${actorName} erinnert dich an sein Tauschangebot: wirf einen Blick darauf?` },
     },
     review: {
       title: { fr: '⭐ Nouvel avis', en: '⭐ New review', de: '⭐ Neue Bewertung' },

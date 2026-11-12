@@ -20,6 +20,7 @@ import TradeModal from '@/components/TradeModal'
 import PriceTag from '@/components/PriceTag'
 import { askConfirm } from '@/components/ConfirmHost'
 import dynamic from 'next/dynamic'
+import { listDrafts, clearDraft, type TradeDraft } from '@/lib/tradeDrafts'
 
 const Viewer3D = dynamic(() => import('@/components/Viewer3D'), { ssr: false })
 
@@ -113,6 +114,9 @@ export default function Trades() {
     } catch { setPartnersState('error') }
   }
   const [viewerCard, setViewerCard] = useState<{ card: any; owner: string | null } | null>(null)
+  // brouillons d'offres (747) : gardés sur cet appareil, relus à l'ouverture de l'onglet « Mes échanges » et à la fermeture de la fenêtre d'offre
+  const [drafts, setDrafts] = useState<TradeDraft[]>([])
+  useEffect(() => { setDrafts(listDrafts()) }, [mainTab])
   const [tradeModal, setTradeModal] = useState<{ userId: string; name: string; targetIds: string[]; myIds: string[]; message?: string; counterOfId?: string } | null>(null)
   const [reviewDraft, setReviewDraft] = useState<Record<string, { rating: number; comment: string }>>({})
   const [fAnnee, setFAnnee] = useState('')
@@ -371,6 +375,20 @@ export default function Trades() {
   const sumValue = (cards: any[]) => (cards || []).reduce((acc, c) => acc + (Number(c.valeur) || 0), 0)
 
   const OFFER_CONFIRM_KEY = { accept: 'trades_offer_accept_confirm', refuse: 'trades_offer_refuse_confirm', cancel: 'trades_offer_cancel_confirm' } as const
+
+  // Relance polie (749) : possible 3 jours après l'envoi, puis 3 jours après chaque relance
+  const nudgeOffer = async (tradeId: string) => {
+    setActing(tradeId + 'nudge')
+    try {
+      const { data: { session } } = await supabase.auth.getSession()
+      if (!session) return
+      const res = await fetch(`/api/trades/${tradeId}`, { method: 'PATCH', headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${session.access_token}` }, body: JSON.stringify({ action: 'nudge' }) })
+      const json = await res.json().catch(() => ({}))
+      if (res.ok) toast.success('Relance envoyée !')
+      else toast.error(json.error || t('trades_offer_action_error'))
+    } catch { toast.error(t('trades_offer_action_error')) }
+    finally { await loadTradeOffers(); setActing(null) }
+  }
 
   const actOnOffer = async (tradeId: string, action: 'accept' | 'refuse' | 'cancel') => {
     if (!(await askConfirm(t(OFFER_CONFIRM_KEY[action]), { danger: action !== 'accept', confirmLabel: action === 'accept' ? 'Accepter' : action === 'refuse' ? 'Refuser' : 'Annuler l’offre' }))) return
@@ -705,8 +723,8 @@ export default function Trades() {
           initialMessage={tradeModal.message}
           counterOfId={tradeModal.counterOfId}
           redirectToChat={false}
-          onClose={() => setTradeModal(null)}
-          onSuccess={() => { setTradeModal(null); toast.success(t('trades_offer_sent')); setMainTab('echanges'); loadTradeOffers() }}
+          onClose={() => { setTradeModal(null); setDrafts(listDrafts()) }}
+          onSuccess={() => { setTradeModal(null); setDrafts(listDrafts()); toast.success(t('trades_offer_sent')); setMainTab('echanges'); loadTradeOffers() }}
         />
       )}
 
@@ -878,6 +896,18 @@ export default function Trades() {
       {/* ══════════════════════════════════════════════════════════════════════ */}
       {mainTab === 'echanges' && (
         <div style={{ maxWidth: 640, margin: '0 auto' }}>
+          {drafts.length > 0 && (
+            <div style={{ marginBottom: 16, border: '1.5px dashed var(--border, #ccc)', borderRadius: 12, padding: 12 }}>
+              <div style={{ fontSize: 12, fontWeight: 800, textTransform: 'uppercase', color: 'var(--text2, #888)', marginBottom: 8 }}>📝 Brouillons d’offres</div>
+              {drafts.map(d => (
+                <div key={d.userId} style={{ display: 'flex', alignItems: 'center', gap: 8, padding: '6px 0' }}>
+                  <span style={{ flex: 1, fontSize: 13, fontWeight: 700 }}>{d.name} <span style={{ fontWeight: 400, color: 'var(--text3, #888)' }}>· {d.myIds.length}↔{d.targetIds.length}</span></span>
+                  <button onClick={() => setTradeModal({ userId: d.userId, name: d.name, targetIds: [], myIds: [] })} style={{ border: 'none', borderRadius: 8, padding: '6px 12px', background: '#003DA6', color: 'white', fontWeight: 700, fontSize: 12, cursor: 'pointer' }}>Reprendre</button>
+                  <button onClick={() => { clearDraft(d.userId); setDrafts(listDrafts()) }} aria-label="Supprimer le brouillon" style={{ border: 'none', background: 'none', cursor: 'pointer', fontSize: 16, color: 'var(--text3, #999)' }}>×</button>
+                </div>
+              ))}
+            </div>
+          )}
           {/* Sous-onglets */}
           <div style={{ display: 'flex', gap: 8, marginBottom: 20 }}>
             {(['pending', 'history'] as const).map(sub => (
@@ -1021,6 +1051,18 @@ export default function Trades() {
                           </button>
                         </>
                       )}
+                      {trade.status === 'pending' && isSender && (() => {
+                        const waitedMs = Date.now() - new Date(trade.updated_at || trade.created_at).getTime()
+                        const daysLeft = Math.max(1, Math.ceil((3 * 24 * 3600 * 1000 - waitedMs) / (24 * 3600 * 1000)))
+                        return waitedMs >= 3 * 24 * 3600 * 1000 ? (
+                          <button disabled={acting !== null} onClick={() => nudgeOffer(trade.id)}
+                            style={{ border: 'none', borderRadius: 50, padding: '9px 20px', background: '#003DA6', color: 'white', fontWeight: 700, fontSize: 13, cursor: 'pointer' }}>
+                            {acting === trade.id + 'nudge' ? '…' : '👋 Relancer'}
+                          </button>
+                        ) : (
+                          <span style={{ alignSelf: 'center', fontSize: 12, color: 'var(--text3, #888)' }}>Relance possible dans {daysLeft} j</span>
+                        )
+                      })()}
                       {trade.status === 'pending' && isSender && (
                         <button disabled={acting !== null} onClick={() => actOnOffer(trade.id, 'cancel')}
                           style={{ border: '2px solid var(--border, #ccc)', borderRadius: 50, padding: '9px 20px', background: 'var(--card-bg, #fff)', color: 'var(--text3, #888)', fontWeight: 700, fontSize: 13, cursor: 'pointer' }}>

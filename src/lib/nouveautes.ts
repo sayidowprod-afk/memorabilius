@@ -4,6 +4,14 @@ export type Entry = { date: string; titre: string; points: string[] }
 
 export const ENTRIES: Entry[] = [
   {
+    date: '23 novembre 2026', titre: 'Trades : brouillons d’offres et relance',
+    points: [
+      'Brouillons d’offres : si tu fermes la fenêtre d’une offre sans l’envoyer, elle est gardée sur ton appareil. Tu la retrouves dans « Mes échanges », section « Brouillons d’offres », et en rouvrant l’échange avec le même membre.',
+      'Relancer une offre : quand une offre reste sans réponse depuis 3 jours, un bouton « Relancer » envoie un rappel poli au membre. Une nouvelle relance est possible 3 jours plus tard.',
+      'Fenêtre d’échange : elle affiche maintenant toutes les cartes des deux membres, même au-delà de 1 000 cartes.',
+    ],
+  },
+  {
     date: '22 novembre 2026', titre: 'Mes decks : il te manque combien de cartes ?',
     points: [
       'Nouvelle page « Mes decks » : colle la liste d’un deck (une carte par ligne, ex. « 4 Dracaufeu ex »), le site la compare avec les cartes à jouer de ta galerie et te dit combien de cartes il te manque, avec la liste à copier.',

@@ -8,24 +8,25 @@ interface Row {
   pays: string; fuseau: string
   local: string        // créneaux en heure locale
   france: string       // même créneaux, heure de France (hiver : UTC+1)
+  jour: string         // meilleure journée pour publier, puis la suivante
   langue: string
   bio: string
 }
 
 const ROWS: Row[] = [
-  { pays: 'États-Unis', fuseau: 'Côte Est (UTC−5) · Côte Ouest (UTC−8)', local: '12 h–13 h · 19 h–21 h (Est)', france: '18 h–19 h · 1 h–3 h (Est) ; 4 h (Ouest)', langue: 'Anglais',
+  { pays: 'États-Unis', fuseau: 'Côte Est (UTC−5) · Côte Ouest (UTC−8)', local: '12 h–13 h · 19 h–21 h (Est)', france: '18 h–19 h · 1 h–3 h (Est) ; 4 h (Ouest)', jour: 'Jeudi · puis mardi, dimanche soir', langue: 'Anglais',
     bio: 'Free app for card collectors 🏀🎴 Gallery · 3D · Trades 👇' },
-  { pays: 'Canada', fuseau: 'Est (UTC−5), comme New York', local: '12 h–13 h · 19 h–21 h', france: '18 h–19 h · 1 h–3 h', langue: 'Anglais (français au Québec)',
+  { pays: 'Canada', fuseau: 'Est (UTC−5), comme New York', local: '12 h–13 h · 19 h–21 h', france: '18 h–19 h · 1 h–3 h', jour: 'Jeudi · puis mardi, dimanche soir', langue: 'Anglais (français au Québec)',
     bio: 'L’app gratuite des collectionneurs de cartes 🏀🎴 Galerie · 3D · Échanges 👇' },
-  { pays: 'Royaume-Uni', fuseau: 'UTC+0 (1 h de moins qu’en France)', local: '12 h–13 h · 18 h–21 h', france: '13 h–14 h · 19 h–22 h', langue: 'Anglais',
+  { pays: 'Royaume-Uni', fuseau: 'UTC+0 (1 h de moins qu’en France)', local: '12 h–13 h · 18 h–21 h', france: '13 h–14 h · 19 h–22 h', jour: 'Mercredi · puis jeudi, dimanche soir', langue: 'Anglais',
     bio: 'Free app for card collectors 🃏 Gallery, 3D & trades 👇' },
-  { pays: 'Allemagne', fuseau: 'UTC+1 (même heure qu’en France)', local: '12 h–13 h · 18 h–21 h', france: '12 h–13 h · 18 h–21 h', langue: 'Allemand',
+  { pays: 'Allemagne', fuseau: 'UTC+1 (même heure qu’en France)', local: '12 h–13 h · 18 h–21 h', france: '12 h–13 h · 18 h–21 h', jour: 'Mardi à jeudi · puis dimanche soir', langue: 'Allemand',
     bio: 'Kostenlose App für Kartensammler 🏀🎴 Galerie · 3D · Tausch 👇' },
-  { pays: 'France', fuseau: 'UTC+1', local: '12 h–13 h 30 · 18 h–21 h 30', france: '12 h–13 h 30 · 18 h–21 h 30', langue: 'Français',
+  { pays: 'France', fuseau: 'UTC+1', local: '12 h–13 h 30 · 18 h–21 h 30', france: '12 h–13 h 30 · 18 h–21 h 30', jour: 'Mercredi · puis jeudi, dimanche soir', langue: 'Français',
     bio: 'L’app gratuite des collectionneurs de cartes 🏀🎴 Galerie · 3D · Trades 👇' },
-  { pays: 'Espagne', fuseau: 'UTC+1 (même heure qu’en France)', local: '14 h–15 h · 21 h–23 h', france: '14 h–15 h · 21 h–23 h', langue: 'Espagnol',
+  { pays: 'Espagne', fuseau: 'UTC+1 (même heure qu’en France)', local: '14 h–15 h · 21 h–23 h', france: '14 h–15 h · 21 h–23 h', jour: 'Jeudi · puis vendredi, dimanche soir', langue: 'Espagnol',
     bio: 'App gratis para coleccionistas de cartas 🏀🎴 Galería · 3D · Trades 👇' },
-  { pays: 'Italie', fuseau: 'UTC+1 (même heure qu’en France)', local: '12 h 30–14 h · 20 h–22 h 30', france: '12 h 30–14 h · 20 h–22 h 30', langue: 'Italien',
+  { pays: 'Italie', fuseau: 'UTC+1 (même heure qu’en France)', local: '12 h 30–14 h · 20 h–22 h 30', france: '12 h 30–14 h · 20 h–22 h 30', jour: 'Mardi à jeudi · puis dimanche soir', langue: 'Italien',
     bio: 'App gratuita per collezionisti di carte 🏀🎴 Galleria · 3D · Scambi 👇' },
 ]
 
@@ -42,12 +43,12 @@ export default function PubPlanning() {
       <p style={{ fontSize: 13, opacity: 0.8, margin: '0 0 12px' }}>
         Heures de France en hiver (UTC+1). Les États-Unis et l’Europe ne changent pas d’heure aux mêmes dates : en mars et en novembre, l’écart peut varier d’une heure.
         Ce sont des repères courants, pas des garanties : l’onglet Statistiques de ton compte montre quand tes abonnés sont réellement en ligne, c’est lui qui fait foi.
-        Une bio TikTok est limitée à 80 caractères.
+        Une bio TikTok est limitée à 80 caractères. La meilleure journée est un repère général (milieu de semaine en journée, dimanche soir pour les passionnés) : pour les cartes de sport, les jours de match peuvent aussi faire monter l’audience.
       </p>
       <div style={{ overflowX: 'auto' }}>
-        <table style={{ width: '100%', borderCollapse: 'collapse', minWidth: 760 }}>
+        <table style={{ width: '100%', borderCollapse: 'collapse', minWidth: 860 }}>
           <thead>
-            <tr><th style={th}>Pays</th><th style={th}>Créneaux locaux</th><th style={th}>À programmer (France)</th><th style={th}>Langue</th><th style={th}>Bio conseillée</th></tr>
+            <tr><th style={th}>Pays</th><th style={th}>Créneaux locaux</th><th style={th}>À programmer (France)</th><th style={th}>Meilleure journée</th><th style={th}>Langue</th><th style={th}>Bio conseillée</th></tr>
           </thead>
           <tbody>
             {ROWS.map(r => (
@@ -55,6 +56,7 @@ export default function PubPlanning() {
                 <td style={td}><strong>{r.pays}</strong><div style={{ fontSize: 11, opacity: 0.7 }}>{r.fuseau}</div></td>
                 <td style={td}>{r.local}</td>
                 <td style={{ ...td, fontWeight: 800 }}>{r.france}</td>
+                <td style={td}>{r.jour}</td>
                 <td style={td}>{r.langue}</td>
                 <td style={td}>
                   <div>{r.bio}</div>
