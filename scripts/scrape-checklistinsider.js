@@ -14,7 +14,7 @@
  *   node scripts/scrape-checklistinsider.js --all-seasons                                  (toutes les saisons listees sur le site, tous sports)
  *   node scripts/scrape-checklistinsider.js --all-seasons --sport=basketball               (toutes les saisons listees, un seul sport)
  *   node scripts/scrape-checklistinsider.js --season-url=https://www.checklistinsider.com/non-sport-cards/2025-non-sport-cards --filter="disney|star.wars|marvel"
- *   options : --dry-run (rien n'est ecrit), --force / --gaps (retraite meme les pages deja faites, sans tout re-ecrire : voir regles d'import),
+ *   options : --new-only (ne traite que les sets absents du site : un set deja present est ignore, aucune carte ajoutee), --dry-run (rien n'est ecrit), --force / --gaps (retraite meme les pages deja faites, sans tout re-ecrire : voir regles d'import),
  *             --all (inclut Euroleague, NBL...), --filter=<regex insensible a la casse> (ne garde que les URLs de set dont le slug matche)
  *
  * Suivi en direct (checkpoint + avancement) :
@@ -41,6 +41,7 @@ const args = Object.fromEntries(process.argv.slice(2).filter(a => a.startsWith('
 const DRY = !!args['dry-run']
 const FORCE = !!args.force || !!args.gaps
 const ALL = !!args.all
+const NEW_ONLY = !!args['new-only'] // ne traite que les sets ABSENTS du site : un set deja present (meme annee + sport + nom) est ignore, sans ajout de cartes
 const ALL_SEASONS = !!args['all-seasons']
 const CHECKPOINT = path.join(__dirname, 'checkpoint-checklistinsider.json')
 const CI = 'https://www.checklistinsider.com'
@@ -287,6 +288,7 @@ async function importSet(url, cp) {
   console.log(`  ${p.name} [${p.sport}, ${p.year}] — ${unique.length} cartes (${rows ? 'Excel' : 'texte de la page'}${p.xlsx && !rows ? ', Excel illisible' : ''})`)
 
   const existingSet = DRY && !KEY ? null : await findSet(p.year, p.sport, p.name)
+  if (NEW_ONLY && existingSet) { console.log(`  ⏭️  set déjà sur le site (id ${existingSet.id}) — ignoré (--new-only)`); return }
   if (DRY) {
     const by = {}; unique.forEach(c => { by[c.variation || '(base)'] = (by[c.variation || '(base)'] || 0) + 1 })
     console.log('  sections :', Object.entries(by).slice(0, 12).map(([k, v]) => `${k}:${v}`).join(', '), '…')
