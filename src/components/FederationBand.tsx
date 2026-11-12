@@ -19,15 +19,15 @@ function DiscordIcon() {
 
 
 // Bandeau rouge Fédération de la Carte (toujours rouge, quel que soit le thème) : au-dessus du pied de page sur le web, en fin de page dans l'application.
-export default function FederationBand({ marginTop = 40 }: { marginTop?: number }) {
+export default function FederationBand({ marginTop = 40, compact = false }: { marginTop?: number; compact?: boolean }) {
   const { lang } = useLang()
-  const social: React.CSSProperties = { display: 'inline-flex', alignItems: 'center', justifyContent: 'center', width: 38, height: 38, borderRadius: '50%', background: 'rgba(255,255,255,0.15)', color: 'white' }
+  const social: React.CSSProperties = { display: 'inline-flex', alignItems: 'center', justifyContent: 'center', width: compact ? 32 : 38, height: compact ? 32 : 38, borderRadius: '50%', background: 'rgba(255,255,255,0.15)', color: 'white' }
   return (
     <div style={{ marginTop, background: RED, color: 'white' }}>
-      <div style={{ maxWidth: 1400, margin: '0 auto', padding: '24px 20px', display: 'flex', flexWrap: 'wrap', gap: 24, alignItems: 'center', justifyContent: 'space-between' }}>
-        <FederationLogo variant="footer" height={96} />
-        <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 10 }}>
-          <span style={{ fontWeight: 900, fontSize: 16, fontStyle: 'italic' }}>{JOIN[lang] || JOIN.fr}</span>
+      <div style={{ maxWidth: 1400, margin: '0 auto', padding: compact ? '14px 16px' : '24px 20px', display: 'flex', flexWrap: compact ? 'nowrap' : 'wrap', gap: compact ? 12 : 24, alignItems: 'center', justifyContent: 'space-between' }}>
+        <FederationLogo variant="footer" height={compact ? 50 : 96} />
+        <div style={{ display: 'flex', flexDirection: 'column', alignItems: compact ? 'flex-end' : 'center', gap: compact ? 6 : 10, flexShrink: 0 }}>
+          <span style={{ fontWeight: 900, fontSize: compact ? 13 : 16, fontStyle: 'italic', whiteSpace: 'nowrap' }}>{JOIN[lang] || JOIN.fr}</span>
           <div style={{ display: 'flex', gap: 10 }}>
             <a href="https://x.com/Fededelacarte" target="_blank" rel="noopener noreferrer" aria-label="X" style={social}><XIcon /></a>
             <a href="https://discord.gg/6anaAXA3VK" target="_blank" rel="noopener noreferrer" aria-label="Discord" style={social}><DiscordIcon /></a>

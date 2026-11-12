@@ -36,7 +36,7 @@ export default function SiteShell({ children }: { children: React.ReactNode }) {
         <PageTransition>{children}</PageTransition>
       </main>
       <WebOnly><Footer /></WebOnly>
-      <AppOnly><FederationBand marginTop={24} /></AppOnly>
+      <AppOnly><FederationBand marginTop={24} compact /></AppOnly>
       <ChatBubble />
       <Toaster />
       <OnboardingTooltip />

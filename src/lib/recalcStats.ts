@@ -66,6 +66,9 @@ export async function recalcAndSaveUserStats(
   lienCsv: string | null | undefined,
   opts: { csvTimeoutMs?: number } = {}
 ): Promise<{ stats: CardStats } | { error: string }> {
+  // Plusieurs recomptes peuvent tourner en même temps (ajout en lot : un appel par carte). Chacun horodate son écriture avec son HEURE DE DÉPART
+  // et ne remplace que des stats plus anciennes : un recompte parti plus tôt, qui finit en dernier avec un chiffre périmé, ne peut plus écraser le bon total.
+  const startedAt = new Date().toISOString()
   const result = await computeUserStats(supabase, userId, lienCsv, opts)
   if ('error' in result) return result
   await supabase.from('profiles').update({
@@ -74,7 +77,7 @@ export async function recalcAndSaveUserStats(
     stats_auto: result.stats.auto,
     stats_num: result.stats.num,
     stats_patch: result.stats.patch,
-    stats_updated_at: new Date().toISOString(),
-  }).eq('id', userId)
+    stats_updated_at: startedAt,
+  }).eq('id', userId).or(`stats_updated_at.is.null,stats_updated_at.lt.${startedAt}`)
   return result
 }
