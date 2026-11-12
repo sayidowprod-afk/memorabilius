@@ -32,11 +32,12 @@ export default function SiteShell({ children }: { children: React.ReactNode }) {
     <>
       <WebOnly><Navbar /></WebOnly>
       <MobileTopBar />
-      <main style={{ maxWidth: 1400, margin: '0 auto', padding: '20px 16px' }}>
+      {/* hauteur minimale : pendant le chargement d'une page, le bandeau rouge et le pied de page restent sous l'écran au lieu de remonter au milieu puis de redescendre */}
+      <main style={{ maxWidth: 1400, margin: '0 auto', padding: '20px 16px', minHeight: '85vh' }}>
         <PageTransition>{children}</PageTransition>
       </main>
       <WebOnly><Footer /></WebOnly>
-      <AppOnly><FederationBand marginTop={24} compact /></AppOnly>
+      <AppOnly><div style={{ paddingBottom: 40 }}><FederationBand marginTop={24} compact /></div></AppOnly>
       <ChatBubble />
       <Toaster />
       <OnboardingTooltip />
