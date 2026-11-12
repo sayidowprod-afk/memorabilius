@@ -50,6 +50,23 @@ const EXAMPLE: { f: string; cap: string }[] = [
   { f: '1792105652824_recto.jpg', cap: 'Fultz Rated Rookie' }, { f: '1792105709218_recto.jpg', cap: 'McCain rouge' }, { f: '1792107456778_recto.jpg', cap: 'Edgecombe SSP' },
 ]
 
+// Pub TCG sans cartes TCG dans la galerie : cartes publiques (Pokémon via TCGdex, Magic via Scryfall), cherchées par notre route /api/tcg/search puis prises en grand format.
+const PUB_POKEMON = ['Dracaufeu', 'Pikachu', 'Mewtwo', 'Lugia', 'Rayquaza', 'Mew', 'Évoli', 'Ectoplasma']
+const PUB_MAGIC = ['Lightning Bolt', 'Sol Ring', 'Counterspell', 'Llanowar Elves', 'Black Lotus']
+async function publicTcgCardUrls(): Promise<string[]> {
+  const jobs = [...PUB_POKEMON.map(q => ({ g: 'pokemon', q })), ...PUB_MAGIC.map(q => ({ g: 'mtg', q }))]
+  const res = await Promise.all(jobs.map(async j => {
+    try {
+      const r = await fetch(`/api/tcg/search?game=${j.g}&q=${encodeURIComponent(j.q)}&lang=FR`)
+      const d = await r.json() as { hits?: { image?: string; rarity?: string }[] }
+      return (d.hits || []).filter(h => h.image).slice(0, 4).map(h => (h.image as string).replace('/low.webp', '/high.webp').replace('/small/', '/large/'))
+    } catch { return [] as string[] }
+  }))
+  const all = [...new Set(res.flat())]
+  for (let i = all.length - 1; i > 0; i--) { const k = Math.floor(Math.random() * (i + 1)); [all[i], all[k]] = [all[k], all[i]] }
+  return all.slice(0, 28)
+}
+
 async function prepare(src: File | string, strict = false): Promise<Prep | null> {
   try {
     const blob = typeof src === 'string' ? await (await fetch(src, { mode: 'cors' })).blob() : src
@@ -323,8 +340,13 @@ export default function TikTokMaker() {
         return sc + Math.random() * 1.5
       }
       const ranked = [...rows].map(r => ({ r, sc: score(r) })).sort((a, b) => b.sc - a.sc).slice(0, 28)
+      let fallbackUrls: string[] | null = null
+      if (tcgOnlyRef.current && rows.length < 4) {
+        setStatus('Pas assez de cartes TCG dans ta galerie : je prends des cartes publiques Pokémon et Magic (images officielles, droits à vérifier avant de publier)…')
+        fallbackUrls = await publicTcgCardUrls()
+      }
       setStatus('Je prépare les plus belles cartes…')
-      const prepped = await Promise.all(ranked.map(x => prepare(x.r.image_recto as string, true)))
+      const prepped = await Promise.all((fallbackUrls ?? ranked.map(x => x.r.image_recto as string)).map(u => prepare(u, true)))
       const good = prepped.filter((a): a is Prep => !!a).slice(0, 8)
       if (good.length < 4) throw new Error('pas assez de belles photos lisibles')
       // la meilleure carte passe en 3D (4e position), les autres alimentent le montage
