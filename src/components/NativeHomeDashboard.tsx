@@ -343,14 +343,16 @@ export default function NativeHomeDashboard({ siteStats, cardOfTheDay }: { siteS
         // d'une requête live séparée sur cartes_manuelles uniquement, ratant les
         // cartes auto importées par CSV (incohérent avec rc/patch/num, en plus d'une
         // requête réseau de plus qui contribue au cold start).
-        const [{ data: profile }, { data: lastCards }, { data: badgeRows }, { data: streakRows }, { data: weekCards }, { data: xpTotal }] = await Promise.race([
+        const [{ data: profile }, { data: lastCards }, { data: badgeRows }, { data: streakRows }, { data: weekCards }, { data: xpTotal }, { count: liveCount }] = await Promise.race([
           Promise.all([
-            timed('profile', supabase.from('profiles').select('display_name, avatar_url, stats_total, stats_auto').eq('id', user.id).abortSignal(abort.signal).single()),
+            timed('profile', supabase.from('profiles').select('display_name, avatar_url, stats_total, stats_auto, lien_csv').eq('id', user.id).abortSignal(abort.signal).single()),
             timed('lastCard', supabase.from('cartes_manuelles').select('image_recto, nom').eq('user_id', user.id).not('image_recto', 'is', null).order('created_at', { ascending: false }).abortSignal(abort.signal).limit(24)),
             timed('badgeData', supabase.rpc('get_user_badge_data', { p_user_id: user.id }).abortSignal(abort.signal)),
             timed('bumpStreak', supabase.rpc('bump_streak', { p_user_id: user.id }).abortSignal(abort.signal)),
             timed('weekCards', supabase.from('cartes_manuelles').select('rc, auto, patch, num').eq('user_id', user.id).gte('created_at', startOfWeekISO()).abortSignal(abort.signal)),
             timed('xpTotal', supabase.rpc('get_user_xp_total', { p_user_id: user.id }).abortSignal(abort.signal)),
+            // vrai nombre de cartes à l'instant (décompte en base, sans télécharger les lignes) : l'accueil ne dépend plus d'un total enregistré qui peut dériver
+            timed('liveCount', supabase.from('cartes_manuelles').select('id', { count: 'exact', head: true }).eq('user_id', user.id).abortSignal(abort.signal)),
           ]),
           timeout,
         ])
@@ -369,7 +371,8 @@ export default function NativeHomeDashboard({ siteStats, cardOfTheDay }: { siteS
         setData({
           displayName: profile?.display_name || t('gallery_default_collector'),
           avatarUrl: profile?.avatar_url || null,
-          totalCards: profile?.stats_total || 0,
+          // sans CSV lié, le décompte en direct est exact ; avec un CSV, le total enregistré (qui inclut ses cartes) fait foi
+          totalCards: (!profile?.lien_csv && typeof liveCount === 'number') ? liveCount : (profile?.stats_total || 0),
           lastCard: lastCards?.[0] ? { image: lastCards[0].image_recto, name: lastCards[0].nom || '' } : null,
           lastCards: (lastCards || []).map((c: any) => ({ image: c.image_recto, name: c.nom || '' })),
           nextBadge,
@@ -383,21 +386,20 @@ export default function NativeHomeDashboard({ siteStats, cardOfTheDay }: { siteS
           challenge,
           challengeProgress,
         })
-        // Auto-réparation du total : le chiffre affiché est un total enregistré dans le profil ; s'il a dérivé (ajout en lot, recalcul raté),
-        // on le recompte au plus une fois toutes les 6 h par appareil et on corrige l'affichage tout de suite.
+        // Réparation du total enregistré (utilisé par l'annuaire, le classement, les badges) : dès que le décompte en direct s'écarte de lui, on le recompte
+        // (au plus une fois par minute et par appareil, pour ne pas boucler si le recomptage échoue).
         try {
-          const key = `stats-heal-${user.id}`
-          const last = Number(localStorage.getItem(key) || 0)
-          if (Date.now() - last > 6 * 3600 * 1000) {
-            localStorage.setItem(key, String(Date.now()))
-            void supabase.auth.getSession().then(({ data: { session } }) => {
-              if (!session) return
-              return fetch('/api/recalc-user', { method: 'POST', headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${session.access_token}` }, body: JSON.stringify({ userId: user.id }) })
-                .then(r => (r.ok ? r.json() : null))
-                .then(j => { const st = j?.stats; if (st && typeof st.total === 'number' && !cancelled) setData(prev => (prev ? { ...prev, totalCards: st.total, auto: st.auto ?? prev.auto } : prev)) })
-            }).catch(() => {})
+          if (!profile?.lien_csv && typeof liveCount === 'number' && liveCount !== (profile?.stats_total || 0)) {
+            const key = `stats-heal-${user.id}`
+            if (Date.now() - Number(localStorage.getItem(key) || 0) > 60 * 1000) {
+              localStorage.setItem(key, String(Date.now()))
+              void supabase.auth.getSession().then(({ data: { session } }) => {
+                if (!session) return
+                return fetch('/api/recalc-user', { method: 'POST', headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${session.access_token}` }, body: JSON.stringify({ userId: user.id }) })
+              }).catch(() => {})
+            }
           }
-        } catch { /* stockage indisponible : pas de recomptage automatique */ }
+        } catch { /* stockage indisponible : pas de réparation automatique */ }
       } catch (e) {
         if (cancelled) return
         // 5 tentatives avec delai croissant (~15s) au lieu de 2x1s (~2s) --
