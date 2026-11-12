@@ -4,6 +4,13 @@ export type Entry = { date: string; titre: string; points: string[] }
 
 export const ENTRIES: Entry[] = [
   {
+    date: '24 novembre 2026', titre: 'Recherche dans mes cartes et nettoyage des noms',
+    points: [
+      'Recherche du haut de page : tes propres cartes apparaissent maintenant dans les suggestions, dans un groupe « Mes cartes », avec un filtre pour ne voir que celles-ci.',
+      'Nettoyer mes noms : si un même joueur ou une même équipe est écrit de plusieurs façons dans ta galerie (« Lebron James » et « LeBron James », « Sixers » et « Philadelphia 76ers »), un bandeau te propose de les unifier. Rien n’est modifié sans ton accord, et s’il n’y a rien à unifier, rien ne s’affiche.',
+    ],
+  },
+  {
     date: '23 novembre 2026', titre: 'Trades : brouillons d’offres et relance',
     points: [
       'Brouillons d’offres : si tu fermes la fenêtre d’une offre sans l’envoyer, elle est gardée sur ton appareil. Tu la retrouves dans « Mes échanges », section « Brouillons d’offres », et en rouvrant l’échange avec le même membre.',

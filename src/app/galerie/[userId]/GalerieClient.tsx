@@ -8,6 +8,7 @@ function numHint(min: number | null, max: number | null): string {
 import LikeFace from '@/components/LikeFace'
 import ConfirmDeleteCard from '@/components/ConfirmDeleteCard'
 import SelectionHand from '@/components/SelectionHand'
+import NameCleanup from '@/components/NameCleanup'
 import { numTier, numShort, TAG_BASE, mix } from '@/lib/cardTags'
 import { getTeamByName } from '@/lib/sportsTeams'
 import { teamInfo } from '@/lib/teamColors'
@@ -3940,6 +3941,9 @@ export default function GalerieClient({ userId, initialCardUrl, initialCards, in
             </div>
             <button type="button" className="da-confirm-btn primary" onClick={() => { const ids = todoIds.slice(0, 60); router.push(`/galerie/${userId}/editer/${ids[0]}${ids.length > 1 ? `?queue=${ids.join(',')}&qidx=0` : ''}`) }}>Compléter →</button>
           </div>
+        )}
+        {isOwner && activeTab === 'collection' && (
+          <NameCleanup userId={userId} cards={cards} onApplied={(field, ids, value) => { const set = new Set(ids); setCards(prev => prev.map(c => c.id_manuelle && set.has(c.id_manuelle) ? (field === 'nom' ? { ...c, n: value } : { ...c, t: value }) : c)) }} />
         )}
         {resumeOffer && activeTab === 'collection' && viewMode === 'grid' && (
           <div className="da-draft" role="status">

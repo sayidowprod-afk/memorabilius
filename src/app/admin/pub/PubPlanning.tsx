@@ -11,23 +11,31 @@ interface Row {
   jour: string         // meilleure journée pour publier, puis la suivante
   langue: string
   bio: string
+  tags: string       // hashtags conseillés (5 : TikTok et Reels en gardent peu, les plus ciblés comptent)
 }
 
 const ROWS: Row[] = [
   { pays: 'États-Unis', fuseau: 'Côte Est (UTC−5) · Côte Ouest (UTC−8)', local: '12 h–13 h · 19 h–21 h (Est)', france: '18 h–19 h · 1 h–3 h (Est) ; 4 h (Ouest)', jour: 'Jeudi · puis mardi, dimanche soir', langue: 'Anglais',
-    bio: 'Free app for card collectors 🏀🎴 Gallery · 3D · Trades 👇' },
+    bio: 'Free app for card collectors 🏀🎴 Gallery · 3D · Trades 👇',
+    tags: '#sportscards #basketballcards #cardcollector #thehobby #nba' },
   { pays: 'Canada', fuseau: 'Est (UTC−5), comme New York', local: '12 h–13 h · 19 h–21 h', france: '18 h–19 h · 1 h–3 h', jour: 'Jeudi · puis mardi, dimanche soir', langue: 'Anglais (français au Québec)',
-    bio: 'L’app gratuite des collectionneurs de cartes 🏀🎴 Galerie · 3D · Échanges 👇' },
+    bio: 'L’app gratuite des collectionneurs de cartes 🏀🎴 Galerie · 3D · Échanges 👇',
+    tags: '#sportscards #basketballcards #cardcollector #thehobby #cartesdecollection' },
   { pays: 'Royaume-Uni', fuseau: 'UTC+0 (1 h de moins qu’en France)', local: '12 h–13 h · 18 h–21 h', france: '13 h–14 h · 19 h–22 h', jour: 'Mercredi · puis jeudi, dimanche soir', langue: 'Anglais',
-    bio: 'Free app for card collectors 🃏 Gallery, 3D & trades 👇' },
+    bio: 'Free app for card collectors 🃏 Gallery, 3D & trades 👇',
+    tags: '#sportscards #cardcollector #thehobby #basketballcards #cardcollecting' },
   { pays: 'Allemagne', fuseau: 'UTC+1 (même heure qu’en France)', local: '12 h–13 h · 18 h–21 h', france: '12 h–13 h · 18 h–21 h', jour: 'Mardi à jeudi · puis dimanche soir', langue: 'Allemand',
-    bio: 'Kostenlose App für Kartensammler 🏀🎴 Galerie · 3D · Tausch 👇' },
+    bio: 'Kostenlose App für Kartensammler 🏀🎴 Galerie · 3D · Tausch 👇',
+    tags: '#sammelkarten #kartensammler #basketballkarten #sportkarten #hobby' },
   { pays: 'France', fuseau: 'UTC+1', local: '12 h–13 h 30 · 18 h–21 h 30', france: '12 h–13 h 30 · 18 h–21 h 30', jour: 'Mercredi · puis jeudi, dimanche soir', langue: 'Français',
-    bio: 'L’app gratuite des collectionneurs de cartes 🏀🎴 Galerie · 3D · Trades 👇' },
+    bio: 'L’app gratuite des collectionneurs de cartes 🏀🎴 Galerie · 3D · Trades 👇',
+    tags: '#cartesacollectionner #cartesbasket #collectioncartes #nba #collectionneur' },
   { pays: 'Espagne', fuseau: 'UTC+1 (même heure qu’en France)', local: '14 h–15 h · 21 h–23 h', france: '14 h–15 h · 21 h–23 h', jour: 'Jeudi · puis vendredi, dimanche soir', langue: 'Espagnol',
-    bio: 'App gratis para coleccionistas de cartas 🏀🎴 Galería · 3D · Trades 👇' },
+    bio: 'App gratis para coleccionistas de cartas 🏀🎴 Galería · 3D · Trades 👇',
+    tags: '#cartasdecoleccion #coleccionistas #cartasnba #cartasdeportivas #coleccionismo' },
   { pays: 'Italie', fuseau: 'UTC+1 (même heure qu’en France)', local: '12 h 30–14 h · 20 h–22 h 30', france: '12 h 30–14 h · 20 h–22 h 30', jour: 'Mardi à jeudi · puis dimanche soir', langue: 'Italien',
-    bio: 'App gratuita per collezionisti di carte 🏀🎴 Galleria · 3D · Scambi 👇' },
+    bio: 'App gratuita per collezionisti di carte 🏀🎴 Galleria · 3D · Scambi 👇',
+    tags: '#figurine #collezionismo #carteNBA #collezionistidicarte #carteSportive' },
 ]
 
 export default function PubPlanning() {
@@ -43,12 +51,12 @@ export default function PubPlanning() {
       <p style={{ fontSize: 13, opacity: 0.8, margin: '0 0 12px' }}>
         Heures de France en hiver (UTC+1). Les États-Unis et l’Europe ne changent pas d’heure aux mêmes dates : en mars et en novembre, l’écart peut varier d’une heure.
         Ce sont des repères courants, pas des garanties : l’onglet Statistiques de ton compte montre quand tes abonnés sont réellement en ligne, c’est lui qui fait foi.
-        Une bio TikTok est limitée à 80 caractères. La meilleure journée est un repère général (milieu de semaine en journée, dimanche soir pour les passionnés) : pour les cartes de sport, les jours de match peuvent aussi faire monter l’audience.
+        Une bio TikTok est limitée à 80 caractères. Pour les hashtags, 3 à 5 ciblés suffisent : trop de hashtags n’aide pas, et mieux vaut mélanger un large (#sportscards) et des précis. La meilleure journée est un repère général (milieu de semaine en journée, dimanche soir pour les passionnés) : pour les cartes de sport, les jours de match peuvent aussi faire monter l’audience.
       </p>
       <div style={{ overflowX: 'auto' }}>
-        <table style={{ width: '100%', borderCollapse: 'collapse', minWidth: 860 }}>
+        <table style={{ width: '100%', borderCollapse: 'collapse', minWidth: 1020 }}>
           <thead>
-            <tr><th style={th}>Pays</th><th style={th}>Créneaux locaux</th><th style={th}>À programmer (France)</th><th style={th}>Meilleure journée</th><th style={th}>Langue</th><th style={th}>Bio conseillée</th></tr>
+            <tr><th style={th}>Pays</th><th style={th}>Créneaux locaux</th><th style={th}>À programmer (France)</th><th style={th}>Meilleure journée</th><th style={th}>Langue</th><th style={th}>Bio conseillée</th><th style={th}>Hashtags conseillés</th></tr>
           </thead>
           <tbody>
             {ROWS.map(r => (
@@ -66,6 +74,12 @@ export default function PubPlanning() {
                     </button>
                     <span style={{ fontSize: 11, opacity: r.bio.length > 80 ? 1 : 0.6, color: r.bio.length > 80 ? '#c0392b' : 'inherit' }}>{r.bio.length}/80</span>
                   </div>
+                </td>
+                <td style={td}>
+                  <div>{r.tags}</div>
+                  <button type="button" onClick={() => copy(r.pays + '#', r.tags)} style={{ marginTop: 6, padding: '4px 10px', borderRadius: 8, border: '1px solid rgba(128,128,128,0.5)', background: 'transparent', color: 'inherit', fontWeight: 700, fontSize: 12, cursor: 'pointer' }}>
+                    {copied === r.pays + '#' ? 'Copié ✓' : 'Copier'}
+                  </button>
                 </td>
               </tr>
             ))}

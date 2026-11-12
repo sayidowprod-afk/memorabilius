@@ -7,6 +7,7 @@ import { useLang } from '@/lib/LangContext'
 import { playerSlug, teamSlug } from '@/lib/playerSlug'
 import { SPORTS_TEAMS } from '@/lib/sportsTeams'
 import TeamBadge from '@/components/TeamBadge'
+import { supabase } from '@/lib/supabase'
 
 // Dernières recherches (gardées sur l'appareil uniquement, rien n'est envoyé au serveur)
 const RECENT_KEY = 'mb_recent_searches'
@@ -19,7 +20,8 @@ const addRecent = (q: string) => {
   try { localStorage.setItem(RECENT_KEY, JSON.stringify([v, ...readRecents().filter(x => x.toLowerCase() !== v.toLowerCase())].slice(0, 6))) } catch { /* stockage indisponible */ }
 }
 const clearRecents = () => { try { localStorage.removeItem(RECENT_KEY) } catch { /* rien */ } }
-type Filter = 'all' | 'teams' | 'players' | 'members'
+type Filter = 'all' | 'mine' | 'teams' | 'players' | 'members'
+type MineCard = { id: string; nom: string | null; annee: string | null; collection: string | null; image_recto: string | null }
 
 interface Suggestions { players: string[]; collectors: { id: string; display_name: string; avatar_url: string | null }[] }
 
@@ -37,6 +39,9 @@ export default function HeaderSearch({ open, onToggle }: { open: boolean; onTogg
   const [loading, setLoading] = useState(false)
   const [filter, setFilter] = useState<Filter>('all')
   const [recents, setRecents] = useState<string[]>([])
+  // 755 · mes propres cartes qui correspondent (lues avec la session du membre : il ne voit que les siennes)
+  const [mine, setMine] = useState<MineCard[]>([])
+  const [myId, setMyId] = useState<string | null>(null)
   const wrapRef = useRef<HTMLDivElement>(null)
   const inputRef = useRef<HTMLInputElement>(null)
   const debounceRef = useRef<ReturnType<typeof setTimeout> | null>(null)
@@ -65,9 +70,19 @@ export default function HeaderSearch({ open, onToggle }: { open: boolean; onTogg
   useEffect(() => {
     if (debounceRef.current) clearTimeout(debounceRef.current)
     const query = q.trim()
-    if (query.length < 2) { setData({ players: [], collectors: [] }); setLoading(false); return }
+    if (query.length < 2) { setData({ players: [], collectors: [] }); setMine([]); setLoading(false); return }
     setLoading(true)
     debounceRef.current = setTimeout(async () => {
+      try {
+        const { data: sess } = await supabase.auth.getSession()
+        const uid = sess.session?.user.id || null
+        setMyId(uid)
+        if (uid) {
+          const like = '%' + query.replace(/[%_\,()"*]/g, ' ').trim() + '%'
+          const { data: mc } = await supabase.from('cartes_manuelles').select('id, nom, annee, collection, image_recto').eq('user_id', uid).or(`nom.ilike.${like},collection.ilike.${like}`).limit(4)
+          setMine((mc || []) as MineCard[])
+        } else setMine([])
+      } catch { setMine([]) }
       try {
         const r = await fetch(`/api/search-suggest?q=${encodeURIComponent(query)}`)
         if (r.ok) setData(await r.json())
@@ -79,6 +94,7 @@ export default function HeaderSearch({ open, onToggle }: { open: boolean; onTogg
 
   const nq = q.trim().toLowerCase()
   const teams = nq.length >= 2 && (filter === 'all' || filter === 'teams') ? SPORTS_TEAMS.filter(team => team.name.toLowerCase().includes(nq)).slice(0, 5) : []
+  const myCards = filter === 'all' || filter === 'mine' ? mine : []
   const players = filter === 'all' || filter === 'players' ? data.players : []
   const collectors = filter === 'all' || filter === 'members' ? data.collectors : []
 
@@ -95,14 +111,14 @@ export default function HeaderSearch({ open, onToggle }: { open: boolean; onTogg
     color: dark ? '#ddd' : '#333', fontWeight: 600, fontSize: 13, textDecoration: 'none',
   }
   // 253 · résultats rangés par type, avec une vignette devant chaque ligne
-  const heads = lang === 'fr' ? { teams: 'Équipes', players: 'Joueurs', members: 'Membres' } : { teams: 'Teams', players: 'Players', members: 'Members' }
+  const heads = lang === 'fr' ? { mine: 'Mes cartes', teams: 'Équipes', players: 'Joueurs', members: 'Membres' } : { mine: 'My cards', teams: 'Teams', players: 'Players', members: 'Members' }
   const headStyle: React.CSSProperties = { padding: '8px 12px 2px', fontSize: 11, fontWeight: 800, letterSpacing: '.08em', textTransform: 'uppercase', color: dark ? '#7f8aa8' : '#888' }
   const initials = (name: string) => name.split(/[\s-]+/).filter(Boolean).slice(0, 2).map(w => w[0]).join('').toUpperCase()
   const thumb: React.CSSProperties = { width: 24, height: 24, borderRadius: '50%', flexShrink: 0, display: 'flex', alignItems: 'center', justifyContent: 'center', objectFit: 'cover' }
-  const hasResults = players.length > 0 || collectors.length > 0 || teams.length > 0
+  const hasResults = myCards.length > 0 || players.length > 0 || collectors.length > 0 || teams.length > 0
   const typed = q.trim().length >= 2
   const showPanel = open
-  const FILTERS: [Filter, string][] = [['all', lang === 'fr' ? 'Tout' : 'All'], ['teams', heads.teams], ['players', heads.players], ['members', heads.members]]
+  const FILTERS: [Filter, string][] = [['all', lang === 'fr' ? 'Tout' : 'All'], ...(myId ? [['mine', heads.mine] as [Filter, string]] : []), ['teams', heads.teams], ['players', heads.players], ['members', heads.members]]
 
   return (
     <div ref={wrapRef} style={{ position: 'relative', display: 'flex', alignItems: 'center' }}>
@@ -155,6 +171,16 @@ export default function HeaderSearch({ open, onToggle }: { open: boolean; onTogg
           )}
           {typed && loading && <div style={{ padding: '10px 12px', fontSize: 12, color: dark ? '#888' : '#999' }}>{t('nav_search_loading')}</div>}
           {typed && !loading && !hasResults && <div style={{ padding: '10px 12px', fontSize: 12, color: dark ? '#888' : '#999' }}>{t('nav_search_no_results')}</div>}
+          {myCards.length > 0 && myId && <div style={headStyle}>{heads.mine}</div>}
+          {myCards.length > 0 && myId && myCards.map(c => (
+            <Link key={c.id} href={`/galerie/${myId}?q=${encodeURIComponent(c.nom || q.trim())}`} style={itemStyle} onClick={pick}>
+              {c.image_recto
+                // eslint-disable-next-line @next/next/no-img-element
+                ? <img src={c.image_recto} alt="" style={{ ...thumb, borderRadius: 4, width: 20, height: 28 }} />
+                : <span style={{ ...thumb, background: dark ? '#333' : '#ddd', borderRadius: 4, width: 20, height: 28 }} />}
+              <span style={{ minWidth: 0 }}>{c.nom || '—'}<span style={{ display: 'block', fontSize: 11, fontWeight: 500, opacity: .65 }}>{[c.annee, c.collection].filter(Boolean).join(' · ')}</span></span>
+            </Link>
+          ))}
           {teams.length > 0 && <div style={headStyle}>{heads.teams}</div>}
           {teams.map(team => (
             <Link key={team.id} href={`/equipe/${teamSlug(team.name)}`} style={itemStyle} onClick={pick}>
