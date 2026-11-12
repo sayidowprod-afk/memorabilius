@@ -5,6 +5,7 @@
 // Tout est monté dans un canvas et enregistré sur ton appareil (MediaRecorder) : rien n'est envoyé.
 import { useEffect, useRef, useState } from 'react'
 import TikTokMaker from './TikTokMaker'
+import PubPlanning from './PubPlanning'
 import { scheduleMusic, decodeAudioFile, type MusicKind } from './audio'
 import { AD_TX, loadPartnerLogo } from './tiktokAd'
 import { saveOrShareFile } from '@/lib/saveOrShare'
@@ -487,6 +488,7 @@ export default function PubGenerator() {
           </div>)}
       </div>
       <div style={{ width: '100%', maxWidth: 1000 }}><TikTokMaker /></div>
+      <PubPlanning />
     </div>
   )
 }

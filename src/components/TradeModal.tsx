@@ -234,12 +234,25 @@ export default function TradeModal({ targetCard, initialTargetSelected, initialM
   const [error, setError] = useState('')
   const [justSent, setJustSent] = useState(false)
 
-  const fetchTargetCards = useCallback(async () => {
-    const [{ data: manuelles }, { data: profile }, { data: privees }] = await Promise.all([
-      supabase.from('cartes_manuelles')
+  // Toutes les cartes d'un membre : Supabase plafonne chaque réponse à 1000 lignes, donc on lit par tranches (sans ça, au-delà de 1000 cartes la fenêtre de trade n'en montrait qu'une partie).
+  const fetchAllManuelles = useCallback(async (userId: string) => {
+    const all: any[] = []
+    for (let from = 0; ; from += 1000) {
+      const { data, error } = await supabase.from('cartes_manuelles')
         .select('id, nom, annee, marque, equipe, image_recto, rc, auto, patch, valeur, disponible_vente')
-        .eq('user_id', targetUserId)
-        .order('created_at', { ascending: false }),
+        .eq('user_id', userId)
+        .order('created_at', { ascending: false }).order('id', { ascending: true })
+        .range(from, from + 999)
+      if (error || !data) break
+      all.push(...data)
+      if (data.length < 1000) break
+    }
+    return all
+  }, [])
+
+  const fetchTargetCards = useCallback(async () => {
+    const [manuelles, { data: profile }, { data: privees }] = await Promise.all([
+      fetchAllManuelles(targetUserId),
       supabase.from('profiles').select('lien_csv').eq('id', targetUserId).single(),
       supabase.from('cartes_privees').select('card_key').eq('user_id', targetUserId),
     ])
@@ -256,16 +269,13 @@ export default function TradeModal({ targetCard, initialTargetSelected, initialM
     }
     setTargetCards([...manuelCards, ...csvCards])
     setTargetLoading(false)
-  }, [targetUserId])
+  }, [targetUserId, fetchAllManuelles])
 
   const fetchMyCards = useCallback(async () => {
     const { data: { session } } = await supabase.auth.getSession()
     if (!session) return
-    const [{ data: manuelles }, { data: profile }] = await Promise.all([
-      supabase.from('cartes_manuelles')
-        .select('id, nom, annee, marque, equipe, image_recto, rc, auto, patch, valeur, disponible_vente')
-        .eq('user_id', session.user.id)
-        .order('created_at', { ascending: false }),
+    const [manuelles, { data: profile }] = await Promise.all([
+      fetchAllManuelles(session.user.id),
       supabase.from('profiles').select('lien_csv').eq('id', session.user.id).single(),
     ])
     const manuelCards: CardInfo[] = (manuelles || []).map(c => ({ ...c, nom: c.nom || '', annee: c.annee || '', marque: c.marque || '', equipe: c.equipe || '', isManuelle: true }))
@@ -278,7 +288,7 @@ export default function TradeModal({ targetCard, initialTargetSelected, initialM
     }
     setMyCards([...manuelCards, ...csvCards])
     setMyLoading(false)
-  }, [])
+  }, [fetchAllManuelles])
 
   useEffect(() => { fetchTargetCards(); fetchMyCards() }, [fetchTargetCards, fetchMyCards])
 
