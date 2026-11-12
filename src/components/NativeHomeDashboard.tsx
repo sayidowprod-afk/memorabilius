@@ -396,6 +396,11 @@ export default function NativeHomeDashboard({ siteStats, cardOfTheDay }: { siteS
               void supabase.auth.getSession().then(({ data: { session } }) => {
                 if (!session) return
                 return fetch('/api/recalc-user', { method: 'POST', headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${session.access_token}` }, body: JSON.stringify({ userId: user.id }) })
+                .then(r => (r.ok ? r.json() : null))
+                .then(j => {
+                  const st = j?.stats
+                  if (st && typeof st.total === 'number' && !cancelled) setData(prev => (prev ? { ...prev, totalCards: st.total, rc: st.rc ?? prev.rc, patch: st.patch ?? prev.patch, num: st.num ?? prev.num, auto: st.auto ?? prev.auto } : prev))
+                })
               }).catch(() => {})
             }
           }
