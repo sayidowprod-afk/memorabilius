@@ -372,10 +372,13 @@ export default function NativeHomeDashboard({ siteStats, cardOfTheDay }: { siteS
           displayName: profile?.display_name || t('gallery_default_collector'),
           avatarUrl: profile?.avatar_url || null,
           // sans CSV lié, le décompte en direct est exact ; avec un CSV, le total enregistré (qui inclut ses cartes) fait foi
-          totalCards: (!profile?.lien_csv && typeof liveCount === 'number') ? liveCount : (() => {
-            // avec un CSV lié : le nombre compté par la galerie sur cet appareil (cartes manuelles + CSV) s'il existe, sinon le total enregistré
-            try { const n = Number(localStorage.getItem(`gallery-count-${user.id}`)); if (n > 0) return n } catch { /* rien */ }
-            return profile?.stats_total || 0
+          // sans CSV lié : décompte en direct (exact). Avec un CSV lié : le plus grand entre le décompte en direct, le nombre compté par la galerie sur cet appareil et le total enregistré
+          totalCards: (() => {
+            const live = typeof liveCount === 'number' ? liveCount : 0
+            if (!profile?.lien_csv && typeof liveCount === 'number') return live
+            let seen = 0
+            try { seen = Number(localStorage.getItem(`gallery-count-${user.id}`)) || 0 } catch { /* rien */ }
+            return Math.max(live, seen, profile?.stats_total || 0)
           })(),
           lastCard: lastCards?.[0] ? { image: lastCards[0].image_recto, name: lastCards[0].nom || '' } : null,
           lastCards: (lastCards || []).map((c: any) => ({ image: c.image_recto, name: c.nom || '' })),

@@ -13,11 +13,11 @@ export async function computeUserStats(
   supabase: SupabaseClient,
   userId: string,
   lienCsv: string | null | undefined,
-  opts: { csvTimeoutMs?: number } = {}
+  opts: { csvTimeoutMs?: number; skipCsv?: boolean } = {}
 ): Promise<{ stats: CardStats } | { error: string }> {
   const stats: CardStats = { total: 0, rc: 0, auto: 0, num: 0, patch: 0 }
 
-  const hasCsv = !!(lienCsv && isAllowedCsvUrl(lienCsv))
+  const hasCsv = !opts.skipCsv && !!(lienCsv && isAllowedCsvUrl(lienCsv))
   if (hasCsv) {
     const text = await fetchCsvCapped(lienCsv!, opts.csvTimeoutMs != null
       ? { cache: 'no-store', signal: AbortSignal.timeout(opts.csvTimeoutMs) }
@@ -63,7 +63,20 @@ export async function recalcAndSaveUserStats(
   // Plusieurs recomptes peuvent tourner en même temps (ajout en lot : un appel par carte). Chacun horodate son écriture avec son HEURE DE DÉPART
   // et ne remplace que des stats plus anciennes : un recompte parti plus tôt, qui finit en dernier avec un chiffre périmé, ne peut plus écraser le bon total.
   const startedAt = new Date().toISOString()
-  const result = await computeUserStats(supabase, userId, lienCsv, opts)
+  let result = await computeUserStats(supabase, userId, lienCsv, opts)
+  if ('error' in result && result.error === 'csv fetch failed') {
+    // CSV lié mais injoignable (lien mort, feuille privée, Google Sheets qui ne répond pas). On ne l'ignore pas à l'aveugle (un total tronqué ne doit jamais
+    // remplacer le vrai), mais on ne laisse pas non plus le total figé pour toujours : on recompte les cartes manuelles et on garde, pour chaque chiffre,
+    // le plus grand entre ce décompte et le total déjà enregistré (qui contient les cartes du CSV). Le total ne baisse donc jamais, il peut seulement monter.
+    const manual = await computeUserStats(supabase, userId, lienCsv, { ...opts, skipCsv: true })
+    if ('error' in manual) return manual
+    const { data: prev } = await supabase.from('profiles').select('stats_total, stats_rc, stats_auto, stats_num, stats_patch').eq('id', userId).single()
+    const p = (prev || {}) as Record<string, number | null>
+    result = { stats: {
+      total: Math.max(manual.stats.total, p.stats_total || 0), rc: Math.max(manual.stats.rc, p.stats_rc || 0), auto: Math.max(manual.stats.auto, p.stats_auto || 0),
+      num: Math.max(manual.stats.num, p.stats_num || 0), patch: Math.max(manual.stats.patch, p.stats_patch || 0),
+    } }
+  }
   if ('error' in result) return result
   await supabase.from('profiles').update({
     stats_total: result.stats.total,
