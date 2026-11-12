@@ -1594,6 +1594,19 @@ export default function GalerieClient({ userId, initialCardUrl, initialCards, in
     }
   }, [isOwner, loaded, lastAddedKey, userId])
 
+  // Les chiffres de l'accueil, de l'annuaire et du classement sont enregistrés dans le profil ; la galerie, elle, connaît le vrai nombre (cartes manuelles + CSV).
+  // Quand la liste est entièrement chargée, on aligne le profil dessus pour que l'accueil affiche toujours le même total que la galerie.
+  // Garde-fous : jamais sur une liste partielle, et jamais si un CSV est lié mais n'a rien donné (sinon le total serait sous-compté).
+  useEffect(() => {
+    if (!isOwner || !loaded || restExtra !== 0 || cards.length === 0 || !profile?.id) return
+    if (profile.lien_csv && !cards.some(c => !c.id_manuelle)) return
+    const st = { stats_total: cards.length, stats_rc: cards.filter(c => c.rc).length, stats_auto: cards.filter(c => c.auto).length, stats_patch: cards.filter(c => c.patch).length, stats_num: cards.filter(c => !!c.num && String(c.num).trim() !== '').length }
+    if (st.stats_total === profile.stats_total && st.stats_rc === profile.stats_rc && st.stats_auto === profile.stats_auto && st.stats_patch === profile.stats_patch && st.stats_num === profile.stats_num) return
+    void supabase.from('profiles').update({ ...st, stats_updated_at: new Date().toISOString() }).eq('id', profile.id)
+      .then(({ error }) => { if (!error) setProfile((p: any) => (p ? { ...p, ...st } : p)) })
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [isOwner, loaded, restExtra, cards.length, profile?.id, profile?.lien_csv, profile?.stats_total])
+
   // Index des cartes par image (pour le Grail Wall) : calculé une fois par changement de liste, pas à chaque affichage
   const grailMap = useMemo(() => new Map(cards.map(c => [c.f, c])), [cards])
 
