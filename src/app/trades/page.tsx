@@ -20,6 +20,7 @@ import TradeModal from '@/components/TradeModal'
 import PriceTag from '@/components/PriceTag'
 import { askConfirm } from '@/components/ConfirmHost'
 import dynamic from 'next/dynamic'
+import SwipeDeck from '@/components/SwipeDeck'
 import { listDrafts, clearDraft, type TradeDraft } from '@/lib/tradeDrafts'
 
 const Viewer3D = dynamic(() => import('@/components/Viewer3D'), { ssr: false })
@@ -92,8 +93,8 @@ export default function Trades() {
   const { dark } = useTheme()
 
   // Tab principal : annonces forum | mes échanges directs
-  const [mainTab, setMainTab] = useState<'annonces' | 'matches' | 'echanges'>(
-    searchParams.get('tab') === 'echanges' ? 'echanges' : searchParams.get('tab') === 'matches' ? 'matches' : 'annonces'
+  const [mainTab, setMainTab] = useState<'annonces' | 'matches' | 'swipe' | 'echanges'>(
+    searchParams.get('tab') === 'echanges' ? 'echanges' : searchParams.get('tab') === 'matches' ? 'matches' : searchParams.get('tab') === 'swipe' ? 'swipe' : 'annonces'
   )
 
   // ── Matches wishlist <-> collection (voir api/trades/matches) ───────────────
@@ -563,6 +564,7 @@ export default function Trades() {
         {([
           { key: 'annonces', label: '📋 Annonces' },
           { key: 'matches', label: `🎯 ${t('trades_for_you')}${matches && matches.length > 0 ? ` (${matches.length})` : ''}` },
+          { key: 'swipe', label: '🔥 Swipe' },
           { key: 'echanges', label: `🔄 Mes échanges${pendingOffers.length > 0 ? ` (${pendingOffers.length})` : ''}` },
         ] as const).map(tab => (
           <button key={tab.key} onClick={() => setMainTab(tab.key)} style={{
@@ -711,6 +713,13 @@ export default function Trades() {
           onClose={() => setViewerCard(null)}
           getTags={() => null}
           userId={viewerCard.owner || undefined}
+        />
+      )}
+
+      {mainTab === 'swipe' && (
+        <SwipeDeck
+          onClose={() => setMainTab('annonces')}
+          onPropose={(userId, name, theirCardId, myCardId) => { setMainTab('annonces'); setTradeModal({ userId, name, targetIds: [theirCardId], myIds: [myCardId] }) }}
         />
       )}
 

@@ -8,6 +8,8 @@ export const ENTRIES: Entry[] = [
     points: [
       'Brouillons d’offres : si tu fermes la fenêtre d’une offre sans l’envoyer, elle est gardée sur ton appareil. Tu la retrouves dans « Mes échanges », section « Brouillons d’offres », et en rouvrant l’échange avec le même membre.',
       'Relancer une offre : quand une offre reste sans réponse depuis 3 jours, un bouton « Relancer » envoie un rappel poli au membre. Une nouvelle relance est possible 3 jours plus tard.',
+      'Nouvel onglet « Swipe » : les cartes à échanger des autres membres défilent en plein écran. Glisse à droite pour aimer, à gauche pour passer. Si l’autre a aussi aimé une de tes cartes, c’est un match et l’offre s’ouvre déjà préparée. Un « j’aime » reste invisible tant qu’il n’y a pas de match.',
+      'Swipe : le bouton « Filtres » en haut à droite permet de ne voir que certaines cartes (équipe, joueur, collection, année, RC, auto, patch). Tes filtres sont gardés.',
       'Fenêtre d’échange : elle affiche maintenant toutes les cartes des deux membres, même au-delà de 1 000 cartes.',
     ],
   },
