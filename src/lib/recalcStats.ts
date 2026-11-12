@@ -34,28 +34,22 @@ export async function computeUserStats(
     stats.patch += csvStats.patch
   }
 
-  // Pagination pour bypasser le max_rows=1000 de Supabase. Une page en erreur
-  // ne doit jamais etre confondue avec "plus de cartes" (sous-comptage
-  // silencieux). .order('id') obligatoire : sans tri explicite, l'ordre entre
-  // deux .range() successifs n'est pas garanti par Postgres/PostgREST.
-  for (let from = 0; ; from += 1000) {
-    const { data: batch, error: batchError } = await supabase
-      .from('cartes_manuelles')
-      .select('rc, auto, patch, num')
-      .eq('user_id', userId)
-      .order('id', { ascending: true })
-      .range(from, from + 999)
-    if (batchError) return { error: batchError.message }
-    if (!batch || batch.length === 0) break
-    for (const m of batch) {
-      stats.total++
-      if (m.rc) stats.rc++
-      if (m.auto) stats.auto++
-      if (m.patch) stats.patch++
-      if (m.num) stats.num++
-    }
-    if (batch.length < 1000) break
-  }
+  // Cinq décomptes côté base (count exact, sans télécharger les lignes) : beaucoup plus léger que lire toutes les cartes par pages de 1000,
+  // qui échouait sous charge pour les grosses galeries (statement timeout) et laissait l'ancien total affiché. Un décompte en erreur n'écrase jamais rien.
+  const base = () => supabase.from('cartes_manuelles').select('id', { count: 'exact', head: true }).eq('user_id', userId)
+  const [tot, rc, auto, patch, num] = await Promise.all([
+    base(),
+    base().eq('rc', true),
+    base().eq('auto', true),
+    base().eq('patch', true),
+    base().not('num', 'is', null).neq('num', ''),
+  ])
+  for (const r of [tot, rc, auto, patch, num]) if (r.error || r.count == null) return { error: r.error?.message || 'count failed' }
+  stats.total += tot.count as number
+  stats.rc += rc.count as number
+  stats.auto += auto.count as number
+  stats.patch += patch.count as number
+  stats.num += num.count as number
 
   return { stats }
 }

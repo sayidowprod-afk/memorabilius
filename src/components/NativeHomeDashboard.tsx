@@ -383,6 +383,21 @@ export default function NativeHomeDashboard({ siteStats, cardOfTheDay }: { siteS
           challenge,
           challengeProgress,
         })
+        // Auto-réparation du total : le chiffre affiché est un total enregistré dans le profil ; s'il a dérivé (ajout en lot, recalcul raté),
+        // on le recompte au plus une fois toutes les 6 h par appareil et on corrige l'affichage tout de suite.
+        try {
+          const key = `stats-heal-${user.id}`
+          const last = Number(localStorage.getItem(key) || 0)
+          if (Date.now() - last > 6 * 3600 * 1000) {
+            localStorage.setItem(key, String(Date.now()))
+            void supabase.auth.getSession().then(({ data: { session } }) => {
+              if (!session) return
+              return fetch('/api/recalc-user', { method: 'POST', headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${session.access_token}` }, body: JSON.stringify({ userId: user.id }) })
+                .then(r => (r.ok ? r.json() : null))
+                .then(j => { const st = j?.stats; if (st && typeof st.total === 'number' && !cancelled) setData(prev => (prev ? { ...prev, totalCards: st.total, auto: st.auto ?? prev.auto } : prev)) })
+            }).catch(() => {})
+          }
+        } catch { /* stockage indisponible : pas de recomptage automatique */ }
       } catch (e) {
         if (cancelled) return
         // 5 tentatives avec delai croissant (~15s) au lieu de 2x1s (~2s) --
