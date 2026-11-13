@@ -14,6 +14,7 @@ const GROUPS: { title: string; links: AdminLink[] }[] = [
       { href: '/admin/stats', icon: '📊', title: 'Statistiques', desc: 'Vue d\'ensemble du site' },
       { href: '/admin/performance', icon: '⚡', title: 'Vitesse du site', desc: 'Temps d\'affichage et réactivité mesurés chez les membres, par page' },
       { href: '/admin/reports', icon: '🚩', title: 'Signalements', desc: 'Contenus signalés par la communauté' },
+      { href: '/admin/sets', icon: '🧹', title: 'Santé des sets', desc: 'Sets incomplets (avec la commande de relance) et sets en double à fusionner' },
       { href: '/admin/setlist-demandes', icon: '📚', title: 'Demandes de setlist', desc: 'Les plus attendues d’abord ; passer à « Ajoutée » prévient les membres' },
       { href: '/admin/demo', icon: '🎪', title: 'Mode démo', desc: 'Configuration du mode salon / tablette' },
       { href: '/evenements/admin', icon: '📅', title: 'Événements', desc: 'Gestion des événements' },
@@ -57,6 +58,7 @@ const GROUPS: { title: string; links: AdminLink[] }[] = [
     links: [
       { href: '/admin/da', icon: '🎨', title: 'Idées visuelles — classeurs & bibliothèque', desc: '23 pistes (visuel, animations, technique/perf) pour les classeurs et la bibliothèque de la galerie, en maquettes vivantes — page de travail, rien n\'est modifié sur le site' },
       { href: '/design-preview/tags', icon: '🏷️', title: 'Comparaison des icônes', desc: 'RC / AUTO / PATCH / NUM : 4 styles comparés sur de vraies cartes' },
+      { href: '/essai-paralleles', icon: '🌈', title: 'Essai : parallèles d’une carte', desc: 'Toutes les parallèles d’une de tes cartes (Silver, Gold…), celles que tu as, celles qui manquent, et le Rainbow.' },
       { href: '/essai-gyro', icon: '📱', title: 'Essai : inclinaison au gyroscope', desc: 'La carte réagit à l’inclinaison du téléphone (reflet, inclinaison). À ouvrir sur ton téléphone ; comparaison avec la carte intacte.' },
     ],
   },

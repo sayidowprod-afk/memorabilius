@@ -50,3 +50,9 @@ ml/
 !ml/model/*.onnx
 runs/
 yolov8n-pose.pt
+
+.vercel
+.env*
+
+# maquettes d idees locales (jamais envoyees en ligne)
+/src/app/dev-idees-*/

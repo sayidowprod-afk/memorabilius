@@ -4,6 +4,12 @@ export type Entry = { date: string; titre: string; points: string[] }
 
 export const ENTRIES: Entry[] = [
   {
+    date: '27 novembre 2026', titre: 'Setlists : qui a la carte qui te manque ?',
+    points: [
+      'Setlists : sur une ligne qui te manque, un badge vert « 👥 3 l’ont » apparaît quand d’autres membres ont exactement cette carte (même set, numéro et variation) à échanger. Un clic te montre qui, avec un lien vers leur galerie.',
+    ],
+  },
+  {
     date: '26 novembre 2026', titre: 'La carte suit l’inclinaison de ton téléphone',
     points: [
       'Viewer 3D sur téléphone : la carte s’incline légèrement (15° au maximum) quand tu bouges ton téléphone, avec un reflet doux par-dessus. La photo n’est jamais modifiée. Sur iPhone, le site demande l’autorisation du capteur de mouvement au premier toucher.',

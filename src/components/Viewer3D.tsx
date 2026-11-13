@@ -24,6 +24,7 @@ import TagIcon from '@/components/TagIcon'
 import LoupeOverlay from '@/components/LoupeOverlay'
 import MarketplacePriceField from '@/components/MarketplacePriceField'
 import TcgInfoBlock from '@/components/TcgInfoBlock'
+import ParallelsPanel from '@/components/ParallelsPanel'
 import { fmtPrice } from '@/lib/marketplace'
 import { candidatesForCard, type MSet, type MEntry, type MCard } from '@/lib/setMatcher'
 
@@ -48,6 +49,8 @@ interface Card {
   notes_perso?: string; notes_perso_public?: boolean
   jeu?: string; rarete?: string; langue?: string; edition?: string; etat?: string; tcg_ref?: string
 }
+
+export type ViewerCardData = Card
 
 // Le container .viewer-card a une forme fixe (déterminée par le recto, is_horizontal).
 // Si le verso a une orientation différente (ex: recto vertical, verso à l'horizontale),
@@ -138,6 +141,10 @@ export default function Viewer3D({ popup, accent, onClose, onNext, onPrev, getTa
 }) {
   const { dark } = useTheme()
   const bg = dark ? '#1a1a1a' : '#fff'
+  // 852 · section « Parallèles » : activée par la page d'essai (/essai-paralleles) sur cet appareil, pas encore pour tout le monde
+  const [parallelsOn, setParallelsOn] = useState(false)
+  const [nested, setNested] = useState<{ card: Card; ownerId: string; mine: boolean } | null>(null)   // carte ouverte depuis une parallèle : le viewer réel, par-dessus
+  useEffect(() => { try { setParallelsOn(localStorage.getItem('viewer-paralleles') === '1') } catch { /* stockage indisponible : désactivé */ } }, [])
   // Gris un peu plus marque qu'avant (#f8f8f8, quasi blanc) -- la carte et son
   // ombre au sol se detachaient mal dessus.
   const zoneBg = dark ? '#05080f' : '#e9e9e9'
@@ -2233,6 +2240,9 @@ export default function Viewer3D({ popup, accent, onClose, onNext, onPrev, getTa
             )}
           </div>
 
+          {parallelsOn && !popup.jeu && currentUserId && (
+            <ParallelsPanel card={{ n: popup.n, y: popup.y, br: popup.br, s: popup.s, v: popup.v, card_number: popup.card_number }} currentUserId={currentUserId} metaColor={metaColor} textColor={textColor} borderColor={borderColor} onOpen={(c, ownerId, mine) => setNested({ card: c, ownerId, mine })} />
+          )}
           {/* Proposer un échange — visiteur connecté seulement */}
           {!isOwner && onProposeTrade && (
             <div className="v3d-trade" style={{ marginTop: 10 }}>
@@ -2401,6 +2411,7 @@ export default function Viewer3D({ popup, accent, onClose, onNext, onPrev, getTa
             />
           )}
 
+          {nested && <Viewer3D popup={nested.card} accent={accent} onClose={() => setNested(null)} getTags={getTags} userId={nested.ownerId} isOwner={nested.mine} currentUserId={currentUserId} />}
           {showVideo && <CardVideoExport card={popup} accent={accent} onClose={() => setShowVideo(false)} ownerId={userId} />}
           {showPhoto && <CardPhotoExport card={popup} accent={accent} onClose={() => setShowPhoto(false)} ownerId={userId} />}
         </div>

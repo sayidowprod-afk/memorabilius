@@ -1,0 +1,64 @@
+name: Nouveaux sets
+
+# Chaque lundi : ajoute au site les sets récents (année en cours et précédente, tous sports) qui n'y sont pas encore (--new-only : un set déjà
+# présent est ignoré, rien n'est jamais supprimé), puis envoie le résumé sur Discord. Remplace le lancement à la main de RUN_nouveaux_sets.bat.
+# Secrets nécessaires : NEXT_PUBLIC_SUPABASE_URL, SUPABASE_SERVICE_ROLE_KEY, DISCORD_WEBHOOK_URL.
+# À tester une première fois depuis l'onglet Actions (« Run workflow ») : le site source peut refuser les adresses des serveurs GitHub.
+on:
+  schedule:
+    - cron: '30 6 * * 1' # lundi, 7 h 30 (hiver) / 8 h 30 (été) à Paris
+  workflow_dispatch:
+    inputs:
+      dry_run:
+        description: 'Simulation : ne rien écrire (true / false)'
+        default: 'false'
+
+permissions:
+  contents: read
+
+jobs:
+  nouveaux-sets:
+    runs-on: ubuntu-latest
+    timeout-minutes: 120
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          sparse-checkout: |
+            scripts/scrape-checklistinsider.js
+            scripts/resume-nouveaux-sets.js
+          sparse-checkout-cone-mode: false
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+
+      - name: Bibliothèques du script
+        run: |
+          npm init -y >/dev/null
+          npm install --no-audit --no-fund axios cheerio jszip dotenv
+
+      - name: Lecture des sets récents (tous sports)
+        env:
+          NEXT_PUBLIC_SUPABASE_URL: ${{ secrets.NEXT_PUBLIC_SUPABASE_URL }}
+          SUPABASE_SERVICE_ROLE_KEY: ${{ secrets.SUPABASE_SERVICE_ROLE_KEY }}
+        run: |
+          set +e
+          DRY=""
+          if [ "${{ github.event.inputs.dry_run }}" = "true" ]; then DRY="--dry-run"; fi
+          YEAR=$(date +%Y); PREV=$((YEAR-1))
+          : > nouveaux-sets.log
+          for sport in basketball football baseball hockey soccer racing wrestling mma tennis; do
+            echo "--- $sport ---" | tee -a nouveaux-sets.log
+            node scripts/scrape-checklistinsider.js --sport=$sport --from=$YEAR --to=$PREV --new-only $DRY 2>&1 | tee -a nouveaux-sets.log
+          done
+          for y in $YEAR $PREV; do
+            echo "--- non-sport $y ---" | tee -a nouveaux-sets.log
+            node scripts/scrape-checklistinsider.js --season-url=https://www.checklistinsider.com/non-sport-cards/$y-non-sport-cards --new-only $DRY 2>&1 | tee -a nouveaux-sets.log
+          done
+          exit 0
+
+      - name: Résumé sur Discord
+        if: always()
+        env:
+          DISCORD_WEBHOOK_URL: ${{ secrets.DISCORD_WEBHOOK_URL }}
+        run: node scripts/resume-nouveaux-sets.js nouveaux-sets.log

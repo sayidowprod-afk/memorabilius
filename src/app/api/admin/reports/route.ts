@@ -24,7 +24,13 @@ export async function GET(req: NextRequest) {
     : { data: [] }
   const nameMap = Object.fromEntries((profiles || []).map(p => [p.id, p.display_name]))
 
+  // retours auxquels une réponse a déjà été envoyée (le lien de la notification porte « #retour-<id> »)
+  const { data: replies } = await admin.from('notifications').select('lien, message').eq('type', 'feedback_reply').like('lien', '%#retour-%').limit(1000)
+  const replied: Record<string, string> = {}
+  for (const r of replies || []) { const m = String(r.lien).match(/#retour-([0-9a-f-]{36})/i); if (m) replied[m[1]] = String(r.message).split(' » : ').slice(1).join(' » : ') }
+
   return NextResponse.json({
+    replied,
     feedback: (feedback || []).map(f => ({ ...f, user_name: f.user_id ? nameMap[f.user_id] || null : null })),
     reports: (reports || []).map(r => ({
       ...r,

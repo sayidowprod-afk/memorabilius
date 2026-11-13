@@ -12,6 +12,7 @@ interface FeedbackRow {
   message: string
   page_url: string | null
   email: string | null
+  user_id?: string | null
   user_name: string | null
   created_at: string
 }
@@ -36,6 +37,8 @@ export default function AdminReportsPage() {
   const [reports, setReports] = useState<ReportRow[]>([])
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState('')
+  const [replied, setReplied] = useState<Record<string, string>>({})
+  const [replying, setReplying] = useState<string | null>(null)
 
   useEffect(() => {
     supabase.auth.getSession().then(async ({ data: { session } }) => {
@@ -47,9 +50,23 @@ export default function AdminReportsPage() {
       const json = await r.json()
       setFeedback(json.feedback || [])
       setReports(json.reports || [])
+      setReplied(json.replied || {})
       setLoading(false)
     })
   }, [])
+
+  // 870 · réponse en un clic : le membre reçoit une notification
+  const REPLIES = ['Corrigé, merci !', 'C’est noté, ça arrive bientôt.', 'Déjà disponible, regarde dans les réglages.', 'Peux-tu m’en dire un peu plus ?']
+  const sendReply = async (feedbackId: string, reply: string) => {
+    setReplying(feedbackId)
+    try {
+      const { data: { session } } = await supabase.auth.getSession()
+      const r = await fetch('/api/admin/feedback-reply', { method: 'POST', headers: { 'Content-Type': 'application/json', Authorization: 'Bearer ' + (session?.access_token || '') }, body: JSON.stringify({ feedbackId, reply }) })
+      const d = await r.json().catch(() => ({}))
+      if (r.ok || r.status === 409) setReplied(m => ({ ...m, [feedbackId]: reply }))
+      else alert(d.error || 'Échec de l’envoi')
+    } finally { setReplying(null) }
+  }
 
   const text = dark ? '#eee' : '#121212'
   const sub = dark ? '#999' : '#666'
@@ -111,6 +128,16 @@ export default function AdminReportsPage() {
                   {f.user_name || f.email || 'anonyme'} {f.page_url && <span style={{ color: sub }}>· {f.page_url}</span>}
                 </p>
                 <p style={{ color: text, fontSize: 13, margin: '6px 0 0', lineHeight: 1.5, whiteSpace: 'pre-wrap' }}>{f.message}</p>
+                {f.user_id && (
+                  <div style={{ display: 'flex', gap: 6, flexWrap: 'wrap', alignItems: 'center', marginTop: 10 }}>
+                    {replied[f.id]
+                      ? <span style={{ fontSize: 12, fontWeight: 700, color: '#1e9e57' }}>✓ Réponse envoyée : « {replied[f.id]} »</span>
+                      : REPLIES.map(rp => (
+                          <button key={rp} type="button" disabled={replying === f.id} onClick={() => sendReply(f.id, rp)}
+                            style={{ padding: '4px 10px', borderRadius: 999, border: '1px solid ' + (dark ? '#444' : '#ccd3e6'), background: 'transparent', color: text, fontSize: 12, fontWeight: 600, cursor: 'pointer' }}>{rp}</button>
+                        ))}
+                  </div>
+                )}
               </div>
             ))}
           </div>

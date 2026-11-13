@@ -75,7 +75,40 @@ export default function SetlistClient({ setId }: { setId: string }) {
   }, [])
   const playerToImgRef = useRef<Map<string, string>>(new Map())
   const matchedCardImagesRef = useRef<Map<number, string>>(new Map())
+
+  // 877 : « Qui l'a ? » : on interroge le serveur pour les lignes manquantes des variations ouvertes (par lots, une seule fois par ligne)
+  useEffect(() => {
+    if (!userId || !set) return
+    const todo: { id: number; player_name: string; card_number: string | null; variation: string | null }[] = []
+    for (const v of variations) {
+      if (!v.loaded || !openVariations.has(v.name)) continue
+      for (const e of v.entries) {
+        if (e.owned || whoAsked.current.has(e.id)) continue
+        todo.push({ id: e.id, player_name: e.player_name, card_number: e.card_number, variation: e.variation })
+        if (todo.length >= 60) break
+      }
+      if (todo.length >= 60) break
+    }
+    if (!todo.length) return
+    todo.forEach(t => whoAsked.current.add(t.id))
+    let cancel = false
+    supabase.auth.getSession().then(({ data: { session } }) => {
+      if (!session?.access_token || cancel) return
+      fetch('/api/setlist-who-has', {
+        method: 'POST', headers: { 'Content-Type': 'application/json', Authorization: 'Bearer ' + session.access_token },
+        body: JSON.stringify({ setId: set.id, setYear: set.year, setBrand: set.brand, setName: set.name, entries: todo }),
+      }).then(r => (r.ok ? r.json() : [])).then((rows: { entry_id: number; count: number; members: { id: string; name: string }[] }[]) => {
+        if (cancel || !rows.length) return
+        setWhoHas(prev => { const n = new Map(prev); for (const r of rows) n.set(r.entry_id, { count: r.count, members: r.members }); return n })
+      }).catch(() => {})
+    })
+    return () => { cancel = true }
+  }, [variations, openVariations, userId, set])
   const [reportEntry, setReportEntry] = useState<{ entry: Entry; variation: string } | null>(null)   // 858 : ligne que je signale
+  // 877 : pour les lignes qui me manquent, les autres membres qui ont cette carte à échanger
+  const [whoHas, setWhoHas] = useState<Map<number, { count: number; members: { id: string; name: string }[] }>>(new Map())
+  const [whoOpen, setWhoOpen] = useState<number | null>(null)
+  const whoAsked = useRef<Set<number>>(new Set())
   // completions de l'utilisateur pour ce set : les variations ouvertes plus tard (autres que Base) doivent les retrouver
   const completedIdsRef = useRef<Set<number>>(new Set())
   const completionDetsRef = useRef<Map<number, { id: string; manually_checked: boolean; matched_card_key?: string | null }>>(new Map())
@@ -731,6 +764,22 @@ export default function SetlistClient({ setId }: { setId: string }) {
                             {entry.manually_checked && <span style={{ fontSize: 10, color: '#2ecc71', fontWeight: 700, flexShrink: 0 }}>✓</span>}
                             <button type="button" onClick={ev => { ev.stopPropagation(); setReportEntry({ entry, variation: variation.name }) }} title="Signaler un problème sur cette carte" aria-label="Signaler un problème sur cette carte"
                               style={{ background: 'none', border: 0, padding: '2px 4px', cursor: 'pointer', fontSize: 13, opacity: .35, flexShrink: 0, color: 'inherit' }}>⚑</button>
+                            {!entry.owned && whoHas.get(entry.id) && (
+                              <span style={{ position: 'relative', flexShrink: 0 }}>
+                                <button type="button" onClick={ev => { ev.stopPropagation(); setWhoOpen(whoOpen === entry.id ? null : entry.id) }} title="Des membres ont cette carte à échanger"
+                                  style={{ border: '1px solid #1e9e57', background: 'rgba(30,158,87,.12)', color: '#1e9e57', borderRadius: 10, padding: '1px 7px', fontSize: 11, fontWeight: 800, cursor: 'pointer', whiteSpace: 'nowrap' }}>
+                                  👥 {whoHas.get(entry.id)!.count} l’{whoHas.get(entry.id)!.count > 1 ? 'ont' : 'a'}
+                                </button>
+                                {whoOpen === entry.id && (
+                                  <div onClick={ev => ev.stopPropagation()} style={{ position: 'absolute', zIndex: 30, top: '100%', left: 0, marginTop: 4, minWidth: 190, background: dark ? '#1a1a1a' : '#fff', border: '1px solid ' + (dark ? '#333' : '#ddd'), boxShadow: '0 8px 24px rgba(0,0,0,.25)', padding: 6, display: 'flex', flexDirection: 'column', gap: 2 }}>
+                                    <div style={{ fontSize: 10, fontWeight: 800, letterSpacing: '.06em', textTransform: 'uppercase', color: '#888', padding: '2px 6px' }}>À échanger chez</div>
+                                    {whoHas.get(entry.id)!.members.map(m => (
+                                      <Link key={m.id} href={'/galerie/' + m.id + '?q=' + encodeURIComponent(entry.player_name)} prefetch={false} style={{ fontSize: 13, fontWeight: 700, padding: '5px 6px', textDecoration: 'none', color: dark ? '#eee' : '#111' }}>{m.name} →</Link>
+                                    ))}
+                                  </div>
+                                )}
+                              </span>
+                            )}
                           </div>
                           {!isMobile && <span style={{ fontSize: 12, color: '#999', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>{entry.team || '—'}</span>}
                           {userId ? (
