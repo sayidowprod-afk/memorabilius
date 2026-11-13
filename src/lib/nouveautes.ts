@@ -6,6 +6,7 @@ export const ENTRIES: Entry[] = [
   {
     date: '27 novembre 2026', titre: 'Setlists : qui a la carte qui te manque ?',
     points: [
+      'Viewer 3D : un volet « Parallèles » (fermé de base) sous les boutons de la carte. Il liste toutes ses déclinaisons dans le set (Silver, Gold, Red…), celles que tu as (✓) et celles qui te manquent, avec ta progression. Un clic sur une parallèle ouvre sa carte en 3D, la tienne ou celle d’un autre membre.',
       'Setlists : sur une ligne qui te manque, un badge vert « 👥 3 l’ont » apparaît quand d’autres membres ont exactement cette carte (même set, numéro et variation) à échanger. Un clic te montre qui, avec un lien vers leur galerie.',
     ],
   },
