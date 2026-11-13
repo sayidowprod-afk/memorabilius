@@ -9,6 +9,7 @@ import { useHideBottomNav } from '@/lib/useHideBottomNav'
 import { useRouter } from 'next/navigation'
 import Link from 'next/link'
 import { supabase } from '@/lib/supabase'
+import { checkUser } from '@/lib/currentUser'
 import { galleryMemClear } from '@/lib/galleryMem'
 import { makeThumb } from '@/lib/thumbnail'
 import TcgFields, { TcgKindPicker } from '@/components/TcgFields'
@@ -577,10 +578,12 @@ export default function AjouterCarte({ params }: { params: Promise<{ userId: str
     // cours" pour toujours — ça ressemble à un plantage même si ce n'en est pas un.
     // Mieux vaut un message d'erreur clair (photo à réessayer) qu'un blocage silencieux.
     try {
-      const { data: { user } } = await supabase.auth.getUser()
+      const { user, unreachable } = await checkUser()
       if (!user) {
         setUploadingRecto(false); setUploadingVerso(false); setUploadingIL(false); setUploadingIR(false)
-        router.push('/connexion')
+        // réseau injoignable : pas de renvoi vers la connexion (le membre est toujours connecté), simple nouvel essai
+        if (unreachable) toast.error('Connexion instable : la photo n’a pas pu être envoyée, réessaie dans un instant.')
+        else router.push('/connexion')
         return
       }
 
@@ -1002,7 +1005,8 @@ export default function AjouterCarte({ params }: { params: Promise<{ userId: str
     if (!form.nom) { toast.error(t('addcard_err_name_required')); return }
     setSaving(true)
 
-    const { data: { user } } = await supabase.auth.getUser()
+    const { user, unreachable } = await checkUser()
+    if (!user && unreachable) { toast.error('Connexion instable : la carte n’a pas été enregistrée, réessaie dans un instant.'); setSaving(false); return }
     if (!user || user.id !== userId) { router.push('/connexion'); return }
 
     // Doublon = nom + année + marque + collection + variation + numérotation + RC/auto/patch

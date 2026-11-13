@@ -7,6 +7,7 @@ import { use, useEffect, useRef, useState } from 'react'
 import { useRouter } from 'next/navigation'
 import Link from 'next/link'
 import { supabase } from '@/lib/supabase'
+import { checkUser } from '@/lib/currentUser'
 import { galleryMemClear } from '@/lib/galleryMem'
 import { toast } from '@/lib/toast'
 import { useIsAppUI } from '@/lib/useIsNative'
@@ -197,7 +198,7 @@ export default function AjoutLotPage({ params }: { params: Promise<{ userId: str
   const statusRef = useRef<Record<number, St>>({})
 
   useEffect(() => {
-    supabase.auth.getUser().then(({ data: { user } }) => { if (!user || user.id !== userId) router.replace('/connexion') })
+    checkUser().then(({ user, unreachable }) => { if (user ? user.id !== userId : !unreachable) router.replace('/connexion') })
   }, [userId, router])
 
   // libère les photos gardées en mémoire quand on quitte la page

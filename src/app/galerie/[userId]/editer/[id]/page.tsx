@@ -12,6 +12,7 @@ import { useHideBottomNav } from '@/lib/useHideBottomNav'
 import { useRouter, useSearchParams } from 'next/navigation'
 import Link from 'next/link'
 import { supabase } from '@/lib/supabase'
+import { checkUser } from '@/lib/currentUser'
 import { galleryMemClear } from '@/lib/galleryMem'
 import { makeThumb } from '@/lib/thumbnail'
 import { useLang } from '@/lib/LangContext'
@@ -585,7 +586,8 @@ export default function EditerCarte({ params }: { params: Promise<{ userId: stri
     if (!form.nom) { toast.error(t('addcard_err_name_required')); return }
     setSaving(true)
 
-    const { data: { user } } = await supabase.auth.getUser()
+    const { user, unreachable } = await checkUser()
+    if (!user && unreachable) { toast.error('Connexion instable : les modifications n’ont pas été enregistrées, réessaie dans un instant.'); setSaving(false); return }
     if (!user || user.id !== userId) { router.push('/connexion'); return }
 
     const patchRow: Record<string, unknown> = {
