@@ -108,9 +108,9 @@ export default function AdminSets() {
                     <td style={td}>
                       <div style={{ display: 'flex', gap: 6, flexWrap: 'wrap' }}>
                         {s.tcdb_id
-                          ? <button type="button" style={btn} onClick={() => copy('node scripts/ajouter-set-tcdb.js https://www.tcdb.com/Checklist.cfm/sid/' + s.tcdb_id)}>Copier la commande de relance</button>
+                          ? <button type="button" style={btn} onClick={() => copy('node scripts/ajouter-set-tcdb.js https://www.tcdb.com/ViewSet.cfm/sid/' + s.tcdb_id)}>Copier la commande de relance</button>
                           : <span style={{ fontSize: 11, opacity: .7 }}>sans lien TCDB (vient d’une autre source)</span>}
-                        {s.tcdb_id && <a href={'https://www.tcdb.com/Checklist.cfm/sid/' + s.tcdb_id} target="_blank" rel="noopener noreferrer" style={{ ...btn, textDecoration: 'none' }}>TCDB ↗</a>}
+                        {s.tcdb_id && <a href={'https://www.tcdb.com/ViewSet.cfm/sid/' + s.tcdb_id} target="_blank" rel="noopener noreferrer" style={{ ...btn, textDecoration: 'none' }}>TCDB ↗</a>}
                         <button type="button" style={btn} onClick={() => ignore(s.id)} title="Ce set est volontairement petit : ne plus le montrer">C’est normal</button>
                       </div>
                     </td>
