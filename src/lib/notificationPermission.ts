@@ -12,14 +12,19 @@ interface NotificationPermissionBridgePlugin {
 
 const NotificationPermissionBridge = registerPlugin<NotificationPermissionBridgePlugin>('NotificationPermissionBridge')
 
+// iOS : le bug du pont ci-dessus est propre à Android (et le pont n'existe pas côté iPhone) : on utilise la demande officielle du plugin.
+const isIOS = () => Capacitor.getPlatform() === 'ios'
+
 export async function checkNotificationPermission(): Promise<'granted' | 'denied'> {
   if (!Capacitor.isNativePlatform()) return 'denied'
+  if (isIOS()) { const { PushNotifications } = await import('@capacitor/push-notifications'); return (await PushNotifications.checkPermissions()).receive === 'granted' ? 'granted' : 'denied' }
   const { receive } = await NotificationPermissionBridge.check()
   return receive
 }
 
 export async function requestNotificationPermission(): Promise<'granted' | 'denied'> {
   if (!Capacitor.isNativePlatform()) return 'denied'
+  if (isIOS()) { const { PushNotifications } = await import('@capacitor/push-notifications'); return (await PushNotifications.requestPermissions()).receive === 'granted' ? 'granted' : 'denied' }
   const { receive } = await NotificationPermissionBridge.request()
   return receive
 }

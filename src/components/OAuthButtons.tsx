@@ -1,12 +1,26 @@
 'use client'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
+import { Capacitor } from '@capacitor/core'
 import { supabase } from '@/lib/supabase'
 import { useTheme } from '@/lib/ThemeContext'
 import { useIsNative } from '@/lib/useIsNative'
 
-type Provider = 'google' | 'twitter' | 'discord'
+type Provider = 'apple' | 'google' | 'twitter' | 'discord'
 
 const PROVIDERS: { id: Provider; label: string; bg: string; color: string; border: string; logo: React.ReactNode }[] = [
+  // Apple : uniquement dans l'app iPhone (voir signIn plus bas) ; exigé par l'App Store dès qu'une autre connexion sociale est proposée.
+  {
+    id: 'apple',
+    label: 'Apple',
+    bg: '#000',
+    color: '#fff',
+    border: '#000',
+    logo: (
+      <svg width="18" height="18" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" fill="white">
+        <path d="M12.152 6.896c-.948 0-2.415-1.078-3.96-1.04-2.04.027-3.91 1.183-4.961 3.014-2.117 3.675-.546 9.103 1.519 12.09 1.013 1.454 2.208 3.09 3.792 3.039 1.52-.065 2.09-.987 3.935-.987 1.831 0 2.35.987 3.96.948 1.637-.026 2.676-1.48 3.676-2.948 1.156-1.688 1.636-3.325 1.662-3.415-.039-.013-3.182-1.221-3.22-4.857-.026-3.04 2.48-4.494 2.597-4.559-1.429-2.09-3.623-2.324-4.39-2.376-2-.156-3.675 1.09-4.61 1.09zM15.53 3.83c.843-1.012 1.4-2.427 1.245-3.83-1.207.052-2.662.805-3.532 1.818-.78.896-1.454 2.338-1.273 3.714 1.338.104 2.715-.688 3.559-1.701"/>
+      </svg>
+    ),
+  },
   {
     id: 'google',
     label: 'Google',
@@ -57,9 +71,26 @@ export default function OAuthButtons({ mode }: OAuthButtonsProps) {
   const { dark } = useTheme()
   const isNative = useIsNative()
   const [loading, setLoading] = useState<Provider | null>(null)
+  const [isIOSApp, setIsIOSApp] = useState(false)
+  useEffect(() => { setIsIOSApp(Capacitor.getPlatform() === 'ios') }, [])
 
   async function signIn(provider: Provider) {
     setLoading(provider)
+
+    if (provider === 'apple') {
+      // Connexion Apple native (fenêtre du système + Face ID) : le jeton d'identité d'Apple est échangé contre une session Supabase.
+      // Rien à renouveler côté Apple (contrairement à la connexion Apple par le web, dont la clé expire tous les 6 mois).
+      try {
+        const { SignInWithApple } = await import('@capacitor-community/apple-sign-in')
+        const res = await SignInWithApple.authorize({ clientId: 'fr.memorabilius.app', redirectURI: `${window.location.origin}/auth/callback`, scopes: 'email name' })
+        const token = res.response?.identityToken
+        if (!token) throw new Error('jeton Apple manquant')
+        const { error } = await supabase.auth.signInWithIdToken({ provider: 'apple', token })
+        if (error) throw error
+        window.location.assign('/auth/callback')
+      } catch { setLoading(null) }   // annulé par l'utilisateur ou refusé : on revient aux boutons
+      return
+    }
 
     if (isNative) {
       // Sur l'app, une redirection classique navigue la WebView elle-même vers
@@ -118,7 +149,7 @@ export default function OAuthButtons({ mode }: OAuthButtonsProps) {
 
       {/* Boutons */}
       <div style={{ display: 'flex', flexDirection: 'column', gap: 10 }}>
-        {PROVIDERS.map(p => (
+        {PROVIDERS.filter(p => p.id !== 'apple' || isIOSApp).map(p => (
           <button
             key={p.id}
             onClick={() => signIn(p.id)}

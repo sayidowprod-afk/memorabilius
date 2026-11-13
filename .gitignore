@@ -56,3 +56,6 @@ yolov8n-pose.pt
 
 # maquettes d idees locales (jamais envoyees en ligne)
 /src/app/dev-idees-*/
+
+# Projet iOS : recréé à chaque build par Codemagic (voir codemagic.yaml)
+/ios/
