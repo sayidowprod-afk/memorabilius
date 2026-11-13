@@ -310,6 +310,7 @@ export default function WishlistPage() {
                 <CardTagBadges rc={!!item.rc} auto={!!item.auto} patch={!!item.patch} num={item.num} size="md" />
               </div>
               {item.prix_cible != null && <div style={{ fontSize: 12, fontWeight: 800, color: '#1f9d55', marginTop: 6 }}>🎯 Prix cible : {Number(item.prix_cible).toLocaleString('fr-FR', { style: 'currency', currency: 'EUR', maximumFractionDigits: 2 })}</div>}
+              {item.nom && <a href={`https://www.vinted.fr/catalog?search_text=${encodeURIComponent([item.nom, String(item.annee || '').slice(0, 4), item.collection, item.variation].filter(Boolean).join(' '))}&order=newest_first`} target="_blank" rel="noopener noreferrer" style={{ display: 'inline-block', marginTop: 6, fontSize: 11, fontWeight: 700, color: '#09B1BA', textDecoration: 'none' }}>🔎 Chercher sur Vinted</a>}
               {item.notes && <div style={{ fontSize: 11, color: '#888', marginTop: 6, fontStyle: 'italic' }}>"{item.notes}"</div>}
             </div>
             {removingId === item.id ? (

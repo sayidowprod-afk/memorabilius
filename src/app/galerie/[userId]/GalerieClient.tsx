@@ -738,7 +738,7 @@ export default function GalerieClient({ userId, initialCardUrl, initialCards, in
   const prefetchRef = useRef<GalleryPrefetch | null>(null) // cartes demandées dès le démarrage (voir startGalleryPrefetch)
   const [shareSub, setShareSub] = useState(false) // sous-menu « Partager » (lien / Multi-QR)
   const [thumbBannerOff, setThumbBannerOff] = useState(() => { try { return localStorage.getItem('thumb-banner-off') === '1' } catch { return false } })
-  const [recapOpen, setRecapOpen] = useState(() => process.env.NODE_ENV !== 'production' && searchParams.get('bilan') === '1') // « Mon année en cartes » : test local seulement (pas en production)
+  const [recapOpen, setRecapOpen] = useState(() => searchParams.get('bilan') === '1') // « Mon année en cartes » (vidéo et image du bilan, propriétaire seulement)
   const [reelOpen, setReelOpen] = useState(false) // « Reel de ma collection » (vidéo verticale de 15 s)
   const [thumbsOpen, setThumbsOpen] = useState(false) // outil « miniatures » du propriétaire
   const [storyIdx, setStoryIdx] = useState<number | null>(null) // « Défilé » ouvert sur cette carte (index dans la liste filtrée)
@@ -3026,6 +3026,12 @@ export default function GalerieClient({ userId, initialCardUrl, initialCards, in
                               🎬 Export image et vidéos
                             </button>
                           )}
+                          {isOwner && (
+                            <button onClick={() => { setActionMenuOpen(false); setRecapOpen(true) }} disabled={!cards.length}
+                              style={{ background: 'none', border: 'none', borderRadius: 8, padding: '9px 14px', fontWeight: 700, fontSize: 13, cursor: cards.length ? 'pointer' : 'not-allowed', textAlign: 'left', color: dark ? '#ddd' : '#333', width: '100%', opacity: cards.length ? 1 : 0.5 }}>
+                              📅 Mon année en cartes
+                            </button>
+                          )}
                           <button onClick={() => { setShowStats(s => !s); setActionMenuOpen(false) }}
                             style={{ background: 'none', border: 'none', borderRadius: 8, padding: '9px 14px', fontWeight: 700, fontSize: 13, cursor: 'pointer', textAlign: 'left', color: dark ? '#ddd' : '#333', width: '100%' }}>
                             📊 {showStats ? t('gallery_hide_stats') : t('gallery_show_stats')}
@@ -4337,7 +4343,7 @@ export default function GalerieClient({ userId, initialCardUrl, initialCards, in
           { key: 'rnd', label: 'Au hasard', cards: rnd.map(fmt) },
         ]} />
       })()}
-      {recapOpen && isOwner && process.env.NODE_ENV !== 'production' && <YearRecap cards={cards} values={cardValues} ownerName={profile?.display_name || ''} onClose={() => setRecapOpen(false)} />}
+      {recapOpen && isOwner && <YearRecap cards={cards} values={cardValues} ownerName={profile?.display_name || ''} onClose={() => setRecapOpen(false)} />}
       {thumbsOpen && isOwner && <ThumbBackfill cards={cards} userId={userId} onClose={() => setThumbsOpen(false)} />}
       {storyIdx !== null && <Defile cards={filtered} startIndex={storyIdx} onClose={() => setStoryIdx(null)} onOpen={c => setPopup(c as Card)} />}
 

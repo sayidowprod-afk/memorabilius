@@ -200,6 +200,8 @@ export default function GalerieComments({ galerieUserId, accent, isOwner, cardKe
   cardKey?: string; binderId?: number; notifyUserId?: string; emptyLabel?: string
 }) {
   const [comments, setComments] = useState<Comment[]>([])
+  // 966 : avis positifs (4-5 étoiles avec un mot) laissés après des échanges terminés, affichés en vitrine sur les commentaires de la galerie
+  const [praise, setPraise] = useState<{ id: string; rating: number; comment: string; created_at: string; profile: Profile | null }[]>([])
   const [message, setMessage] = useState('')
   const [currentUserId, setCurrentUserId] = useState<string | null>(null)
   const [sending, setSending] = useState(false)
@@ -239,6 +241,18 @@ export default function GalerieComments({ galerieUserId, accent, isOwner, cardKe
     if (binderId) query = query.eq('binder_id', binderId)
     else if (cardKey) query = query.eq('galerie_user_id', galerieUserId).eq('card_key', cardKey)
     else query = query.eq('galerie_user_id', galerieUserId).is('card_key', null).is('binder_id', null)
+
+    if (!binderId && !cardKey) {
+      supabase.from('trade_reviews').select('id, rating, comment, created_at, reviewer_id')
+        .eq('reviewed_id', galerieUserId).gte('rating', 4).not('comment', 'is', null).order('created_at', { ascending: false }).limit(12)
+        .then(async ({ data: rv }) => {
+          const list = (rv || []).filter((r: any) => String(r.comment || '').trim().length > 2).slice(0, 6)
+          if (!list.length) { setPraise([]); return }
+          const { data: ps } = await supabase.from('profiles').select('id, display_name, avatar_url, slug').in('id', [...new Set(list.map((r: any) => r.reviewer_id))])
+          const pm = new Map((ps || []).map((p: any) => [p.id, p as Profile]))
+          setPraise(list.map((r: any) => ({ id: r.id, rating: r.rating, comment: String(r.comment).trim(), created_at: r.created_at, profile: pm.get(r.reviewer_id) || null })))
+        })
+    }
 
     const { data: rows } = await query
     if (!rows) return
@@ -426,6 +440,26 @@ export default function GalerieComments({ galerieUserId, accent, isOwner, cardKe
           <span style={{ fontSize: 13, color: textMuted }}>
             <Link href="/connexion" style={{ color: accent, fontWeight: 700 }}>{t('login_btn')}</Link> {t('comments_login_text')}
           </span>
+        </div>
+      )}
+
+      {praise.length > 0 && (
+        <div style={{ marginBottom: 20, background: dark ? '#1f2a1f' : '#f1faf3', border: `1px solid ${dark ? '#2d4a33' : '#cfe9d6'}`, borderRadius: 14, padding: '14px 16px' }}>
+          <div style={{ fontWeight: 800, fontSize: 13, marginBottom: 10, color: dark ? '#7fd69a' : '#1f7a3f' }}>⭐ Ce que disent ses partenaires d’échange</div>
+          <div style={{ display: 'flex', flexDirection: 'column', gap: 10 }}>
+            {praise.map(p => (
+              <div key={p.id} style={{ display: 'flex', gap: 10, alignItems: 'flex-start' }}>
+                <Avatar profile={p.profile} accent={accent} size={30} />
+                <div style={{ minWidth: 0 }}>
+                  <div style={{ fontSize: 13, color: textMain, lineHeight: 1.4, overflowWrap: 'anywhere' }}>« {p.comment} »</div>
+                  <div style={{ fontSize: 11, color: textMuted, marginTop: 2 }}>
+                    <span style={{ color: '#e0a526' }}>{'★'.repeat(p.rating)}</span>{' '}
+                    {p.profile ? (p.profile.slug ? <Link href={`/galerie/${p.profile.slug}`} style={{ color: 'inherit', fontWeight: 700 }}>{p.profile.display_name}</Link> : <b>{p.profile.display_name}</b>) : 'Un membre'} · échange du {new Date(p.created_at).toLocaleDateString('fr-FR', { day: 'numeric', month: 'long' })}
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
         </div>
       )}
 

@@ -27,7 +27,7 @@ export const toEur = (usd: number, m: { usdToEur?: number } | null | undefined) 
 export const eur = (n: number) => n.toLocaleString('fr-FR', { style: 'currency', currency: 'EUR', maximumFractionDigits: n < 100 ? 2 : 0 })
 
 // Taux du jour (Banque centrale européenne via frankfurter.app, gratuit, sans clé). Repli sur le taux par défaut.
-async function usdToEurRate(): Promise<number> {
+export async function usdToEurRate(): Promise<number> {
   try {
     const r = await fetch('https://api.frankfurter.app/latest?from=USD&to=EUR', { cache: 'no-store', signal: AbortSignal.timeout(4000) })
     const j = await r.json()

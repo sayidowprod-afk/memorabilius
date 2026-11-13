@@ -87,6 +87,10 @@
       "schedule": "*/15 * * * *"
     },
     {
+      "path": "/api/cron/wishlist-ebay",
+      "schedule": "30 7 * * *"
+    },
+    {
       "path": "/api/cron/ebay-annonces",
       "schedule": "20 * * * *"
     }

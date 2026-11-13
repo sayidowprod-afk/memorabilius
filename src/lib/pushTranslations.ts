@@ -97,6 +97,17 @@ export function wishlistPriceFoundPush(lang: PushLang, ownerName: string, cardNa
   }
 }
 
+export function wishlistEbayFoundPush(lang: PushLang, cardName: string, price: string, target: string) {
+  return {
+    title: { fr: '🎯 Une annonce eBay sous ton prix cible', en: '🎯 An eBay listing under your target', de: '🎯 eBay-Angebot unter deinem Zielpreis' }[lang],
+    body: {
+      fr: `${cardName} est annoncée à ${price} sur eBay (ton prix cible : ${target})`,
+      en: `${cardName} is listed at ${price} on eBay (your target: ${target})`,
+      de: `${cardName} wird für ${price} auf eBay angeboten (dein Zielpreis: ${target})`,
+    }[lang],
+  }
+}
+
 export function commentReceivedTitle(lang: PushLang): string {
   return { fr: '💬 Nouveau commentaire', en: '💬 New comment', de: '💬 Neuer Kommentar' }[lang]
 }
