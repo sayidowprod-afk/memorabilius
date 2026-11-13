@@ -738,6 +738,8 @@ export default function GalerieClient({ userId, initialCardUrl, initialCards, in
   const prefetchRef = useRef<GalleryPrefetch | null>(null) // cartes demandées dès le démarrage (voir startGalleryPrefetch)
   const [shareSub, setShareSub] = useState(false) // sous-menu « Partager » (lien / Multi-QR)
   const [thumbBannerOff, setThumbBannerOff] = useState(() => { try { return localStorage.getItem('thumb-banner-off') === '1' } catch { return false } })
+  const [wrappedSeason, setWrappedSeason] = useState(false) // « Mon année en cartes » : disponible seulement en décembre, comme un bilan annuel
+  useEffect(() => { setWrappedSeason(new Date().getMonth() === 11) }, [])
   const [recapOpen, setRecapOpen] = useState(() => searchParams.get('bilan') === '1') // « Mon année en cartes » (vidéo et image du bilan, propriétaire seulement)
   const [reelOpen, setReelOpen] = useState(false) // « Reel de ma collection » (vidéo verticale de 15 s)
   const [thumbsOpen, setThumbsOpen] = useState(false) // outil « miniatures » du propriétaire
@@ -3026,7 +3028,7 @@ export default function GalerieClient({ userId, initialCardUrl, initialCards, in
                               🎬 Export image et vidéos
                             </button>
                           )}
-                          {isOwner && (
+                          {isOwner && wrappedSeason && (
                             <button onClick={() => { setActionMenuOpen(false); setRecapOpen(true) }} disabled={!cards.length}
                               style={{ background: 'none', border: 'none', borderRadius: 8, padding: '9px 14px', fontWeight: 700, fontSize: 13, cursor: cards.length ? 'pointer' : 'not-allowed', textAlign: 'left', color: dark ? '#ddd' : '#333', width: '100%', opacity: cards.length ? 1 : 0.5 }}>
                               📅 Mon année en cartes
@@ -3265,6 +3267,14 @@ export default function GalerieClient({ userId, initialCardUrl, initialCards, in
             </div>
           )
         })()}
+
+        {isOwner && wrappedSeason && cards.length > 0 && (
+          <button type="button" onClick={() => setRecapOpen(true)} style={{ width: '100%', display: 'flex', alignItems: 'center', gap: 12, textAlign: 'left', margin: '0 0 14px', padding: '14px 16px', border: 'none', cursor: 'pointer', color: '#fff', background: 'linear-gradient(135deg,#08102b,#1b2f78)', boxShadow: 'inset 0 0 0 2px #ffd84d' }}>
+            <span style={{ fontSize: 28 }}>📅</span>
+            <span style={{ flex: 1 }}><b style={{ display: 'block', fontSize: 15, color: '#ffd84d' }}>Ton année en cartes est prête</b><span style={{ fontSize: 12, color: '#b8c4ff' }}>Une vidéo de 16 secondes avec tes chiffres de {new Date().getFullYear()}. Disponible en décembre seulement.</span></span>
+            <span style={{ fontWeight: 800, fontSize: 13, color: '#ffd84d' }}>Voir →</span>
+          </button>
+        )}
 
         {/* Onglets Collection / Wishlist / Commentaires / Bibliothèque — scrollable sur mobile.
             L'onglet actif est indique par une pilule qui glisse (mesuree via refs) plutot
@@ -4343,7 +4353,7 @@ export default function GalerieClient({ userId, initialCardUrl, initialCards, in
           { key: 'rnd', label: 'Au hasard', cards: rnd.map(fmt) },
         ]} />
       })()}
-      {recapOpen && isOwner && <YearRecap cards={cards} grails={grailCards.map(x => x.card_key)} ownerName={profile?.display_name || ''} onClose={() => setRecapOpen(false)} />}
+      {recapOpen && isOwner && wrappedSeason && <YearRecap cards={cards} grails={grailCards.map(x => x.card_key)} ownerName={profile?.display_name || ''} onClose={() => setRecapOpen(false)} />}
       {thumbsOpen && isOwner && <ThumbBackfill cards={cards} userId={userId} onClose={() => setThumbsOpen(false)} />}
       {storyIdx !== null && <Defile cards={filtered} startIndex={storyIdx} onClose={() => setStoryIdx(null)} onOpen={c => setPopup(c as Card)} />}
 

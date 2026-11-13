@@ -76,7 +76,7 @@ function ribbon(x: CanvasRenderingContext2D, label: string, cx: number, cy: numb
 }
 
 export default function YearRecap({ cards, grails, ownerName, onClose }: { cards: RC[]; grails: string[]; ownerName: string; onClose: () => void }) {
-  const years = useMemo(() => [...new Set(cards.map(c => (c.created_at || '').slice(0, 4)).filter(y => /^\d{4}$/.test(y)))].sort().reverse(), [cards])
+  const years = useMemo(() => [String(new Date().getFullYear())], []) // bilan de l'année en cours (disponible en décembre)
   const [year, setYear] = useState(years[0] || String(new Date().getFullYear()))
   const [imgUrl, setImgUrl] = useState<string | null>(null)
   const [videoUrl, setVideoUrl] = useState<string | null>(null)

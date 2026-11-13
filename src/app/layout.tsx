@@ -12,6 +12,7 @@ import HoloLight from '@/components/HoloLight'
 import PullToRefresh from '@/components/PullToRefresh'
 import PushInit from '@/components/PushInit'
 import OfflineBanner from '@/components/OfflineBanner'
+import WrappedBanner from '@/components/WrappedBanner'
 import LocalRemindersInit from '@/components/LocalRemindersInit'
 import ChunkErrorReload from '@/components/ChunkErrorReload'
 import HangWatchdog from '@/components/HangWatchdog'
@@ -123,6 +124,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             <ConfirmHost />
             <CommandPalette />
             <NewsPopup />
+            <WrappedBanner />
             <SiteShell>{children}</SiteShell>
           </LangProvider>
         </ThemeProvider>
