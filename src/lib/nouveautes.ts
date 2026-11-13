@@ -8,6 +8,7 @@ export const ENTRIES: Entry[] = [
     points: [
       'Galerie : en décembre seulement, comme un bilan annuel, un bandeau en haut du site, une bannière dans ta galerie et le menu « 📅 Mon année en cartes » ouvrent une vidéo verticale de 16 secondes (et une image) avec tes chiffres de l’année : cartes ajoutées, mois le plus actif, atouts RC / auto / patch, marque n° 1 et tes trois plus belles cartes (celles de ton Grail Wall d’abord, puis les plus rares, jamais selon le prix). Tout est calculé sur ton appareil.',
       'Wishlist : quand une carte a un prix cible, le site cherche chaque matin des annonces eBay à ce prix ou moins (port compris quand il est connu) et te prévient. Un lien « Chercher sur Vinted » ouvre la recherche pré-remplie (Vinted n’a pas d’alertes automatiques possibles).',
+      'Galerie : un squelette (en-tête, onglets, grille grise) s’affiche tout de suite à l’ouverture, à la place de l’écran vide. Annuaire : toute la ligne d’un collectionneur ouvre sa galerie, pas seulement son pseudo.',
       'Galerie : l’onglet Commentaires affiche en vitrine les avis positifs (4 ou 5 étoiles avec un mot) laissés par les partenaires d’échange.',
     ],
   },

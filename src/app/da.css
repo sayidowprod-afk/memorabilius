@@ -1748,3 +1748,15 @@ body:has([role="dialog"][aria-modal="true"]:not([data-keep-nav])) .mobile-bottom
 .home-member-ph { display: none; }
 html[data-member="1"] .home-hero-gate { display: none; }
 html[data-member="1"] .home-member-ph { display: block; min-height: 100svh; }
+
+/* Squelette de galerie (loading.tsx) : l'en-tête et la grille grise apparaissent tout de suite, avant que le serveur ait répondu. */
+.gal-skel { --sk: #e7e9ef; --sk2: #f3f4f8; max-width: 1200px; margin: 0 auto; padding: 20px 16px; }
+[data-theme="dark"] .gal-skel { --sk: #1a2342; --sk2: #232e57; }
+.gal-skel i { display: block; background: linear-gradient(90deg, var(--sk) 25%, var(--sk2) 50%, var(--sk) 75%); background-size: 200% 100%; animation: galSkel 1.4s ease-in-out infinite; }
+.gal-skel .gs-head { display: flex; align-items: center; gap: 14px; margin-bottom: 18px; }
+.gal-skel .gs-av { width: 64px; height: 64px; border-radius: 50%; flex: none; }
+.gal-skel .gs-tabs { display: flex; gap: 8px; margin: 0 0 16px; overflow: hidden; }
+.gal-skel .gs-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 10px; }
+.gal-skel .gs-card { aspect-ratio: 2.5 / 3.5; }
+@keyframes galSkel { 0% { background-position: 100% 0 } 100% { background-position: -100% 0 } }
+@media (prefers-reduced-motion: reduce) { .gal-skel i { animation: none; } }

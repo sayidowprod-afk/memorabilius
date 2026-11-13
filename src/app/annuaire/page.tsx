@@ -456,6 +456,8 @@ function AnnuaireContent() {
               )}
               {visible.map(c => (
                 <tr key={c.id} className={c.is_donor ? 'annuaire-row annuaire-donor' : 'annuaire-row'}
+                  style={{ cursor: 'pointer' }}
+                  onClick={e => { if (!(e.target as HTMLElement).closest('a,button')) router.push(`/galerie/${c.id}`) }} /* toute la ligne ouvre la galerie : cible tactile de la hauteur de la ligne, pas seulement le pseudo de 18 px */
                   onMouseEnter={!isMobile ? e => scheduleHoverPreview(c.id, e.clientX, e.clientY) : undefined}
                   onMouseMove={!isMobile ? e => scheduleHoverPreview(c.id, e.clientX, e.clientY) : undefined}
                   onMouseLeave={!isMobile ? cancelHoverPreview : undefined}>
