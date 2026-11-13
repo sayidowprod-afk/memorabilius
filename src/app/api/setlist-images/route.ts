@@ -1,179 +1,114 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { createServerServiceClient } from '@/lib/supabaseServer'
+import { matchesEntryExact, norm, type MCard, type MEntry, type MSet } from '@/lib/setMatcher'
 
 export const maxDuration = 30
 
 const admin = createServerServiceClient()
+const chunk = <T,>(a: T[], n: number) => { const o: T[][] = []; for (let i = 0; i < a.length; i += n) o.push(a.slice(i, i + n)); return o }
 
-const norm = (s: string) =>
-  s?.normalize('NFD').replace(/\p{M}/gu, '').toLowerCase().replace(/[^a-z0-9]/g, '') || ''
+interface GalleryCard extends MCard { image_recto?: string }
 
-const words = (s: string) =>
-  s?.toLowerCase().split(/[^a-z0-9]+/).filter(w => w.length > 1) || []
-
-// Mots génériques qui ne distinguent pas les produits entre eux
-const PARENT_WORDS = new Set([
-  'panini', 'topps', 'upper', 'deck', 'leaf', 'fleer',
-  'basketball', 'baseball', 'football', 'hockey', 'soccer',
-  'nba', 'nfl', 'mlb', 'nhl', 'trading', 'cards', 'card', 'sport', 'sports',
-])
-
-// Ex: "2024-25 Panini Mosaic" → ["mosaic"]
-// Ex: "2024-25 Panini Prizm" → ["prizm"]
-// Ex: "2024-25 Panini" → [] (aucun mot produit spécifique)
-function getSetSpecificWords(setName: string): string[] {
-  return setName.toLowerCase().split(/[^a-z0-9]+/)
-    .filter(w => w.length > 2 && !PARENT_WORDS.has(w) && !/^\d+$/.test(w))
-}
-
-const EXPAND: Record<string, string> = {
-  auto: 'autograph', ref: 'refractor', sp: 'shortprint',
-  patch: 'patch', mem: 'memorabilia', rpa: 'rookiepatchautograph',
-}
-const expandWord = (w: string) => EXPAND[w] ?? w
-
-function matchVariation(cardVar: string, entryVar: string): boolean {
-  const cv = (cardVar || '').trim()
-  const ev = (entryVar || '').trim()
-  if (!cv && !ev) return true
-  if (!cv || !ev) return false
-  const nc = norm(cv), ne = norm(ev)
-  if (nc === ne) return true
-  const cWords = new Set(words(cv).map(expandWord))
-  const eWords = new Set(words(ev).map(expandWord))
-  if (cWords.size === 0 || eWords.size === 0) return false
-  if (![...cWords].every(w => eWords.has(w))) return false
-  return cWords.size / eWords.size >= 0.5
-}
-
-interface GalleryCard {
-  nom: string; annee?: string; marque?: string; collection?: string
-  collection_tag?: string; variation?: string; card_number?: string; image_recto?: string
-}
-
+// Photos communautaires d'une setlist : pour chaque ligne SANS image, la photo d'un membre dont la carte est EXACTEMENT cette ligne.
+// Règles : celles du moteur commun de correspondance (lib/setMatcher.ts : année de début de saison, marque, produit identique, numéro) + variation IDENTIQUE.
+// Avant, des règles plus souples affichaient des cartes d'un autre set ou d'une autre parallèle. Une carte privée n'est jamais utilisée.
 export async function POST(req: NextRequest) {
-  // Écrit dans des tables communautaires partagées (card_set_entries, entry_images)
-  // via le client service-role — nécessite un appelant authentifié, sinon n'importe
-  // qui pouvait pousser des image_url arbitraires sans compte (trouvé à l'audit sécu).
+  // Écrit dans des tables communautaires partagées (card_set_entries, entry_images) via le client service-role : appelant authentifié obligatoire.
   const token = req.headers.get('authorization')?.replace('Bearer ', '')
   if (!token) return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
   const { data: { user } } = await admin.auth.getUser(token)
   if (!user) return NextResponse.json({ error: 'Forbidden' }, { status: 403 })
 
   const { setId, setYear, setBrand, setName, entryIds } = await req.json() as {
-    setId: number; setYear: number | null; setBrand: string | null
-    setName: string; entryIds: number[]
+    setId: number; setYear: number | null; setBrand: string | null; setName: string; entryIds: number[]
   }
   if (!setId || !entryIds?.length) return NextResponse.json([])
+  const set: MSet = { id: setId, name: setName, year: setYear, brand: setBrand }
 
+  type Row = { id: number; player_name: string; card_number: string | null; variation: string | null }
+  const entries: MEntry[] = []
+  for (const part of chunk(entryIds.slice(0, 4000), 500)) {
+    const { data } = await admin.from('card_set_entries').select('id, player_name, card_number, variation').in('id', part)
+    for (const r of (data || []) as Row[]) entries.push({ id: r.id, player_name: r.player_name, card_number: r.card_number, variation: r.variation, set_id: setId })
+  }
+  if (!entries.length) return NextResponse.json([])
+  const byId = new Map(entries.map(e => [e.id, e]))
   const results = new Map<number, string>()
 
-  // ─── ÉTAPE 1 : fuzzy strict sur toutes les cartes communauté ───────────────
-  // Conditions pour qu'une carte soit retenue :
-  //   • l'année doit correspondre (si la carte n'a pas d'année et le set en a une → rejetée)
-  //   • les mots produit du set (mosaic, prizm…) doivent être dans les champs collection/marque
-  //   • la variation doit correspondre
-  // → jamais de Donruss sur une Mosaic, jamais de 2021 sur un set 2024
+  // cartes privées : jamais utilisées (card_key = adresse de la photo)
+  const privateCache = new Map<string, boolean>()
+  const filterPrivate = async (urls: string[]) => {
+    const todo = [...new Set(urls)].filter(u => !privateCache.has(u))
+    for (const part of chunk(todo, 200)) {
+      const { data } = await admin.from('cartes_privees').select('card_key').in('card_key', part)
+      const priv = new Set((data || []).map(r => r.card_key as string))
+      for (const u of part) privateCache.set(u, priv.has(u))
+    }
+    return (u: string) => !privateCache.get(u)
+  }
+
+  // photos signalées par au moins 2 membres différents : jamais reproposées pour cette ligne
+  const reportCount = new Map<string, number>()
+  for (const part of chunk(entryIds.slice(0, 4000), 400)) {
+    const { data } = await admin.from('setlist_photo_reports').select('entry_id, image_url').in('entry_id', part).limit(5000)
+    for (const r of (data || []) as { entry_id: number; image_url: string }[]) { const k = r.entry_id + '|' + r.image_url; reportCount.set(k, (reportCount.get(k) || 0) + 1) }
+  }
+  const isHidden = (entryId: number, url: string) => (reportCount.get(entryId + '|' + url) || 0) >= 2
+
+  // ─── ÉTAPE 1 : cartes de la communauté qui sont EXACTEMENT la ligne ───────────────────────────
   {
-    const { data: rawEntries } = await admin
-      .from('card_set_entries')
-      .select('id, player_name, card_number, variation')
-      .in('id', entryIds)
-
-    const entries = (rawEntries || []) as {
-      id: number; player_name: string; card_number: string | null; variation: string | null
-    }[]
-
-    if (entries.length > 0) {
-      const playerNames = [...new Set(entries.map(e => e.player_name.trim()))]
-
-      const { data: cards } = await admin.rpc('get_cards_for_players', {
-        p_player_names: playerNames,
-      }) as { data: GalleryCard[] | null }
-
-      if (cards?.length) {
-        const byPlayer = new Map<string, GalleryCard[]>()
-        for (const c of cards) {
-          const key = norm(c.nom || '')
-          const arr = byPlayer.get(key) || []
-          arr.push(c)
-          byPlayer.set(key, arr)
-        }
-
-        const y = setYear ?? 0
-        const yearStr = String(y)
-        const yearNext = y ? `${y}-${String(y + 1).slice(2)}` : ''
-        const yearPrev = y ? `${y - 1}-${yearStr.slice(2)}` : ''
-        const yearNextFull = y ? String(y + 1) : ''
-        const yearFull2 = y ? `${y}-${y + 1}` : ''
-        const specificWords = getSetSpecificWords(setName)
-
-        for (const entry of entries) {
-          const candidates = byPlayer.get(norm(entry.player_name)) || []
-          const matched = candidates.find(card => {
-            // Année obligatoire si le set en a une
-            const cardYear = (card.annee || '').trim()
-            if (y) {
-              if (!cardYear) return false  // carte sans année → rejetée
-              if (cardYear !== yearStr && cardYear !== yearNext &&
-                  cardYear !== yearPrev && cardYear !== yearNextFull && cardYear !== yearFull2) return false
-            }
-
-            // Collection : les mots produit du set doivent être présents dans la carte
-            if (specificWords.length > 0) {
-              const cardText = norm(
-                (card.marque || '') + ' ' + (card.collection || '') + ' ' + (card.collection_tag || '')
-              )
-              if (!specificWords.some(w => cardText.includes(w))) return false
-            } else if (setBrand && card.marque) {
-              const nb = norm(card.marque), ns = norm(setBrand)
-              if (nb && ns && !nb.includes(ns) && !ns.includes(nb)) return false
-            }
-
-            // Numéro de carte (si les deux sont renseignés)
-            if (entry.card_number && card.card_number) {
-              const nc = norm(entry.card_number), cc = norm(card.card_number)
-              if (nc && cc && nc !== cc) return false
-            }
-
-            return matchVariation(card.variation || '', entry.variation || '')
-          })
-
-          if (matched?.image_recto) {
-            results.set(entry.id, matched.image_recto)
-          }
-        }
-
-        // Sauvegarder dans card_set_entries.image_url pour les futurs visiteurs
-        // (silencieux si la colonne n'existe pas encore — migration à appliquer séparément)
-        if (results.size > 0) {
-          admin.from('card_set_entries').upsert(
-            [...results.entries()].map(([id, image_url]) => ({ id, image_url })),
-            { onConflict: 'id', ignoreDuplicates: true }
-          ).then(() => {}) // fire and forget
-        }
+    const names = [...new Set(entries.map(e => e.player_name.trim()))]
+    const { data: cards } = await admin.rpc('get_cards_for_players', { p_player_names: names }) as { data: GalleryCard[] | null }
+    if (cards?.length) {
+      const okPhoto = await filterPrivate(cards.map(c => c.image_recto || '').filter(Boolean))
+      const byPlayer = new Map<string, GalleryCard[]>()
+      for (const c of cards) {
+        if (!c.image_recto || !okPhoto(c.image_recto)) continue
+        const k = norm(c.nom || '')
+        byPlayer.set(k, [...(byPlayer.get(k) || []), c])
+      }
+      for (const e of entries) {
+        const cands = byPlayer.get(norm(e.player_name)) || []
+        // une carte dont le numéro est confirmé passe avant une carte sans numéro
+        const hits = cands.filter(c => !isHidden(e.id, c.image_recto || '') && matchesEntryExact(c, e, set))
+        const hit = hits.find(c => c.card_number && e.card_number) || hits[0]
+        if (hit?.image_recto) results.set(e.id, hit.image_recto)
+      }
+      // mémorise pour les prochains visiteurs (seulement les correspondances exactes ; ne remplace jamais une image existante)
+      if (results.size > 0) {
+        admin.from('card_set_entries').upsert(
+          [...results.entries()].map(([id, image_url]) => ({ id, image_url })),
+          { onConflict: 'id', ignoreDuplicates: true },
+        ).then(() => {}) // sans attendre
       }
     }
   }
 
-  // ─── ÉTAPE 2 : fallback entry_images pour les entrées sans match fuzzy ─────
-  // Couvre les cartes sans info collection/année ou les joueurs peu représentés
-  const missing = entryIds.filter(id => !results.has(id))
+  // ─── ÉTAPE 2 : photos déjà enregistrées (entry_images), CONTRÔLÉES : la carte d'origine doit encore être exactement cette ligne ───
+  const missing = entryIds.filter(id => !results.has(id) && byId.has(id))
   if (missing.length > 0) {
-    const { data: syncedImages } = await admin
-      .from('entry_images')
-      .select('entry_id, image_url')
-      .in('entry_id', missing)
-      .not('image_url', 'is', null)
-      .neq('image_url', '')
-      .limit(10000)
-
-    for (const row of (syncedImages || [])) {
-      if (!results.has(row.entry_id)) results.set(row.entry_id, row.image_url)
+    const rows: { entry_id: number; image_url: string }[] = []
+    for (const part of chunk(missing, 400)) {
+      const { data } = await admin.from('entry_images').select('entry_id, image_url').in('entry_id', part).not('image_url', 'is', null).neq('image_url', '').limit(5000)
+      rows.push(...((data || []) as typeof rows))
+    }
+    if (rows.length) {
+      const urls = [...new Set(rows.map(r => r.image_url))]
+      const cardOf = new Map<string, GalleryCard>()
+      for (const part of chunk(urls, 150)) {
+        const { data } = await admin.from('cartes_manuelles').select('nom, annee, marque, collection, collection_tag, variation, card_number, image_recto').in('image_recto', part)
+        for (const c of (data || []) as GalleryCard[]) if (c.image_recto) cardOf.set(c.image_recto, c)
+      }
+      const okPhoto = await filterPrivate(urls)
+      for (const r of rows) {
+        if (results.has(r.entry_id) || isHidden(r.entry_id, r.image_url)) continue
+        const c = cardOf.get(r.image_url), e = byId.get(r.entry_id)
+        if (!c || !e || !okPhoto(r.image_url)) continue          // carte introuvable ou privée : on ne montre pas
+        if (norm(c.nom) !== norm(e.player_name) || !matchesEntryExact(c, e, set)) continue   // pas la bonne ligne : on ne montre pas
+        results.set(r.entry_id, r.image_url)
+      }
     }
   }
 
-  return NextResponse.json(
-    [...results.entries()].map(([entry_id, image_url]) => ({ entry_id, image_url }))
-  )
+  return NextResponse.json([...results.entries()].map(([entry_id, image_url]) => ({ entry_id, image_url })))
 }

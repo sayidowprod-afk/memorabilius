@@ -7,9 +7,10 @@ import { toast } from '@/lib/toast'
 // 858 · Signaler une erreur sur une ligne de setlist : le signalement arrive dans l'admin (« Signalements ») avec le set, la variation et la ligne déjà indiqués.
 const REASONS = ['Il manque une carte', 'Mauvais numéro ou nom', 'Image incorrecte', 'Doublon', 'Autre']
 
-export default function SetlistReportDialog({ setId, setName, variation, entry, onClose }: {
+export default function SetlistReportDialog({ setId, setName, variation, entry, imageUrl, onPhotoReported, onClose }: {
   setId: string; setName: string; variation: string
   entry: { id: number; card_number: string | null; player_name: string }
+  imageUrl?: string; onPhotoReported?: (entryId: number) => void
   onClose: () => void
 }) {
   const [reason, setReason] = useState(REASONS[0])
@@ -27,6 +28,11 @@ export default function SetlistReportDialog({ setId, setName, variation, entry, 
         body: JSON.stringify({ type: 'bug', message, pageUrl: '/setlist/' + setId }),
       })
       if (!r.ok) throw new Error()
+      // 948 : « Image incorrecte » sur une photo de la communauté -> compte pour le retrait automatique (2 membres différents)
+      if (reason === 'Image incorrecte' && imageUrl && session?.access_token) {
+        fetch('/api/setlist-images/report', { method: 'POST', headers: { 'Content-Type': 'application/json', Authorization: 'Bearer ' + session.access_token }, body: JSON.stringify({ entryId: entry.id, imageUrl }) }).catch(() => {})
+        onPhotoReported?.(entry.id)
+      }
       toast.success('Merci, le problème est signalé.')
       onClose()
     } catch { toast.error('Envoi impossible, réessaie dans un instant.') }

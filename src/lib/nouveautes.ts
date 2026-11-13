@@ -4,6 +4,20 @@ export type Entry = { date: string; titre: string; points: string[] }
 
 export const ENTRIES: Entry[] = [
   {
+    date: '28 novembre 2026', titre: 'Photos de setlist plus justes, messages traduits, mentions, Rainbows',
+    points: [
+      'Setlists : les photos affichées sur chaque ligne viennent maintenant uniquement d’une carte qui est exactement cette ligne (même set, même numéro, même parallèle). Fini les cartes d’un autre set.',
+      'Parallèles : une étoile ☆ sur chaque parallèle qui te manque l’ajoute à ta wishlist, sans quitter la carte.',
+      'Objectifs : un nouvel onglet « 🌈 Rainbows » liste les joueurs dont tu collectionnes les parallèles, avec ta progression.',
+      'Setlists : des flèches « ← 2019-20 Prizm » et « 2021-22 Prizm → » pour passer d’une saison à l’autre de la même collection.',
+      'Messages : un bouton « 🌐 Traduire » sous les messages reçus, vers ta langue. Un avertissement apparaît aussi quand un message propose un paiement qui ne protège pas l’acheteur (PayPal « amis et famille », paiement hors du site…).',
+      'Commentaires : tape « @ » puis le début d’un pseudo pour mentionner un membre, qui reçoit une notification.',
+      'Échanges : si tu collectionnes un set (au moins 10 cartes cochées), tu es prévenu quand une carte qui te manque dedans est mise à l’échange (une notification par jour au maximum).',
+      'Viewer 3D : sur une carte qui n’est pas rangée dans un set, des suggestions apparaissent sous « Placer dans un set » : collection probable si elle n’en a pas, ou variations existantes si la sienne n’est pas dans la checklist. Un clic corrige la carte et la range.',
+      'Setlists : en signalant « Image incorrecte » sur une photo, tu la masques pour toi ; quand deux membres différents la signalent, elle est retirée de la ligne.',
+    ],
+  },
+  {
     date: '27 novembre 2026', titre: 'Setlists : qui a la carte qui te manque ?',
     points: [
       'Viewer 3D : un volet « Parallèles » (fermé de base) sous les boutons de la carte. Il liste toutes ses déclinaisons dans le set (Silver, Gold, Red…), celles que tu as (✓) et celles qui te manquent, avec ta progression. Un clic sur une parallèle ouvre sa carte en 3D, la tienne ou celle d’un autre membre.',

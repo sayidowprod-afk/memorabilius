@@ -4,6 +4,7 @@ import Link from 'next/link'
 import { useAuth } from '@/lib/AuthContext'
 import { supabase } from '@/lib/supabase'
 import SortiesAdminCard from '@/components/SortiesAdminCard'
+import AdminCostCard from '@/components/AdminCostCard'
 
 interface AdminLink { href: string; icon: string; title: string; desc: string }
 
@@ -14,6 +15,7 @@ const GROUPS: { title: string; links: AdminLink[] }[] = [
       { href: '/admin/stats', icon: '📊', title: 'Statistiques', desc: 'Vue d\'ensemble du site' },
       { href: '/admin/performance', icon: '⚡', title: 'Vitesse du site', desc: 'Temps d\'affichage et réactivité mesurés chez les membres, par page' },
       { href: '/admin/reports', icon: '🚩', title: 'Signalements', desc: 'Contenus signalés par la communauté' },
+      { href: '/admin/audience', icon: '📈', title: 'Audience', desc: 'Heures d’affluence réelles par pays, pages les plus vues, d’où viennent les visites et les inscrits' },
       { href: '/admin/sets', icon: '🧹', title: 'Santé des sets', desc: 'Sets incomplets (avec la commande de relance) et sets en double à fusionner' },
       { href: '/admin/setlist-demandes', icon: '📚', title: 'Demandes de setlist', desc: 'Les plus attendues d’abord ; passer à « Ajoutée » prévient les membres' },
       { href: '/admin/demo', icon: '🎪', title: 'Mode démo', desc: 'Configuration du mode salon / tablette' },
@@ -85,6 +87,7 @@ export default function AdminHubPage() {
         <div style={{ fontSize: 11, fontWeight: 800, textTransform: 'uppercase', letterSpacing: 1, color: '#888', marginBottom: 10 }}>Données automatiques</div>
         <SortiesAdminCard />
       </div>
+      <AdminCostCard />
       {GROUPS.map(group => (
         <div key={group.title} style={{ marginBottom: 28 }}>
           <div style={{ fontSize: 11, fontWeight: 800, textTransform: 'uppercase', letterSpacing: 1, color: '#888', marginBottom: 10 }}>

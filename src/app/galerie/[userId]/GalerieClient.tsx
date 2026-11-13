@@ -9,6 +9,7 @@ import LikeFace from '@/components/LikeFace'
 import ConfirmDeleteCard from '@/components/ConfirmDeleteCard'
 import SelectionHand from '@/components/SelectionHand'
 import NameCleanup from '@/components/NameCleanup'
+import MesRainbows from '@/components/MesRainbows'
 import { numTier, numShort, TAG_BASE, mix } from '@/lib/cardTags'
 import { getTeamByName } from '@/lib/sportsTeams'
 import { teamInfo } from '@/lib/teamColors'
@@ -853,7 +854,7 @@ export default function GalerieClient({ userId, initialCardUrl, initialCards, in
     if (t === 'wishlist' || t === 'pc') return 'objectifs'
     return (t as any) || 'collection'
   })
-  const [objectifsSubTab, setObjectifsSubTab] = useState<'pc' | 'wishlist'>(
+  const [objectifsSubTab, setObjectifsSubTab] = useState<'pc' | 'wishlist' | 'rainbow'>(
     searchParams.get('tab') === 'wishlist' ? 'wishlist' : 'pc'
   )
   // Indicateur "pilule" anime qui glisse vers l'onglet actif au lieu de
@@ -3292,7 +3293,7 @@ export default function GalerieClient({ userId, initialCardUrl, initialCards, in
         {activeTab === 'objectifs' && (
           <div>
             <div style={{ display: 'flex', gap: 4, marginBottom: 16 }}>
-              {(['pc', 'wishlist'] as const).map(sub => (
+              {(['pc', 'wishlist', ...(isOwner ? ['rainbow'] as const : [])] as const).map(sub => (
                 <button key={sub} onClick={() => setObjectifsSubTab(sub)} style={{
                   padding: '6px 16px', border: `1.5px solid ${objectifsSubTab === sub ? accent : (dark ? '#333' : '#e0e0e0')}`,
                   borderRadius: 20, cursor: 'pointer', fontWeight: 700, fontSize: 13,
@@ -3300,12 +3301,13 @@ export default function GalerieClient({ userId, initialCardUrl, initialCards, in
                   color: objectifsSubTab === sub ? 'white' : (dark ? '#888' : '#666'),
                   transition: '0.15s',
                 }}>
-                  {sub === 'pc' ? '⭐ PCs' : '🎯 Wishlist'}
+                  {sub === 'pc' ? '⭐ PCs' : sub === 'wishlist' ? '🎯 Wishlist' : '🌈 Rainbows'}
                 </button>
               ))}
             </div>
             {objectifsSubTab === 'pc' && <MesPCTab cards={cards} cardsLoaded={cardsLoaded} userId={userId} accent={accent} dark={dark} isOwner={isOwner} initialPCs={profile?.pcs} />}
             {objectifsSubTab === 'wishlist' && <PublicWishlist userId={userId} accent={accent} isOwner={isOwner} />}
+            {objectifsSubTab === 'rainbow' && isOwner && <MesRainbows accent={accent} dark={dark} onOpen={img => { const match = cards.find(c => c.f === img || c.b === img); if (match) { setPopup(match); return true } return false }} />}
           </div>
         )}
         {activeTab === 'comments' && <GalerieComments galerieUserId={userId} accent={accent} isOwner={isOwner} />}

@@ -3,13 +3,14 @@ import { useEffect, useMemo, useState } from 'react'
 import { supabase } from '@/lib/supabase'
 import { toViewerCard, type CardRow } from '@/lib/viewerCard'
 import type { ViewerCardData } from '@/components/Viewer3D'
+import { matchesEntryExact } from '@/lib/setMatcher'
 
 // 852 · « Parallèles » dans la fiche du viewer 3D : toutes les déclinaisons de la carte dans son set (Silver, Gold, Red…).
 // Celles que j'ai : MA photo + ✓. Celles qui me manquent : la photo de la communauté (comme dans les setlists), grisée. Et la progression « Rainbow ».
 // Lecture seule : rien n'est écrit. Les bords des cartes restent nets.
 interface CardLike { n: string; y: string; br: string; s: string; v: string; card_number?: string }
 interface SetRow { id: number; name: string; year: number | null; brand: string | null; lignes: number }
-interface Entry { id: number; card_number: string | null; variation: string | null; image_url: string | null }
+interface Entry { id: number; card_number: string | null; variation: string | null; image_url: string | null; is_rc?: boolean | null }
 interface Mine extends CardRow { id: string; nom: string; annee: string | null; marque: string | null; collection: string | null; collection_tag: string | null; variation: string | null; card_number: string | null; image_recto: string | null; image_recto_thumb: string | null }
 
 const norm = (s: string) => s.normalize('NFD').replace(/[̀-ͯ]/g, '').toLowerCase().replace(/[^a-z0-9]/g, '')
@@ -57,6 +58,7 @@ export default function ParallelsPanel({ card, currentUserId, metaColor, textCol
   const [community, setCommunity] = useState<Map<number, { image: string; card: CardRow & { user_id?: string } }>>(new Map())
   const [numSel, setNumSel] = useState<string | null>(null)
   const [state, setState] = useState<'loading' | 'none' | 'ok'>('loading')
+  const [wish, setWish] = useState<Map<string, number>>(new Map())   // 889 : variations de ce set déjà dans ma wishlist (variation normalisée -> id)
   const [open, setOpen] = useState(false)   // volet fermé de base : rien n'est chargé côté photos tant qu'on ne l'ouvre pas
 
   // 1) le set de cette carte
@@ -93,7 +95,7 @@ export default function ParallelsPanel({ card, currentUserId, metaColor, textCol
     ;(async () => {
       const name = (card.n || '').trim()
       const [{ data: es }, { data: ms }] = await Promise.all([
-        supabase.from('card_set_entries').select('id, card_number, variation, image_url').eq('set_id', setId).ilike('player_name', name).limit(600),
+        supabase.from('card_set_entries').select('id, card_number, variation, image_url, is_rc').eq('set_id', setId).ilike('player_name', name).limit(600),
         currentUserId
           ? supabase.from('cartes_manuelles').select('*').eq('user_id', currentUserId).ilike('nom', name).limit(300)
           : Promise.resolve({ data: [] as Mine[] }),
@@ -105,6 +107,31 @@ export default function ParallelsPanel({ card, currentUserId, metaColor, textCol
   }, [setId, card.n, currentUserId])
 
   const set = sets.find(s => s.id === setId) || null
+  useEffect(() => {
+    if (!open || !set || !currentUserId) return
+    let cancel = false
+    supabase.from('wishlist').select('id, variation').eq('user_id', currentUserId).eq('collection', set.name).ilike('nom', (card.n || '').trim()).limit(300).then(({ data }) => {
+      if (cancel) return
+      setWish(new Map((data || []).map(w => [norm(String(w.variation || '')), w.id as number])))
+    })
+    return () => { cancel = true }
+  }, [open, set, currentUserId, card.n])
+  const toggleWish = async (e: Entry) => {
+    if (!currentUserId || !set) return
+    const k = norm(e.variation || '')
+    const id = wish.get(k)
+    if (id) {
+      setWish(m => { const n = new Map(m); n.delete(k); return n })
+      const { error } = await supabase.from('wishlist').delete().eq('id', id)
+      if (error) setWish(m => new Map(m).set(k, id))
+    } else {
+      const { data, error } = await supabase.from('wishlist').insert({
+        user_id: currentUserId, nom: (card.n || '').trim(), annee: set.year ? String(set.year) : '', marque: set.brand || '', collection: set.name,
+        variation: e.variation || '', num: '', rc: !!e.is_rc, auto: false, patch: false, notes: e.card_number ? '#' + e.card_number : '',
+      }).select('id').single()
+      if (!error && data) setWish(m => new Map(m).set(k, data.id as number))
+    }
+  }
   const groups = useMemo(() => {
     const m = new Map<string, Entry[]>()
     for (const e of entries) { const k = e.card_number || '—'; m.set(k, [...(m.get(k) || []), e]) }
@@ -118,7 +145,7 @@ export default function ParallelsPanel({ card, currentUserId, metaColor, textCol
   }, [groups, card.card_number, card.v])
   const group = groups.find(g => g[0] === numSel)?.[1] || []
   const rows = useMemo(() => group.map(e => {
-    const own = set ? mine.find(c => mineInSet(c, set, e.card_number) && strictVariation(c.variation || '', e.variation || '')) : undefined
+    const own = set ? mine.find(c => matchesEntryExact({ nom: c.nom, annee: c.annee, marque: c.marque, collection: c.collection, collection_tag: c.collection_tag, variation: c.variation, card_number: c.card_number }, { id: e.id, player_name: card.n, card_number: e.card_number, variation: e.variation, set_id: set.id }, { id: set.id, name: set.name, year: set.year, brand: set.brand })) : undefined
     return { e, own }
   }), [group, mine, set])
   const owned = rows.filter(r => r.own).length
@@ -185,13 +212,18 @@ export default function ParallelsPanel({ card, currentUserId, metaColor, textCol
                   ? <img src={img} alt="" loading="lazy" style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block', opacity: own ? 1 : .5, filter: own ? 'none' : 'grayscale(.5)' }} />
                   : <div style={{ position: 'absolute', inset: 0, display: 'grid', placeItems: 'center', color: col, font: '800 14px system-ui' }}>?</div>}
                 {own && <span style={{ position: 'absolute', top: 1, right: 1, background: '#1e9e57', color: '#fff', font: '900 10px system-ui', padding: '0 4px' }}>✓</span>}
+                {!own && currentUserId && (
+                  <span role="button" aria-label={wish.has(norm(e.variation || '')) ? 'Retirer de ma wishlist' : 'Ajouter à ma wishlist'} title={wish.has(norm(e.variation || '')) ? 'Dans ta wishlist : retirer' : 'Ajouter à ma wishlist'}
+                    onClick={ev => { ev.stopPropagation(); toggleWish(e) }}
+                    style={{ position: 'absolute', bottom: 1, left: 1, background: wish.has(norm(e.variation || '')) ? '#e0a526' : 'rgba(0,0,0,.6)', color: '#fff', font: '700 10px system-ui', padding: '1px 4px', cursor: 'pointer' }}>{wish.has(norm(e.variation || '')) ? '★' : '☆'}</span>
+                )}
               </div>
               <span style={{ fontSize: 8, fontWeight: 700, textAlign: 'center', lineHeight: 1.1, opacity: own ? 1 : .75, overflowWrap: 'anywhere' }}>{e.variation || 'Base'}</span>
             </button>
           )
         })}
       </div>
-      <div style={{ fontSize: 9, color: metaColor, marginTop: 3 }}>En couleur : tes cartes. Grisées : la carte d’un autre membre. Un clic ouvre la carte en 3D.</div>
+      <div style={{ fontSize: 9, color: metaColor, marginTop: 3 }}>En couleur : tes cartes. Grisées : la carte d’un autre membre (un clic l’ouvre en 3D). ☆ : ajouter à ta wishlist.</div>
       </>}
     </div>
   )

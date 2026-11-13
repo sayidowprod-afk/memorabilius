@@ -16,7 +16,12 @@ export type AdAssets = {
   gal: Tall; trd: Tall; ven: Tall; set: Tall; vbg: HTMLImageElement
   shell: HTMLCanvasElement; shadow: HTMLCanvasElement; logo: HTMLCanvasElement | null
   cards: Prep[]; hook: string; cta: string; partner: HTMLCanvasElement | null; gui: Tall; tx: AdTx; scenes: Scene[]; fallback: boolean
+  intro?: IntroStyle
 }
+// Début de la vidéo (les 1,5 premières secondes décident de tout : un fond bleu avec du texte ne retient personne) :
+//  texte = l'accroche seule (l'ancien début) · carte = la première carte, nette et en grand, dès la première image · question = une question + la carte
+//  zoom = un gros plan de la carte qui se dézoome
+export type IntroStyle = 'texte' | 'carte' | 'question' | 'zoom'
 
 export type Lang = 'fr' | 'en' | 'de' | 'es' | 'it'
 export type AdTx = { hooks: string[]; ctas: string[]; free: string; partner: string; caps: Record<string, string> }
@@ -214,8 +219,33 @@ export function drawAd(ctx: CanvasRenderingContext2D, t: number, A: AdAssets) {
   const sh = k < 0.18 ? 1 - k / 0.18 : 0, dx = Math.sin(k * 170) * 14 * sh, dy = Math.cos(k * 140) * 10 * sh
 
   if (sc.id === 'hook') {
-    bg(ctx, cards[0], t)
-    caption(ctx, A.hook, k, 900, 150)
+    const st = A.intro || 'texte', p0 = cards[0]
+    bg(ctx, p0, t)
+    if (st === 'texte' || !p0) {
+      caption(ctx, A.hook, k, 900, 150)
+    } else {
+      const f = Math.min(860 / p0.bmp.width, 1080 / p0.bmp.height), cw = p0.bmp.width * f, ch = p0.bmp.height * f
+      const drawCard = (cx: number, cy: number, s: number, rot: number) => {
+        ctx.save(); ctx.translate(cx, cy); ctx.rotate(rot); ctx.scale(s, s)
+        ctx.fillStyle = 'rgba(0,0,30,.45)'; ctx.fillRect(-cw / 2 + 18, -ch / 2 + 28, cw, ch) // coins nets : jamais d'arrondi sur la carte
+        ctx.drawImage(p0.bmp, -cw / 2, -ch / 2, cw, ch); ctx.restore()
+      }
+      if (st === 'carte') {
+        // la carte, nette et en grand, dès la première image, avec le « punch » du cut
+        drawCard(W / 2 + dx, 760 + dy, lerp(1.28, 1, eo(seg(k, 0, 0.3))), lerp(0.05, -0.012, eo(seg(k, 0, 0.3))))
+        caption(ctx, A.hook, Math.max(0, k - 0.25), 1500, 112)
+      } else if (st === 'question') {
+        drawCard(W / 2 + dx, 640 + dy, lerp(0.74, 0.64, eio(seg(k, 0, 1.4))), -0.02)
+        caption(ctx, A.tx.hooks[0] || A.hook, k, 1300, 132)
+      } else {
+        // gros plan sur le haut de la carte, qui se dézoome jusqu'à la carte entière
+        const s2 = lerp(2.9, 1, eio(seg(k, 0, 1.15)))
+        ctx.save(); ctx.beginPath(); ctx.rect(0, 0, W, H); ctx.clip()
+        drawCard(W / 2, 760 + (s2 - 1) * ch * 0.2, s2, 0)
+        ctx.restore()
+        caption(ctx, A.hook, Math.max(0, k - 0.5), 1500, 112)
+      }
+    }
   } else if (sc.key) {
     bg(ctx, cards[idx % Math.max(1, cards.length)], t, idx)
     const scale = lerp(1.1, 1, pu), rot = (idx % 2 ? 1 : -1) * lerp(0.035, 0.012, pu) + Math.sin(t * 0.8) * 0.004

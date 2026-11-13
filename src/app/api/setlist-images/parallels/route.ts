@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { createServerServiceClient } from '@/lib/supabaseServer'
 import { rateLimited } from '@/lib/publicRateLimit'
+import { matchesEntryExact, type MSet } from '@/lib/setMatcher'
 
 export const maxDuration = 20
 
@@ -45,24 +46,16 @@ export async function POST(req: NextRequest) {
     for (const r of p || []) priv.add(r.user_id + '|' + r.card_key)
   }
 
-  const sw = specific(setName)
-  const inSet = (c: NonNullable<typeof cards>[number]) => {
-    if (c.image_recto?.includes('placehold') || priv.has(c.user_id + '|' + c.image_recto)) return false
-    if (!yearOk(c.annee, setYear)) return false
-    const text = norm((c.marque || '') + ' ' + (c.collection || '') + ' ' + (c.collection_tag || ''))
-    if (sw.length > 0) { if (!sw.some(w => text.includes(w))) return false }
-    else if (setBrand && c.marque) { const nb = norm(c.marque), ns = norm(setBrand); if (nb && ns && !nb.includes(ns) && !ns.includes(nb)) return false }
-    return true
-  }
-  const pool = (cards || []).filter(inSet)
+  const set: MSet = { id: Number(body?.setId) || 0, name: setName, year: setYear, brand: setBrand }
+  const pool = (cards || []).filter(c => !c.image_recto?.includes('placehold') && !priv.has(c.user_id + '|' + c.image_recto))
 
   const out: { entry_id: number; image_url: string; card: Record<string, unknown> }[] = []
   for (const e of entries) {
-    const want = norm(e.variation || '')
-    // même variation ; si les deux ont un numéro il doit être identique ; on préfère une carte dont le numéro est confirmé
-    const cands = pool.filter(c => norm(c.variation || '') === want && (!e.card_number || !c.card_number || norm(e.card_number) === norm(c.card_number)))
+    // règles du moteur commun (année, marque, collection, numéro) + variation IDENTIQUE
+    const entry = { id: e.id, player_name: player, card_number: e.card_number, variation: e.variation, set_id: set.id }
+    const cands = pool.filter(c => matchesEntryExact({ nom: c.nom, annee: c.annee, marque: c.marque, collection: c.collection, collection_tag: c.collection_tag, variation: c.variation, card_number: c.card_number }, entry, set))
     const hit = cands.find(c => e.card_number && c.card_number) || cands[0]
-    // la carte entière (champs d'affichage uniquement : ni prix, ni notes, ni liens de vente) pour l'ouvrir dans le viewer 3D, comme dans la galerie de son propriétaire
+    // la carte entière (champs d'affichage uniquement : ni prix, ni notes, ni liens de vente) pour l'ouvrir dans le viewer 3D
     if (hit?.image_recto) out.push({ entry_id: e.id, image_url: (hit.image_recto_thumb || hit.image_recto) as string, card: hit as unknown as Record<string, unknown> })
   }
   return NextResponse.json(out)

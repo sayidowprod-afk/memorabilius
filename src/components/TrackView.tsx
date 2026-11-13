@@ -22,11 +22,24 @@ export default function TrackView() {
     let sentCountryThisSession = false
     try { sentCountryThisSession = sessionStorage.getItem('country_tracked') === '1' } catch {}
 
+    // source d'arrivée : ?src=… (lien de campagne), ?utm_source=…, sinon le site d'origine ; la PREMIÈRE source est gardée sur l'appareil
+    let origin: { src: string; referrer: string } | null = null
+    try {
+      const raw = localStorage.getItem('mb_src')
+      if (raw) origin = JSON.parse(raw)
+      else {
+        const q = new URLSearchParams(window.location.search)
+        const ref = document.referrer ? new URL(document.referrer).host : ''
+        const src = (q.get('src') || q.get('utm_source') || (ref && ref !== window.location.host ? 'ref:' + ref.replace(/^www\./, '') : '')).slice(0, 60)
+        if (src) { origin = { src, referrer: ref.slice(0, 120) }; localStorage.setItem('mb_src', JSON.stringify(origin)) }
+      }
+    } catch { /* stockage indisponible : pas de source */ }
+
     const send = (token?: string) => {
       fetch('/api/track-view', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ path, token }),
+        body: JSON.stringify({ path, token, src: origin?.src, referrer: origin?.referrer }),
       }).catch(() => {})
       if (token) { try { sessionStorage.setItem('country_tracked', '1') } catch {} }
     }

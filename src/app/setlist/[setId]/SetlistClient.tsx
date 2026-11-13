@@ -76,6 +76,27 @@ export default function SetlistClient({ setId }: { setId: string }) {
   const playerToImgRef = useRef<Map<string, string>>(new Map())
   const matchedCardImagesRef = useRef<Map<number, string>>(new Map())
 
+  // 891 : on retrouve les sets de la même collection (même nom, saisons différentes), rangés par année
+  useEffect(() => {
+    if (!set) return
+    let cancel = false
+    const key = (n: string) => n.normalize('NFD').replace(/[̀-ͯ]/g, '').toLowerCase().replace(/\b(19|20)\d{2}(-\d{2,4})?\b/g, ' ').replace(/[^a-z0-9]+/g, ' ').trim()
+    const mine = key(set.name)
+    if (!mine) return
+    const longest = mine.split(' ').sort((x, y) => y.length - x.length)[0]
+    supabase.from('card_sets').select('id, name, year').eq('sport', set.sport).ilike('name', '%' + longest + '%').limit(80).then(({ data }) => {
+      if (cancel) return
+      const same = ((data || []) as { id: number; name: string; year: number | null }[]).filter(x => x.year && key(x.name) === mine).sort((a, b) => (a.year || 0) - (b.year || 0))
+      // un seul set par année (le plus fourni pourrait être choisi ; ici le premier)
+      const byYear = new Map<number, { id: number; name: string; year: number }>()
+      for (const x of same) if (!byYear.has(x.year as number)) byYear.set(x.year as number, x as { id: number; name: string; year: number })
+      const list = [...byYear.values()]
+      const i = list.findIndex(x => x.id === set.id)
+      setSeasons(i < 0 ? { prev: null, next: null } : { prev: i > 0 ? list[i - 1] : null, next: i < list.length - 1 ? list[i + 1] : null })
+    })
+    return () => { cancel = true }
+  }, [set])
+
   // 877 : « Qui l'a ? » : on interroge le serveur pour les lignes manquantes des variations ouvertes (par lots, une seule fois par ligne)
   useEffect(() => {
     if (!userId || !set) return
@@ -104,6 +125,9 @@ export default function SetlistClient({ setId }: { setId: string }) {
     })
     return () => { cancel = true }
   }, [variations, openVariations, userId, set])
+  // 891 : saison précédente / suivante de la même collection (« 2019-20 Panini Prizm » ↔ « 2021-22 Panini Prizm »)
+  const [seasons, setSeasons] = useState<{ prev: { id: number; name: string } | null; next: { id: number; name: string } | null }>({ prev: null, next: null })
+  const [hiddenPhotos, setHiddenPhotos] = useState<Set<number>>(new Set())   // 948 : photos que je viens de signaler (masquées pour moi tout de suite)
   const [reportEntry, setReportEntry] = useState<{ entry: Entry; variation: string } | null>(null)   // 858 : ligne que je signale
   // 877 : pour les lignes qui me manquent, les autres membres qui ont cette carte à échanger
   const [whoHas, setWhoHas] = useState<Map<number, { count: number; members: { id: string; name: string }[] }>>(new Map())
@@ -560,6 +584,12 @@ export default function SetlistClient({ setId }: { setId: string }) {
 
       {/* Header */}
       <div style={{ background: dark ? '#1e1e1e' : 'white', borderRadius: 16, padding: '24px 28px', boxShadow: '0 4px 20px rgba(0,0,0,0.08)', marginBottom: 24 }}>
+        {(seasons.prev || seasons.next) && (
+          <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap', marginBottom: 10 }}>
+            {seasons.prev && <Link href={'/setlist/' + seasons.prev.id} prefetch={false} style={{ fontSize: 12, fontWeight: 700, color: '#003DA6', textDecoration: 'none', border: '1.5px solid ' + (dark ? '#444' : '#cdd7f0'), borderRadius: 8, padding: '3px 10px' }}>← {seasons.prev.name}</Link>}
+            {seasons.next && <Link href={'/setlist/' + seasons.next.id} prefetch={false} style={{ fontSize: 12, fontWeight: 700, color: '#003DA6', textDecoration: 'none', border: '1.5px solid ' + (dark ? '#444' : '#cdd7f0'), borderRadius: 8, padding: '3px 10px' }}>{seasons.next.name} →</Link>}
+          </div>
+        )}
         <h1 style={{ fontWeight: 900, fontSize: 26, marginBottom: 8 }}>{set.name}</h1>
         <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap', alignItems: 'center', marginBottom: userId ? 16 : 0 }}>
           {set.year && <span style={{ fontSize: 13, color: '#888', fontWeight: 700 }}>{set.year}</span>}
@@ -744,7 +774,7 @@ export default function SetlistClient({ setId }: { setId: string }) {
                         <div style={{ padding: '20px', textAlign: 'center', color: '#ccc', fontSize: 13 }}>{t('setlistdetail_no_cards')}</div>
                       ) : displayEntries.map(entry => {
                         // Priorité : carte choisie explicitement → image site → fallback API
-                        const communityImg = matchedCardImagesRef.current.get(entry.id) || entry.image_url || communityImages.get(entry.id)
+                        const communityImg = matchedCardImagesRef.current.get(entry.id) || (hiddenPhotos.has(entry.id) ? undefined : (entry.image_url || communityImages.get(entry.id)))
                         const inWishlist = set ? wishlistKeys.has(wishKey(entry.player_name, set.name, entry.variation || '')) : false
                         return (
                         <div key={entry.id}
@@ -810,7 +840,7 @@ export default function SetlistClient({ setId }: { setId: string }) {
         })}
       </div>
 
-      {reportEntry && set && <SetlistReportDialog setId={setId} setName={set.name} variation={reportEntry.variation} entry={reportEntry.entry} onClose={() => setReportEntry(null)} />}
+      {reportEntry && set && <SetlistReportDialog setId={setId} setName={set.name} variation={reportEntry.variation} entry={reportEntry.entry} imageUrl={matchedCardImagesRef.current.has(reportEntry.entry.id) ? undefined : (reportEntry.entry.image_url || communityImages.get(reportEntry.entry.id) || undefined)} onPhotoReported={id => setHiddenPhotos(p => new Set(p).add(id))} onClose={() => setReportEntry(null)} />}
       <div style={{ textAlign: 'center', padding: '16px 0', fontSize: 12, color: '#aaa' }}>
         {(rootTotal ?? set.total_cards).toLocaleString()} cartes · {variations.length} variations
       </div>

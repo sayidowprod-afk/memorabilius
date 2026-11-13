@@ -59,8 +59,11 @@ const brandWordsOf = (set: MSet) => new Set([...wordsOf(set.brand || '').map(ste
 
 // Variation : 0 = identique (memes mots), 1 = la carte decrit au moins la moitie des mots de l'entree (ex. "Gold" ~ "Gold Prizm"),
 // null = incompatible. Une carte SANS variation ne correspond qu'a une entree SANS variation (la base).
+// mots d'une variation : alias développés, pluriels ramenés au singulier, et mots qui n'apportent rien (« China Variation » = « China »)
+const NOISE = new Set(['variation', 'variations', 'parallel', 'parallels'])
+const varWords = (v: string) => new Set(wordsOf(v).map(w => EXPAND[w] ?? w).map(stem).filter(w => !NOISE.has(w)))
 function variationScore(cardVar: string, entryVar: string): number | null {
-  const cw = new Set(wordsOf(cardVar).map(w => EXPAND[w] ?? w)), ew = new Set(wordsOf(entryVar).map(w => EXPAND[w] ?? w))
+  const cw = varWords(cardVar), ew = varWords(entryVar)
   if (cw.size === 0 && ew.size === 0) return 0
   if (cw.size === 0 || ew.size === 0) return null
   const same = cw.size === ew.size && [...cw].every(w => ew.has(w))
@@ -129,4 +132,17 @@ export function setCouldMatchCard(card: MCard, set: MSet, loose = false): boolea
   const a = productWords(coll, bw), b = productWords(set.name, bw)
   if (loose) return [...a].some(w => b.has(w)) || (a.size === 0 && b.size === 0)
   return a.size === b.size && [...a].every(w => b.has(w))
+}
+
+/** Variation IDENTIQUE (mêmes mots, après alias). Pour une PHOTO affichée sur une ligne : « Gold » n'est pas « Gold Prizm » ni « Phoenix Blue Ice ». */
+export function exactVariation(a: string, b: string): boolean {
+  const cw = varWords(a), ew = varWords(b)
+  return cw.size === ew.size && [...cw].every(w => ew.has(w))
+}
+
+/** Cette carte est-elle EXACTEMENT cette ligne de setlist ? Règles du moteur (année, marque, collection, numéro) + variation identique. */
+export function matchesEntryExact(card: MCard, entry: MEntry, set: MSet): boolean {
+  const c = candidatesForCard(card, [entry], new Map([[set.id, set]]))
+  if (c.length !== 1 || c[0].id !== entry.id) return false
+  return exactVariation(card.variation || '', entry.variation || '')
 }

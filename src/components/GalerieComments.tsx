@@ -1,5 +1,6 @@
 'use client'
 import LikeFace from '@/components/LikeFace'
+import MentionSuggest, { renderWithMentions } from '@/components/MentionSuggest'
 import { useEffect, useState, useRef } from 'react'
 import Link from 'next/link'
 import { supabase } from '@/lib/supabase'
@@ -133,7 +134,7 @@ function CommentItem({
               )
             )}
           </div>
-          <p style={{ margin: 0, fontSize: 14, color: textBody, lineHeight: 1.5, wordBreak: 'break-word' }}>{comment.message}</p>
+          <p style={{ margin: 0, fontSize: 14, color: textBody, lineHeight: 1.5, wordBreak: 'break-word' }}>{renderWithMentions(comment.message, '#2f6bff')}</p>
         </div>
 
         {/* Actions */}
@@ -202,6 +203,7 @@ export default function GalerieComments({ galerieUserId, accent, isOwner, cardKe
   const [message, setMessage] = useState('')
   const [currentUserId, setCurrentUserId] = useState<string | null>(null)
   const [sending, setSending] = useState(false)
+  const [caret, setCaret] = useState(0)
   const [justPostedId, setJustPostedId] = useState<string | null>(null)
   const textareaRef = useRef<HTMLTextAreaElement>(null)
   const { dark } = useTheme()
@@ -329,6 +331,12 @@ export default function GalerieComments({ galerieUserId, accent, isOwner, cardKe
       // comment-notify), seul endroit capable de verifier les preferences.
       sendCommentPush(target, msg, lien, inserted.id)
     }
+    // 897 : membres @mentionnés (notification), sans attendre
+    if (inserted && /@[\p{L}\p{N}_.-]{2,30}/u.test(message)) {
+      supabase.auth.getSession().then(({ data: { session } }) => {
+        if (session) fetch('/api/mention-notify', { method: 'POST', headers: { 'Content-Type': 'application/json', Authorization: 'Bearer ' + session.access_token }, body: JSON.stringify({ message: message.trim(), lien: commentLink() }) }).catch(() => {})
+      })
+    }
     setMessage('')
     setSending(false)
     load()
@@ -378,10 +386,13 @@ export default function GalerieComments({ galerieUserId, accent, isOwner, cardKe
     <div style={{ paddingBottom: 20 }}>
       {currentUserId && (
         <div style={{ marginBottom: 20, background: bg, borderRadius: 14, padding: 16, boxShadow: '0 2px 10px rgba(0,0,0,0.1)', border: `1px solid ${border}` }}>
+          <div style={{ position: 'relative' }}>
           <textarea
             ref={textareaRef}
             value={message}
-            onChange={e => setMessage(e.target.value)}
+            onChange={e => { setMessage(e.target.value); setCaret(e.target.selectionStart ?? e.target.value.length) }}
+            onKeyUp={e => setCaret((e.target as HTMLTextAreaElement).selectionStart ?? 0)}
+            onClick={e => setCaret((e.target as HTMLTextAreaElement).selectionStart ?? 0)}
             onKeyDown={e => { if (e.key === 'Enter' && !e.shiftKey) { e.preventDefault(); send() } }}
             placeholder={t('comments_placeholder')}
             maxLength={500}
@@ -393,6 +404,8 @@ export default function GalerieComments({ galerieUserId, accent, isOwner, cardKe
               background: dark ? '#2a2a2a' : 'white', color: textMain,
             }}
           />
+          <MentionSuggest value={message} caret={caret} dark={dark} border={border} onPick={(next, at) => { setMessage(next); setCaret(at); setTimeout(() => { const el = textareaRef.current; if (el) { el.focus(); el.setSelectionRange(at, at) } }, 0) }} />
+          </div>
           <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginTop: 8 }}>
             <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
               <EmojiPicker onPick={insertEmoji} accent={accent} dark={dark} />

@@ -35,6 +35,14 @@
       "schedule": "0 7 * * 1"
     },
     {
+      "path": "/api/cron/set-alerts",
+      "schedule": "0 17 * * *"
+    },
+    {
+      "path": "/api/cron/pub-reminder",
+      "schedule": "*/30 * * * *"
+    },
+    {
       "path": "/api/cron/pronos-resolve",
       "schedule": "0 */3 * * *"
     },

@@ -25,6 +25,7 @@ import LoupeOverlay from '@/components/LoupeOverlay'
 import MarketplacePriceField from '@/components/MarketplacePriceField'
 import TcgInfoBlock from '@/components/TcgInfoBlock'
 import ParallelsPanel from '@/components/ParallelsPanel'
+import PlacementHelp from '@/components/PlacementHelp'
 import { fmtPrice } from '@/lib/marketplace'
 import { candidatesForCard, type MSet, type MEntry, type MCard } from '@/lib/setMatcher'
 
@@ -1795,6 +1796,21 @@ export default function Viewer3D({ popup, accent, onClose, onNext, onPrev, getTa
                   style={{ fontSize: 11, padding: '5px 10px', borderRadius: 8, border: `1.5px dashed ${borderColor}`, background: 'none', color: metaColor, cursor: 'pointer', width: '100%', textAlign: 'left' }}>
                   + Placer dans un set
                 </button>
+              )}
+
+              {setPlacement === null && popup.id_manuelle && (
+                <PlacementHelp
+                  card={{ n: popup.n || '', y: popup.y || '', br: popup.br || '', s: popup.s || '', v: popup.v || '', card_number: popup.card_number, collection_tag: popup.collection_tag }}
+                  cardId={String(popup.id_manuelle)}
+                  metaColor={metaColor} borderColor={borderColor} accent={accent}
+                  onPlaced={async (entryId, st) => {
+                    await supabase.from('cartes_manuelles').update({ set_entry_id: entryId }).eq('id', popup.id_manuelle)
+                    await supabase.from('user_set_completion').upsert({ user_id: userId, entry_id: entryId, manually_checked: true, matched_card_key: popup.f || null }, { onConflict: 'user_id,entry_id' })
+                    const placement: SetPlacementData = { entry_id: entryId, set_id: st.id, set_name: st.name, set_year: st.year, set_brand: st.brand, set_sport: st.sport || '' }
+                    try { localStorage.setItem(placementCacheKey(userId!), JSON.stringify(placement)) } catch {}
+                    setSetPlacement(placement)
+                  }}
+                />
               )}
 
               {setPickerOpen && (

@@ -9,6 +9,7 @@ import { withTimeout } from '@/lib/withTimeout'
 import { useLang, localeFor } from '@/lib/LangContext'
 import { useTheme } from '@/lib/ThemeContext'
 import LinkifiedText from '@/components/LinkifiedText'
+import MessageExtras from '@/components/MessageExtras'
 import OnlineIndicator from '@/components/OnlineIndicator'
 import ReportButton from '@/components/ReportButton'
 import { onlineStatusColor } from '@/lib/onlineStatus'
@@ -1081,6 +1082,7 @@ function MessagesContent() {
                                 if (from < txt.length) parts.push(txt.slice(from))
                                 return <p data-hit="1" style={{ margin: 0, whiteSpace: 'pre-wrap', overflowWrap: 'anywhere' }}>{parts}</p>
                               })()}
+                              {!isMe && typeof msg.contenu === 'string' && !msg.contenu.startsWith('[[') && <MessageExtras text={msg.contenu} lang={lang} dark={dark} />}
                             </div>
                           )}
 

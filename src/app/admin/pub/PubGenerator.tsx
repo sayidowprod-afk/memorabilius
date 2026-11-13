@@ -6,6 +6,7 @@
 import { useEffect, useRef, useState } from 'react'
 import TikTokMaker from './TikTokMaker'
 import PubPlanning from './PubPlanning'
+import PubCalendar from './PubCalendar'
 import { scheduleMusic, decodeAudioFile, type MusicKind } from './audio'
 import { AD_TX, loadPartnerLogo } from './tiktokAd'
 import { saveOrShareFile } from '@/lib/saveOrShare'
@@ -489,6 +490,7 @@ export default function PubGenerator() {
       </div>
       <div style={{ width: '100%', maxWidth: 1000 }}><TikTokMaker /></div>
       <PubPlanning />
+      <PubCalendar />
     </div>
   )
 }

@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { createServerServiceClient } from '@/lib/supabaseServer'
 import { rateLimited } from '@/lib/publicRateLimit'
+import { matchesEntryExact, type MSet } from '@/lib/setMatcher'
 
 export const maxDuration = 20
 
@@ -48,22 +49,15 @@ export async function POST(req: NextRequest) {
     const { data: p } = await admin.from('cartes_privees').select('user_id, card_key').in('card_key', urls.slice(i, i + 200))
     for (const r of p || []) priv.add(r.user_id + '|' + r.card_key)
   }
-  const sw = specific(setName)
-  const inSet = (c: (typeof list)[number]) => {
-    if (priv.has(c.user_id + '|' + c.image_recto)) return false
-    if (!yearOk(c.annee, setYear)) return false
-    const text = norm((c.marque || '') + ' ' + (c.collection || '') + ' ' + (c.collection_tag || ''))
-    if (sw.length > 0) return sw.some(w => text.includes(w))
-    if (setBrand && c.marque) { const nb = norm(c.marque), ns = norm(setBrand); return !nb || !ns || nb.includes(ns) || ns.includes(nb) }
-    return true
-  }
-  const pool = list.filter(inSet)
+  const set: MSet = { id: Number(body?.setId) || 0, name: setName, year: setYear, brand: setBrand }
+  const pool = list.filter(c => !priv.has(c.user_id + '|' + c.image_recto))
 
   const found: { entry_id: number; users: string[] }[] = []
   for (const e of entries) {
-    const want = norm(e.variation || ''), player = norm(e.player_name || '')
-    const users = [...new Set(pool.filter(c => norm(c.nom) === player && norm(c.variation || '') === want
-      && (!e.card_number || !c.card_number || norm(e.card_number) === norm(c.card_number))).map(c => c.user_id as string))]
+    const player = norm(e.player_name || '')
+    const entry = { id: e.id, player_name: e.player_name, card_number: e.card_number, variation: e.variation, set_id: set.id }
+    // règles du moteur commun (année, marque, collection, numéro) + variation IDENTIQUE
+    const users = [...new Set(pool.filter(c => norm(c.nom) === player && matchesEntryExact({ nom: c.nom, annee: c.annee, marque: c.marque, collection: c.collection, collection_tag: c.collection_tag, variation: c.variation, card_number: c.card_number }, entry, set)).map(c => c.user_id as string))]
     if (users.length) found.push({ entry_id: e.id, users })
   }
   const ids = [...new Set(found.flatMap(f => f.users.slice(0, 5)))]

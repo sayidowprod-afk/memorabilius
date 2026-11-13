@@ -6,7 +6,8 @@ import { supabase } from '@/lib/supabase'
 import { encodeMp4 } from './encode'
 import { saveOrShareFile } from '@/lib/saveOrShare'
 import { scheduleMusic, scheduleHits, decodeAudioFile, type MusicKind } from './audio'
-import { AD_DUR, AD_TX, LANG_NAMES, drawAd, loadAdAssets, type AdAssets, type Lang } from './tiktokAd'
+import PubCaption from './PubCaption'
+import { AD_DUR, AD_TX, LANG_NAMES, drawAd, loadAdAssets, type AdAssets, type Lang, type IntroStyle } from './tiktokAd'
 
 const W = 1080, H = 1920, FPS = 60
 const FONT = 'system-ui, -apple-system, "Segoe UI", sans-serif'
@@ -187,6 +188,9 @@ export default function TikTokMaker() {
   const [status, setStatus] = useState('Ajoute des photos de cartes pour commencer.')
   const [busy, setBusy] = useState(false)
   const [video, setVideo] = useState<string | null>(null)
+  const [introStyle, setIntroStyle] = useState<IntroStyle>('carte')
+  const introRef = useRef<IntroStyle>('carte'); introRef.current = introStyle
+  const [variants, setVariants] = useState<{ label: string; url: string; blob: Blob }[]>([])
   const [videoBlob, setVideoBlob] = useState<Blob | null>(null)
   const [saveMsg, setSaveMsg] = useState('')
   const saveVideo = async (blob: Blob | null, name: string) => {
@@ -276,6 +280,7 @@ export default function TikTokMaker() {
     else if ('error' in res) setStatus('Échec de l’encodage : ' + res.error)
     else { setVideoBlob(res.blob); setVideo(URL.createObjectURL(res.blob)); setStatus(`Vidéo prête · ${dur.toFixed(1)} s · MP4 60 images/s`) }
     setBusy(false)
+    return res && !('error' in res) ? res.blob : null
   }
 
   // Tout automatique : je choisis le thème, les cartes de ta galerie, l'accroche, les légendes et la musique, puis je crée la vidéo
@@ -318,8 +323,8 @@ export default function TikTokMaker() {
   }
 
   // PUB : je choisis les cartes, l'accroche et l'appel à l'action ; les écrans de l'appli sont les vraies captures
-  const autoAd = async () => {
-    cancelAnimationFrame(raf.current); busyRef.current = true; setBusy(true); setVideo(null)
+  const autoAd = async (withVariants = false) => {
+    cancelAnimationFrame(raf.current); busyRef.current = true; setBusy(true); setVideo(null); setVariants([])
     try {
       setStatus('Je choisis des cartes dans ta galerie…')
       if (!rowsRef.current) {
@@ -354,6 +359,22 @@ export default function TikTokMaker() {
       adRef.current = await loadAdAssets(arr, pick(AD_TX[lang].hooks), pick(AD_TX[lang].ctas), lang)
       adModeRef.current = true; setAdMode(true)
       if (musicRef.current === 'none') { /* son coupé par choix */ }
+      if (withVariants) {
+        // trois versions de la MÊME vidéo, avec trois débuts différents (à publier et comparer : voir le visionnage moyen de chacune)
+        const labels: Record<string, string> = { carte: 'A · Carte en grand', question: 'B · Question', zoom: 'C · Gros plan' }
+        const made: { label: string; url: string; blob: Blob }[] = []
+        for (const st of ['carte', 'question', 'zoom'] as const) {
+          if (adRef.current) adRef.current.intro = st
+          setStatus('Version ' + labels[st] + '…')
+          const blob = await create()
+          if (blob) { made.push({ label: labels[st], url: URL.createObjectURL(blob), blob }); setVariants([...made]) }
+          busyRef.current = true; setBusy(true)
+        }
+        busyRef.current = false; setBusy(false)
+        setStatus('3 versions prêtes : publie-les à des moments différents et compare le visionnage moyen de chacune.')
+        return
+      }
+      if (adRef.current) adRef.current.intro = introRef.current
       await create()
       if (adRef.current?.fallback) setStatus('Pub ' + LANG_NAMES[lang] + ' prête · textes traduits, écrans en français (captures ' + LANG_NAMES[lang] + ' absentes)')
     } catch (e) {
@@ -373,7 +394,7 @@ export default function TikTokMaker() {
       <div style={{ width: 'min(480px, 100%)' }}>
         <h2 style={{ margin: '0 0 6px', fontSize: 24 }}>Pub TikTok · générateur</h2>
         <p style={{ color: '#aab3d1', fontSize: 14, lineHeight: 1.5, margin: '0 0 10px' }}>Une vraie pub Memorabilius au format TikTok : accroche, écrans de l’appli, carte en 3D, cuts sur le beat, sous-titres mot par mot, appel à l’action. 9:16, 60 i/s, créée sur ton appareil.</p>
-        <button type="button" disabled={busy} onClick={autoAd} style={{ width: '100%', padding: '16px 18px', fontWeight: 900, fontSize: 18, background: '#ff3b6b', color: '#fff', border: 0, cursor: busy ? 'default' : 'pointer', margin: '4px 0 10px' }}>🎬 Générer la pub TikTok pour moi</button>
+        <button type="button" disabled={busy} onClick={() => autoAd(false)} style={{ width: '100%', padding: '16px 18px', fontWeight: 900, fontSize: 18, background: '#ff3b6b', color: '#fff', border: 0, cursor: busy ? 'default' : 'pointer', margin: '4px 0 10px' }}>🎬 Générer la pub TikTok pour moi</button>
         <label style={{ fontSize: 13, display: 'block', margin: '0 0 8px' }}>
           <input type="checkbox" checked={tcgOnly} disabled={busy} onChange={e => {
             const on = e.target.checked
@@ -382,6 +403,9 @@ export default function TikTokMaker() {
             setHook(on ? tx.hook : 'Ma collection de cartes'); setCta(on ? tx.cta : 'Rejoins les collectionneurs')
           }} /> Pub TCG (cartes à jouer de la galerie uniquement)
         </label>
+        <label style={{ fontSize: 13, display: 'block', margin: '0 0 8px' }}>Début de la vidéo <select value={introStyle} onChange={e => setIntroStyle(e.target.value as IntroStyle)} disabled={busy} style={box}>
+          <option value="carte">Carte en grand dès la 1re image (conseillé)</option><option value="question">Question + carte</option><option value="zoom">Gros plan qui se dézoome</option><option value="texte">Texte seul (ancien début)</option></select></label>
+        <button type="button" disabled={busy} onClick={() => autoAd(true)} style={{ width: '100%', padding: '12px 16px', fontWeight: 800, fontSize: 15, background: '#17214a', color: '#fff', border: '2px solid #ff3b6b', cursor: busy ? 'default' : 'pointer', margin: '0 0 10px' }}>🎬 Créer 3 versions (carte, question, gros plan)</button>
         <label style={{ fontSize: 13, display: 'block', margin: '0 0 8px' }}>Langue de la pub <select value={lang} onChange={e => setLang(e.target.value as Lang)} disabled={busy} style={box}>{(Object.keys(LANG_NAMES) as Lang[]).map(l => <option key={l} value={l}>{LANG_NAMES[l]}</option>)}</select></label>
         <div style={{ display: 'flex', gap: 10, flexWrap: 'wrap', alignItems: 'center', margin: '0 0 10px' }}>
           <label style={{ fontSize: 13 }}>Musique <select value={music} onChange={e => setMusic(e.target.value as MusicKind)} style={box}><option value="beat">Beat dynamique</option><option value="lounge">Ambiance douce</option><option value="file">Mon propre morceau…</option><option value="none">Aucune</option></select></label>
@@ -418,11 +442,24 @@ export default function TikTokMaker() {
           <button type="button" disabled={busy || !items.length} onClick={create} style={{ padding: '10px 16px', fontWeight: 800, background: '#7a2bff', color: '#fff', border: 0, cursor: 'pointer' }}>⏺ Créer la vidéo (60 fps)</button>
         </div>
         </details>
+        {variants.length > 0 && (
+          <div style={{ marginTop: 14, display: 'grid', gap: 12 }}>
+            {variants.map(v => (
+              <div key={v.label}>
+                <b style={{ fontSize: 14 }}>{v.label}</b>
+                <video src={v.url} controls playsInline style={{ width: '100%', maxHeight: 420, background: '#000', display: 'block', marginTop: 4 }} />
+                <button type="button" onClick={() => saveVideo(v.blob, 'memorabilius-' + v.label.slice(0, 1).toLowerCase() + '.mp4')} style={{ marginTop: 6, padding: '8px 14px', background: '#1e9e57', color: '#fff', border: 0, fontWeight: 800, cursor: 'pointer' }}>Enregistrer cette version</button>
+              </div>
+            ))}
+            <PubCaption lang={lang} />
+          </div>
+        )}
         {video && (
           <div style={{ marginTop: 14 }}>
             <video src={video} controls playsInline style={{ width: '100%', maxHeight: 520, background: '#000' }} />
             <button type="button" onClick={() => saveVideo(videoBlob, 'memorabilius-tiktok.mp4')} style={{ ...{ display: 'inline-block', marginTop: 10, padding: '10px 16px', background: '#1e9e57', color: '#fff', fontWeight: 800, textDecoration: 'none' }, border: 0, cursor: 'pointer' }}>⬇ Télécharger la vidéo</button>
             {saveMsg && <p style={{ fontSize: 13, color: '#ffd84d', margin: '8px 0 0' }}>{saveMsg}</p>}
+            <PubCaption lang={lang} />
             <p style={{ fontSize: 12, color: '#aab3d1', margin: '8px 0 0' }}>Si rien ne se télécharge : clic droit sur la vidéo → « Enregistrer la vidéo sous… ».</p>
           </div>)}
       </div>
