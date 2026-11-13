@@ -5,6 +5,18 @@ import { supabase } from '@/lib/supabase'
 import type { Session, User } from '@supabase/supabase-js'
 import { setCrashlyticsUserId, recordJsError } from '@/lib/crashlytics'
 
+// Stockage durable : sans cette demande, un navigateur à court d'espace (photos et pages gardées pour le mode hors ligne) peut vider TOUTES les
+// données du site d'un coup, y compris la session : le membre se retrouve « déconnecté » sans rien avoir fait. persist() demande au navigateur
+// de ne pas les effacer (accordé selon l'usage ; Firefox le demande à l'utilisateur, on ne le sollicite donc pas là-bas).
+function keepStorage() {
+  try {
+    if (typeof navigator === 'undefined' || !navigator.storage?.persist || /firefox/i.test(navigator.userAgent)) return
+    if (localStorage.getItem('mb_persist_asked')) return
+    localStorage.setItem('mb_persist_asked', '1')
+    void navigator.storage.persist().catch(() => {})
+  } catch { /* indisponible */ }
+}
+
 interface AuthState {
   session: Session | null
   user: User | null
@@ -85,6 +97,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
       settled = true
       setState({ session, user: session?.user ?? null, loading: false })
       setCrashlyticsUserId(session?.user?.id ?? null)
+      if (session) keepStorage()
 
       // Un lien de recuperation envoye depuis le dashboard Supabase (bouton
       // admin "Send password recovery") n'a pas de redirectTo personnalise --
