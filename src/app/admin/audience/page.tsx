@@ -67,7 +67,7 @@ export default function AdminAudience() {
             <thead><tr><th style={th}>Page</th><th style={th}>7 jours</th><th style={th}>7 jours avant</th><th style={th}>Évolution</th></tr></thead>
             <tbody>{d.pages.map(p => {
               const evo = p.prev ? Math.round((p.n - p.prev) / p.prev * 100) : null
-              return <tr key={p.path}><td style={td}><b>{p.path}</b></td><td style={td}>{p.n.toLocaleString('fr-FR')}</td><td style={td}>{p.prev.toLocaleString('fr-FR')}</td><td style={{ ...td, color: evo == null ? undefined : evo >= 0 ? '#1e9e57' : '#c0392b', fontWeight: 700 }}>{evo == null ? 'nouveau' : (evo >= 0 ? '+' : '') + evo + ' %'}</td></tr>
+              return <tr key={p.path}><td style={td}><b>{p.path}</b></td><td style={td}>{p.n.toLocaleString('fr-FR')}</td><td style={td}>{p.prev.toLocaleString('fr-FR')}</td><td style={{ ...td, fontWeight: 700 }}><span style={{ color: evo == null ? undefined : evo >= 0 ? '#1e9e57' : '#c0392b' }}>{evo == null ? 'nouveau' : (evo >= 0 ? '+' : '') + evo + ' %'}</span></td></tr>
             })}</tbody>
           </table>
 

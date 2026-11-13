@@ -79,7 +79,7 @@ export default function AdminPerformancePage() {
               {table.map(r => (
                 <tr key={r.page} style={{ borderBottom: '1px solid #ddd' }}>
                   <td style={{ padding: '8px 6px', fontWeight: 800 }}>{r.page}</td>
-                  {METRICS.map(m => { const c = r.m.get(m); return <td key={m} style={{ padding: '8px 6px', color: c ? color(m, c.p75) : '#aaa', fontWeight: 800 }}>{c ? fmt(m, c.p75) : '—'}</td> })}
+                  {METRICS.map(m => { const c = r.m.get(m); return <td key={m} style={{ padding: '8px 6px', fontWeight: 800 }}><span style={{ color: c ? color(m, c.p75) : '#aaa' }}>{c ? fmt(m, c.p75) : '—'}</span></td> })}
                   <td style={{ padding: '8px 6px', color: '#888' }}>{r.n}</td>
                 </tr>
               ))}
