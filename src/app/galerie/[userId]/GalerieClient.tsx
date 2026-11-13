@@ -4343,7 +4343,7 @@ export default function GalerieClient({ userId, initialCardUrl, initialCards, in
           { key: 'rnd', label: 'Au hasard', cards: rnd.map(fmt) },
         ]} />
       })()}
-      {recapOpen && isOwner && <YearRecap cards={cards} values={cardValues} ownerName={profile?.display_name || ''} onClose={() => setRecapOpen(false)} />}
+      {recapOpen && isOwner && <YearRecap cards={cards} grails={grailCards.map(x => x.card_key)} ownerName={profile?.display_name || ''} onClose={() => setRecapOpen(false)} />}
       {thumbsOpen && isOwner && <ThumbBackfill cards={cards} userId={userId} onClose={() => setThumbsOpen(false)} />}
       {storyIdx !== null && <Defile cards={filtered} startIndex={storyIdx} onClose={() => setStoryIdx(null)} onOpen={c => setPopup(c as Card)} />}
 

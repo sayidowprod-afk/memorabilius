@@ -6,7 +6,7 @@ export const ENTRIES: Entry[] = [
   {
     date: '29 novembre 2026', titre: 'Mon année en cartes en vidéo, alertes eBay, avis d’échange en vitrine',
     points: [
-      'Galerie : menu « 📅 Mon année en cartes ». Une vidéo verticale de 16 secondes (et une image) avec tes chiffres de l’année : cartes ajoutées, mois le plus actif, atouts RC / auto / patch, marque n° 1 et tes trois plus belles cartes. Tout est calculé sur ton appareil.',
+      'Galerie : menu « 📅 Mon année en cartes ». Une vidéo verticale de 16 secondes (et une image) avec tes chiffres de l’année : cartes ajoutées, mois le plus actif, atouts RC / auto / patch, marque n° 1 et tes trois plus belles cartes (celles de ton Grail Wall d’abord, puis les plus rares, jamais selon le prix). Tout est calculé sur ton appareil.',
       'Wishlist : quand une carte a un prix cible, le site cherche chaque matin des annonces eBay à ce prix ou moins (port compris quand il est connu) et te prévient. Un lien « Chercher sur Vinted » ouvre la recherche pré-remplie (Vinted n’a pas d’alertes automatiques possibles).',
       'Galerie : l’onglet Commentaires affiche en vitrine les avis positifs (4 ou 5 étoiles avec un mot) laissés par les partenaires d’échange.',
     ],

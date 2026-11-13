@@ -75,7 +75,7 @@ function ribbon(x: CanvasRenderingContext2D, label: string, cx: number, cy: numb
   x.fillStyle = '#0b1230'; x.textAlign = 'center'; x.textBaseline = 'middle'; x.fillText(label.toUpperCase(), cx, cy + 2); x.restore()
 }
 
-export default function YearRecap({ cards, values, ownerName, onClose }: { cards: RC[]; values: Map<string, number>; ownerName: string; onClose: () => void }) {
+export default function YearRecap({ cards, grails, ownerName, onClose }: { cards: RC[]; grails: string[]; ownerName: string; onClose: () => void }) {
   const years = useMemo(() => [...new Set(cards.map(c => (c.created_at || '').slice(0, 4)).filter(y => /^\d{4}$/.test(y)))].sort().reverse(), [cards])
   const [year, setYear] = useState(years[0] || String(new Date().getFullYear()))
   const [imgUrl, setImgUrl] = useState<string | null>(null)
@@ -99,13 +99,13 @@ export default function YearRecap({ cards, values, ownerName, onClose }: { cards
     for (const c of ofYear) if (c.s) brands.set(c.s, (brands.get(c.s) || 0) + 1)
     const topBrand = [...brands.entries()].sort((a, b) => b[1] - a[1])[0]
     const ok = (c: RC) => /^https?:/.test(c.f)
-    const withValue = ofYear.filter(c => values.has(c.f) && ok(c)).sort((a, b) => (values.get(b.f) ?? 0) - (values.get(a.f) ?? 0))
-    // sans valeur connue : les plus rares d'abord (1/1, /5, /10…), puis autos et patchs, puis les plus récentes
+    // d'abord les cartes de ton Grail Wall ajoutées cette année (dans l'ordre du mur), puis les plus rares (1/1, /5, /10…), puis autos et patchs, puis les plus récentes : jamais de prix
+    const grail = grails.map(k => ofYear.find(c => c.f === k)).filter((c): c is RC => !!c && ok(c))
     const tirage = (c: RC) => { const m = (c.num || '').trim().match(/\/(\d+)$/); return m ? parseInt(m[1]) : Infinity }
     const rare = [...ofYear].filter(ok).sort((a, b) => (tirage(a) - tirage(b)) || ((b.auto ? 2 : 0) + (b.patch ? 1 : 0) - (a.auto ? 2 : 0) - (a.patch ? 1 : 0)) || (b.created_at || '').localeCompare(a.created_at || ''))
-    const top = (withValue.length >= 3 ? withValue : rare).slice(0, 3)
-    return { added: ofYear.length, total: cards.length, perMonth, bestM, rc: count('rc'), auto: count('auto'), patch: count('patch'), topBrand, top, hasValue: withValue.length >= 3 }
-  }, [cards, values, year])
+    const top = [...grail, ...rare.filter(c => !grail.includes(c))].slice(0, 3)
+    return { added: ofYear.length, total: cards.length, perMonth, bestM, rc: count('rc'), auto: count('auto'), patch: count('patch'), topBrand, top }
+  }, [cards, grails, year])
 
   const loadFont = async () => { try { await document.fonts.load('400 40px Surfquest') } catch { /* police de repli */ } }
 
@@ -190,7 +190,7 @@ export default function YearRecap({ cards, values, ownerName, onClose }: { cards
         // 5. Les plus belles cartes (n°3, n°2, puis n°1)
         if (reveal.length) scene(t, 'cards', l => {
           const t0 = 0.5
-          header(stats.hasValue ? 'Tes cartes les plus précieuses' : 'Tes plus belles cartes')
+          header('Tes plus belles cartes')
           reveal.forEach(({ c, b }, i) => {
             const li = l - t0 - i * perCard
             if (li < 0 || li > perCard + 0.05) return
@@ -271,7 +271,7 @@ export default function YearRecap({ cards, values, ownerName, onClose }: { cards
       })
       if (stats.added > 0) T(x, `Mois le plus actif : ${MONTHS[stats.bestM]} (${stats.perMonth[stats.bestM]})`, W / 2, 1345, 40, '#fff', 600)
       if (stats.topBrand) T(x, `Marque n° 1 : ${stats.topBrand[0]} (${stats.topBrand[1]})`, W / 2, 1405, 40, '#fff', 600)
-      T(x, stats.hasValue ? 'Mes cartes les plus précieuses' : 'Mes plus belles cartes', W / 2, 1490, 36, GOLD, 800)
+      T(x, 'Mes plus belles cartes', W / 2, 1490, 36, GOLD, 800)
       const bw = 280, bhMax = 330, gap = 40, imgs = (bms as (ImageBitmap | null)[]).filter(Boolean) as ImageBitmap[]
       imgs.forEach((b, i) => {
         const k = Math.min(bw / b.width, bhMax / b.height), w = b.width * k, h = b.height * k
