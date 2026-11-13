@@ -1,5 +1,6 @@
 import type { User } from '@supabase/supabase-js'
 import { supabase } from '@/lib/supabase'
+import { recordJsError } from '@/lib/crashlytics'
 
 // Qui est connecté, SANS prendre un réseau instable pour une déconnexion.
 // Avant : les pages d'ajout et de modification appelaient auth.getUser() (un aller-retour réseau) et renvoyaient vers /connexion dès que
@@ -16,7 +17,10 @@ export async function checkUser(): Promise<{ user: User | null; unreachable: boo
     const { data, error } = await supabase.auth.getUser()
     if (data?.user) return { user: data.user, unreachable: false }
     const network = !!error && (error.name === 'AuthRetryableFetchError' || (error as { status?: number }).status === 0)
-    return { user: null, unreachable: network || (typeof navigator !== 'undefined' && !navigator.onLine) }
+    const unreachable = network || (typeof navigator !== 'undefined' && !navigator.onLine)
+    // diagnostic (app Android/iPhone, Firebase) : pourquoi aucun membre connecté n'a été trouvé en plein ajout
+    recordJsError(new Error(`checkUser : aucun membre (injoignable=${unreachable}, erreur=${error?.name}/${error?.message}/${(error as { status?: number } | null)?.status})`), '[auth-diag] ajout')
+    return { user: null, unreachable }
   } catch {
     return { user: null, unreachable: true }
   }
