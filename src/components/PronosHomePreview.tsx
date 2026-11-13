@@ -1,5 +1,5 @@
 'use client'
-import { useEffect, useState } from 'react'
+import { useEffect, useState, useSyncExternalStore } from 'react'
 import TeamBadge from '@/components/TeamBadge'
 import { getTeamById } from '@/lib/sportsTeams'
 import { useAuth } from '@/lib/AuthContext'
@@ -123,29 +123,53 @@ function TeamHalf({
   )
 }
 
+// 829 · Pronos sans spoil : réglage « Masquer les scores » (gardé sur l'appareil) ; un score masqué se révèle d'un toucher, et reste révélé ensuite.
+const HIDE_KEY = 'pronos-hide-scores', REVEALED_KEY = 'pronos-revealed'
+const spoilListeners = new Set<() => void>()
+let spoilSnap = ''
+const readSpoil = () => { try { return (localStorage.getItem(HIDE_KEY) || '0') + '|' + (localStorage.getItem(REVEALED_KEY) || '[]') } catch { return '0|[]' } }
+const spoilSubscribe = (cb: () => void) => { spoilListeners.add(cb); return () => { spoilListeners.delete(cb) } }
+const spoilGet = () => { const v = readSpoil(); if (v !== spoilSnap) spoilSnap = v; return spoilSnap }
+const spoilEmit = () => { spoilListeners.forEach(l => l()) }
+function useSpoil() {
+  const snap = useSyncExternalStore(spoilSubscribe, spoilGet, () => '0|[]')
+  const [h, r] = [snap.slice(0, 1) === '1', snap.slice(2)]
+  let revealed: string[] = []
+  try { revealed = JSON.parse(r) } catch { /* liste illisible : tout reste masqué */ }
+  return {
+    hide: h,
+    isRevealed: (id: string) => revealed.includes(id),
+    setHide: (v: boolean) => { try { localStorage.setItem(HIDE_KEY, v ? '1' : '0') } catch { /* stockage indisponible */ } spoilEmit() },
+    reveal: (id: string) => { try { localStorage.setItem(REVEALED_KEY, JSON.stringify([...revealed.filter(x => x !== id), id].slice(-400))) } catch { /* stockage indisponible */ } spoilEmit() },
+    revealAll: (ids: string[]) => { try { localStorage.setItem(REVEALED_KEY, JSON.stringify([...new Set([...revealed, ...ids])].slice(-400))) } catch { /* stockage indisponible */ } spoilEmit() },
+  }
+}
+
 function MatchRow({ m, pick, onPick }: { m: ApiMatch; pick?: Pick; onPick: (id: string, side: Pick) => void }) {
   const left = getTeamById(m.leftId)
   const right = getTeamById(m.rightId)
   if (!left || !right) return null
 
   const clickable = m.status === 'upcoming' && !m.locked
+  const spoil = useSpoil()
+  const masked = m.status === 'final' && spoil.hide && !spoil.isRevealed(m.id)
 
-  const leftBg = m.status === 'final'
+  const leftBg = m.status === 'final' && !masked
     ? (m.winner === 'left' ? sideGradient(GOLD, 'left') : sideGradient(left.color, 'left'))
     : (pick === 'left' ? sideGradient(GREEN, 'left') : sideGradient(left.color, 'left'))
-  const rightBg = m.status === 'final'
+  const rightBg = m.status === 'final' && !masked
     ? (m.winner === 'right' ? sideGradient(GOLD, 'right') : sideGradient(right.color, 'right'))
     : (pick === 'right' ? sideGradient(GREEN, 'right') : sideGradient(right.color, 'right'))
 
   // Barre du milieu (le « nul ») : verte si on l'a choisi, dorée quand c'est le bon résultat.
-  const centerBg = m.status === 'final'
+  const centerBg = m.status === 'final' && !masked
     ? (m.winner === 'draw' ? GOLD : NAVY)
     : (pick === 'draw' ? GREEN : NAVY)
 
   return (
     <div className="pronos-row">
       <div style={{ flex: 1, display: 'flex', background: leftBg }}>
-        <TeamHalf team={left} score={m.status === 'final' ? m.leftScore : undefined} record={m.leftRecord}
+        <TeamHalf team={left} score={m.status === 'final' && !masked ? m.leftScore : undefined} record={m.leftRecord}
           side="left" clickable={clickable} onClick={() => onPick(m.id, 'left')}
           picked={pick === 'left'} />
       </div>
@@ -161,10 +185,16 @@ function MatchRow({ m, pick, onPick }: { m: ApiMatch; pick?: Pick; onPick: (id: 
           <span style={{ fontFamily: UI_FONT, fontWeight: 800, fontSize: 13, color: NAVY }}>VS</span>
         </div>
         <span style={{ fontFamily: UI_FONT, fontWeight: 700, fontSize: 14, color: '#fff' }}>{m.time}</span>
-        {m.status === 'final' && m.note && (
+        {masked && (
+          <button type="button" onClick={() => spoil.reveal(m.id)} aria-label="Voir le score de ce match"
+            style={{ fontFamily: UI_FONT, fontWeight: 800, fontSize: 11, color: '#fff', background: 'rgba(255,255,255,.18)', border: '1px solid rgba(255,255,255,.5)', borderRadius: 999, padding: '4px 10px', cursor: 'pointer', whiteSpace: 'nowrap' }}>
+            👁 Voir le score
+          </button>
+        )}
+        {m.status === 'final' && !masked && m.note && (
           <span style={{ fontFamily: UI_FONT, fontWeight: 700, fontSize: 11, color: 'rgba(255,255,255,.7)' }}>{m.note}</span>
         )}
-        {m.drawable && (clickable || m.status === 'final') && (
+        {m.drawable && (clickable || (m.status === 'final' && !masked)) && (
           <button type="button" className="pronos-draw" disabled={!clickable} onClick={() => onPick(m.id, 'draw')} aria-pressed={pick === 'draw'}
             style={{
               background: centerBg === NAVY ? 'rgba(255,255,255,.14)' : 'rgba(0,0,0,.28)',
@@ -177,7 +207,7 @@ function MatchRow({ m, pick, onPick }: { m: ApiMatch; pick?: Pick; onPick: (id: 
       </div>
 
       <div style={{ flex: 1, display: 'flex', background: rightBg }}>
-        <TeamHalf team={right} score={m.status === 'final' ? m.rightScore : undefined} record={m.rightRecord}
+        <TeamHalf team={right} score={m.status === 'final' && !masked ? m.rightScore : undefined} record={m.rightRecord}
           side="right" clickable={clickable} onClick={() => onPick(m.id, 'right')}
           picked={pick === 'right'} />
       </div>
@@ -343,9 +373,10 @@ function BoxScorePanel({ m, pick }: { m: ApiMatch; pick?: Pick }) {
 
 function MatchItem({ m, pick, onPick }: { m: ApiMatch; pick?: Pick; onPick: (id: string, side: Pick) => void }) {
   const [open, setOpen] = useState(false)
+  const spoilItem = useSpoil()
   // Pas de box score pour un match pas encore commencé (rien à montrer), ni
-  // pour le football (aucune source gratuite branchée).
-  const hasBox = m.locked && m.sport !== 'football'
+  // pour le football (aucune source gratuite branchée), ni tant que le score est masqué (829).
+  const hasBox = m.locked && m.sport !== 'football' && !(m.status === 'final' && spoilItem.hide && !spoilItem.isRevealed(m.id))
   return (
     <>
       <MatchRow m={m} pick={pick} onPick={onPick} />
@@ -568,6 +599,7 @@ export default function PronosHomePreview() {
   const shownDays = week === 'prev' ? (prev?.days?.length ? prev.days : daysForOffsets(weekOffsets(-1)).map(d => d.label)) : days
   const shownMatches = week === 'prev' ? prev?.matches ?? null : matches
   const visible = (shownMatches ?? []).filter(m => m.day === activeDay && (activeSport === 'ALL' || m.sport === activeSport))
+  const spoilMain = useSpoil()
 
   const pillBase: React.CSSProperties = {
     display: 'flex', alignItems: 'center', gap: 8, padding: '9px 16px', borderRadius: 999,
@@ -579,11 +611,23 @@ export default function PronosHomePreview() {
     <section style={{ background: NAVY, padding: '32px 20px 48px' }}>
       <PronosCSS />
       <div style={{ maxWidth: 1200, margin: '0 auto' }}>
-        <h2 style={{ fontFamily: SURFQUEST, fontSize: 28, color: '#fff', letterSpacing: 1, margin: '0 0 20px' }}>
-          🏆 PRONOS
-        </h2>
+        <div style={{ display: 'flex', alignItems: 'center', flexWrap: 'wrap', gap: 12, margin: '0 0 20px' }}>
+          <h2 style={{ fontFamily: SURFQUEST, fontSize: 28, color: '#fff', letterSpacing: 1, margin: 0 }}>
+            🏆 PRONOS
+          </h2>
+          <button type="button" onClick={() => spoilMain.setHide(!spoilMain.hide)} aria-pressed={spoilMain.hide} title="Cache les scores des matchs terminés jusqu'à ce que tu les révèles"
+            style={{ fontFamily: UI_FONT, fontWeight: 700, fontSize: 12, padding: '6px 12px', borderRadius: 999, cursor: 'pointer', color: spoilMain.hide ? NAVY : '#fff', background: spoilMain.hide ? '#fff' : 'transparent', border: '1px solid rgba(255,255,255,.55)' }}>
+            {spoilMain.hide ? '🙈 Scores masqués' : '👁 Masquer les scores'}
+          </button>
+          {spoilMain.hide && (
+            <button type="button" onClick={() => spoilMain.revealAll(visible.filter(m => m.status === 'final').map(m => m.id))}
+              style={{ fontFamily: UI_FONT, fontWeight: 700, fontSize: 12, padding: '6px 12px', borderRadius: 999, cursor: 'pointer', color: '#8db6ff', background: 'transparent', border: '1px solid rgba(141,182,255,.55)' }}>
+              Tout révéler ce jour
+            </button>
+          )}
+        </div>
 
-        {wins && wins.total > 0 && (
+        {!spoilMain.hide && wins && wins.total > 0 && (
           <p style={{ fontFamily: UI_FONT, fontWeight: 800, fontSize: 14, color: GREEN, margin: '-8px 0 16px', lineHeight: 1.5 }}>
             🎯 {wins.week} bon{wins.week > 1 ? 's' : ''} prono{wins.week > 1 ? 's' : ''} cette semaine · {wins.total} au total (+{wins.xp} XP)
             {xpGain && <span style={{ color: GOLD }}> — +{xpGain.xp} XP tout juste versés !</span>}
@@ -657,6 +701,7 @@ export default function PronosHomePreview() {
           if (wonXp > won) won = wonXp
           const xpDay = wins?.xpByDay[activeDay] ?? 0
           if (won + lost + pending === 0) return null
+          if (spoilMain.hide) return null   // le bilan dévoilerait les résultats
           const chip = (bg: string, color: string): React.CSSProperties => ({
             fontFamily: UI_FONT, fontWeight: 800, fontSize: 13, padding: '6px 12px', borderRadius: 999, background: bg, color,
           })

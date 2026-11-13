@@ -4,6 +4,14 @@ export type Entry = { date: string; titre: string; points: string[] }
 
 export const ENTRIES: Entry[] = [
   {
+    date: '26 novembre 2026', titre: 'La carte suit l’inclinaison de ton téléphone',
+    points: [
+      'Viewer 3D sur téléphone : la carte s’incline légèrement (15° au maximum) quand tu bouges ton téléphone, avec un reflet doux par-dessus. La photo n’est jamais modifiée. Sur iPhone, le site demande l’autorisation du capteur de mouvement au premier toucher.',
+      'Pronos : un bouton « Masquer les scores » cache les scores des matchs terminés (et les bilans). Touche « Voir le score » pour révéler un match, ou « Tout révéler ce jour ». Pratique si tu regardes les matchs en différé.',
+      'Setlists : tu vois maintenant l’état de tes demandes (demandée, en cours, ajoutée) et celles des autres membres, avec un bouton « Moi aussi » pour dire que tu veux la même. Tu reçois une notification quand ta setlist est ajoutée.',
+    ],
+  },
+  {
     date: '25 novembre 2026', titre: 'Le Défilé, notifications regroupées, revue de lot',
     points: [
       'Nouveau « Défilé » (sur téléphone, à la place du mode Story) : tes cartes défilent en perspective, celle du centre de face et les autres inclinées de chaque côté. Fais-les glisser du doigt, touche celle du centre pour l’ouvrir.',

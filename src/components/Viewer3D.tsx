@@ -552,6 +552,10 @@ export default function Viewer3D({ popup, accent, onClose, onNext, onPrev, getTa
   const idleWobbleRaf = useRef<number>(0)
   const idleWobbleTimer = useRef<ReturnType<typeof setTimeout> | null>(null)
   const idleWobbleActive = useRef(false)
+  // 807 · inclinaison au gyroscope : décalage ajouté à la rotation (jamais à la place), et reflet doux par-dessus le recto
+  const gyroOff = useRef({ x: 0, y: 0 })
+  const gyroActive = useRef(false)
+  const glareRef = useRef<HTMLDivElement>(null)
   const [showVideo, setShowVideo] = useState(false)
   const [showPhoto, setShowPhoto] = useState(false)
   const [showExportChoice, setShowExportChoice] = useState(false)
@@ -742,7 +746,7 @@ export default function Viewer3D({ popup, accent, onClose, onNext, onPrev, getTa
   const applyTransform = useCallback(() => {
     if (cardRef.current) {
       const flip = flip90Ref.current ? ' rotateZ(90deg)' : ''
-      cardRef.current.style.transform = `rotateX(${rotX.current}deg) rotateY(${rotY.current}deg)${flip}`
+      cardRef.current.style.transform = `rotateX(${rotX.current + gyroOff.current.x}deg) rotateY(${rotY.current + gyroOff.current.y}deg)${flip}`
     }
     if (wrapRef.current) {
       wrapRef.current.style.transform = `scale(${scale.current})`
@@ -798,7 +802,7 @@ export default function Viewer3D({ popup, accent, onClose, onNext, onPrev, getTa
   const startIdleWobble = useCallback((delay: number) => {
     if (idleWobbleTimer.current) clearTimeout(idleWobbleTimer.current)
     idleWobbleTimer.current = setTimeout(() => {
-      if (isDragging.current) return
+      if (isDragging.current || gyroActive.current) return   // avec le gyroscope, c'est le téléphone qui fait bouger la carte
       idleWobbleActive.current = true
       const baseY = rotY.current
       const baseX = rotX.current
@@ -814,6 +818,57 @@ export default function Viewer3D({ popup, accent, onClose, onNext, onPrev, getTa
       idleWobbleRaf.current = requestAnimationFrame(loop)
     }, delay)
   }, [applyTransform])
+
+  // 807 · Sur téléphone, la carte suit l'inclinaison de l'appareil : 15° au maximum, avec un reflet doux (50 %) par-dessus.
+  // La photo n'est jamais modifiée : le reflet est une couche à part. Jamais sur ordinateur ni si « réduire les animations » est demandé.
+  useEffect(() => {
+    if (!popup?.f || typeof window === 'undefined') return
+    if (!window.matchMedia('(pointer: coarse)').matches || window.matchMedia('(prefers-reduced-motion: reduce)').matches) return
+    const DOE = (window as unknown as { DeviceOrientationEvent?: { requestPermission?: () => Promise<string> } }).DeviceOrientationEvent
+    if (!DOE) return
+    const AMP = 15, GLOSS = 0.5, RANGE = 25   // degrés d'inclinaison max, intensité du reflet, mouvement du poignet qui donne l'effet maximal
+    let base: { b: number; g: number } | null = null
+    const target = { x: 0, y: 0 }, cur = { x: 0, y: 0 }
+    let raf = 0, listening = false
+    const clamp = (v: number) => Math.max(-1, Math.min(1, v))
+    const loop = () => {
+      cur.x += (target.x - cur.x) * 0.12
+      cur.y += (target.y - cur.y) * 0.12
+      gyroOff.current = { x: -cur.y * AMP, y: cur.x * AMP }
+      applyTransform()
+      const g = glareRef.current
+      if (g) {
+        g.style.opacity = String(GLOSS)
+        g.style.background = 'radial-gradient(circle at ' + (50 + cur.x * 45) + '% ' + (50 + cur.y * 45) + '%, rgba(255,255,255,.85) 0%, rgba(255,255,255,.25) 28%, rgba(255,255,255,0) 58%)'
+      }
+      raf = requestAnimationFrame(loop)
+    }
+    const onOrient = (e: DeviceOrientationEvent) => {
+      if (e.beta == null || e.gamma == null) return
+      if (!base) base = { b: e.beta, g: e.gamma }   // la position où je tiens le téléphone à l'ouverture devient « à plat »
+      target.x = clamp((e.gamma - base.g) / RANGE)
+      target.y = clamp((e.beta - base.b) / RANGE)
+      if (!gyroActive.current) { gyroActive.current = true; stopIdleWobble(); raf = requestAnimationFrame(loop) }
+    }
+    const listen = () => { if (listening) return; listening = true; window.addEventListener('deviceorientation', onOrient) }
+    let ask: (() => void) | null = null
+    if (typeof DOE.requestPermission === 'function') {
+      // iPhone : l'autorisation se demande après un geste de l'utilisateur
+      ask = () => {
+        document.removeEventListener('pointerup', ask as () => void)
+        DOE.requestPermission!().then(r => { if (r === 'granted') listen() }).catch(() => {})
+      }
+      document.addEventListener('pointerup', ask)
+    } else listen()
+    return () => {
+      if (ask) document.removeEventListener('pointerup', ask)
+      window.removeEventListener('deviceorientation', onOrient)
+      cancelAnimationFrame(raf)
+      gyroActive.current = false
+      gyroOff.current = { x: 0, y: 0 }
+      if (glareRef.current) glareRef.current.style.opacity = '0'
+    }
+  }, [popup?.f, applyTransform, stopIdleWobble]) // eslint-disable-line react-hooks/exhaustive-deps
 
   const pauseSlbAnim = useCallback(() => {
     idleRef.current?.style.setProperty('animation-play-state', 'paused')
@@ -1589,6 +1644,7 @@ export default function Viewer3D({ popup, accent, onClose, onNext, onPrev, getTa
                     qui reste lisible a n'importe quel angle de rotation. */}
                 <div style={{ position: 'absolute', inset: 0, backfaceVisibility: 'hidden', WebkitBackfaceVisibility: 'hidden', overflow: 'hidden', transform: half ? `translateZ(${half}px)` : undefined }}>
                   <img src={popup.fHd || popup.f} onError={e => { const i = e.currentTarget; if (!i.dataset.fb) { i.dataset.fb = "1"; i.src = popup.f } }} draggable={false} style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block', ...(popup.fHd ? { backgroundImage: `url(${JSON.stringify(popup.f)})`, backgroundSize: 'cover', backgroundPosition: 'center' } : {}) }} alt={popup.n} />
+                  <div ref={glareRef} aria-hidden style={{ position: 'absolute', inset: 0, mixBlendMode: 'soft-light', pointerEvents: 'none', opacity: 0 }} />
                 </div>
                 <div style={{ position: 'absolute', inset: 0, backfaceVisibility: 'hidden', WebkitBackfaceVisibility: 'hidden', transform: `rotateY(180deg)${half ? ` translateZ(${half}px)` : ''}`, overflow: 'hidden' }}>
                   {popup.b !== popup.f

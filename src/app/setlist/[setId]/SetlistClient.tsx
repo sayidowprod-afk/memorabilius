@@ -1,5 +1,6 @@
 'use client'
 import { useEffect, useState, useRef } from 'react'
+import SetlistReportDialog from '@/components/SetlistReportDialog'
 import { createPortal } from 'react-dom'
 import Link from 'next/link'
 import { supabase } from '@/lib/supabase'
@@ -74,6 +75,7 @@ export default function SetlistClient({ setId }: { setId: string }) {
   }, [])
   const playerToImgRef = useRef<Map<string, string>>(new Map())
   const matchedCardImagesRef = useRef<Map<number, string>>(new Map())
+  const [reportEntry, setReportEntry] = useState<{ entry: Entry; variation: string } | null>(null)   // 858 : ligne que je signale
   // completions de l'utilisateur pour ce set : les variations ouvertes plus tard (autres que Base) doivent les retrouver
   const completedIdsRef = useRef<Set<number>>(new Set())
   const completionDetsRef = useRef<Map<number, { id: string; manually_checked: boolean; matched_card_key?: string | null }>>(new Map())
@@ -343,6 +345,14 @@ export default function SetlistClient({ setId }: { setId: string }) {
       })
 
     const ownedCount = entries.filter(e => e.owned).length
+
+    // 859 : une ligne sans image dont j'ai relié ma carte prend ma photo pour tout le monde (le serveur ne lit que mes cartes, jamais les privées)
+    if (matchedCardImagesRef.current.size > 0 && entries.some(e => e.owned && !e.image_url && matchedCardImagesRef.current.has(e.id))) {
+      supabase.auth.getSession().then(({ data: { session } }) => {
+        if (!session?.access_token) return
+        fetch('/api/setlist-images/contribute', { method: 'POST', headers: { 'Content-Type': 'application/json', Authorization: 'Bearer ' + session.access_token }, body: JSON.stringify({ setId: parseInt(setId) }) }).catch(() => {})
+      })
+    }
 
     // Charger les images communauté via API JS uniquement pour les entrées sans image côté site
     const entryIds = finalData.filter((e: any) => !e.image_url).map((e: any) => e.id)
@@ -719,6 +729,8 @@ export default function SetlistClient({ setId }: { setId: string }) {
                             <Link href={`/joueur/${playerSlug(entry.player_name)}`} prefetch={false} style={{ fontSize: 14, fontWeight: entry.owned ? 700 : 400, color: entry.owned ? (dark ? '#eee' : '#111') : (dark ? '#999' : '#444'), overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap', textDecoration: 'none' }} onClick={e => e.stopPropagation()}>{entry.player_name}</Link>
                             {entry.is_rc && <TagIcon kind="rc" h={20} />}
                             {entry.manually_checked && <span style={{ fontSize: 10, color: '#2ecc71', fontWeight: 700, flexShrink: 0 }}>✓</span>}
+                            <button type="button" onClick={ev => { ev.stopPropagation(); setReportEntry({ entry, variation: variation.name }) }} title="Signaler un problème sur cette carte" aria-label="Signaler un problème sur cette carte"
+                              style={{ background: 'none', border: 0, padding: '2px 4px', cursor: 'pointer', fontSize: 13, opacity: .35, flexShrink: 0, color: 'inherit' }}>⚑</button>
                           </div>
                           {!isMobile && <span style={{ fontSize: 12, color: '#999', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>{entry.team || '—'}</span>}
                           {userId ? (
@@ -749,6 +761,7 @@ export default function SetlistClient({ setId }: { setId: string }) {
         })}
       </div>
 
+      {reportEntry && set && <SetlistReportDialog setId={setId} setName={set.name} variation={reportEntry.variation} entry={reportEntry.entry} onClose={() => setReportEntry(null)} />}
       <div style={{ textAlign: 'center', padding: '16px 0', fontSize: 12, color: '#aaa' }}>
         {(rootTotal ?? set.total_cards).toLocaleString()} cartes · {variations.length} variations
       </div>
