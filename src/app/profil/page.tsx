@@ -63,14 +63,17 @@ export default function Profil() {
     // ne resout jamais.
     (async () => {
       let uid: string | null = null
+      let xpPromise: Promise<number | null> | null = null
       try {
         await withTimeout((async () => {
           const { data: { session } } = await supabase.auth.getSession()
           if (!session) { router.replace('/connexion'); return }
           uid = session.user.id
           setUserId(uid)
-          // Mettre à jour last_seen
-          await supabase.from('profiles').update({ last_seen: new Date().toISOString() }).eq('id', uid)
+          // last_seen : écriture sans attente ; profil, identités liées et XP partent en même temps (avant : 4 allers-retours l'un après l'autre)
+          void supabase.from('profiles').update({ last_seen: new Date().toISOString() }).eq('id', uid).then(() => {}, () => {})
+          xpPromise = Promise.resolve(supabase.rpc('get_user_xp_total', { p_user_id: uid })).then(r => r.data as number | null, () => null)
+          const identPromise = supabase.auth.getUserIdentities()
           const { data: p } = await supabase.from('profiles').select('id,display_name,bio,lien_csv,couleur_bordure,instagram,twitter,discord,favorite_teams,wrap_opt_out,avatar_url').eq('id', uid).single()
           if (p) {
             setForm({ display_name: p.display_name || '', bio: p.bio || '', lien_csv: p.lien_csv || '', couleur_bordure: p.couleur_bordure || '#003DA6', instagram: p.instagram || '', twitter: p.twitter || '', discord: p.discord || '' })
@@ -84,7 +87,7 @@ export default function Profil() {
               favoriteTeams: Array.isArray(p.favorite_teams) ? p.favorite_teams : [], wrapOptOut: !!p.wrap_opt_out,
             })
           }
-          const { data: identData } = await supabase.auth.getUserIdentities()
+          const { data: identData } = await identPromise
           setLinkedProviders((identData?.identities ?? []).map(i => i.provider))
         })(), 8000, undefined)
       } finally {
@@ -92,7 +95,7 @@ export default function Profil() {
       }
       if (!uid) return
       try {
-        const { data: xp } = await supabase.rpc('get_user_xp_total', { p_user_id: uid })
+        const xp = await xpPromise
         setAvatarRingPct(levelFromXP(xp ?? 0).pct)
       } catch {}
     })()
