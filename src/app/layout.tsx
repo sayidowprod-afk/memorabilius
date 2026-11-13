@@ -102,6 +102,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         {/* Filet de secours "page blanche/bloquée" (voir HangWatchdog.tsx) : tourne
             avant même l'hydratation React, donc capte aussi un blocage qui empêche
             React de démarrer du tout, pas seulement un hang après coup. */}
+        {/* Membre déjà connecté (session mémorisée) : repéré AVANT le premier affichage pour que l'accueil ne montre pas le grand bandeau
+            des visiteurs puis ne le remplace par le tableau de bord (la page « sautait »). Voir NativeHomeGate + .home-hero-gate dans da.css. */}
+        {supabaseOrigin && <script dangerouslySetInnerHTML={{ __html: `try{var r=new URL(${JSON.stringify(supabaseOrigin)}).hostname.split('.')[0],t=JSON.parse(localStorage.getItem('sb-'+r+'-auth-token')||'null');if(t&&t.access_token)document.documentElement.setAttribute('data-member','1')}catch(e){}` }} />}
         <script dangerouslySetInnerHTML={{ __html: `setTimeout(function(){try{if(!window.__memAppMounted){var k='hang-reload-at';var last=Number(sessionStorage.getItem(k)||0);if(Date.now()-last>30000){sessionStorage.setItem(k,String(Date.now()));location.reload()}}}catch(e){}},9000)` }} />
         <NativeProvider>
         <AuthProvider>

@@ -2939,9 +2939,10 @@ export default function GalerieClient({ userId, initialCardUrl, initialCards, in
                 ))}
               </div>
 
-              {percentile != null && (
-                <p style={{ fontSize: 11, fontWeight: 700, color: accent, margin: 0, textAlign: 'right' }}>
-                  🏆 {t('gallery_percentile').replace('{n}', String(percentile))}
+              {/* ligne réservée dès le départ : le classement arrive après 2 requêtes et poussait sinon les boutons et toute la grille vers le bas */}
+              {profile?.stats_total != null && (
+                <p style={{ fontSize: 11, fontWeight: 700, color: accent, margin: 0, textAlign: 'right', minHeight: 16, lineHeight: '16px' }}>
+                  {percentile != null && <>🏆 {t('gallery_percentile').replace('{n}', String(percentile))}</>}
                 </p>
               )}
 

@@ -1742,3 +1742,9 @@ body:has([role="dialog"][aria-modal="true"]:not([data-keep-nav])) .mobile-bottom
 @media (max-width: 640px) { .grail-museum .grail-slot .grail-gilded-col { width: min(58vw, 210px); } }
 .grail-gilded-win > a, .grail-gilded-win > div { display: block; width: 100%; height: 100%; }
 .grail-gilded-win img { object-fit: contain !important; width: 100%; height: 100%; }
+
+/* Accueil : un membre connu d'avance (data-member, posé avant l'affichage) ne voit pas le bandeau des visiteurs ;
+   une zone d'un écran garde le pied de page hors de vue le temps que son tableau de bord arrive. */
+.home-member-ph { display: none; }
+html[data-member="1"] .home-hero-gate { display: none; }
+html[data-member="1"] .home-member-ph { display: block; min-height: 100svh; }

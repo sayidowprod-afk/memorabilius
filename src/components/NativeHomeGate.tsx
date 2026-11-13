@@ -1,5 +1,5 @@
 'use client'
-import { ReactNode } from 'react'
+import { ReactNode, useEffect } from 'react'
 import { useAuth } from '@/lib/AuthContext'
 import { useIsAppUI } from '@/lib/useIsNative'
 import NativeHomeDashboard from '@/components/NativeHomeDashboard'
@@ -18,6 +18,9 @@ export default function NativeHomeGate({ hero, siteStats, cardOfTheDay }: { hero
   const { user, loading } = useAuth()
   const isApp = useIsAppUI()
 
+  // Session mémorisée introuvable ou expirée : ce n'était pas un membre, on rend le bandeau aux visiteurs
+  useEffect(() => { if (!loading && !user) document.documentElement.removeAttribute('data-member') }, [loading, user])
+
   if (!loading && user) return <NativeHomeDashboard siteStats={siteStats} cardOfTheDay={cardOfTheDay} />
 
   // Sur l'app, la résolution de l'auth au cold start peut prendre plusieurs
@@ -34,5 +37,7 @@ export default function NativeHomeGate({ hero, siteStats, cardOfTheDay }: { hero
     )
   }
 
-  return <>{hero}{cardOfTheDay}</>
+  // Visiteur : bandeau habituel. Membre connu d'avance (<html data-member>, posé avant l'affichage) : le bandeau est caché et
+  // remplacé par une zone de la hauteur d'un écran, le temps que le tableau de bord arrive (sans ça, tout le bas de page sautait).
+  return <><div className="home-hero-gate">{hero}{cardOfTheDay}</div><div className="home-member-ph" aria-hidden="true" /></>
 }
