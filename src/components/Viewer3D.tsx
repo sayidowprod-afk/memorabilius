@@ -144,7 +144,6 @@ export default function Viewer3D({ popup, accent, onClose, onNext, onPrev, getTa
   // 852 · section « Parallèles » : visible pour tous les membres connectés (volet fermé de base)
   const parallelsOn = true
   const [nested, setNested] = useState<{ card: Card; ownerId: string; mine: boolean } | null>(null)   // carte ouverte depuis une parallèle : le viewer réel, par-dessus
-  useEffect(() => { try { setParallelsOn(localStorage.getItem('viewer-paralleles') === '1') } catch { /* stockage indisponible : désactivé */ } }, [])
   // Gris un peu plus marque qu'avant (#f8f8f8, quasi blanc) -- la carte et son
   // ombre au sol se detachaient mal dessus.
   const zoneBg = dark ? '#05080f' : '#e9e9e9'
