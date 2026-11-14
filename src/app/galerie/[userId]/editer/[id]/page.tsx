@@ -13,6 +13,7 @@ import { useRouter, useSearchParams } from 'next/navigation'
 import Link from 'next/link'
 import { supabase } from '@/lib/supabase'
 import { checkUser } from '@/lib/currentUser'
+import { resolveRouteUserId } from '@/lib/routeUserId'
 import { galleryMemClear } from '@/lib/galleryMem'
 import { makeThumb } from '@/lib/thumbnail'
 import { useLang } from '@/lib/LangContext'
@@ -588,7 +589,7 @@ export default function EditerCarte({ params }: { params: Promise<{ userId: stri
 
     const { user, unreachable } = await checkUser()
     if (!user && unreachable) { toast.error('Connexion instable : les modifications n’ont pas été enregistrées, réessaie dans un instant.'); setSaving(false); return }
-    if (!user || user.id !== userId) { router.push('/connexion'); return }
+    if (!user || user.id !== (await resolveRouteUserId(userId))) { router.push('/connexion'); return }
 
     const patchRow: Record<string, unknown> = {
       nom: form.nom, equipe: form.equipe || null, annee: form.annee || null,

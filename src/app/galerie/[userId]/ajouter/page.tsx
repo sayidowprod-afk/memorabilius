@@ -10,6 +10,7 @@ import { useRouter } from 'next/navigation'
 import Link from 'next/link'
 import { supabase } from '@/lib/supabase'
 import { checkUser } from '@/lib/currentUser'
+import { resolveRouteUserId, useRouteUserId } from '@/lib/routeUserId'
 import { galleryMemClear } from '@/lib/galleryMem'
 import { makeThumb } from '@/lib/thumbnail'
 import TcgFields, { TcgKindPicker } from '@/components/TcgFields'
@@ -285,6 +286,7 @@ function ImageUploader({ side, label, preview, uploading, aspect, lang, onClear,
 
 export default function AjouterCarte({ params }: { params: Promise<{ userId: string }> }) {
   const { userId } = use(params)
+  const { uid: ownerId } = useRouteUserId(userId) // identifiant réel (l'adresse peut contenir le pseudo lisible)
   const router = useRouter()
   const { lang, t } = useLang()
   const { dark } = useTheme()
@@ -293,13 +295,13 @@ export default function AjouterCarte({ params }: { params: Promise<{ userId: str
   // Ce que collectionne le membre : 'sport' (par défaut, rien ne change), 'tcg' ou 'both' (alors le choix du type de carte est proposé)
   const [collectionFocus, setCollectionFocus] = useState<'sport' | 'tcg' | 'both'>('sport')
   useEffect(() => {
-    supabase.from('profiles').select('collection_focus').eq('id', userId).single().then(({ data, error }) => {
+    supabase.from('profiles').select('collection_focus').eq('id', ownerId).single().then(({ data, error }) => {
       const f = error ? null : (data as { collection_focus?: string } | null)?.collection_focus
       if (f === 'tcg' || f === 'both') setCollectionFocus(f)
       if (f === 'tcg') setForm(x => (x.jeu ? x : { ...x, jeu: 'pokemon', marque: x.marque || 'Pokémon', item_type: 'card' }))
     })
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [userId])
+  }, [ownerId])
   const [designation, setDesignation] = useState('')
   const [designationDone, setDesignationDone] = useState(false)
   const [uploadingRecto, setUploadingRecto] = useState(false)
@@ -1007,7 +1009,7 @@ export default function AjouterCarte({ params }: { params: Promise<{ userId: str
 
     const { user, unreachable } = await checkUser()
     if (!user && unreachable) { toast.error('Connexion instable : la carte n’a pas été enregistrée, réessaie dans un instant.'); setSaving(false); return }
-    if (!user || user.id !== userId) { router.push('/connexion'); return }
+    if (!user || user.id !== (await resolveRouteUserId(userId))) { router.push('/connexion'); return }
 
     // Doublon = nom + année + marque + collection + variation + numérotation + RC/auto/patch
     // identiques (tout doit matcher, ex: "Les Bleus Blue 11/25" ≠ "Les Bleus Red 11/25" même
@@ -1337,7 +1339,7 @@ export default function AjouterCarte({ params }: { params: Promise<{ userId: str
             <label style={{ fontSize: 12, fontWeight: 700, textTransform: 'uppercase', color: '#888', display: 'block', marginBottom: 6 }}>
               {t('addcard_add_to_collection_placeholder')}
             </label>
-            <CollectionTagSelect userId={userId} value={form.collection_tag} onChange={tag => setForm({ ...form, collection_tag: tag })} />
+            <CollectionTagSelect userId={ownerId} value={form.collection_tag} onChange={tag => setForm({ ...form, collection_tag: tag })} />
           </div>
 
           {/* Disponibilité vente / trade */}

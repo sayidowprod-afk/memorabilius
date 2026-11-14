@@ -8,6 +8,7 @@ import { useRouter } from 'next/navigation'
 import Link from 'next/link'
 import { supabase } from '@/lib/supabase'
 import { checkUser } from '@/lib/currentUser'
+import { resolveRouteUserId, useRouteUserId } from '@/lib/routeUserId'
 import { galleryMemClear } from '@/lib/galleryMem'
 import { toast } from '@/lib/toast'
 import { useIsAppUI } from '@/lib/useIsNative'
@@ -150,6 +151,7 @@ async function analyse(full: HTMLCanvasElement, rows: number, cols: number, labe
 
 export default function AjoutLotPage({ params }: { params: Promise<{ userId: string }> }) {
   const { userId } = use(params)
+  const { uid: ownerId, resolved: ownerResolved } = useRouteUserId(userId) // identifiant réel (l'adresse peut contenir le pseudo lisible)
   const router = useRouter()
   const isAppUI = useIsAppUI()
   const inputRef = useRef<HTMLInputElement>(null)
@@ -168,19 +170,20 @@ export default function AjoutLotPage({ params }: { params: Promise<{ userId: str
   const [allTags, setAllTags] = useState<string[]>([])
   useEffect(() => {
     let off = false
+    if (!ownerResolved) return
     ;(async () => {
       const [a, b, c, d] = await Promise.all([
-        supabase.from('cartes_manuelles').select('collection_tag').eq('user_id', userId).not('collection_tag', 'is', null),
-        supabase.from('carte_tags').select('collection_tag').eq('user_id', userId),
-        supabase.from('card_collections').select('collection').eq('user_id', userId),
-        supabase.from('collection_tab_settings').select('tag').eq('user_id', userId),
+        supabase.from('cartes_manuelles').select('collection_tag').eq('user_id', ownerId).not('collection_tag', 'is', null),
+        supabase.from('carte_tags').select('collection_tag').eq('user_id', ownerId),
+        supabase.from('card_collections').select('collection').eq('user_id', ownerId),
+        supabase.from('collection_tab_settings').select('tag').eq('user_id', ownerId),
       ])
       /* eslint-disable @typescript-eslint/no-explicit-any */
       const all = [...(a.data || []).map((r: any) => r.collection_tag), ...(b.data || []).map((r: any) => r.collection_tag), ...(c.data || []).map((r: any) => r.collection), ...(d.data || []).map((r: any) => r.tag)].filter(Boolean)
       if (!off) setAllTags([...new Set(all as string[])].sort())
     })().catch(() => {})
     return () => { off = true }
-  }, [userId])
+  }, [ownerId, ownerResolved])
   const [running, setRunning] = useState(false)
   const [status, setStatus] = useState<Record<number, St>>({})
   const cancelRef = useRef(false)
@@ -198,7 +201,7 @@ export default function AjoutLotPage({ params }: { params: Promise<{ userId: str
   const statusRef = useRef<Record<number, St>>({})
 
   useEffect(() => {
-    checkUser().then(({ user, unreachable }) => { if (user ? user.id !== userId : !unreachable) router.replace('/connexion') })
+    checkUser().then(async ({ user, unreachable }) => { if (user ? user.id !== (await resolveRouteUserId(userId)) : !unreachable) router.replace('/connexion') })
   }, [userId, router])
 
   // libère les photos gardées en mémoire quand on quitte la page
@@ -486,7 +489,7 @@ export default function AjoutLotPage({ params }: { params: Promise<{ userId: str
   const run = async (only?: number) => {
     if (running || !pendingN) return
     const { data: { session } } = await supabase.auth.getSession()
-    if (!session || session.user.id !== userId) { toast.error('Ta session a expiré : reconnecte-toi puis reviens ici (tes photos de cette page seront à rechoisir).'); router.replace('/connexion'); return }
+    if (!session || session.user.id !== (await resolveRouteUserId(userId))) { toast.error('Ta session a expiré : reconnecte-toi puis reviens ici (tes photos de cette page seront à rechoisir).'); router.replace('/connexion'); return }
     cancelRef.current = false; setRunning(true)
     const auth = { 'Content-Type': 'application/json', Authorization: `Bearer ${session.access_token}` }
     let aiOn = useAI
