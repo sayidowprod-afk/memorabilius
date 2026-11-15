@@ -4,6 +4,13 @@ export type Entry = { date: string; titre: string; points: string[] }
 
 export const ENTRIES: Entry[] = [
   {
+    date: '30 novembre 2026', titre: 'Cartes vendues : affichage corrigé',
+    points: [
+      'Galerie : marquer une carte comme vendue, réservée ou à vendre ne touche plus les autres cartes qui ont la même photo. Elles n’affichent plus « VENDU » à tort.',
+      'Échanges : les cartes déjà vendues ne sont plus proposées aux autres membres (annonces, correspondances de wishlist, Swipe).',
+    ],
+  },
+  {
     date: '29 novembre 2026', titre: 'Mon année en cartes en vidéo, alertes eBay, avis d’échange en vitrine',
     points: [
       'Galerie : en décembre seulement, comme un bilan annuel, un bandeau en haut du site, une bannière dans ta galerie et le menu « 📅 Mon année en cartes » ouvrent une vidéo verticale de 16 secondes (et une image) avec tes chiffres de l’année : cartes ajoutées, mois le plus actif, atouts RC / auto / patch, marque n° 1 et tes trois plus belles cartes (celles de ton Grail Wall d’abord, puis les plus rares, jamais selon le prix). Tout est calculé sur ton appareil.',

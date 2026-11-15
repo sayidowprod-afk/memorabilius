@@ -31,7 +31,7 @@ export async function GET(req: NextRequest) {
   let exhausted = false
   // on lit par tours (les cartes déjà vues sont retirées ensuite) jusqu'à avoir de quoi remplir un lot, avec un plafond pour ne pas boucler
   for (let round = 0; round < 6 && out.length < WANT && !exhausted; round++) {
-    let q = supabase.from('cartes_manuelles').select(COLS).eq('disponible_vente', true).neq('user_id', user.id).not('image_recto', 'is', null)
+    let q = supabase.from('cartes_manuelles').select(COLS).eq('disponible_vente', true).not('vendue', 'is', true).neq('user_id', user.id).not('image_recto', 'is', null)
     if (team) q = q.ilike('equipe', `%${team}%`)
     if (player) q = q.ilike('nom', `%${player}%`)
     if (collection) q = q.ilike('collection', `%${collection}%`)

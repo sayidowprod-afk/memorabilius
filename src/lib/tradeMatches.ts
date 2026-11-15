@@ -36,7 +36,7 @@ export async function computeMatches(supabase: SupabaseClient, userId: string) {
   const demo = await demoUserIds(supabase) // le compte démo (salons) reste invisible des membres
   const [{ data: myWishes }, { data: myCards }] = await Promise.all([
     supabase.from('wishlist').select('*').eq('user_id', userId).limit(60),
-    supabase.from('cartes_manuelles').select(CARD_COLS).eq('user_id', userId).eq('disponible_vente', true).limit(300),
+    supabase.from('cartes_manuelles').select(CARD_COLS).eq('user_id', userId).eq('disponible_vente', true).not('vendue', 'is', true).limit(300),
   ])
 
   // Cartes privees (meme filtre que /api/recherche) : ne jamais montrer a un
@@ -59,12 +59,12 @@ export async function computeMatches(supabase: SupabaseClient, userId: string) {
       const orFilter = namedWishes.map(w => `nom.ilike.${escapeLike(w.nom)}`).join(',')
       const { data } = await supabase
         .from('cartes_manuelles').select(CARD_COLS)
-        .neq('user_id', userId).eq('disponible_vente', true).or(orFilter).limit(600)
+        .neq('user_id', userId).eq('disponible_vente', true).not('vendue', 'is', true).or(orFilter).limit(600)
       found.push(...(data || []))
     }
     // wishlists « équipe seule » : cartes de cette équipe (et AUTO / RC / PATCH si demandés), à vendre ou échanger
     for (const tw of teamWishes.slice(0, 10)) {
-      let q = supabase.from('cartes_manuelles').select(CARD_COLS).neq('user_id', userId).eq('disponible_vente', true).ilike('equipe', `%${escapeLike(tw.equipe)}%`)
+      let q = supabase.from('cartes_manuelles').select(CARD_COLS).neq('user_id', userId).eq('disponible_vente', true).not('vendue', 'is', true).ilike('equipe', `%${escapeLike(tw.equipe)}%`)
       if (tw.auto) q = q.eq('auto', true)
       if (tw.rc) q = q.eq('rc', true)
       if (tw.patch) q = q.eq('patch', true)

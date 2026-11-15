@@ -262,7 +262,7 @@ export default function Trades() {
       applyForumFilters(tb.order('created_at', { ascending: false }), f, 'trades').range(tFrom, tFrom + FORUM_PAGE_SIZE - 1),
     )
     const cartesQ = noCartes ? Promise.resolve({ data: [] as any[] }) : Promise.resolve(applyForumFilters(
-      supabase.from('cartes_manuelles').select(PROFILE_JOIN).eq('disponible_vente', true).order('created_at', { ascending: false }), f, 'cartes',
+      supabase.from('cartes_manuelles').select(PROFILE_JOIN).eq('disponible_vente', true).not('vendue', 'is', true).order('created_at', { ascending: false }), f, 'cartes',
     ).range(vFrom, vFrom + FORUM_PAGE_SIZE - 1))
     return Promise.all([tradesQ, cartesQ])
   }
@@ -506,7 +506,7 @@ export default function Trades() {
     ;(async () => {
       const [{ data: td }, { data: cd }] = await Promise.all([
         missingTrade.length ? supabase.from('trades').select('*, profiles(id, display_name, avatar_url, instagram, twitter, discord)').eq('statut', 'actif').in('id', missingTrade) : Promise.resolve({ data: [] as any[] }),
-        missingCarte.length ? supabase.from('cartes_manuelles').select('*, profiles(id, display_name, avatar_url, instagram, twitter, discord)').eq('disponible_vente', true).in('id', missingCarte) : Promise.resolve({ data: [] as any[] }),
+        missingCarte.length ? supabase.from('cartes_manuelles').select('*, profiles(id, display_name, avatar_url, instagram, twitter, discord)').eq('disponible_vente', true).not('vendue', 'is', true).in('id', missingCarte) : Promise.resolve({ data: [] as any[] }),
       ])
       if (cancelled) return
       const extra = [...(td || []), ...(cd || []).map(mapCarteToOffer)]

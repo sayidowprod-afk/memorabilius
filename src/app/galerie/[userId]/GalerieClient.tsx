@@ -620,6 +620,9 @@ function HistLogoImg({ base, src, name, size = 17 }: { base?: string; src?: stri
   )
 }
 
+// Même carte : par identifiant quand il existe (deux cartes peuvent partager la même photo), sinon par image
+const sameCard = (a: { id_manuelle?: string; f: string }, b: { id_manuelle?: string; f: string }) => (a.id_manuelle && b.id_manuelle) ? a.id_manuelle === b.id_manuelle : a.f === b.f
+
 export default function GalerieClient({ userId, initialCardUrl, initialCards, initialGrailCards }: {
   userId: string; initialCardUrl?: string; initialCards?: PreviewCard[]; initialGrailCards?: PreviewCard[]
 }) {
@@ -4385,21 +4388,21 @@ export default function GalerieClient({ userId, initialCardUrl, initialCards, in
           onProposeTrade={!isOwner && currentUser && popup.id_manuelle ? () => setTradeCard(popup) : undefined}
           onPriceChange={(card, prix_vente) => {
             // un prix = la carte est aussi marquée disponible (même effet que le bouton Vente/Échange)
-            const upd = (c: Card): Card => c.f === card.f ? { ...c, prix_vente, ...(prix_vente != null ? { disponible_vente: true } : {}) } : c
+            const upd = (c: Card): Card => sameCard(c, card) ? { ...c, prix_vente, ...(prix_vente != null ? { disponible_vente: true } : {}) } : c
             setCards(prev => prev.map(upd))
             updatePopup(prev => prev ? upd(prev) : prev)
           }}
           onReservedChange={(card, reservee) => {
-            setCards(prev => prev.map(c => c.f === card.f ? { ...c, reservee } : c))
-            updatePopup(prev => prev && prev.f === card.f ? { ...prev, reservee } : prev)
+            setCards(prev => prev.map(c => sameCard(c, card) ? { ...c, reservee } : c))
+            updatePopup(prev => prev && sameCard(prev, card) ? { ...prev, reservee } : prev)
           }}
           onVendueChange={(card, vendue) => {
-            setCards(prev => prev.map(c => c.f === card.f ? { ...c, vendue } : c))
-            updatePopup(prev => prev && prev.f === card.f ? { ...prev, vendue } : prev)
+            setCards(prev => prev.map(c => sameCard(c, card) ? { ...c, vendue } : c))
+            updatePopup(prev => prev && sameCard(prev, card) ? { ...prev, vendue } : prev)
           }}
           onDisponibleVenteChange={(card, disponible_vente) => {
             // retirer Vente/Trade retire aussi le prix (l'étiquette n'a plus de sens)
-            const upd = (c: Card): Card => c.f === card.f ? { ...c, disponible_vente, ...(disponible_vente ? {} : { prix_vente: null }) } : c
+            const upd = (c: Card): Card => sameCard(c, card) ? { ...c, disponible_vente, ...(disponible_vente ? {} : { prix_vente: null }) } : c
             setCards(prev => prev.map(upd))
             updatePopup(prev => prev ? upd(prev) : prev)
           }}
