@@ -4,6 +4,12 @@ export type Entry = { date: string; titre: string; points: string[] }
 
 export const ENTRIES: Entry[] = [
   {
+    date: '30 novembre 2026', titre: 'Listes de cartes plus rapides',
+    points: [
+      'Pages joueur et équipe : la liste « Dans les collections » se charge beaucoup plus vite quand tu fais défiler ou que tu changes un filtre (RC, auto, patch, tri…). La recherche n’est faite qu’une fois, puis tout se fait sans attendre.',
+    ],
+  },
+  {
     date: '30 novembre 2026', titre: 'Classeurs plus légers, flèches dans le viewer',
     points: [
       'Classeurs : une galerie avec beaucoup de classeurs charge bien moins. L’onglet n’affiche que les tranches (couleur, couverture, nombre de cartes) ; les cartes d’un classeur ne se chargent que quand tu l’ouvres. Au-delà de 120 classeurs, chaque dossier est replié (« Afficher les N classeurs »).',

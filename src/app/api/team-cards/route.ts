@@ -1,4 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server'
+import { cachedAsync } from '@/lib/ttlCache'
+import { fetchAllPaged } from '@/lib/playerManuelles'
 import { SPORTS_TEAMS, type SportsTeam } from '@/lib/sportsTeams'
 import { teamSlug } from '@/lib/playerSlug'
 import { fetchCsvCardsForProfilesCached } from '@/lib/csvCardsCache'
@@ -35,43 +37,41 @@ export async function GET(req: NextRequest) {
 
   const teamLastWord = team.name.split(' ').slice(-1)[0]
 
-  const manuelles: any[] = []
-  for (let from = 0; ; from += 1000) {
-    const { data, error } = await supabase
+  // Liste complète des cartes de l'équipe : cherchée en base UNE fois (5 min), puis découpée en pages en mémoire
+  const cards = await cachedAsync(`tc:${slug}`, (v: any[]) => v.length ? 300_000 : 15_000, async () => {
+    // pages de 1 000 demandées en parallèle (lib/playerManuelles)
+    const manuelles = (await fetchAllPaged(from => supabase
       .from('cartes_manuelles')
-      .select('id, nom, annee, marque, image_recto, is_horizontal, user_id, profiles(display_name, avatar_url, couleur_bordure)')
+      .select('id, nom, annee, marque, image_recto, is_horizontal, user_id, created_at, profiles(display_name, avatar_url, couleur_bordure)')
       .ilike('equipe', `%${teamLastWord}%`)
       .not('image_recto', 'is', null)
       .order('created_at', { ascending: false })
-      .range(from, from + 999)
-    if (error || !data || data.length === 0) break
-    manuelles.push(...data)
-    if (data.length < 1000) break
-  }
+      .range(from, from + 999))).sort((x: any, y: any) => (y.created_at || '').localeCompare(x.created_at || ''))
 
-  const demo = await demoUserIds(supabase) // compte démo (salons) : invisible
-  const manuellesCards = manuelles.filter((m: any) => !demo.has(m.user_id)).map((m: any) => ({
-    id: m.id, img: m.image_recto, nom: m.nom, annee: m.annee, marque: m.marque,
-    is_horizontal: m.is_horizontal, user_id: m.user_id,
-    display_name: m.profiles?.display_name, avatar_url: m.profiles?.avatar_url,
-    accent: m.profiles?.couleur_bordure || '#003DA6',
-  }))
-
-  const { data: profilesData } = await supabase.from('profiles').select('id, display_name, avatar_url, lien_csv, couleur_bordure').not('lien_csv', 'is', null)
-  const csvAll = await fetchCsvCardsForProfilesCached((profilesData || []).filter((p: any) => !demo.has(p.id)))
-  const lowerTeam = teamLastWord.toLowerCase()
-  const csvCards = csvAll
-    .filter(c => c.team.toLowerCase().includes(lowerTeam))
-    .map(c => ({
-      id: `csv-${c.user_id}-${c.img}`, img: c.img, nom: c.name, annee: c.year, marque: c.brand,
-      is_horizontal: false, user_id: c.user_id, display_name: c.display_name, avatar_url: c.avatar_url, accent: c.accent,
+    const demo = await demoUserIds(supabase) // compte démo (salons) : invisible
+    const manuellesCards = manuelles.filter((m: any) => !demo.has(m.user_id)).map((m: any) => ({
+      id: m.id, img: m.image_recto, nom: m.nom, annee: m.annee, marque: m.marque,
+      is_horizontal: m.is_horizontal, user_id: m.user_id,
+      display_name: m.profiles?.display_name, avatar_url: m.profiles?.avatar_url,
+      accent: m.profiles?.couleur_bordure || '#003DA6',
     }))
 
-  const seen = new Set<string>()
-  const cards = [...manuellesCards, ...csvCards].filter(c => {
-    if (seen.has(c.img)) return false
-    seen.add(c.img)
-    return true
+    const { data: profilesData } = await supabase.from('profiles').select('id, display_name, avatar_url, lien_csv, couleur_bordure').not('lien_csv', 'is', null)
+    const csvAll = await fetchCsvCardsForProfilesCached((profilesData || []).filter((p: any) => !demo.has(p.id)))
+    const lowerTeam = teamLastWord.toLowerCase()
+    const csvCards = csvAll
+      .filter(c => c.team.toLowerCase().includes(lowerTeam))
+      .map(c => ({
+        id: `csv-${c.user_id}-${c.img}`, img: c.img, nom: c.name, annee: c.year, marque: c.brand,
+        is_horizontal: false, user_id: c.user_id, display_name: c.display_name, avatar_url: c.avatar_url, accent: c.accent,
+      }))
+
+    const seen = new Set<string>()
+    return [...manuellesCards, ...csvCards].filter(c => {
+      if (seen.has(c.img)) return false
+      seen.add(c.img)
+      return true
+    })
   })
 
   const total = cards.length

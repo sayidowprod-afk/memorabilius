@@ -1,4 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server'
+import { cachedAsync } from '@/lib/ttlCache'
+import { fetchPlayerManuelles } from '@/lib/playerManuelles'
 import { fetchCsvCardsForProfilesCached } from '@/lib/csvCardsCache'
 import { normalizeName, cardPageUrl } from '@/lib/playerSlug'
 import { createServerClient } from '@/lib/supabaseServer'
@@ -90,61 +92,52 @@ export async function GET(req: NextRequest) {
   const firstName = nameParts[0]
   const lastName = nameParts[nameParts.length - 1]
 
-  const all: any[] = []
-  for (let from = 0; ; from += 1000) {
-    const { data, error } = await supabase
-      .from('cartes_manuelles')
-      .select('id, nom, annee, rc, auto, num, patch, marque, collection, variation, image_recto, is_horizontal, disponible_vente, created_at, user_id, profiles(display_name, avatar_url, couleur_bordure)')
-      .ilike('nom', `%${firstName}%`)
-      .ilike('nom', `%${lastName}%`)
-      .not('image_recto', 'is', null)
-      .order('created_at', { ascending: false })
-      .range(from, from + 999)
-    if (error || !data || data.length === 0) break
-    all.push(...data)
-    if (data.length < 1000) break
-  }
-  const demo = await demoUserIds(supabase) // compte démo (salons) : invisible
-  const matchedManu = all.filter((m: any) => !demo.has(m.user_id) && normalizeName(m.nom || '').includes(normTarget))
+  // Liste complète des cartes du joueur : cherchée en base UNE fois (5 min), puis filtrée/triée en mémoire à chaque page ou filtre
+  const base: Card[] = await cachedAsync(`pc:${normTarget}`, (v: Card[]) => v.length ? 300_000 : 15_000, async () => {
+    const all = await fetchPlayerManuelles(supabase, 'id, nom, annee, rc, auto, num, patch, marque, collection, variation, image_recto, is_horizontal, disponible_vente, created_at, user_id, profiles(display_name, avatar_url, couleur_bordure)', firstName, lastName) // pages en parallèle
+    const demo = await demoUserIds(supabase) // compte démo (salons) : invisible
+    const matchedManu = all.filter((m: any) => !demo.has(m.user_id) && normalizeName(m.nom || '').includes(normTarget))
 
-  const manuellesCards: Card[] = matchedManu.map((m: any) => ({
-    id: m.id, img: m.image_recto, nom: m.nom, annee: m.annee, marque: m.marque, collection: m.collection,
-    variation: m.variation || '', rc: m.rc || false, auto: m.auto || false, patch: m.patch || false, num: m.num || '',
-    created_at: m.created_at || null, is_horizontal: m.is_horizontal, user_id: m.user_id,
-    display_name: m.profiles?.display_name, avatar_url: m.profiles?.avatar_url, accent: m.profiles?.couleur_bordure || '#003DA6',
-    disponible_vente: m.disponible_vente || false, source: 'manuel' as const,
-    cardUrl: cardPageUrl(m.user_id, { nom: m.nom, annee: m.annee, marque: m.marque, collection: m.collection, image_recto: m.image_recto }),
-  }))
-
-  // .limit(200) laissait de cote les profils CSV au-dela des 200 premiers
-  // (498 profils ont un lien_csv) -- meme bug/fix que dans page.tsx.
-  const profilesData: any[] = []
-  for (let from = 0; ; from += 1000) {
-    const { data, error } = await supabase
-      .from('profiles')
-      .select('id, display_name, avatar_url, lien_csv, couleur_bordure')
-      .not('lien_csv', 'is', null)
-      .range(from, from + 999)
-    if (error || !data || data.length === 0) break
-    profilesData.push(...data)
-    if (data.length < 1000) break
-  }
-  const csvAll = await fetchCsvCardsForProfilesCached(profilesData.filter((p: any) => !demo.has(p.id)))
-  const csvCards: Card[] = csvAll
-    .filter(c => normalizeName(c.name).includes(normTarget))
-    .map(c => ({
-      id: `csv-${c.user_id}-${c.img}`, img: c.img, nom: c.name, annee: c.year, marque: c.brand, collection: '',
-      variation: c.variant || '', rc: c.rc || false, auto: c.auto || false, patch: c.patch || false, num: c.num || '',
-      is_horizontal: false, user_id: c.user_id, display_name: c.display_name, avatar_url: c.avatar_url, accent: c.accent,
-      source: 'csv' as const, cardUrl: `/galerie/${c.user_id}`,
+    const manuellesCards: Card[] = matchedManu.map((m: any) => ({
+      id: m.id, img: m.image_recto, nom: m.nom, annee: m.annee, marque: m.marque, collection: m.collection,
+      variation: m.variation || '', rc: m.rc || false, auto: m.auto || false, patch: m.patch || false, num: m.num || '',
+      created_at: m.created_at || null, is_horizontal: m.is_horizontal, user_id: m.user_id,
+      display_name: m.profiles?.display_name, avatar_url: m.profiles?.avatar_url, accent: m.profiles?.couleur_bordure || '#003DA6',
+      disponible_vente: m.disponible_vente || false, source: 'manuel' as const,
+      cardUrl: cardPageUrl(m.user_id, { nom: m.nom, annee: m.annee, marque: m.marque, collection: m.collection, image_recto: m.image_recto }),
     }))
 
-  const seen = new Set<string>()
-  let cards = [...manuellesCards, ...csvCards].filter(c => {
-    if (seen.has(c.img)) return false
-    seen.add(c.img)
-    return true
+    // .limit(200) laissait de cote les profils CSV au-dela des 200 premiers
+    // (498 profils ont un lien_csv) -- meme bug/fix que dans page.tsx.
+    const profilesData: any[] = []
+    for (let from = 0; ; from += 1000) {
+      const { data, error } = await supabase
+        .from('profiles')
+        .select('id, display_name, avatar_url, lien_csv, couleur_bordure')
+        .not('lien_csv', 'is', null)
+        .range(from, from + 999)
+      if (error || !data || data.length === 0) break
+      profilesData.push(...data)
+      if (data.length < 1000) break
+    }
+    const csvAll = await fetchCsvCardsForProfilesCached(profilesData.filter((p: any) => !demo.has(p.id)))
+    const csvCards: Card[] = csvAll
+      .filter(c => normalizeName(c.name).includes(normTarget))
+      .map(c => ({
+        id: `csv-${c.user_id}-${c.img}`, img: c.img, nom: c.name, annee: c.year, marque: c.brand, collection: '',
+        variation: c.variant || '', rc: c.rc || false, auto: c.auto || false, patch: c.patch || false, num: c.num || '',
+        is_horizontal: false, user_id: c.user_id, display_name: c.display_name, avatar_url: c.avatar_url, accent: c.accent,
+        source: 'csv' as const, cardUrl: `/galerie/${c.user_id}`,
+      }))
+
+    const seen = new Set<string>()
+    return [...manuellesCards, ...csvCards].filter(c => {
+      if (seen.has(c.img)) return false
+      seen.add(c.img)
+      return true
+    })
   })
+  let cards = [...base]
 
   cards = cards.filter(c =>
     (!fRc || c.rc) && (!fAuto || c.auto) && (!fPatch || c.patch) && (!fNum || !!c.num) && (!fVente || c.disponible_vente) &&
