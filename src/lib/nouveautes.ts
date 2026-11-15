@@ -4,6 +4,13 @@ export type Entry = { date: string; titre: string; points: string[] }
 
 export const ENTRIES: Entry[] = [
   {
+    date: '30 novembre 2026', titre: 'Classeurs plus légers, flèches dans le viewer',
+    points: [
+      'Classeurs : une galerie avec beaucoup de classeurs charge bien moins. L’onglet n’affiche que les tranches (couleur, couverture, nombre de cartes) ; les cartes d’un classeur ne se chargent que quand tu l’ouvres. Au-delà de 120 classeurs, chaque dossier est replié (« Afficher les N classeurs »).',
+      'Viewer 3D : le balayage du doigt pour changer de carte est remplacé par deux flèches discrètes à gauche et à droite, pour ne plus gêner la rotation de la carte.',
+    ],
+  },
+  {
     date: '30 novembre 2026', titre: 'Signalement refait, profils avec beaucoup de classeurs',
     points: [
       'Profil : le bouton « Signaler » a un vrai drapeau et le même format que « Comparer », à la place de l’émoji rouge isolé.',

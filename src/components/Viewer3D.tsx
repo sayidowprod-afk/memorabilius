@@ -977,18 +977,8 @@ export default function Viewer3D({ popup, accent, onClose, onNext, onPrev, getTa
     isDragging.current = false
     resumeSlbAnim()
     startIdleWobble(3500)
-    const dx = touch1.current.x - swipeStartX.current
-    const dy = touch1.current.y - swipeStartY.current
-    const dt = Date.now() - swipeStartTime.current
-    // Quick straight horizontal swipe → navigate (skip if user was rotating back-and-forth)
-    const netDx = Math.abs(dx)
-    const accumX = swipeAccumX.current
-    const isStraight = accumX > 0 && netDx / accumX > 0.55
-    if (netDx > 100 && netDx > Math.abs(dy) * 2 && dt < 220 && isStraight) {
-      if (dx < 0) onNext?.()
-      else onPrev?.()
-    }
-  }, [onNext, onPrev, resumeSlbAnim, startIdleWobble])
+    // Plus de navigation au balayage (elle gênait la rotation de la carte) : flèches discrètes à la place.
+  }, [resumeSlbAnim, startIdleWobble])
 
   useEffect(() => {
     const prevent = (e: Event) => { if (isDragging.current) e.preventDefault() }
@@ -1148,6 +1138,22 @@ export default function Viewer3D({ popup, accent, onClose, onNext, onPrev, getTa
           onTouchStart={onTouchStart} onTouchMove={onTouchMove}
           onTouchEnd={onTouchEnd}
         >
+          {/* Flèches carte précédente / suivante : fines, discrètes */}
+          {([['prev', onPrev], ['next', onNext]] as const).map(([k, fn]) => fn && (
+            <button key={k} aria-label={k === 'prev' ? 'Carte précédente' : 'Carte suivante'} title={k === 'prev' ? 'Carte précédente' : 'Carte suivante'}
+              onClick={e => { e.stopPropagation(); fn() }}
+              onMouseDown={e => e.stopPropagation()} onTouchStart={e => e.stopPropagation()} onTouchEnd={e => e.stopPropagation()} onDoubleClick={e => e.stopPropagation()}
+              style={{
+                position: 'absolute', top: '50%', [k === 'prev' ? 'left' : 'right']: 4, transform: 'translateY(-50%)', zIndex: 10,
+                width: 36, height: 64, display: 'flex', alignItems: 'center', justifyContent: 'center',
+                background: 'none', border: 'none', cursor: 'pointer', color: textColor, opacity: 0.35, padding: 0,
+              }}
+              onMouseEnter={e => { e.currentTarget.style.opacity = '0.8' }} onMouseLeave={e => { e.currentTarget.style.opacity = '0.35' }}>
+              <svg width="14" height="26" viewBox="0 0 14 26" fill="none" stroke="currentColor" strokeWidth="1.3" strokeLinecap="square" aria-hidden>
+                <path d={k === 'prev' ? 'M12 2 L2 13 L12 24' : 'M2 2 L12 13 L2 24'} />
+              </svg>
+            </button>
+          ))}
           {/* Slab mode toggle — masqué pour le format "slab" (la photo est déjà le boîtier réel) */}
           {gradeInfo && !isSlabFmt && (
             <button onClick={(e) => { e.stopPropagation(); setSlabMode(s => !s) }} style={{

@@ -74,6 +74,7 @@ const LAYOUTS = [4, 6, 9, 12, 16]
 const COLS: Record<number, number> = { 4: 2, 6: 2, 9: 3, 12: 3, 16: 4 }
 const BINDER_COLORS = ['#c0392b', '#e2b13c', '#1a1a1a', '#e8dcc4', '#1f3a5f', '#2c2c2c', '#6b2737', '#3d5a3d']
 const FOLDER_SHELF_COLORS = ['#4a6741', '#1f3a5f', '#6b2737', '#7a5c00', '#374a6b', '#4a3d6b', '#2d4a4a', '#3d3d3d']
+const BIG_LIB = 120   // au-delà, les étagères sont repliées et ne se dessinent qu'à l'ouverture
 const SHELF_PAGE = 72   // classeurs affichés par étagère avant « Afficher plus »
 const SHELF_ROW_SIZE = 12
 const PAGE_MAX_W = 620
@@ -231,6 +232,7 @@ export default function BinderLibrary({ userId, isOwner, accent, pendingCard, on
   // Étagères progressives : un compte avec des centaines de classeurs figeait l'app (toutes les tranches dessinées d'un coup + compteurs de tous)
   const [shelfShown, setShelfShown] = useState<Record<string, number>>({})
   const countedRef = useRef<Set<number>>(new Set())
+  const [openSecs, setOpenSecs] = useState<Record<string, boolean>>({})   // grosse bibliothèque : seuls les dossiers ouverts dessinent leurs classeurs
 
   // N34 : le classeur le plus rempli de la bibliotheque est mis en valeur sous un
   // spot visuel -- uniquement s'il y a plusieurs classeurs et au moins une carte
@@ -449,22 +451,23 @@ export default function BinderLibrary({ userId, isOwner, accent, pendingCard, on
     const byKey = new Map<string, Binder[]>()
     for (const b of binders) { const k = b.folder_id === null ? 'root' : `f-${b.folder_id}`; if (!byKey.has(k)) byKey.set(k, []); byKey.get(k)!.push(b) }
     const want: number[] = []
-    for (const [k, list] of byKey) for (const b of list.slice(0, shelfShown[k] ?? SHELF_PAGE)) if (!countedRef.current.has(b.id)) want.push(b.id)
+    for (const [k, list] of byKey) {
+      if (binders.length > BIG_LIB && !openSecs[k]) continue
+      for (const b of list.slice(0, shelfShown[k] ?? SHELF_PAGE)) if (!countedRef.current.has(b.id)) want.push(b.id)
+    }
     if (!want.length) return
     want.forEach(id => countedRef.current.add(id))
+    // Nombre de cartes par classeur : un COMPTAGE côté base (aucune ligne de carte n'est téléchargée), 8 classeurs à la fois
     ;(async () => {
-      for (let i = 0; i < want.length; i += 40) {
-        const chunk = want.slice(i, i + 40), counts: Record<number, number> = {}
-        for (let from = 0; ; from += 1000) {
-          const { data: rows, error } = await supabase.from('binder_slots').select('binder_id').in('binder_id', chunk).range(from, from + 999)
-          if (error || !rows || rows.length === 0) break
-          for (const r of rows) counts[r.binder_id] = (counts[r.binder_id] || 0) + 1
-          if (rows.length < 1000) break
-        }
+      for (let i = 0; i < want.length; i += 8) {
+        const group = want.slice(i, i + 8)
+        const got = await Promise.all(group.map(id => supabase.from('binder_slots').select('*', { count: 'exact', head: true }).eq('binder_id', id).then(r => [id, r.count ?? 0] as const)))
+        const counts: Record<number, number> = {}
+        for (const [id, n] of got) counts[id] = n
         setCardCounts(prev => ({ ...prev, ...counts }))
       }
     })()
-  }, [binders, shelfShown])
+  }, [binders, shelfShown, openSecs])
 
   const loadBinders = async () => {
     const [{ data }, { data: fdata }] = await Promise.all([
@@ -1848,6 +1851,7 @@ export default function BinderLibrary({ userId, isOwner, accent, pendingCard, on
         <div ref={shelfContainerRef} className="binder-shelf-ambient" style={{ borderRadius: 16, boxShadow: '0 6px 28px rgba(0,0,0,0.28)', padding: '14px 14px 4px' }}>
           {sections.map((section, si) => {
             const rows: Binder[][] = []
+            const collapsed = binders.length > BIG_LIB && !openSecs[section.key] && section.binderItems.length > 0
             const shownCount = shelfShown[section.key] ?? SHELF_PAGE
             const shownItems = section.binderItems.slice(0, shownCount)
             for (let i = 0; i < shownItems.length; i += shelfRowSize) rows.push(shownItems.slice(i, i + shelfRowSize))
@@ -1927,7 +1931,14 @@ export default function BinderLibrary({ userId, isOwner, accent, pendingCard, on
                   </div>
                 ) : null}
 
-                {rows.map((row, ri) => {
+                {collapsed ? (
+                  <div style={{ padding: '8px 4px 12px' }}>
+                    <button onClick={() => setOpenSecs(prev => ({ ...prev, [section.key]: true }))}
+                      style={{ width: '100%', background: 'rgba(255,255,255,0.08)', border: '1px solid rgba(255,255,255,0.25)', color: 'white', borderRadius: 12, padding: '14px 18px', cursor: 'pointer', fontWeight: 700, fontSize: 13, textAlign: 'left', display: 'flex', justifyContent: 'space-between' }}>
+                      <span>Afficher les {section.binderItems.length} classeurs</span><span aria-hidden>▾</span>
+                    </button>
+                  </div>
+                ) : rows.map((row, ri) => {
                   const isLastRow = ri === rows.length - 1
                   return (
                     <RevealRow key={ri}>
