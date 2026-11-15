@@ -4,6 +4,13 @@ export type Entry = { date: string; titre: string; points: string[] }
 
 export const ENTRIES: Entry[] = [
   {
+    date: '30 novembre 2026', titre: 'Signalement refait, profils avec beaucoup de classeurs',
+    points: [
+      'Profil : le bouton « Signaler » a un vrai drapeau et le même format que « Comparer », à la place de l’émoji rouge isolé.',
+      'Classeurs : un profil avec énormément de classeurs ne fait plus ramer ni planter l’app. Les étagères s’affichent par morceaux (72 classeurs, puis « Afficher plus ») et les compteurs de cartes ne sont chargés que pour les classeurs visibles.',
+    ],
+  },
+  {
     date: '30 novembre 2026', titre: 'Cartes vendues : affichage corrigé',
     points: [
       'Galerie : marquer une carte comme vendue, réservée ou à vendre ne touche plus les autres cartes qui ont la même photo. Elles n’affichent plus « VENDU » à tort.',

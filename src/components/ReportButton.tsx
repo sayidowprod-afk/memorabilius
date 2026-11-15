@@ -49,12 +49,20 @@ export default function ReportButton({ reportedUserId, context, compact }: Props
 
   return (
     <>
-      <button onClick={() => setOpen(true)} title={t('report_action')} style={{
-        display: 'flex', alignItems: 'center', justifyContent: 'center',
-        width: compact ? 26 : 30, height: compact ? 26 : 30, borderRadius: '50%',
-        background: dark ? '#2a2a2a' : '#f0f0f0', color: dark ? '#aaa' : '#666',
-        border: 'none', cursor: 'pointer', flexShrink: 0, fontSize: compact ? 13 : 14,
-      }}>🚩</button>
+      {compact ? (
+        <button onClick={() => setOpen(true)} title={t('report_action')} aria-label={t('report_action')} style={{
+          display: 'flex', alignItems: 'center', justifyContent: 'center',
+          width: 26, height: 26, borderRadius: '50%',
+          background: dark ? '#2a2a2a' : '#f0f0f0', color: dark ? '#aaa' : '#666',
+          border: 'none', cursor: 'pointer', flexShrink: 0,
+        }}><svg width={compact ? 13 : 14} height={compact ? 13 : 14} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M5 21V4" /><path d="M5 4h12.5l-2.5 4.2 2.5 4.2H5" /></svg></button>
+      ) : (
+        // même gabarit que le bouton « Comparer » du profil (pastille à contour), avec un vrai drapeau au trait au lieu de l'émoji
+        <button onClick={() => setOpen(true)} title={t('report_action')} aria-label={t('report_action')} className="da-cmp-link"
+          style={{ background: 'transparent', cursor: 'pointer', fontFamily: 'inherit', opacity: 0.85, flexShrink: 0 }}>
+          <svg width={compact ? 13 : 14} height={compact ? 13 : 14} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M5 21V4" /><path d="M5 4h12.5l-2.5 4.2 2.5 4.2H5" /></svg><span>{t('report_action')}</span>
+        </button>
+      )}
 
       {open && createPortal(
         <div onClick={() => setOpen(false)} style={{ position: 'fixed', inset: 0, background: 'rgba(0,0,0,0.55)', zIndex: 3000, display: 'flex', alignItems: 'center', justifyContent: 'center', padding: 16 }}>
