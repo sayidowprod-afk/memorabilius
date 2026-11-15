@@ -5,10 +5,12 @@ import { teamSlug, playerSlug } from '@/lib/playerSlug'
 import { fetchCsvCardsForProfilesCached } from '@/lib/csvCardsCache'
 import TagIcon from '@/components/TagIcon'
 import FranchiseChecklist, { type FranchisePlayer } from '@/components/FranchiseChecklist'
+import LazySection from '@/components/LazySection'
 import { cleanFranchise } from '@/lib/franchiseExclude'
 import TeamCardsSection from './TeamCardsSection'
 import TeamSetsSection from './TeamSetsSection'
 import { createServerClient } from '@/lib/supabaseServer'
+import { fetchAllPaged } from '@/lib/playerManuelles'
 
 export const revalidate = 604800 // 7 jours (etait 24h, 1h avant -- contenu quasi statique, cf. reduction couts Vercel ISR)
 
@@ -29,20 +31,15 @@ async function fetchTeamData(slug: string) {
   // la page joueur, voir bcc3a8f0) -- une franchise avec plus de 1000 cartes
   // communaute en perdait silencieusement le reste. Pagination reelle.
   const fetchAllManuellesForTeam = async () => {
-    const all: any[] = []
-    for (let from = 0; ; from += 1000) {
-      const { data, error } = await supabase
-        .from('cartes_manuelles')
-        .select('id, nom, annee, marque, image_recto, is_horizontal, user_id, profiles(display_name, avatar_url, couleur_bordure, is_demo)')
-        .ilike('equipe', `%${teamLastWord}%`)
-        .not('image_recto', 'is', null)
-        .order('created_at', { ascending: false })
-        .range(from, from + 999)
-      if (error || !data || data.length === 0) break
-      all.push(...data.filter((m: any) => !m.profiles?.is_demo)) // compte démo (salons) : invisible
-      if (data.length < 1000) break
-    }
-    return all
+    // pages de 1 000 demandées en parallèle (voir lib/playerManuelles) : avant, une page après l'autre
+    const all = await fetchAllPaged(from => supabase
+      .from('cartes_manuelles')
+      .select('id, nom, annee, marque, image_recto, is_horizontal, user_id, created_at, profiles(display_name, avatar_url, couleur_bordure, is_demo)')
+      .ilike('equipe', `%${teamLastWord}%`)
+      .not('image_recto', 'is', null)
+      .order('created_at', { ascending: false })
+      .range(from, from + 999))
+    return all.filter((m: any) => !m.profiles?.is_demo).sort((x: any, y: any) => (y.created_at || '').localeCompare(x.created_at || '')) // compte démo (salons) : invisible
   }
 
   // get_team_sets/get_team_players font le GROUP BY cote DB plutot que de
@@ -160,7 +157,7 @@ export default async function EquipePage({ params }: { params: Promise<{ slug: s
         </div>
       </div>
 
-      {franchise.length > 0 && <FranchiseChecklist team={team.name} players={franchise} color={teamColor} sport={team.sport} />}
+      {franchise.length > 0 && <LazySection id="checklist-franchise" title="Checklist de la franchise" hint="cliquer pour ouvrir" marginTop={0}><FranchiseChecklist team={team.name} players={franchise} color={teamColor} sport={team.sport} /></LazySection>}
 
       {/* Joueurs */}
       {players.length > 0 && (

@@ -1,12 +1,18 @@
 import type { Metadata } from 'next'
+import { fetchPlayerManuelles, fetchAllPaged } from '@/lib/playerManuelles'
 import Link from 'next/link'
 import { Suspense, cache } from 'react'
 import { fetchCsvCardsForProfilesCached } from '@/lib/csvCardsCache'
 import { getCachedHeadshot, fetchEspnPlayerBio } from '@/lib/espnHeadshot'
+import BobbleHero from '@/components/BobbleHero'
+import TeamBadge from '@/components/TeamBadge'
+import { getTeamById } from '@/lib/sportsTeams'
+import { bobbleFor, teamBody, type BobbleFig } from '@/lib/bobbleheadsServer'
 import { normalizeName, cardPageUrl, stripDiacritics } from '@/lib/playerSlug'
 import CommunityCardsSection from './CommunityCardsSection'
 import PlayerSetsSection from './PlayerSetsSection'
 import PlayerChecklistSection from './PlayerChecklistSection'
+import LazySection from '@/components/LazySection'
 import ScrollTopButton from '@/components/ScrollTopButton'
 import { createServerClient } from '@/lib/supabaseServer'
 
@@ -345,41 +351,20 @@ async function _fetchPlayer(slug: string) {
   // 1000 cartes communaute en perdait silencieusement le reste. Pagination
   // reelle via .range(), sans plafond ("jamais de limites").
   const fetchAllManuellesForPlayer = async () => {
-    const all: any[] = []
-    for (let from = 0; ; from += 1000) {
-      const { data, error } = await supabase
-        .from('cartes_manuelles')
-        .select('id, nom, annee, rc, auto, num, patch, marque, collection, variation, image_recto, is_horizontal, disponible_vente, created_at, user_id, profiles(display_name, avatar_url, couleur_bordure, is_demo)')
-        .ilike('nom', `%${firstName}%`)
-        .ilike('nom', `%${lastName}%`)
-        .not('image_recto', 'is', null)
-        .order('created_at', { ascending: false })
-        .range(from, from + 999)
-      if (error || !data || data.length === 0) break
-      all.push(...data.filter((m: any) => !m.profiles?.is_demo)) // compte démo (salons) : invisible
-      if (data.length < 1000) break
-    }
-    return all
+    const all = await fetchPlayerManuelles(supabase, 'id, nom, annee, rc, auto, num, patch, marque, collection, variation, image_recto, is_horizontal, disponible_vente, created_at, user_id, profiles(display_name, avatar_url, couleur_bordure, is_demo)', firstName, lastName)
+    return all.filter((m: any) => !m.profiles?.is_demo) // compte démo (salons) : invisible
   }
 
   // .limit(200) laissait de cote les profils CSV au-dela des 200 premiers
   // (498 profils ont un lien_csv) -- cartes manquantes pour ~60% des
   // collectionneurs. Meme pagination .range() que fetchAllManuellesForPlayer.
-  const fetchAllCsvProfiles = async () => {
-    const all: any[] = []
-    for (let from = 0; ; from += 1000) {
-      const { data, error } = await supabase
-        .from('profiles')
-        .select('id, display_name, avatar_url, lien_csv, couleur_bordure')
-        .not('lien_csv', 'is', null)
-        .eq('is_demo', false)
-        .range(from, from + 999)
-      if (error || !data || data.length === 0) break
-      all.push(...data)
-      if (data.length < 1000) break
-    }
-    return all
-  }
+  const fetchAllCsvProfiles = async () => fetchAllPaged(from => supabase
+    .from('profiles')
+    .select('id, display_name, avatar_url, lien_csv, couleur_bordure')
+    .not('lien_csv', 'is', null)
+    .eq('is_demo', false)
+    .order('id')
+    .range(from, from + 999))
 
   // get_player_sets (indexee, cf idx_card_set_entries_player_name_trgm) essayee
   // en premier -- get_player_sets_unaccent n'a pas encore l'index equivalent sur
@@ -617,6 +602,78 @@ async function BioTeamLogo({ playerName, sportHint }: { playerName: string; spor
   )
 }
 
+// Variante « bobblehead » : le logo d'équipe en filigrane est le même que dans « Équipes favorites » (TeamBadge), en très grand, rogné sur la droite du bandeau.
+// Équipe de référence du bandeau : l'équipe actuelle pour un joueur en activité (ESPN lui donne une équipe), sinon celle où il a joué le PLUS de saisons
+// (ex. Chicago pour Michael Jordan), avec le numéro qu'il y portait.
+// Dernière année de saison qui doit figurer dans sa carrière pour qu'il soit « en activité » : l'année de fin de la saison en cours (la carrière ESPN
+// indique les saisons NBA/NHL par leur année de fin : 2026-27 → 2027, qui commence en octobre) ; NFL et baseball : année de la saison.
+function currentSeasonYear(sport: string, now = new Date()): number {
+  const y = now.getFullYear(), m = now.getMonth() // m : 0 = janvier
+  if (sport === 'nba' || sport === 'hockey') return m >= 9 ? y + 1 : y
+  if (sport === 'nfl') return m >= 8 ? y : y - 1
+  return m >= 2 ? y : y - 1
+}
+function heroTeamOf(bio: any, sport = 'nba'): { teamName: string; jersey: string | null; active: boolean } | null {
+  const runs = bio?.career ? buildCareerTimeline(bio.career) : []
+  if (!runs.length) return null
+  // ESPN donne une « équipe actuelle » même à un retraité (Jordan → Wizards) : on juge sur la dernière saison jouée
+  const active = runs[runs.length - 1].endYear >= currentSeasonYear(sport)
+  let teamName = runs[runs.length - 1].teamName
+  if (!active) {
+    const seasons = new Map<string, number>()
+    for (const r of runs) seasons.set(r.teamName, (seasons.get(r.teamName) || 0) + (r.endYear - r.startYear + 1))
+    teamName = [...seasons.entries()].sort((a, b) => b[1] - a[1])[0][0]
+  }
+  const jh = ((bio.jerseyHistory || []) as { teamName: string; startYear: number; jersey: string }[]).filter(h => h.teamName === teamName).sort((a, b) => b.startYear - a.startYear)
+  const jersey = active ? (bio.jersey || null) : (jh[0]?.jersey || bio.jersey || null)
+  return { teamName, jersey, active }
+}
+
+// ── Couleurs du bandeau d'après l'équipe de référence : fond sombre dans sa teinte, valeurs lisibles dessus ──
+const hex2rgb = (h: string): [number, number, number] => { const m = /^#?([0-9a-f]{6})$/i.exec(h); return m ? [0, 2, 4].map(i => parseInt(m[1].slice(i, i + 2), 16)) as unknown as [number, number, number] : [0, 26, 77] }
+const rgb2hex = (c: number[]) => '#' + c.map(v => Math.round(Math.max(0, Math.min(255, v))).toString(16).padStart(2, '0')).join('')
+const mixc = (a: number[], b: number[], t: number) => a.map((v, i) => v + (b[i] - v) * t)
+const lumOf = (c: number[]) => { const v = c.map(x => { const s = x / 255; return s <= 0.03928 ? s / 12.92 : Math.pow((s + 0.055) / 1.055, 2.4) }); return 0.2126 * v[0] + 0.7152 * v[1] + 0.0722 * v[2] }
+const satOf = (c: number[]) => { const mx = Math.max(...c), mn = Math.min(...c); return mx ? (mx - mn) / mx : 0 }
+const contrast = (a: number[], b: number[]) => { const la = lumOf(a), lb = lumOf(b); return (Math.max(la, lb) + 0.05) / (Math.min(la, lb) + 0.05) }
+function teamHeroColors(teamName: string): { from: string; to: string; accent: string } | null {
+  const tc = (NBA_COLORS as Record<string, { primary: string; secondary: string }>)[teamName]
+  if (!tc) return null
+  const p = hex2rgb(tc.primary), s = hex2rgb(tc.secondary)
+  const base = satOf(p) >= 0.25 && lumOf(p) > 0.01 ? p : (satOf(s) >= 0.25 ? s : p)
+  const from = mixc(base, [0, 0, 0], 0.88), to = mixc(base, [0, 0, 0], 0.62)
+  const mid = mixc(from, to, 0.5)
+  // valeurs : la couleur secondaire si elle est vive et assez lisible, sinon la couleur principale éclaircie jusqu'à être lisible
+  let accent: number[] = (satOf(s) >= 0.35 && lumOf(s) > 0.2 && contrast(s, mid) >= 4.5) ? s : base
+  for (let t = 0; contrast(accent, mid) < 4.5 && t < 1; t += 0.05) accent = mixc(base, [255, 255, 255], t)
+  return { from: rgb2hex(from), to: rgb2hex(to), accent: rgb2hex(accent) }
+}
+async function HeroTheme({ playerName, sportHint }: { playerName: string; sportHint: string }) {
+  const bio = await getCachedBio(playerName, sportHint)
+  const ht = heroTeamOf(bio, sportHint)
+  const c = ht ? teamHeroColors(ht.teamName) : null
+  if (!c) return null
+  return <style>{`.jp-hero { --jp-hero-from: ${c.from}; --jp-hero-to: ${c.to}; }`}</style>
+}
+
+async function BioTeamWatermark({ playerName, sportHint }: { playerName: string; sportHint: string }) {
+  const bio = await getCachedBio(playerName, sportHint)
+  const runs = bio?.career ? buildCareerTimeline(bio.career) : []
+  const ht = heroTeamOf(bio, sportHint)
+  if (!ht || !runs.length) return null
+  const leagueOf: Record<string, string> = { nba: 'nba', nfl: 'nfl', baseball: 'mlb', hockey: 'nhl' }
+  const teamId = `${leagueOf[sportHint] || sportHint}:${getTeamColors(ht.teamName).abbr}`
+  if (!getTeamById(teamId)) return null
+  return (
+    <div aria-hidden="true" className="jp-bobble-watermark" style={{
+      position: 'absolute', right: -110, top: '50%', transform: 'translateY(-50%)', width: 640, height: 640, opacity: 0.24, pointerEvents: 'none',
+      WebkitMaskImage: 'linear-gradient(to right, transparent 0%, white 42%)', maskImage: 'linear-gradient(to right, transparent 0%, white 42%)',
+    }}>
+      <TeamBadge teamId={teamId} size={640} />
+    </div>
+  )
+}
+
 async function BioMeta({ playerName, sportHint }: { playerName: string; sportHint: string }) {
   const bio = await getCachedBio(playerName, sportHint)
   if (!bio) return null
@@ -640,6 +697,78 @@ async function BioMeta({ playerName, sportHint }: { playerName: string; sportHin
         </div>
       )}
     </>
+  )
+}
+
+// Figurine : un joueur encore en activité (ESPN lui donne une équipe actuelle) porte le maillot de son équipe actuelle avec son numéro actuel ;
+// un joueur retraité garde le maillot de sa fiche. La bio ESPN est mise en cache : pas d'appel réseau de plus.
+async function BobbleFigure({ fig, playerName, sportHint }: { fig: BobbleFig; playerName: string; sportHint: string }) {
+  let f = fig
+  if (sportHint === 'nba') {
+    const bio = await getCachedBio(playerName, sportHint)
+    const ht = heroTeamOf(bio, sportHint)
+    const body = ht ? teamBody(getTeamColors(ht.teamName).abbr, ht.jersey) : null
+    if (body) f = { ...fig, body }
+  }
+  return <BobbleHero fig={f} name={playerName} height={430} />
+}
+
+// Variante « bobblehead » du bandeau : infos en grosses lettres (police des titres) et frise des équipes avec logos.
+async function BioMetaBig({ playerName, sportHint }: { playerName: string; sportHint: string }) {
+  const bio = await getCachedBio(playerName, sportHint)
+  if (!bio) return null
+  const squash = (v?: string | null) => (v || '').replace(/\s+/g, '')
+  // Couleur des valeurs : celle de l'équipe actuelle (la première assez claire pour se lire sur le fond bleu nuit du bandeau, sinon blanc)
+  const ht = heroTeamOf(bio, sportHint)
+  const accent = (ht ? teamHeroColors(ht.teamName)?.accent : null) || '#ffffff'
+  const cells = [['N°', (ht?.jersey || bio.jersey) ? `#${ht?.jersey || bio.jersey}` : ''], ['POSTE', bio.position || ''], ['TAILLE', squash(bio.height)], ['POIDS', squash(bio.weight)], ['ÂGE', bio.age ? `${bio.age} ANS` : '']].filter(c => c[1])
+  const date = bio.birthDate ? stripDiacritics(new Date(bio.birthDate).toLocaleDateString('fr-FR', { day: 'numeric', month: 'long', year: 'numeric' })) : ''
+  const birth = [date, bio.birthPlace ? stripDiacritics(bio.birthPlace) : ''].filter(Boolean).join(' · ')
+  return (
+    <div style={{ color: 'white' }}>
+      {cells.length > 0 && (
+        <div style={{ display: 'flex', flexWrap: 'wrap', columnGap: 'clamp(20px, 3.4vw, 44px)', rowGap: 10 }}>
+          {cells.map(([l, v]) => (
+            <div key={l}>
+              <div style={{ fontSize: 10.5, letterSpacing: '0.14em', fontWeight: 700, opacity: 0.55 }}>{l}</div>
+              <div className="da-display jp-bobble-meta" style={{ color: accent, lineHeight: 1.05 }}>{v}</div>
+            </div>
+          ))}
+        </div>
+      )}
+      {birth && <div className="da-display" style={{ marginTop: 10, fontSize: 14, letterSpacing: '0.08em', opacity: 0.7 }}>{birth}</div>}
+    </div>
+  )
+}
+
+async function BioCareerChips({ playerName, sportHint }: { playerName: string; sportHint: string }) {
+  const bio = await getCachedBio(playerName, sportHint)
+  const runs = bio?.career ? buildCareerTimeline(bio.career) : []
+  if (runs.length === 0) return null
+  const nba = sportHint === 'nba'
+  // mêmes logos que « Équipes favorites » (composant TeamBadge) ; identifiant d'équipe « sport:ABR »
+  const leagueOf: Record<string, string> = { nba: 'nba', nfl: 'nfl', baseball: 'mlb', hockey: 'nhl' }
+  return (
+    <div style={{ display: 'flex', flexWrap: 'wrap', gap: 8, marginTop: 22 }}>
+      {runs.map((run, i) => {
+        const colors = getTeamColors(run.teamName)
+        const last = i === runs.length - 1
+        const label = nba ? `${run.startYear - 1}–${run.endYear}` : (run.startYear === run.endYear ? String(run.startYear) : `${run.startYear}–${run.endYear}`)
+        const teamId = `${leagueOf[sportHint] || sportHint}:${colors.abbr}`
+        const known = !!getTeamById(teamId)
+        return (
+          <div key={`${run.teamName}-${run.startYear}-${i}`} title={`${run.teamName} · ${label}`}
+            style={{ width: 82, padding: '9px 4px 7px', borderRadius: 8, display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 3,
+              border: last ? '1px solid rgba(255,255,255,0.55)' : '1px solid rgba(255,255,255,0.1)', background: last ? 'rgba(255,255,255,0.09)' : 'rgba(255,255,255,0.03)' }}>
+            {known
+              ? <TeamBadge teamId={teamId} size={40} />
+              : <JerseyIcon primary={colors.primary} secondary={colors.secondary} abbr={colors.abbr} number={undefined} sport={sportHint} />}
+            <div style={{ fontSize: 11, fontWeight: 800, color: 'white' }}>{colors.abbr}</div>
+            <div style={{ fontSize: 9.5, color: 'rgba(255,255,255,0.55)', whiteSpace: 'nowrap' }}>{label}</div>
+          </div>
+        )
+      })}
+    </div>
   )
 }
 
@@ -706,6 +835,9 @@ async function BioCareer({ playerName, sportHint }: { playerName: string; sportH
 export default async function JoueurPage({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params
   const { playerName, sets, communityCards, rcYear, headshot, uniqueCollectors, topVariations, primarySport } = await fetchPlayer(slug)
+  const fig = bobbleFor(playerName)           // figurine validée (tête OK + corps d'équipe + numéro), sinon null
+  const bobbleId = fig ? fig.id : null
+  const newHero = true                        // nouveau style de bandeau pour tous les joueurs ; photo à la place de la figurine tant qu'il n'y en a pas
 
   const sportsFromSets = [...new Set(sets.map((s: any) => s.sport).filter(Boolean))] as string[]
   const sports = sportsFromSets.length > 0 ? sportsFromSets : (primarySport ? [primarySport] : [])
@@ -799,6 +931,10 @@ export default async function JoueurPage({ params }: { params: Promise<{ slug: s
         .jp-hero-h1 { font-size: 42px; }
         .jp-sets-grid { grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); }
         .jp-hero-overflow { overflow: hidden; }
+        .jp-hero-h1.jp-bobble-h1 { font-size: clamp(54px, 9.2vw, 132px); font-weight: 400; line-height: 0.88; letter-spacing: 0.01em; }
+        .jp-bobble-meta { font-size: clamp(22px, 3vw, 40px); }
+        @media (max-width: 760px) { .jp-bobble-watermark { width: 380px !important; height: 380px !important; right: -90px !important; } }
+        @media (max-width: 760px) { .jp-bobble-wrap { zoom: 0.68; margin: -40px 0 -40px -12px; } }
         @media (max-width: 600px) {
           .jp-hero-h1 { font-size: 26px; }
           .jp-sets-grid { grid-template-columns: 1fr; }
@@ -819,29 +955,41 @@ export default async function JoueurPage({ params }: { params: Promise<{ slug: s
       }}>
 
         {/* ── HERO ── */}
-        <div style={{
+        <div className="jp-hero" style={{
           background: 'linear-gradient(135deg, var(--jp-hero-from) 0%, var(--jp-hero-to) 100%)',
           color: 'white',
-          padding: '44px 24px 48px',
+          padding: newHero ? '34px 24px 22px' : '44px 24px 48px',
           position: 'relative',
           overflow: 'hidden',
         }}>
+          {/* Couleurs du bandeau = celles de l'équipe de référence (voir HeroTheme) */}
+          <Suspense fallback={null}><HeroTheme playerName={playerName} sportHint={primarySport} /></Suspense>
           {/* Team logo watermark -- depend de bio (ESPN), voir BioTeamLogo plus bas */}
           <Suspense fallback={null}>
-            <BioTeamLogo playerName={playerName} sportHint={primarySport} />
+            {bobbleId
+              ? <BioTeamWatermark playerName={playerName} sportHint={primarySport} />
+              : <BioTeamWatermark playerName={playerName} sportHint={primarySport} />}
           </Suspense>
 
           <div style={{ maxWidth: 1200, margin: '0 auto', position: 'relative' }}>
             {/* Breadcrumb */}
-            <div style={{ fontSize: 12, color: 'rgba(255,255,255,0.5)', marginBottom: 22, display: 'flex', gap: 6, alignItems: 'center' }}>
+            {!newHero && <div style={{ fontSize: 12, color: 'rgba(255,255,255,0.5)', marginBottom: 22, display: 'flex', gap: 6, alignItems: 'center' }}>
               <Link href="/setlist" style={{ color: 'rgba(255,255,255,0.5)', textDecoration: 'none', fontWeight: 600, transition: 'color 0.1s' }}>Setlist</Link>
               <span>/</span>
               <span style={{ color: 'rgba(255,255,255,0.8)' }}>{playerName}</span>
-            </div>
+            </div>}
 
-            <div style={{ display: 'flex', gap: 32, alignItems: 'flex-start', flexWrap: 'wrap' }}>
+            <div style={{ display: 'flex', gap: newHero ? 28 : 32, alignItems: newHero ? 'center' : 'flex-start', flexWrap: 'wrap' }}>
+              {/* Bobblehead (si le joueur en a un) à la place de la photo ronde */}
+              {fig
+                ? <div className="jp-bobble-wrap"><Suspense fallback={<div style={{ width: 260, height: 430 }} />}><BobbleFigure fig={fig} playerName={playerName} sportHint={primarySport} /></Suspense></div>
+                : headshot && (
+                  <div className="jp-bobble-wrap" style={{ flexShrink: 0, width: 340, maxWidth: '100%', display: 'flex', justifyContent: 'center' }}>
+                    <img src={headshot} alt={playerName} style={{ width: 340, maxWidth: '100%', height: 'auto', objectFit: 'contain', filter: 'drop-shadow(0 14px 18px rgba(0,0,0,.4))' }} />
+                  </div>
+                )}
               {/* Headshot */}
-              {headshot && (
+              {!newHero && headshot && (
                 <div style={{ flexShrink: 0 }}>
                   <img
                     src={headshot}
@@ -860,6 +1008,21 @@ export default async function JoueurPage({ params }: { params: Promise<{ slug: s
                 </div>
               )}
 
+              {newHero ? (
+                <div style={{ flex: 1, minWidth: 260 }}>
+                  <div className="da-display" style={{ fontSize: 30, lineHeight: 1, display: 'flex', alignItems: 'baseline', gap: 18, flexWrap: 'wrap' }}>
+                    <span style={{ opacity: 0.85 }}>{(primarySport || 'nba').toUpperCase()}</span>
+                    {rcYear && <span style={{ color: '#e67e22' }}>RC {rcYear}</span>}
+                  </div>
+                  <h1 className="jp-hero-h1 jp-bobble-h1 da-display" style={{ margin: '2px 0 14px' }}>{stripDiacritics(playerName)}</h1>
+                  <Suspense fallback={null}>
+                    <BioMetaBig playerName={playerName} sportHint={primarySport} />
+                  </Suspense>
+                  <Suspense fallback={null}>
+                    <BioCareerChips playerName={playerName} sportHint={primarySport} />
+                  </Suspense>
+                </div>
+              ) : (
               <div style={{ flex: 1, minWidth: 220 }}>
                 {/* Sport pills */}
                 <div style={{ display: 'flex', gap: 6, marginBottom: 10, flexWrap: 'wrap' }}>
@@ -901,12 +1064,15 @@ export default async function JoueurPage({ params }: { params: Promise<{ slug: s
                   )}
                 </div>
               </div>
+              )}
             </div>
 
             {/* ── CARRIÈRE dans le hero (BBRef style) -- depend de bio (ESPN), voir BioCareer plus bas ── */}
-            <Suspense fallback={null}>
-              <BioCareer playerName={playerName} sportHint={primarySport} />
-            </Suspense>
+            {!newHero && (
+              <Suspense fallback={null}>
+                <BioCareer playerName={playerName} sportHint={primarySport} />
+              </Suspense>
+            )}
           </div>
         </div>
 
@@ -945,7 +1111,7 @@ export default async function JoueurPage({ params }: { params: Promise<{ slug: s
           )}
 
           {/* Checklist personnelle */}
-          <PlayerChecklistSection playerName={playerName} />
+          <LazySection id="checklist-joueur" title="Checklist" hint="cliquer pour ouvrir"><PlayerChecklistSection playerName={playerName} /></LazySection>
           <ScrollTopButton />
 
           {/* Sets groupés par année -- pagine au defilement (voir PlayerSetsSection),
@@ -954,7 +1120,7 @@ export default async function JoueurPage({ params }: { params: Promise<{ slug: s
               communaute), et les rendre tous d'un coup cote serveur etait lent. */}
           <PlayerSetsSection
             playerName={playerName}
-            initialSets={(sets as any[]).slice(0, 40)}
+            initialSets={[]}
             totalCount={sets.length}
             primarySport={primarySport}
           />

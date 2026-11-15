@@ -1,0 +1,302 @@
+{
+ "ATL": {
+  "name": "Atlanta Hawks",
+  "w": 566,
+  "h": 692,
+  "span": 396,
+  "num": {
+   "fill": "#ffffff",
+   "stroke": "#c8102e"
+  }
+ },
+ "BOS": {
+  "name": "Boston Celtics",
+  "w": 588,
+  "h": 673,
+  "span": 413,
+  "num": {
+   "fill": "#ffffff",
+   "stroke": "#0a5c2e"
+  }
+ },
+ "BKN": {
+  "name": "Brooklyn Nets",
+  "w": 585,
+  "h": 659,
+  "span": 401,
+  "num": {
+   "fill": "#ffffff",
+   "stroke": "#111111"
+  }
+ },
+ "CHA": {
+  "name": "Charlotte Hornets",
+  "w": 566,
+  "h": 696,
+  "span": 382,
+  "num": {
+   "fill": "#ffffff",
+   "stroke": "#2a1a6b"
+  }
+ },
+ "CHI": {
+  "name": "Chicago Bulls",
+  "w": 552,
+  "h": 670,
+  "span": 387,
+  "num": {
+   "fill": "#ffffff",
+   "stroke": "#111111"
+  }
+ },
+ "CLE": {
+  "name": "Cleveland Cavaliers",
+  "w": 564,
+  "h": 672,
+  "span": 381,
+  "num": {
+   "fill": "#fdbb30",
+   "stroke": "#041e42"
+  }
+ },
+ "DAL": {
+  "name": "Dallas Mavericks",
+  "w": 525,
+  "h": 622,
+  "span": 363,
+  "num": {
+   "fill": "#ffffff",
+   "stroke": "#00265c"
+  }
+ },
+ "DEN": {
+  "name": "Denver Nuggets",
+  "w": 614,
+  "h": 674,
+  "span": 440,
+  "num": {
+   "fill": "#fec524",
+   "stroke": "#0d2240"
+  }
+ },
+ "DET": {
+  "name": "Detroit Pistons",
+  "w": 546,
+  "h": 658,
+  "span": 390,
+  "num": {
+   "fill": "#ffffff",
+   "stroke": "#c8102e"
+  }
+ },
+ "GSW": {
+  "name": "Golden State Warriors",
+  "w": 609,
+  "h": 718,
+  "span": 431,
+  "num": {
+   "fill": "#ffc72c",
+   "stroke": "#1d428a"
+  }
+ },
+ "HOU": {
+  "name": "Houston Rockets",
+  "w": 553,
+  "h": 657,
+  "span": 384,
+  "num": {
+   "fill": "#ffffff",
+   "stroke": "#7a0f1c"
+  }
+ },
+ "IND": {
+  "name": "Indiana Pacers",
+  "w": 591,
+  "h": 616,
+  "span": 412,
+  "num": {
+   "fill": "#fdbb30",
+   "stroke": "#002d62"
+  }
+ },
+ "LAC": {
+  "name": "Los Angeles Clippers",
+  "w": 613,
+  "h": 658,
+  "span": 448,
+  "num": {
+   "fill": "#ffffff",
+   "stroke": "#1d428a"
+  }
+ },
+ "LAL": {
+  "name": "Los Angeles Lakers",
+  "w": 540,
+  "h": 641,
+  "span": 382,
+  "num": {
+   "fill": "#fdb927",
+   "stroke": "#3b1a6b"
+  }
+ },
+ "MEM": {
+  "name": "Memphis Grizzlies",
+  "w": 590,
+  "h": 674,
+  "span": 431,
+  "num": {
+   "fill": "#ffffff",
+   "stroke": "#5d76a9"
+  }
+ },
+ "MIA": {
+  "name": "Miami Heat",
+  "w": 567,
+  "h": 667,
+  "span": 381,
+  "num": {
+   "fill": "#f9a01b",
+   "stroke": "#98002e"
+  }
+ },
+ "MIL": {
+  "name": "Milwaukee Bucks",
+  "w": 584,
+  "h": 662,
+  "span": 422,
+  "num": {
+   "fill": "#f0ebd2",
+   "stroke": "#00471b"
+  }
+ },
+ "MIN": {
+  "name": "Minnesota Timberwolves",
+  "w": 557,
+  "h": 670,
+  "span": 379,
+  "num": {
+   "fill": "#78be20",
+   "stroke": "#0c2340"
+  }
+ },
+ "NOP": {
+  "name": "New Orleans Pelicans",
+  "w": 551,
+  "h": 696,
+  "span": 376,
+  "num": {
+   "fill": "#c8102e",
+   "stroke": "#85714d"
+  }
+ },
+ "NYK": {
+  "name": "New York Knicks",
+  "w": 572,
+  "h": 656,
+  "span": 392,
+  "num": {
+   "fill": "#f58426",
+   "stroke": "#ffffff"
+  }
+ },
+ "OKC": {
+  "name": "Oklahoma City Thunder",
+  "w": 598,
+  "h": 670,
+  "span": 412,
+  "num": {
+   "fill": "#ef3b24",
+   "stroke": "#002d62"
+  }
+ },
+ "ORL": {
+  "name": "Orlando Magic",
+  "w": 603,
+  "h": 696,
+  "span": 428,
+  "num": {
+   "fill": "#ffffff",
+   "stroke": "#0077c0"
+  }
+ },
+ "PHI": {
+  "name": "Philadelphia 76ers",
+  "w": 578,
+  "h": 674,
+  "span": 411,
+  "num": {
+   "fill": "#ffffff",
+   "stroke": "#ed174c"
+  }
+ },
+ "PHX": {
+  "name": "Phoenix Suns",
+  "w": 560,
+  "h": 645,
+  "span": 372,
+  "num": {
+   "fill": "#e56020",
+   "stroke": "#1d1160"
+  }
+ },
+ "POR": {
+  "name": "Portland Trail Blazers",
+  "w": 538,
+  "h": 691,
+  "span": 376,
+  "num": {
+   "fill": "#e03a3e",
+   "stroke": "#ffffff"
+  }
+ },
+ "SAC": {
+  "name": "Sacramento Kings",
+  "w": 576,
+  "h": 704,
+  "span": 411,
+  "num": {
+   "fill": "#ffffff",
+   "stroke": "#3d2b7a"
+  }
+ },
+ "SAS": {
+  "name": "San Antonio Spurs",
+  "w": 569,
+  "h": 681,
+  "span": 386,
+  "num": {
+   "fill": "#c4ced4",
+   "stroke": "#111111"
+  }
+ },
+ "TOR": {
+  "name": "Toronto Raptors",
+  "w": 533,
+  "h": 643,
+  "span": 370,
+  "num": {
+   "fill": "#ffffff",
+   "stroke": "#111111"
+  }
+ },
+ "UTA": {
+  "name": "Utah Jazz",
+  "w": 548,
+  "h": 676,
+  "span": 376,
+  "num": {
+   "fill": "#f9a01b",
+   "stroke": "#002b5c"
+  }
+ },
+ "WAS": {
+  "name": "Washington Wizards",
+  "w": 606,
+  "h": 690,
+  "span": 438,
+  "num": {
+   "fill": "#ffffff",
+   "stroke": "#e31837"
+  }
+ }
+}

@@ -52,10 +52,11 @@ export async function fetchCsvCardsForProfilesCached(
   const withCsv = profiles.filter(p => p.lien_csv)
   if (withCsv.length === 0) return []
 
-  const { data: cached } = await cacheDb
+  const { data: cached, error: cacheErr } = await cacheDb
     .from('csv_cards_cache')
     .select('profile_id, cards, fetched_at')
     .in('profile_id', withCsv.map(p => p.id))
+  if (cacheErr) console.log('[csv-cache] erreur de lecture du cache :', cacheErr.message, `(${withCsv.length} profils demandés)`)
   const cachedById = new Map((cached || []).map(r => [r.profile_id, r]))
 
   const rawByProfile = new Map<string, RawCsvCard[]>()

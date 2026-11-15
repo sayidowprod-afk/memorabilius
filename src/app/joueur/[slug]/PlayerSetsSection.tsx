@@ -28,6 +28,8 @@ function seasonLabelSingle(year: number, sport = 'nba') {
 export default function PlayerSetsSection({ playerName, initialSets, totalCount, primarySport }: {
   playerName: string; initialSets: SetRow[]; totalCount: number; primarySport: string
 }) {
+  // Repliée par défaut : sur un joueur à des centaines de sets (LeBron : 464), la liste alourdissait la page pour rien. Elle se charge à la première ouverture.
+  const [open, setOpen] = useState(false)
   const [sets, setSets] = useState<SetRow[]>(initialSets)
   const [hasMore, setHasMore] = useState(totalCount > initialSets.length)
   const [loading, setLoading] = useState(false)
@@ -47,14 +49,20 @@ export default function PlayerSetsSection({ playerName, initialSets, totalCount,
     setLoading(false)
   }
 
+  // première ouverture : on charge la première page
+  useEffect(() => {
+    if (open && sets.length === 0 && hasMore && !loading) loadMore()
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [open])
+
   useEffect(() => {
     const el = sentinelRef.current
-    if (!el) return
+    if (!open || !el) return
     const obs = new IntersectionObserver(e => { if (e[0].isIntersecting && hasMore && !loading) loadMore() }, { threshold: 0.1 })
     obs.observe(el)
     return () => obs.disconnect()
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [hasMore, loading, sets.length])
+  }, [open, hasMore, loading, sets.length])
 
   const byYear = useMemo(() => {
     const map = new Map<number, SetRow[]>()
@@ -66,20 +74,25 @@ export default function PlayerSetsSection({ playerName, initialSets, totalCount,
     return [...map.entries()].sort((a, b) => b[0] - a[0])
   }, [sets])
 
-  if (sets.length === 0) return null
+  if (totalCount === 0) return null
 
   return (
     <section>
-      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'baseline', marginBottom: 20, flexWrap: 'wrap', gap: 8 }}>
+      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: open ? 20 : 0, flexWrap: 'wrap', gap: 8 }}>
         <h2 style={{ fontSize: 20, fontWeight: 900, color: 'var(--jp-text)', margin: 0 }}>
-          Sets ({totalCount})
+          <button type="button" onClick={() => setOpen(o => !o)} aria-expanded={open} aria-controls="jp-sets-list"
+            style={{ all: 'unset', cursor: 'pointer', display: 'inline-flex', alignItems: 'center', gap: 10 }}>
+            <span style={{ display: 'inline-block', transition: 'transform .15s', transform: open ? 'rotate(90deg)' : 'none', fontSize: 14 }}>▶</span>
+            Sets ({totalCount})
+          </button>
         </h2>
         <Link href={`/setlist?q=${encodeURIComponent(playerName)}`} style={{ fontSize: 13, color: 'var(--jp-accent)', fontWeight: 700, textDecoration: 'none' }}>
           Voir dans le Setlist →
         </Link>
       </div>
 
-      <div style={{ display: 'flex', flexDirection: 'column', gap: 24 }}>
+      {open && <div id="jp-sets-list" style={{ display: 'flex', flexDirection: 'column', gap: 24 }}>
+        {sets.length === 0 && <div style={{ fontSize: 13, color: 'var(--jp-muted)' }}>Chargement…</div>}
         {byYear.map(([year, yearSets]) => {
           const sport = yearSets[0]?.sport || primarySport
           return (
@@ -118,9 +131,9 @@ export default function PlayerSetsSection({ playerName, initialSets, totalCount,
             </div>
           )
         })}
-      </div>
+      </div>}
 
-      {hasMore && (
+      {open && hasMore && (
         <div ref={sentinelRef} style={{ height: 40, marginTop: 16, display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 12, color: 'var(--jp-muted)' }}>
           {loading ? 'Chargement…' : ''}
         </div>

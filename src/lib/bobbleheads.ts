@@ -1,0 +1,24 @@
+// Bobbleheads des joueurs (têtes et corps détourés, générés en local avec Z-Image Turbo puis détourés avec rembg).
+// Les dimensions sont celles des images d'origine : elles servent à les afficher à la même échelle (oreille à oreille pour la tête, épaules pour le corps)
+// et à la même hauteur totale. Images optimisées dans public/bobbleheads/<id>-head.webp et <id>-body.webp.
+
+export type BobbleMeta = { names: string[]; head: { w: number; h: number; ear: number }; body: { w: number; h: number; span: number } }
+
+export const BOBBLEHEADS: Record<string, BobbleMeta> = {
+  dirk: { names: ["dirk nowitzki"], head: { w: 679, h: 893, ear: 676 }, body: { w: 637, h: 818, span: 429 } },
+  duncan: { names: ["tim duncan"], head: { w: 717, h: 879, ear: 714 }, body: { w: 619, h: 771, span: 436 } },
+  iverson: { names: ["allen iverson"], head: { w: 745, h: 917, ear: 742 }, body: { w: 656, h: 771, span: 458 } },
+  jordan: { names: ["michael jordan"], head: { w: 688, h: 903, ear: 686 }, body: { w: 684, h: 819, span: 469 } },
+  kobe: { names: ["kobe bryant"], head: { w: 713, h: 880, ear: 710 }, body: { w: 686, h: 833, span: 480 } },
+  lebron: { names: ["lebron james"], head: { w: 621, h: 809, ear: 618 }, body: { w: 674, h: 807, span: 447 } },
+  shaq: { names: ["shaquille oneal","shaquille o neal","shaq"], head: { w: 744, h: 937, ear: 740 }, body: { w: 683, h: 788, span: 475 } },
+}
+
+export const normName = (s: string) => s.normalize('NFD').replace(/[̀-ͯ]/g, '').toLowerCase().replace(/[^a-z0-9 ]/g, ' ').replace(/\s+/g, ' ').trim()
+
+// Identifiant du bobblehead d'un joueur d'après son nom (ou null s'il n'en a pas encore : la page garde alors sa photo).
+export function bobbleIdFor(playerName: string): string | null {
+  const n = normName(playerName)
+  for (const [id, m] of Object.entries(BOBBLEHEADS)) if (m.names.some(x => normName(x) === n)) return id
+  return null
+}

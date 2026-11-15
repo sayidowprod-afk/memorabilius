@@ -188,7 +188,7 @@ export default function PlayerChecklistSection({ playerName }: { playerName: str
   if (userId === undefined) return null
 
   return (
-    <section id="checklist-joueur" style={{ marginTop: 48, scrollMarginTop: 80 }}>
+    <section id="checklist-joueur-contenu" style={{ marginTop: 12, scrollMarginTop: 80 }}>
       <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 16, flexWrap: 'wrap', gap: 8 }}>
         <div>
           <h2 style={{ fontSize: 20, fontWeight: 900, color: 'var(--jp-text)', margin: 0 }}>

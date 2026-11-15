@@ -4,6 +4,14 @@ export type Entry = { date: string; titre: string; points: string[] }
 
 export const ENTRIES: Entry[] = [
   {
+    date: '30 novembre 2026', titre: 'Pages joueurs : nouveau look et bobbleheads',
+    points: [
+      'Page joueur : nouveau bandeau avec le nom en grand, étiquettes (numéro, poste, taille, poids, âge) et frise des équipes avec leurs logos. Les couleurs du bandeau et des valeurs suivent l’équipe du joueur.',
+      'Bobbleheads : les joueurs qui en ont un affichent leur figurine, avec le maillot et le numéro de leur équipe actuelle (ou de l’équipe où ils ont le plus joué pour les retraités). Les autres affichent leur photo à la place.',
+      'Checklist : elle est repliée au départ et ne se charge que quand tu l’ouvres (aussi sur les pages équipe).',
+    ],
+  },
+  {
     date: '30 novembre 2026', titre: 'Listes de cartes plus rapides',
     points: [
       'Pages joueur et équipe : la liste « Dans les collections » se charge beaucoup plus vite quand tu fais défiler ou que tu changes un filtre (RC, auto, patch, tri…). La recherche n’est faite qu’une fois, puis tout se fait sans attendre.',
