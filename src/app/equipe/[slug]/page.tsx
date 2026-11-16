@@ -1,4 +1,5 @@
 import type { Metadata } from 'next'
+import { connection } from 'next/server'
 import Link from 'next/link'
 import { SPORTS_TEAMS, teamLogoUrl, SportsTeam } from '@/lib/sportsTeams'
 import { teamSlug, playerSlug } from '@/lib/playerSlug'
@@ -78,6 +79,8 @@ async function fetchTeamData(slug: string) {
 
   // Cartes CSV
   const csvAll = await fetchCsvCardsForProfilesCached(profilesRes.data || [])
+  // CSV pas encore prêts : page incomplète, à ne pas garder en cache (la visite suivante la recalcule)
+  if ((csvAll as unknown as { pending?: number }).pending) await connection()
   const lowerTeam = teamLastWord.toLowerCase()
   const csvCards = csvAll
     .filter(c => c.team.toLowerCase().includes(lowerTeam))

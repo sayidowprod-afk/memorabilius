@@ -17,17 +17,23 @@ function rememberEmpty(profileId: string) {
   cacheDb.from('csv_cards_cache').upsert({ profile_id: profileId, cards: [], fetched_at: new Date().toISOString() }).then(() => {})
 }
 
-async function fetchAndCacheCsv(profileId: string, url: string): Promise<RawCsvCard[]> {
+// `keepOnFail` : le profil a déjà des cartes en cache. Un échec (CSV lent ou injoignable) ne doit JAMAIS les remplacer par une liste vide :
+// c'est ce qui faisait « disparaître » les cartes d'un collectionneur (ex. 70 cartes d'Iguodala affichées comme 1) jusqu'au prochain téléchargement réussi.
+function failed(profileId: string, keepOnFail: boolean) {
+  if (keepOnFail) cacheDb.from('csv_cards_cache').update({ fetched_at: new Date().toISOString() }).eq('profile_id', profileId).then(() => {})
+  else rememberEmpty(profileId)
+}
+
+async function fetchAndCacheCsv(profileId: string, url: string, timeoutMs = 4000, keepOnFail = false): Promise<RawCsvCard[]> {
   try {
-    const r = await fetch(url, { signal: AbortSignal.timeout(4000), next: { revalidate: 3600 } })
-    if (!r.ok) { rememberEmpty(profileId); return [] }
+    const r = await fetch(url, { signal: AbortSignal.timeout(timeoutMs), next: { revalidate: 3600 } })
+    if (!r.ok) { failed(profileId, keepOnFail); return [] }
     const cards = parseCsv(await r.text())
     cacheDb.from('csv_cards_cache').upsert({ profile_id: profileId, cards, fetched_at: new Date().toISOString() }).then(() => {})
     return cards
   } catch {
-    // CSV injoignable : mémorisé comme vide pour ne pas être retenté (et ne pas bloquer la page) à CHAQUE visite ;
-    // le cache périmé (1 h) est rafraîchi en arrière-plan, donc il sera réessayé plus tard
-    rememberEmpty(profileId)
+    // CSV injoignable : mémorisé pour ne pas être retenté (et ne pas bloquer la page) à CHAQUE visite, SANS effacer les cartes déjà en cache
+    failed(profileId, keepOnFail)
     return []
   }
 }
@@ -90,7 +96,7 @@ export async function fetchCsvCardsForProfilesCached(
   // pas encore récupérés dans le budget : téléchargés après l'envoi de la page, prêts pour la visite suivante
   const missing = toFetchNow.filter(p => !rawByProfile.has(p.id))
   if (missing.length > 0) {
-    after(() => runPooled(missing, 8, Date.now() + 60_000, async p => { await fetchAndCacheCsv(p.id, p.lien_csv!) }))
+    after(() => runPooled(missing, 8, Date.now() + 60_000, async p => { await fetchAndCacheCsv(p.id, p.lien_csv!, 9000, false) }))
   }
 
   // Cache perime mais present : on sert tout de suite les donnees en cache
@@ -98,14 +104,16 @@ export async function fetchCsvCardsForProfilesCached(
   // pour ne pas se faire tuer en cours de route par la fin de l'invocation
   // serverless comme un simple fire-and-forget non attendu.
   if (toRefreshStale.length > 0) {
-    after(() => runPooled(toRefreshStale, 8, Date.now() + 60_000, async p => { await fetchAndCacheCsv(p.id, p.lien_csv!) }))
+    after(() => runPooled(toRefreshStale, 8, Date.now() + 60_000, async p => { await fetchAndCacheCsv(p.id, p.lien_csv!, 9000, true) }))
   }
 
+  const pendingCount = missing.length
   const all: CsvCard[] = []
   for (const p of withCsv) {
     for (const raw of rawByProfile.get(p.id) || []) {
       all.push({ ...raw, user_id: p.id, display_name: p.display_name, avatar_url: p.avatar_url, accent: p.couleur_bordure || '#003DA6' })
     }
   }
-  return all
+  // `pending` : nombre de CSV pas encore prêts (téléchargés après l'envoi de la page) ; une page qui en dépend ne doit PAS être gardée en cache longtemps
+  return Object.assign(all, { pending: pendingCount })
 }

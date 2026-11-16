@@ -1,4 +1,5 @@
 import type { Metadata } from 'next'
+import { connection } from 'next/server'
 import { fetchPlayerManuelles, fetchAllPaged } from '@/lib/playerManuelles'
 import Link from 'next/link'
 import { Suspense, cache } from 'react'
@@ -356,6 +357,8 @@ async function _fetchPlayer(slug: string) {
   // reelle via .range(), sans plafond ("jamais de limites").
   const fetchAllManuellesForPlayer = async () => {
     const all = await fetchPlayerManuelles(supabase, 'id, nom, annee, rc, auto, num, patch, marque, collection, variation, image_recto, is_horizontal, disponible_vente, created_at, user_id, profiles(display_name, avatar_url, couleur_bordure, is_demo)', firstName, lastName)
+    // la recherche a échoué ou a été dégradée (base saturée) : page INCOMPLÈTE, à ne pas garder en cache (sinon « 1 carte » pendant 7 jours)
+    if ((all as unknown as { failed?: boolean }).failed) await connection()
     return all.filter((m: any) => !m.profiles?.is_demo) // compte démo (salons) : invisible
   }
 
@@ -453,6 +456,9 @@ async function _fetchPlayer(slug: string) {
     getCachedHeadshot(playerName, primarySport),
     fetchCsvCardsForProfilesCached(profilesData),
   ])
+  // des CSV de collectionneurs ne sont pas encore prêts (téléchargés en arrière-plan) : cette version de la page est INCOMPLÈTE, elle ne doit pas être gardée en cache (7 jours) ;
+  // la visite suivante la recalcule avec les cartes alors disponibles
+  if ((csvAll as unknown as { pending?: number }).pending) await connection()
 
   const manuellesCards = matchedManu.map((m: any) => ({
     id: m.id,

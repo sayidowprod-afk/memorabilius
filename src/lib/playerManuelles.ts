@@ -26,12 +26,14 @@ export async function fetchPlayerManuelles(sb: SupabaseClient, select: string, f
   let first: { data: any[] | null; error: any } = await withRetry(() => sb.from('cartes_manuelles').select(select)
     .ilike('nom', `%${firstName}%`).ilike('nom', `%${lastName}%`).not('image_recto', 'is', null).limit(PAGE), 'cartes joueur')
   if (!first.error && first.data && first.data.length === PAGE) first = await page(0)
+  let degraded = false   // la recherche a dû être dégradée (délai dépassé) : le résultat est INCOMPLET, l'appelant ne doit pas le garder en cache
   if (first.error || !first.data) {
+    degraded = true
     // « prénom ET nom » dépasse le délai de la base : plan plus simple avec le nom de famille seul, le prénom est filtré ensuite par l'appelant
     console.log('[cartes joueur] repli sur le nom de famille seul')
     const fb = (from: number) => sb.from('cartes_manuelles').select(select).ilike('nom', `%${lastName}%`).not('image_recto', 'is', null).range(from, from + PAGE - 1)
     const r = await fb(0)
-    if (r.error || !r.data) { console.log('[cartes joueur] repli en échec :', r.error?.message); return out }
+    if (r.error || !r.data) { console.log('[cartes joueur] repli en échec :', r.error?.message); return Object.assign(out, { failed: true }) }
     first = r as { data: any[] | null; error: any }
   }
   const rows0 = first.data as any[]
@@ -40,10 +42,10 @@ export async function fetchPlayerManuelles(sb: SupabaseClient, select: string, f
   while (more) {
     const batch = await Promise.all(Array.from({ length: PARALLEL }, (_, i) => page(from + i * PAGE)))
     more = false
-    for (const r of batch) { if (r.error || !r.data?.length) continue; out.push(...r.data); if (r.data.length === PAGE) more = true }
+    for (const r of batch) { if (r.error) degraded = true; if (r.error || !r.data?.length) continue; out.push(...r.data); if (r.data.length === PAGE) more = true }
     from += PARALLEL * PAGE
   }
-  return out.sort((a, b) => (b.created_at || '').localeCompare(a.created_at || ''))
+  return Object.assign(out.sort((a, b) => (b.created_at || '').localeCompare(a.created_at || '')), { failed: degraded })
 }
 
 // Version générique : `page(from)` renvoie la page de 1 000 lignes commençant à `from`. 1re page seule, puis les suivantes 4 par 4 en parallèle.
