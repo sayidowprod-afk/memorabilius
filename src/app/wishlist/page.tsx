@@ -157,6 +157,7 @@ export default function WishlistPage() {
         <button type="button" onClick={() => toggleSalon(!salon)} className={'da-salon-btn' + (salon ? ' on' : '')} aria-pressed={salon}>
           {salon ? '✕ Quitter le mode salon' : '🎪 Mode salon'}
         </button>
+        {salon && <a href="/trades?tab=rencontre" className="da-salon-btn" style={{ textDecoration: 'none', display: 'inline-flex', alignItems: 'center' }}>🤝 Mon QR de rencontre</a>}
         {!salon && <button onClick={() => setShowForm(!showForm)} style={{
           background: '#003DA6', color: 'white', border: 'none', borderRadius: 10,
           padding: '10px 20px', fontWeight: 800, fontSize: 14, cursor: 'pointer',

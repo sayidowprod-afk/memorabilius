@@ -21,6 +21,7 @@ import PriceTag from '@/components/PriceTag'
 import { askConfirm } from '@/components/ConfirmHost'
 import dynamic from 'next/dynamic'
 import SwipeDeck from '@/components/SwipeDeck'
+import RencontreTab from '@/components/RencontreTab'
 import { listDrafts, clearDraft, type TradeDraft } from '@/lib/tradeDrafts'
 
 const Viewer3D = dynamic(() => import('@/components/Viewer3D'), { ssr: false })
@@ -93,9 +94,11 @@ export default function Trades() {
   const { dark } = useTheme()
 
   // Tab principal : annonces forum | mes échanges directs
-  const [mainTab, setMainTab] = useState<'annonces' | 'matches' | 'swipe' | 'echanges'>(
-    searchParams.get('tab') === 'echanges' ? 'echanges' : searchParams.get('tab') === 'matches' ? 'matches' : searchParams.get('tab') === 'swipe' ? 'swipe' : 'annonces'
+  const [mainTab, setMainTab] = useState<'annonces' | 'matches' | 'swipe' | 'rencontre' | 'echanges'>(
+    searchParams.get('tab') === 'echanges' ? 'echanges' : searchParams.get('tab') === 'matches' ? 'matches' : searchParams.get('tab') === 'swipe' ? 'swipe' : searchParams.get('tab') === 'rencontre' ? 'rencontre' : 'annonces'
   )
+  // Rencontre (salon) : id du collectionneur dont on a scanné le QR (lien /trades?tab=rencontre&avec=…)
+  const [rencontreWith, setRencontreWith] = useState<string | null>(searchParams.get('avec'))
 
   // ── Matches wishlist <-> collection (voir api/trades/matches) ───────────────
   const [matches, setMatches] = useState<any[] | null>(null)
@@ -565,6 +568,7 @@ export default function Trades() {
           { key: 'annonces', label: '📋 Annonces' },
           { key: 'matches', label: `🎯 ${t('trades_for_you')}${matches && matches.length > 0 ? ` (${matches.length})` : ''}` },
           { key: 'swipe', label: '🔥 Swipe' },
+          { key: 'rencontre', label: '🤝 Rencontre' },
           { key: 'echanges', label: `🔄 Mes échanges${pendingOffers.length > 0 ? ` (${pendingOffers.length})` : ''}` },
         ] as const).map(tab => (
           <button key={tab.key} onClick={() => setMainTab(tab.key)} style={{
@@ -720,6 +724,17 @@ export default function Trades() {
         <SwipeDeck
           onClose={() => setMainTab('annonces')}
           onPropose={(userId, name, theirCardId, myCardId) => { setMainTab('annonces'); setTradeModal({ userId, name, targetIds: [theirCardId], myIds: [myCardId] }) }}
+        />
+      )}
+
+      {mainTab === 'rencontre' && userId && (
+        <RencontreTab
+          userId={userId}
+          matches={matches}
+          partnerId={rencontreWith}
+          onPartner={setRencontreWith}
+          onPropose={m => setTradeModal({ userId: m.id, name: m.name, targetIds: m.theyHave.map((c: any) => c.id), myIds: m.theyWantFromMe.map((c: any) => c.id) })}
+          onViewCard={(card, owner) => setViewerCard({ card, owner })}
         />
       )}
 

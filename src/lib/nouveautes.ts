@@ -4,7 +4,14 @@ export type Entry = { date: string; titre: string; points: string[] }
 
 export const ENTRIES: Entry[] = [
   {
-    date: '16 novembre 2026', titre: 'Bobbleheads : 139 joueurs, et ce n’est que le début',
+    date: '30 novembre 2026', titre: 'Échanges : un onglet Rencontre pour les salons',
+    points: [
+      'Échanges : un nouvel onglet « 🤝 Rencontre ». Il affiche ton QR ; l’autre collectionneur le scanne (avec l’appareil photo de son téléphone ou le bouton « Scanner un QR ») et voit d’un coup ce qu’il a pour toi et ce que tu as pour lui, avec le bouton « Proposer un échange ».',
+      'Wishlist : en mode salon, un bouton « Mon QR de rencontre » ouvre directement cet onglet.',
+    ],
+  },
+  {
+    date: '30 novembre 2026', titre: 'Bobbleheads : 139 joueurs, et ce n’est que le début',
     points: [
       'Bobbleheads : 139 joueurs ont déjà leur figurine sur leur page, et d’autres arrivent chaque jour. Ceux qui n’en ont pas encore gardent leur photo.',
       'Même maillot pour toute une équipe : une figurine porte désormais le maillot et le numéro de son équipe (ou de l’équipe où le joueur a le plus joué pour les retraités), comme Iverson avec les 76ers.',
