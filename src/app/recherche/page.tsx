@@ -256,7 +256,7 @@ export default function Recherche() {
         }
       `}</style>
 
-      <div style={{ maxWidth: 1280, margin: '0 auto', fontFamily: 'Inter, sans-serif', padding: '0 12px' }}>
+      <div style={{ maxWidth: 'var(--page-max, 1280px)', margin: '0 auto', fontFamily: 'Inter, sans-serif', padding: '0 12px' }}>
 
         {/* ── HERO SEARCH ── */}
         <div style={{ textAlign: 'center', padding: '40px 20px 28px' }}>

@@ -1710,7 +1710,7 @@ body:has([role="dialog"][aria-modal="true"]:not([data-keep-nav])) .mobile-bottom
 .card-item .gc-bot .gc-name .da-display { text-shadow: none; }
 
 /* 289 · Pied de page en colonnes (Footer.tsx) : marque à gauche, puis Site, Légal, Communauté. Deux colonnes sur téléphone. */
-.da-footer-in { max-width: 1400px; margin: 0 auto; display: grid; grid-template-columns: 1.3fr repeat(3, minmax(150px, 1fr)); gap: var(--sp-5) var(--sp-6); align-items: start; }
+.da-footer-in { max-width: var(--page-max, 1400px); margin: 0 auto; display: grid; grid-template-columns: 1.3fr repeat(3, minmax(150px, 1fr)); gap: var(--sp-5) var(--sp-6); align-items: start; }
 .da-footer-brand { display: flex; flex-direction: column; align-items: flex-start; gap: var(--sp-3); }
 .da-footer-col { display: flex; flex-direction: column; align-items: flex-start; gap: 0; min-width: 0; }
 .da-footer-col h4 { margin: 0 0 var(--sp-2); font: 800 11px system-ui, sans-serif; letter-spacing: .14em; text-transform: uppercase; opacity: .65; }
@@ -1874,3 +1874,6 @@ html[data-member="1"] .home-member-ph { display: block; min-height: 100svh; }
   .da-profile .header-stats-block > div[data-maxlen="5"] .da-num { font-size: 20px !important; }
   .da-profile .header-stats-block > div[data-maxlen="6"] .da-num, .da-profile .header-stats-block > div[data-maxlen="7"] .da-num { font-size: 16px !important; }
 }
+
+/* Écrans larges (1440p, 4K) : la largeur utile suit l écran au lieu de rester bloquée à 1400px */
+:root { --page-max: max(1400px, min(90vw, 2200px)); }

@@ -2771,7 +2771,7 @@ export default function GalerieClient({ userId, initialCardUrl, initialCards, in
       )}
       {shownTheme && <div className={'gtheme-bg gtheme-layer' + (dark ? '' : ' light')} data-gtheme={shownTheme} data-tone={isLightTheme(shownTheme) ? 'light' : 'dark'} aria-hidden="true" style={shownTheme === 'equipe' && teamColors ? { background: teamBackground(teamColors) } : ballStyle(shownTheme)} />}
       {themePicker && isOwner && <GalleryCustomizer theme={shownTheme} onTheme={t => setThemePreview(t)} accent={accent} onAccent={setAccentPreview} favs={favShown} onFavs={setFavPreview} teamColors={teamColors} onSave={saveCustom} saving={themeSaving} onClose={closeCustomizer} />}
-      <div style={{ maxWidth: 1400, margin: '0 auto', fontFamily: 'Inter, sans-serif', padding: '0 10px', paddingBottom: (editMode && isOwner && selectedCards.size > 0) || qrMode ? 80 : 0 }}>
+      <div style={{ maxWidth: 'var(--page-max, 1400px)', margin: '0 auto', fontFamily: 'Inter, sans-serif', padding: '0 10px', paddingBottom: (editMode && isOwner && selectedCards.size > 0) || qrMode ? 80 : 0 }}>
 
         {isOwner && loaded && !thumbBannerOff && !thumbsOpen && cards.some(c => !c.thumb && c.id_manuelle && c.f.startsWith('http')) && (
           <div style={{ display: 'flex', gap: 10, alignItems: 'center', flexWrap: 'wrap', padding: '8px 12px', margin: '0 0 10px', background: dark ? '#17214a' : '#eef3ff', border: '2px solid #2f6bff', color: dark ? '#ddd' : '#222', fontSize: 13 }}>

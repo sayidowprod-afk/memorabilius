@@ -997,7 +997,7 @@ export default async function JoueurPage({ params }: { params: Promise<{ slug: s
               : <BioTeamWatermark playerName={playerName} sportHint={primarySport} />}
           </Suspense>
 
-          <div style={{ maxWidth: 1200, margin: '0 auto', position: 'relative' }}>
+          <div style={{ maxWidth: 'var(--page-max, 1200px)', margin: '0 auto', position: 'relative' }}>
             {/* Breadcrumb */}
             {!newHero && <div style={{ fontSize: 12, color: 'rgba(255,255,255,0.5)', marginBottom: 22, display: 'flex', gap: 6, alignItems: 'center' }}>
               <Link href="/setlist" style={{ color: 'rgba(255,255,255,0.5)', textDecoration: 'none', fontWeight: 600, transition: 'color 0.1s' }}>Setlist</Link>
@@ -1103,7 +1103,7 @@ export default async function JoueurPage({ params }: { params: Promise<{ slug: s
         </div>
 
         {/* ── CONTENU ── */}
-        <div style={{ maxWidth: 1200, margin: '0 auto', padding: '36px 24px 48px' }}>
+        <div style={{ maxWidth: 'var(--page-max, 1200px)', margin: '0 auto', padding: '36px 24px 48px' }}>
 
           {/* Top variations dans la communauté */}
           {topVariations.length > 0 && (

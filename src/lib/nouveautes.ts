@@ -4,6 +4,12 @@ export type Entry = { date: string; titre: string; points: string[] }
 
 export const ENTRIES: Entry[] = [
   {
+    date: '30 novembre 2026', titre: 'Le site s’adapte aux grands écrans',
+    points: [
+      'Sur les écrans larges (1440p, 4K), la galerie, les pages joueur, la recherche, les échanges et le pied de page utilisent maintenant la largeur de l’écran au lieu de rester bloqués à 1400 px. Rien ne change sur les écrans plus petits.',
+    ],
+  },
+  {
     date: '30 novembre 2026', titre: 'Offres de prix, classement par joueur et site plus rapide',
     points: [
       'Offres : sur une carte à vendre de l’onglet Annonces, le bouton « Faire une offre » te permet de proposer un prix. Aucun paiement sur le site : si le vendeur accepte, la suite se passe entre vous.',

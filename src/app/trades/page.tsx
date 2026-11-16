@@ -552,7 +552,7 @@ export default function Trades() {
   )
 
   return (
-    <div className={mainTab === 'annonces' ? 'trades-wide' : undefined} style={{ maxWidth: 1200, margin: '0 auto', fontFamily: 'Inter, sans-serif' }}>
+    <div className={mainTab === 'annonces' ? 'trades-wide' : undefined} style={{ maxWidth: 'var(--page-max, 1200px)', margin: '0 auto', fontFamily: 'Inter, sans-serif' }}>
       <ScrollToTopButton />
 
       {/* ── En-tête + onglets principaux ── */}
