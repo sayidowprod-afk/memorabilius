@@ -29,14 +29,19 @@ export default function PcBobbles({ pcs, ownerId, maxHeight = 150 }: { pcs?: Pc[
     return () => { off = true }
   }, [key])
 
-  // les « top x % » arrivent après (calcul plus lent la 1re fois) : les figurines s'affichent sans attendre
+  // les « top x % » arrivent après les figurines : UN appel par joueur, en parallèle (chacun a son propre délai et son propre cache ; un joueur lent ne bloque plus les autres)
   useEffect(() => {
-    if (!key || !ownerId || !figs.length) return
+    if (!ownerId || !figs.length) return
     let off = false
-    fetch(`/api/bobble-figs?names=${encodeURIComponent(key)}&userId=${encodeURIComponent(ownerId)}`)
-      .then(r => (r.ok ? r.json() : null))
-      .then(d => { if (off || !Array.isArray(d?.figs)) return; const m = new Map<string, { pct: number; label?: string }>(d.figs.filter((f: { pct?: number }) => f.pct).map((f: { name: string; pct: number; label?: string }) => [f.name, { pct: f.pct, label: f.label }])); setFigs(cur => cur.map(f => (m.has(f.name) ? { ...f, ...m.get(f.name) } : f))) })
-      .catch(() => {})
+    const ask = async (name: string, attempt = 0): Promise<void> => {
+      try {
+        const d = await fetch(`/api/player-rank?name=${encodeURIComponent(name)}&userId=${encodeURIComponent(ownerId)}`).then(r => r.json())
+        if (off) return
+        if (d?.error && attempt < 2) { await new Promise(r => setTimeout(r, 2500 * (attempt + 1))); return ask(name, attempt + 1) }
+        if (d?.pct) setFigs(cur => cur.map(f => (f.name === name ? { ...f, pct: d.pct, label: d.label } : f)))
+      } catch { /* pas de % pour ce joueur */ }
+    }
+    figs.forEach(f => { if (!f.pct) void ask(f.name) })
     return () => { off = true }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [key, ownerId, figs.length])
