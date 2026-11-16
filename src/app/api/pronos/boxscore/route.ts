@@ -8,7 +8,7 @@ export async function GET(req: NextRequest) {
   try {
     const box = await getBoxScore(id)
     if (!box) return NextResponse.json({ error: 'unavailable' }, { status: 404 })
-    return NextResponse.json(box)
+    return NextResponse.json(box, { headers: { 'Cache-Control': 'public, s-maxage=300, stale-while-revalidate=900' } })
   } catch {
     return NextResponse.json({ error: 'upstream' }, { status: 502 })
   }

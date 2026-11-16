@@ -4,6 +4,15 @@ export type Entry = { date: string; titre: string; points: string[] }
 
 export const ENTRIES: Entry[] = [
   {
+    date: '30 novembre 2026', titre: 'Site plus rapide et plus léger',
+    points: [
+      'Navigation : le profil, les notifications et l’état « en ligne » ne sont plus redemandés à chaque page, les pages s’enchaînent avec moins d’attente.',
+      'Statistiques : seules les visites des galeries sont comptées (badges de vues et récapitulatif hebdomadaire inchangés), le reste du site n’envoie plus de requête à chaque page.',
+      'Pronos, pages équipe et QR du site : réponses gardées en mémoire quelques minutes, elles s’affichent plus vite.',
+      'En coulisses : base de données allégée (règles de sécurité optimisées), dépendances inutiles retirées, site plus léger à déployer.',
+    ],
+  },
+  {
     date: '30 novembre 2026', titre: 'Galerie : 6 cartes par ligne sur grand écran',
     points: [
       'Sur les écrans 1440p et plus, la grille de la galerie affiche 6 cartes par ligne (10 en affichage compact) au lieu de 5 (8), pour que les cartes ne deviennent pas immenses. Rien ne change sur les écrans plus petits.',

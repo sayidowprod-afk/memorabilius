@@ -44,7 +44,9 @@ export default function TrackView() {
       if (token) { try { sessionStorage.setItem('country_tracked', '1') } catch {} }
     }
 
-    if (sentCountryThisSession) { send(undefined); return }
+    // Seules les pages galerie sont comptées (badges « vues » et récapitulatif hebdomadaire) : plus aucune requête pour les autres pages une fois le pays envoyé
+    const isGallery = /^\/galerie\//.test(path || '')
+    if (sentCountryThisSession) { if (isGallery) send(undefined); return }
 
     supabase.auth.getSession()
       .then(({ data: { session } }) => send(session?.access_token))

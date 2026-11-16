@@ -44,6 +44,7 @@ export async function GET() {
     headers: {
       'Content-Type': 'image/png',
       'Content-Disposition': 'attachment; filename="memorabilius-qr.png"',
+      'Cache-Control': 'public, s-maxage=86400, stale-while-revalidate=604800',
     },
   })
 }

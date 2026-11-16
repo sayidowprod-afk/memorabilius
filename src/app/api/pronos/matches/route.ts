@@ -12,5 +12,6 @@ export const maxDuration = 60
 export async function GET(req: NextRequest) {
   const prev = req.nextUrl.searchParams.get('week') === 'prev'
   const { days, matches } = await fetchMatchesForOffsets(weekOffsets(prev ? -1 : 0))
-  return NextResponse.json({ days, matches })
+  // données publiques : gardées 2 min sur le réseau de Vercel (même résultat pour tous les visiteurs), puis rafraîchies en arrière-plan
+  return NextResponse.json({ days, matches }, { headers: { 'Cache-Control': 'public, s-maxage=120, stale-while-revalidate=600' } })
 }

@@ -42,5 +42,6 @@ export async function GET(req: NextRequest) {
 
   const total = sets.length
   const page = sets.slice(offset, offset + limit)
-  return NextResponse.json({ sets: page, total, hasMore: offset + limit < total })
+  // liste de sets d'une franchise : change rarement, gardée 1 h sur le réseau de Vercel (une requête par équipe/page au lieu d'une par visiteur)
+  return NextResponse.json({ sets: page, total, hasMore: offset + limit < total }, { headers: { 'Cache-Control': 'public, s-maxage=3600, stale-while-revalidate=86400' } })
 }

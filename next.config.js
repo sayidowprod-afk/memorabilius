@@ -1,7 +1,6 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  // Transitions de page via l'API de transition de vue du navigateur (PageTransition.tsx, da.css « 248 »).
-  experimental: { viewTransition: true },
+  // (Les transitions de page n'ont plus besoin d'option : <ViewTransition> de React fonctionne sans configuration dans Next 16, voir PageTransition.tsx.)
   // @napi-rs/canvas embarque des binaires natifs .node par plateforme --
   // sans ça webpack essaie de les parser comme du JS et le build casse
   // ("Module parse failed: Unexpected character") sur /api/discord
@@ -132,7 +131,7 @@ const nextConfig = {
   },
 }
 
-const { withSentryConfig } = require('@sentry/nextjs')
+const { withSentryConfig } = require('@sentry/nextjs/config')
 
 // withSentryConfig reste un no-op cote runtime si NEXT_PUBLIC_SENTRY_DSN
 // n'est pas defini (voir instrumentation.ts/instrumentation-client.ts) --

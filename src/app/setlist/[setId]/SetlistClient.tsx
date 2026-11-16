@@ -370,8 +370,8 @@ export default function SetlistClient({ setId }: { setId: string }) {
     const PAGE = 1000
     for (let from = 0; ; from += PAGE) {
       const q = isBase
-        ? supabase.from('card_set_entries').select('*').eq('set_id', setId).is('variation', null).order('id').range(from, from + PAGE - 1)
-        : supabase.from('card_set_entries').select('*').eq('set_id', setId).eq('variation', varName).order('id').range(from, from + PAGE - 1)
+        ? supabase.from('card_set_entries').select('id, card_number, player_name, team, variation, is_rc, image_url').eq('set_id', setId).is('variation', null).order('id').range(from, from + PAGE - 1)
+        : supabase.from('card_set_entries').select('id, card_number, player_name, team, variation, is_rc, image_url').eq('set_id', setId).eq('variation', varName).order('id').range(from, from + PAGE - 1)
       const { data: page } = await q
       if (!page?.length) break
       allPages.push(...page)

@@ -78,7 +78,7 @@ export default function PriceOffersTab({ userId }: { userId: string }) {
               const key = `${it.buyerId}:${it.card.id}`
               return (
                 <div key={key} style={{ ...card, flexWrap: 'wrap' }}>
-                  {it.card.image /* eslint-disable-next-line @next/next/no-img-element */ ? <img src={it.card.image} alt="" style={{ width: 34, height: 48, objectFit: 'cover' }} /> : <div style={{ width: 34, height: 48, background: 'var(--bg3, #17214a)' }} />}
+                  {it.card.image /* eslint-disable-next-line @next/next/no-img-element */ ? <img src={it.card.image} alt="" loading="lazy" decoding="async" style={{ width: 34, height: 48, objectFit: 'cover' }} /> : <div style={{ width: 34, height: 48, background: 'var(--bg3, #17214a)' }} />}
                   <div style={{ flex: '1 1 160px', minWidth: 0, fontSize: 13, lineHeight: 1.35 }}>
                     <b>{it.buyerName}</b> a mis en favori <b>{it.card.nom}</b>
                     <div style={sub}>{[it.card.annee, it.card.marque].filter(Boolean).join(' · ')} · ton prix {fmtPrice(it.card.prix)}</div>
@@ -102,7 +102,7 @@ export default function PriceOffersTab({ userId }: { userId: string }) {
               const st = statusOf(o, o.mineAsSeller), shown = o.status === 'countered' && o.counter_price != null ? o.counter_price : o.price
               return (
                 <div key={o.id} style={{ ...card, flexWrap: 'wrap' }}>
-                  {o.card?.image /* eslint-disable-next-line @next/next/no-img-element */ ? <img src={o.card.image} alt="" style={{ width: 34, height: 48, objectFit: 'cover' }} /> : <div style={{ width: 34, height: 48, background: 'var(--bg3, #17214a)' }} />}
+                  {o.card?.image /* eslint-disable-next-line @next/next/no-img-element */ ? <img src={o.card.image} alt="" loading="lazy" decoding="async" style={{ width: 34, height: 48, objectFit: 'cover' }} /> : <div style={{ width: 34, height: 48, background: 'var(--bg3, #17214a)' }} />}
                   <div style={{ flex: '1 1 170px', minWidth: 0, fontSize: 13, lineHeight: 1.35 }}>
                     <b>{o.card?.nom || 'Carte'}</b>
                     <div style={sub}>{o.mineAsSeller ? 'avec' : 'chez'} {o.otherName}{o.card?.prix != null ? ` · prix affiché ${fmtPrice(Number(o.card.prix))}` : ''}</div>

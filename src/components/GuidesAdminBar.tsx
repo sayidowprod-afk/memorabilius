@@ -2,6 +2,7 @@
 import { useEffect, useState } from 'react'
 import Link from 'next/link'
 import { supabase } from '@/lib/supabase'
+import { getMyBasics } from '@/lib/sharedMe'
 import { useTheme } from '@/lib/ThemeContext'
 
 // Petit ilot client sur la page /guides (composant serveur), visible uniquement des
@@ -14,7 +15,7 @@ export default function GuidesAdminBar() {
   useEffect(() => {
     supabase.auth.getSession().then(async ({ data: { session } }) => {
       if (!session) return
-      const { data: p } = await supabase.from('profiles').select('is_admin').eq('id', session.user.id).single()
+      const p = await getMyBasics(session.user.id).catch(() => null)
       setIsAdmin(!!p?.is_admin)
     })
   }, [])

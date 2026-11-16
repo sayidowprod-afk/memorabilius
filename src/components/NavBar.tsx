@@ -3,6 +3,7 @@ import { useEffect, useRef, useState } from 'react'
 import Link from 'next/link'
 import { useRouter, usePathname } from 'next/navigation'
 import { supabase } from '@/lib/supabase'
+import { getMyBasics, getUnreadNotifs, touchLastSeen } from '@/lib/sharedMe'
 import { unsubscribeAllPush } from '@/lib/pushUnsubscribe'
 import { clearOfflineUserData } from '@/lib/offline'
 import { ownGalleryHref } from '@/lib/ownGallery'
@@ -78,8 +79,9 @@ export default function Navbar() {
     if (!user) { setNotifs(0); setIsAdmin(false); return }
     loadNotifs(user.id)
     updateLastSeen(user.id)
-    supabase.from('profiles').select('is_admin, avatar_url').eq('id', user.id).single()
-      .then(({ data: p }) => { setIsAdmin(p?.is_admin ?? false); setAvatarUrl(p?.avatar_url ?? null) })
+    getMyBasics(user.id)
+      .then(p => { setIsAdmin(p?.is_admin ?? false); setAvatarUrl(p?.avatar_url ?? null) })
+      .catch(() => {})
   }, [user?.id])
 
   useEffect(() => {
@@ -102,13 +104,10 @@ export default function Navbar() {
     return () => { mo.disconnect(); document.title = document.title.replace(/^\(\d+\)\s*/, '') }
   }, [notifs])
 
-  const updateLastSeen = async (uid: string) => {
-    await supabase.from('profiles').update({ last_seen: new Date().toISOString() }).eq('id', uid)
-  }
+  const updateLastSeen = (uid: string) => { touchLastSeen(uid) }
 
   const loadNotifs = async (uid: string) => {
-    const { count } = await supabase.from('notifications').select('*', { count: 'exact', head: true }).eq('user_id', uid).eq('lu', false)
-    const next = count || 0
+    const next = await getUnreadNotifs(uid).catch(() => prevNotifsRef.current)
     if (next > prevNotifsRef.current) {
       setBellPulse(true)
       setTimeout(() => setBellPulse(false), 700)

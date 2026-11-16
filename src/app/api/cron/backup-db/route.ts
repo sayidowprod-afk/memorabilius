@@ -31,7 +31,7 @@ const TABLES = [
   'fcm_tokens', 'follows', 'galerie_comment_likes', 'galerie_comments',
   'grail_cards', 'guide_translations', 'guides', 'login_attempts', 'login_history',
   'messages', 'monthly_additions', 'nba_birthday_posts',
-  'notifications', 'page_views', 'pc_targets', 'profiles', 'push_subscriptions',
+  'notifications', 'pc_targets', 'profiles', 'push_subscriptions',
   'reports', 'scan_corrections', 'sports_birthdays',
   'stats_snapshots', 'team_candidatures', 'team_contests', 'team_members',
   'team_message_reactions', 'team_messages', 'team_post_comments',

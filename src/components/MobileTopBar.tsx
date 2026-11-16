@@ -5,6 +5,7 @@ import { useEffect, useState } from 'react'
 import { useIsAppUI } from '@/lib/useIsNative'
 import { useAuth } from '@/lib/AuthContext'
 import { supabase } from '@/lib/supabase'
+import { getUnreadNotifs } from '@/lib/sharedMe'
 import { useLang } from '@/lib/LangContext'
 
 const GALLERY_ROOT = /^\/galerie\/[^/]+$/
@@ -47,9 +48,8 @@ export default function MobileTopBar() {
   const [notifCount, setNotifCount] = useState(0)
   const [chatCount, setChatCount] = useState(0)
 
-  const loadCounts = (uid: string) => {
-    supabase.from('notifications').select('*', { count: 'exact', head: true }).eq('user_id', uid).eq('lu', false)
-      .then(({ count }) => setNotifCount(count || 0))
+  const loadCounts = (uid: string, force = false) => {
+    getUnreadNotifs(uid, force).then(n => setNotifCount(n)).catch(() => {})
     supabase.from('messages').select('*', { count: 'exact', head: true }).eq('to_user_id', uid).eq('lu', false)
       .then(({ count }) => setChatCount(count || 0))
   }
@@ -71,8 +71,8 @@ export default function MobileTopBar() {
   useEffect(() => {
     if (!user || !isApp) return
     const channel = supabase.channel(`top-bar-badges-${user.id}`)
-      .on('postgres_changes', { event: '*', schema: 'public', table: 'messages', filter: `to_user_id=eq.${user.id}` }, () => loadCounts(user.id))
-      .on('postgres_changes', { event: '*', schema: 'public', table: 'notifications', filter: `user_id=eq.${user.id}` }, () => loadCounts(user.id))
+      .on('postgres_changes', { event: '*', schema: 'public', table: 'messages', filter: `to_user_id=eq.${user.id}` }, () => loadCounts(user.id, true))
+      .on('postgres_changes', { event: '*', schema: 'public', table: 'notifications', filter: `user_id=eq.${user.id}` }, () => loadCounts(user.id, true))
       .subscribe()
     return () => { supabase.removeChannel(channel) }
   }, [user?.id, isApp])

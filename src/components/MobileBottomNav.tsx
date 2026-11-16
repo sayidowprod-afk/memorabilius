@@ -3,6 +3,7 @@ import { useEffect, useRef, useState } from 'react'
 import Link from 'next/link'
 import { useRouter, usePathname } from 'next/navigation'
 import { supabase } from '@/lib/supabase'
+import { getMyBasics, getUnreadNotifs } from '@/lib/sharedMe'
 import { unsubscribeAllPush } from '@/lib/pushUnsubscribe'
 import { useAuth } from '@/lib/AuthContext'
 import { useTheme } from '@/lib/ThemeContext'
@@ -70,15 +71,12 @@ export default function MobileBottomNav() {
 
   useEffect(() => {
     if (!user) { setIsAdmin(false); return }
-    supabase.from('profiles').select('is_admin').eq('id', user.id).single()
-      .then(({ data: p }) => setIsAdmin(p?.is_admin ?? false))
+    getMyBasics(user.id).then(p => setIsAdmin(p?.is_admin ?? false)).catch(() => {})
   }, [user?.id])
 
   useEffect(() => {
     if (!user) { setNotifs(0); return }
-    const load = () => supabase.from('notifications').select('*', { count: 'exact', head: true }).eq('user_id', user.id).eq('lu', false)
-      .then(({ count }) => setNotifs(count || 0))
-    load()
+    getUnreadNotifs(user.id).then(n => setNotifs(n)).catch(() => {})
   }, [user?.id, pathname])
 
   useEffect(() => {

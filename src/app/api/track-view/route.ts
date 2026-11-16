@@ -5,6 +5,8 @@ import { createServerServiceClient } from '@/lib/supabaseServer'
 const admin = createServerServiceClient()
 
 const SKIP = /^\/(admin|api|_next|favicon)/
+// Seules les vues de galeries sont enregistrées dans page_views (badges « vues de galerie » et récapitulatif hebdomadaire) : la table ne grossit plus à chaque navigation
+const KEEP = /^\/galerie\//
 
 export async function POST(req: NextRequest) {
   if (rateLimited(req, 'track-view', 120, 60000)) return NextResponse.json({ error: 'Too many requests' }, { status: 429 })
@@ -14,7 +16,7 @@ export async function POST(req: NextRequest) {
     const cleanRef = referrer ? String(referrer).slice(0, 120) : null
     const country = (req.headers.get('x-vercel-ip-country') || 'XX').slice(0, 2).toUpperCase()
 
-    if (path && !SKIP.test(path)) {
+    if (path && !SKIP.test(path) && KEEP.test(path)) {
       // colonnes src / referrer ajoutées par la migration 20261123 : tant qu'elle manque, on enregistre comme avant
       const { error: e1 } = await admin.from('page_views').insert({ path: path.slice(0, 255), country, ...(cleanSrc ? { src: cleanSrc, referrer: cleanRef } : {}) })
       if (e1 && cleanSrc) await admin.from('page_views').insert({ path: path.slice(0, 255), country })
