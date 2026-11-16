@@ -10,11 +10,11 @@ interface SellerCard { id: string; nom: string; annee: string | null; marque: st
 
 // Offre de prix (acheteur) : on choisit une carte à vendre chez ce membre et on propose un prix inférieur au sien.
 // Aucun paiement : si le vendeur accepte, la suite (envoi, règlement) se passe entre membres.
-export default function OfferModal({ sellerId, sellerName, onClose, onCreated }: {
-  sellerId: string; sellerName: string; dark?: boolean; onClose: () => void; onCreated: () => void
+export default function OfferModal({ sellerId, sellerName, presetCardId, onClose, onCreated }: {
+  sellerId: string; sellerName: string; presetCardId?: string; dark?: boolean; onClose: () => void; onCreated: () => void
 }) {
   const [cards, setCards] = useState<SellerCard[] | null>(null)
-  const [cardId, setCardId] = useState<string | null>(null)
+  const [cardId, setCardId] = useState<string | null>(presetCardId ?? null)
   const [price, setPrice] = useState('')
   const [message, setMessage] = useState('')
   const [busy, setBusy] = useState(false)

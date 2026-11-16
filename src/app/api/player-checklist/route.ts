@@ -90,5 +90,5 @@ export async function GET(req: NextRequest) {
   // partage court, absorbe les visites repetees d'un meme joueur populaire
   // (cette route ignore le revalidate=3600 de la page /joueur, appelee cote
   // client sur chaque montage).
-  return NextResponse.json({ entries: all }, { headers: { 'Cache-Control': 'public, s-maxage=300, stale-while-revalidate=600' } })
+  return NextResponse.json({ entries: all }, { headers: { 'Cache-Control': 'public, s-maxage=21600, stale-while-revalidate=604800' } })
 }

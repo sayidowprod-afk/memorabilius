@@ -13,8 +13,8 @@ type Pc = { type?: string; name?: string }
 const VIS = 0.6          // largeur visible d'une figurine / sa hauteur
 const MIN_H = 50
 
-export default function PcBobbles({ pcs, maxHeight = 150 }: { pcs?: Pc[] | null; maxHeight?: number }) {
-  const [figs, setFigs] = useState<{ name: string; fig: BobbleFig }[]>([])
+export default function PcBobbles({ pcs, ownerId, maxHeight = 150 }: { pcs?: Pc[] | null; ownerId?: string | null; maxHeight?: number }) {
+  const [figs, setFigs] = useState<{ name: string; fig: BobbleFig; pct?: number; label?: string }[]>([])
   const [avail, setAvail] = useState(0)
   const ref = useRef<HTMLDivElement>(null)
   const key = (pcs || []).filter(p => p?.type === 'player' && p.name).map(p => p.name as string).slice(0, 8).join('|')
@@ -29,6 +29,18 @@ export default function PcBobbles({ pcs, maxHeight = 150 }: { pcs?: Pc[] | null;
     return () => { off = true }
   }, [key])
 
+  // les « top x % » arrivent après (calcul plus lent la 1re fois) : les figurines s'affichent sans attendre
+  useEffect(() => {
+    if (!key || !ownerId || !figs.length) return
+    let off = false
+    fetch(`/api/bobble-figs?names=${encodeURIComponent(key)}&userId=${encodeURIComponent(ownerId)}`)
+      .then(r => (r.ok ? r.json() : null))
+      .then(d => { if (off || !Array.isArray(d?.figs)) return; const m = new Map<string, { pct: number; label?: string }>(d.figs.filter((f: { pct?: number }) => f.pct).map((f: { name: string; pct: number; label?: string }) => [f.name, { pct: f.pct, label: f.label }])); setFigs(cur => cur.map(f => (m.has(f.name) ? { ...f, ...m.get(f.name) } : f))) })
+      .catch(() => {})
+    return () => { off = true }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [key, ownerId, figs.length])
+
   useEffect(() => {
     const el = ref.current; if (!el) return
     const upd = () => setAvail(el.getBoundingClientRect().width)
@@ -42,14 +54,16 @@ export default function PcBobbles({ pcs, maxHeight = 150 }: { pcs?: Pc[] | null;
   if (!figs.length) return null
   // largeur utilisable : toute la barre (téléphone) ; au plus 560 px sur grand écran pour ne pas recouvrir le texte à gauche
   const usable = avail > 0 ? Math.min(avail, 560) : 260
-  const slot = usable / figs.length
-  const h = Math.max(MIN_H, Math.min(maxHeight, Math.floor(slot / VIS)))
+  const slotFull = usable / figs.length
+  const h = Math.max(MIN_H, Math.min(maxHeight, Math.floor(slotFull / VIS)))
+  const slot = Math.min(slotFull, Math.round(h * VIS) + 14)   // case = largeur réelle de la figurine + un petit espace (plus de grands vides entre elles sur ordinateur)
   return (
     <div ref={ref} className="pc-bobbles" style={{ height: 0, position: 'relative', width: '100%' }}>
       <div style={{ position: 'absolute', right: 0, bottom: 0, display: 'flex', flexWrap: 'nowrap', justifyContent: 'flex-end', alignItems: 'flex-end', width: usable, maxWidth: '100%', pointerEvents: 'none' }}>
-        {figs.map(({ name, fig }) => (
+        {figs.map(({ name, fig, pct, label }) => (
           <Link key={name} href={`/joueur/${playerSlug(name)}`} title={name} aria-label={`Fiche de ${name}`}
-            style={{ display: 'flex', justifyContent: 'center', width: slot, flex: `0 0 ${slot}px`, textDecoration: 'none', pointerEvents: 'auto' }}>
+            style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', width: slot, flex: `0 0 ${slot}px`, textDecoration: 'none', pointerEvents: 'auto' }}>
+            {pct ? <span style={{ fontSize: Math.max(8, Math.min(10, Math.round(slot / 11))), fontWeight: 700, color: 'rgba(255,255,255,.62)', letterSpacing: '.04em', lineHeight: 1, marginBottom: 7, whiteSpace: 'nowrap' }}>{label || `Top ${pct} %`}</span> : null}
             <BobbleHero fig={fig} name={name} height={h} />
           </Link>
         ))}

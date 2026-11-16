@@ -10,6 +10,7 @@ import { getTeamById } from '@/lib/sportsTeams'
 import { bobbleFor, teamBody, type BobbleFig } from '@/lib/bobbleheadsServer'
 import { normalizeName, cardPageUrl, stripDiacritics } from '@/lib/playerSlug'
 import CommunityCardsSection from './CommunityCardsSection'
+import PlayerRank from './PlayerRank'
 import PlayerSetsSection from './PlayerSetsSection'
 import PlayerChecklistSection from './PlayerChecklistSection'
 import LazySection from '@/components/LazySection'
@@ -1116,6 +1117,7 @@ export default async function JoueurPage({ params }: { params: Promise<{ slug: s
           )}
 
           {/* Cartes de la communauté */}
+          {communityCards.length > 0 && <PlayerRank playerName={playerName} />}
           {communityCards.length > 0 && (
             <CommunityCardsSection
               playerName={playerName}

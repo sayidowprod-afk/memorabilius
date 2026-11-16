@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { createServerClient } from '@/lib/supabaseServer'
+import { cachedAsync } from '@/lib/ttlCache'
 
 // Pagination de la section "Sets" d'un joueur, appelee par
 // PlayerSetsSection.tsx (defilement). Duplique volontairement l'appel RPC
@@ -37,11 +38,13 @@ export async function GET(req: NextRequest) {
   // la colonne sans accents (echec de build recurrent, incident Supabase Management
   // API en cours depuis le 2026-10-23) et peut timeout sur un prenom courant.
   // Repli temporaire le temps que cet index puisse enfin etre construit.
-  const setsRpcRes0 = await supabase.rpc('get_player_sets', { p_first: firstName, p_last: lastName })
-  const setsRpcRes = setsRpcRes0.error
-    ? await supabase.rpc('get_player_sets_unaccent', { p_first: firstName, p_last: lastName })
-    : setsRpcRes0
-  const rawSets: any[] = setsRpcRes.data || []
+  // La RPC est lourde (séries d'un joueur parmi ~15 millions de lignes) et la pagination la rappelait à CHAQUE page : résultat gardé 30 minutes par joueur.
+  // Après un dépassement de délai (57014), pas de deuxième appel « unaccent » : il échouerait pareil et doublerait la charge.
+  const rawSets: any[] = await cachedAsync(`ps:${playerName.toLowerCase()}`, (v: any[]) => (v.length ? 1_800_000 : 60_000), async () => {
+    const r0 = await supabase.rpc('get_player_sets', { p_first: firstName, p_last: lastName })
+    const r = r0.error && (r0.error as { code?: string }).code !== '57014' ? await supabase.rpc('get_player_sets_unaccent', { p_first: firstName, p_last: lastName }) : r0
+    return (r.data as any[]) || []
+  })
 
   const sets = rawSets
     .map((s: any) => ({ ...s, isRc: s.is_rc }))
@@ -50,5 +53,5 @@ export async function GET(req: NextRequest) {
   const total = sets.length
   const page = sets.slice(offset, offset + limit)
   // 638 : données publiques qui changent rarement : servies depuis le cache partagé 1 h (puis encore 24 h le temps de les rafraîchir)
-  return NextResponse.json({ sets: page, total, hasMore: offset + limit < total }, { headers: { 'Cache-Control': 'public, s-maxage=3600, stale-while-revalidate=86400' } })
+  return NextResponse.json({ sets: page, total, hasMore: offset + limit < total }, { headers: { 'Cache-Control': 'public, s-maxage=21600, stale-while-revalidate=604800' } })
 }

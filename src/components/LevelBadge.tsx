@@ -13,6 +13,20 @@ import LevelUpOverlay from '@/components/LevelUpOverlay'
 // `children` est l'avatar : un anneau de progression l'entoure au lieu d'un
 // pavé texte séparé, pour ne montrer qu'un seul élément niveau+XP dans le
 // bandeau au lieu de deux (avatar + badge) qui se répétaient visuellement.
+// XP des membres gardé 5 minutes pendant la visite (les listes de membres affichaient un badge par ligne, un appel chacun) ; pas de cache pour la célébration de montée de niveau.
+const xpCache = new Map<string, { t: number; v: number | null }>()
+const xpInflight = new Map<string, Promise<number | null>>()
+function getXp(userId: string, useCache: boolean): Promise<number | null> {
+  const hit = xpCache.get(userId)
+  if (useCache && hit && Date.now() - hit.t < 300_000) return Promise.resolve(hit.v)
+  let p = xpInflight.get(userId)
+  if (!p) {
+    p = Promise.resolve(supabase.rpc('get_user_xp_total', { p_user_id: userId })).then(({ data }) => { const v = (data as number | null) ?? null; xpCache.set(userId, { t: Date.now(), v }); return v }).finally(() => xpInflight.delete(userId))
+    xpInflight.set(userId, p)
+  }
+  return p
+}
+
 export default function LevelBadge({ userId, celebrateOnLevelUp, accent = '#003DA6', avatarClassName, children }: { userId: string; celebrateOnLevelUp?: boolean; accent?: string; avatarClassName?: string; children: ReactNode }) {
   const { t } = useLang()
   const [level, setLevel] = useState<LevelInfo | null>(null)
@@ -31,7 +45,7 @@ export default function LevelBadge({ userId, celebrateOnLevelUp, accent = '#003D
 
   useEffect(() => {
     let cancelled = false
-    supabase.rpc('get_user_xp_total', { p_user_id: userId }).then(({ data }) => {
+    getXp(userId, !celebrateOnLevelUp).then(data => {
       if (cancelled) return
       const info = levelFromXP(data ?? 0)
       setLevel(info)

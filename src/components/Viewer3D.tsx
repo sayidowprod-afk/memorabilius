@@ -113,6 +113,9 @@ function teamVars(team: string | null | undefined, accent: string): Record<strin
   }
 }
 
+// entrées de séries déjà chargées par joueur (voir lookupViaCompletion)
+const playerEntriesCache = new Map<string, any[]>()
+
 export default function Viewer3D({ popup, accent, onClose, onNext, onPrev, getTags, userId, userSlug, isOwner, currentUserId, onCollectionTagChange, onCollectionsChange, onVendueChange, onDisponibleVenteChange, onPriceChange, onReservedChange, allCollectionTags, onAddToMyGallery, initialAddState, onProposeTrade, cardValue, onValueSave, likeData, onLike, onDeleteCard }: {
   popup: Card
   accent: string
@@ -248,14 +251,22 @@ export default function Viewer3D({ popup, accent, onClose, onNext, onPrev, getTa
       // silencieusement les entrees d'un joueur tres prolifique (ex. Michael
       // Jordan) avant d'avoir atteint la bonne, meme bug que vu ailleurs sur
       // la page joueur (voir bcc3a8f0).
-      const entries: any[] = []
-      for (let from = 0; ; from += 1000) {
-        const { data, error } = await supabase
-          .from('card_set_entries').select('id, set_id, variation, player_name, card_number')
-          .ilike('player_name', popup.n).range(from, from + 999)
-        if (error || !data || data.length === 0) break
-        entries.push(...data)
-        if (data.length < 1000) break
+      // Les entrées d'un joueur sont gardées pendant la visite : feuilleter plusieurs cartes du même joueur relançait la même recherche (23 000 appels sur la base).
+      const ekey = String(popup.n || '').toLowerCase()
+      let entries: any[] | undefined = playerEntriesCache.get(ekey)
+      if (!entries) {
+        entries = []
+        let complete = true
+        for (let from = 0; ; from += 1000) {
+          const { data, error } = await supabase
+            .from('card_set_entries').select('id, set_id, variation, player_name, card_number')
+            .ilike('player_name', popup.n).range(from, from + 999)
+          if (error) { complete = false; break }
+          if (!data || data.length === 0) break
+          entries.push(...data)
+          if (data.length < 1000) break
+        }
+        if (complete && entries.length) playerEntriesCache.set(ekey, entries)
       }
       if (cancelled) return
       if (!entries?.length) { setSetPlacement(null); return }

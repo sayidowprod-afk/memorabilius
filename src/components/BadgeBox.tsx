@@ -1,4 +1,5 @@
 'use client'
+import { cachedBadgeData, shouldComputeBadges } from '@/lib/badgeCache'
 import { useEffect, useState } from 'react'
 import { createPortal } from 'react-dom'
 import { supabase } from '@/lib/supabase'
@@ -474,11 +475,11 @@ export default function BadgeBox({ userId, isOwner }: { userId: string; isOwner?
   useEffect(() => {
     if (!userId) return
     setLoading(true)
-    supabase.rpc('get_user_badge_data', { p_user_id: userId })
-      .then(({ data: rows }) => {
-        if (rows?.[0]) setData(rows[0] as BadgeData)
+    cachedBadgeData<BadgeData>(supabase, userId)
+      .then(row => {
+        if (row) setData(row)
         setLoading(false)
-        supabase.rpc('compute_user_badges', { p_user_id: userId }).then(() => {}, () => {})
+        if (shouldComputeBadges(userId)) supabase.rpc('compute_user_badges', { p_user_id: userId }).then(() => {}, () => {})
       })
   }, [userId])
 

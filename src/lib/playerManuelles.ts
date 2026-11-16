@@ -7,7 +7,8 @@ const PAGE = 1000, PARALLEL = 4
 const sleep = (ms: number) => new Promise(r => setTimeout(r, ms))
 async function withRetry<T extends { error: any }>(run: () => PromiseLike<T>, label: string): Promise<T> {
   let r = await run()
-  for (let t = 0; r.error && t < 2; t++) { console.log(`[${label}] erreur, nouvelle tentative :`, r.error.message || r.error); await sleep(500 * (t + 1)); r = await run() }
+  // un dépassement de délai (57014) n'est PAS relancé : refaire la même requête lente trois fois triplait la charge de la base quand elle était déjà saturée
+  for (let t = 0; r.error && t < 2 && (r.error as { code?: string }).code !== '57014'; t++) { console.log(`[${label}] erreur, nouvelle tentative :`, r.error.message || r.error); await sleep(500 * (t + 1)); r = await run() }
   if (r.error) console.log(`[${label}] échec définitif :`, r.error.message || r.error)
   return r
 }
@@ -19,7 +20,12 @@ export async function fetchPlayerManuelles(sb: SupabaseClient, select: string, f
     .order('created_at', { ascending: false })                                   // ordre stable pour la pagination ; le tri par date est refait plus bas
     .range(from, from + PAGE - 1), 'cartes joueur')
   const out: any[] = []
-  let first: { data: any[] | null; error: any } = await page(0)
+  // 1re requête SANS tri : avec « ORDER BY created_at DESC LIMIT », la base parcourt l'index des dates en filtrant au lieu d'utiliser l'index des noms (1,9 s en moyenne, 24 % du temps total de la base).
+  // La très grande majorité des joueurs a moins de 1 000 cartes : une seule requête rapide suffit, le tri par date est fait en mémoire plus bas.
+  // Au-delà de 1 000 résultats, on repasse par la pagination triée ci-dessous (ordre stable).
+  let first: { data: any[] | null; error: any } = await withRetry(() => sb.from('cartes_manuelles').select(select)
+    .ilike('nom', `%${firstName}%`).ilike('nom', `%${lastName}%`).not('image_recto', 'is', null).limit(PAGE), 'cartes joueur')
+  if (!first.error && first.data && first.data.length === PAGE) first = await page(0)
   if (first.error || !first.data) {
     // « prénom ET nom » dépasse le délai de la base : plan plus simple avec le nom de famille seul, le prénom est filtré ensuite par l'appelant
     console.log('[cartes joueur] repli sur le nom de famille seul')

@@ -2856,7 +2856,7 @@ export default function GalerieClient({ userId, initialCardUrl, initialCards, in
                 ) : (
                   <h1 className={profile?.is_donor ? 'holo-name' : ''} style={{ fontSize: 24, fontWeight: 900, margin: 0, color: profile?.is_donor ? undefined : undefined }}>{profile?.display_name || t('gallery_default_collector')}</h1>
                 )}
-                <TradeReputation userId={userId} />
+                <span className="rep-top" style={{ display: 'contents' }}><TradeReputation userId={userId} /></span>
                 {profile?.is_donor && (
                   <span className="sticker-holo" data-label="Donateur Ko-fi" style={{ fontSize: 26 }}>☕</span>
                 )}
@@ -2871,6 +2871,7 @@ export default function GalerieClient({ userId, initialCardUrl, initialCards, in
               </div>
 
               <FollowCounts userId={userId} onOpenList={setFollowModalTab} />
+              <span className="rep-under"><TradeReputation userId={userId} /></span>
 
               {profile?.bio && (
                 <p style={{
@@ -2918,12 +2919,12 @@ export default function GalerieClient({ userId, initialCardUrl, initialCards, in
                     {t('gallery_message')}
                   </Link>
                 )}
-                <FollowButton targetUserId={userId} accent={accent} />
+                <span className="follow-top" style={{ display: 'contents' }}><FollowButton targetUserId={userId} accent={accent} /></span>
                 {currentUser && currentUser !== userId && (
-                  <Link href={`/comparer/${profile?.slug || userId}`} className="da-cmp-link" title="Voir ce que vous avez en commun et ce qui peut s’échanger">⚖ {'Comparer'}</Link>
+                  <span className="cmp-top" style={{ display: 'contents' }}><Link href={`/comparer/${profile?.slug || userId}`} className="da-cmp-link" title="Voir ce que vous avez en commun et ce qui peut s’échanger">⚖ {'Comparer'}</Link></span>
                 )}
                 {currentUser && currentUser !== userId && (
-                  <ReportButton reportedUserId={userId} context={`Galerie de ${profile?.display_name || userId}`} />
+                  <span className="report-wrap" style={{ display: 'contents' }}><ReportButton reportedUserId={userId} context={`Galerie de ${profile?.display_name || userId}`} /></span>
                 )}
               </div>
             </div>
@@ -2931,7 +2932,7 @@ export default function GalerieClient({ userId, initialCardUrl, initialCards, in
 
           {loaded && (
             <div style={{ display: 'flex', flexDirection: 'column', gap: 14, alignItems: 'flex-end', flexShrink: 0, minWidth: 260, marginLeft: 'auto' }} className="header-stats-block">
-              <div style={{ display: 'flex', gap: 16, justifyContent: 'flex-end', width: '100%' }}>
+              <div data-maxlen={Math.max(String(totalCount ?? '').length, String(rcCount ?? '').length, String(autoCount ?? '').length, String(patchCount ?? '').length, String(numCount ?? '').length)} style={{ display: 'flex', gap: 16, justifyContent: 'flex-end', width: '100%' }}>
                 {[
                   { val: totalCount, label: t('gallery_cards'), flash: totalFlash },
                   { val: rcCount, label: 'RC', color: '#F97316', flash: rcFlash },
@@ -3041,6 +3042,18 @@ export default function GalerieClient({ userId, initialCardUrl, initialCards, in
                               📅 Mon année en cartes
                             </button>
                           )}
+                          {currentUser && currentUser !== userId && (
+                            <button className="menu-mobile-only" onClick={() => { setActionMenuOpen(false); router.push(`/comparer/${profile?.slug || userId}`) }}
+                              style={{ background: 'none', border: 'none', borderRadius: 8, padding: '9px 14px', fontWeight: 700, fontSize: 13, cursor: 'pointer', textAlign: 'left', color: dark ? '#ddd' : '#333', width: '100%' }}>
+                              ⚖ Comparer
+                            </button>
+                          )}
+                          {currentUser && currentUser !== userId && (
+                            <button className="menu-mobile-only" onClick={() => { setActionMenuOpen(false); (document.querySelector('.report-wrap button') as HTMLElement | null)?.click() }}
+                              style={{ background: 'none', border: 'none', borderRadius: 8, padding: '9px 14px', fontWeight: 700, fontSize: 13, cursor: 'pointer', textAlign: 'left', color: dark ? '#ddd' : '#333', width: '100%' }}>
+                              🚩 Signaler
+                            </button>
+                          )}
                           <button onClick={() => { setShowStats(s => !s); setActionMenuOpen(false) }}
                             style={{ background: 'none', border: 'none', borderRadius: 8, padding: '9px 14px', fontWeight: 700, fontSize: 13, cursor: 'pointer', textAlign: 'left', color: dark ? '#ddd' : '#333', width: '100%' }}>
                             📊 {showStats ? t('gallery_hide_stats') : t('gallery_show_stats')}
@@ -3063,6 +3076,9 @@ export default function GalerieClient({ userId, initialCardUrl, initialCards, in
                   </div>
                 )}
 
+                {!isOwner && !editMode && (
+                  <span className="follow-in-actions"><FollowButton targetUserId={userId} accent={accent} /></span>
+                )}
                 {isOwner && !editMode && (
                   <button type="button" onClick={() => setThemePicker(true)} title="Choisir le thème de ma galerie" aria-label="Thème de la galerie" style={{ background: dark ? '#2a2a2a' : '#f0f0f0', color: dark ? '#ccc' : '#444', border: 'none', borderRadius: 10, padding: '12px 14px', fontWeight: 800, fontSize: 15, cursor: 'pointer' }}>🎨</button>
                 )}
@@ -3079,7 +3095,7 @@ export default function GalerieClient({ userId, initialCardUrl, initialCards, in
                 )}
               </div>
               {/* Figurines bobblehead prêtes des joueurs des PCs (emplacement sous les boutons d'action) */}
-              <PcBobbles pcs={profile?.pcs} />
+              <PcBobbles pcs={profile?.pcs} ownerId={profile?.id || null} />
             </div>
           )}
           </div>

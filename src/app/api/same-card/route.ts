@@ -1,10 +1,11 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { createServerClient } from '@/lib/supabaseServer'
 import { teamOk } from '@/lib/wishTeam'
+import { cachedAsync } from '@/lib/ttlCache'
 
 const supabase = createServerClient()
 
-export async function GET(req: NextRequest) {
+async function compute(req: NextRequest): Promise<any[]> {
   const name = req.nextUrl.searchParams.get('name')?.trim()
   const year = req.nextUrl.searchParams.get('year')?.trim() || ''
   const brand = req.nextUrl.searchParams.get('brand')?.trim() || ''
@@ -19,7 +20,7 @@ export async function GET(req: NextRequest) {
   // Valide que excludeUserId est un UUID avant de l'utiliser en filtre DB
   const UUID_RE = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i
   const excludeUserId = UUID_RE.test(excludeRaw) ? excludeRaw : ''
-  if (!name || name.length < 2) return NextResponse.json([])
+  if (!name || name.length < 2) return []
 
   // Incoherent avec les ~15 autres normalisations du site : sans le passage NFD +
   // retrait des diacritiques, un nom accentue ("José", "Dončić") se faisait juste
@@ -75,7 +76,7 @@ export async function GET(req: NextRequest) {
     if ((firstOnly && matchIds.size > 0) || data.length < 1000) break
   }
 
-  if (matchIds.size === 0) return NextResponse.json([])
+  if (matchIds.size === 0) return []
 
   const { data: profiles } = await supabase
     .from('profiles')
@@ -91,5 +92,12 @@ export async function GET(req: NextRequest) {
     cardImg: cardsByUser.get(p.id)?.image_recto,
   }))
 
-  return NextResponse.json(results, { headers: { 'Cache-Control': 'public, max-age=60, stale-while-revalidate=300' } })
+  return results
+}
+
+// Même demande = même réponse pour tout le monde : gardée 10 minutes côté serveur (4 300 appels de 2 s sur la base) et 10 minutes dans le cache partagé.
+export async function GET(req: NextRequest) {
+  const key = 'sc:' + req.nextUrl.searchParams.toString()
+  const results = await cachedAsync(key, (v: any[]) => (v.length ? 600_000 : 120_000), () => compute(req))
+  return NextResponse.json(results, { headers: { 'Cache-Control': 'public, max-age=120, s-maxage=600, stale-while-revalidate=3600' } })
 }

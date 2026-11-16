@@ -1795,8 +1795,8 @@ html[data-member="1"] .home-member-ph { display: block; min-height: 100svh; }
 /* Profil sur téléphone (suite) : pseudo centré verticalement avec la photo, logos d'équipes favorites en petit sur la même ligne, abonnés / abonnements sur une seule ligne compacte */
 @media (max-width: 640px) {
   .da-profile .header-row > div:first-child { align-items: center !important; }
-  .da-profile .header-row > div:first-child > div:last-child > div:first-child { display: flex !important; flex-wrap: nowrap !important; align-items: center !important; gap: 6px !important; align-self: center; width: 100%; }
-  .da-profile .header-row > div:first-child > div:last-child > div:first-child h1 { min-width: 0; flex: 0 1 auto; overflow-wrap: anywhere; }
+  .da-profile .header-row > div:first-child > div:last-child > div:first-child { display: flex !important; flex-wrap: wrap !important; align-items: center !important; gap: 4px 6px !important; align-self: center; width: 100%; }
+  .da-profile .header-row > div:first-child > div:last-child > div:first-child h1 { min-width: min-content; max-width: 100%; flex: 0 0 auto; overflow-wrap: break-word; word-break: normal; }
   .da-profile .header-row > div:first-child > div:last-child > div:first-child .sticker-team,
   .da-profile .header-row > div:first-child > div:last-child > div:first-child .sticker-holo { flex: none; zoom: 0.6; }
   .da-profile .header-row .follow-counts { gap: 14px !important; flex-wrap: nowrap; margin: 0 !important; }
@@ -1825,4 +1825,52 @@ html[data-member="1"] .home-member-ph { display: block; min-height: 100svh; }
 /* Profil : le bouton de personnalisation (palette) prend le même style que « ⋮ » : bordure blanche, pas de fond, angles droits */
 .da-profile .header-stats-block .galerie-actions > button {
   background: transparent !important; color: #fff !important; border: 2px solid rgba(255, 255, 255, 0.55) !important; border-radius: 0 !important; box-shadow: none !important;
+}
+
+
+/* Profil : « Suivre » à droite de « ⋯ » sur téléphone (même taille, même style : bordure blanche, pas de fond, angles droits) ; « Comparer » (échange) sous « Envoyer un message » ; « Signaler » dans le menu « ⋯ » */
+.da-profile .follow-in-actions { display: none; }
+.menu-mobile-only { display: none !important; }
+@media (max-width: 768px) {
+  .da-profile .follow-top { display: none !important; }
+  .da-profile .cmp-top { display: none !important; }
+  .da-profile .report-wrap { position: absolute !important; left: -9999px !important; display: block !important; }
+  .da-profile .follow-in-actions { display: flex !important; min-width: 0; height: 52px; }
+  .da-profile .follow-in-actions > *, .da-profile .follow-in-actions button {
+    flex: 1; width: 100% !important; height: 52px !important; min-height: 52px !important; box-sizing: border-box; margin: 0 !important; padding: 0 8px !important;
+    background: transparent !important; color: #fff !important; border: 2px solid rgba(255, 255, 255, 0.55) !important; border-radius: 0 !important; box-shadow: none !important;
+    text-transform: uppercase; letter-spacing: .06em; font-weight: 800 !important; font-size: 13px !important; display: flex !important; align-items: center; justify-content: center;
+  }
+  .da-profile .header-stats-block .galerie-actions .btn-menu > button { height: 52px !important; min-height: 52px !important; box-sizing: border-box; }
+  .menu-mobile-only { display: block !important; }
+}
+
+/* Profil sur téléphone : la note d'échange (« 1 échange · 5.0 ») passe sous « Envoyer un message » */
+.da-profile .rep-under { display: none; }
+@media (max-width: 768px) {
+  .da-profile .rep-top { display: none !important; }
+  .da-profile .rep-under { display: block; width: 100%; margin-top: -2px; }
+}
+
+/* Profil sur téléphone : abonnés / abonnements, « Envoyer un message » et la note d'échange prennent toute la largeur, comme la barre au-dessus des statistiques */
+@media (max-width: 768px) {
+  .da-profile .header-row > div:first-child { width: 100% !important; max-width: 100% !important; box-sizing: border-box; padding-right: 0 !important; margin-right: 0 !important; }
+  .da-profile .header-row > div:first-child > div:last-child > * { box-sizing: border-box; }
+  .da-profile .header-row .follow-counts { width: 100% !important; justify-content: space-between !important; }
+  .da-profile a[href^="/messages"] { display: flex !important; align-items: center; justify-content: center; width: 100% !important; box-sizing: border-box; }
+  .da-profile .rep-under { display: flex !important; align-items: center; justify-content: center; width: 100% !important; box-sizing: border-box; padding: 0; border: 0; background: none; }
+}
+
+/* Profil sur téléphone : figurines des PCs remontées vers les réseaux (moins de vide entre les boutons réseaux et les « Top x % ») */
+@media (max-width: 768px) {
+  .da-profile .pc-bobbles { margin-top: -16px !important; }
+}
+
+/* Profil sur téléphone : si un nombre a 4 chiffres ou plus, TOUS les nombres de la barre prennent la même taille réduite (même hauteur, étiquettes alignées) pour rester dans leur colonne */
+@media (max-width: 768px) {
+  .da-profile .header-stats-block .da-num { white-space: nowrap; }
+  .da-profile .header-stats-block > div:first-child > div { display: flex; flex-direction: column; justify-content: flex-end; }
+  .da-profile .header-stats-block > div[data-maxlen="4"] .da-num { font-size: 25px !important; }
+  .da-profile .header-stats-block > div[data-maxlen="5"] .da-num { font-size: 20px !important; }
+  .da-profile .header-stats-block > div[data-maxlen="6"] .da-num, .da-profile .header-stats-block > div[data-maxlen="7"] .da-num { font-size: 16px !important; }
 }

@@ -4,6 +4,18 @@ export type Entry = { date: string; titre: string; points: string[] }
 
 export const ENTRIES: Entry[] = [
   {
+    date: '30 novembre 2026', titre: 'Offres de prix, classement par joueur et site plus rapide',
+    points: [
+      'Offres : sur une carte à vendre de l’onglet Annonces, le bouton « Faire une offre » te permet de proposer un prix. Aucun paiement sur le site : si le vendeur accepte, la suite se passe entre vous.',
+      'Vendeurs : quand un membre met une de tes cartes à vendre en favori, tu peux lui proposer un prix. Il accepte ou refuse comme pour une contre-offre. Un nouvel onglet « Offres de prix » dans Échanges regroupe les offres reçues et envoyées avec leur état.',
+      'Classement par joueur : ta page joueur affiche « Top x % » des collectionneurs de ce joueur, et la galerie l’affiche en petit au-dessus de chaque bobblehead de tes PCs. Les trois premiers sont indiqués 1er, 2ème et 3ème.',
+      'Bobbleheads : 146 joueurs ont maintenant leur figurine, avec 7 nouveaux (Beringer, OG Anunoby, Nolan Traoré, Myles Turner, Chet Holmgren, Coby White et Rayan Rupert). D’autres arrivent chaque jour.',
+      'Profil sur téléphone : « Suivre » à côté de « ⋯ » avec le même style, « Comparer » et « Signaler » dans le menu « ⋯ », la note d’échange sous les abonnés, les gros nombres des statistiques qui ne se chevauchent plus et le pseudo qui ne s’écrit plus à la verticale. Sur ordinateur, les figurines des PCs sont plus serrées.',
+      'Pages joueur : les joueurs au nom avec apostrophe (Shaquille O’Neal, De’Aaron Fox, Kyle O’Quinn…) affichent maintenant leur numéro, poste, taille, poids, âge et historique des équipes.',
+      'Rapidité : accueil, galeries, pages joueur et viewer 3D envoient beaucoup moins de requêtes à la base de données et se rechargent plus vite.',
+    ],
+  },
+  {
     date: '30 novembre 2026', titre: 'Pages joueur et équipe bien plus rapides',
     points: [
       'Pages joueur et équipe : elles s’affichaient en environ 10 secondes ; elles sont désormais gardées en mémoire et s’ouvrent presque instantanément après la première visite.',

@@ -1,3 +1,4 @@
+import { cachedAsync } from '@/lib/ttlCache'
 import CardOfTheDay from '@/components/CardOfTheDay'
 import PronosHomePreview from '@/components/PronosHomePreview'
 import { supabase } from '@/lib/supabase'
@@ -35,7 +36,7 @@ interface FeaturedGallery {
   stats_total: number; topCards: string[]
 }
 
-async function fetchPepites(): Promise<Card[]> {
+async function fetchPepitesRaw(): Promise<Card[]> {
   const { data: manuelles, error } = await supabase
     .from('cartes_manuelles')
     .select('image_recto, nom, variation, annee, marque, rc, auto, patch, num, user_id, is_horizontal')
@@ -84,7 +85,7 @@ async function fetchPepites(): Promise<Card[]> {
   return items.slice(0, PEPITES_COUNT)
 }
 
-async function fetchFeaturedGalleries(): Promise<FeaturedGallery[]> {
+async function fetchFeaturedGalleriesRaw(): Promise<FeaturedGallery[]> {
   const { data: profiles } = await supabase
     .from('profiles')
     .select('id, display_name, avatar_url, stats_total')
@@ -142,7 +143,7 @@ function startOfParisMonth(date: Date): Date {
   return new Date(firstShifted - offset * 60000)
 }
 
-async function fetchPodium() {
+async function fetchPodiumRaw() {
   const now = new Date()
   const month = now.toISOString().slice(0, 7)
   const startOfMonth = startOfParisMonth(now).toISOString()
@@ -177,7 +178,7 @@ async function fetchPodium() {
     .slice(0, 10)
 }
 
-async function fetchPodiumPeriod(pStart: string) {
+async function fetchPodiumPeriodRaw(pStart: string) {
   // Agrégation côté DB en une seule requête (même RPC que le podium mensuel) —
   // remplace l'ancienne pagination manuelle par page de 1000, devenue trop
   // lente au fil de la croissance de cartes_manuelles (faisait dépasser le
@@ -190,7 +191,7 @@ async function fetchPodiumPeriod(pStart: string) {
     .slice(0, 10)
 }
 
-async function fetchPodiumDay() {
+async function fetchPodiumDayRaw() {
   // Jour calendaire (minuit à minuit, heure de Paris) -- pas une fenêtre
   // glissante des dernières 24h, qui faisait paraître le classement
   // redescendre en cours de journée au fil des cartes qui "sortaient" de la
@@ -199,28 +200,36 @@ async function fetchPodiumDay() {
   return fetchPodiumPeriod(start)
 }
 
-async function fetchPodiumWeek() {
+async function fetchPodiumWeekRaw() {
   // Semaine calendaire (lundi 00:00 à dimanche 23:59, heure de Paris).
   const start = startOfParisWeek(new Date()).toISOString()
   return fetchPodiumPeriod(start)
 }
 
+// Données de l'accueil gardées 5 minutes en mémoire du serveur : la page est rendue à chaque visite (force-dynamic) et relançait toutes ces requêtes à chaque fois (get_monthly_card_counts : ~37 000 appels).
+const fetchPepites = () => cachedAsync('home:pepites', 300_000, fetchPepitesRaw)
+const fetchFeaturedGalleries = () => cachedAsync('home:featured', 300_000, fetchFeaturedGalleriesRaw)
+const fetchPodium = () => cachedAsync('home:podium', 300_000, fetchPodiumRaw)
+const fetchPodiumDay = () => cachedAsync('home:podiumDay', 300_000, fetchPodiumDayRaw)
+const fetchPodiumWeek = () => cachedAsync('home:podiumWeek', 300_000, fetchPodiumWeekRaw)
+const fetchPodiumPeriod = (pStart: string) => cachedAsync(`home:podiumPeriod:${pStart}`, 300_000, () => fetchPodiumPeriodRaw(pStart))
+
 export default async function Home() {
   const [
-    profilesRes,
-    totalCartesRes,
-    bindersRes,
-    tradeRes,
+    [profilesRes, totalCartesRes, bindersRes, tradeRes],
     cards,
     podium,
     podiumDay,
     podiumWeek,
     featuredGalleries,
   ] = await Promise.all([
-    supabase.from('profiles').select('*', { count: 'exact', head: true }).eq('is_demo', false),
-    supabase.rpc('get_total_cards'),
-    supabase.from('binders').select('*', { count: 'exact', head: true }).neq('is_public', false).gte('page_count', 1),
-    supabase.from('cartes_manuelles').select('*', { count: 'exact', head: true }).eq('disponible_vente', true),
+    // décomptes du site gardés 2 minutes (le polling de l'accueil les rafraîchit de toute façon)
+    cachedAsync('home:counts', 120_000, () => Promise.all([
+      supabase.from('profiles').select('*', { count: 'exact', head: true }).eq('is_demo', false),
+      supabase.rpc('get_total_cards'),
+      supabase.from('binders').select('*', { count: 'exact', head: true }).neq('is_public', false).gte('page_count', 1),
+      supabase.from('cartes_manuelles').select('*', { count: 'exact', head: true }).eq('disponible_vente', true),
+    ])),
     fetchPepites(),
     fetchPodium(),
     fetchPodiumDay(),

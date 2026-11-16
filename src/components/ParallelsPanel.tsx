@@ -10,6 +10,8 @@ import { matchesEntryExact } from '@/lib/setMatcher'
 // Lecture seule : rien n'est écrit. Les bords des cartes restent nets.
 interface CardLike { n: string; y: string; br: string; s: string; v: string; card_number?: string }
 interface SetRow { id: number; name: string; year: number | null; brand: string | null; lignes: number }
+// sets trouvés pour une carte : gardés pendant la visite (ouvrir plusieurs fois la même carte ne relance plus les recherches)
+const listCache = new Map<string, SetRow[]>()
 interface Entry { id: number; card_number: string | null; variation: string | null; image_url: string | null; is_rc?: boolean | null }
 interface Mine extends CardRow { id: string; nom: string; annee: string | null; marque: string | null; collection: string | null; collection_tag: string | null; variation: string | null; card_number: string | null; image_recto: string | null; image_recto_thumb: string | null }
 
@@ -79,9 +81,16 @@ export default function ParallelsPanel({ card, currentUserId, metaColor, textCol
         return (st.year === yr ? 3 : 0) + (card.y && norm(st.name).includes(norm(card.y)) ? 3 : 0) - extra * 2
       }
       const ranked = ((data || []) as Omit<SetRow, 'lignes'>[]).sort((x, y) => score(y) - score(x)).slice(0, 6)
-      const counts = await Promise.all(ranked.map(st => supabase.from('card_set_entries').select('id', { count: 'exact', head: true }).eq('set_id', st.id).ilike('player_name', name).then(r => r.count || 0)))
+      // simple test d'existence (limit 1) au lieu d'un décompte exact : seul « > 0 » sert, et le décompte parcourait toutes les lignes du joueur dans le set
+      const cacheKey = `${name}|${yr}|${card.s || ''}|${card.br || ''}`
+      let list = listCache.get(cacheKey)
+      if (!list) {
+        const counts = await Promise.all(ranked.map(st => supabase.from('card_set_entries').select('id').eq('set_id', st.id).ilike('player_name', name).limit(1).then(r => (r.data?.length || 0))))
+        if (cancel) return
+        list = ranked.map((st, i) => ({ ...st, lignes: counts[i] })).filter(st => st.lignes > 0)
+        listCache.set(cacheKey, list)
+      }
       if (cancel) return
-      const list = ranked.map((st, i) => ({ ...st, lignes: counts[i] })).filter(st => st.lignes > 0)
       if (!list.length) { setState('none'); return }
       setSets(list); setSetId(list[0].id)
     })()

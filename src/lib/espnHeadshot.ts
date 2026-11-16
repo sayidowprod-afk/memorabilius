@@ -377,7 +377,31 @@ export interface EspnPlayerBio {
   jerseyHistory: { teamName: string; startYear: number; jersey: string }[]
 }
 
+// Noms écrits sans ponctuation dans les adresses de pages (« shaquille-o-neal ») : ESPN ne trouve « O'Neal » qu'avec l'apostrophe.
+// On essaie donc le nom tel quel, puis ses variantes (apostrophe après une initiale seule : « O Neal » -> « O'Neal » ; trait d'union entre les deux premiers mots : « Karl Anthony » -> « Karl-Anthony »).
+function nameVariants(name: string): string[] {
+  const out = [name]
+  const parts = name.split(' ').filter(Boolean)
+  const apos = parts.map((w, i) => (w.length <= 2 && parts[i + 1] && i < parts.length - 1 && !/^(jr|sr|ii|iii|iv)$/i.test(parts[i + 1])) ? `${w}'${parts[i + 1]}` : null)
+  if (apos.some(Boolean)) {
+    const v: string[] = []
+    for (let i = 0; i < parts.length; i++) { if (apos[i]) { v.push(apos[i]!); i++ } else v.push(parts[i]) }
+    out.push(v.join(' '))
+  }
+  if (parts.length >= 3) out.push([`${parts[0]}-${parts[1]}`, ...parts.slice(2)].join(' '))
+  return [...new Set(out)]
+}
+
 async function findEspnAthleteId(name: string, sportHint?: string): Promise<{ id: string; sport: string } | null> {
+  for (const q of nameVariants(name)) {
+    const found = await findEspnAthleteIdExact(q, name, sportHint)
+    if (found) return found
+  }
+  return null
+}
+
+async function findEspnAthleteIdExact(query: string, originalName: string, sportHint?: string): Promise<{ id: string; sport: string } | null> {
+  const name = query
   const espnSport = sportHint ? (SPORT_MAP[sportHint] || 'basketball') : undefined
   const expectedLeague = sportHint ? LEAGUE_MAP[sportHint] : undefined
   try {
@@ -387,7 +411,7 @@ async function findEspnAthleteId(name: string, sportHint?: string): Promise<{ id
     const r = await fetch(url, { signal: AbortSignal.timeout(3000), next: { revalidate: 86400 } } as RequestInit)
     if (!r.ok) return null
     const data = await r.json()
-    const target = norm(name)
+    const target = norm(originalName)
     let fallback: { id: string; sport: string } | null = null
     for (const section of data.results ?? []) {
       for (const a of section.contents ?? []) {

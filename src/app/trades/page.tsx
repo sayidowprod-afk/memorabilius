@@ -22,6 +22,8 @@ import { askConfirm } from '@/components/ConfirmHost'
 import dynamic from 'next/dynamic'
 import SwipeDeck from '@/components/SwipeDeck'
 import RencontreTab from '@/components/RencontreTab'
+import OfferModal from '@/components/OfferModal'
+import PriceOffersTab from '@/components/PriceOffersTab'
 import { listDrafts, clearDraft, type TradeDraft } from '@/lib/tradeDrafts'
 
 const Viewer3D = dynamic(() => import('@/components/Viewer3D'), { ssr: false })
@@ -121,6 +123,7 @@ export default function Trades() {
   // brouillons d'offres (747) : gardés sur cet appareil, relus à l'ouverture de l'onglet « Mes échanges » et à la fermeture de la fenêtre d'offre
   const [drafts, setDrafts] = useState<TradeDraft[]>([])
   useEffect(() => { setDrafts(listDrafts()) }, [mainTab])
+  const [offerFor, setOfferFor] = useState<{ sellerId: string; name: string; cardId: string } | null>(null)
   const [tradeModal, setTradeModal] = useState<{ userId: string; name: string; targetIds: string[]; myIds: string[]; message?: string; counterOfId?: string } | null>(null)
   const [reviewDraft, setReviewDraft] = useState<Record<string, { rating: number; comment: string }>>({})
   const [fAnnee, setFAnnee] = useState('')
@@ -150,7 +153,7 @@ export default function Trades() {
   // ── État mes échanges ───────────────────────────────────────────────────────
   const [tradeOffers, setTradeOffers] = useState<any[]>([])
   const [loadingOffers, setLoadingOffers] = useState(false)
-  const [offerTab, setOfferTab] = useState<'pending' | 'history'>('pending')
+  const [offerTab, setOfferTab] = useState<'pending' | 'history' | 'prices'>('pending')
   const [acting, setActing] = useState<string | null>(null)
 
   useEffect(() => {
@@ -738,6 +741,10 @@ export default function Trades() {
         />
       )}
 
+      {offerFor && (
+        <OfferModal sellerId={offerFor.sellerId} sellerName={offerFor.name} presetCardId={offerFor.cardId} onClose={() => setOfferFor(null)} onCreated={() => setOfferFor(null)} />
+      )}
+
       {tradeModal && (
         <TradeModal
           targetUserId={tradeModal.userId}
@@ -899,7 +906,11 @@ export default function Trades() {
                       <div className="tfc-seller" style={{ display: 'flex', alignItems: 'center', gap: 8, paddingTop: 10, borderTop: '1px solid var(--border, #f0f0f0)' }}>
                         <img loading="lazy" src={trade.profiles?.avatar_url || `https://ui-avatars.com/api/?name=${encodeURIComponent(trade.profiles?.display_name || 'U')}&background=003DA6&color=fff`}
                           style={{ width: 26, height: 26, borderRadius: '50%', objectFit: 'cover' }} alt="" />
-                        <span style={{ fontSize: 12, fontWeight: 700, color: 'var(--text2, #444)' }}>{trade.profiles?.display_name}</span>
+                        <span style={{ fontSize: 12, fontWeight: 700, color: 'var(--text2, #444)', flex: 1, minWidth: 0 }}>{trade.profiles?.display_name}</span>
+                        {(trade as any)._source === 'galerie' && (trade as any).prix_vente != null && userId && (trade as any).user_id && (trade as any).user_id !== userId && (
+                          <button type="button" onClick={e => { e.stopPropagation(); setOfferFor({ sellerId: (trade as any).user_id, name: trade.profiles?.display_name || 'ce membre', cardId: String((trade as any).id) }) }}
+                            style={{ border: '2px solid #003DA6', background: 'transparent', color: '#003DA6', fontWeight: 800, fontSize: 11, padding: '5px 10px', cursor: 'pointer', textTransform: 'uppercase', letterSpacing: '.04em' }}>💶 Faire une offre</button>
+                        )}
                       </div>
                     </div>
                   </div>
@@ -934,18 +945,20 @@ export default function Trades() {
           )}
           {/* Sous-onglets */}
           <div style={{ display: 'flex', gap: 8, marginBottom: 20 }}>
-            {(['pending', 'history'] as const).map(sub => (
+            {(['pending', 'history', 'prices'] as const).map(sub => (
               <button key={sub} onClick={() => setOfferTab(sub)} style={{
                 border: 'none', borderRadius: 50, padding: '8px 18px', fontWeight: 700, fontSize: 13, cursor: 'pointer',
                 background: offerTab === sub ? '#003DA6' : 'var(--bg3, #f0f0f0)',
                 color: offerTab === sub ? '#fff' : 'var(--text2, #555)',
               }}>
-                {sub === 'pending' ? `${t('trades_in_progress')} (${pendingOffers.length})` : `Historique (${historyOffers.length})`}
+                {sub === 'pending' ? `${t('trades_in_progress')} (${pendingOffers.length})` : sub === 'history' ? `Historique (${historyOffers.length})` : '💶 Offres de prix'}
               </button>
             ))}
           </div>
 
-          {loadingOffers ? (
+          {offerTab === 'prices' ? (
+            userId ? <PriceOffersTab userId={userId} /> : null
+          ) : loadingOffers ? (
             <div style={{ textAlign: 'center', color: 'var(--text3, #bbb)', padding: '48px 0' }}>{t('setlist_loading')}</div>
           ) : shownOffers.length === 0 ? (
             <EmptyState icon="🔁" title={offerTab === 'pending' ? t('echanges_empty_pending') : t('echanges_empty_history')}
