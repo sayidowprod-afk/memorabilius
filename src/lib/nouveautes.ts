@@ -4,6 +4,13 @@ export type Entry = { date: string; titre: string; points: string[] }
 
 export const ENTRIES: Entry[] = [
   {
+    date: '30 novembre 2026', titre: 'Pages joueur plus rapides et fin de l’erreur à l’ouverture',
+    points: [
+      'Pages joueur : la recherche des cartes d’un joueur passe par une nouvelle fonction de la base qui utilise l’index des noms, elle ne parcourt plus toute la table de cartes (1,7 s en moyenne avant, quelques dizaines de millisecondes maintenant).',
+      'Accueil : la page « Une erreur est survenue » qui s’affichait parfois à l’ouverture du site ou de l’app pour les membres connectés est corrigée (module Pronos).',
+    ],
+  },
+  {
     date: '30 novembre 2026', titre: 'Site plus rapide et plus léger',
     points: [
       'Navigation : le profil, les notifications et l’état « en ligne » ne sont plus redemandés à chaque page, les pages s’enchaînent avec moins d’attente.',

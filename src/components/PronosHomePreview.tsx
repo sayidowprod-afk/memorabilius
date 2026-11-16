@@ -559,6 +559,9 @@ export default function PronosHomePreview() {
 
   useEffect(() => { setShowAll(false) }, [activeDay, activeSport, week])
 
+  // useSpoil() DOIT rester avant le « return null » ci-dessous : un hook appelé seulement une fois le membre connu changeait le nombre de hooks entre deux rendus
+  // (erreur React 310 « Une erreur est survenue » à l'ouverture du site ou de l'app pour les membres connectés).
+  const spoilMain = useSpoil()
   // Pas connecté -- module masqué, aucun appel supplémentaire.
   // Les membres qui ne collectionnent que des cartes à jouer (TCG) n'ont pas les pronos sur leur accueil.
   if (!user || focus === 'tcg') return null
@@ -599,7 +602,6 @@ export default function PronosHomePreview() {
   const shownDays = week === 'prev' ? (prev?.days?.length ? prev.days : daysForOffsets(weekOffsets(-1)).map(d => d.label)) : days
   const shownMatches = week === 'prev' ? prev?.matches ?? null : matches
   const visible = (shownMatches ?? []).filter(m => m.day === activeDay && (activeSport === 'ALL' || m.sport === activeSport))
-  const spoilMain = useSpoil()
 
   const pillBase: React.CSSProperties = {
     display: 'flex', alignItems: 'center', gap: 8, padding: '9px 16px', borderRadius: 999,

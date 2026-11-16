@@ -13,7 +13,37 @@ async function withRetry<T extends { error: any }>(run: () => PromiseLike<T>, la
   return r
 }
 
+// Recherche par nom via la fonction SQL player_cards_search (migration 20261128) : elle utilise l'index des noms, alors que la requête directe est ralentie
+// par la règle de sécurité des cartes privées (~1,7 s au lieu de quelques dizaines de ms). Si la fonction n'existe pas encore (migration non lancée) ou échoue,
+// on retombe sur l'ancienne requête ci-dessous. L'état « fonction absente » est retenu 10 min pour ne pas redemander à chaque visite.
+let rpcMissingUntil = 0
+async function viaRpc(sb: SupabaseClient, firstName: string, lastName: string): Promise<any[] | null> {
+  if (Date.now() < rpcMissingUntil) return null
+  const page = (from: number) => sb.rpc('player_cards_search', { p_first: firstName, p_last: lastName }).range(from, from + PAGE - 1) as unknown as PromiseLike<{ data: any[] | null; error: any }>
+  const first = await page(0)
+  if (first.error || !Array.isArray(first.data)) {
+    const e = first.error || {}
+    if (e.code === 'PGRST202' || e.code === '42883' || /could not find the function/i.test(String(e.message || ''))) rpcMissingUntil = Date.now() + 600_000
+    else console.log('[cartes joueur] fonction player_cards_search en échec, repli :', e.message || e)
+    return null
+  }
+  const out: any[] = [...first.data]
+  let from = PAGE, more = first.data.length === PAGE
+  while (more) {
+    const batch = await Promise.all(Array.from({ length: PARALLEL }, (_, i) => page(from + i * PAGE)))
+    more = false
+    for (const r of batch) {
+      if (r.error || !Array.isArray(r.data)) return null   // page manquante : mieux vaut l'ancienne méthode qu'un résultat incomplet
+      out.push(...r.data); if (r.data.length === PAGE) more = true
+    }
+    from += PARALLEL * PAGE
+  }
+  return Object.assign(out, { failed: false })
+}
+
 export async function fetchPlayerManuelles(sb: SupabaseClient, select: string, firstName: string, lastName: string): Promise<any[]> {
+  const viaFn = await viaRpc(sb, firstName, lastName)
+  if (viaFn) return viaFn
   const page = (from: number) => withRetry(() => sb.from('cartes_manuelles').select(select)
     .ilike('nom', `%${firstName}%`).ilike('nom', `%${lastName}%`)
     .not('image_recto', 'is', null)
