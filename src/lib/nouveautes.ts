@@ -4,6 +4,12 @@ export type Entry = { date: string; titre: string; points: string[] }
 
 export const ENTRIES: Entry[] = [
   {
+    date: '30 novembre 2026', titre: 'Galerie : 6 cartes par ligne sur grand écran',
+    points: [
+      'Sur les écrans 1440p et plus, la grille de la galerie affiche 6 cartes par ligne (10 en affichage compact) au lieu de 5 (8), pour que les cartes ne deviennent pas immenses. Rien ne change sur les écrans plus petits.',
+    ],
+  },
+  {
     date: '30 novembre 2026', titre: 'Le site s’adapte aux grands écrans',
     points: [
       'Sur les écrans larges (1440p, 4K), la galerie, les pages joueur, la recherche, les échanges et le pied de page utilisent maintenant la largeur de l’écran au lieu de rester bloqués à 1400 px. Rien ne change sur les écrans plus petits.',

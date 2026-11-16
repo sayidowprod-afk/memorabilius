@@ -3702,6 +3702,8 @@ export default function GalerieClient({ userId, initialCardUrl, initialCards, in
           @media (min-width: 900px) { .card-item { flex: 0 0 calc(20% - 10px); max-width: calc(20% - 10px); } }
           .card-grid-compact .card-item { flex: 0 0 calc(33.333% - 7px) !important; max-width: calc(33.333% - 7px) !important; }
           @media (min-width: 900px) { .card-grid-compact .card-item { flex: 0 0 calc(12.5% - 9px) !important; max-width: calc(12.5% - 9px) !important; } }
+          /* grands écrans (1440p et plus) : 6 cartes par ligne (10 en compact) au lieu de 5 (8), sinon elles deviennent immenses */
+          @media (min-width: 1900px) { .card-item { flex: 0 0 calc(16.666% - 10px); max-width: calc(16.666% - 10px); } .card-grid-compact .card-item { flex: 0 0 calc(10% - 9px) !important; max-width: calc(10% - 9px) !important; } }
           .card-grid-compact .card-item p { font-size: 10px !important; }
 
           .sticker-badge {
