@@ -610,9 +610,9 @@ export default function PronosHomePreview() {
   }
 
   return (
-    <section style={{ background: NAVY, padding: '32px 20px 48px' }}>
+    <section className="pronos-home" style={{ background: NAVY, padding: '32px 20px 48px' }}>
       <PronosCSS />
-      <div style={{ maxWidth: 1200, margin: '0 auto' }}>
+      <div style={{ maxWidth: 'var(--page-max, 1200px)', margin: '0 auto' }}>
         <div style={{ display: 'flex', alignItems: 'center', flexWrap: 'wrap', gap: 12, margin: '0 0 20px' }}>
           <h2 style={{ fontFamily: SURFQUEST, fontSize: 28, color: '#fff', letterSpacing: 1, margin: 0 }}>
             🏆 PRONOS

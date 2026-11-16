@@ -142,7 +142,7 @@ export default async function EquipePage({ params }: { params: Promise<{ slug: s
   const teamColor = team.color
 
   return (
-    <div style={{ maxWidth: 1000, margin: '0 auto', padding: '32px 16px', fontFamily: 'Inter, sans-serif' }}>
+    <div style={{ maxWidth: 'var(--page-max, 1000px)', margin: '0 auto', padding: '32px 16px', fontFamily: 'Inter, sans-serif' }}>
       {/* Header */}
       <div style={{ display: 'flex', alignItems: 'center', gap: 20, marginBottom: 32, flexWrap: 'wrap' }}>
         <img src={logoUrl} alt={team.name} className="team-logo-zoom-in" style={{ width: 80, height: 80, objectFit: 'contain' }}

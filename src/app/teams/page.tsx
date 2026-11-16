@@ -114,7 +114,7 @@ export default function Teams() {
   const filtered = sorted.filter(t => t.name.toLowerCase().includes(search.toLowerCase()))
 
   return (
-    <div style={{ maxWidth: 1000, margin: '0 auto', fontFamily: 'Inter, sans-serif' }}>
+    <div style={{ maxWidth: 'var(--page-max, 1000px)', margin: '0 auto', fontFamily: 'Inter, sans-serif' }}>
       <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 24, flexWrap: 'wrap', gap: 12 }}>
         <h1 style={{ fontWeight: 900, fontSize: 32, letterSpacing: '-0.5px', margin: 0 }}>{t('teams_title')}</h1>
         {userId && (

@@ -21,6 +21,7 @@ let nbaMapExpiry = 0
 
 async function getNbaPlayerMap(): Promise<Map<string, number>> {
   if (nbaMapCache && Date.now() < nbaMapExpiry) return nbaMapCache
+  if (Date.now() < nbaStatsDownUntil) return nbaMapCache ?? new Map()
   try {
     const r = await fetch(
       'https://stats.nba.com/stats/commonallplayers?LeagueID=00&Season=2024-25&IsOnlyCurrentSeason=0',
@@ -37,7 +38,7 @@ async function getNbaPlayerMap(): Promise<Map<string, number>> {
         next: { revalidate: 86400 },
       } as RequestInit
     )
-    if (!r.ok) return nbaMapCache ?? new Map()
+    if (!r.ok) { nbaStatsDownUntil = Date.now() + 15 * 60_000; return nbaMapCache ?? new Map() }
     const data = await r.json()
     const rows: any[][] = data?.resultSets?.[0]?.rowSet ?? []
     const map = new Map<string, number>()
@@ -50,6 +51,7 @@ async function getNbaPlayerMap(): Promise<Map<string, number>> {
     nbaMapExpiry = Date.now() + 86400_000
     return map
   } catch {
+    nbaStatsDownUntil = Date.now() + 15 * 60_000
     return nbaMapCache ?? new Map()
   }
 }
@@ -164,6 +166,18 @@ const NBA_TEAM_IDS: Record<string, number> = {
   'Charlotte Bobcats': 1610612766,
 }
 
+// stats.nba.com ne répond plus depuis les serveurs (mesuré : 8,1 s sur chaque page joueur et 5,1 s sur chaque page équipe = exactement les anciens délais d'attente de
+// 8 s et 5 s, à chaque première visite). Délai court + « disjoncteur » : après un échec, on n'essaie plus pendant 15 min sur cette instance au lieu de rattendre à chaque page.
+let nbaStatsDownUntil = 0
+async function nbaStatsFetch(url: string, timeoutMs = 2500): Promise<Response | null> {
+  if (Date.now() < nbaStatsDownUntil) return null
+  try {
+    const r = await fetch(url, { headers: NBA_HEADERS, signal: AbortSignal.timeout(timeoutMs), next: { revalidate: 86400 } } as RequestInit)
+    if (!r.ok) { if (r.status >= 500 || r.status === 403 || r.status === 429) nbaStatsDownUntil = Date.now() + 15 * 60_000; return null }
+    return r
+  } catch { nbaStatsDownUntil = Date.now() + 15 * 60_000; return null }
+}
+
 const NBA_HEADERS = {
   'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36',
   'Referer': 'https://www.nba.com/',
@@ -185,11 +199,8 @@ function buildStints(career: { year: number; teamName: string }[]) {
 
 async function fetchRosterJersey(playerName: string, teamId: number, season: string): Promise<string | null> {
   try {
-    const r = await fetch(
-      `https://stats.nba.com/stats/commonteamroster?TeamID=${teamId}&Season=${season}`,
-      { headers: NBA_HEADERS, signal: AbortSignal.timeout(5000), next: { revalidate: 86400 } } as RequestInit
-    )
-    if (!r.ok) return null
+    const r = await nbaStatsFetch(`https://stats.nba.com/stats/commonteamroster?TeamID=${teamId}&Season=${season}`)
+    if (!r) return null
     const data = await r.json()
     const headers: string[] = data?.resultSets?.[0]?.headers ?? []
     const rows: any[][] = data?.resultSets?.[0]?.rowSet ?? []
@@ -210,11 +221,8 @@ async function fetchNbaPlayerAwards(playerName: string): Promise<string[]> {
   const id = map.get(playerName.toLowerCase())
   if (!id) return []
   try {
-    const r = await fetch(
-      `https://stats.nba.com/stats/playerawards?PlayerID=${id}`,
-      { headers: NBA_HEADERS, signal: AbortSignal.timeout(8000), next: { revalidate: 86400 } } as RequestInit
-    )
-    if (!r.ok) return []
+    const r = await nbaStatsFetch(`https://stats.nba.com/stats/playerawards?PlayerID=${id}`)
+    if (!r) return []
     const data = await r.json()
     const hdrs: string[] = data?.resultSets?.[0]?.headers ?? []
     const rows: any[][] = data?.resultSets?.[0]?.rowSet ?? []

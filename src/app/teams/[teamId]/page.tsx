@@ -596,7 +596,7 @@ export default function TeamPage({ params }: { params: Promise<{ teamId: string 
   ]
 
   return (
-    <div style={{ maxWidth: 1000, margin: '0 auto', padding: '24px 16px', fontFamily: 'Inter, sans-serif' }}
+    <div style={{ maxWidth: 'var(--page-max, 1000px)', margin: '0 auto', padding: '24px 16px', fontFamily: 'Inter, sans-serif' }}
       onClick={() => { setShowEmojiForMsg(null); setShowEmojiForPost(null) }}>
       <style>{`
         .holo-name {

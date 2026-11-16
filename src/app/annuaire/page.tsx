@@ -284,7 +284,7 @@ function AnnuaireContent() {
 
 
   return (
-    <div style={{ maxWidth: 1200, margin: '0 auto', fontFamily: 'Inter, sans-serif' }}>
+    <div style={{ maxWidth: 'var(--page-max, 1200px)', margin: '0 auto', fontFamily: 'Inter, sans-serif' }}>
       <ScrollToTopButton />
       <style>{`
         .sticker-badge-sm {

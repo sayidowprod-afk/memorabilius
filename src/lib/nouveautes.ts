@@ -4,6 +4,14 @@ export type Entry = { date: string; titre: string; points: string[] }
 
 export const ENTRIES: Entry[] = [
   {
+    date: '30 novembre 2026', titre: 'Premières visites plus rapides et site plus léger',
+    points: [
+      'Pages joueur et équipe : la première visite (après une mise à jour ou une semaine sans visite) prenait 5 à 8 secondes à cause d’un service externe de la NBA qui ne répondait plus. Le délai d’attente est réduit, ces pages s’ouvrent bien plus vite.',
+      'Moins de charge sur ton ordinateur et ton téléphone : les images n’animent plus leur effet de chargement en continu une fois affichées (surtout visible en galerie).',
+      'Accueil : le bloc Pronos n’a plus de cadre de fond et suit la largeur de l’écran ; la section TCG, l’annuaire, les pages équipe et la page publique d’une carte s’élargissent aussi sur les grands écrans.',
+    ],
+  },
+  {
     date: '30 novembre 2026', titre: 'Pages joueur plus rapides et fin de l’erreur à l’ouverture',
     points: [
       'Pages joueur : la recherche des cartes d’un joueur passe par une nouvelle fonction de la base qui utilise l’index des noms, elle ne parcourt plus toute la table de cartes (1,7 s en moyenne avant, quelques dizaines de millisecondes maintenant).',

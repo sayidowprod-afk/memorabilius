@@ -100,7 +100,7 @@ export default function CardPublicPage({ userId, cardSlug, src }: Props) {
   if (card.num) tags.push({ label: card.num, bg: '#A855F7' })
 
   return (
-    <div style={{ maxWidth: 1100, margin: '0 auto', padding: '30px 16px', fontFamily: 'Inter, sans-serif' }}>
+    <div style={{ maxWidth: 'var(--page-max, 1100px)', margin: '0 auto', padding: '30px 16px', fontFamily: 'Inter, sans-serif' }}>
       <style>{`
         @keyframes spin { to { transform: rotate(360deg) } }
         .card-page-layout { display: flex; gap: 48px; align-items: flex-start; }

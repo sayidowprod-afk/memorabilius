@@ -1304,7 +1304,7 @@ h1, h2, h3, .section-title, .da-h2, .da-display { text-wrap: balance; }
 .da-help-tip { position: absolute; z-index: 60; left: 50%; top: calc(100% + 8px); transform: translateX(-50%); width: max-content; max-width: min(260px, 70vw); padding: 9px 12px; background: var(--bg2, #0e1530); color: var(--text, #f0f0f0); border: 2px solid #3a4a8a; box-shadow: 0 8px 24px rgba(0,0,0,.45); font: 500 13px/1.45 system-ui, sans-serif; text-transform: none; letter-spacing: 0; text-align: left; white-space: normal; }
 
 /* 99 · Chargement doux des images de cartes : fond animé + image floue qui se précise */
-.da-img-box { background-image: linear-gradient(100deg, rgba(255,255,255,0.04) 20%, rgba(255,255,255,0.12) 50%, rgba(255,255,255,0.04) 80%); background-size: 200% 100%; animation: daImgShimmer 1.4s linear infinite; }
+.da-img-box { background-image: linear-gradient(100deg, rgba(255,255,255,0.04) 20%, rgba(255,255,255,0.12) 50%, rgba(255,255,255,0.04) 80%); background-size: 200% 100%; animation: daImgShimmer 1.4s linear 6; }
 .da-img-box img { transition: opacity 0.35s ease, filter 0.35s ease; }
 .da-img-box img.da-img-loading { opacity: 0; filter: blur(10px); }
 @keyframes daImgShimmer { to { background-position: -200% 0; } }
@@ -1877,3 +1877,6 @@ html[data-member="1"] .home-member-ph { display: block; min-height: 100svh; }
 
 /* Écrans larges (1440p, 4K) : la largeur utile suit l écran au lieu de rester bloquée à 1400px */
 :root { --page-max: max(1400px, min(90vw, 2200px)); }
+
+/* Accueil : le bloc Pronos n'a plus de cadre de fond en thème sombre (il suit la largeur de l'écran, comme le reste) ; en thème clair le fond marine reste pour que le texte blanc se lise */
+:root[data-theme="dark"] .pronos-home { background: transparent !important; }
