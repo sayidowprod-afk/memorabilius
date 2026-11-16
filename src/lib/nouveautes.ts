@@ -4,21 +4,14 @@ export type Entry = { date: string; titre: string; points: string[] }
 
 export const ENTRIES: Entry[] = [
   {
-    date: '30 novembre 2026', titre: 'Échanges : un onglet Rencontre pour les salons',
-    points: [
-      'Échanges : un nouvel onglet « 🤝 Rencontre ». Il affiche ton QR ; l’autre collectionneur le scanne (avec l’appareil photo de son téléphone ou le bouton « Scanner un QR ») et voit d’un coup ce qu’il a pour toi et ce que tu as pour lui, avec le bouton « Proposer un échange ».',
-      'Wishlist : en mode salon, un bouton « Mon QR de rencontre » ouvre directement cet onglet.',
-    ],
-  },
-  {
-    date: '30 novembre 2026', titre: 'Bobbleheads : 139 joueurs, et ce n’est que le début',
+    date: '30 novembre 2026', titre: 'Bobbleheads, galerie sur téléphone et onglet Rencontre',
     points: [
       'Bobbleheads : 139 joueurs ont déjà leur figurine sur leur page, et d’autres arrivent chaque jour. Ceux qui n’en ont pas encore gardent leur photo.',
-      'Même maillot pour toute une équipe : une figurine porte désormais le maillot et le numéro de son équipe (ou de l’équipe où le joueur a le plus joué pour les retraités), comme Iverson avec les 76ers.',
+      'Même maillot pour toute une équipe : une figurine porte le maillot et le numéro de son équipe (ou de l’équipe où le joueur a le plus joué pour les retraités), comme Iverson avec les 76ers. Jimmy Butler et Jimmy Butler III affichent la même figurine.',
       'Galerie : les figurines des joueurs de tes PCs s’affichent dans l’en-tête de ton profil, posées sur la ligne des statistiques. Le bandeau « Top x % des collectionneurs » est retiré de l’en-tête.',
-      'Profil sur téléphone : photo plus petite avec le pseudo à côté, logos des équipes favorites sur la même ligne, abonnés / abonnements et bio plus compacts, bouton Discord à la même taille que les autres réseaux.',
-      'Page joueur sur téléphone : figurine à gauche, infos et historique des équipes à droite, comme sur ordinateur mais en plus petit.',
-      'Jimmy Butler et Jimmy Butler III affichent maintenant la même figurine.',
+      'Téléphone : profil plus compact (photo plus petite avec le pseudo à côté, logos des équipes favorites sur la même ligne, abonnés et bio resserrés, bouton Discord à la taille des autres réseaux) et page joueur avec la figurine à gauche, comme sur ordinateur.',
+      'Échanges : un nouvel onglet « 🤝 Rencontre » pour les salons. Il affiche ton QR ; l’autre collectionneur le scanne (avec l’appareil photo de son téléphone ou le bouton « Scanner un QR ») et voit d’un coup ce qu’il a pour toi et ce que tu as pour lui, avec le bouton « Proposer un échange ».',
+      'Wishlist : en mode salon, un bouton « Mon QR de rencontre » ouvre directement cet onglet.',
     ],
   },
   {
