@@ -53,7 +53,21 @@ export async function GET(req: NextRequest) {
   // matchees. Repli sur la RPC unaccent seulement si celle-ci echoue (couvre
   // les variantes orthographiques accentuees qu'elle fusionne en plus).
   let rpcFailed = false
-  while (true) {
+  // 1re requête SANS tri : le « ORDER BY set_id, card_number » sur des milliers de lignes jointes faisait déborder le tri sur le disque
+  // (~2,1 Go de fichiers temporaires lus et écrits d'après Supabase). Le tri est fait en mémoire plus bas. Au-delà de 1 000 lignes, pagination triée (ordre stable).
+  {
+    const { data, error } = await admin
+      .from('card_set_entries')
+      .select('id, set_id, card_number, variation, is_rc, is_auto, image_url, card_sets(id, name, year, brand, sport)')
+      .ilike('player_name', `${firstName}%`)
+      .or(`player_name.ilike.${lastName}%,player_name.ilike.% ${lastName}%`)
+      .limit(PAGE)
+    if (!error && data && data.length < PAGE) {
+      all.push(...data)
+      from = Number.MAX_SAFE_INTEGER   // résultat complet : on saute la pagination
+    }
+  }
+  while (from !== Number.MAX_SAFE_INTEGER) {
     const { data, error } = await admin
       .from('card_set_entries')
       .select('id, set_id, card_number, variation, is_rc, is_auto, image_url, card_sets(id, name, year, brand, sport)')
@@ -90,5 +104,6 @@ export async function GET(req: NextRequest) {
   // partage court, absorbe les visites repetees d'un meme joueur populaire
   // (cette route ignore le revalidate=3600 de la page /joueur, appelee cote
   // client sur chaque montage).
+  all.sort((x: any, y: any) => (x.set_id - y.set_id) || String(x.card_number ?? '').localeCompare(String(y.card_number ?? ''), undefined, { numeric: true }))
   return NextResponse.json({ entries: all }, { headers: { 'Cache-Control': 'public, s-maxage=21600, stale-while-revalidate=604800' } })
 }
