@@ -4,6 +4,14 @@ export type Entry = { date: string; titre: string; points: string[] }
 
 export const ENTRIES: Entry[] = [
   {
+    date: '30 novembre 2026', titre: 'Pages joueur et équipe bien plus rapides',
+    points: [
+      'Pages joueur et équipe : elles s’affichaient en environ 10 secondes ; elles sont désormais gardées en mémoire et s’ouvrent presque instantanément après la première visite.',
+      'Les cartes des collectionneurs qui partagent un fichier CSV ne ralentissent plus l’ouverture : celles qui ne sont pas encore prêtes sont récupérées en arrière-plan et apparaissent à la visite suivante.',
+      'Galerie sur téléphone : le bouton « ⋯ » et le bouton de personnalisation sont côte à côte, avec le même style, « + Ajouter » reste en dessous.',
+    ],
+  },
+  {
     date: '30 novembre 2026', titre: 'Bobbleheads, galerie sur téléphone et onglet Rencontre',
     points: [
       'Bobbleheads : 139 joueurs ont déjà leur figurine sur leur page, et d’autres arrivent chaque jour. Ceux qui n’en ont pas encore gardent leur photo.',

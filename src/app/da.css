@@ -1811,3 +1811,18 @@ html[data-member="1"] .home-member-ph { display: block; min-height: 100svh; }
     display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 4; overflow: hidden; overflow-wrap: anywhere;
   }
 }
+
+/* Profil sur téléphone : « ⋮ » et personnalisation côte à côte (moitié / moitié) sur une seule ligne, « + Ajouter » dessous sur toute la largeur */
+@media (max-width: 768px) {
+  .da-profile .header-stats-block .galerie-actions { display: grid !important; grid-template-columns: 1fr 1fr; gap: 8px !important; align-items: stretch !important; width: 100% !important; }
+  .da-profile .header-stats-block .galerie-actions > * { min-width: 0; }
+  .da-profile .header-stats-block .galerie-actions .btn-menu { width: 100% !important; display: block; }
+  .da-profile .header-stats-block .galerie-actions .btn-menu > button,
+  .da-profile .header-stats-block .galerie-actions > button { width: 100% !important; height: 100%; min-height: 48px; box-sizing: border-box; }
+  .da-profile .header-stats-block .galerie-actions .btn-ajouter { grid-column: 1 / -1; width: 100% !important; box-sizing: border-box; }
+}
+
+/* Profil : le bouton de personnalisation (palette) prend le même style que « ⋮ » : bordure blanche, pas de fond, angles droits */
+.da-profile .header-stats-block .galerie-actions > button {
+  background: transparent !important; color: #fff !important; border: 2px solid rgba(255, 255, 255, 0.55) !important; border-radius: 0 !important; box-shadow: none !important;
+}

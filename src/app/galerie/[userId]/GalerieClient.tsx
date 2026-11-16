@@ -2992,7 +2992,9 @@ export default function GalerieClient({ userId, initialCardUrl, initialCards, in
                       aria-label={t('gallery_more_actions')}
                       style={{ background: dark ? '#2a2a2a' : '#f0f0f0', color: dark ? '#ddd' : '#333', border: 'none', borderRadius: 8, padding: '10px 14px', fontWeight: 700, fontSize: 18, cursor: 'pointer', lineHeight: 1 }}
                     >
-                      ⋮
+                      <svg className="menu-dots" width="26" height="26" viewBox="0 0 26 26" fill="currentColor" aria-hidden="true" style={{ display: 'block', margin: '0 auto' }}>
+                        <circle cx="5" cy="13" r="2.4" /><circle cx="13" cy="13" r="2.4" /><circle cx="21" cy="13" r="2.4" />
+                      </svg>
                     </button>
                     {actionMenuOpen && actionMenuRect && createPortal(
                       <>

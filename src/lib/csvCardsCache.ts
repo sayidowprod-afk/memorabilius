@@ -13,15 +13,22 @@ import { createServerServiceClient } from '@/lib/supabaseServer'
 const cacheDb = createServerServiceClient()
 const CSV_CACHE_TTL_MS = 3600_000
 
+function rememberEmpty(profileId: string) {
+  cacheDb.from('csv_cards_cache').upsert({ profile_id: profileId, cards: [], fetched_at: new Date().toISOString() }).then(() => {})
+}
+
 async function fetchAndCacheCsv(profileId: string, url: string): Promise<RawCsvCard[]> {
   try {
     const r = await fetch(url, { signal: AbortSignal.timeout(4000), next: { revalidate: 3600 } })
-    if (!r.ok) return []
+    if (!r.ok) { rememberEmpty(profileId); return [] }
     const cards = parseCsv(await r.text())
     cacheDb.from('csv_cards_cache').upsert({ profile_id: profileId, cards, fetched_at: new Date().toISOString() }).then(() => {})
     return cards
   } catch {
-    return [] // CSV injoignable -- pas d'ecriture cache, on retentera a la prochaine visite
+    // CSV injoignable : mémorisé comme vide pour ne pas être retenté (et ne pas bloquer la page) à CHAQUE visite ;
+    // le cache périmé (1 h) est rafraîchi en arrière-plan, donc il sera réessayé plus tard
+    rememberEmpty(profileId)
+    return []
   }
 }
 
@@ -47,7 +54,7 @@ async function runPooled<T>(items: T[], workers: number, deadline: number, fn: (
 // (page joueur, /api/player-cards) -- jamais depuis un composant client.
 export async function fetchCsvCardsForProfilesCached(
   profiles: { id: string; display_name: string; avatar_url: string | null; lien_csv: string | null; couleur_bordure?: string | null }[],
-  deadline = Date.now() + 10_000
+  deadline = Date.now() + 2_000
 ): Promise<CsvCard[]> {
   const withCsv = profiles.filter(p => p.lien_csv)
   if (withCsv.length === 0) return []
@@ -74,9 +81,17 @@ export async function fetchCsvCardsForProfilesCached(
   // pour ne pas se faire rate-limiter et pour que les autres cartes (deja en
   // cache) s'affichent sans attendre les CSV les plus lents/morts -- ceux non
   // tentes a temps seront retentes a la prochaine visite.
-  await runPooled(toFetchNow, 8, deadline, async p => {
-    rawByProfile.set(p.id, await fetchAndCacheCsv(p.id, p.lien_csv!))
-  })
+  await Promise.race([
+    runPooled(toFetchNow, 8, deadline, async p => {
+      rawByProfile.set(p.id, await fetchAndCacheCsv(p.id, p.lien_csv!))
+    }),
+    new Promise<void>(res => setTimeout(res, Math.max(0, deadline - Date.now()))),   // la page n'attend jamais plus que le budget, même si un téléchargement traîne
+  ])
+  // pas encore récupérés dans le budget : téléchargés après l'envoi de la page, prêts pour la visite suivante
+  const missing = toFetchNow.filter(p => !rawByProfile.has(p.id))
+  if (missing.length > 0) {
+    after(() => runPooled(missing, 8, Date.now() + 60_000, async p => { await fetchAndCacheCsv(p.id, p.lien_csv!) }))
+  }
 
   // Cache perime mais present : on sert tout de suite les donnees en cache
   // (page rapide) et on rafraichit apres l'envoi de la reponse (after()),

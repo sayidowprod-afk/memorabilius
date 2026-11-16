@@ -26,6 +26,9 @@ import { createServerClient } from '@/lib/supabaseServer'
 const getCachedBio = cache((name: string, sport: string) => fetchEspnPlayerBio(name, sport))
 
 export const revalidate = 604800 // 7 jours (etait 24h, 1h avant -- contenu quasi statique, cf. reduction couts Vercel ISR)
+// Aucune page pré-générée au build, mais cette déclaration est ce qui active le cache à la demande (ISR) : sans elle, une page à paramètre est
+// rendue à CHAQUE visite (en-tête « private, no-store ») et le revalidate ci-dessus est ignoré.
+export async function generateStaticParams() { return [] }
 
 // ── Couleurs par équipe (NBA + NFL + NHL + MLB) ───────────────────────────────
 const NBA_COLORS: Record<string, { primary: string; secondary: string; abbr: string }> = {
