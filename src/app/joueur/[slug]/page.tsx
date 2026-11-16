@@ -727,7 +727,7 @@ async function BioMetaBig({ playerName, sportHint }: { playerName: string; sport
   return (
     <div style={{ color: 'white' }}>
       {cells.length > 0 && (
-        <div style={{ display: 'flex', flexWrap: 'wrap', columnGap: 'clamp(20px, 3.4vw, 44px)', rowGap: 10 }}>
+        <div className="jp-meta-grid" style={{ display: 'flex', flexWrap: 'wrap', columnGap: 'clamp(20px, 3.4vw, 44px)', rowGap: 10 }}>
           {cells.map(([l, v]) => (
             <div key={l}>
               <div style={{ fontSize: 10.5, letterSpacing: '0.14em', fontWeight: 700, opacity: 0.55 }}>{l}</div>
@@ -749,7 +749,7 @@ async function BioCareerChips({ playerName, sportHint }: { playerName: string; s
   // mêmes logos que « Équipes favorites » (composant TeamBadge) ; identifiant d'équipe « sport:ABR »
   const leagueOf: Record<string, string> = { nba: 'nba', nfl: 'nfl', baseball: 'mlb', hockey: 'nhl' }
   return (
-    <div style={{ display: 'flex', flexWrap: 'wrap', gap: 8, marginTop: 22 }}>
+    <div className="jp-chips" style={{ display: 'flex', flexWrap: 'wrap', gap: 8, marginTop: 22 }}>
       {runs.map((run, i) => {
         const colors = getTeamColors(run.teamName)
         const last = i === runs.length - 1
@@ -757,8 +757,8 @@ async function BioCareerChips({ playerName, sportHint }: { playerName: string; s
         const teamId = `${leagueOf[sportHint] || sportHint}:${colors.abbr}`
         const known = !!getTeamById(teamId)
         return (
-          <div key={`${run.teamName}-${run.startYear}-${i}`} title={`${run.teamName} · ${label}`}
-            style={{ width: 82, padding: '9px 4px 7px', borderRadius: 8, display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 3,
+          <div key={`${run.teamName}-${run.startYear}-${i}`} title={`${run.teamName} · ${label}`} className="jp-chip"
+            style={{ width: 82, flex: 'none', padding: '9px 4px 7px', borderRadius: 8, display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 3,
               border: last ? '1px solid rgba(255,255,255,0.55)' : '1px solid rgba(255,255,255,0.1)', background: last ? 'rgba(255,255,255,0.09)' : 'rgba(255,255,255,0.03)' }}>
             {known
               ? <TeamBadge teamId={teamId} size={40} />
@@ -934,7 +934,23 @@ export default async function JoueurPage({ params }: { params: Promise<{ slug: s
         .jp-hero-h1.jp-bobble-h1 { font-size: clamp(54px, 9.2vw, 132px); font-weight: 400; line-height: 0.88; letter-spacing: 0.01em; }
         .jp-bobble-meta { font-size: clamp(22px, 3vw, 40px); }
         @media (max-width: 760px) { .jp-bobble-watermark { width: 380px !important; height: 380px !important; right: -90px !important; } }
-        @media (max-width: 760px) { .jp-bobble-wrap { zoom: 0.68; margin: -40px 0 -40px -12px; } }
+        @media (max-width: 760px) { .jp-bobble-wrap { zoom: 0.68; margin: -40px 0 -40px -12px; } .jp-hero-row { justify-content: center; gap: 14px !important; } }
+        @media (max-width: 600px) {
+          /* même disposition que sur ordinateur (figurine à gauche, infos à droite), en plus petit ; la frise des équipes passe en dessous sur toute la largeur */
+          .jp-hero-row { display: grid !important; grid-template-columns: auto minmax(0, 1fr); column-gap: 12px !important; row-gap: 0 !important; align-items: start !important; }
+          .jp-bobble-wrap { zoom: 0.55; margin: 0 !important; grid-column: 1; grid-row: 1 / span 4; align-self: center; }
+          .jp-hero-row > div:last-child { display: contents !important; }
+          .jp-hero-row > div:last-child > div.da-display { grid-column: 2; font-size: 15px !important; gap: 10px !important; margin-top: 4px; }
+          .jp-hero-h1.jp-bobble-h1 { grid-column: 2; font-size: clamp(23px, 7vw, 28px); margin: 2px 0 8px !important; }
+          .jp-hero-row > div:last-child > div:not(.da-display):not(.jp-chips) { grid-column: 2; min-width: 0; }
+          .jp-meta-grid { display: grid !important; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 6px 10px !important; }
+          .jp-meta-grid .jp-bobble-meta { font-size: 17px; }
+          .jp-meta-grid > div > div:first-child { font-size: 9px !important; }
+          .jp-meta-grid + div { font-size: 10.5px !important; margin-top: 6px !important; }
+          .jp-chips { grid-column: 2; min-width: 0; flex-wrap: wrap !important; overflow: visible; margin: 8px 0 0 !important; padding: 0; gap: 4px !important; }
+          .jp-chips::-webkit-scrollbar { display: none; }
+          .jp-chip { width: 62px !important; padding: 6px 2px 5px !important; zoom: 0.48; }
+        }
         @media (max-width: 600px) {
           .jp-hero-h1 { font-size: 26px; }
           .jp-sets-grid { grid-template-columns: 1fr; }
@@ -979,7 +995,7 @@ export default async function JoueurPage({ params }: { params: Promise<{ slug: s
               <span style={{ color: 'rgba(255,255,255,0.8)' }}>{playerName}</span>
             </div>}
 
-            <div style={{ display: 'flex', gap: newHero ? 28 : 32, alignItems: newHero ? 'center' : 'flex-start', flexWrap: 'wrap' }}>
+            <div className="jp-hero-row" style={{ display: 'flex', gap: newHero ? 28 : 32, alignItems: newHero ? 'center' : 'flex-start', flexWrap: 'wrap' }}>
               {/* Bobblehead (si le joueur en a un) à la place de la photo ronde */}
               {fig
                 ? <div className="jp-bobble-wrap"><Suspense fallback={<div style={{ width: 260, height: 430 }} />}><BobbleFigure fig={fig} playerName={playerName} sportHint={primarySport} /></Suspense></div>

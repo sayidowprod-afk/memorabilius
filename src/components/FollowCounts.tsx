@@ -35,11 +35,11 @@ export default function FollowCounts({ userId, onOpenList }: {
   }
 
   return (
-    <div style={{ display: 'flex', gap: 14, marginTop: 2, marginBottom: 4 }}>
-      <button onClick={() => onOpenList('followers')} style={btnStyle}>
+    <div className="follow-counts" style={{ display: 'flex', gap: 14, marginTop: 2, marginBottom: 4 }}>
+      <button className="follow-count" onClick={() => onOpenList('followers')} style={btnStyle}>
         <b>{followers}</b> {t('follow_count_followers')}
       </button>
-      <button onClick={() => onOpenList('following')} style={btnStyle}>
+      <button className="follow-count" onClick={() => onOpenList('following')} style={btnStyle}>
         <b>{following}</b> {t('follow_count_following')}
       </button>
     </div>

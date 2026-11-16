@@ -99,6 +99,7 @@ import { rememberOwnGallery } from '@/lib/ownGallery'
 import { teamList, hasTeam } from '@/lib/cardTeams'
 import { TCG_GAMES, getTcgGame, isTcg } from '@/lib/tcgGames'
 import JumpBar from '@/components/JumpBar'
+import PcBobbles from '@/components/PcBobbles'
 
 // ── Helpers numériques (module scope pour éviter re-création à chaque render) ──
 const numValue = (num: string) => { const m = num.trim().match(/\/(\d+)$/); return m ? parseInt(m[1]) : null }
@@ -2896,6 +2897,7 @@ export default function GalerieClient({ userId, initialCardUrl, initialCards, in
                 {profile?.discord && (
                   <button
                     type="button"
+                    className="social-discord"
                     title={profile.discord}
                     aria-label={`${t('gallery_copy_discord')} : ${profile.discord}`}
                     onClick={() => {
@@ -3074,6 +3076,8 @@ export default function GalerieClient({ userId, initialCardUrl, initialCards, in
                   </Link>
                 )}
               </div>
+              {/* Figurines bobblehead prêtes des joueurs des PCs (emplacement sous les boutons d'action) */}
+              <PcBobbles pcs={profile?.pcs} />
             </div>
           )}
           </div>

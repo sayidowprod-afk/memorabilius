@@ -1760,3 +1760,54 @@ html[data-member="1"] .home-member-ph { display: block; min-height: 100svh; }
 .gal-skel .gs-card { aspect-ratio: 2.5 / 3.5; }
 @keyframes galSkel { 0% { background-position: 100% 0 } 100% { background-position: -100% 0 } }
 @media (prefers-reduced-motion: reduce) { .gal-skel i { animation: none; } }
+
+/* Profil : figurines bobblehead des joueurs de PC (voir PcBobbles) -- posées sur la ligne bleue, juste au-dessus des statistiques, alignées à droite */
+/* hauteur 0 : les figurines flottent au-dessus de la ligne, sans agrandir le cadre ; marge négative = le gap de 14 px de la colonne */
+.da-profile .pc-bobbles { order: -1; margin: 0 0 -14px; }
+
+/* Profil : le bandeau "Top x % des collectionneurs" est retiré de l'en-tête ; les boutons d'action remontent à sa place */
+.da-profile .header-stats-block > p { display: none !important; }
+@media (min-width: 1201px) {
+  .da-profile .header-stats-block .galerie-actions { top: 26px !important; }
+}
+
+/* Profil, écrans moins larges que 1200 px : les figurines de PC reprennent leur place dans le flux (centrées, juste au-dessus des statistiques) pour ne jamais recouvrir le texte */
+@media (max-width: 1200px) {
+  .da-profile .pc-bobbles { height: auto !important; margin: 4px 0 -10px !important; }
+  .da-profile .pc-bobbles > div { position: static !important; justify-content: center !important; flex-wrap: nowrap !important; }
+}
+
+
+/* Profil : bouton Discord de la même taille que Instagram et X (30 px, rond) */
+.da-profile .header-row .social-discord { width: 30px !important; height: 30px !important; min-width: 0 !important; min-height: 0 !important; padding: 0 !important; border-radius: 50% !important; }
+
+/* Profil sur téléphone : photo plus petite avec le pseudo à sa droite ; abonnés, bio et réseaux passent dessous sur toute la largeur */
+@media (max-width: 640px) {
+  .da-profile .header-row > div:first-child { display: grid !important; grid-template-columns: auto minmax(0, 1fr); column-gap: 12px !important; row-gap: 6px !important; align-items: center !important; justify-items: start; padding-bottom: 0; }
+  .da-profile .header-row > div:first-child > div:first-child { grid-column: 1; grid-row: 1; zoom: 0.62; }
+  .da-profile .header-row > div:first-child > div:last-child { display: contents !important; }
+  .da-profile .header-row > div:first-child > div:last-child > div:first-child { grid-column: 2; grid-row: 1; margin: 0 !important; min-width: 0; }
+  .da-profile .header-row > div:first-child > div:last-child > :not(:first-child) { grid-column: 1 / -1; }
+  .da-profile h1 { font-size: clamp(26px, 8.4vw, 34px) !important; line-height: 1; }
+}
+
+
+/* Profil sur téléphone (suite) : pseudo centré verticalement avec la photo, logos d'équipes favorites en petit sur la même ligne, abonnés / abonnements sur une seule ligne compacte */
+@media (max-width: 640px) {
+  .da-profile .header-row > div:first-child { align-items: center !important; }
+  .da-profile .header-row > div:first-child > div:last-child > div:first-child { display: flex !important; flex-wrap: nowrap !important; align-items: center !important; gap: 6px !important; align-self: center; width: 100%; }
+  .da-profile .header-row > div:first-child > div:last-child > div:first-child h1 { min-width: 0; flex: 0 1 auto; overflow-wrap: anywhere; }
+  .da-profile .header-row > div:first-child > div:last-child > div:first-child .sticker-team,
+  .da-profile .header-row > div:first-child > div:last-child > div:first-child .sticker-holo { flex: none; zoom: 0.6; }
+  .da-profile .header-row .follow-counts { gap: 14px !important; flex-wrap: nowrap; margin: 0 !important; }
+  .da-profile .header-row .follow-count { display: inline !important; width: auto !important; text-transform: none !important; letter-spacing: 0 !important; font-size: 12px !important; font-weight: 600 !important; text-align: left !important; white-space: nowrap; padding: 0 !important; }
+  .da-profile .header-row .follow-count b { font-weight: 900; margin-right: 3px; }
+}
+
+/* Profil sur téléphone : bio compacte (plus de ligne vide entre les paragraphes, texte plus petit, 4 lignes maximum) */
+@media (max-width: 640px) {
+  .da-profile .header-row > div:first-child > div:last-child > p {
+    white-space: normal !important; font-size: 12.5px !important; line-height: 1.35 !important; margin: 0 !important; max-width: 100% !important;
+    display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 4; overflow: hidden; overflow-wrap: anywhere;
+  }
+}

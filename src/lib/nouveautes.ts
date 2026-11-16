@@ -4,6 +4,17 @@ export type Entry = { date: string; titre: string; points: string[] }
 
 export const ENTRIES: Entry[] = [
   {
+    date: '16 novembre 2026', titre: 'Bobbleheads : 139 joueurs, et ce n’est que le début',
+    points: [
+      'Bobbleheads : 139 joueurs ont déjà leur figurine sur leur page, et d’autres arrivent chaque jour. Ceux qui n’en ont pas encore gardent leur photo.',
+      'Même maillot pour toute une équipe : une figurine porte désormais le maillot et le numéro de son équipe (ou de l’équipe où le joueur a le plus joué pour les retraités), comme Iverson avec les 76ers.',
+      'Galerie : les figurines des joueurs de tes PCs s’affichent dans l’en-tête de ton profil, posées sur la ligne des statistiques. Le bandeau « Top x % des collectionneurs » est retiré de l’en-tête.',
+      'Profil sur téléphone : photo plus petite avec le pseudo à côté, logos des équipes favorites sur la même ligne, abonnés / abonnements et bio plus compacts, bouton Discord à la même taille que les autres réseaux.',
+      'Page joueur sur téléphone : figurine à gauche, infos et historique des équipes à droite, comme sur ordinateur mais en plus petit.',
+      'Jimmy Butler et Jimmy Butler III affichent maintenant la même figurine.',
+    ],
+  },
+  {
     date: '30 novembre 2026', titre: 'Pages joueurs : nouveau look et bobbleheads',
     points: [
       'Page joueur : nouveau bandeau avec le nom en grand, étiquettes (numéro, poste, taille, poids, âge) et frise des équipes avec leurs logos. Les couleurs du bandeau et des valeurs suivent l’équipe du joueur.',
