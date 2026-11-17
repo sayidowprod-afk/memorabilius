@@ -1,5 +1,5 @@
 import type { Metadata } from 'next'
-import SetlistClient from './SetlistClient'
+import SetPage from './SetPage'
 import { createServerClient } from '@/lib/supabaseServer'
 
 const supabase = createServerClient()
@@ -39,5 +39,5 @@ export async function generateMetadata({ params }: { params: Promise<{ setId: st
 
 export default async function SetDetailPage({ params }: { params: Promise<{ setId: string }> }) {
   const { setId } = await params
-  return <SetlistClient setId={setId} />
+  return <SetPage setId={setId} />
 }

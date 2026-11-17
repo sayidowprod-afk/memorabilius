@@ -4,6 +4,15 @@ export type Entry = { date: string; titre: string; points: string[] }
 
 export const ENTRIES: Entry[] = [
   {
+    date: '30 novembre 2026', titre: 'Les pages de set refaites',
+    points: [
+      'Chaque set a une page plus riche : chiffres clés (cartes, cartes de base, rookies, signées et reliques, séries, parallèles), barre de navigation et ta progression en haut.',
+      'Top 5 rookies : les 5 premiers choix de la draft de l’année, avec leur photo et leur nombre de cartes dans le set. Plus les rookies signés à chasser et une recherche « qui a signé ? ».',
+      'Les cartes du set se parcourent par série (base, inserts, signatures, reliques, parallèles), en grille ou en liste, avec ce que tu possèdes et ce qu’il te manque. Franchises et rainbow complètent la page.',
+      'Pour cocher tes cartes ou gérer ta wishlist, le bouton « Cocher mes cartes » ouvre l’ancienne page de suivi.',
+    ],
+  },
+  {
     date: '30 novembre 2026', titre: 'Tes PC deviennent des boîtes de figurines',
     points: [
       'Galerie, onglet Objectifs : chaque PC joueur est une boîte de figurine façon Funko Pop. Le bobblehead est dans la boîte, aux couleurs de son équipe, avec tes cartes en haut à gauche (l’anneau vert se remplit avec ta progression) et le nom en script. Les PC sans figurine prennent la photo du joueur, les PC équipe prennent le logo.',
