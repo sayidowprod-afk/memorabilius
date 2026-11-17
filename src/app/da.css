@@ -1880,3 +1880,158 @@ html[data-member="1"] .home-member-ph { display: block; min-height: 100svh; }
 
 /* Accueil : le bloc Pronos n'a plus de cadre de fond en thème sombre (il suit la largeur de l'écran, comme le reste) ; en thème clair le fond marine reste pour que le texte blanc se lise */
 :root[data-theme="dark"] .pronos-home { background: transparent !important; }
+
+/* Chargement des galeries : logo Memorabilius animé */
+.gal-logo-load { min-height: 60vh; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 26px; }
+.gll-logo { position: relative; width: min(300px, 62vw); aspect-ratio: 1081 / 240; background: url(/memorabilius-logo-white-sm.png) center / contain no-repeat; animation: gll-breathe 2.2s ease-in-out infinite; filter: drop-shadow(0 0 18px rgba(80,140,255,.35)); }
+.gll-logo span { position: absolute; inset: 0; -webkit-mask: url(/memorabilius-logo-white-sm.png) center / contain no-repeat; mask: url(/memorabilius-logo-white-sm.png) center / contain no-repeat; background: linear-gradient(105deg, transparent 35%, rgba(120,170,255,.95) 50%, transparent 65%) -150% 0 / 60% 100% no-repeat; animation: gll-shine 1.6s ease-in-out infinite; }
+.gll-bar { width: min(220px, 50vw); height: 3px; border-radius: 3px; background: rgba(255,255,255,.12); overflow: hidden; }
+.gll-bar i { display: block; height: 100%; width: 40%; border-radius: 3px; background: linear-gradient(90deg, #3b6fe0, #8fb4ff); animation: gll-bar 1.3s ease-in-out infinite; }
+@keyframes gll-breathe { 0%,100% { transform: scale(.97); opacity: .8 } 50% { transform: scale(1.03); opacity: 1 } }
+@keyframes gll-shine { from { background-position: -150% 0 } to { background-position: 250% 0 } }
+@keyframes gll-bar { from { transform: translateX(-100%) } to { transform: translateX(250%) } }
+@media (prefers-reduced-motion: reduce) { .gll-logo, .gll-logo span, .gll-bar i { animation: none } }
+
+/* ── Page Trades : rail de filtres + cartes (grille / vitrine), même langage que le reste du site (cadres nets, pas de coins arrondis) ── */
+.tr-tabs { display: flex; gap: 0; margin-bottom: 20px; border-bottom: 3px solid var(--border, rgba(128,128,128,.3)); overflow-x: auto; }
+.tr-tabs button { border: 0; background: none; cursor: pointer; padding: 10px 18px; white-space: nowrap; color: var(--text3, #888); font: 400 17px 'Surfquest', Impact, sans-serif; text-transform: uppercase; letter-spacing: .04em; margin-bottom: -3px; border-bottom: 4px solid transparent; }
+.tr-tabs button.on { color: var(--text, #121212); border-bottom-color: #2f6bff; }
+.tr-layout { display: grid; grid-template-columns: 240px minmax(0, 1fr); gap: 22px; align-items: start; }
+.tr-rail { position: sticky; top: 76px; border: 3px solid var(--text, #121212); padding: 16px; display: flex; flex-direction: column; gap: 16px; background: var(--card-bg, #fff); }
+.tr-rail h4 { font: 400 14px 'Surfquest', Impact, sans-serif; text-transform: uppercase; letter-spacing: .06em; margin: 0 0 8px; }
+.tr-grp { display: flex; flex-direction: column; gap: 6px; }
+.tr-grp h4 { margin-bottom: 2px; }
+.tr-inp { width: 100%; box-sizing: border-box; border: 2px solid var(--border, #ccc); border-radius: 0; background: var(--bg3, transparent); color: var(--text, #121212); padding: 9px 11px; font-size: 13px; }
+.tr-pills { display: flex; flex-wrap: wrap; gap: 6px; }
+.tr-pill { border: 2px solid var(--border, #bbb); background: transparent; color: var(--text, #121212); padding: 6px 12px; cursor: pointer; border-radius: 0; font: 800 10px system-ui, sans-serif; letter-spacing: .12em; text-transform: uppercase; }
+.tr-pill:hover { border-color: var(--text, #121212); }
+.tr-pill.on { background: var(--text, #121212); color: var(--bg, #fff); border-color: var(--text, #121212); }
+.tr-pill.gold { border-color: #e0a526; }
+.tr-pill.gold.on { background: #e0a526; color: #06122e; }
+.tr-post { display: block; text-align: center; background: #2f6bff; color: #fff !important; border: 3px solid #2f6bff; padding: 11px 12px; font: 800 11px system-ui; letter-spacing: .14em; text-transform: uppercase; text-decoration: none; }
+.tr-post:hover { background: transparent; color: #2f6bff !important; }
+.tr-tagbar { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; margin-bottom: 16px; padding-bottom: 14px; border-bottom: 2px solid var(--border, rgba(128,128,128,.25)); }
+.tr-tags-lbl { font: 400 14px 'Surfquest', Impact, sans-serif; text-transform: uppercase; letter-spacing: .06em; margin-right: 4px; }
+.tr-count { margin-left: auto; font: 800 10px system-ui; letter-spacing: .12em; text-transform: uppercase; color: var(--text3, #888); }
+.tr-view { display: flex; border: 2px solid var(--text, #121212); }
+.tr-view button { border: 0; background: transparent; color: var(--text, #121212); padding: 4px 11px; cursor: pointer; font-size: 15px; }
+.tr-view button.on { background: var(--text, #121212); color: var(--bg, #fff); }
+.tr-grid { display: grid; gap: 16px; }
+.tr-grid.tk { grid-template-columns: repeat(auto-fill, minmax(212px, 1fr)); gap: 24px; }
+.tr-card { cursor: pointer; transition: transform .15s, box-shadow .15s; position: relative; }
+.tr-card .tr-img { position: relative; }
+.tr-card .tr-img img { display: block; width: 100%; aspect-ratio: 2.5 / 3.5; object-fit: cover; }
+.tr-fav { position: absolute; top: 8px; right: 8px; z-index: 2; width: 28px; height: 28px; border: 0; border-radius: 0; background: rgba(5,9,18,.7); color: #fff; cursor: pointer; font-size: 14px; display: flex; align-items: center; justify-content: center; }
+.tr-stamp { position: absolute; left: 8px; bottom: 8px; background: #ffd98a; color: #06122e; font: 400 22px 'Surfquest', Impact, sans-serif; padding: 2px 10px; transform: rotate(-4deg); box-shadow: 3px 3px 0 rgba(0,0,0,.5); }
+.tr-kind { font: 800 9px system-ui; letter-spacing: .14em; text-transform: uppercase; }
+.tr-card[data-kind="galerie"] .tr-kind { color: #b8860b; }
+.tr-card[data-kind="offre"] .tr-kind { color: #2e9e5b; }
+.tr-card[data-kind="recherche"] .tr-kind { color: #2f6bff; }
+.tr-date { font-size: 10px; color: var(--text3, #888); }
+.tr-body h3 { font: 400 16px 'Surfquest', Impact, sans-serif; text-transform: uppercase; line-height: 1.1; margin: 0 0 4px; }
+.tr-sub { font-size: 11px; color: var(--text3, #888); margin: 0 0 7px; }
+.tr-tg { display: flex; gap: 4px; flex-wrap: wrap; margin-bottom: 8px; min-height: 0; }
+.tr-seller { display: flex; align-items: center; gap: 7px; padding-top: 8px; border-top: 2px solid var(--border, rgba(128,128,128,.25)); }
+.tr-seller img { width: 22px; height: 22px; object-fit: cover; border-radius: 50%; }
+.tr-seller span { flex: 1; min-width: 0; font-size: 11px; font-weight: 700; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.tr-offer { border: 2px solid #2f6bff; background: #2f6bff; color: #fff; font: 800 10px system-ui; letter-spacing: .12em; text-transform: uppercase; padding: 5px 10px; cursor: pointer; border-radius: 0; }
+.tr-offer:hover { background: transparent; color: #2f6bff; }
+/* carte « ticket » (maquette 2) : visuel dans un cadre, ticket blanc détachable dessous avec nom, set, vendeur et prix */
+.tr-card.tk { filter: drop-shadow(0 12px 18px rgba(0,0,0,.4)); --tk-line: var(--text, #121212); }
+:root[data-theme="dark"] .tr-card.tk { --tk-line: #fff; }
+.tr-card.tk:hover { transform: translateY(-4px); }
+.tr-card.tk .tr-top { position: absolute; top: 0; right: 0; z-index: 3; padding: 0; }
+.tr-card.tk .tr-date { display: none; }
+.tr-card.tk .tr-kind { display: block; background: #2f6bff; color: #fff !important; padding: 6px 12px; }
+.tr-card.tk[data-kind="galerie"] .tr-kind { background: #c0392b; }
+.tr-card.tk[data-kind="offre"] .tr-kind { background: #2e9e5b; }
+.tr-card.tk .tr-img { border: 3px solid var(--tk-line); border-bottom: 0; padding: 14px 14px 0; background: #0b1630; }
+.tr-card.tk .tr-img img { box-shadow: 0 8px 20px rgba(0,0,0,.6); }
+.tr-card.tk .tr-fav { top: 22px; right: 22px; }
+.tr-card.tk .tr-body { position: relative; background: linear-gradient(180deg, #0d2257, #07143a); color: #fff; border: 3px solid var(--tk-line); border-top: 0; padding: 14px 14px 12px;
+  -webkit-mask: radial-gradient(circle 9px at 0 0, #0000 98%, #000) left / 51% 100% no-repeat, radial-gradient(circle 9px at 100% 0, #0000 98%, #000) right / 51% 100% no-repeat;
+          mask: radial-gradient(circle 9px at 0 0, #0000 98%, #000) left / 51% 100% no-repeat, radial-gradient(circle 9px at 100% 0, #0000 98%, #000) right / 51% 100% no-repeat; }
+.tr-card.tk .tr-body::before { content: ""; position: absolute; left: 12px; right: 12px; top: 0; border-top: 3px dashed rgba(255,255,255,.3); }
+.tr-card.tk .tr-body h3 { color: #fff; font-size: 24px; line-height: 1; margin-bottom: 5px; }
+.tr-card.tk .tr-sub { color: rgba(255,255,255,.6); }
+.tr-card.tk .tr-seller { border-top-color: rgba(255,255,255,.16); }
+.tr-card.tk .tr-seller span { color: #fff; }
+.tr-slot { margin: 0 -14px 8px !important; }
+.tr-price { font: 400 20px 'Surfquest', Impact, sans-serif; color: #ffd98a; white-space: nowrap; }
+@media (max-width: 899px) {
+  .tr-layout { grid-template-columns: 1fr; }
+  .tr-rail { position: static; }
+  .tr-grid.tk { grid-template-columns: repeat(2, 1fr); gap: 14px; }
+}
+
+.tr-g4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 5px; }
+.tr-tagbar .tr-gfb { width: 84px; }
+
+/* Trades : toutes les vignettes ont exactement la même taille (le vendeur / prix est collé en bas du ticket) */
+.tr-grid.tk { grid-auto-rows: 1fr; align-items: stretch; }
+.tr-card.tk { display: flex; flex-direction: column; height: 100%; }
+.tr-card.tk .tr-img { flex: none; }
+.tr-card.tk .tr-body { flex: 1; display: flex; flex-direction: column; }
+.tr-card.tk .tr-body h3 { display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; min-height: 0; }
+.tr-card.tk .tr-sub { display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; min-height: 0; font-size: 10px; margin: 0 0 8px; line-height: 1.3; }
+.tr-card.tk .tr-slot { flex: none; min-height: 18px; }
+.tr-card.tk .tr-seller { margin-top: 0; min-height: 34px; }
+
+/* Fenêtre « Faire une offre » : mini profil du vendeur à gauche, formulaire à droite */
+.om-grid { display: grid; grid-template-columns: 220px minmax(0, 1fr); gap: 22px; align-items: start; }
+.om-prof { display: flex; flex-direction: column; align-items: center; gap: 8px; text-align: center; border: 3px solid var(--text, #121212); padding: 16px 12px; background: var(--card-bg, transparent); }
+.om-av { width: 84px; height: 84px; object-fit: cover; border-radius: 50%; border: 3px solid var(--text, #121212); }
+.om-name { font: 400 22px 'Surfquest', Impact, sans-serif; text-transform: uppercase; line-height: 1; }
+.om-rep { font-size: 12px; }
+.om-bio { font-size: 12px; line-height: 1.45; margin: 0; color: var(--text2, #9aa6bb); white-space: pre-wrap; max-height: 110px; overflow: auto; }
+.om-stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 6px; width: 100%; margin-top: 4px; }
+.om-stats div { border: 2px solid var(--border, rgba(128,128,128,.35)); padding: 5px 2px; display: flex; flex-direction: column; gap: 1px; }
+.om-stats b { font: 400 18px 'Surfquest', Impact, sans-serif; }
+.om-stats span { font: 800 8px system-ui; letter-spacing: .1em; text-transform: uppercase; color: var(--text3, #888); }
+.om-gal { font: 800 10px system-ui; letter-spacing: .12em; text-transform: uppercase; color: #2f6bff; text-decoration: none; margin-top: 2px; }
+.om-total { display: flex; justify-content: space-between; align-items: center; margin-top: 10px; padding: 8px 12px; border: 2px solid var(--border, rgba(128,128,128,.35)); font-size: 13px; }
+.om-total b { font: 400 22px 'Surfquest', Impact, sans-serif; color: #ffd98a; }
+.om-disc { display: flex; gap: 8px; margin-bottom: 8px; }
+.om-disc button { flex: 1; border: 2px solid #2f6bff; background: transparent; color: #2f6bff; padding: 9px 0; font: 400 18px 'Surfquest', Impact, sans-serif; letter-spacing: .04em; cursor: pointer; border-radius: 0; }
+.om-disc button:hover, .om-disc button.on { background: #2f6bff; color: #fff; }
+@media (max-width: 700px) { .om-grid { grid-template-columns: 1fr; } .om-prof { flex-direction: row; flex-wrap: wrap; justify-content: center; } }
+
+/* deux fenêtres côte à côte (profil + offre), même hauteur */
+.da-modal-pair { display: flex; align-items: stretch; gap: 14px; max-height: 92vh; width: 100%; max-width: 1100px; justify-content: center; }
+.da-modal-pair > .da-modal { flex: 1 1 560px; width: auto; max-height: none; min-width: 0; }
+.da-modal-pair > .om-side { flex: 0 0 300px; overflow-y: auto; }
+@media (max-width: 860px) { .da-modal-pair { flex-direction: column; overflow-y: auto; } .da-modal-pair > .om-side { flex: none; } }
+.om-cards { display: grid; grid-template-columns: repeat(auto-fill, minmax(96px, 1fr)); gap: 10px; max-height: 320px; overflow-y: auto; padding: 2px; }
+.om-tile { position: relative; border: 3px solid transparent; background: none; padding: 0; cursor: pointer; text-align: left; color: inherit; }
+.om-tile img { display: block; width: 100%; aspect-ratio: 2.5 / 3.5; object-fit: cover; }
+.om-tile .om-ph { aspect-ratio: 2.5 / 3.5; background: var(--bg3, #17214a); }
+.om-tile.on { border-color: #2f6bff; box-shadow: 0 0 0 2px rgba(47,107,255,.35); }
+.om-tile .om-ck { position: absolute; top: 4px; right: 4px; width: 22px; height: 22px; display: none; align-items: center; justify-content: center; background: #2f6bff; color: #fff; font-weight: 900; font-size: 14px; }
+.om-tile.on .om-ck { display: flex; }
+.om-tile .om-pr { position: absolute; left: 0; bottom: 20px; background: #ffd98a; color: #06122e; font: 400 15px 'Surfquest', Impact, sans-serif; padding: 1px 7px; }
+.om-tile .om-nm { display: block; font-size: 10px; line-height: 1.2; padding: 3px 2px 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+
+.om-side .da-num { font-size: 22px !important; }
+.om-side h1 { font-size: 40px !important; }
+
+.om-side { display: flex; flex-direction: column; }
+.om-side .om-in { flex: 1; }
+.om-side .om-statsrow { margin-top: auto; }
+.om-bob { position: relative; width: 100%; }
+.om-bob:has(.pc-bobbles) { height: 150px; }
+
+.om-side .om-bottom { margin-top: auto; }
+.om-side .om-statsrow { margin-top: 0; }
+
+/* ticket : nom du joueur, puis l'équipe (plus petite), puis les infos collection / année (encore plus petites), sans gros vides */
+.tr-card.tk .tr-body h3 { margin-bottom: 3px; }
+.tr-card.tk .tr-team { margin: 0 0 3px; font-size: 12px; font-weight: 700; line-height: 1.2; color: rgba(255,255,255,.82); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+
+/* la barre d'atouts reste en bas du ticket, juste au-dessus de la ligne vendeur */
+.tr-card.tk .tr-slot { margin-top: auto !important; }
+
+/* ticket : un peu plus d'air sous le nom pour mieux remplir le ticket */
+.tr-card.tk .tr-body { padding-top: 18px; }
+.tr-card.tk .tr-body h3 { font-size: 26px; margin-bottom: 8px; }
+.tr-card.tk .tr-team { font-size: 13px; margin: 0 0 7px; }
+.tr-card.tk .tr-sub { font-size: 11px; line-height: 1.4; margin: 0 0 8px; }

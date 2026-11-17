@@ -1,6 +1,7 @@
 'use client'
 // « Mon année en cartes » : une vidéo verticale (1080×1920, ~16 s) et une image à partager, calculées sur l'appareil à partir de la galerie.
 // Même moteur que l'export vidéo des cartes : canvas + MediaRecorder, police Surfquest, rien n'est envoyé. Les cartes gardent toujours leurs bords nets.
+import { encodeMp4 } from '@/lib/encodeMp4'
 import { useEffect, useMemo, useRef, useState } from 'react'
 import { createPortal } from 'react-dom'
 import { saveOrShareFile } from '@/lib/saveOrShare'
@@ -224,6 +225,11 @@ export default function YearRecap({ cards, grails, ownerName, onClose }: { cards
         x.fillStyle = GOLD; x.fillRect(70, 64, (W - 140) * clamp(t / dur), 8)
       }
 
+      // Rendu image par image (WebCodecs) : toujours 60 images/s, quel que soit l'appareil. Repli sur l'enregistrement en temps réel si le navigateur ne sait pas.
+      try {
+        const off = await encodeMp4({ canvas, fps: 60, dur, draw, bitrate: 10_000_000, onProgress: (_m, r) => setProgress(Math.min(1, r)) })
+        if (off && 'blob' in off) { if (!alive.current) return; setVideoUrl(keep(off.blob)); setExt('mp4'); setBusy(''); return }
+      } catch { /* repli ci-dessous */ }
       rec.start(250)
       const t0 = performance.now()
       await new Promise<void>(resolve => {

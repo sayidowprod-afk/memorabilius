@@ -11,28 +11,34 @@ export async function POST(req: NextRequest) {
   try {
     const user = await getUserFromRequest(req)
     if (!user) return NextResponse.json({ error: 'Non connecté.' }, { status: 401 })
-    const body = await req.json().catch(() => null) as { sellerId?: string; cardId?: string; price?: unknown; message?: unknown } | null
+    const body = await req.json().catch(() => null) as { sellerId?: string; cardId?: string; cardIds?: unknown; price?: unknown; message?: unknown } | null
     const sellerId = body?.sellerId, cardId = body?.cardId
     if (!sellerId || !cardId) return NextResponse.json({ error: 'Carte ou vendeur manquant.' }, { status: 400 })
     if (sellerId === user.id) return NextResponse.json({ error: 'Tu ne peux pas faire une offre à toi-même.' }, { status: 400 })
     const price = parsePrice(body?.price)
     if (price == null) return NextResponse.json({ error: 'Indique un prix valide.' }, { status: 400 })
 
-    // La carte est relue en base : elle doit appartenir au vendeur, être à vendre et ne pas être vendue.
-    const { data: card } = await supabaseAdmin.from('cartes_manuelles')
-      .select('*').eq('id', cardId).eq('user_id', sellerId).maybeSingle()
-    if (!card || !card.disponible_vente || card.vendue) return NextResponse.json({ error: 'Cette carte n’est plus à vendre.' }, { status: 409 })
-    if (card.reservee) return NextResponse.json({ error: 'Cette carte est réservée pour un autre membre.' }, { status: 409 })
-    const asking = card.prix_vente != null ? Number(card.prix_vente) : null
+    // Une ou plusieurs cartes (offre groupée, 10 max) : chacune est relue en base (au vendeur, à vendre, ni vendue ni réservée).
+    const ids = Array.from(new Set((Array.isArray(body?.cardIds) && body!.cardIds!.length ? (body!.cardIds as unknown[]) : [cardId]).map(String))).slice(0, 10)
+    const { data: rows } = await supabaseAdmin.from('cartes_manuelles').select('*').in('id', ids).eq('user_id', sellerId)
+    const cardsDb = ids.map(i => (rows || []).find(r => String(r.id) === i)).filter(Boolean) as any[]
+    if (cardsDb.length !== ids.length || cardsDb.some(c => !c.disponible_vente || c.vendue)) return NextResponse.json({ error: ids.length > 1 ? 'Une des cartes n’est plus à vendre.' : 'Cette carte n’est plus à vendre.' }, { status: 409 })
+    if (cardsDb.some(c => c.reservee)) return NextResponse.json({ error: ids.length > 1 ? 'Une des cartes est réservée pour un autre membre.' : 'Cette carte est réservée pour un autre membre.' }, { status: 409 })
+    const prices = cardsDb.map(c => (c.prix_vente != null ? Number(c.prix_vente) : null))
+    const asking = prices.every(x => x != null) ? Math.round((prices as number[]).reduce((a, b) => a + b, 0) * 100) / 100 : null
     if (asking != null && price >= asking) return NextResponse.json({ error: `Ton offre doit être inférieure au prix demandé (${fmtPrice(asking)}).` }, { status: 400 })
 
-    // Limites : 3 offres ouvertes en même temps, et une seule par carte.
+    // Limites : 3 offres ouvertes en même temps, et une seule par carte (y compris dans un lot).
     const nowIso = new Date().toISOString()
-    const { data: open } = await supabaseAdmin.from('offers').select('id, card_id').eq('buyer_id', user.id).in('status', ['pending', 'countered']).gt('expires_at', nowIso)
+    const { data: open } = await supabaseAdmin.from('offers').select('id, card_id, card').eq('buyer_id', user.id).in('status', ['pending', 'countered']).gt('expires_at', nowIso)
     if ((open?.length ?? 0) >= MAX_OPEN_OFFERS) return NextResponse.json({ error: `Tu as déjà ${MAX_OPEN_OFFERS} offres en attente. Attends une réponse ou retire-en une.` }, { status: 429 })
-    if ((open || []).some(o => String(o.card_id) === String(cardId))) return NextResponse.json({ error: 'Tu as déjà une offre en cours sur cette carte.' }, { status: 409 })
+    const inOpen = new Set((open || []).flatMap(o => [String(o.card_id), ...((o.card?.lot as { id: string }[] | undefined) || []).map(x => String(x.id))]))
+    if (ids.some(i => inOpen.has(i))) return NextResponse.json({ error: 'Tu as déjà une offre en cours sur une de ces cartes.' }, { status: 409 })
 
-    const snapshot = { id: String(card.id), nom: card.nom, annee: card.annee, marque: card.marque, image: card.image_recto, prix: asking }
+    const one = (c: any) => ({ id: String(c.id), nom: c.nom, annee: c.annee, marque: c.marque, image: c.image_recto, prix: c.prix_vente != null ? Number(c.prix_vente) : null })
+    const snapshot = cardsDb.length === 1
+      ? one(cardsDb[0])
+      : { id: String(cardsDb[0].id), nom: `Lot de ${cardsDb.length} cartes`, annee: null, marque: cardsDb.map(c => c.nom).slice(0, 3).join(', ') + (cardsDb.length > 3 ? ` +${cardsDb.length - 3}` : ''), image: cardsDb[0].image_recto, prix: asking, lot: cardsDb.map(one) }
     const { data: created, error } = await supabaseAdmin.from('offers').insert({
       buyer_id: user.id, seller_id: sellerId, card_id: String(cardId), card: snapshot, price, message: cleanMessage(body?.message),
       status: 'pending', expires_at: new Date(Date.now() + OFFER_TTL_HOURS * 3600000).toISOString(),

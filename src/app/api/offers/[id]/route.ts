@@ -33,11 +33,13 @@ export async function PATCH(req: NextRequest, { params }: { params: Promise<{ id
       if (user.id !== responder) return NextResponse.json({ error: 'Ce n’est pas à toi de répondre.' }, { status: 403 })
       const final = o.status === 'countered' ? Number(o.counter_price) : Number(o.price)
       // la carte doit toujours être à vendre
-      const { data: card } = await supabaseAdmin.from('cartes_manuelles').select('vendue, disponible_vente').eq('id', o.card_id).eq('user_id', o.seller_id).maybeSingle()
-      if (!card || card.vendue || !card.disponible_vente) return NextResponse.json({ error: 'Cette carte n’est plus à vendre.' }, { status: 409 })
+      // offre groupée : toutes les cartes du lot doivent être encore à vendre
+      const lotIds: string[] = Array.isArray(o.card?.lot) && o.card.lot.length ? o.card.lot.map((x: { id: string }) => String(x.id)) : [String(o.card_id)]
+      const { data: cardRows } = await supabaseAdmin.from('cartes_manuelles').select('id, vendue, disponible_vente').in('id', lotIds).eq('user_id', o.seller_id)
+      if ((cardRows?.length ?? 0) !== lotIds.length || cardRows!.some(c => c.vendue || !c.disponible_vente)) return NextResponse.json({ error: lotIds.length > 1 ? 'Une des cartes n’est plus à vendre.' : 'Cette carte n’est plus à vendre.' }, { status: 409 })
       await supabaseAdmin.from('offers').update({ status: 'accepted', updated_at: now }).eq('id', id)
       // la carte passe en « réservée » (simple oui/non public ; l'acheteur n'est connu que de l'offre, privée) ; erreur ignorée si la migration n'est pas appliquée
-      await supabaseAdmin.from('cartes_manuelles').update({ reservee: true }).eq('id', o.card_id).eq('user_id', o.seller_id)
+      await supabaseAdmin.from('cartes_manuelles').update({ reservee: true }).in('id', lotIds).eq('user_id', o.seller_id)
       await postMessage(user.id, other, `✅ Offre acceptée : ${nameOf} à ${fmtPrice(final)}. On organise l’envoi ? (bouton 📦 de la conversation)`)
       await notifyOffer(other, user.id, 'accepted', fmtPrice(final))
       return NextResponse.json({ ok: true })

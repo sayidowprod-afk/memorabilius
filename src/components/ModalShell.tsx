@@ -6,7 +6,8 @@ import type { CSSProperties, ReactNode } from 'react'
 // Gère aussi : barre du bas masquée sur mobile, fermeture par Échap / clic à côté, défilement de la page bloqué, focus rendu à la fermeture.
 //  - variant="center" : fenêtre centrée ; variant="sheet" : volet qui monte du bas (téléphone).
 //  - backdrop={false} : pas de fond assombri et la page derrière reste utilisable (aperçu en direct de la personnalisation).
-export default function ModalShell({ title, onClose, children, footer, variant = 'center', maxWidth = 460, backdrop = true, style }: {
+export default function ModalShell({ title, onClose, children, footer, variant = 'center', maxWidth = 460, backdrop = true, style, side }: {
+  side?: ReactNode   // seconde fenêtre à gauche, de même hauteur (ex. mini profil)
   title: ReactNode; onClose: () => void; children: ReactNode; footer?: ReactNode
   variant?: 'center' | 'sheet'; maxWidth?: number; backdrop?: boolean; style?: CSSProperties
 }) {
@@ -37,16 +38,19 @@ export default function ModalShell({ title, onClose, children, footer, variant =
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
+  const dialog = (
+    <div ref={ref} role="dialog" aria-modal="true" aria-label={typeof title === 'string' ? title : undefined} tabIndex={-1} className={`da-modal da-modal-${variant}`} style={{ maxWidth, ...style }}>
+      <header className="da-modal-head">
+        <b className="da-modal-title">{title}</b>
+        <button type="button" className="da-modal-x" onClick={onClose} aria-label="Fermer">✕</button>
+      </header>
+      <div className="da-modal-body">{children}</div>
+      {footer && <footer className="da-modal-foot">{footer}</footer>}
+    </div>
+  )
   return (
     <div className={'da-modal-back' + (backdrop ? '' : ' nobackdrop')} data-variant={variant} onMouseDown={backdrop ? e => { if (e.target === e.currentTarget) onClose() } : undefined}>
-      <div ref={ref} role="dialog" aria-modal="true" aria-label={typeof title === 'string' ? title : undefined} tabIndex={-1} className={`da-modal da-modal-${variant}`} style={{ maxWidth, ...style }}>
-        <header className="da-modal-head">
-          <b className="da-modal-title">{title}</b>
-          <button type="button" className="da-modal-x" onClick={onClose} aria-label="Fermer">✕</button>
-        </header>
-        <div className="da-modal-body">{children}</div>
-        {footer && <footer className="da-modal-foot">{footer}</footer>}
-      </div>
+      {side ? <div className="da-modal-pair">{side}{dialog}</div> : dialog}
     </div>
   )
 }

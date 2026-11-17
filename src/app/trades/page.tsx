@@ -12,6 +12,7 @@ import SkeletonBlock from '@/components/SkeletonBlock'
 import EmptyState from '@/components/EmptyState'
 import { sportColor } from '@/lib/sportColors'
 import CardTagBadges from '@/components/CardTagBadges'
+import AtoutsStrip from '@/components/AtoutsStrip'
 import TradeTypeBadge from '@/components/TradeTypeBadge'
 import ScrollToTopButton from '@/components/ScrollToTopButton'
 import { TRADE_STATUS_COLOR } from '@/lib/tradeStatus'
@@ -566,20 +567,15 @@ export default function Trades() {
       </div>
 
       {/* Tabs principaux */}
-      <div style={{ display: 'flex', gap: 6, marginBottom: 20, borderBottom: '2px solid var(--border, #f0f0f0)', paddingBottom: 0, flexWrap: 'wrap' }}>
+      <div className="tr-tabs">
         {([
-          { key: 'annonces', label: '📋 Annonces' },
-          { key: 'matches', label: `🎯 ${t('trades_for_you')}${matches && matches.length > 0 ? ` (${matches.length})` : ''}` },
-          { key: 'swipe', label: '🔥 Swipe' },
-          { key: 'rencontre', label: '🤝 Rencontre' },
-          { key: 'echanges', label: `🔄 Mes échanges${pendingOffers.length > 0 ? ` (${pendingOffers.length})` : ''}` },
+          { key: 'annonces', label: 'Annonces' },
+          { key: 'matches', label: `${t('trades_for_you')}${matches && matches.length > 0 ? ` (${matches.length})` : ''}` },
+          { key: 'swipe', label: 'Swipe' },
+          { key: 'rencontre', label: 'Rencontre' },
+          { key: 'echanges', label: `Mes échanges${pendingOffers.length > 0 ? ` (${pendingOffers.length})` : ''}` },
         ] as const).map(tab => (
-          <button key={tab.key} onClick={() => setMainTab(tab.key)} style={{
-            border: 'none', background: 'none', padding: '10px 20px', fontWeight: 800, fontSize: 14, cursor: 'pointer',
-            color: mainTab === tab.key ? '#003DA6' : 'var(--text3, #888)',
-            borderBottom: mainTab === tab.key ? '2px solid #003DA6' : '2px solid transparent',
-            marginBottom: -2,
-          }}>{tab.label}</button>
+          <button key={tab.key} onClick={() => setMainTab(tab.key)} className={mainTab === tab.key ? 'on' : ''}>{tab.label}</button>
         ))}
       </div>
 
@@ -765,82 +761,65 @@ export default function Trades() {
       {mainTab === 'annonces' && (
         <>
           <style>{`
-            /* Le gridTemplateColumns etait auparavant inline (contenant la
-               chaine "minmax(260px") -- globals.css a une regle mobile qui
-               cible justement tout div[style*="minmax(260px"] pour le forcer
-               a 1 colonne (hack cible sur d'autres grilles ailleurs sur le
-               site), plus specifique que .trades-forum-grid seule et donc
-               toujours gagnante malgre le !important ici. Deplace en dehors
-               du style inline pour ne plus matcher ce selecteur. */
-            /* Onglet Annonces sur grand écran : sort du cadre de 1400 px du <main> (page plus large, ~8-9 colonnes de cartes).
-               Centré sur la fenêtre via la marge ; en dessous de 1100 px rien ne change. */
+            /* Onglet Annonces sur grand écran : sort du cadre du <main> (page plus large). En dessous de 1100 px rien ne change. */
             @media (min-width: 1100px) {
               .trades-wide { max-width: none !important; width: min(96vw, 2000px) !important; margin: 0 0 0 calc(50% - min(48vw, 1000px)) !important; }
             }
-            .trades-forum-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(190px, 1fr)); gap: 14px; }
-            .trades-forum-grid .tfc { border-radius: 12px !important; }
-            .trades-forum-grid .tfc-head { padding: 6px 10px !important; }
-            .trades-forum-grid .tfc-body { padding: 9px 11px !important; }
-            .trades-forum-grid .tfc-body h3 { font-size: 13px !important; margin: 0 0 3px !important; }
-            .trades-forum-grid .tfc-sub { font-size: 10.5px !important; margin: 0 0 6px !important; }
-            .trades-forum-grid .tfc-tags { margin-bottom: 6px !important; }
-            .trades-forum-grid .tfc-seller { padding-top: 7px !important; gap: 6px !important; }
-            .trades-forum-grid .tfc-seller img { width: 20px !important; height: 20px !important; }
-            .trades-forum-grid .tfc-seller span { font-size: 11px !important; }
-            @media (max-width: 600px) {
-              .trades-forum-grid { grid-template-columns: repeat(2, 1fr) !important; gap: 10px !important; }
-            }
           `}</style>
-          {/* Filtres */}
-          <div style={{ display: 'flex', flexDirection: 'column', gap: 12, marginBottom: 20 }}>
-            <div style={{ display: 'flex', gap: 12, flexWrap: 'wrap' }}>
-              <input value={search} onChange={e => setSearch(e.target.value)} placeholder={t('trades_search')} style={{ flex: 1, minWidth: 200, boxSizing: 'border-box' }} />
-              <input value={fEquipe} onChange={e => setFEquipe(e.target.value)} placeholder={t('trades_filter_team_placeholder')} style={{ width: 180, maxWidth: '100%', boxSizing: 'border-box' }} />
-              <input value={fAnnee} onChange={e => setFAnnee(e.target.value)} placeholder={t('trades_filter_year_placeholder')} style={{ width: 110, maxWidth: '100%', boxSizing: 'border-box' }} />
-              <select value={sortBy} onChange={e => setSortBy(e.target.value as any)} style={{ padding: '8px 10px', borderRadius: 8, border: '1.5px solid var(--border, #e0e0e0)', fontSize: 13, background: 'var(--card-bg, #fff)', color: 'var(--text, #121212)' }}>
-                <option value="recent">{t('trades_sort_recent')}</option>
-                <option value="valeur_desc">{t('trades_sort_value_desc')}</option>
-                <option value="valeur_asc">{t('trades_sort_value_asc')}</option>
-              </select>
-              <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap' }}>
-                {(['tous', 'offre', 'recherche'] as const).map(f => (
-                  <button key={f} onClick={() => setFilter(f)} style={{
-                    padding: '8px 18px', border: 'none', borderRadius: 8, cursor: 'pointer', fontWeight: 700, fontSize: 13,
-                    background: filter === f ? '#003DA6' : 'var(--bg3, #f0f0f0)',
-                    color: filter === f ? 'white' : 'var(--text2, #333)',
-                  }}>{f === 'tous' ? t('trades_all') : f === 'offre' ? t('trades_offers') : t('trades_searches')}</button>
-                ))}
-                <button onClick={() => setShowFavoritesOnly(v => !v)} style={{
-                  padding: '8px 18px', border: 'none', borderRadius: 8, cursor: 'pointer', fontWeight: 700, fontSize: 13,
-                  background: showFavoritesOnly ? '#f39c12' : 'var(--bg3, #f0f0f0)',
-                  color: showFavoritesOnly ? 'white' : 'var(--text2, #333)',
-                }}>⭐ {t('trades_favorites')}</button>
+          <div className="tr-layout">
+            {/* Rail de filtres */}
+            <aside className="tr-rail">
+              <input value={search} onChange={e => setSearch(e.target.value)} placeholder={t('trades_search')} className="tr-inp" />
+              <div className="tr-grp">
+                <h4>Type</h4>
+                <div className="tr-pills">
+                  {(['tous', 'offre', 'recherche'] as const).map(f => (
+                    <button key={f} onClick={() => setFilter(f)} className={`tr-pill${filter === f ? ' on' : ''}`}>{f === 'tous' ? t('trades_all') : f === 'offre' ? t('trades_offers') : t('trades_searches')}</button>
+                  ))}
+                  <button onClick={() => setShowFavoritesOnly(v => !v)} className={`tr-pill gold${showFavoritesOnly ? ' on' : ''}`}>⭐ {t('trades_favorites')}</button>
+                </div>
               </div>
-            </div>
-            <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap', alignItems: 'center' }}>
-              <span style={{ fontSize: 12, fontWeight: 700, color: 'var(--text3, #888)' }}>{t('trades_sport_label')}</span>
-              {Object.entries(SPORTS).map(([key, emoji]) => {
-                const labels: Record<string, string> = { basket: 'Basket', foot: 'Football', football_us: 'Football US', baseball: 'Baseball', hockey: 'Hockey', pokemon: 'Pokémon', tcg: 'TCG' }
-                const c = sportColor(key)
-                return (
-                  <button key={key} onClick={() => { setFSport(fSport === key ? '' : key); setSportBounceKey(key); setTimeout(() => setSportBounceKey(k => k === key ? null : k), 400) }} title={labels[key]} style={{
-                    padding: '5px 12px', border: `1.5px solid ${fSport === key ? c : 'transparent'}`, borderRadius: 20, cursor: 'pointer', fontWeight: 700, fontSize: 13,
-                    background: fSport === key ? c : 'var(--bg3, #f0f0f0)',
-                    color: fSport === key ? 'white' : 'var(--text2, #333)',
-                  }}><span className={sportBounceKey === key ? 'sport-emoji-bounce' : undefined}>{emoji}</span></button>
-                )
-              })}
-              <span style={{ fontSize: 12, fontWeight: 700, color: 'var(--text3, #888)', marginLeft: 8 }}>Tags :</span>
-              {(['rc', 'auto', 'patch', 'num'] as const).map(k => (
-                <button key={k} onClick={() => setFTags(prev => ({ ...prev, [k]: !prev[k] }))} style={{
-                  padding: '5px 12px', border: 'none', borderRadius: 20, cursor: 'pointer', fontWeight: 900, fontSize: 12, textTransform: 'uppercase',
-                  background: fTags[k] ? '#003DA6' : 'var(--bg3, #f0f0f0)',
-                  color: fTags[k] ? 'white' : 'var(--text2, #333)',
-                }}>{k === 'num' ? '# NUM' : k.toUpperCase()}</button>
-              ))}
-            </div>
-          </div>
-
+              <div className="tr-grp">
+                <h4>{t('trades_sport_label')}</h4>
+                <div className="tr-pills">
+                  {Object.entries(SPORTS).map(([key, emoji]) => {
+                    const labels: Record<string, string> = { basket: 'Basket', foot: 'Football', football_us: 'Football US', baseball: 'Baseball', hockey: 'Hockey', pokemon: 'Pokémon', tcg: 'TCG' }
+                    return (
+                      <button key={key} onClick={() => { setFSport(fSport === key ? '' : key); setSportBounceKey(key); setTimeout(() => setSportBounceKey(k => k === key ? null : k), 400) }} title={labels[key]} className={`tr-pill${fSport === key ? ' on' : ''}`}>
+                        <span className={sportBounceKey === key ? 'sport-emoji-bounce' : undefined}>{emoji}</span>
+                      </button>
+                    )
+                  })}
+                </div>
+              </div>
+              <div className="tr-grp">
+                <h4>Tags</h4>
+                <div className="tr-g4">
+                  {(['rc', 'auto', 'patch', 'num'] as const).map(k => (
+                    <button key={k} data-k={k} onClick={() => setFTags(prev => ({ ...prev, [k]: !prev[k] }))} className={`gf-b${fTags[k] ? ' on' : ''}`}>{fTags[k] && <span className="selection-check-pop">✓ </span>}{k === 'num' ? '# NUM' : k.toUpperCase()}</button>
+                  ))}
+                </div>
+              </div>
+              <div className="tr-grp">
+                <h4>Équipe · Année</h4>
+                <input value={fEquipe} onChange={e => setFEquipe(e.target.value)} placeholder={t('trades_filter_team_placeholder')} className="tr-inp" />
+                <input value={fAnnee} onChange={e => setFAnnee(e.target.value)} placeholder={t('trades_filter_year_placeholder')} className="tr-inp" />
+              </div>
+              <div className="tr-grp">
+                <h4>Tri</h4>
+                <select value={sortBy} onChange={e => setSortBy(e.target.value as any)} className="tr-inp">
+                  <option value="recent">{t('trades_sort_recent')}</option>
+                  <option value="valeur_desc">{t('trades_sort_value_desc')}</option>
+                  <option value="valeur_asc">{t('trades_sort_value_asc')}</option>
+                </select>
+              </div>
+              <Link href="/trades/nouveau" className="tr-post">{t('trades_post')}</Link>
+            </aside>
+            <div className="tr-main">
+              {/* Bandeau de tags (comme dans la galerie) + choix de l'affichage */}
+              <div className="tr-tagbar">
+                <span className="tr-count">{filteredForum.length} annonces</span>
+              </div>
           {loadingForum ? (
             <div className="trades-forum-grid">
               {Array.from({ length: 8 }).map((_, i) => (
@@ -858,63 +837,45 @@ export default function Trades() {
               <EmptyState icon="🔄" title={t('trades_no_ads_yet')}
                 action={<Link href="/trades/nouveau" className="btn-main btn-primary" style={{ padding: '10px 24px', fontSize: 14 }}>{t('trades_first_to_post')}</Link>} />
             ) : (
-              <div className="trades-forum-grid">
-                {filteredForum.map(trade => (
-                  <div key={trade.id} className="tfc" onClick={() => { setPopup(trade); setPopupShowVerso(false) }} style={{
-                    background: 'var(--card-bg, #fff)', borderRadius: 16, overflow: 'hidden',
-                    boxShadow: '0 4px 20px rgba(0,0,0,0.06)', border: '1px solid var(--border, #eee)',
-                    cursor: 'pointer', transition: '0.2s',
-                  }}
-                    onMouseEnter={e => (e.currentTarget.style.transform = 'translateY(-3px)')}
-                    onMouseLeave={e => (e.currentTarget.style.transform = 'translateY(0)')}
-                  >
-                    {/* La grille mobile est passee a 2 colonnes (voir .trades-forum-grid),
-                        rendant chaque carte bien plus etroite -- badge + date sur une
-                        seule ligne avec space-between ne laissait plus assez de place et
-                        les deux se chevauchaient. flexWrap laisse la date passer sur sa
-                        propre ligne quand ca ne rentre pas. */}
-                    <div className="tfc-head" style={{ padding: '8px 16px', background: (trade as any)._source === 'galerie' ? '#f3e5f5' : trade.type === 'offre' ? '#e8f5e9' : '#e3f2fd', display: 'flex', flexWrap: 'wrap', justifyContent: 'space-between', alignItems: 'center', gap: 4 }}>
-                      <TradeTypeBadge kind={(trade as any)._source === 'galerie' ? 'galerie' : trade.type === 'offre' ? 'offre' : 'recherche'} />
-                      <span style={{ fontSize: 11, color: 'var(--text3, #999)', whiteSpace: 'nowrap' }}>{new Date(trade.created_at).toLocaleDateString(localeFor(lang))}</span>
-                    </div>
-                    <div style={{ background: 'var(--bg3, #f4f4f4)', display: 'flex', alignItems: 'center', justifyContent: 'center', position: 'relative' }}>
-                      <button onClick={e => toggleFavorite(trade, e)}
-                        aria-label={favorites.has(favKey(trade)) ? t('trades_unfavorite') : t('trades_favorite')}
-                        style={{
-                          position: 'absolute', top: 8, right: 8, zIndex: 1, width: 30, height: 30, borderRadius: '50%',
-                          background: 'rgba(0,0,0,0.55)', border: 'none', cursor: 'pointer', fontSize: 15,
-                          display: 'flex', alignItems: 'center', justifyContent: 'center',
-                        }}>
-                        {favorites.has(favKey(trade)) ? '⭐' : <span style={{ opacity: 0.7 }}>☆</span>}
-                      </button>
-                      {trade.image_url
-                        ? <img loading="lazy" src={trade.image_url} alt={trade.titre} style={{ width: '100%', aspectRatio: '2.5 / 3.5', objectFit: 'contain', display: 'block' }} />
-                        : <div className="card-placeholder" style={{ height: 80, fontSize: 32 }}>🃏</div>}
-                      {(trade as any)._source === 'galerie' && (trade as any).prix_vente != null && (
-                        <div className="sash-clip" aria-hidden><PriceTag price={Number((trade as any).prix_vente)} /></div>
-                      )}
-                    </div>
-                    <div className="tfc-body" style={{ padding: '14px 16px' }}>
-                      {/* Ecart de taille plus net titre/metadonnees (15->12px etait
-                          un petit pas, tout au meme poids visuel) + un peu plus de
-                          respiration autour des badges pour mieux scanner la grille. */}
-                      <h3 style={{ fontWeight: 900, fontSize: 16, margin: '0 0 5px', lineHeight: 1.25 }}>{trade.titre}</h3>
-                      {trade.joueur && <p className="tfc-sub" style={{ fontSize: 11.5, color: '#003DA6', fontWeight: 600, margin: '0 0 10px' }}>{trade.sport ? (SPORTS[trade.sport] || '🃏') : '🃏'} {trade.joueur}{trade.equipe ? ` · ${trade.equipe}` : ''}</p>}
-                      <div className="tfc-tags" style={{ display: 'flex', gap: 4, flexWrap: 'wrap', marginBottom: 10 }}>
-                        <CardTagBadges rc={trade.rc} auto={trade.auto} patch={trade.patch} num={trade.num} size="sm" />
+              <div className={`trades-forum-grid tr-grid tk`}>
+                {filteredForum.map(trade => {
+                  const isSale = (trade as any)._source === 'galerie'
+                  const price = isSale && (trade as any).prix_vente != null ? Number((trade as any).prix_vente) : null
+                  const kind = isSale ? 'galerie' : trade.type === 'offre' ? 'offre' : 'recherche'
+                  const kindLabel = isSale ? 'Vente/Trade' : trade.type === 'offre' ? 'Offre' : 'Recherche'
+                  const canOffer = price != null && userId && (trade as any).user_id && (trade as any).user_id !== userId
+                  return (
+                    <div key={trade.id} className={`tr-card tfc tk`} data-kind={kind} onClick={() => { setPopup(trade); setPopupShowVerso(false) }}>
+                      <div className="tr-top">
+                        <span className="tr-kind">{kindLabel}</span>
+                        <span className="tr-date">{new Date(trade.created_at).toLocaleDateString(localeFor(lang))}</span>
                       </div>
-                      <div className="tfc-seller" style={{ display: 'flex', alignItems: 'center', gap: 8, paddingTop: 10, borderTop: '1px solid var(--border, #f0f0f0)' }}>
-                        <img loading="lazy" src={trade.profiles?.avatar_url || `https://ui-avatars.com/api/?name=${encodeURIComponent(trade.profiles?.display_name || 'U')}&background=003DA6&color=fff`}
-                          style={{ width: 26, height: 26, borderRadius: '50%', objectFit: 'cover' }} alt="" />
-                        <span style={{ fontSize: 12, fontWeight: 700, color: 'var(--text2, #444)', flex: 1, minWidth: 0 }}>{trade.profiles?.display_name}</span>
-                        {(trade as any)._source === 'galerie' && (trade as any).prix_vente != null && userId && (trade as any).user_id && (trade as any).user_id !== userId && (
-                          <button type="button" onClick={e => { e.stopPropagation(); setOfferFor({ sellerId: (trade as any).user_id, name: trade.profiles?.display_name || 'ce membre', cardId: String((trade as any).id) }) }}
-                            style={{ border: '2px solid #003DA6', background: 'transparent', color: '#003DA6', fontWeight: 800, fontSize: 11, padding: '5px 10px', cursor: 'pointer', textTransform: 'uppercase', letterSpacing: '.04em' }}>💶 Faire une offre</button>
-                        )}
+                      <div className="tr-img">
+                        <button onClick={e => toggleFavorite(trade, e)} className="tr-fav"
+                          aria-label={favorites.has(favKey(trade)) ? t('trades_unfavorite') : t('trades_favorite')}>
+                          {favorites.has(favKey(trade)) ? '⭐' : <span style={{ opacity: 0.7 }}>☆</span>}
+                        </button>
+                        {trade.image_url
+                          ? <img loading="lazy" src={trade.image_url} alt={trade.titre} />
+                          : <div className="card-placeholder" style={{ height: 80, fontSize: 32 }}>🃏</div>}
+                      </div>
+                      <div className="tr-body">
+                        <h3>{trade.joueur || trade.titre}</h3>
+                        {trade.equipe && <p className="tr-team">{trade.equipe}</p>}
+                        <p className="tr-sub">{(trade.joueur ? String(trade.titre || '').replace(trade.joueur, '').replace(/\s+/g, ' ').trim() : '') || '\u00a0'}</p>
+                        <div className="gc-slot tr-slot"><AtoutsStrip rc={trade.rc} auto={trade.auto} patch={trade.patch} num={typeof trade.num === "string" ? trade.num : (trade.num ? "NUM" : null)} /></div>
+                        <div className="tr-seller">
+                          <img loading="lazy" src={trade.profiles?.avatar_url || `https://ui-avatars.com/api/?name=${encodeURIComponent(trade.profiles?.display_name || 'U')}&background=003DA6&color=fff`} alt="" />
+                          <span>{trade.profiles?.display_name}</span>
+                          {price != null && <b className="tr-price">{price.toLocaleString('fr-FR', { maximumFractionDigits: 2 })} €</b>}
+                          {canOffer && (
+                            <button type="button" className="tr-offer" onClick={e => { e.stopPropagation(); setOfferFor({ sellerId: (trade as any).user_id, name: trade.profiles?.display_name || 'ce membre', cardId: String((trade as any).id) }) }}>Offre</button>
+                          )}
+                        </div>
                       </div>
                     </div>
-                  </div>
-                ))}
+                  )
+                })}
                 {(!tradesDone || !ventesDone) && (
                   <div ref={forumSentinelRef} style={{ gridColumn: '1/-1', textAlign: 'center', padding: 16, color: 'var(--text3, #bbb)', fontSize: 12 }}>
                     {loadingMoreForum ? '…' : ''}
@@ -923,6 +884,8 @@ export default function Trades() {
               </div>
             )
           )}
+            </div>
+          </div>
         </>
       )}
 

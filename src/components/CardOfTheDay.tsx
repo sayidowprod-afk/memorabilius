@@ -44,11 +44,13 @@ function ScratchFoil({ label, still, onReveal, onProgress }: { label: string; st
     c.width = Math.max(2, Math.round(r.width * k)); c.height = Math.max(2, Math.round(r.height * k))
     paintFoil(c, label)
   }, [label, still])
+  const probe = useRef<HTMLCanvasElement | null>(null)
   const cleared = useCallback(() => {
     const c = cv.current; if (!c) return 0
     const w = 50, h = 70
-    const t = document.createElement('canvas'); t.width = w; t.height = h
-    const tg = t.getContext('2d')!; tg.drawImage(c, 0, 0, w, h)
+    // petit canevas de mesure réutilisé (willReadFrequently : lecture CPU, sans bloquer le GPU)
+    const t = probe.current ?? (probe.current = document.createElement('canvas')); t.width = w; t.height = h
+    const tg = t.getContext('2d', { willReadFrequently: true })!; tg.clearRect(0, 0, w, h); tg.drawImage(c, 0, 0, w, h)
     const d = tg.getImageData(0, 0, w, h).data
     let n = 0
     for (let i = 3; i < d.length; i += 4) if (d[i] < 128) n++
@@ -60,15 +62,32 @@ function ScratchFoil({ label, still, onReveal, onProgress }: { label: string; st
     onProgress?.(Math.min(1, f / REVEAL_AT))
     if (f >= REVEAL_AT) { done.current = true; setGone(true); onReveal?.() }
   }, [cleared, onProgress, onReveal])
-  const scratch = (e: React.PointerEvent<HTMLCanvasElement>) => {
-    if (still || !last.current || done.current) return
-    const c = cv.current!; const r = c.getBoundingClientRect(); const g = c.getContext('2d')!
-    const px = (e.clientX - r.left) * (c.width / r.width), py = (e.clientY - r.top) * (c.height / r.height)
+  // Sur PC la souris envoie jusqu'à ~1000 événements/s : on empile les points et on dessine UNE fois par image (un seul tracé, sans trous),
+  // et la mesure du % gratté (lecture de pixels, coûteuse) est limitée à ~5 fois par seconde.
+  const pts = useRef<{ x: number; y: number }[]>([])
+  const raf = useRef(0)
+  const lastCheck = useRef(0)
+  const flush = useCallback(() => {
+    raf.current = 0
+    const c = cv.current; if (!c || done.current || !last.current || !pts.current.length) { pts.current = []; return }
+    const g = c.getContext('2d')!
     g.globalCompositeOperation = 'destination-out'
     g.lineCap = 'round'; g.lineJoin = 'round'; g.lineWidth = c.width * 0.17
-    g.beginPath(); g.moveTo(last.current.x, last.current.y); g.lineTo(px, py); g.stroke()
-    last.current = { x: px, y: py }
-    if (++moves.current % 4 === 0) check()
+    g.beginPath(); g.moveTo(last.current.x, last.current.y)
+    for (const q of pts.current) g.lineTo(q.x, q.y)
+    g.stroke()
+    last.current = pts.current[pts.current.length - 1]; pts.current = []
+    const now = performance.now()
+    if (now - lastCheck.current > 200) { lastCheck.current = now; check() }
+  }, [check])
+  useEffect(() => () => { if (raf.current) cancelAnimationFrame(raf.current) }, [])
+  const scratch = (e: React.PointerEvent<HTMLCanvasElement>) => {
+    if (still || !last.current || done.current) return
+    const c = cv.current!; const r = c.getBoundingClientRect()
+    const k = c.width / r.width, kh = c.height / r.height
+    const evs = typeof e.nativeEvent.getCoalescedEvents === 'function' ? e.nativeEvent.getCoalescedEvents() : []
+    for (const ev of evs.length ? evs : [e.nativeEvent]) pts.current.push({ x: (ev.clientX - r.left) * k, y: (ev.clientY - r.top) * kh })
+    if (!raf.current) raf.current = requestAnimationFrame(flush)
   }
   if (still) return <canvas ref={cv} className="cdj-foil" style={{ pointerEvents: 'none' }} aria-hidden />
   return (
@@ -80,7 +99,7 @@ function ScratchFoil({ label, still, onReveal, onProgress }: { label: string; st
         scratch(e)
       }}
       onPointerMove={scratch}
-      onPointerUp={() => { last.current = null; check() }}
+      onPointerUp={() => { flush(); last.current = null; check() }}
       onPointerCancel={() => { last.current = null }} />
   )
 }

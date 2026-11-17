@@ -946,6 +946,8 @@ export default function AjouterCarte({ params }: { params: Promise<{ userId: str
     // colonne image_recto_thumb ajoutée par la migration 20261117 : tant qu'elle manque, on enregistre sans la miniature
     if (error && /image_recto_thumb/.test(error.message)) { delete row.image_recto_thumb; ({ error } = await supabase.from('cartes_manuelles').insert(row)) }
     if (error) { toast.error('Erreur : ' + error.message); setSaving(false); return }
+    // prix privé (ou valeur estimée d'une carte en vente) : enregistré comme valeur de la carte, visible par le propriétaire seul
+    { const amt = parsePrice(form.prix_vente); if (amt != null && form.image_recto) await supabase.from('card_values').upsert({ user_id: uid, card_key: form.image_recto, valeur: amt }, { onConflict: 'user_id,card_key' }) }
     galleryMemClear(userId) // la galerie en mémoire n'a pas cette carte : elle sera rechargée
     clearDraft()
     const { data: { session } } = await supabase.auth.getSession()
@@ -1358,9 +1360,9 @@ export default function AjouterCarte({ params }: { params: Promise<{ userId: str
               style={{ width: 80, padding: '8px 10px', borderRadius: 8, border: '1.5px solid #ddd', fontSize: 14 }} />
             <span style={{ fontSize: 12, color: '#888' }}>même carte en plusieurs exemplaires : une seule fiche</span>
           </div>
+          <PriceFormField value={form.prix_vente} onChange={v => setForm(f => ({ ...f, prix_vente: v }))} isPublic={form.disponible_vente} onPublicChange={v => setForm(f => ({ ...f, disponible_vente: v }))} />
           {form.disponible_vente && (
             <div style={{ display: 'flex', flexDirection: 'column', gap: 8, padding: '12px 14px', borderRadius: 10, background: '#f0f4ff', border: '2px solid #003DA6' }}>
-              <PriceFormField value={form.prix_vente} onChange={v => setForm(f => ({ ...f, prix_vente: v }))} />
               <div>
                 <label style={{ fontSize: 11, fontWeight: 700, textTransform: 'uppercase', color: '#009B77', display: 'block', marginBottom: 4 }}>🛍️ Lien Vinted (facultatif)</label>
                 <input type="url" value={form.lien_vinted} onChange={e => setForm({ ...form, lien_vinted: e.target.value })}

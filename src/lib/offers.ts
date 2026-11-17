@@ -24,7 +24,7 @@ export const isOfferMsg = (c: unknown): c is string => typeof c === 'string' && 
 export const offerIdOf = (c: string) => c.slice(OFFER_PREFIX.length, -2)
 export const offerBubble = (id: string) => `${OFFER_PREFIX}${id}]]`
 
-export const OFFER_TTL_HOURS = 48
+export const OFFER_TTL_HOURS = 168
 export const MAX_OPEN_OFFERS = 3
 export const MAX_PRICE = 100000
 

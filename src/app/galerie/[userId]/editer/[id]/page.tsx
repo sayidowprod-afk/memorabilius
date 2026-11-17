@@ -200,6 +200,9 @@ export default function EditerCarte({ params }: { params: Promise<{ userId: stri
       if (error || !data) { router.push(`/galerie/${userId}`); return }
       quantiteKnown.current = data.quantite !== undefined
       thumbKnown.current = data.image_recto_thumb !== undefined
+      if (data.prix_vente == null && data.image_recto) {
+        supabase.from('card_values').select('valeur').eq('user_id', session.user.id).eq('card_key', data.image_recto).maybeSingle().then(({ data: v }) => { if (v?.valeur != null) setForm(f => ({ ...f, prix_vente: String(v.valeur) })) })
+      }
       const loadedForm = {
         nom: data.nom || '', equipe: data.equipe || '', annee: data.annee || '',
         marque: data.marque || '', collection: data.collection || '', variation: data.variation || '',
@@ -624,6 +627,12 @@ export default function EditerCarte({ params }: { params: Promise<{ userId: stri
     if (error && /image_recto_thumb/.test(error.message)) { delete patchRow.image_recto_thumb; ({ error } = await supabase.from('cartes_manuelles').update(patchRow).eq('id', id).eq('user_id', user.id)) }
 
     if (error) { toast.error('Erreur : ' + error.message); setSaving(false); return }
+    // prix privé (ou valeur estimée d'une carte en vente) : valeur de la carte, visible par le propriétaire seul ; champ vidé = valeur retirée
+    if (form.image_recto) {
+      const amt = parsePrice(form.prix_vente)
+      if (amt != null) await supabase.from('card_values').upsert({ user_id: user.id, card_key: form.image_recto, valeur: amt }, { onConflict: 'user_id,card_key' })
+      else await supabase.from('card_values').delete().eq('user_id', user.id).eq('card_key', form.image_recto)
+    }
     galleryMemClear(userId) // la galerie en mémoire a l'ancienne version de cette carte : elle sera rechargée
     if (isQueueMode) { goNext(); return }
     router.push(`/galerie/${userId}`)
@@ -972,9 +981,9 @@ export default function EditerCarte({ params }: { params: Promise<{ userId: stri
               style={{ width: 80, padding: '8px 10px', borderRadius: 8, border: '1.5px solid #ddd', fontSize: 14 }} />
             <span style={{ fontSize: 12, color: '#888' }}>même carte en plusieurs exemplaires : une seule fiche</span>
           </div>
+          <PriceFormField value={form.prix_vente} onChange={v => setForm(f => ({ ...f, prix_vente: v }))} isPublic={form.disponible_vente} onPublicChange={v => setForm(f => ({ ...f, disponible_vente: v }))} />
           {form.disponible_vente && (
             <div style={{ display: 'flex', flexDirection: 'column', gap: 8, padding: '12px 14px', borderRadius: 10, background: '#f0f4ff', border: '2px solid #003DA6' }}>
-              <PriceFormField value={form.prix_vente} onChange={v => setForm(f => ({ ...f, prix_vente: v }))} />
               <div>
                 <label style={{ fontSize: 11, fontWeight: 700, textTransform: 'uppercase', color: '#009B77', display: 'block', marginBottom: 4 }}>🛍️ Lien Vinted (facultatif)</label>
                 <input type="url" value={form.lien_vinted} onChange={e => setForm({ ...form, lien_vinted: e.target.value })}

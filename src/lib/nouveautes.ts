@@ -4,6 +4,16 @@ export type Entry = { date: string; titre: string; points: string[] }
 
 export const ENTRIES: Entry[] = [
   {
+    date: '30 novembre 2026', titre: 'Trades refaits, offres groupées et exports vidéo fluides',
+    points: [
+      'Trades : nouvelle page avec un rail de filtres à gauche (recherche, type, sport, tags RC / Auto / Patch / Num, équipe, année, tri) et des annonces en ticket : nom du joueur en grand, équipe, infos de la carte, barre d’atouts et prix.',
+      'Offres : tu peux choisir plusieurs cartes d’un même vendeur et proposer un prix pour le tout, avec des boutons −5 / −10 / −15 % (un second clic retire la remise) ou ton propre prix. Le profil du vendeur s’affiche à côté, comme dans sa galerie. Une offre dure maintenant 7 jours.',
+      'Ajout / modification d’une carte : le champ prix est toujours là, même hors vente, avec un interrupteur Public (étiquette sur la carte) / Privé (visible par toi seul).',
+      'Exports vidéo (carte, collection, bilan de l’année) : toujours en 60 images par seconde et en pleine qualité, sur tous les appareils (MP4).',
+      'Accueil : la carte à gratter est beaucoup plus fluide sur ordinateur. Galeries : un logo Memorabilius animé s’affiche pendant le chargement.',
+    ],
+  },
+  {
     date: '30 novembre 2026', titre: 'Recherches de cartes jusqu’à 30 fois plus rapides',
     points: [
       'Cartes d’un joueur, « mêmes cartes chez d’autres membres », cartes d’une équipe, nombre de cartes à vendre et plan du site : ces recherches utilisent maintenant l’index de la base au lieu de parcourir toute la table de cartes (de 1,7 s à quelques dizaines de millisecondes pour les plus lourdes).',

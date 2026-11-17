@@ -2,6 +2,7 @@
 // Studio d'export : à partir de plusieurs cartes, crée (1) une vidéo qui les enchaîne, (2) une planche de contact, (3) un carrousel d'images.
 // Format (9:16, 4:5, 1:1, 16:9) et modèle (Sobre, Néon, Vitrine) au choix. Tout est calculé sur l'appareil (canvas + MediaRecorder), rien n'est envoyé.
 // Les cartes sont toujours dessinées avec leurs bords nets (jamais arrondis).
+import { encodeMp4 } from '@/lib/encodeMp4'
 import { useEffect, useMemo, useRef, useState } from 'react'
 import { createPortal } from 'react-dom'
 
@@ -235,6 +236,11 @@ export default function ExportStudio({ pools, all, ownerName, onClose, onSingle 
       ctx.fillStyle = tpl.accent; ctx.fillRect(70, 60, (W - 140) * ((i + lt) / items.length), 8)
     }
     setPhase('recording')
+    // Rendu image par image (WebCodecs) : toujours 60 images/s, quel que soit l'appareil. Repli sur l'enregistrement en temps réel si le navigateur ne sait pas.
+    try {
+      const off = await encodeMp4({ canvas, fps: 60, dur, draw, bitrate: 9_000_000, onProgress: (_m, r) => setProgress(Math.min(1, r)) })
+      if (off && 'blob' in off) { setVideoUrl(keep(off.blob)); setExt('mp4'); return }
+    } catch { /* repli ci-dessous */ }
     rec.start(250)
     const t0 = performance.now()
     await new Promise<void>(resolve => {

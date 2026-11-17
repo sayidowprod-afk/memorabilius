@@ -1,4 +1,5 @@
 'use client'
+import { encodeMp4 } from '@/lib/encodeMp4'
 import { readableAccent } from '@/lib/readableAccent'
 import { useRef, useState, useEffect } from 'react'
 import { createPortal } from 'react-dom'
@@ -137,6 +138,7 @@ export default function CardVideoExport({ card, accent: accentProp, onClose, own
   }, [])
   const [theme, setTheme] = useState<'dark' | 'light'>(() => loadPrefs().theme ?? 'dark')
   const [codec, setCodec] = useState<'webm' | 'mp4'>(() => loadPrefs().codec ?? 'webm')
+  const [outExt, setOutExt] = useState<'webm' | 'mp4' | null>(null)   // format réellement produit (MP4 en rendu image par image, sinon celui choisi)
   const [vfmt, setVfmt] = useState<VideoFormat>(() => loadPrefs().vfmt ?? 'default')
   // Couleur d'accent de la video, choisissable independamment de la couleur de
   // bordure du profil (accentProp) qui ne sert que de valeur par defaut --
@@ -887,7 +889,7 @@ export default function CardVideoExport({ card, accent: accentProp, onClose, own
     const { w, h } = scaledDims(vfmtRef.current)
     canvas.width = w; canvas.height = h
 
-    setRecording(true); setProgress(0); setDone(false); setVideoUrl(null); setRecordError(null)
+    setRecording(true); setProgress(0); setDone(false); setVideoUrl(null); setRecordError(null); setOutExt(null)
     const ctx = canvas.getContext('2d')!
     const [frontImg, backImg] = await Promise.all([loadImage(card.f), loadImage(card.b || card.f)])
 
@@ -905,6 +907,27 @@ export default function CardVideoExport({ card, accent: accentProp, onClose, own
     // suit) ait le temps de se voir, avec un vrai temps de pause à la fin.
     const HOLD = 2200
     const totalSecs = (DURATION + HOLD + 300) / 1000
+    // Rendu image par image (WebCodecs, MP4) : toujours 60 images/s et pleine résolution, quel que soit l'appareil (il met seulement plus ou moins de temps à le fabriquer).
+    // Repli sur l'ancien enregistrement en temps réel si le navigateur ne sait pas encoder.
+    try {
+      const full = VIDEO_FORMATS[vfmtRef.current]
+      canvas.width = full.w; canvas.height = full.h
+      const off = await encodeMp4({
+        canvas, fps: 60, dur: totalSecs, bitrate: Math.min(Math.floor((14.9 * 8_000_000) / totalSecs / 1.5), Math.max(3_000_000, Math.round(full.w * full.h * 14))),   // même plafond de poids qu'avant (partage facile)
+        draw: tt => {
+          const elapsed = tt * 1000
+          const p = Math.min(elapsed / DURATION, 1)
+          const holdT = Math.min(1, Math.max(0, elapsed - DURATION) / 300)
+          drawFrame(ctx, frontImg, backImg, p >= 1 ? 0.999 : p, holdT)
+        },
+        onProgress: (_m, r) => setProgress(Math.round(Math.min(r, 1) * 100)),
+      })
+      if (off && 'blob' in off) {
+        setOutExt('mp4'); setVideoUrl(URL.createObjectURL(off.blob)); setDone(true); setRecording(false)
+        return
+      }
+    } catch (e) { console.warn('[CardVideoExport] rendu image par image indisponible, repli sur l\'enregistrement en direct', e) }
+    canvas.width = w; canvas.height = h
     const sizeCap = Math.floor((14.9 * 8_000_000) / totalSecs / 1.5)
     const pixels = w * h
     const qualityBitrate = Math.round(pixels * (isMobile ? 9 : 14))
@@ -982,7 +1005,7 @@ export default function CardVideoExport({ card, accent: accentProp, onClose, own
       // PDF/images) -- une vidéo de plusieurs Mo peut légitimement prendre plus longtemps
       // à écrire sur un appareil bas de gamme, un timeout trop court la faisait échouer
       // silencieusement avant que l'écriture n'ait fini.
-      await saveOrShareFile(blob, `${card.n.replace(/\s+/g, '_')}_memorabilius.${codec}`, { timeoutMs: 45000 })
+      await saveOrShareFile(blob, `${card.n.replace(/\s+/g, '_')}_memorabilius.${outExt ?? codec}`, { timeoutMs: 45000 })
     } catch (e) {
       // Le detail technique (ex: "Timeout (partage)") est ajoute au message --
       // sans acces a Crashlytics, c'est le seul moyen pour un utilisateur qui
@@ -1006,7 +1029,7 @@ export default function CardVideoExport({ card, accent: accentProp, onClose, own
     try {
       const blob = await (await fetch(videoUrl)).blob()
       if (blob.size < 2_000) throw new Error('empty-blob')
-      const file = new File([blob], `${card.n.replace(/\s+/g, '_')}_memorabilius.${codec}`, { type: blob.type })
+      const file = new File([blob], `${card.n.replace(/\s+/g, '_')}_memorabilius.${outExt ?? codec}`, { type: blob.type })
       if (navigator.canShare && navigator.canShare({ files: [file] })) {
         await navigator.share({ files: [file], title: card.n })
       } else {
@@ -1168,7 +1191,7 @@ export default function CardVideoExport({ card, accent: accentProp, onClose, own
           {done && videoUrl && (
             <>
               <button onClick={download} disabled={downloading} style={{ background: '#2e7d32', color: '#fff', border: 'none', borderRadius: 14, padding: '14px', fontWeight: 700, cursor: downloading ? 'default' : 'pointer', fontSize: 15, width: '100%', opacity: downloading ? 0.6 : 1 }}>
-                {downloading ? `⏳ ${t('video_downloading')}` : `${t('video_download')} (.${codec})`}
+                {downloading ? `⏳ ${t('video_downloading')}` : `${t('video_download')} (.${outExt ?? codec})`}
               </button>
               {canShareFiles && (
                 <button onClick={shareVideo} disabled={sharing} style={{ background: 'rgba(255,255,255,0.09)', color: '#fff', border: 'none', borderRadius: 14, padding: '13px', fontWeight: 600, cursor: sharing ? 'default' : 'pointer', fontSize: 14, width: '100%', opacity: sharing ? 0.6 : 1 }}>
@@ -1185,7 +1208,7 @@ export default function CardVideoExport({ card, accent: accentProp, onClose, own
           </button>
         </div>
 
-        {done && codec === 'webm' && (
+        {done && (outExt ?? codec) === 'webm' && (
           <p style={{ color: 'rgba(255,255,255,0.25)', fontSize: 11, marginTop: 12, lineHeight: 1.5 }}>
             💡 {t('video_convert_hint')}
           </p>
