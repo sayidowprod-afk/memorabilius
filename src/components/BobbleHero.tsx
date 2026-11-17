@@ -99,6 +99,7 @@ export default function BobbleHero({ fig, name, height = 430 }: { fig: BobbleFig
   const f = (FIG_T / total0) * (height / FIG_T)
   const headW = fig.head.w * hs0 * f
   const bodyH = fig.body.h * bs0 * f
+  const headH = fig.head.h * hs0 * f
   const bodyW = fig.body.w * bs0 * f
   const overlap = OVERLAP * f
   const lift = 8 * (height / FIG_T)
@@ -113,10 +114,10 @@ export default function BobbleHero({ fig, name, height = 430 }: { fig: BobbleFig
       {/* ombre très douce sous les chaussures (pas de socle) */}
       <div aria-hidden style={{ position: 'absolute', left: '50%', bottom: 0, transform: 'translateX(-50%)', width: 210 * (height / FIG_T), height: 22 * (height / FIG_T), borderRadius: '50%', background: 'rgba(0,0,0,.38)', filter: 'blur(9px)', zIndex: 1 }} />
       {bodySrc && <img src={bodySrc} alt="" draggable={false} width={bodyW} height={bodyH}
-        style={{ position: 'absolute', left: '50%', bottom: lift, transform: 'translateX(-50%)', zIndex: 2, height: bodyH, width: bodyW, display: 'block', filter: 'drop-shadow(0 10px 10px rgba(0,0,0,.35))', background: 'none', animation: 'none' }} />}
+        style={{ position: 'absolute', left: '50%', bottom: lift, transform: 'translateX(-50%)', zIndex: 2, height: bodyH, width: bodyW, contentVisibility: 'visible', display: 'block', filter: 'drop-shadow(0 10px 10px rgba(0,0,0,.35))', background: 'none', animation: 'none' }} />}
       <div ref={headRef} style={{ position: 'absolute', left: '50%', bottom: bodyH + lift - overlap, marginLeft: -headW / 2, width: headW, transformOrigin: '50% 88%', zIndex: 4 }}>
-        <img src={fig.headSrc} alt="" draggable={false} width={headW}
-          style={{ width: headW, height: 'auto', display: 'block', filter: 'drop-shadow(0 8px 10px rgba(0,0,0,.35))', background: 'none', animation: 'none' }} />
+        <img src={fig.headSrc} alt="" draggable={false} width={headW} height={headH}
+          style={{ width: headW, height: headH, contentVisibility: 'visible', display: 'block', filter: 'drop-shadow(0 8px 10px rgba(0,0,0,.35))', background: 'none', animation: 'none' }} />
       </div>
     </div>
   )

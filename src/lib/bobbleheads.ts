@@ -22,3 +22,14 @@ export function bobbleIdFor(playerName: string): string | null {
   for (const [id, m] of Object.entries(BOBBLEHEADS)) if (m.names.some(x => normName(x) === n)) return id
   return null
 }
+
+// Tenues d'équipe : 'dom' (domicile, par défaut), 'ext' (extérieur), 'alt' (alternative). Le corps d'une tenue est team-<ABBR>-<tenue>.webp, mêmes dimensions que le domicile.
+export const KIT_LABEL: Record<string, string> = { dom: 'Domicile', ext: 'Extérieur', alt: 'Alternative', leg: 'Légendaire' }
+export const OLD_TEAMS: Record<string, string> = { BOB: 'Charlotte Bobcats', SEA: 'Seattle SuperSonics' }
+type KitMeta = { w: number; h: number; span: number; src: string; num: { fill: string; stroke: string } }
+// kit = 'ext' | 'alt' | 'leg' (tenues de l'équipe du joueur) ou 'BOB-ext', 'SEA-dom'… (anciennes équipes, proposées à tous)
+export function withKit<T extends { body: { w: number; h: number; span: number; src: string; team?: string; numFill?: string; numStroke?: string }; kits?: string[]; kitMeta?: Record<string, KitMeta>; extra?: Record<string, KitMeta> }>(fig: T, kit?: string | null): T {
+  const m = kit && kit !== 'dom' ? (kit.includes('-') ? fig.extra?.[kit] : fig.kitMeta?.[kit]) : undefined   // extra = catalogue des tenues de toutes les équipes (useKitCatalog)
+  if (!m || !fig.body.team) return fig
+  return { ...fig, body: { ...fig.body, w: m.w, h: m.h, span: m.span, src: m.src, numFill: m.num.fill, numStroke: m.num.stroke } }
+}

@@ -1,4 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server'
+import { createHash } from 'node:crypto'
 import { getCachedHeadshots } from '@/lib/espnHeadshot'
 
 // Photos de joueurs par lots (liste de la franchise d'une equipe, pour remplacer le « ? » des joueurs manquants).
@@ -20,6 +21,22 @@ function allowed(ip: string) {
 }
 const SPORTS = new Set(['nba', 'nfl', 'nhl', 'mlb', 'football'])
 
+// Silhouette « pas de photo » du CDN NBA : même image pour tous (on compare l'empreinte avec celle de l'identifiant 0)
+const PLACEHOLDER_URL = 'https://cdn.nba.com/headshots/nba/latest/1040x760/0.png'
+let placeholderHash: Promise<string | null> | null = null
+const hashOf = async (url: string) => { const r = await fetch(url, { signal: AbortSignal.timeout(6000) }); if (!r.ok) return null; return createHash('sha1').update(Buffer.from(await r.arrayBuffer())).digest('hex') }
+const checked = new Map<string, boolean>()
+async function isNbaPlaceholder(url: string): Promise<boolean> {
+  if (!url.startsWith('https://cdn.nba.com/headshots/')) return false
+  const hit = checked.get(url); if (hit !== undefined) return hit
+  try {
+    placeholderHash ||= hashOf(PLACEHOLDER_URL).catch(() => null)
+    const [ph, h] = await Promise.all([placeholderHash, hashOf(url)])
+    const res = !!ph && !!h && ph === h
+    checked.set(url, res); return res
+  } catch { return false }
+}
+
 export async function POST(req: NextRequest) {
   const ip = req.headers.get('x-forwarded-for')?.split(',')[0]?.trim() || 'unknown'
   if (!allowed(ip)) return NextResponse.json({ photos: {} }, { status: 429 })
@@ -33,5 +50,7 @@ export async function POST(req: NextRequest) {
   // prochain passage (deja en cache des lors qu'une premiere requete l'a
   // ecrit, meme depuis une autre page).
   const photos = await getCachedHeadshots(names, sport, Date.now() + 14_000)
+  // Le CDN NBA renvoie une silhouette grise identique pour les joueurs sans photo : on la retire (le client prend alors la photo d'une carte)
+  await Promise.all(Object.entries(photos).map(async ([n, u]) => { if (u && await isNbaPlaceholder(u)) photos[n] = null }))
   return NextResponse.json({ photos })
 }

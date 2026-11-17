@@ -6,8 +6,11 @@ import CardTagBadges from '@/components/CardTagBadges'
 import FranchiseChecklist, { type FranchisePlayer } from '@/components/FranchiseChecklist'
 import PlayerCardPopup from '@/components/PlayerCardPopup'
 import { cleanFranchise } from '@/lib/franchiseExclude'
-import { SPORTS_TEAMS } from '@/lib/sportsTeams'
+import { SPORTS_TEAMS, teamLogoUrl } from '@/lib/sportsTeams'
 import { teamSlug, normalizeName } from '@/lib/playerSlug'
+import FunkoBox from '@/components/FunkoBox'
+import { TEAM_COLORS, teamPalette } from '@/lib/teamColors'
+import type { BobbleFig } from '@/lib/bobbleheadsServer'
 
 // PC "equipe" -> franchise connue (nom complet, ou dernier mot : "76ers" -> Philadelphia 76ers)
 function findFranchiseTeam(name: string) {
@@ -30,6 +33,7 @@ interface PCEntry {
   id: string; type: PCType; name: string
   manualChecks?: Record<string, boolean>   // PC equipe : joueurs coches / decoches a la main dans la liste de la franchise
   firstName?: string; lastName?: string; addedAt: number
+  kit?: string   // PC joueur avec figurine : tenue choisie ('dom' par défaut, 'ext', 'alt')
 }
 
 interface PlayerStats { total: number; owned: number; loading: boolean }
@@ -57,6 +61,7 @@ export default function MesPCTab({ cards, cardsLoaded = true, userId, accent, da
   const storageKey = `memorabilius_pcs_${userId}`
   const [pcs, setPCs]   = useState<PCEntry[]>([])
   const [pStats, setPStats] = useState<Map<string, PlayerStats>>(new Map())
+  const [figs, setFigs] = useState<Record<string, BobbleFig>>({})   // figurines prêtes des joueurs suivis (par nom)
   const [selected, setSelected] = useState<PCEntry | null>(null)
   const [showAdd, setShowAdd]   = useState(false)
   const [addType, setAddType]   = useState<PCType>('player')
@@ -112,12 +117,43 @@ export default function MesPCTab({ cards, cardsLoaded = true, userId, accent, da
 
   async function savePCs(next: PCEntry[]) {
     setPCs(next)
+    // l'en-tête de la galerie (figurines des PC) suit tout de suite le choix de tenue
+    try { window.dispatchEvent(new CustomEvent('pcs-updated', { detail: { userId, pcs: next } })) } catch { /* rien */ }
     try { localStorage.setItem(storageKey, JSON.stringify(next)) } catch {}
     if (isOwner) {
       supabase.from('profiles').update({ pcs: next } as any).eq('id', userId)
         .then(({ error }) => { if (error) console.warn('pcs sync:', error.message) })
     }
   }
+
+  const pcPlayerNames = pcs.filter(p => p.type === 'player').map(p => p.name).join('|')
+  useEffect(() => {
+    const names = pcPlayerNames ? pcPlayerNames.split('|') : []
+    if (!names.length) return
+    let off = false
+    for (let i = 0; i < names.length; i += 8) {
+      fetch(`/api/bobble-figs?names=${encodeURIComponent(names.slice(i, i + 8).join('|'))}`)
+        .then(r => (r.ok ? r.json() : { figs: [] }))
+        .then(d => { if (off || !Array.isArray(d?.figs)) return; setFigs(cur => { const n = { ...cur }; for (const x of d.figs) n[x.name] = x.fig; return n }) })
+        .catch(() => { /* pas de figurine */ })
+    }
+    return () => { off = true }
+  }, [pcPlayerNames])
+
+  // photos des joueurs suivis qui n'ont pas (encore) de bobblehead : servent de fond à leur boîte
+  const [photos, setPhotos] = useState<Record<string, string | null>>({})
+  const noFigNames = pcs.filter(p => p.type === 'player' && !figs[p.name]).map(p => p.name).join('|')
+  useEffect(() => {
+    const names = noFigNames ? noFigNames.split('|').filter(n => !(n in photos)).slice(0, 48) : []
+    if (!names.length) return
+    let off = false
+    fetch('/api/player-photos', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ names, sport: 'nba' }) })
+      .then(r => (r.ok ? r.json() : { photos: {} }))
+      .then(d => { if (!off && d?.photos) setPhotos(cur => ({ ...cur, ...Object.fromEntries(names.map(n => [n, d.photos[n] ?? null])) })) })
+      .catch(() => { /* photo de la carte en secours */ })
+    return () => { off = true }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [noFigNames])
 
   const fetchPlayerStats = useCallback(async (pc: PCEntry) => {
     setPStats(prev => new Map(prev).set(pc.id, { total: 0, owned: 0, loading: true }))
@@ -382,7 +418,7 @@ export default function MesPCTab({ cards, cardsLoaded = true, userId, accent, da
           {isOwner && pcs.length > 1 && (
             <p style={{ fontSize: 11, color: muted, marginBottom: 10, marginTop: -8 }}>⠿ Glisser pour réordonner</p>
           )}
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(190px, 1fr))', gap: 14 }}>
+          <div className="pc-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, 224px)', gap: 16 }}>
             {pcs.map((pc, idx) => {
               const pool = getPool(pc)
               const bestCard = getBestCard(pool)
@@ -391,6 +427,8 @@ export default function MesPCTab({ cards, cardsLoaded = true, userId, accent, da
               const badgeColor = TYPE_COLOR[pc.type]
               const s = pStats.get(pc.id)
               const { count, sets, yearStr } = getTeamCollStats(pc)
+              const boxy = pc.type === 'player' && !!figs[pc.name]
+              const isPlayer = pc.type === 'player'
               const isDragging = dragIdx === idx
               const isOver = dragOverIdx === idx && dragIdx !== idx
 
@@ -406,6 +444,48 @@ export default function MesPCTab({ cards, cardsLoaded = true, userId, accent, da
                 statLine = String(count); sub = `${sets} set${sets > 1 ? 's' : ''}`
               } else {
                 statLine = String(count); sub = yearStr || 'Collection'
+              }
+
+              const fTeam = pc.type === 'team' ? findFranchiseTeam(pc.name) : null
+              if (isPlayer || fTeam) {
+                const fig = boxy ? figs[pc.name] : undefined
+                const words = pc.name.trim().split(/\s+/)
+                const first = isPlayer ? (pc.firstName || words[0] || '') : words.slice(0, -1).join(' ')
+                const last = isPlayer ? (pc.lastName || words.slice(1).join(' ') || words[0]) : words[words.length - 1]
+                const oldAb = pc.kit && pc.kit.includes('-') ? pc.kit.split('-')[0] : null   // ancienne équipe choisie (Bobcats, SuperSonics) : la boîte prend ses couleurs
+                const pal = isPlayer
+                  ? (Object.values(TEAM_COLORS).find(t => t.abbr === (oldAb || fig?.body.team)) ?? { primary: '#1b3a8a', secondary: '#ffffff' })
+                  : (teamPalette(fTeam!.name) ?? { primary: fTeam!.color || '#003da6', secondary: '#ffffff' })
+                const list = fTeam ? franchise[teamSlug(fTeam.name)] : undefined
+                // logo de l'équipe de la tenue affichée (rond blanc en bas à gauche de la boîte)
+                const badgeAb = isPlayer && fig ? (oldAb || fig.body.team) : ''
+                const badgeTeam = badgeAb ? SPORTS_TEAMS.find(t => t.id === `nba:${badgeAb}`) : null
+                const badge = badgeTeam ? teamLogoUrl(badgeTeam, true) : badgeAb === 'SEA' ? '/team-logos/hist-seattle-supersonics.svg' : badgeAb === 'BOB' ? '/team-logos/hist-charlotte-bobcats.png' : undefined
+                const have = list ? list.filter(x => { const k = normalizeName(x[0]); return pc.manualChecks && k in pc.manualChecks ? pc.manualChecks[k] : ownedKeys.has(k) }).length : 0
+                return (
+                  <div key={pc.id} draggable={isOwner} onDragStart={() => handleDragStart(idx)} onDragOver={e => handleDragOver(e, idx)} onDrop={() => handleDrop(idx)} onDragEnd={handleDragEnd}
+                    style={{ opacity: isDragging ? 0.4 : 1, transform: isOver ? 'scale(1.02)' : 'none', transition: 'transform .15s, opacity .15s', cursor: isOwner ? 'grab' : 'pointer', outline: isOver ? `3px solid ${accent}` : 'none' }}>
+                    <FunkoBox
+                      kind={isPlayer ? 'player' : 'team'} first={first} last={last} bg={pal.primary} accent={pal.secondary}
+                      fig={fig} kit={pc.kit} pct={isPlayer ? pct : 0} photo={isPlayer && !boxy ? (photos[pc.name] || photo) : undefined}
+                      logo={fTeam ? teamLogoUrl(fTeam, true) : undefined}
+                      badge={badge}
+                      top={isPlayer
+                        ? (s?.loading ? <b>…</b> : s && s.total > 0 ? <><b>{count}</b><i /><b>{s.total}</b></> : <b>—</b>)
+                        : <><b>{count}</b><small>cartes</small></>}
+                      statsTitle={isPlayer ? 'Checklist complète du joueur' : `${sets} set${sets > 1 ? 's' : ''}`}
+                      onStats={() => { if (isPlayer) { if (s && s.total > 0) setPlayerPopupOpen(pc) } else setSelected(pc) }}
+                      side={!isPlayer && list ? <><b>{have}</b><i /><b>{list.length}</b></> : undefined}
+                      sidePct={list && list.length ? (have / list.length) * 100 : 0}
+                      sideTitle="Tous les joueurs de la franchise"
+                      onSide={() => setFrOpen(pc)}
+                      onOpen={!isPlayer ? () => setSelected(pc) : undefined}
+                      isOwner={isOwner}
+                      onKit={k => savePCs(pcs.map(x => x.id === pc.id ? { ...x, kit: k } : x))}
+                      onRemove={() => removePC(pc.id)}
+                    />
+                  </div>
+                )
               }
 
               return (

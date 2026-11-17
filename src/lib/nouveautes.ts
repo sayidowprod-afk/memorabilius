@@ -4,6 +4,14 @@ export type Entry = { date: string; titre: string; points: string[] }
 
 export const ENTRIES: Entry[] = [
   {
+    date: '30 novembre 2026', titre: 'Tes PC deviennent des boîtes de figurines',
+    points: [
+      'Galerie, onglet Objectifs : chaque PC joueur est une boîte de figurine façon Funko Pop. Le bobblehead est dans la boîte, aux couleurs de son équipe, avec tes cartes en haut à gauche (l’anneau vert se remplit avec ta progression) et le nom en script. Les PC sans figurine prennent la photo du joueur, les PC équipe prennent le logo.',
+      'Bouton maillot en haut à droite : choisis la tenue de ton bobblehead (domicile, extérieur, alternative, légendaire) dans n’importe quelle équipe : celle du joueur, celles où il est passé, ou toutes les autres, y compris Charlotte Bobcats et Seattle SuperSonics. Le choix se voit aussi dans l’en-tête de ta galerie.',
+      'Pages joueur : un menu déroulant « Classement complet » affiche les 100 premiers collectionneurs du joueur.',
+    ],
+  },
+  {
     date: '30 novembre 2026', titre: 'Annonces Trades au style du site',
     points: [
       'La fenêtre d’une annonce (photo, infos, vendeur, boutons) reprend le style du site : fond marine, angles droits, typo titre. Plus lisible sur téléphone.',

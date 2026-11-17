@@ -2154,3 +2154,85 @@ html[data-member="1"] .home-member-ph { display: block; min-height: 100svh; }
   .trade-popup-card .trade-popup-img { height: 300px !important; }
   .trade-popup-card .tp-title { font-size: 26px !important; }
 }
+
+/* PC en boîte de figurine (FunkoBox) : carte blanche 224 x 280, fond aux couleurs de l'équipe */
+@font-face { font-family: 'Lobster'; src: url('/fonts/Lobster.ttf') format('truetype'); font-display: swap; }
+.fk { position: relative; width: 224px; height: 280px; }
+.fk-box { position: absolute; left: 0; top: 0; width: 224px; height: 280px; transform-origin: 0 0; transform: scale(var(--fk-s, 1)); background: #fff; box-sizing: border-box; border-radius: 0; overflow: visible; user-select: none; }
+.fk-field { position: absolute; inset: 14px 14px 32px 14px; background: var(--fk-bg, #003da6); overflow: hidden; isolation: isolate; box-shadow: inset 3px 3px 0 rgba(255,255,255,.35), inset -3px -3px 0 rgba(0,0,0,.35); }
+.fk-shine { position: absolute; inset: 0; background: radial-gradient(80% 55% at 50% 22%, rgba(255,255,255,.22), rgba(255,255,255,0) 70%); pointer-events: none; }
+.fk-fig { position: absolute; left: 0; right: 0; top: 14px; display: flex; justify-content: center; }
+.fk-logo { position: absolute; left: 50%; top: 44%; width: 66%; height: 66%; object-fit: contain; transform: translate(-50%, -50%); filter: drop-shadow(0 8px 14px rgba(0,0,0,.45)); background: none !important; animation: none !important; content-visibility: visible; }
+.fk-stats { position: absolute; top: 9px; left: 9px; z-index: 5; width: 53px; height: 53px; min-width: 53px; max-width: 53px; flex: none; aspect-ratio: 1; box-shadow: 0 0 0 7px #fff; overflow: visible; padding: 0; box-sizing: border-box; border-radius: 50%; background: conic-gradient(#27ae60 calc(var(--pct, 0) * 1%), #0b2a66 0); border: 0; color: #111; display: flex; flex-direction: column; align-items: center; justify-content: center; cursor: pointer; line-height: 1; font-family: 'Surfquest', Impact, sans-serif; }
+.fk-stats::before { content: ''; position: absolute; inset: 4px; border-radius: 50%; background: #fff; }
+.fk-stats > * { position: relative; }
+.fk-stats b { font-weight: 400; font-size: 14px; letter-spacing: 0; line-height: 1; }
+.fk-stats i { display: block; width: 74%; height: 2px; background: #111; margin: 2px 0; }
+.fk-stats small { font: 700 7px sans-serif; text-transform: uppercase; letter-spacing: .04em; margin-top: 2px; }
+.fk-stats:hover { transform: scale(1.06); }
+.fk-stats.fk-right { left: auto; right: 9px; }
+.fk-x { position: absolute; left: 14px; bottom: 8px; z-index: 6; padding: 2px 6px; background: transparent; color: #555; border: 0; border-radius: 0; font: 700 10px sans-serif; letter-spacing: .04em; text-transform: uppercase; cursor: pointer; }
+
+.fk-x:hover { color: #c0392b; }
+.fk-jersey { position: absolute; top: 11px; right: 11px; z-index: 5; width: 28px; height: 28px; background: #fff; color: #0b0b0b; border: 0; border-radius: 50%; box-shadow: 0 0 0 6px #fff; cursor: pointer; display: flex; align-items: center; justify-content: center; padding: 0; }
+.fk-jersey svg { width: 21px; height: 21px; }
+.fk-jersey:hover { transform: scale(1.12); }
+.fk-away { position: fixed; inset: 0; z-index: 99990; }
+.fk-menu { position: absolute; top: calc(50px * var(--fk-s, 1)); right: calc(8px * var(--fk-s, 1)); z-index: 40; width: 180px; background: #fff; border: 2px solid #111; padding: 8px; display: flex; flex-direction: column; gap: 6px; box-shadow: 0 12px 30px rgba(0,0,0,.45); }
+.fk-menu b { font: 400 14px 'Surfquest', Impact, sans-serif; text-transform: uppercase; letter-spacing: .05em; color: #111; }
+.fk-menu button { text-align: left; padding: 6px 8px; font: 700 12px sans-serif; background: #f2f2f2; color: #111; border: 1.5px solid #111; border-radius: 0; cursor: pointer; }
+.fk-menu button.on { background: #111; color: #fff; }
+.fk-menu button:disabled { opacity: .45; cursor: default; }
+.fk-menu button.danger { background: #fff; color: #c0392b; border-color: #c0392b; margin-top: 4px; }
+.fk-below { position: absolute; left: 20px; top: 72px; z-index: 5; }
+.fk-below button { padding: 4px 8px; font: 800 11px sans-serif; background: #fff; color: #111; border: 2px solid #111; border-radius: 0; cursor: pointer; }
+/* nom : prénom en petit, nom en gros, script à contour blanc (le contour est une copie du texte placée derrière) */
+.fk-name { position: absolute; right: 14px; bottom: 24px; z-index: 5; display: flex; flex-direction: column; align-items: flex-end; max-width: calc(100% - 14px); pointer-events: none; font-family: 'Lobster', 'Surfquest', cursive; line-height: .9; }
+.fk-name span { position: relative; display: block; white-space: nowrap; transform: rotate(-4deg); transform-origin: 100% 100%; }
+.fk-name span::before { content: attr(data-t); position: absolute; left: 0; top: 0; z-index: -1; -webkit-text-stroke: 9px var(--fk-line, #fff); color: var(--fk-line, #fff); }
+.fk-first { color: var(--fk-first, #1d428a); font-size: 30px; margin-right: 8px; }
+.fk-last { color: var(--fk-fill, #ed174c); text-shadow: 0 3px 0 rgba(0,0,0,.12); }
+.fk-name span::before { text-shadow: none; }
+
+.fk-box[data-kind='team'] .fk-stats { background: conic-gradient(#27ae60 calc(var(--pct, 0) * 1%), #0b2a66 0); }
+
+.fk-photo { position: absolute; left: 0; top: 0; width: 100%; height: 100%; object-fit: cover; object-position: 50% 12%; background: none !important; animation: none !important; content-visibility: visible; }
+.fk-fade { position: absolute; inset: 0; background: linear-gradient(180deg, rgba(0,0,0,.05) 40%, rgba(0,0,0,.5) 100%); pointer-events: none; }
+
+.fk-menu .fk-old { display: flex; flex-direction: column; gap: 3px; margin-top: 4px; padding-top: 4px; border-top: 1.5px solid #ddd; }
+.fk-menu .fk-old b { font-size: 11px; }
+.fk-menu .fk-old > div { display: flex; gap: 3px; }
+.fk-menu .fk-old button { flex: 1; text-align: center; padding: 4px 2px; }
+
+.fk-menu select { width: 100%; padding: 6px; font: 700 12px sans-serif; background: #f2f2f2; color: #111; border: 1.5px solid #111; border-radius: 0; }
+.fk-menu .fk-kits { display: flex; flex-direction: column; gap: 4px; }
+
+.fk-menu select.fk-sel { width: 100%; height: 26px; padding: 0 4px; font: 700 11px sans-serif !important; line-height: 1; background: #f2f2f2; color: #111; border: 1.5px solid #111; border-radius: 0; }
+.fk-menu select.fk-sel option { font: 600 11px sans-serif; }
+.fk-menu button { padding: 5px 8px; font-size: 11px; }
+
+.fk-clip { position: absolute; inset: 0; overflow: hidden; pointer-events: none; z-index: 5; }
+.fk-clip .fk-name { z-index: 1; }
+
+/* téléphone : 2 boîtes par ligne (la boîte se met à l'échelle), menus adaptés */
+@media (max-width: 640px) {
+  .pc-grid { grid-template-columns: repeat(2, minmax(0, 1fr)) !important; gap: 12px !important; }
+  .fk { width: 100%; height: auto; aspect-ratio: 4 / 5; }
+  .fk-menu { left: 6px; right: 6px; width: auto; top: calc(56px * var(--fk-s, 1)); padding: 10px; gap: 8px; }
+  .fk-menu b { font-size: 16px; }
+  .fk-menu select.fk-sel { height: 40px; font-size: 14px !important; }
+  .fk-menu button { padding: 11px 10px; font-size: 14px; }
+}
+
+/* plastique transparent devant la figurine (et derrière les textes / pastilles) : reflets en diagonale, voile clair en haut, liseré et halo sur les bords */
+.fk-plastic { position: absolute; inset: 0; z-index: 8; pointer-events: none;
+  background:
+    linear-gradient(112deg, rgba(255,255,255,.42) 0%, rgba(255,255,255,.16) 14%, rgba(255,255,255,0) 30%),
+    linear-gradient(112deg, rgba(255,255,255,0) 46%, rgba(255,255,255,.2) 54%, rgba(255,255,255,.06) 62%, rgba(255,255,255,0) 70%),
+    linear-gradient(180deg, rgba(255,255,255,.16) 0%, rgba(255,255,255,0) 28%, rgba(255,255,255,0) 78%, rgba(0,0,0,.14) 100%);
+  box-shadow: inset 0 0 0 2px rgba(255,255,255,.4), inset 0 0 22px rgba(255,255,255,.3), inset 4px 4px 0 rgba(255,255,255,.18); }
+.fk-plastic::after { content: ''; position: absolute; left: 6%; top: 3%; width: 38%; height: 5px; border-radius: 3px; background: rgba(255,255,255,.55); transform: rotate(-18deg); filter: blur(.5px); }
+
+/* rond blanc avec le logo de l'équipe, en bas à gauche de la boîte */
+.fk-badge { position: absolute; left: 8px; bottom: 8px; z-index: 7; width: 34px; height: 34px; border-radius: 50%; background: #fff; box-shadow: 0 0 0 4px #fff; display: flex; align-items: center; justify-content: center; }
+.fk-badge img { width: 35px; height: 35px; flex: none; object-fit: contain; background: none !important; animation: none !important; content-visibility: visible; }

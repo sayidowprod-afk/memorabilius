@@ -3,13 +3,15 @@ import { useEffect, useRef, useState } from 'react'
 import Link from 'next/link'
 import BobbleHero from '@/components/BobbleHero'
 import { playerSlug } from '@/lib/playerSlug'
+import { withKit } from '@/lib/bobbleheads'
+import { useKitCatalog } from '@/lib/useKitCatalog'
 import type { BobbleFig } from '@/lib/bobbleheadsServer'
 
 // Figurines (têtes validées) des joueurs suivis dans les PCs d'une galerie, affichées dans l'en-tête du profil.
 // Rien ne s'affiche tant qu'aucun joueur de PC n'a de figurine prête.
 // Toutes sur UNE seule ligne, qui tient dans la largeur de la barre bleue : chaque figurine a un emplacement de largeur égale
 // (largeur disponible / nombre de figurines) et sa taille s'en déduit, plafonnée à `maxHeight`.
-type Pc = { type?: string; name?: string }
+type Pc = { type?: string; name?: string; kit?: string }
 const VIS = 0.6          // largeur visible d'une figurine / sa hauteur
 const MIN_H = 50
 
@@ -17,6 +19,14 @@ export default function PcBobbles({ pcs, ownerId, maxHeight = 150 }: { pcs?: Pc[
   const [figs, setFigs] = useState<{ name: string; fig: BobbleFig; pct?: number; label?: string }[]>([])
   const [avail, setAvail] = useState(0)
   const ref = useRef<HTMLDivElement>(null)
+  const catalog = useKitCatalog()
+  const [livePcs, setLivePcs] = useState<Pc[] | null>(null)   // PC modifiés dans l'onglet Objectifs (tenue choisie) : mise à jour immédiate
+  useEffect(() => {
+    const h = (e: Event) => { const d = (e as CustomEvent).detail; if (d?.userId === ownerId && Array.isArray(d.pcs)) setLivePcs(d.pcs) }
+    window.addEventListener('pcs-updated', h)
+    return () => window.removeEventListener('pcs-updated', h)
+  }, [ownerId])
+  const kitOf = new Map((livePcs || pcs || []).map(p => [p.name as string, p.kit]))
   const key = (pcs || []).filter(p => p?.type === 'player' && p.name).map(p => p.name as string).slice(0, 8).join('|')
 
   useEffect(() => {
@@ -69,7 +79,7 @@ export default function PcBobbles({ pcs, ownerId, maxHeight = 150 }: { pcs?: Pc[
           <Link key={name} href={`/joueur/${playerSlug(name)}`} title={name} aria-label={`Fiche de ${name}`}
             style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', width: slot, flex: `0 0 ${slot}px`, textDecoration: 'none', pointerEvents: 'auto' }}>
             {pct ? <span style={{ fontSize: Math.max(8, Math.min(10, Math.round(slot / 11))), fontWeight: 700, color: 'rgba(255,255,255,.62)', letterSpacing: '.04em', lineHeight: 1, marginBottom: 7, whiteSpace: 'nowrap' }}>{label || `Top ${pct} %`}</span> : null}
-            <BobbleHero fig={fig} name={name} height={h} />
+            <BobbleHero fig={withKit({ ...fig, extra: catalog?.kits }, kitOf.get(name))} name={name} height={h} />
           </Link>
         ))}
       </div>

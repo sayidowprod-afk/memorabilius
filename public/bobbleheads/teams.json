@@ -7,6 +7,35 @@
   "num": {
    "fill": "#ffffff",
    "stroke": "#c8102e"
+  },
+  "kits": {
+   "ext": {
+    "w": 574,
+    "h": 640,
+    "span": 433,
+    "num": {
+     "fill": "#c8102e",
+     "stroke": "#fdb927"
+    }
+   },
+   "alt": {
+    "w": 580,
+    "h": 642,
+    "span": 444,
+    "num": {
+     "fill": "#c1d32f",
+     "stroke": "#000000"
+    }
+   },
+   "leg": {
+    "w": 559,
+    "h": 606,
+    "span": 432,
+    "num": {
+     "fill": "#ffffff",
+     "stroke": "#fdb927"
+    }
+   }
   }
  },
  "BOS": {
@@ -17,6 +46,35 @@
   "num": {
    "fill": "#ffffff",
    "stroke": "#0a5c2e"
+  },
+  "kits": {
+   "ext": {
+    "w": 576,
+    "h": 626,
+    "span": 438,
+    "num": {
+     "fill": "#007a33",
+     "stroke": "#ffffff"
+    }
+   },
+   "alt": {
+    "w": 558,
+    "h": 621,
+    "span": 431,
+    "num": {
+     "fill": "#ffffff",
+     "stroke": "#007a33"
+    }
+   },
+   "leg": {
+    "w": 571,
+    "h": 668,
+    "span": 431,
+    "num": {
+     "fill": "#007a33",
+     "stroke": "#ffffff"
+    }
+   }
   }
  },
  "BKN": {
@@ -27,6 +85,35 @@
   "num": {
    "fill": "#ffffff",
    "stroke": "#111111"
+  },
+  "kits": {
+   "ext": {
+    "w": 580,
+    "h": 631,
+    "span": 440,
+    "num": {
+     "fill": "#111111",
+     "stroke": "#ffffff"
+    }
+   },
+   "alt": {
+    "w": 581,
+    "h": 648,
+    "span": 437,
+    "num": {
+     "fill": "#111111",
+     "stroke": "#ffffff"
+    }
+   },
+   "leg": {
+    "w": 567,
+    "h": 646,
+    "span": 420,
+    "num": {
+     "fill": "#ffffff",
+     "stroke": "#c8102e"
+    }
+   }
   }
  },
  "CHA": {
@@ -37,6 +124,35 @@
   "num": {
    "fill": "#ffffff",
    "stroke": "#2a1a6b"
+  },
+  "kits": {
+   "ext": {
+    "w": 569,
+    "h": 632,
+    "span": 428,
+    "num": {
+     "fill": "#00788c",
+     "stroke": "#1d1160"
+    }
+   },
+   "alt": {
+    "w": 561,
+    "h": 627,
+    "span": 431,
+    "num": {
+     "fill": "#00bcd4",
+     "stroke": "#ffffff"
+    }
+   },
+   "leg": {
+    "w": 601,
+    "h": 628,
+    "span": 449,
+    "num": {
+     "fill": "#ffffff",
+     "stroke": "#1d1160"
+    }
+   }
   }
  },
  "CHI": {
@@ -47,6 +163,35 @@
   "num": {
    "fill": "#ffffff",
    "stroke": "#111111"
+  },
+  "kits": {
+   "ext": {
+    "w": 559,
+    "h": 611,
+    "span": 423,
+    "num": {
+     "fill": "#ce1141",
+     "stroke": "#111111"
+    }
+   },
+   "alt": {
+    "w": 549,
+    "h": 631,
+    "span": 417,
+    "num": {
+     "fill": "#ce1141",
+     "stroke": "#ffffff"
+    }
+   },
+   "leg": {
+    "w": 584,
+    "h": 659,
+    "span": 429,
+    "num": {
+     "fill": "#ffffff",
+     "stroke": "#111111"
+    }
+   }
   }
  },
  "CLE": {
@@ -57,6 +202,35 @@
   "num": {
    "fill": "#fdbb30",
    "stroke": "#041e42"
+  },
+  "kits": {
+   "ext": {
+    "w": 585,
+    "h": 613,
+    "span": 447,
+    "num": {
+     "fill": "#860038",
+     "stroke": "#fdbb30"
+    }
+   },
+   "alt": {
+    "w": 597,
+    "h": 668,
+    "span": 449,
+    "num": {
+     "fill": "#860038",
+     "stroke": "#041e42"
+    }
+   },
+   "leg": {
+    "w": 584,
+    "h": 631,
+    "span": 437,
+    "num": {
+     "fill": "#ffffff",
+     "stroke": "#1f3a93"
+    }
+   }
   }
  },
  "DAL": {
@@ -67,6 +241,35 @@
   "num": {
    "fill": "#ffffff",
    "stroke": "#00265c"
+  },
+  "kits": {
+   "ext": {
+    "w": 609,
+    "h": 627,
+    "span": 461,
+    "num": {
+     "fill": "#00538c",
+     "stroke": "#b8c4ca"
+    }
+   },
+   "alt": {
+    "w": 593,
+    "h": 642,
+    "span": 450,
+    "num": {
+     "fill": "#ffffff",
+     "stroke": "#00538c"
+    }
+   },
+   "leg": {
+    "w": 561,
+    "h": 620,
+    "span": 427,
+    "num": {
+     "fill": "#ffffff",
+     "stroke": "#00693e"
+    }
+   }
   }
  },
  "DEN": {
@@ -77,6 +280,35 @@
   "num": {
    "fill": "#fec524",
    "stroke": "#0d2240"
+  },
+  "kits": {
+   "ext": {
+    "w": 566,
+    "h": 618,
+    "span": 434,
+    "num": {
+     "fill": "#0e2240",
+     "stroke": "#fec524"
+    }
+   },
+   "alt": {
+    "w": 554,
+    "h": 622,
+    "span": 432,
+    "num": {
+     "fill": "#fec524",
+     "stroke": "#ffffff"
+    }
+   },
+   "leg": {
+    "w": 603,
+    "h": 656,
+    "span": 458,
+    "num": {
+     "fill": "#ffffff",
+     "stroke": "#1d428a"
+    }
+   }
   }
  },
  "DET": {
@@ -87,6 +319,35 @@
   "num": {
    "fill": "#ffffff",
    "stroke": "#c8102e"
+  },
+  "kits": {
+   "ext": {
+    "w": 625,
+    "h": 647,
+    "span": 481,
+    "num": {
+     "fill": "#1d428a",
+     "stroke": "#c8102e"
+    }
+   },
+   "alt": {
+    "w": 580,
+    "h": 616,
+    "span": 449,
+    "num": {
+     "fill": "#ffffff",
+     "stroke": "#c8102e"
+    }
+   },
+   "leg": {
+    "w": 533,
+    "h": 628,
+    "span": 406,
+    "num": {
+     "fill": "#ffffff",
+     "stroke": "#c8102e"
+    }
+   }
   }
  },
  "GSW": {
@@ -97,6 +358,35 @@
   "num": {
    "fill": "#ffc72c",
    "stroke": "#1d428a"
+  },
+  "kits": {
+   "ext": {
+    "w": 581,
+    "h": 644,
+    "span": 440,
+    "num": {
+     "fill": "#1d428a",
+     "stroke": "#ffc72c"
+    }
+   },
+   "alt": {
+    "w": 586,
+    "h": 647,
+    "span": 434,
+    "num": {
+     "fill": "#1d428a",
+     "stroke": "#ffffff"
+    }
+   },
+   "leg": {
+    "w": 566,
+    "h": 658,
+    "span": 416,
+    "num": {
+     "fill": "#ffc72c",
+     "stroke": "#ffffff"
+    }
+   }
   }
  },
  "HOU": {
@@ -107,6 +397,35 @@
   "num": {
    "fill": "#ffffff",
    "stroke": "#7a0f1c"
+  },
+  "kits": {
+   "ext": {
+    "w": 569,
+    "h": 639,
+    "span": 426,
+    "num": {
+     "fill": "#ce1141",
+     "stroke": "#c4ced4"
+    }
+   },
+   "alt": {
+    "w": 600,
+    "h": 633,
+    "span": 460,
+    "num": {
+     "fill": "#ce1141",
+     "stroke": "#ffffff"
+    }
+   },
+   "leg": {
+    "w": 596,
+    "h": 657,
+    "span": 436,
+    "num": {
+     "fill": "#ffffff",
+     "stroke": "#fdb927"
+    }
+   }
   }
  },
  "IND": {
@@ -117,6 +436,35 @@
   "num": {
    "fill": "#fdbb30",
    "stroke": "#002d62"
+  },
+  "kits": {
+   "ext": {
+    "w": 556,
+    "h": 623,
+    "span": 423,
+    "num": {
+     "fill": "#002d62",
+     "stroke": "#fdbb30"
+    }
+   },
+   "alt": {
+    "w": 582,
+    "h": 639,
+    "span": 443,
+    "num": {
+     "fill": "#002d62",
+     "stroke": "#ffffff"
+    }
+   },
+   "leg": {
+    "w": 561,
+    "h": 611,
+    "span": 424,
+    "num": {
+     "fill": "#fdbb30",
+     "stroke": "#ffffff"
+    }
+   }
   }
  },
  "LAC": {
@@ -127,6 +475,35 @@
   "num": {
    "fill": "#ffffff",
    "stroke": "#1d428a"
+  },
+  "kits": {
+   "ext": {
+    "w": 578,
+    "h": 656,
+    "span": 437,
+    "num": {
+     "fill": "#1d428a",
+     "stroke": "#c8102e"
+    }
+   },
+   "alt": {
+    "w": 559,
+    "h": 616,
+    "span": 415,
+    "num": {
+     "fill": "#ffffff",
+     "stroke": "#c8102e"
+    }
+   },
+   "leg": {
+    "w": 599,
+    "h": 610,
+    "span": 463,
+    "num": {
+     "fill": "#ffffff",
+     "stroke": "#f58426"
+    }
+   }
   }
  },
  "LAL": {
@@ -137,6 +514,35 @@
   "num": {
    "fill": "#fdb927",
    "stroke": "#3b1a6b"
+  },
+  "kits": {
+   "ext": {
+    "w": 584,
+    "h": 617,
+    "span": 446,
+    "num": {
+     "fill": "#552583",
+     "stroke": "#fdb927"
+    }
+   },
+   "alt": {
+    "w": 587,
+    "h": 612,
+    "span": 443,
+    "num": {
+     "fill": "#552583",
+     "stroke": "#ffffff"
+    }
+   },
+   "leg": {
+    "w": 593,
+    "h": 635,
+    "span": 447,
+    "num": {
+     "fill": "#552583",
+     "stroke": "#ffffff"
+    }
+   }
   }
  },
  "MEM": {
@@ -147,6 +553,35 @@
   "num": {
    "fill": "#ffffff",
    "stroke": "#5d76a9"
+  },
+  "kits": {
+   "ext": {
+    "w": 609,
+    "h": 660,
+    "span": 467,
+    "num": {
+     "fill": "#12173f",
+     "stroke": "#5d76a9"
+    }
+   },
+   "alt": {
+    "w": 566,
+    "h": 618,
+    "span": 424,
+    "num": {
+     "fill": "#12173f",
+     "stroke": "#ffffff"
+    }
+   },
+   "leg": {
+    "w": 588,
+    "h": 629,
+    "span": 435,
+    "num": {
+     "fill": "#ffffff",
+     "stroke": "#29727c"
+    }
+   }
   }
  },
  "MIA": {
@@ -157,6 +592,35 @@
   "num": {
    "fill": "#f9a01b",
    "stroke": "#98002e"
+  },
+  "kits": {
+   "ext": {
+    "w": 563,
+    "h": 640,
+    "span": 416,
+    "num": {
+     "fill": "#98002e",
+     "stroke": "#111111"
+    }
+   },
+   "alt": {
+    "w": 558,
+    "h": 619,
+    "span": 423,
+    "num": {
+     "fill": "#ffffff",
+     "stroke": "#111111"
+    }
+   },
+   "leg": {
+    "w": 567,
+    "h": 652,
+    "span": 421,
+    "num": {
+     "fill": "#ffffff",
+     "stroke": "#c2185b"
+    }
+   }
   }
  },
  "MIL": {
@@ -167,6 +631,35 @@
   "num": {
    "fill": "#f0ebd2",
    "stroke": "#00471b"
+  },
+  "kits": {
+   "ext": {
+    "w": 576,
+    "h": 621,
+    "span": 444,
+    "num": {
+     "fill": "#00471b",
+     "stroke": "#eee1c6"
+    }
+   },
+   "alt": {
+    "w": 591,
+    "h": 651,
+    "span": 451,
+    "num": {
+     "fill": "#00471b",
+     "stroke": "#ffffff"
+    }
+   },
+   "leg": {
+    "w": 608,
+    "h": 650,
+    "span": 446,
+    "num": {
+     "fill": "#ffffff",
+     "stroke": "#c8102e"
+    }
+   }
   }
  },
  "MIN": {
@@ -177,6 +670,35 @@
   "num": {
    "fill": "#78be20",
    "stroke": "#0c2340"
+  },
+  "kits": {
+   "ext": {
+    "w": 606,
+    "h": 648,
+    "span": 454,
+    "num": {
+     "fill": "#0c2340",
+     "stroke": "#78be20"
+    }
+   },
+   "alt": {
+    "w": 591,
+    "h": 663,
+    "span": 440,
+    "num": {
+     "fill": "#0c2340",
+     "stroke": "#ffffff"
+    }
+   },
+   "leg": {
+    "w": 597,
+    "h": 652,
+    "span": 447,
+    "num": {
+     "fill": "#ffffff",
+     "stroke": "#111111"
+    }
+   }
   }
  },
  "NOP": {
@@ -187,6 +709,35 @@
   "num": {
    "fill": "#c8102e",
    "stroke": "#85714d"
+  },
+  "kits": {
+   "ext": {
+    "w": 574,
+    "h": 634,
+    "span": 439,
+    "num": {
+     "fill": "#0c2340",
+     "stroke": "#c8102e"
+    }
+   },
+   "alt": {
+    "w": 580,
+    "h": 651,
+    "span": 430,
+    "num": {
+     "fill": "#0c2340",
+     "stroke": "#ffffff"
+    }
+   },
+   "leg": {
+    "w": 581,
+    "h": 639,
+    "span": 429,
+    "num": {
+     "fill": "#ffffff",
+     "stroke": "#1d1160"
+    }
+   }
   }
  },
  "NYK": {
@@ -197,6 +748,35 @@
   "num": {
    "fill": "#f58426",
    "stroke": "#ffffff"
+  },
+  "kits": {
+   "ext": {
+    "w": 614,
+    "h": 674,
+    "span": 460,
+    "num": {
+     "fill": "#006bb6",
+     "stroke": "#f58426"
+    }
+   },
+   "alt": {
+    "w": 579,
+    "h": 623,
+    "span": 431,
+    "num": {
+     "fill": "#f58426",
+     "stroke": "#ffffff"
+    }
+   },
+   "leg": {
+    "w": 566,
+    "h": 628,
+    "span": 427,
+    "num": {
+     "fill": "#ffffff",
+     "stroke": "#006bb6"
+    }
+   }
   }
  },
  "OKC": {
@@ -207,6 +787,35 @@
   "num": {
    "fill": "#ef3b24",
    "stroke": "#002d62"
+  },
+  "kits": {
+   "ext": {
+    "w": 567,
+    "h": 627,
+    "span": 428,
+    "num": {
+     "fill": "#007ac1",
+     "stroke": "#ef3b24"
+    }
+   },
+   "alt": {
+    "w": 515,
+    "h": 621,
+    "span": 382,
+    "num": {
+     "fill": "#ef3b24",
+     "stroke": "#ffffff"
+    }
+   },
+   "leg": {
+    "w": 590,
+    "h": 641,
+    "span": 434,
+    "num": {
+     "fill": "#ffffff",
+     "stroke": "#ef3b24"
+    }
+   }
   }
  },
  "ORL": {
@@ -217,6 +826,35 @@
   "num": {
    "fill": "#ffffff",
    "stroke": "#0077c0"
+  },
+  "kits": {
+   "ext": {
+    "w": 617,
+    "h": 667,
+    "span": 464,
+    "num": {
+     "fill": "#0077c0",
+     "stroke": "#111111"
+    }
+   },
+   "alt": {
+    "w": 582,
+    "h": 652,
+    "span": 447,
+    "num": {
+     "fill": "#0077c0",
+     "stroke": "#ffffff"
+    }
+   },
+   "leg": {
+    "w": 598,
+    "h": 659,
+    "span": 449,
+    "num": {
+     "fill": "#0077c0",
+     "stroke": "#111111"
+    }
+   }
   }
  },
  "PHI": {
@@ -227,6 +865,35 @@
   "num": {
    "fill": "#ffffff",
    "stroke": "#ed174c"
+  },
+  "kits": {
+   "ext": {
+    "w": 611,
+    "h": 654,
+    "span": 468,
+    "num": {
+     "fill": "#006bb6",
+     "stroke": "#ed174c"
+    }
+   },
+   "alt": {
+    "w": 553,
+    "h": 625,
+    "span": 417,
+    "num": {
+     "fill": "#ed174c",
+     "stroke": "#ffffff"
+    }
+   },
+   "leg": {
+    "w": 599,
+    "h": 660,
+    "span": 456,
+    "num": {
+     "fill": "#ffffff",
+     "stroke": "#ed174c"
+    }
+   }
   }
  },
  "PHX": {
@@ -237,6 +904,35 @@
   "num": {
    "fill": "#e56020",
    "stroke": "#1d1160"
+  },
+  "kits": {
+   "ext": {
+    "w": 606,
+    "h": 645,
+    "span": 460,
+    "num": {
+     "fill": "#1d1160",
+     "stroke": "#e56020"
+    }
+   },
+   "alt": {
+    "w": 577,
+    "h": 620,
+    "span": 434,
+    "num": {
+     "fill": "#1d1160",
+     "stroke": "#ffffff"
+    }
+   },
+   "leg": {
+    "w": 552,
+    "h": 665,
+    "span": 404,
+    "num": {
+     "fill": "#ffffff",
+     "stroke": "#e56020"
+    }
+   }
   }
  },
  "POR": {
@@ -247,6 +943,35 @@
   "num": {
    "fill": "#e03a3e",
    "stroke": "#ffffff"
+  },
+  "kits": {
+   "ext": {
+    "w": 561,
+    "h": 652,
+    "span": 424,
+    "num": {
+     "fill": "#e03a3e",
+     "stroke": "#111111"
+    }
+   },
+   "alt": {
+    "w": 537,
+    "h": 605,
+    "span": 402,
+    "num": {
+     "fill": "#ffffff",
+     "stroke": "#111111"
+    }
+   },
+   "leg": {
+    "w": 571,
+    "h": 644,
+    "span": 424,
+    "num": {
+     "fill": "#ffffff",
+     "stroke": "#111111"
+    }
+   }
   }
  },
  "SAC": {
@@ -257,6 +982,35 @@
   "num": {
    "fill": "#ffffff",
    "stroke": "#3d2b7a"
+  },
+  "kits": {
+   "ext": {
+    "w": 586,
+    "h": 636,
+    "span": 445,
+    "num": {
+     "fill": "#5a2d81",
+     "stroke": "#63727a"
+    }
+   },
+   "alt": {
+    "w": 593,
+    "h": 630,
+    "span": 447,
+    "num": {
+     "fill": "#ffffff",
+     "stroke": "#5a2d81"
+    }
+   },
+   "leg": {
+    "w": 612,
+    "h": 656,
+    "span": 461,
+    "num": {
+     "fill": "#ffffff",
+     "stroke": "#c8102e"
+    }
+   }
   }
  },
  "SAS": {
@@ -267,6 +1021,35 @@
   "num": {
    "fill": "#c4ced4",
    "stroke": "#111111"
+  },
+  "kits": {
+   "ext": {
+    "w": 578,
+    "h": 650,
+    "span": 434,
+    "num": {
+     "fill": "#111111",
+     "stroke": "#c4ced4"
+    }
+   },
+   "alt": {
+    "w": 616,
+    "h": 644,
+    "span": 469,
+    "num": {
+     "fill": "#111111",
+     "stroke": "#ffffff"
+    }
+   },
+   "leg": {
+    "w": 596,
+    "h": 612,
+    "span": 456,
+    "num": {
+     "fill": "#ffffff",
+     "stroke": "#f26522"
+    }
+   }
   }
  },
  "TOR": {
@@ -277,6 +1060,35 @@
   "num": {
    "fill": "#ffffff",
    "stroke": "#111111"
+  },
+  "kits": {
+   "ext": {
+    "w": 596,
+    "h": 642,
+    "span": 446,
+    "num": {
+     "fill": "#ce1141",
+     "stroke": "#111111"
+    }
+   },
+   "alt": {
+    "w": 520,
+    "h": 600,
+    "span": 398,
+    "num": {
+     "fill": "#ce1141",
+     "stroke": "#ffffff"
+    }
+   },
+   "leg": {
+    "w": 533,
+    "h": 619,
+    "span": 410,
+    "num": {
+     "fill": "#ffffff",
+     "stroke": "#111111"
+    }
+   }
   }
  },
  "UTA": {
@@ -287,6 +1099,35 @@
   "num": {
    "fill": "#f9a01b",
    "stroke": "#002b5c"
+  },
+  "kits": {
+   "ext": {
+    "w": 607,
+    "h": 635,
+    "span": 458,
+    "num": {
+     "fill": "#002b5c",
+     "stroke": "#f9a01b"
+    }
+   },
+   "alt": {
+    "w": 574,
+    "h": 634,
+    "span": 428,
+    "num": {
+     "fill": "#002b5c",
+     "stroke": "#ffffff"
+    }
+   },
+   "leg": {
+    "w": 615,
+    "h": 667,
+    "span": 465,
+    "num": {
+     "fill": "#ffffff",
+     "stroke": "#f9a01b"
+    }
+   }
   }
  },
  "WAS": {
@@ -297,6 +1138,95 @@
   "num": {
    "fill": "#ffffff",
    "stroke": "#e31837"
+  },
+  "kits": {
+   "ext": {
+    "w": 582,
+    "h": 657,
+    "span": 436,
+    "num": {
+     "fill": "#002b5c",
+     "stroke": "#e31837"
+    }
+   },
+   "alt": {
+    "w": 523,
+    "h": 588,
+    "span": 407,
+    "num": {
+     "fill": "#ffffff",
+     "stroke": "#002b5c"
+    }
+   },
+   "leg": {
+    "w": 589,
+    "h": 650,
+    "span": 439,
+    "num": {
+     "fill": "#ffffff",
+     "stroke": "#002b5c"
+    }
+   }
+  }
+ },
+ "BOB": {
+  "name": "Charlotte Bobcats",
+  "w": 599,
+  "h": 630,
+  "span": 455,
+  "num": {
+   "fill": "#1d3a8a",
+   "stroke": "#f26522"
+  },
+  "kits": {
+   "ext": {
+    "w": 579,
+    "h": 632,
+    "span": 442,
+    "num": {
+     "fill": "#f26522",
+     "stroke": "#ffffff"
+    }
+   },
+   "alt": {
+    "w": 565,
+    "h": 659,
+    "span": 433,
+    "num": {
+     "fill": "#1d3a8a",
+     "stroke": "#ffffff"
+    }
+   }
+  }
+ },
+ "SEA": {
+  "name": "Seattle SuperSonics",
+  "w": 589,
+  "h": 649,
+  "span": 445,
+  "num": {
+   "fill": "#00653a",
+   "stroke": "#ffc200"
+  },
+  "kits": {
+   "ext": {
+    "w": 595,
+    "h": 647,
+    "span": 448,
+    "num": {
+     "fill": "#ffc200",
+     "stroke": "#ffffff"
+    }
+   },
+   "alt": {
+    "w": 596,
+    "h": 650,
+    "span": 438,
+    "num": {
+     "fill": "#00653a",
+     "stroke": "#ffffff"
+    }
+   }
   }
  }
 }

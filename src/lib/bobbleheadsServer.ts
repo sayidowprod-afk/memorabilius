@@ -8,15 +8,31 @@ export type BobbleFig = {
   head: { w: number; h: number; ear: number; skin?: number[] }
   headSrc: string
   body: { w: number; h: number; span: number; src: string; team?: string; num?: string; numFill?: string; numStroke?: string }
+  extra?: Record<string, { w: number; h: number; span: number; src: string; num: { fill: string; stroke: string } }>   // tenues des anciennes équipes (BOB, SEA), proposées à tous
+  kits?: string[]   // tenues disponibles de l'équipe ('dom' = domicile, 'ext', 'alt')
+  kitMeta?: Record<string, { w: number; h: number; span: number; src: string; num: { fill: string; stroke: string } }>   // corps et couleurs du numéro propres à chaque tenue
 }
 
-type Live = { players: Record<string, { name: string; team: string; num: string; head: { w: number; h: number; ear: number; skin?: number[] }; v: number }>; teams: Record<string, { w: number; h: number; span: number; num: { fill: string; stroke: string } }> }
+type Live = { extra?: BobbleFig['extra']; players: Record<string, { name: string; team: string; num: string; head: { w: number; h: number; ear: number; skin?: number[] }; v: number }>; teams: Record<string, { w: number; h: number; span: number; num: { fill: string; stroke: string }; kits?: string[]; kitMeta?: BobbleFig['kitMeta'] }> }
 
 // Données importées dans le build (public/bobbleheads/live.json, régénéré par scripts/bobble-live.mjs d'après les têtes validées) : fonctionne en production ; en local, le fichier est rechargé à chaud.
 const live = liveJson as unknown as Live
 const byName = new Map<string, string>()
 for (const [id, p] of Object.entries(live.players)) byName.set(normName(p.name), id)
 function loadLive() { return { live, byName } }
+
+// Catalogue de toutes les tenues de toutes les équipes (n'importe quel joueur peut porter n'importe quelle tenue) : clés 'PHI-dom', 'PHI-ext', 'BOB-alt'…
+export type KitCatalog = { kits: Record<string, { w: number; h: number; span: number; src: string; num: { fill: string; stroke: string } }>; teams: { abbr: string; name: string }[] }
+export function kitCatalog(): KitCatalog {
+  const kits: KitCatalog['kits'] = {}, teams: KitCatalog['teams'] = []
+  for (const [ab, t] of Object.entries(live.teams) as [string, any][]) {
+    kits[`${ab}-dom`] = { w: t.w, h: t.h, span: t.span, src: `/bobbleheads/team-${ab}.webp`, num: t.num }
+    for (const [k, m] of Object.entries(t.kitMeta || {})) kits[`${ab}-${k}`] = m as KitCatalog['kits'][string]
+    teams.push({ abbr: ab, name: t.name || ab })
+  }
+  teams.sort((a, b) => a.name.localeCompare(b.name))
+  return { kits, teams }
+}
 
 export function teamBody(abbr: string, num?: string | null): BobbleFig['body'] | null {
   const c = loadLive(); const t = c?.live.teams[abbr]; if (!t) return null
@@ -34,7 +50,7 @@ export function bobbleFor(playerName: string): BobbleFig | null {
   const id = c?.byName.get(n)
   if (c && id) {
     const p = c.live.players[id], t = c.live.teams[p.team]
-    if (t) return { id, head: p.head, headSrc: `/bobbleheads/${id}-head.webp?v=${p.v}`, body: { w: t.w, h: t.h, span: t.span, src: `/bobbleheads/team-${p.team}.webp`, team: p.team, num: p.num, numFill: t.num.fill, numStroke: t.num.stroke } }
+    if (t) return { id, head: p.head, headSrc: `/bobbleheads/${id}-head.webp?v=${p.v}`, body: { w: t.w, h: t.h, span: t.span, src: `/bobbleheads/team-${p.team}.webp`, team: p.team, num: p.num, numFill: t.num.fill, numStroke: t.num.stroke }, kits: t.kits || ['dom'], ...(t.kitMeta ? { kitMeta: t.kitMeta } : {}) }
   }
   // 2) secours : figurines complètes d'origine (corps propre au joueur), si le joueur n'est pas dans la liste validée
   for (const [bid, m] of Object.entries(BOBBLEHEADS)) {
