@@ -4,6 +4,14 @@ export type Entry = { date: string; titre: string; points: string[] }
 
 export const ENTRIES: Entry[] = [
   {
+    date: '30 novembre 2026', titre: 'Plus de bobbleheads et Trades sur téléphone',
+    points: [
+      'Bobbleheads : 356 joueurs ont maintenant leur figurine sur leur page, et d’autres arrivent chaque jour.',
+      'Trades sur téléphone : la recherche, l’équipe et les boutons RC / Auto / Patch / Num restent visibles, le reste des filtres se déplie. Les annonces s’affichent deux par ligne.',
+      'Offres sur téléphone : la fenêtre d’offre passe en priorité (cartes, total, remises, prix) et le profil du vendeur se réduit à un petit bandeau, le tout sur un seul écran.',
+    ],
+  },
+  {
     date: '30 novembre 2026', titre: 'Trades refaits, offres groupées et exports vidéo fluides',
     points: [
       'Trades : nouvelle page avec un rail de filtres à gauche (recherche, type, sport, tags RC / Auto / Patch / Num, équipe, année, tri) et des annonces en ticket : nom du joueur en grand, équipe, infos de la carte, barre d’atouts et prix.',

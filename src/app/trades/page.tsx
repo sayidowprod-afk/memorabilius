@@ -129,6 +129,7 @@ export default function Trades() {
   const [reviewDraft, setReviewDraft] = useState<Record<string, { rating: number; comment: string }>>({})
   const [fAnnee, setFAnnee] = useState('')
   const [sortBy, setSortBy] = useState<'recent' | 'valeur_asc' | 'valeur_desc'>('recent')
+  const [railOpen, setRailOpen] = useState(false)   // filtres repliés sur téléphone
 
   // ── État forum ──────────────────────────────────────────────────────────────
   const [trades, setTrades] = useState<any[]>([])
@@ -768,9 +769,9 @@ export default function Trades() {
           `}</style>
           <div className="tr-layout">
             {/* Rail de filtres */}
-            <aside className="tr-rail">
-              <input value={search} onChange={e => setSearch(e.target.value)} placeholder={t('trades_search')} className="tr-inp" />
-              <div className="tr-grp">
+            <aside className={`tr-rail${railOpen ? ' open' : ''}`}>
+              <input value={search} onChange={e => setSearch(e.target.value)} placeholder={t('trades_search')} className="tr-inp tr-o-search" />
+              <div className="tr-grp tr-o-type tr-fold">
                 <h4>Type</h4>
                 <div className="tr-pills">
                   {(['tous', 'offre', 'recherche'] as const).map(f => (
@@ -779,7 +780,7 @@ export default function Trades() {
                   <button onClick={() => setShowFavoritesOnly(v => !v)} className={`tr-pill gold${showFavoritesOnly ? ' on' : ''}`}>⭐ {t('trades_favorites')}</button>
                 </div>
               </div>
-              <div className="tr-grp">
+              <div className="tr-grp tr-o-sport tr-fold">
                 <h4>{t('trades_sport_label')}</h4>
                 <div className="tr-pills">
                   {Object.entries(SPORTS).map(([key, emoji]) => {
@@ -792,7 +793,7 @@ export default function Trades() {
                   })}
                 </div>
               </div>
-              <div className="tr-grp">
+              <div className="tr-grp tr-o-tags">
                 <h4>Tags</h4>
                 <div className="tr-g4">
                   {(['rc', 'auto', 'patch', 'num'] as const).map(k => (
@@ -800,12 +801,15 @@ export default function Trades() {
                   ))}
                 </div>
               </div>
-              <div className="tr-grp">
-                <h4>Équipe · Année</h4>
+              <div className="tr-grp tr-o-team">
+                <h4>Équipe</h4>
                 <input value={fEquipe} onChange={e => setFEquipe(e.target.value)} placeholder={t('trades_filter_team_placeholder')} className="tr-inp" />
+              </div>
+              <div className="tr-grp tr-o-year tr-fold">
+                <h4>Année</h4>
                 <input value={fAnnee} onChange={e => setFAnnee(e.target.value)} placeholder={t('trades_filter_year_placeholder')} className="tr-inp" />
               </div>
-              <div className="tr-grp">
+              <div className="tr-grp tr-o-sort tr-fold">
                 <h4>Tri</h4>
                 <select value={sortBy} onChange={e => setSortBy(e.target.value as any)} className="tr-inp">
                   <option value="recent">{t('trades_sort_recent')}</option>
@@ -813,7 +817,8 @@ export default function Trades() {
                   <option value="valeur_asc">{t('trades_sort_value_asc')}</option>
                 </select>
               </div>
-              <Link href="/trades/nouveau" className="tr-post">{t('trades_post')}</Link>
+              <Link href="/trades/nouveau" className="tr-post tr-o-post tr-fold">{t('trades_post')}</Link>
+              <button type="button" className="tr-filter-toggle tr-o-toggle" onClick={() => setRailOpen(o => !o)} aria-expanded={railOpen}>{railOpen ? 'Moins de filtres ▲' : `Plus de filtres${((fTags.rc ? 1 : 0) + (fTags.auto ? 1 : 0) + (fTags.patch ? 1 : 0) + (fTags.num ? 1 : 0) + (filter !== 'tous' ? 1 : 0) + (showFavoritesOnly ? 1 : 0) + (fSport ? 1 : 0) + (fAnnee ? 1 : 0)) > 0 ? ` · ${(fTags.rc ? 1 : 0) + (fTags.auto ? 1 : 0) + (fTags.patch ? 1 : 0) + (fTags.num ? 1 : 0) + (filter !== 'tous' ? 1 : 0) + (showFavoritesOnly ? 1 : 0) + (fSport ? 1 : 0) + (fAnnee ? 1 : 0)}` : ''} ▼`}</button>
             </aside>
             <div className="tr-main">
               {/* Bandeau de tags (comme dans la galerie) + choix de l'affichage */}

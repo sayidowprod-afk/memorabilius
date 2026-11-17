@@ -34,6 +34,8 @@ const asInput = (n: number) => String(round2(n)).replace('.', ',')
 function SellerWindow({ sellerId, fallbackName }: { sellerId: string; fallbackName: string }) {
   const { dark } = useTheme()
   const [p, setP] = useState<SellerProfile | null>(null)
+  const [narrow, setNarrow] = useState(false)
+  useEffect(() => { const m = window.matchMedia('(max-width: 860px)'); const f = () => setNarrow(m.matches); f(); m.addEventListener('change', f); return () => m.removeEventListener('change', f) }, [])
   useEffect(() => {
     let off = false
     supabase.from('profiles').select('id, display_name, avatar_url, bio, slug, pcs, couleur_bordure, instagram, twitter, discord, last_seen, is_donor, stats_total, stats_rc, stats_auto, stats_patch, stats_num').eq('id', sellerId).maybeSingle()
@@ -63,7 +65,7 @@ function SellerWindow({ sellerId, fallbackName }: { sellerId: string; fallbackNa
         <h1 className={p?.is_donor ? 'holo-name' : ''} style={{ margin: 0 }}>{name}</h1>
         <TradeReputation userId={sellerId} />
         <FollowCounts userId={sellerId} onOpenList={() => {}} />
-        <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap', alignItems: 'center', justifyContent: 'center' }}>
+        <div className="om-btns" style={{ display: 'flex', gap: 8, flexWrap: 'wrap', alignItems: 'center', justifyContent: 'center' }}>
           {p?.instagram && <a href={`https://instagram.com/${p.instagram.replace('@', '')}`} target="_blank" rel="noopener noreferrer" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', width: 30, height: 30, borderRadius: '50%', color: '#E1306C', background: dark ? '#2a1a20' : '#fce4ec' }}><InstagramIcon size={15} /></a>}
           {p?.twitter && <a href={`https://x.com/${p.twitter.replace('@', '')}`} target="_blank" rel="noopener noreferrer" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', width: 30, height: 30, borderRadius: '50%', color: dark ? '#e0e0e0' : '#121212', background: dark ? '#1a1a1a' : '#f0f0f0' }}><XIcon size={13} /></a>}
           {p?.discord && <button type="button" title={p.discord} onClick={() => { navigator.clipboard.writeText(p.discord!).then(() => toast.success('Pseudo Discord copié'), () => {}) }} style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', width: 30, height: 30, borderRadius: '50%', border: 'none', color: '#5865F2', background: dark ? '#1a1c33' : '#eef0ff', cursor: 'pointer' }}><DiscordIcon size={15} /></button>}
@@ -73,7 +75,7 @@ function SellerWindow({ sellerId, fallbackName }: { sellerId: string; fallbackNa
         {p?.bio && <p style={{ fontSize: 13, margin: 0, lineHeight: 1.5, whiteSpace: 'pre-wrap' }}>{p.bio}</p>}
         <div className="om-bottom" style={{ width: '100%', display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 12 }}>
         {/* les figurines poussent vers le haut depuis leur ligne de base : on réserve la place au-dessus (seulement si le joueur en a) */}
-        <div className="om-bob"><div style={{ position: 'absolute', left: 0, right: 0, bottom: 0 }}><PcBobbles pcs={p?.pcs} ownerId={sellerId} maxHeight={120} /></div></div>
+        <div className="om-bob"><div style={{ position: 'absolute', left: 0, right: 0, bottom: 0 }}><PcBobbles pcs={p?.pcs} ownerId={sellerId} maxHeight={narrow ? 70 : 120} /></div></div>
         <div className="om-statsrow" style={{ display: 'grid', gridTemplateColumns: `repeat(${nums.filter(n => n.val != null).length || 1}, 1fr)`, width: '100%', borderTop: '1px solid rgba(255,255,255,.28)', paddingTop: 12 }}>
           {nums.filter(n => n.val != null).map((n, i) => (
             <div key={n.label} style={{ textAlign: 'center', minWidth: 0, borderLeft: i ? '1px solid rgba(255,255,255,.22)' : 'none' }}>
@@ -153,7 +155,7 @@ export default function OfferModal({ sellerId, sellerName, presetCardId, onClose
       </>}>
       <div className="om-main">
         <div>
-          <p style={{ fontSize: 'var(--fs-sm)', margin: '0 0 var(--sp-4)', lineHeight: 1.5, ...sub }}>Choisis une ou plusieurs cartes et propose un prix pour le tout. {sellerName} a {OFFER_TTL_HOURS} h pour accepter, refuser ou te répondre par un autre prix. Aucun paiement sur Memorabilius : la suite se règle entre vous.</p>
+          <p className="om-intro" style={{ fontSize: 'var(--fs-sm)', margin: '0 0 var(--sp-4)', lineHeight: 1.5, ...sub }}>Choisis une ou plusieurs cartes et propose un prix pour le tout. {sellerName} a {OFFER_TTL_HOURS} h pour accepter, refuser ou te répondre par un autre prix. Aucun paiement sur Memorabilius : la suite se règle entre vous.</p>
 
           <div style={head}>1 · Cartes {chosen.length > 0 && <span style={{ color: '#2f6bff' }}>({chosen.length} choisie{chosen.length > 1 ? 's' : ''})</span>}</div>
           {cards === null ? <div style={{ fontSize: 'var(--fs-sm)', ...sub }}>Chargement…</div> : cards.length === 0 ? (
