@@ -59,6 +59,7 @@ export default function SetPage({ setId }: { setId: string }) {
   const [seriesLimit, setSeriesLimit] = useState(40)   // les gros sets ont des centaines de séries : on n'en affiche que quelques-unes à la fois
   const [boxFiles, setBoxFiles] = useState<string[]>([])
   const [draftAll, setDraftAll] = useState<{ pick: number; name: string }[]>([])   // toute la classe de draft de l'année du set
+  const [rookieInfo, setRookieInfo] = useState<Record<string, { name: string; team: string | null }>>({})   // nom et équipe du joueur tels qu'ils sont dans notre base
   const [rookieCards, setRookieCards] = useState<Record<string, number> | null>(null)   // cartes (hors parallèles) de chaque joueur de la classe
   const [photos, setPhotos] = useState<Record<string, string | null>>({})
 
@@ -167,19 +168,34 @@ export default function SetPage({ setId }: { setId: string }) {
     let off = false
     ;(async () => {
       const plainNames = new Set(series.filter(x => x.kind !== 'par' && x.name !== 'Base').map(x => x.name))
-      const names = new Set<string>()
-      for (const d of draftAll) { names.add(d.name); const bare = d.name.replace(/\s+(Jr\.?|Sr\.?|II|III|IV)$/i, ''); names.add(bare) }
-      const list = [...names]
+      // un même joueur s'écrit parfois autrement (« Alex Sarr » chez ESPN, « Alexandre Sarr » chez nous) : on cherche par début du prénom + nom de famille,
+      // puis on ne garde que les lignes dont le nom de famille est identique et le prénom compatible (l'un commence par l'autre)
+      const clean = (t: string) => normN(t).replace(/[^a-z0-9 ]/g, '')
+      const parts = (t: string) => { const w = clean(t).split(' ').filter(Boolean); return { first: w[0] || '', last: w[w.length - 1] || '' } }
+      const draftKeys = draftAll.map(d => ({ key: normN(d.name), ...parts(d.name) }))
       const counts: Record<string, number> = {}
-      for (let i = 0; i < list.length; i += 20) {
+      const info: Record<string, { name: string; team: string | null; n: Record<string, number> }> = {}
+      for (let i = 0; i < draftKeys.length; i += 15) {
+        const chunk = draftKeys.slice(i, i + 15).filter(d => d.last.length > 1)
+        const orf = chunk.map(d => `player_name.ilike.*${d.first.slice(0, 3)}*${d.last}*`).join(',')
         for (let from = 0; from < 12000; from += 1000) {
-          const { data } = await supabase.from('card_set_entries').select('player_name, variation').eq('set_id', sid).in('player_name', list.slice(i, i + 20)).order('id').range(from, from + 999)
+          const { data } = await supabase.from('card_set_entries').select('player_name, team, variation').eq('set_id', sid).or(orf).order('id').range(from, from + 999)
           if (!data?.length) break
-          for (const r of data as { player_name: string; variation: string | null }[]) if (!r.variation || plainNames.has(r.variation)) { const k = normN(r.player_name); counts[k] = (counts[k] || 0) + 1 }
+          for (const r of data as { player_name: string; team: string | null; variation: string | null }[]) {
+            if (r.variation && !plainNames.has(r.variation)) continue
+            const pr = parts(r.player_name)
+            const d = chunk.find(x => x.last === pr.last && (x.first === pr.first || x.first.startsWith(pr.first) || pr.first.startsWith(x.first)))
+            if (!d) continue
+            counts[d.key] = (counts[d.key] || 0) + 1
+            const inf = info[d.key] || (info[d.key] = { name: r.player_name, team: r.team, n: {} })
+            inf.n[r.player_name] = (inf.n[r.player_name] || 0) + 1
+            if (!inf.team && r.team) inf.team = r.team
+          }
           if (data.length < 1000) break
         }
         if (off) return
       }
+      if (!off) setRookieInfo(Object.fromEntries(Object.entries(info).map(([k, v]) => [k, { name: Object.entries(v.n).sort((a, b) => b[1] - a[1])[0][0], team: v.team }])))
       if (!off) setRookieCards(counts)
     })()
     return () => { off = true }
@@ -204,11 +220,12 @@ export default function SetPage({ setId }: { setId: string }) {
   const top5 = useMemo(() => {
     if (draft.length) return draft.slice(0, 5).map(d => {
       const r = rookieTop.find(x => normN(x.name) === normN(d.name))
-      return { pick: d.pick, name: r?.name || d.name, team: r?.team || null, cards: rookieCards ? (rookieCards[normN(d.name)] || 0) : (r?.cards || 0), autos: rookieCards ? 0 : (r?.autos || 0), img: r?.img || null }
+      const inf = rookieInfo[normN(d.name)]
+      return { pick: d.pick, espn: d.name, name: inf?.name || r?.name || d.name, team: inf?.team || r?.team || null, cards: rookieCards ? (rookieCards[normN(d.name)] || 0) : (r?.cards || 0), autos: rookieCards ? 0 : (r?.autos || 0), img: r?.img || null }
     })
-    return rookieTop.slice(0, 5).map((r, i) => ({ pick: i + 1, name: r.name, team: r.team, cards: r.cards, autos: r.autos, img: r.img }))
-  }, [draft, rookieTop, rookieCards])
-  const top5Names = top5.map(t => t.name).join('|')
+    return rookieTop.slice(0, 5).map((r, i) => ({ pick: i + 1, espn: r.name, name: r.name, team: r.team, cards: r.cards, autos: r.autos, img: r.img }))
+  }, [draft, rookieTop, rookieCards, rookieInfo])
+  const top5Names = top5.map(t => t.espn).join('|')
   useEffect(() => {
     const api = SPORT_API[sport]
     if (!api || !top5Names) return
@@ -342,8 +359,8 @@ export default function SetPage({ setId }: { setId: string }) {
         {ov && top5.length > 0 && (
           <section id="top5">
             <div className="sh"><h2>Top 5 rookies</h2><p>{fmt(rookieN)} cartes de rookies · {draft.length ? `les 5 premiers choix de la draft ${set.year}` : 'les recrues les plus présentes'}</p></div>
-            <div className="rooks">{top5.map(r => { const lg = logoOf(r.team, sport); const ph = photos[r.name] || r.img; return (
-              <div className="rook" key={r.name} onClick={() => goCards(r.name)}>
+            <div className="rooks">{top5.map(r => { const lg = logoOf(r.team, sport); const ph = photos[r.espn] || r.img; return (
+              <div className="rook" key={r.espn} onClick={() => goCards(r.name)}>
                 <div className="art" style={{ background: `linear-gradient(160deg, ${colorOf(r.team, sport)}, #050b22)` }}>
                   {ph ? <img className="cimg face" src={ph} alt={r.name} loading="lazy" /> : <b>{ini(r.name)}</b>}
                   <span className="num">#{r.pick}</span>{lg && <span className="lg"><img src={lg} alt="" /></span>}{r.cards > 0 && <span className="rc">RC</span>}
