@@ -1194,7 +1194,7 @@ export default function Trades() {
                     ? <ImageZoom src={popupShowVerso && popup.image_verso ? popup.image_verso : popup.image_url} alt={popup.titre} key={popupShowVerso ? 'verso' : 'recto'} />
                     : <span style={{ fontSize: 80 }}>🃏</span>}
                 </div>
-                <div style={{ position: 'absolute', top: 12, left: 12, background: popup._source === 'galerie' ? '#6a1b9a' : popup.type === 'offre' ? '#2e7d32' : '#1976d2', color: 'white', padding: '4px 12px 4px 4px', borderRadius: 20, fontSize: 12, fontWeight: 900, display: 'flex', alignItems: 'center', gap: 6 }}>
+                <div className="tp-badge" style={{ position: 'absolute', top: 12, left: 12, background: popup._source === 'galerie' ? '#6a1b9a' : popup.type === 'offre' ? '#2e7d32' : '#1976d2', color: 'white', padding: '4px 12px 4px 4px', borderRadius: 20, fontSize: 12, fontWeight: 900, display: 'flex', alignItems: 'center', gap: 6 }}>
                   <span style={{ width: 20, height: 20, borderRadius: '50%', background: 'rgba(255,255,255,0.25)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 11 }}>
                     {popup._source === 'galerie' ? '🏷️' : popup.type === 'offre' ? '📤' : '📥'}
                   </span>
@@ -1203,7 +1203,7 @@ export default function Trades() {
                 {popup._source === 'galerie' && popup.image_verso && (
                   // Bas-gauche : les 3 autres coins sont pris (badge type en
                   // haut-gauche, fermer en haut-droite, hint Zoom en bas-droite).
-                  <button onClick={flipPopupVerso} style={{ position: 'absolute', bottom: 12, left: 12, background: 'rgba(0,0,0,0.6)', color: 'white', border: 'none', borderRadius: 20, padding: '6px 14px', fontSize: 12, fontWeight: 700, cursor: 'pointer' }}>
+                  <button onClick={flipPopupVerso} className="tp-pill" style={{ position: 'absolute', bottom: 12, left: 12, background: 'rgba(0,0,0,0.6)', color: 'white', border: 'none', borderRadius: 20, padding: '6px 14px', fontSize: 12, fontWeight: 700, cursor: 'pointer' }}>
                     {popupShowVerso ? '↩ Recto' : '↪ Verso'}
                   </button>
                 )}
@@ -1211,12 +1211,12 @@ export default function Trades() {
                     element du panneau d'infos en dessous -- position plus
                     conventionnelle pour un bouton fermer de modale (coin
                     haut-droite), et evite qu'elle pousse le titre vers le bas. */}
-                <button onClick={() => setPopup(null)} aria-label="Fermer" style={{ position: 'absolute', top: 12, right: 12, background: 'rgba(0,0,0,0.6)', color: 'white', border: 'none', width: 32, height: 32, borderRadius: '50%', fontSize: 18, cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>×</button>
+                <button onClick={() => setPopup(null)} aria-label="Fermer" className="tp-close" style={{ position: 'absolute', top: 12, right: 12, background: 'rgba(0,0,0,0.6)', color: 'white', border: 'none', width: 32, height: 32, borderRadius: '50%', fontSize: 18, cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>×</button>
               </div>
-              <div className="trade-popup-info" style={{ padding: 24, overflowY: 'auto', display: 'flex', flexDirection: 'column', gap: 14, flex: 1 }}>
-                <h2 style={{ fontWeight: 900, fontSize: 22, margin: 0 }}>{popup.titre}</h2>
+              <div className="trade-popup-info tp-info" style={{ padding: 24, overflowY: 'auto', display: 'flex', flexDirection: 'column', gap: 14, flex: 1 }}>
+                <h2 className="tp-title" style={{ fontWeight: 900, fontSize: 22, margin: 0 }}>{popup.titre}</h2>
                 {(popup.joueur || popup.annee || popup.marque || popup.equipe || popup.collection || popup.card_number || popup.numerotation) && (
-                  <div style={{ background: 'var(--bg3, #f8f8f8)', borderRadius: 10, padding: 14, display: 'flex', flexDirection: 'column', gap: 6 }}>
+                  <div className="tp-box" style={{ background: 'var(--bg3, #f8f8f8)', borderRadius: 10, padding: 14, display: 'flex', flexDirection: 'column', gap: 6 }}>
                     {popup.joueur && <p style={{ margin: 0, fontSize: 14, fontWeight: 700 }}>{popup.sport ? (SPORTS[popup.sport] || '🏀') : '🃏'} {popup.joueur}</p>}
                     {popup.equipe && <p style={{ margin: 0, fontSize: 13, color: 'var(--text2, #666)' }}>🏟️ {popup.equipe}</p>}
                     {popup.annee && <p style={{ margin: 0, fontSize: 13, color: 'var(--text2, #666)' }}>📅 {popup.annee}</p>}
@@ -1235,13 +1235,13 @@ export default function Trades() {
                 {(() => {
                   const q = [popup.joueur || popup.titre, popup.annee, popup.marque, popup.rc ? 'RC' : '', popup.auto ? 'auto' : '', popup.patch ? 'patch' : '', popup.num ? 'numbered' : ''].filter(Boolean).join(' ')
                   return q ? (
-                    <a href={`https://www.ebay.fr/sch/i.html?_nkw=${encodeURIComponent(q)}`} target="_blank" rel="noopener noreferrer"
+                    <a href={`https://www.ebay.fr/sch/i.html?_nkw=${encodeURIComponent(q)}`} target="_blank" rel="noopener noreferrer" className="tp-ebay"
                       style={{ display: 'block', background: '#f0f5ff', borderRadius: 10, padding: '10px 14px', fontSize: 13, fontWeight: 700, color: '#0064d2', textDecoration: 'none' }}>
                       🔍 Rechercher sur eBay →
                     </a>
                   ) : null
                 })()}
-                <div style={{ borderTop: '1px solid var(--border, #eee)', paddingTop: 16 }}>
+                <div className="tp-by" style={{ borderTop: '1px solid var(--border, #eee)', paddingTop: 16 }}>
                   <p style={{ fontSize: 11, fontWeight: 700, color: 'var(--text3, #999)', textTransform: 'uppercase', margin: '0 0 10px' }}>{t('trades_by')}</p>
                   <div style={{ display: 'flex', alignItems: 'center', gap: 12, marginBottom: 12 }}>
                     <img loading="lazy" src={popup.profiles?.avatar_url || `https://ui-avatars.com/api/?name=${encodeURIComponent(popup.profiles?.display_name || 'U')}&background=003DA6&color=fff`}

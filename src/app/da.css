@@ -2130,3 +2130,27 @@ html[data-member="1"] .home-member-ph { display: block; min-height: 100svh; }
   .om-tile .om-nm { width: 70px; }
   .om-cards { height: auto; }
 }
+
+/* Fenêtre d'une annonce (Trades) : style DA — marine, angles droits, typo titre */
+.trade-popup-overlay { background: rgba(3, 8, 24, .78) !important; }
+.trade-popup-card { border-radius: 0 !important; background: linear-gradient(180deg, #0d2257, #07143a) !important; border: 3px solid #fff; color: #fff; box-shadow: 0 0 0 1px rgba(255,255,255,.12), 0 20px 60px -12px rgba(0,61,166,.7) !important; }
+.trade-popup-card .trade-popup-img { background: radial-gradient(120% 100% at 50% 0%, #17348a, #07143a) !important; }
+.trade-popup-card .tp-badge, .trade-popup-card .tp-pill, .trade-popup-card .tp-close { border-radius: 0 !important; font-family: 'Surfquest', Impact, sans-serif; font-weight: 400 !important; letter-spacing: .05em; text-transform: uppercase; }
+.trade-popup-card .tp-close { width: 36px !important; height: 36px !important; background: #fff !important; color: #07143a !important; }
+.trade-popup-card .tp-badge > span { border-radius: 0 !important; }
+.trade-popup-card .tp-pill { background: rgba(7,20,58,.85) !important; border: 2px solid #fff !important; }
+.trade-popup-card .tp-info { background: transparent !important; color: #fff; }
+.trade-popup-card .tp-title { font-family: 'Surfquest', Impact, sans-serif; font-weight: 400 !important; font-size: 30px !important; line-height: 1.02; letter-spacing: .02em; text-transform: uppercase; }
+.trade-popup-card .tp-box { border-radius: 0 !important; background: rgba(255,255,255,.07) !important; border: 2px solid rgba(255,255,255,.22); }
+.trade-popup-card .tp-box p { color: #fff !important; }
+.trade-popup-card .tp-info p { color: rgba(255,255,255,.82); }
+.trade-popup-card .tp-ebay { border-radius: 0 !important; background: transparent !important; border: 2px solid #fff; color: #fff !important; font-family: 'Surfquest', Impact, sans-serif; font-weight: 400 !important; text-transform: uppercase; letter-spacing: .05em; }
+.trade-popup-card .tp-by { border-top: 3px solid rgba(255,255,255,.3) !important; }
+.trade-popup-card .tp-by a { color: #fff !important; }
+.trade-popup-card .tp-by img { border-radius: 0 !important; border: 2px solid #fff !important; }
+.trade-popup-card .tp-info > div:last-child a, .trade-popup-card .tp-info > div:last-child button { border-radius: 0 !important; font-family: 'Surfquest', Impact, sans-serif; font-weight: 400 !important; font-size: 17px !important; text-transform: uppercase; letter-spacing: .05em; }
+@media (max-width: 599px) {
+  .trade-popup-card { max-height: calc(100dvh - 20px) !important; }
+  .trade-popup-card .trade-popup-img { height: 300px !important; }
+  .trade-popup-card .tp-title { font-size: 26px !important; }
+}

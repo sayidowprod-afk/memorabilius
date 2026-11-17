@@ -4,6 +4,12 @@ export type Entry = { date: string; titre: string; points: string[] }
 
 export const ENTRIES: Entry[] = [
   {
+    date: '30 novembre 2026', titre: 'Annonces Trades au style du site',
+    points: [
+      'La fenêtre d’une annonce (photo, infos, vendeur, boutons) reprend le style du site : fond marine, angles droits, typo titre. Plus lisible sur téléphone.',
+    ],
+  },
+  {
     date: '30 novembre 2026', titre: 'Plus de bobbleheads et Trades sur téléphone',
     points: [
       'Bobbleheads : 356 joueurs ont maintenant leur figurine sur leur page, et d’autres arrivent chaque jour.',
