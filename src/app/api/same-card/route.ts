@@ -41,12 +41,21 @@ async function compute(req: NextRequest): Promise<any[]> {
   const matchIds = new Set<string>()
   const cardsByUser = new Map<string, any>()
 
+  // Fonction SQL same_card_search (migration 20261129) : utilise l'index des noms (la requête directe est ralentie par la règle des cartes privées, ~1,8 s).
+  // Si elle n'existe pas encore ou échoue, on retombe sur l'ancienne requête.
+  let useFn = true
   for (let from = 0; ; from += 1000) {
-    const { data, error } = await supabase.from('cartes_manuelles')
+    let res: { data: any[] | null; error: any } | null = null
+    if (useFn) {
+      const r = await supabase.rpc('same_card_search', { p_name: name, p_exclude: excludeUserId || null }).range(from, from + 999)
+      if (r.error || !Array.isArray(r.data)) useFn = false; else res = r as { data: any[] | null; error: any }
+    }
+    if (!res) res = await supabase.from('cartes_manuelles')
       .select('user_id, nom, equipe, image_recto, annee, marque, collection, variation, num, rc, auto, patch')
       .ilike('nom', `%${safeQ}%`)
       .neq('user_id', excludeUserId || '00000000-0000-0000-0000-000000000000')
       .range(from, from + 999)
+    const { data, error } = res
     if (error || !data || data.length === 0) break
 
     // Cartes privées scoped aux user_ids de cette page — évite le scan de 2000 lignes

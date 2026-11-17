@@ -4,6 +4,13 @@ export type Entry = { date: string; titre: string; points: string[] }
 
 export const ENTRIES: Entry[] = [
   {
+    date: '30 novembre 2026', titre: 'Recherches de cartes jusqu’à 30 fois plus rapides',
+    points: [
+      'Cartes d’un joueur, « mêmes cartes chez d’autres membres », cartes d’une équipe, nombre de cartes à vendre et plan du site : ces recherches utilisent maintenant l’index de la base au lieu de parcourir toute la table de cartes (de 1,7 s à quelques dizaines de millisecondes pour les plus lourdes).',
+      'Séries d’un joueur et badges au démarrage de l’app : résultats gardés en mémoire partagée, la base est moins sollicitée.',
+    ],
+  },
+  {
     date: '30 novembre 2026', titre: 'Premières visites plus rapides et site plus léger',
     points: [
       'Pages joueur et équipe : la première visite (après une mise à jour ou une semaine sans visite) prenait 5 à 8 secondes à cause d’un service externe de la NBA qui ne répondait plus. Le délai d’attente est réduit, ces pages s’ouvrent bien plus vite.',

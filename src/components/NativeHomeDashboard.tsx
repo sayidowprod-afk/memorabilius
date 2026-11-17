@@ -6,6 +6,7 @@ import { useRouter } from 'next/navigation'
 import { playerSlug } from '@/lib/playerSlug'
 import type { ReactNode } from 'react'
 import { supabase } from '@/lib/supabase'
+import { cachedBadgeData } from '@/lib/badgeCache'
 import { useAuth } from '@/lib/AuthContext'
 import { useLang, type TranslationKey } from '@/lib/LangContext'
 import { hapticTap } from '@/lib/haptics'
@@ -347,7 +348,7 @@ export default function NativeHomeDashboard({ siteStats, cardOfTheDay }: { siteS
           Promise.all([
             timed('profile', supabase.from('profiles').select('display_name, avatar_url, stats_total, stats_auto, lien_csv').eq('id', user.id).abortSignal(abort.signal).single()),
             timed('lastCard', supabase.from('cartes_manuelles').select('image_recto, nom').eq('user_id', user.id).not('image_recto', 'is', null).order('created_at', { ascending: false }).abortSignal(abort.signal).limit(24)),
-            timed('badgeData', supabase.rpc('get_user_badge_data', { p_user_id: user.id }).abortSignal(abort.signal)),
+            timed('badgeData', cachedBadgeData<any>(supabase, user.id).then(row => ({ data: (row ? [row] : []) as any[], error: null }))),
             timed('bumpStreak', supabase.rpc('bump_streak', { p_user_id: user.id }).abortSignal(abort.signal)),
             timed('weekCards', supabase.from('cartes_manuelles').select('rc, auto, patch, num').eq('user_id', user.id).gte('created_at', startOfWeekISO()).abortSignal(abort.signal)),
             timed('xpTotal', supabase.rpc('get_user_xp_total', { p_user_id: user.id }).abortSignal(abort.signal)),

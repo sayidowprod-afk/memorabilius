@@ -1,6 +1,7 @@
 import type { Metadata } from 'next'
 import { connection } from 'next/server'
 import { fetchPlayerManuelles, fetchAllPaged } from '@/lib/playerManuelles'
+import { getPlayerSetsCached } from '@/lib/playerSetsCache'
 import Link from 'next/link'
 import { Suspense, cache } from 'react'
 import { fetchCsvCardsForProfilesCached } from '@/lib/csvCardsCache'
@@ -381,7 +382,7 @@ async function _fetchPlayer(slug: string) {
   // mais fusionne mieux les variantes orthographiques) le temps que l'index puisse
   // enfin etre construit.
   const [setsRpcRes0, manuData, profilesData] = await Promise.all([
-    supabase.rpc('get_player_sets', { p_first: firstName, p_last: lastName }),
+    getPlayerSetsCached(firstName, lastName),
     fetchAllManuellesForPlayer(),
     fetchAllCsvProfiles(),
   ])

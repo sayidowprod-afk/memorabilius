@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { createServerClient } from '@/lib/supabaseServer'
 import { cachedAsync } from '@/lib/ttlCache'
+import { getPlayerSetsCached } from '@/lib/playerSetsCache'
 
 // Pagination de la section "Sets" d'un joueur, appelee par
 // PlayerSetsSection.tsx (defilement). Duplique volontairement l'appel RPC
@@ -41,7 +42,7 @@ export async function GET(req: NextRequest) {
   // La RPC est lourde (séries d'un joueur parmi ~15 millions de lignes) et la pagination la rappelait à CHAQUE page : résultat gardé 30 minutes par joueur.
   // Après un dépassement de délai (57014), pas de deuxième appel « unaccent » : il échouerait pareil et doublerait la charge.
   const rawSets: any[] = await cachedAsync(`ps:${playerName.toLowerCase()}`, (v: any[]) => (v.length ? 1_800_000 : 60_000), async () => {
-    const r0 = await supabase.rpc('get_player_sets', { p_first: firstName, p_last: lastName })
+    const r0 = await getPlayerSetsCached(firstName, lastName)
     const r = r0.error && (r0.error as { code?: string }).code !== '57014' ? await supabase.rpc('get_player_sets_unaccent', { p_first: firstName, p_last: lastName }) : r0
     return (r.data as any[]) || []
   })

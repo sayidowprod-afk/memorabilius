@@ -1,5 +1,6 @@
 import { NextResponse } from 'next/server'
 import { supabase } from '@/lib/supabase'
+import { countCardsForSale } from '@/lib/fastCards'
 
 // Alimente le compteur "en direct" de la page d'accueil (voir HomeHero.tsx,
 // polling client toutes les ~20s) -- mêmes requêtes que le rendu serveur de
@@ -20,7 +21,7 @@ export async function GET() {
     supabase.from('profiles').select('*', { count: 'exact', head: true }).eq('is_demo', false), // compte démo (salons) : jamais compté
     supabase.rpc('get_total_cards'),
     supabase.from('binders').select('*', { count: 'exact', head: true }).neq('is_public', false).gte('page_count', 1),
-    supabase.from('cartes_manuelles').select('*', { count: 'exact', head: true }).eq('disponible_vente', true),
+    countCardsForSale(supabase),
   ])
 
   // Un hoquet Supabase passager ne doit jamais renvoyer "0" comme si c'etait

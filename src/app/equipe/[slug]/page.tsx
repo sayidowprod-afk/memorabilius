@@ -12,6 +12,7 @@ import TeamCardsSection from './TeamCardsSection'
 import TeamSetsSection from './TeamSetsSection'
 import { createServerClient } from '@/lib/supabaseServer'
 import { fetchAllPaged } from '@/lib/playerManuelles'
+import { rpcPaged } from '@/lib/fastCards'
 
 export const revalidate = 604800 // 7 jours (etait 24h, 1h avant -- contenu quasi statique, cf. reduction couts Vercel ISR)
 // Aucune page pré-générée au build, mais cette déclaration est ce qui active le cache à la demande (ISR) : sans elle, une page à paramètre est
@@ -36,7 +37,7 @@ async function fetchTeamData(slug: string) {
   // communaute en perdait silencieusement le reste. Pagination reelle.
   const fetchAllManuellesForTeam = async () => {
     // pages de 1 000 demandées en parallèle (voir lib/playerManuelles) : avant, une page après l'autre
-    const all = await fetchAllPaged(from => supabase
+    const all = (await rpcPaged(supabase, 'team_cards_search', { p_team: teamLastWord })) ?? await fetchAllPaged(from => supabase
       .from('cartes_manuelles')
       .select('id, nom, annee, marque, image_recto, is_horizontal, user_id, created_at, profiles(display_name, avatar_url, couleur_bordure, is_demo)')
       .ilike('equipe', `%${teamLastWord}%`)

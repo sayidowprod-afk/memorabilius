@@ -2,6 +2,7 @@ import { cachedAsync } from '@/lib/ttlCache'
 import CardOfTheDay from '@/components/CardOfTheDay'
 import PronosHomePreview from '@/components/PronosHomePreview'
 import { supabase } from '@/lib/supabase'
+import { countCardsForSale } from '@/lib/fastCards'
 import PepitesSection from '@/components/PepitesSection'
 import SportOnly from '@/components/SportOnly'
 import TcgHomeSection from '@/components/TcgHomeSection'
@@ -228,7 +229,7 @@ export default async function Home() {
       supabase.from('profiles').select('*', { count: 'exact', head: true }).eq('is_demo', false),
       supabase.rpc('get_total_cards'),
       supabase.from('binders').select('*', { count: 'exact', head: true }).neq('is_public', false).gte('page_count', 1),
-      supabase.from('cartes_manuelles').select('*', { count: 'exact', head: true }).eq('disponible_vente', true),
+      countCardsForSale(supabase),
     ])),
     fetchPepites(),
     fetchPodium(),

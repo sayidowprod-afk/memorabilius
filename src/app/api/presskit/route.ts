@@ -1,5 +1,6 @@
 import { NextRequest } from 'next/server'
 import { supabase } from '@/lib/supabase'
+import { countCardsForSale } from '@/lib/fastCards'
 import { generatePresskit, resolveLang } from '@/lib/presskit/generate'
 
 export const runtime = 'nodejs'
@@ -13,7 +14,7 @@ async function publicStats() {
     supabase.from('profiles').select('*', { count: 'exact', head: true }).eq('is_demo', false),
     supabase.rpc('get_total_cards'),
     supabase.from('binders').select('*', { count: 'exact', head: true }).neq('is_public', false).gte('page_count', 1),
-    supabase.from('cartes_manuelles').select('*', { count: 'exact', head: true }).eq('disponible_vente', true),
+    countCardsForSale(supabase),
   ])
   return { collectors: collectors ?? 0, cards: Number(cards ?? 0), binders: binders ?? 0, trade: trade ?? 0 }
 }

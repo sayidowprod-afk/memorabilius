@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { cachedAsync } from '@/lib/ttlCache'
 import { fetchAllPaged } from '@/lib/playerManuelles'
+import { rpcPaged } from '@/lib/fastCards'
 import { SPORTS_TEAMS, type SportsTeam } from '@/lib/sportsTeams'
 import { teamSlug } from '@/lib/playerSlug'
 import { fetchCsvCardsForProfilesCached } from '@/lib/csvCardsCache'
@@ -40,7 +41,7 @@ export async function GET(req: NextRequest) {
   // Liste complète des cartes de l'équipe : cherchée en base UNE fois (5 min), puis découpée en pages en mémoire
   const cards = await cachedAsync(`tc:${slug}`, (v: any[]) => v.length ? 300_000 : 15_000, async () => {
     // pages de 1 000 demandées en parallèle (lib/playerManuelles)
-    const manuelles = (await fetchAllPaged(from => supabase
+    const manuelles = ((await rpcPaged(supabase, 'team_cards_search', { p_team: teamLastWord })) ?? await fetchAllPaged(from => supabase
       .from('cartes_manuelles')
       .select('id, nom, annee, marque, image_recto, is_horizontal, user_id, created_at, profiles(display_name, avatar_url, couleur_bordure)')
       .ilike('equipe', `%${teamLastWord}%`)
