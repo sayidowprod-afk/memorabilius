@@ -2,7 +2,7 @@
 /* eslint-disable @next/next/no-img-element */
 // Page d'un set : chiffres clés, top 5 rookies (draft de l'année), signatures, cartes par série, franchises, rainbow.
 // Les blocs sans données (pas de rookie, pas d'équipe, pas de carte signée…) sont masqués : la même page sert tous les sets.
-import { useEffect, useMemo, useState } from 'react'
+import { useEffect, useMemo, useRef, useState } from 'react'
 import Link from 'next/link'
 import { supabase } from '@/lib/supabase'
 import { TEAM_COLORS } from '@/lib/teamColors'
@@ -53,6 +53,9 @@ export default function SetPage({ setId }: { setId: string }) {
   const [sq, setSq] = useState('')
   const [tsort, setTsort] = useState<'n' | 'mine' | 'az'>('n')
   const [limit, setLimit] = useState<Record<string, number>>({})
+  const [mineImg, setMineImg] = useState<Map<number, string>>(new Map())          // mes propres photos (cartes que j'ai reliées à une ligne)
+  const [commImg, setCommImg] = useState<Map<number, string>>(new Map())          // photos de la communauté (moteur de correspondance du site)
+  const asked = useRef<Set<number>>(new Set())
   const [seriesLimit, setSeriesLimit] = useState(40)   // les gros sets ont des centaines de séries : on n'en affiche que quelques-unes à la fois
   const [boxFiles, setBoxFiles] = useState<string[]>([])
   const [draftAll, setDraftAll] = useState<{ pick: number; name: string }[]>([])   // toute la classe de draft de l'année du set
@@ -133,18 +136,20 @@ export default function SetPage({ setId }: { setId: string }) {
         setLoggedIn(true)
         const { data: c } = await supabase.rpc('get_set_completions', { p_set_id: sid, p_user_id: uid })
         const ids = new Set<number>((c || []).map((r: { entry_id: number }) => r.entry_id))
+        const mine = new Map<number, string>(); for (const r of (c || []) as { entry_id: number; matched_card_key?: string | null }[]) if (r.matched_card_key) mine.set(r.entry_id, r.matched_card_key)
         if ((c || []).length >= 1000) { // plafond de la fonction : on relit les completions par pages, bornées aux cartes du set
           const lo = await supabase.from('card_set_entries').select('id').eq('set_id', sid).order('id').limit(1)
           const hi = await supabase.from('card_set_entries').select('id').eq('set_id', sid).order('id', { ascending: false }).limit(1)
           const a = lo.data?.[0]?.id, b = hi.data?.[0]?.id
           if (a && b) for (let from = 0; from < 40000; from += 1000) {
-            const { data } = await supabase.from('user_set_completion').select('entry_id').eq('user_id', uid).gte('entry_id', a).lte('entry_id', b).order('entry_id').range(from, from + 999)
+            const { data } = await supabase.from('user_set_completion').select('entry_id, matched_card_key').eq('user_id', uid).gte('entry_id', a).lte('entry_id', b).order('entry_id').range(from, from + 999)
             if (!data?.length) break
-            for (const r of data as { entry_id: number }[]) ids.add(r.entry_id)
+            for (const r of data as { entry_id: number; matched_card_key?: string | null }[]) { ids.add(r.entry_id); if (r.matched_card_key) mine.set(r.entry_id, r.matched_card_key) }
             if (data.length < 1000) break
           }
         }
         setOwned(ids)
+        setMineImg(mine)
       }
     })()
   }, [sid])
@@ -225,6 +230,38 @@ export default function SetPage({ setId }: { setId: string }) {
     return a.sort((x, y) => tsort === 'az' ? x.name.localeCompare(y.name) : tsort === 'mine' ? (y.mine / Math.max(1, y.n)) - (x.mine / Math.max(1, x.n)) : y.n - x.n)
   }, [ov, loaded, owned, tsort, sport])
 
+  // photos des cartes affichées : seulement celles qui n'ont pas d'image, par paquets (l'API de la communauté exige d'être connecté)
+  const visibleIds = (() => {
+    const out: number[] = []
+    const q1v = q.trim().toLowerCase()
+    for (const sr of series.filter(x => tab === 'all' ? x.kind !== 'par' : x.kind === tab).slice(0, seriesLimit)) {
+      const rows = loaded[sr.name]; if (!rows || !open.has(sr.name)) continue
+      let list = rows
+      if (q1v) list = list.filter(e => `${e.player_name} ${e.team || ''} #${e.card_number || ''}`.toLowerCase().includes(q1v))
+      if (own !== 'all') list = list.filter(e => owned.has(e.id) === (own === 'own'))
+      for (const e of list.slice(0, limit[sr.name] || 48)) if (!e.image_url) out.push(e.id)
+    }
+    for (const e of ov?.hunt || []) if (!e.image_url) out.push(e.id)
+    return out
+  })()
+  const visibleKey = visibleIds.join(',')
+  useEffect(() => {
+    if (!set || !loggedIn) return
+    const todo = visibleIds.filter(id => !asked.current.has(id)).slice(0, 400)
+    if (!todo.length) return
+    todo.forEach(id => asked.current.add(id))
+    ;(async () => {
+      const { data: ses } = await supabase.auth.getSession(); const token = ses.session?.access_token
+      if (!token) return
+      try {
+        const r = await fetch('/api/setlist-images', { method: 'POST', headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${token}` }, body: JSON.stringify({ setId: set.id, setYear: set.year, setBrand: set.brand, setName: set.name, entryIds: todo }) })
+        const rows: { entry_id: number; image_url: string }[] = r.ok ? await r.json() : []
+        if (rows.length) setCommImg(prev => { const n = new Map(prev); for (const x of rows) n.set(x.entry_id, x.image_url); return n })
+      } catch { /* pas de photo communautaire */ }
+    })()
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [visibleKey, loggedIn, set])
+
   if (missing) return <div className="sl2"><div className="wrap" style={{ padding: '60px 16px' }}>Set introuvable. <Link href="/setlist" style={{ textDecoration: 'underline' }}>Retour aux setlists</Link></div></div>
   if (!set) return <div className="sl2"><div className="wrap" style={{ padding: '60px 16px' }}>Chargement du set…</div></div>
 
@@ -257,7 +294,7 @@ export default function SetPage({ setId }: { setId: string }) {
     return (
       <div key={e.id} className={`card${owned.has(e.id) ? ' own' : ''}`}>
         <div className="art" style={{ background: `linear-gradient(160deg, ${colorOf(e.team, sport)}, #050b22)` }}>
-          {e.image_url ? <img className="cimg" src={e.image_url} alt="" loading="lazy" /> : <b>{ini(e.player_name)}</b>}
+          {(mineImg.get(e.id) || e.image_url || commImg.get(e.id)) ? <img className="cimg" src={(mineImg.get(e.id) || e.image_url || commImg.get(e.id)) as string} alt="" loading="lazy" /> : <b>{ini(e.player_name)}</b>}
           {e.card_number && <span className="num">#{e.card_number}</span>}
           {lg && <span className="lg"><img src={lg} alt="" /></span>}
           {e.is_rc && <span className="rc">RC</span>}
