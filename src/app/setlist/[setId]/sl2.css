@@ -70,10 +70,10 @@
 .sl2 .tm small { color: var(--mut); font-size: 11px; }
 .sl2 /* ── parallèles ── */
 .pars { display: flex; flex-wrap: wrap; gap: 6px; }
-.sl2 .pr { border: 2px solid var(--line); padding: 5px 10px; font: 700 12px sans-serif; display: flex; gap: 6px; align-items: center; cursor: pointer; }
-.sl2 .pr i { width: 12px; height: 12px; border-radius: 50%; display: inline-block; border: 1px solid #fff; }
-.sl2 .pr em { color: var(--gold); font-style: normal; }
-.sl2 .pr:hover { background: #fff; color: var(--navy); }
+.sl2 .pchip { border: 2px solid var(--line); padding: 5px 10px; font: 700 12px sans-serif; display: flex; gap: 6px; align-items: center; cursor: pointer; }
+.sl2 .pchip i { width: 12px; height: 12px; border-radius: 50%; display: inline-block; border: 1px solid #fff; }
+.sl2 .pchip em { color: var(--gold); font-style: normal; }
+.sl2 .pchip:hover { background: #fff; color: var(--navy); }
 .sl2 /* ── checklist ── */
 .tabs { display: flex; gap: 0; border: 3px solid #fff; margin-bottom: 12px; }
 .sl2 .tabs button { flex: 1; background: transparent; color: #fff; border: 0; border-right: 2px solid var(--line); padding: 10px 6px; font: 400 18px 'Surfquest', Impact, sans-serif; text-transform: uppercase; letter-spacing: .05em; cursor: pointer; }
@@ -229,3 +229,41 @@
   .sl2 .stats { grid-template-columns: repeat(2, 1fr); }
   .sl2 .stat:last-child:nth-child(odd) { grid-column: 1 / -1; }
 }
+
+/* photos de cartes : format réel d'une carte (2,5 x 3,5) et photo entière, sans zoom ni coupe */
+.sl2 .card .art { aspect-ratio: 2.5 / 3.5; }
+.sl2 .card .art img.cimg { object-fit: contain; }
+/* case à cocher */
+.sl2 .card .tick { position: absolute; right: 6px; bottom: 6px; z-index: 4; width: 30px; height: 30px; padding: 0; border: 2px solid #fff; background: rgba(7,20,58,.72); color: #fff; border-radius: 50% !important; cursor: pointer; font: 800 16px/1 sans-serif; display: flex; align-items: center; justify-content: center; }
+.sl2 .card .tick:hover { background: var(--green); }
+.sl2 .card.own .tick { background: var(--green); }
+.sl2 .card .tick.l { display: none; }
+.sl2 .cards.list .card .tick.g { display: none; }
+.sl2 .cards.list .card .tick.l { display: flex; position: static; margin-left: auto; flex: none; }
+.sl2 .sub > header .rb { white-space: nowrap; }
+
+/* étoile wishlist */
+.sl2 .card .wish { position: absolute; left: 6px; bottom: 6px; z-index: 4; width: 30px; height: 30px; padding: 0; border: 2px solid #fff; background: rgba(7,20,58,.72); color: var(--gold); border-radius: 50% !important; cursor: pointer; font: 800 16px/1 sans-serif; display: flex; align-items: center; justify-content: center; }
+.sl2 .card .wish:hover { background: var(--gold); color: #111; }
+.sl2 .card .wish.l { display: none; }
+.sl2 .cards.list .card .wish.g { display: none; }
+.sl2 .cards.list .card .wish.l { display: flex; position: static; margin-left: auto; flex: none; }
+.sl2 .cards.list .card .wish.l + .tick.l { margin-left: 8px; }
+
+/* qui a la carte à échanger + signalement */
+.sl2 .card .info .acts { display: flex; align-items: center; gap: 6px; margin-top: 4px; min-height: 18px; position: relative; }
+.sl2 .card .info .who { border: 1.5px solid #1e9e57; background: rgba(30,158,87,.15); color: #7ee2a8; padding: 0 6px; font: 800 10px sans-serif; cursor: pointer; white-space: nowrap; }
+.sl2 .card .info .flag { margin-left: auto; background: none; border: 0; color: var(--mut); opacity: .55; cursor: pointer; font-size: 13px; padding: 0 2px; }
+.sl2 .card .info .flag:hover { opacity: 1; color: #fff; }
+.sl2 .whopop { position: absolute; z-index: 40; top: 100%; left: 0; margin-top: 4px; min-width: 170px; background: #fff; color: #111; border: 2px solid #111; padding: 6px; display: flex; flex-direction: column; gap: 2px; }
+.sl2 .whopop small { font: 800 9px sans-serif; letter-spacing: .06em; text-transform: uppercase; color: #777; padding: 2px 4px; }
+.sl2 .whopop a { font: 700 13px sans-serif; color: #111; text-decoration: none; padding: 4px; }
+.sl2 .whopop a:hover { background: #eee; }
+.sl2 .hero .meta a.chip { text-decoration: none; }
+
+/* case à cocher : blanche (cercle et ✓ blancs) tant que la carte n'est pas possédée, verte quand on l'a */
+.sl2 .card .tick { width: 34px; height: 34px; border: 2.5px solid #fff; background: rgba(7,20,58,.72); color: #fff; font-size: 19px; box-shadow: 0 2px 6px rgba(0,0,0,.45); }
+.sl2 .card .tick::before { content: '✓'; color: #fff; }
+.sl2 .card .tick:hover { border-color: #2ecc71; }
+.sl2 .card.own .tick { background: #2ecc71; border-color: #2ecc71; color: #fff; }
+.sl2 .card.own .tick::before { content: none; }

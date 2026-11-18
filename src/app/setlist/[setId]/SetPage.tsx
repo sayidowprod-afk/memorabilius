@@ -7,6 +7,7 @@ import Link from 'next/link'
 import { supabase } from '@/lib/supabase'
 import { TEAM_COLORS } from '@/lib/teamColors'
 import { SPORTS_TEAMS, teamLogoUrl } from '@/lib/sportsTeams'
+import SetlistReportDialog from '@/components/SetlistReportDialog'
 import './sl2.css'
 
 type SetInfo = { id: number; name: string; year: number | null; brand: string | null; sport: string; total_cards: number }
@@ -17,6 +18,7 @@ type Overview = { base: number; rookies: number; autos: number; signers: number;
 
 const SPORT_LABEL: Record<string, string> = { nba: 'NBA', nfl: 'NFL', baseball: 'Baseball', hockey: 'Hockey', pokemon: 'Pokémon', mtg: 'Magic', 'non-sport': 'Non-sport' }
 const SPORT_API: Record<string, string> = { nba: 'nba', nfl: 'nfl', hockey: 'nhl', baseball: 'mlb' }
+const normStr = (t: string) => t?.normalize('NFD').replace(/\p{M}/gu, '').toLowerCase().replace(/[^a-z0-9]/g, '') || ''
 const kindOf = (name: string): Series['kind'] => /AUTO|SIGNATURE|SIGNED/i.test(name) ? 'auto' : /RELIC|JERSEY|PATCH|FABRIC|REMNANT|MEMORABILIA|SWATCH|WOVEN/i.test(name) ? 'mem' : 'ins'
 const nice = (s: string) => s.toLowerCase().replace(/\b[a-z]/g, c => c.toUpperCase()).replace(/\bRc\b/, 'RC')
 const ini = (n: string) => n.split(' ').map(w => w[0]).join('').slice(0, 2).toUpperCase()
@@ -30,8 +32,9 @@ function boxFor(name: string, files: string[]): string | null {
   const f = `${sl}-cover.webp`
   return files.includes(f) ? `/set-boxes/${f}` : null
 }
+const tkey = (n: string) => n.toLowerCase().replace(/^los angeles /, 'la ').replace(/\s+/g, ' ').trim()
 const LEAGUE_OF: Record<string, string> = { nba: 'nba', nfl: 'nfl', baseball: 'mlb', hockey: 'nhl' }
-const teamOf = (name: string | null, sport: string) => { if (!name) return null; const lg = LEAGUE_OF[sport]; return SPORTS_TEAMS.find(t => t.name === name && (!lg || t.sport === lg)) || null }
+const teamOf = (name: string | null, sport: string) => { if (!name) return null; const lg = LEAGUE_OF[sport]; return SPORTS_TEAMS.find(t => tkey(t.name) === tkey(name) && (!lg || t.sport === lg)) || null }
 const colorOf = (name: string | null, sport: string) => (name && TEAM_COLORS[name]?.primary) || teamOf(name, sport)?.color || '#1b3a8a'
 const logoOf = (name: string | null, sport: string) => { const t = teamOf(name, sport); return t ? teamLogoUrl(t, true) : null }
 
@@ -43,6 +46,16 @@ export default function SetPage({ setId }: { setId: string }) {
   const [ov, setOv] = useState<Overview | null>(null)
   const [owned, setOwned] = useState<Set<number>>(new Set())
   const [loggedIn, setLoggedIn] = useState(false)
+  const [uid, setUid] = useState<string | null>(null)
+  const [saving, setSaving] = useState<Set<number>>(new Set())
+  const [seasons, setSeasons] = useState<{ prev: { id: number; name: string } | null; next: { id: number; name: string } | null }>({ prev: null, next: null })
+  const [whoHas, setWhoHas] = useState<Map<number, { count: number; members: { id: string; name: string }[] }>>(new Map())   // membres qui ont la carte à échanger
+  const [whoOpen, setWhoOpen] = useState<number | null>(null)
+  const whoAsked = useRef<Set<number>>(new Set())
+  const [reportEntry, setReportEntry] = useState<{ entry: Entry; variation: string } | null>(null)
+  const [hiddenPhotos, setHiddenPhotos] = useState<Set<number>>(new Set())
+  const [copied, setCopied] = useState(false)
+  const [wish, setWish] = useState<Map<string, string>>(new Map())   // wishlist : clé (nom|set|variation) -> id
   const [autoBy, setAutoBy] = useState<Record<string, number> | null>(null)   // cartes signées par série (flag is_auto)
   const [loaded, setLoaded] = useState<Record<string, Entry[]>>({})
   const [open, setOpen] = useState<Set<string>>(new Set())
@@ -56,6 +69,7 @@ export default function SetPage({ setId }: { setId: string }) {
   const [mineImg, setMineImg] = useState<Map<number, string>>(new Map())          // mes propres photos (cartes que j'ai reliées à une ligne)
   const [commImg, setCommImg] = useState<Map<number, string>>(new Map())          // photos de la communauté (moteur de correspondance du site)
   const asked = useRef<Set<number>>(new Set())
+  const [rainbowLimit, setRainbowLimit] = useState(60)
   const [seriesLimit, setSeriesLimit] = useState(40)   // les gros sets ont des centaines de séries : on n'en affiche que quelques-unes à la fois
   const [boxFiles, setBoxFiles] = useState<string[]>([])
   const [draftAll, setDraftAll] = useState<{ pick: number; name: string }[]>([])   // toute la classe de draft de l'année du set
@@ -135,9 +149,46 @@ export default function SetPage({ setId }: { setId: string }) {
       const { data: ses } = await supabase.auth.getSession(); const uid = ses.session?.user.id
       if (uid) {
         setLoggedIn(true)
+        setUid(uid)
+        let ids = new Set<number>()
+        const mine = new Map<number, string>()
+        let synced = false
+        // 1) synchro avec ma galerie : les cartes que je possède sont cochées toutes seules (même service que l'ancienne page)
+        try {
+          type GC = { id?: string; nom: string; annee: string; marque: string; collection: string; collection_tag: string; variation: string; image_recto?: string | null; set_entry_id?: number | null; card_number?: string | null }
+          const { data: gc } = await supabase.from('cartes_manuelles').select('id, nom, annee, marque, collection, collection_tag, variation, image_recto, set_entry_id, card_number').eq('user_id', uid)
+          let gallery: GC[] = (gc || []) as GC[]
+          const { data: prof } = await supabase.from('profiles').select('lien_csv').eq('id', uid).single()
+          if (prof?.lien_csv) {
+            try {
+              const txt = await (await fetch(prof.lien_csv + '&t=' + Date.now())).text()
+              gallery = [...gallery, ...txt.split(/\r?\n/).slice(4).flatMap(row => {
+                const c = row.split(/,(?=(?:(?:[^"]*"){2})*[^"]*$)/)
+                if (!c[0] || !c[0].includes('http')) return []
+                return [{ nom: c[2]?.trim() || '', annee: c[4]?.trim() || '', marque: c[5]?.trim() || '', collection: c[6]?.trim() || '', collection_tag: '', variation: c[7]?.trim() || '', card_number: c[13]?.trim() || '', image_recto: c[0]?.trim() || undefined }]
+              })]
+            } catch { /* CSV indisponible */ }
+          }
+          const token = ses.session?.access_token
+          if (token) {
+            const res = await fetch('/api/set-sync', {
+              method: 'POST', headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${token}` },
+              body: JSON.stringify({ setId: sid, setYear: (s as SetInfo).year, setBrand: (s as SetInfo).brand, setName: (s as SetInfo).name, galleryCards: gallery,
+                playerImages: Object.fromEntries(gallery.filter(g => g.image_recto).map(g => [normStr(g.nom), g.image_recto]).filter((e): e is [string, string] => Boolean(e[1]))) }),
+            })
+            if (res.ok) {
+              const d = await res.json() as { completedEntryIds: number[]; completionDetails: Record<string, { matched_card_key?: string | null }> }
+              ids = new Set<number>(d.completedEntryIds || [])
+              for (const [k, v] of Object.entries(d.completionDetails || {})) if (v?.matched_card_key) mine.set(parseInt(k), v.matched_card_key)
+              synced = true
+            }
+          }
+        } catch { /* la synchro a échoué : on lit simplement ce qui est déjà coché */ }
+        // 2) repli : lecture simple des cartes déjà cochées
+        if (!synced) {
         const { data: c } = await supabase.rpc('get_set_completions', { p_set_id: sid, p_user_id: uid })
-        const ids = new Set<number>((c || []).map((r: { entry_id: number }) => r.entry_id))
-        const mine = new Map<number, string>(); for (const r of (c || []) as { entry_id: number; matched_card_key?: string | null }[]) if (r.matched_card_key) mine.set(r.entry_id, r.matched_card_key)
+        ids = new Set<number>((c || []).map((r: { entry_id: number }) => r.entry_id))
+        ; for (const r of (c || []) as { entry_id: number; matched_card_key?: string | null }[]) if (r.matched_card_key) mine.set(r.entry_id, r.matched_card_key)
         if ((c || []).length >= 1000) { // plafond de la fonction : on relit les completions par pages, bornées aux cartes du set
           const lo = await supabase.from('card_set_entries').select('id').eq('set_id', sid).order('id').limit(1)
           const hi = await supabase.from('card_set_entries').select('id').eq('set_id', sid).order('id', { ascending: false }).limit(1)
@@ -149,12 +200,36 @@ export default function SetPage({ setId }: { setId: string }) {
             if (data.length < 1000) break
           }
         }
+        }
         setOwned(ids)
         setMineImg(mine)
       }
     })()
   }, [sid])
 
+  useEffect(() => {
+    if (!set) return
+    let cancel = false
+    const key = (n: string) => n.normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase().replace(/\b(19|20)\d{2}(-\d{2,4})?\b/g, ' ').replace(/[^a-z0-9]+/g, ' ').trim()
+    const mine = key(set.name); if (!mine) return
+    const longest = mine.split(' ').sort((x, y) => y.length - x.length)[0]
+    supabase.from('card_sets').select('id, name, year').eq('sport', set.sport).ilike('name', '%' + longest + '%').limit(80).then(({ data }) => {
+      if (cancel) return
+      const same = ((data || []) as { id: number; name: string; year: number | null }[]).filter(x => x.year && key(x.name) === mine).sort((a, b) => (a.year || 0) - (b.year || 0))
+      const byYear = new Map<number, { id: number; name: string }>()
+      for (const x of same) if (!byYear.has(x.year as number)) byYear.set(x.year as number, { id: x.id, name: x.name })
+      const list = [...byYear.values()]
+      const i = list.findIndex(x => x.id === set.id)
+      setSeasons(i < 0 ? { prev: null, next: null } : { prev: i > 0 ? list[i - 1] : null, next: i < list.length - 1 ? list[i + 1] : null })
+    })
+    return () => { cancel = true }
+  }, [set])
+  const wishKey = (nom: string, collection: string, variation: string) => `${nom}|${collection}|${variation}`
+  useEffect(() => {
+    if (!uid) { setWish(new Map()); return }
+    supabase.from('wishlist').select('id, nom, collection, variation').eq('user_id', uid)
+      .then(({ data }) => setWish(new Map((data || []).map(w => [wishKey(w.nom, w.collection, w.variation || ''), w.id as string]))))
+  }, [uid])
   useEffect(() => {
     if (!set?.year || !SPORT_API[set.sport]) return
     fetch(`/api/draft-top?sport=${encodeURIComponent(set.sport)}&year=${set.year}&n=80`).then(r => (r.ok ? r.json() : { picks: [] })).then(d => setDraftAll(Array.isArray(d?.picks) ? d.picks : [])).catch(() => {})
@@ -213,6 +288,71 @@ export default function SetPage({ setId }: { setId: string }) {
   }
   // première série ouverte par défaut : on charge ses cartes
   useEffect(() => { if (series.length) void loadSeries(series[0].name) }, [series]) // eslint-disable-line react-hooks/exhaustive-deps
+  // cocher / décocher une carte directement sur la page (même table que l'ancienne page de suivi : user_set_completion)
+  async function toggleOwn(e: Entry) {
+    if (!uid || saving.has(e.id)) return
+    const was = owned.has(e.id)
+    setSaving(x => new Set(x).add(e.id))
+    setOwned(o => { const n = new Set(o); if (was) n.delete(e.id); else n.add(e.id); return n })   // affichage immédiat
+    const res = was
+      ? await supabase.from('user_set_completion').delete().eq('user_id', uid).eq('entry_id', e.id)
+      : await supabase.from('user_set_completion').upsert({ user_id: uid, entry_id: e.id, manually_checked: true }, { onConflict: 'user_id,entry_id' })
+    if (res.error) setOwned(o => { const n = new Set(o); if (was) n.add(e.id); else n.delete(e.id); return n })   // échec : on remet comme avant
+    setSaving(x => { const n = new Set(x); n.delete(e.id); return n })
+  }
+  async function copyMissing() {
+    const lines: string[] = []
+    for (const rows of Object.values(loaded)) for (const e of rows) if (!owned.has(e.id)) lines.push(`#${e.card_number || '?'} ${e.player_name}${e.team ? ` (${e.team})` : ''}${e.variation ? ` · ${nice(e.variation)}` : ''}`)
+    try { await navigator.clipboard.writeText(lines.join('\n')); setCopied(true); setTimeout(() => setCopied(false), 2000) } catch { /* presse-papiers refusé */ }
+  }
+  // wishlist : même table et mêmes champs que l'ancienne page de suivi
+  const wishRow = (e: Entry) => ({
+    user_id: uid, nom: e.player_name, annee: set?.year ? String(set.year) : '', marque: set?.brand || '', collection: set?.name || '', variation: e.variation || '',
+    num: '', rc: e.is_rc, auto: false, patch: false, notes: [e.card_number ? `#${e.card_number}` : '', e.team || ''].filter(Boolean).join(' · '),
+  })
+  async function toggleWish(e: Entry) {
+    if (!uid || !set) return
+    const key = wishKey(e.player_name, set.name, e.variation || '')
+    const existing = wish.get(key)
+    if (existing) {
+      setWish(m => { const n = new Map(m); n.delete(key); return n })
+      const { error } = await supabase.from('wishlist').delete().eq('id', existing)
+      if (error) setWish(m => new Map(m).set(key, existing))
+    } else {
+      setWish(m => new Map(m).set(key, 'tmp'))
+      const { data, error } = await supabase.from('wishlist').insert(wishRow(e)).select('id').single()
+      if (error || !data) setWish(m => { const n = new Map(m); n.delete(key); return n })
+      else setWish(m => new Map(m).set(key, data.id as string))
+    }
+  }
+  // toutes les cartes manquantes d'une série d'un coup
+  async function wishMissing(name: string) {
+    const rows = loaded[name]; if (!uid || !set || !rows) return
+    const todo = rows.filter(r => !owned.has(r.id) && !wish.has(wishKey(r.player_name, set.name, r.variation || '')))
+    if (!todo.length) return
+    for (let i = 0; i < todo.length; i += 300) {
+      const part = todo.slice(i, i + 300)
+      const { data, error } = await supabase.from('wishlist').insert(part.map(wishRow)).select('id, nom, collection, variation')
+      if (error || !data) break
+      setWish(m => { const n = new Map(m); for (const w of data) n.set(wishKey(w.nom, w.collection, w.variation || ''), w.id as string); return n })
+    }
+  }
+  // toute une série d'un coup : tout cocher, ou tout décocher si elle est déjà complète
+  async function toggleSeriesOwn(name: string) {
+    const rows = loaded[name]; if (!uid || !rows?.length) return
+    const all = rows.every(r => owned.has(r.id))
+    const ids = rows.map(r => r.id)
+    setOwned(o => { const n = new Set(o); for (const id of ids) { if (all) n.delete(id); else n.add(id) } return n })
+    let failed = false
+    for (let i = 0; i < ids.length; i += 500) {
+      const part = ids.slice(i, i + 500)
+      const res = all
+        ? await supabase.from('user_set_completion').delete().eq('user_id', uid).in('entry_id', part)
+        : await supabase.from('user_set_completion').upsert(part.map(id => ({ user_id: uid, entry_id: id, manually_checked: true })), { onConflict: 'user_id,entry_id' })
+      if (res.error) { failed = true; break }
+    }
+    if (failed) setOwned(o => { const n = new Set(o); for (const id of ids) { if (all) n.add(id); else n.delete(id) } return n })
+  }
   const toggle = (name: string) => setOpen(o => { const n = new Set(o); if (n.has(name)) n.delete(name); else { n.add(name); void loadSeries(name) } return n })
 
   const sport = set?.sport || 'nba'
@@ -241,9 +381,9 @@ export default function SetPage({ setId }: { setId: string }) {
     const rows = ov?.baseRows?.length ? ov.baseRows : loaded['Base'] || []
     for (const e of rows) if (e.team && owned.has(e.id)) mine.set(e.team, (mine.get(e.team) || 0) + 1)
     const lg = LEAGUE_OF[sport]
-    const present = new Set((ov?.teams || []).map(t => t.team.toLowerCase()))
-    const missingTeams = lg && (ov?.teams || []).length ? SPORTS_TEAMS.filter(x => x.sport === lg && !present.has(x.name.toLowerCase())).map(x => ({ team: x.name, n: 0 })) : []
-    const a = [...(ov?.teams || []), ...missingTeams].filter(t => !lg || SPORTS_TEAMS.some(x => x.sport === lg && x.name.toLowerCase() === t.team.toLowerCase())).map(t => ({ name: t.team, n: Number(t.n), mine: mine.get(t.team) || 0 }))
+    const present = new Set((ov?.teams || []).map(t => tkey(t.team)))
+    const missingTeams = lg && (ov?.teams || []).length ? SPORTS_TEAMS.filter(x => x.sport === lg && !present.has(tkey(x.name))).map(x => ({ team: x.name, n: 0 })) : []
+    const a = [...(ov?.teams || []), ...missingTeams].filter(t => !lg || SPORTS_TEAMS.some(x => x.sport === lg && tkey(x.name) === tkey(t.team))).map(t => ({ name: t.team, n: Number(t.n), mine: mine.get(t.team) || 0 }))
     return a.sort((x, y) => tsort === 'az' ? x.name.localeCompare(y.name) : tsort === 'mine' ? (y.mine / Math.max(1, y.n)) - (x.mine / Math.max(1, x.n)) : y.n - x.n)
   }, [ov, loaded, owned, tsort, sport])
 
@@ -262,6 +402,34 @@ export default function SetPage({ setId }: { setId: string }) {
     return out
   })()
   const visibleKey = visibleIds.join(',')
+  const whoKey = (() => {
+    if (!uid) return ''
+    const out: number[] = []
+    for (const sr of series.filter(x => tab === 'all' ? x.kind !== 'par' : x.kind === tab).slice(0, seriesLimit)) {
+      const rows = loaded[sr.name]; if (!rows || !open.has(sr.name)) continue
+      for (const e of rows.slice(0, limit[sr.name] || 48)) if (!owned.has(e.id) && !whoAsked.current.has(e.id)) out.push(e.id)
+    }
+    return out.slice(0, 60).join(',')
+  })()
+  useEffect(() => {
+    if (!set || !uid || !whoKey) return
+    const ids = whoKey.split(',').map(Number)
+    const byId = new Map<number, Entry>(); for (const rows of Object.values(loaded)) for (const e of rows) byId.set(e.id, e)
+    const todo = ids.map(id => byId.get(id)).filter((e): e is Entry => !!e)
+    todo.forEach(e => whoAsked.current.add(e.id))
+    let cancel = false
+    ;(async () => {
+      const { data: ses } = await supabase.auth.getSession(); const token = ses.session?.access_token
+      if (!token || cancel) return
+      try {
+        const r = await fetch('/api/setlist-who-has', { method: 'POST', headers: { 'Content-Type': 'application/json', Authorization: 'Bearer ' + token }, body: JSON.stringify({ setId: set.id, setYear: set.year, setBrand: set.brand, setName: set.name, entries: todo.map(e => ({ id: e.id, player_name: e.player_name, card_number: e.card_number, variation: e.variation })) }) })
+        const rows: { entry_id: number; count: number; members: { id: string; name: string }[] }[] = r.ok ? await r.json() : []
+        if (!cancel && rows.length) setWhoHas(prev => { const n = new Map(prev); for (const x of rows) n.set(x.entry_id, { count: x.count, members: x.members }); return n })
+      } catch { /* pas d'information d'échange */ }
+    })()
+    return () => { cancel = true }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [whoKey, uid, set])
   useEffect(() => {
     if (!set || !loggedIn) return
     const todo = visibleIds.filter(id => !asked.current.has(id)).slice(0, 400)
@@ -311,12 +479,33 @@ export default function SetPage({ setId }: { setId: string }) {
     return (
       <div key={e.id} className={`card${owned.has(e.id) ? ' own' : ''}`}>
         <div className="art" style={{ background: `linear-gradient(160deg, ${colorOf(e.team, sport)}, #050b22)` }}>
-          {(mineImg.get(e.id) || e.image_url || commImg.get(e.id)) ? <img className="cimg" src={(mineImg.get(e.id) || e.image_url || commImg.get(e.id)) as string} alt="" loading="lazy" /> : <b>{ini(e.player_name)}</b>}
+          {(mineImg.get(e.id) || (!hiddenPhotos.has(e.id) && (e.image_url || commImg.get(e.id)))) ? <img className="cimg" src={(mineImg.get(e.id) || e.image_url || commImg.get(e.id)) as string} alt="" loading="lazy" /> : <b>{ini(e.player_name)}</b>}
           {e.card_number && <span className="num">#{e.card_number}</span>}
           {lg && <span className="lg"><img src={lg} alt="" /></span>}
           {e.is_rc && <span className="rc">RC</span>}
+          {uid && !owned.has(e.id) && <button type="button" className="wish g" title={wish.has(wishKey(e.player_name, set?.name || '', e.variation || '')) ? 'Retirer de ma wishlist' : 'Ajouter à ma wishlist'} aria-label="Wishlist" onClick={ev => { ev.stopPropagation(); void toggleWish(e) }}>{wish.has(wishKey(e.player_name, set?.name || '', e.variation || '')) ? '★' : '☆'}</button>}
+          {uid && <button type="button" className="tick g" title={owned.has(e.id) ? 'Je ne l’ai plus' : 'Je l’ai'} aria-label={owned.has(e.id) ? 'Décocher cette carte' : 'Cocher cette carte'} onClick={ev => { ev.stopPropagation(); void toggleOwn(e) }}>{owned.has(e.id) ? '✓' : ''}</button>}
         </div>
-        <div className="info"><b>{e.player_name}</b><small>{e.team || '—'}</small></div>
+        <div className="info"><b>{e.player_name}</b><small>{e.team || '—'}</small>
+          {uid && (
+            <div className="acts">
+              {!owned.has(e.id) && whoHas.get(e.id) && (
+                <span style={{ position: 'relative' }}>
+                  <button type="button" className="who" title="Des membres ont cette carte à échanger" onClick={ev => { ev.stopPropagation(); setWhoOpen(whoOpen === e.id ? null : e.id) }}>👥 {whoHas.get(e.id)!.count}</button>
+                  {whoOpen === e.id && (
+                    <div className="whopop" onClick={ev => ev.stopPropagation()}>
+                      <small>À échanger chez</small>
+                      {whoHas.get(e.id)!.members.map(m => <Link key={m.id} href={`/galerie/${m.id}?q=${encodeURIComponent(e.player_name)}`} prefetch={false}>{m.name}</Link>)}
+                    </div>
+                  )}
+                </span>
+              )}
+              <button type="button" className="flag" title="Signaler une erreur sur cette carte" aria-label="Signaler une erreur" onClick={ev => { ev.stopPropagation(); setReportEntry({ entry: e, variation: e.variation ? nice(e.variation) : 'Base' }) }}>⚑</button>
+            </div>
+          )}
+        </div>
+        {uid && !owned.has(e.id) && <button type="button" className="wish l" aria-label="Wishlist" onClick={ev => { ev.stopPropagation(); void toggleWish(e) }}>{wish.has(wishKey(e.player_name, set?.name || '', e.variation || '')) ? '★' : '☆'}</button>}
+        {uid && <button type="button" className="tick l" aria-label={owned.has(e.id) ? 'Décocher cette carte' : 'Cocher cette carte'} onClick={ev => { ev.stopPropagation(); void toggleOwn(e) }}>{owned.has(e.id) ? '✓' : ''}</button>}
       </div>
     )
   }
@@ -332,7 +521,8 @@ export default function SetPage({ setId }: { setId: string }) {
             <div className="eyebrow">{sportLabel}{set.brand ? ` · ${set.brand}` : ''}</div>
             <h1>{set.name}</h1>
             <div className="meta"><span className="chip on">{fmt(cardsN)} cartes</span>{parSeries.length > 0 && <span className="chip">{fmt(total)} avec les parallèles</span>}<span className="chip">{fmt(otherSeriesN)} série{otherSeriesN > 1 ? 's' : ''}</span></div>
-            <div className="btns"><Link className="btn fill" href={`/setlist/${set.id}/gerer`}>Cocher mes cartes</Link><a className="btn" href="#checklist">Voir les cartes</a><Link className="btn" href={`/setlist/${set.id}/print`}>Imprimer</Link></div>
+            {(seasons.prev || seasons.next) && <div className="meta">{seasons.prev && <Link className="chip" href={`/setlist/${seasons.prev.id}`} prefetch={false}>← {seasons.prev.name}</Link>}{seasons.next && <Link className="chip" href={`/setlist/${seasons.next.id}`} prefetch={false}>{seasons.next.name} →</Link>}</div>}
+            <div className="btns"><a className="btn fill" href="#checklist">Voir les cartes</a><Link className="btn" href={`/setlist/${set.id}/print`}>Imprimer</Link></div>
           </div>
           <div className="prog">
             <div className="ring" style={{ ['--p' as string]: pct }}><b>{loggedIn ? `${Math.round(pct)}%` : '—'}</b></div>
@@ -396,6 +586,7 @@ export default function SetPage({ setId }: { setId: string }) {
           )}
           <div className="tools">
             <input className="inp" value={q} onChange={e => setQ(e.target.value)} placeholder="Joueur, équipe, numéro…" />
+            {loggedIn && <button type="button" className="seg" style={{ background: copied ? 'var(--green)' : 'transparent', color: '#fff', padding: '8px 12px', font: '700 12px sans-serif', textTransform: 'uppercase', letterSpacing: '.04em', cursor: 'pointer' }} onClick={() => void copyMissing()}>{copied ? 'Copié ✓' : 'Copier les manquantes'}</button>}
             {loggedIn && <div className="seg">{([['all', 'Toutes'], ['own', 'Possédées'], ['miss', 'Manquantes']] as const).map(([k, l]) => <button key={k} className={own === k ? 'on' : ''} onClick={() => setOwn(k)}>{l}</button>)}</div>}
             <div className="seg" style={{ marginLeft: 'auto' }}>{([['grid', '▦ Grille'], ['list', '☰ Liste']] as const).map(([k, l]) => <button key={k} className={view === k ? 'on' : ''} onClick={() => setView(k)}>{l}</button>)}</div>
           </div>
@@ -412,6 +603,8 @@ export default function SetPage({ setId }: { setId: string }) {
                 <header onClick={() => toggle(s.name)}>
                   <h3>{nice(s.name)}</h3>
                   {mineN != null && loggedIn && <span className="mini"><i style={{ width: `${Math.round((mineN / Math.max(1, s.cnt)) * 100)}%` }} /></span>}
+                  {uid && rows && rows.some(r => !owned.has(r.id) && !wish.has(wishKey(r.player_name, set.name, r.variation || ''))) && <button type="button" className="rb" onClick={ev => { ev.stopPropagation(); void wishMissing(s.name) }}>★ Manquantes en wishlist</button>}
+                  {uid && rows && rows.length > 0 && <button type="button" className="rb" onClick={ev => { ev.stopPropagation(); void toggleSeriesOwn(s.name) }}>{rows.every(r => owned.has(r.id)) ? 'Tout décocher' : 'Tout cocher'}</button>}
                   <span className="cnt">{mineN != null && loggedIn ? `${mineN} / ` : ''}{fmt(s.cnt)}</span>
                   <span>{isOpen ? '▲' : '▼'}</span>
                 </header>
@@ -443,10 +636,11 @@ export default function SetPage({ setId }: { setId: string }) {
         {parSeries.length > 0 && (
           <section id="rainbow">
             <div className="sh"><h2>Le rainbow</h2><p>{fmt(parSeries.length)} parallèles et couleurs · {fmt(kindCount('par'))} versions</p></div>
-            <div className="pars">{parSeries.slice(0, 60).map(s => <span key={s.name} className="pr" onClick={() => { setTab('par'); setOpen(o => new Set(o).add(s.name)); void loadSeries(s.name); document.getElementById('checklist')?.scrollIntoView({ behavior: 'smooth' }) }}>{nice(s.name)} <em>{fmt(s.cnt)}</em></span>)}{parSeries.length > 60 && <span className="pr">+ {parSeries.length - 60} autres</span>}</div>
+            <div className="pars">{parSeries.slice(0, rainbowLimit).map(s => <span key={s.name} className="pchip" onClick={() => { setTab('par'); setOpen(o => new Set(o).add(s.name)); void loadSeries(s.name); document.getElementById('checklist')?.scrollIntoView({ behavior: 'smooth' }) }}>{nice(s.name)} <em>{fmt(s.cnt)}</em></span>)}{parSeries.length > rainbowLimit && <button type="button" className="pchip" style={{ background: 'transparent', color: 'inherit' }} onClick={() => setRainbowLimit(l => l + 120)}>+ {fmt(parSeries.length - rainbowLimit)} autres</button>}</div>
           </section>
         )}
       </div>
+      {reportEntry && <SetlistReportDialog setId={setId} setName={set.name} variation={reportEntry.variation} entry={reportEntry.entry} imageUrl={mineImg.has(reportEntry.entry.id) ? undefined : (reportEntry.entry.image_url || commImg.get(reportEntry.entry.id) || undefined)} onPhotoReported={id => setHiddenPhotos(h => new Set(h).add(id))} onClose={() => setReportEntry(null)} />}
       <p style={{ textAlign: 'center', color: 'var(--mut)', fontSize: 12, padding: '30px 16px 40px' }}>Memorabilius est un site indépendant, non affilié aux éditeurs de cartes ni aux ligues.</p>
     </div>
   )
