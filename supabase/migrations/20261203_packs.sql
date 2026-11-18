@@ -224,3 +224,14 @@ revoke all on function public.pack_record(uuid, bigint[]) from public, anon, aut
 revoke all on function public.pack_inventory(uuid) from public, anon, authenticated;
 grant execute on function public.pack_record(uuid, bigint[]) to service_role;
 grant execute on function public.pack_inventory(uuid) to service_role;
+
+
+-- ── 5. Liens de partage d'un beau tirage (lien court à envoyer n'importe où, avec aperçu enrichi sur Discord) ───────────────
+create table if not exists public.pack_shares (
+  id         text primary key default substr(replace(gen_random_uuid()::text, '-', ''), 1, 10),
+  user_id    uuid   not null references auth.users(id) on delete cascade,
+  entry_id   bigint not null,
+  created_at timestamptz not null default now(),
+  unique (user_id, entry_id)
+);
+alter table public.pack_shares enable row level security;   -- lecture et écriture réservées au serveur (service role)
