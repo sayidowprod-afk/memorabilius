@@ -1,5 +1,5 @@
 import { cachedAsync } from '@/lib/ttlCache'
-import CardOfTheDay from '@/components/CardOfTheDay'
+import HomeDaily from '@/components/HomeDaily'
 import PronosHomePreview from '@/components/PronosHomePreview'
 import { supabase } from '@/lib/supabase'
 import { countCardsForSale } from '@/lib/fastCards'
@@ -265,8 +265,11 @@ export default async function Home() {
   const podiumIds = [...new Set([...podium, ...podiumDay, ...podiumWeek].map((e: any) => e.userId))]
   const favTeam = new Map<string, string>()
   if (podiumIds.length) {
-    const { data: favs } = await supabase.from('profiles').select('id, favorite_teams').in('id', podiumIds)
-    for (const f of (favs || []) as any[]) { const t = (f.favorite_teams || [])[0]; if (t) favTeam.set(f.id, t) }
+    const favs = await cachedAsync(`home:favTeam:${[...podiumIds].sort().join(',')}`, 300_000, async () => {
+      const { data } = await supabase.from('profiles').select('id, favorite_teams').in('id', podiumIds)
+      return (data || []) as any[]
+    })
+    for (const f of favs) { const t = (f.favorite_teams || [])[0]; if (t) favTeam.set(f.id, t) }
   }
   const withTeam = (list: any[]) => list.map(e => ({ ...e, favoriteTeam: favTeam.get(e.userId) || null }))
 
@@ -293,7 +296,7 @@ export default async function Home() {
       <NativeHomeGate
         hero={<HomeHero total={total} totalCartes={totalCartes} totalBinders={totalBinders} totalTrade={totalTrade} featuredGalleries={featuredGalleries} />}
         siteStats={{ total, totalCartes, totalBinders, totalTrade }}
-        cardOfTheDay={<CardOfTheDay />}
+        cardOfTheDay={<HomeDaily />}
       />
       <TcgHomeSection />
       <PronosHomePreview />

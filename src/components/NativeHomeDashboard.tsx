@@ -157,6 +157,9 @@ function HomeSkeleton() {
   )
 }
 
+// true dès qu'on a constaté que la fonction SQL get_home_dashboard n'existe pas en base (on n'y retouche plus avant le prochain rechargement)
+let homeRpcMissing = false
+
 export default function NativeHomeDashboard({ siteStats, cardOfTheDay }: { siteStats: SiteStats; cardOfTheDay?: ReactNode }) {
   const router = useRouter()
   const [gq, setGq] = useState('')
@@ -344,19 +347,38 @@ export default function NativeHomeDashboard({ siteStats, cardOfTheDay }: { siteS
         // d'une requête live séparée sur cartes_manuelles uniquement, ratant les
         // cartes auto importées par CSV (incohérent avec rc/patch/num, en plus d'une
         // requête réseau de plus qui contribue au cold start).
-        const [{ data: profile }, { data: lastCards }, { data: badgeRows }, { data: streakRows }, { data: weekCards }, { data: xpTotal }, { count: liveCount }] = await Promise.race([
-          Promise.all([
+        // Le cœur des données (profil, dernières cartes, cartes de la semaine, XP, décompte) vient d'UNE seule requête (fonction SQL get_home_dashboard) :
+        // 5 allers-retours réseau en moins au chargement. Si la fonction n'existe pas encore en base, on retombe sur les 5 requêtes séparées.
+        type Core = { profile: any; lastCards: any[]; weekCards: any[]; xpTotal: number | null; liveCount: number | null }
+        const fetchCore = async (): Promise<Core> => {
+          if (!homeRpcMissing) {
+            const r = await timed('home', supabase.rpc('get_home_dashboard', { p_user_id: user.id, p_week_start: startOfWeekISO() }).abortSignal(abort.signal))
+            if (!r.error && r.data) {
+              const d = r.data as any
+              return { profile: d.profile ?? null, lastCards: d.lastCards || [], weekCards: d.weekCards || [], xpTotal: d.xpTotal ?? 0, liveCount: typeof d.liveCount === 'number' ? d.liveCount : null }
+            }
+            const code = (r.error as { code?: string } | null)?.code
+            if (code === 'PGRST202' || code === '42883') homeRpcMissing = true
+          }
+          const [{ data: profile }, { data: lastCards }, { data: weekCards }, { data: xpTotal }, { count: liveCount }] = await Promise.all([
             timed('profile', supabase.from('profiles').select('display_name, avatar_url, stats_total, stats_auto, lien_csv').eq('id', user.id).abortSignal(abort.signal).single()),
             timed('lastCard', supabase.from('cartes_manuelles').select('image_recto, nom').eq('user_id', user.id).not('image_recto', 'is', null).order('created_at', { ascending: false }).abortSignal(abort.signal).limit(24)),
-            timed('badgeData', cachedBadgeData<any>(supabase, user.id).then(row => ({ data: (row ? [row] : []) as any[], error: null }))),
-            timed('bumpStreak', supabase.rpc('bump_streak', { p_user_id: user.id }).abortSignal(abort.signal)),
             timed('weekCards', supabase.from('cartes_manuelles').select('rc, auto, patch, num').eq('user_id', user.id).gte('created_at', startOfWeekISO()).abortSignal(abort.signal)),
             timed('xpTotal', supabase.rpc('get_user_xp_total', { p_user_id: user.id }).abortSignal(abort.signal)),
             // vrai nombre de cartes à l'instant (décompte en base, sans télécharger les lignes) : l'accueil ne dépend plus d'un total enregistré qui peut dériver
             timed('liveCount', supabase.from('cartes_manuelles').select('id', { count: 'exact', head: true }).eq('user_id', user.id).abortSignal(abort.signal)),
+          ])
+          return { profile, lastCards: (lastCards || []) as any[], weekCards: (weekCards || []) as any[], xpTotal: (xpTotal as number | null) ?? 0, liveCount: typeof liveCount === 'number' ? liveCount : null }
+        }
+        const [core, { data: badgeRows }, { data: streakRows }] = await Promise.race([
+          Promise.all([
+            fetchCore(),
+            timed('badgeData', cachedBadgeData<any>(supabase, user.id).then(row => ({ data: (row ? [row] : []) as any[], error: null }))),
+            timed('bumpStreak', supabase.rpc('bump_streak', { p_user_id: user.id }).abortSignal(abort.signal)),
           ]),
           timeout,
         ])
+        const { profile, lastCards, weekCards, xpTotal, liveCount } = core
         if (cancelled) return
 
         const b = badgeRows?.[0]

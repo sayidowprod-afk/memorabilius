@@ -144,7 +144,8 @@ export default function CardOfTheDay() {
     window.addEventListener('keydown', onKey)
     return () => { document.body.style.overflow = prev; window.removeEventListener('keydown', onKey) }
   }, [open])
-  if (!pick) return null
+  // Emplacement réservé (même hauteur que le bloc) tant que la carte n'est pas arrivée : sans ça, tout le bas de l'accueil sautait à son arrivée (décalage de mise en page)
+  if (!pick) return <section className="cdj cdj-ph" aria-hidden="true" />
   const { card, day } = pick
   const reveal = () => {
     setRevealed(true)

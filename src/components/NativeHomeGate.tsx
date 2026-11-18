@@ -2,7 +2,10 @@
 import { ReactNode, useEffect } from 'react'
 import { useAuth } from '@/lib/AuthContext'
 import { useIsAppUI } from '@/lib/useIsNative'
-import NativeHomeDashboard from '@/components/NativeHomeDashboard'
+import dynamic from 'next/dynamic'
+
+// Le tableau de bord ne sert qu'aux membres connectés : les visiteurs ne le téléchargent plus
+const NativeHomeDashboard = dynamic(() => import('@/components/NativeHomeDashboard'), { ssr: false, loading: () => <div className="home-member-ph" aria-hidden="true" /> })
 
 interface SiteStats { total: number; totalCartes: number; totalBinders: number; totalTrade: number }
 

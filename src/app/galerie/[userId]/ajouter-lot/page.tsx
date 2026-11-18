@@ -3,7 +3,7 @@
 // Une seule liste de cartes (`entries`) reçoit toutes les sources : photos choisies, rafale caméra, page de classeur.
 // Les photos sont réduites, envoyées, puis (au choix) identifiées par l'IA existante (/api/scan-card, 1 scan par carte).
 // Une carte non identifiée est enregistrée « À compléter » : rien n'est perdu. On peut arrêter, reprendre, et réessayer les échecs.
-import { use, useEffect, useRef, useState } from 'react'
+import { use, useEffect, useMemo, useRef, useState } from 'react'
 import { useRouter } from 'next/navigation'
 import Link from 'next/link'
 import { supabase } from '@/lib/supabase'
@@ -168,6 +168,8 @@ export default function AjoutLotPage({ params }: { params: Promise<{ userId: str
   const NONE = '__none'
   const [cardTag, setCardTag] = useState<Record<number, string>>({})
   const [allTags, setAllTags] = useState<string[]>([])
+  // liste des collections proposées : calculée UNE fois (elle était recalculée et retriée pour chaque carte à chaque mise à jour de l'écran)
+  const tagOptions = useMemo(() => [...new Set([...allTags, ...(collectionTag ? [collectionTag] : [])])].sort(), [allTags, collectionTag])
   useEffect(() => {
     let off = false
     if (!ownerResolved) return
@@ -704,8 +706,8 @@ export default function AjoutLotPage({ params }: { params: Promise<{ userId: str
             <div key={e.id} className={'da-lot-row' + (st?.s === 'error' ? ' err' : '') + (e.skip ? ' skip' : '')}>
               <div className="da-lot-num">{i + 1}</div>
               <div className="da-lot-photos">
-                <figure><img src={e.recto.url} alt={`Carte ${i + 1}, recto`} className={st && (st.s === 'upload' || st.s === 'scan' || st.s === 'detect') ? 'busy' : undefined} />{badge(st?.s)}<figcaption>Recto{(e.src?.recto || e.rawRecto) && idle && !over && <> · <button type="button" className="da-lot-link" onClick={() => openEditor(e.id, 'recto')}>coins</button></>}</figcaption></figure>
-                {e.verso ? <figure><img src={e.verso.url} alt={`Carte ${i + 1}, verso`} /><figcaption>Verso{(e.src?.verso || e.rawVerso) && idle && !over && <> · <button type="button" className="da-lot-link" onClick={() => openEditor(e.id, 'verso')}>coins</button></>}</figcaption></figure> : <figure className="empty"><div>Pas de verso</div></figure>}
+                <figure><img src={e.recto.url} loading="lazy" decoding="async" alt={`Carte ${i + 1}, recto`} className={st && (st.s === 'upload' || st.s === 'scan' || st.s === 'detect') ? 'busy' : undefined} />{badge(st?.s)}<figcaption>Recto{(e.src?.recto || e.rawRecto) && idle && !over && <> · <button type="button" className="da-lot-link" onClick={() => openEditor(e.id, 'recto')}>coins</button></>}</figcaption></figure>
+                {e.verso ? <figure><img src={e.verso.url} loading="lazy" decoding="async" alt={`Carte ${i + 1}, verso`} /><figcaption>Verso{(e.src?.verso || e.rawVerso) && idle && !over && <> · <button type="button" className="da-lot-link" onClick={() => openEditor(e.id, 'verso')}>coins</button></>}</figcaption></figure> : <figure className="empty"><div>Pas de verso</div></figure>}
               </div>
               <div style={{ flex: 1, minWidth: 0 }}>
                 <div style={{ fontWeight: 700, fontSize: 14 }}>{st?.nom || `Carte ${i + 1}`}</div>
@@ -715,7 +717,7 @@ export default function AjoutLotPage({ params }: { params: Promise<{ userId: str
                   <select aria-label={`Collection de la carte ${i + 1}`} value={cardTag[e.id] || ''} onChange={ev => setCardTag(m => ({ ...m, [e.id]: ev.target.value }))} style={{ marginTop: 6, padding: '6px 8px', fontSize: 12, maxWidth: '100%' }}>
                     <option value="">Collection : {collectionTag ? `« ${collectionTag} » (le lot)` : 'aucune (le lot)'}</option>
                     <option value={NONE}>Aucune collection</option>
-                    {[...new Set([...allTags, ...(collectionTag ? [collectionTag] : [])])].sort().map(t => <option key={t} value={t}>{t}</option>)}
+                    {tagOptions.map(t => <option key={t} value={t}>{t}</option>)}
                   </select>
                 )}
                 {e.det === 'pending' && !over && <div style={{ fontSize: 12, color: 'var(--text2, #666)', marginTop: 4 }}>Recadrage en cours…</div>}

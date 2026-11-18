@@ -4,6 +4,14 @@ export type Entry = { date: string; titre: string; points: string[] }
 
 export const ENTRIES: Entry[] = [
   {
+    date: '30 novembre 2026', titre: 'Les packs de cartes arrivent sur l’accueil',
+    points: [
+      'Un pack gratuit toutes les heures (10 en réserve) : tranche-le et six vraies cartes de la base sortent l’une derrière l’autre, de commune à légendaire. Au moins 1 rare garantie, et une carte épique garantie après 10 packs sans.',
+      'Après le tirage : wishlist, lien vers le set, et partage sur Discord des cartes épiques et légendaires. « Mes cartes tirées » garde ton historique, avec tri et filtres.',
+      'L’accueil affiche la carte du jour et le pack côte à côte, et se charge plus vite. Sur téléphone, le menu d’une collection de la galerie s’ouvre enfin au toucher.',
+    ],
+  },
+  {
     date: '30 novembre 2026', titre: 'Team Sets sur les pages de set',
     points: [
       'Sur chaque page de set, la section « Team Sets » liste les franchises avec leur vrai total de cartes (parallèles et couleurs exclus), classées de A à Z.',

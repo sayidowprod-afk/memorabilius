@@ -2,6 +2,7 @@
 import { useState } from 'react'
 import { useTheme } from '@/lib/ThemeContext'
 import { getTeamById, teamLogoUrl } from '@/lib/sportsTeams'
+import { CUSTOM_LOGO_IDS } from '@/lib/customLogos'
 
 interface Props {
   teamId: string
@@ -50,7 +51,7 @@ export default function TeamBadge({ teamId, size = 28 }: Props) {
   // 1. Logo maison si dispo -- noir sur transparent, invert(1) le bascule en
   // blanc en mode sombre. NBA exclue : revient au logo ESPN officiel en
   // couleur, sans fond, a la demande.
-  if (team.sport !== 'nba' && customExtIndex < CUSTOM_LOGO_EXTENSIONS.length) {
+  if (team.sport !== 'nba' && CUSTOM_LOGO_IDS.has(teamId.replace(':', '-')) && customExtIndex < CUSTOM_LOGO_EXTENSIONS.length) {
     const ext = CUSTOM_LOGO_EXTENSIONS[customExtIndex]
     const src = `/team-logos/${teamId.replace(':', '-')}.${ext}?${LOGO_CACHE_BUST}`
     return (

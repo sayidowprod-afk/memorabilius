@@ -2236,3 +2236,91 @@ html[data-member="1"] .home-member-ph { display: block; min-height: 100svh; }
 /* rond blanc avec le logo de l'équipe, en bas à gauche de la boîte */
 .fk-badge { position: absolute; left: 8px; bottom: 8px; z-index: 7; width: 34px; height: 34px; border-radius: 50%; background: #fff; box-shadow: 0 0 0 4px #fff; display: flex; align-items: center; justify-content: center; }
 .fk-badge img { width: 35px; height: 35px; flex: none; object-fit: contain; background: none !important; animation: none !important; content-visibility: visible; }
+
+
+/* Accueil : Carte du jour (gauche) et Packs (droite), 50 / 50 */
+.hd-row { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 14px; align-items: stretch; margin: 0 0 44px; }
+.dd .hd-row { margin: 0 16px 14px; }
+.hd-row > .cdj, .dd .hd-row > .cdj { margin: 0; grid-template-columns: 190px minmax(0, 1fr); gap: 24px; padding: 38px 24px 26px 24px; }
+.dd .hd-row .cdj-week { grid-column: 1 / -1; grid-row: auto; grid-template-columns: repeat(7, 1fr); max-width: none; gap: 8px; margin-top: 6px; padding-bottom: 22px; align-self: auto; }
+.dd .hd-row .cdj-wd small { bottom: -19px; } .dd .hd-row .cdj-week .cdj-wd:nth-child(n+5) { margin-top: 0; }
+.hd-row .cdj h3, .dd .hd-row .cdj h3 { font-size: clamp(34px, 3.2vw, 54px); }
+.hd-row .cdj-meta, .dd .hd-row .cdj-meta { font-size: 14px; }
+.pt { position: relative; overflow: hidden; display: grid; grid-template-columns: minmax(0, 1fr) 190px; gap: 24px; align-items: center; border: 3px solid #fff; padding: 38px 24px 26px 28px; color: #fff;
+  background: radial-gradient(120% 90% at 100% 0%, rgba(43, 88, 214, .55), transparent 60%), linear-gradient(160deg, #0d2257, #07143a); }
+.pt, .pt * { box-sizing: border-box; border-radius: 0; }
+.pt-eyebrow { display: inline-block; padding: 5px 14px; border: 3px solid #fff; box-shadow: inset 0 0 0 3px #08153b, inset 0 0 0 4.5px #fff; font: 800 12px system-ui, sans-serif; letter-spacing: .18em; text-transform: uppercase; }
+.pt-info { display: flex; flex-direction: column; align-items: flex-start; gap: 14px; min-width: 0; }
+.pt h3 { margin: 0; font-size: clamp(34px, 3.2vw, 54px); line-height: .9; font-weight: 400; color: #fff; }
+.pt-meta { margin: 0; opacity: .85; font-size: 14px; line-height: 1.4; max-width: 420px; color: #fff; }
+.pt-stock { display: flex; flex-direction: column; gap: 5px; }
+.pt-stock b { font: 800 13px system-ui, sans-serif; letter-spacing: .06em; text-transform: uppercase; color: #fff; } .pt-stock small { opacity: .75; font-size: 12px; color: #fff; }
+.pt-pips { display: flex; gap: 4px; } .pt-pips i { width: 14px; height: 20px; border: 2px solid rgba(255, 255, 255, .3); display: block; } .pt-pips i.on { background: linear-gradient(160deg, #2b58d6, #0a1f5c); border-color: #fff; }
+.pt-actions { display: flex; gap: 10px; flex-wrap: wrap; }
+.pt-pack { position: relative; display: block; width: 190px; height: 290px; justify-self: end; transform: rotate(3deg); transition: transform .25s; filter: drop-shadow(0 18px 24px rgba(0, 0, 0, .55)); }
+.pt-pack:hover { transform: rotate(0deg) scale(1.04); }
+.pt-pack-in { position: absolute; left: 0; top: 0; width: 250px; height: 380px; transform: scale(.76); transform-origin: 0 0; display: block; }
+.pt-badge { position: absolute; top: -10px; right: -10px; min-width: 32px; height: 32px; display: flex; align-items: center; justify-content: center; background: #fdb927; color: #111; font: 800 15px system-ui, sans-serif; border: 3px solid #fff; z-index: 4; }
+@media (max-width: 900px) { .hd-row, .dd .hd-row { grid-template-columns: 1fr; } .dd .hd-row { margin: 0 16px 14px; } }
+@media (max-width: 520px) { .pt { grid-template-columns: minmax(0, 1fr) 120px; gap: 14px; padding: 36px 14px 22px 16px; } .pt-pack { width: 120px; height: 184px; } .pt-pack-in { transform: scale(.48); } .pt-meta { font-size: 12.5px; } }
+
+/* Accueil : Carte du jour et Pack bien plus grands */
+.hd-row > .cdj, .dd .hd-row > .cdj { grid-template-columns: clamp(230px, 17vw, 330px) minmax(0, 1fr); gap: 28px; padding: 44px 28px 30px 28px; }
+.hd-row .cdj h3, .dd .hd-row .cdj h3 { font-size: clamp(40px, 3.8vw, 64px); }
+.pt { grid-template-columns: minmax(0, 1fr) auto; gap: 28px; padding: 44px 28px 30px 32px; }
+.pt h3 { font-size: clamp(40px, 3.8vw, 64px); }
+.pt-meta { font-size: 15px; }
+.pt-pack { width: 260px; height: 395px; --ps: 1.04; }
+@media (min-width: 1500px) { .pt-pack { width: 320px; height: 486px; --ps: 1.28; } }
+.pt-pack-in { transform: scale(var(--ps, 1)); }
+@media (max-width: 900px) {
+  .hd-row > .cdj, .dd .hd-row > .cdj { grid-template-columns: 190px minmax(0, 1fr); padding: 40px 18px 26px 18px; }
+  .pt { grid-template-columns: minmax(0, 1fr) 190px; padding: 40px 18px 26px 20px; }
+  .pt-pack { width: 190px; height: 289px; --ps: .76; }
+}
+@media (max-width: 520px) {
+  .hd-row > .cdj, .dd .hd-row > .cdj { grid-template-columns: 150px minmax(0, 1fr); gap: 16px; }
+  .pt { grid-template-columns: minmax(0, 1fr) 140px; gap: 14px; }
+  .pt-pack { width: 140px; height: 213px; --ps: .56; }
+}
+
+/* ── Accueil : agencement refait. Grande carte à gratter et grand pack ; le calendrier devient une petite frise sous le texte ── */
+.hd-row > .cdj, .dd .hd-row > .cdj {
+  grid-template-columns: clamp(250px, 21vw, 390px) minmax(0, 1fr);
+  grid-template-areas: "img info" "img week";
+  grid-template-rows: 1fr auto; column-gap: 30px; row-gap: 14px; align-items: center; padding: 48px 30px 34px 30px;
+}
+.hd-row > .cdj > .cdj-img, .hd-row > .cdj > .cdj-scratch { grid-area: img; margin-top: 8px; }
+.hd-row > .cdj > .cdj-info { grid-area: info; align-self: end; }
+.dd .hd-row > .cdj > .cdj-week, .hd-row > .cdj > .cdj-week { grid-area: week; grid-column: 2; grid-row: 2; align-self: start; grid-template-columns: repeat(7, minmax(0, 1fr)); gap: 6px; max-width: 360px; margin-top: 4px; padding-bottom: 20px; }
+.dd .hd-row > .cdj .cdj-wd small, .hd-row > .cdj .cdj-wd small { font-size: 8px; bottom: -16px; letter-spacing: .08em; }
+.hd-row > .cdj .cdj-wd b { font-size: 16px; }
+.hd-row > .cdj .cdj-week .cdj-wd:nth-child(n+5) { margin-top: 0; }
+
+.pt { grid-template-columns: minmax(0, 1fr) auto; column-gap: 30px; padding: 48px 30px 34px 34px; }
+.pt-pack { width: 310px; height: 471px; --ps: 1.24; }
+@media (min-width: 1500px) { .pt-pack { width: 360px; height: 547px; --ps: 1.44; } }
+@media (max-width: 1250px) {
+  .hd-row > .cdj, .dd .hd-row > .cdj { grid-template-columns: 200px minmax(0, 1fr); column-gap: 20px; padding: 44px 20px 30px 20px; }
+  .pt { column-gap: 20px; padding: 44px 20px 30px 24px; } .pt-pack { width: 210px; height: 319px; --ps: .84; }
+}
+@media (max-width: 900px) {
+  .hd-row > .cdj, .dd .hd-row > .cdj { grid-template-columns: 230px minmax(0, 1fr); column-gap: 24px; }
+  .pt-pack { width: 240px; height: 365px; --ps: .96; }
+}
+@media (max-width: 520px) {
+  .hd-row > .cdj, .dd .hd-row > .cdj { grid-template-columns: 150px minmax(0, 1fr); column-gap: 14px; padding: 44px 14px 26px 14px; }
+  .pt { padding: 44px 14px 26px 16px; column-gap: 12px; } .pt-pack { width: 150px; height: 228px; --ps: .6; }
+}
+
+
+/* Carte du jour : emplacement réservé pendant le chargement (évite le décalage de mise en page) */
+.cdj.cdj-ph { display: block; min-height: 520px; }
+.hd-row > .cdj.cdj-ph { min-height: 520px; }
+@media (min-width: 1500px) { .hd-row > .cdj.cdj-ph { min-height: 635px; } }
+@media (max-width: 900px) { .hd-row > .cdj.cdj-ph { min-height: 340px; } }
+@media (max-width: 520px) { .hd-row > .cdj.cdj-ph { min-height: 285px; } }
+
+
+/* Figurines de PC : place réservée pendant le chargement (écrans où elles sont dans le flux) */
+@media (max-width: 1200px) { .da-profile .pc-bobbles.pc-bobbles-ph { height: var(--ph, 130px) !important; } }

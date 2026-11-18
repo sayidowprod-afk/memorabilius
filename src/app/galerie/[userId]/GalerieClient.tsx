@@ -907,6 +907,17 @@ export default function GalerieClient({ userId, initialCardUrl, initialCards, in
   const [colorPickerUp, setColorPickerUp] = useState(false)
   const [colorPickerLeft, setColorPickerLeft] = useState(false)
   const [colorPickerRect, setColorPickerRect] = useState<DOMRect | null>(null)
+  // le panneau d'une collection reste accroche a son crayon quand la page defile (il etait fixe a l'ecran)
+  useEffect(() => {
+    if (!colorPickerTag) return
+    const follow = () => {
+      const pen = Array.from(document.querySelectorAll<HTMLElement>('[data-pen]')).find(x => x.dataset.pen === colorPickerTag)
+      if (pen) setColorPickerRect(pen.getBoundingClientRect())
+    }
+    window.addEventListener('scroll', follow, true)
+    window.addEventListener('resize', follow)
+    return () => { window.removeEventListener('scroll', follow, true); window.removeEventListener('resize', follow) }
+  }, [colorPickerTag])
   const loaderRef = useRef<HTMLDivElement>(null)
 
   const { user: authUser } = useAuth()
@@ -2503,6 +2514,21 @@ export default function GalerieClient({ userId, initialCardUrl, initialCards, in
             className={highlighted ? 'gf-ch on' : 'gf-ch'}
             onClick={(e) => {
               e.stopPropagation()
+              // Sur mobile le toucher sur le crayon ✎ arrive parfois sur le bouton lui-meme (la cible n'est pas le crayon) :
+              // on regarde donc ou est tombe le doigt, et on ouvre le menu si c'est sur le crayon.
+              const pen = (e.currentTarget as HTMLElement).querySelector('.gf-edit') as HTMLElement | null
+              if (isOwner && pen) {
+                const r = pen.getBoundingClientRect()
+                if (e.clientX >= r.left - 6 && e.clientX <= r.right + 6 && e.clientY >= r.top - 8 && e.clientY <= r.bottom + 8) {
+                  setColorPickerUp((window.innerHeight - r.bottom) < r.top)
+                  setColorPickerLeft(r.left < window.innerWidth * 0.5)
+                  setColorPickerRect(r)
+                  setColorPickerTag(colorPickerTag === tag ? null : tag)
+                  setRenameValue(tag)
+                  setDeleteTagConfirm(null)
+                  return
+                }
+              }
               setFCollectionTag(isActive ? '' : tag)
               setColorPickerTag(null)
             }}
@@ -2529,6 +2555,7 @@ export default function GalerieClient({ userId, initialCardUrl, initialCards, in
             {isOwner && (
               <span
                 className="gf-edit"
+                data-pen={tag}
                 onClick={(e) => {
                   e.stopPropagation()
                   const r = (e.currentTarget as HTMLElement).getBoundingClientRect()

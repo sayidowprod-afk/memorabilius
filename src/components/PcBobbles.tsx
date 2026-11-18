@@ -18,6 +18,7 @@ const MIN_H = 50
 export default function PcBobbles({ pcs, ownerId, maxHeight = 150 }: { pcs?: Pc[] | null; ownerId?: string | null; maxHeight?: number }) {
   const [figs, setFigs] = useState<{ name: string; fig: BobbleFig; pct?: number; label?: string }[]>([])
   const [avail, setAvail] = useState(0)
+  const [loaded, setLoaded] = useState(false)   // la liste des figurines est arrivée (sert à réserver la place avant, sans décalage de la page)
   const ref = useRef<HTMLDivElement>(null)
   const catalog = useKitCatalog()
   const [livePcs, setLivePcs] = useState<Pc[] | null>(null)   // PC modifiés dans l'onglet Objectifs (tenue choisie) : mise à jour immédiate
@@ -30,12 +31,12 @@ export default function PcBobbles({ pcs, ownerId, maxHeight = 150 }: { pcs?: Pc[
   const key = (pcs || []).filter(p => p?.type === 'player' && p.name).map(p => p.name as string).slice(0, 8).join('|')
 
   useEffect(() => {
-    if (!key) { setFigs([]); return }
+    if (!key) { setFigs([]); setLoaded(true); return }
     let off = false
     fetch(`/api/bobble-figs?names=${encodeURIComponent(key)}`)
       .then(r => (r.ok ? r.json() : { figs: [] }))
-      .then(d => { if (!off) setFigs(Array.isArray(d?.figs) ? d.figs.slice(0, 8) : []) })
-      .catch(() => { if (!off) setFigs([]) })
+      .then(d => { if (!off) { setFigs(Array.isArray(d?.figs) ? d.figs.slice(0, 8) : []); setLoaded(true) } })
+      .catch(() => { if (!off) { setFigs([]); setLoaded(true) } })
     return () => { off = true }
   }, [key])
 
@@ -66,7 +67,16 @@ export default function PcBobbles({ pcs, ownerId, maxHeight = 150 }: { pcs?: Pc[
     return () => { ro?.disconnect(); window.removeEventListener('resize', upd) }
   }, [figs.length])
 
-  if (!figs.length) return null
+  if (!figs.length) {
+    // Écrans étroits : les figurines sont dans le flux de la page. On réserve leur hauteur dès le départ, sinon tout le bas de l'en-tête sautait à leur arrivée.
+    if (key && !loaded) {
+      const n = Math.max(1, Math.min(8, key.split('|').length))
+      const u = avail > 0 ? Math.min(avail, 560) : 300
+      const hh = Math.max(MIN_H, Math.min(maxHeight, Math.floor(u / n / VIS)))
+      return <div ref={ref} className="pc-bobbles pc-bobbles-ph" aria-hidden="true" style={{ ['--ph' as string]: `${hh + 17}px` } as React.CSSProperties} />
+    }
+    return null
+  }
   // largeur utilisable : toute la barre (téléphone) ; au plus 560 px sur grand écran pour ne pas recouvrir le texte à gauche
   const usable = avail > 0 ? Math.min(avail, 560) : 260
   const slotFull = usable / figs.length
