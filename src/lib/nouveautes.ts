@@ -4,6 +4,14 @@ export type Entry = { date: string; titre: string; points: string[] }
 
 export const ENTRIES: Entry[] = [
   {
+    date: '30 novembre 2026', titre: 'Team Sets sur les pages de set',
+    points: [
+      'Sur chaque page de set, la section « Team Sets » liste les franchises avec leur vrai total de cartes (parallèles et couleurs exclus), classées de A à Z.',
+      'Un clic sur une franchise ouvre toutes ses cartes du set, série par série, avec une case pour les cocher et un bouton « Tout cocher ».',
+      'Le menu du haut est plus grand et plus lisible, avec « Checklist » et « Team Sets ».',
+    ],
+  },
+  {
     date: '30 novembre 2026', titre: 'Les pages de set refaites',
     points: [
       'Chaque set a une page plus riche : chiffres clés (cartes, cartes de base, rookies, signées et reliques, séries, parallèles), barre de navigation et ta progression en haut.',

@@ -33,6 +33,24 @@ function boxFor(name: string, files: string[]): string | null {
   return files.includes(f) ? `/set-boxes/${f}` : null
 }
 const tkey = (n: string) => n.toLowerCase().replace(/^los angeles /, 'la ').replace(/\s+/g, ' ').trim()
+// cartes d'une franchise sans parallèles/couleurs, valable pour tous les sets : une série dont les cartes (numéro + joueur) sont déjà dans la base,
+// ou dans la série dont elle porte le nom (« Autographs Fast Break Black » ← « Autographs Fast Break »), est un parallèle
+function cleanTeamRows(all: Entry[]): Entry[] {
+  const isCode = (n: string | null) => !!n && /[A-Za-z]/.test(n)
+  const byVar = new Map<string, Entry[]>()
+  for (const e of all) { const k = e.variation || 'Base'; (byVar.get(k) || byVar.set(k, []).get(k)!).push(e) }
+  const keyOf = (e: Entry) => (e.card_number || '') + '|' + normN(e.player_name)
+  const order = [...byVar.entries()].sort((a, b) => (a[0] === 'Base' ? -1 : b[0] === 'Base' ? 1 : b[1].length - a[1].length || a[0].length - b[0].length))
+  const keptSets = new Map<string, Set<string>>()
+  const keep = new Set<string>()
+  for (const [v, es] of order) {
+    const isPar = v !== 'Base' && [...keptSets.entries()].some(([k, ks]) => (k === 'Base' || v.toLowerCase().includes(k.toLowerCase())) && es.filter(e => ks.has(keyOf(e))).length / es.length >= 0.5)
+    if (!isPar) { keep.add(v); keptSets.set(v, new Set(es.map(keyOf))) }
+  }
+  // un même joueur avec un code (AFB-BAY) et un numéro dans la même série : on garde le numéro
+  const numeric = new Set(all.filter(e => !isCode(e.card_number)).map(e => (e.variation || 'Base') + '|' + normN(e.player_name)))
+  return all.filter(e => { const v = e.variation || 'Base'; return keep.has(v) && !(isCode(e.card_number) && numeric.has(v + '|' + normN(e.player_name))) })
+}
 const LEAGUE_OF: Record<string, string> = { nba: 'nba', nfl: 'nfl', baseball: 'mlb', hockey: 'nhl' }
 const teamOf = (name: string | null, sport: string) => { if (!name) return null; const lg = LEAGUE_OF[sport]; return SPORTS_TEAMS.find(t => tkey(t.name) === tkey(name) && (!lg || t.sport === lg)) || null }
 const colorOf = (name: string | null, sport: string) => (name && TEAM_COLORS[name]?.primary) || teamOf(name, sport)?.color || '#1b3a8a'
@@ -64,11 +82,12 @@ export default function SetPage({ setId }: { setId: string }) {
   const [view, setView] = useState<'grid' | 'list'>('grid')
   const [q, setQ] = useState('')
   const [sq, setSq] = useState('')
-  const [tsort, setTsort] = useState<'n' | 'mine' | 'az'>('n')
+  const [tsort, setTsort] = useState<'n' | 'mine' | 'az'>('az')
   const [limit, setLimit] = useState<Record<string, number>>({})
   const [mineImg, setMineImg] = useState<Map<number, string>>(new Map())          // mes propres photos (cartes que j'ai reliées à une ligne)
   const [commImg, setCommImg] = useState<Map<number, string>>(new Map())          // photos de la communauté (moteur de correspondance du site)
   const asked = useRef<Set<number>>(new Set())
+  const [teamView, setTeamView] = useState<{ name: string; rows: Entry[] | null } | null>(null)
   const [rainbowLimit, setRainbowLimit] = useState(60)
   const [seriesLimit, setSeriesLimit] = useState(40)   // les gros sets ont des centaines de séries : on n'en affiche que quelques-unes à la fois
   const [boxFiles, setBoxFiles] = useState<string[]>([])
@@ -375,17 +394,36 @@ export default function SetPage({ setId }: { setId: string }) {
     return () => { off = true }
   }, [top5Names, sport])
 
+  // total réel de cartes par franchise (sans parallèles) : on lit les séries non parallèles du set une fois
+  const [teamRows, setTeamRows] = useState<Map<string, Entry[]> | null>(null)
+  useEffect(() => {
+    if (!series.length) return
+    let off = false
+    ;(async () => {
+      const names = series.filter(x => x.kind !== 'par' && x.name !== 'Base').map(x => x.name)
+      const rows: Entry[] = []
+      if (series.some(x => x.name === 'Base')) rows.push(...await pageAll(from => supabase.from('card_set_entries').select(SEL).eq('set_id', sid).is('variation', null).not('team', 'is', null).order('id').range(from, from + 999), 8000))
+      for (let i = 0; i < names.length; i += 25) rows.push(...await pageAll(from => supabase.from('card_set_entries').select(SEL).eq('set_id', sid).in('variation', names.slice(i, i + 25)).not('team', 'is', null).order('id').range(from, from + 999), 8000))
+      if (off) return
+      const g = new Map<string, Entry[]>()
+      for (const e of rows) { const k = tkey(e.team || ''); (g.get(k) || g.set(k, []).get(k)!).push(e) }
+      setTeamRows(new Map([...g.entries()].map(([k, v]) => [k, cleanTeamRows(v)])))
+    })()
+    return () => { off = true }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [series, sid])
   // équipes : comptes du set + ma progression (sur les cartes de base déjà lues)
   const teams = useMemo(() => {
     const mine = new Map<string, number>()
     const rows = ov?.baseRows?.length ? ov.baseRows : loaded['Base'] || []
     for (const e of rows) if (e.team && owned.has(e.id)) mine.set(e.team, (mine.get(e.team) || 0) + 1)
+    const real = (name: string) => teamRows?.get(tkey(name))
     const lg = LEAGUE_OF[sport]
     const present = new Set((ov?.teams || []).map(t => tkey(t.team)))
     const missingTeams = lg && (ov?.teams || []).length ? SPORTS_TEAMS.filter(x => x.sport === lg && !present.has(tkey(x.name))).map(x => ({ team: x.name, n: 0 })) : []
-    const a = [...(ov?.teams || []), ...missingTeams].filter(t => !lg || SPORTS_TEAMS.some(x => x.sport === lg && tkey(x.name) === tkey(t.team))).map(t => ({ name: t.team, n: Number(t.n), mine: mine.get(t.team) || 0 }))
+    const a = [...(ov?.teams || []), ...missingTeams].filter(t => !lg || SPORTS_TEAMS.some(x => x.sport === lg && tkey(x.name) === tkey(t.team))).map(t => { const r = real(t.team); return { name: t.team, n: r ? r.length : Number(t.n), mine: r ? r.filter(e => owned.has(e.id)).length : (mine.get(t.team) || 0) } })
     return a.sort((x, y) => tsort === 'az' ? x.name.localeCompare(y.name) : tsort === 'mine' ? (y.mine / Math.max(1, y.n)) - (x.mine / Math.max(1, x.n)) : y.n - x.n)
-  }, [ov, loaded, owned, tsort, sport])
+  }, [ov, loaded, owned, tsort, sport, teamRows])
 
   // photos des cartes affichées : seulement celles qui n'ont pas d'image, par paquets (l'API de la communauté exige d'être connecté)
   const visibleIds = (() => {
@@ -470,9 +508,33 @@ export default function SetPage({ setId }: { setId: string }) {
   const hasTeams = teams.length > 0
   const box = boxFor(set.name, boxFiles)
   const sportLabel = SPORT_LABEL[set.sport] || set.sport
+  // clic sur une franchise : liste de toutes ses cartes du set, groupées par série (comme les team sets des guides)
+  async function openTeam(name: string) {
+    setTeamView({ name, rows: null })
+    const alt = /^Los Angeles /i.test(name) ? name.replace(/^Los Angeles /i, 'LA ') : /^LA /i.test(name) ? name.replace(/^LA /i, 'Los Angeles ') : null
+    const names = alt ? [name, alt] : [name]
+    const rows = await pageAll(from => supabase.from('card_set_entries').select(SEL).eq('set_id', sid).in('team', names).order('id').range(from, from + 999), 8000)
+    setTeamView(v => (v && v.name === name ? { name, rows } : v))
+  }
+  // toutes les cartes de la franchise d'un coup (sans les parallèles)
+  async function toggleTeamAll(rows: Entry[]) {
+    if (!uid || !rows.length) return
+    const all = rows.every(r => owned.has(r.id))
+    const ids = rows.map(r => r.id)
+    setOwned(o => { const n = new Set(o); for (const id of ids) { if (all) n.delete(id); else n.add(id) } return n })
+    let failed = false
+    for (let i = 0; i < ids.length; i += 500) {
+      const part = ids.slice(i, i + 500)
+      const res = all
+        ? await supabase.from('user_set_completion').delete().eq('user_id', uid).in('entry_id', part)
+        : await supabase.from('user_set_completion').upsert(part.map(id => ({ user_id: uid, entry_id: id, manually_checked: true })), { onConflict: 'user_id,entry_id' })
+      if (res.error) { failed = true; break }
+    }
+    if (failed) setOwned(o => { const n = new Set(o); for (const id of ids) { if (all) n.add(id); else n.delete(id) } return n })
+  }
   const goCards = (text: string) => { setQ(text); document.getElementById('checklist')?.scrollIntoView({ behavior: 'smooth' }) }
   const tabs = ([['all', 'Cartes', cardsN], ['base', 'Base', kindCount('base')], ['ins', 'Inserts', kindCount('ins')], ['auto', 'Signatures', kindCount('auto')], ['mem', 'Reliques', kindCount('mem')], ['par', 'Parallèles', kindCount('par')]] as const).filter(([k, , n]) => k === 'all' || n > 0)
-  const anchors = [ov && top5.length ? ['top5', 'Top rookies'] : null, hunt.length ? ['apercu', 'À chasser'] : null, signers.length ? ['signes', 'Signatures'] : null, ['checklist', 'Les cartes'], hasTeams ? ['equipes', 'Franchises'] : null, parSeries.length > 0 ? ['rainbow', 'Rainbow'] : null].filter(Boolean) as string[][]
+  const anchors = [ov && top5.length ? ['top5', 'Top rookies'] : null, hunt.length ? ['apercu', 'À chasser'] : null, signers.length ? ['signes', 'Signatures'] : null, ['checklist', 'Checklist'], hasTeams ? ['equipes', 'Team Sets'] : null, parSeries.length > 0 ? ['rainbow', 'Rainbow'] : null].filter(Boolean) as string[][]
 
   const card = (e: Entry) => {
     const lg = logoOf(e.team, sport)
@@ -623,10 +685,10 @@ export default function SetPage({ setId }: { setId: string }) {
 
         {hasTeams && (
           <section id="equipes">
-            <div className="sh"><h2>Collectionner une franchise</h2>
-              <select className="inp" value={tsort} onChange={e => setTsort(e.target.value as 'n' | 'mine' | 'az')}><option value="n">Tri : nombre de cartes</option>{loggedIn && <option value="mine">Tri : ma progression</option>}<option value="az">Tri : A → Z</option></select></div>
+            <div className="sh"><h2>Team Sets</h2>
+              <select className="inp" value={tsort} onChange={e => setTsort(e.target.value as 'n' | 'mine' | 'az')}><option value="az">Tri : A → Z</option><option value="n">Tri : nombre de cartes</option>{loggedIn && <option value="mine">Tri : ma progression</option>}</select></div>
             <div className="teams">{teams.map(t => { const lg = logoOf(t.name, sport); return (
-              <div className="tm" key={t.name} onClick={() => goCards(t.name)}>
+              <div className="tm" key={t.name} onClick={() => void openTeam(t.name)}>
                 {lg && <img src={lg} alt="" />}<b>{t.name}</b>
                 {loggedIn && <div className="bar"><i style={{ width: `${Math.round((t.mine / Math.max(1, t.n)) * 100)}%` }} /></div>}<small>{t.n === 0 ? 'pas de carte de base' : `${loggedIn ? `${t.mine} / ` : ''}${t.n} cartes`}</small>
               </div>) })}</div>
@@ -640,6 +702,38 @@ export default function SetPage({ setId }: { setId: string }) {
           </section>
         )}
       </div>
+      {teamView && (() => {
+        const nonPar = new Set(series.filter(x => x.kind !== 'par').map(x => x.name))
+        const all = teamView.rows ? teamView.rows.filter(e => nonPar.has(e.variation || 'Base')) : null
+        const rows = all ? cleanTeamRows(all) : null
+        const groups = new Map<string, Entry[]>()
+        for (const e of rows || []) { const k = e.variation || 'Base'; (groups.get(k) || groups.set(k, []).get(k)!).push(e) }
+        const list = [...groups.entries()].sort((a, b) => (a[0] === 'Base' ? -1 : b[0] === 'Base' ? 1 : a[0].localeCompare(b[0])))
+        const lg = logoOf(teamView.name, sport)
+        const mineN = rows ? rows.filter(r => owned.has(r.id)).length : 0
+        return (
+          <div className="tv-back" onClick={() => setTeamView(null)}>
+            <div className="tv" onClick={ev => ev.stopPropagation()}>
+              <header>{lg && <img src={lg} alt="" />}<div><b>{teamView.name}</b><small>{rows ? `${loggedIn ? `${mineN} / ` : ''}${fmt(rows.length)} cartes dans ce set` : 'Chargement…'}</small></div>{uid && rows && rows.length > 0 && <button type="button" className="tv-all" onClick={() => void toggleTeamAll(rows)}>{rows.every(r => owned.has(r.id)) ? 'Tout décocher' : 'Tout cocher'}</button>}<button type="button" aria-label="Fermer" onClick={() => setTeamView(null)}>✕</button></header>
+              <div className="tv-body">
+                {!rows && <p className="tv-empty">Chargement des cartes…</p>}
+                {rows && !rows.length && <p className="tv-empty">Aucune carte de cette équipe dans ce set.</p>}
+                {list.map(([v, es]) => (
+                  <div key={v}>
+                    <h4>{nice(v)} <span>({es.length})</span></h4>
+                    {es.sort((a, b) => parseInt(a.card_number || '9999') - parseInt(b.card_number || '9999')).map(e => (
+                      <div className={'tv-row' + (owned.has(e.id) ? ' own' : '')} key={e.id}>
+                        <i>{e.card_number || '—'}</i><span>{e.player_name}</span>{e.is_rc && <em>RC</em>}
+                        {uid && <button type="button" className="tvc" aria-label={owned.has(e.id) ? 'Décocher' : 'Cocher'} onClick={() => void toggleOwn(e)}>{owned.has(e.id) ? '✓' : ''}</button>}
+                      </div>
+                    ))}
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+        )
+      })()}
       {reportEntry && <SetlistReportDialog setId={setId} setName={set.name} variation={reportEntry.variation} entry={reportEntry.entry} imageUrl={mineImg.has(reportEntry.entry.id) ? undefined : (reportEntry.entry.image_url || commImg.get(reportEntry.entry.id) || undefined)} onPhotoReported={id => setHiddenPhotos(h => new Set(h).add(id))} onClose={() => setReportEntry(null)} />}
       <p style={{ textAlign: 'center', color: 'var(--mut)', fontSize: 12, padding: '30px 16px 40px' }}>Memorabilius est un site indépendant, non affilié aux éditeurs de cartes ni aux ligues.</p>
     </div>

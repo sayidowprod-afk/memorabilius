@@ -267,3 +267,32 @@
 .sl2 .card .tick:hover { border-color: #2ecc71; }
 .sl2 .card.own .tick { background: #2ecc71; border-color: #2ecc71; color: #fff; }
 .sl2 .card.own .tick::before { content: none; }
+
+/* liste des cartes d'une franchise */
+.sl2 .tv-back { position: fixed; inset: 0; z-index: 300; background: rgba(0,0,0,.7); display: flex; align-items: center; justify-content: center; padding: 16px; }
+.sl2 .tv { width: min(640px, 100%); max-height: 88vh; display: flex; flex-direction: column; background: #0b1a45; border: 2px solid var(--line); }
+.sl2 .tv > header { display: flex; align-items: center; gap: 12px; padding: 12px 14px; border-bottom: 2px solid var(--line); }
+.sl2 .tv > header img { width: 40px; height: 40px; object-fit: contain; background: none !important; animation: none !important; content-visibility: visible; }
+.sl2 .tv > header div { flex: 1; min-width: 0; display: flex; flex-direction: column; }
+.sl2 .tv > header b { font: 800 18px sans-serif; color: #fff; }
+.sl2 .tv > header small { color: var(--mut); font-size: 12px; }
+.sl2 .tv > header button { background: none; border: 0; color: #fff; font-size: 20px; cursor: pointer; padding: 4px 8px; }
+.sl2 .tv-body { overflow-y: auto; }
+.sl2 .tv-body h4 { margin: 0; padding: 7px 14px; background: rgba(255,255,255,.08); color: #8fb4ff; font: 800 11px sans-serif; letter-spacing: .06em; text-transform: uppercase; position: sticky; top: 0; }
+.sl2 .tv-body h4 span { color: var(--mut); }
+.sl2 .tv-row { display: flex; align-items: center; gap: 10px; padding: 7px 14px; border-bottom: 1px solid rgba(255,255,255,.07); font-size: 14px; color: #fff; }
+.sl2 .tv-row i { font-style: normal; font-weight: 800; min-width: 54px; color: #cfd8f5; }
+.sl2 .tv-row span { flex: 1; min-width: 0; }
+.sl2 .tv-row em { font: 800 9px sans-serif; background: #e8891c; color: #fff; padding: 2px 5px; font-style: normal; }
+.sl2 .tv-row.own { background: rgba(30,158,87,.14); }
+.sl2 .tv-row .tvc { width: 26px; height: 26px; padding: 0; border: 2px solid #fff; background: transparent; color: #fff; border-radius: 50% !important; cursor: pointer; font: 800 14px/1 sans-serif; }
+.sl2 .tv-row.own .tvc { background: var(--green); border-color: var(--green); }
+.sl2 .tv-empty { padding: 24px 14px; color: var(--mut); text-align: center; margin: 0; }
+
+.sl2 .tv > header button.tv-all { border: 2px solid #fff; font: 800 11px sans-serif; text-transform: uppercase; letter-spacing: .04em; padding: 7px 10px; }
+.sl2 .tv > header button.tv-all:hover { background: var(--green); border-color: var(--green); }
+
+/* boutons de navigation plus grands */
+.sl2 .anchors .wrap { gap: 8px; padding-top: 12px; padding-bottom: 12px; }
+.sl2 .anchors a { padding: 12px 22px; font-size: 22px; border-color: rgba(255,255,255,.35); }
+@media (max-width: 640px) { .sl2 .anchors a { padding: 10px 16px; font-size: 18px; } }
