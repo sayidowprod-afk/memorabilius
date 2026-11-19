@@ -81,7 +81,7 @@ function TeamHalf({
           volontairement petite : le cercle qui l'entoure, lui, est fluide
           via CSS (.pronos-logo), donc un peu de marge sur desktop plutôt
           qu'un débordement sur mobile. */}
-      <TeamBadge teamId={team.id} size={28} />
+      <TeamBadge teamId={team.id} size={36} />
     </div>
   )
   const bigName = team.name.split(' ').slice(-1)[0]
@@ -425,14 +425,14 @@ function PronosCSS() {
     <style>{`
 html[data-theme="dark"] .pronos-white-circle { background: #fff !important; }
 
-.pronos-row { display: flex; align-items: stretch; min-height: 70px; }
+.pronos-row { display: flex; align-items: stretch; min-height: 92px; }
 .pronos-half { flex: 1; display: flex; align-items: center; gap: 12px; padding: 8px 18px; }
-.pronos-logo { width: 44px; height: 44px; flex-shrink: 0; }
-.pronos-record { font-size: 16px; }
-.pronos-city { font-size: 13px; }
-.pronos-name { font-size: 30px; }
-.pronos-score { font-size: 32px; }
-.pronos-center { display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 4px 14px; flex-shrink: 0; width: 124px; }
+.pronos-logo { width: 56px; height: 56px; flex-shrink: 0; }
+.pronos-record { font-size: 22px; }
+.pronos-city { font-size: 19px; }
+.pronos-name { font-size: 44px; }
+.pronos-score { font-size: 44px; }
+.pronos-center { display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 4px 14px; flex-shrink: 0; width: 150px; }
 .pronos-sport-badge { display: flex; align-items: center; gap: 6px; margin-bottom: 3px; border-radius: 999px; padding: 3px 10px 3px 6px; }
 .pronos-draw { margin-top: 3px; padding: 3px 12px; border: 0; border-radius: 999px; font: 800 12px/1 -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; letter-spacing: .5px; }
 .pronos-vs-circle { width: 26px; height: 26px; margin: 3px 0; display: flex; align-items: center; justify-content: center; border-radius: 50%; }
@@ -446,11 +446,11 @@ html[data-theme="dark"] .pronos-white-circle { background: #fff !important; }
   .pronos-row { flex-direction: column; }
   .pronos-row { min-height: 0; }
   .pronos-half { padding: 5px 12px; gap: 8px; }
-  .pronos-logo { width: 34px; height: 34px; }
-  .pronos-record { font-size: 12px; }
-  .pronos-city { font-size: 9px; }
-  .pronos-name { font-size: 18px; }
-  .pronos-score { font-size: 22px; }
+  .pronos-logo { width: 42px; height: 42px; }
+  .pronos-record { font-size: 16px; }
+  .pronos-city { font-size: 12px; }
+  .pronos-name { font-size: 25px; }
+  .pronos-score { font-size: 30px; }
   .pronos-center { width: 100%; flex-direction: row; padding: 3px 10px; gap: 8px; }
   .pronos-sport-badge { margin-bottom: 0; }
   .pronos-vs-circle { width: 22px; height: 22px; margin: 0; }

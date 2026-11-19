@@ -7,6 +7,8 @@ import { supabase } from '@/lib/supabase'
 import { RARITY_COLOR, RARITY_NAME, type Rarity } from '@/lib/packs'
 import { CardImg, Pills, hasPatch } from '@/app/packs/PacksClient'
 import ShareToDiscord from '@/components/ShareToDiscord'
+import dynamic from 'next/dynamic'
+const PackTrade = dynamic(() => import('@/components/PackTrade'), { ssr: false })
 import '@/app/packs/packs.css'
 
 type Pulled = {
@@ -29,6 +31,7 @@ export default function PackHistory({ onClose }: { onClose: () => void }) {
   const [kind, setKind] = useState<'' | 'rc' | 'auto' | 'patch' | 'dup'>('')
   const [q, setQ] = useState('')
   const [sel, setSel] = useState<Pulled | null>(null)
+  const [trade, setTrade] = useState(false)
   const [wished, setWished] = useState<Set<number>>(new Set())
 
   useEffect(() => {
@@ -101,7 +104,10 @@ export default function PackHistory({ onClose }: { onClose: () => void }) {
           <h2 className="da-display">Mes cartes tirées</h2>
           <small>{cards ? `${cards.length} différentes · ${total} au total` : 'Chargement…'}</small>
         </div>
-        <button type="button" className="ph-x" onClick={onClose} aria-label="Fermer">✕</button>
+        <div style={{ display: 'flex', gap: 8, alignItems: 'center' }}>
+          <button type="button" className="ph-trade" onClick={() => setTrade(true)}>Échanger mes doublons</button>
+          <button type="button" className="ph-x" onClick={onClose} aria-label="Fermer">✕</button>
+        </div>
       </div>
 
       {cards && cards.length > 0 && (
@@ -141,6 +147,7 @@ export default function PackHistory({ onClose }: { onClose: () => void }) {
         </div>
       </div>
 
+      {trade && <PackTrade onClose={() => setTrade(false)} />}
       {sel && (
         <div className="ph-detail" onClick={e => { if (e.target === e.currentTarget) setSel(null) }}>
           <div className="ph-detail-card" style={{ ['--rc' as string]: RARITY_COLOR[sel.rarity] }}>

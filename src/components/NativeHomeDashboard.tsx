@@ -160,7 +160,7 @@ function HomeSkeleton() {
 // true dès qu'on a constaté que la fonction SQL get_home_dashboard n'existe pas en base (on n'y retouche plus avant le prochain rechargement)
 let homeRpcMissing = false
 
-export default function NativeHomeDashboard({ siteStats, cardOfTheDay }: { siteStats: SiteStats; cardOfTheDay?: ReactNode }) {
+export default function NativeHomeDashboard({ siteStats, cardOfTheDay, extras }: { siteStats: SiteStats; cardOfTheDay?: ReactNode; extras?: Record<string, ReactNode> }) {
   const router = useRouter()
   const [gq, setGq] = useState('')
   const [sugg, setSugg] = useState<{ users: { id: string; display_name: string; avatar_url: string | null }[]; players: { name: string; photo: string | null; sport?: string | null }[] }>({ users: [], players: [] })
@@ -219,8 +219,7 @@ export default function NativeHomeDashboard({ siteStats, cardOfTheDay }: { siteS
       if (Array.isArray(sc) && sc.length) setShortcuts(sc.filter((k: string) => k in SHORTCUT_DEFS).slice(0, 4))
       const ly = JSON.parse(localStorage.getItem('dd-layout') || 'null')
       if (ly && Array.isArray(ly.order)) {
-        const order = (ly.order as BlockId[]).filter(b => DEFAULT_BLOCKS.includes(b))
-        for (const b of DEFAULT_BLOCKS) if (!order.includes(b)) order.push(b)
+        const order = mergeOrder(ly.order as BlockId[])
         setLayout({ order, hidden: (ly.hidden || []).filter((b: BlockId) => DEFAULT_BLOCKS.includes(b)) })
       }
     } catch { /* stockage indisponible : valeurs par defaut */ }
@@ -590,6 +589,99 @@ export default function NativeHomeDashboard({ siteStats, cardOfTheDay }: { siteS
     </>
   )
 
+  const renderHero = () => (
+    <>
+      <Link href={galleryHref} onClick={hapticTap} className="dd-hero da-grain">
+        <div className="dd-hero-l">
+          <div className="dd-hero-k">{t('dashboard_my_gallery')}</div>
+          <div className="dd-hero-n da-num">{data.totalCards}</div>
+          <div className="dd-hero-u">{t(data.totalCards === 1 ? 'dashboard_card_one' : 'dashboard_card_other')}</div>
+          {data.lastCard?.name && (
+            <div className="dd-hero-last">{t('dashboard_last_added')} <strong>{data.lastCard.name}</strong></div>
+          )}
+        </div>
+        {/* fond : mosaique de tes dernieres cartes (vignettes optimisees, fixe, fondue vers la gauche). Même taille (440) que l'éventail : une carte = une seule transformation facturée au lieu de deux */}
+        {(data.lastCards || []).length > 5 && (
+          <div className="dd-hero-mos" aria-hidden>
+            {data.lastCards.slice(0, 24).map((c, i) => <img key={i} src={heroThumb(c.image, 440)} alt="" loading="lazy" decoding="async" />)}
+          </div>
+        )}
+        <div className="dd-hero-r">
+          {(data.lastCards || []).length
+            // pile des 5 dernieres cartes ajoutees : de l'arriere (la plus ancienne) vers l'avant (la plus recente)
+            ? [...(data.lastCards || [])].slice(0, 5).map((c, i) => ({ c, i })).reverse().map(({ c, i }) => (
+                // toutes les cartes de l'eventail ont la MEME case portrait (espacement regulier) ; une carte horizontale y est tournee de 90 degres, comme dans la galerie
+                <span key={i} className={`dd-hero-card dd-pile-${i}`}>
+                  <img src={heroThumb(c.image, 440)} alt="" className={heroLandscape[i] ? 'h' : undefined}
+                    onLoad={e => { const land = e.currentTarget.naturalWidth > e.currentTarget.naturalHeight; setHeroLandscape(p => p[i] === land ? p : { ...p, [i]: land }) }} />
+                </span>
+              ))
+            : <div className="dd-hero-card dd-hero-card--empty" />}
+          <span className="dd-hero-go"><ChevronIcon /></span>
+        </div>
+      </Link>
+    </>
+  )
+  const renderScore = () => (
+    <>
+      <div className="dd-score">
+        {galleryStats.map((s, si) => (
+          <Link key={s.label} href={`${galleryHref}?q=${s.q}`} onClick={hapticTap} className="dd-score-tile" style={{ ['--i' as string]: si, ['--c' as string]: ({ RC: '#F97316', AUTO: '#3B82F6', PATCH: '#EF4444', NUM: '#A855F7' } as Record<string, string>)[s.label] } as React.CSSProperties}>
+            <b className="da-num">{s.val}</b>
+            <span>{s.label}</span>
+            <i title={L.thisWeek}>{s.week > 0 ? `+${s.week}` : ''}</i>
+          </Link>
+        ))}
+      </div>
+    </>
+  )
+  const renderActions = () => (
+    <>
+      <div className="dd-actions" style={{ ['--n' as string]: shortcuts.length }}>
+        {shortcuts.map(k => {
+          const d = SHORTCUT_DEFS[k]; if (!d) return null
+          const href = d.href.replace('{g}', galleryHref)
+          return <Link key={k} href={href} onClick={hapticTap} className="dd-act">{d.label(t, L)}</Link>
+        })}
+      </div>
+      {editMode && (
+        <div className="dd-edit">
+          <div className="dd-edit-h">{L.shortcutsHelp}</div>
+          <div className="dd-edit-chips">
+            {Object.keys(SHORTCUT_DEFS).map(k => (
+              <button key={k} type="button" className={'dd-chip' + (shortcuts.includes(k) ? ' on' : '')} onClick={() => toggleShortcut(k)}>{SHORTCUT_DEFS[k].label(t, L)}</button>
+            ))}
+          </div>
+        </div>
+      )}
+    </>
+  )
+  const renderSearch = () => (
+    <>
+      <div className="dd-search-wrap" onBlur={e => { if (!e.currentTarget.contains(e.relatedTarget as Node | null)) setSuggOpen(false) }}>
+      <form className="dd-search" role="search" onSubmit={e => { e.preventDefault(); const q = gq.trim(); if (q) { hapticTap(); router.push(`/recherche?q=${encodeURIComponent(q)}`) } }}>
+        <SearchField value={gq} onChange={v => { setGq(v); setSuggOpen(true) }} onFocus={() => setSuggOpen(true)} onKeyDown={e => { if (e.key === 'Escape') setSuggOpen(false) }} fallback={L.globalSearch} lang={lang} />
+        <button type="submit" aria-label={L.globalSearch}>⌕</button>
+      </form>
+      {suggOpen && gq.trim().length >= 2 && (
+        <div className="dd-sugg">
+          {sugg.players.map(p => (
+            <Link key={'p' + p.name} href={`/joueur/${playerSlug(p.name)}`} onClick={hapticTap} className="dd-sg">
+              {p.photo ? <img src={p.photo} alt="" loading="lazy" /> : <i>{sportIcon(p.sport)}</i>}<span>{p.name}</span><em>{L.sgPlayer}</em>
+            </Link>
+          ))}
+          {sugg.users.map(u => (
+            <Link key={'u' + u.id} href={`/galerie/${u.id}`} onClick={hapticTap} className="dd-sg">
+              <img src={u.avatar_url || `https://ui-avatars.com/api/?name=${encodeURIComponent(u.display_name || 'U')}&background=003DA6&color=fff&size=64`} alt="" loading="lazy" /><span>{u.display_name}</span><em>{L.sgUser}</em>
+            </Link>
+          ))}
+          <Link href={`/recherche?q=${encodeURIComponent(gq.trim())}`} onClick={hapticTap} className="dd-sg dd-sg--all"><span>{L.sgAll} « {gq.trim()} »</span><em>→</em></Link>
+        </div>
+      )}
+      </div>
+    </>
+  )
+
   return (
     <div className="dd">
       <style>{DD_CSS}</style>
@@ -622,97 +714,20 @@ export default function NativeHomeDashboard({ siteStats, cardOfTheDay }: { siteS
         </div>
       </header>
 
-      <Link href={galleryHref} onClick={hapticTap} className="dd-hero da-grain">
-        <div className="dd-hero-l">
-          <div className="dd-hero-k">{t('dashboard_my_gallery')}</div>
-          <div className="dd-hero-n da-num">{data.totalCards}</div>
-          <div className="dd-hero-u">{t(data.totalCards === 1 ? 'dashboard_card_one' : 'dashboard_card_other')}</div>
-          {data.lastCard?.name && (
-            <div className="dd-hero-last">{t('dashboard_last_added')} <strong>{data.lastCard.name}</strong></div>
-          )}
-        </div>
-        {/* fond : mosaique de tes dernieres cartes (vignettes optimisees, fixe, fondue vers la gauche). Même taille (440) que l'éventail : une carte = une seule transformation facturée au lieu de deux */}
-        {(data.lastCards || []).length > 5 && (
-          <div className="dd-hero-mos" aria-hidden>
-            {data.lastCards.slice(0, 24).map((c, i) => <img key={i} src={heroThumb(c.image, 440)} alt="" loading="lazy" decoding="async" />)}
-          </div>
-        )}
-        <div className="dd-hero-r">
-          {(data.lastCards || []).length
-            // pile des 5 dernieres cartes ajoutees : de l'arriere (la plus ancienne) vers l'avant (la plus recente)
-            ? [...(data.lastCards || [])].slice(0, 5).map((c, i) => ({ c, i })).reverse().map(({ c, i }) => (
-                // toutes les cartes de l'eventail ont la MEME case portrait (espacement regulier) ; une carte horizontale y est tournee de 90 degres, comme dans la galerie
-                <span key={i} className={`dd-hero-card dd-pile-${i}`}>
-                  <img src={heroThumb(c.image, 440)} alt="" className={heroLandscape[i] ? 'h' : undefined}
-                    onLoad={e => { const land = e.currentTarget.naturalWidth > e.currentTarget.naturalHeight; setHeroLandscape(p => p[i] === land ? p : { ...p, [i]: land }) }} />
-                </span>
-              ))
-            : <div className="dd-hero-card dd-hero-card--empty" />}
-          <span className="dd-hero-go"><ChevronIcon /></span>
-        </div>
-      </Link>
-
-      <div className="dd-score">
-        {galleryStats.map((s, si) => (
-          <Link key={s.label} href={`${galleryHref}?q=${s.q}`} onClick={hapticTap} className="dd-score-tile" style={{ ['--i' as string]: si, ['--c' as string]: ({ RC: '#F97316', AUTO: '#3B82F6', PATCH: '#EF4444', NUM: '#A855F7' } as Record<string, string>)[s.label] } as React.CSSProperties}>
-            <b className="da-num">{s.val}</b>
-            <span>{s.label}</span>
-            <i title={L.thisWeek}>{s.week > 0 ? `+${s.week}` : ''}</i>
-          </Link>
-        ))}
-      </div>
-
-      <div className="dd-actions" style={{ ['--n' as string]: shortcuts.length }}>
-        {shortcuts.map(k => {
-          const d = SHORTCUT_DEFS[k]; if (!d) return null
-          const href = d.href.replace('{g}', galleryHref)
-          return <Link key={k} href={href} onClick={hapticTap} className="dd-act">{d.label(t, L)}</Link>
-        })}
-      </div>
-      <div className="dd-search-wrap" onBlur={e => { if (!e.currentTarget.contains(e.relatedTarget as Node | null)) setSuggOpen(false) }}>
-      <form className="dd-search" role="search" onSubmit={e => { e.preventDefault(); const q = gq.trim(); if (q) { hapticTap(); router.push(`/recherche?q=${encodeURIComponent(q)}`) } }}>
-        <SearchField value={gq} onChange={v => { setGq(v); setSuggOpen(true) }} onFocus={() => setSuggOpen(true)} onKeyDown={e => { if (e.key === 'Escape') setSuggOpen(false) }} fallback={L.globalSearch} lang={lang} />
-        <button type="submit" aria-label={L.globalSearch}>⌕</button>
-      </form>
-      {suggOpen && gq.trim().length >= 2 && (
-        <div className="dd-sugg">
-          {sugg.players.map(p => (
-            <Link key={'p' + p.name} href={`/joueur/${playerSlug(p.name)}`} onClick={hapticTap} className="dd-sg">
-              {p.photo ? <img src={p.photo} alt="" loading="lazy" /> : <i>{sportIcon(p.sport)}</i>}<span>{p.name}</span><em>{L.sgPlayer}</em>
-            </Link>
-          ))}
-          {sugg.users.map(u => (
-            <Link key={'u' + u.id} href={`/galerie/${u.id}`} onClick={hapticTap} className="dd-sg">
-              <img src={u.avatar_url || `https://ui-avatars.com/api/?name=${encodeURIComponent(u.display_name || 'U')}&background=003DA6&color=fff&size=64`} alt="" loading="lazy" /><span>{u.display_name}</span><em>{L.sgUser}</em>
-            </Link>
-          ))}
-          <Link href={`/recherche?q=${encodeURIComponent(gq.trim())}`} onClick={hapticTap} className="dd-sg dd-sg--all"><span>{L.sgAll} « {gq.trim()} »</span><em>→</em></Link>
-        </div>
-      )}
-      </div>
-      {editMode && (
-        <div className="dd-edit">
-          <div className="dd-edit-h">{L.shortcutsHelp}</div>
-          <div className="dd-edit-chips">
-            {Object.keys(SHORTCUT_DEFS).map(k => (
-              <button key={k} type="button" className={'dd-chip' + (shortcuts.includes(k) ? ' on' : '')} onClick={() => toggleShortcut(k)}>{SHORTCUT_DEFS[k].label(t, L)}</button>
-            ))}
-          </div>
-        </div>
-      )}
-
       {layout.order.map(id => {
         const hidden = layout.hidden.includes(id)
-        if (id === 'site' && cardOfTheDay) { /* carte du jour juste avant « en chiffres » */ }
-        if (hidden && !editMode) return id === 'site' && cardOfTheDay ? <Reveal key="cotd">{cardOfTheDay}</Reveal> : null
+        if (hidden && !editMode) return null
         if (id === 'activity' && activityItems.length === 0 && !editMode) return null
-        const body = id === 'activity' ? renderActivity() : id === 'progress' ? renderProgress() : renderSite()
+        if (id === 'cotd' && !cardOfTheDay && !editMode) return null
+        if (EXTRA_IDS.includes(id) && !extras?.[id] && !editMode) return null
+        const body = id === 'hero' ? renderHero() : id === 'score' ? renderScore() : id === 'actions' ? renderActions() : id === 'search' ? renderSearch()
+          : id === 'activity' ? renderActivity() : id === 'progress' ? renderProgress() : id === 'cotd' ? cardOfTheDay : id === 'site' ? renderSite() : extras?.[id]
+        const label = id === 'activity' ? L.blkActivity : id === 'progress' ? L.blkProgress : id === 'site' ? L.blkSite : (BLOCK_NAMES[id]?.[lang === 'fr' ? 'fr' : 'en'] || id)
         return (
           <Reveal key={id} className={'dd-blk' + (hidden ? ' dd-blk--off' : '')}>
-            {id === 'site' && cardOfTheDay}
             {editMode && (
               <div className="dd-blk-bar">
-                <span>{id === 'activity' ? L.blkActivity : id === 'progress' ? L.blkProgress : L.blkSite}</span>
+                <span>{label}</span>
                 <button type="button" onClick={() => moveBlock(id, -1)} aria-label={L.up}>↑</button>
                 <button type="button" onClick={() => moveBlock(id, 1)} aria-label={L.down}>↓</button>
                 <button type="button" onClick={() => toggleBlock(id)}>{hidden ? L.show : L.hide}</button>
@@ -737,8 +752,26 @@ const DD_TEXT: Record<string, { add: string; since: string; likes: string; comme
 // Vignette optimisee (meme optimiseur que la galerie, mise en cache 1 an) pour les images Supabase ; autres sources : image d'origine
 const heroThumb = (url: string, w: number) => (url.includes('.supabase.co') ? `/_next/image?url=${encodeURIComponent(url)}&w=${w}&q=75` : url)
 
-type BlockId = 'activity' | 'progress' | 'site'
-const DEFAULT_BLOCKS: BlockId[] = ['activity', 'progress', 'site']
+type BlockId = 'hero' | 'score' | 'actions' | 'search' | 'activity' | 'progress' | 'cotd' | 'site' | 'tcg' | 'pronos' | 'pepites' | 'podium'
+// tous les blocs de l'accueil, dans l'ordre par défaut : chacun peut être déplacé ou masqué
+const DEFAULT_BLOCKS: BlockId[] = ['hero', 'score', 'actions', 'search', 'activity', 'progress', 'cotd', 'site', 'tcg', 'pronos', 'pepites', 'podium']
+const EXTRA_IDS: string[] = ['tcg', 'pronos', 'pepites', 'podium']
+const BLOCK_NAMES: Record<string, { fr: string; en: string }> = {
+  hero: { fr: 'Ma galerie (compteur et dernières cartes)', en: 'My gallery' }, score: { fr: 'RC · Auto · Patch · Num', en: 'RC · Auto · Patch · Num' },
+  actions: { fr: 'Raccourcis', en: 'Shortcuts' }, search: { fr: 'Recherche', en: 'Search' },
+  cotd: { fr: 'Carte du jour et packs', en: 'Daily card and packs' }, tcg: { fr: 'Cartes à jouer (TCG)', en: 'Trading card games' },
+  pronos: { fr: 'Pronos', en: 'Predictions' }, pepites: { fr: 'Dernières pépites', en: 'Latest finds' }, podium: { fr: 'Podium du mois', en: 'Monthly podium' },
+}
+// ajoute à un ancien réglage les blocs qu'il ne connaît pas, à leur place habituelle
+function mergeOrder(saved: BlockId[]): BlockId[] {
+  const order = saved.filter(b => DEFAULT_BLOCKS.includes(b))
+  DEFAULT_BLOCKS.forEach((b, i) => {
+    if (order.includes(b)) return
+    const prev = i > 0 ? order.indexOf(DEFAULT_BLOCKS[i - 1]) : -1
+    order.splice(prev + 1, 0, b)
+  })
+  return order
+}
 const DEFAULT_SHORTCUTS = ['scanner', 'add', 'trades']
 type DDL = typeof DD_TEXT2['en']
 const SHORTCUT_DEFS: Record<string, { href: string; label: (t: (k: TranslationKey) => string, L: DDL & { add: string }) => string }> = {

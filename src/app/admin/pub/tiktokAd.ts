@@ -11,9 +11,9 @@ const seg = (t: number, a: number, b: number) => clamp((t - a) / (b - a))
 const lerp = (a: number, b: number, t: number) => a + (b - a) * t
 
 export type Prep = { bmp: ImageBitmap; small: HTMLCanvasElement }
-type Tall = { c: HTMLCanvasElement; nav: HTMLCanvasElement; k: number }
+type Tall = { c: HTMLCanvasElement; nav: HTMLCanvasElement; k: number; head?: number; navH?: number }
 export type AdAssets = {
-  gal: Tall; trd: Tall; ven: Tall; set: Tall; vbg: HTMLImageElement
+  gal: Tall; trd: Tall; ven: Tall; set: Tall; ob: Tall; hm: Tall; vbg: HTMLImageElement
   shell: HTMLCanvasElement; shadow: HTMLCanvasElement; logo: HTMLCanvasElement | null
   cards: Prep[]; hook: string; cta: string; partner: HTMLCanvasElement | null; gui: Tall; tx: AdTx; scenes: Scene[]; fallback: boolean
   intro?: IntroStyle
@@ -27,43 +27,47 @@ export type Lang = 'fr' | 'en' | 'de' | 'es' | 'it'
 export type AdTx = { hooks: string[]; ctas: string[]; free: string; partner: string; caps: Record<string, string> }
 export const AD_TX: Record<Lang, AdTx> = {
   fr: { hooks: ['Tu collectionnes des cartes ?', 'Ta collection mérite mieux qu’un classeur', 'POV : ta collection enfin bien rangée', 'Les collectionneurs vont adorer ça'], ctas: ['Crée ta galerie gratuitement', 'Rejoins les collectionneurs'], free: 'GRATUIT · SUR LE WEB ET ANDROID', partner: 'En partenariat avec :',
-    caps: { gal: 'Toute ta collection au même endroit', v3d: 'Tes cartes en 3D', trd: 'Vends et échange avec les collectionneurs', ven: 'Offres, ventes, colis : tout est suivi', gui: 'Guides et conseils', set: 'Checklists', mon: '100 % gratuit' } },
+    caps: { gal: 'Toute ta collection au même endroit', v3d: 'Tes cartes en 3D', trd: 'Vends et échange avec les collectionneurs', ven: 'Offres, ventes, colis : tout est suivi', gui: 'Guides et conseils', set: 'Checklists', ob: 'Tes PC en boîtes de figurines', hm: 'Carte du jour, packs, pronos', mon: '100 % gratuit' } },
   en: { hooks: ['Do you collect cards?', 'Your collection deserves better than a binder', 'POV: your collection, finally organized', 'Collectors are going to love this'], ctas: ['Create your free gallery', 'Join the collectors'], free: 'FREE · ON THE WEB AND ANDROID', partner: 'In partnership with:',
-    caps: { gal: 'Your whole collection in one place', v3d: 'Your cards in 3D', trd: 'Sell and trade with collectors', ven: 'Offers, sales, parcels: all tracked', gui: 'Guides and tips', set: 'Checklists', mon: '100% free' } },
+    caps: { gal: 'Your whole collection in one place', v3d: 'Your cards in 3D', trd: 'Sell and trade with collectors', ven: 'Offers, sales, parcels: all tracked', gui: 'Guides and tips', set: 'Checklists', ob: 'Your PCs as collectible figure boxes', hm: 'Daily card, packs, predictions', mon: '100% free' } },
   de: { hooks: ['Sammelst du Karten?', 'Deine Sammlung verdient mehr als ein Album', 'POV: deine Sammlung endlich geordnet', 'Sammler werden das lieben'], ctas: ['Erstelle deine kostenlose Galerie', 'Werde Teil der Sammler'], free: 'KOSTENLOS · IM WEB UND AUF ANDROID', partner: 'In Partnerschaft mit:',
-    caps: { gal: 'Deine ganze Sammlung an einem Ort', v3d: 'Deine Karten in 3D', trd: 'Verkaufe und tausche mit Sammlern', ven: 'Angebote, Verkäufe, Pakete: alles im Blick', gui: 'Guides und Tipps', set: 'Checklisten', mon: '100 % kostenlos' } },
+    caps: { gal: 'Deine ganze Sammlung an einem Ort', v3d: 'Deine Karten in 3D', trd: 'Verkaufe und tausche mit Sammlern', ven: 'Angebote, Verkäufe, Pakete: alles im Blick', gui: 'Guides und Tipps', set: 'Checklisten', ob: 'Deine PCs als Figuren-Boxen', hm: 'Tageskarte, Packs, Tipps', mon: '100 % kostenlos' } },
   es: { hooks: ['¿Coleccionas cartas?', 'Tu colección merece más que un archivador', 'POV: tu colección por fin ordenada', 'A los coleccionistas les va a encantar'], ctas: ['Crea tu galería gratis', 'Únete a los coleccionistas'], free: 'GRATIS · EN LA WEB Y EN ANDROID', partner: 'En colaboración con:',
-    caps: { gal: 'Toda tu colección en un solo lugar', v3d: 'Tus cartas en 3D', trd: 'Vende e intercambia con coleccionistas', ven: 'Ofertas, ventas, envíos: todo controlado', gui: 'Guías y consejos', set: 'Checklists', mon: '100 % gratis' } },
+    caps: { gal: 'Toda tu colección en un solo lugar', v3d: 'Tus cartas en 3D', trd: 'Vende e intercambia con coleccionistas', ven: 'Ofertas, ventas, envíos: todo controlado', gui: 'Guías y consejos', set: 'Checklists', ob: 'Tus PC en cajas de figuras', hm: 'Carta del día, sobres, pronósticos', mon: '100 % gratis' } },
   it: { hooks: ['Collezioni carte?', 'La tua collezione merita più di un raccoglitore', 'POV: la tua collezione, finalmente in ordine', 'I collezionisti lo adoreranno'], ctas: ['Crea la tua galleria gratis', 'Unisciti ai collezionisti'], free: 'GRATIS · SUL WEB E SU ANDROID', partner: 'In collaborazione con:',
-    caps: { gal: 'Tutta la tua collezione in un posto', v3d: 'Le tue carte in 3D', trd: 'Vendi e scambia con i collezionisti', ven: 'Offerte, vendite, spedizioni: tutto sotto controllo', gui: 'Guide e consigli', set: 'Checklist', mon: '100 % gratis' } },
+    caps: { gal: 'Tutta la tua collezione in un posto', v3d: 'Le tue carte in 3D', trd: 'Vendi e scambia con i collezionisti', ven: 'Offerte, vendite, spedizioni: tutto sotto controllo', gui: 'Guide e consigli', set: 'Checklist', ob: 'I tuoi PC in scatole di figurine', hm: 'Carta del giorno, pack, pronostici', mon: '100 % gratis' } },
 }
 export const LANG_NAMES: Record<Lang, string> = { fr: 'Français', en: 'English', de: 'Deutsch', es: 'Español', it: 'Italiano' }
 
 // ── écrans de l'appli : captures recollées (barre du haut et menu du bas fixes)
 const HEAD = 40, NAV = 83, NAVX = 26
-const loadImg = (src: string) => new Promise<HTMLImageElement>((res, rej) => { const i = new Image(); i.onload = () => res(i); i.onerror = () => rej(new Error(src)); i.src = src })
-function stitch(frames: { img: HTMLImageElement; y: number }[]): Tall {
-  const K = 2, VH = 1040
+const loadImg = (src: string) => new Promise<HTMLImageElement>((res, rej) => { const i = new Image(); i.onload = () => res(i); i.onerror = () => rej(new Error(src)); i.src = src + (src.startsWith('/ad/') ? '?v=20261119b' : '') })
+function stitch(frames: { img: HTMLImageElement; y: number }[], o: { head?: number; nav?: number; navx?: number } = {}): Tall {
+  // o : hauteur (px css) de la barre du haut et du menu du bas de ces captures. Les captures récentes du site n'ont plus de menu en bas (nav = 0) et une barre du haut de 60 px.
+  const K = 2, VH = 1040, HD = o.head ?? HEAD, NV = o.nav ?? NAV, NX = o.navx ?? NAVX
   const last = frames[frames.length - 1]
   const c = document.createElement('canvas'); c.width = 480 * K; c.height = Math.ceil((last.y + VH) * K)
   const x = c.getContext('2d')!; x.imageSmoothingQuality = 'high'
   frames.forEach((f, i) => {
-    const s = f.img.width / 480
+    const s = f.img.width / 480 // 1 (capture normale) ou 2 (capture haute définition)
     if (i === 0) x.drawImage(f.img, 0, 0, f.img.width, f.img.height, 0, f.y * K, 480 * K, VH * K)
-    else x.drawImage(f.img, 0, HEAD * s, f.img.width, (VH - HEAD - NAV) * s, 0, (f.y + HEAD) * K, 480 * K, (VH - HEAD - NAV) * K)
+    else x.drawImage(f.img, 0, HD * s, f.img.width, (VH - HD - NV) * s, 0, (f.y + HD) * K, 480 * K, (VH - HD - NV) * K)
   })
-  const f0 = frames[0].img, s0 = f0.width / 480, NH = (NAV + NAVX) * K
+  if (NV + NX === 0) { const nav = document.createElement('canvas'); nav.width = 1; nav.height = 1; return { c, nav, k: K, head: HD, navH: 0 } }
+  const f0 = frames[0].img, s0 = f0.width / 480, NH = (NV + NX) * K
   const nav = document.createElement('canvas'); nav.width = 480 * K; nav.height = NH
-  const nx = nav.getContext('2d')!; nx.imageSmoothingQuality = 'high'; nx.drawImage(f0, 0, (VH - NAV - NAVX) * s0, f0.width, (NAV + NAVX) * s0, 0, 0, 480 * K, NH)
+  const nx = nav.getContext('2d')!; nx.imageSmoothingQuality = 'high'; nx.drawImage(f0, 0, (VH - NV - NX) * s0, f0.width, (NV + NX) * s0, 0, 0, 480 * K, NH)
+  // au-dessus du menu, on ne garde que le bouton central (le reste de cette bande est du contenu de page qui change)
   const tmp = document.createElement('canvas'); tmp.width = nav.width; tmp.height = NH; tmp.getContext('2d')!.drawImage(nav, 0, 0)
-  nx.clearRect(0, 0, nav.width, NAVX * K); nx.save(); nx.beginPath(); nx.ellipse(240 * K, NAVX * K, 40 * K, NAVX * K, 0, 0, Math.PI * 2); nx.clip(); nx.drawImage(tmp, 0, 0); nx.restore()
-  return { c, nav, k: K }
+  nx.clearRect(0, 0, nav.width, NX * K); nx.save(); nx.beginPath(); nx.ellipse(240 * K, NX * K, 40 * K, NX * K, 0, 0, Math.PI * 2); nx.clip(); nx.drawImage(tmp, 0, 0); nx.restore()
+  return { c, nav, k: K, head: HD, navH: NV + NX }
 }
 function screen(ctx: CanvasRenderingContext2D, T: Tall, scroll: number, x: number, y: number, w: number, h: number) {
   ctx.save(); ctx.imageSmoothingQuality = 'high'
   ctx.drawImage(T.c, 0, scroll * T.k, 480 * T.k, 1040 * T.k, x, y, w, h)
-  ctx.drawImage(T.c, 0, 0, 480 * T.k, HEAD * T.k, x, y, w, (HEAD / 1040) * h)
-  ctx.drawImage(T.nav, 0, 0, T.nav.width, T.nav.height, x, y + h - ((NAV + NAVX) / 1040) * h, w, ((NAV + NAVX) / 1040) * h)
+  const hd = T.head ?? HEAD, nh = T.navH ?? (NAV + NAVX)
+  ctx.drawImage(T.c, 0, 0, 480 * T.k, hd * T.k, x, y, w, (hd / 1040) * h)
+  if (nh > 0) ctx.drawImage(T.nav, 0, 0, T.nav.width, T.nav.height, x, y + h - (nh / 1040) * h, w, (nh / 1040) * h)
   ctx.restore()
 }
 
@@ -101,7 +105,7 @@ export async function loadPartnerLogo(): Promise<HTMLCanvasElement | null> {
 }
 
 export async function loadAdAssets(cards: Prep[], hook: string, cta: string, lang: Lang = 'fr'): Promise<AdAssets> {
-  const names = ['g0', 'g1', 'g2', 'g3', 'tr0', 'tr1', 'tr2', 'tr3', 'vt0', 'vt1', 'vt2', 'gd0', 'gd1', 'gd2', 'sl0', 'sl1', 'vbg']
+  const names = ['g0', 'g1', 'g2', 'g3', 'tr0', 'tr1', 'tr2', 'tr3', 'vt0', 'vt1', 'vt2', 'gd0', 'gd1', 'gd2', 'sl0', 'sl1', 'sl2', 'ob0', 'ob1', 'hm0', 'hm1', 'vbg']
   const dir = lang === 'fr' ? '/ad/app_' : `/ad/${lang}/app_`
   let fallback = false
   // captures de la langue si elles existent, sinon celles en français (les textes de la pub restent traduits)
@@ -113,10 +117,12 @@ export async function loadAdAssets(cards: Prep[], hook: string, cta: string, lan
     const x = logo.getContext('2d')!; x.drawImage(b, 0, 0); x.globalCompositeOperation = 'source-in'; x.fillStyle = '#fff'; x.fillRect(0, 0, logo.width, logo.height)
   } catch { /* sans logo */ }
   return {
-    gal: stitch([{ img: im.g0, y: 0 }, { img: im.g1, y: 700 }, { img: im.g2, y: 1400 }, { img: im.g3, y: 2100 }]),
-    trd: stitch([{ img: im.tr0, y: 0 }, { img: im.tr1, y: 600 }, { img: im.tr2, y: 1300 }, { img: im.tr3, y: 2000 }]),
+    gal: stitch([{ img: im.g0, y: 0 }, { img: im.g1, y: 700 }, { img: im.g2, y: 1400 }, { img: im.g3, y: 2100 }], { head: 60, nav: 0, navx: 0 }),
+    trd: stitch([{ img: im.tr0, y: 0 }, { img: im.tr1, y: 700 }, { img: im.tr2, y: 1400 }, { img: im.tr3, y: 2100 }], { head: 60, nav: 0, navx: 0 }),
     ven: stitch([{ img: im.vt0, y: 0 }, { img: im.vt1, y: 700 }, { img: im.vt2, y: 1125 }]),
-    set: stitch([{ img: im.sl0, y: 0 }, { img: im.sl1, y: 500 }]),
+    set: stitch([{ img: im.sl0, y: 0 }, { img: im.sl1, y: 700 }, { img: im.sl2, y: 1400 }], { head: 60, nav: 0, navx: 0 }),
+    ob: stitch([{ img: im.ob0, y: 0 }, { img: im.ob1, y: 350 }], { head: 60, nav: 0, navx: 0 }),
+    hm: stitch([{ img: im.hm0, y: 0 }, { img: im.hm1, y: 710 }], { head: 60, nav: 0, navx: 0 }),
     gui: stitch([{ img: im.gd0, y: 0 }, { img: im.gd1, y: 700 }, { img: im.gd2, y: 1400 }]),
     vbg: im.vbg, shell: makeShell(), shadow: makeShadow(), logo, cards, hook, cta, partner: await loadPartnerLogo(), tx: AD_TX[lang], scenes: scenesFor(lang), fallback,
   }
@@ -198,16 +204,18 @@ function card3d(ctx: CanvasRenderingContext2D, shadow: HTMLCanvasElement, b: Ima
 
 // ── montage : chaque scène démarre sur un temps du beat (120 bpm = 0,5 s)
 export const AD_DUR = 17
-type Scene = { id: 'hook' | 'gal' | 'v3d' | 'trd' | 'ven' | 'gui' | 'set' | 'mon' | 'cta'; a: number; b: number; key?: 'gal' | 'trd' | 'ven' | 'gui' | 'set'; from?: number; to?: number }
+type Scene = { id: 'hook' | 'gal' | 'v3d' | 'trd' | 'ven' | 'gui' | 'set' | 'ob' | 'hm' | 'mon' | 'cta'; a: number; b: number; key?: 'gal' | 'trd' | 'ven' | 'gui' | 'set' | 'ob' | 'hm'; from?: number; to?: number }
 export function scenesFor(lang: Lang): Scene[] {
   return [
     { id: 'hook', a: 0, b: 1.5 },
-    { id: 'gal', a: 1.5, b: 4, key: 'gal', from: 540, to: 1700 },
-    { id: 'v3d', a: 4, b: 6.5 },
-    { id: 'trd', a: 6.5, b: 8.5, key: 'trd', from: 380, to: 1500 },
-    lang === 'fr' ? { id: 'ven', a: 8.5, b: 10.5, key: 'ven', from: 0, to: 950 } : { id: 'gui', a: 8.5, b: 10.5, key: 'gui', from: 0, to: 1100 },
-    { id: 'set', a: 10.5, b: 12.5, key: 'set', from: 0, to: 500 },
-    { id: 'mon', a: 12.5, b: 14.5 },
+    { id: 'gal', a: 1.5, b: 3.5, key: 'gal', from: 0, to: 1500 },
+    { id: 'v3d', a: 3.5, b: 5.5 },
+    { id: 'trd', a: 5.5, b: 7, key: 'trd', from: 0, to: 1300 },
+    lang === 'fr' ? { id: 'ven', a: 7, b: 8.5, key: 'ven', from: 0, to: 950 } : { id: 'gui', a: 7, b: 8.5, key: 'gui', from: 0, to: 1100 },
+    { id: 'set', a: 8.5, b: 10, key: 'set', from: 0, to: 350 },
+    { id: 'ob', a: 10, b: 11.5, key: 'ob', from: 0, to: 350 },
+    { id: 'hm', a: 11.5, b: 13.5, key: 'hm', from: 0, to: 710 },
+    { id: 'mon', a: 13.5, b: 14.5 },
     { id: 'cta', a: 14.5, b: 17 },
   ]
 }
@@ -279,8 +287,10 @@ export function drawAd(ctx: CanvasRenderingContext2D, t: number, A: AdAssets) {
     if (A.logo) { const lw = 800, lh = (A.logo.height / A.logo.width) * lw; ctx.save(); ctx.translate(W / 2, 520); ctx.scale(0.6 + 0.4 * p1, 0.6 + 0.4 * p1); ctx.globalAlpha = clamp(p1 * 2); ctx.drawImage(A.logo, -lw / 2, -lh / 2, lw, lh); ctx.restore() }
     caption(ctx, A.cta, k - 0.25, 800, 112)
     ctx.save(); ctx.globalAlpha = p3; ctx.translate(W / 2, 1050 + (1 - p3) * 30)
-    ctx.fillStyle = '#fff'; ctx.beginPath(); ctx.roundRect(-300, -62, 600, 124, 62); ctx.fill()
-    ctx.fillStyle = '#0a1f66'; ctx.font = `800 64px ${FONT}`; ctx.textAlign = 'center'; ctx.textBaseline = 'middle'; ctx.fillText('memorabilius.fr', 0, 4)
+    // bouton au style du site : angles droits, blanc plein, titre en Surfquest
+    ctx.fillStyle = '#fff'; ctx.fillRect(-310, -62, 620, 124)
+    ctx.strokeStyle = 'rgba(255,255,255,.55)'; ctx.lineWidth = 6; ctx.strokeRect(-322, -74, 644, 148)
+    ctx.fillStyle = '#0a1f66'; ctx.font = `400 78px ${DISPLAY}`; ctx.textAlign = 'center'; ctx.textBaseline = 'middle'; ctx.fillText('MEMORABILIUS.FR', 0, 6)
     ctx.restore()
     ctx.save(); ctx.globalAlpha = p3; ctx.textAlign = 'center'; ctx.textBaseline = 'middle'; ctx.font = `700 36px ${FONT}`; ctx.fillStyle = '#c9d6ff'; ctx.fillText(A.tx.free, W / 2, 1165); ctx.restore()
     if (A.partner) {

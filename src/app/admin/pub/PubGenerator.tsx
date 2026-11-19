@@ -11,12 +11,12 @@ import { scheduleMusic, decodeAudioFile, type MusicKind } from './audio'
 import { AD_TX, loadPartnerLogo } from './tiktokAd'
 import { saveOrShareFile } from '@/lib/saveOrShare'
 
-const W = 1080, H = 1920, FPS = 60, DUR = 30
+const W = 1080, H = 1920, FPS = 60, DUR = 33
 const FONT = 'system-ui, -apple-system, "Segoe UI", sans-serif'
 const DISPLAY = `Surfquest, Impact, 'Arial Narrow', ${FONT}`
 const BLUE = '#7fa8ff'
-// début de chaque écran du téléphone (s) : galerie, viewer 3D, trades, achats, ventes, guides, setlist ; final à fin
-const T0 = { gal: 2.4, viewer: 6.6, trades: 10.0, achats: 13.6, ventes: 17.2, guides: 20.8, setlist: 23.8, fin: 26.8 }
+// début de chaque écran du téléphone (s) : galerie, viewer 3D, trades, PC en boîtes, packs, achats, ventes, guides, setlist ; final à fin
+const T0 = { gal: 2.4, viewer: 5.4, trades: 8.4, objectifs: 11.4, packs: 14.4, achats: 17.4, ventes: 20.4, guides: 23.4, setlist: 26.4, fin: 29.4 }
 // téléphone : écran 640 × 1387 (rapport 480:1040 des captures)
 const SW = 640, SH = Math.round(SW * 1040 / 480), PY = 360
 
@@ -24,26 +24,26 @@ type Lang = 'fr' | 'en' | 'de' | 'es' | 'it'
 type Tx = { slogan: string; fin1: string; fin2: string; free: string; t: Record<string, string>; s: Record<string, string> }
 const TX: Record<Lang, Tx> = {
   fr: { slogan: 'L’app ultime pour les collectionneurs', fin1: 'L’app ultime', fin2: 'pour les collectionneurs', free: 'GRATUIT · SUR LE WEB ET ANDROID',
-    t: { gal: 'Ta galerie', v: 'En 3D', trd: 'Trades', ach: 'Tes achats', ven: 'Tes ventes', gui: 'Guides', set: 'Setlist' },
-    s: { gal: 'Toute ta collection, en un coup d’œil', v: 'Fais tourner chaque carte, détails et reflets', trd: 'Vends et échange avec les collectionneurs', ach: 'Enchères, suivi des colis, budget', ven: 'Offres, expéditions, profit réalisé', gui: 'Checklists et conseils pour collectionner', set: 'NBA 2024-25 · Checklists' } },
+    t: { gal: 'Ta galerie', v: 'En 3D', trd: 'Trades', ach: 'Tes achats', ven: 'Tes ventes', gui: 'Guides', set: 'Setlist', ob: 'Tes PC', hm: 'Mini-jeux' },
+    s: { gal: 'Toute ta collection, en un coup d’œil', v: 'Fais tourner chaque carte, détails et reflets', trd: 'Vends et échange avec les collectionneurs', ach: 'Enchères, suivi des colis, budget', ven: 'Offres, expéditions, profit réalisé', gui: 'Checklists et conseils pour collectionner', set: 'Topps Flagship 2025-26 · Checklists', ob: 'Choisis la tenue de chaque figurine', hm: 'Carte du jour, packs, pronos' } },
   en: { slogan: 'The ultimate app for collectors', fin1: 'The ultimate app', fin2: 'for collectors', free: 'FREE · ON THE WEB AND ANDROID',
-    t: { gal: 'Your gallery', v: 'In 3D', trd: 'Trades', ach: 'Your purchases', ven: 'Your sales', gui: 'Guides', set: 'Setlist' },
-    s: { gal: 'Your whole collection at a glance', v: 'Spin every card, details and shine', trd: 'Sell and trade with other collectors', ach: 'Auctions, parcel tracking, budget', ven: 'Offers, shipping, realized profit', gui: 'Checklists and tips for collectors', set: 'NBA 2024-25 · Checklists' } },
+    t: { gal: 'Your gallery', v: 'In 3D', trd: 'Trades', ach: 'Your purchases', ven: 'Your sales', gui: 'Guides', set: 'Setlist', ob: 'Your PCs', hm: 'Mini-games' },
+    s: { gal: 'Your whole collection at a glance', v: 'Spin every card, details and shine', trd: 'Sell and trade with other collectors', ach: 'Auctions, parcel tracking, budget', ven: 'Offers, shipping, realized profit', gui: 'Checklists and tips for collectors', set: 'Topps Flagship 2025-26 · Checklists', ob: 'Pick the kit of every figure', hm: 'Daily card, packs, predictions' } },
   de: { slogan: 'Die ultimative App für Sammler', fin1: 'Die ultimative App', fin2: 'für Sammler', free: 'KOSTENLOS · IM WEB UND AUF ANDROID',
-    t: { gal: 'Deine Galerie', v: 'In 3D', trd: 'Trades', ach: 'Deine Käufe', ven: 'Deine Verkäufe', gui: 'Guides', set: 'Setlist' },
-    s: { gal: 'Deine ganze Sammlung auf einen Blick', v: 'Dreh jede Karte, Details und Glanz', trd: 'Verkaufe und tausche mit Sammlern', ach: 'Auktionen, Paketverfolgung, Budget', ven: 'Angebote, Versand, realisierter Gewinn', gui: 'Checklisten und Tipps für Sammler', set: 'NBA 2024-25 · Checklisten' } },
+    t: { gal: 'Deine Galerie', v: 'In 3D', trd: 'Trades', ach: 'Deine Käufe', ven: 'Deine Verkäufe', gui: 'Guides', set: 'Setlist', ob: 'Deine PCs', hm: 'Mini-games' },
+    s: { gal: 'Deine ganze Sammlung auf einen Blick', v: 'Dreh jede Karte, Details und Glanz', trd: 'Verkaufe und tausche mit Sammlern', ach: 'Auktionen, Paketverfolgung, Budget', ven: 'Angebote, Versand, realisierter Gewinn', gui: 'Checklisten und Tipps für Sammler', set: 'Topps Flagship 2025-26 · Checklisten', ob: 'Wähle das Trikot jeder Figur', hm: 'Tageskarte, Packs, Tipps' } },
   es: { slogan: 'La app definitiva para coleccionistas', fin1: 'La app definitiva', fin2: 'para coleccionistas', free: 'GRATIS · EN LA WEB Y EN ANDROID',
-    t: { gal: 'Tu galería', v: 'En 3D', trd: 'Trades', ach: 'Tus compras', ven: 'Tus ventas', gui: 'Guías', set: 'Setlist' },
-    s: { gal: 'Toda tu colección de un vistazo', v: 'Gira cada carta, detalles y brillo', trd: 'Vende e intercambia con coleccionistas', ach: 'Subastas, seguimiento de envíos, presupuesto', ven: 'Ofertas, envíos, beneficio realizado', gui: 'Checklists y consejos para coleccionar', set: 'NBA 2024-25 · Checklists' } },
+    t: { gal: 'Tu galería', v: 'En 3D', trd: 'Trades', ach: 'Tus compras', ven: 'Tus ventas', gui: 'Guías', set: 'Setlist', ob: 'Tus PC', hm: 'Minijuegos' },
+    s: { gal: 'Toda tu colección de un vistazo', v: 'Gira cada carta, detalles y brillo', trd: 'Vende e intercambia con coleccionistas', ach: 'Subastas, seguimiento de envíos, presupuesto', ven: 'Ofertas, envíos, beneficio realizado', gui: 'Checklists y consejos para coleccionar', set: 'Topps Flagship 2025-26 · Checklists', ob: 'Elige la equipación de cada figura', hm: 'Carta del día, sobres, pronósticos' } },
   it: { slogan: 'L’app definitiva per i collezionisti', fin1: 'L’app definitiva', fin2: 'per i collezionisti', free: 'GRATIS · SUL WEB E SU ANDROID',
-    t: { gal: 'La tua galleria', v: 'In 3D', trd: 'Trades', ach: 'I tuoi acquisti', ven: 'Le tue vendite', gui: 'Guide', set: 'Setlist' },
-    s: { gal: 'Tutta la tua collezione a colpo d’occhio', v: 'Fai girare ogni carta, dettagli e riflessi', trd: 'Vendi e scambia con i collezionisti', ach: 'Aste, tracciamento pacchi, budget', ven: 'Offerte, spedizioni, profitto realizzato', gui: 'Checklist e consigli per collezionare', set: 'NBA 2024-25 · Checklist' } },
+    t: { gal: 'La tua galleria', v: 'In 3D', trd: 'Trades', ach: 'I tuoi acquisti', ven: 'Le tue vendite', gui: 'Guide', set: 'Setlist', ob: 'I tuoi PC', hm: 'Minigiochi' },
+    s: { gal: 'Tutta la tua collezione a colpo d’occhio', v: 'Fai girare ogni carta, dettagli e riflessi', trd: 'Vendi e scambia con i collezionisti', ach: 'Aste, tracciamento pacchi, budget', ven: 'Offerte, spedizioni, profitto realizzato', gui: 'Checklist e consigli per collezionare', set: 'Topps Flagship 2025-26 · Checklist', ob: 'Scegli la divisa di ogni figurina', hm: 'Carta del giorno, pack, pronostici' } },
 }
 const LANG_NAMES: Record<Lang, string> = { fr: 'Français', en: 'English', de: 'Deutsch', es: 'Español', it: 'Italiano' }
 
-type Tall = { c: HTMLCanvasElement; nav: HTMLCanvasElement; k: number } // k = pixels par pixel css ; nav = menu du bas de l'appli (fixe)
+type Tall = { c: HTMLCanvasElement; nav: HTMLCanvasElement; k: number; head?: number; navH?: number } // k = pixels par pixel css ; nav = menu du bas de l'appli (fixe)
 type Assets = {
-  gal: Tall; trd: Tall; ach: Tall; ven: Tall; gui: Tall; set: Tall
+  gal: Tall; trd: Tall; ach: Tall; ven: Tall; gui: Tall; set: Tall; ob: Tall; hm: Tall
   vbg: HTMLImageElement; card3: ImageBitmap | null; partner: HTMLCanvasElement | null; partnerTxt: string; tx: Tx; logo: HTMLCanvasElement | null; card: ImageBitmap | null; cards: ImageBitmap[]
   bg: HTMLCanvasElement; grain: CanvasPattern | null; shell: HTMLCanvasElement; shadow: HTMLCanvasElement
 }
@@ -55,7 +55,7 @@ const eio2 = (t: number) => { t = clamp(t); return t * t * (3 - 2 * t) }
 const seg = (t: number, a: number, b: number) => clamp((t - a) / (b - a))
 const lerp = (a: number, b: number, t: number) => a + (b - a) * t
 
-const loadImg = (src: string) => new Promise<HTMLImageElement>((res, rej) => { const i = new Image(); i.onload = () => res(i); i.onerror = () => rej(new Error(src)); i.src = src })
+const loadImg = (src: string) => new Promise<HTMLImageElement>((res, rej) => { const i = new Image(); i.onload = () => res(i); i.onerror = () => rej(new Error(src)); i.src = src + (src.startsWith('/ad/') ? '?v=20261119b' : '') })
 async function bmp(url: string): Promise<ImageBitmap | null> {
   try { const r = await fetch(url, { mode: 'cors' }); return r.ok ? await createImageBitmap(await r.blob()) : null } catch { return null }
 }
@@ -68,24 +68,25 @@ async function tintedLogo(color: string): Promise<HTMLCanvasElement | null> {
 
 // recolle plusieurs captures de l'APPLI prises à des défilements connus (px css) en une longue image ; barre du haut (40) et menu du bas (83) fixes : gardés une seule fois
 const HEAD = 40, NAV = 83, NAVX = 26 // NAVX : partie du bouton central qui dépasse au-dessus du menu
-function stitch(frames: { img: HTMLImageElement; y: number }[]): Tall {
-  const K = 2, VH = 1040
+function stitch(frames: { img: HTMLImageElement; y: number }[], o: { head?: number; nav?: number; navx?: number } = {}): Tall {
+  // o : hauteur (px css) de la barre du haut et du menu du bas de ces captures. Les captures récentes du site n'ont plus de menu en bas (nav = 0) et une barre du haut de 60 px.
+  const K = 2, VH = 1040, HD = o.head ?? HEAD, NV = o.nav ?? NAV, NX = o.navx ?? NAVX
   const last = frames[frames.length - 1]
   const c = document.createElement('canvas'); c.width = 480 * K; c.height = Math.ceil((last.y + VH) * K)
   const x = c.getContext('2d')!; x.imageSmoothingQuality = 'high'
   frames.forEach((f, i) => {
     const s = f.img.width / 480 // 1 (capture normale) ou 2 (capture haute définition)
     if (i === 0) x.drawImage(f.img, 0, 0, f.img.width, f.img.height, 0, f.y * K, 480 * K, VH * K)
-    else x.drawImage(f.img, 0, HEAD * s, f.img.width, (VH - HEAD - NAV) * s, 0, (f.y + HEAD) * K, 480 * K, (VH - HEAD - NAV) * K)
+    else x.drawImage(f.img, 0, HD * s, f.img.width, (VH - HD - NV) * s, 0, (f.y + HD) * K, 480 * K, (VH - HD - NV) * K)
   })
-  const f0 = frames[0].img, s0 = f0.width / 480
-  const NH = (NAV + NAVX) * K
+  if (NV + NX === 0) { const nav = document.createElement('canvas'); nav.width = 1; nav.height = 1; return { c, nav, k: K, head: HD, navH: 0 } }
+  const f0 = frames[0].img, s0 = f0.width / 480, NH = (NV + NX) * K
   const nav = document.createElement('canvas'); nav.width = 480 * K; nav.height = NH
-  const nx = nav.getContext('2d')!; nx.imageSmoothingQuality = 'high'; nx.drawImage(f0, 0, (VH - NAV - NAVX) * s0, f0.width, (NAV + NAVX) * s0, 0, 0, 480 * K, NH)
+  const nx = nav.getContext('2d')!; nx.imageSmoothingQuality = 'high'; nx.drawImage(f0, 0, (VH - NV - NX) * s0, f0.width, (NV + NX) * s0, 0, 0, 480 * K, NH)
   // au-dessus du menu, on ne garde que le bouton central (le reste de cette bande est du contenu de page qui change)
   const tmp = document.createElement('canvas'); tmp.width = nav.width; tmp.height = NH; tmp.getContext('2d')!.drawImage(nav, 0, 0)
-  nx.clearRect(0, 0, nav.width, NAVX * K); nx.save(); nx.beginPath(); nx.ellipse(240 * K, NAVX * K, 40 * K, NAVX * K, 0, 0, Math.PI * 2); nx.clip(); nx.drawImage(tmp, 0, 0); nx.restore()
-  return { c, nav, k: K }
+  nx.clearRect(0, 0, nav.width, NX * K); nx.save(); nx.beginPath(); nx.ellipse(240 * K, NX * K, 40 * K, NX * K, 0, 0, Math.PI * 2); nx.clip(); nx.drawImage(tmp, 0, 0); nx.restore()
+  return { c, nav, k: K, head: HD, navH: NV + NX }
 }
 
 // ── pré-rendus (une seule fois) : fond flouté, grain, coque du téléphone, ombre de la carte ──
@@ -160,8 +161,9 @@ function phone(ctx: CanvasRenderingContext2D, A: Assets, o: { cx?: number; cy?: 
 function screen(ctx: CanvasRenderingContext2D, T: Tall, scroll: number, x: number, y: number, w: number, h: number, alpha = 1) {
   ctx.save(); ctx.globalAlpha = alpha; ctx.imageSmoothingQuality = 'high'
   ctx.drawImage(T.c, 0, scroll * T.k, 480 * T.k, 1040 * T.k, x, y, w, h)
-  ctx.drawImage(T.c, 0, 0, 480 * T.k, HEAD * T.k, x, y, w, (HEAD / 1040) * h)
-  ctx.drawImage(T.nav, 0, 0, T.nav.width, T.nav.height, x, y + h - ((NAV + NAVX) / 1040) * h, w, ((NAV + NAVX) / 1040) * h)
+  const hd = T.head ?? HEAD, nh = T.navH ?? (NAV + NAVX)
+  ctx.drawImage(T.c, 0, 0, 480 * T.k, hd * T.k, x, y, w, (hd / 1040) * h)
+  if (nh > 0) ctx.drawImage(T.nav, 0, 0, T.nav.width, T.nav.height, x, y + h - (nh / 1040) * h, w, (nh / 1040) * h)
   ctx.restore()
 }
 
@@ -198,14 +200,16 @@ function pill(ctx: CanvasRenderingContext2D, label: string, color: string, cx: n
 
 // écrans défilants : début, fin, longue capture, défilement de départ et d'arrivée (px css), légende
 const FADE = 0.45
-type Scr = { a: number; b: number; key: 'gal' | 'trd' | 'ach' | 'ven' | 'gui' | 'set'; from: number; to: number; n: string; title: string; sub: string }
+type Scr = { a: number; b: number; key: 'gal' | 'trd' | 'ach' | 'ven' | 'gui' | 'set' | 'ob' | 'hm'; from: number; to: number; n: string; title: string; sub: string }
 const SCREENS: Scr[] = [
-  { a: T0.gal, b: T0.viewer, key: 'gal', from: 540, to: 1850, n: '01', title: 'Ta galerie', sub: 'Toute ta collection, en un coup d’œil' },
-  { a: T0.trades, b: T0.achats, key: 'trd', from: 380, to: 1650, n: '03', title: 'Trades', sub: 'Vends et échange avec les collectionneurs' },
-  { a: T0.achats, b: T0.ventes, key: 'ach', from: 1780, to: 2780, n: '04', title: 'Tes achats', sub: 'Enchères, suivi des colis, budget' },
-  { a: T0.ventes, b: T0.guides, key: 'ven', from: 0, to: 1000, n: '05', title: 'Tes ventes', sub: 'Offres, expéditions, profit réalisé' },
-  { a: T0.guides, b: T0.setlist, key: 'gui', from: 0, to: 1100, n: '06', title: 'Guides', sub: 'Checklists et conseils pour collectionner' },
-  { a: T0.setlist, b: T0.fin, key: 'set', from: 0, to: 500, n: '07', title: 'Setlist', sub: 'NBA 2024-25 · Checklists' },
+  { a: T0.gal, b: T0.viewer, key: 'gal', from: 0, to: 1700, n: '01', title: 'Ta galerie', sub: 'Toute ta collection, en un coup d’œil' },
+  { a: T0.trades, b: T0.objectifs, key: 'trd', from: 0, to: 1500, n: '03', title: 'Trades', sub: 'Vends et échange avec les collectionneurs' },
+  { a: T0.objectifs, b: T0.packs, key: 'ob', from: 0, to: 350, n: '04', title: 'Tes PC', sub: 'Choisis la tenue de chaque figurine' },
+  { a: T0.packs, b: T0.achats, key: 'hm', from: 0, to: 710, n: '05', title: 'Mini-jeux', sub: 'Carte du jour, packs, pronos' },
+  { a: T0.achats, b: T0.ventes, key: 'ach', from: 1780, to: 2780, n: '06', title: 'Tes achats', sub: 'Enchères, suivi des colis, budget' },
+  { a: T0.ventes, b: T0.guides, key: 'ven', from: 0, to: 1000, n: '07', title: 'Tes ventes', sub: 'Offres, expéditions, profit réalisé' },
+  { a: T0.guides, b: T0.setlist, key: 'gui', from: 0, to: 1100, n: '08', title: 'Guides', sub: 'Checklists et conseils pour collectionner' },
+  { a: T0.setlist, b: T0.fin, key: 'set', from: 0, to: 350, n: '09', title: 'Setlist', sub: 'Topps Flagship 2025-26 · Checklists' },
 ]
 
 function frame(ctx: CanvasRenderingContext2D, t: number, A: Assets) {
@@ -295,7 +299,7 @@ function scheduleAudio(ac: BaseAudioContext, dest: AudioNode, lead = 0.1) {
     const o = ac.createOscillator(), og = ac.createGain(); o.type = 'sine'; o.frequency.setValueAtTime(900, t0 + at); o.frequency.exponentialRampToValueAtTime(300, t0 + at + 0.09)
     og.gain.setValueAtTime(0.18, t0 + at); og.gain.exponentialRampToValueAtTime(0.0001, t0 + at + 0.12); o.connect(og); og.connect(master); o.start(t0 + at); o.stop(t0 + at + 0.14)
   }
-  swipe(T0.gal - 0.1); swipe(T0.viewer); swipe(T0.trades); swipe(T0.achats); swipe(T0.ventes); swipe(T0.guides); swipe(T0.setlist); swipe(T0.fin, false)
+  swipe(T0.gal - 0.1); swipe(T0.viewer); swipe(T0.trades); swipe(T0.objectifs); swipe(T0.packs); swipe(T0.achats); swipe(T0.ventes); swipe(T0.guides); swipe(T0.setlist); swipe(T0.fin, false)
 }
 
 export default function PubGenerator() {
@@ -331,14 +335,16 @@ export default function PubGenerator() {
         const dir = lang === 'fr' ? '/ad/app_' : `/ad/${lang}/app_`
         let fallback = 0
         const L = (n: string) => loadImg(`${dir}${n}.jpg`).catch(() => { fallback++; return loadImg(`/ad/app_${n}.jpg`) })
-        const names = ['g0', 'g1', 'g2', 'g3', 'tr0', 'tr1', 'tr2', 'tr3', 'ac0', 'ac1', 'ac2', 'ac3', 'ac4', 'vt0', 'vt1', 'vt2', 'gd0', 'gd1', 'gd2', 'sl0', 'sl1', 'vbg']
+        const names = ['g0', 'g1', 'g2', 'g3', 'tr0', 'tr1', 'tr2', 'tr3', 'ac0', 'ac1', 'ac2', 'ac3', 'ac4', 'vt0', 'vt1', 'vt2', 'gd0', 'gd1', 'gd2', 'sl0', 'sl1', 'sl2', 'ob0', 'ob1', 'hm0', 'hm1', 'vbg']
         const im = Object.fromEntries(await Promise.all(names.map(async n => [n, await L(n)]))) as Record<string, HTMLImageElement>
-        const gal = stitch([{ img: im.g0, y: 0 }, { img: im.g1, y: 700 }, { img: im.g2, y: 1400 }, { img: im.g3, y: 2100 }])
-        const trd = stitch([{ img: im.tr0, y: 0 }, { img: im.tr1, y: 600 }, { img: im.tr2, y: 1300 }, { img: im.tr3, y: 2000 }])
+        const gal = stitch([{ img: im.g0, y: 0 }, { img: im.g1, y: 700 }, { img: im.g2, y: 1400 }, { img: im.g3, y: 2100 }], { head: 60, nav: 0, navx: 0 })
+        const trd = stitch([{ img: im.tr0, y: 0 }, { img: im.tr1, y: 700 }, { img: im.tr2, y: 1400 }, { img: im.tr3, y: 2100 }], { head: 60, nav: 0, navx: 0 })
         const ach = stitch([{ img: im.ac0, y: 0 }, { img: im.ac1, y: 700 }, { img: im.ac2, y: 1400 }, { img: im.ac3, y: 2100 }, { img: im.ac4, y: 2800 }])
         const ven = stitch([{ img: im.vt0, y: 0 }, { img: im.vt1, y: 700 }, { img: im.vt2, y: 1125 }])
         const gui = stitch([{ img: im.gd0, y: 0 }, { img: im.gd1, y: 700 }, { img: im.gd2, y: 1400 }])
-        const set = stitch([{ img: im.sl0, y: 0 }, { img: im.sl1, y: 500 }])
+        const set = stitch([{ img: im.sl0, y: 0 }, { img: im.sl1, y: 700 }, { img: im.sl2, y: 1400 }], { head: 60, nav: 0, navx: 0 })
+        const ob = stitch([{ img: im.ob0, y: 0 }, { img: im.ob1, y: 350 }], { head: 60, nav: 0, navx: 0 })
+        const hm = stitch([{ img: im.hm0, y: 0 }], { head: 60, nav: 0, navx: 0 })
         const logo = await tintedLogo('#ffffff')
         const card = await bmp('https://snnrkzbevjhdtviizfyp.supabase.co/storage/v1/object/public/avatars/cartes/eb730dee-414e-4fcb-89d8-4a7b3448c218/1792761526819_recto.jpg')
         const cards: ImageBitmap[] = card ? [card] : []
@@ -352,7 +358,7 @@ export default function PubGenerator() {
         }
         if (dead) return
         const c = canvasRef.current!, ctx = c.getContext('2d')!
-        A.current = { gal, trd, ach, ven, gui, set, vbg: im.vbg, card3, partner: await loadPartnerLogo(), partnerTxt: AD_TX[lang].partner, tx: TX[lang], logo, card, cards, bg: makeBackground(cards), grain: makeGrain(ctx), shell: makeShell(), shadow: makeShadow() }
+        A.current = { gal, trd, ach, ven, gui, set, ob, hm, vbg: im.vbg, card3, partner: await loadPartnerLogo(), partnerTxt: AD_TX[lang].partner, tx: TX[lang], logo, card, cards, bg: makeBackground(cards), grain: makeGrain(ctx), shell: makeShell(), shadow: makeShadow() }
         setStatus(fallback ? `Prêt · captures ${LANG_NAMES[lang]} absentes : écrans en français, textes traduits` : `Prêt · captures réelles du site · ${LANG_NAMES[lang]}`)
         setReady(true)
         frame(ctx, 5, A.current)

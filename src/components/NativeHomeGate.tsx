@@ -17,14 +17,14 @@ interface SiteStats { total: number; totalCartes: number; totalBinders: number; 
 // points forts (activité de la communauté), pas du remplissage marketing.
 // Bascule client-side (l'auth n'est connue qu'après hydratation) : un flash
 // bref du hero est visible le temps que useAuth résolve.
-export default function NativeHomeGate({ hero, siteStats, cardOfTheDay }: { hero: ReactNode; siteStats: SiteStats; cardOfTheDay?: ReactNode }) {
+export default function NativeHomeGate({ hero, siteStats, cardOfTheDay, extras }: { hero: ReactNode; siteStats: SiteStats; cardOfTheDay?: ReactNode; extras?: Record<string, ReactNode> }) {
   const { user, loading } = useAuth()
   const isApp = useIsAppUI()
 
   // Session mémorisée introuvable ou expirée : ce n'était pas un membre, on rend le bandeau aux visiteurs
   useEffect(() => { if (!loading && !user) document.documentElement.removeAttribute('data-member') }, [loading, user])
 
-  if (!loading && user) return <NativeHomeDashboard siteStats={siteStats} cardOfTheDay={cardOfTheDay} />
+  if (!loading && user) return <NativeHomeDashboard siteStats={siteStats} cardOfTheDay={cardOfTheDay} extras={extras} />
 
   // Sur l'app, la résolution de l'auth au cold start peut prendre plusieurs
   // secondes (voir AuthContext.tsx) -- largement au-delà d'un "flash bref".
@@ -42,5 +42,5 @@ export default function NativeHomeGate({ hero, siteStats, cardOfTheDay }: { hero
 
   // Visiteur : bandeau habituel. Membre connu d'avance (<html data-member>, posé avant l'affichage) : le bandeau est caché et
   // remplacé par une zone de la hauteur d'un écran, le temps que le tableau de bord arrive (sans ça, tout le bas de page sautait).
-  return <><div className="home-hero-gate">{hero}{cardOfTheDay}</div><div className="home-member-ph" aria-hidden="true" /></>
+  return <><div className="home-hero-gate">{hero}{cardOfTheDay}</div><div className="home-member-ph" aria-hidden="true" />{!(!loading && user) && extras && ['tcg', 'pronos', 'pepites', 'podium'].map(k => <div key={k}>{extras[k]}</div>)}</>
 }

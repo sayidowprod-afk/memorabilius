@@ -421,3 +421,282 @@ i.pn { background: #7a3df0; }
 .pk-sum-detail .pk-acts { margin-top: 4px; }
 
 .pk-sum .ph-tag { display: none; }
+
+
+/* ── Téléphone / app : rien ne passe sous la barre système, boutons du bas toujours visibles ── */
+.pk-bottombar { position: fixed; left: 0; right: 0; bottom: calc(72px + env(safe-area-inset-bottom, 0px)); z-index: 6; display: flex; justify-content: center; gap: 10px; pointer-events: none; }
+.pk-bottombar .pk-odds-btn { position: static; pointer-events: auto; }
+.pk-caption { margin-bottom: 40px; }
+.pk-reveal-bar { padding-right: 60px; }
+.pk-reveal-btns { display: flex; gap: 8px; flex-wrap: wrap; justify-content: flex-end; }
+.pk-reveal-btns .pk-btn { padding: 8px 14px; font-size: 16px; }
+.pk.pk-overlay.pk-scroll { padding-bottom: calc(110px + env(safe-area-inset-bottom, 0px)); }
+.pk-art-pack .lbl-mid b { font-size: 100px; line-height: .8; }
+.pk-art-pack .lbl-mid span { font-size: 26px; }
+.pk-art-pack .lbl-bot { bottom: 44px; }
+.pk-art-pack .lbl-top { display: none; }
+.pk-packbox { margin-top: -20px; }
+
+.pk-now { transition: opacity .3s; } .pk-now:not(.show) { transition: none; opacity: 0; }
+
+/* Téléphone : carte du jour et pack plus fins */
+@media (max-width: 520px) {
+  .hd-row > .cdj, .dd .hd-row > .cdj, .hd-row > .pt { min-height: 215px; padding: 28px 10px 10px 12px; }
+  .hd-row > .cdj, .dd .hd-row > .cdj { grid-template-columns: 108px minmax(0, 1fr); column-gap: 10px; }
+  .hd-row > .cdj > .cdj-img, .hd-row > .cdj > .cdj-scratch { width: 108px; }
+  .hd-row > .pt { grid-template-columns: minmax(0, 1fr) 98px; column-gap: 8px; }
+  .hd-row > .pt .pt-pack { width: 98px; height: 149px; --ps: .392; }
+  .hd-row .cdj h3, .dd .hd-row .cdj h3, .pt h3 { font-size: 24px; }
+  .hd-row .cdj-info, .pt-info { gap: 7px; }
+  .hd-row > .cdj.cdj-ph { min-height: 215px; }
+}
+
+
+/* ── Ambiance, nouveau/doublon, son, affiche ── */
+.pk-amb { position: fixed; inset: 0; z-index: 0; pointer-events: none; background: radial-gradient(70% 55% at 50% 45%, var(--rc), transparent 70%); opacity: 0; animation: pk-amb-in 1.4s ease-out forwards; }
+.pk-amb.r3 { --o: .22; } .pk-amb.r4 { --o: .38; } .pk-amb.r5 { --o: .55; }
+@keyframes pk-amb-in { 0% { opacity: 0; } 25% { opacity: 1; } 100% { opacity: var(--o, .3); } }
+.pk-amb.r5 { animation: pk-amb-in 1.4s ease-out forwards, pk-amb-pulse 2.2s ease-in-out 1.4s infinite; }
+@keyframes pk-amb-pulse { 0%, 100% { opacity: .5; } 50% { opacity: .7; } }
+.pk.pk-overlay:has(.pk-amb.r5) .pk-deck-stage, .pk.pk-overlay:has(.pk-amb.r4) .pk-deck-stage { animation: pk-quake .5s ease-out .2s 1; }
+@keyframes pk-quake { 0%, 100% { transform: none; } 20% { transform: translate(-6px, 3px); } 40% { transform: translate(6px, -3px); } 60% { transform: translate(-4px, 2px); } 80% { transform: translate(3px, -1px); } }
+.pk-card.slow .pk-face { transition-duration: 1.2s; }
+.pk-card.slow.on .pk-face.front { animation-duration: .9s; }
+i.nw { background: #e5484d; } i.dp { background: #fdb927; color: #111 !important; }
+.ph-corner i.nw, .pk-corner i.nw { box-shadow: 0 0 10px rgba(229, 72, 77, .8); }
+.pk-snd { position: fixed; top: calc(12px + env(safe-area-inset-top, 0px)); right: 66px; z-index: 31; width: 44px; height: 44px; background: transparent; border: 2px solid rgba(255,255,255,.6); color: #fff; font-size: 17px; cursor: pointer; }
+.pk-poster-row { display: flex; justify-content: center; margin-top: 14px; }
+.pk-poster-row .pk-btn { font-size: 15px; padding: 8px 16px; }
+
+/* ── Téléphone : carte du jour et pack encore plus fins ── */
+@media (max-width: 520px) {
+  .hd-row > .cdj, .dd .hd-row > .cdj, .hd-row > .pt { min-height: 168px; padding: 22px 8px 8px 10px; }
+  .hd-row > .cdj, .dd .hd-row > .cdj { grid-template-columns: 82px minmax(0, 1fr); column-gap: 8px; row-gap: 4px; }
+  .hd-row > .cdj > .cdj-img, .hd-row > .cdj > .cdj-scratch { width: 82px; }
+  .hd-row > .pt { grid-template-columns: minmax(0, 1fr) 76px; column-gap: 6px; }
+  .hd-row > .pt .pt-pack { width: 76px; height: 116px; --ps: .304; }
+  .hd-row .cdj h3, .dd .hd-row .cdj h3, .pt h3 { font-size: 19px; }
+  .hd-row .cdj-meta, .dd .hd-row .cdj-meta { font-size: 10.5px; }
+  .hd-row .cdj-eyebrow, .pt-eyebrow { font-size: 7.5px; padding: 2px 6px; }
+  .hd-row .cdj-btn, .pt .cdj-btn { padding: 5px 9px; font-size: 8.5px; border-width: 2px; }
+  .hd-row .cdj-chips span { font-size: 8px; padding: 2px 6px; }
+  .hd-row .cdj-owner img { width: 28px; height: 28px; } .hd-row .cdj-owner b { font-size: 12px; } .hd-row .cdj-owner small, .hd-row .cdj-owner i { font-size: 9px; }
+  .hd-row .cdj-day { padding: 2px 7px 1px; } .hd-row .cdj-day b { font-size: 22px; } .hd-row .cdj-day small { font-size: 6px; }
+  .hd-row .cdj-info, .pt-info { gap: 5px; }
+  .hd-row > .cdj > .cdj-week { gap: 3px; padding-bottom: 11px; } .hd-row > .cdj .cdj-wd small { font-size: 5px; bottom: -9px; }
+  .pt-stock b { font-size: 9px; } .pt-stock small { font-size: 8.5px; } .pt-pips i { width: 7px; height: 11px; }
+  .pt-badge { min-width: 19px; height: 19px; font-size: 10px; border-width: 2px; }
+  .hd-row > .cdj.cdj-ph { min-height: 168px; }
+}
+
+/* ── Téléphone, version harmonisée : images plus grandes, blocs fins, date à droite ── */
+@media (max-width: 520px) {
+  .hd-row > .cdj, .dd .hd-row > .cdj, .hd-row > .pt { min-height: 196px; padding: 30px 10px 12px 10px; align-items: center; }
+  .hd-row > .cdj, .dd .hd-row > .cdj { grid-template-columns: 118px minmax(0, 1fr); column-gap: 10px; }
+  .hd-row > .cdj > .cdj-img, .hd-row > .cdj > .cdj-scratch { width: 118px; transform: rotate(-2deg); margin-top: 0; }
+  .hd-row > .pt { grid-template-columns: minmax(0, 1fr) 112px; column-gap: 10px; }
+  .hd-row > .pt .pt-pack { width: 112px; height: 170px; --ps: .448; transform: rotate(2deg); }
+  .hd-row .cdj-day { left: auto !important; right: -1px; top: -1px; padding: 2px 8px 1px; }
+  .hd-row .cdj-day b { font-size: 20px; }
+  .hd-row .cdj-info { align-self: center; padding-top: 6px; }
+  .hd-row > .cdj > .cdj-week { align-self: end; }
+  .hd-row > .cdj > .cdj-info { grid-row: 1; } .hd-row > .cdj > .cdj-week { grid-row: 2; }
+  .hd-row .cdj h3, .pt h3 { font-size: 21px; }
+  .hd-row > .cdj.cdj-ph { min-height: 196px; }
+}
+
+/* ── Téléphone : les deux blocs ont exactement la même structure (image à gauche, mêmes titres, mêmes textes, mêmes boutons) ── */
+@media (max-width: 520px) {
+  .hd-row > .pt { grid-template-columns: 118px minmax(0, 1fr); column-gap: 10px; }
+  .hd-row > .pt .pt-pack { order: -1; width: 118px; height: 179px; --ps: .472; transform: rotate(-2deg); justify-self: start; margin: 0; }
+  .hd-row > .pt .pt-info { order: 1; }
+  .hd-row .cdj-eyebrow, .hd-row .pt-eyebrow { font-size: 8px !important; padding: 3px 7px !important; letter-spacing: .14em; box-shadow: none; border-width: 2px; }
+  .hd-row .cdj h3, .hd-row .pt h3 { font-size: 22px !important; line-height: .95; margin: 0; }
+  .hd-row .cdj-meta, .hd-row .pt-meta, .hd-row .pt-stock b, .hd-row .pt-stock small { font-size: 10px !important; line-height: 1.25; display: block; }
+  .hd-row .pt-meta { display: none; }
+  .hd-row .cdj-btn, .hd-row .pt .cdj-btn { padding: 6px 10px !important; font-size: 9px !important; letter-spacing: .08em; }
+  .hd-row .pt-actions, .hd-row .cdj-actions { display: flex; flex-direction: column; align-items: flex-start; gap: 5px; }
+  .hd-row .pt-info, .hd-row .cdj-info { gap: 6px; align-items: flex-start; }
+  .hd-row .cdj-owner { display: none; }
+  .hd-row .pt-pips i { width: 8px; height: 12px; }
+  .hd-row .pt-badge { left: 4px; right: auto; top: -4px; }
+}
+
+/* Téléphone : miroir de la carte du jour (carte à gauche, pack à droite) */
+@media (max-width: 520px) {
+  .hd-row > .pt { grid-template-columns: minmax(0, 1fr) 118px; }
+  .hd-row > .pt .pt-pack { order: 2; justify-self: end; transform: rotate(2deg); }
+  .hd-row > .pt .pt-info { order: 1; }
+  .hd-row .pt-badge { left: auto; right: 0; }
+}
+
+/* Téléphone : plus d'espace perdu en haut des deux blocs */
+@media (max-width: 520px) {
+  .hd-row > .cdj, .dd .hd-row > .cdj, .hd-row > .pt { min-height: 0; padding: 10px 10px 10px 10px; }
+  .hd-row > .cdj.cdj-ph { min-height: 200px; }
+  .hd-row > .cdj .cdj-day { z-index: 4; }
+  .hd-row .cdj-info { padding-top: 0; }
+}
+
+/* Date de la carte du jour : pastille fine, intégrée (plus de gros bloc blanc) */
+.hd-row .cdj-day { background: rgba(255,255,255,.08) !important; border: 2px solid rgba(255,255,255,.55); top: 12px !important; right: 12px !important; left: auto !important; padding: 3px 10px 3px !important; display: flex; align-items: baseline; gap: 6px; text-align: left; backdrop-filter: blur(2px); }
+.hd-row .cdj-day, .hd-row .cdj-day * { color: #fff !important; }
+.hd-row .cdj-day b { display: inline !important; font-size: 24px !important; line-height: 1 !important; }
+.hd-row .cdj-day small { font-size: 9px !important; letter-spacing: .14em; opacity: .85; white-space: nowrap; }
+@media (max-width: 520px) { .hd-row .cdj-day { top: 8px !important; right: 8px !important; padding: 2px 7px !important; } .hd-row .cdj-day b { font-size: 18px !important; } .hd-row .cdj-day small { font-size: 7px !important; } }
+
+
+/* ── Packs bonus (doublons) et week-end ── */
+.pk-modes { display: flex; gap: 6px; flex-wrap: wrap; justify-content: center; margin-top: 10px; position: relative; z-index: 2; }
+.pk-modes button { background: transparent; border: 2px solid rgba(255,255,255,.4); color: #fff; padding: 5px 11px; font: 800 11px system-ui, sans-serif; letter-spacing: .06em; text-transform: uppercase; cursor: pointer; }
+.pk-modes button.on { background: #fff; color: #07143a; border-color: #fff; } .pk-modes button.bonus { border-color: #fdb927; } .pk-modes button.bonus.on { background: #fdb927; color: #111; }
+.pk-weekend { position: fixed; top: calc(70px + env(safe-area-inset-top, 0px)); left: 50%; transform: translateX(-50%); z-index: 5; background: linear-gradient(90deg, #f2a812, #ffd66b); color: #111; font: 800 11px system-ui, sans-serif; letter-spacing: .08em; text-transform: uppercase; padding: 5px 12px; white-space: nowrap; }
+.pk-odds-btn.trade { border-color: #fdb927; color: #ffd66b; }
+.pk-trade h2 { font-size: 30px; margin-bottom: 6px; } .pk-trade p { color: var(--mut); margin: 4px 0; }
+.pk-trade-count { margin: 10px 0 14px; font: 800 12px system-ui, sans-serif; letter-spacing: .1em; text-transform: uppercase; } .pk-trade-count b { font: 400 40px 'Surfquest', Impact, sans-serif; margin-right: 6px; color: #fdb927; }
+.pk-trade-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px; }
+.pk-trade-grid button { background: rgba(255,255,255,.06); border: 2px solid rgba(255,255,255,.35); color: #fff; padding: 10px; text-align: left; cursor: pointer; display: flex; flex-direction: column; gap: 3px; }
+.pk-trade-grid button:hover:not(:disabled) { border-color: #fdb927; background: rgba(253,185,39,.12); } .pk-trade-grid button:disabled { opacity: .45; cursor: default; }
+.pk-trade-grid b { font: 800 14px system-ui, sans-serif; } .pk-trade-grid small { color: var(--mut); font-size: 11px; }
+.pk-trade-msg { color: #ffd66b !important; font-weight: 700; }
+
+
+/* ── Pack : image générée ── */
+.pk-art-img { position: absolute; inset: 0; }
+.pk-art-img img { position: absolute; inset: 0; width: 100%; height: 100%; display: block; background: none !important; animation: none !important; content-visibility: visible !important; filter: drop-shadow(0 6px 10px rgba(0,0,0,.45)); user-select: none; -webkit-user-drag: none; }
+.pk-art-img .lbl-bot { position: absolute; left: 0; right: 0; bottom: 16%; text-align: center; display: flex; flex-direction: column; gap: 1px; z-index: 2; }
+.pk-art-img .lbl-bot em { font: 400 24px 'Surfquest', Impact, sans-serif; font-style: normal; letter-spacing: .1em; color: #fff; text-shadow: 0 2px 0 rgba(0,0,0,.55), 0 0 10px rgba(0,0,0,.5); }
+.pk-art-img .lbl-bot small { font: 800 10px system-ui, sans-serif; letter-spacing: .16em; color: #ffe9a6; text-shadow: 0 1px 2px rgba(0,0,0,.7); }
+.pk-art-img .sheen { position: absolute; inset: 0; z-index: 3; pointer-events: none; background: linear-gradient(112deg, transparent 40%, rgba(255,255,255,.35) 49%, transparent 58%); mix-blend-mode: soft-light; animation: pk-sheen 3.6s ease-in-out infinite; }
+.pk-art-pack { display: none; }
+.pk-p { filter: drop-shadow(0 3px 5px rgba(0,0,0,.5)); }
+.pt-pack-in .lbl-bot em { font-size: 24px; }
+
+
+/* ── Déchirure : le trait lumineux suit le bord irrégulier ── */
+.pk-slash { position: absolute; left: 0; top: 0; height: 100%; overflow: hidden; z-index: 9; pointer-events: none; background: none; box-shadow: none; }
+.pk-slash-in { position: absolute; left: 0; top: 0; width: 250px; height: 380px; background: #fff; filter: drop-shadow(0 0 5px #fff) drop-shadow(0 0 14px rgba(255,214,102,.95)); }
+.pk-spark { right: auto; margin-left: 0; }
+.pk-slash .pk-spark { position: absolute; right: -14px; }
+
+/* ── Dos des cartes : cadre doré, médaillon M, motif losanges, reflet ── */
+.pk-face.back { border: 2px solid #c9a24a; background:
+  radial-gradient(60% 40% at 50% 38%, rgba(255,214,102,.25), transparent 70%),
+  repeating-linear-gradient(45deg, rgba(255,255,255,.05) 0 2px, transparent 2px 14px),
+  repeating-linear-gradient(-45deg, rgba(255,255,255,.05) 0 2px, transparent 2px 14px),
+  linear-gradient(165deg, #1b4dc4 0%, #0b2a86 45%, #060f2c 100%);
+  box-shadow: inset 0 0 0 5px #07143a, inset 0 0 0 7px #c9a24a, 0 8px 20px -6px rgba(0,0,0,.7); }
+.pk-face.back::before { content: ''; position: absolute; inset: 16px; border: 1px solid rgba(201,162,74,.55); }
+.pk-face.back::after { content: ''; position: absolute; left: 50%; top: 50%; width: 46%; aspect-ratio: 1; transform: translate(-50%, -50%) rotate(45deg); border: 2px solid #c9a24a; background: radial-gradient(circle, rgba(255,214,102,.28), rgba(6,15,44,.6)); }
+.pk-face.back b { position: relative; z-index: 2; font: 400 72px 'Surfquest', Impact, sans-serif; color: #ffe9a6; opacity: 1; text-shadow: 0 0 14px rgba(255,200,80,.8), 0 3px 0 rgba(0,0,0,.5); }
+.pk-behind .pk-face.back b { font-size: 60px; }
+.pk-scene { margin-top: 26px; }
+.pk-counter { position: relative; z-index: 6; }
+
+/* ── Boutons du bas : sur une seule ligne, plus compacts ── */
+.pk-bottombar { gap: 6px; padding: 0 8px; }
+.pk-bottombar .pk-odds-btn { padding: 7px 9px; font-size: 10px; letter-spacing: .06em; white-space: nowrap; }
+
+.ph-trade { border: 2px solid #fdb927; background: transparent; color: #ffd66b; padding: 8px 12px; font: 800 11px system-ui, sans-serif; letter-spacing: .06em; text-transform: uppercase; cursor: pointer; white-space: nowrap; }
+@media (max-width: 520px) { .ph-trade { padding: 7px 8px; font-size: 9px; } }
+
+
+/* ── Lumières limitées à la silhouette du pack (plus de halo qui dépasse) ── */
+.pk-art-img .sheen, .pk-glare, .pk-slash { -webkit-mask-image: url(/packs/pack-classic.webp); mask-image: url(/packs/pack-classic.webp); -webkit-mask-size: 250px 380px; mask-size: 250px 380px; -webkit-mask-repeat: no-repeat; mask-repeat: no-repeat; -webkit-mask-position: 0 0; mask-position: 0 0; }
+.pk-art-img .sheen { -webkit-mask-size: 100% 100%; mask-size: 100% 100%; }
+.pk-glare { mix-blend-mode: soft-light; opacity: .55; }
+.pk-slash-in { filter: drop-shadow(0 0 2px #fff); }
+.pk-glow { inset: 8%; }
+.pk-packwrap.torn .pk-glow { inset: 8%; }
+.pk-cutflash { left: 6%; right: 6%; box-shadow: 0 0 14px 4px rgba(255,236,160,.9); -webkit-mask-image: url(/packs/pack-classic.webp); mask-image: url(/packs/pack-classic.webp); -webkit-mask-size: 250px 380px; mask-size: 250px 380px; -webkit-mask-repeat: no-repeat; mask-repeat: no-repeat; -webkit-mask-position: 0 -40px; mask-position: 0 -40px; }
+.pk-pack { filter: none; }
+
+
+/* ── Barre du bas : trois boutons égaux, discrets, bien espacés ── */
+.pk-bottombar { left: 12px; right: 12px; bottom: calc(64px + env(safe-area-inset-bottom, 0px)); display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px; padding: 0; }
+.pk-bottombar .pk-odds-btn { position: static; width: 100%; height: 40px; padding: 0 6px; display: flex; align-items: center; justify-content: center; font: 800 11px system-ui, sans-serif; letter-spacing: .08em; text-transform: uppercase; background: rgba(13, 34, 87, .75); border: 1px solid rgba(255,255,255,.35); color: #fff; backdrop-filter: blur(4px); }
+.pk-bottombar .pk-odds-btn.trade { border-color: rgba(253,185,39,.8); color: #ffd66b; }
+.pk-bottombar .pk-odds-btn:active { background: rgba(255,255,255,.15); }
+.pk-skip { margin-bottom: 6px; }
+.pk-hint { margin-top: 2px; }
+.pk.pk-overlay .pk-deck-stage { padding-bottom: 96px; }
+.pk-dev { left: 12px; bottom: calc(112px + env(safe-area-inset-bottom, 0px)); }
+
+
+/* Reflet : le masque (silhouette du pack) est sur un conteneur FIXE ; seul le reflet à l'intérieur se déplace */
+.pk-art-img .sheen { background: none !important; animation: none !important; overflow: hidden; transform: none !important; }
+.pk-art-img .sheen i { position: absolute; top: -10%; bottom: -10%; left: 0; width: 55%; background: linear-gradient(100deg, transparent 0%, rgba(255,255,255,.5) 50%, transparent 100%); transform: translateX(-120%) skewX(-18deg); animation: pk-sheen2 4s ease-in-out infinite; mix-blend-mode: soft-light; }
+@keyframes pk-sheen2 { 0%, 55% { transform: translateX(-120%) skewX(-18deg); } 100% { transform: translateX(260%) skewX(-18deg); } }
+
+/* Boutons du bas un peu plus haut */
+.pk-bottombar { bottom: calc(112px + env(safe-area-inset-bottom, 0px)); }
+.pk.pk-overlay .pk-deck-stage { padding-bottom: 130px; }
+.pk-dev { bottom: calc(160px + env(safe-area-inset-bottom, 0px)); }
+
+
+/* Barre du bas : un seul bloc segmenté, lisible, sans texte coupé */
+.pk-bottombar { left: 14px; right: 14px; bottom: calc(108px + env(safe-area-inset-bottom, 0px)); display: flex; gap: 0; background: rgba(7, 20, 58, .88); border: 1px solid rgba(255,255,255,.3); backdrop-filter: blur(6px); }
+.pk-bottombar .pk-odds-btn { flex: 1 1 0; min-width: 0; width: auto; height: 46px; padding: 0 4px; border: 0; border-right: 1px solid rgba(255,255,255,.18); background: transparent; color: #fff; font: 800 12px system-ui, sans-serif; letter-spacing: .04em; text-transform: none; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.pk-bottombar .pk-odds-btn:last-child { border-right: 0; }
+.pk-bottombar .pk-odds-btn.trade { color: #ffd66b; border-color: rgba(255,255,255,.18); }
+.pk-bottombar .pk-odds-btn:active { background: rgba(255,255,255,.14); }
+
+
+/* Réserve de packs : sous les boutons son / fermer, plus jamais dessous ; texte d'aide lisible */
+.pk.pk-overlay .pk-hud { top: calc(84px + env(safe-area-inset-top, 0px)); left: 14px; right: 14px; }
+.pk-caption { color: rgba(255,255,255,.85); }
+.pk-weekend { top: calc(150px + env(safe-area-inset-top, 0px)); }
+
+.pk-packbox { margin-top: 24px; }
+.pk-caption { margin-bottom: 20px; }
+
+
+/* ── Ouverture en rabat : la bande du haut se soulève depuis la gauche, la lumière sort de la fente, puis elle s'envole ── */
+.pk-gap { position: absolute; inset: 0; z-index: 0; pointer-events: none; background: linear-gradient(0deg, #fff6c8 0%, #ffd66b 40%, rgba(255,214,102,0) 100%); filter: blur(1px); }
+.pk-gap::after { content: ''; position: absolute; left: 0; right: 0; top: 36px; height: 8px; background: #fff; box-shadow: 0 0 16px 4px rgba(255,236,160,.9); }
+.pk-p.top { transition: transform .06s linear; }
+.pk-packwrap.torn .pk-p.top { transition: none; }
+.pk-slash { display: none; }
+
+.pk-gap { z-index: -1; }
+
+.pk-p.top { transition: transform .12s ease-out; }
+
+
+/* ── Trait de coupe qui suit le doigt (le haut tombe d'un coup à la fin) ── */
+.pk-slash { display: block !important; }
+.pk-gap { display: none !important; }
+.pk-p.top { transition: none !important; }
+.pk-slash-in { filter: drop-shadow(0 0 3px #fff) drop-shadow(0 0 8px rgba(255,214,102,.9)); }
+
+
+/* Trait de coupe droit, dans les limites du pack ; la partie déjà coupée de la bande se soulève légèrement */
+.pk-cutline { position: absolute; height: 4px; z-index: 9; pointer-events: none; background: #fff; box-shadow: 0 0 6px 1px #fff, 0 0 14px 3px rgba(255,214,102,.9); }
+.pk-cutline .pk-spark { top: -14px; }
+.pk-p.top.lift { filter: drop-shadow(0 3px 3px rgba(0,0,0,.6)); transition: transform .08s linear; }
+.pk-slash { display: none !important; }
+
+
+/* Coupe nette sous le sertissage, trait fin sans étincelle */
+.pk-cutline { height: 3px; background: #fff; box-shadow: 0 0 4px 1px #fff, 0 0 9px 2px rgba(255,214,102,.8); }
+.pk-p.top.lift { filter: drop-shadow(0 2px 2px rgba(0,0,0,.55)); }
+.pk-cutflash { box-shadow: 0 0 10px 3px rgba(255,236,160,.9); }
+
+
+/* ── Ouverture : la bande se lève comme un rabat, puis se décolle complètement du côté opposé au départ et tombe ── */
+.pk-p.top.lift { transition: none; filter: drop-shadow(0 3px 3px rgba(0,0,0,.6)); }
+.pk-packwrap.torn.side-l .pk-p.top { transform-origin: 250px 36px; animation: pk-peel-l .8s cubic-bezier(.4, 0, .9, .6) forwards; }
+.pk-packwrap.torn.side-r .pk-p.top { transform-origin: 0px 36px; animation: pk-peel-r .8s cubic-bezier(.4, 0, .9, .6) forwards; }
+@keyframes pk-peel-l { 0% { transform: rotate(42deg); opacity: 1; } 45% { transform: rotate(95deg) translateY(-6px); opacity: 1; } 100% { transform: rotate(150deg) translate(40px, 260px); opacity: 0; } }
+@keyframes pk-peel-r { 0% { transform: rotate(-42deg); opacity: 1; } 45% { transform: rotate(-95deg) translateY(-6px); opacity: 1; } 100% { transform: rotate(-150deg) translate(-40px, 260px); opacity: 0; } }
+.pk-cutline { top: 34px; }
+
+/* le pack est un <button> : pas de fond ni de cadre par défaut */
+.pt-pack, button.pt-pack { background: transparent !important; border: 0 !important; padding: 0 !important; cursor: pointer; }
+.pt-pack:disabled { cursor: default; }
+
+/* Dos des cartes : le cadre prend la couleur de la rareté de la carte */
+.pk-face.back { border-color: var(--rc, #c9a24a); box-shadow: inset 0 0 0 5px #07143a, inset 0 0 0 7px var(--rc, #c9a24a), 0 8px 20px -6px rgba(0,0,0,.7); }
+.pk-face.back::before { border-color: color-mix(in srgb, var(--rc, #c9a24a) 60%, transparent); }
+.pk-face.back::after { border-color: var(--rc, #c9a24a); background: radial-gradient(circle, color-mix(in srgb, var(--rc, #c9a24a) 30%, transparent), rgba(6,15,44,.6)); }
+.pk-face.back b { color: color-mix(in srgb, var(--rc, #ffe9a6) 55%, #fff); text-shadow: 0 0 14px var(--rc, rgba(255,200,80,.8)), 0 3px 0 rgba(0,0,0,.5); }

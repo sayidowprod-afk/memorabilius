@@ -38,6 +38,7 @@ alter table public.pack_pool enable row level security;   -- lecture réservée 
 -- « Numérotée » : le tirage n'est pas dans la checklist, on le lit sur les cartes des membres reliées à cette série (champ num « 07/25 » -> 25).
 -- Une série dont aucun membre n'a relié de carte numérotée compte comme parallèle simple (peu commune) : la rareté s'affine toute seule quand les membres relient leurs cartes.
 alter table public.pack_pool add column if not exists print_run integer;
+alter table public.pack_pool add column if not exists dup_of bigint;   -- même photo reliée à plusieurs lignes de la checklist : une seule ligne « canonique » est tirable, les autres pointent vers elle
 alter table public.pack_pool add column if not exists is_patch boolean not null default false;
 create or replace function public.rebuild_pack_pool() returns integer
 language plpgsql security definer set search_path = public as $$
@@ -112,7 +113,20 @@ begin
   delete from public.pack_pool p where not exists (select 1 from public.card_set_entries e where e.id = p.entry_id and e.image_url is not null)
     and not exists (select 1 from public.entry_images i where i.entry_id = p.entry_id);
   delete from public.pack_pool where image_url not like '%/storage/v1/object/public/%';
-  select count(*) into n from public.pack_pool;
+  -- une même photo est parfois reliée à des dizaines de lignes de la checklist (parallèles) : une seule est tirable (la ligne « de base », puis la moins rare)
+  update public.pack_pool set dup_of = null where dup_of is not null;
+  with k as (select entry_id, first_value(entry_id) over (partition by image_url order by (variation is null) desc, rarity asc, entry_id) as canon from public.pack_pool)
+  update public.pack_pool p set dup_of = k.canon from k where k.entry_id = p.entry_id and k.canon <> p.entry_id;
+  -- les cartes déjà tirées sur une ligne doublon sont rattachées à la ligne canonique (et comptées comme doublons)
+  with m as (
+    select c.user_id, p.dup_of as canon, sum(c.qty)::integer as q, min(c.first_at) as f, max(c.last_at) as l
+    from public.user_pack_cards c join public.pack_pool p on p.entry_id = c.entry_id where p.dup_of is not null group by c.user_id, p.dup_of
+  ), ins as (
+    insert into public.user_pack_cards (user_id, entry_id, qty, first_at, last_at) select user_id, canon, q, f, l from m
+    on conflict (user_id, entry_id) do update set qty = public.user_pack_cards.qty + excluded.qty, first_at = least(public.user_pack_cards.first_at, excluded.first_at), last_at = greatest(public.user_pack_cards.last_at, excluded.last_at)
+    returning 1)
+  delete from public.user_pack_cards c using public.pack_pool p where p.entry_id = c.entry_id and p.dup_of is not null and (select count(*) from ins) >= 0;
+  select count(*) into n from public.pack_pool where dup_of is null;
   return n;
 end $$;
 revoke all on function public.rebuild_pack_pool() from public, anon, authenticated;
@@ -137,24 +151,25 @@ alter table public.user_packs alter column stock set default 10;
 alter table public.user_packs add column if not exists stock_at timestamptz not null default now(); -- repère de l'heure en cours de décompte
 
 -- p_use = true : prend un pack s'il y en a un ; false : lit seulement l'état. Renvoie {ok, stock, next} (next = heure du prochain pack, null si la réserve est pleine)
-create or replace function public.pack_stock(p_user uuid, p_use boolean default false, p_max integer default 10) returns jsonb
+drop function if exists public.pack_stock(uuid, boolean, integer);
+create or replace function public.pack_stock(p_user uuid, p_use boolean default false, p_max integer default 10, p_every integer default 60) returns jsonb
 language plpgsql security definer set search_path = public as $$
-declare r public.user_packs%rowtype; gained integer; avail integer; ref timestamptz; nxt timestamptz;
+declare r public.user_packs%rowtype; gained integer; avail integer; ref timestamptz; nxt timestamptz; step interval := p_every * interval '1 minute';
 begin
   insert into public.user_packs (user_id) values (p_user) on conflict do nothing;
   select * into r from public.user_packs where user_id = p_user for update;
-  gained := greatest(0, floor(extract(epoch from (now() - r.stock_at)) / 3600)::integer);
+  gained := greatest(0, floor(extract(epoch from (now() - r.stock_at)) / (p_every * 60))::integer);
   avail := least(p_max, r.stock + gained);
-  ref := case when avail >= p_max then now() else r.stock_at + gained * interval '1 hour' end;
+  ref := case when avail >= p_max then now() else r.stock_at + gained * step end;
   if p_use then
     if avail < 1 then
       update public.user_packs set stock = 0, stock_at = ref where user_id = p_user;
-      return jsonb_build_object('ok', false, 'stock', 0, 'next', ref + interval '1 hour');
+      return jsonb_build_object('ok', false, 'stock', 0, 'next', ref + step);
     end if;
     avail := avail - 1;                                 -- la réserve n'est plus pleine : le décompte repart de maintenant si elle l'était
   end if;
   update public.user_packs set stock = avail, stock_at = ref where user_id = p_user;
-  nxt := case when avail >= p_max then null else ref + interval '1 hour' end;
+  nxt := case when avail >= p_max then null else ref + step end;
   return jsonb_build_object('ok', true, 'stock', avail, 'next', nxt);
 end $$;
 
@@ -173,15 +188,17 @@ $$;
 create or replace function public.pack_pool_info() returns jsonb
 language sql stable security definer set search_path = public as $$
   select jsonb_build_object(
-    'total', (select count(*) from public.pack_pool),
-    'rarity', (select coalesce(jsonb_object_agg(rarity::text, n), '{}'::jsonb) from (select rarity, count(*) n from public.pack_pool group by rarity) r))
+    'total', (select count(*) from public.pack_pool where dup_of is null),
+    'rarity', (select coalesce(jsonb_object_agg(rarity::text, n), '{}'::jsonb) from (select rarity, count(*) n from public.pack_pool where dup_of is null group by rarity) r),
+    'bySport', (select coalesce(jsonb_object_agg(sport, rr), '{}'::jsonb) from (
+        select sport, jsonb_object_agg(rarity::text, n) as rr from (select sport, rarity, count(*) n from public.pack_pool where sport is not null and dup_of is null group by sport, rarity) x group by sport) y))
 $$;
 
-revoke all on function public.pack_stock(uuid, boolean, integer) from public, anon, authenticated;
+revoke all on function public.pack_stock(uuid, boolean, integer, integer) from public, anon, authenticated;
 revoke all on function public.pack_refund(uuid, integer) from public, anon, authenticated;
 revoke all on function public.pack_finish(uuid, integer) from public, anon, authenticated;
 revoke all on function public.pack_pool_info() from public, anon, authenticated;
-grant execute on function public.pack_stock(uuid, boolean, integer) to service_role;
+grant execute on function public.pack_stock(uuid, boolean, integer, integer) to service_role;
 grant execute on function public.pack_refund(uuid, integer) to service_role;
 grant execute on function public.pack_finish(uuid, integer) to service_role;
 grant execute on function public.pack_pool_info() to service_role;
@@ -196,7 +213,8 @@ create table if not exists public.user_pack_cards (
   last_at  timestamptz not null default now(),
   primary key (user_id, entry_id)
 );
-alter table public.user_pack_cards add column if not exists shared_at timestamptz;   -- carte déjà partagée sur Discord
+alter table public.user_pack_cards add column if not exists shared_at timestamptz;
+alter table public.user_pack_cards add column if not exists last_at timestamptz not null default now();   -- table créée par une version précédente du fichier : on ajoute la colonne   -- carte déjà partagée sur Discord
 create index if not exists idx_user_pack_cards_recent on public.user_pack_cards (user_id, last_at desc);
 alter table public.user_pack_cards enable row level security;
 drop policy if exists "pack_cards_own_select" on public.user_pack_cards;
@@ -235,3 +253,61 @@ create table if not exists public.pack_shares (
   unique (user_id, entry_id)
 );
 alter table public.pack_shares enable row level security;   -- lecture et écriture réservées au serveur (service role)
+
+
+-- ── 6. Doublons -> packs bonus (par thème) ─────────────────────────────────────────────────────────────────────────────────
+create table if not exists public.user_bonus_packs (
+  user_id uuid not null references auth.users(id) on delete cascade,
+  sport   text not null,                 -- 'any' = pack mixte, sinon le sport du pot (nba, nfl, hockey, baseball…)
+  qty     integer not null default 0 check (qty >= 0),
+  primary key (user_id, sport)
+);
+alter table public.user_bonus_packs enable row level security;
+drop policy if exists "bonus_own_select" on public.user_bonus_packs;
+create policy "bonus_own_select" on public.user_bonus_packs for select using ((select auth.uid()) = user_id);
+
+-- nombre de doublons (exemplaires en trop) d'un membre
+create or replace function public.pack_dupes(p_user uuid) returns integer
+language sql stable security definer set search_path = public as $$
+  select coalesce(sum(qty - 1), 0)::integer from public.user_pack_cards where user_id = p_user and qty > 1
+$$;
+
+-- échange p_cost doublons contre 1 pack bonus du thème p_sport ; retire d'abord les doublons des cartes les plus communes
+create or replace function public.pack_trade_dupes(p_user uuid, p_sport text, p_cost integer default 5) returns jsonb
+language plpgsql security definer set search_path = public as $$
+declare need integer := p_cost; r record; take integer;
+begin
+  if (select coalesce(sum(qty - 1), 0) from public.user_pack_cards where user_id = p_user and qty > 1) < p_cost then
+    return jsonb_build_object('ok', false);
+  end if;
+  for r in select c.entry_id, c.qty from public.user_pack_cards c join public.pack_pool p on p.entry_id = c.entry_id
+           where c.user_id = p_user and c.qty > 1 order by p.rarity asc, c.entry_id for update of c loop
+    exit when need <= 0;
+    take := least(r.qty - 1, need);
+    update public.user_pack_cards set qty = qty - take where user_id = p_user and entry_id = r.entry_id;
+    need := need - take;
+  end loop;
+  insert into public.user_bonus_packs (user_id, sport, qty) values (p_user, p_sport, 1)
+    on conflict (user_id, sport) do update set qty = public.user_bonus_packs.qty + 1;
+  return jsonb_build_object('ok', true);
+end $$;
+
+-- utilise (p_delta = -1) ou rend (+1) un pack bonus ; false s'il n'y en a plus
+create or replace function public.pack_bonus_use(p_user uuid, p_sport text, p_delta integer default -1) returns boolean
+language plpgsql security definer set search_path = public as $$
+begin
+  if p_delta < 0 then
+    update public.user_bonus_packs set qty = qty - 1 where user_id = p_user and sport = p_sport and qty > 0;
+    return found;
+  end if;
+  insert into public.user_bonus_packs (user_id, sport, qty) values (p_user, p_sport, 1)
+    on conflict (user_id, sport) do update set qty = public.user_bonus_packs.qty + 1;
+  return true;
+end $$;
+
+revoke all on function public.pack_dupes(uuid) from public, anon, authenticated;
+revoke all on function public.pack_trade_dupes(uuid, text, integer) from public, anon, authenticated;
+revoke all on function public.pack_bonus_use(uuid, text, integer) from public, anon, authenticated;
+grant execute on function public.pack_dupes(uuid) to service_role;
+grant execute on function public.pack_trade_dupes(uuid, text, integer) to service_role;
+grant execute on function public.pack_bonus_use(uuid, text, integer) to service_role;

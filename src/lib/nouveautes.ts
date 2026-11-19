@@ -4,6 +4,15 @@ export type Entry = { date: string; titre: string; points: string[] }
 
 export const ENTRIES: Entry[] = [
   {
+    date: '30 novembre 2026', titre: 'Packs : doublons, week-end bonus et nouveau pack',
+    points: [
+      'Nouveau pack, avec une ouverture en trait de coupe : la bande du haut se lève sous ton doigt puis tombe. Le dos des cartes prend la couleur de leur rareté, avec des sons et une ambiance selon ta meilleure carte.',
+      'Chaque carte te dit si elle est NOUVELLE ou en double (×2, ×3…). Les cartes que tu as déjà sont moins souvent retirées. 15 doublons s’échangent contre un pack bonus du thème de ton choix (mixte, basket…), aussi dans « Mes cartes ».',
+      'Week-end bonus : le samedi et le dimanche, un pack toutes les 30 minutes. Tu peux partager l’affiche de ton tirage.',
+      'Sur l’accueil, tu peux maintenant tout réorganiser ou masquer, bloc par bloc (galerie, raccourcis, recherche, pronos, pépites, podium…). Pronos plus lisibles.',
+    ],
+  },
+  {
     date: '30 novembre 2026', titre: 'Les packs de cartes arrivent sur l’accueil',
     points: [
       'Un pack gratuit toutes les heures (10 en réserve) : tranche-le et six vraies cartes de la base sortent l’une derrière l’autre, de commune à légendaire. Au moins 1 rare garantie, et une carte épique garantie après 10 packs sans.',

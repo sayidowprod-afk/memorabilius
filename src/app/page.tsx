@@ -297,13 +297,13 @@ export default async function Home() {
         hero={<HomeHero total={total} totalCartes={totalCartes} totalBinders={totalBinders} totalTrade={totalTrade} featuredGalleries={featuredGalleries} />}
         siteStats={{ total, totalCartes, totalBinders, totalTrade }}
         cardOfTheDay={<HomeDaily />}
+        extras={{
+          tcg: <TcgHomeSection />,
+          pronos: <PronosHomePreview />,
+          pepites: <SportOnly><PepitesSection cards={cards} /></SportOnly>,
+          podium: <SportOnly><PodiumSection month={withTeam(podium)} week={withTeam(podiumWeek)} day={withTeam(podiumDay)} /></SportOnly>,
+        }}
       />
-      <TcgHomeSection />
-      <PronosHomePreview />
-      <SportOnly>
-        <PepitesSection cards={cards} />
-        <PodiumSection month={withTeam(podium)} week={withTeam(podiumWeek)} day={withTeam(podiumDay)} />
-      </SportOnly>
       <PWAInstall />
     </div>
   )

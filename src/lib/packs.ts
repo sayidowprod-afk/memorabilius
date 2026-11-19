@@ -28,5 +28,32 @@ export const PITY_LIMIT = 10
 
 export type PackCard = {
   id: number; setId: number; rarity: Rarity; player: string; team: string | null; number: string | null; variation: string | null
-  rc: boolean; auto: boolean; patch?: boolean; run?: number | null; img: string; set: string | null; year: number | null; brand: string | null; sport: string | null; credit?: string | null
+  rc: boolean; auto: boolean; patch?: boolean; isNew?: boolean; owned?: number; run?: number | null; img: string; set: string | null; year: number | null; brand: string | null; sport: string | null; credit?: string | null
 }
+
+// ── Éditions du pack (le dessin change selon la date) et week-end bonus ──
+export type PackThemeId = 'classic' | 'gold' | 'winter' | 'playoffs' | 'rookie'
+export const THEME_NAME: Record<PackThemeId, string> = { classic: 'Édition classique', gold: 'Édition Légendes · week-end bonus', winter: 'Édition Hiver', playoffs: 'Édition Playoffs', rookie: 'Édition Rookie' }
+const parisParts = (d: Date) => {
+  const p = new Intl.DateTimeFormat('en-GB', { timeZone: 'Europe/Paris', weekday: 'short', month: 'numeric', day: 'numeric' }).formatToParts(d)
+  const g = (t: string) => p.find(x => x.type === t)?.value || ''
+  return { wd: g('weekday'), m: Number(g('month')), day: Number(g('day')) }
+}
+// week-end (samedi, dimanche, heure de Paris) : un pack toutes les 30 minutes au lieu de 60
+export const isWeekendBonus = (d = new Date()) => { const w = parisParts(d).wd; return w === 'Sat' || w === 'Sun' }
+export const PACK_EVERY_MIN_WEEKEND = 30
+export function packTheme(d = new Date()): PackThemeId {
+  if (isWeekendBonus(d)) return 'gold'
+  const { m, day } = parisParts(d)
+  if (m === 12 || (m === 1 && day <= 6)) return 'winter'
+  if ((m === 4 && day >= 15) || m === 5 || (m === 6 && day <= 20)) return 'playoffs'
+  if ((m === 6 && day > 20) || (m === 7 && day <= 15)) return 'rookie'
+  return 'classic'
+}
+// Doublons -> packs bonus
+export const DUPES_PER_PACK = 15
+export const SPORT_LABEL: Record<string, string> = { any: 'Mixte', nba: 'Basket (NBA)', wnba: 'WNBA', nfl: 'Football US (NFL)', hockey: 'Hockey', baseball: 'Baseball', 'soccer-international': 'Football', wrestling: 'Catch' }
+// un thème n'est proposé que s'il y a assez de cartes pour que les packs ne se répètent pas
+export const MIN_SPORT_POOL = 12
+// thèmes toujours affichés (grisés tant que le pot n'a pas assez de cartes du sport)
+export const TRADE_SPORTS = ['nba', 'nfl', 'hockey', 'baseball']
