@@ -3,12 +3,14 @@ import Link from 'next/link'
 import { useLang } from '@/lib/LangContext'
 
 export default function Tuto() {
-  const { t } = useLang()
+  const { t, lang } = useLang()
+  const tourLabel = ({ fr: '🚀 Lancer la visite guidée', en: '🚀 Start the guided tour', de: '🚀 Geführte Tour starten', es: '🚀 Iniciar la visita guiada', it: '🚀 Avvia il tour guidato' } as Record<string, string>)[lang] || '🚀 Start the guided tour'
   return (
     <div style={{ maxWidth: 800, margin: '0 auto', fontFamily: 'Inter, sans-serif', padding: '0 16px', boxSizing: 'border-box' }}>
 
       <h1 style={{ fontWeight: 900, fontSize: 32, marginBottom: 8 }}>{t('tuto_title')}</h1>
       <p style={{ color: 'var(--text2, #666)', marginBottom: 24, fontSize: 16 }}>{t('tuto_sub')}</p>
+      <button type="button" onClick={() => window.dispatchEvent(new Event('start-tour'))} style={{ background: '#003DA6', color: 'white', border: 0, padding: '12px 22px', borderRadius: 8, fontWeight: 800, fontSize: 15, cursor: 'pointer', marginBottom: 28 }}>{tourLabel}</button>
 
       {/* Étape 1 — commune */}
       <div style={{ background: 'var(--card-bg, #fff)', borderRadius: 16, padding: 32, marginBottom: 24, boxShadow: '0 4px 20px rgba(0,0,0,0.06)', borderLeft: '4px solid #003DA6' }}>

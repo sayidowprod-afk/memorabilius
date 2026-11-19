@@ -4,6 +4,14 @@ export type Entry = { date: string; titre: string; points: string[] }
 
 export const ENTRIES: Entry[] = [
   {
+    date: '30 novembre 2026', titre: 'Visite guidée et pack plus lisible',
+    points: [
+      'Visite guidée : à ta première connexion, un tour rapide de l’accueil, puis de ta galerie, te guide pas à pas pour ajouter ta première PC et ta première carte. Elle est traduite dans toutes les langues du site.',
+      'Tu peux la relancer quand tu veux : bouton « Visite guidée » sur l’accueil ou sur la page Tutoriel, avec des mini-tutos (importer une carte, trades, setlists, galerie, jeux).',
+      'Packs : le compteur de réserve ne passe plus par-dessus le haut du pack, plus facile de trancher.',
+    ],
+  },
+  {
     date: '30 novembre 2026', titre: 'Packs : doublons, week-end bonus et nouveau pack',
     points: [
       'Nouveau pack, avec une ouverture en trait de coupe : la bande du haut se lève sous ton doigt puis tombe. Le dos des cartes prend la couleur de leur rareté, avec des sons et une ambiance selon ta meilleure carte.',

@@ -5,6 +5,7 @@ import Footer from './Footer'
 import ChatBubble from './ChatBubble'
 import Toaster from './Toaster'
 import OnboardingTooltip from './OnboardingTooltip'
+import GuidedTour from './GuidedTour'
 import WebOnly from './WebOnly'
 import AppOnly from './AppOnly'
 import FederationBand from './FederationBand'
@@ -41,6 +42,7 @@ export default function SiteShell({ children }: { children: React.ReactNode }) {
       <ChatBubble />
       <Toaster />
       <OnboardingTooltip />
+      <GuidedTour />
       <WebOnly><InstallBanner /></WebOnly>
       <MobileBottomNav />
       <DemoAttractMode />

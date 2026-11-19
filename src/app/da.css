@@ -2324,3 +2324,42 @@ html[data-member="1"] .home-member-ph { display: block; min-height: 100svh; }
 
 /* Figurines de PC : place réservée pendant le chargement (écrans où elles sont dans le flux) */
 @media (max-width: 1200px) { .da-profile .pc-bobbles.pc-bobbles-ph { height: var(--ph, 130px) !important; } }
+
+
+/* ── Visite guidée de l'accueil ── */
+.gt { position: fixed; inset: 0; z-index: 10000070; pointer-events: auto; }
+.gt-dim { position: absolute; inset: 0; background: rgba(3, 8, 22, .82); }
+.gt-spot { position: absolute; border: 2px solid #fff; box-shadow: 0 0 0 9999px rgba(3, 8, 22, .8), 0 0 22px 4px rgba(120, 170, 255, .6); transition: left .3s, top .3s, width .3s, height .3s; pointer-events: none; }
+.gt-card { position: absolute; left: 12px; right: 12px; max-width: 460px; margin: 0 auto; background: linear-gradient(180deg, #0d2257, #07143a); border: 2px solid #fff; padding: 16px 16px 14px; color: #fff; box-shadow: 0 18px 50px rgba(0,0,0,.6); }
+.gt-card.down { bottom: calc(18px + env(safe-area-inset-bottom, 0px)); }
+.gt-card.up { top: calc(74px + env(safe-area-inset-top, 0px)); }
+.gt-dots { display: flex; gap: 4px; margin-bottom: 10px; } .gt-dots i { flex: 1; height: 4px; background: rgba(255,255,255,.2); } .gt-dots i.seen { background: rgba(255,255,255,.55); } .gt-dots i.on { background: #fdb927; }
+.gt-head { display: flex; align-items: center; gap: 10px; margin-bottom: 6px; } .gt-head span { font-size: 24px; } .gt-head b { font: 400 26px 'Surfquest', Impact, sans-serif; text-transform: uppercase; letter-spacing: .03em; line-height: 1; }
+.gt-card p { margin: 0 0 14px; font: 500 14px/1.45 system-ui, sans-serif; color: rgba(255,255,255,.88); }
+.gt-btns { display: flex; justify-content: space-between; align-items: center; gap: 8px; } .gt-btns > div { display: flex; gap: 8px; }
+.gt-btns button { background: transparent; border: 2px solid rgba(255,255,255,.55); color: #fff; padding: 9px 14px; font: 800 12px system-ui, sans-serif; letter-spacing: .06em; text-transform: uppercase; cursor: pointer; border-radius: 0; }
+.gt-btns button.fill { background: #fff; color: #07143a; border-color: #fff; } .gt-btns button.gt-skip { border-color: transparent; color: rgba(255,255,255,.65); padding-left: 0; }
+.dd .dd-news.dd-tourbtn { background: transparent; color: #fff; border-color: rgba(255,255,255,.6); cursor: pointer; }
+.dd .dd-news.dd-tourbtn:hover { background: rgba(255,255,255,.14); border-color: #fff; }
+.dd-side { flex-wrap: wrap; justify-content: flex-end; gap: 8px; }
+
+
+/* Menu des tutos */
+.gt-hub { position: absolute; left: 12px; right: 12px; top: 50%; transform: translateY(-50%); max-width: 480px; margin: 0 auto; max-height: calc(100dvh - 40px); overflow-y: auto; background: linear-gradient(180deg, #0d2257, #07143a); border: 2px solid #fff; padding: 20px 16px 14px; color: #fff; }
+.gt-hub h2 { font: 400 32px 'Surfquest', Impact, sans-serif; text-transform: uppercase; margin: 0 0 4px; } .gt-hub p { margin: 0 0 14px; color: rgba(255,255,255,.75); font: 500 14px/1.4 system-ui, sans-serif; }
+.gt-x { position: absolute; top: 10px; right: 10px; width: 36px; height: 36px; background: transparent; border: 2px solid #fff; color: #fff; cursor: pointer; border-radius: 0; }
+.gt-list { display: grid; gap: 8px; }
+.gt-list button { display: grid; grid-template-columns: 34px 1fr; grid-template-rows: auto auto; column-gap: 10px; align-items: center; text-align: left; background: rgba(255,255,255,.06); border: 2px solid rgba(255,255,255,.3); color: #fff; padding: 10px 12px; cursor: pointer; border-radius: 0; }
+.gt-list button span { grid-row: 1 / 3; font-size: 26px; } .gt-list button b { font: 800 15px system-ui, sans-serif; } .gt-list button small { color: rgba(255,255,255,.65); font-size: 12px; }
+.gt-list button.first { border-color: #fdb927; background: rgba(253,185,39,.1); } .gt-list button:hover { border-color: #fff; }
+.gt-later { display: block; margin: 12px auto 0; background: none; border: 0; color: rgba(255,255,255,.6); text-decoration: underline; cursor: pointer; font-size: 13px; }
+
+/* étape « à toi de jouer » : l'écran reste cliquable, seule la carte d'explication capte les touches */
+.gt.pass { pointer-events: none; }
+.gt.pass .gt-card { pointer-events: auto; }
+.gt.pass .gt-spot { box-shadow: 0 0 0 9999px rgba(3, 8, 22, .55), 0 0 22px 4px rgba(253, 185, 39, .8); border-color: #fdb927; animation: gt-pulse 1.4s ease-in-out infinite; }
+@keyframes gt-pulse { 0%, 100% { border-width: 2px; } 50% { border-width: 4px; } }
+
+/* étape « à toi » : rien n'est assombri, seul le bouton à toucher est entouré */
+.gt.pass .gt-spot { box-shadow: 0 0 18px 4px rgba(253, 185, 39, .85); }
+.gt.pass .gt-dim { display: none; }

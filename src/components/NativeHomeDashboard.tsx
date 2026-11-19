@@ -710,6 +710,7 @@ export default function NativeHomeDashboard({ siteStats, cardOfTheDay, extras }:
               <span><b className="da-num">{data.streak}</b>{t(data.streak === 1 ? 'dashboard_streak_one' : 'dashboard_streak_other').replace('{n}', '').trim()}</span>
             </div>
           )}
+          <button type="button" className="dd-news dd-tourbtn" onClick={() => window.dispatchEvent(new Event('start-tour'))}>{({ fr: 'Visite guidée', en: 'Guided tour', de: 'Geführte Tour', es: 'Visita guiada', it: 'Tour guidato' } as Record<string, string>)[lang] || 'Guided tour'}</button>
           <Link href="/nouveautes" onClick={hapticTap} className="dd-news">Quoi de nouveau ?</Link>
         </div>
       </header>

@@ -706,3 +706,8 @@ i.nw { background: #e5484d; } i.dp { background: #fdb927; color: #111 !important
 .pk.pk-overlay .pk-deck-stage { padding-top: calc(86px + env(safe-area-inset-top, 0px)); gap: 8px; }
 .pk-now { min-height: 120px; }
 .pk-counter { margin-bottom: 4px; }
+
+/* Réserve de packs : dans le flux, au-dessus du pack (plus jamais par-dessus), sous les boutons son / fermer */
+.pk.pk-overlay .pk-stage2 { padding-top: calc(84px + env(safe-area-inset-top, 0px)); gap: 14px; }
+.pk.pk-overlay .pk-stage2 .pk-hud { position: static; top: auto; left: auto; right: auto; width: 100%; }
+.pk.pk-overlay .pk-stage2 .pk-packbox { margin-top: 6px; }
