@@ -700,3 +700,9 @@ i.nw { background: #e5484d; } i.dp { background: #fdb927; color: #111 !important
 .pk-face.back::before { border-color: color-mix(in srgb, var(--rc, #c9a24a) 60%, transparent); }
 .pk-face.back::after { border-color: var(--rc, #c9a24a); background: radial-gradient(circle, color-mix(in srgb, var(--rc, #c9a24a) 30%, transparent), rgba(6,15,44,.6)); }
 .pk-face.back b { color: color-mix(in srgb, var(--rc, #ffe9a6) 55%, #fff); text-shadow: 0 0 14px var(--rc, rgba(255,200,80,.8)), 0 3px 0 rgba(0,0,0,.5); }
+
+/* Téléphone : la pile de cartes ne passe plus sous les boutons du haut (son / fermer) et s'adapte à la hauteur de l'écran */
+.pk-scene { height: min(420px, 48dvh); width: calc(min(420px, 48dvh) * 0.714); margin-top: 10px; }
+.pk.pk-overlay .pk-deck-stage { padding-top: calc(86px + env(safe-area-inset-top, 0px)); gap: 8px; }
+.pk-now { min-height: 120px; }
+.pk-counter { margin-bottom: 4px; }
