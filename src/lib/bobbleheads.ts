@@ -26,10 +26,14 @@ export function bobbleIdFor(playerName: string): string | null {
 // Tenues d'équipe : 'dom' (domicile, par défaut), 'ext' (extérieur), 'alt' (alternative). Le corps d'une tenue est team-<ABBR>-<tenue>.webp, mêmes dimensions que le domicile.
 export const KIT_LABEL: Record<string, string> = { dom: 'Domicile', ext: 'Extérieur', alt: 'Alternative', leg: 'Légendaire' }
 export const OLD_TEAMS: Record<string, string> = { BOB: 'Charlotte Bobcats', SEA: 'Seattle SuperSonics' }
-type KitMeta = { w: number; h: number; span: number; src: string; num: { fill: string; stroke: string } }
+export type NumCfg = { fill: string; stroke: string; y?: number; size?: number; x?: number; sw?: number; font?: string; fontFamily?: string; fontFile?: string; fontW?: string; hide?: boolean; logo?: { file: string; x: number; y: number; w: number } }
+type KitMeta = { w: number; h: number; span: number; src: string; num: NumCfg }
 // kit = 'ext' | 'alt' | 'leg' (tenues de l'équipe du joueur) ou 'BOB-ext', 'SEA-dom'… (anciennes équipes, proposées à tous)
-export function withKit<T extends { body: { w: number; h: number; span: number; src: string; team?: string; numFill?: string; numStroke?: string }; kits?: string[]; kitMeta?: Record<string, KitMeta>; extra?: Record<string, KitMeta> }>(fig: T, kit?: string | null): T {
+export function withKit<T extends { body: { w: number; h: number; span: number; src: string; team?: string; num?: string; numFill?: string; numStroke?: string; numCfg?: NumCfg }; kits?: string[]; kitMeta?: Record<string, KitMeta>; extra?: Record<string, KitMeta>; nums?: Record<string, string> }>(fig: T, kit?: string | null): T {
   const m = kit && kit !== 'dom' ? (kit.includes('-') ? fig.extra?.[kit] : fig.kitMeta?.[kit]) : undefined   // extra = catalogue des tenues de toutes les équipes (useKitCatalog)
   if (!m || !fig.body.team) return fig
-  return { ...fig, body: { ...fig.body, w: m.w, h: m.h, span: m.span, src: m.src, numFill: m.num.fill, numStroke: m.num.stroke } }
+  // équipe choisie différente de celle du joueur (ex. 'PHI-dom') : on affiche le numéro qu'il y a porté le plus longtemps ; équipe inconnue pour ce joueur : pas de numéro
+  const ab = kit && kit.includes('-') ? kit.split('-')[0] : null
+  const num = ab && ab !== fig.body.team ? fig.nums?.[ab] : fig.body.num
+  return { ...fig, body: { ...fig.body, w: m.w, h: m.h, span: m.span, src: m.src, numFill: m.num.fill, numStroke: m.num.stroke, numCfg: m.num, num } }
 }

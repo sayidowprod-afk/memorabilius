@@ -121,7 +121,7 @@ export default function PacksClient({ demoCards, overlay, onClose }: { demoCards
     return () => { document.body.style.overflow = prev; window.removeEventListener('keydown', key) }
   }, [overlay, onClose, odds])
   useEffect(() => {
-    const fit = () => setK(Math.max(0.55, Math.min(1.6, (window.innerHeight * 0.62) / 380, (window.innerWidth * 0.8) / 250)))
+    const fit = () => setK(Math.max(0.55, Math.min(1.6, (window.innerHeight - 400) / 380, (window.innerWidth * 0.8) / 250)))
     fit(); window.addEventListener('resize', fit); return () => window.removeEventListener('resize', fit)
   }, [])
 

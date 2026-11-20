@@ -1,1230 +1,2132 @@
 {
- "ATL": {
-  "name": "Atlanta Hawks",
-  "w": 566,
-  "h": 692,
-  "span": 396,
+ "LAL": {
+  "name": "Los Angeles Lakers",
+  "w": 565,
+  "h": 670,
+  "span": 393,
   "num": {
-   "fill": "#ffffff",
-   "stroke": "#c8102e"
+   "fill": "#c59c13",
+   "stroke": "#d2c5ad",
+   "y": 0.264,
+   "size": 0.194,
+   "font": "serif",
+   "x": 0,
+   "sw": 0.075,
+   "set": true,
+   "fontFamily": "NBA Lakers",
+   "fontFile": "NBALakers.ttf",
+   "fontW": "400"
   },
   "kits": {
    "ext": {
-    "w": 574,
-    "h": 640,
-    "span": 433,
+    "w": 594,
+    "h": 704,
+    "span": 420,
     "num": {
-     "fill": "#c8102e",
-     "stroke": "#fdb927"
+     "fill": "#26093b",
+     "stroke": "#c6a15b",
+     "y": 0.25,
+     "size": 0.194,
+     "font": "serif",
+     "x": 0,
+     "sw": 0.1,
+     "set": true,
+     "fontFamily": "NBA Lakers",
+     "fontFile": "NBALakers.ttf",
+     "fontW": "400"
     }
    },
    "alt": {
-    "w": 580,
-    "h": 642,
-    "span": 444,
+    "w": 582,
+    "h": 663,
+    "span": 393,
     "num": {
-     "fill": "#c1d32f",
-     "stroke": "#000000"
+     "fill": "#2b1b51",
+     "stroke": "#b6b9b1",
+     "y": 0.264,
+     "size": 0.184,
+     "font": "serif",
+     "x": 0,
+     "sw": 0.07,
+     "set": true,
+     "fontFamily": "NBA Lakers",
+     "fontFile": "NBALakers.ttf",
+     "fontW": "400"
     }
    },
    "leg": {
-    "w": 559,
-    "h": 606,
-    "span": 432,
+    "w": 584,
+    "h": 676,
+    "span": 404,
     "num": {
-     "fill": "#ffffff",
-     "stroke": "#fdb927"
+     "fill": "#3e214e",
+     "stroke": "#d5b77f",
+     "y": 0.278,
+     "size": 0.148,
+     "font": "serif",
+     "x": 0,
+     "sw": 0.07,
+     "set": true,
+     "fontFamily": "NBA Lakers",
+     "fontFile": "NBALakers.ttf",
+     "fontW": "400"
     }
    }
   }
  },
  "BOS": {
   "name": "Boston Celtics",
-  "w": 588,
-  "h": 673,
-  "span": 413,
+  "w": 634,
+  "h": 634,
+  "span": 488,
   "num": {
    "fill": "#ffffff",
-   "stroke": "#0a5c2e"
+   "stroke": "#0a5c2e",
+   "y": 0.22,
+   "size": 0.18,
+   "font": "serif",
+   "x": 0,
+   "sw": 0,
+   "set": true,
+   "fontFamily": "NBA Celtics",
+   "fontFile": "NBACeltics.ttf",
+   "fontW": "400"
   },
   "kits": {
    "ext": {
-    "w": 576,
-    "h": 626,
-    "span": 438,
-    "num": {
-     "fill": "#007a33",
-     "stroke": "#ffffff"
-    }
-   },
-   "alt": {
-    "w": 558,
-    "h": 621,
-    "span": 431,
-    "num": {
-     "fill": "#ffffff",
-     "stroke": "#007a33"
-    }
-   },
-   "leg": {
-    "w": 571,
-    "h": 668,
-    "span": 431,
-    "num": {
-     "fill": "#007a33",
-     "stroke": "#ffffff"
-    }
-   }
-  }
- },
- "BKN": {
-  "name": "Brooklyn Nets",
-  "w": 585,
-  "h": 659,
-  "span": 401,
-  "num": {
-   "fill": "#ffffff",
-   "stroke": "#111111"
-  },
-  "kits": {
-   "ext": {
-    "w": 580,
-    "h": 631,
-    "span": 440,
-    "num": {
-     "fill": "#111111",
-     "stroke": "#ffffff"
-    }
-   },
-   "alt": {
-    "w": 581,
-    "h": 648,
-    "span": 437,
-    "num": {
-     "fill": "#111111",
-     "stroke": "#ffffff"
-    }
-   },
-   "leg": {
-    "w": 567,
-    "h": 646,
-    "span": 420,
-    "num": {
-     "fill": "#ffffff",
-     "stroke": "#c8102e"
-    }
-   }
-  }
- },
- "CHA": {
-  "name": "Charlotte Hornets",
-  "w": 566,
-  "h": 696,
-  "span": 382,
-  "num": {
-   "fill": "#ffffff",
-   "stroke": "#2a1a6b"
-  },
-  "kits": {
-   "ext": {
-    "w": 569,
-    "h": 632,
-    "span": 428,
-    "num": {
-     "fill": "#00788c",
-     "stroke": "#1d1160"
-    }
-   },
-   "alt": {
-    "w": 561,
-    "h": 627,
-    "span": 431,
-    "num": {
-     "fill": "#00bcd4",
-     "stroke": "#ffffff"
-    }
-   },
-   "leg": {
-    "w": 601,
-    "h": 628,
-    "span": 449,
-    "num": {
-     "fill": "#ffffff",
-     "stroke": "#1d1160"
-    }
-   }
-  }
- },
- "CHI": {
-  "name": "Chicago Bulls",
-  "w": 552,
-  "h": 670,
-  "span": 387,
-  "num": {
-   "fill": "#ffffff",
-   "stroke": "#111111"
-  },
-  "kits": {
-   "ext": {
-    "w": 559,
-    "h": 611,
-    "span": 423,
-    "num": {
-     "fill": "#ce1141",
-     "stroke": "#111111"
-    }
-   },
-   "alt": {
-    "w": 549,
-    "h": 631,
-    "span": 417,
-    "num": {
-     "fill": "#ce1141",
-     "stroke": "#ffffff"
-    }
-   },
-   "leg": {
-    "w": 584,
-    "h": 659,
-    "span": 429,
-    "num": {
-     "fill": "#ffffff",
-     "stroke": "#111111"
-    }
-   }
-  }
- },
- "CLE": {
-  "name": "Cleveland Cavaliers",
-  "w": 564,
-  "h": 672,
-  "span": 381,
-  "num": {
-   "fill": "#fdbb30",
-   "stroke": "#041e42"
-  },
-  "kits": {
-   "ext": {
-    "w": 585,
-    "h": 613,
-    "span": 447,
-    "num": {
-     "fill": "#860038",
-     "stroke": "#fdbb30"
-    }
-   },
-   "alt": {
-    "w": 597,
-    "h": 668,
-    "span": 449,
-    "num": {
-     "fill": "#860038",
-     "stroke": "#041e42"
-    }
-   },
-   "leg": {
-    "w": 584,
-    "h": 631,
-    "span": 437,
-    "num": {
-     "fill": "#ffffff",
-     "stroke": "#1f3a93"
-    }
-   }
-  }
- },
- "DAL": {
-  "name": "Dallas Mavericks",
-  "w": 525,
-  "h": 622,
-  "span": 363,
-  "num": {
-   "fill": "#ffffff",
-   "stroke": "#00265c"
-  },
-  "kits": {
-   "ext": {
-    "w": 609,
-    "h": 627,
-    "span": 461,
-    "num": {
-     "fill": "#00538c",
-     "stroke": "#b8c4ca"
-    }
-   },
-   "alt": {
-    "w": 593,
-    "h": 642,
-    "span": 450,
-    "num": {
-     "fill": "#ffffff",
-     "stroke": "#00538c"
-    }
-   },
-   "leg": {
-    "w": 561,
-    "h": 620,
-    "span": 427,
-    "num": {
-     "fill": "#ffffff",
-     "stroke": "#00693e"
-    }
-   }
-  }
- },
- "DEN": {
-  "name": "Denver Nuggets",
-  "w": 614,
-  "h": 674,
-  "span": 440,
-  "num": {
-   "fill": "#fec524",
-   "stroke": "#0d2240"
-  },
-  "kits": {
-   "ext": {
-    "w": 566,
-    "h": 618,
-    "span": 434,
-    "num": {
-     "fill": "#0e2240",
-     "stroke": "#fec524"
-    }
-   },
-   "alt": {
-    "w": 554,
-    "h": 622,
-    "span": 432,
-    "num": {
-     "fill": "#fec524",
-     "stroke": "#ffffff"
-    }
-   },
-   "leg": {
-    "w": 603,
-    "h": 656,
-    "span": 458,
-    "num": {
-     "fill": "#ffffff",
-     "stroke": "#1d428a"
-    }
-   }
-  }
- },
- "DET": {
-  "name": "Detroit Pistons",
-  "w": 546,
-  "h": 658,
-  "span": 390,
-  "num": {
-   "fill": "#ffffff",
-   "stroke": "#c8102e"
-  },
-  "kits": {
-   "ext": {
-    "w": 625,
-    "h": 647,
-    "span": 481,
-    "num": {
-     "fill": "#1d428a",
-     "stroke": "#c8102e"
-    }
-   },
-   "alt": {
-    "w": 580,
-    "h": 616,
-    "span": 449,
-    "num": {
-     "fill": "#ffffff",
-     "stroke": "#c8102e"
-    }
-   },
-   "leg": {
-    "w": 533,
-    "h": 628,
-    "span": 406,
-    "num": {
-     "fill": "#ffffff",
-     "stroke": "#c8102e"
-    }
-   }
-  }
- },
- "GSW": {
-  "name": "Golden State Warriors",
-  "w": 609,
-  "h": 718,
-  "span": 431,
-  "num": {
-   "fill": "#ffc72c",
-   "stroke": "#1d428a"
-  },
-  "kits": {
-   "ext": {
-    "w": 581,
-    "h": 644,
-    "span": 440,
-    "num": {
-     "fill": "#1d428a",
-     "stroke": "#ffc72c"
-    }
-   },
-   "alt": {
-    "w": 586,
-    "h": 647,
-    "span": 434,
-    "num": {
-     "fill": "#1d428a",
-     "stroke": "#ffffff"
-    }
-   },
-   "leg": {
-    "w": 566,
-    "h": 658,
-    "span": 416,
-    "num": {
-     "fill": "#ffc72c",
-     "stroke": "#ffffff"
-    }
-   }
-  }
- },
- "HOU": {
-  "name": "Houston Rockets",
-  "w": 553,
-  "h": 657,
-  "span": 384,
-  "num": {
-   "fill": "#ffffff",
-   "stroke": "#7a0f1c"
-  },
-  "kits": {
-   "ext": {
-    "w": 569,
-    "h": 639,
-    "span": 426,
-    "num": {
-     "fill": "#ce1141",
-     "stroke": "#c4ced4"
-    }
-   },
-   "alt": {
-    "w": 600,
-    "h": 633,
-    "span": 460,
-    "num": {
-     "fill": "#ce1141",
-     "stroke": "#ffffff"
-    }
-   },
-   "leg": {
-    "w": 596,
-    "h": 657,
-    "span": 436,
-    "num": {
-     "fill": "#ffffff",
-     "stroke": "#fdb927"
-    }
-   }
-  }
- },
- "IND": {
-  "name": "Indiana Pacers",
-  "w": 591,
-  "h": 616,
-  "span": 412,
-  "num": {
-   "fill": "#fdbb30",
-   "stroke": "#002d62"
-  },
-  "kits": {
-   "ext": {
-    "w": 556,
-    "h": 623,
-    "span": 423,
-    "num": {
-     "fill": "#002d62",
-     "stroke": "#fdbb30"
-    }
-   },
-   "alt": {
-    "w": 582,
-    "h": 639,
-    "span": 443,
-    "num": {
-     "fill": "#002d62",
-     "stroke": "#ffffff"
-    }
-   },
-   "leg": {
-    "w": 561,
-    "h": 611,
-    "span": 424,
-    "num": {
-     "fill": "#fdbb30",
-     "stroke": "#ffffff"
-    }
-   }
-  }
- },
- "LAC": {
-  "name": "Los Angeles Clippers",
-  "w": 613,
-  "h": 658,
-  "span": 448,
-  "num": {
-   "fill": "#ffffff",
-   "stroke": "#1d428a"
-  },
-  "kits": {
-   "ext": {
-    "w": 578,
-    "h": 656,
-    "span": 437,
-    "num": {
-     "fill": "#1d428a",
-     "stroke": "#c8102e"
-    }
-   },
-   "alt": {
-    "w": 559,
-    "h": 616,
-    "span": 415,
-    "num": {
-     "fill": "#ffffff",
-     "stroke": "#c8102e"
-    }
-   },
-   "leg": {
-    "w": 599,
-    "h": 610,
-    "span": 463,
-    "num": {
-     "fill": "#ffffff",
-     "stroke": "#f58426"
-    }
-   }
-  }
- },
- "LAL": {
-  "name": "Los Angeles Lakers",
-  "w": 540,
-  "h": 641,
-  "span": 382,
-  "num": {
-   "fill": "#fdb927",
-   "stroke": "#3b1a6b"
-  },
-  "kits": {
-   "ext": {
-    "w": 584,
-    "h": 617,
-    "span": 446,
-    "num": {
-     "fill": "#552583",
-     "stroke": "#fdb927"
-    }
-   },
-   "alt": {
-    "w": 587,
-    "h": 612,
-    "span": 443,
-    "num": {
-     "fill": "#552583",
-     "stroke": "#ffffff"
-    }
-   },
-   "leg": {
-    "w": 593,
-    "h": 635,
-    "span": 447,
-    "num": {
-     "fill": "#552583",
-     "stroke": "#ffffff"
-    }
-   }
-  }
- },
- "MEM": {
-  "name": "Memphis Grizzlies",
-  "w": 590,
-  "h": 674,
-  "span": 431,
-  "num": {
-   "fill": "#ffffff",
-   "stroke": "#5d76a9"
-  },
-  "kits": {
-   "ext": {
-    "w": 609,
-    "h": 660,
-    "span": 467,
-    "num": {
-     "fill": "#12173f",
-     "stroke": "#5d76a9"
-    }
-   },
-   "alt": {
-    "w": 566,
-    "h": 618,
-    "span": 424,
-    "num": {
-     "fill": "#12173f",
-     "stroke": "#ffffff"
-    }
-   },
-   "leg": {
-    "w": 588,
-    "h": 629,
-    "span": 435,
-    "num": {
-     "fill": "#ffffff",
-     "stroke": "#29727c"
-    }
-   }
-  }
- },
- "MIA": {
-  "name": "Miami Heat",
-  "w": 567,
-  "h": 667,
-  "span": 381,
-  "num": {
-   "fill": "#f9a01b",
-   "stroke": "#98002e"
-  },
-  "kits": {
-   "ext": {
-    "w": 563,
-    "h": 640,
-    "span": 416,
-    "num": {
-     "fill": "#98002e",
-     "stroke": "#111111"
-    }
-   },
-   "alt": {
-    "w": 558,
-    "h": 619,
-    "span": 423,
-    "num": {
-     "fill": "#ffffff",
-     "stroke": "#111111"
-    }
-   },
-   "leg": {
-    "w": 567,
-    "h": 652,
-    "span": 421,
-    "num": {
-     "fill": "#ffffff",
-     "stroke": "#c2185b"
-    }
-   }
-  }
- },
- "MIL": {
-  "name": "Milwaukee Bucks",
-  "w": 584,
-  "h": 662,
-  "span": 422,
-  "num": {
-   "fill": "#f0ebd2",
-   "stroke": "#00471b"
-  },
-  "kits": {
-   "ext": {
-    "w": 576,
-    "h": 621,
-    "span": 444,
-    "num": {
-     "fill": "#00471b",
-     "stroke": "#eee1c6"
-    }
-   },
-   "alt": {
-    "w": 591,
-    "h": 651,
-    "span": 451,
-    "num": {
-     "fill": "#00471b",
-     "stroke": "#ffffff"
-    }
-   },
-   "leg": {
-    "w": 608,
-    "h": 650,
-    "span": 446,
-    "num": {
-     "fill": "#ffffff",
-     "stroke": "#c8102e"
-    }
-   }
-  }
- },
- "MIN": {
-  "name": "Minnesota Timberwolves",
-  "w": 557,
-  "h": 670,
-  "span": 379,
-  "num": {
-   "fill": "#78be20",
-   "stroke": "#0c2340"
-  },
-  "kits": {
-   "ext": {
-    "w": 606,
-    "h": 648,
+    "w": 627,
+    "h": 662,
     "span": 454,
     "num": {
-     "fill": "#0c2340",
-     "stroke": "#78be20"
+     "fill": "#007a33",
+     "stroke": "#ffffff",
+     "y": 0.246,
+     "size": 0.178,
+     "font": "serif",
+     "x": 0,
+     "sw": 0,
+     "set": true,
+     "fontFamily": "NBA Celtics",
+     "fontFile": "NBACeltics.ttf",
+     "fontW": "400"
     }
    },
    "alt": {
+    "w": 577,
+    "h": 661,
+    "span": 417,
+    "num": {
+     "fill": "#b2bcb9",
+     "stroke": "#007a33",
+     "y": 0.242,
+     "size": 0.17,
+     "font": "serif",
+     "x": 0,
+     "sw": 0,
+     "set": true,
+     "fontFamily": "NBA Celtics",
+     "fontFile": "NBACeltics.ttf",
+     "fontW": "400"
+    }
+   },
+   "leg": {
     "w": 591,
-    "h": 663,
-    "span": 440,
-    "num": {
-     "fill": "#0c2340",
-     "stroke": "#ffffff"
-    }
-   },
-   "leg": {
-    "w": 597,
-    "h": 652,
-    "span": 447,
-    "num": {
-     "fill": "#ffffff",
-     "stroke": "#111111"
-    }
-   }
-  }
- },
- "NOP": {
-  "name": "New Orleans Pelicans",
-  "w": 551,
-  "h": 696,
-  "span": 376,
-  "num": {
-   "fill": "#c8102e",
-   "stroke": "#85714d"
-  },
-  "kits": {
-   "ext": {
-    "w": 574,
-    "h": 634,
-    "span": 439,
-    "num": {
-     "fill": "#0c2340",
-     "stroke": "#c8102e"
-    }
-   },
-   "alt": {
-    "w": 580,
-    "h": 651,
-    "span": 430,
-    "num": {
-     "fill": "#0c2340",
-     "stroke": "#ffffff"
-    }
-   },
-   "leg": {
-    "w": 581,
-    "h": 639,
-    "span": 429,
-    "num": {
-     "fill": "#ffffff",
-     "stroke": "#1d1160"
-    }
-   }
-  }
- },
- "NYK": {
-  "name": "New York Knicks",
-  "w": 572,
-  "h": 656,
-  "span": 392,
-  "num": {
-   "fill": "#f58426",
-   "stroke": "#ffffff"
-  },
-  "kits": {
-   "ext": {
-    "w": 614,
-    "h": 674,
-    "span": 460,
-    "num": {
-     "fill": "#006bb6",
-     "stroke": "#f58426"
-    }
-   },
-   "alt": {
-    "w": 579,
-    "h": 623,
-    "span": 431,
-    "num": {
-     "fill": "#f58426",
-     "stroke": "#ffffff"
-    }
-   },
-   "leg": {
-    "w": 566,
-    "h": 628,
-    "span": 427,
-    "num": {
-     "fill": "#ffffff",
-     "stroke": "#006bb6"
-    }
-   }
-  }
- },
- "OKC": {
-  "name": "Oklahoma City Thunder",
-  "w": 598,
-  "h": 670,
-  "span": 412,
-  "num": {
-   "fill": "#ef3b24",
-   "stroke": "#002d62"
-  },
-  "kits": {
-   "ext": {
-    "w": 567,
-    "h": 627,
+    "h": 647,
     "span": 428,
     "num": {
-     "fill": "#007ac1",
-     "stroke": "#ef3b24"
-    }
-   },
-   "alt": {
-    "w": 515,
-    "h": 621,
-    "span": 382,
-    "num": {
-     "fill": "#ef3b24",
-     "stroke": "#ffffff"
-    }
-   },
-   "leg": {
-    "w": 590,
-    "h": 641,
-    "span": 434,
-    "num": {
-     "fill": "#ffffff",
-     "stroke": "#ef3b24"
-    }
-   }
-  }
- },
- "ORL": {
-  "name": "Orlando Magic",
-  "w": 603,
-  "h": 696,
-  "span": 428,
-  "num": {
-   "fill": "#ffffff",
-   "stroke": "#0077c0"
-  },
-  "kits": {
-   "ext": {
-    "w": 617,
-    "h": 667,
-    "span": 464,
-    "num": {
-     "fill": "#0077c0",
-     "stroke": "#111111"
-    }
-   },
-   "alt": {
-    "w": 582,
-    "h": 652,
-    "span": 447,
-    "num": {
-     "fill": "#0077c0",
-     "stroke": "#ffffff"
-    }
-   },
-   "leg": {
-    "w": 598,
-    "h": 659,
-    "span": 449,
-    "num": {
-     "fill": "#0077c0",
-     "stroke": "#111111"
+     "fill": "#066849",
+     "stroke": "#ffffff",
+     "y": 0.24,
+     "size": 0.162,
+     "font": "serif",
+     "x": 0,
+     "sw": 0,
+     "set": true,
+     "fontFamily": "NBA Celtics",
+     "fontFile": "NBACeltics.ttf",
+     "fontW": "400"
     }
    }
   }
  },
  "PHI": {
   "name": "Philadelphia 76ers",
-  "w": 578,
-  "h": 674,
-  "span": 411,
+  "w": 669,
+  "h": 706,
+  "span": 478,
   "num": {
-   "fill": "#ffffff",
-   "stroke": "#ed174c"
+   "fill": "#d2c9ca",
+   "stroke": "#820711",
+   "y": 0.28,
+   "size": 0.186,
+   "font": "block",
+   "x": 0,
+   "sw": 0.06,
+   "set": true
   },
   "kits": {
    "ext": {
-    "w": 611,
-    "h": 654,
-    "span": 468,
-    "num": {
-     "fill": "#006bb6",
-     "stroke": "#ed174c"
-    }
-   },
-   "alt": {
-    "w": 553,
-    "h": 625,
-    "span": 417,
-    "num": {
-     "fill": "#ed174c",
-     "stroke": "#ffffff"
-    }
-   },
-   "leg": {
-    "w": 599,
-    "h": 660,
-    "span": 456,
-    "num": {
-     "fill": "#ffffff",
-     "stroke": "#ed174c"
-    }
-   }
-  }
- },
- "PHX": {
-  "name": "Phoenix Suns",
-  "w": 560,
-  "h": 645,
-  "span": 372,
-  "num": {
-   "fill": "#e56020",
-   "stroke": "#1d1160"
-  },
-  "kits": {
-   "ext": {
-    "w": 606,
-    "h": 645,
-    "span": 460,
-    "num": {
-     "fill": "#1d1160",
-     "stroke": "#e56020"
-    }
-   },
-   "alt": {
-    "w": 577,
-    "h": 620,
-    "span": 434,
-    "num": {
-     "fill": "#1d1160",
-     "stroke": "#ffffff"
-    }
-   },
-   "leg": {
-    "w": 552,
-    "h": 665,
-    "span": 404,
-    "num": {
-     "fill": "#ffffff",
-     "stroke": "#e56020"
-    }
-   }
-  }
- },
- "POR": {
-  "name": "Portland Trail Blazers",
-  "w": 538,
-  "h": 691,
-  "span": 376,
-  "num": {
-   "fill": "#e03a3e",
-   "stroke": "#ffffff"
-  },
-  "kits": {
-   "ext": {
-    "w": 561,
-    "h": 652,
-    "span": 424,
-    "num": {
-     "fill": "#e03a3e",
-     "stroke": "#111111"
-    }
-   },
-   "alt": {
-    "w": 537,
-    "h": 605,
-    "span": 402,
-    "num": {
-     "fill": "#ffffff",
-     "stroke": "#111111"
-    }
-   },
-   "leg": {
-    "w": 571,
-    "h": 644,
-    "span": 424,
-    "num": {
-     "fill": "#ffffff",
-     "stroke": "#111111"
-    }
-   }
-  }
- },
- "SAC": {
-  "name": "Sacramento Kings",
-  "w": 576,
-  "h": 704,
-  "span": 411,
-  "num": {
-   "fill": "#ffffff",
-   "stroke": "#3d2b7a"
-  },
-  "kits": {
-   "ext": {
-    "w": 586,
-    "h": 636,
-    "span": 445,
-    "num": {
-     "fill": "#5a2d81",
-     "stroke": "#63727a"
-    }
-   },
-   "alt": {
-    "w": 593,
-    "h": 630,
-    "span": 447,
-    "num": {
-     "fill": "#ffffff",
-     "stroke": "#5a2d81"
-    }
-   },
-   "leg": {
-    "w": 612,
-    "h": 656,
-    "span": 461,
-    "num": {
-     "fill": "#ffffff",
-     "stroke": "#c8102e"
-    }
-   }
-  }
- },
- "SAS": {
-  "name": "San Antonio Spurs",
-  "w": 569,
-  "h": 681,
-  "span": 386,
-  "num": {
-   "fill": "#c4ced4",
-   "stroke": "#111111"
-  },
-  "kits": {
-   "ext": {
-    "w": 578,
-    "h": 650,
-    "span": 434,
-    "num": {
-     "fill": "#111111",
-     "stroke": "#c4ced4"
-    }
-   },
-   "alt": {
-    "w": 616,
-    "h": 644,
-    "span": 469,
-    "num": {
-     "fill": "#111111",
-     "stroke": "#ffffff"
-    }
-   },
-   "leg": {
-    "w": 596,
-    "h": 612,
-    "span": 456,
-    "num": {
-     "fill": "#ffffff",
-     "stroke": "#f26522"
-    }
-   }
-  }
- },
- "TOR": {
-  "name": "Toronto Raptors",
-  "w": 533,
-  "h": 643,
-  "span": 370,
-  "num": {
-   "fill": "#ffffff",
-   "stroke": "#111111"
-  },
-  "kits": {
-   "ext": {
-    "w": 596,
-    "h": 642,
-    "span": 446,
-    "num": {
-     "fill": "#ce1141",
-     "stroke": "#111111"
-    }
-   },
-   "alt": {
-    "w": 520,
-    "h": 600,
-    "span": 398,
-    "num": {
-     "fill": "#ce1141",
-     "stroke": "#ffffff"
-    }
-   },
-   "leg": {
-    "w": 533,
-    "h": 619,
+    "w": 581,
+    "h": 691,
     "span": 410,
     "num": {
+     "fill": "#043e97",
+     "stroke": "#ed174c",
+     "y": 0.274,
+     "size": 0.168,
+     "font": "block",
+     "x": 0,
+     "sw": 0,
+     "set": true
+    }
+   },
+   "alt": {
+    "w": 596,
+    "h": 671,
+    "span": 391,
+    "num": {
      "fill": "#ffffff",
-     "stroke": "#111111"
+     "stroke": "#313b7c",
+     "y": 0.268,
+     "size": 0.132,
+     "font": "block",
+     "x": 0.098,
+     "sw": 0.06,
+     "set": true
+    }
+   },
+   "leg": {
+    "w": 600,
+    "h": 706,
+    "span": 416,
+    "num": {
+     "fill": "#ffffff",
+     "stroke": "#8d1c22",
+     "y": 0.312,
+     "size": 0.108,
+     "font": "block",
+     "x": 0.044,
+     "sw": 0.1,
+     "set": true,
+     "fontFamily": "NBA 76ers",
+     "fontFile": "NBA76ers.ttf",
+     "fontW": "400"
     }
    }
   }
  },
- "UTA": {
-  "name": "Utah Jazz",
-  "w": 548,
-  "h": 676,
-  "span": 376,
+ "ATL": {
+  "name": "Atlanta Hawks",
+  "w": 587,
+  "h": 661,
+  "span": 397,
   "num": {
-   "fill": "#f9a01b",
-   "stroke": "#002b5c"
+   "fill": "#e9e1dc",
+   "stroke": "#ddab4f",
+   "y": 0.242,
+   "size": 0.188,
+   "font": "block",
+   "x": 0,
+   "sw": 0.055,
+   "set": true
+  },
+  "kits": {
+   "ext": {
+    "w": 614,
+    "h": 664,
+    "span": 437,
+    "num": {
+     "fill": "#c8102e",
+     "stroke": "#fdb927",
+     "y": 0.248,
+     "size": 0.178,
+     "font": "block",
+     "x": 0,
+     "sw": 0.1,
+     "set": true
+    }
+   },
+   "alt": {
+    "w": 615,
+    "h": 713,
+    "span": 428,
+    "num": {
+     "fill": "#b5a31b",
+     "stroke": "#8b3803",
+     "y": 0.252,
+     "size": 0.186,
+     "font": "block",
+     "x": 0,
+     "sw": 0.075,
+     "set": true
+    }
+   },
+   "leg": {
+    "w": 598,
+    "h": 661,
+    "span": 419,
+    "num": {
+     "fill": "#d8d2c6",
+     "stroke": "#e59948",
+     "y": 0.262,
+     "size": 0.17,
+     "font": "block",
+     "x": 0,
+     "sw": 0.06,
+     "set": true,
+     "hide": true
+    }
+   }
+  }
+ },
+ "BKN": {
+  "name": "Brooklyn Nets",
+  "w": 618,
+  "h": 650,
+  "span": 470,
+  "num": {
+   "fill": "#ffffff",
+   "stroke": "#111111",
+   "y": 0.218,
+   "size": 0.216,
+   "font": "block",
+   "x": 0,
+   "sw": 0.1,
+   "set": true
   },
   "kits": {
    "ext": {
     "w": 607,
-    "h": 635,
-    "span": 458,
+    "h": 700,
+    "span": 422,
     "num": {
-     "fill": "#002b5c",
-     "stroke": "#f9a01b"
+     "fill": "#111111",
+     "stroke": "#ffffff",
+     "y": 0.266,
+     "size": 0.186,
+     "font": "block",
+     "x": 0,
+     "sw": 0.1,
+     "set": true
     }
    },
    "alt": {
-    "w": 574,
-    "h": 634,
-    "span": 428,
-    "num": {
-     "fill": "#002b5c",
-     "stroke": "#ffffff"
-    }
-   },
-   "leg": {
-    "w": 615,
-    "h": 667,
-    "span": 465,
+    "w": 632,
+    "h": 688,
+    "span": 451,
     "num": {
      "fill": "#ffffff",
-     "stroke": "#f9a01b"
-    }
-   }
-  }
- },
- "WAS": {
-  "name": "Washington Wizards",
-  "w": 606,
-  "h": 690,
-  "span": 438,
-  "num": {
-   "fill": "#ffffff",
-   "stroke": "#e31837"
-  },
-  "kits": {
-   "ext": {
-    "w": 582,
-    "h": 657,
-    "span": 436,
-    "num": {
-     "fill": "#002b5c",
-     "stroke": "#e31837"
-    }
-   },
-   "alt": {
-    "w": 523,
-    "h": 588,
-    "span": 407,
-    "num": {
-     "fill": "#ffffff",
-     "stroke": "#002b5c"
+     "stroke": "#ffffff",
+     "y": 0.276,
+     "size": 0.198,
+     "font": "block",
+     "x": 0,
+     "sw": 0,
+     "set": true
     }
    },
    "leg": {
     "w": 589,
-    "h": 650,
-    "span": 439,
+    "h": 646,
+    "span": 426,
     "num": {
      "fill": "#ffffff",
-     "stroke": "#002b5c"
+     "stroke": "#c8102e",
+     "y": 0.24,
+     "size": 0.17,
+     "font": "block",
+     "x": 0,
+     "sw": 0.075,
+     "set": true
+    }
+   }
+  }
+ },
+ "CHA": {
+  "name": "Charlotte Hornets",
+  "w": 589,
+  "h": 641,
+  "span": 423,
+  "num": {
+   "fill": "#b9c4c3",
+   "stroke": "#1d5f6f",
+   "y": 0.262,
+   "size": 0.188,
+   "font": "block",
+   "x": 0,
+   "sw": 0,
+   "set": true
+  },
+  "kits": {
+   "ext": {
+    "w": 590,
+    "h": 654,
+    "span": 409,
+    "num": {
+     "fill": "#00788c",
+     "stroke": "#1d1160",
+     "y": 0.288,
+     "size": 0.186,
+     "font": "block",
+     "x": 0,
+     "sw": 0,
+     "set": true
+    }
+   },
+   "alt": {
+    "w": 559,
+    "h": 663,
+    "span": 377,
+    "num": {
+     "fill": "#b6bfca",
+     "stroke": "#339aac",
+     "y": 0.262,
+     "size": 0.184,
+     "font": "block",
+     "x": 0,
+     "sw": 0.05,
+     "set": true
+    }
+   },
+   "leg": {
+    "w": 579,
+    "h": 680,
+    "span": 400,
+    "num": {
+     "fill": "#c9d3dd",
+     "stroke": "#06435a",
+     "y": 0.292,
+     "size": 0.168,
+     "font": "block",
+     "x": 0,
+     "sw": 0.07,
+     "set": true
+    }
+   }
+  }
+ },
+ "CHI": {
+  "name": "Chicago Bulls",
+  "w": 568,
+  "h": 652,
+  "span": 403,
+  "num": {
+   "fill": "#0f0f10",
+   "stroke": "#c8b7bf",
+   "y": 0.268,
+   "size": 0.148,
+   "font": "block",
+   "x": 0,
+   "sw": 0.08,
+   "set": true
+  },
+  "kits": {
+   "ext": {
+    "w": 582,
+    "h": 688,
+    "span": 406,
+    "num": {
+     "fill": "#ce1141",
+     "stroke": "#111111",
+     "y": 0.276,
+     "size": 0.158,
+     "font": "block",
+     "x": 0,
+     "sw": 0.07,
+     "set": true
+    }
+   },
+   "alt": {
+    "w": 601,
+    "h": 682,
+    "span": 431,
+    "num": {
+     "fill": "#a81611",
+     "stroke": "#abaab1",
+     "y": 0.276,
+     "size": 0.17,
+     "font": "block",
+     "x": 0,
+     "sw": 0.055,
+     "set": true
+    }
+   },
+   "leg": {
+    "w": 579,
+    "h": 650,
+    "span": 430,
+    "num": {
+     "fill": "#121313",
+     "stroke": "#b6acb9",
+     "y": 0.246,
+     "size": 0.164,
+     "font": "block",
+     "x": 0,
+     "sw": 0.06,
+     "set": true
+    }
+   }
+  }
+ },
+ "CLE": {
+  "name": "Cleveland Cavaliers",
+  "w": 597,
+  "h": 646,
+  "span": 413,
+  "num": {
+   "fill": "#cd9a30",
+   "stroke": "#041e42",
+   "y": 0.314,
+   "size": 0.156,
+   "font": "block",
+   "x": 0,
+   "sw": 0,
+   "set": true
+  },
+  "kits": {
+   "ext": {
+    "w": 613,
+    "h": 670,
+    "span": 422,
+    "num": {
+     "fill": "#860038",
+     "stroke": "#fdbb30",
+     "y": 0.334,
+     "size": 0.132,
+     "font": "block",
+     "x": 0,
+     "sw": 0.1,
+     "set": true
+    }
+   },
+   "leg": {
+    "w": 618,
+    "h": 696,
+    "span": 421,
+    "num": {
+     "fill": "#bfbdbc",
+     "stroke": "#1f3a93",
+     "y": 0.284,
+     "size": 0.172,
+     "font": "block",
+     "x": 0,
+     "sw": 0,
+     "set": true
+    }
+   },
+   "alt": {
+    "w": 597,
+    "h": 677,
+    "span": 412,
+    "num": {
+     "fill": "#55091a",
+     "stroke": "#ae7e38",
+     "y": 0.302,
+     "size": 0.134,
+     "font": "block",
+     "x": 0.132,
+     "sw": 0.1,
+     "set": true
+    }
+   }
+  }
+ },
+ "DAL": {
+  "name": "Dallas Mavericks",
+  "w": 593,
+  "h": 713,
+  "span": 406,
+  "num": {
+   "fill": "#b7baba",
+   "stroke": "#00265c",
+   "y": 0.228,
+   "size": 0.21,
+   "font": "block",
+   "x": 0,
+   "sw": 0,
+   "set": true,
+   "fontFamily": "NBA Mavericks",
+   "fontFile": "NBAMavericks.ttf",
+   "fontW": "400"
+  },
+  "kits": {
+   "ext": {
+    "w": 588,
+    "h": 643,
+    "span": 407,
+    "num": {
+     "fill": "#1b2339",
+     "stroke": "#b8c4ca",
+     "y": 0.252,
+     "size": 0.218,
+     "font": "block",
+     "x": 0,
+     "sw": 0,
+     "set": true,
+     "fontFamily": "NBA Mavericks",
+     "fontFile": "NBAMavericks.ttf",
+     "fontW": "400"
+    }
+   },
+   "alt": {
+    "w": 615,
+    "h": 705,
+    "span": 428,
+    "num": {
+     "fill": "#cad0d7",
+     "stroke": "#00538c",
+     "y": 0.252,
+     "size": 0.202,
+     "font": "block",
+     "x": 0,
+     "sw": 0,
+     "set": true,
+     "fontFamily": "NBA Mavericks",
+     "fontFile": "NBAMavericks.ttf",
+     "fontW": "400"
+    }
+   },
+   "leg": {
+    "w": 620,
+    "h": 666,
+    "span": 454,
+    "num": {
+     "fill": "#b1b9ba",
+     "stroke": "#00693e",
+     "y": 0.228,
+     "size": 0.218,
+     "font": "block",
+     "x": 0,
+     "sw": 0,
+     "set": true
+    }
+   }
+  }
+ },
+ "DEN": {
+  "name": "Denver Nuggets",
+  "w": 618,
+  "h": 713,
+  "span": 430,
+  "num": {
+   "fill": "#d2a00b",
+   "stroke": "#541308",
+   "y": 0.284,
+   "size": 0.178,
+   "font": "block",
+   "x": 0,
+   "sw": 0.075,
+   "set": true
+  },
+  "kits": {
+   "ext": {
+    "w": 610,
+    "h": 676,
+    "span": 421,
+    "num": {
+     "fill": "#751e1e",
+     "stroke": "#f1bb6b",
+     "y": 0.274,
+     "size": 0.196,
+     "font": "block",
+     "x": 0,
+     "sw": 0.045,
+     "set": true
+    }
+   },
+   "alt": {
+    "w": 592,
+    "h": 675,
+    "span": 397,
+    "num": {
+     "fill": "#b5880a",
+     "stroke": "#4e1a07",
+     "y": 0.246,
+     "size": 0.208,
+     "font": "block",
+     "x": 0,
+     "sw": 0.1,
+     "set": true,
+     "fontFamily": "NBA Nuggets",
+     "fontFile": "NBANuggets.ttf",
+     "fontW": "400"
+    }
+   },
+   "leg": {
+    "w": 637,
+    "h": 695,
+    "span": 448,
+    "num": {
+     "fill": "#cbcac8",
+     "stroke": "#3286b6",
+     "y": 0.254,
+     "size": 0.202,
+     "font": "block",
+     "x": 0,
+     "sw": 0.1,
+     "set": true,
+     "fontFamily": "NBA Nuggets",
+     "fontFile": "NBANuggets.ttf",
+     "fontW": "400"
+    }
+   }
+  }
+ },
+ "DET": {
+  "name": "Detroit Pistons",
+  "w": 579,
+  "h": 675,
+  "span": 397,
+  "num": {
+   "fill": "#c4c5ce",
+   "stroke": "#c8102e",
+   "y": 0.252,
+   "size": 0.204,
+   "font": "block",
+   "x": 0,
+   "sw": 0,
+   "set": true,
+   "fontFamily": "NBA Pistons",
+   "fontFile": "NBAPistons.ttf",
+   "fontW": "400"
+  },
+  "kits": {
+   "ext": {
+    "w": 599,
+    "h": 676,
+    "span": 424,
+    "num": {
+     "fill": "#c0111d",
+     "stroke": "#45447e",
+     "y": 0.262,
+     "size": 0.188,
+     "font": "serif",
+     "x": 0,
+     "sw": 0.075,
+     "set": true,
+     "fontFamily": "NBA Pistons",
+     "fontFile": "NBAPistons.ttf",
+     "fontW": "400"
+    }
+   },
+   "alt": {
+    "w": 592,
+    "h": 680,
+    "span": 400,
+    "num": {
+     "fill": "#babdbf",
+     "stroke": "#c8102e",
+     "y": 0.262,
+     "size": 0.184,
+     "font": "serif",
+     "x": 0,
+     "sw": 0,
+     "set": true,
+     "fontFamily": "NBA Pistons",
+     "fontFile": "NBAPistons.ttf",
+     "fontW": "400"
+    }
+   },
+   "leg": {
+    "w": 586,
+    "h": 635,
+    "span": 416,
+    "num": {
+     "fill": "#c5cccc",
+     "stroke": "#000000",
+     "y": 0.322,
+     "size": 0.13,
+     "font": "serif",
+     "x": 0.112,
+     "sw": 0.08,
+     "set": true,
+     "fontFamily": "NBA Pistons",
+     "fontFile": "NBAPistons.ttf",
+     "fontW": "400",
+     "hide": false,
+     "logo": {
+      "file": "DET-leg-1795144990992.png",
+      "x": 0,
+      "y": 0.105,
+      "w": 0.47
+     }
+    }
+   }
+  }
+ },
+ "GSW": {
+  "name": "Golden State Warriors",
+  "w": 592,
+  "h": 691,
+  "span": 403,
+  "num": {
+   "fill": "#b9981e",
+   "stroke": "#1d428a",
+   "y": 0.24,
+   "size": 0.218,
+   "font": "tre",
+   "x": 0,
+   "sw": 0,
+   "set": true
+  },
+  "kits": {
+   "ext": {
+    "w": 584,
+    "h": 665,
+    "span": 407,
+    "num": {
+     "fill": "#162350",
+     "stroke": "#ffc72c",
+     "y": 0.22,
+     "size": 0.238,
+     "font": "tre",
+     "x": 0,
+     "sw": 0,
+     "set": true
+    }
+   },
+   "alt": {
+    "w": 602,
+    "h": 692,
+    "span": 408,
+    "num": {
+     "fill": "#e0a905",
+     "stroke": "#6b2321",
+     "y": 0.252,
+     "size": 0.14,
+     "font": "tre",
+     "x": 0.1,
+     "sw": 0.06,
+     "set": true
+    }
+   },
+   "leg": {
+    "w": 564,
+    "h": 648,
+    "span": 377,
+    "num": {
+     "fill": "#a01410",
+     "stroke": "#ffffff",
+     "y": 0.256,
+     "size": 0.164,
+     "font": "block",
+     "x": 0,
+     "sw": 0.08,
+     "set": true
+    }
+   }
+  }
+ },
+ "HOU": {
+  "name": "Houston Rockets",
+  "w": 538,
+  "h": 620,
+  "span": 363,
+  "num": {
+   "fill": "#d8d0d5",
+   "stroke": "#7a0f1c",
+   "y": 0.228,
+   "size": 0.226,
+   "font": "block",
+   "x": 0,
+   "sw": 0,
+   "set": true
+  },
+  "kits": {
+   "ext": {
+    "w": 605,
+    "h": 690,
+    "span": 405,
+    "num": {
+     "fill": "#ce1141",
+     "stroke": "#c4ced4",
+     "y": 0.258,
+     "size": 0.214,
+     "font": "block",
+     "x": 0,
+     "sw": 0,
+     "set": true
+    }
+   },
+   "alt": {
+    "w": 562,
+    "h": 666,
+    "span": 380,
+    "num": {
+     "fill": "#c6c9d0",
+     "stroke": "#ffffff",
+     "y": 0.262,
+     "size": 0.186,
+     "font": "block",
+     "x": 0,
+     "sw": 0,
+     "set": true
+    }
+   },
+   "leg": {
+    "w": 595,
+    "h": 690,
+    "span": 404,
+    "num": {
+     "fill": "#fcfdfb",
+     "stroke": "#fdb927",
+     "y": 0.26,
+     "size": 0.182,
+     "font": "block",
+     "x": 0.002,
+     "sw": 0,
+     "set": true,
+     "hide": false,
+     "logo": {
+      "file": "HOU-leg-1795144471289.png",
+      "x": 0,
+      "y": 0.105,
+      "w": 0.36
+     },
+     "fontFamily": "Varsity Team",
+     "fontFile": "VarsityTeamBold.ttf",
+     "fontW": "900"
+    }
+   }
+  }
+ },
+ "IND": {
+  "name": "Indiana Pacers",
+  "w": 569,
+  "h": 656,
+  "span": 377,
+  "num": {
+   "fill": "#998026",
+   "stroke": "#c7c0b6",
+   "y": 0.26,
+   "size": 0.184,
+   "font": "block",
+   "x": 0,
+   "sw": 0.06,
+   "set": true
+  },
+  "kits": {
+   "ext": {
+    "w": 559,
+    "h": 677,
+    "span": 388,
+    "num": {
+     "fill": "#2e303d",
+     "stroke": "#a68a3c",
+     "y": 0.27,
+     "size": 0.186,
+     "font": "block",
+     "x": 0,
+     "sw": 0.045,
+     "set": true
+    }
+   },
+   "leg": {
+    "w": 591,
+    "h": 634,
+    "span": 437,
+    "num": {
+     "fill": "#b79d2f",
+     "stroke": "#c3bdac",
+     "y": 0.24,
+     "size": 0.202,
+     "font": "block",
+     "x": 0,
+     "sw": 0.05,
+     "set": true
+    }
+   },
+   "alt": {
+    "w": 585,
+    "h": 683,
+    "span": 396,
+    "num": {
+     "fill": "#061c35",
+     "stroke": "#c3c6cb",
+     "y": 0.27,
+     "size": 0.148,
+     "font": "block",
+     "x": 0,
+     "sw": 0.1,
+     "set": true
+    }
+   }
+  }
+ },
+ "MEM": {
+  "name": "Memphis Grizzlies",
+  "w": 577,
+  "h": 656,
+  "span": 395,
+  "num": {
+   "fill": "#76a4cd",
+   "stroke": "#5d76a9",
+   "y": 0.234,
+   "size": 0.23,
+   "font": "block",
+   "x": 0,
+   "sw": 0,
+   "set": true,
+   "fontFamily": "NBA Grizzlies",
+   "fontFile": "NBAGrizzlies.ttf",
+   "fontW": "400"
+  },
+  "kits": {
+   "ext": {
+    "w": 599,
+    "h": 706,
+    "span": 423,
+    "num": {
+     "fill": "#12173f",
+     "stroke": "#5d76a9",
+     "y": 0.238,
+     "size": 0.194,
+     "font": "block",
+     "x": 0,
+     "sw": 0,
+     "set": true,
+     "fontFamily": "NBA Grizzlies",
+     "fontFile": "NBAGrizzlies.ttf",
+     "fontW": "400"
+    }
+   },
+   "alt": {
+    "w": 600,
+    "h": 639,
+    "span": 430,
+    "num": {
+     "fill": "#12173f",
+     "stroke": "#ffffff",
+     "y": 0.232,
+     "size": 0.228,
+     "font": "block",
+     "x": 0,
+     "sw": 0,
+     "set": true,
+     "fontFamily": "NBA Grizzlies",
+     "fontFile": "NBAGrizzlies.ttf",
+     "fontW": "400"
+    }
+   },
+   "leg": {
+    "w": 587,
+    "h": 708,
+    "span": 405,
+    "num": {
+     "fill": "#e6ecf1",
+     "stroke": "#722d24",
+     "y": 0.312,
+     "size": 0.144,
+     "font": "block",
+     "x": 0,
+     "sw": 0.065,
+     "set": true,
+     "fontFamily": "Varsity Team",
+     "fontFile": "VarsityTeamBold.ttf",
+     "fontW": "900"
     }
    }
   }
  },
  "BOB": {
   "name": "Charlotte Bobcats",
-  "w": 599,
-  "h": 630,
-  "span": 455,
+  "w": 633,
+  "h": 689,
+  "span": 466,
   "num": {
-   "fill": "#1d3a8a",
-   "stroke": "#f26522"
+   "fill": "#03163f",
+   "stroke": "#da4201",
+   "y": 0.258,
+   "size": 0.184,
+   "font": "block",
+   "x": 0,
+   "sw": 0.05,
+   "set": true
   },
   "kits": {
    "ext": {
-    "w": 579,
-    "h": 632,
-    "span": 442,
+    "w": 575,
+    "h": 670,
+    "span": 394,
     "num": {
-     "fill": "#f26522",
-     "stroke": "#ffffff"
+     "fill": "#c65823",
+     "stroke": "#a59da9",
+     "y": 0.264,
+     "size": 0.168,
+     "font": "block",
+     "x": 0,
+     "sw": 0.055,
+     "set": true
     }
    },
    "alt": {
-    "w": 565,
-    "h": 659,
-    "span": 433,
+    "w": 560,
+    "h": 677,
+    "span": 380,
     "num": {
-     "fill": "#1d3a8a",
-     "stroke": "#ffffff"
+     "fill": "#e7e7ea",
+     "stroke": "#2f1825",
+     "y": 0.268,
+     "size": 0.172,
+     "font": "block",
+     "x": 0,
+     "sw": 0.07,
+     "set": true
     }
    }
   }
  },
  "SEA": {
   "name": "Seattle SuperSonics",
-  "w": 589,
-  "h": 649,
-  "span": 445,
+  "w": 581,
+  "h": 597,
+  "span": 442,
   "num": {
    "fill": "#00653a",
-   "stroke": "#ffc200"
+   "stroke": "#e1b716",
+   "y": 0.27,
+   "size": 0.14,
+   "font": "block",
+   "x": 0,
+   "sw": 0.1,
+   "set": true
+  },
+  "kits": {
+   "alt": {
+    "w": 610,
+    "h": 673,
+    "span": 420,
+    "num": {
+     "fill": "#00653a",
+     "stroke": "#ffffff",
+     "y": 0.334,
+     "size": 0.14,
+     "font": "block",
+     "x": 0,
+     "sw": 0.1,
+     "set": true
+    }
+   },
+   "ext": {
+    "w": 585,
+    "h": 655,
+    "span": 393,
+    "num": {
+     "fill": "#ffc200",
+     "stroke": "#ffffff",
+     "y": 0.334,
+     "size": 0.126,
+     "font": "block",
+     "x": 0,
+     "sw": 0.1,
+     "set": true
+    }
+   }
+  }
+ },
+ "PHX": {
+  "name": "Phoenix Suns",
+  "w": 584,
+  "h": 680,
+  "span": 389,
+  "num": {
+   "fill": "#d1d1d1",
+   "stroke": "#1d1160",
+   "y": 0.288,
+   "size": 0.164,
+   "font": "block",
+   "x": 0,
+   "sw": 0,
+   "set": true
   },
   "kits": {
    "ext": {
-    "w": 595,
-    "h": 647,
-    "span": 448,
+    "w": 590,
+    "h": 669,
+    "span": 410,
     "num": {
-     "fill": "#ffc200",
-     "stroke": "#ffffff"
+     "fill": "#1d1160",
+     "stroke": "#a7480e",
+     "y": 0.302,
+     "size": 0.162,
+     "font": "block",
+     "x": 0,
+     "sw": 0.065,
+     "set": true
     }
    },
    "alt": {
-    "w": 596,
-    "h": 650,
-    "span": 438,
+    "w": 606,
+    "h": 679,
+    "span": 427,
     "num": {
-     "fill": "#00653a",
-     "stroke": "#ffffff"
+     "fill": "#1d1160",
+     "stroke": "#ffffff",
+     "y": 0.272,
+     "size": 0.168,
+     "font": "block",
+     "x": 0,
+     "sw": 0.06,
+     "set": true
+    }
+   },
+   "leg": {
+    "w": 599,
+    "h": 703,
+    "span": 413,
+    "num": {
+     "fill": "#bcb9bc",
+     "stroke": "#b84f17",
+     "y": 0.316,
+     "size": 0.112,
+     "font": "block",
+     "x": 0.106,
+     "sw": 0.1,
+     "set": true
+    }
+   }
+  }
+ },
+ "SAC": {
+  "name": "Sacramento Kings",
+  "w": 546,
+  "h": 679,
+  "span": 380,
+  "num": {
+   "fill": "#c2c4c7",
+   "stroke": "#7d7e83",
+   "y": 0.274,
+   "size": 0.188,
+   "font": "block",
+   "x": 0,
+   "sw": 0.065,
+   "set": true
+  },
+  "kits": {
+   "ext": {
+    "w": 569,
+    "h": 660,
+    "span": 393,
+    "num": {
+     "fill": "#5a2d81",
+     "stroke": "#63727a",
+     "y": 0.26,
+     "size": 0.19,
+     "font": "block",
+     "x": 0,
+     "sw": 0.05,
+     "set": true
+    }
+   },
+   "alt": {
+    "w": 566,
+    "h": 677,
+    "span": 384,
+    "num": {
+     "fill": "#ffffff",
+     "stroke": "#5a2d81",
+     "y": 0.284,
+     "size": 0.124,
+     "font": "block",
+     "x": 0.118,
+     "sw": 0.1,
+     "set": true
+    }
+   },
+   "leg": {
+    "w": 586,
+    "h": 679,
+    "span": 423,
+    "num": {
+     "fill": "#ffffff",
+     "stroke": "#463f5d",
+     "y": 0.254,
+     "size": 0.152,
+     "font": "block",
+     "x": 0,
+     "sw": 0.1,
+     "set": true
+    }
+   }
+  }
+ },
+ "SAS": {
+  "name": "San Antonio Spurs",
+  "w": 561,
+  "h": 679,
+  "span": 384,
+  "num": {
+   "fill": "#c4ced4",
+   "stroke": "#111111",
+   "y": 0.264,
+   "size": 0.178,
+   "font": "block",
+   "x": 0,
+   "sw": 0,
+   "set": true,
+   "fontFamily": "Varsity Team",
+   "fontFile": "VarsityTeamBold.ttf",
+   "fontW": "900"
+  },
+  "kits": {
+   "ext": {
+    "w": 599,
+    "h": 697,
+    "span": 412,
+    "num": {
+     "fill": "#111111",
+     "stroke": "#c4ced4",
+     "y": 0.282,
+     "size": 0.178,
+     "font": "serif",
+     "x": 0,
+     "sw": 0.1,
+     "set": true,
+     "fontFamily": "Varsity Team",
+     "fontFile": "VarsityTeamBold.ttf",
+     "fontW": "900"
+    }
+   },
+   "alt": {
+    "w": 601,
+    "h": 657,
+    "span": 442,
+    "num": {
+     "fill": "#bfc0c6",
+     "stroke": "#0c0f11",
+     "y": 0.268,
+     "size": 0.182,
+     "font": "block",
+     "x": 0,
+     "sw": 0.1,
+     "set": true,
+     "fontFamily": "Varsity Team",
+     "fontFile": "VarsityTeamBold.ttf",
+     "fontW": "900"
+    }
+   },
+   "leg": {
+    "w": 608,
+    "h": 707,
+    "span": 450,
+    "num": {
+     "fill": "#ffffff",
+     "stroke": "#020207",
+     "y": 0.286,
+     "size": 0.14,
+     "font": "block",
+     "x": 0.11,
+     "sw": 0.1,
+     "set": true,
+     "hide": false
+    }
+   }
+  }
+ },
+ "UTA": {
+  "name": "Utah Jazz",
+  "w": 570,
+  "h": 639,
+  "span": 393,
+  "num": {
+   "fill": "#f9c506",
+   "stroke": "#ffffff",
+   "y": 0.29,
+   "size": 0.158,
+   "font": "block",
+   "x": 0,
+   "sw": 0,
+   "set": true
+  },
+  "kits": {
+   "ext": {
+    "w": 611,
+    "h": 724,
+    "span": 419,
+    "num": {
+     "fill": "#432b95",
+     "stroke": "#d7d6db",
+     "y": 0.26,
+     "size": 0.168,
+     "font": "block",
+     "x": 0.086,
+     "sw": 0.1,
+     "set": true
+    }
+   },
+   "alt": {
+    "w": 572,
+    "h": 682,
+    "span": 393,
+    "num": {
+     "fill": "#c1a721",
+     "stroke": "#ffffff",
+     "y": 0.33,
+     "size": 0.104,
+     "font": "block",
+     "x": 0,
+     "sw": 0.055,
+     "set": true,
+     "fontFamily": "University",
+     "fontFile": "University.otf",
+     "fontW": "400"
+    }
+   },
+   "leg": {
+    "w": 557,
+    "h": 646,
+    "span": 379,
+    "num": {
+     "fill": "#ffffff",
+     "stroke": "#5097ad",
+     "y": 0.314,
+     "size": 0.14,
+     "font": "italic",
+     "x": 0.044,
+     "sw": 0.1,
+     "set": true
+    }
+   }
+  }
+ },
+ "WAS": {
+  "name": "Washington Wizards",
+  "w": 580,
+  "h": 634,
+  "span": 398,
+  "num": {
+   "fill": "#ffffff",
+   "stroke": "#151c35",
+   "y": 0.256,
+   "size": 0.21,
+   "font": "block",
+   "x": 0,
+   "sw": 0.1,
+   "set": true
+  },
+  "kits": {
+   "ext": {
+    "w": 611,
+    "h": 694,
+    "span": 433,
+    "num": {
+     "fill": "#1e2e46",
+     "stroke": "#d4d1d7",
+     "y": 0.258,
+     "size": 0.182,
+     "font": "block",
+     "x": 0,
+     "sw": 0.1,
+     "set": true
+    }
+   },
+   "alt": {
+    "w": 611,
+    "h": 669,
+    "span": 428,
+    "num": {
+     "fill": "#0e1d3c",
+     "stroke": "#b80d12",
+     "y": 0.268,
+     "size": 0.196,
+     "font": "block",
+     "x": 0,
+     "sw": 0.1,
+     "set": true
+    }
+   },
+   "leg": {
+    "w": 606,
+    "h": 704,
+    "span": 413,
+    "num": {
+     "fill": "#929598",
+     "stroke": "#090909",
+     "y": 0.252,
+     "size": 0.182,
+     "font": "times",
+     "x": 0.064,
+     "sw": 0.1,
+     "set": true
+    }
+   }
+  }
+ },
+ "LAC": {
+  "name": "Los Angeles Clippers",
+  "w": 603,
+  "h": 693,
+  "span": 419,
+  "num": {
+   "fill": "#cbcacd",
+   "stroke": "#1d428a",
+   "y": 0.3,
+   "size": 0.164,
+   "font": "block",
+   "x": 0,
+   "sw": 0,
+   "set": true
+  },
+  "kits": {
+   "ext": {
+    "w": 572,
+    "h": 676,
+    "span": 388,
+    "num": {
+     "fill": "#1d428a",
+     "stroke": "#c8102e",
+     "y": 0.266,
+     "size": 0.162,
+     "font": "block",
+     "x": 0,
+     "sw": 0,
+     "set": true
+    }
+   },
+   "alt": {
+    "w": 598,
+    "h": 654,
+    "span": 408,
+    "num": {
+     "fill": "#d9dde2",
+     "stroke": "#c8102e",
+     "y": 0.28,
+     "size": 0.156,
+     "font": "block",
+     "x": 0.104,
+     "sw": 0,
+     "set": true
+    }
+   },
+   "leg": {
+    "w": 619,
+    "h": 706,
+    "span": 417,
+    "num": {
+     "fill": "#a90e0c",
+     "stroke": "#cfcbd4",
+     "y": 0.28,
+     "size": 0.142,
+     "font": "block",
+     "x": 0.104,
+     "sw": 0.075,
+     "set": true,
+     "fontFamily": "Varsity Team",
+     "fontFile": "VarsityTeamBold.ttf",
+     "fontW": "900"
+    }
+   }
+  }
+ },
+ "MIN": {
+  "name": "Minnesota Timberwolves",
+  "w": 585,
+  "h": 670,
+  "span": 392,
+  "num": {
+   "fill": "#c5c9cc",
+   "stroke": "#0c2340",
+   "y": 0.27,
+   "size": 0.17,
+   "font": "block",
+   "x": 0,
+   "sw": 0,
+   "set": true
+  },
+  "kits": {
+   "ext": {
+    "w": 587,
+    "h": 667,
+    "span": 434,
+    "num": {
+     "fill": "#0c2340",
+     "stroke": "#78be20",
+     "y": 0.26,
+     "size": 0.182,
+     "font": "block",
+     "x": 0,
+     "sw": 0,
+     "set": true
+    }
+   },
+   "alt": {
+    "w": 569,
+    "h": 643,
+    "span": 402,
+    "num": {
+     "fill": "#dee3ef",
+     "stroke": "#0c3469",
+     "y": 0.244,
+     "size": 0.176,
+     "font": "block",
+     "x": 0,
+     "sw": 0.075,
+     "set": true
+    }
+   },
+   "leg": {
+    "w": 576,
+    "h": 678,
+    "span": 393,
+    "num": {
+     "fill": "#ffffff",
+     "stroke": "#111111",
+     "y": 0.256,
+     "size": 0.156,
+     "font": "block",
+     "x": 0,
+     "sw": 0.1,
+     "set": true,
+     "fontFamily": "NBA Timberwolves",
+     "fontFile": "NBATimberwolves.ttf",
+     "fontW": "400"
+    }
+   }
+  }
+ },
+ "POR": {
+  "name": "Portland Trail Blazers",
+  "w": 612,
+  "h": 693,
+  "span": 413,
+  "num": {
+   "fill": "#e03a3e",
+   "stroke": "#ffffff",
+   "y": 0.306,
+   "size": 0.14,
+   "font": "block",
+   "x": 0.118,
+   "sw": 0.085,
+   "set": true
+  },
+  "kits": {
+   "ext": {
+    "w": 564,
+    "h": 652,
+    "span": 390,
+    "num": {
+     "fill": "#e03a3e",
+     "stroke": "#111111",
+     "y": 0.3,
+     "size": 0.14,
+     "font": "block",
+     "x": 0.136,
+     "sw": 0.1,
+     "set": true
+    }
+   },
+   "alt": {
+    "w": 581,
+    "h": 656,
+    "span": 397,
+    "num": {
+     "fill": "#ffffff",
+     "stroke": "#111111",
+     "y": 0.295,
+     "size": 0.14,
+     "font": "block",
+     "x": 0.122,
+     "sw": 0.1,
+     "set": true
+    }
+   },
+   "leg": {
+    "w": 591,
+    "h": 703,
+    "span": 414,
+    "num": {
+     "fill": "#e03a3e",
+     "stroke": "#111111",
+     "y": 0.284,
+     "size": 0.132,
+     "font": "block",
+     "x": 0.104,
+     "sw": 0.055,
+     "set": true,
+     "hide": false,
+     "logo": {
+      "file": "POR-leg-1795144655392.png",
+      "x": 0,
+      "y": 0.15,
+      "w": 0.34
+     },
+     "fontFamily": "Varsity Team",
+     "fontFile": "VarsityTeamBold.ttf",
+     "fontW": "900"
+    }
+   }
+  }
+ },
+ "TOR": {
+  "name": "Toronto Raptors",
+  "w": 590,
+  "h": 649,
+  "span": 408,
+  "num": {
+   "fill": "#e1d9de",
+   "stroke": "#938c90",
+   "y": 0.294,
+   "size": 0.14,
+   "font": "tre",
+   "x": 0,
+   "sw": 0.1,
+   "set": true
+  },
+  "kits": {
+   "ext": {
+    "w": 583,
+    "h": 662,
+    "span": 401,
+    "num": {
+     "fill": "#ce1141",
+     "stroke": "#111111",
+     "y": 0.298,
+     "size": 0.146,
+     "font": "tre",
+     "x": 0,
+     "sw": 0.045,
+     "set": true
+    }
+   },
+   "alt": {
+    "w": 570,
+    "h": 664,
+    "span": 395,
+    "num": {
+     "fill": "#ce1141",
+     "stroke": "#ffffff",
+     "y": 0.322,
+     "size": 0.124,
+     "font": "tre",
+     "x": 0,
+     "sw": 0.1,
+     "set": true
+    }
+   },
+   "leg": {
+    "w": 565,
+    "h": 679,
+    "span": 396,
+    "num": {
+     "fill": "#ffffff",
+     "stroke": "#111111",
+     "y": 0.143,
+     "size": 0.14,
+     "font": "block",
+     "x": 0,
+     "sw": 0.1,
+     "set": true,
+     "hide": true,
+     "logo": {
+      "file": "TOR-leg-1795144610456.webp",
+      "x": 0,
+      "y": 0.17,
+      "w": 0.42
+     }
+    }
+   }
+  }
+ },
+ "MIA": {
+  "name": "Miami Heat",
+  "w": 595,
+  "h": 640,
+  "span": 442,
+  "num": {
+   "fill": "#c5c5c5",
+   "stroke": "#98002e",
+   "y": 0.2,
+   "size": 0.17,
+   "font": "block",
+   "x": 0.096,
+   "sw": 0.1,
+   "set": true
+  },
+  "kits": {
+   "ext": {
+    "w": 629,
+    "h": 672,
+    "span": 436,
+    "num": {
+     "fill": "#98002e",
+     "stroke": "#111111",
+     "y": 0.274,
+     "size": 0.174,
+     "font": "block",
+     "x": 0.086,
+     "sw": 0.1,
+     "set": true
+    }
+   },
+   "alt": {
+    "w": 568,
+    "h": 651,
+    "span": 390,
+    "num": {
+     "fill": "#ffffff",
+     "stroke": "#111111",
+     "y": 0.234,
+     "size": 0.176,
+     "font": "block",
+     "x": 0.082,
+     "sw": 0.1,
+     "set": true
+    }
+   },
+   "leg": {
+    "w": 630,
+    "h": 682,
+    "span": 446,
+    "num": {
+     "fill": "#ffffff",
+     "stroke": "#c2185b",
+     "y": 0.284,
+     "size": 0.164,
+     "font": "block",
+     "x": 0.086,
+     "sw": 0.1,
+     "set": true
+    }
+   }
+  }
+ },
+ "MIL": {
+  "name": "Milwaukee Bucks",
+  "w": 611,
+  "h": 662,
+  "span": 448,
+  "num": {
+   "fill": "#f0ebd2",
+   "stroke": "#00471b",
+   "y": 0.218,
+   "size": 0.164,
+   "font": "block",
+   "x": 0,
+   "sw": 0.1,
+   "set": true
+  },
+  "kits": {
+   "ext": {
+    "w": 600,
+    "h": 691,
+    "span": 431,
+    "num": {
+     "fill": "#00471b",
+     "stroke": "#eee1c6",
+     "y": 0.272,
+     "size": 0.166,
+     "font": "block",
+     "x": 0,
+     "sw": 0,
+     "set": true
+    }
+   },
+   "alt": {
+    "w": 633,
+    "h": 703,
+    "span": 471,
+    "num": {
+     "fill": "#00471b",
+     "stroke": "#ffffff",
+     "y": 0.258,
+     "size": 0.168,
+     "font": "block",
+     "x": 0,
+     "sw": 0,
+     "set": true
+    }
+   },
+   "leg": {
+    "w": 561,
+    "h": 675,
+    "span": 384,
+    "num": {
+     "fill": "#ffffff",
+     "stroke": "#c8102e",
+     "y": 0.304,
+     "size": 0.14,
+     "font": "block",
+     "x": 0,
+     "sw": 0.1,
+     "set": true,
+     "hide": false,
+     "logo": {
+      "file": "MIL-leg-1795144769186.png",
+      "x": 0,
+      "y": 0.145,
+      "w": 0.38
+     }
+    }
+   }
+  }
+ },
+ "NOP": {
+  "name": "New Orleans Pelicans",
+  "w": 581,
+  "h": 644,
+  "span": 429,
+  "num": {
+   "fill": "#c1c2b8",
+   "stroke": "#85714d",
+   "y": 0.26,
+   "size": 0.14,
+   "font": "block",
+   "x": 0,
+   "sw": 0.1,
+   "set": true
+  },
+  "kits": {
+   "ext": {
+    "w": 579,
+    "h": 677,
+    "span": 397,
+    "num": {
+     "fill": "#0c2340",
+     "stroke": "#d3a465",
+     "y": 0.287,
+     "size": 0.14,
+     "font": "block",
+     "x": 0,
+     "sw": 0.1,
+     "set": true
+    }
+   },
+   "alt": {
+    "w": 555,
+    "h": 646,
+    "span": 382,
+    "num": {
+     "fill": "#e5e1e7",
+     "stroke": "#0c2340",
+     "y": 0.28,
+     "size": 0.14,
+     "font": "block",
+     "x": 0,
+     "sw": 0.1,
+     "set": true
+    }
+   },
+   "leg": {
+    "w": 578,
+    "h": 683,
+    "span": 396,
+    "num": {
+     "fill": "#ffffff",
+     "stroke": "#1d1160",
+     "y": 0.284,
+     "size": 0.14,
+     "font": "block",
+     "x": 0,
+     "sw": 0.1,
+     "set": true
+    }
+   }
+  }
+ },
+ "NYK": {
+  "name": "New York Knicks",
+  "w": 590,
+  "h": 634,
+  "span": 438,
+  "num": {
+   "fill": "#d2693f",
+   "stroke": "#ffffff",
+   "y": 0.184,
+   "size": 0.182,
+   "font": "serif",
+   "x": 0,
+   "sw": 0.075,
+   "set": true,
+   "fontFamily": "NBA Knicks",
+   "fontFile": "NBAKnicks.ttf",
+   "fontW": "400"
+  },
+  "kits": {
+   "ext": {
+    "w": 604,
+    "h": 685,
+    "span": 415,
+    "num": {
+     "fill": "#e45621",
+     "stroke": "#536584",
+     "y": 0.258,
+     "size": 0.188,
+     "font": "serif",
+     "x": 0,
+     "sw": 0.07,
+     "set": true,
+     "fontFamily": "NBA Knicks",
+     "fontFile": "NBAKnicks.ttf",
+     "fontW": "400"
+    }
+   },
+   "alt": {
+    "w": 550,
+    "h": 663,
+    "span": 374,
+    "num": {
+     "fill": "#ba4d20",
+     "stroke": "#16215a",
+     "y": 0.242,
+     "size": 0.172,
+     "font": "serif",
+     "x": 0,
+     "sw": 0.1,
+     "set": true,
+     "fontFamily": "NBA Knicks",
+     "fontFile": "NBAKnicks.ttf",
+     "fontW": "400"
+    }
+   },
+   "leg": {
+    "w": 605,
+    "h": 669,
+    "span": 422,
+    "num": {
+     "fill": "#ffffff",
+     "stroke": "#434c71",
+     "y": 0.252,
+     "size": 0.188,
+     "font": "serif",
+     "x": 0,
+     "sw": 0.1,
+     "set": true,
+     "fontFamily": "NBA Knicks",
+     "fontFile": "NBAKnicks.ttf",
+     "fontW": "400"
+    }
+   }
+  }
+ },
+ "OKC": {
+  "name": "Oklahoma City Thunder",
+  "w": 540,
+  "h": 604,
+  "span": 388,
+  "num": {
+   "fill": "#ffffff",
+   "stroke": "#002d62",
+   "y": 0.23,
+   "size": 0.178,
+   "font": "block",
+   "x": 0,
+   "sw": 0.1,
+   "set": true
+  },
+  "kits": {
+   "ext": {
+    "w": 570,
+    "h": 686,
+    "span": 385,
+    "num": {
+     "fill": "#145aa3",
+     "stroke": "#ef3b24",
+     "y": 0.27,
+     "size": 0.176,
+     "font": "block",
+     "x": 0,
+     "sw": 0.05,
+     "set": true
+    }
+   },
+   "alt": {
+    "w": 577,
+    "h": 666,
+    "span": 379,
+    "num": {
+     "fill": "#0470b4",
+     "stroke": "#ffffff",
+     "y": 0.29,
+     "size": 0.154,
+     "font": "block",
+     "x": 0,
+     "sw": 0.05,
+     "set": true
+    }
+   },
+   "leg": {
+    "w": 585,
+    "h": 653,
+    "span": 406,
+    "num": {
+     "fill": "#ffffff",
+     "stroke": "#ef3b24",
+     "y": 0.174,
+     "size": 0.164,
+     "font": "impact",
+     "x": 0.068,
+     "sw": 0,
+     "set": true,
+     "hide": false,
+     "logo": {
+      "file": "OKC-leg-1795144896785.png",
+      "x": 0.02,
+      "y": 0.02,
+      "w": 0.51
+     }
+    }
+   }
+  }
+ },
+ "ORL": {
+  "name": "Orlando Magic",
+  "w": 587,
+  "h": 642,
+  "span": 432,
+  "num": {
+   "fill": "#ffffff",
+   "stroke": "#10243d",
+   "y": 0.278,
+   "size": 0.164,
+   "font": "block",
+   "x": 0,
+   "sw": 0.1,
+   "set": true
+  },
+  "kits": {
+   "ext": {
+    "w": 636,
+    "h": 691,
+    "span": 427,
+    "num": {
+     "fill": "#043d84",
+     "stroke": "#111111",
+     "y": 0.308,
+     "size": 0.162,
+     "font": "block",
+     "x": 0,
+     "sw": 0,
+     "set": true
+    }
+   },
+   "alt": {
+    "w": 620,
+    "h": 707,
+    "span": 435,
+    "num": {
+     "fill": "#aeb1b3",
+     "stroke": "#163765",
+     "y": 0.318,
+     "size": 0.14,
+     "font": "block",
+     "x": 0,
+     "sw": 0.1,
+     "set": true
+    }
+   },
+   "leg": {
+    "w": 599,
+    "h": 656,
+    "span": 403,
+    "num": {
+     "fill": "#064baa",
+     "stroke": "#ebeaef",
+     "y": 0.316,
+     "size": 0.14,
+     "font": "block",
+     "x": 0,
+     "sw": 0.13,
+     "set": true
     }
    }
   }

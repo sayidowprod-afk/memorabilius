@@ -711,3 +711,20 @@ i.nw { background: #e5484d; } i.dp { background: #fdb927; color: #111 !important
 .pk.pk-overlay .pk-stage2 { padding-top: calc(84px + env(safe-area-inset-top, 0px)); gap: 14px; }
 .pk.pk-overlay .pk-stage2 .pk-hud { position: static; top: auto; left: auto; right: auto; width: 100%; }
 .pk.pk-overlay .pk-stage2 .pk-packbox { margin-top: 6px; }
+
+/* ── Fenêtre d'ouverture : rien ne défile, tout tient dans l'écran, centré ── */
+/* le pack garde partout ses 250 × 380 (la mise à l'échelle est faite par le code) : plus de décalage vers la gauche sur téléphone */
+.pk-packwrap { width: 250px !important; height: 380px !important; }
+.pk.pk-overlay .pk-stage2 .pk-packbox { margin-left: auto; margin-right: auto; }
+.pk.pk-overlay { overscroll-behavior: none; touch-action: none; }
+/* pile de cartes : sa hauteur suit celle de l'écran, pour que nom, infos et « Tout voir d'un coup » restent au-dessus de la barre du bas */
+.pk-scene { --sh: clamp(230px, calc(100dvh - 575px), 420px); height: var(--sh); width: calc(var(--sh) * 0.714); }
+.pk.pk-overlay .pk-deck-stage { padding-bottom: 0; }
+.pk-now { min-height: 0; }
+/* récapitulatif : la grille se réduit selon la hauteur de l'écran (6 cartes + détail + bouton tiennent sans défiler) */
+.pk.pk-overlay.pk-scroll { overflow: hidden; justify-content: flex-start; padding: calc(64px + env(safe-area-inset-top, 0px)) 0 calc(170px + env(safe-area-inset-bottom, 0px)); }
+.pk-sumwrap { width: clamp(250px, calc(1.0714 * (100dvh - 592px) + 16px), 760px); max-width: 100%; }
+.pk-reveal-bar { margin-bottom: 8px; }
+.pk-sum { gap: 8px 8px; }
+.pk-sum-detail { margin-top: 10px; padding: 8px 12px; gap: 3px; }
+.pk-sum-head b { font-size: 24px; }

@@ -43,12 +43,24 @@ async function composeBody(fig: BobbleFig): Promise<string | null> {
     }
     g.putImageData(d, 0, 0)
   }
-  if (b.num) {
-    try { await document.fonts.load('100px Surfquest') } catch { /* police par défaut */ }
-    const fs = c.height * (b.num.length > 1 ? 0.21 : 0.24)
-    g.font = `${fs}px Surfquest, Impact, sans-serif`; g.textAlign = 'center'; g.textBaseline = 'top'; g.lineJoin = 'round'; g.lineWidth = Math.max(2, fs * 0.1)
-    const nx = c.width / 2 + c.width * 0.035 / 2, ny = c.height * 0.155
-    g.strokeStyle = b.numStroke || '#000'; g.strokeText(b.num, nx, ny)
+  const cfg = b.numCfg
+  // logo posé sur le maillot (réglé dans l'outil des maillots)
+  if (cfg?.logo?.file) {
+    const li = await loadImg(`/bobbleheads/logos/${cfg.logo.file}`)
+    if (li) { const lw = c.width * (cfg.logo.w || 0.3), lh = lw * li.naturalHeight / li.naturalWidth; g.drawImage(li, c.width / 2 + c.width * (cfg.logo.x || 0) - lw / 2, c.height * (cfg.logo.y || 0.1), lw, lh) }
+  }
+  if (b.num && !cfg?.hide) {
+    let fam = 'Surfquest, Impact, sans-serif', weight = '400'
+    if (cfg?.fontFamily && cfg.fontFile) {
+      try { const ff = new FontFace(cfg.fontFamily, `url(/bobbleheads/fonts/${cfg.fontFile})`); await ff.load(); document.fonts.add(ff); fam = `'${cfg.fontFamily}', Impact, sans-serif`; weight = cfg.fontW || '400' } catch { /* police par défaut */ }
+    } else if (cfg?.font === 'serif') { fam = 'Georgia, serif'; weight = '900' }
+    else { try { await document.fonts.load('100px Surfquest') } catch { /* police par défaut */ } }
+    const custom = cfg?.y !== undefined
+    const fs = custom ? c.height * (cfg!.size || 0.14) * (b.num.length > 1 ? 1 : 1.1) : c.height * (b.num.length > 1 ? 0.21 : 0.24)
+    g.font = `${weight} ${fs}px ${fam}`; g.textAlign = 'center'; g.textBaseline = 'top'; g.lineJoin = 'round'
+    g.lineWidth = custom && cfg?.sw !== undefined ? fs * cfg.sw : Math.max(2, fs * 0.1)
+    const nx = custom ? c.width / 2 + c.width * (cfg?.x || 0) : c.width / 2 + c.width * 0.035 / 2, ny = c.height * (custom ? cfg!.y! : 0.155)
+    g.strokeStyle = b.numStroke || '#000'; if (g.lineWidth > 0) g.strokeText(b.num, nx, ny)
     g.fillStyle = b.numFill || '#fff'; g.fillText(b.num, nx, ny)
   }
   return c.toDataURL('image/png')

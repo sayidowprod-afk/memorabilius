@@ -4,6 +4,15 @@ export type Entry = { date: string; titre: string; points: string[] }
 
 export const ENTRIES: Entry[] = [
   {
+    date: '30 novembre 2026', titre: 'Bobbleheads : nouveaux maillots NBA et numéros par équipe',
+    points: [
+      'Nouveaux maillots : les figurines NBA portent maintenant de vrais maillots d’équipe, avec le mot ou le logo de l’équipe sur la poitrine, pour les tenues domicile, extérieur, alternative et légendaire (Bobcats et SuperSonics compris).',
+      'Numéros : chaque maillot a sa police, sa taille et sa position de numéro. Certains maillots n’ont pas de numéro, d’autres un logo posé à la main.',
+      'Équipes passées : quand tu choisis une équipe où le joueur est passé, la figurine affiche le numéro qu’il y a porté le plus longtemps.',
+      'Packs : l’écran d’ouverture est recentré, sans défilement, et le compteur ne passe plus sous les boutons.',
+    ],
+  },
+  {
     date: '30 novembre 2026', titre: 'Visite guidée et pack plus lisible',
     points: [
       'Visite guidée : à ta première connexion, un tour rapide de l’accueil, puis de ta galerie, te guide pas à pas pour ajouter ta première PC et ta première carte. Elle est traduite dans toutes les langues du site.',
