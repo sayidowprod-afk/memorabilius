@@ -194,12 +194,26 @@ export default function MesPCTab({ cards, cardsLoaded = true, userId, accent, da
   const teamNames       = useMemo(() => [...new Set(cards.map(c => c.t?.trim()).filter(Boolean))].sort(), [cards])
   const collectionNames = useMemo(() => [...new Set(cards.map(c => c.s?.trim()).filter(Boolean))].sort(), [cards])
 
+  // joueurs : ceux de ma galerie d'abord, puis TOUS les joueurs du site (ceux qui ont une page joueur), cherchés au fil de la frappe
+  const [remoteNames, setRemoteNames] = useState<string[]>([])
+  useEffect(() => {
+    const q = addSearch.trim()
+    if (addType !== 'player' || q.length < 2) { setRemoteNames([]); return }
+    let off = false
+    const timer = setTimeout(() => {
+      fetch(`/api/search-suggest?q=${encodeURIComponent(q)}&max=15`).then(r => (r.ok ? r.json() : { players: [] })).then(d => { if (!off) setRemoteNames(Array.isArray(d?.players) ? d.players : []) }).catch(() => {})
+    }, 220)
+    return () => { off = true; clearTimeout(timer) }
+  }, [addSearch, addType])
+
   const sourceNames = addType === 'player' ? playerNames : addType === 'team' ? teamNames : collectionNames
   const suggestions = useMemo(() => {
-    if (!addSearch) return sourceNames.slice(0, 14)
     const q = addSearch.toLowerCase()
-    return sourceNames.filter(n => n.toLowerCase().includes(q)).slice(0, 14)
-  }, [sourceNames, addSearch])
+    const local = !addSearch ? sourceNames.slice(0, 14) : sourceNames.filter(n => n.toLowerCase().includes(q))
+    if (addType !== 'player') return local.slice(0, 14)
+    const seen = new Set(local.map(n => n.toLowerCase()))
+    return [...local, ...remoteNames.filter(n => !seen.has(n.toLowerCase()))].slice(0, 16)
+  }, [sourceNames, addSearch, addType, remoteNames])
 
   function getPool(pc: PCEntry) {
     const name = pc.name.toLowerCase()
@@ -386,7 +400,7 @@ export default function MesPCTab({ cards, cardsLoaded = true, userId, accent, da
                   style={{ display: 'block', width: '100%', padding: '10px 14px', textAlign: 'left', background: 'none', border: 'none', borderBottom: `1px solid ${border}`, cursor: 'pointer', fontSize: 13, fontWeight: 700, color: text }}
                 >{name}</button>
               ))}
-              {addSearch.trim() && !sourceNames.some(n => n.toLowerCase() === addSearch.toLowerCase()) && (
+              {addSearch.trim() && !sourceNames.some(n => n.toLowerCase() === addSearch.toLowerCase()) && !remoteNames.some(n => n.toLowerCase() === addSearch.trim().toLowerCase()) && (
                 <button
                   onMouseDown={e => { e.preventDefault(); if (blurTimer.current) clearTimeout(blurTimer.current) }}
                   onClick={() => addPC(addSearch.trim())}
@@ -453,14 +467,16 @@ export default function MesPCTab({ cards, cardsLoaded = true, userId, accent, da
                 const first = isPlayer ? (pc.firstName || words[0] || '') : words.slice(0, -1).join(' ')
                 const last = isPlayer ? (pc.lastName || words.slice(1).join(' ') || words[0]) : words[words.length - 1]
                 const oldAb = pc.kit && pc.kit.includes('-') ? pc.kit.split('-')[0] : null   // ancienne équipe choisie (Bobcats, SuperSonics) : la boîte prend ses couleurs
+                const isMlb = fig?.sport === 'mlb'   // joueur de baseball : couleurs et logo de son équipe MLB
+                const mlbTeam = isMlb ? SPORTS_TEAMS.find(t => t.id === `mlb:${oldAb || fig!.body.team}`) : null
                 const pal = isPlayer
-                  ? (Object.values(TEAM_COLORS).find(t => t.abbr === (oldAb || fig?.body.team)) ?? { primary: '#1b3a8a', secondary: '#ffffff' })
+                  ? (isMlb ? { primary: mlbTeam?.color || '#1b3a8a', secondary: '#ffffff' } : (Object.values(TEAM_COLORS).find(t => t.abbr === (oldAb || fig?.body.team)) ?? { primary: '#1b3a8a', secondary: '#ffffff' }))
                   : (teamPalette(fTeam!.name) ?? { primary: fTeam!.color || '#003da6', secondary: '#ffffff' })
                 const list = fTeam ? franchise[teamSlug(fTeam.name)] : undefined
                 // logo de l'équipe de la tenue affichée (rond blanc en bas à gauche de la boîte)
                 const badgeAb = isPlayer && fig ? (oldAb || fig.body.team) : ''
-                const badgeTeam = badgeAb ? SPORTS_TEAMS.find(t => t.id === `nba:${badgeAb}`) : null
-                const badge = badgeTeam ? teamLogoUrl(badgeTeam, true) : badgeAb === 'SEA' ? '/team-logos/hist-seattle-supersonics.svg' : badgeAb === 'BOB' ? '/team-logos/hist-charlotte-bobcats.png' : undefined
+                const badgeTeam = badgeAb ? SPORTS_TEAMS.find(t => t.id === `${isMlb ? 'mlb' : 'nba'}:${badgeAb}`) : null
+                const badge = badgeTeam ? teamLogoUrl(badgeTeam, true) : isMlb ? undefined : badgeAb === 'SEA' ? '/team-logos/hist-seattle-supersonics.svg' : badgeAb === 'BOB' ? '/team-logos/hist-charlotte-bobcats.png' : undefined
                 const have = list ? list.filter(x => { const k = normalizeName(x[0]); return pc.manualChecks && k in pc.manualChecks ? pc.manualChecks[k] : ownedKeys.has(k) }).length : 0
                 return (
                   <div key={pc.id} draggable={isOwner} onDragStart={() => handleDragStart(idx)} onDragOver={e => handleDragOver(e, idx)} onDrop={() => handleDrop(idx)} onDragEnd={handleDragEnd}

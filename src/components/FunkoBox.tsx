@@ -50,7 +50,8 @@ export default function FunkoBox(p: FunkoProps) {
     window.addEventListener('scroll', close, true)
     return () => { window.removeEventListener('click', close); window.removeEventListener('scroll', close, true) }
   }, [menu])
-  const catalog = useKitCatalog()
+  const mlb = p.fig?.sport === 'mlb'   // joueur de baseball : seulement les équipes et tenues MLB
+  const catalog = useKitCatalog(mlb ? 'mlb' : 'nba')
   // la boîte est dessinée en 224 x 280 puis mise à l'échelle de la largeur disponible (2 boîtes par ligne sur téléphone)
   const rootRef = useRef<HTMLDivElement>(null)
   const [sc, setSc] = useState(1)
@@ -70,7 +71,7 @@ export default function FunkoBox(p: FunkoProps) {
   const fullName = `${p.first} ${p.last}`.trim()
   const [past, setPast] = useState<string[]>(() => pastCache.get(fullName) || [])
   const openMenu = () => {
-    if (!pastCache.has(fullName)) fetch(`/api/player-teams?name=${encodeURIComponent(fullName)}`).then(r => (r.ok ? r.json() : { abbrs: [] })).then(d => { const a: string[] = Array.isArray(d?.abbrs) ? d.abbrs : []; pastCache.set(fullName, a); setPast(a) }).catch(() => {})
+    if (!mlb && !pastCache.has(fullName)) fetch(`/api/player-teams?name=${encodeURIComponent(fullName)}`).then(r => (r.ok ? r.json() : { abbrs: [] })).then(d => { const a: string[] = Array.isArray(d?.abbrs) ? d.abbrs : []; pastCache.set(fullName, a); setPast(a) }).catch(() => {})
     setTeam(p.kit && p.kit.includes('-') ? p.kit.split('-')[0] : ownAb)
     setMenu(m => !m)
   }

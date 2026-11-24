@@ -1,5 +1,6 @@
 'use client'
 import SetlistRequest from '@/components/SetlistRequest'
+import DraftTop from './DraftTop'
 import TcdbImportPanel from '@/components/TcdbImportPanel'
 import { useEffect, useState, useCallback } from 'react'
 import { createPortal } from 'react-dom'
@@ -7,7 +8,7 @@ import Link from 'next/link'
 import { supabase } from '@/lib/supabase'
 import { useLang } from '@/lib/LangContext'
 import { useTheme } from '@/lib/ThemeContext'
-import { candidatesForCard, pickEntry, setCouldMatchCard, norm as mNorm, type MSet, type MEntry } from '@/lib/setMatcher'
+import { candidatesForCard, pickEntry, matchesEntryExact, setCouldMatchCard, nameKey as mNorm, nameVariants, type MSet, type MEntry } from '@/lib/setMatcher'
 
 interface CardSet {
   id: number
@@ -19,6 +20,7 @@ interface CardSet {
   total_cards: number
   owned?: number
   pct?: number
+  baseOwned?: number   // cartes de BASE (sans variation) que je possède dans ce set
 }
 
 interface GalleryCard {
@@ -29,8 +31,10 @@ interface SetCandidate {
   setId: number; setName: string; setYear: number | null; entryId: number
 }
 
+interface Suggested extends SetCandidate { ligne: string }
 interface UnmatchedCard extends GalleryCard {
   candidates: SetCandidate[]
+  suggested?: Suggested   // ligne proposée par la règle souple : à confirmer d'un clic
 }
 
 function CompletionBar({ pct, dark = false }: { pct: number; dark?: boolean }) {
@@ -59,6 +63,7 @@ export default function SetlistPage() {
   const [activeSeason, setActiveSeason] = useState<number | null>(null)
   const [activeDecade, setActiveDecade] = useState<number | null>(null)
   const [searchSet, setSearchSet] = useState('')
+  const [baseTotals, setBaseTotals] = useState<Record<number, number>>({})   // nombre de cartes de BASE de chaque set (lu à la demande pour la saison affichée)
   const [showOnlyOwned, setShowOnlyOwned] = useState(false)
   const [sortSets, setSortSets] = useState<'az' | 'pct_desc' | 'pct_asc'>('az')
   const [syncing, setSyncing] = useState(false)
@@ -168,11 +173,11 @@ export default function SetlistPage() {
       return
     }
 
-    const allCompletions: { entry_id: number; manually_checked: boolean; card_set_entries: { set_id: number } | null }[] = []
+    const allCompletions: { entry_id: number; manually_checked: boolean; card_set_entries: { set_id: number; variation: string | null } | null }[] = []
     for (let from = 0; ; from += 1000) {
       const { data: page } = await supabase
         .from('user_set_completion')
-        .select('entry_id, manually_checked, card_set_entries(set_id)')
+        .select('entry_id, manually_checked, card_set_entries(set_id, variation)')
         .eq('user_id', userId)
         .range(from, from + 999)
       if (!page?.length) break
@@ -182,16 +187,20 @@ export default function SetlistPage() {
 
     // Compter par set pour les barres de progression (toutes les coches)
     const countBySet = new Map<number, number>()
+    const baseBySet = new Map<number, number>()   // idem, seulement les cartes de base (variation vide)
     allCompletions.forEach((c: any) => {
       const setId = c.card_set_entries?.set_id
-      if (setId) countBySet.set(setId, (countBySet.get(setId) || 0) + 1)
+      if (setId) {
+        countBySet.set(setId, (countBySet.get(setId) || 0) + 1)
+        if (!c.card_set_entries?.variation) baseBySet.set(setId, (baseBySet.get(setId) || 0) + 1)
+      }
     })
 
 
     const enriched = setsData.map(s => {
       const owned = countBySet.get(s.id) || 0
       const pct = s.total_cards > 0 ? Math.round((owned / s.total_cards) * 100) : 0
-      return { ...s, owned, pct }
+      return { ...s, owned, pct, baseOwned: baseBySet.get(s.id) || 0 }
     })
 
     let autoN = 0, manualN = 0
@@ -353,7 +362,7 @@ export default function SetlistPage() {
       if (!card.nom) continue
       for (const st of allSetsData) {
         // test strict (sync) ; test large pour les sets proposes en placement manuel
-        if (setCouldMatchCard(card, st as MSet, true)) addWanted(st.id, card.nom)
+        if (setCouldMatchCard(card, st as MSet, true)) for (const v of nameVariants(card.nom)) addWanted(st.id, v)
       }
     }
     const allEntries: { id: number; player_name: string; variation: string | null; set_id: number; card_number: string | null }[] = []
@@ -361,8 +370,8 @@ export default function SetlistPage() {
     let doneJobs = 0
     const runJob = async ([sid, names]: [number, Set<string>]) => {
       const list = [...names]
-      for (let i = 0; i < list.length; i += 40) {
-        const batch = list.slice(i, i + 40)
+      for (let i = 0; i < list.length; i += 25) {
+        const batch = list.slice(i, i + 25)
         for (let from = 0; ; from += 1000) {
           const { data: page } = await supabase.from('card_set_entries')
             .select('id, player_name, variation, set_id, card_number').eq('set_id', sid).in('player_name', batch).range(from, from + 999)
@@ -399,6 +408,7 @@ export default function SetlistPage() {
     // Une carte de galerie ne valide qu'UNE entree (moteur commun lib/setMatcher.ts, memes regles que la page d'un set).
     // Les entrees deja cochees a la main sont laissees telles quelles.
     const claimed = new Set<number>()
+    const suggestedByIdx = new Map<number, Suggested>()
     for (let gi = 0; gi < galleryCards.length; gi++) {
       const card = galleryCards[gi]
       const pool = (entriesByPlayer.get(mNorm(card.nom)) || []).filter(e => !manualEntryIds.has(e.id))
@@ -408,7 +418,10 @@ export default function SetlistPage() {
       }
       const best = pickEntry(candidatesForCard(card, pool, metaSets))
       if (!best) continue
-      matchedGalleryIdx.add(gi)                 // une carte en double compte aussi comme synchronisee
+      // règle souple seulement : on ne coche pas, la carte reste dans « non placées » avec une proposition à confirmer
+      const bestSet = metaSets.get(best.set_id)
+      if (bestSet && !matchesEntryExact(card, best, bestSet)) { suggestedByIdx.set(gi, { setId: best.set_id, setName: bestSet.name, setYear: bestSet.year, entryId: best.id, ligne: [best.variation || 'Base', best.card_number ? `#${best.card_number}` : ''].filter(Boolean).join(' ') }); continue }
+      matchedGalleryIdx.add(gi)                // une carte en double compte aussi comme synchronisee
       if (claimed.has(best.id)) continue
       claimed.add(best.id)
       newRows.push({ user_id: userId, entry_id: best.id, manually_checked: false })
@@ -429,7 +442,7 @@ export default function SetlistPage() {
     for (let gi = 0; gi < galleryCards.length; gi++) {
       if (matchedGalleryIdx.has(gi)) continue
       const card = galleryCards[gi]
-      const playerEntries = entriesByPlayer.get(norm(card.nom)) || []
+      const playerEntries = entriesByPlayer.get(mNorm(card.nom)) || []
       const coll = (card.collection || card.collection_tag || '').trim()
       const uw = collWords(coll)
 
@@ -458,8 +471,9 @@ export default function SetlistPage() {
         return a.setName.localeCompare(b.setName)
       })
 
-      unmatched.push({ ...card, candidates })
+      unmatched.push({ ...card, candidates, suggested: suggestedByIdx.get(gi) })
     }
+    unmatched.sort((a, b) => (a.suggested ? 0 : 1) - (b.suggested ? 0 : 1))   // les propositions « à confirmer » d'abord
     const dismissed = getDismissed()
     const filteredUnmatched = unmatched.filter(c => !dismissed.has(cardFingerprint(c)))
     setUnmatchedCards(filteredUnmatched)
@@ -533,6 +547,31 @@ export default function SetlistPage() {
   const totalOwnedAllSets = sets.reduce((a, s) => a + (s.owned || 0), 0)
   const setsWithCards = sets.filter(s => (s.owned || 0) > 0).length
 
+  // totaux de base : une requête de comptage par set de la saison affichée (6 à la fois), gardés en mémoire et dans le navigateur (ils ne changent presque pas)
+  const baseIds = seasonSets.map(x => x.id).join(',')
+  useEffect(() => {
+    if (!userId || !baseIds) return
+    let off = false
+    const ids = baseIds.split(',').map(Number)
+    const known: Record<number, number> = {}
+    for (const id of ids) { try { const v = localStorage.getItem('setlist_base_' + id); if (v !== null) known[id] = Number(v) } catch { /* stockage indisponible */ } }
+    if (Object.keys(known).length) setBaseTotals(b => ({ ...known, ...b }))
+    const todo = ids.filter(id => known[id] === undefined)
+    ;(async () => {
+      let i = 0
+      await Promise.all(Array.from({ length: 6 }, async () => {
+        while (!off && i < todo.length) {
+          const id = todo[i++]
+          const { count, error } = await supabase.from('card_set_entries').select('id', { count: 'exact', head: true }).eq('set_id', id).is('variation', null)
+          if (off || error || count === null) continue
+          setBaseTotals(b => ({ ...b, [id]: count }))
+          try { localStorage.setItem('setlist_base_' + id, String(count)) } catch { /* stockage indisponible */ }
+        }
+      }))
+    })()
+    return () => { off = true }
+  }, [baseIds, userId])
+
   const displayedSets = seasonSets
     .filter(s => {
       if (showOnlyOwned && !(s.owned && s.owned > 0)) return false
@@ -572,7 +611,26 @@ export default function SetlistPage() {
       .sl-sport-label { font-size: 14px; }
       .sl-actions { display: flex; flex-direction: column; align-items: flex-end; gap: 10px; flex-shrink: 0; }
       .sl-stats-box { min-width: 240px; }
-      .sl-sets-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 12px; }
+      .sl-sets-grid { display: flex; flex-direction: column; gap: 6px; }
+      .sl-sets-grid .sl-tile { height: auto; display: grid; grid-template-columns: 120px minmax(0, 1fr) 180px 64px 170px; grid-template-areas: "h n seg p f"; align-items: center; column-gap: 16px; padding-right: 14px; }
+      .sl-sets-grid .sl-tile:hover { transform: none; background: var(--border, rgba(128,128,128,.12)); }
+      .sl-sets-grid .sl-tile-b { display: contents; }
+      .sl-sets-grid .sl-tile-h { grid-area: h; flex-direction: column; align-items: flex-start; gap: 2px; align-self: stretch; justify-content: center; padding: 8px 12px; }
+      .sl-sets-grid .sl-tile-h span:last-child { text-align: left; max-width: 100%; }
+      .sl-sets-grid .sl-tile-n { grid-area: n; font-size: 18px; padding: 8px 0; }
+      .sl-sets-grid .sl-tile-seg { grid-area: seg; }
+      .sl-sets-grid .sl-tile-p { grid-area: p; font-size: 28px; margin-top: 0; text-align: right; }
+      .sl-sets-grid .sl-tile-p small { font-size: 13px; }
+      .sl-sets-grid .sl-tile-f { grid-area: f; text-align: right; }
+      .sl-tile-bs { display: block; margin-top: 3px; font: 800 11px system-ui, sans-serif; color: var(--c); }
+      @media (max-width: 767px) {
+        .sl-sets-grid .sl-tile { grid-template-columns: minmax(0, 1fr) auto; grid-template-areas: "h h" "n p" "seg seg" "f f"; row-gap: 6px; padding: 0 0 10px; }
+        .sl-sets-grid .sl-tile-h { flex-direction: row; justify-content: space-between; align-items: baseline; }
+        .sl-sets-grid .sl-tile-n, .sl-sets-grid .sl-tile-seg, .sl-sets-grid .sl-tile-f { margin: 0 12px; }
+        .sl-sets-grid .sl-tile-n { margin-right: 0; }
+        .sl-sets-grid .sl-tile-p { margin-right: 12px; }
+        .sl-sets-grid .sl-tile-f { text-align: left; }
+      }
       @media (max-width: 767px) {
         .sl-container { padding: 20px 12px; }
         .sl-h1 { font-size: 24px; }
@@ -582,7 +640,6 @@ export default function SetlistPage() {
         .sl-sport-label { font-size: 12px; }
         .sl-actions { align-items: stretch; width: 100%; }
         .sl-stats-box { min-width: unset; }
-        .sl-sets-grid { grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); gap: 8px; }
       }
     `}</style>
     <div className="sl-container">
@@ -766,6 +823,19 @@ export default function SetlistPage() {
                           >
                             Annuler
                           </button>
+                        </div>
+                      </div>
+                    ) : card.suggested && gotoPickerIdx !== i ? (
+                      <div style={{ display: 'flex', flexDirection: 'column', gap: 6, background: dark ? '#2a2210' : '#fffaf0', border: '1.5px solid #e0a526', borderRadius: 10, padding: '10px 12px', maxWidth: 300 }}>
+                        <div style={{ fontSize: 11, fontWeight: 800, letterSpacing: '.06em', textTransform: 'uppercase', color: '#c98a12' }}>À confirmer</div>
+                        <div style={{ fontWeight: 700, fontSize: 13, color: dark ? '#fff' : '#111' }}>
+                          {card.suggested.setName}
+                          <span style={{ fontWeight: 400, color: '#888', marginLeft: 6 }}>{card.suggested.ligne}</span>
+                        </div>
+                        <div style={{ display: 'flex', gap: 6, alignItems: 'center', flexWrap: 'wrap' }}>
+                          <Link href={`/setlist/${card.suggested.setId}`} target="_blank" style={{ fontSize: 11, color: '#003DA6', textDecoration: 'underline', whiteSpace: 'nowrap' }}>Voir le set →</Link>
+                          <button onClick={() => placeCard(i, card.suggested!.entryId)} style={{ fontSize: 12, fontWeight: 700, color: 'white', background: '#2ecc71', border: 'none', borderRadius: 7, padding: '5px 12px', cursor: 'pointer' }}>Confirmer</button>
+                          <button onClick={() => { setGotoPickerIdx(i); setGotoSetId('') }} style={{ fontSize: 12, color: dark ? '#bbb' : '#555', background: dark ? '#333' : '#eee', border: 'none', borderRadius: 7, padding: '5px 10px', cursor: 'pointer' }}>{t('setlist_other')}</button>
                         </div>
                       </div>
                     ) : card.candidates && card.candidates.length > 0 && gotoPickerIdx !== i ? (
@@ -972,7 +1042,9 @@ export default function SetlistPage() {
         </div>
       )}
 
-      {/* Grille des sets */}
+      {activeSeason && ['nba', 'nfl', 'hockey', 'baseball'].includes(activeSport) && <DraftTop sport={activeSport} year={activeSeason} />}
+
+      {/* Liste des sets */}
       {loading ? (
         <div style={{ textAlign: 'center', padding: 60, color: '#888' }}>{t('setlist_loading')}</div>
       ) : sets.length === 0 ? null
@@ -1000,7 +1072,8 @@ export default function SetlistPage() {
                       <>
                         <div className="sl-tile-p da-display">{p}<small>%</small></div>
                         <div className="sl-tile-seg">{Array.from({ length: 20 }, (_, i) => <i key={i} className={i < Math.round(p / 5) ? 'on' : ''} />)}</div>
-                        <div className="sl-tile-f">{(set.owned || 0).toLocaleString()} / {set.total_cards.toLocaleString()} {t('setlist_owned')}{missing > 0 && p > 0 ? ` · -${missing.toLocaleString()}` : ''}</div>
+                        <div className="sl-tile-f">{(set.owned || 0).toLocaleString()} / {set.total_cards.toLocaleString()} {t('setlist_owned')}{missing > 0 && p > 0 ? ` · -${missing.toLocaleString()}` : ''}
+                          {baseTotals[set.id] > 0 && <span className="sl-tile-bs">Base : {(set.baseOwned || 0).toLocaleString()} / {baseTotals[set.id].toLocaleString()} · {Math.round(((set.baseOwned || 0) / baseTotals[set.id]) * 100)} %</span>}</div>
                       </>
                     ) : (
                       <div className="sl-tile-f">{set.total_cards.toLocaleString()} {t('setlist_cards')}</div>

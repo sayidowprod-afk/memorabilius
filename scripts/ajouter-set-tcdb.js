@@ -26,7 +26,7 @@ const SPORTS = {
 const SITE_SPORTS = ['nba', 'wnba', 'euro-basketball', 'nfl', 'baseball', 'hockey', 'soccer-international', 'racing', 'tennis', 'wrestling', 'mma', 'non-sport']
 
 const rl = readline.createInterface({ input: process.stdin, output: process.stdout })
-const ask = q => new Promise(res => rl.question(q, a => res(a.trim())))
+const ask = q => process.env.RELANCE_AUTO ? Promise.resolve('') : new Promise(res => rl.question(q, a => res(a.trim())))   // RELANCE_AUTO (script relancer-sets.js) : jamais de question, un set introuvable est simplement sauté
 const sleep = ms => new Promise(r => setTimeout(r, ms))
 const rand = (a, b) => a + Math.floor(Math.random() * (b - a))
 const nk = s => String(s).normalize('NFD').replace(/[̀-ͯ]/g, '').toLowerCase().replace(/[^a-z0-9]+/g, '')
@@ -154,17 +154,30 @@ async function insertSets(page, sid) {
   }, String(sid))
 }
 
-async function main() {
+// urlArg / sharedPage : utilisés par relancer-sets.js (un seul Chrome pour tous les sets : le captcha n'est résolu qu'une fois)
+async function main(urlArg, sharedPage) {
   if (!KEY || !SB || SB === '/rest/v1') { console.error('❌ Les clés Supabase manquent dans .env.local'); process.exit(1) }
   console.log('\n=== Ajouter un set TCDB au site ===\n')
-  let url = process.argv[2] || await ask('Adresse du set TCDB (ex : https://www.tcdb.com/Checklist.cfm/sid/2517/1996-97-Skybox-Autographics) :\n> ')
+  let url = urlArg || process.argv[2] || await ask('Adresse du set TCDB (ex : https://www.tcdb.com/Checklist.cfm/sid/2517/1996-97-Skybox-Autographics) :\n> ')
   const m = url.match(/sid\/(\d+)(?:\/([^?#\s]+))?/i)
   if (!m) { console.error('❌ Je ne trouve pas l’identifiant du set (le « sid/NNNN ») dans cette adresse.'); process.exit(1) }
-  const sid = parseInt(m[1]); const slug = m[2] || ''
-  console.log('\nOuverture de Chrome (une fenêtre va s’ouvrir : ne la ferme pas)...')
+  const sid = parseInt(m[1]); let slug = m[2] || ''
+  if (!sharedPage) console.log('\nOuverture de Chrome (une fenêtre va s’ouvrir : ne la ferme pas)...')
   process.env.SHOW_BROWSER = '1'
-  const { page } = await openBrowser(1)
+  const page = sharedPage || (await openBrowser(1)).page
   try {
+    // adresse sans nom de set (relance automatique, « ViewSet.cfm/sid/N ») : TCDB répond 404 sur Checklist.cfm/sid/N tout seul -> on ouvre la fiche du set,
+    // TCDB y redirige vers l'adresse complète avec le nom ; sinon on fabrique le nom depuis celui que le site connaît déjà
+    if (!slug) {
+      try { await load(page, TCDB + '/ViewSet.cfm/sid/' + sid); const mm = page.url().match(/sid\/\d+\/([^?#/]+)/); if (mm) slug = mm[1] } catch { /* on essaie le nom connu du site */ }
+      if (!slug) {
+        try {
+          const row = (await axios.get(SB + '/card_sets?select=name&tcdb_id=eq.' + sid, { headers: DB })).data[0]
+          if (row) slug = row.name.normalize('NFD').replace(/[̀-ͯ]/g, '').replace(/[^A-Za-z0-9]+/g, '-').replace(/^-|-$/g, '')
+        } catch { /* base injoignable */ }
+      }
+      if (slug) console.log('   adresse complète : ' + slug)
+    }
     await load(page, TCDB + '/Checklist.cfm/sid/' + sid + (slug ? '/' + slug : ''))
     const info = await page.evaluate(() => {
       // le titre de l'onglet (« 1991-92 Score Rookie and Traded | TCDB… ») est le plus fiable ; un titre de bloc comme « Set Links » est écarté
@@ -187,9 +200,15 @@ async function main() {
     let sport = SPORTS[String(info.sp).toLowerCase()]
     if (sport === 'nba' && /wnba/i.test(name)) sport = 'wnba'
     // on ne pose une question que si la page ne permet vraiment pas de deviner
+    // relance automatique : si la page ne permet pas de deviner (page de vérification, structure différente), on reprend ce que le site connaît déjà de ce set
+    if (process.env.RELANCE_AUTO && (!year || !sport)) {
+      let known = null
+      try { known = (await axios.get(SB + '/card_sets?select=id,name,year,sport&tcdb_id=eq.' + sid, { headers: DB })).data[0] || null } catch { /* base injoignable */ }
+      if (known) { year = year || known.year; sport = sport || known.sport; console.log('ℹ️  Année et sport repris du set déjà sur le site (« ' + known.name + ' »).') }
+    }
     if (!year) year = parseInt(await ask('Année de départ du set (1996 pour « 1996-97 ») :\n> '))
     if (!sport) sport = await ask('Sport du site (' + SITE_SPORTS.join(', ') + ') :\n> ')
-    if (!year || !SITE_SPORTS.includes(sport)) { console.error('❌ Année ou sport introuvable.'); return }
+    if (!year || !SITE_SPORTS.includes(sport)) { console.error('❌ Année ou sport introuvable.'); process.exitCode = 1; return }
     console.log('\nSet détecté : ' + name + ' · ' + year + ' · ' + sport)
 
     // un set très proche existe-t-il déjà ? (les cartes qui manquent seront ajoutées, rien n'est supprimé)
@@ -218,7 +237,7 @@ async function main() {
     }
     const seen = new Set()
     const unique = cards.filter(c => { const k = c.card_number + '|' + c.player_name + '|' + (c.variation || ''); if (seen.has(k)) return false; seen.add(k); return true })
-    if (unique.length < 3) { console.error('\n❌ Aucune carte lue. La page a-t-elle changé, ou TCDB t’a-t-il bloqué ?'); return }
+    if (unique.length < 3) { console.error('\n❌ Aucune carte lue. La page a-t-elle changé, ou TCDB t’a-t-il bloqué ?'); process.exitCode = 1; return }
 
     console.log('\n--- Résultat ---')
     console.log(name + ' (' + year + ', ' + sport + ') : ' + unique.length + ' cartes')
@@ -228,7 +247,7 @@ async function main() {
     fs.writeFileSync(file, JSON.stringify({ year, sport, sets: [{ set: { tcdb_id: sid, name, href: '/Checklist.cfm/sid/' + sid + (slug ? '/' + slug : '') }, unique, brand: (name.match(MAJOR_BRANDS) || [])[1] || null, complete: true }] }))
     console.log('')
     const r = spawnSync('node', [path.join(__dirname, 'import-tcdb.js'), file], { stdio: 'inherit' })
-    if (r.status !== 0) { console.log('\n❌ L’import a rencontré une erreur (voir au-dessus).'); return }
+    if (r.status !== 0) { console.log('\n❌ L’import a rencontré une erreur (voir au-dessus).'); process.exitCode = 1; return }
     console.log('\n✅ Terminé. Le set est sur le site.')
     try {
       const row = (await axios.get(SB + '/card_sets?select=id&tcdb_id=eq.' + sid, { headers: DB })).data[0]
@@ -243,9 +262,9 @@ async function main() {
       }
     } catch { /* l’identifiant est aussi visible dans la liste des setlists */ }
   } finally {
-    killChrome(1)
-    rl.close()
+    if (!sharedPage) { killChrome(1); rl.close() }
   }
 }
 
-main().catch(e => { console.error('\n❌ ' + e.message); try { killChrome(1) } catch {} ; process.exit(1) })
+module.exports = { main }
+if (require.main === module) main().catch(e => { console.error('\n❌ ' + e.message); try { killChrome(1) } catch {} ; process.exit(1) })

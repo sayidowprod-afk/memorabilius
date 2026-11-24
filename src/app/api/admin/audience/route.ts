@@ -30,18 +30,31 @@ export async function GET(req: NextRequest) {
   const now = Date.now(), since30 = new Date(now - 30 * 86400000).toISOString()
   type V = { path: string; country: string; created_at: string; src?: string | null }
   const rows: V[] = []
-  let withSrc = true
-  for (let o = 0; o < 80000; o += 1000) {
-    const cols = withSrc ? 'path, country, created_at, src' : 'path, country, created_at'
-    let res = await (admin.from('page_views') as any).select(cols).gte('created_at', since30).order('created_at', { ascending: false }).range(o, o + 999)
-    if (res.error && withSrc) {                   // migration 20261123 pas encore appliquée : on lit sans la source
-      withSrc = false
-      res = await (admin.from('page_views') as any).select('path, country, created_at').gte('created_at', since30).order('created_at', { ascending: false }).range(o, o + 999)
+  let withSrc = true, partial = false
+  const t0 = Date.now()
+  const page = (cols: string, o: number) => (admin.from('page_views') as any).select(cols).gte('created_at', since30).order('created_at', { ascending: false }).range(o, o + 999)
+  // 80 lectures l'une après l'autre dépassaient la limite de la fonction : on lit par groupes de 8 en parallèle, avec un budget de temps (résultat partiel plutôt qu'un chargement sans fin)
+  const first = await page('path, country, created_at, src', 0)
+  let firstRows: unknown[] | null = first.data
+  if (first.error) {                              // migration 20261123 pas encore appliquée : on lit sans la source
+    withSrc = false
+    const retry = await page('path, country, created_at', 0)
+    if (retry.error) return NextResponse.json({ error: retry.error.message }, { status: 500 })
+    firstRows = retry.data
+  }
+  rows.push(...((firstRows || []) as V[]))
+  const cols = withSrc ? 'path, country, created_at, src' : 'path, country, created_at'
+  const MAX_PAGES = 80
+  for (let o = 1; o < MAX_PAGES && (firstRows?.length ?? 0) >= 1000; o += 8) {
+    if (Date.now() - t0 > 35000) { partial = true; break }
+    const batch = await Promise.all(Array.from({ length: Math.min(8, MAX_PAGES - o) }, (_, k) => page(cols, (o + k) * 1000)))
+    let done = false
+    for (const res of batch) {
+      if (res.error) return NextResponse.json({ error: res.error.message }, { status: 500 })
+      rows.push(...((res.data || []) as V[]))
+      if (!res.data || res.data.length < 1000) done = true
     }
-    const { data, error } = res as { data: unknown[] | null; error: { message: string } | null }
-    if (error) return NextResponse.json({ error: error.message }, { status: 500 })
-    rows.push(...((data || []) as V[]))
-    if (!data || data.length < 1000) break
+    if (done) break
   }
 
   // 910 : pages
@@ -78,7 +91,7 @@ export async function GET(req: NextRequest) {
   }
   const sources = [...new Set([...srcVisits.keys(), ...signups.keys()])].map(src => ({ src, visits: srcVisits.get(src) || 0, signups: signups.get(src) || 0 })).sort((a, b) => b.visits - a.visits).slice(0, 30)
 
-  const data = { sampled: rows.length, since: since30, pages, hours, sources, sourcesReady: withSrc && srcTable }
+  const data = { sampled: rows.length, since: since30, pages, hours, sources, sourcesReady: withSrc && srcTable, partial }
   cache = { at: Date.now(), data }
   return NextResponse.json(data)
 }

@@ -39,7 +39,7 @@ export async function GET(req: NextRequest) {
     // voir migration 20261024_search_players_by_count.sql -- un GROUP BY en
     // direct sur card_set_entries, 14.8M+ lignes, depasse le statement_timeout
     // des qu'une sous-chaine courante matche beaucoup de lignes).
-    supabase.rpc('search_players_by_count', { q: safeQ, max_rows: 6 }),
+    supabase.rpc('search_players_by_count', { q: safeQ, max_rows: Math.min(15, Math.max(1, parseInt(req.nextUrl.searchParams.get('max') || '6') || 6)) }),   // ?max= : la liste d'ajout d'un PC en veut davantage
     supabase.rpc('search_profiles_unaccent', { q: safeQ, max_rows: 5 }),
   ])
 

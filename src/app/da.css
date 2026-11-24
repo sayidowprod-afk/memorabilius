@@ -1463,6 +1463,7 @@ html[data-accent] a[style*="color:#003DA6"], html[data-accent] a[style*="color: 
 .da-sortbloc-name { font-weight: 800; font-size: 15px; overflow-wrap: anywhere; }
 .da-sortbloc-sub { font-size: 13px; color: var(--text2, #aaa); }
 .da-sortbloc-sub span { font-weight: 700; color: #3ddc97; }
+:root:not([data-theme="dark"]) .da-sortbloc-sub span { color: #0b7a4a; }
 .da-sortbloc-act { display: flex; flex-wrap: wrap; gap: 4px 16px; margin-top: 4px; }
 .da-sortbloc-act a, .da-sortbloc-btn { font: inherit; font-size: 13px; font-weight: 700; text-decoration: underline; text-underline-offset: 3px; background: none; border: 0; padding: 0; color: inherit; cursor: pointer; }
 .da-sortbloc-btn:disabled { opacity: .6; cursor: wait; }
@@ -1770,6 +1771,15 @@ html[data-member="1"] .home-member-ph { display: block; min-height: 100svh; }
 @media (min-width: 1201px) {
   .da-profile .header-stats-block .galerie-actions { top: 26px !important; }
 }
+/* sans description de profil l'en-tête est bas : la figurine de PC monte jusqu'aux boutons d'action ; les boutons (dont « … ») passent toujours AU-DESSUS d'elle */
+.da-profile .header-stats-block .galerie-actions { z-index: 6; }
+/* bureau, avec figurines de PC : le bandeau garde une hauteur minimale (figurine ~170 px + boutons d'action au-dessus), même sans description de profil */
+@media (min-width: 1201px) {
+  /* la colonne d'identité (nom, description…) a une hauteur minimale = figurine + boutons d'action ; elle ne grandit que si la description est courte (sinon elle dépasse déjà ce minimum) */
+  .da-profile .header-row:has(.pc-bobbles:not(.pc-bobbles-ph)) > div:first-child { min-height: 206px; }
+  .da-profile .header-stats-block:has(.pc-bobbles:not(.pc-bobbles-ph)) .galerie-actions { top: 20px !important; }
+}
+.da-profile .pc-bobbles { z-index: 1; }
 
 /* Profil, écrans moins larges que 1200 px : les figurines de PC reprennent leur place dans le flux (centrées, juste au-dessus des statistiques) pour ne jamais recouvrir le texte */
 @media (max-width: 1200px) {
@@ -2363,3 +2373,53 @@ html[data-member="1"] .home-member-ph { display: block; min-height: 100svh; }
 /* étape « à toi » : rien n'est assombri, seul le bouton à toucher est entouré */
 .gt.pass .gt-spot { box-shadow: 0 0 18px 4px rgba(253, 185, 39, .85); }
 .gt.pass .gt-dim { display: none; }
+
+/* thème sombre : le texte bleu « marque » codé en dur (#003DA6) est illisible sur fond sombre -> bleu clair (sauf dans un bloc à fond clair) */
+[data-theme="dark"] :is([style^="color:#003DA6"], [style*=";color:#003DA6"], [style*="; color:#003DA6"], [style^="color: #003DA6"], [style*="; color: #003DA6"], [style^="color:#003da6"], [style*=";color:#003da6"], [style*="; color:#003da6"], [style^="color: #003da6"], [style*="; color: #003da6"], [style^="color: rgb(0, 61, 166)"], [style*="; color: rgb(0, 61, 166)"]):not(:is([style*="background: white"], [style*="background:white"], [style*="background: #fff"], [style*="background:#fff"], [style*="background: #FFF"], [style*="background:#FFF"], [style*="background: rgb(255, 255, 255)"], [style*="background-color: white"], [style*="background:#f8f8f8"], [style*="background: #f8f8f8"], [style*="background: rgb(248, 248, 248)"], [style*="background:#f0fdf4"], [style*="background: #f0fdf4"], [style*="background: rgb(240, 253, 244)"]) *) { color: #7fa8ff !important; }
+
+/* thème jour : les couleurs « néon » pensées pour le sombre (vert menthe, jaune) sont illisibles sur fond clair -> versions foncées */
+:root:not([data-theme="dark"]) :is([style^="color:#3ddc97"], [style*=";color:#3ddc97"], [style*="; color:#3ddc97"], [style^="color: #3ddc97"], [style*="; color: #3ddc97"], [style^="color:#3DDC97"], [style*=";color:#3DDC97"], [style*="; color:#3DDC97"], [style^="color: #3DDC97"], [style*="; color: #3DDC97"], [style^="color: rgb(61, 220, 151)"], [style*="; color: rgb(61, 220, 151)"], [style^="color:#7ee2a8"], [style*=";color:#7ee2a8"], [style*="; color:#7ee2a8"], [style^="color: #7ee2a8"], [style*="; color: #7ee2a8"], [style^="color:#7EE2A8"], [style*=";color:#7EE2A8"], [style*="; color:#7EE2A8"], [style^="color: #7EE2A8"], [style*="; color: #7EE2A8"], [style^="color: rgb(126, 226, 168)"], [style*="; color: rgb(126, 226, 168)"]) { color: #0b7a4a !important; }
+:root:not([data-theme="dark"]) :is([style^="color:#ffd54a"], [style*=";color:#ffd54a"], [style*="; color:#ffd54a"], [style^="color: #ffd54a"], [style*="; color: #ffd54a"], [style^="color:#FFD54A"], [style*=";color:#FFD54A"], [style*="; color:#FFD54A"], [style^="color: #FFD54A"], [style*="; color: #FFD54A"], [style^="color: rgb(255, 213, 74)"], [style*="; color: rgb(255, 213, 74)"]) { color: #8a6200 !important; }
+:root:not([data-theme="dark"]) .support-btn { color: #7a5600 !important; border-color: #c99a00; }
+:root:not([data-theme="dark"]) .support-btn:hover { background: #ffd54a; color: #06122e !important; }
+:root:not([data-theme="dark"]) :is(.da-news-date, .da-cmp-count, .da-table .up) { color: #0b7a4a; }
+:root:not([data-theme="dark"]) .da-table .down { color: #c0272d; }
+:root:not([data-theme="dark"]) .gf-lbl { color: #0a1b4a !important; }
+
+/* ── Carte du jour sur téléphone (accueil) : infos plus en avant, deux boutons fins côte à côte sous la carte ── */
+.cdj-actions-m { display: none; }
+@media (max-width: 520px) {
+  /* grande carte à gauche sur toute la hauteur du bloc ; les deux boutons fins côte à côte dans la colonne de droite, sous les infos */
+  .hd-row > .cdj, .dd .hd-row > .cdj { grid-template-columns: 164px minmax(0, 1fr); grid-template-areas: "img info" "img act" "week week"; grid-template-rows: 1fr auto auto; row-gap: 8px; }
+  .hd-row > .cdj > .cdj-img, .hd-row > .cdj > .cdj-scratch { grid-area: img; align-self: start; }
+  .hd-row > .cdj > .cdj-info { align-self: center; gap: 8px; }
+  .hd-row .cdj .cdj-eyebrow { font-size: 9px !important; padding: 4px 9px !important; }
+  .hd-row .cdj h3 { font-size: 34px !important; line-height: .9; }
+  .hd-row .cdj .cdj-meta { font-size: 13px !important; font-weight: 700; opacity: 1; line-height: 1.3; }
+  .hd-row .cdj .cdj-chips { gap: 6px; }
+  .hd-row .cdj .cdj-chips span { font-size: 10.5px; padding: 3px 8px; background: rgba(255,255,255,.14); border-color: #fff; }
+  .hd-row .cdj .cdj-owner { display: flex !important; border-top: 0; padding-top: 0; gap: 8px; }
+  .hd-row .cdj .cdj-owner img { width: 28px; height: 28px; }
+  .hd-row .cdj .cdj-owner b { font-size: 13px; } .hd-row .cdj .cdj-owner small { font-size: 8px; } .hd-row .cdj .cdj-owner i { font-size: 10px; }
+  .hd-row .cdj .cdj-info .cdj-actions-d { display: none; }
+  .hd-row .cdj .cdj-actions-m { display: grid; flex-direction: initial; grid-template-columns: 1fr 1fr; gap: 8px; grid-area: act; width: 100%; position: relative; z-index: 1; }
+  .hd-row .cdj .cdj-actions-m .cdj-btn { display: flex; align-items: center; justify-content: center; text-align: center; padding: 0 3px !important; min-height: 36px !important; height: 36px; font-size: 9.5px !important; line-height: 1.1; letter-spacing: .04em; border-width: 2px; white-space: normal; }
+  .dd .hd-row > .cdj > .cdj-week, .hd-row > .cdj > .cdj-week { grid-column: 1 / -1 !important; grid-row: 3 !important; max-width: none; align-self: start; }
+  .hd-row > .cdj > .cdj-actions-m { grid-column: 2; grid-row: 2; align-self: end; }
+}
+
+/* Accueil connecté, téléphone : la série de jours, « Visite guidée » et « Quoi de nouveau ? » ne flottent plus à droite en désordre :
+   la série en haut à gauche, puis les deux boutons fins côte à côte sur toute la largeur */
+@media (max-width: 700px) {
+  .dd .dd-head .dd-side { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; width: 100%; align-items: center; justify-content: stretch; }
+  /* la série : en haut à droite, alignée sur le bord droit du reste (16 px), à la hauteur du nom : flamme + nombre, « jours de suite » en dessous */
+  .dd .dd-head { position: relative; }
+  .dd .dd-head .dd-streak { position: absolute; top: 27px; right: 16px; display: grid; grid-template-columns: 1fr auto auto; column-gap: 4px; row-gap: 3px; align-items: center; }
+  .dd .dd-head .dd-streak > svg { grid-column: 2; grid-row: 1; height: 32px; width: auto; }
+  .dd .dd-head .dd-streak > span { display: contents; }
+  .dd .dd-head .dd-streak b { grid-column: 3; grid-row: 1; font-size: 33px; line-height: 1; letter-spacing: 0; margin: 0; padding: 0; text-align: right; }
+  .dd .dd-head .dd-streak .dd-streak-lbl { grid-column: 1 / -1; grid-row: 2; justify-self: end; font: 800 9px/1.1 system-ui, sans-serif; font-style: normal; letter-spacing: .1em; text-transform: uppercase; white-space: nowrap; margin: 0; padding: 0; }
+  .dd .dd-head .dd-who { padding-right: 112px; }   /* le nom ne passe jamais sous la série */
+  .dd .dd-head .dd-news { display: flex; align-items: center; justify-content: center; text-align: center; height: 36px; padding: 0 6px; font-size: 11px; letter-spacing: .06em; border-width: 2px; min-height: 0; }
+}
+.dd .dd-streak-lbl { font-style: normal; }   /* le libellé de la série est un <i> : pas d'italique sur le bureau */

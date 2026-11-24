@@ -215,12 +215,19 @@ export default function CardOfTheDay() {
           </Link>
         )}
         {revealed && (
-          <div className="cdj-actions">
+          <div className="cdj-actions cdj-actions-d">
             <Link href={href} className="cdj-btn">{T.cta}</Link>
             <Link href={gal} className="cdj-btn alt">{T.gal} →</Link>
           </div>
         )}
       </div>
+      {/* téléphone : les deux boutons passent sous la carte et le texte, côte à côte sur toute la largeur (la version ci-dessus est masquée) */}
+      {revealed && (
+        <div className="cdj-actions cdj-actions-m">
+          <Link href={href} className="cdj-btn">{T.cta}</Link>
+          <Link href={gal} className="cdj-btn alt">{T.gal} →</Link>
+        </div>
+      )}
       <div className="cdj-week" aria-label={T.week}>
         {week.map(w => {
           const shown = w.today ? (revealed ? { image: card.image, nom: card.nom, href } : null) : w.saved

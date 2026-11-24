@@ -75,6 +75,34 @@ export async function syncVentes(userId: string, minIntervalMs = 0): Promise<Ven
     }
     if (error) return { ok: false, error: /ventes_membre/.test(error.message) ? 'Migration 20261105 à appliquer dans Supabase.' : 'Enregistrement impossible : ' + error.message }
   }
+  await dedupeVentesAncienneRef(userId).catch(() => { /* le ménage est facultatif : une erreur ne bloque pas la synchro */ })
   await sb.from('ebay_connexions').update({ ventes_synchro_at: nowIso }).eq('user_id', userId)
   return { ok: true, ventes: ventes.length }
+}
+
+// eBay change la référence d'une commande quand l'acheteur paie : elle passe de « <article>-<transaction> » (ex. 336887408860-10086333995403, enregistrée
+// dès la vente, non payée) à un numéro de commande (ex. 21-15420-47230). Comme les ventes sont enregistrées PAR référence, la même vente apparaissait deux fois.
+// Ici : pour un même article, un même acheteur et un même prix, chaque ancienne ligne NON payée est rapprochée de la ligne au numéro de commande :
+// ce que le membre y avait noté (notes, coût d'achat, carte liée…) est reporté sur la nouvelle ligne, puis l'ancienne est supprimée.
+// On ne le fait que si les deux listes ont exactement la même taille (une vente en deux exemplaires identiques n'est jamais fusionnée au hasard).
+async function dedupeVentesAncienneRef(userId: string) {
+  type V = { id: string; ref: string; item_id: string | null; acheteur: string | null; prix: number | null; vendu_at: string | null; paye_at: string | null; notes: string | null; cout_achat: number | null; cout_port: number | null; achat_id: string | null; carte_id: string | null }
+  const { data, error } = await sb.from('ventes_membre').select('id, ref, item_id, acheteur, prix, vendu_at, paye_at, notes, cout_achat, cout_port, achat_id, carte_id')
+    .eq('user_id', userId).eq('source', 'ebay').not('item_id', 'is', null).order('vendu_at', { ascending: true }).limit(2000)
+  if (error || !data) return
+  const groups = new Map<string, V[]>()
+  for (const v of data as V[]) { const k = `${v.item_id}|${v.acheteur}|${v.prix}`; groups.set(k, [...(groups.get(k) || []), v]) }
+  for (const list of groups.values()) {
+    if (list.length < 2) continue
+    const legacy = list.filter(v => v.item_id && v.ref.startsWith(v.item_id + '-') && /^\d+-\d+$/.test(v.ref) && !v.paye_at)
+    const modern = list.filter(v => !legacy.includes(v))
+    if (!legacy.length || legacy.length !== modern.length) continue
+    for (let i = 0; i < legacy.length; i++) {
+      const old = legacy[i], cur = modern[i]
+      const carry: Record<string, unknown> = {}
+      for (const f of ['notes', 'cout_achat', 'cout_port', 'achat_id', 'carte_id'] as const) if (old[f] != null && cur[f] == null) carry[f] = old[f]
+      if (Object.keys(carry).length) await sb.from('ventes_membre').update(carry).eq('id', cur.id)
+      await sb.from('ventes_membre').delete().eq('id', old.id).eq('user_id', userId)
+    }
+  }
 }

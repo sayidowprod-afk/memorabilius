@@ -84,7 +84,8 @@ export default function SetPage({ setId }: { setId: string }) {
   const [sq, setSq] = useState('')
   const [tsort, setTsort] = useState<'n' | 'mine' | 'az'>('az')
   const [limit, setLimit] = useState<Record<string, number>>({})
-  const [mineImg, setMineImg] = useState<Map<number, string>>(new Map())          // mes propres photos (cartes que j'ai reliées à une ligne)
+  const [suggest, setSuggest] = useState<Map<number, { entry_id: number; nom: string; image: string | null; variation: string }>>(new Map())   // cartes de ma galerie qui vont probablement sur cette ligne : à confirmer
+  const [mineImg, setMineImg] = useState<Map<number, string>>(new Map())         // mes propres photos (cartes que j'ai reliées à une ligne)
   const [commImg, setCommImg] = useState<Map<number, string>>(new Map())          // photos de la communauté (moteur de correspondance du site)
   const asked = useRef<Set<number>>(new Set())
   const [teamView, setTeamView] = useState<{ name: string; rows: Entry[] | null } | null>(null)
@@ -196,7 +197,8 @@ export default function SetPage({ setId }: { setId: string }) {
                 playerImages: Object.fromEntries(gallery.filter(g => g.image_recto).map(g => [normStr(g.nom), g.image_recto]).filter((e): e is [string, string] => Boolean(e[1]))) }),
             })
             if (res.ok) {
-              const d = await res.json() as { completedEntryIds: number[]; completionDetails: Record<string, { matched_card_key?: string | null }> }
+              const d = await res.json() as { completedEntryIds: number[]; completionDetails: Record<string, { matched_card_key?: string | null }>; suggestions?: { entry_id: number; nom: string; image: string | null; variation: string }[] }
+              setSuggest(new Map((d.suggestions || []).map(x => [x.entry_id, x])))
               ids = new Set<number>(d.completedEntryIds || [])
               for (const [k, v] of Object.entries(d.completionDetails || {})) if (v?.matched_card_key) mine.set(parseInt(k), v.matched_card_key)
               synced = true
@@ -561,6 +563,9 @@ export default function SetPage({ setId }: { setId: string }) {
                     </div>
                   )}
                 </span>
+              )}
+              {!owned.has(e.id) && suggest.get(e.id) && (
+                <button type="button" className="sug" title={`Ta carte « ${suggest.get(e.id)!.nom}${suggest.get(e.id)!.variation ? ' · ' + suggest.get(e.id)!.variation : ''} » correspond sans doute à cette ligne. Clique pour confirmer.`} onClick={ev => { ev.stopPropagation(); const s = suggest.get(e.id)!; setSuggest(m => { const n = new Map(m); n.delete(e.id); return n }); if (s.image) setMineImg(m => new Map(m).set(e.id, s.image!)); void toggleOwn(e) }}>À confirmer</button>
               )}
               <button type="button" className="flag" title="Signaler une erreur sur cette carte" aria-label="Signaler une erreur" onClick={ev => { ev.stopPropagation(); setReportEntry({ entry: e, variation: e.variation ? nice(e.variation) : 'Base' }) }}>⚑</button>
             </div>

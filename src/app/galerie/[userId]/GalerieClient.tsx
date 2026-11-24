@@ -1,4 +1,25 @@
 'use client'
+// Description de profil : au-delà de 4 lignes elle est repliée (« Voir plus »), sinon une longue description étire tout l'en-tête de la galerie
+function BioText({ text, dark }: { text: string; dark: boolean }) {
+  const [open, setOpen] = useState(false)
+  const [over, setOver] = useState(false)
+  const ref = useRef<HTMLParagraphElement>(null)
+  useLayoutEffect(() => {
+    const el = ref.current; if (!el) return
+    const check = () => { if (!open) setOver(el.scrollHeight > el.clientHeight + 2) }
+    check()
+    window.addEventListener('resize', check)
+    return () => window.removeEventListener('resize', check)
+  }, [text, open])
+  const col = dark ? '#aaa' : '#555'
+  return (
+    <div style={{ margin: '0 0 10px', maxWidth: 400 }}>
+      <p ref={ref} style={{ fontSize: 13, color: col, margin: 0, lineHeight: 1.5, whiteSpace: 'pre-wrap', ...(open ? {} : { display: '-webkit-box', WebkitLineClamp: 4, WebkitBoxOrient: 'vertical' as const, overflow: 'hidden' }) }}>{text}</p>
+      {(over || open) && <button type="button" onClick={() => setOpen(o => !o)} style={{ background: 'none', border: 'none', padding: '3px 0 0', color: 'inherit', fontSize: 12, fontWeight: 800, textDecoration: 'underline', cursor: 'pointer', opacity: .85 }}>{open ? 'Voir moins' : 'Voir plus'}</button>}
+    </div>
+  )
+}
+
 function numHint(min: number | null, max: number | null): string {
   if (min != null && max != null) return min === max ? `/${min}` : `/${min} à /${max}`
   if (max != null) return `≤ /${max}`
@@ -2900,12 +2921,7 @@ export default function GalerieClient({ userId, initialCardUrl, initialCards, in
               <FollowCounts userId={userId} onOpenList={setFollowModalTab} />
               <span className="rep-under"><TradeReputation userId={userId} /></span>
 
-              {profile?.bio && (
-                <p style={{
-                  fontSize: 13, color: dark ? '#aaa' : '#555', margin: '0 0 10px', lineHeight: 1.5, maxWidth: 400,
-                  whiteSpace: 'pre-wrap',
-                }}>{profile.bio}</p>
-              )}
+              {profile?.bio && <BioText text={profile.bio} dark={dark} />}
 
               <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap', alignItems: 'center' }}>
                 {profile?.instagram && (

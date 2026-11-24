@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server'
-import { candidatesForCard, pickEntry, type MSet, type MEntry } from '@/lib/setMatcher'
+import { candidatesForCard, pickEntry, matchesEntryExact, nameKey, type MSet, type MEntry } from '@/lib/setMatcher'
 import { createServerServiceClient } from '@/lib/supabaseServer'
 
 export const maxDuration = 30
@@ -186,6 +186,7 @@ export async function POST(req: NextRequest) {
   const autoMatchedIds: number[] = []
   const autoMatchedImages: { entry_id: number; image_url: string; user_id: string }[] = []
   const autoSet = new Set<number>()
+  const suggestions = new Map<number, { entry_id: number; nom: string; image: string | null; variation: string }>()
 
   if (safeGalleryCards.length > 0 && entries.length > 0) {
     // moteur commun (lib/setMatcher.ts) : memes regles que la synchronisation de tous les sets
@@ -193,16 +194,22 @@ export async function POST(req: NextRequest) {
     const asEntries: MEntry[] = entries.map(e => ({ id: e.id, player_name: e.player_name, variation: e.variation, set_id: setId, card_number: e.card_number }))
     const byPlayer = new Map<string, MEntry[]>()
     for (const e of asEntries) {
-      const k = norm(e.player_name)
+      const k = nameKey(e.player_name)
       const arr = byPlayer.get(k) || []
       arr.push(e); byPlayer.set(k, arr)
     }
 
     for (const card of safeGalleryCards) {
-      const pool = byPlayer.get(norm(card.nom))
+      const pool = byPlayer.get(nameKey(card.nom))
       if (!pool?.length) continue
       const e = pickEntry(candidatesForCard(card, pool, metaSet))
       if (!e || autoSet.has(e.id)) continue
+      // règle souple seulement (variation proche, numéro unique, année de fin de saison) : on ne coche PAS, on propose « À confirmer »
+      if (!matchesEntryExact(card, e, metaSet.get(setId)!)) {
+        if (!suggestions.has(e.id)) suggestions.set(e.id, { entry_id: e.id, nom: card.nom, image: card.image_recto || null, variation: card.variation || '' })
+        continue
+      }
+      suggestions.delete(e.id)
       autoSet.add(e.id)
       if (!completedEntryIds.has(e.id)) {
         completedEntryIds.add(e.id)
@@ -270,6 +277,7 @@ export async function POST(req: NextRequest) {
     completedEntryIds: Array.from(completedEntryIds),
     completionDetails,
     autoMatchedCount: autoMatchedIds.length,
+    suggestions: [...suggestions.values()].filter(s => !completedEntryIds.has(s.entry_id)),
     ownedPlayerNorms: Array.from(ownedPlayerNormsSet),
   })
 }

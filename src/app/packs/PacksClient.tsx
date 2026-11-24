@@ -455,11 +455,11 @@ export default function PacksClient({ demoCards, overlay, onClose }: { demoCards
           </section>
         )}
 
-      <div className="pk-bottombar">
+      {phase !== 'deck' && phase !== 'summary' && <div className="pk-bottombar">
         {token && <button type="button" className="pk-odds-btn" onClick={() => setHist(true)}>🗂 Mes cartes</button>}
         {token && <button type="button" className="pk-odds-btn trade" onClick={() => setTradeOpen(true)}>⇄ Doublons{st && (st.dupes || 0) >= (st.dupesPerPack || 15) ? ' ●' : ''}</button>}
         <button type="button" className="pk-odds-btn" onClick={() => setOdds(true)}>% Probas</button>
-      </div>
+      </div>}
       {tradeOpen && <PackTrade onClose={() => setTradeOpen(false)} onChanged={() => { if (token) void load(token) }} />}
       {hist && <PackHistory onClose={() => setHist(false)} />}
       {odds && (

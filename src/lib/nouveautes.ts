@@ -4,6 +4,19 @@ export type Entry = { date: string; titre: string; points: string[] }
 
 export const ENTRIES: Entry[] = [
   {
+    date: '30 novembre 2026', titre: 'Setlists plus justes, bobbleheads de baseball et galeries améliorées',
+    points: [
+      'Synchro des setlists : le moteur retrouve bien mieux la bonne ligne de chaque carte (année, collection, numéro, variation). Les cartes sûres sont cochées toutes seules ; quand il hésite, un bouton « À confirmer » te propose la ligne au lieu de cocher au hasard.',
+      'Setlists : la liste des sets est maintenant en lignes, avec le top 10 de la draft de l’année et leurs photos en haut (basket, football américain, hockey, baseball). Le top 5 rookies d’un set suit l’ordre de la draft, même pour les anciennes années.',
+      'Bobbleheads de baseball : 98 joueurs ont leur figurine, sur leur page, en haut de la galerie et dans Mes PC, avec leurs équipes, leurs tenues et le logo de l’équipe. Quand tu ajoutes un PC, tous les joueurs du site sont proposés.',
+      'Galeries : l’en-tête s’adapte (la figurine ne passe plus sur le bouton « … »), les longues descriptions se replient avec « Voir plus », et le 1er, le 2ème et le 3ème du classement s’affichent en or, argent et bronze.',
+      'Export vidéo et photo : le thème d’équipe se choisit en deux temps, d’abord le sport puis l’équipe, avec son logo.',
+      'Accueil sur téléphone : la carte du jour est refaite (grande carte, deux boutons côte à côte) et la série de jours, la visite guidée et « Quoi de nouveau ? » sont mieux rangés.',
+      'Thème jour : le texte est de nouveau lisible partout où il ne l’était pas (pages de set, événements, sorties, filtres de la galerie).',
+      'Corrections : une vente eBay ne s’enregistre plus en double quand l’acheteur paie, l’ajout de plusieurs cartes d’un coup refonctionne, et les boutons des packs ne chevauchent plus la carte.',
+    ],
+  },
+  {
     date: '30 novembre 2026', titre: 'Bobbleheads : nouveaux maillots NBA et numéros par équipe',
     points: [
       'Nouveaux maillots : les figurines NBA portent maintenant de vrais maillots d’équipe, avec le mot ou le logo de l’équipe sur la poitrine, pour les tenues domicile, extérieur, alternative et légendaire (Bobcats et SuperSonics compris).',

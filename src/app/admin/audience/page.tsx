@@ -20,10 +20,12 @@ export default function AdminAudience() {
   const load = async (fresh = false) => {
     setErr('')
     const { data: { session } } = await supabase.auth.getSession()
-    const r = await fetch('/api/admin/audience' + (fresh ? '?fresh=1' : ''), { headers: { Authorization: 'Bearer ' + (session?.access_token || '') } })
-    if (r.status === 403) { setErr('Accès réservé aux admins.'); return }
-    if (!r.ok) { setErr('Impossible de charger l’audience.'); return }
-    setD(await r.json())
+    try {
+      const r = await fetch('/api/admin/audience' + (fresh ? '?fresh=1' : ''), { headers: { Authorization: 'Bearer ' + (session?.access_token || '') }, signal: AbortSignal.timeout(75000) })
+      if (r.status === 403) { setErr('Accès réservé aux admins.'); return }
+      if (!r.ok) { setErr('Impossible de charger l’audience (erreur ' + r.status + ').'); return }
+      setD(await r.json())
+    } catch { setErr('Le chargement a pris trop de temps. Réessaie dans un instant.') }
   }
   useEffect(() => { load() }, [])
 

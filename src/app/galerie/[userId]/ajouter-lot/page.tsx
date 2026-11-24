@@ -493,6 +493,7 @@ export default function AjoutLotPage({ params }: { params: Promise<{ userId: str
     const { data: { session } } = await supabase.auth.getSession()
     if (!session || session.user.id !== (await resolveRouteUserId(userId))) { toast.error('Ta session a expiré : reconnecte-toi puis reviens ici (tes photos de cette page seront à rechoisir).'); router.replace('/connexion'); return }
     cancelRef.current = false; setRunning(true)
+    const uid = session.user.id // identifiant réel (l'adresse peut contenir le pseudo)
     const auth = { 'Content-Type': 'application/json', Authorization: `Bearer ${session.access_token}` }
     let aiOn = useAI
     let aiNote = ''
@@ -518,7 +519,7 @@ export default function AjoutLotPage({ params }: { params: Promise<{ userId: str
         const ts = `${Date.now()}_${e.id}`
         const [rStd, rHd, rAi, rTh] = await resizeMany(rectoFile, [{ max: 1600, q: 0.88 }, { max: 3200, q: 0.92 }, { max: 1200, q: 0.9 }, { max: 520, q: 0.8 }])
         const up = async (blob: Blob, name: string) => {
-          const path = `cartes/${userId}/${ts}_${name}.jpg`
+          const path = `cartes/${uid}/${ts}_${name}.jpg`
           const { error } = await supabase.storage.from('avatars').upload(path, blob, { upsert: true, contentType: 'image/jpeg' })
           if (error) throw new Error('envoi de la photo : ' + error.message)
           uploaded.push(path)
@@ -554,7 +555,7 @@ export default function AjoutLotPage({ params }: { params: Promise<{ userId: str
         const nom = (card?.nom || '').trim()
         const horizontal = rStd.w > rStd.h
         const row = {
-          user_id: userId, nom: nom || 'Carte à compléter', equipe: card?.equipe || null, annee: card?.annee || null, marque: card?.marque || null,
+          user_id: uid, nom: nom || 'Carte à compléter', equipe: card?.equipe || null, annee: card?.annee || null, marque: card?.marque || null,
           collection: card?.collection || null, variation: card?.variation || null, num: card?.num || null, card_number: card?.card_number || null,
           grade: card?.grade || 'Raw', rc: !!card?.rc, auto: !!card?.auto, patch: !!card?.patch, printing_plate: false, booklet: false,
           format: horizontal ? 'horizontal' : 'standard', is_horizontal: horizontal, verso_is_horizontal: versoHorizontal,
@@ -568,8 +569,8 @@ export default function AjoutLotPage({ params }: { params: Promise<{ userId: str
         if (error && /image_recto_thumb/.test(error.message)) { const { image_recto_thumb: _t, ...rest } = row; void _t; ({ error } = await supabase.from('cartes_manuelles').insert(rest)) }
         if (error && /\b(jeu|rarete|langue)\b/.test(error.message)) { const { jeu: _j, rarete: _r, langue: _l, ...rest } = row as typeof row & { jeu?: string; rarete?: string | null; langue?: string | null }; void _j; void _r; void _l; ({ error } = await supabase.from('cartes_manuelles').insert(rest)) }
         if (error) throw new Error(error.message)
-        galleryMemClear(userId)
-        fetch('/api/card-added', { method: 'POST', headers: auth, body: JSON.stringify({ userId, rc: row.rc, auto: row.auto, patch: row.patch, num: !!row.num }) }).catch(() => {})
+        galleryMemClear(uid)
+        fetch('/api/card-added', { method: 'POST', headers: auth, body: JSON.stringify({ userId: uid, rc: row.rc, auto: row.auto, patch: row.patch, num: !!row.num }) }).catch(() => {})
         if (nom) fetch('/api/wishlist-notify', { method: 'PUT', headers: auth, body: JSON.stringify({ card: { nom, equipe: row.equipe, annee: row.annee, marque: row.marque, collection: row.collection, variation: row.variation, num: row.num, rc: row.rc, auto: row.auto, patch: row.patch }, cardUserId: userId }) }).catch(() => {})
         set(e.id, nom ? { s: 'done', nom } : { s: 'todo', msg: 'À compléter' })
       } catch (err: unknown) {
@@ -672,7 +673,7 @@ export default function AjoutLotPage({ params }: { params: Promise<{ userId: str
       <div className="da-lot-box" style={{ flexDirection: 'column', alignItems: 'stretch', gap: 10, pointerEvents: running ? 'none' : undefined, opacity: running ? 0.6 : 1 }}>
         <div>
           <div style={{ fontSize: 13, marginBottom: 4 }}>Collection</div>
-          <CollectionTagSelect userId={userId} value={collectionTag} onChange={setCollectionTag} />
+          <CollectionTagSelect userId={ownerId} value={collectionTag} onChange={setCollectionTag} />
         </div>
         <div>
           <div style={{ fontSize: 13, marginBottom: 4 }}>Type de cartes</div>
@@ -740,7 +741,7 @@ export default function AjoutLotPage({ params }: { params: Promise<{ userId: str
         })}
       </div>
 
-      {reviewOpen && <LotReview userId={userId} count={doneN} onClose={() => setReviewOpen(false)} />}
+      {reviewOpen && <LotReview userId={ownerId} count={doneN} onClose={() => setReviewOpen(false)} />}
       {burst && <BurstCamera maxCards={Math.max(1, MAX_CARDS - entries.length)} onDone={onBurstDone} onClose={() => setBurst(false)} />}
       {editing && (() => { const ref = entries.find(x => x.id === editing.id)?.src?.[editing.side]; return ref ? <CornerEditor full={ref.full} quad={ref.quad} label={`Carte ${entries.findIndex(x => x.id === editing.id) + 1} · ${editing.side}`} onSave={saveCorners} onCancel={() => setEditing(null)} /> : null })()}
 

@@ -153,6 +153,7 @@ export default function CardVideoExport({ card, accent: accentProp, onClose, own
   // ownerId ne change jamais pour un export donne.
   const [teamThemes, setTeamThemes] = useState<TeamTheme[]>([])
   const [teamTheme, setTeamThemeState] = useState<TeamTheme | null>(null)
+  const [teamSport, setTeamSport] = useState<Sport | 'custom' | null>(null)   // sport dont on affiche les équipes (choix en deux temps : sport puis équipe)
   const [teamLogoImg, setTeamLogoImg] = useState<{ key: string; img: HTMLImageElement } | null>(null)
   const pickColor = (c: string) => { setTeamThemeState(null); setAccent(c) }
   const pickTeamTheme = (th: TeamTheme) => { setTeamThemeState(th); setAccent(th.color) }
@@ -1133,37 +1134,47 @@ export default function CardVideoExport({ card, accent: accentProp, onClose, own
               </div>
             </div>
 
-            {teamThemes.length > 0 && (
-              <div>
-                <p style={groupLabel}>{t('video_team_theme')}</p>
-                {/* Menu deroulant groupe par sport plutot qu'une rangee de pastilles :
-                    reste ergonomique meme avec beaucoup d'equipes favorites, et le
-                    picker natif (mobile inclus) sait deja gerer une longue liste. */}
-                <select
-                  value={teamTheme?.key ?? ''}
-                  onChange={e => {
-                    const th = teamThemes.find(x => x.key === e.target.value)
-                    if (th) pickTeamTheme(th); else pickColor(accent)
-                  }}
-                  style={{
-                    width: '100%', padding: '10px 12px', borderRadius: 10, fontSize: 13, fontWeight: 600,
-                    background: 'rgba(255,255,255,0.07)', color: '#fff', border: '1px solid rgba(255,255,255,0.14)',
-                  }}
-                >
-                  <option value="" style={{ color: '#000' }}>{t('video_team_theme_none')}</option>
-                  {(Object.entries(
-                    teamThemes.reduce((acc: Record<string, TeamTheme[]>, th) => {
-                      (acc[th.group] ||= []).push(th)
-                      return acc
-                    }, {})
-                  ) as [Sport | 'custom', TeamTheme[]][]).map(([group, list]) => (
-                    <optgroup key={group} label={group === 'custom' ? t('video_team_theme_custom') : SPORT_LABELS[group]} style={{ color: '#000' }}>
-                      {list.map(th => <option key={th.key} value={th.key} style={{ color: '#000' }}>{th.label}</option>)}
-                    </optgroup>
-                  ))}
-                </select>
-              </div>
-            )}
+            {teamThemes.length > 0 && (() => {
+              // choix en deux temps : d'abord le sport (ou « Aucun » / « Mes équipes »), puis la liste de ses équipes avec leur logo
+              const groups = (Object.keys(SPORT_LABELS) as Sport[]).filter(g => teamThemes.some(x => x.group === g))
+              const all: (Sport | 'custom')[] = teamThemes.some(x => x.group === 'custom') ? [...groups, 'custom'] : groups
+              const shown = teamSport ? teamThemes.filter(x => x.group === teamSport) : []
+              const chip = (on: boolean): React.CSSProperties => ({
+                padding: '7px 12px', borderRadius: 99, fontSize: 12, fontWeight: 700, cursor: 'pointer', whiteSpace: 'nowrap',
+                background: on ? accent : 'rgba(255,255,255,0.07)', color: '#fff', border: `1px solid ${on ? accent : 'rgba(255,255,255,0.14)'}`,
+              })
+              return (
+                <div>
+                  <p style={groupLabel}>{t('video_team_theme')}</p>
+                  <div style={{ display: 'flex', gap: 6, flexWrap: 'wrap' }}>
+                    <button type="button" style={chip(!teamTheme && !teamSport)} onClick={() => { setTeamSport(null); pickColor(accent) }}>{t('video_team_theme_none')}</button>
+                    {all.map(g => (
+                      <button key={g} type="button" style={chip(teamSport === g)} onClick={() => setTeamSport(g)}>
+                        {g === 'custom' ? t('video_team_theme_custom') : SPORT_LABELS[g]}{teamTheme?.group === g ? ' ✓' : ''}
+                      </button>
+                    ))}
+                  </div>
+                  {teamSport && (
+                    <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(130px, 1fr))', gap: 6, marginTop: 10, maxHeight: 190, overflowY: 'auto', padding: 2 }}>
+                      {shown.map(th => {
+                        const on = teamTheme?.key === th.key
+                        return (
+                          <button key={th.key} type="button" onClick={() => pickTeamTheme(th)} title={th.label} style={{
+                            display: 'flex', alignItems: 'center', gap: 8, padding: '7px 9px', borderRadius: 10, cursor: 'pointer', textAlign: 'left', minWidth: 0,
+                            background: on ? 'rgba(255,255,255,0.16)' : 'rgba(255,255,255,0.06)', color: '#fff', fontSize: 12, fontWeight: 600,
+                            border: `1.5px solid ${on ? th.color : 'rgba(255,255,255,0.12)'}`,
+                          }}>
+                            {/* eslint-disable-next-line @next/next/no-img-element */}
+                            <img src={th.logoUrl} alt="" width={24} height={24} loading="lazy" style={{ width: 24, height: 24, objectFit: 'contain', flexShrink: 0 }} />
+                            <span style={{ overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>{th.label}</span>
+                          </button>
+                        )
+                      })}
+                    </div>
+                  )}
+                </div>
+              )
+            })()}
           </div>
         )}
 

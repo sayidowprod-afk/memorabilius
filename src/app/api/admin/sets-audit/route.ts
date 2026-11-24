@@ -24,6 +24,35 @@ export async function GET(req: NextRequest) {
     if (!data || data.length < 1000) break
   }
 
+  // (868) sets avec un TROU dans la numérotation de la base : ?holes=1&offset=0&limit=150 (par tranches, la page enchaîne les appels).
+  // Un trou = un numéro absent entre 1 et le plus grand numéro, dans un set dont la base est numérotée en entiers (ex. 1…300 mais pas le 142).
+  if (req.nextUrl.searchParams.get('holes')) {
+    const offset = Math.max(0, parseInt(req.nextUrl.searchParams.get('offset') || '0') || 0)
+    const limit = Math.min(300, Math.max(10, parseInt(req.nextUrl.searchParams.get('limit') || '150') || 150))
+    const slice = all.slice(offset, offset + limit)
+    const holes: { id: number; name: string; year: number | null; sport: string; tcdb_id: number | null; manque: number; max: number; exemples: string }[] = []
+    const ranges = (miss: number[]) => {
+      const out: string[] = []
+      for (let i = 0; i < miss.length;) { let j = i; while (j + 1 < miss.length && miss[j + 1] === miss[j] + 1) j++; out.push(j > i ? miss[i] + '–' + miss[j] : String(miss[i])); i = j + 1 }
+      return out.slice(0, 8).join(', ') + (out.length > 8 ? '…' : '')
+    }
+    const analyse = async (s: SetRow) => {
+      const ints = new Set<number>(); let base = 0
+      for (let o = 0; o < 30000; o += 1000) {
+        const { data } = await admin.from('card_set_entries').select('card_number').eq('set_id', s.id).is('variation', null).order('id').range(o, o + 999)
+        for (const r of data || []) { base++; const n = String(r.card_number || '').trim(); if (/^\d{1,5}$/.test(n)) ints.add(parseInt(n)) }
+        if (!data || data.length < 1000) break
+      }
+      if (ints.size < 10 || ints.size < base * 0.6) return
+      const mx = Math.max(...ints); if (mx > 5000 || ints.size < mx * 0.5) return
+      const miss: number[] = []
+      for (let n = 1; n <= mx; n++) if (!ints.has(n)) miss.push(n)
+      if (miss.length) holes.push({ id: s.id, name: s.name, year: s.year, sport: s.sport, tcdb_id: s.tcdb_id, manque: miss.length, max: mx, exemples: ranges(miss) })
+    }
+    for (const part of chunk(slice, 12)) await Promise.all(part.map(s => analyse(s).catch(() => undefined)))
+    return NextResponse.json({ total: all.length, offset, next: offset + limit < all.length ? offset + limit : null, holes })
+  }
+
   // doublons
   const groups = new Map<string, SetRow[]>()
   for (const s of all) { const k = s.sport + '|' + s.year + '|' + nk(s.name); groups.set(k, [...(groups.get(k) || []), s]) }

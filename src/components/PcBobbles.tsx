@@ -15,12 +15,21 @@ type Pc = { type?: string; name?: string; kit?: string }
 const VIS = 0.6          // largeur visible d'une figurine / sa hauteur
 const MIN_H = 50
 
+// Podium : « 1er » en or, « 2ème » en argent, « 3ème » en bronze (les autres rangs restent discrets)
+const MEDALS: Record<string, { c: string; glow: string }> = {
+  '1er': { c: '#ffd54a', glow: 'rgba(255,213,74,.55)' },
+  '2ème': { c: '#d7dde8', glow: 'rgba(215,221,232,.45)' },
+  '3ème': { c: '#e0904a', glow: 'rgba(224,144,74,.5)' },
+}
+const medal = (label?: string) => (label ? MEDALS[label] : undefined)
+
 export default function PcBobbles({ pcs, ownerId, maxHeight = 150 }: { pcs?: Pc[] | null; ownerId?: string | null; maxHeight?: number }) {
   const [figs, setFigs] = useState<{ name: string; fig: BobbleFig; pct?: number; label?: string }[]>([])
   const [avail, setAvail] = useState(0)
   const [loaded, setLoaded] = useState(false)   // la liste des figurines est arrivée (sert à réserver la place avant, sans décalage de la page)
   const ref = useRef<HTMLDivElement>(null)
   const catalog = useKitCatalog()
+  const catalogMlb = useKitCatalog('mlb')   // les joueurs de baseball prennent leurs tenues dans le catalogue MLB
   const [livePcs, setLivePcs] = useState<Pc[] | null>(null)   // PC modifiés dans l'onglet Objectifs (tenue choisie) : mise à jour immédiate
   useEffect(() => {
     const h = (e: Event) => { const d = (e as CustomEvent).detail; if (d?.userId === ownerId && Array.isArray(d.pcs)) setLivePcs(d.pcs) }
@@ -88,8 +97,8 @@ export default function PcBobbles({ pcs, ownerId, maxHeight = 150 }: { pcs?: Pc[
         {figs.map(({ name, fig, pct, label }) => (
           <Link key={name} href={`/joueur/${playerSlug(name)}`} title={name} aria-label={`Fiche de ${name}`}
             style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', width: slot, flex: `0 0 ${slot}px`, textDecoration: 'none', pointerEvents: 'auto' }}>
-            {pct ? <span style={{ fontSize: Math.max(8, Math.min(10, Math.round(slot / 11))), fontWeight: 700, color: 'rgba(255,255,255,.62)', letterSpacing: '.04em', lineHeight: 1, marginBottom: 7, whiteSpace: 'nowrap' }}>{label || `Top ${pct} %`}</span> : null}
-            <BobbleHero fig={withKit({ ...fig, extra: catalog?.kits }, kitOf.get(name))} name={name} height={h} />
+            {pct ? <span style={{ fontSize: Math.max(8, Math.min(10, Math.round(slot / 11))), fontWeight: medal(label) ? 900 : 700, color: medal(label)?.c || 'rgba(255,255,255,.62)', textShadow: medal(label) ? `0 0 6px ${medal(label)!.glow}` : undefined, letterSpacing: '.04em', lineHeight: 1, marginBottom: 7, whiteSpace: 'nowrap' }}>{label || `Top ${pct} %`}</span> : null}
+            <BobbleHero fig={withKit({ ...fig, extra: (fig.sport === 'mlb' ? catalogMlb : catalog)?.kits }, kitOf.get(name))} name={name} height={h} />
           </Link>
         ))}
       </div>
