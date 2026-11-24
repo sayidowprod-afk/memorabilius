@@ -4,6 +4,12 @@ export type Entry = { date: string; titre: string; points: string[] }
 
 export const ENTRIES: Entry[] = [
   {
+    date: '30 novembre 2026', titre: 'Accueil mobile : pseudo toujours lisible',
+    points: [
+      'Accueil sur téléphone : ton pseudo n’est plus coupé en haut de l’écran, il reste sur une seule ligne et sa taille s’adapte à sa longueur.',
+    ],
+  },
+  {
     date: '30 novembre 2026', titre: 'Setlists plus justes, bobbleheads de baseball et galeries améliorées',
     points: [
       'Synchro des setlists : le moteur retrouve bien mieux la bonne ligne de chaque carte (année, collection, numéro, variation). Les cartes sûres sont cochées toutes seules ; quand il hésite, un bouton « À confirmer » te propose la ligne au lieu de cocher au hasard.',

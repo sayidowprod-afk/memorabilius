@@ -694,7 +694,7 @@ export default function NativeHomeDashboard({ siteStats, cardOfTheDay, extras }:
           <div style={{ minWidth: 0 }}>
             <div className="dd-kicker">{greeting(lang, t('dashboard_greeting'))}</div>
             <div className="dd-name-row">
-              <h1 className="dd-name" aria-label={data.displayName}>{Array.from(data.displayName).map((ch, ci) => <span key={ci} aria-hidden="true" className="dd-ch" style={{ ['--i' as string]: Math.min(ci, 16) } as React.CSSProperties}>{ch === ' ' ? '\u00A0' : ch}</span>)}</h1>
+              <h1 className="dd-name" aria-label={data.displayName} style={{ ['--n' as string]: Math.max(4, Array.from(data.displayName).length) } as React.CSSProperties}>{Array.from(data.displayName).map((ch, ci) => <span key={ci} aria-hidden="true" className="dd-ch" style={{ ['--i' as string]: Math.min(ci, 16) } as React.CSSProperties}>{ch === ' ' ? '\u00A0' : ch}</span>)}</h1>
               <button type="button" className={'dd-edit-btn' + (editMode ? ' on' : '')} onClick={() => setEditMode(v => !v)} aria-label={L.customize} title={L.customize}>
                 {editMode
                   ? L.done
@@ -822,6 +822,10 @@ export const DD_CSS = `
 /* bouton de personnalisation : discret, a droite du pseudo */
 .dd-name-row { display: flex; align-items: center; gap: 10px; min-width: 0; }
 .dd-name-row .dd-name { min-width: 0; }
+/* le pseudo n'est jamais coupé : il passe à la ligne et rapetisse un peu sur téléphone */
+.dd-name { white-space: nowrap; overflow: visible; text-overflow: clip; }
+/* jamais à la ligne : sur téléphone la taille s'adapte au nombre de lettres du pseudo */
+@media (max-width: 560px) { .dd-name { font-size: clamp(16px, calc(50vw / (var(--n, 8) * .46)), 40px); line-height: 1; } }
 .dd-edit-btn { flex: 0 0 auto; display: inline-flex; align-items: center; justify-content: center; min-width: 30px; height: 30px; padding: 0 6px; background: transparent; border: 0; color: var(--text2); opacity: .55; cursor: pointer; font: 800 11px system-ui, sans-serif; letter-spacing: .1em; text-transform: uppercase; border-radius: 0; }
 .dd-edit-btn:hover { opacity: 1; }
 .dd-edit-btn.on { opacity: 1; color: var(--text); border-bottom: 2px solid var(--text); }
