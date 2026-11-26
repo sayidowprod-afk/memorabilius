@@ -50,8 +50,8 @@ export default function FunkoBox(p: FunkoProps) {
     window.addEventListener('scroll', close, true)
     return () => { window.removeEventListener('click', close); window.removeEventListener('scroll', close, true) }
   }, [menu])
-  const mlb = p.fig?.sport === 'mlb'   // joueur de baseball : seulement les équipes et tenues MLB
-  const catalog = useKitCatalog(mlb ? 'mlb' : 'nba')
+  const mlb = !!p.fig?.sport   // joueur de baseball ou de football américain : seulement les équipes et tenues de sa ligue
+  const catalog = useKitCatalog(p.fig?.sport ?? 'nba')
   // la boîte est dessinée en 224 x 280 puis mise à l'échelle de la largeur disponible (2 boîtes par ligne sur téléphone)
   const rootRef = useRef<HTMLDivElement>(null)
   const [sc, setSc] = useState(1)

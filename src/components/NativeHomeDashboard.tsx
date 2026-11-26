@@ -825,7 +825,8 @@ export const DD_CSS = `
 /* le pseudo n'est jamais coupé : il passe à la ligne et rapetisse un peu sur téléphone */
 .dd-name { white-space: nowrap; overflow: visible; text-overflow: clip; }
 /* jamais à la ligne : sur téléphone la taille s'adapte au nombre de lettres du pseudo */
-@media (max-width: 560px) { .dd-name { font-size: clamp(16px, calc(50vw / (var(--n, 8) * .46)), 40px); line-height: 1; } }
+.dd-name-row .dd-name { flex: 0 0 auto; }
+@media (max-width: 560px) { .dd-name { font-size: clamp(16px, calc(97vw / var(--n, 8)), 40px); line-height: 1; } }
 .dd-edit-btn { flex: 0 0 auto; display: inline-flex; align-items: center; justify-content: center; min-width: 30px; height: 30px; padding: 0 6px; background: transparent; border: 0; color: var(--text2); opacity: .55; cursor: pointer; font: 800 11px system-ui, sans-serif; letter-spacing: .1em; text-transform: uppercase; border-radius: 0; }
 .dd-edit-btn:hover { opacity: 1; }
 .dd-edit-btn.on { opacity: 1; color: var(--text); border-bottom: 2px solid var(--text); }

@@ -1,0 +1,1922 @@
+{
+ "KC": {
+  "name": "Kansas City Chiefs",
+  "w": 522,
+  "h": 624,
+  "span": 426,
+  "num": {
+   "y": 0.19,
+   "size": 0.22,
+   "x": 0,
+   "sw": 0.1,
+   "set": true,
+   "hide": false,
+   "font": "block",
+   "fontFamily": "Russo One",
+   "fontFile": "RussoOne-Regular.ttf",
+   "fontW": "400",
+   "fill": "#d0d3d0",
+   "stroke": "#c29a31"
+  },
+  "kits": {
+   "ext": {
+    "w": 580,
+    "h": 701,
+    "span": 451,
+    "num": {
+     "y": 0.19,
+     "size": 0.22,
+     "x": 0.01,
+     "sw": 0.1,
+     "set": true,
+     "hide": false,
+     "font": "block",
+     "fontFamily": "Russo One",
+     "fontFile": "RussoOne-Regular.ttf",
+     "fontW": "400",
+     "fill": "#960300",
+     "stroke": "#c48a01"
+    }
+   },
+   "alt": {
+    "w": 539,
+    "h": 683,
+    "span": 429,
+    "num": {
+     "y": 0.19,
+     "size": 0.22,
+     "x": 0.01,
+     "sw": 0.1,
+     "set": true,
+     "hide": false,
+     "font": "block",
+     "fontFamily": "Russo One",
+     "fontFile": "RussoOne-Regular.ttf",
+     "fontW": "400",
+     "fill": "#ffffff",
+     "stroke": "#ffb81c"
+    }
+   }
+  }
+ },
+ "DAL": {
+  "name": "Dallas Cowboys",
+  "w": 572,
+  "h": 690,
+  "span": 473,
+  "num": {
+   "y": 0.208,
+   "size": 0.17,
+   "x": 0,
+   "sw": 0.1,
+   "set": true,
+   "hide": false,
+   "font": "block",
+   "fontFamily": "NFL Cowboys",
+   "fontFile": "NFLCowboys.ttf",
+   "fontW": "400",
+   "fill": "#0e2349",
+   "stroke": "#c0c6cb"
+  },
+  "kits": {
+   "ext": {
+    "w": 605,
+    "h": 720,
+    "span": 507,
+    "num": {
+     "y": 0.222,
+     "size": 0.17,
+     "x": 0,
+     "sw": 0.1,
+     "set": true,
+     "hide": false,
+     "font": "block",
+     "fontFamily": "NFL Cowboys",
+     "fontFile": "NFLCowboys.ttf",
+     "fontW": "400",
+     "fill": "#ffffff",
+     "stroke": "#869397"
+    }
+   },
+   "alt": {
+    "w": 574,
+    "h": 691,
+    "span": 445,
+    "num": {
+     "y": 0.222,
+     "size": 0.17,
+     "x": 0,
+     "sw": 0.1,
+     "set": true,
+     "hide": false,
+     "font": "block",
+     "fontFamily": "NFL Cowboys",
+     "fontFile": "NFLCowboys.ttf",
+     "fontW": "400",
+     "fill": "#041e42",
+     "stroke": "#869397"
+    }
+   }
+  }
+ },
+ "SF": {
+  "name": "San Francisco 49ers",
+  "w": 537,
+  "h": 718,
+  "span": 452,
+  "num": {
+   "y": 0.202,
+   "size": 0.2,
+   "x": 0,
+   "sw": 0.1,
+   "set": true,
+   "hide": false,
+   "font": "block",
+   "fontFamily": "Alfa Slab One",
+   "fontFile": "AlfaSlabOne-Regular.ttf",
+   "fontW": "400",
+   "fill": "#cbccc8",
+   "stroke": "#aa0000"
+  },
+  "kits": {
+   "ext": {
+    "w": 571,
+    "h": 710,
+    "span": 453,
+    "num": {
+     "y": 0.196,
+     "size": 0.2,
+     "x": 0,
+     "sw": 0.1,
+     "set": true,
+     "hide": false,
+     "font": "block",
+     "fontFamily": "Alfa Slab One",
+     "fontFile": "AlfaSlabOne-Regular.ttf",
+     "fontW": "400",
+     "fill": "#901416",
+     "stroke": "#eca740"
+    }
+   },
+   "alt": {
+    "w": 549,
+    "h": 688,
+    "span": 452,
+    "num": {
+     "y": 0.196,
+     "size": 0.2,
+     "x": 0,
+     "sw": 0.1,
+     "set": true,
+     "hide": false,
+     "font": "block",
+     "fontFamily": "Alfa Slab One",
+     "fontFile": "AlfaSlabOne-Regular.ttf",
+     "fontW": "400",
+     "fill": "#aa0000",
+     "stroke": "#b3995d"
+    }
+   }
+  }
+ },
+ "ARI": {
+  "name": "Arizona Cardinals",
+  "w": 549,
+  "h": 693,
+  "span": 453,
+  "num": {
+   "y": 0.202,
+   "size": 0.218,
+   "x": 0,
+   "sw": 0.1,
+   "set": true,
+   "hide": false,
+   "font": "block",
+   "fontFamily": "Russo One",
+   "fontFile": "RussoOne-Regular.ttf",
+   "fontW": "400",
+   "fill": "#a5a8a9",
+   "stroke": "#0f1112"
+  },
+  "kits": {
+   "ext": {
+    "w": 573,
+    "h": 689,
+    "span": 454,
+    "num": {
+     "y": 0.2,
+     "size": 0.22,
+     "x": 0,
+     "sw": 0.1,
+     "set": true,
+     "hide": false,
+     "font": "block",
+     "fontFamily": "Russo One",
+     "fontFile": "RussoOne-Regular.ttf",
+     "fontW": "400",
+     "fill": "#8e1419",
+     "stroke": "#202224"
+    }
+   },
+   "alt": {
+    "w": 556,
+    "h": 681,
+    "span": 459,
+    "num": {
+     "y": 0.2,
+     "size": 0.22,
+     "x": 0,
+     "sw": 0.1,
+     "set": true,
+     "hide": false,
+     "font": "block",
+     "fontFamily": "Russo One",
+     "fontFile": "RussoOne-Regular.ttf",
+     "fontW": "400",
+     "fill": "#97233f",
+     "stroke": "#ffffff"
+    }
+   }
+  }
+ },
+ "ATL": {
+  "name": "Atlanta Falcons",
+  "w": 579,
+  "h": 736,
+  "span": 476,
+  "num": {
+   "y": 0.204,
+   "size": 0.252,
+   "x": 0,
+   "sw": 0.1,
+   "set": true,
+   "hide": false,
+   "font": "block",
+   "fontFamily": "Staatliches",
+   "fontFile": "Staatliches-Regular.ttf",
+   "fontW": "400",
+   "fill": "#cdcdcb",
+   "stroke": "#971d1b"
+  },
+  "kits": {
+   "ext": {
+    "w": 554,
+    "h": 700,
+    "span": 448,
+    "num": {
+     "y": 0.174,
+     "size": 0.254,
+     "x": 0,
+     "sw": 0.1,
+     "set": true,
+     "hide": false,
+     "font": "block",
+     "fontFamily": "Staatliches",
+     "fontFile": "Staatliches-Regular.ttf",
+     "fontW": "400",
+     "fill": "#be2c25",
+     "stroke": "#0d0c11"
+    }
+   },
+   "alt": {
+    "w": 569,
+    "h": 721,
+    "span": 455,
+    "num": {
+     "y": 0.174,
+     "size": 0.254,
+     "x": 0,
+     "sw": 0.1,
+     "set": true,
+     "hide": false,
+     "font": "block",
+     "fontFamily": "Staatliches",
+     "fontFile": "Staatliches-Regular.ttf",
+     "fontW": "400",
+     "fill": "#ffffff",
+     "stroke": "#a71930"
+    }
+   }
+  }
+ },
+ "BAL": {
+  "name": "Baltimore Ravens",
+  "w": 545,
+  "h": 681,
+  "span": 433,
+  "num": {
+   "y": 0.184,
+   "size": 0.268,
+   "x": 0,
+   "sw": 0.1,
+   "set": true,
+   "hide": false,
+   "font": "block",
+   "fontFamily": "Staatliches",
+   "fontFile": "Staatliches-Regular.ttf",
+   "fontW": "400",
+   "fill": "#ffffff",
+   "stroke": "#1c1c15"
+  },
+  "kits": {
+   "ext": {
+    "w": 606,
+    "h": 689,
+    "span": 490,
+    "num": {
+     "y": 0.178,
+     "size": 0.258,
+     "x": 0,
+     "sw": 0.07,
+     "set": true,
+     "hide": false,
+     "font": "block",
+     "fontFamily": "Staatliches",
+     "fontFile": "Staatliches-Regular.ttf",
+     "fontW": "400",
+     "fill": "#2c0f61",
+     "stroke": "#0e0d12"
+    }
+   },
+   "alt": {
+    "w": 553,
+    "h": 726,
+    "span": 460,
+    "num": {
+     "y": 0.178,
+     "size": 0.258,
+     "x": 0,
+     "sw": 0.07,
+     "set": true,
+     "hide": false,
+     "font": "block",
+     "fontFamily": "Staatliches",
+     "fontFile": "Staatliches-Regular.ttf",
+     "fontW": "400",
+     "fill": "#ffffff",
+     "stroke": "#241773"
+    }
+   }
+  }
+ },
+ "BUF": {
+  "name": "Buffalo Bills",
+  "w": 518,
+  "h": 685,
+  "span": 416,
+  "num": {
+   "y": 0.202,
+   "size": 0.234,
+   "x": 0,
+   "sw": 0.1,
+   "set": true,
+   "hide": false,
+   "font": "block",
+   "fontFamily": "Anton",
+   "fontFile": "Anton-Regular.ttf",
+   "fontW": "400",
+   "fill": "#d3d5d7",
+   "stroke": "#a31212"
+  },
+  "kits": {
+   "ext": {
+    "w": 608,
+    "h": 700,
+    "span": 501,
+    "num": {
+     "y": 0.206,
+     "size": 0.224,
+     "x": 0,
+     "sw": 0.1,
+     "set": true,
+     "hide": false,
+     "font": "block",
+     "fontFamily": "Anton",
+     "fontFile": "Anton-Regular.ttf",
+     "fontW": "400",
+     "fill": "#1f2a68",
+     "stroke": "#aa1f21"
+    }
+   },
+   "alt": {
+    "w": 553,
+    "h": 685,
+    "span": 457,
+    "num": {
+     "y": 0.206,
+     "size": 0.224,
+     "x": 0,
+     "sw": 0.1,
+     "set": true,
+     "hide": false,
+     "font": "block",
+     "fontFamily": "Anton",
+     "fontFile": "Anton-Regular.ttf",
+     "fontW": "400",
+     "fill": "#ffffff",
+     "stroke": "#00338d"
+    }
+   }
+  }
+ },
+ "CAR": {
+  "name": "Carolina Panthers",
+  "w": 537,
+  "h": 692,
+  "span": 430,
+  "num": {
+   "y": 0.2035,
+   "size": 0.1949,
+   "x": 0,
+   "sw": 0.05,
+   "set": false,
+   "hide": false,
+   "font": "block",
+   "fontFamily": "Russo One",
+   "fontFile": "RussoOne-Regular.ttf",
+   "fontW": "400",
+   "fill": "#ffffff",
+   "stroke": "#0085ca"
+  },
+  "kits": {
+   "ext": {
+    "w": 531,
+    "h": 665,
+    "span": 419,
+    "num": {
+     "y": 0.2011,
+     "size": 0.2006,
+     "x": 0,
+     "sw": 0.05,
+     "set": false,
+     "hide": false,
+     "font": "block",
+     "fontFamily": "Russo One",
+     "fontFile": "RussoOne-Regular.ttf",
+     "fontW": "400",
+     "fill": "#0085ca",
+     "stroke": "#101820"
+    }
+   },
+   "alt": {
+    "w": 559,
+    "h": 702,
+    "span": 448,
+    "num": {
+     "y": 0.2013,
+     "size": 0.2,
+     "x": 0,
+     "sw": 0.05,
+     "set": false,
+     "hide": false,
+     "font": "block",
+     "fontFamily": "Russo One",
+     "fontFile": "RussoOne-Regular.ttf",
+     "fontW": "400",
+     "fill": "#000000",
+     "stroke": "#ffffff"
+    }
+   }
+  }
+ },
+ "CHI": {
+  "name": "Chicago Bears",
+  "w": 540,
+  "h": 697,
+  "span": 438,
+  "num": {
+   "y": 0.2238,
+   "size": 0.1668,
+   "x": 0,
+   "sw": 0.05,
+   "set": false,
+   "hide": false,
+   "font": "block",
+   "fontFamily": "Alfa Slab One",
+   "fontFile": "AlfaSlabOne-Regular.ttf",
+   "fontW": "400",
+   "fill": "#ffffff",
+   "stroke": "#e64100"
+  },
+  "kits": {
+   "ext": {
+    "w": 548,
+    "h": 687,
+    "span": 439,
+    "num": {
+     "y": 0.222,
+     "size": 0.1717,
+     "x": 0,
+     "sw": 0.05,
+     "set": false,
+     "hide": false,
+     "font": "block",
+     "fontFamily": "Alfa Slab One",
+     "fontFile": "AlfaSlabOne-Regular.ttf",
+     "fontW": "400",
+     "fill": "#0b162a",
+     "stroke": "#c83803"
+    }
+   },
+   "alt": {
+    "w": 576,
+    "h": 714,
+    "span": 465,
+    "num": {
+     "y": 0.2213,
+     "size": 0.1737,
+     "x": 0,
+     "sw": 0.05,
+     "set": false,
+     "hide": false,
+     "font": "block",
+     "fontFamily": "Alfa Slab One",
+     "fontFile": "AlfaSlabOne-Regular.ttf",
+     "fontW": "400",
+     "fill": "#0b162a",
+     "stroke": "#ffffff"
+    }
+   }
+  }
+ },
+ "CIN": {
+  "name": "Cincinnati Bengals",
+  "w": 586,
+  "h": 730,
+  "span": 467,
+  "num": {
+   "y": 0.2033,
+   "size": 0.2042,
+   "x": 0,
+   "sw": 0.05,
+   "set": false,
+   "hide": false,
+   "font": "block",
+   "fontFamily": "Bebas Neue",
+   "fontFile": "BebasNeue-Regular.ttf",
+   "fontW": "400",
+   "fill": "#fb4f14",
+   "stroke": "#ffffff"
+  },
+  "kits": {
+   "ext": {
+    "w": 546,
+    "h": 719,
+    "span": 441,
+    "num": {
+     "y": 0.2033,
+     "size": 0.2042,
+     "x": 0,
+     "sw": 0.05,
+     "set": false,
+     "hide": false,
+     "font": "block",
+     "fontFamily": "Bebas Neue",
+     "fontFile": "BebasNeue-Regular.ttf",
+     "fontW": "400",
+     "fill": "#fb4f14",
+     "stroke": "#000000"
+    }
+   },
+   "alt": {
+    "w": 544,
+    "h": 722,
+    "span": 433,
+    "num": {
+     "y": 0.2033,
+     "size": 0.2042,
+     "x": 0,
+     "sw": 0.05,
+     "set": false,
+     "hide": false,
+     "font": "block",
+     "fontFamily": "Bebas Neue",
+     "fontFile": "BebasNeue-Regular.ttf",
+     "fontW": "400",
+     "fill": "#ffffff",
+     "stroke": "#000000"
+    }
+   }
+  }
+ },
+ "CLE": {
+  "name": "Cleveland Browns",
+  "w": 563,
+  "h": 702,
+  "span": 474,
+  "num": {
+   "y": 0.2355,
+   "size": 0.1458,
+   "x": 0,
+   "sw": 0.05,
+   "set": false,
+   "hide": false,
+   "font": "block",
+   "fontFamily": "Bowlby One",
+   "fontFile": "BowlbyOne-Regular.ttf",
+   "fontW": "400",
+   "fill": "#ff3c00",
+   "stroke": "#ffffff"
+  },
+  "kits": {
+   "ext": {
+    "w": 517,
+    "h": 676,
+    "span": 424,
+    "num": {
+     "y": 0.2378,
+     "size": 0.1391,
+     "x": 0,
+     "sw": 0.05,
+     "set": false,
+     "hide": false,
+     "font": "block",
+     "fontFamily": "Bowlby One",
+     "fontFile": "BowlbyOne-Regular.ttf",
+     "fontW": "400",
+     "fill": "#311d00",
+     "stroke": "#ff3c00"
+    }
+   },
+   "alt": {
+    "w": 539,
+    "h": 709,
+    "span": 453,
+    "num": {
+     "y": 0.2381,
+     "size": 0.1382,
+     "x": 0,
+     "sw": 0.05,
+     "set": false,
+     "hide": false,
+     "font": "block",
+     "fontFamily": "Bowlby One",
+     "fontFile": "BowlbyOne-Regular.ttf",
+     "fontW": "400",
+     "fill": "#ff3c00",
+     "stroke": "#ffffff"
+    }
+   }
+  }
+ },
+ "DEN": {
+  "name": "Denver Broncos",
+  "w": 581,
+  "h": 688,
+  "span": 483,
+  "num": {
+   "y": 0.2007,
+   "size": 0.2014,
+   "x": 0,
+   "sw": 0.05,
+   "set": false,
+   "hide": false,
+   "font": "block",
+   "fontFamily": "Russo One",
+   "fontFile": "RussoOne-Regular.ttf",
+   "fontW": "400",
+   "fill": "#ffffff",
+   "stroke": "#002244"
+  },
+  "kits": {
+   "ext": {
+    "w": 571,
+    "h": 693,
+    "span": 467,
+    "num": {
+     "y": 0.2007,
+     "size": 0.2014,
+     "x": 0,
+     "sw": 0.05,
+     "set": false,
+     "hide": false,
+     "font": "block",
+     "fontFamily": "Russo One",
+     "fontFile": "RussoOne-Regular.ttf",
+     "fontW": "400",
+     "fill": "#fb4f14",
+     "stroke": "#002244"
+    }
+   },
+   "alt": {
+    "w": 549,
+    "h": 691,
+    "span": 450,
+    "num": {
+     "y": 0.2015,
+     "size": 0.1995,
+     "x": 0,
+     "sw": 0.05,
+     "set": false,
+     "hide": false,
+     "font": "block",
+     "fontFamily": "Russo One",
+     "fontFile": "RussoOne-Regular.ttf",
+     "fontW": "400",
+     "fill": "#ffffff",
+     "stroke": "#fb4f14"
+    }
+   }
+  }
+ },
+ "DET": {
+  "name": "Detroit Lions",
+  "w": 549,
+  "h": 745,
+  "span": 446,
+  "num": {
+   "y": 0.1762,
+   "size": 0.1812,
+   "x": 0,
+   "sw": 0.05,
+   "set": false,
+   "hide": false,
+   "font": "block",
+   "fontFamily": "NFL Lions",
+   "fontFile": "NFLLions.ttf",
+   "fontW": "400",
+   "fill": "#ffffff",
+   "stroke": "#b0b7bc"
+  },
+  "kits": {
+   "ext": {
+    "w": 567,
+    "h": 687,
+    "span": 440,
+    "num": {
+     "y": 0.1762,
+     "size": 0.1812,
+     "x": 0,
+     "sw": 0.05,
+     "set": false,
+     "hide": false,
+     "font": "block",
+     "fontFamily": "NFL Lions",
+     "fontFile": "NFLLions.ttf",
+     "fontW": "400",
+     "fill": "#0076b6",
+     "stroke": "#b0b7bc"
+    }
+   },
+   "alt": {
+    "w": 562,
+    "h": 711,
+    "span": 465,
+    "num": {
+     "y": 0.1762,
+     "size": 0.1812,
+     "x": 0,
+     "sw": 0.05,
+     "set": false,
+     "hide": false,
+     "font": "block",
+     "fontFamily": "NFL Lions",
+     "fontFile": "NFLLions.ttf",
+     "fontW": "400",
+     "fill": "#0076b6",
+     "stroke": "#b0b7bc"
+    }
+   }
+  }
+ },
+ "GB": {
+  "name": "Green Bay Packers",
+  "w": 531,
+  "h": 689,
+  "span": 447,
+  "num": {
+   "y": 0.2011,
+   "size": 0.1973,
+   "x": 0,
+   "sw": 0.05,
+   "set": false,
+   "hide": false,
+   "font": "block",
+   "fontFamily": "NFL Packers",
+   "fontFile": "NFLPackers.ttf",
+   "fontW": "400",
+   "fill": "#ffffff",
+   "stroke": "#ffb612"
+  },
+  "kits": {
+   "ext": {
+    "w": 554,
+    "h": 715,
+    "span": 469,
+    "num": {
+     "y": 0.2011,
+     "size": 0.1973,
+     "x": 0,
+     "sw": 0.05,
+     "set": false,
+     "hide": false,
+     "font": "block",
+     "fontFamily": "NFL Packers",
+     "fontFile": "NFLPackers.ttf",
+     "fontW": "400",
+     "fill": "#203731",
+     "stroke": "#ffb612"
+    }
+   },
+   "alt": {
+    "w": 562,
+    "h": 678,
+    "span": 454,
+    "num": {
+     "y": 0.2011,
+     "size": 0.1973,
+     "x": 0,
+     "sw": 0.05,
+     "set": false,
+     "hide": false,
+     "font": "block",
+     "fontFamily": "NFL Packers",
+     "fontFile": "NFLPackers.ttf",
+     "fontW": "400",
+     "fill": "#203731",
+     "stroke": "#ffb612"
+    }
+   }
+  }
+ },
+ "HOU": {
+  "name": "Houston Texans",
+  "w": 584,
+  "h": 706,
+  "span": 498,
+  "num": {
+   "y": 0.2013,
+   "size": 0.2042,
+   "x": 0,
+   "sw": 0.05,
+   "set": false,
+   "hide": false,
+   "font": "block",
+   "fontFamily": "Staatliches",
+   "fontFile": "Staatliches-Regular.ttf",
+   "fontW": "400",
+   "fill": "#ffffff",
+   "stroke": "#a71930"
+  },
+  "kits": {
+   "ext": {
+    "w": 579,
+    "h": 713,
+    "span": 475,
+    "num": {
+     "y": 0.2013,
+     "size": 0.2042,
+     "x": 0,
+     "sw": 0.05,
+     "set": false,
+     "hide": false,
+     "font": "block",
+     "fontFamily": "Staatliches",
+     "fontFile": "Staatliches-Regular.ttf",
+     "fontW": "400",
+     "fill": "#03202f",
+     "stroke": "#a71930"
+    }
+   },
+   "alt": {
+    "w": 527,
+    "h": 721,
+    "span": 424,
+    "num": {
+     "y": 0.2013,
+     "size": 0.2042,
+     "x": 0,
+     "sw": 0.05,
+     "set": false,
+     "hide": false,
+     "font": "block",
+     "fontFamily": "Staatliches",
+     "fontFile": "Staatliches-Regular.ttf",
+     "fontW": "400",
+     "fill": "#03202f",
+     "stroke": "#ffffff"
+    }
+   }
+  }
+ },
+ "IND": {
+  "name": "Indianapolis Colts",
+  "w": 584,
+  "h": 687,
+  "span": 464,
+  "num": {
+   "y": 0.2264,
+   "size": 0.1667,
+   "x": 0,
+   "sw": 0.05,
+   "set": false,
+   "hide": false,
+   "font": "block",
+   "fontFamily": "Anton",
+   "fontFile": "Anton-Regular.ttf",
+   "fontW": "400",
+   "fill": "#ffffff",
+   "stroke": "#003a70"
+  },
+  "kits": {
+   "ext": {
+    "w": 585,
+    "h": 692,
+    "span": 465,
+    "num": {
+     "y": 0.2264,
+     "size": 0.1667,
+     "x": 0,
+     "sw": 0.05,
+     "set": false,
+     "hide": false,
+     "font": "block",
+     "fontFamily": "Anton",
+     "fontFile": "Anton-Regular.ttf",
+     "fontW": "400",
+     "fill": "#002c5f",
+     "stroke": "#a2aaad"
+    }
+   },
+   "alt": {
+    "w": 529,
+    "h": 697,
+    "span": 432,
+    "num": {
+     "y": 0.2264,
+     "size": 0.1667,
+     "x": 0,
+     "sw": 0.05,
+     "set": false,
+     "hide": false,
+     "font": "block",
+     "fontFamily": "Anton",
+     "fontFile": "Anton-Regular.ttf",
+     "fontW": "400",
+     "fill": "#ffffff",
+     "stroke": "#a5acaf"
+    }
+   }
+  }
+ },
+ "JAX": {
+  "name": "Jacksonville Jaguars",
+  "w": 516,
+  "h": 651,
+  "span": 427,
+  "num": {
+   "y": 0.1964,
+   "size": 0.2071,
+   "x": 0,
+   "sw": 0.05,
+   "set": false,
+   "hide": false,
+   "font": "block",
+   "fontFamily": "NFL Jaguars",
+   "fontFile": "NFLJaguars.ttf",
+   "fontW": "400",
+   "fill": "#ffffff",
+   "stroke": "#101820"
+  },
+  "kits": {
+   "ext": {
+    "w": 562,
+    "h": 692,
+    "span": 458,
+    "num": {
+     "y": 0.1964,
+     "size": 0.2071,
+     "x": 0,
+     "sw": 0.05,
+     "set": false,
+     "hide": false,
+     "font": "block",
+     "fontFamily": "NFL Jaguars",
+     "fontFile": "NFLJaguars.ttf",
+     "fontW": "400",
+     "fill": "#006778",
+     "stroke": "#000000"
+    }
+   },
+   "alt": {
+    "w": 562,
+    "h": 701,
+    "span": 450,
+    "num": {
+     "y": 0.1964,
+     "size": 0.2071,
+     "x": 0,
+     "sw": 0.05,
+     "set": false,
+     "hide": false,
+     "font": "block",
+     "fontFamily": "NFL Jaguars",
+     "fontFile": "NFLJaguars.ttf",
+     "fontW": "400",
+     "fill": "#006778",
+     "stroke": "#d7a22a"
+    }
+   }
+  }
+ },
+ "LAC": {
+  "name": "Los Angeles Chargers",
+  "w": 572,
+  "h": 670,
+  "span": 449,
+  "num": {
+   "y": 0.1964,
+   "size": 0.2071,
+   "x": 0,
+   "sw": 0.05,
+   "set": false,
+   "hide": false,
+   "font": "block",
+   "fontFamily": "NFL Chargers",
+   "fontFile": "NFLChargers.ttf",
+   "fontW": "400",
+   "fill": "#ffffff",
+   "stroke": "#ffc20e"
+  },
+  "kits": {
+   "ext": {
+    "w": 556,
+    "h": 690,
+    "span": 419,
+    "num": {
+     "y": 0.1964,
+     "size": 0.2071,
+     "x": 0,
+     "sw": 0.05,
+     "set": false,
+     "hide": false,
+     "font": "block",
+     "fontFamily": "NFL Chargers",
+     "fontFile": "NFLChargers.ttf",
+     "fontW": "400",
+     "fill": "#0080c6",
+     "stroke": "#ffc20e"
+    }
+   },
+   "alt": {
+    "w": 575,
+    "h": 710,
+    "span": 457,
+    "num": {
+     "y": 0.1964,
+     "size": 0.2071,
+     "x": 0,
+     "sw": 0.05,
+     "set": false,
+     "hide": false,
+     "font": "block",
+     "fontFamily": "NFL Chargers",
+     "fontFile": "NFLChargers.ttf",
+     "fontW": "400",
+     "fill": "#ffffff",
+     "stroke": "#0080c6"
+    }
+   }
+  }
+ },
+ "LAR": {
+  "name": "Los Angeles Rams",
+  "w": 541,
+  "h": 713,
+  "span": 437,
+  "num": {
+   "y": 0.2382,
+   "size": 0.138,
+   "x": 0,
+   "sw": 0.05,
+   "set": false,
+   "hide": false,
+   "font": "block",
+   "fontFamily": "Bowlby One",
+   "fontFile": "BowlbyOne-Regular.ttf",
+   "fontW": "400",
+   "fill": "#ffd100",
+   "stroke": "#ffffff"
+  },
+  "kits": {
+   "ext": {
+    "w": 550,
+    "h": 703,
+    "span": 441,
+    "num": {
+     "y": 0.2367,
+     "size": 0.1423,
+     "x": 0,
+     "sw": 0.05,
+     "set": false,
+     "hide": false,
+     "font": "block",
+     "fontFamily": "Bowlby One",
+     "fontFile": "BowlbyOne-Regular.ttf",
+     "fontW": "400",
+     "fill": "#003594",
+     "stroke": "#ffd100"
+    }
+   },
+   "alt": {
+    "w": 540,
+    "h": 709,
+    "span": 443,
+    "num": {
+     "y": 0.238,
+     "size": 0.1385,
+     "x": 0,
+     "sw": 0.05,
+     "set": false,
+     "hide": false,
+     "font": "block",
+     "fontFamily": "Bowlby One",
+     "fontFile": "BowlbyOne-Regular.ttf",
+     "fontW": "400",
+     "fill": "#ffffff",
+     "stroke": "#ffd100"
+    }
+   }
+  }
+ },
+ "LV": {
+  "name": "Las Vegas Raiders",
+  "w": 535,
+  "h": 642,
+  "span": 426,
+  "num": {
+   "y": 0.2264,
+   "size": 0.1667,
+   "x": 0,
+   "sw": 0.05,
+   "set": false,
+   "hide": false,
+   "font": "block",
+   "fontFamily": "Anton",
+   "fontFile": "Anton-Regular.ttf",
+   "fontW": "400",
+   "fill": "#ffffff",
+   "stroke": "#a5acaf"
+  },
+  "kits": {
+   "ext": {
+    "w": 574,
+    "h": 687,
+    "span": 472,
+    "num": {
+     "y": 0.2264,
+     "size": 0.1667,
+     "x": 0,
+     "sw": 0.05,
+     "set": false,
+     "hide": false,
+     "font": "block",
+     "fontFamily": "Anton",
+     "fontFile": "Anton-Regular.ttf",
+     "fontW": "400",
+     "fill": "#000000",
+     "stroke": "#a5acaf"
+    }
+   },
+   "alt": {
+    "w": 541,
+    "h": 679,
+    "span": 433,
+    "num": {
+     "y": 0.2264,
+     "size": 0.1667,
+     "x": 0,
+     "sw": 0.05,
+     "set": false,
+     "hide": false,
+     "font": "block",
+     "fontFamily": "Anton",
+     "fontFile": "Anton-Regular.ttf",
+     "fontW": "400",
+     "fill": "#000000",
+     "stroke": "#ffffff"
+    }
+   }
+  }
+ },
+ "MIA": {
+  "name": "Miami Dolphins",
+  "w": 561,
+  "h": 722,
+  "span": 478,
+  "num": {
+   "y": 0.1912,
+   "size": 0.1812,
+   "x": 0,
+   "sw": 0.05,
+   "set": false,
+   "hide": false,
+   "font": "block",
+   "fontFamily": "NFL Dolphins",
+   "fontFile": "NFLDolphins.ttf",
+   "fontW": "400",
+   "fill": "#ffffff",
+   "stroke": "#f58220"
+  },
+  "kits": {
+   "ext": {
+    "w": 563,
+    "h": 689,
+    "span": 449,
+    "num": {
+     "y": 0.1912,
+     "size": 0.1812,
+     "x": 0,
+     "sw": 0.05,
+     "set": false,
+     "hide": false,
+     "font": "block",
+     "fontFamily": "NFL Dolphins",
+     "fontFile": "NFLDolphins.ttf",
+     "fontW": "400",
+     "fill": "#008e97",
+     "stroke": "#fc4c02"
+    }
+   },
+   "alt": {
+    "w": 535,
+    "h": 673,
+    "span": 442,
+    "num": {
+     "y": 0.1912,
+     "size": 0.1812,
+     "x": 0,
+     "sw": 0.05,
+     "set": false,
+     "hide": false,
+     "font": "block",
+     "fontFamily": "NFL Dolphins",
+     "fontFile": "NFLDolphins.ttf",
+     "fontW": "400",
+     "fill": "#008e97",
+     "stroke": "#f58220"
+    }
+   }
+  }
+ },
+ "MIN": {
+  "name": "Minnesota Vikings",
+  "w": 565,
+  "h": 691,
+  "span": 438,
+  "num": {
+   "y": 0.1964,
+   "size": 0.2071,
+   "x": 0,
+   "sw": 0.05,
+   "set": false,
+   "hide": false,
+   "font": "block",
+   "fontFamily": "NFL Vikings",
+   "fontFile": "NFLVikings.ttf",
+   "fontW": "400",
+   "fill": "#ffffff",
+   "stroke": "#ffc62f"
+  },
+  "kits": {
+   "ext": {
+    "w": 562,
+    "h": 682,
+    "span": 451,
+    "num": {
+     "y": 0.1964,
+     "size": 0.2071,
+     "x": 0,
+     "sw": 0.05,
+     "set": false,
+     "hide": false,
+     "font": "block",
+     "fontFamily": "NFL Vikings",
+     "fontFile": "NFLVikings.ttf",
+     "fontW": "400",
+     "fill": "#4f2683",
+     "stroke": "#ffc62f"
+    }
+   },
+   "alt": {
+    "w": 527,
+    "h": 674,
+    "span": 427,
+    "num": {
+     "y": 0.1964,
+     "size": 0.2071,
+     "x": 0,
+     "sw": 0.05,
+     "set": false,
+     "hide": false,
+     "font": "block",
+     "fontFamily": "NFL Vikings",
+     "fontFile": "NFLVikings.ttf",
+     "fontW": "400",
+     "fill": "#4f2683",
+     "stroke": "#ffc62f"
+    }
+   }
+  }
+ },
+ "NE": {
+  "name": "New England Patriots",
+  "w": 550,
+  "h": 681,
+  "span": 449,
+  "num": {
+   "y": 0.2033,
+   "size": 0.2042,
+   "x": 0,
+   "sw": 0.05,
+   "set": false,
+   "hide": false,
+   "font": "block",
+   "fontFamily": "Bebas Neue",
+   "fontFile": "BebasNeue-Regular.ttf",
+   "fontW": "400",
+   "fill": "#ffffff",
+   "stroke": "#c60c30"
+  },
+  "kits": {
+   "ext": {
+    "w": 543,
+    "h": 700,
+    "span": 422,
+    "num": {
+     "y": 0.2033,
+     "size": 0.2042,
+     "x": 0,
+     "sw": 0.05,
+     "set": false,
+     "hide": false,
+     "font": "block",
+     "fontFamily": "Bebas Neue",
+     "fontFile": "BebasNeue-Regular.ttf",
+     "fontW": "400",
+     "fill": "#002244",
+     "stroke": "#c60c30"
+    }
+   },
+   "alt": {
+    "w": 593,
+    "h": 699,
+    "span": 465,
+    "num": {
+     "y": 0.2033,
+     "size": 0.2042,
+     "x": 0,
+     "sw": 0.05,
+     "set": false,
+     "hide": false,
+     "font": "block",
+     "fontFamily": "Bebas Neue",
+     "fontFile": "BebasNeue-Regular.ttf",
+     "fontW": "400",
+     "fill": "#ffffff",
+     "stroke": "#c60c30"
+    }
+   }
+  }
+ },
+ "NO": {
+  "name": "New Orleans Saints",
+  "w": 535,
+  "h": 709,
+  "span": 435,
+  "num": {
+   "y": 0.2254,
+   "size": 0.1625,
+   "x": 0,
+   "sw": 0.05,
+   "set": false,
+   "hide": false,
+   "font": "block",
+   "fontFamily": "Alfa Slab One",
+   "fontFile": "AlfaSlabOne-Regular.ttf",
+   "fontW": "400",
+   "fill": "#d3bc8d",
+   "stroke": "#000000"
+  },
+  "kits": {
+   "ext": {
+    "w": 570,
+    "h": 697,
+    "span": 458,
+    "num": {
+     "y": 0.2204,
+     "size": 0.1761,
+     "x": 0,
+     "sw": 0.05,
+     "set": false,
+     "hide": false,
+     "font": "block",
+     "fontFamily": "Alfa Slab One",
+     "fontFile": "AlfaSlabOne-Regular.ttf",
+     "fontW": "400",
+     "fill": "#000000",
+     "stroke": "#d3bc8d"
+    }
+   },
+   "alt": {
+    "w": 538,
+    "h": 699,
+    "span": 460,
+    "num": {
+     "y": 0.2242,
+     "size": 0.1657,
+     "x": 0,
+     "sw": 0.05,
+     "set": false,
+     "hide": false,
+     "font": "block",
+     "fontFamily": "Alfa Slab One",
+     "fontFile": "AlfaSlabOne-Regular.ttf",
+     "fontW": "400",
+     "fill": "#000000",
+     "stroke": "#ffffff"
+    }
+   }
+  }
+ },
+ "NYG": {
+  "name": "New York Giants",
+  "w": 545,
+  "h": 696,
+  "span": 430,
+  "num": {
+   "y": 0.2264,
+   "size": 0.1667,
+   "x": 0,
+   "sw": 0.05,
+   "set": false,
+   "hide": false,
+   "font": "block",
+   "fontFamily": "Anton",
+   "fontFile": "Anton-Regular.ttf",
+   "fontW": "400",
+   "fill": "#ffffff",
+   "stroke": "#a71930"
+  },
+  "kits": {
+   "ext": {
+    "w": 546,
+    "h": 667,
+    "span": 428,
+    "num": {
+     "y": 0.2264,
+     "size": 0.1667,
+     "x": 0,
+     "sw": 0.05,
+     "set": false,
+     "hide": false,
+     "font": "block",
+     "fontFamily": "Anton",
+     "fontFile": "Anton-Regular.ttf",
+     "fontW": "400",
+     "fill": "#0b2265",
+     "stroke": "#a71930"
+    }
+   },
+   "alt": {
+    "w": 593,
+    "h": 693,
+    "span": 490,
+    "num": {
+     "y": 0.2264,
+     "size": 0.1667,
+     "x": 0,
+     "sw": 0.05,
+     "set": false,
+     "hide": false,
+     "font": "block",
+     "fontFamily": "Anton",
+     "fontFile": "Anton-Regular.ttf",
+     "fontW": "400",
+     "fill": "#ffffff",
+     "stroke": "#a71930"
+    }
+   }
+  }
+ },
+ "NYJ": {
+  "name": "New York Jets",
+  "w": 584,
+  "h": 717,
+  "span": 485,
+  "num": {
+   "y": 0.2007,
+   "size": 0.2014,
+   "x": 0,
+   "sw": 0.05,
+   "set": false,
+   "hide": false,
+   "font": "block",
+   "fontFamily": "Russo One",
+   "fontFile": "RussoOne-Regular.ttf",
+   "fontW": "400",
+   "fill": "#ffffff",
+   "stroke": "#000000"
+  },
+  "kits": {
+   "ext": {
+    "w": 555,
+    "h": 697,
+    "span": 462,
+    "num": {
+     "y": 0.2013,
+     "size": 0.2,
+     "x": 0,
+     "sw": 0.05,
+     "set": false,
+     "hide": false,
+     "font": "block",
+     "fontFamily": "Russo One",
+     "fontFile": "RussoOne-Regular.ttf",
+     "fontW": "400",
+     "fill": "#125740",
+     "stroke": "#000000"
+    }
+   },
+   "alt": {
+    "w": 545,
+    "h": 721,
+    "span": 439,
+    "num": {
+     "y": 0.2056,
+     "size": 0.1899,
+     "x": 0,
+     "sw": 0.05,
+     "set": false,
+     "hide": false,
+     "font": "block",
+     "fontFamily": "Russo One",
+     "fontFile": "RussoOne-Regular.ttf",
+     "fontW": "400",
+     "fill": "#125740",
+     "stroke": "#ffffff"
+    }
+   }
+  }
+ },
+ "PHI": {
+  "name": "Philadelphia Eagles",
+  "w": 550,
+  "h": 703,
+  "span": 461,
+  "num": {
+   "y": 0.2013,
+   "size": 0.2042,
+   "x": 0,
+   "sw": 0.05,
+   "set": false,
+   "hide": false,
+   "font": "block",
+   "fontFamily": "Staatliches",
+   "fontFile": "Staatliches-Regular.ttf",
+   "fontW": "400",
+   "fill": "#ffffff",
+   "stroke": "#a5acaf"
+  },
+  "kits": {
+   "ext": {
+    "w": 582,
+    "h": 711,
+    "span": 480,
+    "num": {
+     "y": 0.2013,
+     "size": 0.2042,
+     "x": 0,
+     "sw": 0.05,
+     "set": false,
+     "hide": false,
+     "font": "block",
+     "fontFamily": "Staatliches",
+     "fontFile": "Staatliches-Regular.ttf",
+     "fontW": "400",
+     "fill": "#004c54",
+     "stroke": "#a5acaf"
+    }
+   },
+   "alt": {
+    "w": 540,
+    "h": 697,
+    "span": 440,
+    "num": {
+     "y": 0.2013,
+     "size": 0.2042,
+     "x": 0,
+     "sw": 0.05,
+     "set": false,
+     "hide": false,
+     "font": "block",
+     "fontFamily": "Staatliches",
+     "fontFile": "Staatliches-Regular.ttf",
+     "fontW": "400",
+     "fill": "#ffffff",
+     "stroke": "#004c54"
+    }
+   }
+  }
+ },
+ "PIT": {
+  "name": "Pittsburgh Steelers",
+  "w": 535,
+  "h": 717,
+  "span": 443,
+  "num": {
+   "y": 0.2264,
+   "size": 0.1667,
+   "x": 0,
+   "sw": 0.05,
+   "set": false,
+   "hide": false,
+   "font": "block",
+   "fontFamily": "Anton",
+   "fontFile": "Anton-Regular.ttf",
+   "fontW": "400",
+   "fill": "#ffb612",
+   "stroke": "#000000"
+  },
+  "kits": {
+   "ext": {
+    "w": 529,
+    "h": 705,
+    "span": 434,
+    "num": {
+     "y": 0.2264,
+     "size": 0.1667,
+     "x": 0,
+     "sw": 0.05,
+     "set": false,
+     "hide": false,
+     "font": "block",
+     "fontFamily": "Anton",
+     "fontFile": "Anton-Regular.ttf",
+     "fontW": "400",
+     "fill": "#000000",
+     "stroke": "#ffb612"
+    }
+   },
+   "alt": {
+    "w": 530,
+    "h": 689,
+    "span": 441,
+    "num": {
+     "y": 0.2264,
+     "size": 0.1667,
+     "x": 0,
+     "sw": 0.05,
+     "set": false,
+     "hide": false,
+     "font": "block",
+     "fontFamily": "Anton",
+     "fontFile": "Anton-Regular.ttf",
+     "fontW": "400",
+     "fill": "#ffb612",
+     "stroke": "#ffffff"
+    }
+   }
+  }
+ },
+ "SEA": {
+  "name": "Seattle Seahawks",
+  "w": 599,
+  "h": 737,
+  "span": 489,
+  "num": {
+   "y": 0.1912,
+   "size": 0.1812,
+   "x": 0,
+   "sw": 0.05,
+   "set": false,
+   "hide": false,
+   "font": "block",
+   "fontFamily": "NFL Seahawks",
+   "fontFile": "NFLSeahawks.ttf",
+   "fontW": "400",
+   "fill": "#69be28",
+   "stroke": "#a5acaf"
+  },
+  "kits": {
+   "ext": {
+    "w": 565,
+    "h": 688,
+    "span": 452,
+    "num": {
+     "y": 0.1912,
+     "size": 0.1812,
+     "x": 0,
+     "sw": 0.05,
+     "set": false,
+     "hide": false,
+     "font": "block",
+     "fontFamily": "NFL Seahawks",
+     "fontFile": "NFLSeahawks.ttf",
+     "fontW": "400",
+     "fill": "#002244",
+     "stroke": "#69be28"
+    }
+   },
+   "alt": {
+    "w": 557,
+    "h": 678,
+    "span": 440,
+    "num": {
+     "y": 0.1912,
+     "size": 0.1812,
+     "x": 0,
+     "sw": 0.05,
+     "set": false,
+     "hide": false,
+     "font": "block",
+     "fontFamily": "NFL Seahawks",
+     "fontFile": "NFLSeahawks.ttf",
+     "fontW": "400",
+     "fill": "#002244",
+     "stroke": "#ffffff"
+    }
+   }
+  }
+ },
+ "TB": {
+  "name": "Tampa Bay Buccaneers",
+  "w": 568,
+  "h": 701,
+  "span": 448,
+  "num": {
+   "y": 0.2007,
+   "size": 0.2014,
+   "x": 0,
+   "sw": 0.05,
+   "set": false,
+   "hide": false,
+   "font": "block",
+   "fontFamily": "Russo One",
+   "fontFile": "RussoOne-Regular.ttf",
+   "fontW": "400",
+   "fill": "#ffffff",
+   "stroke": "#322f2b"
+  },
+  "kits": {
+   "ext": {
+    "w": 601,
+    "h": 714,
+    "span": 474,
+    "num": {
+     "y": 0.2007,
+     "size": 0.2014,
+     "x": 0,
+     "sw": 0.05,
+     "set": false,
+     "hide": false,
+     "font": "block",
+     "fontFamily": "Russo One",
+     "fontFile": "RussoOne-Regular.ttf",
+     "fontW": "400",
+     "fill": "#d50a0a",
+     "stroke": "#34302b"
+    }
+   },
+   "alt": {
+    "w": 542,
+    "h": 678,
+    "span": 429,
+    "num": {
+     "y": 0.201,
+     "size": 0.2008,
+     "x": 0,
+     "sw": 0.05,
+     "set": false,
+     "hide": false,
+     "font": "block",
+     "fontFamily": "Russo One",
+     "fontFile": "RussoOne-Regular.ttf",
+     "fontW": "400",
+     "fill": "#ffffff",
+     "stroke": "#d50a0a"
+    }
+   }
+  }
+ },
+ "TEN": {
+  "name": "Tennessee Titans",
+  "w": 575,
+  "h": 682,
+  "span": 459,
+  "num": {
+   "y": 0.2007,
+   "size": 0.2014,
+   "x": 0,
+   "sw": 0.05,
+   "set": false,
+   "hide": false,
+   "font": "block",
+   "fontFamily": "Russo One",
+   "fontFile": "RussoOne-Regular.ttf",
+   "fontW": "400",
+   "fill": "#ffffff",
+   "stroke": "#c8102e"
+  },
+  "kits": {
+   "ext": {
+    "w": 572,
+    "h": 682,
+    "span": 471,
+    "num": {
+     "y": 0.2007,
+     "size": 0.2014,
+     "x": 0,
+     "sw": 0.05,
+     "set": false,
+     "hide": false,
+     "font": "block",
+     "fontFamily": "Russo One",
+     "fontFile": "RussoOne-Regular.ttf",
+     "fontW": "400",
+     "fill": "#0c2340",
+     "stroke": "#4b92db"
+    }
+   },
+   "alt": {
+    "w": 528,
+    "h": 706,
+    "span": 441,
+    "num": {
+     "y": 0.2064,
+     "size": 0.1878,
+     "x": 0,
+     "sw": 0.05,
+     "set": false,
+     "hide": false,
+     "font": "block",
+     "fontFamily": "Russo One",
+     "fontFile": "RussoOne-Regular.ttf",
+     "fontW": "400",
+     "fill": "#ffffff",
+     "stroke": "#4b92db"
+    }
+   }
+  }
+ },
+ "WSH": {
+  "name": "Washington Commanders",
+  "w": 567,
+  "h": 671,
+  "span": 466,
+  "num": {
+   "y": 0.2264,
+   "size": 0.1667,
+   "x": 0,
+   "sw": 0.05,
+   "set": false,
+   "hide": false,
+   "font": "block",
+   "fontFamily": "Anton",
+   "fontFile": "Anton-Regular.ttf",
+   "fontW": "400",
+   "fill": "#ffb612",
+   "stroke": "#ffffff"
+  },
+  "kits": {
+   "ext": {
+    "w": 568,
+    "h": 706,
+    "span": 455,
+    "num": {
+     "y": 0.2264,
+     "size": 0.1667,
+     "x": 0,
+     "sw": 0.05,
+     "set": false,
+     "hide": false,
+     "font": "block",
+     "fontFamily": "Anton",
+     "fontFile": "Anton-Regular.ttf",
+     "fontW": "400",
+     "fill": "#5a1414",
+     "stroke": "#ffb612"
+    }
+   },
+   "alt": {
+    "w": 521,
+    "h": 714,
+    "span": 425,
+    "num": {
+     "y": 0.2264,
+     "size": 0.1667,
+     "x": 0,
+     "sw": 0.05,
+     "set": false,
+     "hide": false,
+     "font": "block",
+     "fontFamily": "Anton",
+     "fontFile": "Anton-Regular.ttf",
+     "fontW": "400",
+     "fill": "#ffb612",
+     "stroke": "#5a1414"
+    }
+   }
+  }
+ }
+}

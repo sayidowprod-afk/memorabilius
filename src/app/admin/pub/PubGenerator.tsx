@@ -8,13 +8,14 @@ import TikTokMaker from './TikTokMaker'
 import PubPlanning from './PubPlanning'
 import PubCalendar from './PubCalendar'
 import { scheduleMusic, decodeAudioFile, type MusicKind } from './audio'
-import { AD_TX, loadPartnerLogo } from './tiktokAd'
+import { AD_TX, SKINS, loadPartnerLogo, type SkinId } from './tiktokAd'
 import { saveOrShareFile } from '@/lib/saveOrShare'
 
 const W = 1080, H = 1920, FPS = 60, DUR = 33
 const FONT = 'system-ui, -apple-system, "Segoe UI", sans-serif'
 const DISPLAY = `Surfquest, Impact, 'Arial Narrow', ${FONT}`
-const BLUE = '#7fa8ff'
+let BLUE = '#7fa8ff'   // couleur d'accent des textes : change avec l'habillage tiré au hasard
+let SKIN_G: [string, string, string] = ['#050914', '#0a1a4a', '#0d2a7a']   // fond (du plus sombre au plus clair)
 // début de chaque écran du téléphone (s) : galerie, viewer 3D, trades, PC en boîtes, packs, achats, ventes, guides, setlist ; final à fin
 const T0 = { gal: 2.4, viewer: 5.4, trades: 8.4, objectifs: 11.4, packs: 14.4, achats: 17.4, ventes: 20.4, guides: 23.4, setlist: 26.4, fin: 29.4 }
 // téléphone : écran 640 × 1387 (rapport 480:1040 des captures)
@@ -94,7 +95,7 @@ function makeBackground(cards: ImageBitmap[]): HTMLCanvasElement {
   const c = document.createElement('canvas'); c.width = W; c.height = H
   const ctx = c.getContext('2d')!
   const g = ctx.createLinearGradient(0, 0, W * 0.3, H)
-  g.addColorStop(0, '#050914'); g.addColorStop(0.55, '#0a1a4a'); g.addColorStop(1, '#0d2a7a')
+  g.addColorStop(0, SKIN_G[0]); g.addColorStop(0.55, SKIN_G[1]); g.addColorStop(1, SKIN_G[2])
   ctx.fillStyle = g; ctx.fillRect(0, 0, W, H)
   ctx.save(); ctx.globalAlpha = 0.17; ctx.filter = 'blur(14px)'
   cards.slice(1, 4).forEach((b, i) => {
@@ -201,16 +202,33 @@ function pill(ctx: CanvasRenderingContext2D, label: string, color: string, cx: n
 // écrans défilants : début, fin, longue capture, défilement de départ et d'arrivée (px css), légende
 const FADE = 0.45
 type Scr = { a: number; b: number; key: 'gal' | 'trd' | 'ach' | 'ven' | 'gui' | 'set' | 'ob' | 'hm'; from: number; to: number; n: string; title: string; sub: string }
-const SCREENS: Scr[] = [
-  { a: T0.gal, b: T0.viewer, key: 'gal', from: 0, to: 1700, n: '01', title: 'Ta galerie', sub: 'Toute ta collection, en un coup d’œil' },
-  { a: T0.trades, b: T0.objectifs, key: 'trd', from: 0, to: 1500, n: '03', title: 'Trades', sub: 'Vends et échange avec les collectionneurs' },
-  { a: T0.objectifs, b: T0.packs, key: 'ob', from: 0, to: 350, n: '04', title: 'Tes PC', sub: 'Choisis la tenue de chaque figurine' },
-  { a: T0.packs, b: T0.achats, key: 'hm', from: 0, to: 710, n: '05', title: 'Mini-jeux', sub: 'Carte du jour, packs, pronos' },
-  { a: T0.achats, b: T0.ventes, key: 'ach', from: 1780, to: 2780, n: '06', title: 'Tes achats', sub: 'Enchères, suivi des colis, budget' },
-  { a: T0.ventes, b: T0.guides, key: 'ven', from: 0, to: 1000, n: '07', title: 'Tes ventes', sub: 'Offres, expéditions, profit réalisé' },
-  { a: T0.guides, b: T0.setlist, key: 'gui', from: 0, to: 1100, n: '08', title: 'Guides', sub: 'Checklists et conseils pour collectionner' },
-  { a: T0.setlist, b: T0.fin, key: 'set', from: 0, to: 350, n: '09', title: 'Setlist', sub: 'Topps Flagship 2025-26 · Checklists' },
+const SLOTS: [number, number, string][] = [[T0.gal, T0.viewer, '01'], [T0.trades, T0.objectifs, '03'], [T0.objectifs, T0.packs, '04'], [T0.packs, T0.achats, '05'], [T0.achats, T0.ventes, '06'], [T0.ventes, T0.guides, '07'], [T0.guides, T0.setlist, '08'], [T0.setlist, T0.fin, '09']]
+const CONTENT: Omit<Scr, 'a' | 'b' | 'n'>[] = [
+  { key: 'gal', from: 0, to: 1700, title: 'Ta galerie', sub: 'Toute ta collection, en un coup d’œil' },
+  { key: 'trd', from: 0, to: 1500, title: 'Trades', sub: 'Vends et échange avec les collectionneurs' },
+  { key: 'ob', from: 0, to: 350, title: 'Tes PC', sub: 'Choisis la tenue de chaque figurine' },
+  { key: 'hm', from: 0, to: 710, title: 'Mini-jeux', sub: 'Carte du jour, packs, pronos' },
+  { key: 'ach', from: 1780, to: 2780, title: 'Tes achats', sub: 'Enchères, suivi des colis, budget' },
+  { key: 'ven', from: 0, to: 1000, title: 'Tes ventes', sub: 'Offres, expéditions, profit réalisé' },
+  { key: 'gui', from: 0, to: 1100, title: 'Guides', sub: 'Checklists et conseils pour collectionner' },
+  { key: 'set', from: 0, to: 350, title: 'Setlist', sub: 'Topps Flagship 2025-26 · Checklists' },
 ]
+// l'ordre des écrans de l'appli (les créneaux de temps restent les mêmes) : mélangé à chaque nouvelle version, pour que deux vidéos ne se suivent pas pareil
+let SCREENS: Scr[] = SLOTS.map(([a, b, n], i) => ({ a, b, n, ...CONTENT[i] }))
+let lastSkin: SkinId | '' = ''
+// nouvel habillage au hasard (couleurs du fond et des textes) + nouvel ordre des écrans ; jamais le même habillage deux fois de suite
+function newLook(): SkinId {
+  const ids = (Object.keys(SKINS) as SkinId[]).filter(k => k !== lastSkin), id = ids[Math.floor(Math.random() * ids.length)]
+  const sk = SKINS[id]; lastSkin = id
+  SKIN_G = [sk.g[2], sk.g[1], sk.g[0]]; BLUE = `rgb(${sk.halo})`
+  shuffleScreens()
+  return id
+}
+function shuffleScreens(): void {
+  const order = CONTENT.map((_, i) => i)
+  for (let i = order.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)); [order[i], order[j]] = [order[j], order[i]] }
+  SCREENS = SLOTS.map(([a, b, n], i) => ({ a, b, n, ...CONTENT[order[i]] }))
+}
 
 function frame(ctx: CanvasRenderingContext2D, t: number, A: Assets) {
   // fond pré-rendu, très léger mouvement
@@ -325,6 +343,12 @@ export default function PubGenerator() {
 
   const [pos, setPos] = useState(0)
   const [lang, setLang] = useState<Lang>('fr')
+  const reroll = () => {
+    const a = A.current, c = canvasRef.current; if (!a || !c) return
+    const id = newLook(); a.bg = makeBackground(a.cards)
+    setStatus('Nouvelle version : habillage ' + SKINS[id].label + ', écrans dans un autre ordre.')
+    frame(c.getContext('2d')!, 5, a)
+  }
 
   useEffect(() => {
     let dead = false
@@ -358,7 +382,7 @@ export default function PubGenerator() {
         }
         if (dead) return
         const c = canvasRef.current!, ctx = c.getContext('2d')!
-        A.current = { gal, trd, ach, ven, gui, set, ob, hm, vbg: im.vbg, card3, partner: await loadPartnerLogo(), partnerTxt: AD_TX[lang].partner, tx: TX[lang], logo, card, cards, bg: makeBackground(cards), grain: makeGrain(ctx), shell: makeShell(), shadow: makeShadow() }
+        A.current = { gal, trd, ach, ven, gui, set, ob, hm, vbg: im.vbg, card3, partner: await loadPartnerLogo(), partnerTxt: AD_TX[lang].partner, tx: TX[lang], logo, card, cards, bg: (newLook(), makeBackground(cards)), grain: makeGrain(ctx), shell: makeShell(), shadow: makeShadow() }
         setStatus(fallback ? `Prêt · captures ${LANG_NAMES[lang]} absentes : écrans en français, textes traduits` : `Prêt · captures réelles du site · ${LANG_NAMES[lang]}`)
         setReady(true)
         frame(ctx, 5, A.current)
@@ -482,6 +506,7 @@ export default function PubGenerator() {
         <div style={{ display: 'flex', gap: 10, flexWrap: 'wrap', alignItems: 'center', margin: '10px 0', fontSize: 14 }}><label>Musique <select value={musicKind} onChange={e => setMusicKind(e.target.value as MusicKind)} disabled={busy !== 'idle'} style={{ padding: 6, background: '#17214a', color: '#fff', border: '2px solid #243063' }}><option value="lounge">Ambiance douce (salle d’attente)</option><option value="beat">Beat dynamique</option><option value="file">Mon propre morceau…</option><option value="none">Aucune</option></select></label>{musicKind === 'file' && <label style={{ padding: 6, background: '#17214a', border: '2px solid #243063', cursor: 'pointer' }}>{musicFile || 'Choisir un fichier audio'}<input type="file" accept="audio/*" hidden onChange={async e => { const f = e.target.files?.[0]; if (!f) return; try { musicBuf.current = await decodeAudioFile(f); setMusicFile(f.name.slice(0, 28)) } catch { musicBuf.current = null; setMusicFile('Fichier illisible') } e.target.value = '' }} /></label>}</div>
         <label style={{ display: 'flex', gap: 8, alignItems: 'center', fontSize: 14, margin: '10px 0' }}><input type="checkbox" checked={withAudio} onChange={e => setWithAudio(e.target.checked)} disabled={busy !== 'idle'} /> Avec les sons de transition (swipes, sans droits d’auteur)</label>
         <div style={{ display: 'flex', gap: 10, flexWrap: 'wrap' }}>
+          <button type="button" disabled={!ready || busy !== 'idle'} onClick={reroll} style={{ padding: '10px 16px', fontWeight: 800, background: '#17214a', color: '#fff', border: '2px solid #ff3b6b', cursor: 'pointer' }}>🎲 Autre version (couleurs + ordre)</button>
           <button type="button" disabled={!ready || busy !== 'idle'} onClick={() => play(false)} style={{ padding: '10px 16px', fontWeight: 800, background: '#17214a', color: '#fff', border: '2px solid #243063', cursor: 'pointer' }}>▶ Aperçu</button>
           <button type="button" disabled={!ready || busy !== 'idle'} onClick={() => play(true)} style={{ padding: '10px 16px', fontWeight: 800, background: '#2f6bff', color: '#fff', border: 0, cursor: 'pointer' }}>⏺ Créer la vidéo (30 s · 60 fps)</button>
         </div>

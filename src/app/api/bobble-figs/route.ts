@@ -17,5 +17,5 @@ export async function GET(req: Request) {
     if (/^[0-9a-f-]{36}$/i.test(userId)) { try { const rk = rankIn(await playerOwnerCounts(name), userId); pct = rk?.pct; label = rk?.label } catch (e) { console.log('[bobble-figs] % impossible pour', name, String(e)) } }
     figs.push({ name, fig, ...(pct ? { pct, label } : {}) })
   }
-  return NextResponse.json({ figs },{ headers: { 'Cache-Control': 'public, s-maxage=300, stale-while-revalidate=3600' } })
+  return NextResponse.json({ figs },{ headers: { 'Cache-Control': 'public, max-age=0, must-revalidate, s-maxage=300' } })
 }

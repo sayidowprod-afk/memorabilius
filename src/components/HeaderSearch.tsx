@@ -37,6 +37,7 @@ export default function HeaderSearch({ open, onToggle }: { open: boolean; onTogg
   const [q, setQ] = useState('')
   const [data, setData] = useState<Suggestions>({ players: [], collectors: [] })
   const [loading, setLoading] = useState(false)
+  const [figHeads, setFigHeads] = useState<Record<string, string>>({})   // tête du bobblehead des joueurs trouvés (à la place des initiales)
   const [filter, setFilter] = useState<Filter>('all')
   const [recents, setRecents] = useState<string[]>([])
   // 755 · mes propres cartes qui correspondent (lues avec la session du membre : il ne voit que les siennes)
@@ -91,6 +92,17 @@ export default function HeaderSearch({ open, onToggle }: { open: boolean; onTogg
     }, 300)
     return () => { if (debounceRef.current) clearTimeout(debounceRef.current) }
   }, [q])
+
+  useEffect(() => {
+    const names = data.players.filter(n => !(n in figHeads)).slice(0, 12)
+    if (!names.length) return
+    let off = false
+    fetch(`/api/bobble-heads?names=${encodeURIComponent(names.join('|'))}`).then(r => (r.ok ? r.json() : null)).then(d => {
+      if (off || !d?.heads) return
+      setFigHeads(cur => { const n = { ...cur }; for (const nm of names) n[nm] = d.heads[nm] || ''; return n })
+    }).catch(() => { /* initiales conservées */ })
+    return () => { off = true }
+  }, [data.players]) // eslint-disable-line react-hooks/exhaustive-deps
 
   const nq = q.trim().toLowerCase()
   const teams = nq.length >= 2 && (filter === 'all' || filter === 'teams') ? SPORTS_TEAMS.filter(team => team.name.toLowerCase().includes(nq)).slice(0, 5) : []
@@ -191,7 +203,10 @@ export default function HeaderSearch({ open, onToggle }: { open: boolean; onTogg
           {players.length > 0 && <div style={headStyle}>{heads.players}</div>}
           {players.map(name => (
             <Link key={name} href={`/joueur/${playerSlug(name)}`} style={itemStyle} onClick={pick}>
-              <span style={{ ...thumb, background: 'linear-gradient(135deg, #1e63e0, #00307e)', color: '#fff', fontSize: 10, fontWeight: 800 }} aria-hidden="true">{initials(name)}</span>
+              {figHeads[name]
+                // eslint-disable-next-line @next/next/no-img-element
+                ? <span style={{ width: 34, height: 38, flexShrink: 0, display: 'flex', alignItems: 'center', justifyContent: 'center', margin: '-4px 0' }} aria-hidden="true"><img src={figHeads[name]} alt="" style={{ height: 38, width: 'auto', maxWidth: 34, objectFit: 'contain', background: 'transparent', border: 0, borderRadius: 0, boxShadow: 'none', filter: 'drop-shadow(0 1px 2px rgba(0,0,0,.45))' }} /></span>
+                : <span style={{ ...thumb, background: 'linear-gradient(135deg, #1e63e0, #00307e)', color: '#fff', fontSize: 10, fontWeight: 800 }} aria-hidden="true">{initials(name)}</span>}
               {name}
             </Link>
           ))}

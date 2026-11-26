@@ -3,6 +3,22 @@ const W = 1080, H = 1920
 const FONT = 'system-ui, -apple-system, "Segoe UI", sans-serif'
 const DISPLAY = `Surfquest, Impact, 'Arial Narrow', ${FONT}`
 const ACCENT = '#ffd84d'
+// Habillages : chaque vidéo en tire un au hasard (couleurs du fond, des halos, des pastilles de texte), pour qu'elles ne se ressemblent pas toutes
+export type SkinId = 'bleu' | 'nuit' | 'rouge' | 'emeraude' | 'violet' | 'orange'
+export type Skin = { id: SkinId; label: string; g: [string, string, string]; halo: string; halo2: string; accent: string; pill: string; light: string; btn: string }
+export const SKINS: Record<SkinId, Skin> = {
+  bleu: { id: 'bleu', label: 'Bleu Memorabilius', g: ['#0d3190', '#0a1f66', '#050d33'], halo: '80,140,255', halo2: '255,216,77', accent: '#ffd84d', pill: '#0a1030', light: '#c9d6ff', btn: '#0a1f66' },
+  nuit: { id: 'nuit', label: 'Nuit et or', g: ['#1a1a1f', '#0e0e12', '#050507'], halo: '255,200,90', halo2: '255,255,255', accent: '#f5c451', pill: '#17130a', light: '#e8dcc0', btn: '#17130a' },
+  rouge: { id: 'rouge', label: 'Rouge', g: ['#a3122a', '#6b0c1c', '#2b050b'], halo: '255,120,120', halo2: '255,235,160', accent: '#ffffff', pill: '#6b0c1c', light: '#ffd9dd', btn: '#6b0c1c' },
+  emeraude: { id: 'emeraude', label: 'Émeraude', g: ['#0a7a5a', '#065040', '#03221b'], halo: '90,255,200', halo2: '255,240,150', accent: '#c6ff5c', pill: '#06352a', light: '#c9f5e6', btn: '#065040' },
+  violet: { id: 'violet', label: 'Violet', g: ['#4b1fa8', '#2d1270', '#100630'], halo: '190,130,255', halo2: '255,150,220', accent: '#ff9be2', pill: '#2a0f66', light: '#e4d6ff', btn: '#2d1270' },
+  orange: { id: 'orange', label: 'Orange', g: ['#e0561a', '#9c3410', '#3d1405'], halo: '255,190,110', halo2: '255,255,255', accent: '#fff2c4', pill: '#7a2a0b', light: '#ffe3cf', btn: '#9c3410' },
+}
+let TH: Skin = SKINS.bleu   // habillage de la vidéo en cours de dessin
+// Formats : des montages différents, pas seulement d'autres textes
+export type AdFormat = 'classique' | 'mur' | 'avant-apres' | 'focus' | 'rapide'
+export const FORMATS: Record<AdFormat, string> = { classique: 'Classique (accroche, écrans, carte 3D)', mur: 'Mur de cartes', 'avant-apres': 'Avant / après (chaos puis rangé)', focus: 'Focus carte + écrans côte à côte', rapide: 'Rapide (cuts courts)' }
+export type Trans = 'flash' | 'wipe' | 'zoom'
 const clamp = (x: number, a = 0, b = 1) => Math.min(b, Math.max(a, x))
 const eo = (t: number) => 1 - Math.pow(1 - clamp(t), 3)
 const eio = (t: number) => { t = clamp(t); return t * t * (3 - 2 * t) }
@@ -17,6 +33,7 @@ export type AdAssets = {
   shell: HTMLCanvasElement; shadow: HTMLCanvasElement; logo: HTMLCanvasElement | null
   cards: Prep[]; hook: string; cta: string; partner: HTMLCanvasElement | null; gui: Tall; tx: AdTx; scenes: Scene[]; fallback: boolean
   intro?: IntroStyle
+  format: AdFormat; skin: Skin; trans: Trans; dur: number; lang: Lang
 }
 // Début de la vidéo (les 1,5 premières secondes décident de tout : un fond bleu avec du texte ne retient personne) :
 //  texte = l'accroche seule (l'ancien début) · carte = la première carte, nette et en grand, dès la première image · question = une question + la carte
@@ -104,7 +121,9 @@ export async function loadPartnerLogo(): Promise<HTMLCanvasElement | null> {
   } catch { return null }
 }
 
-export async function loadAdAssets(cards: Prep[], hook: string, cta: string, lang: Lang = 'fr'): Promise<AdAssets> {
+export async function loadAdAssets(cards: Prep[], hook: string, cta: string, lang: Lang = 'fr', opts: { format?: AdFormat; skin?: SkinId; trans?: Trans } = {}): Promise<AdAssets> {
+  const format = opts.format ?? 'classique', skin = SKINS[opts.skin ?? 'bleu'], trans = opts.trans ?? 'flash'
+  const scenes = scenesFor(lang, format)
   const names = ['g0', 'g1', 'g2', 'g3', 'tr0', 'tr1', 'tr2', 'tr3', 'vt0', 'vt1', 'vt2', 'gd0', 'gd1', 'gd2', 'sl0', 'sl1', 'sl2', 'ob0', 'ob1', 'hm0', 'hm1', 'vbg']
   const dir = lang === 'fr' ? '/ad/app_' : `/ad/${lang}/app_`
   let fallback = false
@@ -124,7 +143,8 @@ export async function loadAdAssets(cards: Prep[], hook: string, cta: string, lan
     ob: stitch([{ img: im.ob0, y: 0 }, { img: im.ob1, y: 350 }], { head: 60, nav: 0, navx: 0 }),
     hm: stitch([{ img: im.hm0, y: 0 }, { img: im.hm1, y: 710 }], { head: 60, nav: 0, navx: 0 }),
     gui: stitch([{ img: im.gd0, y: 0 }, { img: im.gd1, y: 700 }, { img: im.gd2, y: 1400 }]),
-    vbg: im.vbg, shell: makeShell(), shadow: makeShadow(), logo, cards, hook, cta, partner: await loadPartnerLogo(), tx: AD_TX[lang], scenes: scenesFor(lang), fallback,
+    vbg: im.vbg, shell: makeShell(), shadow: makeShadow(), logo, cards, hook, cta, partner: await loadPartnerLogo(), tx: AD_TX[lang], scenes, fallback, format, skin, trans, dur: scenes[scenes.length - 1].b, lang,
+    intro: format === 'focus' ? 'zoom' : format === 'rapide' ? 'carte' : undefined,
   }
 }
 
@@ -153,8 +173,8 @@ function caption(ctx: CanvasRenderingContext2D, text: string, k: number, y: numb
         const last = n === words.length, pop = eb(seg(k, (n - 1) * 0.09, (n - 1) * 0.09 + 0.16)), cx = x + ws[wi] / 2, cy = y0 + li * lh
         ctx.save(); ctx.translate(cx, cy); ctx.scale(0.65 + 0.35 * pop, 0.65 + 0.35 * pop); ctx.globalAlpha = clamp(pop * 2)
         if (last) { // dernier mot : pastille jaune, texte sombre (mise en avant façon TikTok)
-          ctx.fillStyle = ACCENT; ctx.beginPath(); ctx.roundRect(-ws[wi] / 2, -size * 0.58, ws[wi], size * 1.16, size * 0.2); ctx.fill()
-          ctx.fillStyle = '#0a1030'; ctx.textAlign = 'center'; ctx.fillText(w, 0, size * 0.02)
+          ctx.fillStyle = TH.accent; ctx.beginPath(); ctx.roundRect(-ws[wi] / 2, -size * 0.58, ws[wi], size * 1.16, size * 0.2); ctx.fill()
+          ctx.fillStyle = TH.pill; ctx.textAlign = 'center'; ctx.fillText(w, 0, size * 0.02)
         } else {
           ctx.shadowColor = 'rgba(0,10,50,.55)'; ctx.shadowBlur = size * 0.2; ctx.shadowOffsetY = size * 0.07
           ctx.fillStyle = '#fff'; ctx.textAlign = 'center'; ctx.fillText(w, 0, size * 0.02)
@@ -168,12 +188,12 @@ function caption(ctx: CanvasRenderingContext2D, text: string, k: number, y: numb
 }
 // fond aux couleurs de la marque : dégradé bleu profond, halos qui bougent doucement, filets de lumière, vignette
 function bg(ctx: CanvasRenderingContext2D, _p: Prep | undefined, t: number, hue = 0) {
-  const g = ctx.createLinearGradient(0, 0, W * 0.5, H); g.addColorStop(0, '#0d3190'); g.addColorStop(0.5, '#0a1f66'); g.addColorStop(1, '#050d33')
+  const g = ctx.createLinearGradient(0, 0, W * 0.5, H); g.addColorStop(0, TH.g[0]); g.addColorStop(0.5, TH.g[1]); g.addColorStop(1, TH.g[2])
   ctx.fillStyle = g; ctx.fillRect(0, 0, W, H)
   const gx = W * (0.5 + 0.28 * Math.sin(t * 0.45 + hue)), gy = H * (0.36 + 0.06 * Math.cos(t * 0.5 + hue))
-  const r1 = ctx.createRadialGradient(gx, gy, 0, gx, gy, 950); r1.addColorStop(0, 'rgba(80,140,255,.42)'); r1.addColorStop(1, 'rgba(80,140,255,0)')
+  const r1 = ctx.createRadialGradient(gx, gy, 0, gx, gy, 950); r1.addColorStop(0, `rgba(${TH.halo},.42)`); r1.addColorStop(1, `rgba(${TH.halo},0)`)
   ctx.fillStyle = r1; ctx.fillRect(0, 0, W, H)
-  const r2 = ctx.createRadialGradient(W * 0.85, H * 0.9, 0, W * 0.85, H * 0.9, 800); r2.addColorStop(0, 'rgba(255,216,77,.16)'); r2.addColorStop(1, 'rgba(255,216,77,0)')
+  const r2 = ctx.createRadialGradient(W * 0.85, H * 0.9, 0, W * 0.85, H * 0.9, 800); r2.addColorStop(0, `rgba(${TH.halo2},.16)`); r2.addColorStop(1, `rgba(${TH.halo2},0)`)
   ctx.fillStyle = r2; ctx.fillRect(0, 0, W, H)
   ctx.save(); ctx.translate(W / 2, H / 2); ctx.rotate(-0.42)
   for (let i = 0; i < 3; i++) {
@@ -204,14 +224,58 @@ function card3d(ctx: CanvasRenderingContext2D, shadow: HTMLCanvasElement, b: Ima
 
 // ── montage : chaque scène démarre sur un temps du beat (120 bpm = 0,5 s)
 export const AD_DUR = 17
-type Scene = { id: 'hook' | 'gal' | 'v3d' | 'trd' | 'ven' | 'gui' | 'set' | 'ob' | 'hm' | 'mon' | 'cta'; a: number; b: number; key?: 'gal' | 'trd' | 'ven' | 'gui' | 'set' | 'ob' | 'hm'; from?: number; to?: number }
-export function scenesFor(lang: Lang): Scene[] {
+type SceneId = 'hook' | 'gal' | 'v3d' | 'trd' | 'ven' | 'gui' | 'set' | 'ob' | 'hm' | 'mon' | 'cta' | 'wall' | 'pile' | 'order' | 'big' | 'duo'
+type Key = 'gal' | 'trd' | 'ven' | 'gui' | 'set' | 'ob' | 'hm'
+type Scene = { id: SceneId; a: number; b: number; key?: Key; from?: number; to?: number; key2?: Key; off?: number }
+// textes des nouvelles scènes (les autres sont dans AD_TX.caps)
+const NEWCAPS: Record<Lang, Record<string, string>> = {
+  fr: { wall: 'Toutes tes cartes, enfin rangées', pile: 'Avant : le chaos', order: 'Après : tout est à sa place', big: 'Chaque carte mérite mieux qu’un tiroir', duo: 'Galerie, échanges, setlists : tout y est' },
+  en: { wall: 'All your cards, finally organized', pile: 'Before: chaos', order: 'After: everything in its place', big: 'Every card deserves better than a drawer', duo: 'Gallery, trades, setlists: it’s all there' },
+  de: { wall: 'Alle deine Karten, endlich geordnet', pile: 'Vorher: Chaos', order: 'Nachher: alles an seinem Platz', big: 'Jede Karte verdient mehr als eine Schublade', duo: 'Galerie, Tausch, Setlisten: alles da' },
+  es: { wall: 'Todas tus cartas, por fin ordenadas', pile: 'Antes: caos', order: 'Después: todo en su sitio', big: 'Cada carta merece más que un cajón', duo: 'Galería, intercambios, setlists: todo está' },
+  it: { wall: 'Tutte le tue carte, finalmente in ordine', pile: 'Prima: caos', order: 'Dopo: tutto al suo posto', big: 'Ogni carta merita più di un cassetto', duo: 'Galleria, scambi, setlist: c’è tutto' },
+}
+export function scenesFor(lang: Lang, format: AdFormat = 'classique'): Scene[] {
+  const fr = lang === 'fr'
+  if (format === 'mur') return [
+    { id: 'hook', a: 0, b: 1.5 },
+    { id: 'wall', a: 1.5, b: 4.5 },
+    { id: 'v3d', a: 4.5, b: 6.5 },
+    { id: 'gal', a: 6.5, b: 8.5, key: 'gal', from: 0, to: 1500 },
+    { id: 'hm', a: 8.5, b: 10.5, key: 'hm', from: 0, to: 710 },
+    { id: 'cta', a: 10.5, b: 13 },
+  ]
+  if (format === 'avant-apres') return [
+    { id: 'hook', a: 0, b: 1.5 },
+    { id: 'pile', a: 1.5, b: 3.5 },
+    { id: 'order', a: 3.5, b: 6 },
+    { id: 'gal', a: 6, b: 8, key: 'gal', from: 0, to: 1500 },
+    { id: 'set', a: 8, b: 10, key: 'set', from: 0, to: 350 },
+    { id: 'trd', a: 10, b: 11.5, key: 'trd', from: 0, to: 1300 },
+    { id: 'cta', a: 11.5, b: 14 },
+  ]
+  if (format === 'focus') return [
+    { id: 'hook', a: 0, b: 2 },
+    { id: 'big', a: 2, b: 4.5 },
+    { id: 'v3d', a: 4.5, b: 6.5 },
+    { id: 'duo', a: 6.5, b: 9, key: 'gal', key2: 'trd', from: 0, to: 1300 },
+    { id: 'hm', a: 9, b: 11, key: 'hm', from: 0, to: 710 },
+    { id: 'cta', a: 11, b: 13.5 },
+  ]
+  if (format === 'rapide') return [
+    { id: 'hook', a: 0, b: 1 },
+    { id: 'mon', a: 1, b: 3, off: 0 },
+    { id: 'duo', a: 3, b: 5, key: 'set', key2: 'ob', from: 0, to: 350 },
+    { id: 'mon', a: 5, b: 7, off: 4 },
+    { id: 'wall', a: 7, b: 9 },
+    { id: 'cta', a: 9, b: 11 },
+  ]
   return [
     { id: 'hook', a: 0, b: 1.5 },
     { id: 'gal', a: 1.5, b: 3.5, key: 'gal', from: 0, to: 1500 },
     { id: 'v3d', a: 3.5, b: 5.5 },
     { id: 'trd', a: 5.5, b: 7, key: 'trd', from: 0, to: 1300 },
-    lang === 'fr' ? { id: 'ven', a: 7, b: 8.5, key: 'ven', from: 0, to: 950 } : { id: 'gui', a: 7, b: 8.5, key: 'gui', from: 0, to: 1100 },
+    fr ? { id: 'ven', a: 7, b: 8.5, key: 'ven', from: 0, to: 950 } : { id: 'gui', a: 7, b: 8.5, key: 'gui', from: 0, to: 1100 },
     { id: 'set', a: 8.5, b: 10, key: 'set', from: 0, to: 350 },
     { id: 'ob', a: 10, b: 11.5, key: 'ob', from: 0, to: 350 },
     { id: 'hm', a: 11.5, b: 13.5, key: 'hm', from: 0, to: 710 },
@@ -220,7 +284,27 @@ export function scenesFor(lang: Lang): Scene[] {
   ]
 }
 
+// carte à plat (coins nets, jamais arrondis) dans une boîte w × h
+function flatCard(ctx: CanvasRenderingContext2D, p: Prep, cx: number, cy: number, bw: number, bh: number, rot: number, sc: number) {
+  const f = Math.min(bw / p.bmp.width, bh / p.bmp.height), cw = p.bmp.width * f, ch = p.bmp.height * f
+  ctx.save(); ctx.translate(cx, cy); ctx.rotate(rot); ctx.scale(sc, sc)
+  ctx.fillStyle = 'rgba(0,0,30,.42)'; ctx.fillRect(-cw / 2 + 10, -ch / 2 + 16, cw, ch)
+  ctx.drawImage(p.bmp, -cw / 2, -ch / 2, cw, ch); ctx.restore()
+}
+// grille de cartes (3 colonnes) et tas désordonné : positions fixes, donc la même chose à chaque image
+const GRID = Array.from({ length: 9 }, (_, i) => ({ x: W / 2 + ((i % 3) - 1) * 324, y: 650 + Math.floor(i / 3) * 444 }))
+const PILE = [[250, 800, -0.5], [640, 720, 0.35], [850, 1000, -0.25], [330, 1180, 0.6], [700, 1330, -0.45], [520, 960, 0.15], [180, 1450, 0.3], [880, 1560, 0.5], [500, 1560, -0.2]].map(([x, y, r]) => ({ x, y, r }))
+// téléphone avec un écran de l'appli (taille et position libres)
+function phoneAt(ctx: CanvasRenderingContext2D, A: AdAssets, key: Key, scroll: number, cx: number, cy: number, scale: number, rot: number) {
+  ctx.save(); ctx.translate(cx, cy); ctx.rotate(rot); ctx.scale(scale, scale)
+  ctx.drawImage(A.shell, -A.shell.width / 2, -A.shell.height / 2)
+  ctx.save(); ctx.beginPath(); ctx.roundRect(-SWP / 2, -SHP / 2, SWP, SHP, 64); ctx.clip()
+  screen(ctx, A[key], scroll, -SWP / 2, -SHP / 2, SWP, SHP)
+  ctx.restore(); ctx.restore()
+}
+
 export function drawAd(ctx: CanvasRenderingContext2D, t: number, A: AdAssets) {
+  TH = A.skin || SKINS.bleu
   const SC = A.scenes, sc = SC.find(s => t >= s.a && t < s.b) ?? SC[SC.length - 1]
   const idx = SC.indexOf(sc), k = t - sc.a, dur = sc.b - sc.a, cards = A.cards
   const pu = eo(seg(k, 0, 0.22)) // « punch » à chaque cut
@@ -264,6 +348,39 @@ export function drawAd(ctx: CanvasRenderingContext2D, t: number, A: AdAssets) {
     screen(ctx, A[sc.key], scroll, -SWP / 2, -SHP / 2, SWP, SHP)
     ctx.restore(); ctx.restore()
     caption(ctx, A.tx.caps[sc.id] || '', k, 300, 112)
+  } else if (sc.id === 'wall') {
+    bg(ctx, undefined, t, 1)
+    const n = Math.max(1, cards.length)
+    GRID.forEach((g, i) => {
+      const p = cards[i % n], pop = eb(seg(k, i * 0.07, i * 0.07 + 0.4)); if (pop <= 0.01) return
+      flatCard(ctx, p, g.x + dx, g.y - k * 14 + dy, 300, 420, (i % 2 ? 1 : -1) * 0.012 * (1 - pop), 0.7 + 0.3 * pop)
+    })
+    caption(ctx, NEWCAPS[A.lang].wall, k, 240, 108)
+  } else if (sc.id === 'pile') {
+    bg(ctx, undefined, t, 3)
+    const n = Math.max(1, cards.length)
+    PILE.forEach((g, i) => { const pop = eb(seg(k, i * 0.05, i * 0.05 + 0.35)); if (pop > 0.01) flatCard(ctx, cards[i % n], g.x, g.y + Math.sin(k * 2 + i) * 6, 300, 420, g.r + Math.sin(k * 1.5 + i) * 0.03, 0.75 + 0.25 * pop) })
+    caption(ctx, NEWCAPS[A.lang].pile, k, 240, 112)
+  } else if (sc.id === 'order') {
+    bg(ctx, undefined, t, 2)
+    const n = Math.max(1, cards.length)
+    GRID.forEach((g, i) => {
+      const pi = PILE[i], pr = eio(seg(k, 0.15 + i * 0.07, 0.15 + i * 0.07 + 0.8))
+      flatCard(ctx, cards[i % n], lerp(pi.x, g.x, pr), lerp(pi.y, g.y, pr), 300, 420, lerp(pi.r, 0, pr), 1)
+    })
+    caption(ctx, NEWCAPS[A.lang].order, k, 240, 108)
+  } else if (sc.id === 'big') {
+    bg(ctx, undefined, t, 4)
+    const c = cards[Math.min(1, cards.length - 1)]
+    if (c) card3d(ctx, A.shadow, c.bmp, W / 2 + dx, 960 + dy, lerp(1120, 1260, eio(seg(k, 0, dur))), 0.22 * Math.sin(k * 1.8), 0.04 * Math.sin(k * 1.3), (k * 0.45) % 1)
+    caption(ctx, NEWCAPS[A.lang].big, k, 250, 100)
+  } else if (sc.id === 'duo') {
+    bg(ctx, cards[idx % Math.max(1, cards.length)], t, idx)
+    const e = eo(seg(k, 0, 0.35))
+    const scr = lerp(sc.from!, sc.to!, eio(seg(k, 0.25, dur - 0.1)))
+    phoneAt(ctx, A, sc.key!, scr, W / 2 - 250 + dx, 1050 + dy + (1 - e) * 220, 0.56, -0.05)
+    phoneAt(ctx, A, sc.key2!, scr * 0.8, W / 2 + 250 + dx, 1100 + dy + (1 - e) * 320, 0.56, 0.05)
+    caption(ctx, NEWCAPS[A.lang].duo, k, 300, 104)
   } else if (sc.id === 'v3d') {
     bg(ctx, undefined, t, 2)
     const hg = ctx.createRadialGradient(W / 2, 1030, 0, W / 2, 1030, 700); hg.addColorStop(0, 'rgba(255,255,255,.22)'); hg.addColorStop(1, 'rgba(255,255,255,0)'); ctx.fillStyle = hg; ctx.fillRect(0, 0, W, H)
@@ -271,7 +388,7 @@ export function drawAd(ctx: CanvasRenderingContext2D, t: number, A: AdAssets) {
     if (c3) card3d(ctx, A.shadow, c3.bmp, W / 2 + dx, 1030 + dy, lerp(1000, 1180, pu), 0.72 * Math.sin(2.4 * (k - 0.1)) * eio(seg(k, 0, 0.5)), 0.05 * Math.sin(k * 1.6), (k * 0.5) % 1)
     caption(ctx, A.tx.caps[sc.id] || '', k, 300, 112)
   } else if (sc.id === 'mon') {
-    const per = (dur) / 4, i = Math.min(3, Math.floor(k / per)), kk = k - i * per, p = cards[(i + 1) % Math.max(1, cards.length)]
+    const per = (dur) / 4, i = Math.min(3, Math.floor(k / per)), kk = k - i * per, p = cards[(i + 1 + (sc.off ?? 0)) % Math.max(1, cards.length)]
     bg(ctx, p, t, i)
     if (p) {
       const ppu = eo(seg(kk, 0, 0.2)), f = Math.min(860 / p.bmp.width, 1080 / p.bmp.height), cw = p.bmp.width * f, ch = p.bmp.height * f
@@ -290,17 +407,21 @@ export function drawAd(ctx: CanvasRenderingContext2D, t: number, A: AdAssets) {
     // bouton au style du site : angles droits, blanc plein, titre en Surfquest
     ctx.fillStyle = '#fff'; ctx.fillRect(-310, -62, 620, 124)
     ctx.strokeStyle = 'rgba(255,255,255,.55)'; ctx.lineWidth = 6; ctx.strokeRect(-322, -74, 644, 148)
-    ctx.fillStyle = '#0a1f66'; ctx.font = `400 78px ${DISPLAY}`; ctx.textAlign = 'center'; ctx.textBaseline = 'middle'; ctx.fillText('MEMORABILIUS.FR', 0, 6)
+    ctx.fillStyle = TH.btn; ctx.font = `400 78px ${DISPLAY}`; ctx.textAlign = 'center'; ctx.textBaseline = 'middle'; ctx.fillText('MEMORABILIUS.FR', 0, 6)
     ctx.restore()
-    ctx.save(); ctx.globalAlpha = p3; ctx.textAlign = 'center'; ctx.textBaseline = 'middle'; ctx.font = `700 36px ${FONT}`; ctx.fillStyle = '#c9d6ff'; ctx.fillText(A.tx.free, W / 2, 1165); ctx.restore()
+    ctx.save(); ctx.globalAlpha = p3; ctx.textAlign = 'center'; ctx.textBaseline = 'middle'; ctx.font = `700 36px ${FONT}`; ctx.fillStyle = TH.light; ctx.fillText(A.tx.free, W / 2, 1165); ctx.restore()
     if (A.partner) {
       const p4 = eo(seg(k, 1.2, 1.7)), pw = 600, ph = (A.partner.height / A.partner.width) * pw
-      ctx.save(); ctx.globalAlpha = p4; ctx.textAlign = 'center'; ctx.textBaseline = 'middle'; ctx.font = `600 32px ${FONT}`; ctx.fillStyle = '#c9d6ff'; ctx.fillText(A.tx.partner, W / 2, 1330)
+      ctx.save(); ctx.globalAlpha = p4; ctx.textAlign = 'center'; ctx.textBaseline = 'middle'; ctx.font = `600 32px ${FONT}`; ctx.fillStyle = TH.light; ctx.fillText(A.tx.partner, W / 2, 1330)
       ctx.drawImage(A.partner, W / 2 - pw / 2, 1385 + (1 - p4) * 20, pw, ph); ctx.restore()
     }
   }
-  // flash blanc à chaque cut
-  const fl = (1 - seg(k, 0, 0.13)) * (idx === 0 ? 0 : 0.45); if (fl > 0) { ctx.fillStyle = `rgba(255,255,255,${fl})`; ctx.fillRect(0, 0, W, H) }
+  // transition à chaque cut : flash blanc, balayage de couleur ou coup de zoom (selon la vidéo)
+  if (idx > 0) {
+    if (A.trans === 'wipe') { const w = seg(k, 0, 0.3); if (w > 0 && w < 1) { ctx.fillStyle = TH.accent; ctx.fillRect(W * (eio(w) * 2 - 1), 0, W, H) } }
+    else if (A.trans === 'zoom') { const z = 1 - seg(k, 0, 0.16); if (z > 0) { ctx.fillStyle = `rgba(0,0,0,${z * 0.55})`; ctx.fillRect(0, 0, W, H) } }
+    else { const fl = (1 - seg(k, 0, 0.13)) * 0.45; if (fl > 0) { ctx.fillStyle = `rgba(255,255,255,${fl})`; ctx.fillRect(0, 0, W, H) } }
+  }
   // barre de progression
-  ctx.fillStyle = 'rgba(255,255,255,.25)'; ctx.fillRect(60, 70, W - 120, 8); ctx.fillStyle = '#fff'; ctx.fillRect(60, 70, (W - 120) * clamp(t / AD_DUR), 8)
+  ctx.fillStyle = 'rgba(255,255,255,.25)'; ctx.fillRect(60, 70, W - 120, 8); ctx.fillStyle = '#fff'; ctx.fillRect(60, 70, (W - 120) * clamp(t / (A.dur || AD_DUR)), 8)
 }

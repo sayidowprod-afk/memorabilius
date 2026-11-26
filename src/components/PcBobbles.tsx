@@ -30,6 +30,7 @@ export default function PcBobbles({ pcs, ownerId, maxHeight = 150 }: { pcs?: Pc[
   const ref = useRef<HTMLDivElement>(null)
   const catalog = useKitCatalog()
   const catalogMlb = useKitCatalog('mlb')   // les joueurs de baseball prennent leurs tenues dans le catalogue MLB
+  const catalogNfl = useKitCatalog('nfl')   // ceux de football américain dans le catalogue NFL
   const [livePcs, setLivePcs] = useState<Pc[] | null>(null)   // PC modifiés dans l'onglet Objectifs (tenue choisie) : mise à jour immédiate
   useEffect(() => {
     const h = (e: Event) => { const d = (e as CustomEvent).detail; if (d?.userId === ownerId && Array.isArray(d.pcs)) setLivePcs(d.pcs) }
@@ -98,7 +99,7 @@ export default function PcBobbles({ pcs, ownerId, maxHeight = 150 }: { pcs?: Pc[
           <Link key={name} href={`/joueur/${playerSlug(name)}`} title={name} aria-label={`Fiche de ${name}`}
             style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', width: slot, flex: `0 0 ${slot}px`, textDecoration: 'none', pointerEvents: 'auto' }}>
             {pct ? <span style={{ fontSize: Math.max(8, Math.min(10, Math.round(slot / 11))), fontWeight: medal(label) ? 900 : 700, color: medal(label)?.c || 'rgba(255,255,255,.62)', textShadow: medal(label) ? `0 0 6px ${medal(label)!.glow}` : undefined, letterSpacing: '.04em', lineHeight: 1, marginBottom: 7, whiteSpace: 'nowrap' }}>{label || `Top ${pct} %`}</span> : null}
-            <BobbleHero fig={withKit({ ...fig, extra: (fig.sport === 'mlb' ? catalogMlb : catalog)?.kits }, kitOf.get(name))} name={name} height={h} />
+            <BobbleHero fig={withKit({ ...fig, extra: (fig.sport === 'mlb' ? catalogMlb : fig.sport === 'nfl' ? catalogNfl : catalog)?.kits }, kitOf.get(name))} name={name} height={h} />
           </Link>
         ))}
       </div>

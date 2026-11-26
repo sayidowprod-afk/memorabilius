@@ -4,6 +4,16 @@ export type Entry = { date: string; titre: string; points: string[] }
 
 export const ENTRIES: Entry[] = [
   {
+    date: '30 novembre 2026', titre: 'Bobbleheads de football américain (NFL), recherche avec les têtes',
+    points: [
+      'Les figurines NFL arrivent : 100 joueurs avec leur tête, sur le maillot de leur équipe (page joueur, galerie, Mes PC).',
+      'Les 32 équipes NFL ont leurs 3 tenues aux vraies couleurs : domicile, extérieur et alternative, avec le bon numéro et la bonne police.',
+      'Dans Mes PC, choisir l’équipe ou la tenue d’un joueur NFL ne propose plus que des équipes NFL.',
+      'Recherche : pour les joueurs qui ont une figurine, leur tête s’affiche à la place des initiales.',
+      'Les nouvelles têtes et tenues apparaissent tout de suite, sans attendre que ton navigateur vide son cache.',
+    ],
+  },
+  {
     date: '30 novembre 2026', titre: 'Accueil mobile : pseudo toujours lisible',
     points: [
       'Accueil sur téléphone : ton pseudo n’est plus coupé en haut de l’écran, il reste sur une seule ligne et sa taille s’adapte à sa longueur.',

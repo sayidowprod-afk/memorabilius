@@ -49,21 +49,6 @@ const GROUPS: { title: string; links: AdminLink[] }[] = [
       { href: '/admin/pub', icon: '🎬', title: 'Générateur de pub', desc: 'Vidéos 9:16 (TikTok, Reels, Shorts) : présentation du site et pub TikTok par langue' },
     ],
   },
-  {
-    title: 'IA / ML',
-    links: [
-      { href: '/admin/diecut-test', icon: '✂️', title: 'Test DieCut', desc: 'Modèle expérimental de détection de forme die-cut — test uniquement' },
-    ],
-  },
-  {
-    title: 'Design',
-    links: [
-      { href: '/admin/da', icon: '🎨', title: 'Idées visuelles — classeurs & bibliothèque', desc: '23 pistes (visuel, animations, technique/perf) pour les classeurs et la bibliothèque de la galerie, en maquettes vivantes — page de travail, rien n\'est modifié sur le site' },
-      { href: '/design-preview/tags', icon: '🏷️', title: 'Comparaison des icônes', desc: 'RC / AUTO / PATCH / NUM : 4 styles comparés sur de vraies cartes' },
-      { href: '/essai-paralleles', icon: '🌈', title: 'Essai : parallèles d’une carte', desc: 'Toutes les parallèles d’une de tes cartes (Silver, Gold…), celles que tu as, celles qui manquent, et le Rainbow.' },
-      { href: '/essai-gyro', icon: '📱', title: 'Essai : inclinaison au gyroscope', desc: 'La carte réagit à l’inclinaison du téléphone (reflet, inclinaison). À ouvrir sur ton téléphone ; comparaison avec la carte intacte.' },
-    ],
-  },
 ]
 
 export default function AdminHubPage() {

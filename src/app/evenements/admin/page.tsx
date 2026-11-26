@@ -78,6 +78,15 @@ export default function AdminEvenements() {
     setLoading(false)
   }
 
+  // Ajout, modification et suppression passent par l'API admin (clé de service) : la sécurité de la base refusait la suppression des participants et un champ vide faisait échouer l'ajout, le tout sans message.
+  const callEvents = async (body: Record<string, unknown>): Promise<boolean> => {
+    const { data: { session } } = await supabase.auth.getSession()
+    const r = await fetch('/api/admin/events', { method: 'POST', headers: { 'Content-Type': 'application/json', Authorization: 'Bearer ' + (session?.access_token || '') }, body: JSON.stringify(body) })
+    const j = await r.json().catch(() => ({}))
+    if (!r.ok || j.error) { toast.error('Erreur : ' + (j.error || r.status)); return false }
+    return true
+  }
+
   const approve = async (req: Request) => {
     await supabase.from('events').insert({
       title: req.title, description: req.description, date: req.date, time: req.time, end_date: req.end_date,
@@ -94,13 +103,7 @@ export default function AdminEvenements() {
 
   const deleteEvent = async (id: number) => {
     if (!confirm(t('evadmin_confirm_delete_event'))) return
-    // Avant : erreurs ignorees en silence (ni RLS ni contrainte verifiees) --
-    // un admin cliquait "Supprimer", rien ne se passait, aucun message pour
-    // comprendre pourquoi. On remonte maintenant la vraie erreur Postgres.
-    const { error: attErr } = await supabase.from('event_attendees').delete().eq('event_id', id)
-    if (attErr) { toast.error('Erreur suppression participants : ' + attErr.message); return }
-    const { error: evErr } = await supabase.from('events').delete().eq('id', id)
-    if (evErr) { toast.error('Erreur suppression événement : ' + evErr.message); return }
+    if (!(await callEvents({ action: 'delete', id }))) return
     loadAll()
   }
 
@@ -116,12 +119,13 @@ export default function AdminEvenements() {
   const saveEdit = async () => {
     if (!editingEvent) return
     setSaving(true)
-    await supabase.from('events').update({
+    const ok = await callEvents({ action: 'update', id: editingEvent.id, event: {
       title: editingEvent.title, description: editingEvent.description, date: editingEvent.date,
       time: editingEvent.time, end_date: editingEvent.end_date,
       city: editingEvent.city, country: editingEvent.country, location_name: editingEvent.location_name,
       website: editingEvent.website, image_url: editingEvent.image_url
-    }).eq('id', editingEvent.id)
+    } })
+    if (!ok) { setSaving(false); return }
     setSaving(false)
     setEditingEvent(null)
     loadAll()
@@ -130,8 +134,9 @@ export default function AdminEvenements() {
   const addManual = async () => {
     if (!manualForm.title || !manualForm.date || !manualForm.city) return
     setSaving(true)
-    await supabase.from('events').insert({ ...manualForm })
+    const ok = await callEvents({ action: 'create', event: manualForm })
     setSaving(false)
+    if (!ok) return
     setShowAddManual(false)
     setManualForm({ title: '', description: '', date: '', time: '', end_date: '', city: '', country: 'France', location_name: '', website: '', image_url: '' })
     loadAll()

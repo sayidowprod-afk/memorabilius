@@ -467,15 +467,15 @@ export default function MesPCTab({ cards, cardsLoaded = true, userId, accent, da
                 const first = isPlayer ? (pc.firstName || words[0] || '') : words.slice(0, -1).join(' ')
                 const last = isPlayer ? (pc.lastName || words.slice(1).join(' ') || words[0]) : words[words.length - 1]
                 const oldAb = pc.kit && pc.kit.includes('-') ? pc.kit.split('-')[0] : null   // ancienne équipe choisie (Bobcats, SuperSonics) : la boîte prend ses couleurs
-                const isMlb = fig?.sport === 'mlb'   // joueur de baseball : couleurs et logo de son équipe MLB
-                const mlbTeam = isMlb ? SPORTS_TEAMS.find(t => t.id === `mlb:${oldAb || fig!.body.team}`) : null
+                const isMlb = !!fig?.sport   // joueur de baseball ou de football américain : couleurs et logo de son équipe
+                const mlbTeam = isMlb ? SPORTS_TEAMS.find(t => t.id === `${fig!.sport}:${oldAb || fig!.body.team}`) : null
                 const pal = isPlayer
                   ? (isMlb ? { primary: mlbTeam?.color || '#1b3a8a', secondary: '#ffffff' } : (Object.values(TEAM_COLORS).find(t => t.abbr === (oldAb || fig?.body.team)) ?? { primary: '#1b3a8a', secondary: '#ffffff' }))
                   : (teamPalette(fTeam!.name) ?? { primary: fTeam!.color || '#003da6', secondary: '#ffffff' })
                 const list = fTeam ? franchise[teamSlug(fTeam.name)] : undefined
                 // logo de l'équipe de la tenue affichée (rond blanc en bas à gauche de la boîte)
                 const badgeAb = isPlayer && fig ? (oldAb || fig.body.team) : ''
-                const badgeTeam = badgeAb ? SPORTS_TEAMS.find(t => t.id === `${isMlb ? 'mlb' : 'nba'}:${badgeAb}`) : null
+                const badgeTeam = badgeAb ? SPORTS_TEAMS.find(t => t.id === `${isMlb ? fig!.sport : 'nba'}:${badgeAb}`) : null
                 const badge = badgeTeam ? teamLogoUrl(badgeTeam, true) : isMlb ? undefined : badgeAb === 'SEA' ? '/team-logos/hist-seattle-supersonics.svg' : badgeAb === 'BOB' ? '/team-logos/hist-charlotte-bobcats.png' : undefined
                 const have = list ? list.filter(x => { const k = normalizeName(x[0]); return pc.manualChecks && k in pc.manualChecks ? pc.manualChecks[k] : ownedKeys.has(k) }).length : 0
                 return (

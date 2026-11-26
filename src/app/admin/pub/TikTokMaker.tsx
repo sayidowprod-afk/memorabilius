@@ -7,7 +7,7 @@ import { encodeMp4 } from './encode'
 import { saveOrShareFile } from '@/lib/saveOrShare'
 import { scheduleMusic, scheduleHits, decodeAudioFile, type MusicKind } from './audio'
 import PubCaption from './PubCaption'
-import { AD_DUR, AD_TX, LANG_NAMES, drawAd, loadAdAssets, type AdAssets, type Lang, type IntroStyle } from './tiktokAd'
+import { AD_DUR, AD_TX, LANG_NAMES, FORMATS, SKINS, drawAd, loadAdAssets, type AdAssets, type Lang, type IntroStyle, type AdFormat, type SkinId, type Trans } from './tiktokAd'
 
 const W = 1080, H = 1920, FPS = 60
 const FONT = 'system-ui, -apple-system, "Segoe UI", sans-serif'
@@ -189,6 +189,11 @@ export default function TikTokMaker() {
   const [busy, setBusy] = useState(false)
   const [video, setVideo] = useState<string | null>(null)
   const [introStyle, setIntroStyle] = useState<IntroStyle>('carte')
+  const [fmt, setFmt] = useState<AdFormat | 'auto'>('auto')   // format du montage : « auto » = tiré au hasard, jamais deux fois le même d'affilée
+  const [skinSel, setSkinSel] = useState<SkinId | 'auto'>('auto')
+  const fmtRef = useRef<AdFormat | 'auto'>('auto'); fmtRef.current = fmt
+  const skinRef = useRef<SkinId | 'auto'>('auto'); skinRef.current = skinSel
+  const lastLook = useRef<{ f?: AdFormat; s?: SkinId; t?: Trans }>({})
   const introRef = useRef<IntroStyle>('carte'); introRef.current = introStyle
   const [variants, setVariants] = useState<{ label: string; url: string; blob: Blob }[]>([])
   const [videoBlob, setVideoBlob] = useState<Blob | null>(null)
@@ -215,7 +220,7 @@ export default function TikTokMaker() {
   musicRef.current = music
   adModeRef.current = adMode
   busyRef.current = busy
-  const total = adMode ? AD_DUR : timeline(cfg).total
+  const total = adMode ? (adRef.current?.dur ?? AD_DUR) : timeline(cfg).total
 
   useEffect(() => {
     let dead = false
@@ -270,7 +275,7 @@ export default function TikTokMaker() {
   const create = async () => {
     const c = canvasRef.current; if (!c || !(adModeRef.current ? adRef.current : cfgRef.current.items.length)) return
     cancelAnimationFrame(raf.current); busyRef.current = true; setBusy(true); setVideo(null)
-    const ad = adModeRef.current, dur = ad ? AD_DUR : timeline(cfgRef.current).total, ctx = c.getContext('2d')!
+    const ad = adModeRef.current, dur = ad ? (adRef.current?.dur ?? AD_DUR) : timeline(cfgRef.current).total, ctx = c.getContext('2d')!
     const res = await encodeMp4({
       canvas: c, fps: FPS, dur, draw: t => { if (ad && adRef.current) drawAd(ctx, t, adRef.current); else drawTT(ctx, t, cfgRef.current, prepRef.current, logoRef.current) },
       audio: ac => { scheduleMusic(ac, ac.destination, 0, dur, musicRef.current, fileBufRef.current); if (ad) scheduleHits(ac, ac.destination, 0, (adRef.current?.scenes ?? []).map(s => s.a).slice(1)) },
@@ -356,7 +361,15 @@ export default function TikTokMaker() {
       if (good.length < 4) throw new Error('pas assez de belles photos lisibles')
       // la meilleure carte passe en 3D (4e position), les autres alimentent le montage
       const arr = good.length >= 4 ? [good[1], good[2], good[3], good[0], ...good.slice(4)] : good
-      adRef.current = await loadAdAssets(arr, pick(AD_TX[lang].hooks), pick(AD_TX[lang].ctas), lang)
+      // format, habillage et transition : tirés au hasard (différents de la vidéo précédente) sauf si tu en as choisi un
+      const other = <T,>(list: T[], last?: T): T => { const l = list.length > 1 ? list.filter(x => x !== last) : list; return l[Math.floor(Math.random() * l.length)] }
+      const look = {
+        f: fmtRef.current === 'auto' ? other(Object.keys(FORMATS) as AdFormat[], lastLook.current.f) : fmtRef.current,
+        s: skinRef.current === 'auto' ? other(Object.keys(SKINS) as SkinId[], lastLook.current.s) : skinRef.current,
+        t: other(['flash', 'wipe', 'zoom'] as Trans[], lastLook.current.t),
+      }
+      lastLook.current = look
+      adRef.current = await loadAdAssets(arr, pick(AD_TX[lang].hooks), pick(AD_TX[lang].ctas), lang, { format: look.f, skin: look.s, trans: look.t })
       adModeRef.current = true; setAdMode(true)
       if (musicRef.current === 'none') { /* son coupé par choix */ }
       if (withVariants) {
@@ -403,6 +416,10 @@ export default function TikTokMaker() {
             setHook(on ? tx.hook : 'Ma collection de cartes'); setCta(on ? tx.cta : 'Rejoins les collectionneurs')
           }} /> Pub TCG (cartes à jouer de la galerie uniquement)
         </label>
+        <label style={{ fontSize: 13, display: 'block', margin: '0 0 8px' }}>Format de la vidéo <select value={fmt} onChange={e => setFmt(e.target.value as AdFormat | 'auto')} disabled={busy} style={box}>
+          <option value="auto">Au hasard (différent à chaque fois)</option>{(Object.keys(FORMATS) as AdFormat[]).map(f => <option key={f} value={f}>{FORMATS[f]}</option>)}</select></label>
+        <label style={{ fontSize: 13, display: 'block', margin: '0 0 8px' }}>Couleurs <select value={skinSel} onChange={e => setSkinSel(e.target.value as SkinId | 'auto')} disabled={busy} style={box}>
+          <option value="auto">Au hasard (différentes à chaque fois)</option>{(Object.keys(SKINS) as SkinId[]).map(k => <option key={k} value={k}>{SKINS[k].label}</option>)}</select></label>
         <label style={{ fontSize: 13, display: 'block', margin: '0 0 8px' }}>Début de la vidéo <select value={introStyle} onChange={e => setIntroStyle(e.target.value as IntroStyle)} disabled={busy} style={box}>
           <option value="carte">Carte en grand dès la 1re image (conseillé)</option><option value="question">Question + carte</option><option value="zoom">Gros plan qui se dézoome</option><option value="texte">Texte seul (ancien début)</option></select></label>
         <button type="button" disabled={busy} onClick={() => autoAd(true)} style={{ width: '100%', padding: '12px 16px', fontWeight: 800, fontSize: 15, background: '#17214a', color: '#fff', border: '2px solid #ff3b6b', cursor: busy ? 'default' : 'pointer', margin: '0 0 10px' }}>🎬 Créer 3 versions (carte, question, gros plan)</button>
