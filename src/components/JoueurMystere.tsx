@@ -30,13 +30,13 @@ const logoOf = (abbr: string) => `https://a.espncdn.com/i/teamlogos/nba/500/${ab
 
 // Le jour du jeu est décidé par le SERVEUR (minuit, heure de Paris), jamais par l'horloge de l'appareil :
 // on lit /api/jeu-joueur/today, puis on se reprogramme pile au prochain minuit du serveur et chaque fois que l'onglet redevient visible.
-type Today = { day: string; n: number; nextAt: number; skew: number }   // skew = écart entre l'horloge du serveur et celle de l'appareil
+type Today = { day: string; n: number; kind: 'actuel' | 'ancien'; nextAt: number; skew: number }   // skew = écart entre l'horloge du serveur et celle de l'appareil ; kind = joueur du jour actuel ou ancien
 function useServerDay() {
   const [today, setToday] = useState<Today | null>(null)
   const load = useCallback(() => {
     fetch('/api/jeu-joueur/today', { cache: 'no-store' })
       .then(r => (r.ok ? r.json() : Promise.reject()))
-      .then(d => setToday(prev => (prev && prev.day === d.day ? { ...prev, nextAt: d.nextAt, skew: d.now - Date.now() } : { day: d.day, n: d.n, nextAt: d.nextAt, skew: d.now - Date.now() })))
+      .then(d => setToday(prev => (prev && prev.day === d.day ? { ...prev, nextAt: d.nextAt, skew: d.now - Date.now() } : { day: d.day, n: d.n, kind: d.kind === 'ancien' ? 'ancien' : 'actuel', nextAt: d.nextAt, skew: d.now - Date.now() })))
       .catch(() => { /* on réessaiera au prochain retour sur l'onglet */ })
   }, [])
   useEffect(() => { load() }, [load])
@@ -239,6 +239,7 @@ export default function JoueurMystere() {
                   {Array.from({ length: MAX }, (_, i) => <i key={i} className={i < tries ? (won && i === tries - 1 ? 'w' : 'u') : i === tries && !over ? 'n' : ''} />)}
                 </div>
                 <span className="jm-try">{over ? (won ? 'Trouvé !' : 'Perdu') : `Essai ${tries + 1} / ${MAX}`}</span>
+                {!over && today && <span className={'jm-kind ' + today.kind} title="Indice offert : le joueur du jour est un joueur actuel de la ligue ou un ancien joueur retraité">{today.kind === 'ancien' ? '🏛️ Ancien joueur' : '🏀 Joueur actuel'}</span>}
                 {over && answer && <Link href={`/joueur/${playerSlug(answer.name)}`} className="jm-cards">🃏 Voir ses cartes</Link>}
               </div>
             </div>
@@ -367,6 +368,7 @@ const CSS = `
 .jm-h2 { font-family: ${SURFQUEST}; font-weight: 400; font-size: 28px; letter-spacing: 1px; margin: 0 8px 0 0; text-transform: uppercase; }
 .jm-chip { font-weight: 800; font-size: 12px; padding: 6px 12px; border-radius: 999px; border: 1px solid rgba(255,255,255,.35); background: rgba(255,255,255,.08); color: #fff; }
 .jm-chip.gold { border-color: #d4a017; color: #ffd98a; background: rgba(212,160,23,.12); }
+.jm-kind { font-weight: 800; font-size: 12px; padding: 5px 10px; border: 1px solid #5ec2ff; color: #bfe6ff; background: rgba(94,194,255,.12); white-space: nowrap; } .jm-kind.ancien { border-color: #d4a017; color: #ffd98a; background: rgba(212,160,23,.12); }
 .jm-chip.btn { cursor: pointer; color: #8db6ff; border-color: rgba(141,182,255,.55); background: transparent; font-family: inherit; }
 .jm-chip.btn:hover { background: rgba(141,182,255,.12); }
 .jm-help { border: 2px solid rgba(255,255,255,.2); background: rgba(255,255,255,.05); padding: 14px 18px; margin: 0 0 18px; font-size: 14px; line-height: 1.55; max-width: 760px; }
@@ -386,7 +388,7 @@ const CSS = `
 .jm-mc-back { transform: rotateY(180deg); background: linear-gradient(180deg, var(--team, #1b3a8a) 0%, #060c24 100%); padding: 6px; }
 .jm-mc-back b { font-size: 12px; line-height: 1.15; } .jm-mc-back small { font-size: 9px; opacity: .8; } .jm-mc-back .jm-logo { position: absolute; right: 4px; top: 4px; width: 22px; height: 22px; }
 .jm-mc-ph { width: 62%; aspect-ratio: 1; border-radius: 50%; object-fit: cover; object-position: top; background: #243063; border: 2px solid #fff; }
-.jm-info { display: flex; flex-direction: column; gap: 8px; }
+.jm-info { display: flex; flex-direction: column; align-items: flex-start; justify-content: center; text-align: left; gap: 8px; flex: 1; min-width: 0; } .jm-info .jm-pips { justify-content: flex-start; }
 .jm-pips { display: flex; gap: 5px; flex-wrap: wrap; max-width: 200px; } .jm-pips i { width: 16px; height: 16px; border: 2px solid rgba(255,255,255,.4); display: block; } .jm-pips i.u { background: #55608c; border-color: #55608c; } .jm-pips i.w { background: #1fae4a; border-color: #1fae4a; } .jm-pips i.n { border-color: #ffd98a; animation: jmPulse 1.4s ease-in-out infinite; }
 .jm-try { font-weight: 800; font-size: 15px; }
 .jm-main { min-width: 0; }

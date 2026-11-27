@@ -4,6 +4,14 @@ export type Entry = { date: string; titre: string; points: string[] }
 
 export const ENTRIES: Entry[] = [
   {
+    date: '30 novembre 2026', titre: 'Joueur mystère : un indice « actuel ou ancien » et un affichage plus clair',
+    points: [
+      'Joueur mystère : un badge te dit dès le début si le joueur du jour est un joueur actuel (badge bleu clair) ou un ancien joueur retraité (badge doré). Il est affiché sous ton numéro d’essai.',
+      'Le changement de joueur à minuit (heure de Paris) est maintenant décidé par le serveur : tout le monde bascule en même temps, même si l’heure de ton téléphone est fausse.',
+      'Sur téléphone, la fin de partie est plus compacte : la figurine à côté de son nom, et le récapitulatif resserré.',
+    ],
+  },
+  {
     date: '30 novembre 2026', titre: 'Joueur mystère NBA, thème jour retravaillé et galeries plus fidèles',
     points: [
       'Nouveau jeu : le Joueur mystère. Chaque jour, un joueur NBA (actuel ou ancien) à trouver en 8 essais. C’est le même pour tout le monde et il change à minuit, heure de Paris. Les cases se colorent (équipe, conférence, division, poste, taille, âge, numéro, pays) pour t’aider, et à la fin tu vois sa figurine, avec un lien vers ses cartes. Il est sur l’accueil (tu peux le déplacer ou le masquer avec « Personnaliser ») et sur sa page.',
