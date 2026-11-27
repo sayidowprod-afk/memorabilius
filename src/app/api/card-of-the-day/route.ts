@@ -95,8 +95,39 @@ export async function GET() {
   }
   const nice = (cands as any[]).filter(c => beauty(c) >= 3)
   const pool = nice.length ? nice : (cands as any[])
-  let pick: any = pool[0], top = -1
-  for (const c of pool) { const sc = hash(`${day}|${c.id}`); if (sc > top) { top = sc; pick = c } }
+  // Variete : on tire d'abord un COLLECTIONNEUR, puis un JOUEUR de sa collection, puis une carte (avant : une carte parmi toutes,
+  // donc un collectionneur qui possede beaucoup de belles cartes du meme joueur revenait presque chaque jour).
+  // On ecarte les collectionneurs et les joueurs deja mis en avant ces 7 derniers jours (lus dans la table carte_du_jour) ; si tout est ecarte, on les reprend.
+  const pastOwners = new Set<string>(), pastNames = new Set<string>()
+  const lastSeen = new Map<string, string>()   // collectionneur -> dernier jour mis en avant
+  const weekAgo = new Date(Date.UTC(Number(day.slice(0, 4)), Number(day.slice(5, 7)) - 1, Number(day.slice(8, 10)) - 7)).toISOString().slice(0, 10)
+  try {
+    // jamais le meme collectionneur (ni le meme joueur) deux fois dans la meme semaine : on exclut les 7 jours precedents
+    const { data: past } = await supabase.from('carte_du_jour').select('day, payload').lt('day', day).order('day', { ascending: false }).limit(60)
+    for (const r of past || []) {
+      const c = (r as any).payload?.card
+      const d = (r as any).day as string
+      if (c?.owner?.id && !lastSeen.has(c.owner.id)) lastSeen.set(c.owner.id, d)
+      if (d >= weekAgo) {
+        if (c?.owner?.id) pastOwners.add(c.owner.id)
+        if (c?.nom) pastNames.add(String(c.nom).trim().toLowerCase())
+      }
+    }
+  } catch { /* table absente : pas d'historique */ }
+  const best = <T,>(items: T[], key: (x: T) => string): T => {
+    let top = -1, win = items[0]
+    for (const x of items) { const sc = hash(`${day}|${key(x)}`); if (sc > top) { top = sc; win = x } }
+    return win
+  }
+  const owners = [...new Set(pool.map((c: any) => c.user_id as string))]
+  const freshOwners = owners.filter(o => !pastOwners.has(o))
+  // (si tous les collectionneurs ont deja eu leur tour cette semaine, on prend celui dont le dernier passage est le plus ancien)
+  const owner = freshOwners.length ? best(freshOwners, o => o) : [...owners].sort((a, b) => (lastSeen.get(a) || '').localeCompare(lastSeen.get(b) || ''))[0]
+  const mine = pool.filter((c: any) => c.user_id === owner)
+  const names = [...new Set(mine.map((c: any) => String(c.nom).trim().toLowerCase()))]
+  const freshNames = names.filter(n => !pastNames.has(n))
+  const name = best(freshNames.length ? freshNames : names, n => `${owner}|${n}`)
+  const pick: any = best(mine.filter((c: any) => String(c.nom).trim().toLowerCase() === name), (c: any) => c.id)
   const prof: any = (profiles || []).find((p: any) => p.id === pick.user_id)
   const [y, m, d] = day.split('-').map(Number)
   const payload = {
