@@ -12,6 +12,7 @@ import SkeletonBlock from '@/components/SkeletonBlock'
 import EmptyState from '@/components/EmptyState'
 import CardPicker from '@/components/CardPicker'
 import OnlineIndicator from '@/components/OnlineIndicator'
+import Breadcrumb from '@/components/Breadcrumb'
 
 const ACCENT = '#003DA6'
 const EMOJIS = ['👍', '❤️', '🔥', '😂', '😮', '🏀', '💎', '🐐']
@@ -629,6 +630,8 @@ export default function TeamPage({ params }: { params: Promise<{ teamId: string 
           .team-header-actions { flex-basis: 100% !important; order: 3; }
         }
       `}</style>
+
+      <Breadcrumb items={[{ label: t('teams_title'), href: '/teams' }, { label: team.name }]} />
 
       {/* Header — meme traitement que le header de profil galerie : degrade
           d'accent en bas a droite, plutot qu'un aplat uni. */}

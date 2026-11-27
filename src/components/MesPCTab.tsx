@@ -346,8 +346,8 @@ export default function MesPCTab({ cards, cardsLoaded = true, userId, accent, da
       )}
       <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 20 }}>
         <div>
-          <h2 style={{ fontSize: 18, fontWeight: 900, color: text, margin: '0 0 2px' }}>PCs</h2>
-          <p style={{ fontSize: 12, color: muted, margin: 0 }}>
+          <h2 className="on-deco" style={{ fontSize: 18, fontWeight: 900, color: text, margin: '0 0 2px' }}>PCs</h2>
+          <p className="on-deco-2" style={{ fontSize: 12, color: muted, margin: 0 }}>
             {pcs.length === 0
               ? (isOwner ? 'Ajoute ce que tu collectionnes' : 'Aucun PC partagé')
               : `${pcs.length} PC${pcs.length > 1 ? 's' : ''} suivi${pcs.length > 1 ? 's' : ''}`}

@@ -58,9 +58,15 @@ export async function GET(req: NextRequest) {
   if (rateLimited(req, 'packs-get', 120, 60_000)) return NextResponse.json({ error: 'Too many requests' }, { status: 429 })
   const view = req.nextUrl.searchParams.get('view') || 'state'
   if (view === 'inventory') {
-    const { data, error } = await admin.rpc('pack_inventory', { p_user: user.id })
-    if (error) return NextResponse.json({ error: error.message }, { status: 503 })
-    const rows = (data || []) as { credit: string | null }[]
+    // Supabase plafonne chaque réponse à 1000 lignes : on lit l'inventaire par pages de 1000
+    const rows: { credit: string | null }[] = []
+    for (let from = 0; from < 20000; from += 1000) {
+      const { data, error } = await admin.rpc('pack_inventory', { p_user: user.id }).range(from, from + 999)
+      if (error) return NextResponse.json({ error: error.message }, { status: 503 })
+      const page = (data || []) as { credit: string | null }[]
+      rows.push(...page)
+      if (page.length < 1000) break
+    }
     const credits = await creditNames(rows.map(r => r.credit))
     return NextResponse.json({ cards: rows.map(r => ({ ...r, credit: r.credit ? credits[r.credit] || null : null })) })
   }
@@ -148,7 +154,11 @@ export async function POST(req: NextRequest) {
     let commons = 0
     // cartes déjà possédées : on les évite le plus souvent (il peut y en avoir, mais moins)
     const ownedSet = new Set<number>()
-    { const { data: own } = await admin.from('user_pack_cards').select('entry_id').eq('user_id', user.id).limit(6000); for (const o of own || []) ownedSet.add(o.entry_id as number) }
+    for (let from = 0; from < 20000; from += 1000) {   // pages de 1000 (plafond Supabase)
+      const { data: own } = await admin.from('user_pack_cards').select('entry_id').eq('user_id', user.id).order('entry_id').range(from, from + 999)
+      for (const o of own || []) ownedSet.add(o.entry_id as number)
+      if ((own?.length || 0) < 1000) break
+    }
     const usedHigh = new Set<number>()   // au plus 1 rare, 1 épique et 1 légendaire par pack
     for (const m of slots) {
       // au plus PACK_MAX_COMMONS communes : au-delà, les emplacements libres sont tirés parmi les raretés supérieures

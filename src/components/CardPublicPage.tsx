@@ -4,6 +4,7 @@ import { useEffect, useState, useRef } from 'react'
 import { useRouter } from 'next/navigation'
 import Link from 'next/link'
 import { createClient } from '@supabase/supabase-js'
+import Breadcrumb from '@/components/Breadcrumb'
 import CardValueModule from './CardValueModule'
 import SameCardCollectors from './SameCardCollectors'
 import CardTagBadges from '@/components/CardTagBadges'
@@ -113,13 +114,11 @@ export default function CardPublicPage({ userId, cardSlug, src }: Props) {
       `}</style>
 
       {/* Breadcrumb */}
-      <div style={{ marginBottom: 24, display: 'flex', alignItems: 'center', gap: 8, fontSize: 13, color: '#999' }}>
-        <Link href="/annuaire" style={{ color: '#999', textDecoration: 'none' }}>Annuaire</Link>
-        <span>›</span>
-        {profile && <Link href={`/galerie/${userId}`} style={{ color: accent, textDecoration: 'none', fontWeight: 700 }}>{profile.display_name}</Link>}
-        <span>›</span>
-        <span style={{ color: 'var(--text2, #333)', fontWeight: 600 }}>{card.n}</span>
-      </div>
+      <Breadcrumb items={[
+        { label: 'Annuaire', href: '/annuaire' },
+        ...(profile ? [{ label: profile.display_name, href: `/galerie/${userId}` }] : []),
+        { label: card.n },
+      ]} />
 
       <div className="card-page-layout">
         {/* Image */}

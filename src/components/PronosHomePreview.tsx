@@ -740,7 +740,7 @@ export default function PronosHomePreview() {
           </p>
         ) : visible.length > 0 ? (
           <>
-            <MatchList matches={showAll ? visible : visible.slice(0, MATCH_LIMIT)} picks={picks} onPick={handlePick} />
+            <div className="pronos-table"><MatchList matches={showAll ? visible : visible.slice(0, MATCH_LIMIT)} picks={picks} onPick={handlePick} /></div>
             {visible.length > MATCH_LIMIT && (
               <button type="button" onClick={() => setShowAll(v => !v)}
                 style={{ ...pillBase, margin: '12px auto 0', padding: '8px 18px', fontSize: 13, background: 'transparent', color: '#8db6ff', border: '1px solid rgba(141,182,255,.55)' }}>

@@ -47,6 +47,9 @@ export async function GET(req: NextRequest) {
       const mx = Math.max(...ints); if (mx > 5000 || ints.size < mx * 0.5) return
       const miss: number[] = []
       for (let n = 1; n <= mx; n++) if (!ints.has(n)) miss.push(n)
+      // Un gros bloc manquant dès le début (ex. n° 2–350 sur un set numéroté 351–699, « Series 2 ») est un décalage de numérotation, pas un trou : on l'écarte.
+      let lead = 0; while (lead < miss.length && miss[lead] === (miss[0] <= 2 ? miss[0] : -1) + lead) lead++
+      if (miss[0] <= 2 && lead >= 30) miss.splice(0, lead)
       if (miss.length) holes.push({ id: s.id, name: s.name, year: s.year, sport: s.sport, tcdb_id: s.tcdb_id, manque: miss.length, max: mx, exemples: ranges(miss) })
     }
     for (const part of chunk(slice, 12)) await Promise.all(part.map(s => analyse(s).catch(() => undefined)))

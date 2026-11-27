@@ -753,15 +753,15 @@ const DD_TEXT: Record<string, { add: string; since: string; likes: string; comme
 // Vignette optimisee (meme optimiseur que la galerie, mise en cache 1 an) pour les images Supabase ; autres sources : image d'origine
 const heroThumb = (url: string, w: number) => (url.includes('.supabase.co') ? `/_next/image?url=${encodeURIComponent(url)}&w=${w}&q=75` : url)
 
-type BlockId = 'hero' | 'score' | 'actions' | 'search' | 'activity' | 'progress' | 'cotd' | 'site' | 'tcg' | 'pronos' | 'pepites' | 'podium'
+type BlockId = 'hero' | 'score' | 'actions' | 'search' | 'activity' | 'progress' | 'cotd' | 'joueur' | 'site' | 'tcg' | 'pronos' | 'pepites' | 'podium'
 // tous les blocs de l'accueil, dans l'ordre par défaut : chacun peut être déplacé ou masqué
-const DEFAULT_BLOCKS: BlockId[] = ['hero', 'score', 'actions', 'search', 'activity', 'progress', 'cotd', 'site', 'tcg', 'pronos', 'pepites', 'podium']
-const EXTRA_IDS: string[] = ['tcg', 'pronos', 'pepites', 'podium']
+const DEFAULT_BLOCKS: BlockId[] = ['hero', 'score', 'actions', 'search', 'activity', 'progress', 'cotd', 'joueur', 'site', 'tcg', 'pronos', 'pepites', 'podium']
+const EXTRA_IDS: string[] = ['joueur', 'tcg', 'pronos', 'pepites', 'podium']
 const BLOCK_NAMES: Record<string, { fr: string; en: string }> = {
   hero: { fr: 'Ma galerie (compteur et dernières cartes)', en: 'My gallery' }, score: { fr: 'RC · Auto · Patch · Num', en: 'RC · Auto · Patch · Num' },
   actions: { fr: 'Raccourcis', en: 'Shortcuts' }, search: { fr: 'Recherche', en: 'Search' },
   cotd: { fr: 'Carte du jour et packs', en: 'Daily card and packs' }, tcg: { fr: 'Cartes à jouer (TCG)', en: 'Trading card games' },
-  pronos: { fr: 'Pronos', en: 'Predictions' }, pepites: { fr: 'Dernières pépites', en: 'Latest finds' }, podium: { fr: 'Podium du mois', en: 'Monthly podium' },
+  joueur: { fr: 'Joueur mystère', en: 'Mystery player' }, pronos: { fr: 'Pronos', en: 'Predictions' }, pepites: { fr: 'Dernières pépites', en: 'Latest finds' }, podium: { fr: 'Podium du mois', en: 'Monthly podium' },
 }
 // ajoute à un ancien réglage les blocs qu'il ne connaît pas, à leur place habituelle
 function mergeOrder(saved: BlockId[]): BlockId[] {

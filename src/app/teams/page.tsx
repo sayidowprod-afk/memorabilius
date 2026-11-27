@@ -185,15 +185,15 @@ export default function Teams() {
                     <span className="da-display dir-num" style={{ fontSize: 30, lineHeight: 1, color: dark ? '#fff' : '#06122e' }}>{memberCount}</span>
                   </td>
                   <td style={{ padding: '14px 16px', borderBottom: `1px solid ${dark ? 'rgba(255,255,255,0.14)' : 'rgba(6,18,46,0.14)'}` }}>
-                    <span className="da-display dir-num" style={{ fontSize: 30, lineHeight: 1, color: dark ? '#5aa9ff' : '#1565c0' }}>{stats ? stats.total.toLocaleString('fr-FR') : '...'}</span>
+                    <span className="da-display dir-num" style={{ fontSize: 30, lineHeight: 1, color: 'var(--acc-info)' }}>{stats ? stats.total.toLocaleString('fr-FR') : '...'}</span>
                   </td>
                   <td style={{ padding: '14px 16px', borderBottom: `1px solid ${dark ? 'rgba(255,255,255,0.14)' : 'rgba(6,18,46,0.14)'}` }}>
                     {isMyTeam ? (
-                      <Link href={`/teams/${team.id}`} className="dir-act" style={{ color: '#ffd54a' }}>{t('teams_my_team')}</Link>
+                      <Link href={`/teams/${team.id}`} className="dir-act" style={{ color: 'var(--acc-reward)' }}>{t('teams_my_team')}</Link>
                     ) : pending ? (
-                      <span className="dir-sq" style={{ color: '#ff9a3c' }}>⏳ En attente</span>
+                      <span className="dir-sq" style={{ color: 'var(--acc-wait)' }}>⏳ En attente</span>
                     ) : userId ? (
-                      <button onClick={() => joinTeam(team.id)} disabled={loading} aria-label={`${t('teams_join_aria')} ${team.name}`} className="dir-act" style={{ color: dark ? '#4cd37b' : '#1f8a45' }}>
+                      <button onClick={() => joinTeam(team.id)} disabled={loading} aria-label={`${t('teams_join_aria')} ${team.name}`} className="dir-act" style={{ color: 'var(--acc-ok)' }}>
                         {t('teams_join')}
                       </button>
                     ) : (

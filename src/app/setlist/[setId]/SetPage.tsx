@@ -9,6 +9,7 @@ import { TEAM_COLORS } from '@/lib/teamColors'
 import { SPORTS_TEAMS, teamLogoUrl } from '@/lib/sportsTeams'
 import SetlistReportDialog from '@/components/SetlistReportDialog'
 import './sl2.css'
+import Breadcrumb from '@/components/Breadcrumb'
 
 type SetInfo = { id: number; name: string; year: number | null; brand: string | null; sport: string; total_cards: number }
 type Entry = { id: number; card_number: string | null; player_name: string; team: string | null; variation: string | null; is_rc: boolean; is_auto: boolean; image_url: string | null }
@@ -580,6 +581,7 @@ export default function SetPage({ setId }: { setId: string }) {
   return (
     <div className="sl2">
       <div className="wrap">
+        <Breadcrumb items={[{ label: 'Setlist', href: '/setlist' }, { label: set.name }]} />
         <div className="hero">
           {box
             ? <div className="cover photo"><img className="cimg" src={box} alt={`Boîte ${set.name}`} /></div>

@@ -17,6 +17,7 @@ import PlayerSetsSection from './PlayerSetsSection'
 import PlayerChecklistSection from './PlayerChecklistSection'
 import LazySection from '@/components/LazySection'
 import ScrollTopButton from '@/components/ScrollTopButton'
+import Breadcrumb from '@/components/Breadcrumb'
 import { createServerClient } from '@/lib/supabaseServer'
 
 // La fiche ESPN (findAthleteId -> bio/stats/awards -> noms d'equipes -> numeros
@@ -1000,11 +1001,7 @@ export default async function JoueurPage({ params }: { params: Promise<{ slug: s
 
           <div style={{ maxWidth: 'var(--page-max, 1200px)', margin: '0 auto', position: 'relative' }}>
             {/* Breadcrumb */}
-            {!newHero && <div style={{ fontSize: 12, color: 'rgba(255,255,255,0.5)', marginBottom: 22, display: 'flex', gap: 6, alignItems: 'center' }}>
-              <Link href="/setlist" style={{ color: 'rgba(255,255,255,0.5)', textDecoration: 'none', fontWeight: 600, transition: 'color 0.1s' }}>Setlist</Link>
-              <span>/</span>
-              <span style={{ color: 'rgba(255,255,255,0.8)' }}>{playerName}</span>
-            </div>}
+            <Breadcrumb onDark items={[{ label: 'Setlist', href: '/setlist' }, { label: stripDiacritics(playerName) }]} />
 
             <div className="jp-hero-row" style={{ display: 'flex', gap: newHero ? 28 : 32, alignItems: newHero ? 'center' : 'flex-start', flexWrap: 'wrap' }}>
               {/* Bobblehead (si le joueur en a un) à la place de la photo ronde */}

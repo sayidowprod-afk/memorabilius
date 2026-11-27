@@ -42,5 +42,5 @@ export default function NativeHomeGate({ hero, siteStats, cardOfTheDay, extras }
 
   // Visiteur : bandeau habituel. Membre connu d'avance (<html data-member>, posé avant l'affichage) : le bandeau est caché et
   // remplacé par une zone de la hauteur d'un écran, le temps que le tableau de bord arrive (sans ça, tout le bas de page sautait).
-  return <><div className="home-hero-gate">{hero}{cardOfTheDay}</div><div className="home-member-ph" aria-hidden="true" />{!(!loading && user) && extras && ['tcg', 'pronos', 'pepites', 'podium'].map(k => <div key={k}>{extras[k]}</div>)}</>
+  return <><div className="home-hero-gate">{hero}{cardOfTheDay}</div><div className="home-member-ph" aria-hidden="true" />{!(!loading && user) && extras && ['joueur', 'tcg', 'pronos', 'pepites', 'podium'].map(k => <div key={k}>{extras[k]}</div>)}</>
 }

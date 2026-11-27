@@ -1,6 +1,7 @@
 import { cachedAsync } from '@/lib/ttlCache'
 import HomeDaily from '@/components/HomeDaily'
 import PronosHomePreview from '@/components/PronosHomePreview'
+import { JoueurMystereBanner } from '@/components/JoueurMystere'
 import { supabase } from '@/lib/supabase'
 import { countCardsForSale } from '@/lib/fastCards'
 import PepitesSection from '@/components/PepitesSection'
@@ -298,6 +299,7 @@ export default async function Home() {
         siteStats={{ total, totalCartes, totalBinders, totalTrade }}
         cardOfTheDay={<HomeDaily />}
         extras={{
+          joueur: <JoueurMystereBanner />,
           tcg: <TcgHomeSection />,
           pronos: <PronosHomePreview />,
           pepites: <SportOnly><PepitesSection cards={cards} /></SportOnly>,

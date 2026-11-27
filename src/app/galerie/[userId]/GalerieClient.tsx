@@ -3249,8 +3249,8 @@ export default function GalerieClient({ userId, initialCardUrl, initialCards, in
             <div ref={grailReveal.ref} className={grailReveal.className} style={{ marginBottom: 24 }}>
               <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 12 }}>
                 <span style={{ fontSize: 18 }}>💎</span>
-                <span className="da-display" style={{ fontWeight: 900, fontSize: 24, color: dark ? '#eee' : '#121212', letterSpacing: 0.5 }}>Grail Wall</span>
-                <span style={{ fontSize: 11, color: dark ? '#9aa6c0' : '#5b6478', fontWeight: 600 }}>— {t('gallery_jewels')}</span>
+                <span className="da-display on-deco" style={{ fontWeight: 900, fontSize: 24, color: dark ? '#eee' : '#121212', letterSpacing: 0.5 }}>Grail Wall</span>
+                <span className="on-deco-2" style={{ fontSize: 11, color: dark ? '#9aa6c0' : '#5b6478', fontWeight: 600 }}>— {t('gallery_jewels')}</span>
               </div>
 
               <div className="grail-museum"
@@ -3379,7 +3379,7 @@ export default function GalerieClient({ userId, initialCardUrl, initialCards, in
           <div>
             <div style={{ display: 'flex', gap: 4, marginBottom: 16 }}>
               {(['pc', 'wishlist', ...(isOwner ? ['rainbow'] as const : [])] as const).map(sub => (
-                <button key={sub} onClick={() => setObjectifsSubTab(sub)} style={{
+                <button key={sub} className={objectifsSubTab === sub ? undefined : 'on-deco'} onClick={() => setObjectifsSubTab(sub)} style={{
                   padding: '6px 16px', border: `1.5px solid ${objectifsSubTab === sub ? accent : (dark ? '#333' : '#e0e0e0')}`,
                   borderRadius: 20, cursor: 'pointer', fontWeight: 700, fontSize: 13,
                   background: objectifsSubTab === sub ? accent : 'transparent',
@@ -4168,6 +4168,8 @@ export default function GalerieClient({ userId, initialCardUrl, initialCards, in
               ...((privateCards.has(d.f) && isOwner)
                 ? { border: '2px solid #e74c3c' }
                 : coloredBorder(cardTagColor(d))),
+              // couleur du cadre de la vignette, reprise par l'ombre décalée au survol (voir .card-item:hover dans da.css)
+              ['--sticker' as string]: (privateCards.has(d.f) && isOwner) ? '#e74c3c' : (() => { const c = cardTagColor(d); return isGradient(c) ? (c.match(/#[0-9a-fA-F]{3,6}/)?.[0] || accent) : c })(),
               boxSizing: 'border-box',
               opacity: activeDragId === getCardId(d) ? 0.35 : privateCards.has(d.f) && isOwner ? 0.7 : 1,
               ...(activeDragId === getCardId(d) ? { outline: '2px dashed #003DA6', outlineOffset: -2, background: dark ? '#1a2b57' : '#eef4ff' } : {}),

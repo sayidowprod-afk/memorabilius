@@ -58,7 +58,7 @@ export default function TcgHomeSection() {
   const outline = { ...btn, border: '2px solid rgba(128,128,128,0.4)', color: 'inherit' }
   return (
     <section style={{ maxWidth: 'var(--page-max, 1100px)', margin: '16px auto', padding: '0 16px' }} aria-label="TCG">
-      <div style={{ border: '1px solid rgba(128,128,128,0.3)', borderRadius: 14, padding: 14, background: 'rgba(128,128,128,0.06)' }}>
+      <div style={{ padding: '14px 0' }}>
         <div style={{ fontWeight: 900, fontSize: 16, marginBottom: 10 }}>🎴 {tcgLabel('tcg', lang)}{counts ? ` · ${total}` : ''}{value ? <span style={{ fontWeight: 700, fontSize: 13, marginLeft: 8, color: '#1e9e57' }}>≈ {Math.round(value.eur)} € <span style={{ opacity: 0.7, fontWeight: 600 }}>({value.n})</span></span> : null}</div>
         {counts && total === 0 && <p style={{ margin: '0 0 10px', fontSize: 13, opacity: 0.8 }}>{tcgLabel('focusSub', lang)}</p>}
         {counts && total > 0 && (

@@ -4,6 +4,16 @@ export type Entry = { date: string; titre: string; points: string[] }
 
 export const ENTRIES: Entry[] = [
   {
+    date: '30 novembre 2026', titre: 'Joueur mystère NBA, thème jour retravaillé et galeries plus fidèles',
+    points: [
+      'Nouveau jeu : le Joueur mystère. Chaque jour, un joueur NBA (actuel ou ancien) à trouver en 8 essais. C’est le même pour tout le monde et il change à minuit, heure de Paris. Les cases se colorent (équipe, conférence, division, poste, taille, âge, numéro, pays) pour t’aider, et à la fin tu vois sa figurine, avec un lien vers ses cartes. Il est sur l’accueil (tu peux le déplacer ou le masquer avec « Personnaliser ») et sur sa page.',
+      'Thème jour : nouveau fond crème et textes bleu marine. Sur l’accueil, Pronos, les jeux (carte du jour, packs, joueur mystère) et « Visite guidée » sont lisibles et alignés sur le même style de cadres.',
+      'Galeries : le fond que tu choisis s’affiche maintenant pleinement en thème jour, avec des textes, un onglet actif et des cadres de cartes adaptés. Au survol, une carte projette une ombre à la couleur de son cadre.',
+      'Fil d’Ariane (« Setlist › Joueur », etc.) sur les fiches joueur, les équipes, les sets, les cartes, les teams et la modification d’une annonce d’échange.',
+      'Packs : l’inventaire affiche maintenant toutes tes cartes tirées (il s’arrêtait à 1000), et les tirages évitent mieux celles que tu as déjà.',
+    ],
+  },
+  {
     date: '30 novembre 2026', titre: 'Bobbleheads de football américain (NFL), recherche avec les têtes',
     points: [
       'Les figurines NFL arrivent : 100 joueurs avec leur tête, sur le maillot de leur équipe (page joueur, galerie, Mes PC).',

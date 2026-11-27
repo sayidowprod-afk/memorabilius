@@ -5,6 +5,7 @@ import { useRouter } from 'next/navigation'
 import Link from 'next/link'
 import { supabase } from '@/lib/supabase'
 import { useLang } from '@/lib/LangContext'
+import Breadcrumb from '@/components/Breadcrumb'
 
 const SPORTS = [
   { key: 'basket', label: '🏀 Basket' },
@@ -87,7 +88,7 @@ export default function EditerTrade({ params }: { params: Promise<{ tradeId: str
 
   return (
     <div style={{ maxWidth: 600, margin: '40px auto', fontFamily: 'Inter, sans-serif', padding: '0 16px', boxSizing: 'border-box' }}>
-      <Link href="/trades" style={{ color: '#003DA6', fontWeight: 700, fontSize: 14, display: 'inline-block', marginBottom: 20 }}>{t('trades_form_back')}</Link>
+      <Breadcrumb items={[{ label: t('nav_trades'), href: '/trades' }, { label: t('trades_edit_title') }]} />
       <h1 style={{ fontWeight: 900, fontSize: 28, marginBottom: 30 }}>{t('trades_edit_title')}</h1>
 
       <div style={{ background: 'var(--card-bg, #fff)', borderRadius: 16, padding: 40, boxShadow: '0 10px 40px rgba(0,0,0,0.08)', maxWidth: '100%', boxSizing: 'border-box' }}>

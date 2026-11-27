@@ -269,7 +269,7 @@ input::placeholder, textarea::placeholder { color: #b0b0b0; font-style: italic; 
 [data-theme="dark"] textarea::placeholder { color: #888 !important; font-style: italic; }
 
 /* Navbar */
-nav {
+nav.da-nav {
   background: var(--bg2) !important;
   border-bottom: 1px solid var(--border) !important;
 }
